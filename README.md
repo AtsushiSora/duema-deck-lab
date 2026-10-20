@@ -127,3 +127,10 @@ npm run check
 生成に使ったプロンプト：
 
 > Create one wide 5:2 landscape illustration strip with FIVE equal-width vertical panels in a single row, seamless within each panel and clear boundaries between panels. These are original miniature fantasy illustration assets for a trading card deck simulator web app, not actual trading cards. Do not include any text, numbers, card frame, logo or lettering. Panel 1: crimson armored volcanic dragon amid sparks, fire civilization, dark red and gold. Panel 2: blue translucent aquatic mechanical spirit under water amid luminous waves, cyan and deep navy. Panel 3: emerald giant forest beast with bronze leaf armor and roots, green and gold. Panel 4: golden radiant celestial armored guardian with white wings, ivory and gold. Panel 5: violet shadow armored demon silhouette amid dark mist, purple and charcoal. Rich hand-painted high-detail fantasy style, dynamic expressive silhouettes legible at tiny scale, sophisticated dark palette, each creature centered in its own panel, no cross-panel creature overlap. Artwork only, edge to edge, no decorative outer border. Use visually varied compositions.
+
+## v0.7 対戦準備のUI
+
+- 自分と選択中の相手を上部に並べ、対戦可能かを表示します。
+- 相手を用意する操作を「新しく作る」「保存したデッキから選ぶ」「環境デッキを選ぶ」に整理しました。アカウント選択は今後対応予定の案内です。
+- スマホでは開始ボタンを下部ナビゲーションの上に固定し、対象デッキ・合計対戦数・開始できない理由を表示します。「設定」から対戦設定へ移動できます。
+- 全相手との対戦は合計試合数を表示し、履歴比較の固定条件も表示に反映します。登録・カード効果の対応範囲は従来と同じです。
