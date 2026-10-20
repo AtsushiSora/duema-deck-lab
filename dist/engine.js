@@ -160,12 +160,13 @@ export function chooseAI(s){
    if(c.type==='creature')return 30+c.cost*2+(c.effect==='ramp1'&&me.mana.length<6?12:0)+(c.blocker&&them.battle.length>me.battle.length?8:0)+(c.unblockable?7:0)+(c.speedAttacker?8:0);
    if(c.effect==='discard')return them.hand.length?22:0;
    if(c.effect==='ramp2')return me.mana.length<7?20:1;
+   if(c.effect==='ramp1')return me.mana.length<7&&me.deckCount>1?23:1;
    if(c.effect==='searchCreature')return me.hand.filter(x=>card(x).type==='creature').length<2?25:0;
    if(c.effect==='drawUpTo3')return me.deckCount>6?32:0;
    if(c.effect==='draw2')return me.deckCount>2?28:0;
    if(c.effect==='discardAll')return them.hand.length?15+them.hand.length*5:0;
    if(['destroy','manaRemoval'].includes(c.effect))return them.battle.length?28:0;
-   if(c.effect==='tapAll')return them.battle.length&&me.battle.some(x=>!x.tapped&&x.entered<v.turn&&!card(x).noAttack)?25:0;
+   if(c.effect==='tapAll')return them.battle.length&&me.battle.some(x=>!x.tapped&&(x.entered<v.turn||card(x).speedAttacker)&&!card(x).noAttack)?25:0;
    if(c.effect==='bounceSmall')return them.battle.some(x=>card(x).cost<=6)?24:0;
    if(c.effect==='bounce')return them.battle.some(x=>card(x).cost>=3)?24:0;
    if(['tap','tapTwo','teamBuff','buff','unblock'].includes(c.effect))return me.battle.some(x=>!x.tapped&&x.entered<v.turn&&!card(x).noAttack)?15:0;

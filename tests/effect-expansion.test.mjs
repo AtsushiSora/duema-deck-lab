@@ -37,6 +37,10 @@ test('Fairy Life ramps the actual top card and functions as a free shield trigge
  const s=setup('dm06-110'),top=s.players[0].deck[0].uid;action(s,'play');assert.equal(s.players[0].mana.at(-1).uid,top);assert.equal(s.players[0].mana.at(-1).tapped,false);
  const t=createGame([PRESETS[0],PRESETS[1]],{seed:7});t.phase='attack';give(t,0,'battle',['dm01-097']);give(t,1,'battle',[]);give(t,1,'shields',['dm06-110']);const next=t.players[1].deck[0].uid;action(t,'attack');action(t,'noBlock');action(t,'useTrigger');assert.equal(t.players[1].mana.at(-1).uid,next);assert.equal(t.metrics[1].triggers,1);assert.equal(t.players[1].grave.at(-1).cardId,'dm06-110');
 });
+test('AI uses Fairy Life for early acceleration and avoids ramping its last library card',()=>{
+ const s=setup('dm06-110');give(s,0,'mana',['dm06-110','dm06-110']);assert.equal(chooseAI(s).kind,'play');
+ s.players[0].deck=s.players[0].deck.slice(0,1);assert.equal(chooseAI(s).kind,'toAttack');
+});
 test('Aqua Surfer has an optional entry effect including itself, and AI may decline',()=>{
  const s=setup('dm05-024');action(s,'play');assert.ok(getLegalActions(s).some(a=>a.kind==='skipEffect'));assert.ok(getLegalActions(s).some(a=>a.targets?.some(t=>t.player===0)));assert.equal(chooseAI(s).kind,'skipEffect');action(s,'skipEffect');assert.equal(s.players[0].battle.length,1);
  const t=setup('dm05-024');give(t,1,'battle',['dm01-075']);action(t,'play');action(t,'effect',a=>a.targets[0].player===1);assert.equal(t.players[1].hand.at(-1).cardId,'dm01-075');
