@@ -1,7 +1,7 @@
 // Supported-card rules engine. No strength-based or precomputed win rates.
-export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.4';
-export const ENGINE_VERSION='0.4.0';
-const EFFECTS=new Set(['ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers']);
+export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.5';
+export const ENGINE_VERSION='0.5.0';
+const EFFECTS=new Set(['ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers','dragonRamp2','ramp2Return1','optionalRamp4Return2','purgeNonDragonMana']);
 let catalogue=new Map();
 export function setCards(cards){for(const c of cards){if(c.effect&&!EFFECTS.has(c.effect))throw Error('未実装の効果です：'+c.effect);if(c.breaker!=null&&![2,3].includes(c.breaker))throw Error('未実装のブレイカーです');if(c.evolution&&c.trigger)throw Error('進化S・トリガーは未対応です');}catalogue=new Map(cards.map(c=>[c.id,c]));}
 export const card=id=>catalogue.get(typeof id==='string'?id:id.cardId);
@@ -35,6 +35,7 @@ function draw(s,p,n){for(let i=0;i<n&&s.winner===null;i++){const c=s.players[p].
 function remove(list,uid){const i=list.findIndex(x=>x.uid===uid);if(i<0)return null;return list.splice(i,1)[0];}
 export const civilizations=c=>c.civilizations||String(c.civ).split('/');
 export const manaValue=c=>c.manaValue??(civilizations(c).length===5?0:1);
+export const isDragon=c=>c.type==='creature'&&String(c.race).includes('ドラゴン');
 export function physicalCards(s){const flatten=c=>[c,...(c.under||[]).flatMap(flatten)];return s.players.flatMap(p=>['deck','hand','shields','mana','battle','grave'].flatMap(z=>p[z].flatMap(flatten)));}
 function moveCreature(s,p,uid,to='grave'){
  const c=remove(s.players[p].battle,uid);if(!c)return;
@@ -76,8 +77,28 @@ export function manaPayment(mana,c){
 }
 function validMana(s,p,c){return manaPayment(s.players[p].mana,c)!==null;}
 function pay(s,p,c){const ids=manaPayment(s.players[p].mana,c);if(!ids)throw Error('必要な文明・マナが足りません');for(const x of s.players[p].mana)if(ids.includes(x.uid))x.tapped=true;}
+// Move the whole batch together (400.7). Looking/revealing alone does not empty the library.
+function rampTapped(s,p,c,n,dragonsOnly=false){
+ const own=s.players[p],batch=own.deck.splice(0,n);
+ if(dragonsOnly)log(s,p,'reveal',`${c.name}で公開：${batch.map(x=>card(x).name).join('・')}`,{cardId:c.id});
+ const mana=batch.filter(x=>!dragonsOnly||isDragon(card(x))),grave=batch.filter(x=>dragonsOnly&&!isDragon(card(x)));
+ for(const x of batch){x.tapped=mana.includes(x);x.buff=0;x.unblocked=false;x.entered=0;}
+ own.mana.push(...mana);own.grave.push(...grave);
+ log(s,p,'ramp',`${c.name}：${mana.length}枚をタップしてマナへ${grave.length?`、${grave.length}枚を墓地へ`:''}`,{cardId:c.id});
+ deckCheck(s,p);
+}
+function chooseManaTop(s,p,c,n){
+ const count=Math.min(n,s.players[p].mana.length);
+ if(s.winner===null&&count)s.decision={type:'manaTop',player:p,source:c.id,count,chosen:[]};
+}
 function doEffect(s,p,c){
  const e=c.effect;if(!e)return;
+ if(e==='dragonRamp2'){rampTapped(s,p,c,2,true);return;}
+ if(e==='ramp2Return1'){rampTapped(s,p,c,2);chooseManaTop(s,p,c,1);return;}
+ if(e==='optionalRamp4Return2'){s.decision={type:'optionalRamp',player:p,source:c.id};return;}
+ if(e==='purgeNonDragonMana'){
+  for(const who of [0,1]){const own=s.players[who],removed=own.mana.filter(x=>!isDragon(card(x)));own.mana=own.mana.filter(x=>isDragon(card(x)));for(const x of removed){x.tapped=false;x.buff=0;x.unblocked=false;x.entered=0;}own.grave.push(...removed);log(s,who,'manaLeave',`${c.name}でドラゴン以外のマナ${removed.length}枚を墓地へ`,{cardId:c.id});}return;
+ }
  if(e==='bounceBlockers'){for(const who of [0,1])for(const x of [...s.players[who].battle])if(card(x).blocker)moveCreature(s,who,x.uid,'hand');return;}
  if(e==='draw2'){draw(s,p,2);return;}
  if(e==='tapAll'){for(const x of s.players[1-p].battle)x.tapped=true;log(s,p,'effect',`${c.name}で相手のクリーチャーすべてをタップ`,{cardId:c.id});return;}
@@ -151,6 +172,8 @@ export function getLegalActions(s){
   if(d.type==='entryOrder')out=s.triggers.entries.map(e=>option('orderEntry',`${card(e.source).name}の出た時の効果を先に解決`,{uid:e.uid,cardId:e.source}));
   if(d.type==='trigger')out=[option('useTrigger',`${card(d.source).name}を使う`,{uid:d.uid,cardId:d.source}),option('skipTrigger','使わず手札に加える')];
   if(d.type==='draw')out=Array.from({length:d.max+1},(_,n)=>option('draw',n?`${n}枚引く`:'引かない',{n}));
+  if(d.type==='optionalRamp')out=[option('useRamp','4枚をマナに置き、2枚を山札に戻す'),option('skipRamp','マナに置かない')];
+  if(d.type==='manaTop')out=own.mana.filter(x=>!d.chosen.includes(x.uid)).map(x=>option('manaTop',`山札の上から${d.chosen.length+1}枚目に${card(x).name}を置く（${x.tapped?'タップ中':'アンタップ'}）`,{uid:x.uid,cardId:x.cardId}));
   if(d.type==='search'){out=[option('search','選ばずにシャッフル',{uid:null})];for(const c of own.deck)if(card(c).type==='creature'&&!out.some(a=>a.cardId===c.cardId))out.push(option('search',`${card(c).name}を手札へ`,{uid:c.uid,cardId:c.cardId}));}
   if(d.type==='untap')out=[option('endUntap','アンタップする',{yes:true}),option('endUntap','アンタップしない',{yes:false})];
   if(d.type==='effect'){
@@ -187,6 +210,12 @@ export function step(s,action){
  if(a.kind==='orderTrigger'){s.decision=null;s.triggers.declared.splice(s.triggers.declared.indexOf(a.uid),1);playCard(s,p,a.uid,true);}
  if(a.kind==='orderEntry'){s.decision=null;const i=s.triggers.entries.findIndex(e=>e.uid===a.uid),[entry]=s.triggers.entries.splice(i,1);doEffect(s,p,card(entry.source));}
  if(a.kind==='draw'){s.decision=null;if(a.n)draw(s,p,a.n);else log(s,p,'skip','任意のドローを省略');}
+ if(a.kind==='useRamp'){s.decision=null;const source=card(d.source);rampTapped(s,p,source,4);chooseManaTop(s,p,source,2);}
+ if(a.kind==='skipRamp'){s.decision=null;log(s,p,'skip',`${card(d.source).name}のマナ加速を使わない`,{cardId:d.source});}
+ if(a.kind==='manaTop'){
+  d.chosen.push(a.uid);
+  if(d.chosen.length===d.count){const returned=d.chosen.map(uid=>remove(s.players[p].mana,uid));for(const x of returned){x.tapped=false;x.buff=0;x.unblocked=false;x.entered=0;}s.players[p].deck.unshift(...returned);s.decision=null;log(s,p,'manaTop',`${card(d.source).name}でマナ${returned.length}枚を山札の上へ（順序は非公開）`,{cardId:d.source});}
+ }
  if(a.kind==='skipEffect'){s.decision=null;log(s,p,'skip','任意の効果を使わない');}
  if(a.kind==='search'){s.decision=null;if(a.uid){const c=remove(s.players[p].deck,a.uid);s.players[p].hand.push(c);log(s,p,'search',`${card(c).name}を探して手札へ`,{cardId:c.cardId});}s.players[p].deck=shuffled(s.players[p].deck,Math.floor(random(s)*4294967296));deckCheck(s,p);}
  if(a.kind==='effect'){
@@ -224,6 +253,7 @@ export function chooseAI(s){
    if(c.effect==='discard')return them.hand.length?22:0;
    if(c.effect==='ramp2')return me.mana.length<7?20:1;
    if(c.effect==='ramp1')return me.mana.length<7&&me.deckCount>1?23:1;
+   if(c.effect==='dragonRamp2')return me.mana.length<9&&me.deckCount>2?36:1;
    if(c.effect==='searchCreature')return me.hand.filter(x=>card(x).type==='creature').length<2?25:0;
    if(c.effect==='drawUpTo3')return me.deckCount>6?32:0;
    if(c.effect==='draw2')return me.deckCount>2?28:0;
@@ -255,6 +285,12 @@ export function chooseAI(s){
   if(a.kind==='draw')return me.deckCount>a.n+2?a.n*10:-a.n;
   if(a.kind==='search')return a.cardId?20-Math.abs(card(a.cardId).cost-me.mana.length)*2+(card(a.cardId).unblockable?3:0):0;
   if(a.kind==='endUntap')return a.yes?10:0;
+  if(a.kind==='useRamp')return me.deckCount>4&&me.mana.length<11?20:-1;
+  if(a.kind==='skipRamp')return 0;
+  if(a.kind==='manaTop'){
+   const x=me.mana.find(x=>x.uid===a.uid),others=me.mana.filter(x=>x.uid!==a.uid),lostColors=civilizations(c).filter(color=>!others.some(y=>civilizations(card(y)).includes(color))).length;
+   return(x.tapped?15:0)-lostColors*18+(c.type==='creature'&&c.cost<=me.mana.length?10:0)-(me.hand.some(y=>y.cardId===c.id)?8:0);
+  }
   if(a.kind==='effect')return a.targets.reduce((sum,t)=>{const x=find(t.player,t.uid);if(!x)return sum;const e=v.decision.effect;if(['buff','unblock'].includes(e))return sum+(t.player===p&&!x.tapped&&(x.entered<v.turn||card(x).speedAttacker||card(x).evolution)?20:0)+card(x).cost;if(['bounce','bounceOptional','bounceSmall','bounceBlockers'].includes(e)&&t.player===p)return sum-20;return sum+card(x).cost*3+(card(x).blocker?8:0);},0);
   return 0;
  };

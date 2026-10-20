@@ -15,6 +15,13 @@ export const ENVIRONMENT_LISTS=[
   cards:rows([[4,'改竄の炎 ボルメテウス・ハック'],[4,'煌ノ裁徒 ダイヤモン星'],[2,'旋略のS アドミラル・アレグル'],[4,'終止の時計 ザ・ミュート'],[4,'冥土人形ヴァミリア・バレル'],[3,'「大蛇」の鬼 ジャドク丸'],[3,'世界のY チャクラ・デル・フィン'],[4,'～世紀末の善悪～'],[3,'アーテル・ゴルギーニ'],[1,'切札竜 ボルメテウス・リバース・ドラゴン'],[4,'～邪眼帝～'],[4,'ウルの天宝']])}
 ];
 
+export const ENVIRONMENT_TARGET='env-gp2026-pinky';
+// Count both physical copies and distinct card names; partial support never enables a battle.
+export function environmentSupport(deck,registry){
+ const rows=registry.resolveRows(deck.cards),supported=rows.filter(r=>registry.get(r.id).supported),unsupported=rows.filter(r=>!registry.get(r.id).supported);
+ return {supportedCopies:supported.reduce((n,r)=>n+r.count,0),totalCopies:rows.reduce((n,r)=>n+r.count,0),supportedTypes:supported.length,totalTypes:rows.length,unsupported};
+}
+
 export function resolveEnvironmentDecks(registry,lists=ENVIRONMENT_LISTS){
  return lists.map(list=>{
   const seen=new Set();
