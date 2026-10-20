@@ -1,9 +1,9 @@
 // Supported-card rules engine. No strength-based or precomputed win rates.
-export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.2';
-export const ENGINE_VERSION='0.2.0';
+export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.3';
+export const ENGINE_VERSION='0.3.0';
 const EFFECTS=new Set(['ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall']);
 let catalogue=new Map();
-export function setCards(cards){for(const c of cards)if(c.effect&&!EFFECTS.has(c.effect))throw Error('未実装の効果です：'+c.effect);catalogue=new Map(cards.map(c=>[c.id,c]));}
+export function setCards(cards){for(const c of cards){if(c.effect&&!EFFECTS.has(c.effect))throw Error('未実装の効果です：'+c.effect);if(c.breaker!=null&&![2,3].includes(c.breaker))throw Error('未実装のブレイカーです');}catalogue=new Map(cards.map(c=>[c.id,c]));}
 export const card=id=>catalogue.get(typeof id==='string'?id:id.cardId);
 export function validateDeck(deck){
  const errors=[];
@@ -65,7 +65,8 @@ function playCard(s,p,uid,free=false){
  const inst=remove(s.players[p].hand,uid),c=card(inst);if(!free)pay(s,p,c);
  if(c.type==='creature'){inst.entered=s.turn;inst.tapped=false;s.players[p].battle.push(inst);if(s.metrics[p].firstCreature===null)s.metrics[p].firstCreature=s.players[p].turns;}else s.players[p].grave.push(inst);
  const met=s.metrics[p];met.played[c.id]=(met.played[c.id]||0)+1;if(s.players[p].turns<=3)met.earlyPlayed[c.id]=true;if(free)met.triggers++;
- log(s,p,free?'trigger':'play',`${c.name}を${free?'S・トリガーで':''}${c.type==='creature'?'召喚':'使用'}`,{cardId:c.id});doEffect(s,p,c);
+ log(s,p,free?'trigger':'play',`${c.name}を${free?'S・トリガーで':''}${c.type==='creature'?'召喚':'使用'}`,{cardId:c.id});
+ if(free&&c.type==='creature'&&s.triggers){if(c.effect)s.triggers.entries.push({uid:inst.uid,source:c.id});}else doEffect(s,p,c);
 }
 function battle(s,attacker,defender){const pa=s.active,pd=1-pa;const ap=power(attacker,true),dp=power(defender,false);const aDies=ap<=dp||card(defender).slayer||card(attacker).afterBattleDie;const dDies=dp<=ap||card(attacker).slayer||card(defender).afterBattleDie;log(s,pa,'battle',`${card(attacker).name}(${ap}) 対 ${card(defender).name}(${dp})`);if(aDies)moveCreature(s,pa,attacker.uid);if(dDies)moveCreature(s,pd,defender.uid);}
 function resolveAttack(s,blockUid){
@@ -75,11 +76,35 @@ function resolveAttack(s,blockUid){
  else if(s.attack.target!=='player'){const b=s.players[other].battle.find(x=>x.uid===s.attack.target);if(b)battle(s,a,b);}
  else if(!s.players[other].shields.length)finish(s,s.active,'ダイレクトアタックが成立');
  else{
-  const shield=remove(s.players[other].shields,s.attack.shield),broken=shield||s.players[other].shields.shift();s.players[other].hand.push(broken);s.metrics[s.active].breaks++;log(s,s.active,'break',`シールドを1枚ブレイク（残り${s.players[other].shields.length}枚）`);
-  if(card(broken).trigger)s.decision={type:'trigger',player:other,uid:broken.uid,source:broken.cardId};
+  const shields=s.players[other].shields,n=Math.min(card(a).breaker||1,shields.length);
+  if(n===shields.length)breakShields(s,other,shields.map(c=>c.uid));
+  else if(n===1)breakShields(s,other,[s.attack.shield||shields[0].uid]);
+  else s.decision={type:'breakChoice',player:s.active,defender:other,count:n};
  }
  s.attack=null;
 }
+// Rule 509.5: selected shields leave together. Declare every trigger before executing any.
+function breakShields(s,defender,uids){
+ const broken=uids.map(uid=>remove(s.players[defender].shields,uid)).filter(Boolean);
+ s.players[defender].hand.push(...broken);s.metrics[s.active].breaks+=broken.length;
+ log(s,s.active,'break',`シールドを${broken.length}枚同時にブレイク（残り${s.players[defender].shields.length}枚）`);
+ const eligible=broken.filter(c=>card(c).trigger).map(c=>c.uid);
+ if(eligible.length)s.triggers={player:defender,undeclared:eligible,declared:[],entries:[]};
+}
+// Rule 112.3a: spell triggers finish first; creature entry effects wait until all triggers finish.
+function advanceTriggers(s){
+ while(s.triggers&&!s.decision&&s.winner===null){
+  const t=s.triggers,p=t.player;
+  if(t.undeclared.length){const c=s.players[p].hand.find(c=>c.uid===t.undeclared[0]);s.decision={type:'trigger',player:p,uid:c.uid,source:c.cardId};return;}
+  if(t.declared.length>1){s.decision={type:'triggerOrder',player:p};return;}
+  if(t.declared.length){playCard(s,p,t.declared.shift(),true);continue;}
+  if(t.entries.length>1){s.decision={type:'entryOrder',player:p};return;}
+  if(t.entries.length){doEffect(s,p,card(t.entries.shift().source));continue;}
+  s.triggers=null;
+ }
+}
+function combinations(items,n){if(n===0)return [[]];if(n>items.length)return [];return items.flatMap((x,i)=>combinations(items.slice(i+1),n-1).map(rest=>[x,...rest]));}
+
 function nextTurn(s){
  for(const p of s.players)for(const c of p.battle){c.buff=0;c.unblocked=false;}
  s.active=1-s.active;s.turn++;s.phase='charge';const p=s.players[s.active];p.turns++;s.metrics[s.active].turns=p.turns;for(const c of [...p.mana,...p.battle])c.tapped=false;
@@ -92,6 +117,9 @@ export function getLegalActions(s){
  let out=[];const d=s.decision,p=d?d.player:s.active,own=s.players[p],opp=s.players[1-p];
  if(d){
   if(d.type==='block'){const a=opp.battle.find(x=>x.uid===s.attack.attacker);out=[option('noBlock','ブロックしない')];if(a&&!card(a).unblockable&&!a.unblocked)for(const c of own.battle)if(card(c).blocker&&!c.tapped)out.push(option('block',`${card(c).name}でブロック`,{uid:c.uid}));}
+  if(d.type==='breakChoice')out=combinations(opp.shields.map((c,i)=>({uid:c.uid,index:i+1})),d.count).map(rows=>option('breakShields',`シールド${rows.map(r=>r.index).join('・')}をブレイク`,{shields:rows.map(r=>r.uid)}));
+  if(d.type==='triggerOrder')out=s.triggers.declared.map(uid=>{const c=own.hand.find(c=>c.uid===uid);return option('orderTrigger',`${card(c).name}を先に使う`,{uid,cardId:c.cardId});});
+  if(d.type==='entryOrder')out=s.triggers.entries.map(e=>option('orderEntry',`${card(e.source).name}の出た時の効果を先に解決`,{uid:e.uid,cardId:e.source}));
   if(d.type==='trigger')out=[option('useTrigger',`${card(d.source).name}を使う`,{uid:d.uid,cardId:d.source}),option('skipTrigger','使わず手札に加える')];
   if(d.type==='draw')out=Array.from({length:d.max+1},(_,n)=>option('draw',n?`${n}枚引く`:'引かない',{n}));
   if(d.type==='search'){out=[option('search','選ばずにシャッフル',{uid:null})];for(const c of own.deck)if(card(c).type==='creature'&&!out.some(a=>a.cardId===c.cardId))out.push(option('search',`${card(c).name}を手札へ`,{uid:c.uid,cardId:c.cardId}));}
@@ -105,7 +133,7 @@ export function getLegalActions(s){
  else if(s.phase==='main'){
   out=own.hand.filter(c=>validMana(s,p,card(c))).map(c=>option('play',`${card(c).name}を${card(c).type==='creature'?'召喚':'使用'}`,{uid:c.uid,cardId:c.cardId}));out.push(option('toAttack','攻撃へ進む'));
  }else if(s.phase==='attack'){
-  for(const c of own.battle.filter(c=>canAttack(s,p,c))){if(!card(c).noPlayerAttack){if(opp.shields.length)for(let i=0;i<opp.shields.length;i++)out.push(option('attack',`${card(c).name} → シールド${i+1}`,{uid:c.uid,target:'player',shield:opp.shields[i].uid}));else out.push(option('attack',`${card(c).name}でダイレクトアタック`,{uid:c.uid,target:'player'}));}
+  for(const c of own.battle.filter(c=>canAttack(s,p,c))){if(!card(c).noPlayerAttack){if(opp.shields.length&&card(c).breaker)out.push(option('attack',`${card(c).name} → 相手（${Math.min(card(c).breaker,opp.shields.length)}枚ブレイク）`,{uid:c.uid,target:'player'}));else if(opp.shields.length)for(let i=0;i<opp.shields.length;i++)out.push(option('attack',`${card(c).name} → シールド${i+1}`,{uid:c.uid,target:'player',shield:opp.shields[i].uid}));else out.push(option('attack',`${card(c).name}でダイレクトアタック`,{uid:c.uid,target:'player'}));}
    for(const target of opp.battle.filter(x=>x.tapped))out.push(option('attack',`${card(c).name} → ${card(target).name}`,{uid:c.uid,target:target.uid}));
   }
   if(!own.battle.some(c=>card(c).mustAttack&&canAttack(s,p,c)))out.push(option('endTurn','ターン終了'));
@@ -122,8 +150,11 @@ export function step(s,action){
  if(a.kind==='toAttack'){s.phase='attack';log(s,p,'phase','攻撃ステップへ');}
  if(a.kind==='attack'){const c=s.players[p].battle.find(x=>x.uid===a.uid);c.tapped=true;s.attack={attacker:a.uid,target:a.target,shield:a.shield};log(s,p,'attack',a.label,{cardId:c.cardId});s.decision={type:'block',player:1-p};}
  if(a.kind==='block'||a.kind==='noBlock'){s.decision=null;resolveAttack(s,a.kind==='block'?a.uid:null);}
- if(a.kind==='useTrigger'){s.decision=null;playCard(s,p,a.uid,true);}
- if(a.kind==='skipTrigger'){s.decision=null;log(s,p,'skip','S・トリガーを使わない');}
+ if(a.kind==='useTrigger'){s.decision=null;s.triggers.undeclared.shift();s.triggers.declared.push(a.uid);log(s,p,'declare',`${card(d.source).name}のS・トリガーを宣言`,{cardId:d.source});}
+ if(a.kind==='skipTrigger'){s.decision=null;s.triggers.undeclared.shift();log(s,p,'skip','S・トリガーを使わない');}
+ if(a.kind==='breakShields'){s.decision=null;breakShields(s,d.defender,a.shields);}
+ if(a.kind==='orderTrigger'){s.decision=null;s.triggers.declared.splice(s.triggers.declared.indexOf(a.uid),1);playCard(s,p,a.uid,true);}
+ if(a.kind==='orderEntry'){s.decision=null;const i=s.triggers.entries.findIndex(e=>e.uid===a.uid),[entry]=s.triggers.entries.splice(i,1);doEffect(s,p,card(entry.source));}
  if(a.kind==='draw'){s.decision=null;if(a.n)draw(s,p,a.n);else log(s,p,'skip','任意のドローを省略');}
  if(a.kind==='skipEffect'){s.decision=null;log(s,p,'skip','任意の効果を使わない');}
  if(a.kind==='search'){s.decision=null;if(a.uid){const c=remove(s.players[p].deck,a.uid);s.players[p].hand.push(c);log(s,p,'search',`${card(c).name}を探して手札へ`,{cardId:c.cardId});}s.players[p].deck=shuffled(s.players[p].deck,Math.floor(random(s)*4294967296));deckCheck(s,p);}
@@ -140,6 +171,7 @@ export function step(s,action){
  }
  if(a.kind==='endTurn')beginEnd(s);
  if(a.kind==='endUntap'){s.decision=null;if(a.yes)for(const c of s.players[p].battle)if(d.uids.includes(c.uid))c.tapped=false;nextTurn(s);}
+ advanceTriggers(s);
  return s;
 }
 // This observation deliberately omits both players' shield identities and deck order,
@@ -182,6 +214,9 @@ export function chooseAI(s){
   if(a.kind==='endTurn')return 0;
   if(a.kind==='block'){const b=find(p,a.uid);const attacker=them.battle.find(x=>x.uid===v.attack?.attacker);return(me.shields===0?100:0)+(attacker&&power(b)>=power(attacker,true)?50:me.shields<=2?20:-2)-card(b).cost*.1;}
   if(a.kind==='noBlock')return 0;
+  if(a.kind==='breakShields')return 1;
+  if(a.kind==='orderTrigger')return (c.type==='creature'?35:30)+c.cost;
+  if(a.kind==='orderEntry')return c.cost;
   if(a.kind==='useTrigger')return 30;
   if(a.kind==='skipTrigger')return 0;
   if(a.kind==='draw')return me.deckCount>a.n+2?a.n*10:-a.n;

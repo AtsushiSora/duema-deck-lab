@@ -27,6 +27,6 @@ for(const {data:d,spec,kind} of specifications){
  const i=data.cards.findIndex(c=>c.id===value.id||c.name===value.name);if(i>=0)data.cards[i]=value;else data.cards.push(value);
 }
 // This set contains no restricted cards; live restriction updates still require a separate review.
-data.supportExpansion={phase:1,checkedAt:'2026-10-20',baseCount:44,newEffectCards:9,newVanillaCards:51,totalCount:data.cards.length,next:['複数ブレイク','多色・進化','置換・誘発効果の共通化','環境デッキの固有効果']};
+if((data.supportExpansion?.phase||0)<2)data.supportExpansion={phase:1,checkedAt:'2026-10-20',baseCount:44,newEffectCards:9,newVanillaCards:51,totalCount:data.cards.length,next:['複数ブレイク','多色・進化','置換・誘発効果の共通化','環境デッキの固有効果']};
 await writeFile(new URL('../dist/cards.json',import.meta.url),JSON.stringify(data,null,2)+'\n');
 console.log(JSON.stringify(data.supportExpansion));
