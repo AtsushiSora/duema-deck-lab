@@ -31,12 +31,4 @@ export function resolveEnvironmentDecks(registry,lists=ENVIRONMENT_LISTS){
  });
 }
 
-const fingerprint=(deck,registry)=>JSON.stringify(registry.resolveRows(deck.cards).sort((a,b)=>a.id.localeCompare(b.id)));
-export function prepareEnvironmentCopy(existing,template,registry,{id,created}={}){
- const errors=registry.validate(template);if(errors.length)throw Error(errors.join(' / '));
- const signature=fingerprint(template,registry);
- const found=existing.find(d=>{try{return d.format===template.format&&fingerprint(d,registry)===signature;}catch{return false;}});
- if(found)return {deck:found,alreadyExists:true};
- if(!id||existing.some(d=>d.id===id))throw Error('新しいデッキIDが必要です');
- return {deck:{...structuredClone(template),id,category:'自分',created,updated:created,templateId:template.id},alreadyExists:false};
-}
+export {prepareDeckCopy as prepareEnvironmentCopy} from './deck-copy.js';
