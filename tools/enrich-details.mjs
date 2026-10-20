@@ -1,0 +1,26 @@
+import{readFile,appendFile,mkdir,writeFile,rename,stat}from'node:fs/promises';import{gzip,gunzip}from'node:zlib';import{promisify}from'node:util';import{createHash}from'node:crypto';import{pathToFileURL}from'node:url';import{setTimeout as pause}from'node:timers/promises';import{extractIndex,canonicalName,officialDetailURL}from'./catalogue-parser.mjs';import{parseDetail}from'./detail-parser.mjs';
+const zip=promisify(gzip),unzip=promisify(gunzip),base='https://dm.takaratomy.co.jp',cacheRoot=new URL('./research/details/',import.meta.url),htmlRoot=new URL('html/',cacheRoot),target=new URL('../dist/details.json',import.meta.url);
+const score=r=>r.faces.reduce((n,f)=>n+f.missingFields.length,0);
+export function chooseBetterDetail(original,candidate){
+ if(canonicalName(original.name)!==canonicalName(candidate.name)||original.faces.length!==candidate.faces.length||score(candidate)>=score(original))return null;
+ for(let i=0;i<original.faces.length;i++){const a=original.faces[i],b=candidate.faces[i];if(canonicalName(a.name)!==canonicalName(b.name))return null;for(const key of ['typeText','civilizationText','costText','abilityText'])if(a[key]&&!b[key])return null;}
+ return {...candidate,id:original.id,name:original.name,source:original.source,detailSource:candidate.source};
+}
+const maybe=async path=>{try{return await readFile(path);}catch{return null;}};
+async function request(url,init){for(let attempt=0;attempt<3;attempt++){try{const r=await fetch(url,{...init,signal:AbortSignal.timeout(20000)});if(!r.ok)throw Error('HTTP '+r.status);const text=await r.text();await pause(200);return text;}catch(e){if(attempt===2)throw e;await pause(1000*(attempt+1));}}}
+async function candidatePage(source,refresh=false){const path=new URL(createHash('sha256').update(source).digest('hex')+'.html.gz',htmlRoot),cached=refresh?null:await maybe(path);if(cached)return {html:(await unzip(cached)).toString(),checkedAt:(await stat(path)).mtime.toISOString().slice(0,10)};const html=await request(source);await writeFile(path,await zip(html));return {html,checkedAt:new Date().toISOString().slice(0,10)};}
+export async function enrichDetails({refresh=false}={}){
+ const details=JSON.parse(await readFile(target,'utf8'));if(details.previewOnly)throw Error('全件取得後に再録を確認してください');await mkdir(htmlRoot,{recursive:true});const resultPath=new URL('reprints.jsonl',cacheRoot),cached=await maybe(resultPath),previous=new Map((cached?cached.toString().split('\n').filter(Boolean).map(JSON.parse):[]).map(r=>[r.id,r]));let checked=0,improved=0,position=0;const pending=details.cards.filter(r=>r.status==='partial'),today=new Date().toISOString().slice(0,10);
+ console.log(`Checking same-name official reprints for ${pending.length} records with blank fields (4 workers)`);
+ await Promise.all(Array.from({length:4},async()=>{while(position<pending.length){const original=pending[position++],old=previous.get(original.id);let best=original,error=null;
+  if(!refresh&&old?.checkedAt===today&&old.originalScore===score(original)&&old.name===original.name&&old.source===original.source&&old.parserVersion===original.parserVersion){if(old.best)best=old.best;}else{
+   try{const keyword=original.faces[0].name||original.name,body=new URLSearchParams({keyword,'keyword_type[]':'card_name',condition:'on',samename:'show',pagenum:'1',sort:'release_new'}),index=extractIndex(await request(base+'/card/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()}));
+    for(const id of index.ids.filter(id=>officialDetailURL(id)!==original.source).slice(0,10)){const source=officialDetailURL(id),data=await candidatePage(source,refresh);let candidate;try{candidate={...parseDetail(data.html,{id,name:original.name,source}),checkedAt:data.checkedAt};}catch{continue;}const improvedRecord=chooseBetterDetail(best,candidate);if(improvedRecord)best={...improvedRecord,source:original.source};if(!score(best))break;}
+   }catch(e){error=e.message;console.warn('Reprint lookup '+original.id+': '+e.message);}
+   const record={id:original.id,name:original.name,source:original.source,parserVersion:original.parserVersion,checkedAt:today,originalScore:score(original),best:best===original?null:best,error};await appendFile(resultPath,JSON.stringify(record)+'\n');previous.set(original.id,record);
+  }
+  if(best!==original){const i=details.cards.findIndex(r=>r.id===original.id);details.cards[i]=best;improved++;}checked++;if(checked%20===0||checked===pending.length)console.log(`Reprints ${checked}/${pending.length}; improved ${improved}`);
+ }}));
+ details.completeCount=details.cards.filter(r=>r.status==='complete').length;details.partialCount=details.cards.length-details.completeCount;details.checkedAt=details.cards.map(r=>r.checkedAt).sort()[0];details.generatedAt=new Date().toISOString();const temp=new URL('../dist/details.json.tmp',import.meta.url);await writeFile(temp,JSON.stringify(details));await rename(temp,target);console.log(JSON.stringify({registered:details.cards.length,complete:details.completeCount,partial:details.partialCount,improved}));return details;
+}
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)await enrichDetails({refresh:process.argv.includes('--refresh')});
