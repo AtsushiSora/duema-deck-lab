@@ -14,7 +14,8 @@ for(const row of manifest.cards){
  const value={id:d.id,name:d.name,civ:f.civilizations[0],type:'creature',cost:f.cost,power:Number(f.powerText),race:f.race,text:f.abilityText,source:row.source,limit:4,...row.spec,supportBatch:'phase-2',supportKind:'effect'};
  if(old)data.cards[data.cards.indexOf(old)]=value;else data.cards.push(value);
 }
+const previousPhase=data.supportExpansion.phase;
 const history=data.supportExpansion.phase===2?data.supportExpansion.history:[data.supportExpansion];
-data.supportExpansion={phase:2,checkedAt:manifest.checkedAt,baseCount:104,newEffectCards:manifest.cards.length,newVanillaCards:0,totalCount:data.cards.length,history,ruleSource:manifest.rules,next:['多色・進化','置換・誘発効果の共通化','環境デッキの固有効果']};
+if(previousPhase<=2)data.supportExpansion={phase:2,checkedAt:manifest.checkedAt,baseCount:104,newEffectCards:manifest.cards.length,newVanillaCards:0,totalCount:data.cards.length,history,ruleSource:manifest.rules,next:['多色・進化','置換・誘発効果の共通化','環境デッキの固有効果']};
 await writeFile(new URL('../dist/cards.json',import.meta.url),JSON.stringify(data,null,2)+'\n');
 console.log(JSON.stringify({phase:2,added:manifest.cards.length,total:data.cards.length}));

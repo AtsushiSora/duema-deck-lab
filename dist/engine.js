@@ -1,9 +1,9 @@
 // Supported-card rules engine. No strength-based or precomputed win rates.
-export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.3';
-export const ENGINE_VERSION='0.3.0';
-const EFFECTS=new Set(['ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall']);
+export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.4';
+export const ENGINE_VERSION='0.4.0';
+const EFFECTS=new Set(['ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers']);
 let catalogue=new Map();
-export function setCards(cards){for(const c of cards){if(c.effect&&!EFFECTS.has(c.effect))throw Error('未実装の効果です：'+c.effect);if(c.breaker!=null&&![2,3].includes(c.breaker))throw Error('未実装のブレイカーです');}catalogue=new Map(cards.map(c=>[c.id,c]));}
+export function setCards(cards){for(const c of cards){if(c.effect&&!EFFECTS.has(c.effect))throw Error('未実装の効果です：'+c.effect);if(c.breaker!=null&&![2,3].includes(c.breaker))throw Error('未実装のブレイカーです');if(c.evolution&&c.trigger)throw Error('進化S・トリガーは未対応です');}catalogue=new Map(cards.map(c=>[c.id,c]));}
 export const card=id=>catalogue.get(typeof id==='string'?id:id.cardId);
 export function validateDeck(deck){
  const errors=[];
@@ -33,37 +33,65 @@ function finish(s,winner,reason){if(s.winner!==null)return;s.winner=winner;s.rea
 function deckCheck(s,p){if(!s.players[p].deck.length)finish(s,1-p,`${s.players[p].name}の山札がなくなった`);}
 function draw(s,p,n){for(let i=0;i<n&&s.winner===null;i++){const c=s.players[p].deck.shift();if(c)s.players[p].hand.push(c);deckCheck(s,p);}log(s,p,'draw',`カードを${n}枚引いた`);}
 function remove(list,uid){const i=list.findIndex(x=>x.uid===uid);if(i<0)return null;return list.splice(i,1)[0];}
+export const civilizations=c=>c.civilizations||String(c.civ).split('/');
+export const manaValue=c=>c.manaValue??(civilizations(c).length===5?0:1);
+export function physicalCards(s){const flatten=c=>[c,...(c.under||[]).flatMap(flatten)];return s.players.flatMap(p=>['deck','hand','shields','mana','battle','grave'].flatMap(z=>p[z].flatMap(flatten)));}
 function moveCreature(s,p,uid,to='grave'){
  const c=remove(s.players[p].battle,uid);if(!c)return;
- let target=to;if(to==='grave'&&card(c).death)target=card(c).death;
- c.tapped=false;c.buff=0;c.unblocked=false;s.players[p][target].push(c);
- log(s,p,'leave',`${card(c).name}が${{grave:'墓地',hand:'手札',mana:'マナ'}[target]}へ移動`,{cardId:c.cardId});
+ const target=to==='grave'&&card(c).death?card(c).death:to;
+ const flatten=x=>[x,...(x.under||[]).flatMap(flatten)],cards=flatten(c);
+ for(const x of cards){delete x.under;x.tapped=target==='mana'&&civilizations(card(x)).length>1;x.buff=0;x.unblocked=false;x.entered=0;}
+ s.players[p][target].push(...cards);
+ log(s,p,'leave',`${card(c).name}${cards.length>1?`と進化元${cards.length-1}枚`:''}が${{grave:'墓地',hand:'手札',mana:'マナ'}[target]}へ移動`,{cardId:c.cardId});
 }
+function matchesEvolution(base,condition){
+ const c=card(base),races=String(c.race).split('/');
+ if(condition.any)return condition.any.some(x=>matchesEvolution(base,x));
+ if(condition.race)return races.includes(condition.race);
+ if(condition.category)return races.some(r=>r.includes(condition.category));
+ if(condition.civilization)return civilizations(c).includes(condition.civilization);
+ if(condition.blocker)return !!c.blocker;
+ return false;
+}
+export function evolutionBases(s,p,c){return c.evolution?s.players[p].battle.filter(x=>matchesEvolution(x,c.evolution)):[];}
 export function power(c,attacking=false){return card(c).power+(attacking?(card(c).attackBonus||0)+(c.buff||0):0);}
-function canAttack(s,p,c){return !c.tapped&&!card(c).noAttack&&(c.entered<s.turn||card(c).speedAttacker);}
+function canAttack(s,p,c){return !c.tapped&&!card(c).noAttack&&(c.entered<s.turn||card(c).speedAttacker||card(c).evolution);}
 function targets(s,p,effect){
  const own=s.players[p],opp=s.players[1-p];
  if(['buff','unblock'].includes(effect))return own.battle.map(x=>({player:p,uid:x.uid}));
- if(['bounce','bounceOptional','bounceSmall'].includes(effect))return [p,1-p].flatMap(player=>s.players[player].battle.filter(x=>effect!=='bounceSmall'||card(x).cost<=6).map(x=>({player,uid:x.uid})));
+ if(['bounce','bounceOptional','bounceSmall','bounceBlockers'].includes(effect))return [p,1-p].flatMap(player=>s.players[player].battle.filter(x=>effect!=='bounceSmall'||card(x).cost<=6).map(x=>({player,uid:x.uid})));
  return opp.battle.filter(x=>effect!=='destroyUntapped'||!x.tapped).filter(x=>effect!=='destroySmall'||power(x,x.uid===s.attack?.attacker)<=2000).map(x=>({player:1-p,uid:x.uid}));
 }
-function validMana(s,p,c){const pool=s.players[p].mana.filter(x=>!x.tapped);return pool.length>=c.cost&&pool.some(x=>card(x).civ===c.civ);}
-function pay(s,p,c){const pool=s.players[p].mana.filter(x=>!x.tapped);const same=pool.find(x=>card(x).civ===c.civ);same.tapped=true;let remaining=c.cost-1;for(const m of pool)if(m!==same&&remaining>0){m.tapped=true;remaining--;}}
+// One distinct mana card per required civilization; five-color mana has value zero.
+export function manaPayment(mana,c){
+ const pool=mana.filter(x=>!x.tapped),colors=civilizations(c),goal=(1<<colors.length)-1,cost=c.cost;
+ if(pool.reduce((n,x)=>n+manaValue(card(x)),0)<cost)return null;
+ if(colors.length===1&&pool.every(x=>manaValue(card(x))===1)){const same=pool.find(x=>civilizations(card(x)).includes(colors[0]));return same?[same,...pool.filter(x=>x!==same).slice(0,cost-1)].map(x=>x.uid):null;}
+ let states=new Map([['0:0',{mask:0,amount:0,ids:[]}]]);
+ for(const x of pool){const next=new Map(states),value=manaValue(card(x)),bits=[0,...colors.flatMap((v,i)=>civilizations(card(x)).includes(v)?[1<<i]:[])];
+  for(const st of states.values())for(const bit of bits){const amount=Math.min(cost,st.amount+value),mask=st.mask|bit,key=mask+':'+amount,ids=[...st.ids,x.uid],old=next.get(key);if(!old||ids.length<old.ids.length)next.set(key,{mask,amount,ids});}
+  states=next;
+ }
+ return states.get(goal+':'+cost)?.ids||null;
+}
+function validMana(s,p,c){return manaPayment(s.players[p].mana,c)!==null;}
+function pay(s,p,c){const ids=manaPayment(s.players[p].mana,c);if(!ids)throw Error('必要な文明・マナが足りません');for(const x of s.players[p].mana)if(ids.includes(x.uid))x.tapped=true;}
 function doEffect(s,p,c){
  const e=c.effect;if(!e)return;
+ if(e==='bounceBlockers'){for(const who of [0,1])for(const x of [...s.players[who].battle])if(card(x).blocker)moveCreature(s,who,x.uid,'hand');return;}
  if(e==='draw2'){draw(s,p,2);return;}
  if(e==='tapAll'){for(const x of s.players[1-p].battle)x.tapped=true;log(s,p,'effect',`${c.name}で相手のクリーチャーすべてをタップ`,{cardId:c.id});return;}
  if(e==='discardAll'){const other=s.players[1-p],n=other.hand.length;other.grave.push(...other.hand.splice(0));log(s,p,'discard',`${c.name}で相手の手札${n}枚をすべて墓地へ`,{cardId:c.id});return;}
- if(e==='ramp1'||e==='ramp2'){const n=e==='ramp1'?1:2;let added=0;for(let i=0;i<n&&s.winner===null;i++){const x=s.players[p].deck.shift();if(x){x.tapped=false;s.players[p].mana.push(x);added++;}deckCheck(s,p);}log(s,p,'ramp',`${c.name}でマナを${added}枚追加`,{cardId:c.id});return;}
+ if(e==='ramp1'||e==='ramp2'){const n=e==='ramp1'?1:2;let added=0;for(let i=0;i<n&&s.winner===null;i++){const x=s.players[p].deck.shift();if(x){x.tapped=civilizations(card(x)).length>1;s.players[p].mana.push(x);added++;}deckCheck(s,p);}log(s,p,'ramp',`${c.name}でマナを${added}枚追加`,{cardId:c.id});return;}
  if(e==='discard'){const hand=s.players[1-p].hand;if(hand.length){const i=Math.floor(random(s)*hand.length);const[x]=hand.splice(i,1);s.players[1-p].grave.push(x);log(s,p,'discard',`${c.name}で相手の手札を1枚墓地へ`,{cardId:c.id});}return;}
  if(e==='teamBuff'){for(const x of s.players[p].battle)x.buff+=2000;log(s,p,'buff','このターン、攻撃中のパワーを+2000');return;}
  if(e==='optionalDraw'||e==='drawUpTo3'){s.decision={type:'draw',player:p,max:e==='optionalDraw'?1:3,source:c.id};return;}
  if(e==='searchCreature'){s.decision={type:'search',player:p,source:c.id};return;}
  const ts=targets(s,p,e);if(ts.length)s.decision={type:'effect',player:p,effect:e,source:c.id,targets:ts,optional:e==='bounceOptional'};
 }
-function playCard(s,p,uid,free=false){
+function playCard(s,p,uid,free=false,baseUid=null){
  const inst=remove(s.players[p].hand,uid),c=card(inst);if(!free)pay(s,p,c);
- if(c.type==='creature'){inst.entered=s.turn;inst.tapped=false;s.players[p].battle.push(inst);if(s.metrics[p].firstCreature===null)s.metrics[p].firstCreature=s.players[p].turns;}else s.players[p].grave.push(inst);
+ if(c.type==='creature'){inst.entered=s.turn;inst.tapped=false;if(c.evolution){const base=remove(s.players[p].battle,baseUid);if(!base||!matchesEvolution(base,c.evolution))throw Error('進化元が正しくありません');inst.under=[base];inst.tapped=base.tapped;inst.buff=base.buff||0;inst.unblocked=base.unblocked||false;log(s,p,'evolve',`${card(base).name}から${c.name}へ進化`,{cardId:c.id});}s.players[p].battle.push(inst);if(s.metrics[p].firstCreature===null)s.metrics[p].firstCreature=s.players[p].turns;}else s.players[p].grave.push(inst);
  const met=s.metrics[p];met.played[c.id]=(met.played[c.id]||0)+1;if(s.players[p].turns<=3)met.earlyPlayed[c.id]=true;if(free)met.triggers++;
  log(s,p,free?'trigger':'play',`${c.name}を${free?'S・トリガーで':''}${c.type==='creature'?'召喚':'使用'}`,{cardId:c.id});
  if(free&&c.type==='creature'&&s.triggers){if(c.effect)s.triggers.entries.push({uid:inst.uid,source:c.id});}else doEffect(s,p,c);
@@ -116,6 +144,7 @@ export function getLegalActions(s){
  if(s.winner!==null)return [];
  let out=[];const d=s.decision,p=d?d.player:s.active,own=s.players[p],opp=s.players[1-p];
  if(d){
+  if(d.type==='evolution'){const c=card(d.source);out=evolutionBases(s,p,c).map(base=>option('evolve',`${card(base).name}の上に${c.name}を重ねる`,{uid:d.uid,baseUid:base.uid,cardId:c.id}));out.push(option('cancelEvolution','進化をやめる'));}
   if(d.type==='block'){const a=opp.battle.find(x=>x.uid===s.attack.attacker);out=[option('noBlock','ブロックしない')];if(a&&!card(a).unblockable&&!a.unblocked)for(const c of own.battle)if(card(c).blocker&&!c.tapped)out.push(option('block',`${card(c).name}でブロック`,{uid:c.uid}));}
   if(d.type==='breakChoice')out=combinations(opp.shields.map((c,i)=>({uid:c.uid,index:i+1})),d.count).map(rows=>option('breakShields',`シールド${rows.map(r=>r.index).join('・')}をブレイク`,{shields:rows.map(r=>r.uid)}));
   if(d.type==='triggerOrder')out=s.triggers.declared.map(uid=>{const c=own.hand.find(c=>c.uid===uid);return option('orderTrigger',`${card(c).name}を先に使う`,{uid,cardId:c.cardId});});
@@ -131,7 +160,7 @@ export function getLegalActions(s){
   }
  }else if(s.phase==='charge'){out=own.hand.map(c=>option('charge',`${card(c).name}をマナへ`,{uid:c.uid,cardId:c.cardId}));out.push(option('skipCharge','マナを置かずに進む'));}
  else if(s.phase==='main'){
-  out=own.hand.filter(c=>validMana(s,p,card(c))).map(c=>option('play',`${card(c).name}を${card(c).type==='creature'?'召喚':'使用'}`,{uid:c.uid,cardId:c.cardId}));out.push(option('toAttack','攻撃へ進む'));
+  out=own.hand.filter(c=>validMana(s,p,card(c))&&(!card(c).evolution||evolutionBases(s,p,card(c)).length)).map(c=>option('play',`${card(c).name}を${card(c).type==='creature'?'召喚':'使用'}`,{uid:c.uid,cardId:c.cardId}));out.push(option('toAttack','攻撃へ進む'));
  }else if(s.phase==='attack'){
   for(const c of own.battle.filter(c=>canAttack(s,p,c))){if(!card(c).noPlayerAttack){if(opp.shields.length&&card(c).breaker)out.push(option('attack',`${card(c).name} → 相手（${Math.min(card(c).breaker,opp.shields.length)}枚ブレイク）`,{uid:c.uid,target:'player'}));else if(opp.shields.length)for(let i=0;i<opp.shields.length;i++)out.push(option('attack',`${card(c).name} → シールド${i+1}`,{uid:c.uid,target:'player',shield:opp.shields[i].uid}));else out.push(option('attack',`${card(c).name}でダイレクトアタック`,{uid:c.uid,target:'player'}));}
    for(const target of opp.battle.filter(x=>x.tapped))out.push(option('attack',`${card(c).name} → ${card(target).name}`,{uid:c.uid,target:target.uid}));
@@ -144,9 +173,11 @@ function nameOf(s,t){return card(s.players[t.player].battle.find(x=>x.uid===t.ui
 export function step(s,action){
  const opts=getLegalActions(s);const a=typeof action==='number'?opts[action]:opts.find(x=>JSON.stringify(x)===JSON.stringify(action));if(!a)throw Error('選択できない行動です');
  const p=a.player,d=s.decision;s.actions++;
- if(a.kind==='charge'){const c=remove(s.players[p].hand,a.uid);c.tapped=false;s.players[p].mana.push(c);s.metrics[p].charges++;s.phase='main';log(s,p,'charge',`${card(c).name}をマナへ`,{cardId:c.cardId});}
+ if(a.kind==='charge'){const c=remove(s.players[p].hand,a.uid);c.tapped=civilizations(card(c)).length>1;s.players[p].mana.push(c);s.metrics[p].charges++;s.phase='main';log(s,p,'charge',`${card(c).name}をマナへ`,{cardId:c.cardId});}
  if(a.kind==='skipCharge'){s.phase='main';log(s,p,'skip','マナチャージを省略');}
- if(a.kind==='play')playCard(s,p,a.uid);
+ if(a.kind==='play'){if(card(a.cardId).evolution)s.decision={type:'evolution',player:p,uid:a.uid,source:a.cardId};else playCard(s,p,a.uid);}
+ if(a.kind==='evolve'){s.decision=null;playCard(s,p,a.uid,false,a.baseUid);}
+ if(a.kind==='cancelEvolution')s.decision=null;
  if(a.kind==='toAttack'){s.phase='attack';log(s,p,'phase','攻撃ステップへ');}
  if(a.kind==='attack'){const c=s.players[p].battle.find(x=>x.uid===a.uid);c.tapped=true;s.attack={attacker:a.uid,target:a.target,shield:a.shield};log(s,p,'attack',a.label,{cardId:c.cardId});s.decision={type:'block',player:1-p};}
  if(a.kind==='block'||a.kind==='noBlock'){s.decision=null;resolveAttack(s,a.kind==='block'?a.uid:null);}
@@ -163,7 +194,7 @@ export function step(s,action){
    if(['tap','tapTwo'].includes(d.effect))c.tapped=true;
    if(d.effect==='buff')c.buff+=2000;
    if(d.effect==='unblock')c.unblocked=true;
-   if(['bounce','bounceOptional','bounceSmall'].includes(d.effect))moveCreature(s,t.player,t.uid,'hand');
+   if(['bounce','bounceOptional','bounceSmall','bounceBlockers'].includes(d.effect))moveCreature(s,t.player,t.uid,'hand');
    if(['destroy','destroySmall','destroyUntapped'].includes(d.effect))moveCreature(s,t.player,t.uid);
    if(d.effect==='manaRemoval')moveCreature(s,t.player,t.uid,'mana');
    log(s,p,'effect',`${card(d.source).name}：${card(c).name}を選択`,{cardId:d.source});
@@ -184,10 +215,10 @@ export function chooseAI(s){
   const c=a.cardId?card(a.cardId):null;
   if(a.kind==='charge'){
    const duplicates=me.hand.filter(x=>x.cardId===c.id).length;
-   const colors=me.mana.filter(x=>card(x).civ===c.civ).length;
-   return 50+(colors?0:10)+c.cost*1.5+(duplicates>1?4:0)-(c.type==='creature'&&c.cost<=3?10:0);
+   const colors=civilizations(c).filter(v=>!me.mana.some(x=>civilizations(card(x)).includes(v))).length;
+   return 50+colors*10+c.cost*1.5+(duplicates>1?4:0)-(c.type==='creature'&&c.cost<=3?10:0);
   }
-  if(a.kind==='skipCharge')return me.mana.length>=7?100:me.hand.length<=1&&me.mana.length>=4?70:0;
+  if(a.kind==='skipCharge')return me.mana.reduce((n,x)=>n+manaValue(card(x)),0)>=Math.max(7,...me.hand.map(x=>card(x).cost))?100:me.hand.length<=1&&me.mana.length>=4?70:0;
   if(a.kind==='play'){
    if(c.type==='creature')return 30+c.cost*2+(c.effect==='ramp1'&&me.mana.length<6?12:0)+(c.blocker&&them.battle.length>me.battle.length?8:0)+(c.unblockable?7:0)+(c.speedAttacker?8:0);
    if(c.effect==='discard')return them.hand.length?22:0;
@@ -198,14 +229,16 @@ export function chooseAI(s){
    if(c.effect==='draw2')return me.deckCount>2?28:0;
    if(c.effect==='discardAll')return them.hand.length?15+them.hand.length*5:0;
    if(['destroy','manaRemoval'].includes(c.effect))return them.battle.length?28:0;
-   if(c.effect==='tapAll')return them.battle.length&&me.battle.some(x=>!x.tapped&&(x.entered<v.turn||card(x).speedAttacker)&&!card(x).noAttack)?25:0;
+   if(c.effect==='tapAll')return them.battle.length&&me.battle.some(x=>!x.tapped&&(x.entered<v.turn||card(x).speedAttacker||card(x).evolution)&&!card(x).noAttack)?25:0;
    if(c.effect==='bounceSmall')return them.battle.some(x=>card(x).cost<=6)?24:0;
    if(c.effect==='bounce')return them.battle.some(x=>card(x).cost>=3)?24:0;
-   if(['tap','tapTwo','teamBuff','buff','unblock'].includes(c.effect))return me.battle.some(x=>!x.tapped&&x.entered<v.turn&&!card(x).noAttack)?15:0;
+   if(['tap','tapTwo','teamBuff','buff','unblock'].includes(c.effect))return me.battle.some(x=>!x.tapped&&(x.entered<v.turn||card(x).speedAttacker||card(x).evolution)&&!card(x).noAttack)?15:0;
    if(c.effect==='destroySmall')return them.battle.some(x=>power(x)<=2000)?27:0;
    if(c.effect==='destroyUntapped')return them.battle.some(x=>!x.tapped)?26:0;
    return 1;
   }
+  if(a.kind==='evolve'){const base=find(p,a.baseUid);return 30+c.cost*2-(base.tapped?12:0)-card(base).cost;}
+  if(a.kind==='cancelEvolution')return -1;
   if(a.kind==='toAttack')return 5;
   if(a.kind==='attack'){
    const x=find(p,a.uid);if(a.target==='player')return 25+(them.shields===0?100:0)+(card(x).unblockable?8:0)-(card(x).blocker&&me.shields===0?20:0);
@@ -222,7 +255,7 @@ export function chooseAI(s){
   if(a.kind==='draw')return me.deckCount>a.n+2?a.n*10:-a.n;
   if(a.kind==='search')return a.cardId?20-Math.abs(card(a.cardId).cost-me.mana.length)*2+(card(a.cardId).unblockable?3:0):0;
   if(a.kind==='endUntap')return a.yes?10:0;
-  if(a.kind==='effect')return a.targets.reduce((sum,t)=>{const x=find(t.player,t.uid);if(!x)return sum;const e=v.decision.effect;if(['buff','unblock'].includes(e))return sum+(t.player===p&&!x.tapped&&(x.entered<v.turn||card(x).speedAttacker)?20:0)+card(x).cost;if(['bounce','bounceOptional','bounceSmall'].includes(e)&&t.player===p)return sum-20;return sum+card(x).cost*3+(card(x).blocker?8:0);},0);
+  if(a.kind==='effect')return a.targets.reduce((sum,t)=>{const x=find(t.player,t.uid);if(!x)return sum;const e=v.decision.effect;if(['buff','unblock'].includes(e))return sum+(t.player===p&&!x.tapped&&(x.entered<v.turn||card(x).speedAttacker||card(x).evolution)?20:0)+card(x).cost;if(['bounce','bounceOptional','bounceSmall','bounceBlockers'].includes(e)&&t.player===p)return sum-20;return sum+card(x).cost*3+(card(x).blocker?8:0);},0);
   return 0;
  };
  return acts.map(a=>({a,value:score(a)})).sort((a,b)=>b.value-a.value||a.a.id-b.a.id)[0].a;
