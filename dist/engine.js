@@ -1,9 +1,9 @@
 // Supported-card rules engine. No strength-based or precomputed win rates.
-export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.6';
-export const ENGINE_VERSION='0.6.0';
+export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.7';
+export const ENGINE_VERSION='0.7.0';
 const EFFECTS=new Set(['ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers','dragonRamp2','ramp2Return1','optionalRamp4Return2','purgeNonDragonMana','fightOptional']);
 let catalogue=new Map();
-export function setCards(cards){for(const c of cards){if(c.effect&&!EFFECTS.has(c.effect))throw Error('未実装の効果です：'+c.effect);if(c.breaker!=null&&![2,3].includes(c.breaker))throw Error('未実装のブレイカーです');if(c.evolution&&c.trigger)throw Error('進化S・トリガーは未対応です');if(c.costReduction&&c.costReduction!=='opponentMulticolorMana3')throw Error('未実装のコスト軽減です');}catalogue=new Map(cards.map(c=>[c.id,c]));}
+export function setCards(cards){for(const c of cards){if(c.effect&&!EFFECTS.has(c.effect))throw Error('未実装の効果です：'+c.effect);if(c.breaker!=null&&![2,3].includes(c.breaker))throw Error('未実装のブレイカーです');if(c.evolution&&c.trigger)throw Error('進化S・トリガーは未対応です');if(c.costReduction&&!['opponentMulticolorMana3','ownFourDragonsMana3'].includes(c.costReduction))throw Error('未実装のコスト軽減です');for(const key of ['dragonEntryTap','attackDragonReveal'])if(c[key]!=null&&c[key]!==true)throw Error('未実装の能力です：'+key);}catalogue=new Map(cards.map(c=>[c.id,c]));}
 export const card=id=>catalogue.get(typeof id==='string'?id:id.cardId);
 export function validateDeck(deck){
  const errors=[];
@@ -39,6 +39,7 @@ export const isDragon=c=>c.type==='creature'&&String(c.race).includes('ドラゴ
 export function physicalCards(s){const flatten=c=>[c,...(c.under||[]).flatMap(flatten)];return s.players.flatMap(p=>['deck','hand','shields','mana','battle','grave'].flatMap(z=>p[z].flatMap(flatten)));}
 function moveCreature(s,p,uid,to='grave'){
  const c=remove(s.players[p].battle,uid);if(!c)return;
+ if(s.attack&&(s.attack.attacker===uid||s.attack.target===uid))s.attack=null;
  const target=to==='grave'&&card(c).death?card(c).death:to;
  const flatten=x=>[x,...(x.under||[]).flatMap(flatten)],cards=flatten(c);
  for(const x of cards){delete x.under;x.tapped=target==='mana'&&civilizations(card(x)).length>1;x.buff=0;x.unblocked=false;x.entered=0;}
@@ -79,7 +80,10 @@ export function manaPayment(mana,c){
  return states.get(goal+':'+cost)?.ids||null;
 }
 // Printed cost remains unchanged for all references, searches, and card details (201.2a).
-export function summonCost(s,p,c){return Math.max(1,c.cost-(c.type==='creature'&&c.costReduction==='opponentMulticolorMana3'&&s.players[1-p].mana.some(x=>civilizations(card(x)).length>1)?3:0));}
+export function summonCost(s,p,c){
+ const reduce=c.type==='creature'&&((c.costReduction==='opponentMulticolorMana3'&&s.players[1-p].mana.some(x=>civilizations(card(x)).length>1))||(c.costReduction==='ownFourDragonsMana3'&&s.players[p].mana.filter(x=>isDragon(card(x))).length>=4));
+ return Math.max(1,c.cost-(reduce?3:0));
+}
 function validMana(s,p,c){return manaPayment(s.players[p].mana,{...c,cost:summonCost(s,p,c)})!==null;}
 function pay(s,p,c){const ids=manaPayment(s.players[p].mana,{...c,cost:summonCost(s,p,c)});if(!ids)throw Error('必要な文明・マナが足りません');for(const x of s.players[p].mana)if(ids.includes(x.uid))x.tapped=true;}
 // Move the whole batch together (400.7). Looking/revealing alone does not empty the library.
@@ -116,12 +120,64 @@ function doEffect(s,p,c,sourceUid=null){
  if(e==='searchCreature'){s.decision={type:'search',player:p,source:c.id};return;}
  const ts=targets(s,p,e);if(ts.length)s.decision={type:'effect',player:p,effect:e,source:c.id,targets:ts,optional:e==='bounceOptional'};
 }
+function enqueueEffect(s,p,entry){
+ const queue=s.triggers?s.triggers.entries:(s.pendingEffects??=[]);
+ queue.push({...entry,player:p,effectId:s.effectSerial=(s.effectSerial||0)+1});
+}
+// Check all entry triggers after the new top card has entered (603.5a).
+function enterCreature(s,p,inst,baseUid=null){
+ const c=card(inst);inst.entered=s.turn;inst.tapped=false;inst.incarnation=(inst.incarnation||0)+1;
+ if(c.evolution){const base=remove(s.players[p].battle,baseUid);if(!base||!matchesEvolution(base,c.evolution))throw Error('進化元が正しくありません');inst.under=[base];inst.tapped=base.tapped;inst.buff=base.buff||0;inst.unblocked=base.unblocked||false;
+  if(s.attack?.attacker===baseUid)s.attack.attacker=inst.uid;
+  if(s.attack?.target===baseUid)s.attack.target=inst.uid;
+  log(s,p,'evolve',`${card(base).name}から${c.name}へ進化`,{cardId:c.id});
+ }
+ s.players[p].battle.push(inst);if(s.metrics[p].firstCreature===null)s.metrics[p].firstCreature=s.players[p].turns;
+ if(c.effect)enqueueEffect(s,p,{uid:inst.uid,source:c.id,effect:'entry'});
+ if(isDragon(c))for(const x of s.players[p].battle)if(card(x).dragonEntryTap){const key=x.uid+'@'+(x.incarnation||0);if(s.once?.[key]!==s.turn)enqueueEffect(s,p,{uid:x.uid,source:x.cardId,effect:'dragonEntryTap',key});}
+}
+function resolveEntry(s,entry){
+ const p=entry.player;
+ if(entry.effect==='dragonEntryTap'){
+  if(s.once?.[entry.key]!==s.turn&&s.players[1-p].battle.length)s.decision={type:'dragonTap',player:p,source:entry.source,key:entry.key};
+ }else doEffect(s,p,card(entry.source),entry.uid);
+}
+function availableEffects(s,queue){return queue.filter(e=>e.effect!=='dragonEntryTap'||s.once?.[e.key]!==s.turn);}
+function advanceEffects(s){
+ while(s.pendingEffects?.length&&!s.decision&&s.winner===null){
+  s.pendingEffects=availableEffects(s,s.pendingEffects);if(!s.pendingEffects.length)return;
+  const p=s.pendingEffects.some(e=>e.player===s.active)?s.active:1-s.active,entries=s.pendingEffects.filter(e=>e.player===p);
+  if(entries.length>1){s.decision={type:'effectOrder',player:p};return;}
+  s.pendingEffects.splice(s.pendingEffects.indexOf(entries[0]),1);resolveEntry(s,entries[0]);advanceBattle(s);
+ }
+}
 function playCard(s,p,uid,free=false,baseUid=null){
  const inst=remove(s.players[p].hand,uid),c=card(inst),cost=summonCost(s,p,c);if(!free)pay(s,p,c);
- if(c.type==='creature'){inst.entered=s.turn;inst.tapped=false;if(c.evolution){const base=remove(s.players[p].battle,baseUid);if(!base||!matchesEvolution(base,c.evolution))throw Error('進化元が正しくありません');inst.under=[base];inst.tapped=base.tapped;inst.buff=base.buff||0;inst.unblocked=base.unblocked||false;log(s,p,'evolve',`${card(base).name}から${c.name}へ進化`,{cardId:c.id});}s.players[p].battle.push(inst);if(s.metrics[p].firstCreature===null)s.metrics[p].firstCreature=s.players[p].turns;}else s.players[p].grave.push(inst);
+ if(c.type==='creature')enterCreature(s,p,inst,baseUid);else s.players[p].grave.push(inst);
  const met=s.metrics[p];met.played[c.id]=(met.played[c.id]||0)+1;if(s.players[p].turns<=3)met.earlyPlayed[c.id]=true;if(free)met.triggers++;
  log(s,p,free?'trigger':'play',`${c.name}を${free?'S・トリガーで':''}${c.type==='creature'?'召喚':'使用'}${!free&&cost!==c.cost?`（支払い${cost}マナ / 元のコスト${c.cost}）`:''}`,{cardId:c.id});
- if(free&&c.type==='creature'&&s.triggers){if(c.effect)s.triggers.entries.push({uid:inst.uid,source:c.id});}else doEffect(s,p,c,inst.uid);
+ if(c.type!=='creature')doEffect(s,p,c,inst.uid);
+}
+// The revealed card remains in its library until an actual move succeeds.
+function revealDragon(s,p,c){
+ const own=s.players[p],top=own.deck[0];if(!top){deckCheck(s,p);return;}
+ const data=card(top);log(s,p,'reveal',`${c.name}で山札の上を公開：${data.name}`,{cardId:data.id});
+ if(!isDragon(data)){own.grave.push(own.deck.shift());log(s,p,'revealMove',`${data.name}はドラゴンではないため墓地へ`,{cardId:data.id});deckCheck(s,p);return;}
+ if(data.evolution){
+  if(evolutionBases(s,p,data).length)s.decision={type:'revealEvolution',player:p,uid:top.uid,source:data.id};
+  else log(s,p,'revealStay',`${data.name}は進化元がないため山札の上に残る`,{cardId:data.id});
+  return;
+ }
+ enterRevealed(s,p,top.uid);
+}
+function enterRevealed(s,p,uid,baseUid=null){
+ const inst=remove(s.players[p].deck,uid);enterCreature(s,p,inst,baseUid);
+ const met=s.metrics[p];met.played[inst.cardId]=(met.played[inst.cardId]||0)+1;if(s.players[p].turns<=3)met.earlyPlayed[inst.cardId]=true;
+ log(s,p,'enter',`${card(inst).name}を山札からバトルゾーンへ出す（召喚ではない）`,{cardId:inst.cardId});deckCheck(s,p);
+}
+function advanceAttack(s){
+ if(!s.attack||s.attack.stage!=='effects'||s.decision||s.winner!==null||s.pendingEffects?.length||s.triggers||s.battleResolution)return;
+ s.attack.stage='block';s.decision={type:'block',player:1-s.active};
 }
 function battle(s,pa,a,pd,b,attackingUid=null){
  const ap=power(a,a.uid===attackingUid,s),bp=power(b,b.uid===attackingUid,s),late=[];
@@ -174,8 +230,9 @@ function advanceTriggers(s){
   if(t.undeclared.length){const c=s.players[p].hand.find(c=>c.uid===t.undeclared[0]);s.decision={type:'trigger',player:p,uid:c.uid,source:c.cardId};return;}
   if(t.declared.length>1){s.decision={type:'triggerOrder',player:p};return;}
   if(t.declared.length){playCard(s,p,t.declared.shift(),true);continue;}
+  t.entries=availableEffects(s,t.entries);
   if(t.entries.length>1){s.decision={type:'entryOrder',player:p};return;}
-  if(t.entries.length){const entry=t.entries.shift();doEffect(s,p,card(entry.source),entry.uid);advanceBattle(s);continue;}
+  if(t.entries.length){resolveEntry(s,t.entries.shift());advanceBattle(s);continue;}
   s.triggers=null;
  }
 }
@@ -188,15 +245,19 @@ function nextTurn(s){
 }
 function beginEnd(s){const list=s.players[s.active].battle.filter(c=>card(c).endUntap&&c.tapped);if(list.length){s.decision={type:'untap',player:s.active,uids:list.map(x=>x.uid)};}else nextTurn(s);}
 function option(kind,label,extra={}){return {kind,label,...extra};}
+function effectOptions(entries,kind){return entries.map((e,i)=>option(kind,`${card(e.source).name} ${i+1}：${e.effect==='dragonEntryTap'?'ドラゴン登場時の任意タップ':'出た時の効果'}を先に解決`,{uid:e.uid,cardId:e.source,effectId:e.effectId}));}
 export function getLegalActions(s){
  if(s.winner!==null)return [];
  let out=[];const d=s.decision,p=d?d.player:s.active,own=s.players[p],opp=s.players[1-p];
  if(d){
   if(d.type==='evolution'){const c=card(d.source);out=evolutionBases(s,p,c).map(base=>option('evolve',`${card(base).name}の上に${c.name}を重ねる`,{uid:d.uid,baseUid:base.uid,cardId:c.id}));out.push(option('cancelEvolution','進化をやめる'));}
+  if(d.type==='revealEvolution'){const c=card(d.source);out=evolutionBases(s,p,c).map(base=>option('revealEvolve',`${card(base).name}の上に公開した${c.name}を重ねる`,{uid:d.uid,baseUid:base.uid,cardId:c.id}));}
   if(d.type==='block'){const a=opp.battle.find(x=>x.uid===s.attack.attacker);out=[option('noBlock','ブロックしない')];if(a&&!card(a).unblockable&&!a.unblocked)for(const c of own.battle)if(card(c).blocker&&!c.tapped)out.push(option('block',`${card(c).name}でブロック`,{uid:c.uid}));}
   if(d.type==='breakChoice')out=combinations(opp.shields.map((c,i)=>({uid:c.uid,index:i+1})),d.count).map(rows=>option('breakShields',`シールド${rows.map(r=>r.index).join('・')}をブレイク`,{shields:rows.map(r=>r.uid)}));
   if(d.type==='triggerOrder')out=s.triggers.declared.map(uid=>{const c=own.hand.find(c=>c.uid===uid);return option('orderTrigger',`${card(c).name}を先に使う`,{uid,cardId:c.cardId});});
-  if(d.type==='entryOrder')out=s.triggers.entries.map(e=>option('orderEntry',`${card(e.source).name}の出た時の効果を先に解決`,{uid:e.uid,cardId:e.source}));
+  if(d.type==='entryOrder')out=effectOptions(s.triggers.entries,'orderEntry');
+  if(d.type==='effectOrder')out=effectOptions(s.pendingEffects.filter(e=>e.player===p),'orderEffect');
+  if(d.type==='dragonTap'){out=opp.battle.map(x=>option('dragonTap',`${card(x).name}をタップ${x.tapped?'（タップ中）':''}`,{uid:x.uid,cardId:x.cardId}));out.push(option('skipDragonTap','今回はタップせず、次の登場時に使えるようにする'));}
   if(d.type==='trigger')out=[option('useTrigger',`${card(d.source).name}を使う`,{uid:d.uid,cardId:d.source}),option('skipTrigger','使わず手札に加える')];
   if(d.type==='fight'){out=own.battle.some(x=>x.uid===d.uid)?opp.battle.map(x=>option('fight',`${card(x).name}とバトル（相手のパワー${power(x,x.uid===s.attack?.attacker,s)}）`,{uid:d.uid,target:x.uid,cardId:x.cardId})):[];out.push(option('skipFight','バトルさせない'));}
   if(d.type==='battleWinOrder')out=s.battleResolution.wins.map((e,i)=>option('battleWinOrder',`${card(e.source).name} ${i+1}体目の勝利時ドローを先に解決`,{uid:e.uid,cardId:e.source}));
@@ -229,15 +290,18 @@ export function step(s,action){
  if(a.kind==='skipCharge'){s.phase='main';log(s,p,'skip','マナチャージを省略');}
  if(a.kind==='play'){if(card(a.cardId).evolution)s.decision={type:'evolution',player:p,uid:a.uid,source:a.cardId};else playCard(s,p,a.uid);}
  if(a.kind==='evolve'){s.decision=null;playCard(s,p,a.uid,false,a.baseUid);}
+ if(a.kind==='revealEvolve'){s.decision=null;enterRevealed(s,p,a.uid,a.baseUid);}
  if(a.kind==='cancelEvolution')s.decision=null;
  if(a.kind==='toAttack'){s.phase='attack';log(s,p,'phase','攻撃ステップへ');}
- if(a.kind==='attack'){const c=s.players[p].battle.find(x=>x.uid===a.uid);c.tapped=true;s.attack={attacker:a.uid,target:a.target,shield:a.shield};log(s,p,'attack',a.label,{cardId:c.cardId});s.decision={type:'block',player:1-p};}
+ if(a.kind==='attack'){const c=s.players[p].battle.find(x=>x.uid===a.uid);c.tapped=true;s.attack={attacker:a.uid,target:a.target,shield:a.shield,stage:'effects'};log(s,p,'attack',a.label,{cardId:c.cardId});if(card(c).attackDragonReveal)revealDragon(s,p,card(c));}
  if(a.kind==='block'||a.kind==='noBlock'){s.decision=null;resolveAttack(s,a.kind==='block'?a.uid:null);}
  if(a.kind==='useTrigger'){s.decision=null;s.triggers.undeclared.shift();s.triggers.declared.push(a.uid);log(s,p,'declare',`${card(d.source).name}のS・トリガーを宣言`,{cardId:d.source});}
  if(a.kind==='skipTrigger'){s.decision=null;s.triggers.undeclared.shift();log(s,p,'skip','S・トリガーを使わない');}
  if(a.kind==='breakShields'){s.decision=null;breakShields(s,d.defender,a.shields);}
  if(a.kind==='orderTrigger'){s.decision=null;s.triggers.declared.splice(s.triggers.declared.indexOf(a.uid),1);playCard(s,p,a.uid,true);}
- if(a.kind==='orderEntry'){s.decision=null;const i=s.triggers.entries.findIndex(e=>e.uid===a.uid),[entry]=s.triggers.entries.splice(i,1);doEffect(s,p,card(entry.source),entry.uid);}
+ if(a.kind==='orderEntry'||a.kind==='orderEffect'){s.decision=null;const queue=a.kind==='orderEntry'?s.triggers.entries:s.pendingEffects,i=queue.findIndex(e=>e.effectId===a.effectId),[entry]=queue.splice(i,1);resolveEntry(s,entry);}
+ if(a.kind==='dragonTap'){s.decision=null;s.players[1-p].battle.find(x=>x.uid===a.uid).tapped=true;(s.once??={})[d.key]=s.turn;log(s,p,'dragonTap',`${card(d.source).name}：${card(a.cardId).name}をタップ（このターンの1回を使用）`,{cardId:d.source});}
+ if(a.kind==='skipDragonTap'){s.decision=null;log(s,p,'skip',`${card(d.source).name}の任意タップを見送る（このターンは未使用）`,{cardId:d.source});}
  if(a.kind==='fight'){s.decision=null;const source=s.players[p].battle.find(x=>x.uid===a.uid),target=s.players[1-p].battle.find(x=>x.uid===a.target);if(source&&target){log(s,p,'fight',`${card(source).name}の効果で${card(target).name}とバトル`,{cardId:source.cardId});battle(s,p,source,1-p,target,s.attack?.attacker);}}
  if(a.kind==='skipFight'){s.decision=null;log(s,p,'skip',`${card(d.source).name}の登場時バトルを使わない`,{cardId:d.source});}
  if(a.kind==='battleWinOrder'){const i=s.battleResolution.wins.findIndex(e=>e.uid===a.uid),[e]=s.battleResolution.wins.splice(i,1);s.decision={type:'draw',player:p,max:1,source:e.source,reason:'battleWin'};}
@@ -263,7 +327,7 @@ export function step(s,action){
  }
  if(a.kind==='endTurn')beginEnd(s);
  if(a.kind==='endUntap'){s.decision=null;if(a.yes)for(const c of s.players[p].battle)if(d.uids.includes(c.uid))c.tapped=false;nextTurn(s);}
- advanceBattle(s);advanceTriggers(s);
+ advanceBattle(s);advanceEffects(s);advanceTriggers(s);advanceAttack(s);
  return s;
 }
 // This observation deliberately omits both players' shield identities and deck order,
@@ -299,7 +363,7 @@ export function chooseAI(s){
    if(c.effect==='destroyUntapped')return them.battle.some(x=>!x.tapped)?26:0;
    return 1;
   }
-  if(a.kind==='evolve'){const base=find(p,a.baseUid);return 30+c.cost*2-(base.tapped?12:0)-card(base).cost;}
+  if(a.kind==='evolve'||a.kind==='revealEvolve'){const base=find(p,a.baseUid);return 30+c.cost*2-(base.tapped?12:0)-card(base).cost;}
   if(a.kind==='cancelEvolution')return -1;
   if(a.kind==='toAttack')return 5;
   if(a.kind==='attack'){
@@ -311,7 +375,9 @@ export function chooseAI(s){
   if(a.kind==='noBlock')return 0;
   if(a.kind==='breakShields')return 1;
   if(a.kind==='orderTrigger')return (c.type==='creature'?35:30)+c.cost;
-  if(a.kind==='orderEntry')return c.cost;
+  if(a.kind==='orderEntry'||a.kind==='orderEffect')return c.cost;
+  if(a.kind==='dragonTap'){const x=find(1-p,a.uid);return x.tapped?-1:10+c.cost*2+(c.blocker?12:0);}
+  if(a.kind==='skipDragonTap')return 0;
   if(a.kind==='useTrigger')return 30;
   if(a.kind==='skipTrigger')return 0;
   if(a.kind==='draw')return me.deckCount>a.n+2?a.n*10:-a.n;
