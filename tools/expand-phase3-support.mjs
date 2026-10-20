@@ -13,5 +13,5 @@ for(const row of manifest.cards){
  if(old)data.cards[data.cards.indexOf(old)]=value;else data.cards.push(value);
 }
 const previous=data.supportExpansion,history=previous.phase===3?previous.history:[...(previous.history||[]),{...previous,history:undefined}];
-data.supportExpansion={phase:3,checkedAt:manifest.checkedAt,baseCount:277,newEffectCards:manifest.cards.length,newVanillaCards:0,multicolor:manifest.cards.filter(r=>!r.spec.evolution).length,evolution:manifest.cards.filter(r=>r.spec.evolution).length,totalCount:data.cards.length,history,ruleSource:manifest.rules,next:['進化の固有能力','置換・誘発効果の共通化','環境デッキの固有効果']};
+if(previous.phase<=3)data.supportExpansion={phase:3,checkedAt:manifest.checkedAt,baseCount:277,newEffectCards:manifest.cards.length,newVanillaCards:0,multicolor:manifest.cards.filter(r=>!r.spec.evolution).length,evolution:manifest.cards.filter(r=>r.spec.evolution).length,totalCount:data.cards.length,history,ruleSource:manifest.rules,next:['進化の固有能力','置換・誘発効果の共通化','環境デッキの固有効果']};
 await writeFile(new URL('../dist/cards.json',import.meta.url),JSON.stringify(data,null,2)+'\n');console.log(JSON.stringify({phase:3,added:manifest.cards.length,total:data.cards.length}));
