@@ -1,0 +1,6 @@
+import test from 'node:test';import assert from 'node:assert/strict';import{readFile}from'node:fs/promises';import{parseCandidates}from'../dist/recognition.js';
+const {cards}=JSON.parse(await readFile(new URL('../dist/cards.json',import.meta.url),'utf8'));
+test('OCR extracts counts without confusing them with card costs',()=>{const r=parseCandidates('4 凶戦士ブレイズ・クロー\n青銅の鎧 × 3\nアクア・ハルカス',cards);assert.deepEqual(r.map(x=>x.count),[4,3,1]);assert.ok(r.every(x=>!x.confirmed));});
+test('OCR suggests a candidate for a mistaken kanji without confirming it',()=>{const [r]=parseCandidates('4 青鋼の鎧',cards);assert.equal(r.id,'dm01-106');assert.equal(r.count,4);assert.equal(r.fuzzy,true);assert.equal(r.confirmed,false);});
+test('unknown numbered deck-list rows remain visible for manual correction',()=>{const r=parseCandidates('4 未対応のカード名',cards);assert.equal(r.length,1);assert.equal(r[0].id,'');assert.equal(r[0].confirmed,false);});
+test('repeated recognized names merge into an editable quantity',()=>{const r=parseCandidates('青銅の鎧\n青銅の鎧',cards);assert.equal(r.length,1);assert.equal(r[0].count,2);});
