@@ -1,8 +1,9 @@
 // Supported-card rules engine. No strength-based or precomputed win rates.
-export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.1';
-export const ENGINE_VERSION='0.1.0';
+export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.2';
+export const ENGINE_VERSION='0.2.0';
+const EFFECTS=new Set(['ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall']);
 let catalogue=new Map();
-export function setCards(cards){catalogue=new Map(cards.map(c=>[c.id,c]));}
+export function setCards(cards){for(const c of cards)if(c.effect&&!EFFECTS.has(c.effect))throw Error('未実装の効果です：'+c.effect);catalogue=new Map(cards.map(c=>[c.id,c]));}
 export const card=id=>catalogue.get(typeof id==='string'?id:id.cardId);
 export function validateDeck(deck){
  const errors=[];
@@ -39,23 +40,26 @@ function moveCreature(s,p,uid,to='grave'){
  log(s,p,'leave',`${card(c).name}が${{grave:'墓地',hand:'手札',mana:'マナ'}[target]}へ移動`,{cardId:c.cardId});
 }
 export function power(c,attacking=false){return card(c).power+(attacking?(card(c).attackBonus||0)+(c.buff||0):0);}
-function canAttack(s,p,c){return !c.tapped&&!card(c).noAttack&&c.entered<s.turn;}
+function canAttack(s,p,c){return !c.tapped&&!card(c).noAttack&&(c.entered<s.turn||card(c).speedAttacker);}
 function targets(s,p,effect){
  const own=s.players[p],opp=s.players[1-p];
  if(['buff','unblock'].includes(effect))return own.battle.map(x=>({player:p,uid:x.uid}));
- if(effect==='bounce')return [p,1-p].flatMap(player=>s.players[player].battle.map(x=>({player,uid:x.uid})));
+ if(['bounce','bounceOptional','bounceSmall'].includes(effect))return [p,1-p].flatMap(player=>s.players[player].battle.filter(x=>effect!=='bounceSmall'||card(x).cost<=6).map(x=>({player,uid:x.uid})));
  return opp.battle.filter(x=>effect!=='destroyUntapped'||!x.tapped).filter(x=>effect!=='destroySmall'||power(x,x.uid===s.attack?.attacker)<=2000).map(x=>({player:1-p,uid:x.uid}));
 }
 function validMana(s,p,c){const pool=s.players[p].mana.filter(x=>!x.tapped);return pool.length>=c.cost&&pool.some(x=>card(x).civ===c.civ);}
 function pay(s,p,c){const pool=s.players[p].mana.filter(x=>!x.tapped);const same=pool.find(x=>card(x).civ===c.civ);same.tapped=true;let remaining=c.cost-1;for(const m of pool)if(m!==same&&remaining>0){m.tapped=true;remaining--;}}
 function doEffect(s,p,c){
  const e=c.effect;if(!e)return;
+ if(e==='draw2'){draw(s,p,2);return;}
+ if(e==='tapAll'){for(const x of s.players[1-p].battle)x.tapped=true;log(s,p,'effect',`${c.name}で相手のクリーチャーすべてをタップ`,{cardId:c.id});return;}
+ if(e==='discardAll'){const other=s.players[1-p],n=other.hand.length;other.grave.push(...other.hand.splice(0));log(s,p,'discard',`${c.name}で相手の手札${n}枚をすべて墓地へ`,{cardId:c.id});return;}
  if(e==='ramp1'||e==='ramp2'){const n=e==='ramp1'?1:2;let added=0;for(let i=0;i<n&&s.winner===null;i++){const x=s.players[p].deck.shift();if(x){x.tapped=false;s.players[p].mana.push(x);added++;}deckCheck(s,p);}log(s,p,'ramp',`${c.name}でマナを${added}枚追加`,{cardId:c.id});return;}
  if(e==='discard'){const hand=s.players[1-p].hand;if(hand.length){const i=Math.floor(random(s)*hand.length);const[x]=hand.splice(i,1);s.players[1-p].grave.push(x);log(s,p,'discard',`${c.name}で相手の手札を1枚墓地へ`,{cardId:c.id});}return;}
  if(e==='teamBuff'){for(const x of s.players[p].battle)x.buff+=2000;log(s,p,'buff','このターン、攻撃中のパワーを+2000');return;}
  if(e==='optionalDraw'||e==='drawUpTo3'){s.decision={type:'draw',player:p,max:e==='optionalDraw'?1:3,source:c.id};return;}
  if(e==='searchCreature'){s.decision={type:'search',player:p,source:c.id};return;}
- const ts=targets(s,p,e);if(ts.length)s.decision={type:'effect',player:p,effect:e,source:c.id,targets:ts};
+ const ts=targets(s,p,e);if(ts.length)s.decision={type:'effect',player:p,effect:e,source:c.id,targets:ts,optional:e==='bounceOptional'};
 }
 function playCard(s,p,uid,free=false){
  const inst=remove(s.players[p].hand,uid),c=card(inst);if(!free)pay(s,p,c);
@@ -95,6 +99,7 @@ export function getLegalActions(s){
   if(d.type==='effect'){
    if(d.effect==='tapTwo'){out=[option('effect','選ばない',{targets:[]})];for(let i=0;i<d.targets.length;i++){const a=d.targets[i];out.push(option('effect',`${nameOf(s,a)}をタップ`,{targets:[a]}));for(let j=i+1;j<d.targets.length;j++){const b=d.targets[j];out.push(option('effect',`${nameOf(s,a)}・${nameOf(s,b)}をタップ`,{targets:[a,b]}));}}}
    else out=d.targets.map(t=>option('effect',`${nameOf(s,t)}を選ぶ`,{targets:[t]}));
+   if(d.optional)out.push(option('skipEffect','効果を使わない'));
   }
  }else if(s.phase==='charge'){out=own.hand.map(c=>option('charge',`${card(c).name}をマナへ`,{uid:c.uid,cardId:c.cardId}));out.push(option('skipCharge','マナを置かずに進む'));}
  else if(s.phase==='main'){
@@ -120,14 +125,16 @@ export function step(s,action){
  if(a.kind==='useTrigger'){s.decision=null;playCard(s,p,a.uid,true);}
  if(a.kind==='skipTrigger'){s.decision=null;log(s,p,'skip','S・トリガーを使わない');}
  if(a.kind==='draw'){s.decision=null;if(a.n)draw(s,p,a.n);else log(s,p,'skip','任意のドローを省略');}
+ if(a.kind==='skipEffect'){s.decision=null;log(s,p,'skip','任意の効果を使わない');}
  if(a.kind==='search'){s.decision=null;if(a.uid){const c=remove(s.players[p].deck,a.uid);s.players[p].hand.push(c);log(s,p,'search',`${card(c).name}を探して手札へ`,{cardId:c.cardId});}s.players[p].deck=shuffled(s.players[p].deck,Math.floor(random(s)*4294967296));deckCheck(s,p);}
  if(a.kind==='effect'){
   s.decision=null;for(const t of a.targets){const c=s.players[t.player].battle.find(x=>x.uid===t.uid);if(!c)continue;
    if(['tap','tapTwo'].includes(d.effect))c.tapped=true;
    if(d.effect==='buff')c.buff+=2000;
    if(d.effect==='unblock')c.unblocked=true;
-   if(d.effect==='bounce')moveCreature(s,t.player,t.uid,'hand');
-   if(['destroySmall','destroyUntapped'].includes(d.effect))moveCreature(s,t.player,t.uid);
+   if(['bounce','bounceOptional','bounceSmall'].includes(d.effect))moveCreature(s,t.player,t.uid,'hand');
+   if(['destroy','destroySmall','destroyUntapped'].includes(d.effect))moveCreature(s,t.player,t.uid);
+   if(d.effect==='manaRemoval')moveCreature(s,t.player,t.uid,'mana');
    log(s,p,'effect',`${card(d.source).name}：${card(c).name}を選択`,{cardId:d.source});
   }
  }
@@ -150,11 +157,16 @@ export function chooseAI(s){
   }
   if(a.kind==='skipCharge')return me.mana.length>=7?100:me.hand.length<=1&&me.mana.length>=4?70:0;
   if(a.kind==='play'){
-   if(c.type==='creature')return 30+c.cost*2+(c.effect==='ramp1'&&me.mana.length<6?12:0)+(c.blocker&&them.battle.length>me.battle.length?8:0)+(c.unblockable?7:0);
+   if(c.type==='creature')return 30+c.cost*2+(c.effect==='ramp1'&&me.mana.length<6?12:0)+(c.blocker&&them.battle.length>me.battle.length?8:0)+(c.unblockable?7:0)+(c.speedAttacker?8:0);
    if(c.effect==='discard')return them.hand.length?22:0;
    if(c.effect==='ramp2')return me.mana.length<7?20:1;
    if(c.effect==='searchCreature')return me.hand.filter(x=>card(x).type==='creature').length<2?25:0;
    if(c.effect==='drawUpTo3')return me.deckCount>6?32:0;
+   if(c.effect==='draw2')return me.deckCount>2?28:0;
+   if(c.effect==='discardAll')return them.hand.length?15+them.hand.length*5:0;
+   if(['destroy','manaRemoval'].includes(c.effect))return them.battle.length?28:0;
+   if(c.effect==='tapAll')return them.battle.length&&me.battle.some(x=>!x.tapped&&x.entered<v.turn&&!card(x).noAttack)?25:0;
+   if(c.effect==='bounceSmall')return them.battle.some(x=>card(x).cost<=6)?24:0;
    if(c.effect==='bounce')return them.battle.some(x=>card(x).cost>=3)?24:0;
    if(['tap','tapTwo','teamBuff','buff','unblock'].includes(c.effect))return me.battle.some(x=>!x.tapped&&x.entered<v.turn&&!card(x).noAttack)?15:0;
    if(c.effect==='destroySmall')return them.battle.some(x=>power(x)<=2000)?27:0;
@@ -174,7 +186,7 @@ export function chooseAI(s){
   if(a.kind==='draw')return me.deckCount>a.n+2?a.n*10:-a.n;
   if(a.kind==='search')return a.cardId?20-Math.abs(card(a.cardId).cost-me.mana.length)*2+(card(a.cardId).unblockable?3:0):0;
   if(a.kind==='endUntap')return a.yes?10:0;
-  if(a.kind==='effect')return a.targets.reduce((sum,t)=>{const x=find(t.player,t.uid);if(!x)return sum;const e=v.decision.effect;if(['buff','unblock'].includes(e))return sum+(t.player===p&&!x.tapped&&x.entered<v.turn?20:0)+card(x).cost;if(e==='bounce'&&t.player===p)return sum-20;return sum+card(x).cost*3+(card(x).blocker?8:0);},0);
+  if(a.kind==='effect')return a.targets.reduce((sum,t)=>{const x=find(t.player,t.uid);if(!x)return sum;const e=v.decision.effect;if(['buff','unblock'].includes(e))return sum+(t.player===p&&!x.tapped&&(x.entered<v.turn||card(x).speedAttacker)?20:0)+card(x).cost;if(['bounce','bounceOptional','bounceSmall'].includes(e)&&t.player===p)return sum-20;return sum+card(x).cost*3+(card(x).blocker?8:0);},0);
   return 0;
  };
  return acts.map(a=>({a,value:score(a)})).sort((a,b)=>b.value-a.value||a.a.id-b.a.id)[0].a;
