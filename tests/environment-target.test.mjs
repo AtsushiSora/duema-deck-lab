@@ -13,10 +13,10 @@ const act=(s,kind,predicate=()=>true)=>{const a=getLegalActions(s).find(a=>a.kin
 const setup=()=>{const s=createGame([PRESETS[0],PRESETS[1]],{seed:49});s.phase='main';give(s,0,'battle',[]);give(s,1,'battle',[]);give(s,0,'mana',['dm01-075','dm01-097','dm01-108',...Array(9).fill('dm01-108')]);return s;};
 const cast=(s,id)=>{give(s,0,'hand',[id]);act(s,'play');};
 
-test('four fully pinned cards advance the unchanged target tournament list to 11 copies and four names',()=>{
- assert.equal(ENGINE_VERSION,'0.5.0');assert.equal(data.cards.length,585);assert.equal(manifest.cards.length,4);assert.equal(data.supportExpansion.phase,5);
+test('four fully pinned cards retain their fields while the unchanged tournament list advances to 15 copies and five names',()=>{
+ assert.equal(ENGINE_VERSION,'0.6.0');assert.equal(data.cards.length,586);assert.equal(manifest.cards.length,4);assert.equal(data.supportExpansion.phase,6);
  const registry=createCatalogue(snapshot,data.cards,details),decks=resolveEnvironmentDecks(registry),target=decks.find(d=>d.id===ENVIRONMENT_TARGET),p=environmentSupport(target,registry);
- assert.equal(p.supportedCopies,11);assert.equal(p.totalCopies,40);assert.equal(p.supportedTypes,4);assert.equal(p.totalTypes,14);assert.equal(p.unsupported.reduce((n,r)=>n+r.count,0),29);assert.ok(validateDeck(target).length);assert.throws(()=>createGame([target,PRESETS[0]]),/未対応/);
+ assert.equal(p.supportedCopies,15);assert.equal(p.totalCopies,40);assert.equal(p.supportedTypes,5);assert.equal(p.totalTypes,14);assert.equal(p.unsupported.reduce((n,r)=>n+r.count,0),25);assert.ok(validateDeck(target).length);assert.throws(()=>createGame([target,PRESETS[0]]),/未対応/);
  for(const row of manifest.cards){const d=details.cards.find(c=>c.id===row.id),c=card(row.id);assert.deepEqual(row.face,d.faces[0]);assert.equal(row.name,c.name);assert.equal(row.source,c.source);assert.equal(c.text,row.face.abilityText);for(const[k,v]of Object.entries(row.spec))assert.deepEqual(c[k],v);assert.equal(c.supportBatch,'phase-5');}
  for(const d of decks.filter(d=>d.id!==ENVIRONMENT_TARGET))assert.equal(environmentSupport(d,registry).supportedCopies,0);
 });
