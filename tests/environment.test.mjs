@@ -11,7 +11,7 @@ const registry=createCatalogue(snapshot,supported.cards),templates=resolveEnviro
 test('tournament lists resolve every full name into exactly forty registered cards without enabling battles',()=>{
  assert.equal(templates.length,3);
  assert.equal(new Set(templates.map(d=>d.id)).size,3);
- for(const d of templates){assert.equal(d.cards.reduce((n,r)=>n+r.count,0),40);assert.deepEqual(registry.validate(d),[]);assert.equal(registry.coverage(d).unsupported,d.id==='env-gp2026-pinky'?7:d.id==='env-gp2026-sara'?37:40);assert.ok(validateDeck(d).length);assert.match(d.tournament.source,/^https:\/\/dm\.takaratomy\.co\.jp\/coverage\//);assert.equal(d.tournament.checkedAt,'2026-10-20');}
+ for(const d of templates){assert.equal(d.cards.reduce((n,r)=>n+r.count,0),40);assert.deepEqual(registry.validate(d),[]);assert.equal(registry.coverage(d).unsupported,d.id==='env-gp2026-pinky'?6:d.id==='env-gp2026-sara'?37:40);assert.ok(validateDeck(d).length);assert.match(d.tournament.source,/^https:\/\/dm\.takaratomy\.co\.jp\/coverage\//);assert.equal(d.tournament.checkedAt,'2026-10-20');}
 });
 test('unknown names, duplicate canonical names, excessive copies and non-forty lists fail closed',()=>{
  for(const change of [l=>l.cards[0].name='未登録の架空カード',l=>l.cards.push({...l.cards[0]}),l=>l.cards[0].count=5,l=>l.cards[0].count=3]){const lists=structuredClone(ENVIRONMENT_LISTS);change(lists[0]);assert.throws(()=>resolveEnvironmentDecks(registry,lists));}
