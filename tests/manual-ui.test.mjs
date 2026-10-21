@@ -1,0 +1,50 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {e,PRESETS,target,DOGI,VEG,GEN,GG,DREAM,ROD,Y,KIRA,RS,inst,give,act,setup,cast,attack,drain} from './target-fixture.mjs';
+import {newManualUI,manualModel,manualScreenHTML,manualBoardHTML,boardChoice,confirmEndTurn,selectionHint} from '../dist/manual-ui.js';
+const h={art:id=>`<span class="test-art" data-card="${id}"></span>`,icon:name=>`<svg data-icon="${name}"></svg>`};
+const markup=(s,ui=newManualUI())=>manualScreenHTML(s,ui,{...h,practice:true,undoCount:1});
+const buttonIds=html=>[...html.matchAll(/<button\b[^>]*>/g)].filter(x=>x[0].includes('data-action="battle-step"')&&!x[0].includes('disabled')).map(x=>Number(x[0].match(/data-index="(\d+)"/)?.[1]));
+
+test('manual screen renders the three phase steps, current guidance, readable cards and only valid engine action buttons',()=>{
+ const s=e.createGame([target,target],{seed:20}),ui=newManualUI();ui.hand=s.players[0].hand[0].uid;const html=markup(s,ui);assert.ok(html.includes('マナに置くカードを選ぼう'));assert.ok(html.includes('aria-current="step"'));assert.ok(html.includes('manual-hand-cards'));assert.ok(html.includes('能力を見る'));assert.ok(html.includes('data-action="battle-hint"'));assert.ok(html.includes('data-action="undo-battle"'));assert.ok(html.includes('data-action="manual-log"'));const ids=e.getLegalActions(s).map(a=>a.id);assert.ok(buttonIds(html).every(x=>ids.includes(x)));assert.equal(manualModel(s,ui).hand.uid,ui.hand);
+});
+test('selecting an attacker highlights legal creature and shield targets without executing the attack or reading shield contents',()=>{
+ const s=setup();give(s,0,'battle',['dm01-108']);give(s,1,'battle',['dm01-075','dm01-075']);const [tapped,untapped]=s.players[1].battle;tapped.tapped=true;s.phase='attack';const ui={...newManualUI(),attacker:s.players[0].battle[0].uid},before=structuredClone(s);assert.ok(boardChoice(s,ui,1,'battle',tapped.uid));assert.equal(boardChoice(s,ui,1,'battle',untapped.uid),null);assert.ok(boardChoice(s,ui,1,'shields',s.players[1].shields[0].uid));assert.equal(boardChoice(s,ui,0,'battle',ui.attacker),null);const html=markup(s,ui);assert.ok(html.includes('攻撃先を選ぼう'));assert.ok(html.includes('is-selected'));assert.deepEqual(s,before);
+});
+test('quadruple and infinity breakers expose a player attack and preserve their subsequent shield-selection decisions',()=>{
+ for(const id of [GG,GEN]){const s=setup();give(s,0,'battle',[id]);s.phase='attack';const ui={...newManualUI(),attacker:s.players[0].battle[0].uid};const html=markup(s,ui);assert.ok(html.includes('相手へ攻撃'));assert.equal(boardChoice(s,ui,1,'shields',s.players[1].shields[0].uid),null);const a=e.getLegalActions(s).find(a=>a.kind==='attack');e.step(s,a);act(s,'noBlock');assert.equal(s.decision.type,id===GEN?'infinityCount':'breakChoice');assert.ok(buttonIds(markup(s)).length);}
+});
+test('single effect targets, blockers and evolution bases can be selected from the board, while ambiguous multi-target choices cannot',()=>{
+ const s=setup();give(s,1,'battle',['dm01-075','dm01-075']);cast(s,'dm01-027');assert.equal(s.decision.type,'effect');assert.equal(boardChoice(s,newManualUI(),1,'battle',s.players[1].battle[0].uid).kind,'effect');
+ const t=setup();give(t,0,'battle',['dm01-108']);cast(t,DOGI);assert.equal(boardChoice(t,newManualUI(),0,'battle',t.players[0].battle[0].uid).kind,'evolve');
+ const u=setup();give(u,0,'battle',['dm01-108']);give(u,1,'battle',['dm01-075']);u.decision={type:'effect',player:0,effect:'tapTwo',source:'dm01-078',targets:[{player:1,uid:u.players[1].battle[0].uid}]};assert.equal(boardChoice(u,newManualUI(),1,'battle',u.players[1].battle[0].uid),null);
+ const b=setup();give(b,0,'battle',['dm01-084']);give(b,1,'battle',['dm01-108']);b.active=1;attack(b);assert.equal(boardChoice(b,newManualUI(),0,'battle',b.players[0].battle[0].uid).kind,'block');
+});
+test('Mugen Crime and mana-return selections show the selected count and retain unambiguous board selection',()=>{
+ const s=setup();give(s,0,'battle',Array(4).fill('dm01-108'));give(s,0,'hand',[GEN]);act(s,'mugenStart');act(s,'mugenTap');assert.equal(manualModel(s).progress,'1 / 4体');const html=markup(s);assert.ok(html.includes('1 / 4体'));assert.ok(html.includes('is-chosen'));assert.equal(boardChoice(s,newManualUI(),0,'battle',s.decision.chosen[0]),null);assert.equal(boardChoice(s,newManualUI(),0,'battle',s.players[0].battle.find(x=>!s.decision.chosen.includes(x.uid)).uid).kind,'mugenTap');
+ const t=setup();cast(t,'dm23bd4-008');assert.equal(manualModel(t).progress,'0 / 1枚');assert.ok(markup(t).includes('選択肢をカード名で絞り込む'));
+});
+test('many choices can be filtered without changing action ids, losing decline choices or mutating the engine',()=>{
+ const s=setup();cast(s,'dm23bd4-008');const ui={...newManualUI(),filter:'トレジャー'},before=structuredClone(s),html=markup(s,ui);assert.ok(html.includes('manual-choice-search'));for(const id of buttonIds(html))assert.ok(e.getLegalActions(s).some(a=>a.id===id));assert.deepEqual(s,before);const empty=markup(s,{...ui,filter:'存在しない名前'});assert.ok(empty.includes('絞り込みを解除'));
+ const t=setup();give(t,0,'battle',[DOGI]);give(t,0,'hand',[ROD]);attack(t);assert.ok(markup(t,{...newManualUI(),filter:'存在しない名前'}).includes('クリーチャーを出さない'));
+});
+test('the screen never exposes opponent private hand or shield card ids, including while AI is declaring a hand ability',()=>{
+ const s=setup();s.phase='charge';give(s,0,'hand',['dm01-108']);s.players[1].hand=[{...inst(GEN),uid:'PRIVATE_OPPONENT_HAND'}];s.players[0].shields=[{...inst(GG),cardId:'PRIVATE_OWN_SHIELD'}];s.players[1].shields=[{...inst(GG),cardId:'PRIVATE_ENEMY_SHIELD'}];const html=markup(s);for(const secret of ['PRIVATE_OPPONENT_HAND','PRIVATE_OWN_SHIELD','PRIVATE_ENEMY_SHIELD',GEN])assert.ok(!html.includes(secret));
+ const t=setup();t.active=1;give(t,1,'battle',['dm01-108']);give(t,1,'hand',[GG]);attack(t);assert.equal(t.decision.type,'dddDeclare');const ai=markup(t);assert.ok(ai.includes('相手AIが考えています'));assert.ok(!ai.includes(`data-card="${GG}"`));
+});
+test('end-turn review appears only for an available attack and cannot replace or bypass engine permission',()=>{
+ const s=setup();give(s,0,'battle',['dm01-108']);s.phase='attack';const end=e.getLegalActions(s).find(a=>a.kind==='endTurn');assert.equal(confirmEndTurn(s,end),true);assert.ok(markup(s,{...newManualUI(),confirm:end.id}).includes('まだ攻撃できるクリーチャーがいます'));assert.ok(markup(s,{...newManualUI(),confirm:end.id}).includes('data-action="manual-confirm-end"'));s.players[0].battle[0].tapped=true;assert.equal(confirmEndTurn(s,e.getLegalActions(s).find(a=>a.kind==='endTurn')),false);assert.equal(confirmEndTurn(s,{kind:'toAttack',player:0}),false);
+});
+test('normal and twinpact hand actions expose legal faces, disabled reasons and an ability-details button',()=>{
+ const s=setup();give(s,0,'hand',[RS]);give(s,0,'mana',Array(3).fill('dm01-097'));const ui={...newManualUI(),hand:s.players[0].hand[0].uid},html=markup(s,ui);assert.ok(html.includes('呪文を使う'));assert.ok(!html.includes('召喚する'));assert.ok(html.includes('能力を見る'));assert.equal(selectionHint(s,s.players[0].hand[0]),'使用できます');
+ const t=setup();give(t,0,'battle',[DOGI]);give(t,0,'hand',[DOGI]);assert.match(selectionHint(t,t.players[0].hand[0]),/同名/);assert.ok(!buttonIds(markup(t,{...newManualUI(),hand:t.players[0].hand[0].uid})).some(id=>e.getLegalActions(t)[id].kind==='play'));
+});
+test('mana summons remain accessible in the main-step extra methods and hand details are hidden by default during attacks',()=>{
+ const s=setup();give(s,0,'mana',[VEG,...Array(8).fill('dm01-108')]);assert.ok(markup(s).includes('マナ・墓地などから使う'));assert.ok(markup(s).includes('マナの暴龍'));s.phase='attack';give(s,0,'battle',[GG]);const closed=markup(s);assert.ok(!closed.includes('class="manual-hand-cards"'));assert.ok(closed.includes('手札を見る'));assert.ok(markup(s,{...newManualUI(),handOpen:true}).includes('class="manual-hand-cards"'));
+});
+test('card names and log content are escaped, while current public power and game restrictions remain readable',()=>{
+ const s=setup();give(s,0,'battle',[GEN]);give(s,1,'battle',[Y]);s.log.push({turn:1,player:1,text:'<img src=x onerror=alert(1)>',type:'play'});const html=markup(s);assert.ok(html.includes('&lt;img'));assert.ok(!html.includes('<img src=x'));assert.ok(html.includes('∞'));assert.ok(html.includes('ゲンム：'));assert.ok(html.includes('能力無効'));assert.ok(html.includes('対戦ログ'));
+});
+test('every reachable UI action over complete-deck games is legal and rendering is pure through effects, shields and replacements',()=>{
+ let scenes=0;const types=new Set();for(let seed=1;seed<=30;seed++){const s=e.createGame([target,seed%2?target:PRESETS[0]],{seed:seed*197,first:seed%2});while(s.winner===null&&s.actions<2500){const ui=newManualUI(),a=e.chooseAI(s);if(a.player===0){ui.hand=s.players[0].hand[0]?.uid||null;ui.attacker=e.getLegalActions(s).find(a=>a.kind==='attack')?.uid||null;const before=structuredClone(s),html=markup(s,ui);assert.deepEqual(s,before);for(const id of buttonIds(html))assert.ok(e.getLegalActions(s).some(a=>a.id===id&&a.player===0));types.add(s.decision?.type||s.phase);scenes++;}e.step(s,a);}}assert.ok(scenes>500);for(const type of ['charge','main','attack','effect','dddSummon','deploy','leaveReplace'])assert.ok(types.has(type),type);
+});

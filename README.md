@@ -268,3 +268,14 @@ npm run check
 公式情報は `tools/support-phase-13.json` に固定し、`node tools/complete-target-support.mjs` で全文と処理を再照合します。2026-10-21取得の殿堂レギュレーション140名称には追加3種類の完全一致はありません。
 
 根拠：[王道のカード](https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-DM1)、[無色DDD](https://dm.takaratomy.co.jp/product/dm25rp4/)、[DDDの宣言条件](https://dm.takaratomy.co.jp/rule/qa/47947/)、[解決時の条件](https://dm.takaratomy.co.jp/rule/qa/47948/)、[攻撃者がいない場合](https://dm.takaratomy.co.jp/rule/qa/49033/)、[同名ドリーム](https://dm.takaratomy.co.jp/rule/qa/47373/)、[G-NEO](https://dm.takaratomy.co.jp/rule/qa/46525/)、[複数の置換](https://dm.takaratomy.co.jp/rule/qa/46507/)、[ベジータのカード](https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-S008)、[マナ召喚の支払い](https://dm.takaratomy.co.jp/rule/qa_old/36970/)、[ゲンムのカード](https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-km1)、[ムゲンクライム](https://dm.takaratomy.co.jp/rule/qa/38745/)、[無視する能力の範囲](https://dm.takaratomy.co.jp/rule/qa/34187/)、[待機済みの能力](https://dm.takaratomy.co.jp/rule/qa/49236/)、[低コスト呪文のトリガー](https://dm.takaratomy.co.jp/rule/qa/49547/)、[先にゲンムを除去](https://dm.takaratomy.co.jp/rule/qa/39555/)、[Zラッシュとの相互作用](https://dm.takaratomy.co.jp/rule/qa/48760/)、[呪文の継続効果](https://dm.takaratomy.co.jp/rule/qa/45450/)、[∞ブレイカー0枚](https://dm.takaratomy.co.jp/rule/qa_old/36998/)、[∞同士のバトル](https://dm.takaratomy.co.jp/rule/qa/46621/)、総合ルール1.53の506.3・601.1c・609.8–9・803・817。
+
+## 手動対戦の操作とスマホ向け画面（v0.20 / エンジン0.13を維持）
+
+- 対戦中は専用レイアウトに切り替え、通常のサイドバー・下部ナビゲーションをたたみます。自分と相手の盤面、シールド、山札・手札・マナ・墓地の枚数、現在のパワー、攻撃可能・タップ・能力無効などの状態を読みやすく整理しました。
+- 「次にする操作」とマナ→召喚・呪文→攻撃の進行を常に案内。手札は横スクロールし、選ぶだけでは行動を確定せず、能力・必要マナを確認してから使います。ツインパクトの各面、ムゲンクライム、マナからの召喚も合法な選択肢として表示します。
+- 攻撃するクリーチャーを選ぶと、合法な相手の対象を強調。対象・シールド・プレイヤーへの攻撃を盤面から選べます。1つに確定できる効果対象、ブロッカー、進化元、ムゲンクライムの対象も盤面から選択可能です。複数対象・複数の保護が重なる場合は候補から選び、意図を推測して自動確定しません。
+- 効果の起点となるカードと、何枚・何体選んだかを表示。多い選択肢はカード名で絞り込み、選ばない・中止なども残します。進化元や能力文、適用中の制限を必要なときに開けます。
+- 画面下の操作パネルと手札で操作をまとめ、攻撃時・効果の解決中は手札を必要に応じて展開します。手札の横スクロール位置、選択時のフォーカスを維持。攻撃できるカードを残してターンを終えるときだけ確認し、誤操作を防ぎます。
+- 最新の行動・折りたたみログ、相手AIの標準/速い切り替え、練習時のヒント・待ったを用意。カードの処理・AIの判断・エンジンバージョン・保存済みデッキ・履歴は変更していません。
+
+`dist/manual-ui.js` は合法手から画面を組み立てる独立した表示モジュールです。追加16テストでは、盤面選択・手札/各面の使用・進行の確認・フィルター・効果の選択数・非公開情報・HTMLのエスケープ・30試合分の表示に加え、実際の `app.js` のクリック処理を最小DOMのNodeハーネスで実行し、手札選択→マナ配置、攻撃者→対象、ターン終了確認/中止、ヒント・待った・表示設定を検証します。全336テストと構文・データ検査を実行します。ユーザーの希望に沿ってSitesの画面確認、ブラウザ、スクリーンショットは省略しており、実機の見た目の確認は未実施です。
