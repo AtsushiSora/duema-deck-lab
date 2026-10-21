@@ -76,16 +76,16 @@ test('phone menu retains speed, help, hints, undo and logs without navigating aw
 });
 
 test('board and horizontal lane positions survive display changes, while a new hand selection brings its controls to the top',async()=>{
- const s=e.createGame([target,target],{seed:2020}),scrollers={'.manual-board-area':{scrollTop:120},'.manual-hand-cards':{scrollLeft:60},'.manual-console-content':{scrollTop:90,dataset:{}},lanes:[{scrollLeft:41},{scrollLeft:72}]},h=harness(s,{mobile:true,scrollers});
+ const s=e.createGame([target,target],{seed:2020}),scrollers={'.manual-board-area':{scrollTop:120},'.manual-hand-cards':{scrollLeft:60},'.hand-shelf-cards':{scrollLeft:220},'.manual-console-content':{scrollTop:90,dataset:{}},lanes:[{scrollLeft:41},{scrollLeft:72}]},h=harness(s,{mobile:true,scrollers});
  scrollers['.manual-console-content'].scrollTop=90;await h.click('manual-panel-toggle');
- assert.equal(scrollers['.manual-board-area'].scrollTop,120);assert.equal(scrollers['.manual-hand-cards'].scrollLeft,60);assert.equal(scrollers['.manual-console-content'].scrollTop,90);assert.deepEqual(scrollers.lanes.map(x=>x.scrollLeft),[41,72]);
+ assert.equal(scrollers['.manual-board-area'].scrollTop,120);assert.equal(scrollers['.manual-hand-cards'].scrollLeft,60);assert.equal(scrollers['.hand-shelf-cards'].scrollLeft,220);assert.equal(scrollers['.manual-console-content'].scrollTop,90);assert.deepEqual(scrollers.lanes.map(x=>x.scrollLeft),[41,72]);
  await h.click('manual-panel-toggle');await h.click('hand-card',{uid:s.players[0].hand[0].uid});assert.equal(scrollers['.manual-console-content'].scrollTop,0);assert.equal(scrollers['.manual-board-area'].scrollTop,120);
 });
 
 test('phone hand pages expose later cards and selecting one executes the correct legal mana charge',async()=>{
  const s=e.createGame([target,target],{seed:2020});s.players[0].hand.push(...s.players[0].deck.splice(0,6));const h=harness(s,{mobile:true}),uid=s.players[0].hand.at(-1).uid;
- await h.click('manual-open-hand');assert.equal((h.root.innerHTML.match(/class="manual-hand-card /g)||[]).length,6);assert.ok(!h.root.innerHTML.includes(`data-action="hand-card" data-uid="${uid}"`));
- await h.click('manual-hand-page',{page:'1'});assert.equal(s.actions,0);assert.ok(h.root.innerHTML.includes(`data-action="hand-card" data-uid="${uid}"`));
+ await h.click('manual-open-hand');assert.equal((h.root.innerHTML.match(/class="manual-hand-card /g)||[]).length,6);assert.ok(!h.root.innerHTML.includes(`data-focus-key="hand-${uid}"`));
+ await h.click('manual-hand-page',{page:'1'});assert.equal(s.actions,0);assert.ok(h.root.innerHTML.includes(`data-focus-key="hand-${uid}"`));
  await h.click('hand-card',{uid});const a=e.getLegalActions(s).find(a=>a.kind==='charge'&&a.uid===uid);await h.click('battle-step',{index:String(a.id)});assert.ok(s.players[0].mana.some(x=>x.uid===uid));assert.equal(h.read('manualUI.mobilePanel'),'closed');
 });
 
@@ -102,11 +102,12 @@ test('all dense board cards remain in the overview and a paged enlargement can s
  await h.click('manual-field',{player:'0',page:'4'});assert.ok(h.read('dialog.open'));assert.ok(h.read('dialog.innerHTML').includes(uid));await h.click('manual-creature',{player:'0',uid});assert.equal(h.read('dialog.open'),false);assert.equal(h.read('manualUI.attacker'),uid);assert.equal(h.read('manualUI.mobilePanel'),'closed');assert.equal(s.actions,0);
 });
 
-test('shelf selection reopens the same card, clearing removes placement cues, and a later shelf page remains usable',async()=>{
- const s=e.createGame([target,target],{seed:2020});s.players[0].hand.push(...s.players[0].deck.splice(0,7));const h=harness(s,{mobile:true}),before=structuredClone(s),uid=s.players[0].hand.at(-1).uid;
- await h.click('manual-hand-strip-page',{page:'2'});assert.ok(h.root.innerHTML.includes(`data-focus-key="shelf-${uid}"`));await h.click('hand-card',{uid});assert.equal(h.read('manualUI.mobilePanel'),'card');assert.ok(h.root.innerHTML.includes('hand-mana-target'));assert.deepEqual(s,before);
- await h.click('manual-panel-toggle');await h.click('hand-card',{uid});assert.equal(h.read('selectedHand'),uid);assert.equal(h.read('manualUI.mobilePanel'),'card');assert.deepEqual(s,before);
- await h.click('manual-clear-hand');assert.equal(h.read('selectedHand'),null);assert.equal(h.read('manualUI.mobilePanel'),'closed');assert.ok(!h.root.innerHTML.includes('hand-mana-target'));assert.deepEqual(s,before);
+test('shelf selection reopens the same card, clearing removes placement cues, and the last card in a long shelf remains usable',async()=>{
+ const s=e.createGame([target,target],{seed:2020});s.players[0].hand.push(...s.players[0].deck.splice(0,7));const shelf={scrollLeft:480},h=harness(s,{mobile:true,scrollers:{'.hand-shelf-cards':shelf}}),before=structuredClone(s),uid=s.players[0].hand.at(-1).uid;
+ let html=h.root.innerHTML;Object.defineProperty(h.root,'innerHTML',{get:()=>html,set:value=>{html=value;shelf.scrollLeft=0;}});
+ assert.ok(h.root.innerHTML.includes(`data-focus-key="shelf-${uid}"`));await h.click('hand-card',{uid});assert.equal(h.read('manualUI.mobilePanel'),'card');assert.ok(h.root.innerHTML.includes('hand-mana-target'));assert.deepEqual(s,before);
+ assert.equal(shelf.scrollLeft,480);await h.click('manual-panel-toggle');await h.click('hand-card',{uid});assert.equal(shelf.scrollLeft,480);assert.equal(h.read('selectedHand'),uid);assert.equal(h.read('manualUI.mobilePanel'),'card');assert.deepEqual(s,before);
+ await h.click('manual-clear-hand');assert.equal(h.read('selectedHand'),null);assert.equal(h.read('manualUI.mobilePanel'),'closed');assert.ok(!h.root.innerHTML.includes('hand-mana-target'));assert.equal(shelf.scrollLeft,480);assert.deepEqual(s,before);
 });
 
 test('twinpact face tabs alter only preview and the chosen spell executes only after pressing its legal action',async()=>{
