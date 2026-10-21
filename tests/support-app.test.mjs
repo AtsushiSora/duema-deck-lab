@@ -1,16 +1,18 @@
 import test from 'node:test';import assert from 'node:assert/strict';import vm from 'node:vm';import fs from 'node:fs';
+import {createImageMatcher}from'../dist/card-fingerprint.js';
 import {e,PRESETS,data,details,snapshot} from './target-fixture.mjs';import * as cardInfo from '../dist/card-info.js';import * as manual from '../dist/manual-ui.js';import * as environment from '../dist/environment.js';import * as recognition from '../dist/recognition.js';import * as supportImport from '../dist/support-import.js';import * as supportUI from '../dist/support-ui.js';import {createCatalogue}from'../dist/catalogue.js';import {prepareDeckCopy}from'../dist/deck-copy.js';
 const source=fs.readFileSync(new URL('../dist/app.js',import.meta.url),'utf8').replace(/^import .*;\n/gm,'').replace(/\bboot\(\);\s*$/,'').replaceAll('import.meta.url',JSON.stringify(new URL('../dist/app.js',import.meta.url).href));
-function harness(){const root={innerHTML:''},dialog={innerHTML:'',open:false,showModal(){this.open=true;},close(){this.open=false;},addEventListener(){}},toast={textContent:'',classList:{add(){},remove(){}}},listeners={},fields={},writes=[],errors=[],revoked=[];const registry=createCatalogue(snapshot,data.cards,details),rows=PRESETS[0].cards.map(r=>({...r,confirmed:true}));let reads=0;
+function harness({failImageIndex=false}={}){const root={innerHTML:''},dialog={innerHTML:'',open:false,showModal(){this.open=true;},close(){this.open=false;},addEventListener(){}},toast={textContent:'',classList:{add(){},remove(){}}},listeners={},fields={},writes=[],errors=[],revoked=[];const registry=createCatalogue(snapshot,data.cards,details),rows=PRESETS[0].cards.map(r=>({...r,confirmed:true}));let reads=0,imageReads=0;
  class LocalURL extends URL{static createObjectURL(){return'blob:test-image';}static revokeObjectURL(x){revoked.push(x);}}
  const ctx=vm.createContext({...e,...cardInfo,...manual,...environment,...recognition,...supportImport,...supportUI,battleCard:e.card,createCatalogue,prepareDeckCopy,PRESETS,fixtureRegistry:registry,fixtureData:data,fixtureRows:rows,structuredClone,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL:LocalURL,Intl,Date,
- prepareSupportScreenshot:async()=>({canvas:{width:1200,height:1000},grid:{...supportImport.makeSupportGrid(1200,1000),detected:true}}),readSupportScreenshot:async(_,options)=>{reads++;options.onProgress(40,40);return{rows:structuredClone(rows),slots:[],text:'card text'};},
+ createImageMatcher,fetch:async()=>{if(failImageIndex)throw Error('offline');return{ok:true,json:async()=>({schemaVersion:1,entries:[[data.cards[0].id,btoa('\0'.repeat(288))]]})};},
+ prepareSupportScreenshot:async()=>({canvas:{width:1200,height:1000},grid:{...supportImport.makeSupportGrid(1200,1000),detected:true}}),readSupportScreenshot:async(_,options)=>{reads++;if(typeof options.matchImage==='function')imageReads++;options.onProgress(40,40);return{rows:structuredClone(rows),slots:[],text:'card text'};},
  Tesseract:{createWorker:async()=>({setParameters:async()=>{},recognize:async()=>({data:{text:''}})})},
  console:{error:x=>errors.push(String(x))},localStorage:{getItem:()=>null,setItem:(key,value)=>writes.push(JSON.parse(value))},setTimeout:()=>1,clearTimeout(){},clearInterval(){},setInterval:()=>1,
  document:{querySelector:q=>q==='#app'?root:q==='#dialog'?dialog:q==='#toast'?toast:(fields[q]??={value:'',style:{},focus(){},click(){this.clicked=true;}}),querySelectorAll:()=>[],body:{classList:{toggle(){}}},addEventListener:(k,f)=>listeners[k]=f},window:{addEventListener(){},scrollTo(){}},location:{href:'https://example.test/',hash:'',pathname:'/'},history:{replaceState(){}}});
  vm.runInContext(source,ctx);vm.runInContext("registry=fixtureRegistry;cards=registry.cards;battleCards=fixtureData.cards;metadata=fixtureData;environmentDecks=resolveEnvironmentDecks(registry);render();",ctx);
  const read=code=>vm.runInContext(code,ctx),click=async(action,extra={})=>{await listeners.click({target:{closest:()=>({dataset:{action,...extra},closest:()=>null})}});assert.deepEqual(errors,[]);};
- return{root,dialog,writes,errors,revoked,fields,read,click,reads:()=>reads,upload:async file=>listeners.change({target:{id:'support-file',files:[file],matches:()=>false}})};
+ return{root,dialog,writes,errors,revoked,fields,read,click,reads:()=>reads,imageReads:()=>imageReads,upload:async file=>listeners.change({target:{id:'support-file',files:[file],matches:()=>false}})};
 }
 
 test('new own and opponent editors expose the screenshot entry and keep their destination',async()=>{
@@ -36,4 +38,7 @@ test('invalid and oversized files never start OCR and layout adjustments trigger
 });
 test('source card images can be enlarged while keeping the reviewed cards unchanged',async()=>{
  const h=harness();await h.click('new-deck');await h.click('editor-tab',{tab:'support'});h.read("photo={source:'support',rows:[{id:'',count:2,confirmed:false,thumbnail:'data:image/jpeg;base64,AA'}]};render()");const before=h.read('JSON.stringify(photo.rows)');await h.click('support-zoom',{index:'0'});assert.match(h.dialog.innerHTML,/support-zoom-image/);await h.click('close-dialog');assert.equal(h.read('JSON.stringify(photo.rows)'),before);
+});
+test('reference data loads on image selection and a network failure explicitly falls back to OCR',async()=>{
+ for(const failImageIndex of [false,true]){const h=harness({failImageIndex});await h.click('new-deck');await h.click('editor-tab',{tab:'support'});await h.upload({type:'image/jpeg',size:1000});assert.equal(h.reads(),1);assert.equal(h.imageReads(),failImageIndex?0:1);assert.equal(h.read('!!photo.imageWarning'),failImageIndex);if(failImageIndex)assert.match(h.root.innerHTML,/画像照合データを取得できなかった/);}
 });

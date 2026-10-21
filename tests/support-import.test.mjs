@@ -51,3 +51,9 @@ test('a partial exact substring never overrides a longer nearly matching card or
 test('image preparation bounds both full-size and detection canvases and rejects extremely tall scroll captures',async()=>{
  const {supportImageSize}=await import('../dist/support-reader.js');for(const [w,h]of [[1206,1030],[4000,16000],[16000,4000],[12000,12000]]){const s=supportImageSize(w,h);assert.ok(s.width*s.height<=8000000);assert.ok(s.sampleWidth*s.sampleHeight<=600000);assert.ok(s.sampleWidth<=600);assert.ok(s.sampleHeight<=1200);}assert.throws(()=>supportImageSize(320,30000),/カード一覧/);assert.throws(()=>supportImageSize(100,100),/小さすぎ/);
 });
+test('confident image matches read all forty slots without initializing OCR',async()=>{
+ let calls=0;const r=await recognizeSupportCells({cells:makeSupportGrid(1200,1000).cells,cards,makeImages:()=>({fingerprints:[new Uint8Array(288)],thumbnail:'crop'}),matchImage:()=>({id:'bronze',confirmed:true,candidates:[{id:'bronze',name:'青銅の鎧',score:.99}],score:.99,method:'image'}),recognize:async()=>{calls++;throw Error('OCR should not start');}});assert.equal(calls,0);assert.equal(r.slots.length,40);assert.equal(r.rows[0].count,40);assert.equal(r.rows[0].confirmed,true);assert.equal(r.rows[0].method,'image');
+});
+test('uncertain image matches use OCR and conflicting names remain unconfirmed',async()=>{
+ let calls=0;const r=await recognizeSupportCells({cells:makeSupportGrid(1200,1000).cells,cards,makeImages:()=>({fingerprints:[new Uint8Array(288)],title:'crop',alternate:()=>''}),matchImage:()=>({id:'oni',confirmed:false,candidates:[{id:'oni',name:'異端流し オニカマス',score:.9}],score:.9,imageError:.1}),recognize:async()=>{calls++;return{text:'青銅の鎧',confidence:99};}});assert.equal(calls,40);assert.ok(r.rows.every(r=>!r.confirmed));assert.equal(r.slots.length,40);
+});

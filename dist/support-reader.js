@@ -1,4 +1,5 @@
 import {gridProjections,detectGridFromProjections,scaleSupportGrid,createTitleMatcher,aggregateScreenshotSlots} from './support-import.js';
+import {cardFingerprint,FINGERPRINT_INSET as inset,combineCardEvidence} from './card-fingerprint.js';
 const canvas=(w,h)=>{const c=document.createElement('canvas');c.width=Math.max(1,Math.round(w));c.height=Math.max(1,Math.round(h));return c;};
 export function supportImageSize(w,h){
  if(!Number.isFinite(w)||!Number.isFinite(h)||w<320||h<320)throw Error('画像が小さすぎます。元のスクリーンショットを選んでください');
@@ -19,7 +20,8 @@ export function screenshotCellImages(source,cell){
  const thumb=canvas(134,188);thumb.getContext('2d').drawImage(source,cell.x,cell.y,cell.width,cell.height,0,0,134,188);
  const make=(top,height)=>{const w=cell.width*.83,h=cell.height*height,c=canvas(w*6+24,h*6+24),ctx=c.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.drawImage(source,cell.x+cell.width*.135,cell.y+cell.height*top,w,h,12,12,c.width-24,c.height-24);return c.toDataURL('image/png');};
  const small=canvas(12,16),ctx=small.getContext('2d',{willReadFrequently:true});ctx.drawImage(thumb,0,0,12,16);const rgba=ctx.getImageData(0,0,12,16).data,appearance=Array.from(rgba).filter((_,i)=>i%4!==3);
- return {appearance,thumbnail:thumb.toDataURL('image/jpeg',.8),title:make(.0425,.096),alternate:()=>make(.032,.106)};
+ const fingerprints=[[0,0],[-.015,0],[.015,0],[0,-.015],[0,.015]].map(([dx,dy])=>{const c=canvas(36,48),cx=c.getContext('2d',{willReadFrequently:true});cx.drawImage(source,cell.x+cell.width*(inset.x+dx),cell.y+cell.height*(inset.y+dy),cell.width*inset.width,cell.height*inset.height,0,0,36,48);return cardFingerprint(cx.getImageData(0,0,36,48));});
+ return {appearance,fingerprints,thumbnail:thumb.toDataURL('image/jpeg',.8),title:make(.0425,.096),alternate:()=>make(.032,.106)};
 }
 export function combineTitleResults(primary,alternate){
  if(!alternate)return primary;
@@ -28,15 +30,19 @@ export function combineTitleResults(primary,alternate){
  const conflict=primary.id&&alternate.id&&primary.id!==alternate.id;
  return {...best,confirmed:best.confirmed&&!conflict,candidates:candidates.sort((a,b)=>b.score-a.score).slice(0,5),original:[primary.original,alternate.original].filter(Boolean).join(' / ')};
 }
-export async function recognizeSupportCells({cells,makeImages,recognize,cards,onProgress=()=>{},cancelled=()=>false}){
+export async function recognizeSupportCells({cells,makeImages,recognize,cards,matchImage,onProgress=()=>{},cancelled=()=>false}){
  if(cells.length!==40)throw Error('40枚の配置を確認してください');
  const match=createTitleMatcher(cards),slots=[];
  for(const cell of cells){
   if(cancelled())return null;
-  const images=await makeImages(cell),r=await recognize(images.title,7);if(cancelled())return null;
-  let result=match(r.text||'',r.confidence||0);
-  if(!result.confirmed){const a=await recognize(images.alternate(),6);if(cancelled())return null;result=combineTitleResults(result,match(a.text||'',a.confidence||0));}
+  const images=await makeImages(cell),visual=images.fingerprints&&matchImage?.(images.fingerprints);if(cancelled())return null;
+  let result=visual?.confirmed?{...visual,original:''}:null;
+  if(!result){const r=await recognize(images.title,7);if(cancelled())return null;result=match(r.text||'',r.confidence||0);
+   if(!result.confirmed){const a=await recognize(images.alternate(),6);if(cancelled())return null;result=combineTitleResults(result,match(a.text||'',a.confidence||0));}
+   result=combineCardEvidence(result,visual);
+  }
   slots.push({...result,appearance:images.appearance,thumbnail:images.thumbnail});onProgress(slots.length,40);
+  if(slots.length%4===0)await new Promise(resolve=>setTimeout(resolve,0));
  }
  return {slots,rows:aggregateScreenshotSlots(groupScreenshotSlots(slots)),text:slots.map((s,i)=>`${i+1}: ${s.original||'読み取りなし'}`).join('\n')};
 }

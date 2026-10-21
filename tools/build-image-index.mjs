@@ -1,0 +1,23 @@
+// Run with SHARP_MODULE pointing at an installed sharp package when not local.
+import {readFile,writeFile,mkdir,appendFile}from'node:fs/promises';
+import {createRequire}from'node:module';
+import {cardFingerprint,encodeFingerprint,FINGERPRINT_INSET as inset}from'../dist/card-fingerprint.js';
+const require=createRequire(import.meta.url),sharp=require(process.env.SHARP_MODULE||'sharp');
+const root=new URL('../',import.meta.url),cache=new URL('tools/research/catalogue/image-signatures.jsonl',root);
+const catalogue=JSON.parse(await readFile(new URL('dist/catalogue.json',root),'utf8')),byName=new Map(catalogue.cards.map(c=>[c.name,c.id]));
+const records=catalogue.cards.map(c=>({id:c.id,canonicalId:c.id}));
+const supported=JSON.parse(await readFile(new URL('dist/cards.json',root),'utf8')).cards;records.unshift(...supported.map(c=>({id:c.id,canonicalId:byName.get(c.name)||c.id})));
+try{for(const line of(await readFile(new URL('tools/research/catalogue/allprints-records.jsonl',root),'utf8')).split('\n').filter(Boolean)){const r=JSON.parse(line);const id=r.canonicalId||byName.get(r.name);if(id)records.push({id:r.id,canonicalId:id});}}catch{}
+let priority=[];try{priority=JSON.parse(await readFile(new URL('tools/research/catalogue/allprints-priority.json',root),'utf8'));priority.push(...JSON.parse(await readFile(new URL('tools/research/catalogue/allprints-extra.json',root),'utf8')));}catch{}for(const r of priority)if(r.canonicalId)records.unshift({id:r.id,canonicalId:r.canonicalId});
+const known=new Map();try{const previous=JSON.parse(await readFile(new URL('dist/image-index.json',root),'utf8'));for(const[id,signature,printId]of previous.entries)if(printId)known.set(printId,{printId,id,signature});}catch{}
+try{for(const line of(await readFile(cache,'utf8')).split('\n').filter(Boolean)){const r=JSON.parse(line);known.set(r.printId,r);}}catch{}
+const limit=process.env.IMAGE_LIMIT===undefined?Infinity:Number(process.env.IMAGE_LIMIT);if(limit<0||Number.isNaN(limit))throw Error('IMAGE_LIMIT must be non-negative');
+const pending=[...new Map(records.map(r=>[r.id,r])).values()].filter(r=>!known.has(r.id)).slice(0,limit);let position=0,done=0;
+await mkdir(new URL('tools/research/catalogue/',root),{recursive:true});
+await Promise.all(Array.from({length:8},async()=>{while(position<pending.length){const r=pending[position++];let error;
+ for(let retry=0;retry<2;retry++){try{let response=await fetch('https://dm.takaratomy.co.jp/wp-content/card/cardthumb/'+encodeURIComponent(r.id)+'.jpg',{signal:AbortSignal.timeout(10000)});if(response.status===404){const detail=await fetch('https://dm.takaratomy.co.jp/card/detail/?id='+encodeURIComponent(r.id),{signal:AbortSignal.timeout(10000)}),html=await detail.text(),url=html.match(/property="og:image" content="([^"]+)"/)?.[1];if(url?.startsWith('https://dm.takaratomy.co.jp/'))response=await fetch(url,{signal:AbortSignal.timeout(10000)});}if(!response.ok)throw Error('HTTP '+response.status);const raw=Buffer.from(await response.arrayBuffer()),meta=await sharp(raw).metadata();if(meta.width<60||meta.height<80)throw Error('Not a card image');const pixels=await sharp(raw).extract({left:Math.round(meta.width*inset.x),top:Math.round(meta.height*inset.y),width:Math.round(meta.width*inset.width),height:Math.round(meta.height*inset.height)}).resize(36,48,{fit:'fill'}).ensureAlpha().raw().toBuffer();const row={printId:r.id,id:r.canonicalId,signature:encodeFingerprint(cardFingerprint({data:pixels,width:36,height:48}))};known.set(r.id,row);await appendFile(cache,JSON.stringify(row)+'\n');error=null;break;}catch(e){error=e.message;}}
+ if(error)console.error(r.id,error);if(++done%250===0)console.log('Images '+done+'/'+pending.length+'; cached '+known.size);
+ }}));
+const ids=new Set(catalogue.cards.map(c=>c.id)),entries=[...known.values()].filter(r=>ids.has(r.id)).map(r=>[r.id,r.signature,r.printId]);
+const result={schemaVersion:1,source:'https://dm.takaratomy.co.jp/card/',checkedAt:new Date().toISOString().slice(0,10),printCount:known.size,nameCount:new Set(entries.map(e=>e[0])).size,entries};
+await writeFile(new URL('dist/image-index.json',root),JSON.stringify(result));console.log(JSON.stringify({prints:result.printCount,names:result.nameCount,signatures:entries.length}));
