@@ -14,10 +14,10 @@ const s0=()=>{const s=createGame([PRESETS[0],PRESETS[1]],{seed:91});s.phase='mai
 const evolve=(s,id,baseId)=>{give(s,0,'hand',[id]);if(baseId)give(s,0,'battle',[baseId]);act(s,'play');assert.equal(s.decision.type,'evolution');act(s,'evolve');};
 
 test('phase 3 freezes 42 multicolor and 17 evolution cards without enabling unsupported environment effects',()=>{
- assert.equal(manifest.cards.length,59);assert.equal(data.cards.length,588);assert.equal(data.cards.filter(c=>c.supportBatch==='phase-3').length,59);
+ assert.equal(manifest.cards.length,59);assert.equal(data.cards.length,589);assert.equal(data.cards.filter(c=>c.supportBatch==='phase-3').length,59);
  const registry=createCatalogue(snapshot,data.cards,details);assert.equal(registry.cards.length,11833);
  for(const row of manifest.cards){const d=details.cards.find(c=>c.id===row.id),c=card(row.id);assert.equal(c.text,d.faces[0].abilityText);assert.deepEqual(row.spec,phase3Spec(d));assert.equal(c.supportBatch,'phase-3');for(const [k,v]of Object.entries(row.spec))assert.deepEqual(c[k],v);assert.equal(registry.get(c.id).supported,true);}
- for(const d of resolveEnvironmentDecks(registry))assert.equal(registry.coverage(d).unsupported,d.id==='env-gp2026-pinky'?17:40);
+ for(const d of resolveEnvironmentDecks(registry))assert.equal(registry.coverage(d).unsupported,d.id==='env-gp2026-pinky'?15:d.id==='env-gp2026-sara'?37:40);
  const modified=structuredClone(details.cards.find(c=>c.id==='dm02-024'));modified.faces[0].abilityText+='\nこのクリーチャーが出た時、ゲームに勝つ。';assert.throws(()=>phase3Spec(modified),/未対応/);
 });
 test('one multicolor mana cannot satisfy two civilizations; tapped mana cannot be paid',()=>{
