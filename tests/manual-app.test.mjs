@@ -3,11 +3,12 @@ import {e,PRESETS,data,details,snapshot,target,DOGI,GG,inst,give,setup} from './
 import * as cardInfo from '../dist/card-info.js';
 import * as manual from '../dist/manual-ui.js';import {createCatalogue} from '../dist/catalogue.js';
 import * as visuals from '../dist/battle-visuals.js';
+import * as fit from '../dist/board-fit.js';
 const app=(await readFile(new URL('../dist/app.js',import.meta.url),'utf8')).replace(/^import .*;\n/gm,'').replace(/\bboot\(\);\s*$/,'').replaceAll('import.meta.url',JSON.stringify(new URL('../dist/app.js',import.meta.url).href));
 function harness(state,{mobile=false,scrollers={}}={}){
  const listeners={},errors=[],timers=new Map();let serial=0;
  const root={innerHTML:''},dialog={innerHTML:'',open:false,addEventListener(){},showModal(){this.open=true;},close(){this.open=false;}},toast={textContent:'',classList:{add(){},remove(){}}},classes=new Set();
- const context=vm.createContext({...e,...manual,...visuals,...cardInfo,battleCard:e.card,PRESETS,createCatalogue,fixtureRegistry:createCatalogue(snapshot,data.cards,details),fixtureState:state,fixtureDecks:[target,target],console:{log(){},error:e=>errors.push(e)},structuredClone,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL,Intl,Date,CSS:{escape:x=>x},localStorage:{getItem:()=>null,setItem(){}},location:{hash:'',pathname:'/'},history:{replaceState(){}},setTimeout:f=>{timers.set(++serial,f);return serial;},clearTimeout:id=>timers.delete(id),clearInterval(){},setInterval:()=>++serial,
+ const context=vm.createContext({...e,...manual,...visuals,...fit,...cardInfo,battleCard:e.card,PRESETS,createCatalogue,fixtureRegistry:createCatalogue(snapshot,data.cards,details),fixtureState:state,fixtureDecks:[target,target],console:{log(){},error:e=>errors.push(e)},structuredClone,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL,Intl,Date,CSS:{escape:x=>x},localStorage:{getItem:()=>null,setItem(){}},location:{hash:'',pathname:'/'},history:{replaceState(){}},setTimeout:f=>{timers.set(++serial,f);return serial;},clearTimeout:id=>timers.delete(id),clearInterval(){},setInterval:()=>++serial,
   document:{querySelector:s=>s==='#app'?root:s==='#dialog'?dialog:s==='#toast'?toast:scrollers[s]||null,querySelectorAll:s=>s==='.play-creatures,.shield-tiles'?scrollers.lanes||[]:[],activeElement:null,body:{classList:{toggle:(key,on)=>on?classes.add(key):classes.delete(key)}},addEventListener:(name,f)=>listeners[name]=f},window:{innerHeight:800,addEventListener(){},scrollTo(){},matchMedia:q=>({matches:mobile&&q==='(max-width: 850px)'})}});
  vm.runInContext(app,context);
  vm.runInContext("registry=fixtureRegistry;cards=registry.cards;battleCards=fixtureRegistry.cards.filter(c=>c.supported);battle={state:fixtureState,decks:fixtureDecks,practice:true};view='manual';manualUI=newManualUI();selectedHand=null;render();",context);
@@ -44,13 +45,15 @@ test('real app retains hint/undo behavior, collapsible logs and faster AI timing
  const s=setup();give(s,0,'hand',['dm01-108']);s.phase='charge';const h=harness(s),before=e.ENGINE_VERSION;await h.click('manual-log');assert.equal(h.read('manualUI.logOpen'),true);await h.click('manual-speed');assert.equal(h.read('manualUI.fast'),true);await h.click('hand-card',{uid:s.players[0].hand[0].uid});await h.click('battle-step',{index:'0'});assert.equal(s.phase,'main');await h.click('undo-battle');assert.equal(h.read('battle.state.phase'),'charge');assert.equal(h.read('manualUI.fast'),true);assert.equal(h.read('manualUI.logOpen'),true);assert.equal(e.ENGINE_VERSION,before);await h.click('battle-hint');assert.equal(h.read('dialog.open'),true);assert.ok(h.read('dialog.innerHTML').includes('次の一手のヒント'));
 });
 
-test('phone board expansion changes only display and selecting a card reopens its legal controls',async()=>{
+test('phone starts with the full board and opens the hand and controls only on request',async()=>{
  const s=e.createGame([target,target],{seed:2020}),h=harness(s,{mobile:true}),before=structuredClone(s),uid=s.players[0].hand[0].uid;
- await h.click('manual-panel-toggle');assert.equal(h.read('manualUI.panelMinimized'),true);assert.ok(h.root.innerHTML.includes('操作を開く'));assert.deepEqual(s,before);
- await h.click('manual-panel-toggle');assert.equal(h.read('manualUI.panelMinimized'),false);
- await h.click('hand-card',{uid});assert.equal(s.actions,0);assert.equal(h.read('selectedHand'),uid);assert.ok(h.root.innerHTML.includes('selected-hand-info'));
+ assert.equal(h.read('manualUI.mobilePanel'),'closed');assert.ok(h.root.innerHTML.includes('manual-mobile-dock'));assert.ok(!h.root.innerHTML.includes('class="manual-hand-cards"'));
+ await h.click('manual-open-hand');assert.equal(h.read('manualUI.mobilePanel'),'hand');assert.ok(h.root.innerHTML.includes('class="manual-hand-cards"'));assert.deepEqual(s,before);
+ await h.click('manual-panel-toggle');assert.equal(h.read('manualUI.mobilePanel'),'closed');assert.deepEqual(s,before);
+ await h.click('manual-open-hand');await h.click('hand-card',{uid});assert.equal(s.actions,0);assert.equal(h.read('selectedHand'),uid);assert.equal(h.read('manualUI.mobilePanel'),'actions');assert.ok(h.root.innerHTML.includes('selected-hand-info'));
  const a=e.getLegalActions(s).find(a=>a.kind==='charge'&&a.uid===uid);await h.click('battle-step',{index:String(a.id)});
  assert.equal(s.phase,'main');assert.equal(h.read('manualUI.panelMinimized'),false);assert.ok(s.players[0].mana.some(x=>x.uid===uid));
+ assert.equal(h.read('manualUI.mobilePanel'),'closed');
 });
 
 test('an AI transition to a required human decision reopens a minimized panel without changing the game',async()=>{
@@ -76,4 +79,24 @@ test('board and horizontal lane positions survive display changes, while a new h
  scrollers['.manual-console-content'].scrollTop=90;await h.click('manual-panel-toggle');
  assert.equal(scrollers['.manual-board-area'].scrollTop,120);assert.equal(scrollers['.manual-hand-cards'].scrollLeft,60);assert.equal(scrollers['.manual-console-content'].scrollTop,90);assert.deepEqual(scrollers.lanes.map(x=>x.scrollLeft),[41,72]);
  await h.click('manual-panel-toggle');await h.click('hand-card',{uid:s.players[0].hand[0].uid});assert.equal(scrollers['.manual-console-content'].scrollTop,0);assert.equal(scrollers['.manual-board-area'].scrollTop,120);
+});
+
+test('phone hand pages expose later cards and selecting one executes the correct legal mana charge',async()=>{
+ const s=e.createGame([target,target],{seed:2020});s.players[0].hand.push(...s.players[0].deck.splice(0,6));const h=harness(s,{mobile:true}),uid=s.players[0].hand.at(-1).uid;
+ await h.click('manual-open-hand');assert.equal((h.root.innerHTML.match(/class="manual-hand-card /g)||[]).length,6);assert.ok(!h.root.innerHTML.includes(`data-action="hand-card" data-uid="${uid}"`));
+ await h.click('manual-hand-page',{page:'1'});assert.equal(s.actions,0);assert.ok(h.root.innerHTML.includes(`data-action="hand-card" data-uid="${uid}"`));
+ await h.click('hand-card',{uid});const a=e.getLegalActions(s).find(a=>a.kind==='charge'&&a.uid===uid);await h.click('battle-step',{index:String(a.id)});assert.ok(s.players[0].mana.some(x=>x.uid===uid));assert.equal(h.read('manualUI.mobilePanel'),'closed');
+});
+
+test('mandatory effect choices can be viewed on the board, paged and chosen with their original engine ids',async()=>{
+ const s=setup();s.players[0].hand.push(inst('dm23bd4-008'));e.step(s,e.getLegalActions(s).find(a=>a.kind==='play'));assert.equal(s.decision.type,'manaTop');const h=harness(s,{mobile:true}),before=s.actions;
+ assert.equal(h.read('manualUI.mobilePanel'),'actions');await h.click('manual-panel-toggle');assert.equal(h.read('manualUI.mobilePanel'),'closed');assert.equal(s.actions,before);
+ await h.click('manual-open-actions');await h.click('manual-choice-page',{page:'1'});const choiceButtons=[...h.root.innerHTML.matchAll(/<button class="choice-card"[^>]*data-index="(\d+)"/g)];assert.ok(choiceButtons.length<=4);assert.ok(choiceButtons.length>0);
+ const id=Number(choiceButtons.at(-1)[1]),a=e.getLegalActions(s).find(a=>a.id===id),selected=s.players[0].mana.find(x=>x.uid===a.uid);await h.click('battle-step',{index:String(id)});assert.equal(s.players[0].deck[0].uid,selected.uid);assert.equal(s.actions,before+1);assert.equal(h.read('manualUI.mobilePanel'),'closed');
+});
+
+test('all dense board cards remain in the overview and a paged enlargement can select the last attacker',async()=>{
+ const s=setup();give(s,0,'battle',Array(17).fill('dm01-108'));s.phase='attack';const h=harness(s,{mobile:true}),uid=s.players[0].battle.at(-1).uid;
+ assert.ok(h.root.innerHTML.includes('data-fit-count="17"'));for(const x of s.players[0].battle)assert.ok(h.root.innerHTML.includes(`data-visual-key="creature:0:${x.uid}"`));
+ await h.click('manual-field',{player:'0',page:'4'});assert.ok(h.read('dialog.open'));assert.ok(h.read('dialog.innerHTML').includes(uid));await h.click('manual-creature',{player:'0',uid});assert.equal(h.read('dialog.open'),false);assert.equal(h.read('manualUI.attacker'),uid);assert.equal(h.read('manualUI.mobilePanel'),'closed');assert.equal(s.actions,0);
 });
