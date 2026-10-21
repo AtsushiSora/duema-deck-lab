@@ -123,7 +123,7 @@ function mainActions(s,ui,m,h){
   return `${selectedHandHTML(s,m,h)}<div class="manual-primary"><button class="btn primary" data-action="battle-step" data-index="${a?.id??''}" ${a?'':'disabled'}>${h.icon('bolt',17)} マナに置く</button>${button(skip,{quiet:true,label:'置かずに進む'})}</div>`;
  }
  if(s.phase==='main'){
-  const plays=m.actions.filter(a=>a.uid===ui.hand&&(a.kind==='play'||a.kind==='mugenStart')),extra=m.actions.filter(a=>(a.kind==='play'&&a.origin==='mana')||(a.kind==='mugenStart'&&a.uid!==ui.hand)||a.kind==='hyper'),next=m.actions.find(a=>a.kind==='toAttack');
+  const plays=m.actions.filter(a=>a.uid===ui.hand&&(a.kind==='play'||a.kind==='mugenStart')),extra=m.actions.filter(a=>(a.kind==='play'&&['mana','grave'].includes(a.origin))||(a.kind==='mugenStart'&&a.uid!==ui.hand)||a.kind==='hyper'),next=m.actions.find(a=>a.kind==='toAttack');
   return `${selectedHandHTML(s,m,h)}<div class="manual-primary">${plays.map(a=>button(a,{primary:true,label:a.kind==='mugenStart'?'ムゲンクライム4で召喚':`${playFaces(card(a.cardId))[a.face||0].type==='spell'?'呪文を使う':'召喚する'} · ${a.cost??4}マナ${card(a.cardId).spellFace?`（${a.face===1?'呪文側':'クリーチャー側'}）`:''}`})).join('')}${button(next,{quiet:true,label:'攻撃へ進む →'})}</div>${extra.length&&ui.mobile?`<button class="btn full manual-extra-button" data-action="manual-extra-methods">マナ・墓地などから使う (${extra.length})</button>`:extra.length?`<details class="manual-extra"><summary>マナ・墓地などから使う <b>${extra.length}</b></summary><div class="manual-secondary">${extra.map(a=>button(a)).join('')}</div></details>`:''}`;
  }
  const attacks=m.actions.filter(a=>a.kind==='attack'&&a.uid===m.attacker),end=m.actions.find(a=>a.kind==='endTurn');

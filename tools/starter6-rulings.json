@@ -1,0 +1,170 @@
+{
+  "checkedAt": "2026-10-22",
+  "rulebook": {
+    "url": "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf",
+    "version": "1.53",
+    "updated": "2026-10-15",
+    "references": [
+      {
+        "rule": "101.3a",
+        "pdfPageOneBased": 12,
+        "note": "条件付き後続処理は、条件行為を試みれば成立し、置換等で結果が変わっても成立する。"
+      },
+      {
+        "rule": "101.4a,d",
+        "pdfPageOneBased": 12,
+        "note": "解決中に誘発した別能力は待機。置換以外は解決中の能力に割り込まない。"
+      },
+      {
+        "rule": "603.5c,d",
+        "pdfPageOneBased": 61,
+        "quote": "過去の状態を見ることができるのは、その能力を持つカード自身についてのみです。",
+        "note": "メアリー自身も離れた場合、同時離脱する他の人形までは遡及しない。Maryへの適用は一般則からの推論。"
+      },
+      {
+        "rule": "703.4b",
+        "pdfPageOneBased": 77,
+        "quote": "山札が 0 枚になったプレイヤーは、ゲームに敗北する。",
+        "note": "効果途中でも山札切れは即敗北。単なる閲覧・並べ替えの実装上の一時退避で判定しない。"
+      },
+      {
+        "rule": "822.2a,822.3",
+        "pdfPageOneBased": 93,
+        "note": "G城は表向きの新しいシールド。表向きでシールドゾーンを離れる際は墓地行きへ置換。Vチャロンの全盾カード処理に含む。"
+      }
+    ]
+  },
+  "cards": [
+    {
+      "name": "龍后人形メアリー・ジェニー",
+      "url": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-012",
+      "notes": [
+        "水闇5/6000、DeathPuppet/DragonBride、justDiver、Wブレイカー。自分のデスパペット・クリーチャーすべて（自身含む）へブロッカー付与。",
+        "出た時は任意の2枚墓地送り。その後、独立して任意のコスト4以下デスパペット・エレメント1つを墓地から出す。前半を断っても後半可。2枚墓地送りは1枚ずつの任意選択ではない。",
+        "自分のデスパペットが離れた時、任意1ドロー、その後相手自身が手札1枚を捨てる。ドローを断っても相手の捨てる処理は行う。",
+        "自身も該当。自身を含む一括離脱では、離れたメアリーは自身分だけ誘発。残ったメアリーは離れた各人形分誘発。除去ループ順による誤差を防ぐため、同時イベントのpre-state snapshotが必要。"
+      ],
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/rulechange/316669/"
+      ],
+      "evidenceType": "card text + current603.5c/d; Mary同時離脱の直接FAQは見つからず一般則適用"
+    },
+    {
+      "name": "絶望と反魂と滅殺の決断",
+      "url": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-s08",
+      "notes": [
+        "闇5。相手が選んで1捨て/闇4以下クリーチャーまたはオーラ蘇生/相手クリーチャー選んでこのターン-4000の3項から重複可で2項。選択順でなく紙面順に解決。",
+        "蘇生2回は順番に出す。1体目の着地で常在状態が変わり、2体目の可否や誘発が変わる。",
+        "自分自身の墓地詠唱許可を使った場合だけ、解決後山札下。外部効果で墓地から唱えたという理由だけで山札下にはしない。originとpermissionを分ける。",
+        "∞龍ゲンム下では自身の墓地詠唱許可も無視され、墓地から唱えること自体不可。手札からの詠唱は可でも効果無視。",
+        "現在engineはオーラデッキ自体非対応。今回のengine有効カード集合では蘇生対象のオーラ欠落は起きないが、全オーラまで対応したとは表示しない。"
+      ],
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/40186/",
+        "https://dm.takaratomy.co.jp/rule/qa/40184/",
+        "https://dm.takaratomy.co.jp/rule/qa/46247/",
+        "https://dm.takaratomy.co.jp/rule/qa/49021/"
+      ]
+    },
+    {
+      "name": "Vチャロン",
+      "url": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-001",
+      "latestPrint": "https://dm.takaratomy.co.jp/card/detail/?id=dm26sd1-f004",
+      "notes": [
+        "自分または相手のプレイヤー1人を選ぶ。そのプレイヤーが手札全部を好きな順序で山札下→同枚数ドロー。その後そのプレイヤーのシールドゾーンの全カードを好きな順序で山札下→同枚数を山札上から裏向き盾へ。",
+        "手札の山札送りは捨てる処理ではなく、盾の山札送りはブレイクではない。discard/Sトリガー/GSを出さない。盾離脱誘発は待機する。",
+        "カレイコの黒像は双方の山札から手札以外への移動を墓地へ置換するので、手札補充は通常、盾補充だけ墓地行き。山札0に到達すれば即敗北。",
+        "G城も盾ゾーンの全カードに含む。表向きG城は墓地へ置換。置換されたカードも補充試行枚数に含む（QA33707のV類似例）。バルザーク離脱の捨て1/引く2はV本体の完了後。"
+      ],
+      "sources": [
+        "https://dm.takaratomy.co.jp/dm26sd1_decklist/deck06/",
+        "https://dm.takaratomy.co.jp/rule/qa/33707/",
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-043"
+      ]
+    },
+    {
+      "name": "修羅の死神フミシュナ / 「この先は修羅の道ぞ」",
+      "url": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd4-007",
+      "notes": [
+        "クリーチャー面は闇4/4000デーモンコマンド、ブロッカー。出た時相手手札を見ないで1枚捨てさせる。相手が実際に捨てた時、各ターン1度だけ任意1ドロー。",
+        "各ターン一度は最初のdiscard限定ではない。最初の誘発で断っても後のdiscardで使える。受諾した時に使用済みにする。自分のカードが出る以前のdiscardをプレイヤー共通flagで数えない。",
+        "複数枚discardは各カードで誘発するが、1回ドロー受諾後は同個体の残る待機分を使えない。各physical instanceごとに使用回数を記録し、出直したinstanceを区別。",
+        "バルザークの『各ターン、はじめて』という別テキストとは異なる（後者は一括discardで1回）。",
+        "呪文面は水5/Sトリガー。1ドロー/相手クリーチャー1体バウンスの2項から重複可で2項。紙面順にドロー系→バウンス系。"
+      ],
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/44212/",
+        "https://dm.takaratomy.co.jp/rule/qa/45464/",
+        "https://dm.takaratomy.co.jp/rule/qa/45463/",
+        "https://dm.takaratomy.co.jp/rule/qa/48503/"
+      ],
+      "sourceCaveat": "QA44212は公式検索indexで本文確認済み。直接URLは一時maintenance HTMLが返ったため、HTML保存物をカードデータに使わない。"
+    },
+    {
+      "name": "ブレイン・スラッシュ",
+      "url": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-024",
+      "latestPrint": "https://dm.takaratomy.co.jp/card/detail/?id=dm26sd1-f008",
+      "notes": [
+        "水闇6/Sトリガー。通常1項選択。自分のクリーチャーとタマシードの集合に水と闇がそろえば両方を選べる。1体多色でも別々2体でもよく、他typeの文明は数えない。",
+        "モードは解決開始前に決める。両方なら3ドロー→自分1捨て→コスト8以下クリーチャー蘇生。直前に捨てたクリーチャーも候補。合法進化元があれば進化も可。"
+      ],
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/rulechange/316650/"
+      ]
+    },
+    {
+      "name": "異端流し オニカマス",
+      "url": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-041",
+      "notes": [
+        "水2/2000。相手から効果で選ばれない。攻撃/ブロックなどゲーム行為は妨げない。",
+        "相手ターンに相手のクリーチャーが召喚以外で出た時、その同一instanceを必ず手札に戻す。自分ターンの相手cheat、召喚扱いのSトリガー召喚には非誘発。",
+        "出た時能力は消えない。ターンプレイヤー側の待機能力を先に処理し、その後オニカマス。対象が移動して戻ってきた別incarnationは追わない。",
+        "継続的効果後の実際のcreature typeを見る。PDarknessの2回蘇生は逐次でJashinのcreature化判定も変わる。"
+      ],
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/41992/",
+        "https://dm.takaratomy.co.jp/rule/rulechange/31619/"
+      ]
+    },
+    {
+      "name": "特攻人形ジェニー",
+      "url": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-056",
+      "notes": [
+        "闇2/1000デスパペット。出た時任意で自身を破壊し、そうしたら相手手札を見ないで1枚捨てる。",
+        "解決前にsourceが場を離れていたら自身破壊を試みられずdiscardなし。同じUIDでも出直しは別instance。",
+        "場にいる合法sourceを破壊しようとした場合、破壊が置換されたり防がれたりしても後続discardは実行。actual grave到着を条件にしない。"
+      ],
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/46827/",
+        "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+      ]
+    },
+    {
+      "name": "カレイコの黒像",
+      "url": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-086",
+      "notes": [
+        "闇3タマシード/オラクル/レクスターズ、シンカライズ。両プレイヤーの山札から手札以外へ置くカードを、かわりに墓地へ。",
+        "デッキ→mana/shield/battleすべてに適用。墓地送り自体を無限再置換しない。山札→手札と単なる閲覧/並べ替えには非適用。",
+        "カード下に山札から入るCOMPLEX処理はバトルゾーンに出た扱いでないため非適用。封印は別扱いで、将来実装時は個別確認必要。",
+        "EXライフのshield化が墓地置換されても本体は出る。EXlife紐づけやshield-entry triggerは実際に盾ができた場合だけ。",
+        "置換後も元の効果sourceは変わらないのでJaoumon等の後半蘇生に含まれる。公開されたdragon判定等も、予定移動先へ到着しなかった理由だけで消さない。",
+        "タマシードは∞龍ゲンムの低コストクリーチャー効果無視の対象外。"
+      ],
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/46596/",
+        "https://dm.takaratomy.co.jp/rule/qa/44313/",
+        "https://dm.takaratomy.co.jp/rule/qa/42931/",
+        "https://dm.takaratomy.co.jp/rule/qa/42405/",
+        "https://dm.takaratomy.co.jp/rule/qa/46597/",
+        "https://dm.takaratomy.co.jp/rule/qa/47371/"
+      ]
+    },
+    {
+      "name": "解体人形ジェニー",
+      "url": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-044",
+      "notes": [
+        "闇4/1000デスパペット。出た時相手手札を見て、自分が1枚選んで相手に捨てさせる。randomや相手自身の選択にしない。"
+      ]
+    }
+  ]
+}
