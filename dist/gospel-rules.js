@@ -2,7 +2,7 @@
 export function createGospelRules(api){
  const {card,faces,cost,colors,power,creatures,put,task,choice,opt,skip,remove,removeShield,clear,move,cast,draw,log,canCast,canEnter,targetOptions,lock}=api;
  const hasSpell=x=>faces(card(x)).some(c=>c.type==='spell');
- const elementOptions=(s,p,max)=>[...s.players[1-p].battle.filter(x=>cost(card(x))<=(max==='∞'?Infinity:max)).filter(x=>api.targetable(s,p,1-p,x)).map(x=>opt(card(x).name,{uid:x.uid,zone:'battle'},20+cost(card(x)),x.cardId)),...s.players[1-p].shields.filter(x=>x.faceUp&&card(x).gCastle&&cost(card(x))<=(max==='∞'?Infinity:max)).map(x=>opt(card(x).name,{uid:x.uid,zone:'shields'},15,x.cardId))];
+ const elementOptions=(s,p,max)=>s.players[1-p].battle.filter(x=>cost(card(x))<=(max==='∞'?Infinity:max)).filter(x=>api.targetable(s,p,1-p,x)).map(x=>opt(card(x).name,{uid:x.uid,zone:'battle'},20+cost(card(x)),x.cardId));
  const entry=(s,p,source,op,more={})=>api.enqueue(s,p,{source,effect:'extended',task:task(op,p,source,more)});
  const discount=(s,p,source,n)=>{(s.g5NextSummons??=[]).push({p,source,reduce:n,turn:s.turn});};
  function discardThen(s,t,follow){const key=String(s.g5Serial=(s.g5Serial||0)+1);(s.g5Discards??={})[key]=null;put(s,task('discard',t.p,t.source,{n:1,gospelKey:key}),task(follow,t.p,t.source,{key}));}
