@@ -1,12 +1,13 @@
 // Supported-card rules engine. No strength-based or precomputed win rates.
-export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.10';
-export const ENGINE_VERSION='0.10.0';
+export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.11';
+export const ENGINE_VERSION='0.11.0';
 const EFFECTS=new Set(['ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers','dragonRamp2','ramp2Return1','optionalRamp4Return2','purgeNonDragonMana','fightOptional','destroyWeakerLimitNextTurn','shieldTop1']);
 let catalogue=new Map();
-export function setCards(cards){for(const c of cards){if(c.effect&&!EFFECTS.has(c.effect))throw Error('未実装の効果です：'+c.effect);if(c.breaker!=null&&![2,3].includes(c.breaker))throw Error('未実装のブレイカーです');if(c.evolution&&c.exLife)throw Error('進化EXライフは未対応です');if(c.evolution&&c.trigger)throw Error('進化S・トリガーは未対応です');if(c.costReduction&&!['opponentMulticolorMana3','ownFourDragonsMana3','ownFiveLightFireMana3'].includes(c.costReduction))throw Error('未実装のコスト軽減です');for(const key of ['dragonEntryTap','attackDragonReveal','exLife','zRush','shieldEntryTapLock','soulShieldGuard'])if(c[key]!=null&&c[key]!==true)throw Error('未実装の能力です：'+key);}for(const c of cards)if(c.hyper&&(!c.zRush||JSON.stringify(c.hyper)!==JSON.stringify({power:7500,blocker:true,breaker:2,spellLockMaxCost:5})))throw Error('未実装のハイパーモードです');catalogue=new Map(cards.map(c=>[c.id,c]));}
+export function setCards(cards){for(const c of cards){if(c.effect&&!EFFECTS.has(c.effect))throw Error('未実装の効果です：'+c.effect);if(c.breaker!=null&&![2,3].includes(c.breaker))throw Error('未実装のブレイカーです');if(c.evolution&&c.exLife)throw Error('進化EXライフは未対応です');if(c.evolution&&c.trigger)throw Error('進化S・トリガーは未対応です');if(c.costReduction&&!['opponentMulticolorMana3','ownFourDragonsMana3','ownFiveLightFireMana3'].includes(c.costReduction))throw Error('未実装のコスト軽減です');for(const key of ['dragonEntryTap','attackDragonReveal','exLife','zRush','shieldEntryTapLock','soulShieldGuard','attackJudge'])if(c[key]!=null&&c[key]!==true)throw Error('未実装の能力です：'+key);}for(const c of cards)if(c.hyper&&(!c.zRush||JSON.stringify(c.hyper)!==JSON.stringify({power:7500,blocker:true,breaker:2,spellLockMaxCost:5})))throw Error('未実装のハイパーモードです');for(const c of cards)if(c.spellFace&&(!c.attackJudge||c.spellFace.type!=='spell'||c.spellFace.effect!=='judgeDraw'||c.spellFace.charger!==true||c.spellFace.cost!==3||c.spellFace.civ!=='火'))throw Error('未実装のツインパクトです');catalogue=new Map(cards.map(c=>[c.id,c]));}
 export const card=id=>catalogue.get(typeof id==='string'?id:id.cardId);
 // Hyper abilities exist only on an unlocked top creature in the battle zone.
 export function effectiveCard(inst,context){const c=card(inst);return c.hyper&&inst.hyperActive&&context?.players.some(p=>p.battle.some(x=>x.uid===inst.uid))?{...c,...c.hyper}:c;}
+export const playFaces=c=>c.spellFace?[c,{id:c.id,limit:c.limit,...c.spellFace}]:[c];
 export function canCastSpell(s,p,c){return c.type!=='spell'||!s.players[1-p].battle.some(x=>c.cost<=(effectiveCard(x,s).spellLockMaxCost??-1));}
 export const canUntap=c=>!c.tapLocks?.length;
 export function validateDeck(deck){
@@ -83,7 +84,7 @@ function limitNextTurn(s,p,source){s.players[1-p].entryLimitNextTurn=true;log(s,
 export const civilizations=c=>c.civilizations||String(c.civ).split('/');
 export const manaValue=c=>c.manaValue??(civilizations(c).length===5?0:1);
 export const isDragon=c=>c.type==='creature'&&String(c.race).includes('ドラゴン');
-export function physicalCards(s){const flatten=c=>[c,...(c.under||[]).flatMap(flatten)];return s.players.flatMap(p=>['deck','hand','shields','mana','battle','grave'].flatMap(z=>p[z].flatMap(flatten)));}
+export function physicalCards(s){const flatten=c=>[c,...(c.under||[]).flatMap(flatten)];return [...s.players.flatMap(p=>['deck','hand','shields','mana','battle','grave'].flatMap(z=>p[z].flatMap(flatten))),...(s.resolvingSpell?flatten(s.resolvingSpell.inst):[])];}
 function moveCreature(s,p,uid,to='grave'){
  const c=s.players[p].battle.find(x=>x.uid===uid);if(!c)return;
  const shield=exLifeShields(s,p,c)[0];
@@ -216,13 +217,14 @@ function advanceEffects(s){
   s.pendingEffects.splice(s.pendingEffects.indexOf(entries[0]),1);resolveEntry(s,entries[0]);advanceBattle(s);
  }
 }
-function playCard(s,p,uid,free=false,baseUid=null){
- const source=s.players[p].hand.find(x=>x.uid===uid);if(!source||!canCastSpell(s,p,card(source)))throw Error('この呪文は唱えられません');
- const inst=remove(s.players[p].hand,uid),c=card(inst),cost=summonCost(s,p,c);if(!free)pay(s,p,c);
+function playCard(s,p,uid,free=false,baseUid=null,face=0){
+ const source=s.players[p].hand.find(x=>x.uid===uid),c=source&&playFaces(card(source))[face];if(!c||!canCastSpell(s,p,c))throw Error('このカードは使えません');
+ const inst=remove(s.players[p].hand,uid),cost=summonCost(s,p,c);if(!free)pay(s,p,c);
  const met=s.metrics[p];met.played[c.id]=(met.played[c.id]||0)+1;if(s.players[p].turns<=3)met.earlyPlayed[c.id]=true;if(free)met.triggers++;
  log(s,p,free?'trigger':'play',`${c.name}を${free?'S・トリガーで':''}${c.type==='creature'?'召喚':'使用'}${!free&&cost!==c.cost?`（支払い${cost}マナ / 元のコスト${c.cost}）`:''}`,{cardId:c.id});
- if(c.type==='creature')enterCreature(s,p,inst,baseUid);else s.players[p].grave.push(inst);
- if(c.type!=='creature')doEffect(s,p,c,inst.uid);
+ if(c.type==='creature')enterCreature(s,p,inst,baseUid);
+ else if(c.charger){s.resolvingSpell={player:p,inst,source:c.id,face,origin:'hand'};startJudge(s,p,c.id,inst.uid,'spell');}
+ else{s.players[p].grave.push(inst);doEffect(s,p,c,inst.uid);}
 }
 // The revealed card remains in its library until an actual move succeeds.
 function revealDragon(s,p,c){
@@ -242,8 +244,39 @@ function enterRevealed(s,p,uid,baseUid=null){
  const met=s.metrics[p];met.played[inst.cardId]=(met.played[inst.cardId]||0)+1;if(s.players[p].turns<=3)met.earlyPlayed[inst.cardId]=true;
  log(s,p,'enter',`${card(inst).name}を山札からバトルゾーンへ出す（召喚ではない）`,{cardId:inst.cardId});enterCreature(s,p,inst,baseUid);deckCheck(s,p);
 }
+function finishCharger(s){
+ const r=s.resolvingSpell;if(!r||s.winner!==null)return;
+ const c=playFaces(card(r.source))[r.face];clearBattleState(r.inst,'mana');s.players[r.player].mana.push(r.inst);s.resolvingSpell=null;
+ log(s,r.player,'charger',`${c.name}をチャージャーでマナへ（${r.inst.tapped?'タップ':'アンタップ'}）`,{cardId:r.source,face:r.face});
+}
+function startJudge(s,p,source,uid,mode){s.judge={player:p,source,uid,mode,wins:0,round:0};judgeRound(s);}
+function judgeRound(s){
+ const j=s.judge;j.round++;j.stage='compare';j.revealed=s.players.map(p=>p.deck[0]?{uid:p.deck[0].uid,cardId:p.deck[0].cardId}:null);
+ for(const who of [0,1])if(!j.revealed[who]){deckCheck(s,who);return;}
+ j.costs=j.revealed.map(x=>{const costs=[...new Set(playFaces(card(x)).map(c=>c.cost))];return costs.length===1?costs[0]:null;});
+ log(s,j.player,'judgeReveal',`ガチンコ・ジャッジ${j.round}回目：${j.revealed.map((x,i)=>`${s.players[i].name}は${card(x).name}`).join(' / ')}を公開`,{cardId:j.source});
+ advanceJudgeCosts(s);
+}
+function advanceJudgeCosts(s){
+ const j=s.judge;if(!j||j.stage!=='compare'||s.winner!==null)return;
+ for(const who of [s.active,1-s.active])if(j.costs[who]===null){s.decision={type:'judgeCost',player:who,source:j.revealed[who].cardId};return;}
+ // The two cards rotate directly within their libraries; a one-card library never becomes empty.
+ for(const who of [0,1]){const x=s.players[who].deck.shift();s.players[who].deck.push(x);}
+ const won=j.costs[j.player]>=j.costs[1-j.player];
+ log(s,j.player,'judgeResult',`ガチンコ・ジャッジ：${j.costs[j.player]} 対 ${j.costs[1-j.player]}、${won?'勝ち':'負け'}`,{cardId:j.source});
+ s.decision=null;
+ if(j.mode==='spell'){s.judge=null;if(won)draw(s,j.player,1);finishCharger(s);return;}
+ if(won){j.wins++;s.decision={type:'judgeContinue',player:j.player};}
+ else beginJudgeBreaks(s);
+}
+function beginJudgeBreaks(s){const j=s.judge;j.stage='breaks';j.remaining=j.wins;s.decision=null;}
+function advanceJudgeBreaks(s){
+ const j=s.judge;if(!j||j.stage!=='breaks'||s.decision||s.triggers||s.pendingEffects?.length||s.battleResolution||s.winner!==null)return;
+ if(j.remaining&&s.players[1-j.player].shields.length){s.decision={type:'judgeBreak',player:j.player};return;}
+ s.judge=null;
+}
 function advanceAttack(s){
- if(!s.attack||s.attack.stage!=='effects'||s.decision||s.winner!==null||s.pendingEffects?.length||s.triggers||s.battleResolution)return;
+ if(!s.attack||s.attack.stage!=='effects'||s.decision||s.winner!==null||s.pendingEffects?.length||s.triggers||s.battleResolution||s.judge)return;
  s.attack.stage='block';s.decision={type:'block',player:1-s.active};
 }
 function battle(s,pa,a,pd,b,attackingUid=null){
@@ -277,7 +310,7 @@ function resolveAttack(s,blockUid){
  else{
   const shields=s.players[other].shields,n=Math.min(effectiveCard(a,s).breaker||1,shields.length);
   if(n===shields.length)breakShields(s,other,shields.map(c=>c.uid));
-  else if(n===1)breakShields(s,other,[s.attack.shield||shields[0].uid]);
+  else if(n===1){if(s.attack.shield&&!shields.some(x=>x.uid===s.attack.shield)&&shields.length>1)s.decision={type:'breakChoice',player:s.active,defender:other,count:1};else breakShields(s,other,[shields.some(x=>x.uid===s.attack.shield)?s.attack.shield:shields[0].uid]);}
   else s.decision={type:'breakChoice',player:s.active,defender:other,count:n};
  }
  s.attack=null;
@@ -332,6 +365,9 @@ export function getLegalActions(s){
  if(d){
   if(d.type==='evolution'){const c=card(d.source);out=evolutionBases(s,p,c).map(base=>option('evolve',`${card(base).name}の上に${c.name}を重ねる`,{uid:d.uid,baseUid:base.uid,cardId:c.id}));out.push(option('cancelEvolution','進化をやめる'));}
   if(d.type==='revealEvolution'){const c=card(d.source);out=evolutionBases(s,p,c).map(base=>option('revealEvolve',`${card(base).name}の上に公開した${c.name}を重ねる`,{uid:d.uid,baseUid:base.uid,cardId:c.id}));}
+  if(d.type==='judgeCost')out=playFaces(card(d.source)).map((c,face)=>option('judgeCost',`${c.name}のコスト${c.cost}を参照`,{face,cost:c.cost,cardId:d.source}));
+  if(d.type==='judgeContinue')out=[option('judgeAgain',`もう一度ガチンコ・ジャッジ（現在${s.judge.wins}勝）`),option('stopJudge',`${s.judge.wins}勝で中止し、ブレイクへ進む`)];
+  if(d.type==='judgeBreak')out=opp.shields.map((x,i)=>{const ex=!!exLifeShieldInfo(s,1-p,x.uid)?.active;return option('judgeBreak',`効果でシールド${i+1}${ex?'（EXライフ）':''}を1つブレイク（残り${s.judge.remaining}回）`,{shield:x.uid,exLifeHit:ex});});
   if(d.type==='shieldGuard'){
    const b=s.shieldBreak,remaining=b.uids.filter(uid=>!b.protections.some(x=>x.shield===uid));
    out=shieldGuardChoices(s).flatMap(c=>remaining.map(shield=>{const i=own.shields.findIndex(x=>x.uid===shield)+1,ex=!!exLifeShieldInfo(s,p,shield)?.active;return option('guardShield',`${card(c).name}の下の${layers(c).length-1}枚をすべて墓地へ置き、シールド${i}${ex?'（EXライフ）':''}を残す`,{uid:c.uid,cardId:c.cardId,shield,exLifeHit:ex});}));
@@ -358,7 +394,7 @@ export function getLegalActions(s){
   }
  }else if(s.phase==='charge'){out=own.hand.map(c=>option('charge',`${card(c).name}をマナへ`,{uid:c.uid,cardId:c.cardId}));out.push(option('skipCharge','マナを置かずに進む'));}
  else if(s.phase==='main'){
-  out=own.hand.filter(c=>canCastSpell(s,p,card(c))&&(card(c).type!=='creature'||canEnterCreature(s,p))&&validMana(s,p,card(c))&&(!card(c).evolution||evolutionBases(s,p,card(c)).length)).map(c=>option('play',`${card(c).name}を${card(c).type==='creature'?'召喚':'使用'}`,{uid:c.uid,cardId:c.cardId,cost:summonCost(s,p,card(c))}));out.push(option('toAttack','攻撃へ進む'));
+  out=own.hand.flatMap(inst=>playFaces(card(inst)).flatMap((c,face)=>canCastSpell(s,p,c)&&(c.type!=='creature'||canEnterCreature(s,p))&&validMana(s,p,c)&&(!c.evolution||evolutionBases(s,p,c).length)?[option('play',`${c.name}を${c.type==='creature'?'召喚':'使用'}`,{uid:inst.uid,cardId:inst.cardId,cost:summonCost(s,p,c),...(card(inst).spellFace?{face}:{})})]:[]));out.push(option('toAttack','攻撃へ進む'));
  }else if(s.phase==='attack'){
   for(const c of own.battle.filter(c=>canAttack(s,p,c))){if(!card(c).noPlayerAttack){if(opp.shields.length&&effectiveCard(c,s).breaker)out.push(option('attack',`${card(c).name} → 相手（${Math.min(effectiveCard(c,s).breaker,opp.shields.length)}枚ブレイク）`,{uid:c.uid,target:'player'}));else if(opp.shields.length)for(let i=0;i<opp.shields.length;i++){const ex=!!exLifeShieldInfo(s,1-p,opp.shields[i].uid)?.active;out.push(option('attack',`${card(c).name} → シールド${i+1}${ex?'（EXライフ）':''}`,{uid:c.uid,target:'player',shield:opp.shields[i].uid,exLifeHit:ex}));}else out.push(option('attack',`${card(c).name}でダイレクトアタック`,{uid:c.uid,target:'player'}));}
    for(const target of opp.battle.filter(x=>x.tapped))out.push(option('attack',`${card(c).name} → ${card(target).name}`,{uid:c.uid,target:target.uid}));
@@ -373,16 +409,20 @@ export function step(s,action){
  const p=a.player,d=s.decision;s.actions++;
  if(a.kind==='charge'){const c=remove(s.players[p].hand,a.uid);c.tapped=civilizations(card(c)).length>1;s.players[p].mana.push(c);s.metrics[p].charges++;s.phase='main';log(s,p,'charge',`${card(c).name}をマナへ`,{cardId:c.cardId});}
  if(a.kind==='skipCharge'){s.phase='main';log(s,p,'skip','マナチャージを省略');}
- if(a.kind==='play'){if(card(a.cardId).evolution)s.decision={type:'evolution',player:p,uid:a.uid,source:a.cardId};else playCard(s,p,a.uid);}
+ if(a.kind==='play'){if(card(a.cardId).evolution)s.decision={type:'evolution',player:p,uid:a.uid,source:a.cardId};else playCard(s,p,a.uid,false,null,a.face||0);}
  if(a.kind==='evolve'){s.decision=null;playCard(s,p,a.uid,false,a.baseUid);}
  if(a.kind==='revealEvolve'){s.decision=null;enterRevealed(s,p,a.uid,a.baseUid);}
  if(a.kind==='cancelEvolution')s.decision=null;
  if(a.kind==='toAttack'){s.phase='attack';log(s,p,'phase','攻撃ステップへ');}
- if(a.kind==='attack'){const c=s.players[p].battle.find(x=>x.uid===a.uid);c.tapped=true;s.attack={attacker:a.uid,target:a.target,shield:a.shield,stage:'effects'};log(s,p,'attack',a.label,{cardId:c.cardId});if(card(c).attackDragonReveal)revealDragon(s,p,card(c));}
+ if(a.kind==='attack'){const c=s.players[p].battle.find(x=>x.uid===a.uid);c.tapped=true;s.attack={attacker:a.uid,target:a.target,shield:a.shield,stage:'effects'};log(s,p,'attack',a.label,{cardId:c.cardId});if(card(c).attackDragonReveal)revealDragon(s,p,card(c));if(card(c).attackJudge)startJudge(s,p,c.cardId,c.uid,'attack');}
  if(a.kind==='block'||a.kind==='noBlock'){s.decision=null;resolveAttack(s,a.kind==='block'?a.uid:null);}
  if(a.kind==='useTrigger'){s.decision=null;s.triggers.undeclared.shift();s.triggers.declared.push(a.uid);log(s,p,'declare',`${card(d.source).name}のS・トリガーを宣言`,{cardId:d.source});}
  if(a.kind==='skipTrigger'){s.decision=null;s.triggers.undeclared.shift();log(s,p,'skip','S・トリガーを使わない');}
  if(a.kind==='breakShields'){s.decision=null;breakShields(s,d.defender,a.shields);}
+ if(a.kind==='judgeCost'){s.judge.costs[p]=a.cost;s.decision=null;advanceJudgeCosts(s);}
+ if(a.kind==='judgeAgain'){s.decision=null;judgeRound(s);}
+ if(a.kind==='stopJudge')beginJudgeBreaks(s);
+ if(a.kind==='judgeBreak'){s.decision=null;s.judge.remaining--;breakShields(s,1-p,[a.shield]);}
  if(a.kind==='guardShield'){const b=s.shieldBreak;b.protections.push({uid:a.uid,shield:a.shield});if(b.protections.length===b.uids.length||!shieldGuardChoices(s).length)finishShieldGuards(s);}
  if(a.kind==='finishShieldGuards')finishShieldGuards(s);
  if(a.kind==='orderTrigger'){s.decision=null;s.triggers.declared.splice(s.triggers.declared.indexOf(a.uid),1);playCard(s,p,a.uid,true);}
@@ -416,17 +456,17 @@ export function step(s,action){
  if(a.kind==='effect'&&d.limitAfter)limitNextTurn(s,p,card(d.source));
  if(a.kind==='endTurn')beginEnd(s);
  if(a.kind==='endUntap'){s.decision=null;if(a.yes)for(const c of s.players[p].battle)if(d.uids.includes(c.uid)&&canUntap(c))c.tapped=false;nextTurn(s);}
- advanceBattle(s);advanceEffects(s);advanceTriggers(s);advanceAttack(s);
+ advanceBattle(s);advanceEffects(s);advanceTriggers(s);advanceJudgeBreaks(s);advanceAttack(s);
  return s;
 }
 // This observation deliberately omits both players' shield identities and deck order,
 // and the opponent's hand. The AI receives only this object and its legal choices.
-export function observation(s,p){return {active:s.active,turn:s.turn,phase:s.phase,attack:s.attack?{attacker:s.attack.attacker,target:s.attack.target}:null,decision:s.decision?{type:s.decision.type,effect:s.decision.effect}:null,players:s.players.map((x,i)=>({turns:x.turns,battle:x.battle,mana:x.mana,grave:x.grave,hand:i===p?x.hand:x.hand.map(()=>({hidden:true})),shields:x.shields.length,deckCount:x.deck.length}))};}
+export function observation(s,p){return {active:s.active,turn:s.turn,phase:s.phase,attack:s.attack?{attacker:s.attack.attacker,target:s.attack.target}:null,decision:s.decision?{type:s.decision.type,effect:s.decision.effect,...(s.decision.type==='judgeContinue'?{wins:s.judge.wins}:{})}:null,judge:s.judge?.stage==='compare'?{revealed:s.judge.revealed,costs:s.judge.costs}:null,resolvingSpell:s.resolvingSpell?{player:s.resolvingSpell.player,cardId:s.resolvingSpell.source,face:s.resolvingSpell.face}:null,players:s.players.map((x,i)=>({turns:x.turns,battle:x.battle,mana:x.mana,grave:x.grave,hand:i===p?x.hand:x.hand.map(()=>({hidden:true})),shields:x.shields.length,deckCount:x.deck.length}))};}
 export function chooseAI(s){
  const acts=getLegalActions(s);if(!acts.length)return null;const p=acts[0].player,v=observation(s,p),me=v.players[p],them=v.players[1-p];
  const find=(who,uid)=>v.players[who].battle.find(x=>x.uid===uid);
  const score=a=>{
-  const c=a.cardId?card(a.cardId):null;
+  const c=a.cardId?(a.kind==='play'?playFaces(card(a.cardId))[a.face||0]:card(a.cardId)):null;
   if(a.kind==='charge'){
    const duplicates=me.hand.filter(x=>x.cardId===c.id).length;
    const colors=civilizations(c).filter(v=>!me.mana.some(x=>civilizations(card(x)).includes(v))).length;
@@ -435,6 +475,7 @@ export function chooseAI(s){
   if(a.kind==='skipCharge')return me.mana.reduce((n,x)=>n+manaValue(card(x)),0)>=Math.max(7,...me.hand.map(x=>card(x).cost))?100:me.hand.length<=1&&me.mana.length>=4?70:0;
   if(a.kind==='play'){
    if(c.type==='creature')return 30+c.cost*2+(c.cost-a.cost)*2+(c.effect==='ramp1'&&me.mana.length<6?12:0)+(c.blocker&&them.battle.length>me.battle.length?8:0)+(c.unblockable?7:0)+(c.speedAttacker?8:0);
+   if(c.effect==='judgeDraw')return me.deckCount>1?(me.mana.length<9?38:16):-5;
    if(c.effect==='discard')return them.hand.length?22:0;
    if(c.effect==='ramp2')return me.mana.length<7?20:1;
    if(c.effect==='ramp1')return me.mana.length<7&&me.deckCount>1?23:1;
@@ -463,6 +504,10 @@ export function chooseAI(s){
   if(a.kind==='block'){const b=find(p,a.uid);const attacker=them.battle.find(x=>x.uid===v.attack?.attacker);return(me.shields===0?100:0)+(attacker&&power(b,false,v)>=power(attacker,true,v)?50:me.shields<=2?20:-2)-card(b).cost*.1;}
   if(a.kind==='noBlock')return 0;
   if(a.kind==='breakShields')return 1+(a.exLifeHits||0)*2;
+  if(a.kind==='judgeCost')return a.cost;
+  if(a.kind==='judgeAgain')return v.decision.wins<them.shields?10:-1;
+  if(a.kind==='stopJudge')return 0;
+  if(a.kind==='judgeBreak')return a.exLifeHit?5:1;
   if(a.kind==='guardShield'){const x=find(p,a.uid),cost=layers(x).slice(1);return 20+Math.max(0,3-me.shields)*15+(a.exLifeHit?5:0)-cost.length-cost.reduce((n,x)=>n+card(x).cost,0)*.2;}
   if(a.kind==='finishShieldGuards')return 0;
   if(a.kind==='orderTrigger')return (c.type==='creature'?35:30)+c.cost;
