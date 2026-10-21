@@ -12,7 +12,9 @@ export const ENVIRONMENT_LISTS=[
  {id:'env-gp2026-pinky',name:'ドギラゴン王道',player:'ピンキ→',result:'準優勝',source:finalSource,
   cards:rows([[2,'友情地龍 ルピア・ターン'],[2,'世界のY チャクラ・デル・フィン'],[4,'宿禰マロン'],[4,'偽りの希望 鬼丸「終斗」'],[4,'～輝きは奇跡そのもの～'],[4,'頂上連結 ロッド・ゾージア5th'],[4,'ボルシャック・ドリーム・ドラゴン'],[4,'剣轟の団長 ドギラゴン王道'],[1,'暴龍のT ミリオンベジータ'],[1,'超竜バジュラズテラ'],[1,'「GG」-001'],[1,'∞龍 ゲンムエンペラー'],[4,'R.S.F.K. / オールイン・チャージャー'],[4,'メンデルスゾーン']])},
  {id:'env-gp2026-sara',name:'光水闇邪眼帝',player:'サラー',result:'TOP8',source:listSource,
-  cards:rows([[4,'改竄の炎 ボルメテウス・ハック'],[4,'煌ノ裁徒 ダイヤモン星'],[2,'旋略のS アドミラル・アレグル'],[4,'終止の時計 ザ・ミュート'],[4,'冥土人形ヴァミリア・バレル'],[3,'「大蛇」の鬼 ジャドク丸'],[3,'世界のY チャクラ・デル・フィン'],[4,'～世紀末の善悪～'],[3,'アーテル・ゴルギーニ'],[1,'切札竜 ボルメテウス・リバース・ドラゴン'],[4,'～邪眼帝～'],[4,'ウルの天宝']])}
+  cards:rows([[4,'改竄の炎 ボルメテウス・ハック'],[4,'煌ノ裁徒 ダイヤモン星'],[2,'旋略のS アドミラル・アレグル'],[4,'終止の時計 ザ・ミュート'],[4,'冥土人形ヴァミリア・バレル'],[3,'「大蛇」の鬼 ジャドク丸'],[3,'世界のY チャクラ・デル・フィン'],[4,'～世紀末の善悪～'],[3,'アーテル・ゴルギーニ'],[1,'切札竜 ボルメテウス・リバース・ドラゴン'],[4,'～邪眼帝～'],[4,'ウルの天宝']])},
+ {id:'env-nationals2025-dotto',name:'ドギラゴン王道',player:'dotto',event:'全国大会2025 日本一決定戦（オリジナル）',result:'出場',checkedAt:'2026-10-21',source:'https://dm.takaratomy.co.jp/coverage/dmnt25_deck1/',
+  cards:rows([[2,'友情地龍 ルピア・ターン'],[4,'宿禰マロン'],[4,'偽りの希望 鬼丸「終斗」'],[2,'流星のガイアッシュ・カイザー'],[4,'頂上連結 ロッド・ゾージア5th'],[4,'ボルシャック・ドリーム・ドラゴン'],[3,'～輝きは奇跡そのもの～'],[4,'剣轟の団長 ドギラゴン王道'],[2,'超竜バジュラズテラ'],[1,'∞龍 ゲンムエンペラー'],[2,'ボルシャック・スーパーヒーロー / 超英雄タイム'],[4,'R.S.F.K. / オールイン・チャージャー'],[4,'メンデルスゾーン']])}
 ];
 
 export const ENVIRONMENT_TARGET='env-gp2026-pinky';
@@ -31,7 +33,7 @@ export function resolveEnvironmentDecks(registry,lists=ENVIRONMENT_LISTS){
    if(seen.has(c.id)||!Number.isSafeInteger(row.count)||row.count<1||row.count>4)throw Error('大会リストの枚数が正しくありません：'+row.name);
    seen.add(c.id);return {id:c.id,count:row.count};
   });
-  const deck={id:list.id,name:list.name+'（'+list.player+'）',cards,format:'original',category:'環境',description:event+' / '+list.result+' / '+list.player+'。大会当時の40枚です。',tournament:{event,player:list.player,result:list.result,source:list.source,checkedAt}};
+  const deck={id:list.id,name:list.name+'（'+list.player+'）',cards,format:'original',category:'環境',description:(list.event||event)+' / '+list.result+' / '+list.player+'。大会当時の40枚です。',tournament:{event:list.event||event,player:list.player,result:list.result,source:list.source,checkedAt:list.checkedAt||checkedAt}};
   const errors=registry.validate(deck);if(errors.length)throw Error(errors.join(' / '));
   if(!/^https:\/\/dm\.takaratomy\.co\.jp\/coverage\//.test(list.source))throw Error('大会リストの出典が正しくありません');
   return deck;

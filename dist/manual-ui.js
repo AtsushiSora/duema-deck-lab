@@ -5,8 +5,8 @@ import {pageWindow} from './board-fit.js';
 
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const number=x=>x===Infinity||x==='∞'?'∞':Number(x).toLocaleString('ja-JP');
-const quietKinds=new Set(['skipDDD','skipDDDSummon','cancelEvolution','cancelDeploy','cancelMugen','cancelLeaveMana','skipDeploy','skipDragonTap','skipTrigger','skipFight','skipRamp','skipEffect','finishShieldGuards','allowLeave','noBlock','stopJudge']);
-const titles={leaveReplace:'残す方法を選ぼう',leaveMana:'墓地に置くマナを3枚選ぼう',deploy:'手札・マナから出すカードを選ぼう',deployEvolution:'進化元を選ぼう',mugen:'タップする4体を選ぼう',infinityCount:'ブレイクする数を選ぼう',infinityShields:'ブレイクするシールドを選ぼう',dddDeclare:'D・D・Dを使うか選ぼう',dddSummon:'召喚する方法を選ぼう',block:'ブロックするか選ぼう',trigger:'S・トリガーを使うか選ぼう',breakChoice:'ブレイクするシールドを選ぼう',judgeCost:'参照するコストを選ぼう',judgeContinue:'ジャッジを続けるか選ぼう',judgeBreak:'効果で割るシールドを選ぼう',shieldGuard:'シールドを守るか選ぼう',triggerOrder:'先に使うS・トリガーを選ぼう',entryOrder:'先に解決する能力を選ぼう',effectOrder:'先に解決する能力を選ぼう',dragonTap:'タップする相手を選ぼう',revealEvolution:'公開したカードの出し方を選ぼう',evolution:'進化するか選ぼう',optionalRamp:'マナを増やすか選ぼう',manaTop:'山札に戻すカードを選ぼう',fight:'バトルする相手を選ぼう',battleWinOrder:'先に解決するドローを選ぼう',draw:'引く枚数を選ぼう',effect:'効果の対象を選ぼう',search:'手札に加えるカードを選ぼう',untap:'アンタップするか選ぼう'};
+const quietKinds=new Set(['skipDDD','skipDDDSummon','cancelEvolution','cancelDeploy','cancelMugen','cancelLeaveMana','skipDeploy','skipDragonTap','skipTrigger','skipFight','skipRamp','skipEffect','finishShieldGuards','allowLeave','noBlock','stopJudge','skipGaiaDeclare','skipGaiaSummon']);
+const titles={gaiaDeclare:'ガイアッシュを使うか宣言しよう',gaiaSummon:'ガイアッシュを召喚するか選ぼう',leaveReplace:'残す方法を選ぼう',leaveMana:'墓地に置くマナを3枚選ぼう',deploy:'手札・マナから出すカードを選ぼう',deployEvolution:'進化元を選ぼう',mugen:'タップする4体を選ぼう',infinityCount:'ブレイクする数を選ぼう',infinityShields:'ブレイクするシールドを選ぼう',dddDeclare:'D・D・Dを使うか選ぼう',dddSummon:'召喚する方法を選ぼう',block:'ブロックするか選ぼう',trigger:'S・トリガーを使うか選ぼう',breakChoice:'ブレイクするシールドを選ぼう',judgeCost:'参照するコストを選ぼう',judgeContinue:'ジャッジを続けるか選ぼう',judgeBreak:'効果で割るシールドを選ぼう',shieldGuard:'シールドを守るか選ぼう',triggerOrder:'先に使うS・トリガーを選ぼう',entryOrder:'先に解決する能力を選ぼう',effectOrder:'先に解決する能力を選ぼう',dragonTap:'タップする相手を選ぼう',revealEvolution:'公開したカードの出し方を選ぼう',evolution:'進化するか選ぼう',optionalRamp:'マナを増やすか選ぼう',manaTop:'山札に戻すカードを選ぼう',fight:'バトルする相手を選ぼう',battleWinOrder:'先に解決するドローを選ぼう',draw:'引く枚数を選ぼう',effect:'効果の対象を選ぼう',search:'手札に加えるカードを選ぼう',untap:'アンタップするか選ぼう'};
 
 export const newManualUI=()=>({hand:null,attacker:null,attackChoice:null,confirm:null,handOpen:false,logOpen:false,panelMinimized:false,mobilePanel:'closed',handPage:0,handFace:0,choicePage:0,fast:false,filter:'',context:''});
 export function manualModel(s,ui={}){
@@ -23,6 +23,8 @@ export function manualModel(s,ui={}){
 function decisionHelp(s){
  const d=s.decision;
  if(['mugen','leaveMana','manaTop'].includes(d.type))return '必要な数をすべて選ぶと確定します。選択中のカードにはチェックが付きます。';
+ if(d.type==='gaiaDeclare')return '相手がマナをタップせずにカードを使ったターンの終わりです。手札から使うカードを先に宣言します。';
+ if(d.type==='gaiaSummon')return 'コストを支払わずに召喚できます。場に同名カードがあると召喚できません。';
  if(d.type==='shieldGuard')return 'シールド1つにつき、選んだクリーチャーの下のカードすべてを墓地へ置きます。';
  if(d.type==='dddDeclare')return 'この攻撃で使うカードを先に宣言します。マナを支払うのは解決するときです。';
  if(d.type==='dddSummon')return card(d.source).ddd.attackDiscount?'光・火・自然がマナにあれば、攻撃中のコスト分だけ軽減。支払いは無色・最低1です。':'光・火・自然を含む7マナ。進化させずに出すこともできます。';
@@ -58,7 +60,7 @@ export function selectionHint(s,inst){
  const c=card(inst),p=s.players[0];
  if(c.dream&&p.battle.some(x=>x.cardId===c.id))return '同名ドリームが場にあります';
  if(c.type==='creature'&&p.entryLimitThisTurn&&(p.enteredThisTurn||0)>=1)return 'このターンの登場上限です';
- if(c.mugenCrime)return 'ムゲンクライム：4体と水・闇の4マナが必要です';
+ if(c.mugenCrime)return 'ムゲンクライム：4体のタップと、水・闇を含むマナが必要です。軽減も反映します';
  return '必要なマナ・文明や条件が揃っていません';
 }
 const actionCard=(s,a)=>a.cardId?card(a.cardId):null;

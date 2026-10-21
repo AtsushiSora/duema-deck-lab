@@ -71,3 +71,9 @@ test('environment navigation is available with no saved deck and incomplete list
  assert.equal(h.read('saved.friends.length'),1);assert.match(h.read('matchBlockReason(myDeck(),simulationOpponents(null))'),/カード効果が未対応/);
  assert.match(h.root.innerHTML,/<button[^>]*data-action="start-match"[^>]*disabled/);
 });
+
+test('dotto tournament list is selectable for either side and enables battle with the existing supported list',async()=>{
+ const h=harness();await h.click('choose-environment',{role:'mine'});assert.match(h.dialog.innerHTML,/ドギラゴン王道（dotto）/);await h.click('pick-environment',{id:'env-nationals2025-dotto',role:'mine'});assert.equal(h.read('myDeck().templateId'),'env-nationals2025-dotto');assert.equal(h.read('sum(myDeck())'),40);
+ await h.click('choose-environment',{role:'opponent'});await h.click('pick-environment',{id:target.id,role:'opponent'});assert.equal(h.read('matchBlockReason(myDeck(),simulationOpponents(null))'),'');assert.ok(!/<button[^>]*data-action="start-match"[^>]*disabled/.test(h.root.innerHTML));
+ await h.click('choose-environment',{role:'opponent'});await h.click('pick-environment',{id:'env-nationals2025-dotto',role:'opponent'});assert.equal(h.read('opponentDecks().find(x=>x.id===selectedOpp).templateId'),'env-nationals2025-dotto');assert.equal(h.read('sum(opponentDecks().find(x=>x.id===selectedOpp))'),40);
+});

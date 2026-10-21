@@ -14,11 +14,11 @@ const setup=()=>{const s=createGame([PRESETS[0],PRESETS[1]],{seed:49});s.phase='
 const cast=(s,id)=>{give(s,0,'hand',[id]);act(s,'play');};
 
 test('four fully pinned cards retain their fields while the unchanged tournament list retains its current progress',()=>{
- assert.equal(ENGINE_VERSION,'0.13.0');assert.equal(data.cards.length,595);assert.equal(manifest.cards.length,4);assert.equal(data.supportExpansion.phase,13);
+ assert.equal(ENGINE_VERSION,'0.14.0');assert.equal(data.cards.length,597);assert.equal(manifest.cards.length,4);assert.equal(data.supportExpansion.phase,14);
  const registry=createCatalogue(snapshot,data.cards,details),decks=resolveEnvironmentDecks(registry),target=decks.find(d=>d.id===ENVIRONMENT_TARGET),p=environmentSupport(target,registry);
  assert.equal(p.supportedCopies,40);assert.equal(p.totalCopies,40);assert.equal(p.supportedTypes,14);assert.equal(p.totalTypes,14);assert.equal(p.unsupported.reduce((n,r)=>n+r.count,0),0);assert.deepEqual(validateDeck(target),[]);assert.doesNotThrow(()=>createGame([target,PRESETS[0]]));
  for(const row of manifest.cards){const d=details.cards.find(c=>c.id===row.id),c=card(row.id);assert.deepEqual(row.face,d.faces[0]);assert.equal(row.name,c.name);assert.equal(row.source,c.source);assert.equal(c.text,row.face.abilityText);for(const[k,v]of Object.entries(row.spec))assert.deepEqual(c[k],v);assert.equal(c.supportBatch,'phase-5');}
- for(const d of decks.filter(d=>d.id!==ENVIRONMENT_TARGET))assert.equal(environmentSupport(d,registry).supportedCopies,d.id==='env-gp2026-sara'?3:0);
+ for(const d of decks.filter(d=>d.id!==ENVIRONMENT_TARGET))assert.equal(environmentSupport(d,registry).supportedCopies,d.id==='env-nationals2025-dotto'?40:d.id==='env-gp2026-sara'?3:0);
 });
 test('dragon category checks creature race rather than name, flavor text, or civilization',()=>{
  for(const id of ['dm01-s08','dm23bd4-008','dm25sp2-014','sp-020'])assert.equal(isDragon(card(id)),true);
