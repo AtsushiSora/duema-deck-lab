@@ -4,11 +4,12 @@ import * as cardInfo from '../dist/card-info.js';
 import * as manual from '../dist/manual-ui.js';import {createCatalogue} from '../dist/catalogue.js';
 import * as visuals from '../dist/battle-visuals.js';
 import * as fit from '../dist/board-fit.js';
+import * as handUI from '../dist/hand-ui.js';
 const app=(await readFile(new URL('../dist/app.js',import.meta.url),'utf8')).replace(/^import .*;\n/gm,'').replace(/\bboot\(\);\s*$/,'').replaceAll('import.meta.url',JSON.stringify(new URL('../dist/app.js',import.meta.url).href));
 function harness(state,{mobile=false,scrollers={}}={}){
  const listeners={},errors=[],timers=new Map();let serial=0;
  const root={innerHTML:''},dialog={innerHTML:'',open:false,addEventListener(){},showModal(){this.open=true;},close(){this.open=false;}},toast={textContent:'',classList:{add(){},remove(){}}},classes=new Set();
- const context=vm.createContext({...e,...manual,...visuals,...fit,...cardInfo,battleCard:e.card,PRESETS,createCatalogue,fixtureRegistry:createCatalogue(snapshot,data.cards,details),fixtureState:state,fixtureDecks:[target,target],console:{log(){},error:e=>errors.push(e)},structuredClone,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL,Intl,Date,CSS:{escape:x=>x},localStorage:{getItem:()=>null,setItem(){}},location:{hash:'',pathname:'/'},history:{replaceState(){}},setTimeout:f=>{timers.set(++serial,f);return serial;},clearTimeout:id=>timers.delete(id),clearInterval(){},setInterval:()=>++serial,
+ const context=vm.createContext({...e,...manual,...visuals,...fit,...handUI,...cardInfo,battleCard:e.card,PRESETS,createCatalogue,fixtureRegistry:createCatalogue(snapshot,data.cards,details),fixtureState:state,fixtureDecks:[target,target],console:{log(){},error:e=>errors.push(e)},structuredClone,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL,Intl,Date,CSS:{escape:x=>x},localStorage:{getItem:()=>null,setItem(){}},location:{hash:'',pathname:'/'},history:{replaceState(){}},setTimeout:f=>{timers.set(++serial,f);return serial;},clearTimeout:id=>timers.delete(id),clearInterval(){},setInterval:()=>++serial,
   document:{querySelector:s=>s==='#app'?root:s==='#dialog'?dialog:s==='#toast'?toast:scrollers[s]||null,querySelectorAll:s=>s==='.play-creatures,.shield-tiles'?scrollers.lanes||[]:[],activeElement:null,body:{classList:{toggle:(key,on)=>on?classes.add(key):classes.delete(key)}},addEventListener:(name,f)=>listeners[name]=f},window:{innerHeight:800,addEventListener(){},scrollTo(){},matchMedia:q=>({matches:mobile&&q==='(max-width: 850px)'})}});
  vm.runInContext(app,context);
  vm.runInContext("registry=fixtureRegistry;cards=registry.cards;battleCards=fixtureRegistry.cards.filter(c=>c.supported);battle={state:fixtureState,decks:fixtureDecks,practice:true};view='manual';manualUI=newManualUI();selectedHand=null;render();",context);
@@ -50,7 +51,7 @@ test('phone starts with the full board and opens the hand and controls only on r
  assert.equal(h.read('manualUI.mobilePanel'),'closed');assert.ok(h.root.innerHTML.includes('manual-mobile-dock'));assert.ok(!h.root.innerHTML.includes('class="manual-hand-cards"'));
  await h.click('manual-open-hand');assert.equal(h.read('manualUI.mobilePanel'),'hand');assert.ok(h.root.innerHTML.includes('class="manual-hand-cards"'));assert.deepEqual(s,before);
  await h.click('manual-panel-toggle');assert.equal(h.read('manualUI.mobilePanel'),'closed');assert.deepEqual(s,before);
- await h.click('manual-open-hand');await h.click('hand-card',{uid});assert.equal(s.actions,0);assert.equal(h.read('selectedHand'),uid);assert.equal(h.read('manualUI.mobilePanel'),'actions');assert.ok(h.root.innerHTML.includes('selected-hand-info'));
+ await h.click('manual-open-hand');await h.click('hand-card',{uid});assert.equal(s.actions,0);assert.equal(h.read('selectedHand'),uid);assert.equal(h.read('manualUI.mobilePanel'),'card');assert.ok(h.root.innerHTML.includes('hand-inspector'));
  const a=e.getLegalActions(s).find(a=>a.kind==='charge'&&a.uid===uid);await h.click('battle-step',{index:String(a.id)});
  assert.equal(s.phase,'main');assert.equal(h.read('manualUI.panelMinimized'),false);assert.ok(s.players[0].mana.some(x=>x.uid===uid));
  assert.equal(h.read('manualUI.mobilePanel'),'closed');
@@ -99,4 +100,25 @@ test('all dense board cards remain in the overview and a paged enlargement can s
  const s=setup();give(s,0,'battle',Array(17).fill('dm01-108'));s.phase='attack';const h=harness(s,{mobile:true}),uid=s.players[0].battle.at(-1).uid;
  assert.ok(h.root.innerHTML.includes('data-fit-count="17"'));for(const x of s.players[0].battle)assert.ok(h.root.innerHTML.includes(`data-visual-key="creature:0:${x.uid}"`));
  await h.click('manual-field',{player:'0',page:'4'});assert.ok(h.read('dialog.open'));assert.ok(h.read('dialog.innerHTML').includes(uid));await h.click('manual-creature',{player:'0',uid});assert.equal(h.read('dialog.open'),false);assert.equal(h.read('manualUI.attacker'),uid);assert.equal(h.read('manualUI.mobilePanel'),'closed');assert.equal(s.actions,0);
+});
+
+test('shelf selection reopens the same card, clearing removes placement cues, and a later shelf page remains usable',async()=>{
+ const s=e.createGame([target,target],{seed:2020});s.players[0].hand.push(...s.players[0].deck.splice(0,7));const h=harness(s,{mobile:true}),before=structuredClone(s),uid=s.players[0].hand.at(-1).uid;
+ await h.click('manual-hand-strip-page',{page:'2'});assert.ok(h.root.innerHTML.includes(`data-focus-key="shelf-${uid}"`));await h.click('hand-card',{uid});assert.equal(h.read('manualUI.mobilePanel'),'card');assert.ok(h.root.innerHTML.includes('hand-mana-target'));assert.deepEqual(s,before);
+ await h.click('manual-panel-toggle');await h.click('hand-card',{uid});assert.equal(h.read('selectedHand'),uid);assert.equal(h.read('manualUI.mobilePanel'),'card');assert.deepEqual(s,before);
+ await h.click('manual-clear-hand');assert.equal(h.read('selectedHand'),null);assert.equal(h.read('manualUI.mobilePanel'),'closed');assert.ok(!h.root.innerHTML.includes('hand-mana-target'));assert.deepEqual(s,before);
+});
+
+test('twinpact face tabs alter only preview and the chosen spell executes only after pressing its legal action',async()=>{
+ const s=setup();give(s,0,'hand',['dm22ex1-030']);give(s,0,'mana',Array(3).fill('dm01-097'));const h=harness(s,{mobile:true}),uid=s.players[0].hand[0].uid;
+ await h.click('hand-card',{uid});assert.equal(h.read('manualUI.handFace'),1);assert.ok(h.root.innerHTML.includes('hand-spell-target'));assert.equal(s.actions,0);
+ await h.click('manual-hand-face',{face:'0'});assert.equal(s.actions,0);assert.ok(!h.root.innerHTML.includes('hand-spell-target'));await h.click('manual-hand-face',{face:'1'});assert.equal(s.actions,0);
+ const a=e.getLegalActions(s).find(a=>a.kind==='play'&&a.face===1);await h.click('battle-step',{index:String(a.id)});assert.equal(s.actions,1);assert.equal(h.read('selectedHand'),null);assert.equal(s.players[0].battle.length,0);assert.ok(s.players[0].mana.some(x=>x.uid===uid));
+});
+
+test('an inspected hand card stays readable while the opponent acts, then closes if that card leaves the hand',async()=>{
+ const s=e.createGame([target,target],{seed:2020,first:1}),h=harness(s,{mobile:true}),uid=s.players[0].hand[0].uid;
+ await h.click('hand-card',{uid});assert.equal(h.read('manualUI.mobilePanel'),'card');assert.ok(h.root.innerHTML.includes('相手の操作中'));
+ e.step(s,e.chooseAI(s));h.read('render()');assert.equal(h.read('manualUI.mobilePanel'),'card');assert.equal(h.read('selectedHand'),uid);assert.ok(h.root.innerHTML.includes('hand-inspector'));
+ s.players[0].grave.push(...s.players[0].hand.splice(s.players[0].hand.findIndex(x=>x.uid===uid),1));s.actions++;h.read('render()');assert.equal(h.read('selectedHand'),null);assert.equal(h.read('manualUI.mobilePanel'),'closed');
 });
