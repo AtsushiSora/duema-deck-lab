@@ -8,10 +8,10 @@ const read=async file=>JSON.parse(await readFile(new URL('../dist/'+file,import.
 const [snapshot,supported]=await Promise.all([read('catalogue.json'),read('cards.json')]);
 const registry=createCatalogue(snapshot,supported.cards),templates=resolveEnvironmentDecks(registry);setCards(supported.cards);
 
-test('tournament lists resolve every full name into exactly forty registered cards without enabling battles',()=>{
+test('tournament lists resolve every full name into exactly forty registered cards with full battle support',()=>{
  assert.equal(templates.length,4);
  assert.equal(new Set(templates.map(d=>d.id)).size,4);
- for(const d of templates){assert.equal(d.cards.reduce((n,r)=>n+r.count,0),40);assert.deepEqual(registry.validate(d),[]);assert.equal(registry.coverage(d).unsupported,['env-gp2026-pinky','env-nationals2025-dotto'].includes(d.id)?0:d.id==='env-gp2026-sara'?37:40);assert.equal(validateDeck(d).length>0,!['env-gp2026-pinky','env-nationals2025-dotto'].includes(d.id));assert.match(d.tournament.source,/^https:\/\/dm\.takaratomy\.co\.jp\/coverage\//);assert.equal(d.tournament.checkedAt,d.id==='env-nationals2025-dotto'?'2026-10-21':'2026-10-20');}
+ for(const d of templates){assert.equal(d.cards.reduce((n,r)=>n+r.count,0),40);assert.deepEqual(registry.validate(d),[]);assert.equal(registry.coverage(d).unsupported,0);assert.equal(validateDeck(d).length>0,false);assert.match(d.tournament.source,/^https:\/\/dm\.takaratomy\.co\.jp\/coverage\//);assert.equal(d.tournament.checkedAt,d.id==='env-nationals2025-dotto'?'2026-10-21':'2026-10-20');}
 });
 test('unknown names, duplicate canonical names, excessive copies and non-forty lists fail closed',()=>{
  for(const change of [l=>l.cards[0].name='未登録の架空カード',l=>l.cards.push({...l.cards[0]}),l=>l.cards[0].count=5,l=>l.cards[0].count=3]){const lists=structuredClone(ENVIRONMENT_LISTS);change(lists[0]);assert.throws(()=>resolveEnvironmentDecks(registry,lists));}

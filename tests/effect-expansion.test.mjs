@@ -1,3 +1,4 @@
+import {physicalCards} from '../dist/engine.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -13,7 +14,7 @@ const action=(s,kind,predicate=()=>true)=>{const a=getLegalActions(s).find(x=>x.
 const setup=id=>{const s=createGame([PRESETS[0],PRESETS[1]],{seed:120});s.phase='main';give(s,0,'hand',[id]);give(s,0,'mana',Array.from({length:8},()=>id));give(s,0,'battle',[]);give(s,1,'battle',[]);return s;};
 
 test('expansion adds nine fully handled abilities and fifty-one explicitly reviewed vanilla cards',()=>{
- const added=data.cards.filter(c=>c.supportBatch==='phase-1');assert.equal(added.length,60);assert.equal(added.filter(c=>c.supportKind==='effect').length,9);assert.equal(added.filter(c=>c.supportKind==='vanilla').length,51);assert.equal(data.cards.length,597);
+ const added=data.cards.filter(c=>c.supportBatch==='phase-1');assert.equal(added.length,60);assert.equal(added.filter(c=>c.supportKind==='effect').length,9);assert.equal(added.filter(c=>c.supportKind==='vanilla').length,51);assert.equal(data.cards.length,623);
  for(const c of added){const d=details.cards.find(d=>d.id===c.id);assert.ok(d);assert.equal(d.faces.length,1);assert.equal(d.status,'complete');assert.equal(c.text,d.faces[0].abilityText||'能力なし');if(c.supportKind==='vanilla'){assert.equal(d.faces[0].abilityText,'');assert.equal(c.type,'creature');}}
  assert.ok(!data.cards.some(c=>c.name==='炎のたてがみ(バーニング・ヘアー)'));
 });
@@ -65,7 +66,7 @@ test('expanded-card games take legal actions, terminate, and conserve every phys
  const mixed={name:'追加効果混成',format:'original',cards:['dm06-110','dm01-027','dm01-039','dm01-015','dm02-029','dm05-049','dm01-097','dm01-108','dm01-106','dm10-076'].map(id=>({id,count:4}))};
  const decks=[water,mixed,...PRESETS];for(const d of decks)assert.deepEqual(validateDeck(d),[]);
  for(let i=0;i<decks.length;i++)for(let j=0;j<decks.length;j++)for(let seed=0;seed<12;seed++){
-  const s=createGame([decks[i],decks[j]],{seed,first:seed%2});while(s.winner===null&&s.actions<2500&&s.turn<160){step(s,chooseAI(s));const all=s.players.flatMap(p=>['deck','hand','shields','mana','battle','grave'].flatMap(z=>p[z]));assert.equal(all.length,80);assert.equal(new Set(all.map(c=>c.uid)).size,80);}assert.notEqual(s.winner,null);
+  const s=createGame([decks[i],decks[j]],{seed,first:seed%2});while(s.winner===null&&s.actions<2500&&s.turn<160){step(s,chooseAI(s));const all=physicalCards(s);assert.equal(all.length,80);assert.equal(new Set(all.map(c=>c.uid)).size,80);}assert.notEqual(s.winner,null);
  }
  const options={seed:472,first:1};assert.deepEqual(runGame([water,mixed],options),runGame([water,mixed],options));
 });

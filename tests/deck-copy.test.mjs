@@ -21,7 +21,7 @@ test('opponent and own collections can each keep the same forty cards without ov
  const opponent=prepareDeckCopy([],source,registry,{id:'opponent',category:'相手'}).deck;
  assert.notEqual(mine.id,opponent.id);assert.equal(mine.category,'自分');assert.equal(opponent.category,'相手');
  assert.deepEqual(opponent.tournament,source.tournament);opponent.tournament.player='test';assert.notEqual(mine.tournament.player,'test');
- assert.equal(registry.coverage(opponent).unsupported,40);assert.ok(validateDeck(opponent).length);
+ assert.equal(registry.coverage(opponent).unsupported,0);assert.deepEqual(validateDeck(opponent),[]);
 });
 test('selecting an existing opponent composition reuses its name and identity even after renaming',()=>{
  const deck=prepareDeckCopy([],PRESETS[1],registry,{id:'existing',category:'相手'}).deck;deck.name='自分で付けた相手名';deck.cards.reverse();

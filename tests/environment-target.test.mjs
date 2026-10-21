@@ -14,11 +14,11 @@ const setup=()=>{const s=createGame([PRESETS[0],PRESETS[1]],{seed:49});s.phase='
 const cast=(s,id)=>{give(s,0,'hand',[id]);act(s,'play');};
 
 test('four fully pinned cards retain their fields while the unchanged tournament list retains its current progress',()=>{
- assert.equal(ENGINE_VERSION,'0.14.0');assert.equal(data.cards.length,597);assert.equal(manifest.cards.length,4);assert.equal(data.supportExpansion.phase,14);
+ assert.equal(ENGINE_VERSION,'0.15.0');assert.equal(data.cards.length,623);assert.equal(manifest.cards.length,4);assert.equal(data.supportExpansion.phase,16);
  const registry=createCatalogue(snapshot,data.cards,details),decks=resolveEnvironmentDecks(registry),target=decks.find(d=>d.id===ENVIRONMENT_TARGET),p=environmentSupport(target,registry);
  assert.equal(p.supportedCopies,40);assert.equal(p.totalCopies,40);assert.equal(p.supportedTypes,14);assert.equal(p.totalTypes,14);assert.equal(p.unsupported.reduce((n,r)=>n+r.count,0),0);assert.deepEqual(validateDeck(target),[]);assert.doesNotThrow(()=>createGame([target,PRESETS[0]]));
  for(const row of manifest.cards){const d=details.cards.find(c=>c.id===row.id),c=card(row.id);assert.deepEqual(row.face,d.faces[0]);assert.equal(row.name,c.name);assert.equal(row.source,c.source);assert.equal(c.text,row.face.abilityText);for(const[k,v]of Object.entries(row.spec))assert.deepEqual(c[k],v);assert.equal(c.supportBatch,'phase-5');}
- for(const d of decks.filter(d=>d.id!==ENVIRONMENT_TARGET))assert.equal(environmentSupport(d,registry).supportedCopies,d.id==='env-nationals2025-dotto'?40:d.id==='env-gp2026-sara'?3:0);
+ for(const d of decks.filter(d=>d.id!==ENVIRONMENT_TARGET))assert.equal(environmentSupport(d,registry).supportedCopies,40);
 });
 test('dragon category checks creature race rather than name, flavor text, or civilization',()=>{
  for(const id of ['dm01-s08','dm23bd4-008','dm25sp2-014','sp-020'])assert.equal(isDragon(card(id)),true);
@@ -27,7 +27,7 @@ test('dragon category checks creature race rather than name, flavor text, or civ
 });
 test('Mendelssohn reveals the actual top two and puts only dragons into mana, always tapped',()=>{
  for(const top of [['dm01-s08','dm25sp2-014'],['dm01-s08','dm01-097'],['dm01-097','dm25sp2-014'],['dm01-097','dm01-108']]){
-  const s=setup(),deck=s.players[0].deck;give(s,0,'deck',[...top,'dm01-108','dm01-108']);give(s,0,'mana',['dm01-097','dm01-108']);const expected=top.filter(id=>isDragon(card(id)));cast(s,'dmx11-012');assert.equal(s.players[0].deck.length,2);assert.deepEqual(s.players[0].mana.slice(2).map(x=>x.cardId),expected);assert.ok(s.players[0].mana.every(x=>x.tapped));assert.deepEqual(s.players[0].grave.map(x=>x.cardId),['dmx11-012',...top.filter(id=>!isDragon(card(id)))]);assert.ok(s.log.some(x=>x.type==='reveal'&&top.every(id=>x.text.includes(card(id).name))));assert.equal(s.decision,null);assert.equal(s.winner,null);
+  const s=setup(),deck=s.players[0].deck;give(s,0,'deck',[...top,'dm01-108','dm01-108']);give(s,0,'mana',['dm01-097','dm01-108']);const expected=top.filter(id=>isDragon(card(id)));cast(s,'dmx11-012');assert.equal(s.players[0].deck.length,2);assert.deepEqual(s.players[0].mana.slice(2).map(x=>x.cardId),expected);assert.ok(s.players[0].mana.every(x=>x.tapped));assert.deepEqual(s.players[0].grave.map(x=>x.cardId),[...top.filter(id=>!isDragon(card(id))),'dmx11-012']);assert.ok(s.log.some(x=>x.type==='reveal'&&top.every(id=>x.text.includes(card(id).name))));assert.equal(s.decision,null);assert.equal(s.winner,null);
  }
 });
 test('Mendelssohn loses immediately on a one- or two-card library regardless of dragon hits',()=>{

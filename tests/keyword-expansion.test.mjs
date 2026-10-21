@@ -1,3 +1,4 @@
+import {physicalCards} from '../dist/engine.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -15,11 +16,11 @@ const act=(s,kind,predicate=()=>true)=>{const a=getLegalActions(s).find(a=>a.kin
 const attackSetup=(id='dm05-015',shields=['dm01-075','dm01-075','dm01-075','dm01-075','dm01-075'])=>{const s=createGame([PRESETS[0],PRESETS[1]],{seed:21});s.phase='attack';give(s,0,'battle',[id]);give(s,1,'battle',[]);give(s,1,'shields',shields);return s;};
 
 test('phase 2 freezes 173 complete official keyword cards and retains all previous registration identities',()=>{
- const added=data.cards.filter(c=>c.supportBatch==='phase-2');assert.equal(added.length,173);assert.equal(data.cards.length,597);assert.equal(new Set(added.map(c=>c.id)).size,173);assert.equal(manifest.cards.length,173);
+ const added=data.cards.filter(c=>c.supportBatch==='phase-2');assert.equal(added.length,173);assert.equal(data.cards.length,623);assert.equal(new Set(added.map(c=>c.id)).size,173);assert.equal(manifest.cards.length,173);
  const registry=createCatalogue(snapshot,data.cards,details);assert.equal(registry.cards.length,11833);
  for(const c of added){const d=details.cards.find(x=>x.id===c.id),row=manifest.cards.find(x=>x.id===c.id),f=d.faces[0];assert.equal(d.status,'complete');assert.equal(d.faces.length,1);assert.equal(f.typeText,'クリーチャー');assert.equal(f.civilizations.length,1);assert.equal(c.text,f.abilityText);assert.equal(c.cost,f.cost);assert.equal(c.power,Number(f.powerText));assert.deepEqual(keywordSpec(c.text),row.spec);for(const[k,v]of Object.entries(row.spec))assert.equal(c[k],v);assert.equal(registry.get(c.id).supported,true);}
  assert.equal(added.filter(c=>c.breaker).length,56);assert.equal(added.filter(c=>c.breaker===3).length,10);
- for(const d of resolveEnvironmentDecks(registry)){assert.equal(registry.coverage(d).unsupported,['env-gp2026-pinky','env-nationals2025-dotto'].includes(d.id)?0:d.id==='env-gp2026-sara'?37:40);assert.equal(validateDeck(d).length>0,!['env-gp2026-pinky','env-nationals2025-dotto'].includes(d.id));}
+ for(const d of resolveEnvironmentDecks(registry)){assert.equal(registry.coverage(d).unsupported,0);assert.equal(validateDeck(d).length>0,false);}
 });
 test('keyword verification rejects extra effects, dual breaker choices, and unsupported breaker values',()=>{
  assert.throws(()=>keywordSpec('W・ブレイカー\n自分はゲームに勝てず、相手はゲームに負けない。'),/未対応/);
@@ -73,7 +74,7 @@ test('mixed keyword decks finish reproducibly and preserve all 80 unique physica
  const fresh=data.cards.filter(c=>c.supportBatch==='phase-2');const batches=Array.from({length:Math.ceil(fresh.length/10)},(_,i)=>({name:'keyword batch '+i,format:'original',cards:[...fresh.slice(i*10,i*10+10).map(c=>c.id),...PRESETS[0].cards.map(c=>c.id)].slice(0,10).map(id=>({id,count:4}))}));
  for(const deck of batches){assert.deepEqual(validateDeck(deck),[]);for(let seed=1;seed<=6;seed++){
   const s=createGame([deck,seed%2?PRESETS[1]:batches[(seed+4)%batches.length]],{seed,first:seed%2});
-  while(s.winner===null&&s.actions<2500&&s.turn<160){const a=chooseAI(s);assert.ok(a);step(s,a);const all=s.players.flatMap(p=>['deck','hand','shields','mana','battle','grave'].flatMap(z=>p[z]));assert.equal(all.length,80);assert.equal(new Set(all.map(c=>c.uid)).size,80);}assert.notEqual(s.winner,null);
+  while(s.winner===null&&s.actions<2500&&s.turn<160){const a=chooseAI(s);assert.ok(a);step(s,a);const all=physicalCards(s);assert.equal(all.length,80);assert.equal(new Set(all.map(c=>c.uid)).size,80);}assert.notEqual(s.winner,null);
  }}
  assert.deepEqual(runGame([batches[3],batches[8]],{seed:901}),runGame([batches[3],batches[8]],{seed:901}));
 });
