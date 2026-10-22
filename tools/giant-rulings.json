@@ -1,0 +1,68 @@
+{
+  "checkedAt": "2026-10-22",
+  "targetDeck": "starter25-17",
+  "officialDeck": "https://dm.takaratomy.co.jp/dm26sd1_decklist/deck17/",
+  "rules": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/40676/",
+    "https://dm.takaratomy.co.jp/rule/qa/46598/",
+    "https://dm.takaratomy.co.jp/rule/qa/44219/",
+    "https://dm.takaratomy.co.jp/rule/qa/46820/",
+    "https://dm.takaratomy.co.jp/rule/qa/48748/",
+    "https://dm.takaratomy.co.jp/rule/qa/45895/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37608/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31620/",
+    "https://dm.takaratomy.co.jp/rule/qa/45909/",
+    "https://dm.takaratomy.co.jp/rule/qa/45917/",
+    "https://dm.takaratomy.co.jp/rule/qa/47079/",
+    "https://dm.takaratomy.co.jp/rule/qa/46947/"
+  ],
+  "sourceAccess": {
+    "cardText": "All12 complete canonical official metadata records and13 faces from the existing2026-10-20 snapshot are retained, including their original IDs, sources and dates. No unverified refresh date was assigned.",
+    "currentCorroboration": "Official search results corroborate the2026 Giant deck, Scarlet creature-only mana permission, Marinyan threshold, Sineraria Ultra-Saver, Galactic battle replacement and Caddy text. Direct QA40676 returned intermittent503, while its official search excerpt confirmed active-player priority."
+  },
+  "decisions": [
+    {
+      "topic": "Terminal declaration",
+      "evidence": "direct QA46598 and44219",
+      "behavior": "Shares the existing game-wide terminal flag with Voljaak. Trigger after untap at own start. Choose draw first; inspect the new hand before choosing to add mana. Draw/boost each optional and all-or-none at the quantity evaluated on resolution."
+    },
+    {
+      "topic": "Scarlet mana summon",
+      "evidence": "card text plus direct QA46820",
+      "behavior": "One Giant creature per battlefield UID/incarnation each own turn, paid or G-zero. Illegal summons cannot be attempted to get the ramp. Use of this permission creates the post-summon ramp continuation before the entrants triggered abilities; entry replacements still apply. Independent native mana permissions need not consume Scarlet."
+    },
+    {
+      "topic": "Mekraid and private looks",
+      "evidence": "card text and current comprehensive rules",
+      "behavior": "Sacrifice a different Giant element to mana, verify that it really entered mana, then look at3. Match the chosen face race and cost<=8. Protect the unchosen cards in their library until the cast resolves and bottom order is chosen. Lake takes two distinct cards out of top6, orders the rest then optionally reveals one hand card and chooses a twinpact reference cost if needed. Infinite printed costs use the serializable infinity symbol."
+    },
+    {
+      "topic": "Battle replacement",
+      "evidence": "direct official QA40676 analogous Techorobal example",
+      "behavior": "Active controller first, then the other if declined. At most one replacement per battle event. Original attack and attack target are not changed. Actual replacement fighter determines power, Slayer and victory effects. The choice is serialized rather than resolving the battle before input."
+    },
+    {
+      "topic": "Marinyan suppression",
+      "evidence": "card text",
+      "behavior": "At5 Snow Fairy elements, prevent only entrant-owned triggers caused by its entry. Observer triggers from other cards remain. EX-life replacement and static abilities remain. Other entry hooks receive an explicit selfMuted flag; attack triggers use the existing independent suppression check. Ability ignoring can disable Marinyan."
+    },
+    {
+      "topic": "Caddy",
+      "evidence": "direct QA45909,45917,47079; Sheva interaction inferred from direct QA46947 and101.2",
+      "behavior": "Replace oversized creature entry only on that creatures controllers turn; integrates with existing entry-replacement choice and revolution swap validation. Grave placement from battlefield also counts as destruction for its self-movement per45909. Its self movement to mana takes priority over external leave replacements; no chaining replacement. Sheva Variety5 prevents the replaced mana move."
+    },
+    {
+      "topic": "Ultra-Saver",
+      "evidence": "direct old official QA37608 and comprehensive replacement rules",
+      "behavior": "Giant source can protect any Giant, including itself. A single saver pays for a single simultaneous replacement; the replacement destruction cannot be replaced again. Category support extends the existing Mecha saver mechanism."
+    }
+  ],
+  "validation": {
+    "unitAndMixedEffects": "tests/giant-effects.test.mjs",
+    "ui": "tests/manual-app.test.mjs and starter25-navigation.test.mjs",
+    "online": "tests/online-server.test.mjs",
+    "random": "40 seeds with JSON legal-action and AI equality; every operation80 unique physical cards",
+    "ai": "102 seeded games with full-state replay; production worker340 games across13 ready lists and4 environment decks"
+  }
+}

@@ -23,6 +23,9 @@ export function manualModel(s,ui={}){
 }
 function decisionHelp(s){
  const d=s.decision;
+ if(d.task?.op==='g17_BattleReplace')return '銀河竜がかわりにバトルします。攻撃しているクリーチャーや攻撃先自体は変わりません。';
+ if(d.task?.op==='g17_TermDraw')return '手札と同じ枚数を引くか選び、その内容を見てからマナを増やすか決められます。終極宣言はゲーム中1回です。';
+ if(d.task?.op==='g17_Mekraid')return '選んだ面の種族とコストで判定します。残りは好きな順序で山札の下へ置きます。';
  if(d.task?.op==='g3_Declare')return '今回使う鬼エンド・逆転撃を先にすべて宣言します。逆転撃を唱えると、次の自分のターンに闇3マナの支払いが必要です。';
  if(d.task?.op==='g3_FinalSelect')return '手札とマナから、合計コスト6以下の多色クリーチャーを選んで確定します。';
  if(d.task?.op==='g3_CycleRepeat')return '手札から唱えた同じ呪文を墓地から再使用します。このクリーチャーにつき各ターン1回です。';
