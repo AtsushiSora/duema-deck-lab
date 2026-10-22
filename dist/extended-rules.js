@@ -1,13 +1,13 @@
-import {createHunterRules} from './hunter-rules.js?v=0.42';
-import {createArmoredRules} from './armored-rules.js?v=0.42';
-import {createMagicRules} from './magic-rules.js?v=0.42';
-import {createMechaRules} from './mecha-rules.js?v=0.42';
-import {createKiyonagaRules} from './kiyonaga-rules.js?v=0.42';
-import {createGransectRules} from './gransect-rules.js?v=0.42';
-import {createGateRules} from './gate-rules.js?v=0.42';
-import {createGalaxyRules} from './galaxy-rules.js?v=0.42';
-import {createGospelRules} from './gospel-rules.js?v=0.42';
-import {createStarterRules} from './starter-rules.js?v=0.42';
+import {createHunterRules} from './hunter-rules.js?v=0.43';
+import {createArmoredRules} from './armored-rules.js?v=0.43';
+import {createMagicRules} from './magic-rules.js?v=0.43';
+import {createMechaRules} from './mecha-rules.js?v=0.43';
+import {createKiyonagaRules} from './kiyonaga-rules.js?v=0.43';
+import {createGransectRules} from './gransect-rules.js?v=0.43';
+import {createGateRules} from './gate-rules.js?v=0.43';
+import {createGalaxyRules} from './galaxy-rules.js?v=0.43';
+import {createGospelRules} from './gospel-rules.js?v=0.43';
+import {createStarterRules} from './starter-rules.js?v=0.43';
 // Serializable continuations for the verified tournament-card effects.
 export function createExtendedRules(api){
  const {card,faces,cost,colors,effective,power,layers,draw,mill,move,enter,cast,remove,removeShield,clear,enqueue,log,random,canEnter,canCast,evolutionBases}=api;
