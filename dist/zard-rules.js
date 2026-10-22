@@ -55,7 +55,7 @@ export function createZardRules(api){
  function invasionMatches(s,a){return api.isCreature(s,a)&&String(effective(a,s).race).includes('コマンド')&&colors(effective(a,s)).some(c=>['水','闇','自然'].includes(c));}
  function invade(s,t){const own=s.players[t.p],x=own[t.origin].find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial),base=own.battle.find(x=>x.uid===t.base);if(!x||!base||x===base)return;
   if(t.origin==='battle'){
-   const index=own.battle.indexOf(x),[under,...rest]=x.under||[];if(under){if(rest.length)(under.under??=[]).push(...rest);inherited(s,x,under);under.tapped=x.tapped;own.battle[index]=under;}else own.battle.splice(index,1);delete x.under;
+   const index=own.battle.indexOf(x),[under,...rest]=x.under||[];if(under){if(rest.length)(under.under??=[]).push(...rest);inherited(s,x,under);under.tapped=x.tapped;own.battle[index]=under;}else own.battle.splice(index,1);delete x.under;delete x.g18Blocker;api.gearCleanup(s);
    remove(own.battle,base.uid);x.under=[base];inherited(s,base,x);x.tapped=base.tapped;own.battle.push(x);s.attack.attacker=x.uid;
    if(!api.ignored(s,x))on(s,t.p,x,'g2_Damd');
   }else{remove(own[t.origin],x.uid);enter(s,t.p,x,base.uid,{origin:t.origin,execution:false});}

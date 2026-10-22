@@ -15,6 +15,6 @@ test('number, full-width text, themes and contained card names find the expected
  assert.deepEqual(decks.filter(d=>starter25Matches(d,'Ｎｏ．１１',registry)).map(d=>d.product.number),[11]);assert.ok(starter25Matches(decks[10],'特攻の忠剣ハチ公',registry));assert.ok(starter25Matches(decks[23],'墓地',registry));assert.equal(decks.filter(d=>starter25Matches(d,'存在しない検索語',registry)).length,0);
 });
 test('partial effect coverage cannot enable battle and personal edits cannot mutate the official list',()=>{
- for(const d of decks){assert.equal(registry.coverage(d).unsupported===0,[2,3,5,6,7,9,10,12,16,17,19,20,21,22].includes(d.product.number));assert.equal(validateDeck(d).length===0,[2,3,5,6,7,9,10,12,16,17,19,20,21,22].includes(d.product.number));}
+ for(const d of decks){assert.equal(registry.coverage(d).unsupported===0,[2,3,5,6,7,9,10,12,16,17,18,19,20,21,22].includes(d.product.number));assert.equal(validateDeck(d).length===0,[2,3,5,6,7,9,10,12,16,17,18,19,20,21,22].includes(d.product.number));}
  const before=structuredClone(decks),copied=prepareDeckCopy([],decks[0],registry,{id:'copy'}).deck;copied.cards[0].count=1;copied.product.officialName='changed';assert.deepEqual(decks,before);
 });
