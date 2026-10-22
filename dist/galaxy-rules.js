@@ -10,14 +10,14 @@ export function createGalaxyRules(api){
  const discardSequence=(s,t,n,follow,optional=false)=>{const id=String(s.g22Serial=(s.g22Serial||0)+1);(s.g22Discards??={})[id]=[];put(s,task('discard',t.p,t.source,{n,optional,galaxyKey:id}),task(follow,t.p,t.source,{key:id}));};
  function run(s,t){if(!t.op.startsWith('g22'))return false;const own=s.players[t.p],opp=s.players[1-t.p];switch(t.op){
   case'g22Blaze':put(s,task('discard',t.p,t.source,{n:1}),task('draw',t.p,t.source,{n:1}));break;
-  case'g22Master':if(own.mana.some(x=>api.manaColors(card(x)).includes('火')))draw(s,t.p,1);if(s.winner===null)discardSequence(s,t,own.hand.length,'g22AfterMaster',true);break;
+  case'g22Master':if(own.mana.some(x=>api.manaColors(card(x),s,t.p).includes('火')))draw(s,t.p,1);if(s.winner===null)discardSequence(s,t,own.hand.length,'g22AfterMaster',true);break;
   case'g22AfterMaster':{const n=s.g22Discards[t.key].length;delete s.g22Discards[t.key];put(s,...Array.from({length:n},()=>task('destroyPower',t.p,t.source,{max:6000})));break;}
   case'g22UntapMana':{const list=own.mana.filter(x=>x.tapped&&!t.selected.includes(x.uid));if(t.selected.length===2||!list.length){for(const uid of t.selected){const x=own.mana.find(x=>x.uid===uid);if(x)x.tapped=false;}break;}choice(s,t,'アンタップするマナを2枚まで選ぶ',[...list.map(x=>opt(card(x).name,x.uid,10,card(x).id)),opt('ここまでで確定',null,0)]);break;}
   case'g22FairySpell':discardSequence(s,t,1,'g22AfterFairy');break;
   case'g22AfterFairy':{const ids=s.g22Discards[t.key];delete s.g22Discards[t.key];put(s,task('destroyPower',t.p,t.source,{max:6000}),...(ids.some(id=>faces(card(id)).some(snow))?[task('destroyPower',t.p,t.source,{max:6000})]:[]));break;}
   case'g22Shuffle':choice(s,t,'山札に戻してシャッフルする墓地を選ぶ',[opt('自分の墓地',t.p,own.deck.length<8?30:5),opt('相手の墓地',1-t.p,opp.grave.length)]);break;
   case'g22ManaPermit':choice(s,t,'このターン、マナから召喚できるクリーチャーを選ぶ',own.mana.filter(x=>card(x).type==='creature').map(x=>opt(card(x).name,x.uid,cost(card(x)),card(x).id)));break;
-  case'g22Speed':if(own.mana.some(x=>api.manaColors(card(x)).includes('火')))choice(s,t,'スピードアタッカーを与える他のクリーチャーを選ぶ',creatures(s,t.p).filter(x=>x.uid!==t.uid).map(x=>opt(card(x).name,x.uid,x.entered===s.turn?20:0,x.cardId)));break;
+  case'g22Speed':if(own.mana.some(x=>api.manaColors(card(x),s,t.p).includes('火')))choice(s,t,'スピードアタッカーを与える他のクリーチャーを選ぶ',creatures(s,t.p).filter(x=>x.uid!==t.uid).map(x=>opt(card(x).name,x.uid,x.entered===s.turn?20:0,x.cardId)));break;
   case'g22BounceEnd':{const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation);if(x)move(s,[{player:t.p,uid:x.uid,to:'hand'}]);break;}
   case'g22Replace':choice(s,t,'バトルゾーンに出ることを置き換える効果を選ぶ',s.g22Entry.choices.map((x,i)=>opt(card(x.source).name+'：'+(x.to==='mana'?'マナへ':'墓地へ'),i,x.to==='grave'?5:10,x.source)));break;
   default:throw Error('未実装のギャラクシー効果：'+t.op);

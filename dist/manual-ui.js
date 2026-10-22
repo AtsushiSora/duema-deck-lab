@@ -14,7 +14,7 @@ export function manualModel(s,ui={}){
  const attacker=human&&!s.decision&&actions.some(a=>a.kind==='attack'&&a.uid===ui.attacker)?ui.attacker:null;
  const source=s.decision?.source||s.resolvingSpell?.source||s.judge?.source;
  const selected=s.decision?.task?.selected,chosen=selected?.length||s.decision?.chosen?.length||0;
- const progress=s.decision?.type==='extended'&&Array.isArray(selected)?`${chosen}${s.decision.task.op==='g20Select'?' / '+s.decision.task.max+'体':'枚選択'}`:s.decision?.type==='leaveMana'?`${chosen} / 3枚`:s.decision?.type==='mugen'?`${chosen} / 4体`:s.decision?.type==='manaTop'?`${chosen} / ${s.decision.count}枚`:s.decision?.type==='infinityShields'?`${chosen} / ${s.decision.count}つ`:s.decision?.type==='shieldGuard'?`${s.shieldBreak.protections.length}つ保護`:null;
+ const progress=s.decision?.type==='extended'&&Array.isArray(selected)?`${chosen}${s.decision.task.op==='g20Select'?' / '+s.decision.task.max+'体':s.decision.task.op==='g21Shutter'?' / 2体':s.decision.task.op==='g21Fortress'?' / 3つ':s.decision.task.op==='g21BreakChoose'?' / 9つ':'枚選択'}`:s.decision?.type==='leaveMana'?`${chosen} / 3枚`:s.decision?.type==='mugen'?`${chosen} / 4体`:s.decision?.type==='manaTop'?`${chosen} / ${s.decision.count}枚`:s.decision?.type==='infinityShields'?`${chosen} / ${s.decision.count}つ`:s.decision?.type==='shieldGuard'?`${s.shieldBreak.protections.length}つ保護`:null;
  let title=s.winner!==null?(s.winner===0?'勝利！':'対戦終了'):!human?'相手の行動を待っています':s.decision?(s.decision.title||titles[s.decision.type]||'行動を選ぼう'):s.phase==='charge'?'マナに置くカードを選ぼう':s.phase==='main'?hand?'このカードをどう使う？':'使うカードを手札から選ぼう':attacker?'攻撃先を選ぼう':'攻撃するクリーチャーを選ぼう';
  if(s.decision?.type==='block'&&actions.some(a=>a.kind==='guardman'))title='ブロック・ガードマンを選ぼう';
  let help=s.winner!==null?s.reason:!human?'相手の手札や山札は非公開です。':s.decision?decisionHelp(s):s.phase==='charge'?'手札をタップしてから「マナに置く」。1ターンに1枚です。':s.phase==='main'?'選んだカードの能力を確認して、召喚・呪文を使えます。':attacker?'光っている相手のカードか、プレイヤーへの攻撃をタップ。':'「攻撃可」のカードをタップ。対象を選んでから攻撃します。';
@@ -23,6 +23,9 @@ export function manualModel(s,ui={}){
 }
 function decisionHelp(s){
  const d=s.decision;
+ if(d.task?.op==='g21KiyoSelect')return '使うエレメントを先にすべて選び、確定後に使う順番を選びます。呪文側は選べません。';
+ if(d.task?.op==='g21GohatenUse')return '自分の分を出し終えてから相手の分を出します。登場時の誘発は無視しますが、EXライフなどの置き換えは働きます。';
+ if(d.task?.op==='g21Shutter')return '2体まで選んで確定するとまとめてタップします。選べる同期の妖精があれば優先して選びます。';
  if(d.task?.op==='g20Select')return '出すカードをすべて選んでから確定します。登場時の能力は、その後に解決します。';
  if(d.task?.op==='g20Gio')return '他のコスト9の手札を選びます。確定して召喚する時に選んだカード名を相手に公開します。';
  if(['mugen','leaveMana','manaTop'].includes(d.type))return '必要な数をすべて選ぶと確定します。選択中のカードにはチェックが付きます。';
@@ -45,6 +48,8 @@ export function boardChoice(s,ui,player,zone,uid){return boardChoiceModel(s,ui,p
 function boardChoiceModel(s,ui,player,zone,uid,m){
  if(!m.human)return null;
  let matches=[];
+ if(s.decision?.type==='extended'&&['g21Shutter','s6Bounce','g21Enter','g21Fortress','g21BreakChoose'].includes(s.decision.task.op)){const op=s.decision.task.op,expectedZone=['g21Fortress','g21BreakChoose'].includes(op)?'shields':'battle',expectedPlayer=op==='g21Enter'?s.decision.player:1-s.decision.player;if(zone===expectedZone&&player===expectedPlayer){const actions=m.actions.filter(a=>a.kind==='extended'&&s.decision.choices[a.choice]?.value===uid);if(actions.length===1)return actions[0];}}
+
  if(zone==='battle'){
   if(m.attacker&&player===1)matches=m.actions.filter(a=>a.kind==='attack'&&a.uid===m.attacker&&a.target===uid);
   else if(s.decision)matches=m.actions.filter(a=>

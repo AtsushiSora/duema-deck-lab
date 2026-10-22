@@ -36,7 +36,7 @@ export function createGospelRules(api){
   case'g5Triple':if(value===0)put(s,task('g5TapThree',t.p,t.source,{uids:[]}));if(value===1)draw(s,t.p,3);if(value===2&&!oppNoReduce(s,t.p))discount(s,t.p,t.source,3);break;
   case'g5TapThree':if(value)put(s,{...t,uids:[...t.uids,value]});else for(const uid of t.uids){const x=s.players[1-t.p].battle.find(x=>x.uid===uid);if(x)api.tap(s,1-t.p,x);}break;
   case'g5Siren':{const x=remove(own.mana,value);if(x){clear(x,'hand');own.hand.push(x);}put(s,task('g5HandMana',t.p,t.source));break;}
-  case'g5HandMana':{const x=remove(own.hand,value);if(x){clear(x,'mana');own.mana.push(x);}break;}
+  case'g5HandMana':{const x=remove(own.hand,value);if(x){clear(x,'mana');own.mana.push(x);api.handMana(s,t.p,x);}break;}
   case'g5Courage':if(value===0)put(s,task('discard',t.p,t.source,{n:1}),task('draw',t.p,t.source,{n:2}));else put(s,task('destroyPower',t.p,t.source,{max:2000}));break;
   case'g5DestroyElement':if(value.zone==='battle')move(s,[{player:1-t.p,uid:value.uid,to:'grave'}]);else{const x=removeShield(s,1-t.p,value.uid);if(x){clear(x);s.players[1-t.p].grave.push(x);}}break;
   case'g5AltPay':if(value)put(s,{...t,selected:[...t.selected,value]});break;

@@ -1,8 +1,9 @@
-import {createGransectRules} from './gransect-rules.js?v=0.37';
-import {createGateRules} from './gate-rules.js?v=0.37';
-import {createGalaxyRules} from './galaxy-rules.js?v=0.37';
-import {createGospelRules} from './gospel-rules.js?v=0.37';
-import {createStarterRules} from './starter-rules.js?v=0.37';
+import {createKiyonagaRules} from './kiyonaga-rules.js?v=0.38';
+import {createGransectRules} from './gransect-rules.js?v=0.38';
+import {createGateRules} from './gate-rules.js?v=0.38';
+import {createGalaxyRules} from './galaxy-rules.js?v=0.38';
+import {createGospelRules} from './gospel-rules.js?v=0.38';
+import {createStarterRules} from './starter-rules.js?v=0.38';
 // Serializable continuations for the verified tournament-card effects.
 export function createExtendedRules(api){
  const {card,faces,cost,colors,effective,power,layers,draw,mill,move,enter,cast,remove,removeShield,clear,enqueue,log,random,canEnter,canCast,evolutionBases}=api;
@@ -12,7 +13,8 @@ export function createExtendedRules(api){
  const choice=(s,t,title,options)=>{if(options.length)s.decision={type:'extended',player:t.p,source:t.source,title,task:t,choices:options};};
  const opt=(label,value,score=0,cardId=null)=>({label,value,score:Number.isFinite(score)?Math.max(-1000,Math.min(1000,score)):score>0?1000:-1000,...(cardId?{cardId}:{})});
  const skip=()=>opt('使わない',null,0);
- const targetOptions=(s,p,list)=>list.filter(x=>{const owner=s.players.findIndex(y=>y.battle.some(z=>z.uid===x.uid));return owner<0||targetable(s,p,owner,x);}).map(x=>opt(card(x).name,x.uid,cost(card(x))*3,card(x).id));
+ const targetOptions=(s,p,list)=>forceTargets(s,p,list.filter(x=>{const owner=s.players.findIndex(y=>y.battle.some(z=>z.uid===x.uid));return owner<0||targetable(s,p,owner,x);})).map(x=>opt(card(x).name,x.uid,cost(card(x))*3,card(x).id));
+ const forceTargets=(s,p,list)=>{const forced=list.filter(x=>{const owner=s.players.findIndex(y=>y.battle.some(z=>z.uid===x.uid));return owner>=0&&owner!==p&&api.isCreature(s,x)&&effective(x,s).forceTarget;});return forced.length?forced:list;};
  const nowCreature=(s,p,uid)=>s.players[p].battle.find(x=>x.uid===uid);
  const lock=(s,p,more)=>{(s.extLimits??=[]).push({controller:p,expires:'start',who:p,...more});};
  const locked=(s,p,x,kind)=>{
@@ -26,8 +28,9 @@ export function createExtendedRules(api){
  const galaxy=createGalaxyRules({...api,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo,targetable,lock});
  const gate=createGateRules({...api,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo,targetable,lock});
  const gran=createGransectRules({...api,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo,targetable,lock});
+ const kiyo=createKiyonagaRules({...api,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo,targetable,lock});
  const entryTask=(s,p,c,uid,entry)=>{
-  if(gran.effect(s,p,c,uid,entry)||gate.effect(s,p,c,uid,entry)||galaxy.effect(s,p,c,uid,entry)||gospel.effect(s,p,c,uid,entry)||starter.effect(s,p,c,uid,entry))return true;
+  if(kiyo.effect(s,p,c,uid,entry)||gran.effect(s,p,c,uid,entry)||gate.effect(s,p,c,uid,entry)||galaxy.effect(s,p,c,uid,entry)||gospel.effect(s,p,c,uid,entry)||starter.effect(s,p,c,uid,entry))return true;
   const more={uid};switch(c.effect){
    case 'jadowShield':put(s,task('jadowShield',p,c.id,more));break;
    case 'vamBounce':put(s,task('elementBounce',p,c.id,{...more,discardAfter:true}));break;
@@ -130,7 +133,7 @@ export function createExtendedRules(api){
    case 'ninjaDeclare':if(t.remaining.length){const uid=t.remaining[0],x=own.hand.find(x=>x.uid===uid);if(x)choice(s,t,card(x).name+'の使用を宣言する？',[opt('宣言する',true,10,x.cardId),skip()]);else put(s,{...t,remaining:t.remaining.slice(1)});}else for(const uid of t.declared){const x=own.hand.find(x=>x.uid===uid);if(x)enqueue(s,t.p,{uid,source:x.cardId,effect:'extended',task:task('ninjaResolve',t.p,x.cardId,{uid})});}break;
    case 'ninjaResolve':{
     const x=own.hand.find(x=>x.uid===t.uid),used=s.attack?.ninjaUsed?.[t.p]||{};if(!x||!s.attack)break;const c=card(x);
-    if(c.ninjaStrike&&!used.strike&&own.mana.length>=3&&own.mana.some(y=>colors(card(y)).includes('水'))&&canEnter(s,t.p,c)){choice(s,t,'ニンジャ・ストライクで召喚する？',[opt('召喚する','strike',30,x.cardId),skip()]);}
+    if(c.ninjaStrike&&!used.strike&&own.mana.length>=3&&own.mana.some(y=>api.manaColors(card(y),s,t.p).includes('水'))&&canEnter(s,t.p,c)){choice(s,t,'ニンジャ・ストライクで召喚する？',[opt('召喚する','strike',30,x.cardId),skip()]);}
     if(c.ninjaChange&&!used.any&&canEnter(s,t.p,c,{origin:'hand',execution:false}))choice(s,t,'ニンジャ・チェンジで入れ替える相手を選ぶ',[...targetOptions(s,t.p,creatures(s,t.p).filter(y=>cost(card(y))>=5&&/メカ|シノビ/.test(card(y).race))),skip()]);break;
    }
    case 'revDeclare':if(t.remaining.length){const uid=t.remaining[0],x=own.hand.find(x=>x.uid===uid);if(x)choice(s,t,card(x).name+'の革命チェンジを宣言する？',[opt('宣言する',true,15,x.cardId),skip()]);else put(s,{...t,remaining:t.remaining.slice(1)});}else for(const uid of t.declared){const x=own.hand.find(x=>x.uid===uid);if(x)enqueue(s,t.p,{uid,source:x.cardId,effect:'extended',task:task('revResolve',t.p,x.cardId,{uid,attacker:t.attacker})});}break;
@@ -142,7 +145,7 @@ export function createExtendedRules(api){
    case 'ninjaBottom':{const x=own.battle.find(x=>layers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===t.incarnation));if(x&&card(x).race?.includes('シノビ'))move(s,[{player:t.p,uid:x.uid,to:'deck'}]);break;}
    case 'mirageCast':{const x=own.hand.find(x=>x.uid===t.uid);if(x&&(s.creaturesEntered||0)>=3&&canCast(s,t.p,card(x)))cast(s,t.p,x.uid,true,null,0,null,'hand','ターン終了時の能力');break;}
    case 'finishSpell':{const i=(s.extSpells||[]).findIndex(x=>x.inst.uid===t.uid);if(i>=0){const [f]=s.extSpells.splice(i,1);if(f.virtual)break;delete f.inst.finishTo;delete f.inst.crystalFinish;delete f.inst.normalFinish;clear(f.inst,f.to);if(f.crystal&&f.to==='grave'){f.inst.faceDown=true;f.inst.tapped=false;s.players[f.owner].mana.push(f.inst);}else s.players[f.owner][f.to==='deck'?'deck':f.to==='mana'?'mana':'grave'].push(f.inst);}break;}
-   default:if(!gran.run(s,t)&&!gate.run(s,t)&&!galaxy.run(s,t)&&!gospel.run(s,t)&&!starter.run(s,t))throw Error('未実装の継続効果です：'+t.op);
+   default:if(!kiyo.run(s,t)&&!gran.run(s,t)&&!gate.run(s,t)&&!galaxy.run(s,t)&&!gospel.run(s,t)&&!starter.run(s,t))throw Error('未実装の継続効果です：'+t.op);
   }
  }
  function revMatches(s,x,c){const r=c.rev;return !!r&&card(x).type==='creature'&&card(x).race.includes('ドラゴン')&&cost(card(x))>=(r.min||0)&&colors(card(x)).some(v=>r.colors.includes(v));}
@@ -198,18 +201,18 @@ export function createExtendedRules(api){
   case 'ninjaResolve':if(value){const x=own.hand.find(x=>x.uid===t.uid);if(value==='strike'){(s.attack.ninjaUsed??={})[t.p]={any:true,strike:true};cast(s,t.p,x.uid,true,null,0,null,'hand','ニンジャ・ストライク');const entered=nowCreature(s,t.p,t.uid);if(entered)entered.uraNinja={turn:s.turn,incarnation:entered.incarnation};for(const y of creatures(s,t.p))if(effective(y,s).ninjaDraw)enqueue(s,t.p,{uid:y.uid,source:y.cardId,effect:'extended',task:task('optionalDrawOne',t.p,y.cardId)});}else{(s.attack.ninjaUsed??={})[t.p]={...(s.attack.ninjaUsed?.[t.p]||{}),any:true};startSwap(s,t,value,false);}}break;
   case 'revResolve':if(value)startSwap(s,t,value,true);break;
   case 'darkFight':if(value){const x=nowCreature(s,t.p,t.uid),y=nowCreature(s,1-t.p,value);if(x&&y){(s.darkFights??={})[t.uid+'@'+(x.incarnation||0)]=s.turn;api.battle(s,t.p,x,1-t.p,y,s.attack?.attacker);}}break;
-  default:if(!gran.chosen(s,t,value)&&!gate.chosen(s,t,value)&&!galaxy.chosen(s,t,value)&&!gospel.chosen(s,t,value)&&!starter.chosen(s,t,value))throw Error('未実装の選択です：'+t.op);
+  default:if(!kiyo.chosen(s,t,value)&&!gran.chosen(s,t,value)&&!gate.chosen(s,t,value)&&!galaxy.chosen(s,t,value)&&!gospel.chosen(s,t,value)&&!starter.chosen(s,t,value))throw Error('未実装の選択です：'+t.op);
  }}
  return {
-  put,task,choice,lock,locked,creatures,shieldTo,targetable,
-  raceDiscount:galaxy.discount,granDiscount:gran.discount,played(s,p,c,inst,origin,permit){galaxy.played(s,p,c,inst,origin,permit);gran.played(s,p,c,inst,origin,permit);},spellCast:gran.spellCast,replaceEntry:galaxy.replaceEntry,
+  put,task,choice,lock,locked,creatures,shieldTo,targetable,forceActions:kiyo.forceActions,spellShieldTrigger:kiyo.spellShieldTrigger,handMana:kiyo.handMana,
+  raceDiscount:galaxy.discount,granDiscount:gran.discount,played(s,p,c,inst,origin,permit){galaxy.played(s,p,c,inst,origin,permit);gran.played(s,p,c,inst,origin,permit);},spellCast(s,p,c){gran.spellCast(s,p,c);kiyo.spellCast(s,p,c);},replaceEntry:galaxy.replaceEntry,
   nextDiscount:gospel.nextDiscount,summoned:gospel.summoned,beginAlternative(s,p,a){if(a.alternative==='gio')gate.beginAlternative(s,p,a);else gospel.beginAlternative(s,p,a);},start(s,p){return [...gate.start(s,p),...gran.start(s,p)];},battleWins:gate.battleWins,
   attackStart(s,p,x){const remaining=s.players[p].hand.filter(y=>revMatches(s,x,card(y))).map(y=>y.uid);if(remaining.length)put(s,task('revDeclare',p,x.cardId,{remaining,declared:[],attacker:x.uid}));},
-  attackTriggers(s,p,x){gran.attack(s,p,x);gate.attack(s,p,x);galaxy.attack(s,p,x);gospel.attack(s,p,x);const c=effective(x,s);if(c.attackEffect&&!api.selfStopped(s,p))enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(c.effect==='graveRecycle'?'recyclePlayer':c.effect==='destroyMin'?'destroyMin':'tapAll',p,x.cardId)});},
-  ninjaWindow(s,p){if(!s.attack)return false;const key=p+'@'+s.attack.stage;(s.attack.ninjaWindows??={});if(s.attack.ninjaWindows[key])return false;s.attack.ninjaWindows[key]=true;const remaining=s.players[p].hand.filter(x=>card(x).ninjaChange||card(x).ninjaStrike&&s.players[p].mana.length>=3&&s.players[p].mana.some(y=>colors(card(y)).includes('水'))&&canEnter(s,p,card(x))).map(x=>x.uid);if(remaining.length){put(s,task('ninjaDeclare',p,s.players[p].hand.find(x=>x.uid===remaining[0]).cardId,{remaining,declared:[]}));return true;}return false;},
+  attackTriggers(s,p,x){kiyo.attack(s,p,x);gran.attack(s,p,x);gate.attack(s,p,x);galaxy.attack(s,p,x);gospel.attack(s,p,x);const c=effective(x,s);if(c.attackEffect&&!api.selfStopped(s,p))enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(c.effect==='graveRecycle'?'recyclePlayer':c.effect==='destroyMin'?'destroyMin':'tapAll',p,x.cardId)});},
+  ninjaWindow(s,p){if(!s.attack)return false;const key=p+'@'+s.attack.stage;(s.attack.ninjaWindows??={});if(s.attack.ninjaWindows[key])return false;s.attack.ninjaWindows[key]=true;const remaining=s.players[p].hand.filter(x=>card(x).ninjaChange||card(x).ninjaStrike&&s.players[p].mana.length>=3&&s.players[p].mana.some(y=>api.manaColors(card(y),s,p).includes('水'))&&canEnter(s,p,card(x))).map(x=>x.uid);if(remaining.length){put(s,task('ninjaDeclare',p,s.players[p].hand.find(x=>x.uid===remaining[0]).cardId,{remaining,declared:[]}));return true;}return false;},
   tapped(s,p,x){if(effective(x,s).tapLoot)enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('optionalLoot',p,x.cardId,{n:2})});},
-  leaveSnapshot:starter.leaveSnapshot,
-  leaving(s,p,x,enabled=!!effective(x,s).kakuLeave,snapshot){starter.leaving(s,p,x,snapshot);if(s.active!==p&&enabled)enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('optionalLoot',p,x.cardId,{n:1})});},
+  leaveSnapshot(s,rows){return {starter:starter.leaveSnapshot(s,rows),kiyo:kiyo.leaveSnapshot(s,rows)};},
+  leaving(s,p,x,enabled=!!effective(x,s).kakuLeave,snapshot,to='grave'){starter.leaving(s,p,x,snapshot?.starter||snapshot);kiyo.leaving(s,p,x,snapshot?.kiyo,to);if(s.active!==p&&enabled)enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('optionalLoot',p,x.cardId,{n:1})});},
   shieldLeft(s,p,x){gate.shieldLeft(s,p,x);if(x.faceUp&&card(x).gCastle)enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('castleLeave',p,x.cardId)});},
   finishSpell(s,p,inst){(s.extSpells??=[]).push({inst,owner:inst.cardOwner??p,to:inst.normalFinish?'mana':inst.finishTo||'grave',crystal:!!inst.crystalFinish});},
   shieldHand(s,p,x){if(card(x).gStrike)enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('gsTarget',p,x.cardId)});},
@@ -221,7 +224,7 @@ export function createExtendedRules(api){
   actions(s,d){return d.choices.map((x,index)=>({kind:'extended',label:x.label,choice:index,score:x.score,...(x.cardId?{cardId:x.cardId}:{})}));},
   step(s,a,d){s.decision=null;chosen(s,d.task,d.choices[a.choice].value);},
   advance(s){if(s.decision||s.leaving||(s.battleResolution&&!s.battleResolution.gateWait)||s.winner!==null)return;let n=0;while(s.extTasks?.length&&!s.decision&&!s.leaving&&(!s.battleResolution||s.battleResolution.gateWait)&&s.winner===null){if(n++>0)break;if(n>200)throw Error('継続効果の処理が長すぎます');run(s,s.extTasks.shift());}},
-  entry(s,p,inst,options={}){gran.entry(s,p,inst,options);starter.entry(s,p,inst,options);const c=card(inst);if(c.redUntap&&!api.selfStopped(s,p)&&!api.ignored(s,inst))enqueue(s,p,{uid:inst.uid,source:c.id,effect:'extended',task:task('redUntap',p,c.id,{uid:inst.uid})});if(c.finalRev&&options.revolution&&!api.selfStopped(s,p)&&!api.ignored(s,inst))enqueue(s,p,{uid:inst.uid,source:c.id,effect:'extended',task:task(c.finalRev==='dark'?'finalDark':'finalLight',p,c.id)});if(api.isCreature(s,inst)){if(options.execution===false)for(const x of creatures(s,1-p))if(effective(x,s).kakuReturn)enqueue(s,1-p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('kakuReturn',p,x.cardId,{uid:inst.uid})});if(colors(c).length>1)for(const x of creatures(s,p))if(effective(x,s).darkEntryFight&&(!api.selfStopped(s,p)||x.uid!==inst.uid)){const key=x.uid+'@'+(x.incarnation||0);if(s.darkTriggers?.[key]!==s.turn){(s.darkTriggers??={})[key]=s.turn;enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('darkFight',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})});}}for(const x of creatures(s,1-p))if(effective(x,s).opponentEntryDraw)enqueue(s,1-p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('optionalDrawOne',1-p,x.cardId)});}},
+  entry(s,p,inst,options={}){kiyo.entry(s,p,inst,options);gran.entry(s,p,inst,options);starter.entry(s,p,inst,options);const c=card(inst);if(c.redUntap&&!api.selfStopped(s,p)&&!api.ignored(s,inst))enqueue(s,p,{uid:inst.uid,source:c.id,effect:'extended',task:task('redUntap',p,c.id,{uid:inst.uid})});if(c.finalRev&&options.revolution&&!api.selfStopped(s,p)&&!api.ignored(s,inst))enqueue(s,p,{uid:inst.uid,source:c.id,effect:'extended',task:task(c.finalRev==='dark'?'finalDark':'finalLight',p,c.id)});if(api.isCreature(s,inst)){if(options.execution===false)for(const x of creatures(s,1-p))if(effective(x,s).kakuReturn)enqueue(s,1-p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('kakuReturn',p,x.cardId,{uid:inst.uid})});if(colors(c).length>1)for(const x of creatures(s,p))if(effective(x,s).darkEntryFight&&(!api.selfStopped(s,p)||x.uid!==inst.uid)){const key=x.uid+'@'+(x.incarnation||0);if(s.darkTriggers?.[key]!==s.turn){(s.darkTriggers??={})[key]=s.turn;enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('darkFight',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})});}}for(const x of creatures(s,1-p))if(effective(x,s).opponentEntryDraw)enqueue(s,1-p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('optionalDrawOne',1-p,x.cardId)});}},
   drawn(s,p,n){const own=s.players[p],before=own.drawsThisTurn||0;own.drawsThisTurn=before+n;for(let i=0;i<n;i++)if(before+i>=1)for(const x of creatures(s,1-p))if(effective(x,s).drawDiscard)enqueue(s,1-p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('discard',p,x.cardId,{n:1})});},
   end(s){const bottom=[];for(const p of [0,1])for(const x of creatures(s,p))for(const y of layers(x))if(y.uraNinja?.turn===s.turn)bottom.push({player:p,uid:x.uid,source:y.cardId,effect:'extended',task:task('ninjaBottom',p,y.cardId,{uid:y.uid,incarnation:y.uraNinja.incarnation})});return [...gate.end(s),...galaxy.end(s),...bottom,...creatures(s,s.active).filter(x=>effective(x,s).endSameName&&x.tapped).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('endJagan',s.active,x.cardId,{uid:x.uid})}))];},
   expire(s,when,p){if(when==='end')s.g5NextSummons=(s.g5NextSummons||[]).filter(x=>x.turn!==s.turn);for(const l of s.extLimits||[])if(when==='start'&&l.startsPlayer===p)l.active=true;s.extLimits=(s.extLimits||[]).filter(l=>!(l.expires===when&&l.who===p&&l.active!==false&&(l.afterTurns===undefined||s.players[p].turns>l.afterTurns)));if(when==='start')s.finalUsed=[false,false];for(const own of s.players){if(when==='start'){own.drawsThisTurn=0;own.brokenThisTurn=0;own.discardedThisTurn=false;}for(const x of own.battle){x.powerModifiers=(x.powerModifiers||[]).filter(l=>!(l.expires===when&&l.who===p));if(when==='start'&&own===s.players[p]){delete x.hyperActive;delete x.justDiverActive;}}}},
