@@ -14,7 +14,7 @@ export function manualModel(s,ui={}){
  const attacker=human&&!s.decision&&actions.some(a=>a.kind==='attack'&&a.uid===ui.attacker)?ui.attacker:null;
  const source=s.decision?.source||s.resolvingSpell?.source||s.judge?.source;
  const selected=s.decision?.task?.selected,chosen=selected?.length||s.decision?.chosen?.length||0;
- const progress=s.decision?.type==='extended'&&Array.isArray(selected)?`${chosen}${s.decision.task.op==='g12Select'?' / 2枚':s.decision.task.op==='g20Select'?' / '+s.decision.task.max+'体':s.decision.task.op==='g19BojiSelect'?' / 2体':s.decision.task.op==='g19Untap'?' / 3体':s.decision.task.op==='g21Shutter'?' / 2体':s.decision.task.op==='g21Fortress'?' / 3つ':s.decision.task.op==='g21BreakChoose'?' / 9つ':'枚選択'}`:s.decision?.type==='leaveMana'?`${chosen} / 3枚`:s.decision?.type==='mugen'?`${chosen} / 4体`:s.decision?.type==='manaTop'?`${chosen} / ${s.decision.count}枚`:s.decision?.type==='infinityShields'?`${chosen} / ${s.decision.count}つ`:s.decision?.type==='shieldGuard'?`${s.shieldBreak.protections.length}つ保護`:null;
+ const progress=s.decision?.type==='extended'&&Array.isArray(selected)?`${chosen}${s.decision.task.op==='g2_Five'?' / 2回':s.decision.task.op==='g12Select'?' / 2枚':s.decision.task.op==='g20Select'?' / '+s.decision.task.max+'体':s.decision.task.op==='g19BojiSelect'?' / 2体':s.decision.task.op==='g19Untap'?' / 3体':s.decision.task.op==='g21Shutter'?' / 2体':s.decision.task.op==='g21Fortress'?' / 3つ':s.decision.task.op==='g21BreakChoose'?' / 9つ':'枚選択'}`:s.decision?.type==='leaveMana'?`${chosen} / 3枚`:s.decision?.type==='mugen'?`${chosen} / 4体`:s.decision?.type==='manaTop'?`${chosen} / ${s.decision.count}枚`:s.decision?.type==='infinityShields'?`${chosen} / ${s.decision.count}つ`:s.decision?.type==='shieldGuard'?`${s.shieldBreak.protections.length}つ保護`:null;
  let title=s.winner!==null?(s.winner===0?'勝利！':'対戦終了'):!human?'相手の行動を待っています':s.decision?(s.decision.title||titles[s.decision.type]||'行動を選ぼう'):s.phase==='charge'?'マナに置くカードを選ぼう':s.phase==='main'?hand?'このカードをどう使う？':'使うカードを手札から選ぼう':attacker?'攻撃先を選ぼう':'攻撃するクリーチャーを選ぼう';
  if(s.decision?.type==='block'&&actions.some(a=>a.kind==='guardman'))title='ブロック・ガードマンを選ぼう';
  let help=s.winner!==null?s.reason:!human?'相手の手札や山札は非公開です。':s.decision?decisionHelp(s):s.phase==='charge'?'手札をタップしてから「マナに置く」。1ターンに1枚です。':s.phase==='main'?'選んだカードの能力を確認して、召喚・呪文を使えます。':attacker?'光っている相手のカードか、プレイヤーへの攻撃をタップ。':'「攻撃可」のカードをタップ。対象を選んでから攻撃します。';
@@ -23,6 +23,9 @@ export function manualModel(s,ui={}){
 }
 function decisionHelp(s){
  const d=s.decision;
+ if(d.task?.op==='g2_Declare')return '攻撃時に使いたい侵略をすべて宣言します。宣言後に引いたカードは今回の攻撃では使えません。';
+ if(d.task?.op==='g2_Invade')return '宣言した場所に残っているカードを重ねます。バトルゾーンからなら、元の進化元はその場に残ります。';
+ if(d.task?.op==='g2_Five')return '同じ効果を2回選べます。5文明が盤面に揃っていれば、すべてを1回ずつ使うこともできます。';
  if(d.task?.op==='g12Select')return '使うハンターを2枚まで先に選び、確定してから使う順番を選びます。残りは好きな順序で山札の下へ置きます。';
  if(d.task?.op==='g12Loss')return '適用する敗北の置き換えを選びます。山札が0枚のままなら、破壊された時の能力が解決する前に再び敗北します。';
  if(d.task?.op==='g19BojiSelect')return '手札と墓地から最大1体ずつ、先にすべて選びます。出した仲間は次の自分のターンまでブロッカーになります。';
