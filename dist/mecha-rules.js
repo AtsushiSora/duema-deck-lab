@@ -45,7 +45,7 @@ export function createMechaRules(api){
  function assignable(s,p,rows,used=[],allowed=null){if(!rows.length)return true;const x=rows[0];if(!card(x).evolution)return assignable(s,p,rows.slice(1),used,allowed);return api.evolutionBases(s,p,card(x)).some(b=>!used.includes(b.uid)&&(!allowed||allowed.includes(b.uid))&&assignable(s,p,rows.slice(1),[...used,b.uid],allowed));}
  function prepareBoji(s,t){const own=s.players[t.p],bases=creatures(s,t.p).map(x=>x.uid);own.g19Holding??=[];for(const r of t.selected){const x=remove(own[r.origin],r.uid);if(x)own.g19Holding.push(x);}put(s,...t.selected.map(r=>task('g19Held',t.p,t.source,{...r,blocker:true,bases})));}
  function chosen(s,t,value){if(!t.op.startsWith('g19'))return false;const own=s.players[t.p];switch(t.op){
-  case'g19SheketDraw':if(value){draw(s,t.p,1);put(s,{...t,remaining:t.remaining-1});}break;
+  case'g19SheketDraw':if(value){put(s,{...t,remaining:t.remaining-1});draw(s,t.p,1);}break;
   case'g19Shield':if(value)api.shieldTop(s,t.p,card(t.source));break;
   case'g19BojiMill':if(value)mill(s,t.p,4);break;
   case'g19SelectDeploy':if(value)put(s,task('putCreature',t.p,t.source,{origin:t.origin,uid:value}));break;

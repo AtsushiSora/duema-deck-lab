@@ -9,7 +9,7 @@ export function createMagicRules(api){
  function numberChoice(s,t){const publicCosts=s.players[1-t.p].battle.flatMap(x=>[cost(card(x))]),values=[...new Set([0,1,2,3,4,5,6,7,8,9,10,...publicCosts.map(x=>Number.isFinite(x)?x:'∞'),'∞'])];choice(s,t,'宣言する数字を選ぶ（数字の入力もできます）',values.map(value=>opt(String(value)+'を宣言',value,s.players[1-t.p].battle.reduce((n,x)=>n+(cost(card(x))===(value==='∞'?Infinity:value)?10:0),0))));}
  function run(s,t){if(!t.op.startsWith('g9'))return false;const own=s.players[t.p],opp=s.players[1-t.p];switch(t.op){
   case'g9Number':numberChoice(s,t);break;
-  case'g9Napo':{const id=String(s.g9Serial=(s.g9Serial||0)+1);(s.g9Discards??={})[id]=0;put(s,task('discard',t.p,t.source,{n:2,optional:true,magicKey:id}),task('g9NapoDraw',t.p,t.source,{key:id}));break;}
+  case'g9Napo':{const id=String(s.g9Serial=(s.g9Serial||0)+1);(s.g9Discards??={})[id]=0;put(s,task('discard',t.p,t.source,{causedBy:t.p,n:2,optional:true,magicKey:id}),task('g9NapoDraw',t.p,t.source,{key:id}));break;}
   case'g9NapoDraw':{const n=s.g9Discards[t.key]||0;delete s.g9Discards[t.key];draw(s,t.p,n+1);break;}
   case'g9SmallDestroy':move(s,opp.battle.filter(x=>cost(card(x))<=2).map(x=>({player:1-t.p,uid:x.uid,to:'grave'})));break;
   case'g9FireModes':if(!t.remaining)put(s,...[...t.selected].sort((a,b)=>a-b).map(mode=>task('g9FireMode',t.p,t.source,{mode})));else choice(s,t,'使う効果を選ぶ（同じ効果も選べます・あと'+t.remaining+'つ）',['手札からコスト3以下のクリーチャーを出す','自分の1体にスピードアタッカーを与える','自分の1体を最初の攻撃の終わりにアンタップ'].map((label,value)=>opt(label,value,value===0&&own.hand.some(x=>card(x).type==='creature'&&cost(card(x))<=3)?25:5)));break;
@@ -29,7 +29,7 @@ export function createMagicRules(api){
   case'g9Peecap':grant(s,t.p,value,t.source);break;
   case'g9Hime':if(value){const x=creatures(s,t.p).find(x=>x.uid===value&&!x.tapped&&magic(card(x)));if(x){api.tap(s,t.p,x);api.castBattleSpell(s,t.p,t.uid,t.incarnation,t.source,'マジック・フレンド・バースト');}}break;
   case'g9Bounce':if(value)put(s,{...t,selected:[...t.selected,value]});else move(s,t.selected.map(uid=>({player:1-t.p,uid,to:'hand'})));break;
-  case'g9Karaku':if(value){draw(s,t.p,1);if(s.winner===null)put(s,task('execute',t.p,t.source,{origin:'hand',max:3,spellOnly:true}));}break;
+  case'g9Karaku':if(value){put(s,task('execute',t.p,t.source,{origin:'hand',max:3,spellOnly:true}));draw(s,t.p,1);}break;
   case'g9Kaku':if(value){const x=own[value.origin].find(x=>x.uid===value.uid);if(x){x.finishTo='deck';cast(s,t.p,x.uid,true,null,value.face,null,value.origin,'カクメイジン');}}break;
   default:throw Error('未実装のマジック選択：'+t.op);
  }return true;}

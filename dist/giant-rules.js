@@ -45,7 +45,7 @@ export function createGiantRules(api){
  case'g17_TouchDeploy':if(v)put(s,task('putCreature',t.p,t.source,{uid:v,origin:'mana'}));break;
  case'g17_Heavy':if(v)put(s,task('putCreature',t.p,t.source,{uid:v,origin:'mana'}));break;
  case'g17_Terminal':if(v&&!s.g7TerminalUsed?.[t.p]){(s.g7TerminalUsed??=[false,false])[t.p]=true;put(s,task('g17_TermDraw',t.p,t.source));}break;
- case'g17_TermDraw':if(v)draw(s,t.p,own.hand.length);put(s,task('g17_TermMana',t.p,t.source));break;
+ case'g17_TermDraw':put(s,task('g17_TermMana',t.p,t.source));if(v)draw(s,t.p,own.hand.length);break;
  case'g17_TermMana':if(v)ramp(s,t.p,own.mana.length);break;
  case'g17_Scarlet':if(v){put(s,task('g17_AfterScarlet',t.p,t.source,{moved:v}));move(s,[{player:t.p,uid:v,to:'mana'}]);}break;
  case'g17_Mekraid':{unprotect(own,v?[v.uid]:[]);put(s,...(v?[task('g17_MekUse',t.p,t.source,{uid:v.uid,face:v.face})]:[]),task('g17_Order',t.p,t.source,{uids:t.uids.filter(uid=>uid!==v?.uid),protected:t.uids}));break;}

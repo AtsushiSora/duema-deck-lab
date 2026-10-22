@@ -7,7 +7,7 @@ export function createGransectRules(api){
  function finishReveal(s,t){const own=s.players[t.p];for(const uid of t.selected){const x=remove(own.deck,uid);if(x){clear(x,'hand');own.hand.push(x);}}if(t.selected.length)api.deckCheck(s,t.p);const rest=t.uids.filter(uid=>!t.selected.includes(uid));if(t.bottom)put(s,task('g20Bottom',t.p,t.source,{uids:rest}));else{let moved=0;for(const uid of rest){const x=remove(own.deck,uid);if(x){const to=api.deckRedirect(s)?'grave':'mana';clear(x,to);if(to==='mana')x.tapped=true;own[to].push(x);moved++;}}if(moved)api.deckCheck(s,t.p);}}
  function run(s,t){if(!t.op.startsWith('g16'))return false;const own=s.players[t.p];switch(t.op){
   case'g16ShakoRecycle':{const all=own.grave.splice(0);for(const x of all)clear(x,'deck');own.deck=api.shuffled([...own.deck,...all],Math.floor(api.random(s)*4294967296));log(s,t.p,'shuffleGrave','シャコガイルで自分の墓地を山札に戻してシャッフル',{cardId:t.source});break;}
-  case'g16ShakoStart':put(s,task('draw',t.p,t.source,{n:5}),task('discard',t.p,t.source,{n:3}));break;
+  case'g16ShakoStart':put(s,task('draw',t.p,t.source,{n:5}),task('discard',t.p,t.source,{causedBy:t.p,n:3}));break;
   case'g16Nacht':ramp(s,t.p,2);put(s,task('g16ManaReturn',t.p,t.source));break;
   case'g16ManaReturn':choice(s,t,'マナから手札に戻すクリーチャーを選ぶ',own.mana.filter(x=>card(x).type==='creature').map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)));break;
   case'g16NachtReturn':{const x=own.mana.find(x=>x.uid===t.uid);if(x&&card(x).manaReturnStart)choice(s,t,'ジーク・ナハトファルターをマナから手札に戻す？',[opt('手札に戻す',true,own.hand.length<3?10:-1,x.cardId),skip()]);break;}

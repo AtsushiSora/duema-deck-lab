@@ -1,7 +1,7 @@
 import {randomBytes,randomUUID,randomInt,createCipheriv,createDecipheriv} from 'node:crypto';
 import {gzipSync,gunzipSync} from 'node:zlib';
 import cardData from '../dist/cards.json' with {type:'json'};
-import {setCards,setRandomSource,createGame,getLegalActions,step,validateDeck,card,effectiveCard,power,ENGINE_VERSION} from '../dist/engine.js';
+import {setCards,setRandomSource,createGame,getLegalActions,step,validateDeck,card,effectiveCard,power,peekDeckTop,ENGINE_VERSION} from '../dist/engine.js';
 setCards(cardData.cards);
 // Every online shuffle and random choice uses server-side entropy. Browser simulations keep their seeded RNG.
 setRandomSource(()=>randomInt(0x100000000)/0x100000000);
@@ -22,7 +22,7 @@ export function projectRoom(room,user,now=Date.now()){
  const v={schemaVersion:PROTOCOL,engineVersion:room.engineVersion,code:room.code,phase:expired?'expired':room.phase,revision:room.revision,expiresAt:room.expiresAt,updatedAt:room.updatedAt,seat,players:room.profiles.map(p=>p?{name:p.name}:null),canJoin:seat<0&&room.phase==='waiting'&&!expired,events:room.events.slice(-40)};
  if(seat<0||!room.game)return v;
  const s=room.game,actions=getLegalActions(s),actor=actions[0]?.player??null;
- v.game={turn:s.turn,phase:s.phase,active:s.active,first:s.first,attack:s.attack?{attacker:s.attack.attacker,target:s.attack.target,player:s.players.findIndex(p=>p.battle.some(x=>x.uid===s.attack.attacker))}:null,actor,winner:s.winner,reason:s.reason,draw:room.draw||false,decision:actor===seat?s.decision?.title||'':null,numberChoice:actor===seat&&s.decision?.task?.op==='g9Number',players:s.players.map((p,i)=>({name:room.profiles[i].name,deckCount:p.deck.length,handCount:p.hand.length,shieldCount:p.shields.length,faceUpShields:p.shields.filter(x=>x.faceUp).map(x=>publicCard(s,x,i,seat)),hand:i===seat?p.hand.map(x=>publicCard(s,x,i,seat)):[],battle:p.battle.map(x=>publicCard(s,x,i,seat)),mana:p.mana.map(x=>publicCard(s,x,i,seat)),grave:p.grave.map(x=>publicCard(s,x,i,seat))})),actions:actor===seat&&!expired&&room.phase==='playing'?actions.map(a=>({id:a.id,kind:a.kind,label:a.label,uid:a.uid||null})):[]};return v;
+ v.game={turn:s.turn,phase:s.phase,active:s.active,first:s.first,attack:s.attack?{attacker:s.attack.attacker,target:s.attack.target,player:s.players.findIndex(p=>p.battle.some(x=>x.uid===s.attack.attacker))}:null,actor,winner:s.winner,reason:s.reason,draw:room.draw||false,decision:actor===seat?s.decision?.title||'':null,numberChoice:actor===seat&&s.decision?.task?.op==='g9Number',players:s.players.map((p,i)=>({name:room.profiles[i].name,deckCount:p.deck.length,...(i===seat&&peekDeckTop(s,seat)?{deckTop:publicCard(s,peekDeckTop(s,seat),i,seat)}:{}),handCount:p.hand.length,shieldCount:p.shields.length,faceUpShields:p.shields.filter(x=>x.faceUp).map(x=>publicCard(s,x,i,seat)),hand:i===seat?p.hand.map(x=>publicCard(s,x,i,seat)):[],battle:p.battle.map(x=>publicCard(s,x,i,seat)),mana:p.mana.map(x=>publicCard(s,x,i,seat)),grave:p.grave.map(x=>publicCard(s,x,i,seat))})),actions:actor===seat&&!expired&&room.phase==='playing'?actions.map(a=>({id:a.id,kind:a.kind,label:a.label,uid:a.uid||null})):[]};return v;
 }
 export function createDuelService({store,key,now=()=>Date.now(),code=()=>randomBytes(8).toString('hex').toUpperCase(),seed=()=>randomBytes(4).readUInt32LE(),uid=randomUUID}={}){
  if(!key||Buffer.from(key,'base64').length!==32)throw Error('DUEL_STATE_KEY must be configured');

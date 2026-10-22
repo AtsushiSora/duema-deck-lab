@@ -5,7 +5,7 @@ export function createGospelRules(api){
  const elementOptions=(s,p,max)=>s.players[1-p].battle.filter(x=>cost(card(x))<=(max==='∞'?Infinity:max)).filter(x=>api.targetable(s,p,1-p,x)).map(x=>opt(card(x).name,{uid:x.uid,zone:'battle'},20+cost(card(x)),x.cardId));
  const entry=(s,p,source,op,more={})=>api.enqueue(s,p,{source,effect:'extended',task:task(op,p,source,more)});
  const discount=(s,p,source,n)=>{(s.g5NextSummons??=[]).push({p,source,reduce:n,turn:s.turn});};
- function discardThen(s,t,follow){const key=String(s.g5Serial=(s.g5Serial||0)+1);(s.g5Discards??={})[key]=null;put(s,task('discard',t.p,t.source,{n:1,gospelKey:key}),task(follow,t.p,t.source,{key}));}
+ function discardThen(s,t,follow){const key=String(s.g5Serial=(s.g5Serial||0)+1);(s.g5Discards??={})[key]=null;put(s,task('discard',t.p,t.source,{causedBy:t.p,n:1,gospelKey:key}),task(follow,t.p,t.source,{key}));}
  function run(s,t){if(!t.op.startsWith('g5'))return false;const own=s.players[t.p],opp=s.players[1-t.p];switch(t.op){
   case'g5Recover':{const list=own.grave.filter(hasSpell).filter(x=>!t.selected.includes(x.uid));choice(s,t,'手札に戻す墓地の呪文を選ぶ（'+t.selected.length+'枚選択）',[...list.map(x=>opt(card(x).name,x.uid,20,x.cardId)),opt('ここまでで確定',null,0)]);break;}
   case'g5Dolsuzaku':{const list=['hand','grave'].flatMap(origin=>own[origin].filter(x=>!t.selected.some(y=>y.uid===x.uid)&&card(x).type==='creature'&&card(x).race.includes('ドルスザク')&&canEnter(s,t.p,card(x),{origin,execution:true})).map(x=>opt(card(x).name,{origin,uid:x.uid},30,x.cardId)));const max=own.entryLimitThisTurn?Math.max(0,1-(own.enteredThisTurn||0)):4;if(t.selected.length<max&&list.length)choice(s,t,'召喚するドルスザクを4体まで先に選ぶ（'+t.selected.length+'体）',[...list,opt('ここまでで確定',null,0)]);else put(s,{...t,op:'g5PrepareSummons'});break;}
@@ -21,7 +21,7 @@ export function createGospelRules(api){
   case'g5Siren':choice(s,t,'手札に戻す自分のマナを1枚選ぶ',own.mana.map(x=>opt(card(x).name,x.uid,x.tapped?10:0,x.cardId)));if(!own.mana.length)put(s,task('g5HandMana',t.p,t.source));break;
   case'g5HandMana':choice(s,t,'マナに置く手札を1枚選ぶ',own.hand.map(x=>opt(card(x).name,x.uid,cost(card(x)),x.cardId)));break;
   case'g5Courage':choice(s,t,'勇愛の天秤の効果を選ぶ',[opt('手札を1枚捨て、2枚引く',0,own.deck.length>2?15:-30),opt('パワー2000以下の相手を破壊',1,creatures(s,1-t.p).some(x=>power(x,false,s)<=2000)?30:0)]);break;
-  case'g5Burning':put(s,task('discard',t.p,t.source,{n:1}),task('draw',t.p,t.source,{n:2}),...(t.plus?[task('g5DestroyElement',t.p,t.source,{max:6})]:[]));break;
+  case'g5Burning':put(s,task('discard',t.p,t.source,{causedBy:t.p,n:1}),task('draw',t.p,t.source,{n:2}),...(t.plus?[task('g5DestroyElement',t.p,t.source,{max:6})]:[]));break;
   case'g5LastFlame':discardThen(s,t,'g5AfterFlame');break;
   case'g5AfterFlame':{const id=s.g5Discards?.[t.key];delete s.g5Discards[t.key];if(id){const max=Math.max(...faces(card(id)).map(cost));put(s,task('g5DestroyElement',t.p,t.source,{max:Number.isFinite(max)?max:'∞'}));}break;}
   case'g5DestroyElement':choice(s,t,'破壊するコスト'+t.max+'以下のエレメントを選ぶ',elementOptions(s,t.p,t.max));break;
@@ -37,7 +37,7 @@ export function createGospelRules(api){
   case'g5TapThree':if(value)put(s,{...t,uids:[...t.uids,value]});else for(const uid of t.uids){const x=s.players[1-t.p].battle.find(x=>x.uid===uid);if(x)api.tap(s,1-t.p,x);}break;
   case'g5Siren':{const x=remove(own.mana,value);if(x){clear(x,'hand');own.hand.push(x);}put(s,task('g5HandMana',t.p,t.source));break;}
   case'g5HandMana':{const x=remove(own.hand,value);if(x){clear(x,'mana');own.mana.push(x);api.handMana(s,t.p,x);}break;}
-  case'g5Courage':if(value===0)put(s,task('discard',t.p,t.source,{n:1}),task('draw',t.p,t.source,{n:2}));else put(s,task('destroyPower',t.p,t.source,{max:2000}));break;
+  case'g5Courage':if(value===0)put(s,task('discard',t.p,t.source,{causedBy:t.p,n:1}),task('draw',t.p,t.source,{n:2}));else put(s,task('destroyPower',t.p,t.source,{max:2000}));break;
   case'g5DestroyElement':if(value.zone==='battle')move(s,[{player:1-t.p,uid:value.uid,to:'grave'}]);else{const x=removeShield(s,1-t.p,value.uid);if(x){clear(x);s.players[1-t.p].grave.push(x);}}break;
   case'g5AltPay':if(value)put(s,{...t,selected:[...t.selected,value]});break;
   default:throw Error('未実装のゴスペル選択：'+t.op);

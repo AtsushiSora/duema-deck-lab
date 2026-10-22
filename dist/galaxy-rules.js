@@ -7,10 +7,11 @@ export function createGalaxyRules(api){
  const chosenReducers=(s,p,c)=>reducers(s,p,c).filter(x=>!c.snowReducers||c.snowReducers.includes(key(x)));
  const manaAuthorities=(s,p)=>creatures(s,p).filter(x=>effective(x,s).manaOnce&&(s.g22UsedMana||{})[key(x)]!==s.turn);
  const effect=(s,p,source,op,more={})=>api.enqueue(s,p,{source,effect:'extended',task:task(op,p,source,more)});
- const discardSequence=(s,t,n,follow,optional=false)=>{const id=String(s.g22Serial=(s.g22Serial||0)+1);(s.g22Discards??={})[id]=[];put(s,task('discard',t.p,t.source,{n,optional,galaxyKey:id}),task(follow,t.p,t.source,{key:id}));};
+ const discardSequence=(s,t,n,follow,optional=false)=>{const id=String(s.g22Serial=(s.g22Serial||0)+1);(s.g22Discards??={})[id]=[];put(s,task('discard',t.p,t.source,{causedBy:t.p,n,optional,galaxyKey:id}),task(follow,t.p,t.source,{key:id}));};
  function run(s,t){if(!t.op.startsWith('g22'))return false;const own=s.players[t.p],opp=s.players[1-t.p];switch(t.op){
-  case'g22Blaze':put(s,task('discard',t.p,t.source,{n:1}),task('draw',t.p,t.source,{n:1}));break;
-  case'g22Master':if(own.mana.some(x=>api.manaColors(card(x),s,t.p).includes('火')))draw(s,t.p,1);if(s.winner===null)discardSequence(s,t,own.hand.length,'g22AfterMaster',true);break;
+  case'g22Blaze':put(s,task('discard',t.p,t.source,{causedBy:t.p,n:1}),task('draw',t.p,t.source,{n:1}));break;
+  case'g22Master':put(s,{...t,op:'g22MasterDiscard'});if(own.mana.some(x=>api.manaColors(card(x),s,t.p).includes('火')))draw(s,t.p,1);break;
+  case'g22MasterDiscard':discardSequence(s,t,own.hand.length,'g22AfterMaster',true);break;
   case'g22AfterMaster':{const n=s.g22Discards[t.key].length;delete s.g22Discards[t.key];put(s,...Array.from({length:n},()=>task('destroyPower',t.p,t.source,{max:6000})));break;}
   case'g22UntapMana':{const list=own.mana.filter(x=>x.tapped&&!t.selected.includes(x.uid));if(t.selected.length===2||!list.length){for(const uid of t.selected){const x=own.mana.find(x=>x.uid===uid);if(x)x.tapped=false;}break;}choice(s,t,'アンタップするマナを2枚まで選ぶ',[...list.map(x=>opt(card(x).name,x.uid,10,card(x).id)),opt('ここまでで確定',null,0)]);break;}
   case'g22FairySpell':discardSequence(s,t,1,'g22AfterFairy');break;

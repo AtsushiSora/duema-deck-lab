@@ -1,0 +1,65 @@
+{
+  "checkedAt": "2026-10-22",
+  "targetDeck": "starter25-10",
+  "officialDeck": "https://dm.takaratomy.co.jp/dm26sd1_decklist/deck10/",
+  "rules": [
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/40461/",
+    "https://dm.takaratomy.co.jp/rule/qa/40462/",
+    "https://dm.takaratomy.co.jp/rule/qa/40463/",
+    "https://dm.takaratomy.co.jp/rule/qa/41276/",
+    "https://dm.takaratomy.co.jp/rule/qa/45146/",
+    "https://dm.takaratomy.co.jp/rule/qa/45147/",
+    "https://dm.takaratomy.co.jp/rule/qa/45148/",
+    "https://dm.takaratomy.co.jp/rule/qa/39649/",
+    "https://dm.takaratomy.co.jp/rule/qa/39654/",
+    "https://dm.takaratomy.co.jp/rule/qa/42075/",
+    "https://dm.takaratomy.co.jp/rule/qa/44090/",
+    "https://dm.takaratomy.co.jp/rule/qa/40653/",
+    "https://dm.takaratomy.co.jp/cls/creatorsletter40/"
+  ],
+  "sourceAccess": {
+    "cardText": "The existing official2026-10-20 snapshot retains11 canonical names and13 full faces with original source URLs and IDs. No unverified new card-detail check date was assigned.",
+    "qa": "Official primary-source QAs40461/40462/40463/41276,45146/45147/45148,39649/39654,42075/44090 corroborate the implementation. Official deck10 page confirms the unchanged40."
+  },
+  "decisions": [
+    {
+      "topic": "Gachirobo",
+      "evidence": "QA40461,40462,40463,41276",
+      "behavior": "Reveal up to3, compare creature-face costs only; one/two remaining cards can match. Choose deployment order, including non-evolution before evolution. Protect the batch in its library so EX-life uses the first non-revealed card. Unplaceable cards stay at top on a match; a miss is bottom-ordered. Each entry replacement finishes before the next entry."
+    },
+    {
+      "topic": "Revolution0",
+      "evidence": "QA45146,45147,45148",
+      "behavior": "Capture simultaneous shield-to-hand after all shield removals. Declare after all ST declarations and before any ST execution, then resolve among ordinary triggers after ST cards, rechecking zero shields and the same hand zone serial. Non-break acquisitions also work. This ability is not blocked by ST-only suppression."
+    },
+    {
+      "topic": "Black BigBang",
+      "evidence": "QA42075,44090; comprehensive114.4a",
+      "behavior": "Only empty-library defeat is prevented; direct attacks can still lose. EX-life can remove the last library card while BigBang enters. Replace each draw individually with optional grave deployment; replacement is not an actual draw. Complete the replacement before the next draw or later effect. Source removal/ignoring at empty library causes defeat before pending triggers."
+    },
+    {
+      "topic": "Orochi",
+      "evidence": "QA39649,39654",
+      "behavior": "Own-turn private top peek. Normal paid creature summons from the top in main, with evolution bases and entry replacements. No spell-face casting from this permission. Next top card is excluded from opponent observations and online projections; controller can inspect from mobile menu or online private card info."
+    },
+    {
+      "topic": "Discard deployment",
+      "evidence": "card text; QA40653",
+      "behavior": "Ryu replacement checks that the cause is an opposing creature or spell, independent of whose turn. All existing discard tasks retain cause controller, while Baiken keeps its separate enemy-turn condition. Discard batches reserve identities first and replacement cards are never counted as actually discarded."
+    },
+    {
+      "topic": "Other effects",
+      "evidence": "full official card text and current comprehensive rules, Creators Letter40",
+      "behavior": "Cambiare all-tap/next-start freeze and optional element shielding; Garawald whole-battlefield discount, entry/attack fight and optional victory draw; Cougar top3 hand/mana and Mystery shuffle/reveal; Nicol opponent-chosen7 discard and mandatory attack destruction; Magrul preselection with shared9 multicolour creature budget; Bean printed entry-text observer including JustDiver; Rice ramp/optional mana return; Mugen2 and Guignol bounce or recovery restricted to newly milled2."
+    }
+  ],
+  "validation": {
+    "unit": "tests/gachirobo-effects.test.mjs",
+    "ui": "tests/manual-app.test.mjs, tests/starter25-navigation.test.mjs",
+    "online": "tests/online-server.test.mjs",
+    "ai": "108 seeded games across14 ready lists and4 tournament lists, full-state replay and80 unique cards every action",
+    "random": "40 seeds with JSON legal-action and AI equivalence",
+    "worker": "360 games across all18 opponents"
+  }
+}
