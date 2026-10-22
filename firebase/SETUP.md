@@ -2,7 +2,7 @@
 
 このアプリのアカウント機能は、GoogleログインにFirebase Authentication、デッキ保存にCloud Firestoreを使います。無料のSparkプランで始める構成です。Blazeへの変更、請求先のリンク、Cloud Functions、画像のCloud Storageへの保存は不要です。
 
-現在はWeb用公開設定が未登録のため、アプリは「Googleログインは初期設定待ち」と表示します。架空のアカウントでのログインや、端末保存をクラウド保存に見せる処理はありません。
+2026-10-22、提供された画面から `duema-deck-lab` のWeb用公開設定を登録しました。公開設定APIの応答は `CONFIGURATION_NOT_FOUND` でした。次は「2. Googleログイン」からAuthenticationを初期設定します。実際のGoogleログイン・Firestore作成とルール適用は未確認です。
 
 ## 1. 無料プロジェクトとWebアプリ
 
