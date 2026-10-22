@@ -14,7 +14,7 @@ export function manualModel(s,ui={}){
  const attacker=human&&!s.decision&&actions.some(a=>a.kind==='attack'&&a.uid===ui.attacker)?ui.attacker:null;
  const source=s.decision?.source||s.resolvingSpell?.source||s.judge?.source;
  const selected=s.decision?.task?.selected,chosen=selected?.length||s.decision?.chosen?.length||0;
- const progress=s.decision?.type==='extended'&&Array.isArray(selected)?`${chosen}${s.decision.task.op==='g20Select'?' / '+s.decision.task.max+'体':s.decision.task.op==='g19BojiSelect'?' / 2体':s.decision.task.op==='g19Untap'?' / 3体':s.decision.task.op==='g21Shutter'?' / 2体':s.decision.task.op==='g21Fortress'?' / 3つ':s.decision.task.op==='g21BreakChoose'?' / 9つ':'枚選択'}`:s.decision?.type==='leaveMana'?`${chosen} / 3枚`:s.decision?.type==='mugen'?`${chosen} / 4体`:s.decision?.type==='manaTop'?`${chosen} / ${s.decision.count}枚`:s.decision?.type==='infinityShields'?`${chosen} / ${s.decision.count}つ`:s.decision?.type==='shieldGuard'?`${s.shieldBreak.protections.length}つ保護`:null;
+ const progress=s.decision?.type==='extended'&&Array.isArray(selected)?`${chosen}${s.decision.task.op==='g12Select'?' / 2枚':s.decision.task.op==='g20Select'?' / '+s.decision.task.max+'体':s.decision.task.op==='g19BojiSelect'?' / 2体':s.decision.task.op==='g19Untap'?' / 3体':s.decision.task.op==='g21Shutter'?' / 2体':s.decision.task.op==='g21Fortress'?' / 3つ':s.decision.task.op==='g21BreakChoose'?' / 9つ':'枚選択'}`:s.decision?.type==='leaveMana'?`${chosen} / 3枚`:s.decision?.type==='mugen'?`${chosen} / 4体`:s.decision?.type==='manaTop'?`${chosen} / ${s.decision.count}枚`:s.decision?.type==='infinityShields'?`${chosen} / ${s.decision.count}つ`:s.decision?.type==='shieldGuard'?`${s.shieldBreak.protections.length}つ保護`:null;
  let title=s.winner!==null?(s.winner===0?'勝利！':'対戦終了'):!human?'相手の行動を待っています':s.decision?(s.decision.title||titles[s.decision.type]||'行動を選ぼう'):s.phase==='charge'?'マナに置くカードを選ぼう':s.phase==='main'?hand?'このカードをどう使う？':'使うカードを手札から選ぼう':attacker?'攻撃先を選ぼう':'攻撃するクリーチャーを選ぼう';
  if(s.decision?.type==='block'&&actions.some(a=>a.kind==='guardman'))title='ブロック・ガードマンを選ぼう';
  let help=s.winner!==null?s.reason:!human?'相手の手札や山札は非公開です。':s.decision?decisionHelp(s):s.phase==='charge'?'手札をタップしてから「マナに置く」。1ターンに1枚です。':s.phase==='main'?'選んだカードの能力を確認して、召喚・呪文を使えます。':attacker?'光っている相手のカードか、プレイヤーへの攻撃をタップ。':'「攻撃可」のカードをタップ。対象を選んでから攻撃します。';
@@ -23,6 +23,8 @@ export function manualModel(s,ui={}){
 }
 function decisionHelp(s){
  const d=s.decision;
+ if(d.task?.op==='g12Select')return '使うハンターを2枚まで先に選び、確定してから使う順番を選びます。残りは好きな順序で山札の下へ置きます。';
+ if(d.task?.op==='g12Loss')return '適用する敗北の置き換えを選びます。山札が0枚のままなら、破壊された時の能力が解決する前に再び敗北します。';
  if(d.task?.op==='g19BojiSelect')return '手札と墓地から最大1体ずつ、先にすべて選びます。出した仲間は次の自分のターンまでブロッカーになります。';
  if(d.task?.op==='g19Yobi')return '召喚して出た時に使えます。山札の上から最初に見つかった小さいクリーチャーを出します。';
  if(d.task?.op==='g19MekraidLook')return '選んだ面のコストと種族で判定します。クリーチャー側・呪文側を選べます。残りは好きな順序で山札の下へ置きます。';
@@ -110,6 +112,8 @@ export function manualBoardHTML(s,ui,{art,icon}){
   if(s.players[1-who].battle.some(x=>effectiveCard(x,s).entryGate))policies.push(`${who?'相手':'自分'}は手札からの実行でのみ登場できる`);
   if(s.players[1-who].battle.some(x=>effectiveCard(x,s).spellLockMaxCost))policies.push(`${who?'相手':'自分'}はコスト5以下の呪文を唱えられない`);
   if((s.g7NoLose||[]).some(x=>x.p===who))policies.push(`${who?'相手':'自分'}は次の自分のターンのはじめまで終極宣言でゲームに負けない`);
+  if((s.g12NoLose||[]).some(x=>x.p===who&&x.turn===s.turn))policies.push(`${who?'相手':'自分'}はこのターン、ダイハードの効果でゲームに負けない`);
+  if(s.players[1-who].battle.some(x=>x.tapped&&effectiveCard(x,s).bairas))policies.push(`${who?'相手':'自分'}はバイラス・カースドによりS・トリガーを使えない`);
   if(s.players[who].entryLimitThisTurn)policies.push(`${who?'相手':'自分'}のこのターンの登場：${Math.min(s.players[who].enteredThisTurn||0,1)} / 1体`);
  }
  return `<div class="play-board"><section class="opponent-field"><div class="play-player" data-visual-key="player:1"><span class="player-avatar">AI</span><strong>${esc(s.players[1].name)}</strong><small>相手</small><button class="field-overview-button" data-action="manual-field" data-player="1" aria-label="相手の場を拡大して見る">場 ${s.players[1].battle.length} ↗</button>${playerAttack?`<button class="direct-attack" data-action="battle-step" data-index="${playerAttack.id}">${icon('battle',14)} ${s.players[1].shields.length?'相手へ攻撃':'ダイレクトアタック'}</button>`:''}</div>${resources(s.players[1],1)}${shields(s.players[1],1)}${creatures(s.players[1],1)}</section><div class="board-divider"><span>DUEL MASTERS</span><b>VS</b><span>DECK LAB</span></div><section class="own-field">${creatures(s.players[0],0)}${shields(s.players[0],0)}<div class="play-player ${destinations.includes('spell')?'hand-spell-target':''}" data-visual-key="player:0"><span class="player-avatar mine">YOU</span><strong>${esc(s.players[0].name)}</strong><small>自分</small><button class="field-overview-button" data-action="manual-field" data-player="0" aria-label="自分の場を拡大して見る">場 ${s.players[0].battle.length} ↗</button></div>${resources(s.players[0],0)}</section></div>${policies.length?`<details class="play-policies"><summary>${icon('info',14)} 適用中の制限・効果 <b>${policies.length}</b></summary><ul>${policies.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></details>`:''}`;
