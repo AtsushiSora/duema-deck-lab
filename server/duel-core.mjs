@@ -15,7 +15,7 @@ export function openRoom(doc,key){try{if(doc.schemaVersion!==PROTOCOL||typeof do
 function deckInput(d){if(!d||typeof d.name!=='string'||d.name.length>120||!Array.isArray(d.cards)||d.cards.length>40)fail('deck/invalid','40枚の対戦対応デッキを選んでください。');const deck={name:d.name.trim()||'デッキ',format:'original',cards:d.cards.map(x=>({id:x.id,count:x.count}))};const errors=validateDeck({...deck,format:d.format||'original'});if(errors.length)fail('deck/invalid',errors[0]);return deck;}
 const profile=user=>({uid:user.uid,name:String(user.name||'プレイヤー').slice(0,80)});
 const indexOf=(s,u)=>s.hostUid===u.uid?0:s.guestUid===u.uid?1:-1;
-function publicCard(s,x,owner,viewer){if(x.faceDown&&owner!==viewer)return {uid:x.uid,hidden:true,tapped:!!x.tapped};const c=effectiveCard(x,s)||card(x);return {uid:x.uid,id:c.id||x.cardId,name:c.name,cost:c.cost,power:power(x,false,s),tapped:!!x.tapped,under:(x.under||[]).map(y=>publicCard(s,y,owner,viewer))};}
+function publicCard(s,x,owner,viewer){if(x.faceDown&&owner!==viewer)return {uid:x.uid,hidden:true,tapped:!!x.tapped};const c=effectiveCard(x,s)||card(x),value=power(x,false,s);return {uid:x.uid,id:c.id||x.cardId,name:c.name,cost:c.cost,power:Number.isFinite(value)?value:value<0?'-∞':'∞',tapped:!!x.tapped,under:(x.under||[]).map(y=>publicCard(s,y,owner,viewer))};}
 export function projectRoom(room,user,now=Date.now()){
  const seat=indexOf(room,user),expired=now>=room.expiresAt&&['waiting','playing'].includes(room.phase);
  if(seat<0&&room.phase!=='waiting')fail('room/forbidden','このルームには参加できません。',403);

@@ -23,6 +23,9 @@ export function manualModel(s,ui={}){
 }
 function decisionHelp(s){
  const d=s.decision;
+ if(d.task?.op==='g3_Declare')return '今回使う鬼エンド・逆転撃を先にすべて宣言します。逆転撃を唱えると、次の自分のターンに闇3マナの支払いが必要です。';
+ if(d.task?.op==='g3_FinalSelect')return '手札とマナから、合計コスト6以下の多色クリーチャーを選んで確定します。';
+ if(d.task?.op==='g3_CycleRepeat')return '手札から唱えた同じ呪文を墓地から再使用します。このクリーチャーにつき各ターン1回です。';
  if(d.task?.op==='g2_Declare')return '攻撃時に使いたい侵略をすべて宣言します。宣言後に引いたカードは今回の攻撃では使えません。';
  if(d.task?.op==='g2_Invade')return '宣言した場所に残っているカードを重ねます。バトルゾーンからなら、元の進化元はその場に残ります。';
  if(d.task?.op==='g2_Five')return '同じ効果を2回選べます。5文明が盤面に揃っていれば、すべてを1回ずつ使うこともできます。';

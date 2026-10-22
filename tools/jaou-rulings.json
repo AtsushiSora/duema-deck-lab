@@ -1,0 +1,57 @@
+{
+  "checkedAt": "2026-10-22",
+  "targetDeck": "starter25-03",
+  "officialDeck": "https://dm.takaratomy.co.jp/dm26sd1_decklist/deck03/",
+  "notes": [
+    {
+      "rule": "Oni-end and reverse-shot declarations",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/40396/",
+        "https://dm.takaratomy.co.jp/rule/qa/42933/",
+        "https://dm.takaratomy.co.jp/rule/qa/48902/",
+        "https://dm.takaratomy.co.jp/rule/qa/45458/",
+        "https://dm.takaratomy.co.jp/rule/qa/46617/"
+      ],
+      "implementation": "Active player declares before active attack effects. The defender declares after active effects and before nonactive effects. Store each declared hand UID and zone serial, recheck shields and dark/fire mana for each Oni-end resolution; no later-acquired cards. Existing Ninja declarations share the defender window."
+    },
+    {
+      "rule": "Reverse-shot delayed obligations",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/45459/",
+        "https://dm.takaratomy.co.jp/rule/qa/45455/",
+        "https://dm.takaratomy.co.jp/rule/qa/45457/",
+        "https://dm.takaratomy.co.jp/rule/qa/45450/"
+      ],
+      "implementation": "One actual reverse cast per attack. Each cast creates its own delayed dark3 obligation. Resolve after untap at next own start with no summon/cast reduction. Mandatory payment if payable, otherwise defeat. Genmu suppresses the low-cost spells delayed effect. A copy cast by Cyclepedia creates no second reverse obligation."
+    },
+    {
+      "rule": "Cyclepedia",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/42364/",
+        "https://dm.takaratomy.co.jp/rule/qa/42365/"
+      ],
+      "implementation": "Per battlefield UID/incarnation and turn optional reuse of the same face of the same physical spell, only if still in grave since original hand cast. Grave-cast replacement goes to bottom after resolution. Charger self-movement takes priority. Declining preserves the once-per-turn use."
+    },
+    {
+      "rule": "Baba defeat replacement",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/41149/",
+        "https://dm.takaratomy.co.jp/rule/qa/44104/"
+      ],
+      "implementation": "Only from hand, only opponents turn with dark and fire mana. Reveal and bottom the actual hand card; may restore an empty deck. Do not apply another replacement to a replacement victory. Continuous alternate-victory conditions are checked again by the existing engine."
+    },
+    {
+      "rule": "Katsuking and Buster",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/39785/"
+      ],
+      "implementation": "Katsuking checks Revolution2 after simultaneous shield removal, Revolution0 continuous power/speed/breaker, choose one of top5 then order remainder then optional bounce. Buster selects all non-evolution multicolour creatures under shared total6 before any enters; shares Final Revolution cap with existing cards. Applies speed to itself too."
+    }
+  ],
+  "sourceAccess": {
+    "canonicalMetadata": "All eight complete official face records already in dist/details.json (2026-10-20). Original sources were retained, no unverified refresh dates assigned.",
+    "verifiedSearch": "Official current card results corroborated all eight names and ability text. Direct Cyclepedia, Buster, Jaouga and Fortune fetches intermittently returned maintenance/503; search-cache results and existing official snapshot used.",
+    "newPrint": "Katsuking and Buster current 25-deck reprints found in official search; equivalent mechanics retained with original IDs."
+  },
+  "ai": "Decline optional Baba deployment when an opposing Kaku return would loop it back. Katsuking optional bounce favours opponents and permits own targets as a player choice."
+}
