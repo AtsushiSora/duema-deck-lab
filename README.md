@@ -1,5 +1,9 @@
 # デッキラボ
 
+公開アプリ：[デッキラボ](https://duema-deck-lab.netlify.app/)
+
+アカウント：[Googleで登録・ログイン](https://duema-deck-lab.netlify.app/?view=account)
+
 紙のデュエマのデッキ作成、AI対戦、対戦結果の分析を行う、スマホを優先したWebアプリです。
 
 ## 起動・検証
@@ -606,8 +610,10 @@ Googleの公開設定APIへの読み取り専用リクエストは HTTP 400 / CO
 
 ## GitHubとNetlifyでの公開
 
-GitHubの非公開リポジトリのmainブランチをNetlifyへ接続します。公開対象はdistディレクトリです。netlify.tomlのコマンドでJavaScript構文とカードデータを検証してから配信します。端末ごとのデッキ・対戦履歴はGitHubへ送信しません。
+GitHubの非公開リポジトリ AtsushiSora/duema-deck-lab のmainブランチをNetlifyの公開サイト duema-deck-lab へ接続しました。公開対象はdistディレクトリです。netlify.tomlのコマンドでJavaScript構文とカードデータを検証してから配信します。端末ごとのデッキ・対戦履歴はGitHubへ送信しません。
 
 2026-10-22、Firebase AuthenticationでGoogle登録を確認し、東京のFirestoreに所有者限定ルールを公開しました。本人の取得許可、未認証・他人の取得拒否をルールプレイグラウンドで検証済みです。実アプリからのGoogleログインとデッキの初回保存も確認しました。別端末への取込みは実端末では未確認です。
 
 公開URLを変えた場合は、Firebase Authenticationの承認済みドメインにも追加します。既存の端末保存データはブラウザのドメインごとに分かれるため、移行元でアカウントに保存し、移行先で同じGoogleアカウントで取り込みます。
+
+NetlifyサイトID：bd2b701e-0687-4ded-bdf6-f8c18e04d3f9。Netlify専用のリポジトリ読み取りキーとpushイベントのWebhookを設定しています。Firebaseにduema-deck-lab.netlify.appを承認済みドメインとして追加済みです。GitHubのコードは非公開、アプリのURLは公開です。

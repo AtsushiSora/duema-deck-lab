@@ -2,7 +2,7 @@
 
 このアプリのアカウント機能は、GoogleログインにFirebase Authentication、デッキ保存にCloud Firestoreを使います。無料のSparkプランで始める構成です。Blazeへの変更、請求先のリンク、Cloud Functions、画像のCloud Storageへの保存は不要です。
 
-2026-10-22、提供された画面から `duema-deck-lab` のWeb用公開設定を登録しました。公開設定APIの応答は `CONFIGURATION_NOT_FOUND` でした。次は「2. Googleログイン」からAuthenticationを初期設定します。実際のGoogleログイン・Firestore作成とルール適用は未確認です。
+2026-10-22、専用プロジェクト `duema-deck-lab` のGoogle認証と東京のFirestoreを設定済みです。所有者限定ルールを公開し、本人の取得許可・未認証と他人の取得拒否をプレイグラウンドで確認しました。旧URLでの実Googleログインと初回デッキ保存も確認しました。公開URLは https://duema-deck-lab.netlify.app/ です。
 
 ## 1. 無料プロジェクトとWebアプリ
 
@@ -19,6 +19,7 @@
 3. Authenticationの「設定 → 承認済みドメイン」に次を追加します。
 
 ```
+duema-deck-lab.netlify.app
 duema-deck-lab.jolly-vole-4389.chatgpt.site
 ```
 
@@ -56,6 +57,6 @@ firebase deploy --only firestore:rules,firestore:indexes --project YOUR_PROJECT_
 
 Sparkは支払情報なしで開始でき、GoogleのようなソーシャルログインとFirestoreの無料枠を使えます。Firestoreには保存容量・読み書き・通信の無料枠があります。無料枠超過時は利用制限がかかるため、エラーを表示します。有料プランへ自動的に変更する処理はアプリにありません。請求先アカウントを利用者がリンクするとBlazeへ変更される場合があるため、無料運用ではリンクしません。
 
-コードではアカウント切替、遅れて返る通信、保存競合、破損データの拒否、デッキの保持と取込みをテストしています。現時点のGoogle実ログインとFirestore本番ルールの動作確認は、Firebase初期設定の完了待ちです。ローカルのRules EmulatorはJava Runtimeがないため実行していません。Sitesのブラウザ確認はユーザーの希望に従い省略しています。
+コードではアカウント切替、遅れて返る通信、保存競合、破損データの拒否、デッキの保持と取込みをテストしています。旧URLでのGoogle実ログインとFirestore初回保存は確認済みです。新しい公開URLの承認済みドメイン登録も完了しています。新URLでのGoogleログインと別端末の復元は実操作では未確認です。ローカルのRules EmulatorはJava Runtimeがないため実行していません。Sitesのブラウザ確認はユーザーの希望に従い省略しています。
 
 参考（2026-10-22確認）：[Firebase料金プラン](https://firebase.google.com/docs/projects/billing/firebase-pricing-plans)、[Firestore料金と無料枠](https://firebase.google.com/docs/firestore/pricing)、[Googleログイン](https://firebase.google.com/docs/auth/web/google-signin)、[Security Rules](https://firebase.google.com/docs/firestore/security/get-started)、[トランザクション](https://firebase.google.com/docs/firestore/manage-data/transactions)。
