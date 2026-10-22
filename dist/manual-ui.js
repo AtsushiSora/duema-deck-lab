@@ -6,7 +6,7 @@ import {pageWindow} from './board-fit.js';
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const number=x=>x===Infinity||x==='∞'?'∞':Number(x).toLocaleString('ja-JP');
 const quietKinds=new Set(['skipDDD','skipDDDSummon','cancelEvolution','cancelDeploy','cancelMugen','cancelLeaveMana','skipDeploy','skipDragonTap','skipTrigger','skipFight','skipRamp','skipEffect','finishShieldGuards','allowLeave','noBlock','stopJudge','skipGaiaDeclare','skipGaiaSummon']);
-const titles={mirageDeclare:'真気楼を使うか宣言しよう',endAbilityOrder:'終了時の能力の順序を選ぼう',gaiaDeclare:'ガイアッシュを使うか宣言しよう',gaiaSummon:'ガイアッシュを召喚するか選ぼう',leaveReplace:'残す方法を選ぼう',leaveMana:'墓地に置くマナを3枚選ぼう',deploy:'手札・マナから出すカードを選ぼう',deployEvolution:'進化元を選ぼう',mugen:'タップする4体を選ぼう',infinityCount:'ブレイクする数を選ぼう',infinityShields:'ブレイクするシールドを選ぼう',dddDeclare:'D・D・Dを使うか選ぼう',dddSummon:'召喚する方法を選ぼう',block:'ブロックするか選ぼう',trigger:'S・トリガーを使うか選ぼう',breakChoice:'ブレイクするシールドを選ぼう',judgeCost:'参照するコストを選ぼう',judgeContinue:'ジャッジを続けるか選ぼう',judgeBreak:'効果で割るシールドを選ぼう',shieldGuard:'シールドを守るか選ぼう',triggerOrder:'先に使うS・トリガー・G・ストライクを選ぼう',entryOrder:'先に解決する能力を選ぼう',effectOrder:'先に解決する能力を選ぼう',dragonTap:'タップする相手を選ぼう',revealEvolution:'公開したカードの出し方を選ぼう',evolution:'進化するか選ぼう',optionalRamp:'マナを増やすか選ぼう',manaTop:'山札に戻すカードを選ぼう',fight:'バトルする相手を選ぼう',battleWinOrder:'先に解決する勝利時能力を選ぼう',draw:'引く枚数を選ぼう',effect:'効果の対象を選ぼう',search:'手札に加えるカードを選ぼう',untap:'アンタップするか選ぼう'};
+const titles={triggerEvolution:'S・トリガーで召喚する進化元を選ぼう',mirageDeclare:'真気楼を使うか宣言しよう',endAbilityOrder:'終了時の能力の順序を選ぼう',gaiaDeclare:'ガイアッシュを使うか宣言しよう',gaiaSummon:'ガイアッシュを召喚するか選ぼう',leaveReplace:'残す方法を選ぼう',leaveMana:'墓地に置くマナを3枚選ぼう',deploy:'手札・マナから出すカードを選ぼう',deployEvolution:'進化元を選ぼう',mugen:'タップする4体を選ぼう',infinityCount:'ブレイクする数を選ぼう',infinityShields:'ブレイクするシールドを選ぼう',dddDeclare:'D・D・Dを使うか選ぼう',dddSummon:'召喚する方法を選ぼう',block:'ブロックするか選ぼう',trigger:'S・トリガーを使うか選ぼう',breakChoice:'ブレイクするシールドを選ぼう',judgeCost:'参照するコストを選ぼう',judgeContinue:'ジャッジを続けるか選ぼう',judgeBreak:'効果で割るシールドを選ぼう',shieldGuard:'シールドを守るか選ぼう',triggerOrder:'先に使うS・トリガー・G・ストライクを選ぼう',entryOrder:'先に解決する能力を選ぼう',effectOrder:'先に解決する能力を選ぼう',dragonTap:'タップする相手を選ぼう',revealEvolution:'公開したカードの出し方を選ぼう',evolution:'進化するか選ぼう',optionalRamp:'マナを増やすか選ぼう',manaTop:'山札に戻すカードを選ぼう',fight:'バトルする相手を選ぼう',battleWinOrder:'先に解決する勝利時能力を選ぼう',draw:'引く枚数を選ぼう',effect:'効果の対象を選ぼう',search:'手札に加えるカードを選ぼう',untap:'アンタップするか選ぼう'};
 
 export const newManualUI=()=>({hand:null,attacker:null,attackChoice:null,confirm:null,handOpen:false,logOpen:false,panelMinimized:false,mobilePanel:'closed',handPage:0,handFace:0,choicePage:0,fast:false,filter:'',context:''});
 export function manualModel(s,ui={}){
@@ -14,7 +14,7 @@ export function manualModel(s,ui={}){
  const attacker=human&&!s.decision&&actions.some(a=>a.kind==='attack'&&a.uid===ui.attacker)?ui.attacker:null;
  const source=s.decision?.source||s.resolvingSpell?.source||s.judge?.source;
  const selected=s.decision?.task?.selected,chosen=selected?.length||s.decision?.chosen?.length||0;
- const progress=s.decision?.type==='extended'&&Array.isArray(selected)?`${chosen}${s.decision.task.op==='g20Select'?' / '+s.decision.task.max+'体':s.decision.task.op==='g21Shutter'?' / 2体':s.decision.task.op==='g21Fortress'?' / 3つ':s.decision.task.op==='g21BreakChoose'?' / 9つ':'枚選択'}`:s.decision?.type==='leaveMana'?`${chosen} / 3枚`:s.decision?.type==='mugen'?`${chosen} / 4体`:s.decision?.type==='manaTop'?`${chosen} / ${s.decision.count}枚`:s.decision?.type==='infinityShields'?`${chosen} / ${s.decision.count}つ`:s.decision?.type==='shieldGuard'?`${s.shieldBreak.protections.length}つ保護`:null;
+ const progress=s.decision?.type==='extended'&&Array.isArray(selected)?`${chosen}${s.decision.task.op==='g20Select'?' / '+s.decision.task.max+'体':s.decision.task.op==='g19BojiSelect'?' / 2体':s.decision.task.op==='g19Untap'?' / 3体':s.decision.task.op==='g21Shutter'?' / 2体':s.decision.task.op==='g21Fortress'?' / 3つ':s.decision.task.op==='g21BreakChoose'?' / 9つ':'枚選択'}`:s.decision?.type==='leaveMana'?`${chosen} / 3枚`:s.decision?.type==='mugen'?`${chosen} / 4体`:s.decision?.type==='manaTop'?`${chosen} / ${s.decision.count}枚`:s.decision?.type==='infinityShields'?`${chosen} / ${s.decision.count}つ`:s.decision?.type==='shieldGuard'?`${s.shieldBreak.protections.length}つ保護`:null;
  let title=s.winner!==null?(s.winner===0?'勝利！':'対戦終了'):!human?'相手の行動を待っています':s.decision?(s.decision.title||titles[s.decision.type]||'行動を選ぼう'):s.phase==='charge'?'マナに置くカードを選ぼう':s.phase==='main'?hand?'このカードをどう使う？':'使うカードを手札から選ぼう':attacker?'攻撃先を選ぼう':'攻撃するクリーチャーを選ぼう';
  if(s.decision?.type==='block'&&actions.some(a=>a.kind==='guardman'))title='ブロック・ガードマンを選ぼう';
  let help=s.winner!==null?s.reason:!human?'相手の手札や山札は非公開です。':s.decision?decisionHelp(s):s.phase==='charge'?'手札をタップしてから「マナに置く」。1ターンに1枚です。':s.phase==='main'?'選んだカードの能力を確認して、召喚・呪文を使えます。':attacker?'光っている相手のカードか、プレイヤーへの攻撃をタップ。':'「攻撃可」のカードをタップ。対象を選んでから攻撃します。';
@@ -23,6 +23,10 @@ export function manualModel(s,ui={}){
 }
 function decisionHelp(s){
  const d=s.decision;
+ if(d.task?.op==='g19BojiSelect')return '手札と墓地から最大1体ずつ、先にすべて選びます。出した仲間は次の自分のターンまでブロッカーになります。';
+ if(d.task?.op==='g19Yobi')return '召喚して出た時に使えます。山札の上から最初に見つかった小さいクリーチャーを出します。';
+ if(d.task?.op==='g19MekraidLook')return '選んだ面のコストと種族で判定します。クリーチャー側・呪文側を選べます。残りは好きな順序で山札の下へ置きます。';
+ if(d.type==='triggerEvolution')return '実行する時点の進化元を選び、コストを支払わずに召喚します。';
  if(d.task?.op==='g21KiyoSelect')return '使うエレメントを先にすべて選び、確定後に使う順番を選びます。呪文側は選べません。';
  if(d.task?.op==='g21GohatenUse')return '自分の分を出し終えてから相手の分を出します。登場時の誘発は無視しますが、EXライフなどの置き換えは働きます。';
  if(d.task?.op==='g21Shutter')return '2体まで選んで確定するとまとめてタップします。選べる同期の妖精があれば優先して選びます。';
@@ -48,15 +52,15 @@ export function boardChoice(s,ui,player,zone,uid){return boardChoiceModel(s,ui,p
 function boardChoiceModel(s,ui,player,zone,uid,m){
  if(!m.human)return null;
  let matches=[];
- if(s.decision?.type==='extended'&&['g21Shutter','s6Bounce','g21Enter','g21Fortress','g21BreakChoose'].includes(s.decision.task.op)){const op=s.decision.task.op,expectedZone=['g21Fortress','g21BreakChoose'].includes(op)?'shields':'battle',expectedPlayer=op==='g21Enter'?s.decision.player:1-s.decision.player;if(zone===expectedZone&&player===expectedPlayer){const actions=m.actions.filter(a=>a.kind==='extended'&&s.decision.choices[a.choice]?.value===uid);if(actions.length===1)return actions[0];}}
+ if(s.decision?.type==='extended'&&['g21Shutter','s6Bounce','g21Enter','g21Fortress','g21BreakChoose','g19Minus','g19VenerakLeave','g19SheketAttack','g19Held','g19Dran','g19AmeliaReturn'].includes(s.decision.task.op)){const op=s.decision.task.op,expectedZone=['g21Fortress','g21BreakChoose','g19Dran','g19AmeliaReturn'].includes(op)?'shields':'battle',expectedPlayer=['g21Enter','g19Held','g19Dran','g19AmeliaReturn'].includes(op)?s.decision.player:1-s.decision.player;if(zone===expectedZone&&player===expectedPlayer){const actions=m.actions.filter(a=>a.kind==='extended'&&s.decision.choices[a.choice]?.value===uid);if(actions.length===1)return actions[0];}}
 
  if(zone==='battle'){
   if(m.attacker&&player===1)matches=m.actions.filter(a=>a.kind==='attack'&&a.uid===m.attacker&&a.target===uid);
   else if(s.decision)matches=m.actions.filter(a=>
    (a.kind==='effect'&&a.targets?.length===1&&a.targets[0].player===player&&a.targets[0].uid===uid&&s.decision.effect!=='tapTwo')||
-   (player===0&&['block','guardman','mugenTap'].includes(a.kind)&&a.uid===uid)||
+   (player===0&&['block','guardman','mugenTap','replaceUltra'].includes(a.kind)&&a.uid===uid)||
    (player===1&&['fight','dragonTap'].includes(a.kind)&&(a.target||a.uid)===uid)||
-   (player===0&&['evolve','revealEvolve','deployEvolve','summonDDD'].includes(a.kind)&&a.baseUid===uid));
+   (player===0&&['evolve','revealEvolve','deployEvolve','summonDDD','triggerEvolve'].includes(a.kind)&&a.baseUid===uid));
  }
  if(zone==='shields'&&player===1)matches=m.actions.filter(a=>(m.attacker&&a.kind==='attack'&&a.uid===m.attacker&&a.shield===uid)||(['judgeBreak','infinityShield'].includes(a.kind)&&a.shield===uid)||(a.kind==='breakShields'&&a.shields.length===1&&a.shields[0]===uid));
  return matches.length===1?matches[0]:null;
