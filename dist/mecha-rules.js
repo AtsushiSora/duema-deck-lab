@@ -3,7 +3,7 @@ export function createMechaRules(api){
  const{card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,draw,mill,move,enter,cast,log,targetOptions,shieldTo}=api;
  const key=x=>x.uid+'@'+(x.incarnation||0),mecha=c=>String(c.race).includes('メカ'),light=c=>colors(c).includes('光');
  const on=(s,p,source,op,more={})=>api.enqueue(s,p,{uid:more.uid,source,effect:'extended',task:task(op,p,source,more)});
- const live=(s,t)=>s.players[t.p].battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===(t.incarnation||0));
+ const live=(s,t)=>s.players[t.p].battle.find(x=>api.layers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)));
  const canPut=(s,p,x,origin,execution=false)=>api.canEnter(s,p,card(x),{origin,execution})&&(!card(x).evolution||api.evolutionBases(s,p,card(x)).length);
  const lightCount=(s,p)=>s.players[p].battle.filter(x=>['creature','seed'].includes(card(x).type)&&light(card(x))).length;
  function shieldOptions(s,t){choice(s,t,'山札の上をシールド化する？',[opt('シールドを増やす',true,s.players[t.p].deck.length>1?10:-10),skip()]);}
@@ -28,7 +28,7 @@ export function createMechaRules(api){
   case'g19Mekraid':if((s.g19MekraidUsed||{})[t.key]!==s.turn)choice(s,t,'メカ・メクレイド5を使う？',[opt('山札の上3枚を見る',true,own.deck.length>1?15:-10),skip()]);break;
   case'g19MekraidLook':{const uids=own.deck.slice(0,3).map(x=>x.uid),list=own.deck.slice(0,3).flatMap(x=>faces(card(x)).map((c,face)=>({x,c,face}))).filter(({x,c})=>mecha(c)&&cost(c)<=5&&api.canCast(s,t.p,c)&&(c.type==='spell'||canPut(s,t.p,x,'deck',true)));choice(s,{...t,uids,execution:true},'メクレイドで実行するコスト5以下のメカを選ぶ',[...list.map(({x,c,face})=>opt(c.name,{uid:x.uid,face},20+cost(c),x.cardId)),skip()]);break;}
   case'g19Cobra':put(s,task('mill',t.p,t.source,{n:2}),task('revive',t.p,t.source,{max:5}));break;
-  case'g19CobraDie':if(live(s,t)&&t.p!==s.active&&(own.brokenThisTurn||0)<2)move(s,[{player:t.p,uid:t.uid,to:'grave'}]);break;
+  case'g19CobraDie':{const x=live(s,t);if(x&&t.p!==s.active&&(own.brokenThisTurn||0)<2)move(s,[{player:t.p,uid:x.uid,to:'grave'}]);break;}
   case'g19Venerak':{const x=opp.battle.find(x=>x.uid===t.target&&(x.incarnation||0)===t.targetIncarnation);if(x)choice(s,t,'ヴェネラックで出たクリーチャーをシールド化する？',[opt('シールド化する',true,20,x.cardId),skip()]);break;}
   case'g19VenerakLeave':choice(s,t,'タップして次のターン起こさない相手を選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));break;
   case'g19MechaDraw':if(own.battle.some(x=>x.uid!==t.uid&&mecha(card(x))))draw(s,t.p,1);break;

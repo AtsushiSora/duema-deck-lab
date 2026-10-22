@@ -1,0 +1,414 @@
+{
+  "checkedAt": "2026-10-22",
+  "officialOnly": true,
+  "scope": "No.07 火光アーマード eleven missing canonical cards",
+  "rulePdfNote": "General rules directly consulted at 2025-10-17 v1.47; not asserted latest. Prefer parent current rulebook if later. Official QA pages and latest No07 reprint pages checked through web search/open; direct official fetch intermittently503.",
+  "statusDefinitions": {
+    "verified": "Direct official QA verifies stated scenario",
+    "verified_card_text": "Exact latest official card text verifies base behavior",
+    "verified_analogous_ruling": "Official QA for another card/equivalent wording; application to target identified",
+    "general_rule_inference": "Implementation inference from cited general/card rules; no target-specific QA",
+    "unresolved": "Do not claim specifically verified"
+  },
+  "rulings": [
+    {
+      "key": "latest_prints",
+      "status": "verified",
+      "finding": "Latest No.07 reprints authoritative for all eleven names; face file has 12 faces. Valkyria ID uses g002F; Bakteras g001STAR. Sapphire power11000+ and Koppi3000+ must not be parsed with Number(fullString).",
+      "sources": [
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm26sd1-g001STAR",
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm26sd1-g002F",
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm26sd1-g005",
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm26sd1-g010"
+      ]
+    },
+    {
+      "key": "regulation",
+      "status": "verified",
+      "finding": "Official regulation effective2026-08-10 lists none of these eleven in active restricted/banned sections. Sapphire appears only inside commented historical unrestriction section. All eleven max4 by name.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/regulation/",
+        "https://dm.takaratomy.co.jp/img/regulation/2608/202608regulation.pdf"
+      ]
+    },
+    {
+      "key": "voljaak_terminal_zero_shields",
+      "status": "verified",
+      "finding": "Terminal declaration may be used with zero shields; breaking all is possible even when none. Player still receives cannot-lose until next own start.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/44213/"
+      ]
+    },
+    {
+      "key": "voljaak_terminal_global_once",
+      "status": "verified",
+      "finding": "Terminal declaration once per player per game, across copies and all terminal-declaration cards. Declining does not consume it; next own start can offer it again.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/44220/"
+      ]
+    },
+    {
+      "key": "voljaak_optional_shield_once",
+      "status": "verified",
+      "finding": "Each Voljaak source may optionally shieldify on any creature entry, once per turn. Declining initial trigger allows use later that turn. It is not restricted to first entering creature.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/44212/"
+      ]
+    },
+    {
+      "key": "voljaak_generic_entry_not_cip",
+      "status": "verified",
+      "finding": "Voljaak shieldify is generic creature-entry trigger, not its own enters trigger; WaspMellisa blocking own-CIP does not stop it.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/45055/"
+      ]
+    },
+    {
+      "key": "voljaak_generic_entry_gg001",
+      "status": "general_rule_inference",
+      "finding": "Analogous FlamesDragonGodVoljaak generic dragon-entry trigger survives GG001; thus generic creature-entry shieldify is not incoming-creature own-CIP and should survive GG001 too.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/47382/",
+        "https://dm.takaratomy.co.jp/rule/qa/45055/"
+      ]
+    },
+    {
+      "key": "voljaak_death",
+      "status": "verified_card_text_general_rule",
+      "finding": "Destroy trigger optionally deploys one named Bolshack creature cost<=7 from own hand, no summon. Exile/bounce/deck movement is not destruction; graveyard-replacing destruction must follow replacement rules.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm26sd1-g003",
+        "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf"
+      ]
+    },
+    {
+      "key": "voljaak_no_loss_blocks_altwin",
+      "status": "verified_analogous_rulings",
+      "finding": "Own cannot-lose also prevents opposing explicit effect victory. ValhallaTreasure has only own non-direct-loss immunity (no separate opponent-cannot-win clause), yet official QA46951 stops opposing Shako replacement win (Shako player loses via empty deck), and46952 stops Golgi effectwin. Hence Voljaak universal no-loss should stop opposing Shako/Mikadoreo while active. Earlier tentative inference allowing altwin is withdrawn.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/46951/",
+        "https://dm.takaratomy.co.jp/rule/qa/46952/",
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-054",
+        "https://dm.takaratomy.co.jp/rule/qa/39944/"
+      ]
+    },
+    {
+      "key": "no_loss_empty_deck",
+      "status": "verified_analogous_rulings",
+      "finding": "Empty deck may remain during cannot-lose. Removing/ending that immunity with deck still empty immediately loses. Cannot rely on a later resolving triggered shuffle to repair it.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa_old/37174/",
+        "https://dm.takaratomy.co.jp/rule/qa_old/36650/",
+        "https://dm.takaratomy.co.jp/rule/qa/39760/"
+      ]
+    },
+    {
+      "key": "voljaak_expiry_start_order",
+      "status": "verified_analogous_ruling",
+      "finding": "Until-next-own-start immunity expires before beginning-of-turn triggered abilities resolve. Official DogiragonReverse vs Shako example confirms expiry precedes Shako start draw. Empty own deck at expiry therefore loses before own shuffle/declaration resolutions.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/48935/",
+        "https://dm.takaratomy.co.jp/rule/qa_old/37174/"
+      ]
+    },
+    {
+      "key": "simultaneous_deck_loss_with_immunity",
+      "status": "general_rule_inference",
+      "finding": "For each player assess immediate deckzero defeat only if that player can lose. If both zero but one currently immune, only unprotected player loses; do not mistakenly declare draw solely from both deckcounts.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf",
+        "https://dm.takaratomy.co.jp/rule/qa_old/37174/"
+      ]
+    },
+    {
+      "key": "valkyria_evolution_species",
+      "status": "verified",
+      "finding": "Requires contiguous exact substring アーマード・ドラゴン in race. HolyGrace ArmoredApolloDragon is NOT eligible; generic Armored family or Dragon family intersection is insufficient.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/46593/",
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm26sd1-g002F",
+        "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf"
+      ]
+    },
+    {
+      "key": "valkyria_mana_deploy",
+      "status": "verified_card_text",
+      "finding": "On entry optional deploy one non-evolution Dragon from own mana, no cost cap. This is deployment and not summoning; existing evolutionbase needed for Valkyria itself.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm26sd1-g002F"
+      ]
+    },
+    {
+      "key": "flare_forcedwin_both",
+      "status": "verified_general_rule",
+      "finding": "Totalrule115.3c: if both battling creatures have wins-battle effects, both win; neither loses. No default power destruction, and both victory triggers may fire.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf"
+      ]
+    },
+    {
+      "key": "flare_first_battle_history",
+      "status": "card_text_general_rule_inference",
+      "finding": "Track first battle per controller per turn globally, not per Flare source. If controller already battled before Flare enters, later battle is not first and no forcedwin. Source ability must be present when event happens. Bounded official searches did not find Flare-specific late-entry QA; keep application marked inference.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm26sd1-g004",
+        "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf",
+        "https://dm.takaratomy.co.jp/rule/qa/45942/"
+      ]
+    },
+    {
+      "key": "flare_first_entry_history",
+      "status": "card_text_inference",
+      "finding": "Track first opposing creature actually entering per turn globally even before Flare arrives. Multiple Flare copies do not each grant a new first creature. Source must exist when applying effect.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm26sd1-g004",
+        "https://dm.takaratomy.co.jp/rule/qa/44744/"
+      ]
+    },
+    {
+      "key": "flare_ace_preentry_creature",
+      "status": "verified_analogous_ruling",
+      "finding": "AlcadiasMomoking identical first-opposing-entry tapped effect checks pre-entry creature card state: an ACE creature/tamaseed entering as noncreature seed still consumes first and enters tapped. Do not count only post-entry actualCreature.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/42928/"
+      ]
+    },
+    {
+      "key": "flare_replaced_entry_not_first",
+      "status": "verified_analogous_ruling",
+      "finding": "An entry replaced by movement to grave/mana never enters battlezone; does not consume first. Next real creature entry is first and tapped.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/40783/"
+      ]
+    },
+    {
+      "key": "flare_simultaneous_first_entries",
+      "status": "verified_analogous_ruling",
+      "finding": "CORRECTION: Multiple creatures from one effect enter one at a time, controller chooses order. Official AlcadiasMomoking vs HeavenGate QA39839 directly answers: opponent chooses which of two enters first/tapped; only that first creature is tapped. Flare identical wording applies same. It is not all creatures tapped.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/39839/",
+        "https://dm.takaratomy.co.jp/rule/qa/31611/",
+        "https://dm.takaratomy.co.jp/img/dm_rule_20251217.pdf"
+      ]
+    },
+    {
+      "key": "flare_end_untap",
+      "status": "verified_card_text",
+      "finding": "At end of own turn untap Flare itself; distinct from Bakteras end-of-eachturn othercreatures untap.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm26sd1-g004"
+      ]
+    },
+    {
+      "key": "bakteras_top_four",
+      "status": "verified_card_text",
+      "finding": "On entry view up to top4 and choose any number of Armored whose name excludes BolshackBakteras; deploy without pay. This says 出す, so does not cast Armored spells. Unchosen viewed cards bottom in any order. Check eligible face element type, not just Armored substring on any face.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm26sd1-g001STAR"
+      ]
+    },
+    {
+      "key": "bakteras_batch_evolution",
+      "status": "verified_analogous_ruling",
+      "finding": "CORRECTION replacing earlier wrong snapshot-evolution inference: all selected cards become pending, then enter individually in chosen order. A normal creature deployed first may be used as evolutionbase for a later chosen evolution creature. QA31611 and old36972 explicitly allow this. Own-CIP triggers wait until entire deployment batch ends, but continuous/replacement effects of earlier entries affect later entries immediately. A previously existing base may also be used and evolved repeatedly if each next evolution condition is legal.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/31611/",
+        "https://dm.takaratomy.co.jp/rule/qa_old/36972/",
+        "https://dm.takaratomy.co.jp/img/dm_rule_20251217.pdf"
+      ]
+    },
+    {
+      "key": "bakteras_aura",
+      "status": "verified_card_text",
+      "finding": "Other own creatures gain blocker+speedattacker. At each players turn end untap other own creatures, not Bakteras itself.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm26sd1-g001STAR"
+      ]
+    },
+    {
+      "key": "parakin_reduction",
+      "status": "verified_card_text_general_rule",
+      "finding": "Optional own summoncost-1, minimum1 per general cost-floor rule. Choosing it establishes own-turn-end destruction. Not mandatory and not free deployment ability.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm26sd1-g006",
+        "https://dm.takaratomy.co.jp/rule/qa/31553/",
+        "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf"
+      ]
+    },
+    {
+      "key": "parakin_attack_hand_at_resolution",
+      "status": "verified",
+      "finding": "Attack ability tests own hand<=1 at resolution, not attack trigger time. Untap and draw2 when true. Invasion reducing hand2→1 can satisfy it.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/43945/"
+      ]
+    },
+    {
+      "key": "parakin_revchange_order",
+      "status": "verified",
+      "finding": "Parakin attack untap can resolve before revolution change; swapped creature inherits attack creature current tapped/untapped state.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/43944/"
+      ]
+    },
+    {
+      "key": "parakin_delayed_evolution",
+      "status": "verified_analogous_ruling",
+      "finding": "BAD delayed destruction persists after evolving same creature; delayed effect follows creature through evolution.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/31554/"
+      ]
+    },
+    {
+      "key": "parakin_delayed_revchange",
+      "status": "general_rule_inference",
+      "finding": "Revolutionchange sends original card to hand and introduces different creature. Original delayed destruction should not transfer to replacement creature. If original later reenters it is new object.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf",
+        "https://dm.takaratomy.co.jp/rule/qa/43944/"
+      ]
+    },
+    {
+      "key": "parakin_delayed_genmu",
+      "status": "verified_analogous_ruling",
+      "finding": "QA49236 explicitly states Genmu ignores only battlezone creature abilities, not hand cost reduction, and ignores neither already-created delayed triggered abilities nor pre-entry generated delayed triggers. Parakin hand cost-1 and its generated end destruction therefore remain effective. Exact Parakin-name QA not found, but equivalent rule is explicitly verified.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/49236/",
+        "https://dm.takaratomy.co.jp/rule/qa/41662/",
+        "https://dm.takaratomy.co.jp/rule/qa/31553/"
+      ]
+    },
+    {
+      "key": "parakin_spell",
+      "status": "verified_card_text",
+      "finding": "ST spell light/nature cost4: opponent chooses own untapped creatures2 (all if fewer) to tap, caster draws1, then puts one own handcard into mana if any. Last mana placement is mandatory, not may.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm26sd1-g006"
+      ]
+    },
+    {
+      "key": "holygrace_opponent_entry",
+      "status": "verified_card_text",
+      "finding": "ST creature; when entering on opposing turn destroy itself if own shields broken this turn fewer than2. Opponent turn and broken shield count should be checked on resolving effect.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm26sd1-g008"
+      ]
+    },
+    {
+      "key": "holygrace_evolution_tracking",
+      "status": "verified",
+      "finding": "HolyGrace entered by RevolutionBond revolution0 then immediately evolved still has pending destruction ability; it destroys evolved Bond if own shieldbreakcount<2.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/45269/"
+      ]
+    },
+    {
+      "key": "hyperenergy_distinct_costs",
+      "status": "verified",
+      "finding": "Optional tap any number own untapped battlezone creatures with pairwise different costs; reduce summoncost2 per tapped creature, min1. Different civilization with equalcost still cannot both be tapped.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/45473/",
+        "https://dm.takaratomy.co.jp/rule/qa/45468/",
+        "https://dm.takaratomy.co.jp/rule/qa/45437/",
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm26sd1-g009"
+      ]
+    },
+    {
+      "key": "hyperenergy_current_cost",
+      "status": "general_rule_inference",
+      "finding": "Compare current battlezone creature cost, not actual mana previously paid. For a twinpact creature on field use creature half cost only; spell half does not provide an alternative distinct cost.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf",
+        "https://dm.takaratomy.co.jp/rule/qa/45468/"
+      ]
+    },
+    {
+      "key": "hyperenergy_no_reduction",
+      "status": "verified_analogous_ruling",
+      "finding": "DiamondStar-style noCostReduction invalidates whole cost-reducing ability, not just final numeric decrease. QA41429 forbids preliminary discard and41427 forbids preliminary card selection; QA43866 states every ability containing cost reduction is entirely ignored. Hyperenergy therefore cannot tap creatures while this lock active. Specific GENJI/Hyperenergy named FAQ not found; generic equivalent is explicit.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/41429/",
+        "https://dm.takaratomy.co.jp/rule/qa/41427/",
+        "https://dm.takaratomy.co.jp/rule/qa/43866/",
+        "https://dm.takaratomy.co.jp/rule/qa/42368/",
+        "https://dm.takaratomy.co.jp/rule/qa/45473/"
+      ]
+    },
+    {
+      "key": "hyperenergy_genmu",
+      "status": "verified_analogous_ruling",
+      "finding": "QA49236 confirms Genmu does not ignore hand creature cost-reduction abilities. GENJI summoning Hyperenergy from hand remains effective; tapping lowcost creatures needs no own abilities. GENJI speedattacker will be ignored in battlezone while Genmu active.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/49236/",
+        "https://dm.takaratomy.co.jp/rule/qa/41662/",
+        "https://dm.takaratomy.co.jp/rule/qa/45473/"
+      ]
+    },
+    {
+      "key": "hyperenergy_manabird_payment",
+      "status": "general_rule_inference",
+      "finding": "A manaBird creature tapped to Hyperenergy cannot simultaneously be tapped again to pay mana. Plan one legal set of distinct-cost taps first, then payment from remaining untapped resources.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf",
+        "https://dm.takaratomy.co.jp/rule/qa/45473/"
+      ]
+    },
+    {
+      "key": "sapphire_burn_vs_defender_replacement",
+      "status": "verified_analogous_ruling",
+      "finding": "Official Sapphire vs 雷光 states attacker burn replacement wins over defender shieldbreak discard replacement by turnplayer replacement priority. Soulguard/superSoul break replacement is analogous, so no defender replacement may override active attacker burn. Not shield-owner free choice.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/40538/",
+        "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf"
+      ]
+    },
+    {
+      "key": "sapphire_shield_selection",
+      "status": "verified",
+      "finding": "Shield selection modifiers like 古の守護者 still apply before break; then Sapphire burn applies to selected shields.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/40539/"
+      ]
+    },
+    {
+      "key": "koppi_reduction",
+      "status": "verified_card_text",
+      "finding": "Each turn once optional own Armored card executecost-1,min1; applies eligible spell/element faces too, not only creature summons. Each source independent; optional source need not be consumed on costfree execute.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm26sd1-g010",
+        "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf"
+      ]
+    },
+    {
+      "key": "chara_latest_mandatory",
+      "status": "verified_card_text",
+      "finding": "Latest reprint has mandatory own DragonCreature summoncost-2,min1 (no may). Do not retain optional older text. Only DragonCreature summoning, not all Dragon cards or deployment.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm26sd1-g011"
+      ]
+    },
+    {
+      "key": "valbolshack",
+      "status": "verified_card_text",
+      "finding": "See exact latest g007 face text for revolutionchange and attack effect; no nonofficial source used. Generic revolutionchange resolution still checks legal swap on resolution.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/card/detail/?id=dm26sd1-g007",
+        "https://dm.takaratomy.co.jp/rule/qa/47079/"
+      ]
+    },
+    {
+      "key": "bakteras_entry_hook_vs_trigger_resolution",
+      "status": "verified_analogous_rulings",
+      "finding": "Run entry detection at each individual entry, but defer trigger resolution until parent effect finishes. A generic entry-trigger source deployed first sees later entries; deployed last does not see earlier entries. Voljaak generic creature entry includes its own actual entry (not restricted other creatures), but must not be credited earlier batch entries retroactively. Preserve player entry-order choices.",
+      "sources": [
+        "https://dm.takaratomy.co.jp/rule/qa/31611/",
+        "https://dm.takaratomy.co.jp/rule/qa_old/36821/",
+        "https://dm.takaratomy.co.jp/rule/qa/39839/",
+        "https://dm.takaratomy.co.jp/rule/qa/45097/"
+      ]
+    }
+  ],
+  "corrections": [
+    "2026-10-22 followup: Earlier simultaneous-entry/evolution-base snapshot inference was wrong. Replaced with explicit official sequential-entry QA39839/31611/old36972. No repo file edited."
+  ]
+}

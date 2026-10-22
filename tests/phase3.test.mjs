@@ -14,7 +14,7 @@ const s0=()=>{const s=createGame([PRESETS[0],PRESETS[1]],{seed:91});s.phase='mai
 const evolve=(s,id,baseId)=>{give(s,0,'hand',[id]);if(baseId)give(s,0,'battle',[baseId]);act(s,'play');assert.equal(s.decision.type,'evolution');act(s,'evolve');};
 
 test('phase 3 freezes 42 multicolor and 17 evolution cards without enabling unsupported environment effects',()=>{
- assert.equal(manifest.cards.length,59);assert.equal(data.cards.length,712);assert.equal(data.cards.filter(c=>c.supportBatch==='phase-3').length,59);
+ assert.equal(manifest.cards.length,59);assert.equal(data.cards.length,723);assert.equal(data.cards.filter(c=>c.supportBatch==='phase-3').length,59);
  const registry=createCatalogue(snapshot,data.cards,details);assert.equal(registry.cards.length,11833);
  for(const row of manifest.cards){const d=details.cards.find(c=>c.id===row.id),c=card(row.id);assert.equal(c.text,d.faces[0].abilityText);assert.deepEqual(row.spec,phase3Spec(d));assert.equal(c.supportBatch,'phase-3');for(const [k,v]of Object.entries(row.spec))assert.deepEqual(c[k],v);assert.equal(registry.get(c.id).supported,true);}
  for(const d of resolveEnvironmentDecks(registry))assert.equal(registry.coverage(d).unsupported,0);
@@ -64,7 +64,7 @@ test('Dual Fang ramps two actual cards, respects tapped multicolor entry, and lo
 });
 test('every added evolution has a supported base and can evolve using exactly that condition',()=>{
  for(const c of data.cards.filter(c=>c.supportBatch==='phase-3'&&c.evolution)){
-  const s=s0();give(s,0,'battle',data.cards.filter(x=>x.type==='creature'&&!x.evolution).map(x=>x.id));const bases=evolutionBases(s,0,c);assert.ok(bases.length,c.name);const id=bases[0].cardId;give(s,0,'battle',[id]);give(s,0,'mana',['dm01-075','dm01-083','dm01-090','dm01-097','dm01-108',...Array(10).fill('dm01-108')]);evolve(s,c.id);assert.ok(s.players[0].battle.some(x=>x.cardId===c.id),c.name);
+  const s=s0();const base=data.cards.find(x=>{if(x.type!=='creature'||x.evolution)return false;give(s,0,'battle',[x.id]);return evolutionBases(s,0,c).length>0;});assert.ok(base,c.name);give(s,0,'battle',[base.id]);give(s,0,'mana',['dm01-075','dm01-083','dm01-090','dm01-097','dm01-108',...Array(10).fill('dm01-108')]);evolve(s,c.id);assert.ok(s.players[0].battle.some(x=>x.cardId===c.id),c.name);
  }
 });
 test('mixed multicolor/evolution games preserve all 80 physical cards, finish, and reproduce seeds',()=>{
