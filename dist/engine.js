@@ -56,7 +56,9 @@ export function validateDeck(deck){
  if(deck.format&&deck.format!=='original')errors.push('現在はオリジナルのみ対応しています');
  return [...new Set(errors)];
 }
-export function random(state){let t=state.rng+=0x6D2B79F5;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;}
+let randomSource=null;
+export function setRandomSource(source=null){if(source!==null&&typeof source!=='function')throw TypeError('乱数源が正しくありません');randomSource=source;}
+export function random(state){if(randomSource)return randomSource();let t=state.rng+=0x6D2B79F5;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;}
 export function shuffled(items,seed){const s={rng:seed>>>0},out=[...items];for(let i=out.length-1;i>0;i--){const j=Math.floor(random(s)*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;}
 const instance=(id,uid)=>({cardId:id,uid,tapped:false,entered:0,buff:0,unblocked:false});
 export function createGame(decks,{seed=1,first=0}={}){

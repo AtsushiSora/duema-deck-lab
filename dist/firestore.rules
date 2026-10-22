@@ -22,6 +22,51 @@ service cloud.firestore {
       allow update: if ownsAccount(uid) && validSnapshot()
         && request.resource.data.revision == resource.data.revision + 1;
     }
+    function googleUser() {
+      return request.auth != null && request.auth.token.firebase.sign_in_provider == 'google.com';
+    }
+    function roomMember(d) {
+      return googleUser() && (d.hostUid == request.auth.uid || d.guestUid == request.auth.uid);
+    }
+    function validRoom(code) {
+      let d = request.resource.data;
+      return d.keys().hasAll(['schemaVersion', 'code', 'hostUid', 'guestUid', 'phase', 'revision', 'expiresAt', 'ciphertext', 'updatedAt'])
+        && d.keys().hasOnly(['schemaVersion', 'code', 'hostUid', 'guestUid', 'phase', 'revision', 'expiresAt', 'ciphertext', 'updatedAt'])
+        && d.schemaVersion == 1 && code.matches('^[A-F0-9]{16}$') && d.code == code
+        && d.hostUid is string && d.guestUid is string && d.hostUid != d.guestUid
+        && d.phase in ['waiting', 'playing', 'finished', 'cancelled']
+        && d.revision is int && d.revision >= 0
+        && d.ciphertext is string && d.ciphertext.size() > 32 && d.ciphertext.size() <= 750000
+        && d.expiresAt is timestamp && d.expiresAt > request.time
+        && d.expiresAt <= request.time + duration.value(7, 'h')
+        && d.updatedAt == request.time;
+    }
+    match /duelRooms/{code} {
+      allow get: if googleUser() && (resource.data.phase == 'waiting' || roomMember(resource.data));
+      allow list, delete: if false;
+      allow create: if googleUser() && validRoom(code) && request.resource.data.hostUid == request.auth.uid
+        && request.resource.data.guestUid == '' && request.resource.data.phase == 'waiting' && request.resource.data.revision == 0;
+      allow update: if googleUser() && validRoom(code)
+        && request.resource.data.hostUid == resource.data.hostUid
+        && request.resource.data.expiresAt == resource.data.expiresAt
+        && request.resource.data.revision == resource.data.revision + 1
+        && ((roomMember(resource.data) && request.resource.data.guestUid == resource.data.guestUid
+          && ((resource.data.phase == 'waiting' && request.resource.data.phase == 'cancelled')
+            || (resource.data.phase == 'playing' && request.resource.data.phase in ['playing', 'finished'])))
+          || (resource.data.phase == 'waiting' && resource.data.guestUid == ''
+            && request.auth.uid != resource.data.hostUid && request.resource.data.guestUid == request.auth.uid
+            && request.resource.data.phase == 'playing'));
+    }
+    match /duelSessions/{uid} {
+      allow get: if ownsAccount(uid);
+      allow list, delete: if false;
+      allow create, update: if ownsAccount(uid)
+        && request.resource.data.keys().hasAll(['code', 'updatedAt'])
+        && request.resource.data.keys().hasOnly(['code', 'updatedAt'])
+        && request.resource.data.code is string && request.resource.data.code.matches('^[A-F0-9]{16}$')
+        && request.resource.data.updatedAt == request.time
+        && roomMember(getAfter(/databases/$(database)/documents/duelRooms/$(request.resource.data.code)).data);
+    }
     match /{document=**} {
       allow read, write: if false;
     }

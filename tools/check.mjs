@@ -2,7 +2,7 @@ import{validateDetails}from'./detail-validation.mjs';
 import{decodeFingerprint}from'../dist/card-fingerprint.js';
 import{resolveStarter25Decks}from'../dist/starter25.js';
 import{readdir,readFile}from'node:fs/promises';import{spawnSync}from'node:child_process';import{createCatalogue,nameKey}from'../dist/catalogue.js';
-for(const folder of ['dist','tools'])for(const file of(await readdir(new URL('../'+folder+'/',import.meta.url))).filter(x=>/\.m?js$/.test(x))){const r=spawnSync(process.execPath,['--check',new URL('../'+folder+'/'+file,import.meta.url).pathname],{stdio:'inherit'});if(r.status)process.exit(r.status);}
+for(const folder of ['dist','tools','server','netlify/functions'])for(const file of(await readdir(new URL('../'+folder+'/',import.meta.url))).filter(x=>/\.m?js$/.test(x))){const r=spawnSync(process.execPath,['--check',new URL('../'+folder+'/'+file,import.meta.url).pathname],{stdio:'inherit'});if(r.status)process.exit(r.status);}
 const snapshot=JSON.parse(await readFile(new URL('../dist/catalogue.json',import.meta.url),'utf8')),supported=JSON.parse(await readFile(new URL('../dist/cards.json',import.meta.url),'utf8')).cards;
 const imageIndex=JSON.parse(await readFile(new URL('../dist/image-index.json',import.meta.url),'utf8')),imageIds=new Set(imageIndex.entries.map(e=>e[0])),canonicalIds=new Set(snapshot.cards.map(c=>c.id));
 if(imageIndex.schemaVersion!==1||imageIndex.nameCount!==imageIds.size||imageIndex.printCount!==imageIndex.entries.length)throw Error('画像照合データの件数が一致しません');
