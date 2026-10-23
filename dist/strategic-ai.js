@@ -43,6 +43,7 @@ export function createStrategicAI(api){
     player.deck=player.deck.map((y,j)=>({...y,cardId:pool[j]||y.cardId}));
     if(x.deckTop&&player.deck.length)player.deck[0]=structuredClone(x.deckTop);
    }
+   for(const pos of x.sidewaysPositions||[])if(player.deck[pos-1])player.deck[pos-1].g11Sideways=true;
    return player;
   });
   mark(out);return out;

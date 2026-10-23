@@ -31,7 +31,7 @@ export function createLionelRules(api){
  case'g15_Heart':put(s,task('g15_Keep',s.active,t.source,{kept:[],controller:t.p,other:1-s.active}));break;
  case'g15_Keep':{const list=allTypes(s,t.p);choice(s,t,'ジョーカーズの心絵：残す自分のクリーチャーまたはタマシードを最大1つ選ぶ',[...list.map(x=>opt(card(x).name,x.uid,cost(card(x))*2,x.cardId)),opt('残さない',null,0)]);break;}
  case'g15_HeartMove':{const rows=[0,1].flatMap(p=>allTypes(s,p).filter(x=>!t.kept.includes(x.uid)).map(x=>({player:p,uid:x.uid,to:'deck'}))),uids=rows.map(r=>({p:r.player,uids:api.layers(s.players[r.player].battle.find(x=>x.uid===r.uid)).map(x=>x.uid)}));put(s,task('g15_HeartFinish',t.p,t.source,{uids}));move(s,rows);break;}
- case'g15_HeartFinish':{const counts=[0,1].map(p=>{const ids=t.uids.filter(x=>x.p===p).flatMap(x=>x.uids);return s.players[p].deck.filter(x=>ids.includes(x.uid)).length;});for(const p of[s.active,1-s.active])s.players[p].deck=api.shuffled(s.players[p].deck,Math.floor(api.random(s)*4294967296));put(s,...[s.active,1-s.active].flatMap(p=>Array.from({length:counts[p]},()=>task('g15_Shield',p,t.source))));break;}
+ case'g15_HeartFinish':{const counts=[0,1].map(p=>{const ids=t.uids.filter(x=>x.p===p).flatMap(x=>x.uids);return s.players[p].deck.filter(x=>ids.includes(x.uid)).length;});for(const p of[s.active,1-s.active])api.shuffleLibrary(s,p);put(s,...[s.active,1-s.active].flatMap(p=>Array.from({length:counts[p]},()=>task('g15_Shield',p,t.source))));break;}
  case'g15_Shield':api.shieldTop(s,t.p,card(t.source));break;
  case'g15_ManaUntap':{const x=own.mana.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);if(x&&api.canUntap(x))x.tapped=false;break;}
  case'g15_JohnnyWin':if(own.shields.length>=10)api.finish(s,t.p,card(t.source).name+'：シールド10以上で勝利');break;

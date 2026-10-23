@@ -5,7 +5,7 @@ export function createMaruruRules(api){
  const canPut=(s,p,x,origin)=>card(x).type==='creature'&&api.canEnter(s,p,card(x),{origin,execution:false})&&(!card(x).evolution||api.evolutionBases(s,p,card(x)).length);
  const bounceRows=(s,selected)=>selected.flatMap(uid=>{const player=s.players.findIndex(p=>p.battle.some(x=>x.uid===uid));return player<0?[]:[{player,uid,to:'hand'}];});
  function run(s,t){if(!t.op.startsWith('g1_'))return false;const own=s.players[t.p];switch(t.op){
- case'g1_Look':{const x=own.deck[0];if(x)choice(s,t,'マルル：山札の上のカードをどちらへ？',[opt('手札に加える','hand',own.mana.length>=8?20:8,x.cardId),opt('タップしてマナへ置く','mana',own.mana.length<8?20:5,x.cardId)]);break;}
+ case'g1_Look':{const x=own.deck[0];if(x)choice(s,t,'マルル：山札の上のカードをどちらへ？',[opt('手札に加える','hand',own.mana.length>=8?20:8,api.deckLocked(s,t.p)?null:x.cardId),opt('タップしてマナへ置く','mana',own.mana.length<8?20:5,api.deckLocked(s,t.p)?null:x.cardId)]);break;}
  case'g1_Orugate':choice(s,t,'オルゲイト：相手1体を手札に戻す？',[...api.targetOptions(s,t.p,creatures(s,1-t.p)),skip()]);break;
  case'g1_Kiinary':choice(s,t,'キーナリー：相手のクリーチャーを1体選ぶ',api.targetOptions(s,t.p,creatures(s,1-t.p)));break;
  case'g1_KiinaryBounce':choice(s,t,'選んだクリーチャーを手札に戻す？',[opt('手札に戻す',true,20,t.targetCard),skip()]);break;

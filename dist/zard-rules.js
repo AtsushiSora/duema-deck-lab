@@ -43,7 +43,7 @@ export function createZardRules(api){
   case'g2_Five':if(value==='all')put(s,...[0,1,2,3,4].map(mode=>task('g2_FiveMode',t.p,t.source,{mode})));else put(s,{...t,selected:[...t.selected,value]});break;
   case'g2_FiveMode':if(t.mode===3)move(s,[{player:1-t.p,uid:value,to:'grave'}]);break;
   case'g2_Sign':{const x=remove(own.hand,value);enter(s,t.p,x,null,{origin:'hand',execution:false});if(own.battle.some(y=>y.uid===x.uid)){(x.g2Blocker??=[]).push({who:t.p,turns:own.turns});}break;}
-  case'g2_Aqua':if(value){const list=own.deck.splice(0,5);api.log(s,t.p,'reveal','アクアンで上5枚を公開：'+list.map(x=>card(x).name).join('、'),{cardId:t.source});for(const x of list){const to=allColors(card(x)).some(c=>['光','闇'].includes(c))?'hand':'grave';clear(x,to);api.addZone(s,own,to,x);}api.deckCheck(s,t.p);}break;
+  case'g2_Aqua':if(value&&!api.deckLocked(s,t.p)){const list=own.deck.splice(0,5);api.log(s,t.p,'reveal','アクアンで上5枚を公開：'+list.map(x=>card(x).name).join('、'),{cardId:t.source});for(const x of list){const to=allColors(card(x)).some(c=>['光','闇'].includes(c))?'hand':'grave';clear(x,to);api.addZone(s,own,to,x);}api.deckCheck(s,t.p);}break;
   case'g2_BossDeploy':if(value)put(s,task('putCreature',t.p,t.source,{origin:'hand',uid:value}));break;
   case'g2_ChooseHand':put(s,{...t,op:'g2_ChooseMana',hand:value,uids:t.uids.filter(uid=>uid!==value)});break;
   case'g2_ChooseMana':put(s,{...t,op:'g2_AllocateFinish',mana:value,uids:t.uids.filter(uid=>uid!==value)});break;

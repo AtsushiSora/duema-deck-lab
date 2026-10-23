@@ -32,7 +32,7 @@ export function createMadoRules(api){
  case'g4_World':{const x=live(s,t);if(v&&x){x.g4WorldUsed=true;api.cast(s,t.p,v.uid,true,null,v.face,null,v.origin,'無月の門99');}break;}
  case'g4_Airvo':api.moveBattleCard(s,v.player,v.uid,'hand');break;
  case'g4_Gon':{const x=remove(own.deck,v);if(x){clear(x,'hand');own.hand.push(x);}finishLook(s,t);api.deckCheck(s,t.p);break;}
- case'g4_Blood':{const p=s.players[v],all=p.grave.splice(0);for(const x of all)clear(x,'deck');p.deck=api.shuffled([...p.deck,...all],Math.floor(api.random(s)*4294967296));log(s,t.p,'graveShuffle',(v===t.p?'自分':'相手')+'の墓地'+all.length+'枚を山札に加えてシャッフル',{cardId:t.source});draw(s,t.p,1);break;}
+ case'g4_Blood':{const p=s.players[v],all=p.grave.splice(0);for(const x of all)clear(x,'deck');put(s,task('draw',t.p,t.source,{n:1}));api.shuffleLibrary(s,v,all,t.source);log(s,t.p,'graveShuffle',(v===t.p?'自分':'相手')+'の墓地'+all.length+'枚を山札に加えてシャッフル',{cardId:t.source});break;}
  case'g4_Untap':if(v)put(s,{...t,selected:[...t.selected,v]});else for(const uid of t.selected){const x=own.mana.find(x=>x.uid===uid);if(x)x.tapped=false;}break;
  default:throw Error('未実装の水魔導具選択：'+t.op);
  }return true;}

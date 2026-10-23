@@ -37,7 +37,7 @@ export function createGateRules(api){
   case'g20Deploy':enterHeld(s,t,value||null);break;
   case'g20ReturnMana':put(s,{...t,selected:value?[...t.selected,value]:t.selected,max:value?t.max:t.selected.length});break;
   case'g20Sharappu':if(value!==null)put(s,task('g20Shuffle',t.p,t.source,{owner:value,selected:[]}));break;
-  case'g20Shuffle':if(value)put(s,{...t,selected:[...t.selected,value]});else if(t.selected.length){const owner=s.players[t.owner],all=t.selected.map(uid=>remove(owner.grave,uid)).filter(Boolean);for(const x of all)clear(x,'deck');owner.deck=api.shuffled([...owner.deck,...all],Math.floor(api.random(s)*4294967296));log(s,t.p,'shuffleGrave',all.length+'枚を山札に戻してシャッフルする',{cardId:t.source});}break;
+  case'g20Shuffle':if(value)put(s,{...t,selected:[...t.selected,value]});else if(t.selected.length){const owner=s.players[t.owner],all=t.selected.map(uid=>remove(owner.grave,uid)).filter(Boolean);for(const x of all)clear(x,'deck');api.shuffleLibrary(s,t.owner,all,t.source);log(s,t.p,'shuffleGrave',all.length+'枚を山札に戻してシャッフルする',{cardId:t.source});}break;
   case'g20Takeback':if(value){const player=s.players.findIndex(p=>p.battle.some(x=>x.uid===value));move(s,[{player,uid:value,to:'mana',tapped:true}]);}break;
   case'g20Bottom':{const x=remove(own.deck,value);if(x)own.deck.push(x);put(s,{...t,uids:t.uids.filter(uid=>uid!==value)});break;}
   case'g20Gio':if(value===false)put(s,{...t,op:'g20GioBase'});else if(value!==null)put(s,{...t,selected:[...t.selected,value]});break;
