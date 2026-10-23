@@ -32,7 +32,7 @@ export function createJaouRules(api){
  function chosen(s,t,value){if(!t.op.startsWith('g3_'))return false;const own=s.players[t.p];switch(t.op){
  case'g3_BabaDeploy':if(value)put(s,task('putCreature',t.p,t.source,{origin:'grave',uid:t.uid}));break;
  case'g3_CycleRepeat':if(value&&own.grave.some(x=>x.uid===t.spell&&(x.zoneSerial||0)===t.serial+1)&&s.g3CycleUsed?.[t.key]!==s.turn){(s.g3CycleUsed??={})[t.key]=s.turn;cast(s,t.p,t.spell,true,null,t.face,null,'grave','サイクルペディア');}break;
- case'g3_Jaouga':if(value){const moved=[];for(const uid of own.shields.map(x=>x.uid)){const x=api.removeShield(s,t.p,uid);if(x){clear(x,'hand');own.hand.push(x);moved.push(x);}}for(const x of moved)api.shieldHand(s,t.p,x);}break;
+ case'g3_Jaouga':if(value){const moved=[];for(const uid of own.shields.map(x=>x.uid)){moved.push(...api.moveShield(s,t.p,uid,'hand',{handEffects:false}));}for(const x of moved)api.shieldHand(s,t.p,x);}break;
  case'g3_Katsu':{const x=remove(own.deck,value);if(x){api.log(s,t.p,'reveal','カツキングで公開：'+card(x).name,{cardId:x.cardId});const bounce=allColors(card(x)).some(c=>['火','自然'].includes(c));clear(x,'hand');own.hand.push(x);put(s,task('g3_Order',t.p,t.source,{uids:t.uids.filter(uid=>uid!==value),protected:t.uids,bounce}));api.deckCheck(s,t.p);}break;}
  case'g3_Order':{const x=remove(own.deck,value);if(x)own.deck.push(x);put(s,{...t,uids:t.uids.filter(uid=>uid!==value)});break;}
  case'g3_Bounce':if(value){const player=s.players.findIndex(p=>p.battle.some(x=>x.uid===value));move(s,[{player,uid:value,to:'hand',destroy:false}]);}break;

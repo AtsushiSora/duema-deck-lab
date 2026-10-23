@@ -33,7 +33,7 @@ export function createKiyonagaRules(api){
  }return true;}
  function doEnter(s,t,base){const own=s.players[t.p],x=own[t.zone].find(x=>x.uid===t.uid);if(!x)return;if(t.execution){x.g5Origin=t.origin;cast(s,t.p,x.uid,true,base,0,null,t.zone,'清永');api.deckCheck(s,t.p);}else{remove(own[t.zone],x.uid);enter(s,t.p,x,base,{origin:t.origin,execution:false,ignoreEntry:!!t.ignoreEntry});}}
  function finishShutter(s,t){for(const uid of t.selected){const x=s.players[1-t.p].battle.find(x=>x.uid===uid);if(x){api.tap(s,1-t.p,x);x.skipUntap=true;}}}
- function finishFortress(s,t){for(const uid of t.selected){const x=api.removeShield(s,1-t.p,uid);if(x){clear(x,'grave');s.players[1-t.p].grave.push(x);}}log(s,t.p,'shieldGrave','フォートレスでシールド'+t.selected.length+'つを墓地へ（ブレイクしない）',{cardId:t.source});}
+ function finishFortress(s,t){for(const uid of t.selected){api.moveShield(s,1-t.p,uid,'grave');}log(s,t.p,'shieldGrave','フォートレスでシールド'+t.selected.length+'つを墓地へ（ブレイクしない）',{cardId:t.source});}
  function chosen(s,t,value){if(!t.op.startsWith('g21'))return false;const own=s.players[t.p];switch(t.op){
   case'g21KiyoSelect':if(value)put(s,{...t,selected:[...t.selected,value]});else{const rest=t.uids.filter(x=>!t.selected.includes(x));own.g21Protected=rest;own.g21Holding=t.selected.map(uid=>remove(own.deck,uid)).filter(Boolean);put(s,task('g21KiyoUse',t.p,t.source,{rest}));if(own.g21Holding.length)api.deckCheck(s,t.p);}break;
   case'g21KiyoUse':put(s,task('g21Enter',t.p,t.source,{zone:'g21Holding',origin:'deck',uid:value,execution:true}),t);break;

@@ -53,7 +53,7 @@ export function createTravelRules(api){
  case'g14_TimeWin':if(v){put(s,task('g14_ReturnMana',t.p,t.source));ramp(s,t.p,2);}break;
  case'g14_ReturnMana':{const x=remove(own.mana,v);if(x){clear(x,'hand');own.hand.push(x);}break;}
  case'g14_Chicken':move(s,[{player:1-t.p,uid:v,to:'grave'}]);break;
- case'g14_MomoShield':if(v){const x=api.shieldTo(s,t.p,v,'hand');if(x)api.shieldHand(s,t.p,x);}break;
+ case'g14_MomoShield':if(v){api.shieldTo(s,t.p,v,'hand');}break;
  case'g14_DashDeclare':{const [d,...remaining]=t.remaining;put(s,{...t,remaining,declared:v?[...t.declared,d]:t.declared});break;}
  case'g14_DashResolve':if(v)cast(s,t.p,t.uid,false,null,0,{cost:card(t.source).kirifudaDash},t.origin,'キリフダッシュ',false,v.permit);break;
  case'g14_Breaker':s.attack.g14Breaker=v;api.resolveAttack(s,null);break;

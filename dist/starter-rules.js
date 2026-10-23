@@ -41,7 +41,7 @@ export function createStarterRules(api){
   case 's6Slash':put(s,...value.flatMap(mode=>mode===0?[task('draw',t.p,t.source,{n:3}),task('discard',t.p,t.source,{causedBy:t.p,n:1})]:[task('revive',t.p,t.source,{max:8})]));break;
   case 's6Charon':{const hand=s.players[value].hand;put(s,task('s6HandOrder',value,t.source,{uids:hand.map(x=>x.uid),count:hand.length}));log(s,t.p,'charonTarget',`Vチャロンで${value===t.p?'自分':'相手'}を選ぶ`,{cardId:t.source});break;}
   case 's6HandOrder':{const x=remove(own.hand,value);if(x){clear(x,'deck');own.deck.push(x);}put(s,{...t,uids:t.uids.filter(uid=>uid!==value)});break;}
-  case 's6ShieldOrder':{const positions=t.positions||Object.fromEntries(own.shields.map((x,i)=>[x.uid,i+1])),x=removeShield(s,t.p,value);if(x){const to=x.faceUp&&card(x).gCastle?'grave':'deck';clear(x,to);own[to].push(x);}put(s,{...t,positions,uids:t.uids.filter(uid=>uid!==value)});break;}
+  case 's6ShieldOrder':{const positions=t.positions||Object.fromEntries(own.shields.map((x,i)=>[x.uid,i+1])),x=api.moveShield(s,t.p,value,'deck');put(s,{...t,positions,uids:t.uids.filter(uid=>uid!==value)});break;}
   default:throw Error('未実装の構築済みデッキ選択：'+t.op);
  }return true;}
  return {run,chosen,

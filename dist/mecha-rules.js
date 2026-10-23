@@ -57,7 +57,7 @@ export function createMechaRules(api){
   case'g19MekraidLook':prepareLook(s,t,value);break;
   case'g19Venerak':if(value&&oppLive(s,t))move(s,[{player:1-t.p,uid:t.target,to:'shields'}]);break;
   case'g19VenerakLeave':{const x=s.players[1-t.p].battle.find(x=>x.uid===value);if(x){api.tap(s,1-t.p,x);x.skipUntap=true;}break;}
-  case'g19AmeliaReturn':{const x=shieldTo(s,t.p,value,'hand');if(x)api.shieldHand(s,t.p,x);break;}
+  case'g19AmeliaReturn':{shieldTo(s,t.p,value,'hand');break;}
   case'g19Minus':{const x=s.players[1-t.p].battle.find(x=>x.uid===value);if(x)(x.powerModifiers??=[]).push({amount:-3000,expires:'end',who:s.active});break;}
   case'g19SheketAttack':if(value)move(s,[{player:1-t.p,uid:value,to:'shields'}]);break;
   case'g19Untap':if(value)put(s,{...t,selected:[...t.selected,value]});else for(const uid of t.selected){const x=own.battle.find(x=>x.uid===uid);if(x&&api.canUntap(x))x.tapped=false;}break;

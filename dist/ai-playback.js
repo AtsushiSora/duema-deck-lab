@@ -1,9 +1,10 @@
+import {shieldCards} from './shield-state.js';
 import {card,getLegalActions,chooseAI,step} from './engine.js';
 
 export const AI_SPEEDS={slow:{label:'ゆっくり',delay:3000},normal:{label:'標準',delay:2000},fast:{label:'速い',delay:700}};
 export const aiSpeedLabel=speed=>(AI_SPEEDS[speed]||AI_SPEEDS.normal).label;
 const visible=x=>!x.faceDown&&!x.hidden;
-const rows=(p,player)=>['battle','mana','grave'].flatMap(zone=>(p[zone]||[]).filter(visible).map(x=>({player,zone,uid:x.uid,cardId:x.cardId}))).concat((p.shields||[]).filter(x=>x.faceUp).map(x=>({player,zone:'shields',uid:x.uid,cardId:x.cardId})));
+const rows=(p,player)=>['battle','mana','grave'].flatMap(zone=>(p[zone]||[]).filter(visible).map(x=>({player,zone,uid:x.uid,cardId:x.cardId}))).concat((p.shields||[]).flatMap(shieldCards).filter(x=>x.faceUp).map(x=>({player,zone:'shields',uid:x.uid,cardId:x.cardId})));
 // Only public identities and counts enter presentation snapshots. Draws stay anonymous.
 export function aiPublicSnapshot(s){return {actions:s.actions,turn:s.turn,logIndex:s.log.length,players:s.players.map((p,player)=>({cards:rows(p,player),deck:p.deck.length,hand:p.hand.length,mana:p.mana.length,grave:p.grave.length,shields:p.shields.length,battle:p.battle.length}))};}
 const cueKeys=(snapshot,id)=>snapshot.players.flatMap(p=>p.cards.filter(x=>x.cardId===id&&x.zone==='battle').map(x=>`creature:${x.player}:${x.uid}`));
