@@ -35,7 +35,7 @@ export function createLionelRules(api){
  case'g15_Shield':api.shieldTop(s,t.p,card(t.source));break;
  case'g15_ManaUntap':{const x=own.mana.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);if(x&&api.canUntap(x))x.tapped=false;break;}
  case'g15_JohnnyWin':if(own.shields.length>=10)api.finish(s,t.p,card(t.source).name+'：シールド10以上で勝利');break;
- case'g15_NonBreakST':{const x=own.hand.find(x=>x.uid===t.uid);if(x&&own.shields.length<=2&&api.triggersAllowed(s,t.p)&&api.canCast(s,t.p,card(x))&&!api.spellIgnored(s,card(x)))choice(s,t,'革命2のS・トリガーを使う？',[opt('理想と平和の決断を唱える',true,20,x.cardId),skip()]);break;}
+ case'g15_NonBreakST':{const x=own.hand.find(x=>x.uid===t.uid);if(x&&own.shields.length<=2&&api.triggersAllowed(s,t.p)&&api.canCast(s,t.p,card(x))&&!api.spellIgnored(s,card(x))&&(card(x).type==='spell'||api.canEnter(s,t.p,card(x),{origin:'hand',execution:true})))choice(s,t,'革命2のS・トリガーを使う？',[opt(card(x).name+(card(x).type==='spell'?'を唱える':'を召喚する'),true,20,x.cardId),skip()]);break;}
  default:throw Error('未実装のライオネル効果：'+t.op);
  }return true;}
  function deploy(s,t,base){const own=s.players[t.p],x=own.hand.find(x=>x.uid===t.uid);if(!x)return;const serial=x.zoneSerial||0;if(t.blocker)put(s,task('g15_AfterDeploy',t.p,t.source,{uid:x.uid,serial}));remove(own.hand,x.uid);enter(s,t.p,x,base,{origin:'hand',execution:false});}
@@ -54,7 +54,7 @@ export function createLionelRules(api){
  case'g15_Song':{const target=s.players[v],all=target.grave.splice(0);for(const x of all)api.clear(x,'deck');target.deck.push(...api.shuffled(all,Math.floor(api.random(s)*4294967296)));draw(s,t.p,2);break;}
  case'g15_Keep':{const kept=v?[...t.kept,v]:t.kept;if(t.other!==undefined)put(s,{...t,p:t.other,other:undefined,kept});else put(s,task('g15_HeartMove',t.controller,t.source,{kept}));break;}
  case'g15_SmaxKeep':{const resume=s.g15SmaxResume;delete s.g15SmaxResume;s.decision=null;s.g15ResumeAfterMove=resume;move(s,own.battle.filter(x=>card(x).sMax&&x.uid!==v).map(x=>({player:t.p,uid:x.uid,to:'hand'})));if(!s.decision&&!s.leaving){s.decision=s.g15ResumeAfterMove;delete s.g15ResumeAfterMove;}break;}
- case'g15_NonBreakST':if(v&&own.hand.some(x=>x.uid===t.uid))cast(s,t.p,t.uid,true);break;
+ case'g15_NonBreakST':{const x=own.hand.find(x=>x.uid===t.uid);if(v&&x&&api.canCast(s,t.p,card(x))&&(card(x).type==='spell'||api.canEnter(s,t.p,card(x),{origin:'hand',execution:true})))cast(s,t.p,t.uid,true);break;}
  default:throw Error('未実装のライオネル選択：'+t.op);
  }return true;}
  return {run,chosen,
