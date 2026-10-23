@@ -10,7 +10,7 @@
 @media(max-width:850px){
  .manual-playing .app-shell,.manual-playing #app{overflow:hidden}
  .manual-page{padding:env(safe-area-inset-top) 4px 0}
- .manual-stage{position:relative;overflow:hidden}
+ .manual-stage{position:relative;overflow:hidden;--manual-dock-height:50px}
  .manual-topbar{min-height:44px;height:44px;margin:0 4px}
  .manual-turnbar{min-height:28px;height:28px;padding:2px 8px;border-radius:8px 8px 0 0}
  .manual-board-frame{flex:1;min-height:0;overflow:hidden}
@@ -53,11 +53,14 @@
  .play-policies{display:none}
  .attack-route-strip{min-height:0;max-height:34px;overflow:hidden;padding:2px 6px;gap:4px}.attack-route-strip strong{font-size:9px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.attack-offscreen-note{display:none}
 
- .manual-mobile-dock{display:block;flex:0 0 auto;background:#f7fbf8;border:1px solid #d7e6dd;border-radius:0 0 9px 9px;padding:3px 5px max(3px,env(safe-area-inset-bottom));min-width:0}
+ .manual-mobile-dock{display:block;flex:0 0 calc(var(--manual-dock-height) + env(safe-area-inset-bottom));height:calc(var(--manual-dock-height) + env(safe-area-inset-bottom));box-sizing:border-box;background:#f7fbf8;border:1px solid #d7e6dd;border-radius:0 0 9px 9px;padding:2px 5px calc(3px + env(safe-area-inset-bottom));min-width:0}
  .manual-mobile-dock>p{font-size:10px;line-height:16px;color:#3f6a54;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 3px}
  .manual-mobile-dock>div{display:flex;gap:5px;align-items:stretch}
  .manual-mobile-dock button{border:1px solid #c6dfd0;background:#fff;border-radius:8px;min-height:44px;min-width:0;flex:1;font-size:12px;color:#246546;padding:5px;white-space:nowrap}
  .manual-mobile-dock .dock-primary{background:#0b896d;color:white;border-color:#0b896d;font-weight:750}
+ .manual-mobile-dock .dock-secondary{flex:0 1 100px;background:transparent;border-color:transparent;font-size:11px}
+ .manual-mobile-dock .dock-primary:disabled{background:#e1eae5;color:#657a70;border-color:#d0ddd5;opacity:1}
+ .manual-options-button>span{font-size:26px;line-height:1;font-weight:700}
  .manual-console{display:none;position:fixed;left:5px;right:5px;bottom:calc(68px + env(safe-area-inset-bottom));z-index:7;height:auto;max-height:calc(100dvh - 116px - env(safe-area-inset-top) - env(safe-area-inset-bottom));min-height:0;margin:0;border-radius:12px;box-shadow:0 -8px 40px #0e2d3650;padding-bottom:0}
  .mobile-panel-hand .manual-console,.mobile-panel-actions .manual-console{display:flex}
  .manual-console.is-minimized .manual-console-content{display:flex}

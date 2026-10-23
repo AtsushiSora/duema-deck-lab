@@ -70,3 +70,9 @@ test('strategic AI completes every supported configuration legally and conserves
   assert.notEqual(s.winner,null,deck.name);assert.ok([0,1].includes(s.winner));
  }
 });
+
+test('strategic seal removal keeps a valid unknown card in hypothetical graveyards',()=>{
+ const s=setup();give(s,0,'mana',Array(5).fill('dm01-097'));give(s,0,'hand',['dm25rp3-DM1','dm01-097']);give(s,0,'battle',['dmex18-s13']);const host=s.players[0].battle[0];host.sealed=true;const seal=inst('dm01-108');seal.sealOf=host.uid;seal.faceDown=true;s.players[0].seals=[seal];const before=structuredClone(s);
+ const result=e.analyzeAI(s);assert.ok(result.nodes>0);assert.equal(result.fallbacks,0);assert.ok(e.getLegalActions(s).some(a=>JSON.stringify(a)===JSON.stringify(result.action)));assert.deepEqual(s,before);
+ seal.cardId='dm01-052';assert.deepEqual(e.analyzeAI(s),result);
+});

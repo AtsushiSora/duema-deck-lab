@@ -33,7 +33,7 @@ export function createStrategicAI(api){
    const original=s.players[i],player={name:'Player '+i,turns:x.turns,
     hand:i===p?structuredClone(x.hand):x.hand.map((_,j)=>unknown('ai-hand-'+i+'-'+j)),
     battle:structuredClone(x.battle),mana:structuredClone(x.mana),grave:structuredClone(x.grave),
-    extra:structuredClone(x.extra),seals:structuredClone(x.seals),
+    extra:structuredClone(x.extra),seals:x.seals.map(y=>({...unknown(y.uid),...y})),
     deck:Array.from({length:x.deckCount},(_,j)=>unknown('ai-deck-'+i+'-'+j)),
     // Only the public shield shape/links are copied, never its card identity.
     shields:original.shields.map(x=>({...unknown(x.uid),...(x.shieldGroup?{shieldGroup:x.shieldGroup}:{}),

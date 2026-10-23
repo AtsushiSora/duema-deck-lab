@@ -48,12 +48,11 @@ test('real app retains hint/undo behavior, collapsible logs and faster AI timing
  const s=setup();give(s,0,'hand',['dm01-108']);s.phase='charge';const h=harness(s),before=e.ENGINE_VERSION;await h.click('manual-log');assert.equal(h.read('manualUI.logOpen'),true);await h.click('manual-speed');assert.equal(h.read('manualUI.aiSpeed'),'slow');await h.click('hand-card',{uid:s.players[0].hand[0].uid});await h.click('battle-step',{index:'0'});assert.equal(s.phase,'main');await h.click('undo-battle');assert.equal(h.read('battle.state.phase'),'charge');assert.equal(h.read('manualUI.aiSpeed'),'slow');assert.equal(h.read('manualUI.logOpen'),true);assert.equal(e.ENGINE_VERSION,before);await h.click('battle-hint');assert.equal(h.read('dialog.open'),true);assert.ok(h.read('dialog.innerHTML').includes('次の一手のヒント'));
 });
 
-test('phone starts with the full board and opens the hand and controls only on request',async()=>{
+test('phone keeps a single scrollable hand and opens a card only on request',async()=>{
  const s=e.createGame([target,target],{seed:2020}),h=harness(s,{mobile:true}),before=structuredClone(s),uid=s.players[0].hand[0].uid;
  assert.equal(h.read('manualUI.mobilePanel'),'closed');assert.ok(h.root.innerHTML.includes('manual-mobile-dock'));assert.ok(!h.root.innerHTML.includes('class="manual-hand-cards"'));
- await h.click('manual-open-hand');assert.equal(h.read('manualUI.mobilePanel'),'hand');assert.ok(h.root.innerHTML.includes('class="manual-hand-cards"'));assert.deepEqual(s,before);
- await h.click('manual-panel-toggle');assert.equal(h.read('manualUI.mobilePanel'),'closed');assert.deepEqual(s,before);
- await h.click('manual-open-hand');await h.click('hand-card',{uid});assert.equal(s.actions,0);assert.equal(h.read('selectedHand'),uid);assert.equal(h.read('manualUI.mobilePanel'),'card');assert.ok(h.root.innerHTML.includes('hand-inspector'));
+ assert.ok(!h.root.innerHTML.includes('manual-open-hand'));assert.ok(!h.root.innerHTML.includes('手札一覧'));assert.ok(h.root.innerHTML.includes('hand-shelf-cards'));assert.deepEqual(s,before);
+ await h.click('hand-card',{uid});assert.equal(s.actions,0);assert.equal(h.read('selectedHand'),uid);assert.equal(h.read('manualUI.mobilePanel'),'card');assert.ok(h.root.innerHTML.includes('hand-inspector'));
  const a=e.getLegalActions(s).find(a=>a.kind==='charge'&&a.uid===uid);await h.click('battle-step',{index:String(a.id)});
  assert.equal(s.phase,'main');assert.equal(h.read('manualUI.panelMinimized'),false);assert.ok(s.players[0].mana.some(x=>x.uid===uid));
  assert.equal(h.read('manualUI.mobilePanel'),'closed');
@@ -84,11 +83,10 @@ test('board and horizontal lane positions survive display changes, while a new h
  await h.click('manual-panel-toggle');await h.click('hand-card',{uid:s.players[0].hand[0].uid});assert.equal(scrollers['.manual-console-content'].scrollTop,0);assert.equal(scrollers['.manual-board-area'].scrollTop,120);
 });
 
-test('phone hand pages expose later cards and selecting one executes the correct legal mana charge',async()=>{
+test('phone single hand exposes later cards and its contextual button charges the selected card',async()=>{
  const s=e.createGame([target,target],{seed:2020});s.players[0].hand.push(...s.players[0].deck.splice(0,6));const h=harness(s,{mobile:true}),uid=s.players[0].hand.at(-1).uid;
- await h.click('manual-open-hand');assert.equal((h.root.innerHTML.match(/class="manual-hand-card /g)||[]).length,6);assert.ok(!h.root.innerHTML.includes(`data-focus-key="hand-${uid}"`));
- await h.click('manual-hand-page',{page:'1'});assert.equal(s.actions,0);assert.ok(h.root.innerHTML.includes(`data-focus-key="hand-${uid}"`));
- await h.click('hand-card',{uid});const a=e.getLegalActions(s).find(a=>a.kind==='charge'&&a.uid===uid);await h.click('battle-step',{index:String(a.id)});assert.ok(s.players[0].mana.some(x=>x.uid===uid));assert.equal(h.read('manualUI.mobilePanel'),'closed');
+ assert.equal((h.root.innerHTML.match(/class="hand-shelf-card /g)||[]).length,11);assert.ok(h.root.innerHTML.includes(`data-focus-key="shelf-${uid}"`));assert.equal(s.actions,0);
+ await h.click('hand-card',{uid});await h.click('manual-primary',{context:h.read('manualUI.context')});assert.ok(s.players[0].mana.some(x=>x.uid===uid));assert.equal(h.read('manualUI.mobilePanel'),'closed');
 });
 
 test('mandatory effect choices can be viewed on the board, paged and chosen with their original engine ids',async()=>{
@@ -190,3 +188,17 @@ test('actual AI stops while hidden and resumes once; undo cancels the old announ
 });
 
 test('manual stacked shield button shows public cards and group size without exposing its hidden base',async()=>{const s=setup(),root=s.players[1].shields[0],face=inst('dm24sp1-010');give(s,1,'hand',[]);give(s,1,'deck',[]);attachShield(s.players[1],root.uid,face);const h=harness(s,{mobile:true});assert.match(h.root.innerHTML,/2枚の束/);await h.click('manual-faceup-shields',{player:'1'});assert.ok(h.read('dialog.innerHTML').includes(e.card(face).name));assert.ok(h.read('dialog.innerHTML').includes('2枚の束'));assert.ok(!h.read('dialog.innerHTML').includes(root.uid));assert.ok(!h.read('dialog.innerHTML').includes(e.card(root).name));});
+
+test('contextual phone button advances phases directly and rejects a stale displayed context',async()=>{
+ const s=e.createGame([target,target],{seed:2020}),h=harness(s,{mobile:true}),context=h.read('manualUI.context');
+ assert.ok(h.root.innerHTML.includes('マナを置かずに進む'));await h.click('manual-primary',{context});assert.equal(s.phase,'main');assert.equal(s.actions,1);
+ await h.click('manual-primary',{context});assert.equal(s.phase,'main');assert.equal(s.actions,1);await h.click('manual-primary',{context:h.read('manualUI.context')});assert.equal(s.phase,'attack');assert.equal(s.actions,2);
+ await h.click('manual-primary',{context:h.read('manualUI.context')});assert.equal(s.active,1);assert.equal(s.actions,3);
+});
+test('contextual attack and end turn controls keep optional attacks optional and execute a confirmed move once',async()=>{
+ const s=setup();give(s,0,'battle',['dm01-108','dm01-108']);s.phase='attack';const h=harness(s,{mobile:true}),uid=s.players[0].battle[0].uid;
+ await h.click('manual-creature',{uid,player:'0'});assert.ok(h.root.innerHTML.includes('攻撃先を選ぶ'));await h.click('manual-clear-attacker');assert.ok(h.root.innerHTML.includes('ターン終了'));assert.equal(s.actions,0);
+ await h.click('manual-primary',{context:h.read('manualUI.context')});assert.equal(s.actions,0);assert.ok(h.root.innerHTML.includes('攻撃せずにターンを終了しますか'));await h.click('manual-cancel-end');assert.equal(h.read('manualUI.mobilePanel'),'closed');
+ const attack=e.getLegalActions(s).find(a=>a.kind==='attack'&&a.uid===uid);await h.click('battle-step',{index:String(attack.id)});const context=h.read('manualUI.context');assert.equal(s.actions,0);await h.click('manual-primary',{context});assert.equal(s.actions,1);await h.click('manual-primary',{context});assert.equal(s.actions,1);
+ e.step(s,e.getLegalActions(s).find(a=>a.kind==='noBlock'));h.read('render()');assert.ok(e.getLegalActions(s).some(a=>a.kind==='attack'));await h.click('manual-primary',{context:h.read('manualUI.context')});assert.equal(s.actions,2);const end=h.read('manualUI.confirm');assert.notEqual(end,null);await h.click('manual-confirm-end',{index:String(end)});assert.equal(s.active,1);assert.equal(s.actions,3);
+});
