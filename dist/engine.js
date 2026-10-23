@@ -1,6 +1,6 @@
 import {shieldCards,shieldGroup,findShield,attachShield,detachShieldCard} from './shield-state.js';
-import {createExtendedRules} from './extended-rules.js?v=0.67.1';
-import {createStrategicAI} from './strategic-ai.js?v=0.67.1';
+import {createExtendedRules} from './extended-rules.js?v=0.68';
+import {createStrategicAI} from './strategic-ai.js?v=0.68';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.42';
 export const ENGINE_VERSION='0.42.0';

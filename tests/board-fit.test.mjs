@@ -20,3 +20,8 @@ test('fitted board recalculates after viewport changes and disconnects all resiz
  const view={addEventListener:(k,f)=>events.set(k,f),removeEventListener:(k,f)=>{assert.equal(events.get(k),f);events.delete(k);},ResizeObserver:class{constructor(f){callback=f;}observe(el){assert.equal(el,grid);}disconnect(){disconnected=true;}}};
  const cleanup=bindFittedBoard({querySelectorAll:()=>[grid]},view),first=properties.get('--fit-cols');assert.ok(Number(first)*Number(properties.get('--fit-rows'))>=15);width=140;height=240;events.get('resize')();assert.notEqual(properties.get('--fit-cols'),first);height=25;callback();assert.ok(classes.has('is-tiny'));cleanup();assert.equal(events.size,0);assert.equal(disconnected,true);assert.doesNotThrow(()=>bindFittedBoard(null)());
 });
+test('narrow shield rails keep a normal shield set in one vertical column and still fit dense counts',()=>{
+ for(const height of[25,60,108,180])for(let n=1;n<=10;n++){const g=fitBoardGrid(n,40,height,{shield:true,rail:true});assert.equal(g.columns,1);assert.equal(g.rows,n);assert.ok(g.rows*g.cellHeight+(g.rows-1)*g.gap<=height+1e-6);}
+ for(const n of[11,20,40,80]){const g=fitBoardGrid(n,40,60,{shield:true,rail:true});assert.ok(g.columns*g.rows>=n);assert.ok(g.columns*g.cellWidth+(g.columns-1)*g.gap<=40+1e-6);}
+ assert.ok(fitBoardGrid(5,350,38,{shield:true,rail:true}).columns>1);
+});
