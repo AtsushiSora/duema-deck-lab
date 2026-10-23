@@ -9,7 +9,7 @@ export function createSamuraiRules(api){
  const optionalReducers=(s,p,c)=>c.type==='creature'&&(dragon(c)||samurai(c))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&!live(s,p,g)).length:0;
  const noReduce=(s,p)=>creatures(s,1-p).some(x=>effective(x,s).noCostReduction);
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
- const canUse=(s,p,c,origin)=>api.canCast(s,p,c)&&(c.type==='spell'||api.canEnter(s,p,c,{origin,execution:true})&&(!c.evolution||api.evolutionBases(s,p,c).length));
+ const canUse=(s,p,c,origin)=>api.canCast(s,p,c,origin)&&(c.type==='spell'||api.canEnter(s,p,c,{origin,execution:true})&&(!c.evolution||api.evolutionBases(s,p,c).length));
  function cross(s,p,g,x){g.crossedTo={uid:x.uid,incarnation:x.incarnation||0};api.log(s,p,'crossGear',card(g).name+'を'+card(x).name+'にクロス',{cardId:g.cardId,target:x.uid});}
  function freeCross(g,c){return c.type==='creature'&&(g.doss&&samurai(c)||g.zangeki&&c.name==='ボルメテウス・武者・ドラゴン');}
  const protect=(own,n)=>{const uids=own.deck.slice(0,n).map(x=>x.uid);(own.g18Protected??=[]).push(...uids);return uids;};

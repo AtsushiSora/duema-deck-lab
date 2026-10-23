@@ -4,7 +4,7 @@ export function createHunterRules(api){
  const hunter=c=>String(c.race).includes('ハンター'),dragon=c=>c.type==='creature'&&String(c.race).includes('ドラゴン'),key=x=>x.uid+'@'+(x.incarnation||0);
  const on=(p,x,op,more={})=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  const enqueue=(s,p,x,op,more={})=>api.enqueue(s,p,on(p,x,op,more));
- const usable=(s,p,c,origin='deck')=>api.canCast(s,p,c)&&(c.type==='spell'||api.canEnter(s,p,c,{origin,execution:true})&&(!c.evolution||api.evolutionBases(s,p,c).length));
+ const usable=(s,p,c,origin='deck')=>api.canCast(s,p,c,origin)&&(c.type==='spell'||api.canEnter(s,p,c,{origin,execution:true})&&(!c.evolution||api.evolutionBases(s,p,c).length));
  const judge=(s,t,win)=>api.singleJudge(s,t.p,t.source,t.uid,win);
  // A selected Hunter may supply the evolution base for the second selected card.
  function selectable(s,t,c){

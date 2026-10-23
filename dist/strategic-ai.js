@@ -6,7 +6,7 @@ export function createStrategicAI(api){
  const body=c=>c.type==='creature';
  const damage=c=>c.breaker==='∞'?20:Number(c.breaker)||1;
  const key=a=>JSON.stringify(Object.fromEntries(Object.entries(a).filter(([k])=>k!=='id'&&k!=='label')));
- const publicCounters=['extLimits','once','extraTurns','noManaUse','creaturesEntered','finalUsed','darkTriggers',
+ const publicCounters=['extLimits','once','extraTurns','noManaUse','creaturesEntered','finalUsed','finalHistory','g26Extreme','g26GardenUsed','darkTriggers',
   'g13JagaUsed','g12LossUsed','g12NoLose','g15StarUsed','g16UsedMana','g17ManaUsed','g19MekraidUsed',
   'g20Attacks','g21ZenonUsed','g22UsedDiscount','g22UsedMana','g23Attacks','g23BalEntered','g25ManaUsed',
   'g2Spells','g3AttackSerial','g3CycleUsed','g3Debts','g3ReverseUsed','g5NextSummons','g7Battles',
@@ -38,7 +38,7 @@ export function createStrategicAI(api){
     // Only the public shield shape/links are copied, never its card identity.
     shields:original.shields.map(x=>({...unknown(x.uid),...(x.shieldGroup?{shieldGroup:x.shieldGroup}:{}),
      ...(x.faceUp?{cardId:x.cardId,faceUp:true}:{}),...(x.shieldStack?{shieldStack:x.shieldStack.map(y=>unknown(y.uid))}:{} )}))};
-   for(const k of ['enteredThisTurn','brokenThisTurn','spellsThisTurn'])if(original[k]!==undefined)player[k]=original[k];
+   for(const k of ['enteredThisTurn','brokenThisTurn','spellsThisTurn','g26FirstEventTurn'])if(original[k]!==undefined)player[k]=original[k];
    if(i===p){const pool=ownSample(x,player.shields.filter(y=>y.faceUp));if(x.deckTop){const j=pool.indexOf(x.deckTop.cardId);if(j>=0)pool.splice(j,1);}
     player.deck=player.deck.map((y,j)=>({...y,cardId:pool[j]||y.cardId}));
     if(x.deckTop&&player.deck.length)player.deck[0]=structuredClone(x.deckTop);

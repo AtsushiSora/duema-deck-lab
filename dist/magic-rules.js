@@ -18,7 +18,7 @@ export function createMagicRules(api){
   case'g9Hime':choice(s,t,'他のマジックをタップして呪文面を唱える？',[...creatures(s,t.p).filter(x=>x.uid!==t.uid&&!x.tapped&&magic(card(x))).map(x=>opt(card(x).name,x.uid,15,x.cardId)),skip()]);break;
   case'g9Bounce':{const list=opp.battle.filter(x=>!t.selected.includes(x.uid));if(t.selected.length===2||!list.length){move(s,t.selected.map(uid=>({player:1-t.p,uid,to:'hand'})));break;}choice(s,t,'手札に戻す相手のエレメントを2つまで選ぶ',[...targetOptions(s,t.p,list),opt('ここまでで確定',null,0)]);break;}
   case'g9Karaku':choice(s,t,'1枚引いて、コスト3以下の呪文を唱える？',[opt('1枚引く',true,own.deck.length>1?15:-10),skip()]);break;
-  case'g9Kaku':{const list=['hand','grave'].flatMap(origin=>own[origin].flatMap(x=>faces(card(x)).map((c,face)=>({x,c,face,origin})))).filter(({c})=>c.type==='spell'&&cost(c)<=own.mana.length&&api.canCast(s,t.p,c));choice(s,t,'ブレイク前に唱える呪文を選ぶ（現在'+own.mana.length+'マナ）',[...list.map(({x,c,face,origin})=>opt((origin==='grave'?'墓地：':'手札：')+c.name,{uid:x.uid,face,origin},20+cost(c),x.cardId)),skip()]);break;}
+  case'g9Kaku':{const list=['hand','grave'].flatMap(origin=>own[origin].flatMap(x=>faces(card(x)).map((c,face)=>({x,c,face,origin})))).filter(({c,origin})=>c.type==='spell'&&cost(c)<=own.mana.length&&api.canCast(s,t.p,c,origin));choice(s,t,'ブレイク前に唱える呪文を選ぶ（現在'+own.mana.length+'マナ）',[...list.map(({x,c,face,origin})=>opt((origin==='grave'?'墓地：':'手札：')+c.name,{uid:x.uid,face,origin},20+cost(c),x.cardId)),skip()]);break;}
   case'g9Untap':{const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation);if(x&&api.canUntap(x)&&!api.spellIgnored(s,{type:'spell',cost:t.cost})){x.tapped=false;api.log(s,t.p,'untap','最初の攻撃の終わりに'+card(x).name+'をアンタップ',{cardId:t.source});}break;}
   default:throw Error('未実装のマジック効果：'+t.op);
  }return true;}

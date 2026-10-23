@@ -7,7 +7,7 @@ export function createHachiRules(api){
  case'g11_Judge':api.singleJudge(s,t.p,t.source,t.uid,task('g11_Search',t.p,t.source));break;
  case'g11_Search':if(!api.deckLocked(s,t.p)){choice(s,t,'山札から特攻の忠剣ハチ公を出す？',[...own.deck.filter(x=>card(x).type==='creature'&&card(x).name.includes('特攻の忠剣ハチ公')&&api.canEnter(s,t.p,card(x),{origin:'deck',execution:false})).map(x=>opt(card(x).name,x.uid,35,x.cardId)),skip()]);}break;
  case'g11_Shuffle':api.shuffleLibrary(s,t.p);break;
- case'g11_Final':if(!s.finalUsed?.[t.p]){(s.finalUsed??=[false,false])[t.p]=true;for(const x of creatures(s,t.p))if(x.uid!==t.uid&&api.canUntap(x))x.tapped=false;log(s,t.p,'finalRevolution','レッドギラゾーン：他のクリーチャーをすべてアンタップ',{cardId:t.source});}break;
+ case'g11_Final':if(!s.finalUsed?.[t.p]){(s.finalUsed??=[false,false])[t.p]=true;(s.finalHistory??=[false,false])[t.p]=true;for(const x of creatures(s,t.p))if(x.uid!==t.uid&&api.canUntap(x))x.tapped=false;log(s,t.p,'finalRevolution','レッドギラゾーン：他のクリーチャーをすべてアンタップ',{cardId:t.source});}break;
  case'g11_RedZ':choice(s,t,'墓地に置く相手のシールドを選ぶ',s.players[1-t.p].shields.map((x,i)=>opt('シールド'+(i+1),x.uid,10)));break;
  case'g11_Storm':{const x=live(s,t),power=x?api.power(x,false,s):t.lastKnownPower;const list=creatures(s,1-t.p).filter(x=>api.power(x,false,s)<power);if(list.length)move(s,list.map(x=>({player:1-t.p,uid:x.uid,to:'grave'})));break;}
  case'g11_Fight':if(live(s,t))choice(s,t,'レッドトロンでバトルする相手を選ぶ',[...targetOptions(s,t.p,creatures(s,1-t.p)).map(o=>({...o,score:api.power(live(s,t),false,s)>api.power(s.players[1-t.p].battle.find(x=>x.uid===o.value),false,s)?35:-20})),skip()]);break;
