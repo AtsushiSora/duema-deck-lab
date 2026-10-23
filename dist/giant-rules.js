@@ -4,7 +4,7 @@ export function createGiantRules(api){
  const giant=c=>String(c.race).includes('ジャイアント'),snow=c=>String(c.race).includes('スノーフェアリー'),key=x=>x.uid+'@'+(x.incarnation||0);
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  const canPut=(s,p,x,origin)=>!x.faceDown&&card(x).type==='creature'&&api.canEnter(s,p,card(x),{origin,execution:false})&&(!card(x).evolution||api.evolutionBases(s,p,card(x)).length);
- function ramp(s,p,n){for(let i=0;i<n&&s.winner===null&&!s.lossEvent;i++){const x=api.takeTop(s,p);if(x){const to=api.deckRedirect(s,p)?'grave':'mana';clear(x,to);s.players[p][to].push(x);}api.deckCheck(s,p);}}
+ function ramp(s,p,n){for(let i=0;i<n&&s.winner===null&&!s.lossEvent;i++){const x=api.takeTop(s,p);if(x){const to=api.deckRedirect(s,p)?'grave':'mana';clear(x,to);api.addZone(s,s.players[p],to,x);}api.deckCheck(s,p);}}
  const protect=(own,n)=>{const uids=own.deck.slice(0,n).map(x=>x.uid);(own.g17Protected??=[]).push(...uids);return uids;};
  const unprotect=(own,uids)=>own.g17Protected=(own.g17Protected||[]).filter(x=>!uids.includes(x));
  function battleList(s,t,p){const row=t.rows.find(x=>x.p===p),x=row&&s.players[p].battle.find(x=>x.uid===row.uid&&(x.incarnation||0)===row.inc);return x&&api.isCreature(s,x)&&giant(effective(x,s))?creatures(s,p).filter(y=>y.uid!==x.uid&&effective(y,s).galacticBattle):[];}
@@ -59,7 +59,7 @@ export function createGiantRules(api){
  case'g17_Touch':{const x=s.players[1-t.p].battle.find(x=>x.uid===v);if(x){put(s,task('g17_TouchDeploy',t.p,t.source,{max:cost(card(x))===Infinity?'∞':cost(card(x))}));move(s,[{player:1-t.p,uid:v,to:'mana'}]);}break;}
  case'g17_YukiReturn':if(v)put(s,{...t,selected:[...t.selected,v]});else{for(const uid of t.selected){const x=remove(own.mana,uid);if(x){clear(x,'hand');own.hand.push(x);}}put(s,task('g17_YukiCharge',t.p,t.source,{selected:[]}));}break;
  case'g17_YukiCharge':if(v)put(s,{...t,selected:[...t.selected,v]});else for(const uid of t.selected){const x=remove(own.hand,uid);if(x){clear(x,'mana');x.tapped=true;own.mana.push(x);}}break;
- case'g17_Space':{const x=remove(own.deck,v);if(x){clear(x,'hand');own.hand.push(x);}for(const uid of t.uids.filter(uid=>uid!==v)){const x=remove(own.deck,uid);if(x){const to=api.deckRedirect(s,t.p)?'grave':'mana';clear(x,to);own[to].push(x);}}unprotect(own,t.uids);api.deckCheck(s,t.p);break;}
+ case'g17_Space':{const x=remove(own.deck,v);if(x){clear(x,'hand');own.hand.push(x);}for(const uid of t.uids.filter(uid=>uid!==v)){const x=remove(own.deck,uid);if(x){const to=api.deckRedirect(s,t.p)?'grave':'mana';clear(x,to);api.addZone(s,own,to,x);}}unprotect(own,t.uids);api.deckCheck(s,t.p);break;}
  case'g17_WinRamp':if(v)ramp(s,t.p,1);put(s,task('g17_ReturnMana',t.p,t.source));break;
  case'g17_ReturnMana':if(v){const x=remove(own.mana,v);if(x){clear(x,'hand');own.hand.push(x);}}break;
  case'g17_Lock':{const x=s.players[1-t.p].battle.find(x=>x.uid===v);if(x)for(const kind of['attack','block'])api.lock(s,t.p,{kind,player:1-t.p,uid:v,incarnation:x.incarnation||0});break;}

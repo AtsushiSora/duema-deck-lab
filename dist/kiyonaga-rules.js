@@ -3,10 +3,10 @@ export function createKiyonagaRules(api){
  const {card,faces,cost,effective,creatures,put,task,choice,opt,skip,remove,clear,draw,move,cast,enter,log,targetOptions}=api;
  const key=x=>x.uid+'@'+(x.incarnation||0),twin=x=>!!card(x).spellFace;
  const on=(s,p,source,op,more={})=>api.enqueue(s,p,{uid:more.uid,source,effect:'extended',task:task(op,p,source,more)});
- const ramp=(s,p,n)=>{const own=s.players[p],all=own.deck.splice(0,n),to=api.deckRedirect(s,p)?'grave':'mana';for(const x of all){clear(x,to);own[to].push(x);}log(s,p,'ramp','山札の上から'+all.length+'枚を'+(to==='mana'?'マナ':'墓地')+'へ');api.deckCheck(s,p);return all;};
+ const ramp=(s,p,n)=>{const own=s.players[p],all=own.deck.splice(0,n),to=api.deckRedirect(s,p)?'grave':'mana';for(const x of all){clear(x,to);api.addZone(s,own,to,x);}log(s,p,'ramp','山札の上から'+all.length+'枚を'+(to==='mana'?'マナ':'墓地')+'へ');api.deckCheck(s,p);return all;};
  const distinct=(list,seen=[])=>!list.length||faces(card(list[0])).some(c=>!seen.includes(c.cost)&&distinct(list.slice(1),[...seen,c.cost]));
  const canPut=(s,p,x,origin,execution=false)=>api.canEnter(s,p,card(x),{origin,execution})&&(!card(x).evolution||api.evolutionBases(s,p,card(x)).length);
- function kiyoRest(s,t){const own=s.players[t.p],to=api.deckRedirect(s,t.p)?'grave':'mana',all=[...(own.g21Holding||[]),...t.rest.flatMap(uid=>{const x=remove(own.deck,uid);return x?[x]:[];})];own.g21Holding=[];delete own.g21Protected;for(const x of all){clear(x,to);own[to].push(x);}if(all.length)api.deckCheck(s,t.p);log(s,t.p,'kiyonagaMana','清永で残り'+all.length+'枚を'+(to==='mana'?'マナ':'墓地')+'へ',{cardId:t.source});}
+ function kiyoRest(s,t){const own=s.players[t.p],to=api.deckRedirect(s,t.p)?'grave':'mana',all=[...(own.g21Holding||[]),...t.rest.flatMap(uid=>{const x=remove(own.deck,uid);return x?[x]:[];})];own.g21Holding=[];delete own.g21Protected;for(const x of all){clear(x,to);api.addZone(s,own,to,x);}if(all.length)api.deckCheck(s,t.p);log(s,t.p,'kiyonagaMana','清永で残り'+all.length+'枚を'+(to==='mana'?'マナ':'墓地')+'へ',{cardId:t.source});}
  function run(s,t){if(!t.op.startsWith('g21'))return false;const own=s.players[t.p],opp=s.players[1-t.p];switch(t.op){
   case'g21KiyoReveal':{const all=own.deck.slice(0,3);log(s,t.p,'reveal','清永で公開：'+all.map(x=>card(x).name).join('、'),{cardId:t.source});if(distinct(all))put(s,task('g21KiyoSelect',t.p,t.source,{uids:all.map(x=>x.uid),selected:[]}));else kiyoRest(s,{...t,rest:all.map(x=>x.uid)});break;}
   case'g21KiyoSelect':{const list=t.uids.filter(uid=>!t.selected.includes(uid)).map(uid=>own.deck.find(x=>x.uid===uid)).filter(x=>x&&card(x).type!=='spell'&&cost(card(x))<=9);choice(s,t,'使うコスト9以下のエレメントをすべて選ぶ（'+t.selected.length+'枚）',[...list.map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)),opt('選択を確定',null,0)]);break;}
@@ -44,7 +44,7 @@ export function createKiyonagaRules(api){
   case'g21CobaltDraw':if(value)draw(s,t.p,2);break;
   case'g21Shutter':if(value)put(s,{...t,selected:[...t.selected,value]});else finishShutter(s,t);break;
   case'g21Mega':if(value){const x=own[t.origin].find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.zoneSerial);if(x){if(t.origin==='grave')api.castBattleSpell(s,t.p,x.uid,0,t.source,'メガ・ラスト・バースト');else cast(s,t.p,x.uid,true,null,1,null,t.origin,'メガ・ラスト・バースト');}}break;
-  case'g21MinoRecover':{const x=remove(own.grave,value);if(x){const to=api.manaRedirect(s,t.p)?'grave':'mana';clear(x,to);own[to].push(x);}break;}
+  case'g21MinoRecover':{const x=remove(own.grave,value);if(x){const to=api.manaRedirect(s,t.p)?'grave':'mana';clear(x,to);api.addZone(s,own,to,x);}break;}
   case'g21MinoAttack':if(value)put(s,task('putCreature',t.p,t.source,{uid:value,origin:'mana'}));break;
   case'g21Fortress':if(value)put(s,{...t,selected:[...t.selected,value]});else finishFortress(s,t);break;
   default:throw Error('未実装の清永デッキ選択：'+t.op);

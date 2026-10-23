@@ -3,8 +3,8 @@ export function createGirlsRules(api){
  const {card,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,move,enter}=api;
  const dragon=c=>String(c.race).includes('ドラゴン'),key=x=>x.uid+'@'+(x.incarnation||0);
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
- function ramp(s,p,n){const out=[];for(let i=0;i<n&&s.winner===null&&!s.lossEvent;i++){const x=api.takeTop(s,p);if(x){const to=api.deckRedirect(s,p)?'grave':'mana';clear(x,to);if(to==='mana')x.tapped=true;s.players[p][to].push(x);out.push(x);}api.deckCheck(s,p);}return out;}
- function finishReveal(s,t,toMana=false){const own=s.players[t.p],remaining=t.uids.filter(uid=>own.deck.some(x=>x.uid===uid));delete own.g8Protected;if(toMana){for(const uid of remaining){const x=remove(own.deck,uid),to=api.deckRedirect(s,t.p)?'grave':'mana';clear(x,to);if(to==='mana')x.tapped=true;own[to].push(x);}api.deckCheck(s,t.p);}else{for(const uid of remaining){const x=remove(own.deck,uid);own.deck.push(x);}put(s,task('bottomOrder',t.p,t.source,{uids:remaining}));}}
+ function ramp(s,p,n){const out=[];for(let i=0;i<n&&s.winner===null&&!s.lossEvent;i++){const x=api.takeTop(s,p);if(x){const to=api.deckRedirect(s,p)?'grave':'mana';clear(x,to);if(to==='mana')x.tapped=true;api.addZone(s,s.players[p],to,x);out.push(x);}api.deckCheck(s,p);}return out;}
+ function finishReveal(s,t,toMana=false){const own=s.players[t.p],remaining=t.uids.filter(uid=>own.deck.some(x=>x.uid===uid));delete own.g8Protected;if(toMana){for(const uid of remaining){const x=remove(own.deck,uid),to=api.deckRedirect(s,t.p)?'grave':'mana';clear(x,to);if(to==='mana')x.tapped=true;api.addZone(s,own,to,x);}api.deckCheck(s,t.p);}else{for(const uid of remaining){const x=remove(own.deck,uid);own.deck.push(x);}put(s,task('bottomOrder',t.p,t.source,{uids:remaining}));}}
  const canPut=(s,p,x,origin)=>card(x).type==='creature'&&api.canEnter(s,p,card(x),{origin,execution:false})&&(!card(x).evolution||api.evolutionBases(s,p,card(x)).length);
  function run(s,t){if(!t.op.startsWith('g8_'))return false;const own=s.players[t.p],opp=s.players[1-t.p];switch(t.op){
  case'g8_Daiou':if(api.targetOptions(s,t.p,creatures(s,1-t.p)).length)choice(s,t,'ドラゴ大王：バトルさせる自分のクリーチャーを選ぶ',[...creatures(s,t.p).map(x=>opt(card(x).name,x.uid,api.power(x,false,s)/1000,x.cardId)),skip()]);break;
@@ -42,7 +42,7 @@ export function createGirlsRules(api){
  case'g8_FinalPick':if(v){const x=own.deck.find(x=>x.uid===v);put(s,{...t,selected:[...t.selected,v],budget:t.budget-cost(card(x))});}else put(s,{...t,op:'g8_FinalNext'});break;
  case'g8_FinalNext':put(s,task('putCreature',t.p,t.source,{uid:v,origin:'deck',deckCheck:true}),{...t,selected:t.selected.filter(uid=>uid!==v)});break;
  case'g8_DragonShield':if(v==='new')api.shieldTop(s,t.p,card(t.source));else if(own.shields.length){const x=own.deck[0];if(x){api.log(s,t.p,'reveal','ドラゴン・W・ブレイカーで公開：'+card(x).name,{cardId:t.source});put(s,{...t,op:'g8_DragonShieldStack'});}}break;
- case'g8_DragonShieldStack':{const x=api.takeTop(s,t.p);if(x){if(api.deckRedirect(s,t.p)){clear(x);own.grave.push(x);}else{clear(x,'shields');api.addShieldCard(s,t.p,v,x);}api.deckCheck(s,t.p);}break;}
+ case'g8_DragonShieldStack':{const x=api.takeTop(s,t.p);if(x){if(api.deckRedirect(s,t.p)){clear(x);api.addZone(s,own,'grave',x);}else{clear(x,'shields');api.addShieldCard(s,t.p,v,x);}api.deckCheck(s,t.p);}break;}
  default:throw Error('未実装のドラゴン娘選択：'+t.op);
  }return true;}
  return{run,chosen,manaPermits(s,p,x){return card(x).type==='creature'&&dragon(card(x))?creatures(s,p).filter(y=>effective(y,s).dragonManaOnce&&(s.g8ManaUses||{})[key(y)]!==s.turn).map(y=>'g8:'+key(y)):[];},

@@ -12,7 +12,7 @@ export function createMaruruRules(api){
  case'g1_KiinaryRevive':choice(s,t,'墓地からコスト'+t.max+'以下を1体出す',own.grave.filter(x=>canPut(s,t.p,x,'grave')&&cost(card(x))<=t.max).map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)));break;
  case'g1_WatchBounce':{const selected=t.selected||[],list=api.targetOptions(s,t.p,[...creatures(s,t.p),...creatures(s,1-t.p)].filter(x=>!selected.includes(x.uid))).map(x=>({...x,score:own.battle.some(y=>y.uid===x.value)?-10:x.score}));if(selected.length===2||!list.length){const rows=bounceRows(s,selected);if(rows.length)move(s,rows);break;}choice(s,{...t,selected},'ジ・ウォッチ：手札に戻すクリーチャーを2体まで選ぶ（'+selected.length+'/2）',[...list,opt('ここまでで確定',null,0)]);break;}
  case'g1_Skip':choice(s,t,'ジ・ウォッチ：今のターンの残りを飛ばす？',[opt('ターンの残りを飛ばす',true,t.p!==s.active?50:-10),skip()]);break;
- case'g1_Bunker':{const x=api.takeTop(s,t.p);if(x){const to=api.deckRedirect(s,t.p)?'grave':'mana';clear(x,to);own[to].push(x);api.log(s,t.p,'ramp','ジゴクバンカーで山札の上1枚を'+(to==='mana'?'マナ':'墓地')+'へ',{cardId:t.source});api.deckCheck(s,t.p);}put(s,task('g1_ManaHand',t.p,t.source));break;}
+ case'g1_Bunker':{const x=api.takeTop(s,t.p);if(x){const to=api.deckRedirect(s,t.p)?'grave':'mana';clear(x,to);api.addZone(s,own,to,x);api.log(s,t.p,'ramp','ジゴクバンカーで山札の上1枚を'+(to==='mana'?'マナ':'墓地')+'へ',{cardId:t.source});api.deckCheck(s,t.p);}put(s,task('g1_ManaHand',t.p,t.source));break;}
  case'g1_ManaHand':choice(s,t,'マナからカード1枚を手札に戻す？',[...own.mana.map(x=>opt(card(x).name,x.uid,own.mana.length>7?cost(card(x)):cost(card(x))-12,x.cardId)),skip()]);break;
  case'g1_Sky':choice(s,t,'スカイソード：相手1体をマナへ置く？',[...api.targetOptions(s,t.p,creatures(s,1-t.p)),skip()]);break;
  case'g1_SkyDeploy':choice(s,t,'自分のマナ枚数よりコストが小さいクリーチャーを出す？',[...own.mana.filter(x=>canPut(s,t.p,x,'mana')&&cost(card(x))<own.mana.length).map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)),skip()]);break;
@@ -20,7 +20,7 @@ export function createMaruruRules(api){
  default:throw Error('未実装のマルル効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g1_'))return false;const own=s.players[t.p];switch(t.op){
- case'g1_Look':{const x=api.takeTop(s,t.p);if(x){const to=v==='mana'&&api.deckRedirect(s,t.p)?'grave':v;clear(x,to);if(to==='mana')x.tapped=true;own[to].push(x);api.log(s,t.p,'maruruLook','マルルで山札の上1枚を'+(to==='hand'?'手札':to==='mana'?'タップしてマナ':'墓地')+'へ',{cardId:t.source,...(to==='hand'?{privateFor:t.p}:{})});api.deckCheck(s,t.p);}break;}
+ case'g1_Look':{const x=api.takeTop(s,t.p);if(x){const to=v==='mana'&&api.deckRedirect(s,t.p)?'grave':v;clear(x,to);if(to==='mana')x.tapped=true;api.addZone(s,own,to,x);api.log(s,t.p,'maruruLook','マルルで山札の上1枚を'+(to==='hand'?'手札':to==='mana'?'タップしてマナ':'墓地')+'へ',{cardId:t.source,...(to==='hand'?{privateFor:t.p}:{})});api.deckCheck(s,t.p);}break;}
  case'g1_Orugate':if(v)move(s,[{player:1-t.p,uid:v,to:'hand'}]);break;
  case'g1_Kiinary':{const x=s.players[1-t.p].battle.find(x=>x.uid===v);if(x)put(s,{...t,op:'g1_KiinaryBounce',target:v,targetCard:x.cardId,max:cost(card(x))});break;}
  case'g1_KiinaryBounce':put(s,{...t,op:'g1_KiinaryRevive'});if(v)move(s,[{player:1-t.p,uid:t.target,to:'hand'}]);break;

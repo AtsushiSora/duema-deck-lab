@@ -40,7 +40,7 @@ export function createMechaRules(api){
   case'g19BeforeCommit':s.g19BreakSequence={...t,tasks:(s.extTasks||[]).splice(0)};break;
   default:throw Error('未実装のメカ効果：'+t.op);
  }return true;}
- function failHeld(s,t){const own=s.players[t.p],x=remove(own.g19Holding,t.uid);if(x)own[t.origin].push(x);}
+ function failHeld(s,t){const own=s.players[t.p],x=remove(own.g19Holding,t.uid);if(x)api.addZone(s,own,t.origin,x);}
  function enterHeld(s,t,base){const own=s.players[t.p],x=own.g19Holding.find(x=>x.uid===t.uid);if(!x)return;if(t.execution){x.g5Origin=t.origin;cast(s,t.p,x.uid,true,base,t.face||0,null,'g19Holding','メカ・メクレイド');}else{remove(own.g19Holding,x.uid);enter(s,t.p,x,base,{origin:t.origin,execution:false});}if(t.blocker&&own.battle.some(y=>y.uid===x.uid))x.g19Blocker=t.p;}
  function assignable(s,p,rows,used=[],allowed=null){if(!rows.length)return true;const x=rows[0];if(!card(x).evolution)return assignable(s,p,rows.slice(1),used,allowed);return api.evolutionBases(s,p,card(x)).some(b=>!used.includes(b.uid)&&(!allowed||allowed.includes(b.uid))&&assignable(s,p,rows.slice(1),[...used,b.uid],allowed));}
  function prepareBoji(s,t){const own=s.players[t.p],bases=creatures(s,t.p).map(x=>x.uid);own.g19Holding??=[];for(const r of t.selected){const x=remove(own[r.origin],r.uid);if(x)own.g19Holding.push(x);}put(s,...t.selected.map(r=>task('g19Held',t.p,t.source,{...r,blocker:true,bases})));}

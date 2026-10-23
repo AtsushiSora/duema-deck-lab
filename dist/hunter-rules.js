@@ -47,7 +47,7 @@ export function createHunterRules(api){
   case'g12Dragon':if(value)put(s,task('putCreature',t.p,t.source,{origin:'deck',uid:value}),task('g12DeckCheck',t.p,t.source));break;
   case'g12DiehardShield':shieldTo(s,1-t.p,value,'grave');break;
   case'g12Mechade':if(value)put(s,task('g12Use',t.p,t.source,{origin:'mana',uid:value,reason:'メチャデ塊ゾウ'}));break;
-  case'g12ManaLook':{const x=remove(own.deck,value),to=api.deckRedirect(s,t.p)?'grave':'mana';if(x){clear(x,to);own[to].push(x);}const uids=t.uids.filter(uid=>uid!==value);own.g12Reveals=(own.g12Reveals||[]).filter(uid=>uid!==value);put(s,task('g12ManaRest',t.p,t.source,{uids}));api.deckCheck(s,t.p);break;}
+  case'g12ManaLook':{const x=remove(own.deck,value),to=api.deckRedirect(s,t.p)?'grave':'mana';if(x){clear(x,to);api.addZone(s,own,to,x);}const uids=t.uids.filter(uid=>uid!==value);own.g12Reveals=(own.g12Reveals||[]).filter(uid=>uid!==value);put(s,task('g12ManaRest',t.p,t.source,{uids}));api.deckCheck(s,t.p);break;}
   case'g12ManaRest':own.g12Reveals=(own.g12Reveals||[]).filter(uid=>!t.uids.includes(uid));if(value==='bottom')put(s,task('g20Bottom',t.p,t.source,{uids:t.uids}));break;
   case'g12Loss':if(value){if(value.kind==='ura'){api.uraLoss(s,t.p,value.uid);break;}if(value.kind==='oni'){api.oniLoss(s,t.p,value.uid);break;}if(value.kind==='johnnyHand'){api.replaceJohnnyHandLoss(s,t.p,value.uid);break;}if(value.kind==='baba'){api.replaceHandLoss(s,t.p,value.uid);break;}if(value.kind==='hunter')(s.g12LossUsed??={})[value.key]=s.turn;api.replaceLoss(s,t.p,value.uid);}else api.declineLoss(s);break;
   default:throw Error('未実装のハンター選択：'+t.op);

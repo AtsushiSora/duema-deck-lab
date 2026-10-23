@@ -4,7 +4,7 @@ export function createKenjiRules(api){
  const evo=c=>!!(c.evolution||c.sMax),key=x=>x.uid+'@'+(x.incarnation||0);
  const canPut=(s,p,x,origin)=>!x.faceDown&&card(x).type==='creature'&&api.canEnter(s,p,card(x),{origin,execution:false})&&(!card(x).evolution||api.evolutionBases(s,p,card(x)).length);
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,{uid:x.uid,...more})});
- function ramp(s,p,n){for(let i=0;i<n&&s.winner===null&&!s.lossEvent;i++){const x=api.takeTop(s,p);if(x){const to=api.deckRedirect(s,p)?'grave':'mana';clear(x,to);s.players[p][to].push(x);}api.deckCheck(s,p);}}
+ function ramp(s,p,n){for(let i=0;i<n&&s.winner===null&&!s.lossEvent;i++){const x=api.takeTop(s,p);if(x){const to=api.deckRedirect(s,p)?'grave':'mana';clear(x,to);api.addZone(s,s.players[p],to,x);}api.deckCheck(s,p);}}
  function oniCards(s,p,excluded=[]){return s.players[p].battle.flatMap(top=>api.layers(top).filter(x=>!x.faceDown&&!excluded.includes(x.uid)&&(x!==top||api.canLeave(s,p,top))).map(x=>({x,top})));}
  function beginOni(s,p,uid,mode='loss',selected=[]){
   const reserved=mode==='leave'?s.leaving.rows.flatMap(r=>r.plan?.kind==='oni'?r.plan.cards:[]):[];

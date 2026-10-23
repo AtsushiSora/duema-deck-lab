@@ -1,0 +1,55 @@
+// No.04: explicit declarations, New World replacement, and physical Mugen bases.
+export function createMadoRules(api){
+ const {card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,move,draw,log,targetOptions}=api;
+ const key=x=>x.uid+'@'+(x.incarnation||0),magic=c=>String(c.race).includes('魔導具'),dols=c=>String(c.race).includes('ドルスザク');
+ const sources=(s,p,dream)=>['hand','grave'].flatMap(origin=>s.players[p][origin].filter(x=>card(x).mugenGate&&(!!card(x).mugenDream===dream)).map(x=>({p,origin,uid:x.uid,source:x.cardId,serial:x.zoneSerial||0,n:card(x).mugenGate})));
+ const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
+ const live=(s,t)=>s.players[t.p].battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===(t.incarnation||0));
+ const gateCard=(s,t)=>s.players[t.p][t.origin].find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);
+ const materials=(s,p)=>['battle','grave'].flatMap(origin=>s.players[p][origin].filter(x=>origin==='battle'?magic(card(x)):faces(card(x)).some(magic)).map(x=>({origin,uid:x.uid,cardId:x.cardId,serial:x.zoneSerial||0})));
+ const fields=(s,p)=>s.players[p].battle.filter(x=>effective(x,s).newWorld);
+ function declare(s,rows,{end=false,follow=[]}={}){if(!rows.length)return false;put(s,task('g4_Declare',rows[0].p,rows[0].source,{remaining:rows,declared:[],end,follow}));return true;}
+ function finishGate(s,t){const x=gateCard(s,t);if(!x||!api.canCast(s,t.p,card(x))||!api.canEnter(s,t.p,card(x),{origin:t.origin,execution:true}))return;const available=materials(s,t.p),selected=t.selected||[];if(selected.length<t.n){const options=available.filter(x=>!selected.some(y=>y.uid===x.uid));if(available.length<t.n)return;choice(s,t,'無月の門：下に置く魔導具を'+t.n+'つ選ぶ（'+selected.length+'/'+t.n+'）',options.map(y=>opt((y.origin==='grave'?'墓地の':'場の')+card(y.cardId).name,y,y.origin==='grave'?30:2,y.cardId)));return;}if(!selected.every(y=>available.some(z=>z.uid===y.uid&&z.origin===y.origin&&z.serial===y.serial)))return;api.cast(s,t.p,x.uid,true,selected,0,null,t.origin,card(x).mugenDream?'夢幻無月の門':'無月の門・絶');}
+ function finishLook(s,t){delete s.players[t.p].g4Protected;put(s,task('bottomOrder',t.p,t.source,{uids:t.uids.filter(uid=>s.players[t.p].deck.some(x=>x.uid===uid))}));}
+ function run(s,t){if(!t.op.startsWith('g4_'))return false;const own=s.players[t.p],opp=s.players[1-t.p];switch(t.op){
+ case'g4_Declare':{const row=t.remaining[0];if(!row){for(const r of t.declared){const e={player:r.p,uid:r.uid,source:r.source,effect:'extended',task:task('g4_Gate',r.p,r.source,{...r,selected:[]})};if(t.end)s.endStep?.deferred.push(e);else api.enqueue(s,r.p,e);}put(s,...t.follow);break;}if(!gateCard(s,row)){put(s,{...t,remaining:t.remaining.slice(1)});break;}choice(s,{...t,p:row.p,source:row.source},card(row.source).name+'の'+(row.n===4?'夢幻無月の門':'無月の門・絶')+'を宣言しますか？',[opt('宣言する',true,materials(s,row.p).length>=row.n?35:-3,row.source),skip()]);break;}
+ case'g4_Gate':finishGate(s,t);break;
+ case'g4_ResumeSpell':api.resolveSpell(s,t.p,t.uid);break;
+ case'g4_Store':{const f=(s.extSpells||[]).find(x=>x.inst.uid===t.uid);if(!f)break;const choices=fields(s,t.p);choice(s,t,'唱えた魔導具を新世壊の下に置き、1枚引きますか？',[...choices.map((x,i)=>opt('新世壊'+(i+1)+'（下'+api.layers(x).slice(1).length+'枚）に置いて1枚引く',key(x),own.deck.length>1?25:-50,x.cardId)),opt('通常の行き先へ置く',null,0)]);break;}
+ case'g4_World':{const x=live(s,t);if(!x||x.g4WorldUsed||api.layers(x).length<5)break;const list=['hand','grave'].flatMap(origin=>own[origin].flatMap(y=>faces(card(y)).map((c,face)=>({y,c,face,origin})))).filter(({c})=>c.type==='spell'&&cost(c)<=99&&colors(c).includes('水')&&api.canCast(s,t.p,c));choice(s,t,'無月の門99：水の呪文を手札か墓地から唱える',[...list.map(({y,c,face,origin})=>opt((origin==='hand'?'手札の':'墓地の')+c.name,{uid:y.uid,face,origin},c.effect==='dolsuzakuTurn'?150:cost(c),y.cardId)),skip()]);break;}
+ case'g4_MomoEnd':put(s,task('execute',t.p,t.source,{origin:'hand',max:'∞',creatureOnly:true,deploy:true}));break;
+ case'g4_Dollar':put(s,task('destroyPower',t.p,t.source,{max:'∞'}),task('discard',1-t.p,t.source,{n:1,random:true,causedBy:t.p}));break;
+ case'g4_Airvo':{const list=[0,1].flatMap(p=>s.players[p].battle.flatMap(top=>api.layers(top).filter(x=>(x===top?[card(x)]:faces(card(x))).some(c=>cost(c)<=7)).filter(x=>x!==top||api.targetable(s,t.p,p,top)).map(x=>({x,top,p}))));const forced=list.filter(r=>r.p!==t.p&&r.x===r.top&&effective(r.top,s).forceTarget);choice(s,t,'エアヴォ：コスト7以下のカードを1枚、手札に戻す',(forced.length?forced:list).map(({x,top,p})=>opt(card(x).name,{uid:x.uid,top:top.uid,player:p},p===t.p?(x===top?-15:10):cost(card(x))*3,x.cardId)));break;}
+ case'g4_Gon':{const uids=own.deck.slice(0,3).map(x=>x.uid);own.g4Protected=uids;if(uids.length)choice(s,{...t,uids},'ゴンパドゥ：上3枚から手札に加える1枚を選ぶ',uids.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,card(x).newWorld&&!fields(s,t.p).length?150:Math.min(30,cost(card(x))),x.cardId);}));break;}
+ case'g4_Blood':choice(s,t,'墓地を山札に戻すプレイヤーを選ぶ',[opt('自分の墓地',t.p,own.deck.length<12?35:-3),opt('相手の墓地',1-t.p,opp.grave.length>5?30:2)]);break;
+ case'g4_Untap':{const selected=t.selected||[],available=t.uids.filter(uid=>!selected.includes(uid)&&own.mana.some(x=>x.uid===uid&&x.tapped));if(selected.length===3||!available.length){for(const uid of selected){const x=own.mana.find(x=>x.uid===uid);if(x)x.tapped=false;}break;}choice(s,{...t,selected},'ガ・リュザーク：アンタップするマナを3枚まで選ぶ（'+selected.length+'/3）',[...available.map(uid=>{const x=own.mana.find(x=>x.uid===uid);return opt(card(x).name,uid,20+colors(card(x)).length,x.cardId);}),opt('ここまでで確定',null,0)]);break;}
+ default:throw Error('未実装の水魔導具効果：'+t.op);
+ }return true;}
+ function chosen(s,t,v){if(!t.op.startsWith('g4_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g4_Declare':{const row=t.remaining[0];if(v)log(s,row.p,'mugenDeclare',card(row.source).name+'の'+(row.n===4?'夢幻無月の門':'無月の門・絶')+'を使用宣言',{cardId:row.source});put(s,{...t,remaining:t.remaining.slice(1),declared:v?[...t.declared,row]:t.declared});break;}
+ case'g4_Gate':put(s,{...t,selected:[...t.selected,v]});break;
+ case'g4_Store':{const i=(s.extSpells||[]).findIndex(x=>x.inst.uid===t.uid);if(i<0)break;const f=s.extSpells[i],x=v&&fields(s,t.p).find(x=>key(x)===v);if(x){s.extSpells.splice(i,1);clear(f.inst,'battle');(x.under??=[]).push(f.inst);log(s,t.p,'newWorldStore','魔導具を新世壊の下に置く（下'+api.layers(x).slice(1).length+'枚）',{cardId:x.cardId});draw(s,t.p,1,{unreplaceable:true});}else put(s,task('finishSpell',f.caster??f.owner,t.source,{uid:t.uid,g4Declined:true}));break;}
+ case'g4_World':{const x=live(s,t);if(v&&x){x.g4WorldUsed=true;api.cast(s,t.p,v.uid,true,null,v.face,null,v.origin,'無月の門99');}break;}
+ case'g4_Airvo':api.moveBattleCard(s,v.player,v.uid,'hand');break;
+ case'g4_Gon':{const x=remove(own.deck,v);if(x){clear(x,'hand');own.hand.push(x);}finishLook(s,t);api.deckCheck(s,t.p);break;}
+ case'g4_Blood':{const p=s.players[v],all=p.grave.splice(0);for(const x of all)clear(x,'deck');p.deck=api.shuffled([...p.deck,...all],Math.floor(api.random(s)*4294967296));log(s,t.p,'graveShuffle',(v===t.p?'自分':'相手')+'の墓地'+all.length+'枚を山札に加えてシャッフル',{cardId:t.source});draw(s,t.p,1);break;}
+ case'g4_Untap':if(v)put(s,{...t,selected:[...t.selected,v]});else for(const uid of t.selected){const x=own.mana.find(x=>x.uid===uid);if(x)x.tapped=false;}break;
+ default:throw Error('未実装の水魔導具選択：'+t.op);
+ }return true;}
+ return {run,chosen,materials,
+ effect(s,p,c,uid,entry){switch(c.effect){case'madoNothing':return true;case'madoAirvo':put(s,task('g4_Airvo',p,c.id));break;case'madoBarred':put(s,task('draw',p,c.id,{n:2}),task('discard',p,c.id,{n:1,causedBy:p}));break;case'madoGon':put(s,task('g4_Gon',p,c.id));break;case'madoBlood':put(s,task('g4_Blood',p,c.id));break;case'madoBock':put(s,...(entry?.plus?[task('elementBounce',p,c.id)]:[]),task('attackBlock',p,c.id));break;case'madoCombat':api.lock(s,p,{kind:'g4Combat',player:1-p,spellCost:c.cost});break;case'madoDollar':put(s,task('g4_Dollar',p,c.id));break;default:return false;}return true;},
+ allowedSpell(s,p,c){return colors(c).includes('光')||!creatures(s,1-p).some(x=>effective(x,s).onlyLightSpells);},
+ spellPermission(s,p,c){return c.type==='spell'&&(magic(c)||dols(c))&&fields(s,p).length>0;},
+ beforeSpell(s,p,c,inst){return magic(c)&&declare(s,sources(s,p,true),{follow:[task('g4_ResumeSpell',p,c.id,{uid:inst.uid})]});},
+ finishSpell(s,t,f){if(f.virtual||t.g4Declined||!f.spell||!magic(f.spell)||!fields(s,f.owner).length||f.owner!==f.caster&&f.to!=='grave'&&s.active===f.caster)return false;put(s,task('g4_Store',f.owner,f.spell.id,{uid:f.inst.uid}));return true;},
+ beforeEnd(s){const rows=[s.active,1-s.active].flatMap(p=>sources(s,p,false));declare(s,rows,{end:true});},
+ end(s){return [...fields(s,s.active).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('g4_World',s.active,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})})),...creatures(s,s.active).filter(x=>effective(x,s).madoMomo).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('g4_MomoEnd',s.active,x.cardId)}))];},
+ entry(s,p,x,options){if(api.isCreature(s,x)&&magic(card(x)))declare(s,sources(s,p,true));},
+ spellCast(s,p){for(const x of creatures(s,p))if(effective(x,s).kurokami)on(s,p,x,'attackBlock');},
+ attack(s,p,x){const c=effective(x,s);if(api.selfStopped(s,p))return;if(c.dollarGraveDraw)on(s,p,x,'g4_Dollar');if(c.madoGashagon)on(s,p,x,'discard',{n:1,causedBy:p});},
+ block(s,p,x){if(effective(x,s).madoGashagon&&!api.selfStopped(s,p))on(s,p,x,'discard',{n:1,causedBy:p});},
+ graveWatchers(s){return [0,1].flatMap(p=>creatures(s,p).filter(x=>effective(x,s).dollarGraveDraw).map(x=>({p,uid:x.uid,source:x.cardId})));},
+ graveAdded(s,p,all,snapshot){for(const y of snapshot||this.graveWatchers(s))if(y.p!==p)for(const x of all)api.enqueue(s,y.p,{uid:y.uid,source:y.source,effect:'extended',task:task('optionalDrawOne',y.p,y.source)});},
+ beforeUntap(s,p){if(!creatures(s,1-p).some(x=>effective(x,s).manaUntapThree))return false;const uids=s.players[p].mana.filter(x=>x.tapped&&!x.skipUntap&&api.canUntap(x)).map(x=>x.uid);if(uids.length)put(s,task('g4_Untap',p,s.players[1-p].battle.find(x=>effective(x,s).manaUntapThree).cardId,{uids,selected:[]}));return true;},
+ };
+}

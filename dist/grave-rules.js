@@ -4,7 +4,7 @@ export function createGraveRules(api){
  const graveCreatures=(s,p)=>s.players[p].grave.filter(x=>card(x).type==='creature'),below=x=>api.layers(x).slice(1);
  const live=(s,t)=>s.players[t.p].battle.find(x=>api.layers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)&&(t.serial===undefined||(y.zoneSerial||0)===t.serial)));
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,serial:x.zoneSerial||0,...more})});
- function detach(s,p,top,uid,to){const parent=api.layers(top).find(x=>x.under?.some(y=>y.uid===uid));if(!parent)return null;const i=parent.under.findIndex(x=>x.uid===uid),x=parent.under[i];parent.under.splice(i,1,...(x.under||[]));clear(x,to);s.players[p][to].push(x);return x;}
+ function detach(s,p,top,uid,to){const parent=api.layers(top).find(x=>x.under?.some(y=>y.uid===uid));if(!parent)return null;const i=parent.under.findIndex(x=>x.uid===uid),x=parent.under[i];parent.under.splice(i,1,...(x.under||[]));clear(x,to);api.addZone(s,s.players[p],to,x);return x;}
  function beginCast(s,p,args){put(s,task('g24_Bases',p,card(s.players[p][args[5]].find(x=>x.uid===args[0])).id,{uid:args[0],mode:'cast',args,selected:args[2]?[args[2]]:[]}));}
  function beginPut(s,p,x,base,options){(s.players[p].g24Holding??=[]).push(x);put(s,task('g24_Bases',p,x.cardId,{uid:x.uid,mode:'put',options,selected:base?[base]:[]}));}
  function baseCard(s,t,n){return {...card(t.source),graveBaseCount:n,summonOrigin:t.mode==='cast'?t.args[5]:t.options.origin};}
