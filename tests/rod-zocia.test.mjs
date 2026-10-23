@@ -18,7 +18,7 @@ const destroy=data.cards.find(c=>c.type==='spell'&&c.effect==='destroy').id;
 const manaRemoval=data.cards.find(c=>c.type==='spell'&&c.effect==='manaRemoval').id;
 
 test('Rod Zocia freezes all official abilities and retains all abilities as target progress advances',()=>{
- assert.equal(ENGINE_VERSION,'0.34.0');assert.equal(data.cards.length,826);assert.equal(data.supportExpansion.phase,35);const c=card(ROD),d=details.cards.find(c=>c.id===ROD),row=manifest.cards[0];assert.equal(manifest.cards.length,1);assert.deepEqual(row.face,d.faces[0]);assert.equal(c.text,d.faces[0].abilityText);assert.equal(c.source,row.source);assert.equal(c.cost,7);assert.equal(c.power,11000);for(const[k,v]of Object.entries(row.spec))assert.deepEqual(c[k],v);
+ assert.equal(ENGINE_VERSION,'0.35.0');assert.equal(data.cards.length,834);assert.equal(data.supportExpansion.phase,36);const c=card(ROD),d=details.cards.find(c=>c.id===ROD),row=manifest.cards[0];assert.equal(manifest.cards.length,1);assert.deepEqual(row.face,d.faces[0]);assert.equal(c.text,d.faces[0].abilityText);assert.equal(c.source,row.source);assert.equal(c.cost,7);assert.equal(c.power,11000);for(const[k,v]of Object.entries(row.spec))assert.deepEqual(c[k],v);
  const registry=createCatalogue(snapshot,data.cards,details),target=resolveEnvironmentDecks(registry).find(d=>d.id===ENVIRONMENT_TARGET),p=environmentSupport(target,registry);assert.equal(p.supportedCopies,40);assert.equal(p.supportedTypes,14);assert.equal(p.totalTypes,14);assert.equal(p.unsupported.reduce((n,r)=>n+r.count,0),0);assert.deepEqual(validateDeck(target),[]);assert.doesNotThrow(()=>createGame([target,PRESETS[0]]));
 });
 test('cost reduction counts light-or-fire mana cards once each, including tapped and five-color cards',()=>{

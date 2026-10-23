@@ -1,4 +1,4 @@
-import {setCards,runGame,runSummary,aggregate} from './engine.js?v=0.56';
+import {setCards,runGame,runSummary,aggregate} from './engine.js?v=0.58';
 self.onmessage=async({data})=>{
  try{setCards(data.cards);const results=[];
  for(let oi=0;oi<data.opponents.length;oi++){

@@ -11,7 +11,9 @@ export const DOGI='dm25rp4-DM1',VEG='dm26rp1-S008',GEN='dmrp15-km1',GG='dm25rp3-
 export const target=resolveEnvironmentDecks(createCatalogue(snapshot,data.cards,details)).find(d=>d.id===ENVIRONMENT_TARGET);
 let serial=0;export const inst=id=>({cardId:id,uid:'complete-'+serial++,tapped:false,entered:0,buff:0,unblocked:false});
 export const give=(s,p,z,ids)=>s.players[p][z]=ids.map(inst);
-export const act=(s,kind,pred=()=>true)=>{const a=e.getLegalActions(s).find(a=>a.kind===kind&&pred(a));assert.ok(a,kind+' '+JSON.stringify(s.decision));e.step(s,a);};
+export const act=(s,kind,pred=()=>true)=>{const a=e.getLegalActions(s).find(a=>a.kind===kind&&pred(a));assert.ok(a,kind+' '+JSON.stringify(s.decision));e.step(s,a);resolveKeyword(s);};
+// Focused effect tests choose the no-choice JustDiver trigger first. UI and priority tests use raw step.
+export function resolveKeyword(s){for(let n=0;n<20&&['effectOrder','entryOrder'].includes(s.decision?.type);n++){const entries=s.decision.type==='entryOrder'?s.triggers.entries:s.pendingEffects,effect=entries.find(x=>x.player===s.decision.player&&x.effect==='justDiver');if(!effect)break;const a=e.getLegalActions(s).find(x=>x.effectId===effect.effectId);assert.ok(a);e.step(s,a);}}
 export const setup=()=>{const s=e.createGame([PRESETS[0],PRESETS[1]],{seed:1313});s.phase='main';for(const p of [0,1]){give(s,p,'hand',[]);give(s,p,'battle',[]);give(s,p,'mana',['dm01-075','dm01-083','dm01-090','dm01-097','dm01-108'].flatMap(id=>Array(10).fill(id)));give(s,p,'shields',Array(5).fill('dm01-108'));}return s;};
 export const cast=(s,id)=>{s.players[s.active].hand.push(inst(id));act(s,'play',a=>a.cardId===id);};
 export const attack=(s,uid=s.players[s.active].battle[0].uid,target='player')=>{s.phase='attack';act(s,'attack',a=>a.uid===uid&&a.target===target);};
