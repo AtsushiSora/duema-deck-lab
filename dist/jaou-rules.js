@@ -7,7 +7,7 @@ export function createJaouRules(api){
  const ready=(s,p,x,origin)=>card(x).type==='creature'&&api.canEnter(s,p,card(x),{origin,execution:false})&&(!card(x).evolution||api.evolutionBases(s,p,card(x)).length);
  const on=(s,p,x,op,more={})=>enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,more)});
  function declarations(s,p,serial,target){const remaining=s.players[p].hand.flatMap(x=>faces(card(x)).flatMap((c,face)=>c.type==='spell'&&!api.spellIgnored(s,c)&&api.canCast(s,p,c)&&((c.oniCast&&oni(s)&&mana(s,p))||(c.reverseCast&&p!==s.active&&target==='player'))?[{uid:x.uid,source:x.cardId,face,zoneSerial:x.zoneSerial||0,reverse:!!c.reverseCast}]:[]));if(remaining.length){put(s,task('g3_Declare',p,remaining[0].source,{remaining,declared:[],serial}));return true;}return false;}
- function ramp(s,p){const x=api.takeTop(s,p);if(x){const to=api.deckRedirect(s)?'grave':'mana';clear(x,to);s.players[p][to].push(x);}api.deckCheck(s,p);}
+ function ramp(s,p){const x=api.takeTop(s,p);if(x){const to=api.deckRedirect(s,p)?'grave':'mana';clear(x,to);s.players[p][to].push(x);}api.deckCheck(s,p);}
  function run(s,t){if(!t.op.startsWith('g3_'))return false;const own=s.players[t.p];switch(t.op){
  case'g3_Baba':if(oni(s)){const x=own.deck.pop();if(x){clear(x);own.grave.push(x);api.log(s,t.p,'mill','山札の一番下を墓地へ：'+card(x).name,{cardId:x.cardId});put(s,task('g3_BabaDeploy',t.p,t.source,{uid:x.uid}));}api.deckCheck(s,t.p);}break;
  case'g3_BabaDeploy':{const x=own.grave.find(x=>x.uid===t.uid);if(x&&ready(s,t.p,x,'grave')&&cost(card(x))<=5)choice(s,t,'一番下から墓地に置いたクリーチャーを出しますか？',[opt('出す',true,creatures(s,1-t.p).some(y=>effective(y,s).kakuReturn)?-5:20,x.cardId),skip()]);break;}

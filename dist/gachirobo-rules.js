@@ -18,7 +18,7 @@ export function createGachiroboRules(api){
  case'g10_Shield':choice(s,t,'シールド化する相手のエレメントを選ぶ',[...targetOptions(s,t.p,s.players[1-t.p].battle),skip()]);break;
  case'g10_Fight':{const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation);if(x&&api.isCreature(s,x))choice(s,t,'ガラワルドで相手とバトルしますか？',[...targetOptions(s,t.p,creatures(s,1-t.p)),skip()]);break;}
  case'g10_Cougar':{const uids=protect(own,3);choice(s,{...t,uids},'上3枚からクリーチャーを1体手札に加える？ 残りはマナへ',[...uids.map(uid=>own.deck.find(x=>x.uid===uid)).filter(x=>card(x).type==='creature').map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)),skip()]);break;}
- case'g10_Mystery':{own.deck=api.shuffled(own.deck,Math.floor(api.random(s)*4294967296));const x=own.deck[0];if(!x){api.deckCheck(s,t.p);break;}api.log(s,t.p,'reveal','ミステリー・ディザスターで公開：'+card(x).name,{cardId:x.cardId});if(card(x).type==='creature'){if(canPut(s,t.p,x,'deck'))put(s,task('putCreature',t.p,t.source,{origin:'deck',uid:x.uid,deckCheck:true}));}else{own.deck.shift();const to=api.deckRedirect(s)?'grave':'mana';clear(x,to);own[to].push(x);api.deckCheck(s,t.p);}break;}
+ case'g10_Mystery':{own.deck=api.shuffled(own.deck,Math.floor(api.random(s)*4294967296));const x=own.deck[0];if(!x){api.deckCheck(s,t.p);break;}api.log(s,t.p,'reveal','ミステリー・ディザスターで公開：'+card(x).name,{cardId:x.cardId});if(card(x).type==='creature'){if(canPut(s,t.p,x,'deck'))put(s,task('putCreature',t.p,t.source,{origin:'deck',uid:x.uid,deckCheck:true}));}else{own.deck.shift();const to=api.deckRedirect(s,t.p)?'grave':'mana';clear(x,to);own[to].push(x);api.deckCheck(s,t.p);}break;}
  case'g10_Nicol':put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:7}));break;
  case'g10_Destroy':choice(s,t,'破壊する相手のクリーチャーを選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));break;
  case'g10_BigBang':put(s,task('mill',t.p,t.source,{n:2}),task('draw',t.p,t.source,{n:2}));break;
@@ -38,7 +38,7 @@ export function createGachiroboRules(api){
  case'g10_Order':{const x=remove(own.deck,v);if(x)own.deck.push(x);put(s,{...t,remaining:t.remaining.filter(uid=>uid!==v)});break;}
  case'g10_Shield':if(v)move(s,[{player:1-t.p,uid:v,to:'shields'}]);break;
  case'g10_Fight':if(v){const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation),y=s.players[1-t.p].battle.find(x=>x.uid===v);if(x&&y)api.battle(s,t.p,x,1-t.p,y,s.attack?.attacker);}break;
- case'g10_Cougar':{for(const uid of t.uids){const x=remove(own.deck,uid);if(!x)continue;const to=uid===v?'hand':api.deckRedirect(s)?'grave':'mana';clear(x,to);own[to].push(x);}release(own,t.uids);api.deckCheck(s,t.p);break;}
+ case'g10_Cougar':{for(const uid of t.uids){const x=remove(own.deck,uid);if(!x)continue;const to=uid===v?'hand':api.deckRedirect(s,t.p)?'grave':'mana';clear(x,to);own[to].push(x);}release(own,t.uids);api.deckCheck(s,t.p);break;}
  case'g10_Draws':put(s,...(v?[task('putCreature',t.p,t.source,{origin:'grave',uid:v})]:[]),{...t,n:t.n-1});break;
  case'g10_Destroy':move(s,[{player:1-t.p,uid:v,to:'grave'}]);break;
  case'g10_Bounce':{const player=s.players.findIndex(p=>p.battle.some(x=>x.uid===v));if(player>=0)move(s,[{player,uid:v,to:'hand'}]);break;}
