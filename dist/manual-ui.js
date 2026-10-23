@@ -26,6 +26,10 @@ export function manualModel(s,ui={}){
 }
 function decisionHelp(s){
  const d=s.decision;
+ if(d.task?.op==='g13_Murder')return '相手の手札を確認して、クリーチャー1体を捨てさせます。「相手の手札を見る」で呪文も含めて確認できます。';
+ if(d.task?.op?.startsWith('g13_Mek'))return '見ているカードから条件に合う面を選びます。W・メクレイドは使う2枚と順序を先に決めます。';
+ if(d.task?.op==='g13_SB')return '今回加わる闇のシールドを1枚捨て、手札の秩序の意志を無料で唱えます。';
+ if(d.task?.op==='g13_BorrowAbility')return '相手のカードの登場時能力を1つだけ使います。「このクリーチャー」はマーダン自身を参照します。';
  if(d.task?.op==='g23_Declare')return '攻撃時に使う侵略・バルチュリスを、ほかの能力を解決する前に宣言します。';
  if(d.task?.op==='g23_Unseal')return 'コマンドと同じ文明のカードから、封印を必ず1つ外します。封印の中身は選ぶ前に見られません。';
  if(d.task?.op==='g23_Purin')return 'プリンを超次元へ移動できたら、別のエイリアンを1体出します。召喚とは異なります。';
@@ -78,6 +82,8 @@ export function boardChoice(s,ui,player,zone,uid){return boardChoiceModel(s,ui,p
 function boardChoiceModel(s,ui,player,zone,uid,m){
  if(!m.human)return null;
  let matches=[];
+ if(s.decision?.type==='extended'&&s.decision.task.op.startsWith('g13_')){const op=s.decision.task.op,own={g13_JagaRevive:'grave',g13_FootRecover:'grave',g13_ManaHand:'mana'},enemy={g13_Murder:'hand',g13_Borrow:'grave',g13_Seal:'battle',g13_Sis:'battle'};if(zone===(player===s.decision.player?own[op]:enemy[op])||op==='g13_Lord'&&player===s.decision.player){const matches=m.actions.filter(a=>{const v=s.decision.choices[a.choice]?.value;return v&&((op==='g13_Lord'&&v.origin===zone&&v.uid===uid)||v===uid);});if(matches.length===1)return matches[0];}}
+ if(zone==='hand'&&player===0&&s.decision?.type==='leaveHand')return m.actions.find(a=>a.kind==='leaveHand'&&a.uid===uid)||null;
  if(s.decision?.type==='extended'&&s.decision.player===player&&s.decision.task.op==='g23_Unseal'){const a=m.actions.find(a=>a.kind==='extended'&&s.decision.choices[a.choice]?.value===uid);if(zone==='seals')return a||null;if(zone==='battle'){const seals=s.players[player].seals||[];return m.actions.find(a=>seals.some(x=>x.uid===s.decision.choices[a.choice]?.value&&x.sealOf===uid))||null;}}
  if(zone==='extra'&&player===0&&!s.decision){const list=m.actions.filter(a=>a.kind==='play'&&a.origin==='extra'&&a.uid===uid);if(list.length===1)return list[0];}
  if(zone==='seals'&&s.decision?.task?.op==='g4_Airvo'){const a=m.actions.find(a=>{const v=s.decision.choices[a.choice]?.value;return v?.player===player&&v?.uid===uid;});if(a)return a;}
@@ -177,7 +183,7 @@ function mainActions(s,ui,m,h){
  if(!m.human)return `<div class="manual-wait"><span class="running-dot"></span><div><strong>相手AIが考えています</strong><small>盤面を見ながら待ちましょう。</small></div></div>`;
  if(ui.confirm!==null){const a=m.actions.find(a=>a.id===ui.confirm&&a.kind==='endTurn');if(a)return `<div class="end-turn-review"><strong>まだ攻撃できるクリーチャーがいます</strong><p>このままターンを終えますか？</p><div class="manual-secondary"><button class="btn" data-action="manual-cancel-end">対戦に戻る</button><button class="btn primary" data-action="manual-confirm-end" data-index="${a.id}">ターンを終える</button></div></div>`;}
  if(m.attackChoice){const route=attackRoute(s,ui);return `<div class="attack-preview-review"><small>攻撃先を確認</small><strong>${esc(route.from.label)}<span>→ ${esc(route.to.label)}</span></strong><div class="manual-primary"><button class="btn primary" data-action="manual-confirm-attack" data-index="${m.attackChoice.id}">攻撃を確定</button><button class="btn ghost" data-action="manual-cancel-attack">選び直す</button></div></div>`;}
- if(s.decision)return choicesHTML(s,ui,m,h);
+ if(s.decision)return `${s.decision.task?.op==='g13_Murder'?'<button class="btn full" data-action="zone-detail" data-player="1" data-zone="hand">相手の手札を見る</button>':''}${choicesHTML(s,ui,m,h)}`;
  if(s.phase==='charge'){
   const a=m.actions.find(a=>a.kind==='charge'&&a.uid===ui.hand),skip=m.actions.find(a=>a.kind==='skipCharge');
   return `${selectedHandHTML(s,m,h)}<div class="manual-primary"><button class="btn primary" data-action="battle-step" data-index="${a?.id??''}" ${a?'':'disabled'}>${h.icon('bolt',17)} マナに置く</button>${button(skip,{quiet:true,label:'置かずに進む'})}</div>`;
