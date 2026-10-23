@@ -1,4 +1,4 @@
-import {decodeAccountSnapshot,encodeAccountSnapshot,makeAccountSnapshot} from './account-data.js?v=0.67';
+import {decodeAccountSnapshot,encodeAccountSnapshot,makeAccountSnapshot} from './account-data.js?v=0.67.1';
 export const FIREBASE_SDK_VERSION='12.19.0';
 export function parseAccountConfig(value){
  if(!value||value.schemaVersion!==1)throw Error('アカウント設定の形式が正しくありません');if(value.firebase===null)return null;

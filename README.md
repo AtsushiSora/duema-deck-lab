@@ -1,8 +1,8 @@
 # デッキラボ
 
-公開アプリ：[デッキラボ](https://duema-deck-lab.netlify.app/)
+公開アプリ：[デッキラボ](https://atsushisora.github.io/duema-deck-lab/)
 
-アカウント：[Googleで登録・ログイン](https://duema-deck-lab.netlify.app/?view=account)
+アカウント：[Googleで登録・ログイン](https://atsushisora.github.io/duema-deck-lab/?view=account)
 
 紙のデュエマのデッキ作成、AI対戦、対戦結果の分析を行う、スマホを優先したWebアプリです。
 
@@ -978,3 +978,12 @@ Q.Q.QX.は横向きのカードを山札の4枚目へ置き、手札に加えた
 検証：追加効果39件を含む既存検証、全31構成とのAI対戦と行動の再現、ワーカー62試合、暗号化されたアカウント対戦、全80枚の一意性と選択状態のJSON復元を確認。Chromeの320×568、375×620、390×700、430×800、844×390でスクロールなしの盤面と手札の横スクロールを確認し、1280×800でも描画エラーがありません。山札の確認候補・自分の手札選択が相手アカウントへ公開されないことも検証しています。
 
 公開状況：ソースはv0.67。直近の公開更新はNetlifyの「Skipped due to account credit usage exceeded」で停止しています。公開サイトへの反映は利用枠の回復待ちです。プラン変更・追加購入は行っていません。
+
+
+## GitHub Pagesでの配信（v0.67.1）
+
+GitHub Actionsの .github/workflows/pages.yml で、main更新時に検証後の dist/ だけを https://atsushisora.github.io/duema-deck-lab/ へ公開します。リポジトリの説明文・サーバー用ソース・開発ファイルは配信対象に含めません。アセット・カードデータ・Web Worker・OCRはプロジェクト配下の相対パスを使います。
+
+Firebase Authenticationの承認済みドメインに atsushisora.github.io を追加してGoogleログイン・クラウドデッキ保存を利用します。端末保存はURLのドメインごとに分かれるので、以前のURLのデッキはアカウント保存・取込みか共有リンクで移行します。
+
+GitHub Pagesは静的配信のため /api/duel は稼働しません。このドメインでは同APIへのポーリングを開始せず、「友達と対戦」画面から既存のNetlify対戦用ページを開きます。Netlify版の本番サーバーとUIは利用枠超過で旧版のままで、新カードのアカウント対戦への対応はサーバー更新後になります。GitHub Pages上でのコンピュータとの手動・自動対戦は最新の904種類に対応します。
