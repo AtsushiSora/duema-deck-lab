@@ -9,9 +9,9 @@ export function createGirlsRules(api){
  function run(s,t){if(!t.op.startsWith('g8_'))return false;const own=s.players[t.p],opp=s.players[1-t.p];switch(t.op){
  case'g8_Daiou':if(api.targetOptions(s,t.p,creatures(s,1-t.p)).length)choice(s,t,'ドラゴ大王：バトルさせる自分のクリーチャーを選ぶ',[...creatures(s,t.p).map(x=>opt(card(x).name,x.uid,api.power(x,false,s)/1000,x.cardId)),skip()]);break;
  case'g8_DaiouEnemy':choice(s,t,'バトルさせる相手のクリーチャーを選ぶ',api.targetOptions(s,t.p,creatures(s,1-t.p)));break;
- case'g8_Savak':{if(!opp.shields.length)break;const tops=new Set(api.targetOptions(s,t.p,opp.battle).map(x=>x.value));choice(s,t,'サッヴァーク：シールドに重ねる相手のカードを1枚選ぶ',opp.battle.filter(x=>tops.has(x.uid)).flatMap(top=>api.layers(top).map(x=>opt(card(x).name,{uid:x.uid,top:top.uid},cost(card(x))*3,x.cardId))));break;}
+ case'g8_Savak':{if(!opp.shields.length)break;const tops=new Set(api.targetOptions(s,t.p,api.visibleBattleCards(s,1-t.p)).map(x=>x.value));choice(s,t,'サッヴァーク：シールドに重ねる相手のカードを1枚選ぶ',api.visibleBattleCards(s,1-t.p).filter(x=>tops.has(x.uid)).flatMap(top=>api.layers(top).map(x=>opt(card(x).name,{uid:x.uid,top:top.uid},cost(card(x))*3,card(x).id))));break;}
  case'g8_SavakShield':choice(s,t,'相手のどのシールドに表向きで重ねる？',opp.shields.map((x,i)=>opt('相手のシールド'+(i+1),x.uid,0)));break;
- case'g8_Zeos':choice(s,t,'ゼオス：シールド化する相手のエレメントを選ぶ',[...api.targetOptions(s,t.p,opp.battle),skip()]);break;
+ case'g8_Zeos':choice(s,t,'ゼオス：シールド化する相手のエレメントを選ぶ',[...api.targetOptions(s,t.p,api.visibleBattleCards(s,1-t.p)),skip()]);break;
  case'g8_Try':{const selected=t.selected||[],options=api.targetOptions(s,t.p,creatures(s,1-t.p).filter(x=>!selected.includes(x.uid)));if(selected.length===2||!options.length){if(selected.length)move(s,selected.map(uid=>({player:1-t.p,uid,to:'hand'})));break;}choice(s,{...t,selected},'手札に戻す相手のクリーチャーを2体まで選ぶ（'+selected.length+'/2）',[...options,opt('ここまでで確定',null,0)]);break;}
  case'g8_TryDie':{const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation);if(x&&(own.brokenThisTurn||0)<2)move(s,[{player:t.p,uid:x.uid,to:'grave'}]);break;}
  case'g8_Mega':{const rows=creatures(s,1-t.p).filter(x=>api.power(x,x.uid===s.attack?.attacker,s)<=13000).map(x=>({player:1-t.p,uid:x.uid,to:'grave'}));if(rows.length)move(s,rows);break;}

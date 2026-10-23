@@ -4,7 +4,7 @@ import {card,getLegalActions,chooseAI,step} from './engine.js';
 export const AI_SPEEDS={slow:{label:'ゆっくり',delay:3000},normal:{label:'標準',delay:2000},fast:{label:'速い',delay:700}};
 export const aiSpeedLabel=speed=>(AI_SPEEDS[speed]||AI_SPEEDS.normal).label;
 const visible=x=>!x.faceDown&&!x.hidden;
-const rows=(p,player)=>['battle','mana','grave'].flatMap(zone=>(p[zone]||[]).filter(visible).map(x=>({player,zone,uid:x.uid,cardId:x.cardId}))).concat((p.shields||[]).flatMap(shieldCards).filter(x=>x.faceUp).map(x=>({player,zone:'shields',uid:x.uid,cardId:x.cardId})));
+const rows=(p,player)=>['battle','mana','grave','extra'].flatMap(zone=>(p[zone]||[]).filter(visible).map(x=>({player,zone,uid:x.uid,cardId:x.cardId}))).concat((p.shields||[]).flatMap(shieldCards).filter(x=>x.faceUp).map(x=>({player,zone:'shields',uid:x.uid,cardId:x.cardId})));
 // Only public identities and counts enter presentation snapshots. Draws stay anonymous.
 export function aiPublicSnapshot(s){return {actions:s.actions,turn:s.turn,logIndex:s.log.length,players:s.players.map((p,player)=>({cards:rows(p,player),deck:p.deck.length,hand:p.hand.length,mana:p.mana.length,grave:p.grave.length,shields:p.shields.length,battle:p.battle.length}))};}
 const cueKeys=(snapshot,id)=>snapshot.players.flatMap(p=>p.cards.filter(x=>x.cardId===id&&x.zone==='battle').map(x=>`creature:${x.player}:${x.uid}`));
@@ -12,6 +12,7 @@ export function aiActionCue(s,a){
  const snapshot=aiPublicSnapshot(s),source=snapshot.players.flatMap(p=>p.cards).find(x=>x.uid===a.uid),cardId=source?.cardId||null,keys=cardId?cueKeys(snapshot,cardId):[];
  let text='相手が能力の選択を行います',zones=[];
  if(a.kind==='charge'){text='相手がカードをマナに置きます';zones=['1:mana'];}
+ else if(a.kind==='pandora'){text='相手がパンドラ・シフトで超次元ゾーンへ置きます';zones=['1:extra'];}
  else if(a.kind==='play')text=source?`相手が「${card(cardId).name}」を使います`:'相手がカードを使います';
  else if(a.kind==='attack'){
   text=`相手の「${source?card(cardId).name:'クリーチャー'}」が攻撃します`;

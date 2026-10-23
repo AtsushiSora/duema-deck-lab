@@ -23,7 +23,7 @@ export function createMagicRules(api){
   default:throw Error('未実装のマジック効果：'+t.op);
  }return true;}
  function chosen(s,t,value){if(!t.op.startsWith('g9'))return false;const own=s.players[t.p];switch(t.op){
-  case'g9Number':{const scope=String(s.g9Serial=(s.g9Serial||0)+1),field=t.family==='ignore'?'g9IgnoreScopes':'g9LockScopes';for(const x of s.players[1-t.p].battle)if(t.family==='ignore'||api.isCreature(s,x))(x[field]??=[]).push(scope);api.lock(s,t.p,{kind:t.family==='ignore'?'numberIgnore':'numberLock',player:1-t.p,cost:value,scope});if(t.family==='ignore')api.lock(s,t.p,{kind:'numberCast',player:1-t.p,cost:value});api.log(s,t.p,'declare',String(value)+'を宣言',{cardId:t.source});break;}
+  case'g9Number':{const scope=String(s.g9Serial=(s.g9Serial||0)+1),field=t.family==='ignore'?'g9IgnoreScopes':'g9LockScopes';for(const x of s.players[1-t.p].battle)if(!x.sealed&&(t.family==='ignore'||api.isCreature(s,x)))(x[field]??=[]).push(scope);api.lock(s,t.p,{kind:t.family==='ignore'?'numberIgnore':'numberLock',player:1-t.p,cost:value,scope});if(t.family==='ignore')api.lock(s,t.p,{kind:'numberCast',player:1-t.p,cost:value});api.log(s,t.p,'declare',String(value)+'を宣言',{cardId:t.source});break;}
   case'g9FireModes':put(s,{...t,remaining:t.remaining-1,selected:[...t.selected,value]});break;
   case'g9FireMode':if(t.mode===1){const x=own.battle.find(x=>x.uid===value);if(x)(x.g9Speed??=[]).push({turn:s.turn,cost:faces(card(t.source)).find(c=>c.type==='spell').cost});}else grant(s,t.p,value,t.source,false);break;
   case'g9Peecap':grant(s,t.p,value,t.source);break;

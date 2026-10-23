@@ -3,7 +3,7 @@ export function createSamuraiRules(api){
  const {card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,cast,targetOptions}=api;
  const samurai=c=>String(c.race).includes('サムライ'),armored=c=>String(c.race).includes('アーマード'),dragon=c=>String(c.race).includes('ドラゴン');
  const gears=(s,p)=>s.players[p].battle.filter(x=>card(x).type==='gear');
- const live=(s,p,g)=>g.crossedTo&&s.players[p].battle.find(x=>x.uid===g.crossedTo.uid&&(x.incarnation||0)===g.crossedTo.incarnation&&api.isCreature(s,x));
+ const live=(s,p,g)=>g.crossedTo&&s.players[p].battle.find(x=>x.uid===g.crossedTo.uid&&(x.incarnation||0)===g.crossedTo.incarnation&&(x.sealed||api.isCreature(s,x)));
  const attached=(s,p,x)=>gears(s,p).filter(g=>g.crossedTo?.uid===x.uid&&g.crossedTo.incarnation===(x.incarnation||0));
  const active=(s,g)=>!api.ignored(s,g);
  const optionalReducers=(s,p,c)=>c.type==='creature'&&(dragon(c)||samurai(c))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&!live(s,p,g)).length:0;
