@@ -28,6 +28,9 @@ export function manualModel(s,ui={}){
 function decisionHelp(s){
  const d=s.decision;
  if(d.type==='everShields')return 'シールド2つを選ぶとクリーチャーを残せます。S・トリガーは使えません。この置換効果で選んだG城も手札へ戻ります。';
+ if(d.task?.op==='g27_Golgy')return '山札の上からマナに置く枚数を先に選びます。その後、マナから3枚まで手札に戻せます。';
+ if(d.task?.op==='g27_KanDeath')return 'カンツォーネの下にあったカードをまとめて、進化元または表向きの1つのシールドに戻します。';
+ if(d.task?.op==='g27_WestUse')return '手札の枚数以下のコストなら無料で実行できます。実行しなければ手札に加えます。';
  if(d.task?.op==='g26_Select')return '手札とマナから合計コスト7以下のクリーチャーを2体まで選びます。確定後に出す順序を選べます。';
  if(d.task?.op==='g26_Saint')return '今回の複数ブレイクを、このセイント・キャッスル1つのブレイクに置き換えます。';
  if(d.task?.op==='g26_Zaze')return 'シールドにカードが置かれ、ザゼ・ゼーンをアンタップしました。続けて効果を1つ選びます。';
@@ -89,6 +92,7 @@ function boardChoiceModel(s,ui,player,zone,uid,m){
  if(!m.human)return null;
  let matches=[];
  if(s.decision?.type==='everShields'&&player===s.decision.player&&zone==='shields')return m.actions.find(a=>a.kind==='everShield'&&a.shield===uid)||null;
+ if(s.decision?.type==='extended'&&s.decision.task.op.startsWith('g27_')){const op=s.decision.task.op,owner=s.decision.player,allowed=op==='g27_Shield'&&player!==owner&&zone==='battle'||op==='g27_Tap'&&player!==owner&&zone==='battle'||op==='g27_KanDeath'&&player===owner&&zone==='battle'||op==='g27_Untap'&&player===owner&&zone==='mana'||op==='g27_Recover'&&player===owner&&zone==='mana'||op==='g27_HandTop'&&player===owner&&zone==='hand';if(allowed){const a=m.actions.find(a=>a.kind==='extended'&&(s.decision.choices[a.choice]?.value?.uid||s.decision.choices[a.choice]?.value)===uid);if(a)return a;}}
  if(s.decision?.type==='extended'&&s.decision.task.op.startsWith('g26_')){const op=s.decision.task.op,owner=s.decision.player;
   const allowed=op==='g26_Ever'&&zone==='battle'||op==='g26_Tap'&&player!==owner&&zone==='battle'||op==='g26_Deploy'&&player===owner&&zone==='hand'||op==='g26_Select'&&player===owner&&['hand','mana'].includes(zone)||op==='g26_Saint'&&player===owner&&zone==='shields';
   if(allowed){const a=m.actions.find(a=>{const v=s.decision.choices[a.choice]?.value;return op==='g26_Select'?v?.uid===uid&&v.origin===zone:v===uid;});if(a)return a;}}

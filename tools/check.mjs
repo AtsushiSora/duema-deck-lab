@@ -1,3 +1,5 @@
+import{resolveEnvironmentDecks}from'../dist/environment.js';
+import{setCards,validateDeck}from'../dist/engine.js';
 import{validateDetails}from'./detail-validation.mjs';
 import{decodeFingerprint}from'../dist/card-fingerprint.js';
 import{resolveStarter25Decks}from'../dist/starter25.js';
@@ -11,3 +13,5 @@ console.log(`Image matching covers ${imageIds.size} names; other names use OCR a
 if(snapshot.previewOnly||snapshot.processedRecordCount!==snapshot.officialResultCount||snapshot.namedRecordCount+snapshot.unnamedRecords.length!==snapshot.officialResultCount)throw Error('公式一覧の取り込みが完了していません');
 const details=JSON.parse(await readFile(new URL('../dist/details.json',import.meta.url),'utf8')),detailStats=validateDetails(details,snapshot),registry=createCatalogue(snapshot,supported,details);if(registry.cards.length!==snapshot.registeredNameCount||registry.cards.length<10000)throw Error('カード名件数が一致しません');if(new Set(registry.cards.map(c=>nameKey(c.name))).size!==registry.cards.length)throw Error('同名カードが重複しています');for(const c of supported)if(registry.get(c.id)?.name!==c.name||!registry.get(c.id)?.supported)throw Error('既存の対戦用カードIDが変わっています：'+c.id);for(const c of registry.cards){if(!/^https:\/\/dm\.takaratomy\.co\.jp\/card\/detail\/\?id=/.test(c.source))throw Error('カードの出典がありません：'+c.name);if(!registry.get(c.id))throw Error('カードIDが不正です');}for(const id of Object.keys(snapshot.aliases))if(!registry.get(id))throw Error('再録カードIDの移行先がありません');console.log(`Checked ${registry.cards.length} canonical names, ${detailStats.faces} faces with card information, ${detailStats.partial} records with official blank fields, ${supported.length} implemented cards.`);
 const starters=resolveStarter25Decks(registry);console.log(`Checked ${starters.length} official starter decks; ${starters.filter(d=>!registry.coverage(d).unsupported).length} with complete effect coverage.`);
+
+setCards(supported);const environments=resolveEnvironmentDecks(registry);for(const d of environments){const errors=validateDeck(d);if(errors.length)throw Error(d.name+'：'+errors.join(' / '));}console.log(`Checked ${environments.length} environment decks with complete effect coverage.`);

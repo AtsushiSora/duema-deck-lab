@@ -14,7 +14,7 @@ const hit=(s,shields)=>{give(s,0,'battle',['dm01-075']);give(s,1,'shields',shiel
 
 test('both additions pin every official face and all four exact tournament lists now have forty supported copies',()=>{
  for(const phase of [15,16]){const m=JSON.parse(fs.readFileSync(new URL('../tools/support-phase-'+phase+'.json',import.meta.url)));assert.equal(m.cards.length,phase===15?11:15);for(const row of m.cards){const c=e.card(row.id),d=details.cards.find(x=>x.id===row.id);assert.deepEqual(row.faces,d.faces);assert.equal(c.source,row.source);for(const f of row.faces)assert.ok(c.text.includes(f.abilityText));for(const [k,v]of Object.entries(row.spec))assert.deepEqual(c[k],v);}}
- for(const d of decks){assert.equal(environmentSupport(d,registry).supportedCopies,40);assert.equal(environmentSupport(d,registry).unsupported.length,0);assert.deepEqual(e.validateDeck(d),[]);}assert.equal(data.cards.length,894);
+ for(const d of decks){assert.equal(environmentSupport(d,registry).supportedCopies,40);assert.equal(environmentSupport(d,registry).unsupported.length,0);assert.deepEqual(e.validateDeck(d),[]);}assert.equal(data.cards.length,904);
 });
 test('HACK rejects creature entries from grave, accepts spells and hand entries, and Z rush adds a temporary entry-turn attack ban',()=>{
  const s=setup();give(s,1,'battle',[HACK]);assert.equal(e.canEnterCreature(s,0,e.card(NIBAI),{origin:'grave',execution:false}),false);assert.equal(e.canEnterCreature(s,0,e.card(NIBAI),{origin:'hand',execution:false}),true);assert.equal(e.canEnterCreature(s,0,e.card(UR),{origin:'grave',execution:false}),true);
@@ -135,7 +135,7 @@ test('all environment pairings terminate reproducibly, survive JSON reloads and 
  for(let i=0;i<decks.length;i++)for(let j=0;j<decks.length;j++)for(let seed=1;seed<=6;seed++){let s=e.createGame([decks[i],decks[j]],{seed,first:seed%2}),n=0;while(s.winner===null&&n++<2500){const a=e.chooseAI(s);assert.ok(a);e.step(s,a);const all=e.physicalCards(s);assert.equal(all.length,80);assert.equal(new Set(all.map(x=>x.uid)).size,80);if(n%9===0)s=JSON.parse(JSON.stringify(s));}assert.notEqual(s.winner,null);const again=e.runGame([decks[i],decks[j]],{seed,first:seed%2});assert.deepEqual(e.runSummary(s),e.runSummary(again));}
 });
 test('manual interface renders every actual decision from the new decks without mutation and offers the extended actions',()=>{
- let count=0;for(const d of [decks[0],decks[2]]){const s=e.createGame([d,d],{seed:71});while(s.winner===null&&s.actions<500){if(s.decision?.player===0){const before=structuredClone(s),html=manualScreenHTML(s,{...newManualUI(),mobile:true,mobilePanel:'actions'},{art:id=>'<i>'+id+'</i>',icon:()=>''});assert.ok(html.includes(e.getLegalActions(s)[0].label));assert.deepEqual(s,before);count++;}e.step(s,e.chooseAI(s));}}assert.ok(count>20);
+ let count=0;for(const d of [decks[0],decks[2]]){const s=e.createGame([d,d],{seed:71});while(s.winner===null&&s.actions<500){if(s.decision?.player===0){const before=structuredClone(s),html=manualScreenHTML(s,{...newManualUI(),mobile:true,mobilePanel:'actions'},{art:id=>'<i>'+id+'</i>',icon:()=>''});assert.ok(html.includes(e.getLegalActions(s)[0].label.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')));assert.deepEqual(s,before);count++;}e.step(s,e.chooseAI(s));}}assert.ok(count>20);
 });
 
 test('castle leave waits for shield trigger declarations and use, so it cannot discard a not-yet-declared Mute',()=>{

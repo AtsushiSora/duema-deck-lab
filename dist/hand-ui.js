@@ -5,7 +5,7 @@ const civs=c=>civilizations(c);
 export function handCardModel(s,uid,faceIndex=0,legal=getLegalActions(s)){
  const inst=s.players[0].hand.find(x=>x.uid===uid);if(!inst)return null;
  const c=card(inst),faces=playFaces(c),index=Number.isInteger(faceIndex)&&faces[faceIndex]?faceIndex:0,face=faces[index],human=legal[0]?.player===0;
- const effectChoice=a=>{const op=s.decision?.task?.op,v=s.decision?.choices?.[a.choice]?.value;return a.kind==='extended'&&['g26_Deploy','g26_Select'].includes(op)&&(v?.uid||v)===uid&&(!v?.origin||v.origin==='hand');};
+ const effectChoice=a=>{const op=s.decision?.task?.op,v=s.decision?.choices?.[a.choice]?.value;return a.kind==='extended'&&['g27_HandTop','g26_Deploy','g26_Select'].includes(op)&&(v?.uid||v)===uid&&(!v?.origin||v.origin==='hand');};
  const actions=legal.filter(a=>a.player===0&&(effectChoice(a)||a.uid===uid&&['charge','play','mugenStart','pandora'].includes(a.kind)&&(!a.origin||a.origin==='hand')));
  const faceActions=actions.filter(a=>a.kind==='extended'&&index===0||a.kind==='charge'||a.kind==='pandora'&&index===0||a.kind==='mugenStart'&&index===0||a.kind==='play'&&(a.face||0)===index);
  const destinations=[...new Set(faceActions.map(a=>a.kind==='extended'?'battle':a.kind==='pandora'?'extra':a.kind==='charge'?'mana':a.kind==='mugenStart'||playFaces(c)[a.face||0].type!=='spell'?'battle':'spell'))];

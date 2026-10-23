@@ -16,9 +16,9 @@ const end=s=>{s.phase='attack';act(s,'endTurn');drain(s);};
 const conserve=s=>{const all=e.physicalCards(s);assert.equal(all.length,80);assert.equal(new Set(all.map(x=>x.uid)).size,80);};
 
 test('Viride adds ten complete effects and a legal40 card practice list with explicit regulation changes',()=>{
- const m=JSON.parse(fs.readFileSync(new URL('../tools/support-phase-42.json',import.meta.url)));assert.equal(m.cards.length,10);assert.equal(data.cards.length,894);
+ const m=JSON.parse(fs.readFileSync(new URL('../tools/support-phase-42.json',import.meta.url)));assert.equal(m.cards.length,10);assert.equal(data.cards.length,904);
  for(const r of m.cards){assert.deepEqual(details.cards.find(x=>x.id===r.id).faces,r.faces);for(const[k,v]of Object.entries(r.spec))assert.deepEqual(e.card(r.id)[k],v);}
- assert.equal(registry.coverage(target).supported,40);assert.deepEqual(e.validateDeck(target),[]);assert.equal(target.cards.find(r=>r.id===S).count,1);assert.equal(e.card(S).limit,1);assert.equal(target.tournament.practice,true);assert.match(target.tournament.adjustments,/4→1/);assert.equal(opponents.length,30);
+ assert.equal(registry.coverage(target).supported,40);assert.deepEqual(e.validateDeck(target),[]);assert.equal(target.cards.find(r=>r.id===S).count,1);assert.equal(e.card(S).limit,1);assert.equal(target.tournament.practice,true);assert.match(target.tournament.adjustments,/4→1/);assert.equal(opponents.length,31);
  const bad=structuredClone(target);bad.cards.find(r=>r.id===S).count=4;assert.ok(e.validateDeck(bad).some(x=>x.includes('1枚')));
 });
 test('Viride alternative summon requires strictly more shields and pays exactly two light even under reduction lock',()=>{
@@ -134,9 +134,9 @@ test('new target choices work directly on the board, from the hand inspector, an
 test('Viride random actions conserve80 cards and round-trip every pending choice and replacement',()=>{
  for(let seed=1;seed<=8;seed++){const s=e.createGame([target,opponents[seed*3%opponents.length]],{seed:seed*4201,first:seed%2}),rng={rng:seed};for(let n=0;n<350&&s.winner===null;n++){const a=e.getLegalActions(s);assert.ok(a.length);e.step(s,a[Math.floor(e.random(rng)*a.length)]);conserve(s);assert.deepEqual(e.getLegalActions(JSON.parse(JSON.stringify(s))),e.getLegalActions(s));}}
 });
-test('Viride production worker completes sixty games with no unresolved match',async()=>{
- const messages=[];globalThis.self={};globalThis.postMessage=x=>messages.push(structuredClone(x));try{await import('../dist/worker.js?viride42');await self.onmessage({data:{cards:data.cards,deck:target,opponents,count:2,first:'random',seed:4242}});assert.ok(!messages.some(x=>x.type==='error'),JSON.stringify(messages.filter(x=>x.type==='error')));const done=messages.find(x=>x.type==='done');assert.ok(done);assert.equal(done.results.length,30);for(const r of done.results){assert.equal(r.stats.completed,2,JSON.stringify(r));assert.equal(r.stats.unresolved,0);}}finally{delete globalThis.self;delete globalThis.postMessage;}
+test('Viride production worker completes sixty-two games with no unresolved match',async()=>{
+ const messages=[];globalThis.self={};globalThis.postMessage=x=>messages.push(structuredClone(x));try{await import('../dist/worker.js?viride42');await self.onmessage({data:{cards:data.cards,deck:target,opponents,count:2,first:'random',seed:4242}});assert.ok(!messages.some(x=>x.type==='error'),JSON.stringify(messages.filter(x=>x.type==='error')));const done=messages.find(x=>x.type==='done');assert.ok(done);assert.equal(done.results.length,31);for(const r of done.results){assert.equal(r.stats.completed,2,JSON.stringify(r));assert.equal(r.stats.unresolved,0);}}finally{delete globalThis.self;delete globalThis.postMessage;}
 });
-test('Viride AI games finish against all thirty configured decks with replay and card conservation',()=>{
+test('Viride AI games finish against all thirty-one configured decks with replay and card conservation',()=>{
  for(let i=0;i<opponents.length;i++){const s=e.createGame([target,opponents[i]],{seed:42000+i,first:i%2}),actions=[];for(let n=0;n<1800&&s.winner===null;n++){const a=e.chooseAI(s);assert.ok(a,JSON.stringify(s.decision));actions.push(a);e.step(s,a);conserve(s);}assert.notEqual(s.winner,null,opponents[i].name);const replay=e.createGame([target,opponents[i]],{seed:42000+i,first:i%2});for(const a of actions)e.step(replay,a);assert.deepEqual(replay,s);}
 });
