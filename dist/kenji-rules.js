@@ -48,7 +48,7 @@ export function createKenjiRules(api){
  case'g25_Oni':if(v)beginOni(s,t.p,t.uid,t.mode,[...t.selected,v]);else if(t.selected.length)beginOni(s,t.p,t.uid,t.mode,[]);else if(t.mode==='leave'){const r=s.leaving.rows.find(x=>x.uid===t.uid&&x.player===t.p);s.decision={type:'leaveReplace',player:t.p,uid:t.uid,mandatory:!!(r.ex||r.gneo||r.star||r.to==='mana'&&api.manaRedirect(s,t.p))};}else s.decision=null;break;
  default:throw Error('未実装のケンジ選択：'+t.op);
  }return true;}
- return {run,chosen,beginOni,oniCards,
+ return {run,chosen,beginOni,oniCards,manaPermits(s,p){return creatures(s,p).filter(x=>effective(x,s).gaiaMana&&s.g25ManaUsed?.[key(x)]!==s.turn).map(x=>'g25:'+key(x));},
  effect(s,p,c,uid){const op={kenjiCrymax:'Crymax',kenjiDida:'Dida',kenjiMill:'Mill',kenjiPlan:'Plan',kenjiHeart:'Heart'}[c.effect];if(!op)return false;put(s,task('g25_'+op,p,c.id,{uid}));return true;},
  attack(s,p,x){if(api.selfStopped(s,p))return;const c=effective(x,s);if(c.oniMax)on(s,p,x,'g25_CryAttack');if(c.pegasus)on(s,p,x,'g25_Pegasus');},
  leaving(s,p,x){if(effective(x,s).zundokoLeave)on(s,p,x,'g25_ReturnMana');},

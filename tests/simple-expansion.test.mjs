@@ -15,12 +15,12 @@ const act=(s,kind,predicate=()=>true)=>{const a=getLegalActions(s).find(a=>a.kin
 const setup=()=>{const s=createGame([PRESETS[0],PRESETS[1]],{seed:41});s.phase='main';give(s,0,'battle',[]);give(s,1,'battle',[]);return s;};
 
 test('phase 4 pins all fields of 245 simple creatures and keeps unsupported environment cards blocked',()=>{
- assert.equal(data.cards.length,805);assert.equal(added.length,245);assert.equal(new Set(added.map(c=>c.id)).size,245);assert.equal(added.filter(c=>c.supportKind==='vanilla').length,121);assert.equal(added.filter(c=>c.attackBonus).length,47);assert.equal(added.filter(c=>c.trigger).length,84);
- const registry=createCatalogue(snapshot,data.cards,details);assert.equal(registry.cards.length,11833);assert.equal(registry.cards.filter(c=>!c.supported).length,11028);
+ assert.equal(data.cards.length,815);assert.equal(added.length,245);assert.equal(new Set(added.map(c=>c.id)).size,245);assert.equal(added.filter(c=>c.supportKind==='vanilla').length,121);assert.equal(added.filter(c=>c.attackBonus).length,47);assert.equal(added.filter(c=>c.trigger).length,84);
+ const registry=createCatalogue(snapshot,data.cards,details);assert.equal(registry.cards.length,11833);assert.equal(registry.cards.filter(c=>!c.supported).length,11018);
  for(const row of manifest.cards){const d=details.cards.find(c=>c.id===row.id),c=card(row.id);assert.deepEqual(row.fields,simpleFields(d));assert.deepEqual(row.spec,simpleSpec(d));assert.equal(c.source,row.source);assert.equal(c.text,row.fields.abilityText);assert.equal(c.cost,row.fields.cost);assert.equal(c.power,Number(row.fields.powerText));assert.deepEqual(c.civilizations,row.fields.civilizations);for(const [k,v]of Object.entries(row.spec))assert.deepEqual(c[k],v);assert.equal(registry.get(c.id).supported,true);}
  for(const d of resolveEnvironmentDecks(registry)){assert.equal(registry.coverage(d).unsupported,0);assert.equal(validateDeck(d).length>0,false);}
  for(const e of manifest.exclusions)assert.equal(card(e.id),undefined);
- assert.equal(data.supportExpansion.phase,33);assert.equal(data.supportExpansion.totalCount,805);
+ assert.equal(data.supportExpansion.phase,34);assert.equal(data.supportExpansion.totalCount,815);
 });
 test('simple verification rejects extra conditions, abilities, multiple power bonuses, evolution, and missing official fields',()=>{
  const original=details.cards.find(c=>c.id==='dm01-s08');

@@ -35,7 +35,7 @@ export function createGalaxyRules(api){
  function applyReplacement(s,index){const e=s.g22Entry,r=e.choices[index],own=s.players[e.p],x=e.inst;delete s.g22Entry;if(e.options.origin!==r.to)clear(x,r.to);own[r.to].push(x);log(s,e.p,'entryReplace',card(r.source).name+'でバトルゾーンのかわりに'+(r.to==='mana'?'マナ':'墓地')+'へ',{cardId:x.cardId});if(r.segare&&s.players[1-e.p].battle.some(x=>x.uid===r.segare))move(s,[{player:1-e.p,uid:r.segare,to:'mana'}]);}
  function variants(s,p,c){const list=reducers(s,p,c).map(key),subsets=list.reduce((all,x)=>[...all,...all.map(a=>[...a,x])],[[]]);return subsets.filter(x=>x.length!==list.length);}
  function playAllowed(s,p,c,origin){return api.canCast(s,p,c)&&api.canEnter(s,p,c,{origin,execution:true})&&(!c.evolution||api.evolutionBases(s,p,c).length);}
- return {run,chosen,
+ return {run,chosen,manaPermits(s,p,x){return [...(x.g22ManaAllowed===s.turn?[null]:[]),...manaAuthorities(s,p).map(key)];},
   effect(s,p,c){switch(c.effect){case'destroy6000':put(s,task('destroyPower',p,c.id,{max:6000}));break;case'masterGGGLoot':put(s,task('g22Master',p,c.id));break;case'untapTwoMana':put(s,task('g22UntapMana',p,c.id,{selected:[]}));break;case'fairyDiscard6000':put(s,task('g22FairySpell',p,c.id));break;case'graveShuffle':put(s,task('g22Shuffle',p,c.id));break;case'permitManaSummon':put(s,task('g22ManaPermit',p,c.id));break;default:return false;}return true;},
   discount:(s,p,c)=>chosenReducers(s,p,c).length,
   played(s,p,c,inst,origin,permit){for(const x of chosenReducers(s,p,c))(s.g22UsedDiscount??={})[key(x)]=s.turn;if(origin==='mana'){delete inst.g22ManaAllowed;if(permit)(s.g22UsedMana??={})[permit]=s.turn;}},

@@ -39,7 +39,7 @@ export function createGransectRules(api){
   case'g16Deathmatch':if(value){const a=own.battle.find(x=>x.uid===t.uid),b=s.players[t.owner].battle.find(x=>x.uid===t.target);if(a&&b)api.battle(s,t.p,a,t.owner,b,s.attack?.attacker);}break;
   default:throw Error('未実装のグランセクト選択：'+t.op);
  }return true;}
- return{run,chosen,
+ return{run,chosen,manaPermits(s,p){return s.players[p].battle.filter(x=>effective(x,s).hercules&&s.g16UsedMana?.[key(x)]!==s.turn).map(x=>'g16:'+key(x));},
   effect(s,p,c){switch(c.effect){case'shakoRecycle':put(s,task('g16ShakoRecycle',p,c.id));break;case'naturalGo':put(s,task('g16NaturalGo',p,c.id));break;case'herculesRecycle':put(s,task('g16RecyclePlayer',p,c.id));break;case'jurassicHowl':put(s,task('g16Howl',p,c.id));break;case'corenReveal':put(s,task('g16Reveal',p,c.id,{n:3}));break;case'plantRamp':put(s,task('g16Plant',p,c.id));break;case'sonicMana':put(s,task('g16ManaTarget',p,c.id,{max:7000}));break;case'jumboReveal':put(s,task('g16Reveal',p,c.id,{n:4,all:true,bottom:true}));break;case'granRamp':put(s,task('g20Ramp',p,c.id,{n:1}));break;default:return false;}return true;},
   discount(s,p,c){if(c.type!=='creature')return 0;const n=creatures(s,p).filter(x=>power(x,false,s)>=12000).length,grants=(c.summonOrigin||'hand')==='hand'?creatures(s,p).filter(x=>effective(x,s).gale).length*2:0;return n*((c.sympathyBig||0)+grants);},
   start(s,p){const list=[];for(const x of s.players[p].mana)if(card(x).manaReturnStart)list.push({player:p,source:x.cardId,uid:x.uid,effect:'extended',task:task('g16NachtReturn',p,x.cardId,{uid:x.uid})});for(const x of creatures(s,1-p))if(effective(x,s).shako)list.push({player:1-p,source:x.cardId,uid:x.uid,effect:'extended',task:task('g16ShakoStart',1-p,x.cardId)});return list;},
