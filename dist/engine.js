@@ -1,6 +1,6 @@
 import {HERO_IDS,chooseHeroDraw} from './hero-draw.js?v=0.77';
 import {shieldCards,shieldGroup,findShield,attachShield,detachShieldCard} from './shield-state.js';
-import {createExtendedRules} from './extended-rules.js?v=0.86.2';
+import {createExtendedRules} from './extended-rules.js?v=0.87';
 import {createStrategicAI} from './strategic-ai.js?v=0.86';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.51';
@@ -347,6 +347,7 @@ export function power(c,attacking=false,context=null){
  return numeric(data.power)+(context?extra.lionelPower(context,context.players.findIndex(p=>p.battle.some(x=>x.uid===c.uid)),c):0)+(context?extra.samuraiPower(context,context.players.findIndex(p=>p.battle.some(x=>x.uid===c.uid)),c):0)+modifiers.reduce((n,x)=>n+x.amount,0)+(attacking?(data.attackBonus||0)+(c.buff||0)-(c.buffSources||[]).filter(x=>spellIgnored(context,{type:'spell',cost:x.cost,spellSource:x.spellSource})).reduce((n,x)=>n+x.amount,0):0)+(attacking&&data.g29GraveFire&&context?context.players[context.players.findIndex(p=>p.battle.some(x=>x.uid===c.uid))]?.grave.filter(x=>civilizations(card(x)).includes('火')).length*1000||0:0)+(owner>=0&&context.active===owner?data.ownTurnBonus:0);
 }
 export function attackLocked(s,p,c){return !!s&&!!c&&!c.sealed&&effectiveCard(c,s).type==='creature'&&extra.locked(s,p,c,'attack');}
+export const canCreatureAttack=(s,p,c)=>canAttack(s,p,c);
 function canAttack(s,p,c){const d=effectiveCard(c,s);return d.type==='creature'&&extra.six.fifteen.canAttack(s,p,c)&&(!d.twoTappedAttack||s.players[p].battle.filter(x=>isCreature(s,x)&&x.tapped).length>=2)&&!c.tapped&&!d.noAttack&&(!d.needsBigAttack||s.g16BigAttack?.[p]===s.turn)&&!extra.locked(s,p,c,'attack')&&!(c.entered===s.turn&&s.players[1-p].battle.some(x=>effectiveCard(x,s).stopEntryAttack)&&!s.players[p].battle.some(x=>effectiveCard(x,s).ignoreAttackLocks))&&(c.entered<s.turn||d.speedAttacker||isEvolution(c)||d.machFighter||d.entryPlayerAttack||extra.abyssPlayer(s,c));}
 function canAttackPlayer(s,c){const p=s.players.findIndex(x=>x.battle.some(y=>y.uid===c.uid));return (s.players[p].battle.some(x=>effectiveCard(x,s).ignoreAttackLocks)||!s.players[1-p].battle.some(x=>effectiveCard(x,s).didaGuard&&power(c,false,s)<power(x,false,s)))&&!(c.entered===s.turn&&s.players[1-p].battle.some(x=>effectiveCard(x,s).gaia)&&!s.players[p].battle.some(x=>effectiveCard(x,s).ignoreAttackLocks))&&(c.entered<s.turn||effectiveCard(c,s).speedAttacker||effectiveCard(c,s).entryPlayerAttack||extra.abyssPlayer(s,c)||isEvolution(c));}
 function unblockedNow(s,c){return effectiveCard(c,s).unblockable||c.unblocked&&(!c.unblockSpellCost||!spellIgnored(s,{type:'spell',cost:c.unblockSpellCost}));}
@@ -393,7 +394,7 @@ export function manaSelectionStatus(d){
  return {amount,cost:d.cost,colors:colors.map((name,i)=>({name,paid:!!(best&1<<i)})),valid:new Set(d.selected).size===d.selected.length&&selected.length===d.selected.length&&selected.every(x=>!x.tapped)&&amount>=d.cost&&masks.has(goal)};
 }
 function paymentIds(s,p,c,exclude=[],fixed=false){
- const pool=paymentPool(s,p,exclude,c),cost=fixed?costValue(c):summonCost(s,p,c),request={cost,colors:civilizations(c),pool:pool.map(x=>({...x})),selected:[],source:c.id||null};
+ const pool=paymentPool(s,p,exclude,c),cost=fixed?costValue(c):summonCost(s,p,c),request={cost,colors:civilizations(c),pool:pool.map(x=>({...x})),selected:[],source:c.id||null,use:{name:c.name||null,type:c.type||null,origin:c.summonOrigin||null,baseUids:Array.isArray(c.g27BaseUid)?[...c.g27BaseUid]:c.g27BaseUid?[c.g27BaseUid]:[]}};
  const automatic=manaPayment(pool,{...c,cost});if(!automatic)return null;
  if(manaTransaction&&p===manaTransaction.player&&automatic.length){const t=manaTransaction,selected=t.payments[t.paymentIndex++];if(!selected)throw new ManaSelectionRequired(request);if(!manaSelectionStatus({...request,selected}).valid)throw Error('選んだマナでは支払えません');return selected;}
  return automatic;

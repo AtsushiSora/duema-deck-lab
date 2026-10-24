@@ -1,3 +1,5 @@
+import * as battleInsights from '../dist/battle-insights.js';
+import * as appUpdates from '../dist/app-updates.js';
 import {createCardArt} from '../dist/card-art.js';
 import test from 'node:test';import assert from 'node:assert/strict';import vm from 'node:vm';import {readFile} from 'node:fs/promises';
 import {e,PRESETS,data,details,snapshot,target,DOGI,GG,inst,give,setup,resolveKeyword} from './target-fixture.mjs';
@@ -12,7 +14,7 @@ const app=(await readFile(new URL('../dist/app.js',import.meta.url),'utf8')).rep
 function harness(state,{mobile=false,scrollers={},autoPay=true}={}){
  const listeners={},errors=[],timers=new Map();let serial=0;
  const root={innerHTML:''},dialog={innerHTML:'',open:false,addEventListener(){},showModal(){this.open=true;},close(){this.open=false;}},toast={textContent:'',classList:{add(){},remove(){}}},classes=new Set();
- const context=vm.createContext({createCardArt,shieldCards,...e,...manual,...visuals,...fit,...handUI,...cardInfo,...aiPlayback,battleCard:e.card,PRESETS,createCatalogue,fixtureRegistry:createCatalogue(snapshot,data.cards,details),fixtureState:state,fixtureDecks:[target,target],console:{log(){},error:e=>errors.push(e)},structuredClone,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL,Intl,Date,CSS:{escape:x=>x},localStorage:{getItem:()=>null,setItem(){}},location:{hash:'',pathname:'/'},history:{replaceState(){}},setTimeout:f=>{timers.set(++serial,f);return serial;},clearTimeout:id=>timers.delete(id),clearInterval(){},setInterval:()=>++serial,
+ const context=vm.createContext({createCardArt,shieldCards,...battleInsights,...appUpdates,...e,...manual,...visuals,...fit,...handUI,...cardInfo,...aiPlayback,battleCard:e.card,PRESETS,createCatalogue,fixtureRegistry:createCatalogue(snapshot,data.cards,details),fixtureState:state,fixtureDecks:[target,target],console:{log(){},error:e=>errors.push(e)},structuredClone,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL,Intl,Date,CSS:{escape:x=>x},localStorage:{getItem:()=>null,setItem(){}},location:{hash:'',pathname:'/'},history:{replaceState(){}},setTimeout:f=>{timers.set(++serial,f);return serial;},clearTimeout:id=>timers.delete(id),clearInterval(){},setInterval:()=>++serial,
   document:{querySelector:s=>s==='#app'?root:s==='#dialog'?dialog:s==='#toast'?toast:scrollers[s]||null,querySelectorAll:s=>s==='.play-creatures,.shield-tiles'?scrollers.lanes||[]:[],activeElement:null,body:{classList:{toggle:(key,on)=>on?classes.add(key):classes.delete(key)}},addEventListener:(name,f)=>listeners[name]=f},window:{innerHeight:800,addEventListener(){},scrollTo(){},matchMedia:q=>({matches:mobile&&q==='(max-width: 850px)'})}});
  vm.runInContext(app,context);
  vm.runInContext("registry=fixtureRegistry;cards=registry.cards;battleCards=fixtureRegistry.cards.filter(c=>c.supported);battle={state:fixtureState,decks:fixtureDecks,practice:true};view='manual';manualUI=newManualUI();selectedHand=null;render();",context);
@@ -226,4 +228,27 @@ test('manual payment real app waits for explicit selection and confirmation on p
 });
 test('manual payment cancelling through the actual app preserves the full board and the selected hand',async()=>{
  const s=setup();give(s,0,'hand',['dm14-108']);const before=structuredClone(s),h=harness(s,{mobile:true,autoPay:false});await h.click('battle-step',{index:String(e.getLegalActions(s).find(a=>a.kind==='play').id)});await h.click('battle-step',{index:String(e.getLegalActions(s).find(a=>a.kind==='cancelMana').id)});assert.deepEqual(s,before);assert.equal(s.players[0].hand.length,1);
+});
+
+test('the card status dialog opens without moving or attacking, and shows effects, sources and EX Life together',async()=>{
+ const s=setup();give(s,0,'battle',[DOGI]);const x=s.players[0].battle[0];x.under=[inst('dm01-108')];x.tapped=true;s.extLimits=[{kind:'attack',reason:'gStrike',player:0,uid:x.uid,incarnation:0,who:s.active,expires:'end'}];const h=harness(s,{mobile:true}),before=structuredClone(s);
+ await h.click('manual-creature',{player:'0',uid:x.uid});const html=h.read('dialog.innerHTML');assert.match(html,/カードの状態/);assert.match(html,/タップ中/);assert.match(html,/進化元/);assert.match(html,/G・ストライク/);assert.match(html,/このターン終了まで/);assert.match(html,/能力を見る/);assert.deepEqual(s,before);
+});
+test('report saving records the last human action and exports diagnostics without account data or an automatic send',async()=>{
+ const s=setup();give(s,0,'hand',['dm01-108']);const h=harness(s,{mobile:true,autoPay:false,scrollers:{'#battle-report-note':{value:'確認をお願い'}}});h.read('download=(filename,text)=>{globalThis.capturedDownload={filename,text};};battle.accountSecret="NEVER_EXPORT";');
+ await h.click('battle-step',{index:String(e.getLegalActions(s).find(a=>a.kind==='play').id)});const before=structuredClone(s);await h.click('battle-report');assert.match(h.read('dialog.innerHTML'),/送信はされません/);await h.click('save-battle-report');
+ const report=battleInsights.decodeBattleData(h.read('capturedDownload.text'));assert.equal(report.note,'確認をお願い');assert.equal(report.format,'duema-battle-report');assert.equal(report.recentActions.at(-1).action.kind,'play');assert.ok(!h.read('capturedDownload.text').includes('NEVER_EXPORT'));assert.deepEqual(s,before);
+});
+function updateHarness(h,{quota=false,engineVersion=e.ENGINE_VERSION}={}){
+ const store=new Map(),navigations=[];h.context.sessionStorage={getItem:k=>store.get(k)??null,setItem:(k,v)=>{if(quota)throw Error('quota');store.set(k,v);},removeItem:k=>store.delete(k)};h.context.location.href='https://example.test/duema/?view=battle';h.context.location.assign=url=>navigations.push(url);h.read('appUpdates={snapshot:()=>({available:{version:"0.88.0",engineVersion:'+JSON.stringify(engineVersion)+'}})};');return {store,navigations};
+}
+test('update preserves an in-progress payment and a draft, and the restored payment remains legal',async()=>{
+ const s=setup();give(s,0,'hand',['dm14-108']);const h=harness(s,{mobile:true,autoPay:false});await h.click('battle-step',{index:String(e.getLegalActions(s).find(a=>a.kind==='play').id)});
+ await h.click('battle-step',{index:String(e.getLegalActions(s).find(a=>a.kind==='selectMana'&&e.card(a.cardId).civ==='自然').id)});h.read('edit={id:"draft",name:"編集中",cards:[]};');const {store,navigations}=updateHarness(h),before=structuredClone(s);
+ await h.click('apply-update');assert.equal(navigations.length,1);assert.match(navigations[0],/app_update=0.88.0/);const saved=appUpdates.readUpdateResume(h.context.sessionStorage);assert.deepEqual(saved.battle.state,before);assert.equal(saved.edit.name,'編集中');
+ h.read('battle=null;edit=null;view="decks";');assert.equal(h.read('restoreUpdatedSession()'),true);assert.deepEqual(JSON.parse(h.read('JSON.stringify(battle.state)')),JSON.parse(JSON.stringify(before)));assert.equal(h.read('edit.name'),'編集中');assert.equal(h.read('battle.state.decision.selected.length'),1);assert.ok(h.read('getLegalActions(battle.state).some(a=>a.kind==="confirmMana")'));assert.ok(store.has(appUpdates.UPDATE_RESUME_KEY));
+});
+test('update aborts on a failed backup and defers incompatible rules until the battle is finished',async()=>{
+ const s=setup(),h=harness(s,{mobile:true}),before=structuredClone(s);let u=updateHarness(h,{quota:true});await h.click('apply-update');assert.equal(u.navigations.length,0);assert.deepEqual(s,before);assert.match(h.read('document.querySelector("#toast").textContent'),/保存できません/);
+ u=updateHarness(h,{engineVersion:'future'});await h.click('apply-update');assert.equal(u.navigations.length,0);assert.match(h.read('dialog.innerHTML'),/対戦が終わってから更新/);assert.deepEqual(s,before);
 });

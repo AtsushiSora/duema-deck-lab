@@ -1,3 +1,4 @@
+import {APP_VERSION} from '../dist/app-updates.js';
 import {PHOTO_FIFTEEN_DECKS} from './fixtures/photo-fifteen-decks.mjs';
 import {PHOTO_SIX_DECKS} from './fixtures/photo-six-decks.mjs';
 import {PHOTO_HIKARISMA} from './fixtures/photo-hikarisma.mjs';
@@ -9,12 +10,13 @@ import{PHOTO_WATER_MADO}from'./fixtures/photo-water-mado.mjs';
 import{PHOTO_BOLSHACK}from'./fixtures/photo-bolshack.mjs';
 import{resolveHeroDecks}from'../dist/hero-challenge.js';
 import{resolveEnvironmentDecks}from'../dist/environment.js';
-import{setCards,validateDeck}from'../dist/engine.js';
+import{setCards,validateDeck,ENGINE_VERSION}from'../dist/engine.js';
 import{validateDetails}from'./detail-validation.mjs';
 import{decodeFingerprint}from'../dist/card-fingerprint.js';
 import{resolveStarter25Decks}from'../dist/starter25.js';
 import{readdir,readFile}from'node:fs/promises';import{spawnSync}from'node:child_process';import{createCatalogue,nameKey}from'../dist/catalogue.js';
 for(const folder of ['dist','tools','server','netlify/functions'])for(const file of(await readdir(new URL('../'+folder+'/',import.meta.url))).filter(x=>/\.m?js$/.test(x))){const r=spawnSync(process.execPath,['--check',new URL('../'+folder+'/'+file,import.meta.url).pathname],{stdio:'inherit'});if(r.status)process.exit(r.status);}
+const release=JSON.parse(await readFile(new URL('../dist/release.json',import.meta.url),'utf8')),pkg=JSON.parse(await readFile(new URL('../package.json',import.meta.url),'utf8'));if(release.version!==APP_VERSION||pkg.version!==APP_VERSION||release.engineVersion!==ENGINE_VERSION)throw Error('公開版のバージョンが一致しません');console.log('Checked release manifest v'+APP_VERSION);
 const snapshot=JSON.parse(await readFile(new URL('../dist/catalogue.json',import.meta.url),'utf8')),supported=JSON.parse(await readFile(new URL('../dist/cards.json',import.meta.url),'utf8')).cards;
 const imageIndex=JSON.parse(await readFile(new URL('../dist/image-index.json',import.meta.url),'utf8')),imageIds=new Set(imageIndex.entries.map(e=>e[0])),canonicalIds=new Set(snapshot.cards.map(c=>c.id));
 if(imageIndex.schemaVersion!==1||imageIndex.nameCount!==imageIds.size||imageIndex.printCount!==imageIndex.entries.length)throw Error('画像照合データの件数が一致しません');
