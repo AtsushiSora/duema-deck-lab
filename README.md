@@ -1,6 +1,6 @@
-# デッキラボ
+# デュエマ・カードラボ・シュミレーション
 
-公開アプリ：[デッキラボ](https://atsushisora.github.io/duema-deck-lab/)
+公開アプリ：[デュエマ・カードラボ・シュミレーション](https://atsushisora.github.io/duema-deck-lab/)
 
 アカウント：[Googleで登録・ログイン](https://atsushisora.github.io/duema-deck-lab/?view=account)
 
