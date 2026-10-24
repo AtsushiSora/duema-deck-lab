@@ -1,4 +1,4 @@
-import{PHOTO_BOLSHACK}from'../dist/photo-bolshack.js';
+import{PHOTO_BOLSHACK}from'./fixtures/photo-bolshack.mjs';
 import{resolveHeroDecks}from'../dist/hero-challenge.js';
 import{resolveEnvironmentDecks}from'../dist/environment.js';
 import{setCards,validateDeck}from'../dist/engine.js';
