@@ -1,7 +1,8 @@
 // Bounded planning over public positions. Unknown cards stay unknown: no actual
 // deck order, shields, opponent hand, game seed or game RNG enters this module.
+import {heroCardRole} from './hero-draw.js?v=0.88';
 export function createStrategicAI(api){
- const {card,faces,effective,power,isCreature,legal,step,rank,observe,mark}=api;
+ const {card,faces,effective,power,isCreature,legal,step,rank:baseRank,observe,mark}=api;
  const cap=n=>Math.min(20,Number(n)||0);
  const body=c=>c.type==='creature';
  const damage=c=>c.breaker==='∞'?20:Number(c.breaker)||1;
@@ -50,13 +51,47 @@ export function createStrategicAI(api){
  }
  function clone(s){const out=structuredClone(s);mark(out);return out;}
  const isEngine=c=>c.graveSpellReduction||c.gachiAttack||c.newWorld||c.kurokami||c.abyssLord||c.samuraiGenerate;
+ const hero=(s,p)=>s.challenge&&s.challenge.seat===p?s.challenge.heroId:null;
+ function keepValue(s,p,x){
+  const id=hero(s,p);if(!id)return 0;
+  const own=s.players[p],role=heroCardRole(id,x.cardId),copies=own.hand.filter(y=>y.cardId===x.cardId).length;
+  let v=role==='setup'?(own.mana.length<4?26:3):role==='engine'?24:role==='bridge'?17:0;
+  if(s.challenge.signature.includes(x.cardId))v+=own.mana.length>=4?22:8;
+  if(own.battle.some(y=>y.cardId===x.cardId))v*=.35;
+  return v/Math.max(1,copies);
+ }
+ function rank(s){
+  const rows=baseRank(s),p=rows[0]?.a.player;if(!hero(s,p))return rows;
+  const own=s.players[p];return rows.map(r=>{
+   const a=r.a,x=own.hand.find(x=>x.uid===a.uid);let value=r.value;
+   if(a.kind==='charge'&&x)value-=keepValue(s,p,x);
+   if(a.kind==='play'&&x)value+=keepValue(s,p,x)*.6;
+   return {...r,value};
+  }).sort((a,b)=>b.value-a.value||a.a.id-b.a.id);
+ }
  function decisionChoice(s,rows){
-  const task=s.decision?.task;if(!['discard','discardSelect'].includes(task?.op))return rows[0]?.a;
+  const task=s.decision?.task,p=rows[0]?.a.player;
+  if(hero(s,p)&&task?.op==='gsTarget')return rows.map(r=>{
+   const uid=s.decision.choices[r.a.choice]?.value,x=s.players[1-p].battle.find(x=>x.uid===uid);
+   return {...r,value:x&&api.canAttack(s,1-p,x)?100+damage(effective(x,s))*10+creatureValue(s,x):x?-10:0};
+  }).sort((a,b)=>b.value-a.value||a.a.id-b.a.id)[0]?.a;
+  if(hero(s,p)&&task?.op==='g35_Custom'&&task.name==='alternative'&&task.role==='joragon'){
+   const confirm=rows.find(r=>s.decision.choices[r.a.choice]?.value===null);if(confirm)return confirm.a;
+   return rows.map(r=>{const v=s.decision.choices[r.a.choice]?.value,x=s.players[p].battle.find(x=>x.uid===v?.uid);
+    return {...r,value:x?100-creatureValue(s,x)-(api.canAttack(s,p,x)?35:0)-(effective(x,s).g35Role==='man'?40:0):-1000};
+   }).sort((a,b)=>b.value-a.value||a.a.id-b.a.id)[0]?.a;
+  }
+  if(hero(s,p)&&task?.op==='revResolve'){
+   const x=s.players[p].battle.find(x=>x.uid===task.attacker),incoming=card(task.source),old=x&&effective(x,s);
+   if(old&&(x.cardId===incoming.id||old.shieldBurn&&!incoming.shieldBurn||damage(old)>damage(incoming)&&cap(old.cost)>=cap(incoming.cost)))
+    return rows.find(r=>!s.decision.choices[r.a.choice]?.value)?.a||rows[0]?.a;
+  }
+  if(!['discard','discardSelect'].includes(task?.op))return rows[0]?.a;
   const own=observe(s,rows[0].a.player).players[rows[0].a.player];
   return rows.map(r=>{
    const choice=s.decision.choices[r.a.choice],x=own.hand.find(x=>x.uid===choice?.value);if(!x)return r;
    const c=card(x),copies=own.hand.filter(y=>y.cardId===x.cardId).length;
-   return {...r,value:r.value-(isEngine(c)&&copies===1?40:0)+(copies>1?6:0)+(c.abyssRush||c.graveCast?8:0)};
+   return {...r,value:r.value-(isEngine(c)&&copies===1?40:0)-keepValue(s,r.a.player,x)+(copies>1?6:0)+(c.abyssRush||c.graveCast?8:0)};
   }).sort((a,b)=>b.value-a.value||a.a.id-b.a.id)[0].a;
  }
  function creatureValue(s,x){
@@ -80,14 +115,16 @@ export function createStrategicAI(api){
   const own=s.players[p],opp=s.players[1-p],mana=own.mana.length;
   const counts=new Map();for(const x of own.hand)counts.set(x.cardId,(counts.get(x.cardId)||0)+1);
   const hand=own.hand.reduce((n,x)=>{const c=card(x),engine=isEngine(c);
-   return n+6+(body(c)?3:0)+(api.summonCost(s,p,c)<=mana+1?2:0)+(engine?12/counts.get(x.cardId):0);},0);
+   return n+6+(body(c)?3:0)+(api.summonCost(s,p,c)<=mana+1?2:0)+(engine?12/counts.get(x.cardId):0)+keepValue(s,p,x)*.15;},0);
   const gravePlan=(own.hand.some(x=>card(x).graveSpellReduction)?own.grave.filter(x=>faces(card(x)).some(c=>c.type==='spell')).length*4:0)+
    (own.hand.some(x=>card(x).graveCreatureReduction||card(x).graveEvolution)?own.grave.filter(x=>body(card(x))).length*2:0);
   const colors=new Set(own.mana.flatMap(x=>api.colors(card(x)))).size;
   const danger=opp.battle.filter(x=>isCreature(s,x)&&!effective(x,s).noPlayerAttack).length;
   const safety=own.shields.length===0?-30:Math.min(5,own.shields.length)*7;
-  return board(s,p)-board(s,1-p)*1.08+hand+gravePlan-opp.hand.length*5+
-   Math.min(mana,7)*11+Math.max(0,Math.min(mana-7,5))*3+colors*2+safety+
+  const heroPlan=hero(s,p)?own.battle.reduce((n,x)=>n+(heroCardRole(hero(s,p),x.cardId)==='engine'?35:0),0)+
+   (own.battle.some(x=>effective(x,s).abyssLordGrave)?Math.min(5,own.grave.filter(x=>/アビス/.test(card(x).race)).length)*8:0):0;
+  return board(s,p)-board(s,1-p)*1.08+hand+gravePlan+heroPlan-opp.hand.length*5+
+   Math.min(mana,7)*(hero(s,p)?18:11)+Math.max(0,Math.min(mana-7,5))*3+colors*2+safety+
    pressure(s,p)-(own.shields.length<danger?18:0)-(own.deck.length<=3?(4-own.deck.length)*16:0);
  }
  function candidates(s){
@@ -129,6 +166,10 @@ export function createStrategicAI(api){
     if(lethal)score+=120+damage(c)*3;
     if(!c.unblockable&&blockers.some(y=>power(y,false,ctx)>=power(x,true,ctx)))score-=35;
     if(c.blocker&&me.shields.length===0&&!lethal)score-=35;
+    if(hero(s,p)){
+     if(c.shieldBurn||c.burnShields)score+=them.shields.length?28:0;
+     if(s.challenge.signature.includes(x.cardId))score+=them.shields.length?8:0;
+    }
    }else{
     const y=find(1-p,a.target),d=effective(y,ctx);
     // The effect policy recognises destruction protection and mandatory attacks.
@@ -151,7 +192,7 @@ export function createStrategicAI(api){
   if(s.players[p].mana.length>9||s.players[p].hand.length>12||s.players[p].battle.length>5||s.players.some(x=>x.battle.length>10))return {action:baseline,nodes:0,fallbacks:0};
   const root=projection(s,p),base=value(root,p),results=[];let nodes=0,fallbacks=0;
   const complexity=1+s.players[p].mana.length+s.players[p].hand.length+s.players.reduce((n,x)=>n+x.battle.length*3,0);
-  const budget=Math.max(4,Math.min(64,Math.floor(900/complexity**1.4)));
+  const budget=Math.max(4,Math.min(hero(s,p)?80:64,Math.floor((hero(s,p)?1500:900)/complexity**1.4)));
   const expand=(state,row,origin,prior)=>{
    if(nodes>=budget)return null;nodes++;
    const next=clone(state);
@@ -163,7 +204,7 @@ export function createStrategicAI(api){
   };
   for(const row of candidates(s)){
    // Unknown reveals cannot be evaluated faithfully; retain a small policy prior.
-   const prior=s.phase==='main'?Math.max(-4,Math.min(4,(row.value-5)*.05)):0;
+   const prior=s.phase==='main'?Math.max(-4,Math.min(4,(row.value-5)*.05)):hero(s,p)?Math.max(-6,Math.min(6,(row.value-50)*.15)):0;
    const node=expand(root,row,null,prior);
    if(node)results.push(node);
    else results.push({action:row.a,state:null,prior,score:base+(row.value>5?3:-1)});

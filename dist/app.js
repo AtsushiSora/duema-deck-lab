@@ -137,7 +137,7 @@ function startSimulation(deck,options={}){
  const opponentErrors=opponents.flatMap(d=>validateDeck(d));if(opponentErrors.length){toast('相手デッキ：'+opponentErrors[0]);return;}
  const n=options.count||base?.count||count,seed=options.seed??base?.seed??crypto.getRandomValues(new Uint32Array(1))[0],f=options.first||base?.first||first;
  running={completed:0,total:n*opponents.length,current:opponents[0].name,deck:clone(deck),count:n,seed,first:f,opponents:clone(opponents),baseline:base?.id||null};view='analysis';render();
- worker=new Worker(new URL('./worker.js?v=0.87',import.meta.url),{type:'module'});
+ worker=new Worker(new URL('./worker.js?v=0.88',import.meta.url),{type:'module'});
  worker.onmessage=({data})=>{
   if(data.type==='progress'){if(!running)return;Object.assign(running,data);renderProgress();}
   if(data.type==='done'){
@@ -346,7 +346,7 @@ document.addEventListener('click',async event=>{
  else if(action==='hero-deck'){const h=heroDecks.find(x=>x.id===id);if(h)showDialog(h.name,'<p class="small mb16">アプリ独自の主人公テーマデッキ · 40枚</p>'+h.cards.map(x=>'<div class="deck-list-row"><span class="grow">'+esc(card(x.id).name)+'</span><strong>'+x.count+'枚</strong></div>').join(''));}
  else if(action==='nav'){
   if(view==='editor'&&edit){showDialog('編集を終了しますか？','<p class="small">保存していない変更は破棄されます。編集中のデッキを残す場合は、この画面を閉じて保存してください。</p>',`<button class="btn" data-action="close-dialog">編集を続ける</button><button class="btn primary" data-action="discard-edit" data-view="${el.dataset.view}">破棄して移動</button>`);return;}
-  view=el.dataset.view;if(view==='challenge'&&!heroDecks.length){try{heroDecks=resolveHeroDecks(await fetch('hero-decks.json?v=0.77').then(r=>{if(!r.ok)throw Error('主人公デッキを読み込めませんでした');return r.json();}),registry);}catch(e){toast(e.message);view='battle';}}onlineClient?.setActive(view==='online');if(view==='online')void initOnline();if(view==='account')void initAccount();clearInterval(replayTimer);replayTimer=null;clearTimeout(battleTimer);aiPlayback?.suspend();render();if(view==='manual')scheduleAI();window.scrollTo(0,0);
+  view=el.dataset.view;if(view==='challenge'&&!heroDecks.length){try{heroDecks=resolveHeroDecks(await fetch('hero-decks.json?v=0.88').then(r=>{if(!r.ok)throw Error('主人公デッキを読み込めませんでした');return r.json();}),registry);}catch(e){toast(e.message);view='battle';}}onlineClient?.setActive(view==='online');if(view==='online')void initOnline();if(view==='account')void initAccount();clearInterval(replayTimer);replayTimer=null;clearTimeout(battleTimer);aiPlayback?.suspend();render();if(view==='manual')scheduleAI();window.scrollTo(0,0);
  }
  else if(action==='discard-edit'){edit=null;editRole='mine';photo=null;comparisonId=null;view=el.dataset.view;if(view==='account')void initAccount();closeDialog();render();}
  else if(action==='online-create'){const d=onlineDeck();if(d)await onlineClient?.create(d);}
