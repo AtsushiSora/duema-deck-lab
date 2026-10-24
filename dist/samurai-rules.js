@@ -28,7 +28,7 @@ export function createSamuraiRules(api){
  case'g18_FreeCross':{const g=own.battle.find(x=>x.uid===t.gear&&(x.incarnation||0)===t.gearInc);if(g&&card(g).type==='gear')choice(s,t,'メクレイドで出したクロスギアを無料でクロスする？',[...creatures(s,t.p).filter(x=>live(s,t.p,g)?.uid!==x.uid).map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)),skip()]);break;}
  case'g18_AfterMekUse':{const g=own.battle.find(x=>x.uid===t.gear&&(x.zoneSerial||0)===t.serial&&card(x).type==='gear');if(g)put(s,{...t,op:'g18_FreeCross',gearInc:g.incarnation||0});break;}
  case'g18_Flash':put(s,task('g19Yobi',t.p,t.source,{max:6}),task('g18_FlashGrant',t.p,t.source));break;
- case'g18_FlashGrant':for(const x of creatures(s,t.p)){if(api.canUntap(x))x.tapped=false;(x.g18Blocker??=[]).push({who:t.p,cost:6});}break;
+ case'g18_FlashGrant':for(const x of creatures(s,t.p)){if(api.canUntap(x))x.tapped=false;(x.g18Blocker??=[]).push({who:t.p,cost:6,spellSource:t.source});}break;
  case'g18_EndUntap':{const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation);if(x&&api.canUntap(x))x.tapped=false;break;}
  case'g18_ShiraLock':api.lock(s,t.p,{kind:'spellCostLock',player:1-t.p,max:5});break;
  default:throw Error('未実装のサムライ効果：'+t.op);

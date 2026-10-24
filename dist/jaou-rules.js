@@ -36,7 +36,7 @@ export function createJaouRules(api){
  case'g3_Katsu':{const x=remove(own.deck,value);if(x){api.log(s,t.p,'reveal','カツキングで公開：'+card(x).name,{cardId:x.cardId});const bounce=allColors(card(x)).some(c=>['火','自然'].includes(c));clear(x,'hand');own.hand.push(x);put(s,task('g3_Order',t.p,t.source,{uids:t.uids.filter(uid=>uid!==value),protected:t.uids,bounce}));api.deckCheck(s,t.p);}break;}
  case'g3_Order':{const x=remove(own.deck,value);if(x)own.deck.push(x);put(s,{...t,uids:t.uids.filter(uid=>uid!==value)});break;}
  case'g3_Bounce':if(value){const player=s.players.findIndex(p=>p.battle.some(x=>x.uid===value));move(s,[{player,uid:value,to:'hand',destroy:false}]);}break;
- case'g3_Minus':{const x=s.players[1-t.p].battle.find(x=>x.uid===value);if(x)(x.powerModifiers??=[]).push({amount:'-infinity',spellCost:4,expires:'end',who:s.active});break;}
+ case'g3_Minus':{const x=s.players[1-t.p].battle.find(x=>x.uid===value);if(x)(x.powerModifiers??=[]).push({amount:'-infinity',spellCost:4,spellSource:t.source,expires:'end',who:s.active});break;}
  case'g3_JaouDeploy':{const x=remove(own.grave,value);if(x){enter(s,t.p,x,null,{origin:'grave',execution:false});if(own.battle.some(y=>y.uid===x.uid))put(s,task('g3_Fight',t.p,t.source,{uid:x.uid,incarnation:x.incarnation||0}));}break;}
  case'g3_Fight':if(value){const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation),y=s.players[1-t.p].battle.find(x=>x.uid===value);if(x&&y)api.battle(s,t.p,x,1-t.p,y,s.attack?.attacker);}break;
  case'g3_FinalSelect':if(value){const x=own[value.origin].find(x=>x.uid===value.uid);put(s,{...t,selected:[...t.selected,value],budget:t.budget-cost(card(x))});}else put(s,...t.selected.map(x=>task('putCreature',t.p,t.source,{...x})));break;

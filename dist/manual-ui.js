@@ -2,7 +2,7 @@ import {sourceCardBadge,sourceCardLabel} from './card-info.js';
 import {shieldCards} from './shield-state.js';
 import {aiPlaybackHTML,aiSpeedLabel} from './ai-playback.js';
 import {handCardModel,handShelfHTML,handInspectorHTML} from './hand-ui.js';
-import {getLegalActions,card,power,effectiveCard,isEvolution,canUntap,abilitiesIgnored,genmuActive,selfTriggersStopped,manaValue,exLifeShieldInfo,exLifeShields,shieldGuardSources,playFaces} from './engine.js';
+import {getLegalActions,card,power,effectiveCard,isEvolution,canUntap,abilitiesIgnored,genmuActive,momoActive,selfTriggersStopped,manaValue,exLifeShieldInfo,exLifeShields,shieldGuardSources,playFaces} from './engine.js';
 import {attackRoute,previewAttackAction} from './battle-visuals.js';
 import {pageWindow} from './board-fit.js';
 import {battlePrimaryAction} from './battle-controls.js';
@@ -186,6 +186,7 @@ export function manualBoardHTML(s,ui,{art,icon}){
  const policies=[];
  for(const who of [0,1]){const b=s.players[who].battle.map(x=>effectiveCard(x,s)),label=who?'相手':'自分';if(b.some(c=>c.newWorld))policies.push(label+'の新世壊：魔導具・ドルスザク呪文の禁止を無視。魔導具を下に置いて1枚引ける');if(b.some(c=>c.onlyLightSpells))policies.push((who?'自分':'相手')+'は光以外の呪文を唱えられない（新世壊の例外あり）');if(b.some(c=>c.manaUntapThree))policies.push((who?'自分':'相手')+'がターン開始時にアンタップできるマナは3枚まで');}
 
+ if(momoActive(s))policies.push('モモムゲン：両者の多色ではないクリーチャー能力・呪文効果を無視');
  if(genmuActive(s))policies.push('ゲンム：両者のコスト5以下のクリーチャー能力・呪文効果を無視');
  for(const who of [0,1]){
   if(s.players[1-who].battle.some(x=>effectiveCard(x,s).selfEntrySilence))policies.push(`${who?'相手':'自分'}のクリーチャー自身の登場時能力はキーナリーによりトリガーしない`);

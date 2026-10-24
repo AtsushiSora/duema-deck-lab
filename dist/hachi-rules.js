@@ -14,7 +14,7 @@ export function createHachiRules(api){
  case'g11_Forbidden':put(s,task('destroyPower',t.p,t.source,{max:9999}),task('g11_Seal',t.p,t.source));break;
  case'g11_Seal':if(own.battle.some(x=>!x.sealed&&card(x).type==='field'))choice(s,t,'封印を付ける相手のクリーチャーを選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));break;
  case'g11_Shibire':choice(s,t,'手札を1枚マナに置く？',[...own.hand.map(x=>opt(card(x).name,x.uid,own.mana.length<6?20-cost(card(x))*.1:-5,x.cardId)),skip()]);break;
- case'g11_Power':for(const x of creatures(s,t.p)){(x.powerModifiers??=[]).push({amount:8000,expires:'end',who:s.active,spellCost:13});(x.g11Triple??=[]).push({turn:s.turn,cost:13});}break;
+ case'g11_Power':for(const x of creatures(s,t.p)){(x.powerModifiers??=[]).push({amount:8000,expires:'end',who:s.active,spellCost:13,spellSource:t.source});(x.g11Triple??=[]).push({turn:s.turn,cost:13,spellSource:t.source});}break;
  case'g11_SSD':put(s,task('g11_SSDTarget',t.p,t.source),task('g11_SSDEnter',t.p,t.source,{uid:t.uid}));break;
  case'g11_SSDTarget':choice(s,t,'山札の上から4枚目に横向きで置く相手を選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));break;
  case'g11_SSDEnter':{const i=(s.extSpells||[]).findIndex(x=>x.inst.uid===t.uid);if(i<0)break;const f=s.extSpells[i];if(f.virtual||!api.canEnter(s,t.p,card(f.inst),{origin:'spell',execution:false}))break;s.extSpells.splice(i,1);api.enter(s,t.p,f.inst,null,{origin:'spell',execution:false});break;}

@@ -1,3 +1,4 @@
+import {PHOTO_KENJI_MUGEN} from './fixtures/photo-kenji-mugen.mjs';
 import{PHOTO_PHOENIX}from'./fixtures/photo-phoenix.mjs';
 import{PHOTO_DARK_MADO}from'./fixtures/photo-dark-mado.mjs';
 import{CARD_IMAGES}from'../dist/card-images.js';
@@ -33,3 +34,5 @@ if(Object.keys(CARD_IMAGES).length!==supported.length||supported.some(c=>!/^http
 if(validateDeck(PHOTO_DARK_MADO).length||registry.coverage(PHOTO_DARK_MADO).unsupported)throw Error('画像の闇魔導具40枚が未対応です');console.log('Checked the screenshot dark-mado deck: 40 supported copies.');
 
 if(validateDeck(PHOTO_PHOENIX).length||registry.coverage(PHOTO_PHOENIX).unsupported)throw Error('画像のフェニックス40枚が未対応です');console.log('Checked the screenshot Phoenix deck: 40 supported copies.');
+
+if(validateDeck(PHOTO_KENJI_MUGEN).length||registry.coverage(PHOTO_KENJI_MUGEN).unsupported)throw Error('画像のケンジ・キングダム40枚が未対応です');console.log('Checked the screenshot Kenji/Mugen deck:22 identities and40 supported physical cards.');

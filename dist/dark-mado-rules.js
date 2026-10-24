@@ -2,7 +2,7 @@
 export function createDarkMadoRules(api){
  const {card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,move,cast,on,targetOptions}=api;
  const magic=c=>String(c.race).includes('魔導具');
- const minus=(s,p,uid,amount,source)=>{const x=s.players[p].battle.find(x=>x.uid===uid);if(x)(x.powerModifiers??=[]).push({amount:-amount,expires:'end',who:s.active,...(source&&card(source).type==='spell'?{spellCost:cost(card(source))}:{})});};
+ const minus=(s,p,uid,amount,source)=>{const x=s.players[p].battle.find(x=>x.uid===uid);if(x)(x.powerModifiers??=[]).push({amount:-amount,expires:'end',who:s.active,...(source&&card(source).type==='spell'?{spellCost:cost(card(source)),spellSource:source}:{})});};
  const canPut=(s,p,x)=>card(x).type==='creature'&&api.canEnter(s,p,card(x),{origin:'grave',execution:false})&&(!card(x).evolution||api.evolutionBases(s,p,card(x)).length)&&(!card(x).graveEvolution||s.players[p].grave.some(y=>y.uid!==x.uid&&card(y).type==='creature'));
  function canSequence(s,p,list){
   const own=s.players[p],virtual={...s,players:s.players.map((x,i)=>i===p?{...x,battle:[...own.battle],grave:[...own.grave]}:x)},left=[...list];
