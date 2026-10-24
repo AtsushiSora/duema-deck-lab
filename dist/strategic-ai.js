@@ -37,9 +37,9 @@ export function createStrategicAI(api){
     deck:Array.from({length:x.deckCount},(_,j)=>unknown('ai-deck-'+i+'-'+j)),
     // Only the public shield shape/links are copied, never its card identity.
     shields:original.shields.map(x=>({...unknown(x.uid),...(x.shieldGroup?{shieldGroup:x.shieldGroup}:{}),
-     ...(x.faceUp?{cardId:x.cardId,faceUp:true}:{}),...(x.shieldStack?{shieldStack:x.shieldStack.map(y=>unknown(y.uid))}:{} )}))};
+     ...(x.faceUp?{cardId:x.cardId,faceUp:true}:{}),...(x.shieldStack?{shieldStack:x.shieldStack.map(y=>({...unknown(y.uid),...(y.faceUp?{cardId:y.cardId,faceUp:true}:{})}))}:{} )}))};
    for(const k of ['enteredThisTurn','brokenThisTurn','spellsThisTurn','g26FirstEventTurn'])if(original[k]!==undefined)player[k]=original[k];
-   if(i===p){const pool=ownSample(x,player.shields.filter(y=>y.faceUp));if(x.deckTop){const j=pool.indexOf(x.deckTop.cardId);if(j>=0)pool.splice(j,1);}
+   if(i===p){const pool=ownSample(x,player.shields.flatMap(y=>[y,...y.shieldStack||[]]).filter(y=>y.faceUp));if(x.deckTop){const j=pool.indexOf(x.deckTop.cardId);if(j>=0)pool.splice(j,1);}
     player.deck=player.deck.map((y,j)=>({...y,cardId:pool[j]||y.cardId}));
     if(x.deckTop&&player.deck.length)player.deck[0]=structuredClone(x.deckTop);
    }

@@ -1,3 +1,4 @@
+import {PHOTO_HIKARISMA} from './fixtures/photo-hikarisma.mjs';
 import {PHOTO_KENJI_MUGEN} from './fixtures/photo-kenji-mugen.mjs';
 import{PHOTO_PHOENIX}from'./fixtures/photo-phoenix.mjs';
 import{PHOTO_DARK_MADO}from'./fixtures/photo-dark-mado.mjs';
@@ -36,3 +37,5 @@ if(validateDeck(PHOTO_DARK_MADO).length||registry.coverage(PHOTO_DARK_MADO).unsu
 if(validateDeck(PHOTO_PHOENIX).length||registry.coverage(PHOTO_PHOENIX).unsupported)throw Error('画像のフェニックス40枚が未対応です');console.log('Checked the screenshot Phoenix deck: 40 supported copies.');
 
 if(validateDeck(PHOTO_KENJI_MUGEN).length||registry.coverage(PHOTO_KENJI_MUGEN).unsupported)throw Error('画像のケンジ・キングダム40枚が未対応です');console.log('Checked the screenshot Kenji/Mugen deck:22 identities and40 supported physical cards.');
+
+if(validateDeck(PHOTO_HIKARISMA).length||registry.coverage(PHOTO_HIKARISMA).unsupported)throw Error('画像のヒカリスマ40枚が未対応です');console.log('Checked the screenshot Hikarisma deck:14 identities and40 supported physical cards.');

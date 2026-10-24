@@ -2,7 +2,7 @@
 export function createVirideRules(api){
  const {card,cost,colors,effective,creatures,put,task,choice,opt,skip,enqueue,log,targetOptions}=api;
  const key=x=>x.uid+'@'+(x.zoneSerial||0);
- const castles=(s,p)=>s.players[p].shields.flatMap(api.shieldCards).filter(x=>x.faceUp&&!x.shieldCardOnly&&card(x).gCastle);
+ const castles=(s,p)=>s.players[p].shields.flatMap(api.shieldCards).filter(x=>x.faceUp&&card(x).gCastle);
  const has=(s,p,prop)=>creatures(s,p).some(x=>effective(x,s)[prop]);
  const lightMana=(s,p)=>s.players[p].mana.filter(x=>api.manaColors(card(x),s,p).includes('光')).length;
  const gardens=(s,p,c)=>c.type==='creature'&&!c.fixedPayment&&!creatures(s,1-p).some(x=>effective(x,s).noCostReduction)?castles(s,p).filter(x=>card(x).g26Garden&&(s.g26GardenUsed||{})[key(x)]!==s.turn):[];
@@ -62,7 +62,7 @@ export function createVirideRules(api){
   spellCast(s,p,c){s.players[p].spellsThisTurn=(s.players[p].spellsThisTurn||0)+1;firstEvent(s,p,c);},
   entry(s,p,x,muted=false){firstEvent(s,p,card(x),muted);},
   attack(s,p,x){if(effective(x,s).g26Ever&&!api.selfStopped(s,p))on(s,p,x,'g26_Ever');},
-  shieldAdded(s,p,x){for(const y of creatures(s,p))if(effective(y,s).g26Zaze)on(s,p,y,'g26_Zaze');if(x.faceUp&&!x.shieldCardOnly&&card(x).g26Hustle)on(s,p,x,'g26_Hustle');},
+  shieldAdded(s,p,x){for(const y of creatures(s,p))if(effective(y,s).g26Zaze)on(s,p,y,'g26_Zaze');if(x.faceUp&&card(x).g26Hustle)on(s,p,x,'g26_Hustle');},
   beforeBreak(s,p,uids){const ctx=s.breakContext;if(!ctx||ctx.g26SaintUsed||ctx.reverse||ctx.burn||ctx.player===p||!s.players[1-p].battle.some(x=>x.uid===ctx.sourceUid&&api.isCreature(s,x))||!castles(s,p).some(x=>card(x).g26Saint))return false;put(s,task('g26_Saint',p,'dm26rp1-057',{uids:[...uids],context:structuredClone(ctx)}));return true;},
   end(s){return [...creatures(s,s.active).filter(x=>effective(x,s).g26Dogi).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('g26_End',s.active,x.cardId)})),...castles(s,s.active).filter(x=>card(x).g26Garden&&creatures(s,s.active).length>creatures(s,1-s.active).length).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('g26_GardenDraw',s.active,x.cardId)}))];},
   expire(s,when,p){if(when==='start'){if(s.g26Extreme)s.g26Extreme[p]=false;for(const own of s.players){own.spellsThisTurn=0;for(const top of own.battle)for(const x of api.allLayers(top))if(x.g26Stay===p)delete x.g26Stay;}}},
