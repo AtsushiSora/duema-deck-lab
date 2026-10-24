@@ -1,3 +1,4 @@
+import {PHOTO_SIX_DECKS} from './fixtures/photo-six-decks.mjs';
 import {PHOTO_HIKARISMA} from './fixtures/photo-hikarisma.mjs';
 import {PHOTO_KENJI_MUGEN} from './fixtures/photo-kenji-mugen.mjs';
 import{PHOTO_PHOENIX}from'./fixtures/photo-phoenix.mjs';
@@ -39,3 +40,5 @@ if(validateDeck(PHOTO_PHOENIX).length||registry.coverage(PHOTO_PHOENIX).unsuppor
 if(validateDeck(PHOTO_KENJI_MUGEN).length||registry.coverage(PHOTO_KENJI_MUGEN).unsupported)throw Error('画像のケンジ・キングダム40枚が未対応です');console.log('Checked the screenshot Kenji/Mugen deck:22 identities and40 supported physical cards.');
 
 if(validateDeck(PHOTO_HIKARISMA).length||registry.coverage(PHOTO_HIKARISMA).unsupported)throw Error('画像のヒカリスマ40枚が未対応です');console.log('Checked the screenshot Hikarisma deck:14 identities and40 supported physical cards.');
+
+for(const deck of PHOTO_SIX_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported)throw Error('6枚の画像に未対応カードがあります：'+deck.name);console.log('Checked all six screenshots:106 names /240 physical copies.');
