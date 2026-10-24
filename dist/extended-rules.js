@@ -1,4 +1,4 @@
-import {createBolshackRules} from './bolshack-rules.js?v=0.75';
+import {createBolshackRules} from './bolshack-rules.js?v=0.76';
 import {createBandeRules} from './bande-rules.js';
 import {blockedLibraryTask} from './library-policy.js';
 import {createGolgyRules} from './golgy-rules.js';
@@ -6,28 +6,28 @@ import {createVirideRules} from './viride-rules.js';
 import {createHachiRules} from './hachi-rules.js';
 import {createAbyssRules} from './abyss-rules.js';
 import {createRedzoneRules} from './redzone-rules.js';
-import {createMadoRules} from './mado-rules.js';
+import {createMadoRules} from './mado-rules.js?v=0.76';
 import {createGirlsRules} from './girls-rules.js';
-import {createMaruruRules} from './maruru-rules.js?v=0.75';
-import {createGraveRules} from './grave-rules.js?v=0.75';
-import {createTravelRules} from './travel-rules.js?v=0.75';
-import {createKenjiRules} from './kenji-rules.js?v=0.75';
-import {createLionelRules} from './lionel-rules.js?v=0.75';
-import {createSamuraiRules} from './samurai-rules.js?v=0.75';
-import {createGachiroboRules} from './gachirobo-rules.js?v=0.75';
-import {createGiantRules} from './giant-rules.js?v=0.75';
-import {createJaouRules} from './jaou-rules.js?v=0.75';
-import {createZardRules} from './zard-rules.js?v=0.75';
-import {createHunterRules} from './hunter-rules.js?v=0.75';
-import {createArmoredRules} from './armored-rules.js?v=0.75';
-import {createMagicRules} from './magic-rules.js?v=0.75';
-import {createMechaRules} from './mecha-rules.js?v=0.75';
-import {createKiyonagaRules} from './kiyonaga-rules.js?v=0.75';
-import {createGransectRules} from './gransect-rules.js?v=0.75';
-import {createGateRules} from './gate-rules.js?v=0.75';
-import {createGalaxyRules} from './galaxy-rules.js?v=0.75';
-import {createGospelRules} from './gospel-rules.js?v=0.75';
-import {createStarterRules} from './starter-rules.js?v=0.75';
+import {createMaruruRules} from './maruru-rules.js?v=0.76';
+import {createGraveRules} from './grave-rules.js?v=0.76';
+import {createTravelRules} from './travel-rules.js?v=0.76';
+import {createKenjiRules} from './kenji-rules.js?v=0.76';
+import {createLionelRules} from './lionel-rules.js?v=0.76';
+import {createSamuraiRules} from './samurai-rules.js?v=0.76';
+import {createGachiroboRules} from './gachirobo-rules.js?v=0.76';
+import {createGiantRules} from './giant-rules.js?v=0.76';
+import {createJaouRules} from './jaou-rules.js?v=0.76';
+import {createZardRules} from './zard-rules.js?v=0.76';
+import {createHunterRules} from './hunter-rules.js?v=0.76';
+import {createArmoredRules} from './armored-rules.js?v=0.76';
+import {createMagicRules} from './magic-rules.js?v=0.76';
+import {createMechaRules} from './mecha-rules.js?v=0.76';
+import {createKiyonagaRules} from './kiyonaga-rules.js?v=0.76';
+import {createGransectRules} from './gransect-rules.js?v=0.76';
+import {createGateRules} from './gate-rules.js?v=0.76';
+import {createGalaxyRules} from './galaxy-rules.js?v=0.76';
+import {createGospelRules} from './gospel-rules.js?v=0.76';
+import {createStarterRules} from './starter-rules.js?v=0.76';
 // Serializable continuations for the verified tournament-card effects.
 export function createExtendedRules(api){
  const {card,faces,cost,colors,effective,power,layers,draw,mill,move,enter,cast,remove,removeShield,clear,enqueue,log,random,canEnter,canCast,evolutionBases}=api;
@@ -261,8 +261,8 @@ export function createExtendedRules(api){
   bolshack,redzone,manaTap:(s,p)=>redzone.manaTap(s,p),extraAdded:(s,p,x)=>redzone.extraAdded(s,p,x),command:(s,p,x)=>redzone.command(s,p,x),pandora:(s,p,a)=>redzone.pandora(s,p,a),gsAllowed,
   mado,spellPermission:(s,p,c)=>mado.spellPermission(s,p,c),beforeSpell:(s,p,c,x)=>mado.beforeSpell(s,p,c,x),beforeEnd:s=>mado.beforeEnd(s),beforeUntap:(s,p)=>mado.beforeUntap(s,p),graveAdded:(s,p,all,snapshot)=>mado.graveAdded(s,p,all,snapshot),block:(s,p,x)=>mado.block(s,p,x),
   evolutionBase:bande.evolutionBase,copyEntry:maruru.copyEntry,put,task,choice,lock,locked,beginGraveCast:grave.beginCast,beginGravePut:grave.beginPut,beginUra:grave.beginUra,uraBelow:grave.below,selectBreaker:travel.selectBreaker,broken:travel.broken,advanceAfterAttack(s){travel.advanceAfter(s);redzone.advanceAfter(s);},travelDecorate:travel.decorate,beginOni:kenji.beginOni,oniCards:kenji.oniCards,manaRedirect:kenji.manaRedirect,lionelPower:lionel.power,lionelDecorate:lionel.decorate,lionelState:lionel.stateCheck,samuraiPower:samurai.power,samuraiSpeed:samurai.speed,samuraiDiscount:samurai.discount,crossAction:samurai.crossAction,gearCleanup:samurai.cleanup,gearInherit:samurai.inherit,variants:samurai.variants,muteEntry:giant.muteEntry,deckSafe:gachi.deckSafe,shieldDeclarations:gachi.shieldDeclarations,allowedCard:giant.allowedCard,giantDiscount:giant.discount,replaceBattle:giant.replaceBattle,creatures,shieldTo,targetable,allowedSpell:(s,p,c)=>mado.allowedSpell(s,p,c)&&travel.allowedSpell(s,p)&&zard.allowedSpell(s,p,c)&&lionel.allowedSpell(s,p,c),forceActions:(s,p,out)=>abyss.attackFilter(s,p,kiyo.forceActions(s,p,out)),spellShieldTrigger:kiyo.spellShieldTrigger,handMana(s,p,x){redzone.handMana(s,p,x);lionel.handMana(s,p,x);kiyo.handMana(s,p,x);},mechaDiscount:mecha.discount,canLeave:(s,p,x)=>x.g26Stay===undefined&&mecha.canLeave(s,p,x),shieldAdded(s,p,x){mecha.shieldAdded(s,p,x);viride.shieldAdded(s,p,x);},beforeBreak:(s,p,uids)=>girls.beforeBreak(s,p,uids)||lionel.beforeBreak(s,p,uids)||magic.beforeBreak(s,p,uids)||mecha.beforeBreak(s,p,uids)||viride.beforeBreak(s,p,uids),advanceBreak:mecha.advanceBreak,inherit(s,base,x){viride.inherit(s,base,x);hachi.inherit(s,base,x);travel.inherit(s,base,x);lionel.inherit(s,base,x);samurai.inherit(s,base,x);zard.inherit(s,base,x);armored.inherit(s,base,x);magic.inherit(s,base,x);},armoredDiscount:armored.discount,noLose:(s,p)=>viride.noLose(s,p)||armored.noLose(s,p)||hunter.noLose(s,p),hunterDiscount:hunter.discount,beforeNonActive(s){const w=s.g3Window;if(!w||w.done)return false;const added=jaou.beforeNonActive(s);if(w.done&&s.attack){const ninja=this.ninjaWindow(s,w.p);return added||ninja;}return added;},lossOptions(s,p){const old=hunter.lossOptions(s,p),johnny=lionel.lossOptions(s,p),more=[...johnny,...grave.lossOptions(s,p),...kenji.lossOptions(s,p),...jaou.lossOptions(s,p)];if(!more.length)return old;const out=[...old.filter(x=>x.value),...more];if(!johnny.length&&!old.some(x=>x.value?.kind==='diehard'))out.push(opt('置換せず敗北する',null,-1000));return out;},triggersAllowed:hunter.triggersAllowed,tapEntry:(s,p)=>armored.tapEntry(s,p)||lionel.tapEntry(s,p),beforeBattle:armored.beforeBattle,advanceAttackEnd(s){const a=s.attackLifecycle,x=a&&s.players[a.player].battle.find(x=>x.uid===a.uid&&(x.incarnation||0)===a.incarnation);magic.advanceAttackEnd(s);if(a&&!s.attackLifecycle){bolshack.attackEnd(s,a);bande.attackEnd(s,a,x);if(x)lionel.attackEnd(s,a,x);travel.attackEnd(s,a);redzone.attackEnd(s,a,x);hachi.attackEnd(s,a,x);}},magicDiscount:magic.discount,
-  raceDiscount:galaxy.discount,granDiscount:gran.discount,played(s,p,c,inst,origin,permit){bande.played(s,p,c);viride.played(s,p,c);abyss.played(s,p,c,inst,origin,permit);girls.played(s,p,c,inst,origin,permit);kenji.played(s,p,c,inst,origin,permit);giant.played(s,p,c,inst,origin,permit);armored.played(s,p,c,inst);magic.played(s,p,c);galaxy.played(s,p,c,inst,origin,permit);gran.played(s,p,c,inst,origin,permit);},spellCast(s,p,c,inst,origin,face=0){viride.spellCast(s,p,c);mado.spellCast(s,p);maruru.spellCast(s,p);travel.spellCast(s,p);jaou.spellCast(s,p,c,inst,origin,face);zard.spellCast(s,p,c);gran.spellCast(s,p,c);kiyo.spellCast(s,p,c);},replaceEntry:galaxy.replaceEntry,
-  nextDiscount:gospel.nextDiscount,summoned:gospel.summoned,beginAlternative(s,p,a){if(a.alternative==='bad')bolshack.alternative(s,p,a);else if(a.alternative==='golgy')golgy.alternative(s,p,a);else if(a.alternative==='viride')viride.alternative(s,p,a);else if(a.alternative==='redtron')hachi.beginAlternative(s,p,a);else if(a.alternative==='joe')travel.beginJoe(s,p,a);else if(a.alternative==='fushigibirth')kenji.beginAlternative(s,p,a);else if(a.alternative==='hyperEnergy')armored.beginEnergy(s,p,a);else if(a.alternative==='gio')gate.beginAlternative(s,p,a);else gospel.beginAlternative(s,p,a);},start(s,p){return [...abyss.start(s,p),...redzone.start(s,p),...grave.start(s,p),...travel.start(s,p),...samurai.start(s,p),...giant.start(s,p),...jaou.start(s,p),...armored.start(s,p),...mecha.start(s,p),...gate.start(s,p),...gran.start(s,p)];},battleWins:(s,p,w)=>[...travel.battleWins(s,p,w),...gachi.battleWins(s,p,w),...giant.battleWins(s,p,w),...zard.battleWins(s,p,w),...gate.battleWins(s,p),...hunter.battleWins(s,p,w)],
+  raceDiscount:galaxy.discount,granDiscount:gran.discount,played(s,p,c,inst,origin,permit){bande.played(s,p,c);viride.played(s,p,c);abyss.played(s,p,c,inst,origin,permit);girls.played(s,p,c,inst,origin,permit);kenji.played(s,p,c,inst,origin,permit);giant.played(s,p,c,inst,origin,permit);armored.played(s,p,c,inst);magic.played(s,p,c);galaxy.played(s,p,c,inst,origin,permit);gran.played(s,p,c,inst,origin,permit);},spellCast(s,p,c,inst,origin,face=0){viride.spellCast(s,p,c);mado.spellCast(s,p,c);maruru.spellCast(s,p);travel.spellCast(s,p);jaou.spellCast(s,p,c,inst,origin,face);zard.spellCast(s,p,c);gran.spellCast(s,p,c);kiyo.spellCast(s,p,c);},replaceEntry:galaxy.replaceEntry,
+  nextDiscount:gospel.nextDiscount,summoned(s,p,x){gospel.summoned(s,p,x);mado.summoned(s,p,x);},beginAlternative(s,p,a){if(a.alternative==='bad')bolshack.alternative(s,p,a);else if(a.alternative==='golgy')golgy.alternative(s,p,a);else if(a.alternative==='viride')viride.alternative(s,p,a);else if(a.alternative==='redtron')hachi.beginAlternative(s,p,a);else if(a.alternative==='joe')travel.beginJoe(s,p,a);else if(a.alternative==='fushigibirth')kenji.beginAlternative(s,p,a);else if(a.alternative==='hyperEnergy')armored.beginEnergy(s,p,a);else if(a.alternative==='gio')gate.beginAlternative(s,p,a);else gospel.beginAlternative(s,p,a);},start(s,p){return [...abyss.start(s,p),...redzone.start(s,p),...grave.start(s,p),...travel.start(s,p),...samurai.start(s,p),...giant.start(s,p),...jaou.start(s,p),...armored.start(s,p),...mecha.start(s,p),...gate.start(s,p),...gran.start(s,p)];},battleWins:(s,p,w)=>[...travel.battleWins(s,p,w),...gachi.battleWins(s,p,w),...giant.battleWins(s,p,w),...zard.battleWins(s,p,w),...gate.battleWins(s,p),...hunter.battleWins(s,p,w)],
   attackStart(s,p,x){redzone.attackStart(s,p,x);jaou.attackStart(s,p,x);zard.attackStart(s,p,x);magic.attackStart(s,p,x);travel.attackStart(s,p,x);const remaining=s.players[p].hand.filter(y=>revMatches(s,x,card(y))).map(y=>y.uid);if(remaining.length)put(s,task('revDeclare',p,x.cardId,{remaining,declared:[],attacker:x.uid}));},
   attackTriggers(s,p,x){bolshack.attack(s,p,x);bande.attack(s,p,x);golgy.attack(s,p,x);viride.attack(s,p,x);abyss.attack(s,p,x);mado.attack(s,p,x);maruru.attack(s,p,x);grave.attack(s,p,x);travel.attack(s,p,x);kenji.attack(s,p,x);samurai.attack(s,p,x);gachi.attack(s,p,x);giant.attack(s,p,x);hunter.attack(s,p,x);armored.attack(s,p,x);mecha.attack(s,p,x);kiyo.attack(s,p,x);gran.attack(s,p,x);gate.attack(s,p,x);galaxy.attack(s,p,x);gospel.attack(s,p,x);const c=effective(x,s);if(c.attackEffect&&!api.selfStopped(s,p))enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(c.effect==='graveRecycle'?'recyclePlayer':c.effect==='destroyMin'?'destroyMin':'tapAll',p,x.cardId)});},
   ninjaWindow(s,p){if(!s.attack)return false;const key=p+'@'+s.attack.stage;(s.attack.ninjaWindows??={});if(s.attack.ninjaWindows[key])return false;s.attack.ninjaWindows[key]=true;const remaining=s.players[p].hand.filter(x=>card(x).ninjaChange||card(x).ninjaStrike&&s.players[p].mana.length>=3&&s.players[p].mana.some(y=>api.manaColors(card(y),s,p).includes('水'))&&canEnter(s,p,card(x))).map(x=>x.uid);if(remaining.length){put(s,task('ninjaDeclare',p,s.players[p].hand.find(x=>x.uid===remaining[0]).cardId,{remaining,declared:[]}));return true;}return false;},
@@ -273,7 +273,7 @@ export function createExtendedRules(api){
   finishSpell(s,p,inst,spell){(s.extSpells??=[]).push({inst,caster:p,spell,owner:inst.cardOwner??p,to:inst.normalFinish||inst.crystalFinish?'mana':inst.finishTo||'grave',crystal:!!inst.crystalFinish});},
   shieldHand(s,p,x,broken=false){if(!broken)abyss.beginSB(s,p,[x]);lionel.shieldHand(s,p,x,broken);gachi.shieldHand(s,p,x);if(!broken&&card(x).gStrike)enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('gsTarget',p,x.cardId)});},
   reverseBreak(s,p,uids){const context=s.breakContext,attacker=context?.reverse?{cardId:context.source}:s.players[s.active].battle.find(x=>x.uid===s.attack?.attacker);if(!attacker||(!context?.reverse&&!effective(attacker,s).reverseBurn))return false;s.breakContext=null;const n=uids.filter(uid=>api.findShield(s.players[p],uid)).length,moved=[];for(const uid of uids){moved.push(...api.moveShield(s,p,uid,'deck',{replacement:true}).map(x=>x.uid));}put(s,task('bottomOrder',p,attacker.cardId,{uids:moved,newCards:true}),task('draw',s.active,attacker.cardId,{n}),task('draw',p,attacker.cardId,{n}));log(s,s.active,'reverseBurn','シールドを手札のかわりに山札の下へ置く（ブレイク数には数えない）',{cardId:attacker.cardId});return true;},
-  mainActions(s,p){return [...bolshack.mainActions(s,p),...golgy.mainActions(s,p),...viride.mainActions(s,p),...hachi.mainActions(s,p),...abyss.mainActions(s,p),...redzone.mainActions(s,p),...girls.mainActions(s,p),...travel.mainActions(s,p),...kenji.mainActions(s,p),...samurai.mainActions(s,p),...gachi.mainActions(s,p),...giant.mainActions(s,p),...armored.mainActions(s,p),...magic.mainActions(s,p),...gran.mainActions(s,p),...gate.mainActions(s,p),...galaxy.mainActions(s,p),...gospel.mainActions(s,p),...starter.mainActions(s,p),...creatures(s,p).filter(x=>effective(x,s).hyperTap&&!x.hyperActive&&creatures(s,p).some(y=>y.uid!==x.uid&&!y.tapped)).map(x=>({kind:'hyper',uid:x.uid,cardId:x.cardId,label:card(x).name+'をハイパー化する'}))];},
+  mainActions(s,p){return [...mado.mainActions(s,p),...bolshack.mainActions(s,p),...golgy.mainActions(s,p),...viride.mainActions(s,p),...hachi.mainActions(s,p),...abyss.mainActions(s,p),...redzone.mainActions(s,p),...girls.mainActions(s,p),...travel.mainActions(s,p),...kenji.mainActions(s,p),...samurai.mainActions(s,p),...gachi.mainActions(s,p),...giant.mainActions(s,p),...armored.mainActions(s,p),...magic.mainActions(s,p),...gran.mainActions(s,p),...gate.mainActions(s,p),...galaxy.mainActions(s,p),...gospel.mainActions(s,p),...starter.mainActions(s,p),...creatures(s,p).filter(x=>effective(x,s).hyperTap&&!x.hyperActive&&creatures(s,p).some(y=>y.uid!==x.uid&&!y.tapped)).map(x=>({kind:'hyper',uid:x.uid,cardId:x.cardId,label:card(x).name+'をハイパー化する'}))];},
   hyper(s,p,uid){const x=nowCreature(s,p,uid);if(x)choice(s,task('hyperCost',p,x.cardId,{uid}),'ハイパー化のため他の1体をタップする',targetOptions(s,p,creatures(s,p).filter(y=>y.uid!==uid&&!y.tapped)));},
   effect:entryTask,
   resolve(s,e){if(e.task)put(s,e.task);},
