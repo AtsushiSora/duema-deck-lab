@@ -9,7 +9,7 @@ import {battlePrimaryAction} from './battle-controls.js';
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const number=x=>x===Infinity||x==='∞'?'∞':Number(x).toLocaleString('ja-JP');
 const quietKinds=new Set(['skipDDD','skipDDDSummon','cancelEvolution','cancelDeploy','cancelMugen','cancelLeaveMana','skipDeploy','skipDragonTap','skipTrigger','skipFight','skipRamp','skipEffect','finishShieldGuards','allowLeave','noBlock','stopJudge','skipGaiaDeclare','skipGaiaSummon']);
-const titles={triggerEvolution:'S・トリガーで召喚する進化元を選ぼう',mirageDeclare:'真気楼を使うか宣言しよう',endAbilityOrder:'終了時の能力の順序を選ぼう',gaiaDeclare:'ガイアッシュを使うか宣言しよう',gaiaSummon:'ガイアッシュを召喚するか選ぼう',everShields:'手札に加えるシールドを2つ選ぼう',leaveReplace:'残す方法を選ぼう',leaveMana:'墓地に置くマナを3枚選ぼう',deploy:'手札・マナから出すカードを選ぼう',deployEvolution:'進化元を選ぼう',mugen:'タップする4体を選ぼう',infinityCount:'ブレイクする数を選ぼう',infinityShields:'ブレイクするシールドを選ぼう',dddDeclare:'D・D・Dを使うか選ぼう',dddSummon:'召喚する方法を選ぼう',block:'ブロックするか選ぼう',trigger:'S・トリガーを使うか選ぼう',breakChoice:'ブレイクするシールドを選ぼう',judgeCost:'参照するコストを選ぼう',judgeContinue:'ジャッジを続けるか選ぼう',judgeBreak:'効果で割るシールドを選ぼう',shieldGuard:'シールドを守るか選ぼう',triggerOrder:'先に使うS・トリガー・G・ストライクを選ぼう',entryOrder:'先に解決する能力を選ぼう',effectOrder:'先に解決する能力を選ぼう',dragonTap:'タップする相手を選ぼう',revealEvolution:'公開したカードの出し方を選ぼう',evolution:'進化するか選ぼう',optionalRamp:'マナを増やすか選ぼう',manaTop:'山札に戻すカードを選ぼう',fight:'バトルする相手を選ぼう',battleWinOrder:'先に解決する勝利時能力を選ぼう',draw:'引く枚数を選ぼう',effect:'効果の対象を選ぼう',search:'手札に加えるカードを選ぼう',untap:'アンタップするか選ぼう'};
+const titles={triggerEvolution:'S・トリガーで召喚する進化元を選ぼう',mirageDeclare:'真気楼を使うか宣言しよう',endAbilityOrder:'終了時の能力の順序を選ぼう',gaiaDeclare:'ガイアッシュを使うか宣言しよう',gaiaSummon:'ガイアッシュを召喚するか選ぼう',everShields:'手札に加えるシールドを2つ選ぼう',leaveReplace:'残す方法を選ぼう',leaveMana:'墓地に置くマナを3枚選ぼう',deploy:'手札・マナから出すカードを選ぼう',deployEvolution:'進化元を選ぼう',mugen:'タップする4体を選ぼう',infinityCount:'ブレイクする数を選ぼう',infinityShields:'ブレイクするシールドを選ぼう',dddDeclare:'D・D・Dを使うか選ぼう',dddSummon:'実行する方法を選ぼう',block:'ブロックするか選ぼう',trigger:'S・トリガーを使うか選ぼう',breakChoice:'ブレイクするシールドを選ぼう',judgeCost:'参照するコストを選ぼう',judgeContinue:'ジャッジを続けるか選ぼう',judgeBreak:'効果で割るシールドを選ぼう',shieldGuard:'シールドを守るか選ぼう',triggerOrder:'先に使うS・トリガー・G・ストライクを選ぼう',entryOrder:'先に解決する能力を選ぼう',effectOrder:'先に解決する能力を選ぼう',dragonTap:'タップする相手を選ぼう',revealEvolution:'公開したカードの出し方を選ぼう',evolution:'進化するか選ぼう',optionalRamp:'マナを増やすか選ぼう',manaTop:'山札に戻すカードを選ぼう',fight:'バトルする相手を選ぼう',battleWinOrder:'先に解決する勝利時能力を選ぼう',draw:'引く枚数を選ぼう',effect:'効果の対象を選ぼう',search:'手札に加えるカードを選ぼう',untap:'アンタップするか選ぼう'};
 
 export const newManualUI=()=>({hand:null,attacker:null,attackChoice:null,confirm:null,handOpen:false,logOpen:false,panelMinimized:false,mobilePanel:'closed',handPage:0,handFace:0,choicePage:0,aiSpeed:'normal',fast:false,filter:'',context:''});
 export function manualModel(s,ui={}){
@@ -28,6 +28,11 @@ export function manualModel(s,ui={}){
 function decisionHelp(s){
  const d=s.decision;
  if(d.type==='everShields')return 'シールド2つを選ぶとクリーチャーを残せます。S・トリガーは使えません。この置換効果で選んだG城も手札へ戻ります。';
+ if(d.task?.op==='g28_RadioPick')return '山札の上5枚から出す2体までを先に選びます。残ったカードは好きな順序で山札の下へ置きます。';
+ if(d.task?.op==='g28_Modes')return '同じ効果も選べます。必要な回数を選んだ後、カードに書かれた順で処理します。';
+ if(d.task?.op==='g28_Deploy')return '出すカードと、進化させる場合の進化元を確認してください。';
+ if(d.task?.op==='g28_ManaDeploy')return '現在のマナ枚数よりコストが小さい非進化を、マナから進化させずに出せます。';
+ if(d.task?.op==='g28_Dagra')return '裏向きのシールドの中身を見ずに選びます。束のシールドは含まれるカードすべてがマナへ移動します。';
  if(d.task?.op==='g27_Golgy')return '山札の上からマナに置く枚数を先に選びます。その後、マナから3枚まで手札に戻せます。';
  if(d.task?.op==='g27_KanDeath')return 'カンツォーネの下にあったカードをまとめて、進化元または表向きの1つのシールドに戻します。';
  if(d.task?.op==='g27_WestUse')return '手札の枚数以下のコストなら無料で実行できます。実行しなければ手札に加えます。';
@@ -78,7 +83,7 @@ function decisionHelp(s){
  if(d.type==='gaiaSummon')return 'コストを支払わずに召喚できます。場に同名カードがあると召喚できません。';
  if(d.type==='shieldGuard')return 'シールド1つにつき、選んだクリーチャーの下のカードすべてを墓地へ置きます。';
  if(d.type==='dddDeclare')return 'この攻撃で使うカードを先に宣言します。マナを支払うのは解決するときです。';
- if(d.type==='dddSummon')return card(d.source).ddd.attackDiscount?'光・火・自然がマナにあれば、攻撃中のコスト分だけ軽減。支払いは無色・最低1です。':'光・火・自然を含む7マナ。進化させずに出すこともできます。';
+ if(d.type==='dddSummon')return card(d.source).ddd.cost===2?'自然のマナ2枚を使います。進化させずに出すこともできます。':card(d.source).ddd.fromMana?'光・水・自然を含む5マナ。手札・マナから唱え、効果を2回か3回選べます。':card(d.source).ddd.attackDiscount?'光・火・自然がマナにあれば、攻撃中のコスト分だけ軽減。支払いは無色・最低1です。':'光・火・自然を含む7マナ。進化させずに出すこともできます。';
  if(['effectOrder','entryOrder','triggerOrder'].includes(d.type))return '解決する順番を選べます。先の効果で、次の選択肢が変わることがあります。';
  if(d.type==='leaveReplace')return '適用する保護を1つ選びます。複数体が離れる場合、選択後にまとめて移動します。';
  if(d.type==='infinityCount')return '0枚も選べます。数を決めた後、割るシールドを選びます。';
@@ -92,6 +97,7 @@ function boardChoiceModel(s,ui,player,zone,uid,m){
  if(!m.human)return null;
  let matches=[];
  if(s.decision?.type==='everShields'&&player===s.decision.player&&zone==='shields')return m.actions.find(a=>a.kind==='everShield'&&a.shield===uid)||null;
+ if(s.decision?.type==='extended'&&s.decision.task.op.startsWith('g28_')){const d=s.decision,op=d.task.op,own=player===d.player,zones={g28_PizzaPick:'hand',g28_ManaDeploy:'mana',g28_GyaiRecover:'mana',g28_Dagra:'shields',g28_Deploy:'battle',g28_ExecuteBase:'battle',g28_HandDeck:'hand'};if(op==='g28_ElementMana'&&zone==='battle'||op==='g28_TapPick'&&!own&&zone==='battle'||own&&(zone===zones[op]||op==='g28_Execute')){const list=m.actions.filter(a=>{const v=d.choices[a.choice]?.value;return a.kind==='extended'&&(v?.uid||v)===uid&&(op!=='g28_Execute'||v?.origin===zone);});if(list.length===1)return list[0];}}
  if(s.decision?.type==='extended'&&s.decision.task.op.startsWith('g27_')){const op=s.decision.task.op,owner=s.decision.player,allowed=op==='g27_Shield'&&player!==owner&&zone==='battle'||op==='g27_Tap'&&player!==owner&&zone==='battle'||op==='g27_KanDeath'&&player===owner&&zone==='battle'||op==='g27_Untap'&&player===owner&&zone==='mana'||op==='g27_Recover'&&player===owner&&zone==='mana'||op==='g27_HandTop'&&player===owner&&zone==='hand';if(allowed){const a=m.actions.find(a=>a.kind==='extended'&&(s.decision.choices[a.choice]?.value?.uid||s.decision.choices[a.choice]?.value)===uid);if(a)return a;}}
  if(s.decision?.type==='extended'&&s.decision.task.op.startsWith('g26_')){const op=s.decision.task.op,owner=s.decision.player;
   const allowed=op==='g26_Ever'&&zone==='battle'||op==='g26_Tap'&&player!==owner&&zone==='battle'||op==='g26_Deploy'&&player===owner&&zone==='hand'||op==='g26_Select'&&player===owner&&['hand','mana'].includes(zone)||op==='g26_Saint'&&player===owner&&zone==='shields';

@@ -63,7 +63,7 @@ test('strategic policy is invariant to private identities, hidden order, seed an
  }
 });
 test('strategic AI completes every supported configuration legally and conserves all cards',()=>{
- assert.equal(decks.length,28);
+ assert.equal(decks.length,31);
  for(const [index,deck] of decks.entries()){
   const s=e.createGame([deck,deck],{seed:6300+index,first:index%2});
   while(s.winner===null&&s.turn<160&&s.actions<2500){const a=e.chooseAI(s);assert.ok(a,deck.name);e.step(s,a);const all=e.physicalCards(s);assert.equal(all.length,80,deck.name);assert.equal(new Set(all.map(x=>x.uid)).size,80,deck.name);}

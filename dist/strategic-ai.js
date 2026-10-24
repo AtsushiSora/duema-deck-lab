@@ -6,7 +6,7 @@ export function createStrategicAI(api){
  const body=c=>c.type==='creature';
  const damage=c=>c.breaker==='∞'?20:Number(c.breaker)||1;
  const key=a=>JSON.stringify(Object.fromEntries(Object.entries(a).filter(([k])=>k!=='id'&&k!=='label')));
- const publicCounters=['g27WestUsed','extLimits','once','extraTurns','noManaUse','creaturesEntered','finalUsed','finalHistory','g26Extreme','g26GardenUsed','darkTriggers',
+ const publicCounters=['g28DragonOnce','g27WestUsed','extLimits','once','extraTurns','noManaUse','creaturesEntered','finalUsed','finalHistory','g26Extreme','g26GardenUsed','darkTriggers',
   'g13JagaUsed','g12LossUsed','g12NoLose','g15StarUsed','g16UsedMana','g17ManaUsed','g19MekraidUsed',
   'g20Attacks','g21ZenonUsed','g22UsedDiscount','g22UsedMana','g23Attacks','g23BalEntered','g25ManaUsed',
   'g2Spells','g3AttackSerial','g3CycleUsed','g3Debts','g3ReverseUsed','g5NextSummons','g7Battles',
