@@ -1,7 +1,7 @@
-import {HERO_IDS,chooseHeroDraw} from './hero-draw.js?v=0.71';
+import {HERO_IDS,chooseHeroDraw} from './hero-draw.js?v=0.72';
 import {shieldCards,shieldGroup,findShield,attachShield,detachShieldCard} from './shield-state.js';
-import {createExtendedRules} from './extended-rules.js?v=0.71';
-import {createStrategicAI} from './strategic-ai.js?v=0.71';
+import {createExtendedRules} from './extended-rules.js?v=0.72';
+import {createStrategicAI} from './strategic-ai.js?v=0.72';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.44';
 export const ENGINE_VERSION='0.44.0';
