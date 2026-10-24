@@ -1,4 +1,4 @@
-import {createBolshackRules} from './bolshack-rules.js?v=0.73';
+import {createBolshackRules} from './bolshack-rules.js?v=0.74';
 import {createBandeRules} from './bande-rules.js';
 import {blockedLibraryTask} from './library-policy.js';
 import {createGolgyRules} from './golgy-rules.js';
@@ -8,26 +8,26 @@ import {createAbyssRules} from './abyss-rules.js';
 import {createRedzoneRules} from './redzone-rules.js';
 import {createMadoRules} from './mado-rules.js';
 import {createGirlsRules} from './girls-rules.js';
-import {createMaruruRules} from './maruru-rules.js?v=0.73';
-import {createGraveRules} from './grave-rules.js?v=0.73';
-import {createTravelRules} from './travel-rules.js?v=0.73';
-import {createKenjiRules} from './kenji-rules.js?v=0.73';
-import {createLionelRules} from './lionel-rules.js?v=0.73';
-import {createSamuraiRules} from './samurai-rules.js?v=0.73';
-import {createGachiroboRules} from './gachirobo-rules.js?v=0.73';
-import {createGiantRules} from './giant-rules.js?v=0.73';
-import {createJaouRules} from './jaou-rules.js?v=0.73';
-import {createZardRules} from './zard-rules.js?v=0.73';
-import {createHunterRules} from './hunter-rules.js?v=0.73';
-import {createArmoredRules} from './armored-rules.js?v=0.73';
-import {createMagicRules} from './magic-rules.js?v=0.73';
-import {createMechaRules} from './mecha-rules.js?v=0.73';
-import {createKiyonagaRules} from './kiyonaga-rules.js?v=0.73';
-import {createGransectRules} from './gransect-rules.js?v=0.73';
-import {createGateRules} from './gate-rules.js?v=0.73';
-import {createGalaxyRules} from './galaxy-rules.js?v=0.73';
-import {createGospelRules} from './gospel-rules.js?v=0.73';
-import {createStarterRules} from './starter-rules.js?v=0.73';
+import {createMaruruRules} from './maruru-rules.js?v=0.74';
+import {createGraveRules} from './grave-rules.js?v=0.74';
+import {createTravelRules} from './travel-rules.js?v=0.74';
+import {createKenjiRules} from './kenji-rules.js?v=0.74';
+import {createLionelRules} from './lionel-rules.js?v=0.74';
+import {createSamuraiRules} from './samurai-rules.js?v=0.74';
+import {createGachiroboRules} from './gachirobo-rules.js?v=0.74';
+import {createGiantRules} from './giant-rules.js?v=0.74';
+import {createJaouRules} from './jaou-rules.js?v=0.74';
+import {createZardRules} from './zard-rules.js?v=0.74';
+import {createHunterRules} from './hunter-rules.js?v=0.74';
+import {createArmoredRules} from './armored-rules.js?v=0.74';
+import {createMagicRules} from './magic-rules.js?v=0.74';
+import {createMechaRules} from './mecha-rules.js?v=0.74';
+import {createKiyonagaRules} from './kiyonaga-rules.js?v=0.74';
+import {createGransectRules} from './gransect-rules.js?v=0.74';
+import {createGateRules} from './gate-rules.js?v=0.74';
+import {createGalaxyRules} from './galaxy-rules.js?v=0.74';
+import {createGospelRules} from './gospel-rules.js?v=0.74';
+import {createStarterRules} from './starter-rules.js?v=0.74';
 // Serializable continuations for the verified tournament-card effects.
 export function createExtendedRules(api){
  const {card,faces,cost,colors,effective,power,layers,draw,mill,move,enter,cast,remove,removeShield,clear,enqueue,log,random,canEnter,canCast,evolutionBases}=api;
@@ -45,7 +45,7 @@ export function createExtendedRules(api){
   if(kind==='attack'&&creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks))return false;
   if(['attack','block'].includes(kind)&&s.g4Combat?.[p]?.turn===s.turn&&s.g4Combat[p].count>=1&&(s.extLimits||[]).some(l=>l.kind==='g4Combat'&&l.player===p&&!api.spellIgnored(s,{type:'spell',cost:l.spellCost})))return true;
   if((s.extLimits||[]).some(l=>l.kind==='numberLock'&&!api.spellIgnored(s,{type:'spell',cost:2})&&l.player===p&&x.g9LockScopes?.includes(l.scope)&&cost(card(x))===(l.cost==='∞'?Infinity:l.cost)))return true;
-  return (s.extLimits||[]).some(l=>l.kind===kind&&l.player===p&&(!l.uid||layers(x).some(y=>y.uid===l.uid&&(y.incarnation||0)===(l.incarnation||0)))&&(l.cost===undefined||faces(card(x)).some(c=>cost(c)===(l.cost==='∞'?Infinity:Number(l.cost)))));
+  return (s.extLimits||[]).some(l=>l.kind===kind&&l.player===p&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost}))&&(!l.uid||layers(x).some(y=>y.uid===l.uid&&(y.incarnation||0)===(l.incarnation||0)))&&(l.cost===undefined||faces(card(x)).some(c=>cost(c)===(l.cost==='∞'?Infinity:Number(l.cost)))));
  };
  const shieldTo=(s,p,uid,to)=>api.moveShield(s,p,uid,to)[0];
  const gsAllowed=(s,p)=>{const x=s.attack&&s.players[s.active].battle.find(x=>x.uid===s.attack.attacker);return !(x&&p!==s.active&&effective(x,s).attackNoGS);};
@@ -247,7 +247,7 @@ export function createExtendedRules(api){
   case 'recycleSelect':if(value)put(s,{...t,chosen:[...t.chosen,value]});else put(s,{...t,op:'recycleOrder',p:t.owner,controller:t.p,count:t.chosen.length});break;
   case 'recycleOrder':{const x=remove(own.grave,value);if(x){clear(x);own.deck.push(x);}put(s,{...t,chosen:t.chosen.filter(x=>x!==value)});break;}
   case 'destroyCost':case 'destroyPower':if(value)move(s,[{player:1-t.p,uid:value,to:'grave'}]);break;
-  case 'attackBlock':{const x=nowCreature(s,1-t.p,value);if(x)for(const kind of ['attack','block'])lock(s,t.p,{kind,player:1-t.p,uid:x.uid,incarnation:x.incarnation||0});break;}
+  case 'attackBlock':{const x=nowCreature(s,1-t.p,value);if(x)for(const kind of ['attack','block'])lock(s,t.p,{kind,player:1-t.p,uid:x.uid,incarnation:x.incarnation||0,...(t.spellCost===undefined?{}:{spellCost:t.spellCost})});break;}
   case 'shieldCreature':{const owner=s.players.findIndex(p=>p.battle.some(x=>x.uid===value));move(s,[{player:owner,uid:value,to:'shields'}]);break;}
   case 'ninjaDeclare':case 'revDeclare':put(s,{...t,remaining:t.remaining.slice(1),declared:value?[...t.declared,t.remaining[0]]:t.declared});break;
   case 'ninjaResolve':if(value){const x=own.hand.find(x=>x.uid===t.uid);if(value==='strike'){(s.attack.ninjaUsed??={})[t.p]={any:true,strike:true};cast(s,t.p,x.uid,true,null,0,null,'hand','ニンジャ・ストライク');const entered=nowCreature(s,t.p,t.uid);if(entered)entered.uraNinja={turn:s.turn,incarnation:entered.incarnation};for(const y of creatures(s,t.p))if(effective(y,s).ninjaDraw)enqueue(s,t.p,{uid:y.uid,source:y.cardId,effect:'extended',task:task('optionalDrawOne',t.p,y.cardId)});}else{(s.attack.ninjaUsed??={})[t.p]={...(s.attack.ninjaUsed?.[t.p]||{}),any:true};startSwap(s,t,value,false);}}break;

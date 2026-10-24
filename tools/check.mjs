@@ -1,3 +1,4 @@
+import{PHOTO_WATER_MADO}from'./fixtures/photo-water-mado.mjs';
 import{PHOTO_BOLSHACK}from'./fixtures/photo-bolshack.mjs';
 import{resolveHeroDecks}from'../dist/hero-challenge.js';
 import{resolveEnvironmentDecks}from'../dist/environment.js';
@@ -21,3 +22,5 @@ setCards(supported);const environments=resolveEnvironmentDecks(registry);for(con
 const heroes=resolveHeroDecks(JSON.parse(await readFile(new URL('../dist/hero-decks.json',import.meta.url),'utf8')),registry);for(const d of heroes){const errors=validateDeck(d);if(errors.length)throw Error(d.name+'：'+errors.join(' / '));}console.log(`Checked ${heroes.length} protagonist challenge decks with forty supported cards each.`);
 
 if(validateDeck(PHOTO_BOLSHACK).length||registry.coverage(PHOTO_BOLSHACK).unsupported)throw Error('画像の40枚が未対応です');console.log('Checked the screenshot Bolshack deck: 40 supported copies.');
+
+if(validateDeck(PHOTO_WATER_MADO).length||registry.coverage(PHOTO_WATER_MADO).unsupported)throw Error('画像の水魔導具40枚が未対応です');console.log('Checked the screenshot water-mado deck: 40 supported copies.');
