@@ -1,9 +1,29 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {e,target,GEN,RS,Y,inst,give,setup} from './target-fixture.mjs';
-import {handCardModel,preferredHandFace,handShelfHTML,handInspectorHTML} from '../dist/hand-ui.js';
-import {manualBoardHTML,newManualUI} from '../dist/manual-ui.js';
+import {handCardModel,preferredHandFace,handShelfHTML,handInspectorHTML,handEvolutionChoice} from '../dist/hand-ui.js';
+import {manualBoardHTML,manualScreenHTML,newManualUI} from '../dist/manual-ui.js';
 const h={art:id=>`<i data-card="${id}"></i>`,icon:n=>`<svg data-icon="${n}"></svg>`};
+test('NEO summon choices identify the actual base and separate no-base from a later base selection on phone and PC',()=>{
+ const s=setup();give(s,0,'hand',['dm25rp4-050']);give(s,0,'battle',['dm01-108','dm01-075','dm01-075']);s.players[0].battle[2].tapped=true;
+ const ui={...newManualUI(),hand:s.players[0].hand[0].uid,mobile:true,mobilePanel:'card'},actions=handCardModel(s,ui.hand).faceActions,before=structuredClone(s);
+ assert.equal(actions.length,5);assert.equal(handEvolutionChoice(s,actions[0]).mode,'choose');
+ for(const html of [handInspectorHTML(s,ui,h),manualScreenHTML(s,{...ui,mobile:false},h)]){
+  assert.match(html,/次に進化元・進化なしを選ぶ/);assert.match(html,/進化させずに召喚 · 2マナ/);
+  for(const a of actions){const button=html.match(new RegExp('<button[^>]*data-index="'+a.id+'"[^>]*>[\\s\\S]*?<\\/button>'))?.[0];assert.ok(button);
+   if(a.baseUid){const index=s.players[0].battle.findIndex(x=>x.uid===a.baseUid),x=s.players[0].battle[index];assert.ok(button.includes('進化元：場'+(index+1)+' '+e.card(x).name));assert.ok(button.includes('data-card="'+x.cardId+'"'));assert.ok(button.includes(x.tapped?'タップ中':'アンタップ'));}
+  }
+ }
+ assert.deepEqual(s,before);
+});
+test('selecting either same-name evolution base still pays mana and evolves only that physical creature',()=>{
+ for(const baseIndex of [0,1]){const s=setup();give(s,0,'hand',['dm25rp4-050']);give(s,0,'battle',['dm01-075','dm01-075']);
+  const bases=[...s.players[0].battle],uid=s.players[0].hand[0].uid,a=handCardModel(s,uid).faceActions.find(a=>a.baseUid===bases[baseIndex].uid);assert.ok(a);
+  e.step(s,a,{manualMana:true});assert.equal(s.decision.type,'manaPayment');
+  for(let i=0;s.decision?.type==='manaPayment';i++){assert.ok(i<20);e.step(s,e.chooseAI(s));}
+  const evolved=s.players[0].battle.find(x=>x.uid===uid);assert.ok(evolved);assert.equal(evolved.under[0].uid,bases[baseIndex].uid);assert.ok(s.players[0].battle.some(x=>x.uid===bases[1-baseIndex].uid));
+ }
+});
 test('hand selection is pure and exposes only the selected card current legal actions and matching destination',()=>{
  const s=e.createGame([target,target],{seed:2020}),x=s.players[0].hand[0],before=structuredClone(s),m=handCardModel(s,x.uid);
  assert.deepEqual(m.destinations,['mana']);assert.ok(m.canUse);assert.ok(m.faceActions.every(a=>a.uid===x.uid&&a.kind==='charge'));assert.deepEqual(s,before);
