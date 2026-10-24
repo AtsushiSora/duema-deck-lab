@@ -9,9 +9,9 @@ export function createVirideRules(api){
  const selectedGardens=(s,p,c)=>gardens(s,p,c).filter(x=>c.g26Reducers==null||c.g26Reducers.includes(key(x)));
  const live=(s,t)=>s.players[t.p].battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===(t.incarnation||0)&&!x.sealed);
  const on=(s,p,x,op,more={})=>enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
- function firstEvent(s,p,c){
+ function firstEvent(s,p,c,muted=false){
   const own=s.players[p];if(own.g26FirstEventTurn===s.turn)return;own.g26FirstEventTurn=s.turn;
-  if(s.active!==p)return;
+  if(s.active!==p||muted)return;
   for(const x of creatures(s,1-p))if(effective(x,s).g26Viride)on(s,1-p,x,'g26_DrawDeploy',{max:cost(c)});
  }
  function run(s,t){if(!t.op.startsWith('g26_'))return false;const own=s.players[t.p];switch(t.op){
@@ -60,7 +60,7 @@ export function createVirideRules(api){
   discount(s,p,c){return c.type==='creature'?selectedGardens(s,p,c).length+(c.g26Ever&&lightMana(s,p)>=3?2:0):0;},
   played(s,p,c){for(const x of selectedGardens(s,p,c))(s.g26GardenUsed??={})[key(x)]=s.turn;},
   spellCast(s,p,c){s.players[p].spellsThisTurn=(s.players[p].spellsThisTurn||0)+1;firstEvent(s,p,c);},
-  entry(s,p,x){firstEvent(s,p,card(x));},
+  entry(s,p,x,muted=false){firstEvent(s,p,card(x),muted);},
   attack(s,p,x){if(effective(x,s).g26Ever&&!api.selfStopped(s,p))on(s,p,x,'g26_Ever');},
   shieldAdded(s,p,x){for(const y of creatures(s,p))if(effective(y,s).g26Zaze)on(s,p,y,'g26_Zaze');if(x.faceUp&&!x.shieldCardOnly&&card(x).g26Hustle)on(s,p,x,'g26_Hustle');},
   beforeBreak(s,p,uids){const ctx=s.breakContext;if(!ctx||ctx.g26SaintUsed||ctx.reverse||ctx.burn||ctx.player===p||!s.players[1-p].battle.some(x=>x.uid===ctx.sourceUid&&api.isCreature(s,x))||!castles(s,p).some(x=>card(x).g26Saint))return false;put(s,task('g26_Saint',p,'dm26rp1-057',{uids:[...uids],context:structuredClone(ctx)}));return true;},

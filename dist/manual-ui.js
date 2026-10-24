@@ -28,6 +28,9 @@ export function manualModel(s,ui={}){
 function decisionHelp(s){
  const d=s.decision;
  if(d.type==='everShields')return 'シールド2つを選ぶとクリーチャーを残せます。S・トリガーは使えません。この置換効果で選んだG城も手札へ戻ります。';
+ if(d.task?.op==='g29_Bases')return '進化ではないコマンドまたはドラゴンを選び、コストの合計を20以上にします。確定するまでマナは支払いません。';
+ if(d.task?.op==='g29_InvPick')return '自分のマナまたはシールドから、カードを合計2枚選びます。ブレイクではないためS・トリガーは使いません。';
+ if(d.task?.op==='g29_RevivePick')return '自分の墓地から出すカードを選びます。進化元になるカードを先に選び、最後に確定してください。';
  if(d.task?.op==='g28_RadioPick')return '山札の上5枚から出す2体までを先に選びます。残ったカードは好きな順序で山札の下へ置きます。';
  if(d.task?.op==='g28_Modes')return '同じ効果も選べます。必要な回数を選んだ後、カードに書かれた順で処理します。';
  if(d.task?.op==='g28_Deploy')return '出すカードと、進化させる場合の進化元を確認してください。';
@@ -83,7 +86,7 @@ function decisionHelp(s){
  if(d.type==='gaiaSummon')return 'コストを支払わずに召喚できます。場に同名カードがあると召喚できません。';
  if(d.type==='shieldGuard')return 'シールド1つにつき、選んだクリーチャーの下のカードすべてを墓地へ置きます。';
  if(d.type==='dddDeclare')return 'この攻撃で使うカードを先に宣言します。マナを支払うのは解決するときです。';
- if(d.type==='dddSummon')return card(d.source).ddd.cost===2?'自然のマナ2枚を使います。進化させずに出すこともできます。':card(d.source).ddd.fromMana?'光・水・自然を含む5マナ。手札・マナから唱え、効果を2回か3回選べます。':card(d.source).ddd.attackDiscount?'光・火・自然がマナにあれば、攻撃中のコスト分だけ軽減。支払いは無色・最低1です。':'光・火・自然を含む7マナ。進化させずに出すこともできます。';
+ if(d.type==='dddSummon')return card(d.source).ddd.cost===3?'光・火を含む3マナを支払って召喚します。':card(d.source).ddd.cost===2?'自然のマナ2枚を使います。進化させずに出すこともできます。':card(d.source).ddd.fromMana?'光・水・自然を含む5マナ。手札・マナから唱え、効果を2回か3回選べます。':card(d.source).ddd.attackDiscount?'光・火・自然がマナにあれば、攻撃中のコスト分だけ軽減。支払いは無色・最低1です。':'光・火・自然を含む7マナ。進化させずに出すこともできます。';
  if(['effectOrder','entryOrder','triggerOrder'].includes(d.type))return '解決する順番を選べます。先の効果で、次の選択肢が変わることがあります。';
  if(d.type==='leaveReplace')return '適用する保護を1つ選びます。複数体が離れる場合、選択後にまとめて移動します。';
  if(d.type==='infinityCount')return '0枚も選べます。数を決めた後、割るシールドを選びます。';
@@ -97,6 +100,7 @@ function boardChoiceModel(s,ui,player,zone,uid,m){
  if(!m.human)return null;
  let matches=[];
  if(s.decision?.type==='everShields'&&player===s.decision.player&&zone==='shields')return m.actions.find(a=>a.kind==='everShield'&&a.shield===uid)||null;
+ if(s.decision?.type==='extended'&&s.decision.task.op.startsWith('g29_')){const d=s.decision,op=d.task.op,own=player===d.player,zones={g29_Bases:'battle',g29_Arc:'hand',g29_RevivePick:'grave',g29_Danger:'battle',g29_Destroy:'battle'};if(zone===zones[op]&&(own&&!['g29_Destroy'].includes(op)||op==='g29_Destroy'&&!own||op==='g29_Danger')){const list=m.actions.filter(a=>a.kind==='extended'&&(d.choices[a.choice]?.value?.uid||d.choices[a.choice]?.value)===uid);if(list.length===1)return list[0];}if(own&&op==='g29_InvPick'){const list=m.actions.filter(a=>{const v=d.choices[a.choice]?.value;return a.kind==='extended'&&v?.uid===uid&&v.zone===zone;});if(list.length===1)return list[0];}}
  if(s.decision?.type==='extended'&&s.decision.task.op.startsWith('g28_')){const d=s.decision,op=d.task.op,own=player===d.player,zones={g28_PizzaPick:'hand',g28_ManaDeploy:'mana',g28_GyaiRecover:'mana',g28_Dagra:'shields',g28_Deploy:'battle',g28_ExecuteBase:'battle',g28_HandDeck:'hand'};if(op==='g28_ElementMana'&&zone==='battle'||op==='g28_TapPick'&&!own&&zone==='battle'||own&&(zone===zones[op]||op==='g28_Execute')){const list=m.actions.filter(a=>{const v=d.choices[a.choice]?.value;return a.kind==='extended'&&(v?.uid||v)===uid&&(op!=='g28_Execute'||v?.origin===zone);});if(list.length===1)return list[0];}}
  if(s.decision?.type==='extended'&&s.decision.task.op.startsWith('g27_')){const op=s.decision.task.op,owner=s.decision.player,allowed=op==='g27_Shield'&&player!==owner&&zone==='battle'||op==='g27_Tap'&&player!==owner&&zone==='battle'||op==='g27_KanDeath'&&player===owner&&zone==='battle'||op==='g27_Untap'&&player===owner&&zone==='mana'||op==='g27_Recover'&&player===owner&&zone==='mana'||op==='g27_HandTop'&&player===owner&&zone==='hand';if(allowed){const a=m.actions.find(a=>a.kind==='extended'&&(s.decision.choices[a.choice]?.value?.uid||s.decision.choices[a.choice]?.value)===uid);if(a)return a;}}
  if(s.decision?.type==='extended'&&s.decision.task.op.startsWith('g26_')){const op=s.decision.task.op,owner=s.decision.player;

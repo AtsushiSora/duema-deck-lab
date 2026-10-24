@@ -1,3 +1,4 @@
+import{PHOTO_BOLSHACK}from'../dist/photo-bolshack.js';
 import{resolveHeroDecks}from'../dist/hero-challenge.js';
 import{resolveEnvironmentDecks}from'../dist/environment.js';
 import{setCards,validateDeck}from'../dist/engine.js';
@@ -18,3 +19,5 @@ const starters=resolveStarter25Decks(registry);console.log(`Checked ${starters.l
 setCards(supported);const environments=resolveEnvironmentDecks(registry);for(const d of environments){const errors=validateDeck(d);if(errors.length)throw Error(d.name+'：'+errors.join(' / '));}console.log(`Checked ${environments.length} environment decks with complete effect coverage.`);
 
 const heroes=resolveHeroDecks(JSON.parse(await readFile(new URL('../dist/hero-decks.json',import.meta.url),'utf8')),registry);for(const d of heroes){const errors=validateDeck(d);if(errors.length)throw Error(d.name+'：'+errors.join(' / '));}console.log(`Checked ${heroes.length} protagonist challenge decks with forty supported cards each.`);
+
+if(validateDeck(PHOTO_BOLSHACK).length||registry.coverage(PHOTO_BOLSHACK).unsupported)throw Error('画像の40枚が未対応です');console.log('Checked the screenshot Bolshack deck: 40 supported copies.');
