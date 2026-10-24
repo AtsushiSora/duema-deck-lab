@@ -9,14 +9,17 @@ import * as fit from '../dist/board-fit.js';
 import * as handUI from '../dist/hand-ui.js';
 import * as aiPlayback from '../dist/ai-playback.js';
 const app=(await readFile(new URL('../dist/app.js',import.meta.url),'utf8')).replace(/^import .*;\n/gm,'').replace(/\bboot\(\);\s*$/,'').replaceAll('import.meta.url',JSON.stringify(new URL('../dist/app.js',import.meta.url).href));
-function harness(state,{mobile=false,scrollers={}}={}){
+function harness(state,{mobile=false,scrollers={},autoPay=true}={}){
  const listeners={},errors=[],timers=new Map();let serial=0;
  const root={innerHTML:''},dialog={innerHTML:'',open:false,addEventListener(){},showModal(){this.open=true;},close(){this.open=false;}},toast={textContent:'',classList:{add(){},remove(){}}},classes=new Set();
  const context=vm.createContext({createCardArt,shieldCards,...e,...manual,...visuals,...fit,...handUI,...cardInfo,...aiPlayback,battleCard:e.card,PRESETS,createCatalogue,fixtureRegistry:createCatalogue(snapshot,data.cards,details),fixtureState:state,fixtureDecks:[target,target],console:{log(){},error:e=>errors.push(e)},structuredClone,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL,Intl,Date,CSS:{escape:x=>x},localStorage:{getItem:()=>null,setItem(){}},location:{hash:'',pathname:'/'},history:{replaceState(){}},setTimeout:f=>{timers.set(++serial,f);return serial;},clearTimeout:id=>timers.delete(id),clearInterval(){},setInterval:()=>++serial,
   document:{querySelector:s=>s==='#app'?root:s==='#dialog'?dialog:s==='#toast'?toast:scrollers[s]||null,querySelectorAll:s=>s==='.play-creatures,.shield-tiles'?scrollers.lanes||[]:[],activeElement:null,body:{classList:{toggle:(key,on)=>on?classes.add(key):classes.delete(key)}},addEventListener:(name,f)=>listeners[name]=f},window:{innerHeight:800,addEventListener(){},scrollTo(){},matchMedia:q=>({matches:mobile&&q==='(max-width: 850px)'})}});
  vm.runInContext(app,context);
  vm.runInContext("registry=fixtureRegistry;cards=registry.cards;battleCards=fixtureRegistry.cards.filter(c=>c.supported);battle={state:fixtureState,decks:fixtureDecks,practice:true};view='manual';manualUI=newManualUI();selectedHand=null;render();",context);
- return {state,root,context,classes,errors,timers,read:code=>vm.runInContext(code,context),click:async(action,extra={})=>{const button={dataset:{action,...extra},closest:()=>null};await listeners.click({target:{closest:()=>button}});assert.deepEqual(errors,[]);}};
+ return {state,root,context,classes,errors,timers,read:code=>vm.runInContext(code,context),click:async(action,extra={})=>{const button={dataset:{action,...extra},closest:()=>null};await listeners.click({target:{closest:()=>button}});
+ // Existing effect/UI fixtures finish the new payment step; dedicated tests opt out.
+ for(let n=0;autoPay&&vm.runInContext("battle.state.decision?.type==='manaPayment'",context);n++){assert.ok(n<100);const next=vm.runInContext('chooseAI(battle.state)',context),payButton={dataset:{action:'battle-step',index:String(next.id)},closest:()=>null};await listeners.click({target:{closest:()=>payButton}});}
+ assert.deepEqual(errors,[]);}};
 }
 
 test('real app wiring selects a hand card without changing the game, then executes only its legal charge',async()=>{
@@ -212,4 +215,15 @@ test('expanded shield picker keeps faceup stacked cards visible while hidden roo
 });
 test('expanded shield picker retains every multi-break combination through pages and accepts only legal actions',async()=>{
  const s=setup();give(s,0,'battle',[GG]);s.phase='attack';e.step(s,e.getLegalActions(s).find(a=>a.kind==='attack'));e.step(s,e.getLegalActions(s).find(a=>a.kind==='noBlock'));assert.equal(s.decision.type,'breakChoice');const h=harness(s,{mobile:true}),before=structuredClone(s);await h.click('manual-shields',{player:'1'});const html=h.read('dialog.innerHTML');assert.match(html,/をブレイク/);assert.deepEqual(s,before);const model=manual.manualShieldModel(s,h.read('manualUI'),1);assert.equal(model.actions.length,e.getLegalActions(s).length);for(const a of model.actions)assert.ok(e.getLegalActions(s).some(x=>JSON.stringify(x)===JSON.stringify(a)));
+});
+
+test('manual payment real app waits for explicit selection and confirmation on phone, and unused/used mana can be inspected',async()=>{
+ const s=setup();give(s,0,'mana',['dm14-108','dm14-108','dm01-097']);give(s,0,'hand',['dm14-108']);const h=harness(s,{mobile:true,autoPay:false}),[first,second]=s.players[0].mana,play=e.getLegalActions(s).find(a=>a.kind==='play');
+ await h.click('battle-step',{index:String(play.id)});assert.equal(s.decision.type,'manaPayment');assert.equal(s.players[0].battle.length,0);assert.ok(s.players[0].mana.every(x=>!x.tapped));assert.match(h.root.innerHTML,/支払うマナを選ぼう/);
+ const pick=e.getLegalActions(s).find(a=>a.kind==='selectMana'&&a.uid===second.uid),oldContext=h.read('manualUI.context');await h.click('manual-mana',{index:String(pick.id),context:oldContext});await h.click('manual-mana',{index:String(pick.id),context:oldContext});assert.equal(s.decision.selected.length,1);assert.equal(second.tapped,false);assert.match(h.root.innerHTML,/選択 1 \/ 必要 1マナ/);
+ const confirmationContext=h.read('manualUI.context'),confirmation=e.getLegalActions(s).find(a=>a.kind==='confirmMana');await h.click('manual-primary',{context:confirmationContext});await h.click('manual-mana',{index:String(confirmation.id),context:confirmationContext});assert.equal(first.tapped,false);assert.equal(second.tapped,true);assert.equal(s.players[0].battle[0].cardId,'dm14-108');assert.equal(s.actions,1);
+ await h.click('zone-detail',{player:'0',zone:'mana'});assert.match(h.read('dialog.innerHTML'),/使用可能/);assert.match(h.read('dialog.innerHTML'),/is-tapped/);assert.match(h.read('dialog.innerHTML'),/未使用/);assert.match(h.read('dialog.innerHTML'),/使用済/);assert.equal(s.actions,1);
+});
+test('manual payment cancelling through the actual app preserves the full board and the selected hand',async()=>{
+ const s=setup();give(s,0,'hand',['dm14-108']);const before=structuredClone(s),h=harness(s,{mobile:true,autoPay:false});await h.click('battle-step',{index:String(e.getLegalActions(s).find(a=>a.kind==='play').id)});await h.click('battle-step',{index:String(e.getLegalActions(s).find(a=>a.kind==='cancelMana').id)});assert.deepEqual(s,before);assert.equal(s.players[0].hand.length,1);
 });

@@ -1,0 +1,44 @@
+/* Payment stays in the existing action drawer; the board never changes size. */
+.mana-payment{min-width:0;color:#234c3a}
+.mana-payment-summary{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:14px}
+.mana-payment-summary>span{font-size:11px;color:#587568;white-space:nowrap}
+.mana-payment-source{font-size:12px;line-height:1.5;margin:8px 0;overflow-wrap:anywhere}
+.mana-color-status{display:flex;gap:6px;flex-wrap:wrap;margin:9px 0}
+.mana-color-status>span{padding:5px 10px;background:#f3f5f3;border:1px solid #bdccc3;border-radius:16px;font-size:12px;font-weight:700;color:#607468}
+.mana-color-status>span.is-paid{background:#e0f5e8;border-color:#278d65;color:#086b45}
+.mana-card-track{display:flex;flex-flow:row nowrap;gap:10px;overflow-x:auto;overflow-y:hidden;max-width:100%;min-width:0;padding:8px 4px 12px;scroll-snap-type:x proximity;overscroll-behavior-x:contain;touch-action:pan-x pan-y;-webkit-overflow-scrolling:touch}
+.mana-card{position:relative;display:flex;flex-direction:column;flex:0 0 112px;min-width:112px;max-width:112px;gap:4px;align-items:stretch;padding:6px;border:2px solid #a6c9b7;border-radius:10px;background:#f8fcf9;text-align:left;color:#244a38;scroll-snap-align:start;cursor:pointer;overflow:hidden}
+.mana-card-art{display:flex;align-items:center;justify-content:center;height:114px;overflow:hidden;flex-shrink:0}
+.mana-card-art .art-card{display:block;flex:none;width:76px;height:106px;border-radius:5px;pointer-events:none}
+.mana-card-art .art-card .cost,.mana-card-art .art-card .card-bottom{display:none}
+.mana-card>strong{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:34px;font-size:11px;line-height:1.5;overflow-wrap:anywhere}
+.mana-card>small{font-size:10px;line-height:1.4}
+.mana-card-state{display:block;text-align:center;border-radius:5px;padding:6px 2px;background:#e2f0e7;color:#286346;font-size:11px;font-weight:750;margin-top:auto}
+.mana-card.is-tapped{border-color:#bec8c4;background:#eef1ef;color:#68776e}
+.mana-card.is-tapped .mana-card-art .art-card{transform:rotate(90deg) scale(.85);filter:brightness(.6) saturate(.55)}
+.mana-card.is-tapped .mana-card-state{background:#dbe0dd;color:#4c5d53}
+.mana-card:disabled{cursor:default;opacity:1}
+.mana-card.is-selected{border-color:#078562;background:#e3f7ed;box-shadow:0 0 0 2px #a8dec4}
+.mana-card.is-selected .mana-card-state{background:#087e5e;color:white}
+.mana-card:focus-visible{outline:3px solid #365ba6;outline-offset:2px}
+.mana-payment-help{font-size:11px;line-height:1.5;margin:4px 0 10px;color:#566e60}
+.mana-payment-footer{display:flex;gap:8px;position:sticky;bottom:0;padding:8px 0 2px;background:#fff;z-index:1}
+.mana-payment-footer>.btn{min-height:44px;font-size:12px;flex:1}
+.mana-payment-footer>.btn:not(.primary){flex:0 1 auto}
+.mana-payment-footer>.btn:disabled{opacity:1;background:#e2ebe6;color:#65796d;border-color:#ccdcd1}
+.mana-zone-summary{font-size:14px;margin-bottom:8px}
+.mana-zone-summary strong{color:#087e5e;font-size:21px}
+.mana-hidden{display:grid;place-items:center;width:76px;height:106px;background:#233b4b;color:white;border-radius:5px}
+@media(max-width:850px){
+ .mana-card-track{gap:8px}.mana-card{flex-basis:104px;min-width:104px;max-width:104px}
+ .mana-card-art{height:94px}.mana-card-art .art-card{width:64px;height:90px}
+ .mana-payment-summary{font-size:12px}.mana-payment-source{font-size:11px;margin:5px 0}
+ .mana-color-status{margin:5px 0}.mana-color-status>span{padding:3px 8px;font-size:11px}
+ .mana-payment-help{font-size:10px}.mana-payment-footer{padding-top:5px}
+}
+@media(max-width:850px) and (max-height:500px){
+ .mana-card-art{height:42px}.mana-card-art .art-card{width:28px;height:40px}
+ .mana-card>strong{font-size:9px;min-height:27px}.mana-card-state{padding:3px;font-size:10px}
+ .mana-payment-source,.mana-payment-help{display:none}
+}
+.mana-payment-open .manual-hand,.mana-payment-open .recent-board-changes{display:none}

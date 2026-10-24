@@ -102,11 +102,16 @@ const effectContexts=new WeakMap();
 const effectActor=s=>effectContexts.get(s)??null;
 function withEffect(s,p,fn){const prev=effectContexts.get(s);effectContexts.set(s,p);try{return fn();}finally{if(prev===undefined)effectContexts.delete(s);else effectContexts.set(s,prev);}}
 let randomSource=null;
+let manaTransaction=null;
 // Hypothetical positions use their own deterministic RNG, including on the server.
 const aiProjections=new WeakSet();
 let aiPlanningDepth=0;
 export function setRandomSource(source=null){if(source!==null&&typeof source!=='function')throw TypeError('乱数源が正しくありません');randomSource=source;}
-export function random(state){if(randomSource&&!aiPlanningDepth&&!aiProjections.has(state))return randomSource();let t=state.rng+=0x6D2B79F5;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;}
+export function random(state){
+ const external=randomSource&&!aiPlanningDepth&&!aiProjections.has(state),next=()=>{if(external)return randomSource();let t=state.rng+=0x6D2B79F5;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;};
+ // Replay the same random samples when a human revises a payment. Never reroll.
+ if(manaTransaction){const t=manaTransaction,i=t.randomIndex++;if(i===t.randomTape.length)t.randomTape.push(next());else if(!external)next();return t.randomTape[i];}return next();
+}
 export function shuffled(items,seed){const s={rng:seed>>>0},out=[...items];for(let i=out.length-1;i>0;i--){const j=Math.floor(random(s)*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;}
 const instance=(id,uid)=>({cardId:id,uid,tapped:false,entered:0,buff:0,unblocked:false});
 export function createGame(decks,{seed=1,first=0,challenge=null}={}){
@@ -355,7 +360,7 @@ function targets(s,p,effect){
 export function manaPayment(mana,c){
  const pool=mana.filter(x=>!x.tapped),colors=civilizations(c),goal=(1<<colors.length)-1,cost=costValue(c);
  if(pool.reduce((n,x)=>n+manaValue(card(x)),0)<cost)return null;
- if(colors.length===1&&pool.every(x=>manaValue(card(x))===1)){const same=pool.find(x=>(x.paymentBird||x.paymentAllColors?['光','水','闇','火','自然']:manaCivilizations(card(x))).includes(colors[0]));return same?[same,...pool.filter(x=>x!==same).slice(0,cost-1)].map(x=>x.uid):null;}
+ if(colors.length===1&&pool.every(x=>manaValue(card(x))===1)){const same=pool.find(x=>(x.paymentBird||x.paymentAllColors?['光','水','闇','火','自然']:manaCivilizations(card(x))).includes(colors[0]));return same?[same,...pool.filter(x=>x!==same).slice(0,Math.max(0,cost-1))].map(x=>x.uid):null;}
  let states=new Map([['0:0',{mask:0,amount:0,ids:[]}]]);
  for(const x of pool){const next=new Map(states),value=manaValue(card(x)),bits=[0,...colors.flatMap((v,i)=>(x.paymentBird||x.paymentAllColors?['光','水','闇','火','自然']:manaCivilizations(card(x))).includes(v)?[1<<i]:[])];
   for(const st of states.values())for(const bit of bits){const amount=Math.min(cost,st.amount+value),mask=st.mask|bit,key=mask+':'+amount,ids=[...st.ids,x.uid],old=next.get(key);if(!old||ids.length<old.ids.length)next.set(key,{mask,amount,ids});}
@@ -377,7 +382,32 @@ export function summonCost(s,p,c){
 export function manaColors(c,s=null,p=null){return s&&p!==null&&s.players[p].battle.some(x=>effectiveCard(x,s).casablanca)?['光','水','闇','火','自然']:manaCivilizations(c);}
 export function paymentPool(s,p,exclude=[],c=null){const all=s.players[p].battle.some(x=>effectiveCard(x,s).casablanca||String(c?.race).includes('生徒会組')&&effectiveCard(x,s).g28Gyai);return [...s.players[p].mana.map(x=>all?{...x,paymentAllColors:true}:x),...s.players[p].battle.filter(x=>effectiveCard(x,s).manaBird).map(x=>({...x,paymentBird:true}))].filter(x=>!exclude.includes(x.uid));}
 function validMana(s,p,c){return manaPayment(paymentPool(s,p,[],c),{...c,cost:summonCost(s,p,c)})!==null;}
-function pay(s,p,c,exclude=[]){const ids=manaPayment(paymentPool(s,p,exclude,c),{...c,cost:summonCost(s,p,c)});if(!ids)throw Error('必要な文明・マナが足りません');let real=false;for(const x of s.players[p].mana)if(ids.includes(x.uid)){x.tapped=true;real=true;}for(const x of s.players[p].battle)if(ids.includes(x.uid))tapCard(s,p,x);return real;}
+class ManaSelectionRequired extends Error{constructor(request){super('支払うマナを選んでください');this.request=request;}}
+export function manaSelectionStatus(d){
+ const selected=d.pool.filter(x=>d.selected.includes(x.uid)),amount=selected.reduce((n,x)=>n+manaValue(card(x)),0),colors=d.colors;
+ // A multicolor physical card can satisfy only one required civilization.
+ let masks=new Set([0]);for(const x of selected){const next=new Set(masks),available=x.paymentBird||x.paymentAllColors?['光','水','闇','火','自然']:manaCivilizations(card(x));for(const mask of masks)for(let i=0;i<colors.length;i++)if(available.includes(colors[i]))next.add(mask|1<<i);masks=next;}
+ const goal=(1<<colors.length)-1,best=[...masks].sort((a,b)=>b.toString(2).replaceAll('0','').length-a.toString(2).replaceAll('0','').length)[0];
+ return {amount,cost:d.cost,colors:colors.map((name,i)=>({name,paid:!!(best&1<<i)})),valid:new Set(d.selected).size===d.selected.length&&selected.length===d.selected.length&&selected.every(x=>!x.tapped)&&amount>=d.cost&&masks.has(goal)};
+}
+function paymentIds(s,p,c,exclude=[],fixed=false){
+ const pool=paymentPool(s,p,exclude,c),cost=fixed?costValue(c):summonCost(s,p,c),request={cost,colors:civilizations(c),pool:pool.map(x=>({...x})),selected:[],source:c.id||null};
+ const automatic=manaPayment(pool,{...c,cost});if(!automatic)return null;
+ if(manaTransaction&&p===manaTransaction.player&&automatic.length){const t=manaTransaction,selected=t.payments[t.paymentIndex++];if(!selected)throw new ManaSelectionRequired(request);if(!manaSelectionStatus({...request,selected}).valid)throw Error('選んだマナでは支払えません');return selected;}
+ return automatic;
+}
+function tapPayment(s,p,ids){let real=false;for(const x of s.players[p].mana)if(ids.includes(x.uid)){x.tapped=true;real=true;}for(const x of s.players[p].battle)if(ids.includes(x.uid))tapCard(s,p,x);return real;}
+function pay(s,p,c,exclude=[]){const ids=paymentIds(s,p,c,exclude);if(!ids)throw Error('必要な文明・マナが足りません');return tapPayment(s,p,ids);}
+// Probe a private copy until the next payment, then commit the original move once.
+// This also covers alternative costs, evolution, cross gear and deferred payments.
+function withManaTransaction(t,fn){const previous=manaTransaction;manaTransaction=t;try{return fn();}finally{manaTransaction=previous;}}
+function executeManaMove(s,action,baseDecision=s.decision,payments=[],randomTape=[]){
+ const t={player:action.player,payments,randomTape,randomIndex:0,paymentIndex:0},preview=structuredClone(s);preview.decision=structuredClone(baseDecision);
+ try{withManaTransaction(t,()=>withEffect(preview,baseDecision?.type==='effect'?baseDecision.player:null,()=>stepCore(preview,action)));}catch(error){if(!(error instanceof ManaSelectionRequired))throw error;s.decision={type:'manaPayment',title:'支払うマナを選ぼう',player:action.player,...error.request,action:structuredClone(action),baseDecision:structuredClone(baseDecision),payments:structuredClone(payments),randomTape,cancellable:!baseDecision&&['play','crossGear','pandora'].includes(action.kind)};return;}
+ const previous=s.decision;s.decision=baseDecision;
+ try{return withManaTransaction({...t,randomIndex:0,paymentIndex:0},()=>withEffect(s,baseDecision?.type==='effect'?baseDecision.player:null,()=>stepCore(s,action)));}catch(error){s.decision=previous;throw error;}
+}
+
 // Move the whole batch together (400.7). Looking/revealing alone does not empty the library.
 function rampTapped(s,p,c,n,dragonsOnly=false){
  const own=s.players[p],batch=own.deck.splice(0,n);
@@ -787,6 +817,11 @@ export function getLegalActions(s){
  if(s.winner!==null)return [];
  let out=[];const d=s.decision,p=d?d.player:s.active,own=s.players[p],opp=s.players[1-p];
  if(d){
+  if(d.type==='manaPayment'){
+   out=d.pool.filter(x=>!x.tapped).map(x=>option('selectMana',(d.selected.includes(x.uid)?'選択を解除：':'選ぶ：')+card(x).name,{uid:x.uid,cardId:x.cardId}));
+   if(manaSelectionStatus(d).valid)out.push(option('confirmMana','このマナで使う'));if(d.cancellable)out.push(option('cancelMana','キャンセル'));
+   return out.map((a,i)=>({...a,id:i,player:p}));
+  }
   if(d.type==='godLeave')out=[s.players[p].battle.find(x=>x.uid===d.uid)].flatMap(x=>[x,...x.godLinks]).map(x=>option('godLeave',card(x.cardId).name+'を移動する',{uid:x.uid,cardId:x.cardId}));
   else if(d.type==='extended')out=extra.actions(s,d);
   if(d.type==='leaveReplace'){
@@ -877,7 +912,16 @@ export function getLegalActions(s){
 }
 function nameOf(s,t){const seal=(s.players[t.player].seals||[]).find(x=>x.uid===t.uid);if(seal)return '裏向きの封印';const top=s.players[t.player].battle.find(x=>layers(x).some(y=>y.uid===t.uid)),x=top&&layers(top).find(x=>x.uid===t.uid);return card(x).name+(top.uid!==x.uid?'（'+card(top).name+'の下）':'');}
 const evolutionFace=a=>playFaces(card(a.cardId))[a.face||0];
-export function step(s,action){return withEffect(s,s.decision?.type==='effect'?s.decision.player:null,()=>stepCore(s,action));}
+export function step(s,action,{manualMana=false}={}){return withEffect(s,s.decision?.type==='effect'?s.decision.player:null,()=>{
+ if(s.decision?.type==='manaPayment'){
+  const d=s.decision,opts=getLegalActions(s),a=typeof action==='number'?opts[action]:opts.find(x=>JSON.stringify(x)===JSON.stringify(action));if(!a)throw Error('選択できない行動です');
+  if(a.kind==='selectMana'){d.selected=d.selected.includes(a.uid)?d.selected.filter(x=>x!==a.uid):[...d.selected,a.uid];return;}
+  if(a.kind==='cancelMana'){s.decision=d.baseDecision;return;}
+  if(a.kind==='confirmMana')return executeManaMove(s,d.action,d.baseDecision,[...d.payments,[...d.selected]],d.randomTape);
+ }
+ if(manualMana)return executeManaMove(s,typeof action==='number'?getLegalActions(s)[action]:action);
+ return stepCore(s,action);
+ });}
 function stepCore(s,action){
  const opts=getLegalActions(s);let a=typeof action==='number'?opts[action]:opts.find(x=>JSON.stringify(x)===JSON.stringify(action));
  // Only the declared number may differ from a legal template; all other fields stay validated.
@@ -1122,7 +1166,10 @@ export function rankHeuristicActions(s){
 }
 // Retained as a reproducible benchmark baseline; the app always uses chooseAI.
 export const chooseHeuristicAI=s=>rankHeuristicActions(s)[0]?.a??null;
-export function chooseAI(s){return strategicAI.choose(s);}
+export function chooseAI(s){
+ if(s.decision?.type==='manaPayment'){const d=s.decision,actions=getLegalActions(s),target=manaPayment(d.pool,{cost:d.cost,civilizations:d.colors})||[],remove=d.selected.find(uid=>!target.includes(uid)),add=target.find(uid=>!d.selected.includes(uid));return actions.find(a=>a.kind==='selectMana'&&a.uid===(remove||add))||actions.find(a=>a.kind==='confirmMana')||actions[0];}
+ return strategicAI.choose(s);
+}
 export function runGame(decks,options={}){const s=createGame(decks,options);while(s.winner===null&&s.actions<2500&&s.turn<160){const a=chooseAI(s);if(!a)break;step(s,a);}return s;}
 export function runSummary(s){return {seed:s.seed,first:s.first,winner:s.winner,reason:s.reason,turns:s.turn,metrics:s.metrics,actions:s.actions,version:s.version,aiVersion:AI_VERSION};}
 export function aggregate(games){
@@ -1134,6 +1181,6 @@ export function aggregate(games){
 }
 
 function powerCleanup(s){if(s.g25DeployBatch||s.g32DeployBatch||s.g34DeployBatch||s.lossEvent)return;if(s.winner!==null||s.leaving||s.decision)return;for(const p of[0,1])if(!s.players[p].deck.length){deckCheck(s,p);if(s.winner!==null||s.lossEvent)return;}const bad=[0,1].flatMap(player=>s.players[player].battle.filter(x=>isCreature(s,x)&&power(x,false,s)<=0&&!extra.six.zeroSafe(s,x)&&extra.canLeave(s,player,x)).map(x=>({player,uid:x.uid,to:'grave',stateBased:true})));if(bad.length)moveCreatures(s,bad);}
-const extra=createExtendedRules({allCards:()=>[...catalogue.values()],isEvolution,completeExecution,canReplaceExecution,replaceExecutionCard,ultraBases,matchesEvolution,notifyShieldAdded:(s,p,x)=>extra.shieldAdded(s,p,x),effectActor,withEffect,extremeProtected:(s,p)=>!!s.g26Extreme?.[p],saintBreak(s,p,uid,context){s.breakContext={...context,g26SaintUsed:true,replacementBreak:true};commitShieldBreak(s,p,[uid]);},deckLocked,shuffleLibrary,entryAbilities,allLayers:layers,seal,moveSeal,visibleBattleCards,addZone,attachMugenBases,moveBattleCard,resolveSpell,isSpellResolution:s=>!!s.resolvingSpell||!!s.extSpells?.length,wouldEnterCreature:(s,p,c)=>c.type==='creature'&&(!c.natureAce4||genmuActive(s)||natureElements(s,p)+1>=4),shieldCards,shieldGroup,findShield,removeShieldCard,moveShield,addShieldCard,sendBattleCardToShield,skipTurn,resolveEntry,copySource,takeTop:takeDeckTop,resolveEffect:doEffect,resolveAttack,peekTop:peekDeckTop,finishCharger,pay,manaRedirect:(s,p)=>extra.manaRedirect(s,p),destroyReplacementCards,completeLossReplacement,replaceJohnnyHandLoss,manaMoveForbidden:shevaProtection,card,faces:playFaces,cost:costValue,colors:civilizations,effective:effectiveCard,power,layers:x=>x.sealed?[]:layers(x),draw,mill,move:moveCreatures,enter:enterCreature,cast:playCard,remove,removeShield,clear:clearBattleState,enqueue:enqueueEffect,log,random,canEnter:canEnterCreature,canCast:canCastSpell,evolutionBases,battle,tap:tapCard,selfStopped:selfTriggersStopped,ignored:abilitiesIgnored,spellIgnored,deckRedirect,shieldTop,canPay:validMana,summonCost,shuffled,manaColors,deckCheck,finish,isCreature,castBattleSpell,breakShields,interruptBreak,canUntap,singleJudge:(s,p,source,uid,onWin)=>startJudge(s,p,source,uid,'single',onWin),replaceLoss,replaceHandLoss,declineLoss,payDeferred(s,p,n,civ){const ids=manaPayment(paymentPool(s,p),{cost:n,civilizations:[civ]});if(!ids)return false;for(const uid of ids){const x=s.players[p].mana.find(x=>x.uid===uid);if(x)x.tapped=true;else tapCard(s,p,s.players[p].battle.find(x=>x.uid===uid));}return true;},shieldHand:(s,p,x)=>extra.shieldHand(s,p,x),defenseOptions,defend,handMana:(s,p,x)=>extra.handMana(s,p,x)});
+const extra=createExtendedRules({allCards:()=>[...catalogue.values()],isEvolution,completeExecution,canReplaceExecution,replaceExecutionCard,ultraBases,matchesEvolution,notifyShieldAdded:(s,p,x)=>extra.shieldAdded(s,p,x),effectActor,withEffect,extremeProtected:(s,p)=>!!s.g26Extreme?.[p],saintBreak(s,p,uid,context){s.breakContext={...context,g26SaintUsed:true,replacementBreak:true};commitShieldBreak(s,p,[uid]);},deckLocked,shuffleLibrary,entryAbilities,allLayers:layers,seal,moveSeal,visibleBattleCards,addZone,attachMugenBases,moveBattleCard,resolveSpell,isSpellResolution:s=>!!s.resolvingSpell||!!s.extSpells?.length,wouldEnterCreature:(s,p,c)=>c.type==='creature'&&(!c.natureAce4||genmuActive(s)||natureElements(s,p)+1>=4),shieldCards,shieldGroup,findShield,removeShieldCard,moveShield,addShieldCard,sendBattleCardToShield,skipTurn,resolveEntry,copySource,takeTop:takeDeckTop,resolveEffect:doEffect,resolveAttack,peekTop:peekDeckTop,finishCharger,pay,manaRedirect:(s,p)=>extra.manaRedirect(s,p),destroyReplacementCards,completeLossReplacement,replaceJohnnyHandLoss,manaMoveForbidden:shevaProtection,card,faces:playFaces,cost:costValue,colors:civilizations,effective:effectiveCard,power,layers:x=>x.sealed?[]:layers(x),draw,mill,move:moveCreatures,enter:enterCreature,cast:playCard,remove,removeShield,clear:clearBattleState,enqueue:enqueueEffect,log,random,canEnter:canEnterCreature,canCast:canCastSpell,evolutionBases,battle,tap:tapCard,selfStopped:selfTriggersStopped,ignored:abilitiesIgnored,spellIgnored,deckRedirect,shieldTop,canPay:validMana,summonCost,shuffled,manaColors,deckCheck,finish,isCreature,castBattleSpell,breakShields,interruptBreak,canUntap,singleJudge:(s,p,source,uid,onWin)=>startJudge(s,p,source,uid,'single',onWin),replaceLoss,replaceHandLoss,declineLoss,payDeferred(s,p,n,civ){const ids=paymentIds(s,p,{cost:n,civilizations:[civ]},[],true);if(!ids)return false;tapPayment(s,p,ids);return true;},shieldHand:(s,p,x)=>extra.shieldHand(s,p,x),defenseOptions,defend,handMana:(s,p,x)=>extra.handMana(s,p,x)});
 const strategicAI=createStrategicAI({card,faces:playFaces,effective:effectiveCard,power,isCreature,summonCost,legal:getLegalActions,step:(s,a)=>{aiPlanningDepth++;try{return step(s,a);}finally{aiPlanningDepth--;}},rank:rankHeuristicActions,observe:observation,colors:manaCivilizations,mark:s=>aiProjections.add(s)});
 export const analyzeAI=s=>strategicAI.analyze(s);
