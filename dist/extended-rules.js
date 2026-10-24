@@ -118,7 +118,7 @@ export function createExtendedRules(api){
   switch(t.op){
    case 'castleLeave':put(s,task('discard',t.p,t.source,{causedBy:t.p,n:1}),task('draw',t.p,t.source,{n:2}));break;
    case 'tapAll':for(const x of creatures(s,1-t.p))api.tap(s,1-t.p,x);break;
-   case 'gsTarget':if(api.spellIgnored(s,c)||!gsAllowed(s,t.p))break;choice(s,t,'このターン攻撃できなくする相手を選ぶ',[...targetOptions(s,t.p,creatures(s,1-t.p)),skip()]);break;
+   case 'gsTarget':if(api.spellIgnored(s,c)||!gsAllowed(s,t.p))break;choice(s,t,'G・ストライク：攻撃できなくする相手を選ぶ',[...targetOptions(s,t.p,creatures(s,1-t.p)).map(o=>{const x=nowCreature(s,1-t.p,o.value),n=s.players[1-t.p].battle.indexOf(x)+1;return {...o,label:'場'+n+' '+o.label+'（'+(x.tapped?'タップ中':'アンタップ')+'）'};}),skip()]);break;
    case 'bottomOrder':if(t.uids.length===1){const x=remove(own.deck,t.uids[0]);if(x)own.deck.push(x);}else if(t.uids.length>1)choice(s,t,'山札の下に置くシールドの順序を選ぶ',t.uids.map((uid,i)=>opt('元のシールド '+(i+1),uid)));break;
    case 'draw':draw(s,t.p,t.n);break;
    case 'finishJudgeCharger':api.finishCharger(s);break;
@@ -230,8 +230,8 @@ export function createExtendedRules(api){
   if(t.batchId)put(s,{...t,op:'discardBatch'});else if(t.n>1)put(s,{...t,op:'discard',n:t.n-1,discarded:count});else if(t.randomDiscardAfter&&count)put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:count,random:true}));
  }
  function chosen(s,t,value){if(t.op==='g12Loss'&&value?.kind==='g35Baku'){api.replaceLossBaku(s,t.p,value.uid);return;}if(t.op==='g12Loss'&&value?.kind==='g34Mino'){six.beginLoss(s,t.p,value.uid);return;}if(six.chosen(s,t,value))return;if(shieldPhoto.chosen(s,t,value))return;if(photo.chosen(s,t,value))return;const own=s.players[t.p];switch(t.op){
-  case 'gsDeclare':s.triggers.gsUndeclared.shift();if(value)s.triggers.gsDeclared.push(t.uid);break;
-  case 'gsTarget':if(value){const x=nowCreature(s,1-t.p,value);lock(s,t.p,{kind:'attack',player:1-t.p,uid:value,incarnation:x.incarnation||0,expires:'end',who:s.active});}break;
+  case 'gsDeclare':s.triggers.gsUndeclared.shift();if(value)s.triggers.gsDeclared.push(t.uid);log(s,t.p,'gStrike',card(t.source).name+'のG・ストライクを'+(value?'使用宣言':'使わない'),{cardId:t.source});break;
+  case 'gsTarget':if(value){const x=nowCreature(s,1-t.p,value);if(x){lock(s,t.p,{kind:'attack',player:1-t.p,uid:value,incarnation:x.incarnation||0,expires:'end',who:s.active});log(s,t.p,'gStrike','G・ストライク：場'+(s.players[1-t.p].battle.indexOf(x)+1)+' '+card(x).name+'は'+(locked(s,1-t.p,x,'attack')?'このターン攻撃できない':'攻撃制限を受けない')+'（'+(x.tapped?'タップ中のまま':'アンタップのまま')+'）',{cardId:x.cardId,targetUid:x.uid,tapped:!!x.tapped});}}else log(s,t.p,'gStrike','G・ストライク：対象を選ばず終了',{cardId:t.source});break;
   case 'bottomOrder':{const x=remove(own.deck,value);own.deck.push(x);put(s,{...t,uids:t.uids.filter(x=>x!==value)});break;}
   case 'hyperCost':{const x=nowCreature(s,t.p,t.uid),other=nowCreature(s,t.p,value);if(x&&other){api.tap(s,t.p,other);x.hyperActive=true;x.hyperResolved=true;}break;}
   case 'optionalDrawOne':if(value)draw(s,t.p,1);break;

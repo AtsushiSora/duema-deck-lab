@@ -1,6 +1,6 @@
 import {HERO_IDS,chooseHeroDraw} from './hero-draw.js?v=0.77';
 import {shieldCards,shieldGroup,findShield,attachShield,detachShieldCard} from './shield-state.js';
-import {createExtendedRules} from './extended-rules.js?v=0.86';
+import {createExtendedRules} from './extended-rules.js?v=0.86.2';
 import {createStrategicAI} from './strategic-ai.js?v=0.86';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.51';
@@ -346,6 +346,7 @@ export function power(c,attacking=false,context=null){
  const data=effectiveCard(c,context,true),owner=data.ownTurnBonus&&context?context.players.findIndex(p=>p.battle.some(x=>x.uid===c.uid)):-1;
  return numeric(data.power)+(context?extra.lionelPower(context,context.players.findIndex(p=>p.battle.some(x=>x.uid===c.uid)),c):0)+(context?extra.samuraiPower(context,context.players.findIndex(p=>p.battle.some(x=>x.uid===c.uid)),c):0)+modifiers.reduce((n,x)=>n+x.amount,0)+(attacking?(data.attackBonus||0)+(c.buff||0)-(c.buffSources||[]).filter(x=>spellIgnored(context,{type:'spell',cost:x.cost,spellSource:x.spellSource})).reduce((n,x)=>n+x.amount,0):0)+(attacking&&data.g29GraveFire&&context?context.players[context.players.findIndex(p=>p.battle.some(x=>x.uid===c.uid))]?.grave.filter(x=>civilizations(card(x)).includes('火')).length*1000||0:0)+(owner>=0&&context.active===owner?data.ownTurnBonus:0);
 }
+export function attackLocked(s,p,c){return !!s&&!!c&&!c.sealed&&effectiveCard(c,s).type==='creature'&&extra.locked(s,p,c,'attack');}
 function canAttack(s,p,c){const d=effectiveCard(c,s);return d.type==='creature'&&extra.six.fifteen.canAttack(s,p,c)&&(!d.twoTappedAttack||s.players[p].battle.filter(x=>isCreature(s,x)&&x.tapped).length>=2)&&!c.tapped&&!d.noAttack&&(!d.needsBigAttack||s.g16BigAttack?.[p]===s.turn)&&!extra.locked(s,p,c,'attack')&&!(c.entered===s.turn&&s.players[1-p].battle.some(x=>effectiveCard(x,s).stopEntryAttack)&&!s.players[p].battle.some(x=>effectiveCard(x,s).ignoreAttackLocks))&&(c.entered<s.turn||d.speedAttacker||isEvolution(c)||d.machFighter||d.entryPlayerAttack||extra.abyssPlayer(s,c));}
 function canAttackPlayer(s,c){const p=s.players.findIndex(x=>x.battle.some(y=>y.uid===c.uid));return (s.players[p].battle.some(x=>effectiveCard(x,s).ignoreAttackLocks)||!s.players[1-p].battle.some(x=>effectiveCard(x,s).didaGuard&&power(c,false,s)<power(x,false,s)))&&!(c.entered===s.turn&&s.players[1-p].battle.some(x=>effectiveCard(x,s).gaia)&&!s.players[p].battle.some(x=>effectiveCard(x,s).ignoreAttackLocks))&&(c.entered<s.turn||effectiveCard(c,s).speedAttacker||effectiveCard(c,s).entryPlayerAttack||extra.abyssPlayer(s,c)||isEvolution(c));}
 function unblockedNow(s,c){return effectiveCard(c,s).unblockable||c.unblocked&&(!c.unblockSpellCost||!spellIgnored(s,{type:'spell',cost:c.unblockSpellCost}));}
