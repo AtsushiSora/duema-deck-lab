@@ -1,4 +1,4 @@
-import {createDarkMadoRules} from './dark-mado-rules.js?v=0.76';
+import {createDarkMadoRules} from './dark-mado-rules.js?v=0.77';
 // No.04: explicit declarations, New World replacement, and physical Mugen bases.
 export function createMadoRules(api){
  const {card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,move,draw,log,targetOptions}=api;

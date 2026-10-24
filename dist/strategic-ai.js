@@ -6,7 +6,7 @@ export function createStrategicAI(api){
  const body=c=>c.type==='creature';
  const damage=c=>c.breaker==='∞'?20:Number(c.breaker)||1;
  const key=a=>JSON.stringify(Object.fromEntries(Object.entries(a).filter(([k])=>k!=='id'&&k!=='label')));
- const publicCounters=['g29Grants','g29Delays','g29MolReady','challenge','g28DragonOnce','g27WestUsed','extLimits','once','extraTurns','noManaUse','creaturesEntered','finalUsed','finalHistory','g26Extreme','g26GardenUsed','darkTriggers',
+ const publicCounters=['g31Discounts','g31ExtraTurn','g29Grants','g29Delays','g29MolReady','challenge','g28DragonOnce','g27WestUsed','extLimits','once','extraTurns','noManaUse','creaturesEntered','finalUsed','finalHistory','g26Extreme','g26GardenUsed','darkTriggers',
   'g13JagaUsed','g12LossUsed','g12NoLose','g15StarUsed','g16UsedMana','g17ManaUsed','g19MekraidUsed',
   'g20Attacks','g21ZenonUsed','g22UsedDiscount','g22UsedMana','g23Attacks','g23BalEntered','g25ManaUsed',
   'g2Spells','g3AttackSerial','g3CycleUsed','g3Debts','g3ReverseUsed','g5NextSummons','g7Battles',
@@ -16,7 +16,7 @@ export function createStrategicAI(api){
   // A player knows their submitted list, but not which unseen cards are shields.
   // Sample from the whole unseen bag, never from the actual remaining library.
   const bag=new Map((x.knownDeck||[]).map(r=>[r.id,r.count]));
-  const subtract=y=>{if(!y.faceDown&&bag.has(y.cardId))bag.set(y.cardId,Math.max(0,bag.get(y.cardId)-1));for(const z of y.under||[])subtract(z);};
+  const subtract=y=>{if(!y.faceDown&&bag.has(y.cardId))bag.set(y.cardId,Math.max(0,bag.get(y.cardId)-1));for(const z of [...(y.under||[]),...(y.godLinks||[])])subtract(z);};
   for(const zone of ['hand','battle','mana','grave','extra'])for(const y of x[zone])subtract(y);
   for(const y of shownShields)subtract(y);
   const pool=[...bag].sort(([a],[b])=>a.localeCompare(b)).flatMap(([id,n])=>Array(n).fill(id));
