@@ -15,3 +15,8 @@ export function matchesCard(c,{query='',civ='',cost='',type=''}={}){
  return cardFaces(c).some(f=>(!civ||f.civilizations.includes(civ))&&(!cost||(cost==='5+'?f.cost!==null&&f.cost>=5:cost==='special'?f.cost===null&&Boolean(f.costText):f.cost===Number(cost)))&&(!kind||(kind==='creature'?f.typeText.includes('クリーチャー'):kind==='spell'?f.typeText.includes('呪文'):f.typeText===kind)));
 }
 export const primaryCost=c=>cardFaces(c)[0]?.cost??null;
+
+// Count every physical card below the top, including earlier evolution layers.
+export const sourceCardCount=c=>(c?.under||[]).reduce((n,x)=>n+1+sourceCardCount(x),0);
+export const sourceCardLabel=(c,evolved=false)=>evolved||sourceCardCount(c)?`${evolved?'進化元':'下に'} ${sourceCardCount(c)}枚`:'';
+export function sourceCardBadge(c,evolved=false){if(c?.hidden||c?.sealed||!evolved&&!sourceCardCount(c))return '';const n=sourceCardCount(c);return `<span class="creature-source-count" data-short-label="${evolved?'元':'下'}" aria-label="${sourceCardLabel(c,evolved)}" title="${sourceCardLabel(c,evolved)}"><span class="source-label">${evolved?'進化元':'下に'}</span><b>${n}</b><span class="source-unit">枚</span></span>`;}
