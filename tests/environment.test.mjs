@@ -9,9 +9,9 @@ const [snapshot,supported]=await Promise.all([read('catalogue.json'),read('cards
 const registry=createCatalogue(snapshot,supported.cards),templates=resolveEnvironmentDecks(registry);setCards(supported.cards);
 
 test('tournament lists resolve every full name into exactly forty registered cards with full battle support',()=>{
- assert.equal(templates.length,12);
- assert.equal(new Set(templates.map(d=>d.id)).size,12);
- for(const d of templates){assert.equal(d.cards.reduce((n,r)=>n+r.count,0),40);assert.deepEqual(registry.validate(d),[]);assert.equal(registry.coverage(d).unsupported,0);assert.equal(validateDeck(d).length>0,false);assert.match(d.tournament.source,/^https:\/\/dm\.takaratomy\.co\.jp\/coverage\//);assert.equal(d.tournament.checkedAt,['env-gp2026-grimoire','env-gp2026-pinky','env-gp2026-sara'].includes(d.id)?'2026-10-20':d.id==='env-nationals2025-dotto'?'2026-10-21':'2026-10-24');}
+ assert.equal(templates.length,18);
+ assert.equal(new Set(templates.map(d=>d.id)).size,18);
+ for(const d of templates){assert.equal(d.cards.reduce((n,r)=>n+r.count,0),40);assert.deepEqual(registry.validate(d),[]);assert.equal(registry.coverage(d).unsupported,0);assert.equal(validateDeck(d).length>0,false);assert.match(d.tournament.source,/^https:\/\/dm\.takaratomy\.co\.jp\/coverage\//);assert.equal(d.tournament.checkedAt,['env-gp2026-grimoire','env-gp2026-pinky','env-gp2026-sara'].includes(d.id)?'2026-10-20':d.id==='env-nationals2025-dotto'?'2026-10-21':ENVIRONMENT_LISTS.find(x=>x.id===d.id).checkedAt);}
 });
 test('unknown names, duplicate canonical names, excessive copies and non-forty lists fail closed',()=>{
  for(const change of [l=>l.cards[0].name='未登録の架空カード',l=>l.cards.push({...l.cards[0]}),l=>l.cards[0].count=5,l=>l.cards[0].count=3]){const lists=structuredClone(ENVIRONMENT_LISTS);change(lists[0]);assert.throws(()=>resolveEnvironmentDecks(registry,lists));}
