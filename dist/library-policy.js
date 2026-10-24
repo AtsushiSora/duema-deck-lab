@@ -1,6 +1,6 @@
 // Every supported effect that looks at its controller's library enters here.
 // Direct draw/mill/ramp moves are still allowed by Q.Q.QX.; looking is not.
-const looks=new Set(['g29_BT','g29_MolAttack','g29_Land','g29_Duel','g29_Bird','g28_Radio','g28_Taka','g27_Big','g27_Raid','g27_Blueprint','g27_WestLook','g10_Robo','g10_Cougar','g10_Magrul','g7Look','g8_Gyai','g8_FinalReveal',
+const looks=new Set(['g36Look','g36Memory','g29_BT','g29_MolAttack','g29_Land','g29_Duel','g29_Bird','g28_Radio','g28_Taka','g27_Big','g27_Raid','g27_Blueprint','g27_WestLook','g10_Robo','g10_Cougar','g10_Magrul','g7Look','g8_Gyai','g8_FinalReveal',
  'g20Mikadoreo','g20Huge','g17_Mekraid','g17_Lake','g17_Space','g13_Mek',
  'g3_Katsu','g12Mekraid','g12DragonLook','g12ManaLook','g15_Look','g16Reveal',
  'g25_Plan','g25_Heart','g4_Gon','g21KiyoReveal','g19YobiReveal','g19MekraidLook',
