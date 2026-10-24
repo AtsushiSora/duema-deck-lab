@@ -1,0 +1,24 @@
+/* Actual printed cards. A missing image keeps a neutral, readable name card. */
+.art-card.official-card{aspect-ratio:5/7;background:#132c3d;border-color:var(--civ-color,#70868d)}
+.art-card.official-card:after{content:none}
+.official-card-image{pointer-events:none;user-select:none;-webkit-user-drag:none;position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;object-position:center;opacity:0;z-index:1}
+.official-card.image-loaded>.official-card-image{opacity:1}
+.official-card-image[hidden]{display:none}
+.official-card-fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:12% 7%;background:linear-gradient(145deg,#294455,#102737);color:#e9f3f4;text-align:center;overflow:hidden}
+.official-card-cost{position:absolute;top:5px;left:5px;max-width:90%;font-size:12px;line-height:1.4;font-weight:750;overflow-wrap:anywhere}
+.official-card-fallback>strong{font-size:10px;line-height:1.6;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.card-image-status{display:none;color:#a7bec5;font-size:8px}
+.image-unavailable .card-image-status{display:block}
+.image-loaded>.official-card-fallback{visibility:hidden}
+.mini-deck .official-card-fallback>strong{font-size:5px;line-height:1.3;-webkit-line-clamp:3}
+.mini-deck .official-card-cost{font-size:5px;top:2px;left:2px}
+.mini-deck .card-image-status{display:none}
+.creature-tap .official-card-image,.hand-shelf-art .official-card-image{object-fit:cover;object-position:50% 27%}
+.hand-shelf-art:has(.official-card),.online-hand .hand-shelf-art:has(.official-card){opacity:1}
+.deck-card-cover{position:absolute;inset:0;overflow:hidden;background:linear-gradient(140deg,#193447,#326b68)}
+.deck-card-cover>.art-card{width:100%;height:100%;border:0;border-radius:0}
+.deck-card-cover .official-card-image{object-fit:cover;object-position:50% 27%;filter:saturate(.9)}
+.deck-card-cover .official-card-fallback{display:none}
+.card-info-head>.official-card{width:138px;max-width:34%;border-width:1px}
+@media(max-width:620px){.card-info-head>.official-card{width:100px}.official-card-fallback>strong{font-size:9px}.official-card-cost{font-size:10px}}
+.official-card-kind{font-size:8px;color:#bdd2d9}.mini-deck .official-card-kind{display:none}

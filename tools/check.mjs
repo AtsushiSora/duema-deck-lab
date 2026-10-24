@@ -1,3 +1,4 @@
+import{CARD_IMAGES}from'../dist/card-images.js';
 import{PHOTO_WATER_MADO}from'./fixtures/photo-water-mado.mjs';
 import{PHOTO_BOLSHACK}from'./fixtures/photo-bolshack.mjs';
 import{resolveHeroDecks}from'../dist/hero-challenge.js';
@@ -24,3 +25,5 @@ const heroes=resolveHeroDecks(JSON.parse(await readFile(new URL('../dist/hero-de
 if(validateDeck(PHOTO_BOLSHACK).length||registry.coverage(PHOTO_BOLSHACK).unsupported)throw Error('画像の40枚が未対応です');console.log('Checked the screenshot Bolshack deck: 40 supported copies.');
 
 if(validateDeck(PHOTO_WATER_MADO).length||registry.coverage(PHOTO_WATER_MADO).unsupported)throw Error('画像の水魔導具40枚が未対応です');console.log('Checked the screenshot water-mado deck: 40 supported copies.');
+
+if(Object.keys(CARD_IMAGES).length!==supported.length||supported.some(c=>!/^https:\/\/dm\.takaratomy\.co\.jp\/wp-content\/card\/cardimage\/[A-Za-z0-9_.-]+\.(jpg|png|webp)$/.test(CARD_IMAGES[c.id]||'')))throw Error('実カード画像の参照が不足しています');console.log('Checked actual card image URLs for all '+supported.length+' supported cards.');
