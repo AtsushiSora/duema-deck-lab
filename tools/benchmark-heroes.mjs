@@ -1,0 +1,5 @@
+// Same lists, seeds and first player on both sides; only CPU draw selection differs.
+import fs from'node:fs';import * as e from'../dist/engine.js';import{createCatalogue}from'../dist/catalogue.js';import{resolveHeroDecks,challengeOptions}from'../dist/hero-challenge.js';
+const read=f=>JSON.parse(fs.readFileSync(new URL('../dist/'+f,import.meta.url))),cards=read('cards.json').cards;e.setCards(cards);const registry=createCatalogue(read('catalogue.json'),cards,read('details.json')),heroes=resolveHeroDecks(read('hero-decks.json'),registry),results=[];
+for(const deck of heroes){const row={hero:deck.hero.id,normalWins:0,challengeWins:0,gamesPerMode:8};for(let seed=1;seed<=8;seed++)for(const mode of['normal','challenge']){const s=e.runGame([deck,deck],{seed:70200+seed*13,first:seed%2,...(mode==='challenge'?{challenge:challengeOptions(deck)}:{})});if(s.winner===null)throw Error('未決着：'+deck.name);if(s.winner===1)row[mode+'Wins']++;}results.push(row);console.log(JSON.stringify(row));}
+console.log(JSON.stringify({totalGames:64,results,note:'同型デッキでの少数条件の動作比較です。対人戦の勝率や全対面の強さを保証するものではありません。'}));

@@ -1,3 +1,4 @@
+import{resolveHeroDecks}from'../dist/hero-challenge.js';
 import{resolveEnvironmentDecks}from'../dist/environment.js';
 import{setCards,validateDeck}from'../dist/engine.js';
 import{validateDetails}from'./detail-validation.mjs';
@@ -15,3 +16,5 @@ const details=JSON.parse(await readFile(new URL('../dist/details.json',import.me
 const starters=resolveStarter25Decks(registry);console.log(`Checked ${starters.length} official starter decks; ${starters.filter(d=>!registry.coverage(d).unsupported).length} with complete effect coverage.`);
 
 setCards(supported);const environments=resolveEnvironmentDecks(registry);for(const d of environments){const errors=validateDeck(d);if(errors.length)throw Error(d.name+'：'+errors.join(' / '));}console.log(`Checked ${environments.length} environment decks with complete effect coverage.`);
+
+const heroes=resolveHeroDecks(JSON.parse(await readFile(new URL('../dist/hero-decks.json',import.meta.url),'utf8')),registry);for(const d of heroes){const errors=validateDeck(d);if(errors.length)throw Error(d.name+'：'+errors.join(' / '));}console.log(`Checked ${heroes.length} protagonist challenge decks with forty supported cards each.`);

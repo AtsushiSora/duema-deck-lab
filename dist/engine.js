@@ -1,6 +1,7 @@
+import {HERO_IDS,chooseHeroDraw} from './hero-draw.js?v=0.70';
 import {shieldCards,shieldGroup,findShield,attachShield,detachShieldCard} from './shield-state.js';
-import {createExtendedRules} from './extended-rules.js?v=0.69';
-import {createStrategicAI} from './strategic-ai.js?v=0.69';
+import {createExtendedRules} from './extended-rules.js?v=0.70';
+import {createStrategicAI} from './strategic-ai.js?v=0.70';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.43';
 export const ENGINE_VERSION='0.43.0';
@@ -99,10 +100,11 @@ export function setRandomSource(source=null){if(source!==null&&typeof source!=='
 export function random(state){if(randomSource&&!aiPlanningDepth&&!aiProjections.has(state))return randomSource();let t=state.rng+=0x6D2B79F5;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;}
 export function shuffled(items,seed){const s={rng:seed>>>0},out=[...items];for(let i=out.length-1;i>0;i--){const j=Math.floor(random(s)*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;}
 const instance=(id,uid)=>({cardId:id,uid,tapped:false,entered:0,buff:0,unblocked:false});
-export function createGame(decks,{seed=1,first=0}={}){
+export function createGame(decks,{seed=1,first=0,challenge=null}={}){
  for(const d of decks){const e=validateDeck(d);if(e.length)throw Error(e.join(' / '));}
  const s={seed:seed>>>0,rng:(seed^0x317)>>>0,first,active:first,turn:1,phase:'charge',winner:null,reason:'',decision:null,after:[],log:[],actions:0,version:ENGINE_VERSION,metrics:[0,1].map(()=>({played:{},earlyPlayed:{},firstCreature:null,charges:0,breaks:0,triggers:0,turns:0}))};
  s.players=decks.map((d,p)=>{let n=0;const deck=shuffled(d.cards.flatMap(r=>Array.from({length:r.count},()=>instance(r.id,`${p}-${n++}`))),seed^(p?0x9e3779b9:0x42));const shields=deck.splice(0,5),hand=deck.splice(0,5);return {name:d.name,knownDeck:d.cards.map(r=>({id:r.id,count:r.count})),deck,hand,shields,mana:[],battle:[],grave:[],extra:[],seals:[],turns:0};});
+ if(challenge){if(challenge.seat!==1||!HERO_IDS.includes(challenge.heroId))throw Error('主人公チャレンジの設定が正しくありません');s.challenge={heroId:challenge.heroId,seat:1,signature:[...(challenge.signature||[])]};}
  s.players[first].turns=1;s.metrics[first].turns=1;
  log(s,first,'start','対戦開始。先攻の最初のドローを省略');return s;
 }
@@ -153,7 +155,15 @@ export function deckLocked(s,p){return s.players[1-p].battle.some(x=>effectiveCa
 function checkSidewaysHand(s,p){if(s.winner!==null||s.lossEvent)return;for(const x of s.players[p].hand)if(x.g11FromSideways){delete x.g11FromSideways;if(deckLocked(s,p)){finish(s,1-p,'Q.Q.QX.：山札の横向きのカードを手札に加えた','loss','qq');break;}}}
 export function shuffleLibrary(s,p,added=[],source=null){const own=s.players[p];own.deck.push(...added);if(deckLocked(s,p)){if(added.length)extra.put(s,extra.task('g11_Insert',p,source||added[0].cardId,{uids:added.map(x=>x.uid)}));return;}for(const x of own.deck)delete x.g11Sideways;own.deck=shuffled(own.deck,Math.floor(random(s)*4294967296));}
 function takeDeckTop(s,p){const own=s.players[p],protectedIds=[...(own.g28Protected||[]),...(own.g27Protected||[]),...(own.g13Protected||[]),...(own.g4Protected||[]),...(own.g8Protected||[]),...(own.g14Protected||[]),...(own.g25Protected||[]),...(own.g18Protected||[]),...(own.g10Protected||[]),...(own.g17Protected||[]),...(own.g3Protected||[]),...(own.g2Protected||[]),...(own.g19Reveals||[]),...(own.g21Protected||[]),...(own.g7Reveals||[]),...(own.g12Reveals||[])],i=own.deck.findIndex(x=>!protectedIds.includes(x.uid));return i<0?null:own.deck.splice(i,1)[0];}
-function draw(s,p,n,{unreplaceable=false}={}){let actual=0;for(let i=0;i<n&&s.winner===null;i++){if(!unreplaceable&&!s.players[p].deck.length&&extra.deckSafe(s,p)){extra.put(s,extra.task("g10_Draws",p,s.players[p].battle.find(x=>effectiveCard(x,s).bigBang).cardId,{n:n-i}));break;}const last=s.players[p].deck.length===1&&!extra.deckSafe(s,p)&&s.players[p].battle.some(x=>effectiveCard(x,s).shako),c=takeDeckTop(s,p);if(c){clearBattleState(c,'hand');s.players[p].hand.push(c);actual++;if(!last&&c.g11FromSideways){checkSidewaysHand(s,p);if(s.winner!==null||s.lossEvent){if(n-i-1&&s.lossEvent)extra.put(s,extra.task('draw',p,c.cardId,{n:n-i-1}));break;}}}if(last&&c){finish(s,p,'シャコガイル：山札の最後の1枚を引いて勝利','replacementWin');if(s.winner===null)deckCheck(s,p);}else deckCheck(s,p);checkSidewaysHand(s,p);}extra.drawn(s,p,actual);log(s,p,'draw',`カードを${actual}枚引いた`);}
+function takeDrawCard(s,p){
+ if(s.challenge?.seat!==p||!HERO_IDS.includes(s.challenge.heroId)||deckLocked(s,p))return takeDeckTop(s,p);
+ const own=s.players[p],protectedIds=new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&(/Protected$|Reveals$/.test(k))).flatMap(([,v])=>v));
+ const describe=x=>{const c=card(x);return {uid:x.uid,id:c.id,faces:playFaces(c).map(f=>({...f,usable:canCastSpell(s,p,f)&&(f.type!=='creature'||canEnterCreature(s,p,f))&&validMana(s,p,f)&&(!f.evolution||evolutionBases(s,p,f).length>0)}))};};
+ const choices=own.deck.filter(x=>!protectedIds.has(x.uid)).map(describe);
+ const uid=chooseHeroDraw(choices,{heroId:s.challenge.heroId,signature:s.challenge.signature,mana:own.mana.length,colors:[...new Set(own.mana.flatMap(x=>manaCivilizations(card(x))))],hand:own.hand.map(describe),battle:own.battle.map(x=>{const c=effectiveCard(x,s);return {cost:costValue(c),race:c.race,name:c.name,civilizations:civilizations(c),tapped:x.tapped};}),enemyBattle:s.players[1-p].battle.map(()=>({})),shields:own.shields.length,enemyShields:s.players[1-p].shields.length,active:s.active===p});
+ const i=own.deck.findIndex(x=>x.uid===uid);return i<0?null:own.deck.splice(i,1)[0];
+}
+function draw(s,p,n,{unreplaceable=false}={}){let actual=0;for(let i=0;i<n&&s.winner===null;i++){if(!unreplaceable&&!s.players[p].deck.length&&extra.deckSafe(s,p)){extra.put(s,extra.task("g10_Draws",p,s.players[p].battle.find(x=>effectiveCard(x,s).bigBang).cardId,{n:n-i}));break;}const last=s.players[p].deck.length===1&&!extra.deckSafe(s,p)&&s.players[p].battle.some(x=>effectiveCard(x,s).shako),c=takeDrawCard(s,p);if(c){clearBattleState(c,'hand');s.players[p].hand.push(c);actual++;if(!last&&c.g11FromSideways){checkSidewaysHand(s,p);if(s.winner!==null||s.lossEvent){if(n-i-1&&s.lossEvent)extra.put(s,extra.task('draw',p,c.cardId,{n:n-i-1}));break;}}}if(last&&c){finish(s,p,'シャコガイル：山札の最後の1枚を引いて勝利','replacementWin');if(s.winner===null)deckCheck(s,p);}else deckCheck(s,p);checkSidewaysHand(s,p);}extra.drawn(s,p,actual);log(s,p,'draw',`カードを${actual}枚引いた`);}
 function mill(s,p,n){for(let i=0;i<n&&s.winner===null;i++){const x=takeDeckTop(s,p);if(x){clearBattleState(x);addZone(s,s.players[p],'grave',x);}deckCheck(s,p);}}
 
 function addZone(s,player,zone,...cards){if(!cards.length)return;const p=typeof player==='number'?player:s.players.indexOf(player);if(p<0)throw Error('移動先のプレイヤーを確認できません');if(zone==='mana'&&extra.manaTap(s,p))for(const x of cards)x.tapped=true;if(zone==='deckFourth'){for(const x of cards)x.g11Sideways=true;s.players[p].deck.splice(Math.min(3,s.players[p].deck.length),0,...cards);return;}if(zone!=='deck')for(const x of cards){if(x.g11Sideways&&zone==='hand')x.g11FromSideways=true;delete x.g11Sideways;}const list=s.players[p][zone];list.push(...cards);if(zone==='hand')checkSidewaysHand(s,p);if(zone==='grave')extra.graveAdded(s,p,cards,s.leaving?.snapshot?.mado);if(zone==='extra')extra.extraAdded(s,p,cards);}
