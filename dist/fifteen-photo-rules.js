@@ -1,0 +1,232 @@
+// Fifteen screenshot decks. Continuations store physical UIDs, never copies of game cards.
+export function createFifteenPhotoRules(api){
+ const {card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,move,enter,cast,targetOptions,start,canPut,key,live}=api;
+ const E=(op,x={})=>({op,...x}),C=(name,x={})=>E('g35_Custom',{...x,name}),S=(origin,to,n,filter={},x={})=>E('Select',{origin,to,n,filter,...x});
+ const race=(c,q)=>String(c.race).includes(q),j=c=>race(c,'ジョーカーズ'),angel=c=>race(c,'エンジェル・コマンド'),demon=c=>race(c,'デーモン・コマンド');
+ const active=(s,p,r)=>s.players[p].battle.filter(x=>card(x).g35Role===r&&!api.ignored(s,x));
+ const jokerCount=(s,p)=>s.players[p].battle.filter(x=>j(card(x))).length+s.players[p].mana.filter(x=>j(card(x))).length;
+ const on=(s,p,x,name,more={})=>api.send(s,p,x,'Sequence',{defs:[C(name,more)]});
+ const give=(s,t,defs)=>start(s,t,defs),data=(s,t)=>s.players[t.p],unit=(s,t)=>s.players[t.p].battle.find(x=>x.uid===t.uid&&(t.incarnation===undefined||(x.incarnation||0)===t.incarnation));
+ const mark=(s,k,x)=>{(s[k]??={})[key(x)]=s.turn;},used=(s,k,x)=>s[k]?.[key(x)]===s.turn;
+ const soul=(s,x,role)=>api.ignored(s,x)?0:api.allLayers(x).filter(y=>card(y).g35Role===role).length;
+ const peek=(s,p)=>api.deckLocked(s,p)?null:s.players[p].deck.find(x=>!Object.entries(s.players[p]).some(([k,v])=>/Protected$|Reveals$/.test(k)&&Array.isArray(v)&&v.includes(x.uid)));
+ const pending=(s,t,name=t.name,more={})=>put(s,{...t,op:'g35_Custom',name,...more});
+ const offer=(s,t,title,more={})=>choice(s,{...t,...more},title,[opt('使う',true,more.score??10),skip()]);
+ const target=(s,t,title,list,optional=false)=>choice(s,t,title,[...targetOptions(s,t.p,list),...(optional?[skip()]:[])]);
+ const queue=(s,p,x,defs)=>api.send(s,p,x,'Sequence',{defs});
+ function zoneMove(s,p,origin,uid,to,t={}){if(origin==='battle'){move(s,[{player:p,uid,to,destroy:to==='grave',controller:t.controller??t.p}]);return;}const own=s.players[p],x=remove(own[origin],uid);if(!x)return;own.g35Protected=(own.g35Protected||[]).filter(id=>id!==uid);const dest=origin==='deck'&&['mana','shields'].includes(to)&&api.deckRedirect(s,p)||to==='mana'&&api.manaRedirect(s,p)?'grave':to;clear(x,dest);if(t.tapped&&dest==='mana')x.tapped=true;if(dest==='under'){const u=unit(s,t);if(u)(u.under??=[]).push(x);else api.addZone(s,p,'grave',x);}else api.addZone(s,p,dest,x);if(dest==='shields')api.notifyShieldAdded(s,p,x);}
+ function reveal(s,t,n,p=t.p){if(api.deckLocked(s,p))return[];const own=s.players[p],reserved=new Set(Object.entries(own).filter(([k,v])=>/Protected$|Reveals$/.test(k)&&Array.isArray(v)).flatMap(([,v])=>v)),ids=own.deck.filter(x=>!reserved.has(x.uid)).slice(0,n).map(x=>x.uid);(own.g35Protected??=[]).push(...ids);api.log(s,t.p,'reveal',card(t.source).name+'：'+ids.map(id=>card(own.deck.find(x=>x.uid===id)).name).join('・'),{cardId:t.source});return ids;}
+ function order(s,t,ids,p=t.p,top=false){put(s,task('g35_Order',p,t.source,{ids,ordered:[],top}));}
+ function deploy(s,t,origin,uid,more={}){give(s,t,[E('Put',{origin,target:uid,...more})]);}
+ function execute(s,t,origin,uid,face=0,more={}){give(s,t,[C('executeCard',{origin,target:uid,face,...more})]);}
+ function pickExecute(s,t,{origin='hand',ids,max=Infinity,colorsAny,filter={},optional=true,deployOnly=false,reason='カードの能力'}={}){const rows=data(s,t)[origin].filter(x=>!ids||ids.includes(x.uid));choice(s,{...t,exec:{origin,deployOnly,reason}},'実行するカードを選ぶ',[...rows.flatMap(x=>faces(card(x)).flatMap((c,face)=>(!deployOnly||face===0)&&cost(c)<=max&&(!colorsAny||colors(c).some(v=>colorsAny.includes(v)))&&api.matches(s,t.p,x,filter)&&api.canCast(s,t.p,c,origin)&&(c.type!=='creature'||api.canEnter(s,t.p,c,{origin,execution:!deployOnly}))&&(!deployOnly||canPut(s,t.p,x,origin,false))?[opt(c.name,{uid:x.uid,face},15+cost(c),x.cardId)]:[])),...(optional?[skip()]:[])]);}
+ function run(s,t){if(t.op==='g35_Order'){const own=data(s,t),ids=t.ids.filter(uid=>own.deck.some(x=>x.uid===uid));if(ids.length>1){choice(s,{...t,ids},t.top?'山札の上に置く順序を選ぶ':'山札の下に置く順序を選ぶ',ids.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,0,x.cardId);}));}else{const rows=[...(t.ordered||[]),...ids].map(uid=>remove(own.deck,uid)).filter(Boolean);own.g35Protected=(own.g35Protected||[]).filter(uid=>!rows.some(x=>x.uid===uid));if(t.top)own.deck.unshift(...rows);else own.deck.push(...rows);api.deckCheck(s,t.p);}return true;}
+ if(t.op==='g35_Fight'){const x=unit(s,t);if(x)target(s,t,'バトルする相手を選ぶ',creatures(s,1-t.p),t.optional);return true;}
+ if(t.op!=='g35_Custom')return false;const own=data(s,t),opp=s.players[1-t.p],x=unit(s,t);switch(t.name){
+ case'tapLock':{const selected=t.selected||[],rows=creatures(s,1-t.p).filter(x=>!selected.includes(x.uid));if(selected.length>=t.n||!rows.length)break;target(s,{...t,selected},'タップして次のターンのアンタップを止める相手を選ぶ',rows);break;}
+ case'shieldForce':if(x&&own.shields.length)choice(s,t,'シールド・フォースのシールドを選ぶ',[...own.shields.map((y,i)=>opt('シールド'+(i+1),y.uid,10)),skip()]);break;
+ case'galaxyAttack':give(s,t,[E('Draw',{n:1,optional:true}),C('galaxyShield')]);break;
+ case'galaxyShield':choice(s,t,'手札に加えるシールドを選ぶ（S・トリガーなし）',[...own.shields.map((y,i)=>opt('シールド'+(i+1),y.uid,1)),skip()]);break;
+ case'galaxyHand':choice(s,t,'手札からシールドに置くカードを選ぶ',[...own.hand.map(y=>opt(card(y).name,y.uid,5-cost(card(y)),y.cardId)),skip()]);break;
+ case'galaxyFace':choice(s,t,'表向き・裏向きを選ぶ',[opt('裏向き',false,10),opt('表向き',true,5)]);break;
+ case'punisher':pickExecute(s,t,{max:6,colorsAny:['光','水'],filter:{spell:true}});break;
+ case'deadSword':if(jokerCount(s,t.p)>=4)give(s,t,[C('deadBottom',{owner:1-t.p,origin:'battle'}),C('deadBottom',{owner:1-t.p,origin:'mana'}),C('deadBottom',{owner:1-t.p,origin:'hand'}),E('Draw',{n:3})]);break;
+ case'deadBottom':{const p=t.owner,rows=s.players[p][t.origin];if(rows.length)choice(s,{...t,p},'山札の下に置く自分の'+({battle:'場',mana:'マナ',hand:'手札'}[t.origin])+'を選ぶ',rows.map(y=>opt(card(y).name,y.uid,-cost(card(y)),y.cardId)));break;}
+ case'mouja':give(s,t,[C('chooseShield',{owner:1-t.p,to:'grave'}),E('Target',{to:'grave'}),E('Discard',{n:1,random:true})]);break;
+ case'chooseShield':{const p=t.owner??t.p;choice(s,t,'シールドを1つ選ぶ',s.players[p].shields.map((y,i)=>opt('シールド'+(i+1),y.uid,0)));break;}
+ case'moujaLoot':api.draw(s,t.p,1);pending(s,t,'moujaDiscard');break;
+ case'moujaDiscard':choice(s,t,'捨てる手札を1枚選ぶ',own.hand.map(y=>opt(card(y).name,y.uid,colors(card(y)).length>1?25:0,y.cardId)));break;
+ case'brandDiscard':{const selected=t.selected||[];choice(s,{...t,selected},'捨てる手札を選ぶ（'+selected.length+'枚）',[...own.hand.filter(y=>!selected.includes(y.uid)).map(y=>opt(card(y).name,y.uid,creatures(s,1-t.p).filter(y=>api.power(y,false,s)<=6000).length>selected.length?5:-5,y.cardId)),opt('ここまでで確定',null,0)]);break;}
+ case'joragonLoot':give(s,t,[E('Draw',{n:1}),E('Discard',{owner:'self',n:1})]);break;
+ case'copyEntry':{const c=card(t.copy),entries=api.entryAbilities(s,t.p,t.copy,{source:t.source,uid:t.uid,incarnation:t.incarnation||0});if(entries.length&&c.g35Role!=='galaxy')choice(s,{...t,entries},c.name+'の登場時能力を1つ使う？',[...entries.map((e,i)=>opt(e.label,i,15,t.copy)),skip()]);break;}
+ case'melaventureDelay':break;
+ case'melaSweep':if(jokerCount(s,t.p)>=7)give(s,t,[E('Sweep',{filter:{creature:true,blocker:true}})]);break;
+ case'slot':{const ids=reveal(s,t,3);if(ids.length===3&&ids.every(uid=>j(card(own.deck.find(x=>x.uid===uid))))){pending(s,t,'slotPick',{ids});}else order(s,t,ids);break;}
+ case'slotPick':{const rows=own.deck.filter(y=>t.ids.includes(y.uid)&&canPut(s,t.p,y,'deck'));choice(s,t,'公開したジョーカーズからクリーチャーを1体出す',rows.map(y=>opt(card(y).name,y.uid,20+cost(card(y)),y.cardId)));if(!rows.length)order(s,t,t.ids);break;}
+ case'seven':{const ids=reveal(s,t,3,1-t.p);choice(s,{...t,ids},'公開したカードのコストを選ぶ',s.players[1-t.p].deck.filter(y=>ids.includes(y.uid)).map(y=>opt(card(y).name,y.uid,creatures(s,1-t.p).filter(x=>cost(card(x))===cost(card(y))).length*10,y.cardId)));break;}
+ case'roadLock':if(jokerCount(s,t.p)>=5)choice(s,t,'唱えられなくする文明を選ぶ',['光','水','闇','火','自然'].map(v=>opt(v,v,opp.mana.filter(y=>colors(card(y)).includes(v)).length)));break;
+ case'finalRemove':{if(jokerCount(s,t.p)<5)break;const colorsLeft=t.colorsLeft||['光','水','闇','火','自然'];if(!colorsLeft.length){if(t.chosen?.length){pending(s,{...t,p:1-t.p},'bottomBatch',{ids:opp.battle.filter(y=>t.chosen.includes(y.uid)).flatMap(y=>api.allLayers(y).map(y=>y.uid))});move(s,t.chosen.map(uid=>({player:1-t.p,uid,to:'deck',destroy:false})));}break;}const color=colorsLeft[0],chosen=t.chosen||[],rows=opp.battle.filter(y=>!chosen.includes(y.uid)&&colors(effective(y,s)).includes(color));if(rows.length)choice(s,{...t,colorsLeft,chosen},color+'の相手カードを山札の下へ',targetOptions(s,t.p,rows));else pending(s,t,'finalRemove',{colorsLeft:colorsLeft.slice(1),chosen});break;}
+ case'maximum':target(s,t,'追加ブレイクを与える自分のクリーチャーを選ぶ',creatures(s,t.p));break;
+ case'freedom':choice(s,t,'決断：あと'+t.left+'回選ぶ',[opt('コスト3以下のカードを山札の下へ',0,10),opt('自分の1体にプレイヤーへの攻撃を許可',1,5),opt('相手の1体の能力を無視',2,10)]);break;
+ case'freedomBottom':choice(s,t,'山札の下に置くカードを選ぶ',[0,1].flatMap(p=>s.players[p].battle.flatMap(top=>api.allLayers(top).filter(y=>cost(card(y))<=3).map(y=>opt(card(y).name,{p,uid:y.uid},p===t.p?-10:10,y.cardId)))));break;
+ case'freedomSpeed':target(s,t,'プレイヤーを攻撃できる自分の1体を選ぶ',creatures(s,t.p));break;
+ case'freedomIgnore':target(s,t,'能力を無視する相手の1体を選ぶ',creatures(s,1-t.p));break;
+ case'timeStop':if(s.extSpells?.some(f=>f.inst.uid===t.uid&&f.spell.superTriggerActive))for(const p of[0,1])for(const y of creatures(s,p))(y.g35NoAttack??=[]).push({turn:s.turn});break;
+ case'gaigingReveal':offer(s,t,'山札の上を公開する？');break;
+ case'gaigingTop':{const y=peek(s,t.p);if(!y)break;api.log(s,t.p,'reveal',card(y).name,{cardId:y.cardId});if(cost(card(y))<=4&&['creature','seed','gear','field'].includes(card(y).type)&&canPut(s,t.p,y,'deck'))choice(s,{...t,target:y.uid},'公開したエレメントを出す？',[opt('出す',true,15,y.cardId),opt('手札に加える',false,0)]);else zoneMove(s,t.p,'deck',y.uid,'hand',t);api.deckCheck(s,t.p);break;}
+ case'graveAllMana':for(const y of [...own.grave])zoneMove(s,t.p,'grave',y.uid,'mana',{...t,tapped:true});break;
+ case'souryu':choice(s,t,'マナから非進化を1体出す',own.mana.filter(y=>card(y).type==='creature'&&!card(y).evolution&&cost(card(y))<own.mana.length&&canPut(s,t.p,y,'mana')).map(y=>opt(card(y).name,y.uid,15+cost(card(y)),y.cardId)));break;
+ case'souryuFight':{const y=own.battle.find(y=>y.uid===t.target);if(y&&colors(card(y)).some(v=>['火','自然'].includes(v)))put(s,task('g35_Fight',t.p,t.source,{uid:y.uid,optional:true}));break;}
+ case'endWorld':{const selected=t.selected||[];if(selected.length>=Math.min(3,own.deck.length)){for(const y of [...own.deck])if(!selected.includes(y.uid))zoneMove(s,t.p,'deck',y.uid,'grave',t);order(s,t,selected,t.p,true);break;}choice(s,{...t,selected},'山札に残す3枚を選ぶ（'+selected.length+'/3）',own.deck.filter(y=>!selected.includes(y.uid)).map(y=>opt(card(y).name,y.uid,cost(card(y)),y.cardId)));break;}
+ case'topShield':{const y=api.takeTop(s,t.p);if(y){clear(y,'shields');api.addZone(s,t.p,'shields',y);api.notifyShieldAdded(s,t.p,y);}api.deckCheck(s,t.p);break;}
+ case'containerRevive':{const y=own.grave.find(y=>y.uid===t.target);if(y)offer(s,t,'DARK MEMORY CONTAINERを墓地から出す？');break;}
+ case'ulfeusCast':pickExecute(s,t,{colorsAny:['光','火'],filter:{spell:true}});break;
+ case'mobiusWin':offer(s,t,'バトル勝利：シールドを1つブレイクする？');break;
+ case'mobiusChosen':offer(s,t,'選ばれた時：相手のシールドを3つブレイクする？');break;
+ case'barugaBurn':case'universeBurn':if(x&&x.under?.length)choice(s,t,'メテオバーンする下のカードを選ぶ',[...api.allLayers(x).slice(1).map(y=>opt(card(y).name,y.uid,10,y.cardId)),skip()]);break;
+ case'charisma':{if(!x)break;const rows=creatures(s,1-t.p).filter(y=>api.power(y,false,s)<api.power(x,false,s));const ids=rows.map(y=>y.uid);if(ids.length){move(s,api.shuffled(ids,Math.floor(api.random(s)*4294967296)).map(uid=>({player:1-t.p,uid,to:'deck',destroy:false})));}break;}
+ case'vv':{const ids=reveal(s,t,5);pending(s,t,'vvPick',{ids,selected:[]});break;}
+ case'vvPick':{const left=t.ids.filter(uid=>own.deck.some(y=>y.uid===uid));if(t.selected.length>=Math.min(2,t.ids.length)){for(const uid of t.selected)zoneMove(s,t.p,'deck',uid,'hand',t);const rest=left.filter(uid=>!t.selected.includes(uid));own.g35Protected=(own.g35Protected||[]).filter(uid=>!t.ids.includes(uid));if(x)for(const uid of rest){const y=remove(own.deck,uid);clear(y,'seals');y.faceDown=true;y.sealOf=x.uid;(own.seals??=[]).push(y);x.sealed=true;}api.deckCheck(s,t.p);break;}choice(s,t,'公開した5枚から手札に加える2枚を選ぶ',own.deck.filter(y=>t.ids.includes(y.uid)&&!t.selected.includes(y.uid)).map(y=>opt(card(y).name,y.uid,cost(card(y)),y.cardId)));break;}
+ case'redmad':{const y=api.takeTop(s,t.p);if(y){const max=cost(card(y));clear(y,'mana');api.addZone(s,t.p,api.deckRedirect(s,t.p)?'grave':'mana',y);give(s,t,[E('Target',{element:true,filter:{belowCost:max},to:'grave',optional:true})]);}api.deckCheck(s,t.p);break;}
+ case'limone':choice(s,t,'破壊するクリーチャーを選ぶ',[opt('進化をすべて破壊',true,5),opt('非進化をすべて破壊',false,5)]);break;
+ case'sinberosRecover':if(own.grave.some(y=>y.uid===t.target))offer(s,t,'シンベロスを墓地から手札へ戻す？');break;
+ case'moonUnder':choice(s,t,'このタマシードを自分の進化・NEOの下に置く？',[...creatures(s,t.p).filter(y=>y.uid!==t.uid&&(card(y).neoEvolution||api.isEvolution(y))).map(y=>opt(card(y).name,y.uid,10,y.cardId)),skip()]);break;
+ case'sealSelf':if(x)api.seal(s,t.p,[x.uid],t.n);break;
+ case'skullUnseal':{const seal=own.seals.find(y=>y.sealOf===t.uid);if(seal)api.moveSeal(s,t.p,seal.uid,'grave');break;}
+ case'skullOpen':if(x){give(s,t,[E('ExactMove',{owner:t.p,target:x.uid,to:'grave'}),S('grave',null,1,{creature:true,color:'闇'},{deploy:true})]);}break;
+ case'alphaAttack':give(s,t,[E('Draw',{n:x?api.allLayers(x).length:0,optional:true}),S('hand',null,1,{race:'エンジェル・コマンド'},{deploy:true,optional:true})]);break;
+ case'stellaUse':give(s,t,[E('Draw',{n:1,optional:true})]);for(const y of creatures(s,1-t.p))(y.g35NoAttack??=[]).push({turn:s.turn});(s.g35AttackStops??=[]).push({p:1-t.p,turn:s.turn});break;
+ case'ppEnd':if(!opp.battle.some(y=>api.isCreature(s,y)&&y.tapped))offer(s,t,'山札から2枚マナに置き、マナ1枚を手札に戻す？');break;
+ case'kira':if(t.left>0){const ids=reveal(s,t,1),other=reveal(s,t,1,1-t.p),y=own.deck.find(y=>ids.includes(y.uid)),z=opp.deck.find(y=>other.includes(y.uid));if(y&&z){const won=cost(card(y))>=cost(card(z));order(s,t,other,1-t.p);pending(s,t,'kiraAfter',{target:y.uid,won,left:t.left-1});}else{order(s,t,ids);order(s,t,other,1-t.p);}}break;
+ case'kiraAfter':{const y=own.deck.find(y=>y.uid===t.target);if(y&&t.won&&api.canCast(s,t.p,card(y),'deck')){pending(s,t,'kira',{left:t.left});if(card(y).type==='creature')deploy(s,t,'deck',y.uid);else execute(s,t,'deck',y.uid);}else{if(y)order(s,t,[y.uid]);pending(s,t,'kira',{left:t.left});}break;}
+ case'hulcusEntry':{const y=own.battle.find(y=>y.uid===t.target);if(!y||creatures(s,t.p).some(z=>z.uid!==y.uid&&cost(card(z))===cost(card(y))))break;give(s,t,[C('hulcusLock'),E('Draw',{n:1})]);break;}
+ case'hulcusLock':target(s,t,'次の自分のターンまで攻撃・ブロックを止める相手を選ぶ',creatures(s,1-t.p));break;
+ case'shuramaru':offer(s,t,'パワー・ガチンコ・ジャッジする？');break;
+ case'shuraJudge':{const ids=reveal(s,t,1),other=reveal(s,t,1,1-t.p),a=own.deck.find(y=>ids.includes(y.uid)),b=opp.deck.find(y=>other.includes(y.uid));order(s,t,other,1-t.p);if(a&&b&&parseInt(card(a).power||0)>=parseInt(card(b).power||0)&&card(a).type==='creature')choice(s,{...t,target:a.uid},'勝ったクリーチャーを無料で召喚する？',[opt('召喚する',true,20,a.cardId),skip()]);else order(s,t,ids);break;}
+ case'majin':{const ids=reveal(s,t,3);choice(s,{...t,ids},'山札の上3枚から手札またはマナへ',own.deck.filter(y=>ids.includes(y.uid)).flatMap(y=>['hand','mana'].map(to=>opt(card(y).name+'を'+(to==='hand'?'手札':'マナ')+'へ',{uid:y.uid,to},to==='mana'?10:cost(card(y)),y.cardId))));break;}
+ case'quasar':{const ids=reveal(s,t,5);pending(s,t,'quasarPick',{ids,step:0});break;}
+ case'quasarPick':{const to=['shields','hand','mana','grave','under'][t.step],ys=own.deck.filter(y=>t.ids.includes(y.uid));if(to&&ys.length)choice(s,t,({shields:'シールド',hand:'手札',mana:'マナ',grave:'墓地',under:'このクリーチャーの下'}[to])+'に置く1枚を選ぶ',ys.map(y=>opt(card(y).name,y.uid,to==='hand'?cost(card(y)):5,y.cardId)));break;}
+ case'quasarLeave':pending(s,t,'quasarGrave',{selected:[]});break;
+ case'quasarGrave':choice(s,t,'山札に戻す墓地のカードを選ぶ',[...own.grave.filter(y=>!t.selected.includes(y.uid)).map(y=>opt(card(y).name,y.uid,3,y.cardId)),opt('確定してシャッフル',null,0)]);break;
+ case'isekai':target(s,t,'破壊するクリーチャーを選ぶ',[...creatures(s,0),...creatures(s,1)]);break;
+ case'isekaiReveal':{const p=t.owner,other=s.players[p],ids=[];for(const y of other.deck){ids.push(y.uid);if(card(y).type==='creature'&&cost(card(y))<t.max){pending(s,{...t,p},'isekaiFinish',{target:y.uid});deploy(s,{...t,p},'deck',y.uid);return true;}}api.shuffleLibrary(s,p);break;}
+ case'isekaiFinish':api.shuffleLibrary(s,t.p);break;
+ case'rebirth':target(s,t,'破壊する自分のクリーチャーを選ぶ',creatures(s,t.p),true);break;
+ case'rebirthPut':if(!own.grave.some(y=>y.uid===t.sacrifice))break;give(s,t,[S('hand',null,1,{creature:true,max:own.mana.length},{deploy:true})]);break;
+ case'worldEntry':if(x&&api.allLayers(x).length-1>=3)give(s,t,[E('Discard',{n:opp.hand.length})]);if(x&&api.allLayers(x).length-1>=5)(s.g35ZeroMana??=[]).push({p:1-t.p,who:t.p,turns:own.turns});break;
+ case'worldAttack':choice(s,t,'破壊するエレメントの文明を選ぶ',['光','水','闇','火','自然'].map(v=>opt(v,v,opp.battle.filter(y=>colors(effective(y,s)).includes(v)).length*10)));break;
+ case'graveName':{if(!opp.hand.length)break;const y=opp.hand[Math.floor(api.random(s)*opp.hand.length)];api.discardSelected(s,1-t.p,[y.uid],t.source,t.p);give(s,t,[E('Mill',{n:cost(card(y)),optional:true})]);break;}
+ case'graveNameRevive':give(s,t,[S('grave',null,1,{creature:true,max:(x?cost(effective(x,s)):t.max)-1},{deploy:true,optional:true,grant:{entryPlayerAttack:true},delayed:'deck'})]);break;
+ case'iwashin':give(s,t,[E('Offer',{defs:[E('Draw',{n:1}),E('Discard',{owner:'self',n:1})]})]);break;
+ case'deferredReturn':{const y=own.extra.find(y=>y.uid===t.target);if(y){deploy(s,t,'extra',y.uid);s.g35Deferred=(s.g35Deferred||[]).filter(r=>r.uid!==y.uid);}break;}
+ case'untapMana':{const selected=t.selected||[],ys=own.mana.filter(y=>!selected.includes(y.uid)&&api.canUntap(y));if(selected.length>=t.n||!ys.length)break;choice(s,{...t,selected},'アンタップするマナを選ぶ（'+selected.length+'/'+t.n+'）',ys.map(y=>opt(card(y).name,y.uid,y.tapped?10:0,y.cardId)));break;}
+ case'scorpionAttack':give(s,t,[E('Ramp',{n:1}),S('mana',null,1,{max:own.mana.length+1,creatureOrSeed:true},{deploy:true,optional:true})]);break;
+ case'sixfall':{const rows=creatures(s,t.owner);if(rows.length<2)break;target(s,{...t,p:t.owner,controller:t.p,stage:t.stage||0},t.stage?'その下に置くクリーチャーを選ぶ':'下にカードを重ねるクリーチャーを選ぶ',rows.filter(y=>y.uid!==t.host),true);break;}
+ case'alternative':alternative(s,t);break;
+ case'fujiEnd':alternative(s,{...t,role:'fuji',selected:[]});break;
+ case'gerachoSwap':choice(s,t,'Jクライム8：墓地のジョーカーズと入れ替える？',[...own.grave.filter(y=>j(card(y))&&card(y).type==='creature'&&cost(card(y))<=8&&canPut(s,t.p,y,'grave')).map(y=>opt(card(y).name,y.uid,10+cost(card(y)),y.cardId)),skip()]);break;
+ case'noop':break;
+ case'executeCard':{const y=own[t.origin]?.find(y=>y.uid===t.target),c=y&&faces(card(y))[t.face||0];if(!c||!api.canCast(s,t.p,c,t.origin))break;if(c.type==='spell'){own.g35Protected=(own.g35Protected||[]).filter(uid=>uid!==y.uid);cast(s,t.p,y.uid,true,null,t.face||0,null,t.origin);}else give(s,t,[E('Put',{origin:t.origin,target:y.uid,face:t.face||0,execution:true})]);break;}
+ case'finishAlt':{const y=own.hand.find(y=>y.uid===t.target);if(y){if(t.role==='fuji')deploy(s,t,'hand',y.uid);else if(api.canPay(s,t.p,{...card(y),cost:t.payment,printedCost:card(y).cost}))cast(s,t.p,y.uid,false,null,0,{cost:t.payment,printedCost:card(y).cost},'hand');}break;}
+ case'gerachoFinish':{if(!own.grave.some(y=>y.uid===t.oldUid))break;const y=remove(own.grave,t.target);if(y){enter(s,t.p,y,null,{origin:'grave',execution:false});if(own.battle.includes(y)&&t.attack){s.attack={...t.attack,attacker:y.uid};}}break;}
+ case'nefer':{const y=peek(s,t.p);if(y){api.log(s,t.p,'reveal',card(y).name,{cardId:y.cardId});if(j(card(y)))choice(s,{...t,target:y.uid},'ジョーカーズを手札に加える？',[opt('加える',true,10,y.cardId),skip()]);}break;}
+ case'terminal':if(!s.g35Terminal?.[t.p])offer(s,t,'終極宣言：ブロッカーをすべてアンタップする？');break;
+ case'extraTurn':(s.extraTurns??=[]).push({player:t.p,source:t.source});break;
+ case'infinity':if(x){api.shuffleLibrary(s,t.p);const ids=reveal(s,t,own.battle.filter(y=>['creature','seed','gear','field'].includes(effective(y,s).type)).length);pending(s,t,'infinityPick',{ids});}break;
+ case'infinityPick':pickExecute(s,t,{origin:'deck',ids:t.ids,optional:true});break;
+ case'untapOther':target(s,t,'アンタップする自分の他のクリーチャーを選ぶ',creatures(s,t.p).filter(y=>y.uid!==t.uid),false);break;
+ case'miraFinal':for(const y of creatures(s,1-t.p))api.tap(s,1-t.p,y);give(s,t,[E('Draw',{n:creatures(s,1-t.p).filter(y=>y.tapped).length,optional:true})]);break;
+ case'bottomBatch':order(s,t,t.ids.filter(uid=>own.deck.some(y=>y.uid===uid)));break;
+ case'masterBreak':{const ids=t.uids.filter(uid=>s.players[t.defender].shields.some(y=>y.uid===uid));if(!ids.length){s.breakContext=null;break;}give(s,t,[E('Target',{to:'grave'}),C('masterCommit',{...t,uids:ids})]);break;}
+ case'masterCommit':{s.breakContext={...t.context,g35Prepared:true};api.interruptBreak(s,t.defender,[t.uids[0]],task('g35_Custom',t.p,t.source,{...t,name:'masterBreak',uids:t.uids.slice(1)}));break;}
+ case'chief':choice(s,t,'ジョット・首魁・ジョラゴンの効果を選ぶ',[opt('コスト5以下のジョーカーズを手札から出す',0,20),...(!card(t.source).copyOf?[opt('Jビッグ1：他のジョーカーズの登場時能力を使う',1,10)]:[])]);break;
+ case'big1':target(s,t,'登場時能力を使う他のジョーカーズを選ぶ',own.battle.filter(y=>y.uid!==t.uid&&j(effective(y,s))));break;
+ case'chiefBase':choice(s,t,'ジョーカーズまたはレクスターズに重ねて召喚する',api.evolutionBases(s,t.p,card(t.source)).map(y=>opt(card(y).name,y.uid,10,y.cardId)));break;
+ case'jazzy':choice(s,t,'墓地から手札に戻すクリーチャーを選ぶ',own.grave.filter(y=>card(y).type==='creature').map(y=>opt(card(y).name,y.uid,cost(card(y)),y.cardId)));break;
+ default:throw Error('未実装の15画像効果：'+t.name);
+ }return true;}
+ function chosen(s,t,v){if(t.op==='g35_Order'){pendingOrder(s,t,v);return true;}if(t.op==='g35_Fight'){const x=unit(s,t),y=s.players[1-t.p].battle.find(y=>y.uid===v);if(x&&y)api.battle(s,t.p,x,1-t.p,y);return true;}if(t.op!=='g35_Custom')return false;const own=data(s,t),opp=s.players[1-t.p],x=unit(s,t);switch(t.name){
+ case'tapLock':{const y=opp.battle.find(y=>y.uid===v);if(y){api.tap(s,1-t.p,y);(y.tapLocks??=[]).push({who:1-t.p,afterTurns:opp.turns+1});}pending(s,t,'tapLock',{selected:[...t.selected,v]});break;}
+ case'shieldForce':if(x&&v)x.g35ShieldForce=v;break;
+ case'galaxyShield':if(v)api.moveShield(s,t.p,v,'hand');pending(s,t,'galaxyHand');break;
+ case'galaxyHand':if(v)pending(s,t,'galaxyFace',{target:v});break;
+ case'galaxyFace':{const y=remove(own.hand,t.target);if(y){clear(y,'shields');y.faceUp=v;api.addZone(s,t.p,'shields',y);api.notifyShieldAdded(s,t.p,y);}break;}
+ case'punisher':case'ulfeusCast':if(v)execute(s,t,t.exec.origin,v.uid,v.face);else if(t.name==='punisher')api.draw(s,t.p,1);break;
+ case'deadBottom':zoneMove(s,t.p,t.origin,v,'deck',t);break;
+ case'chooseShield':api.moveShield(s,t.owner??t.p,v,t.to||'grave');break;
+ case'moujaDiscard':{const y=own.hand.find(y=>y.uid===v),multi=y&&colors(card(y)).length>1;api.discardSelected(s,t.p,[v],t.source,t.p);if(multi&&x&&api.canUntap(x))x.tapped=false;break;}
+ case'brandDiscard':if(v)pending(s,t,'brandDiscard',{selected:[...t.selected,v]});else{api.discardSelected(s,t.p,t.selected,t.source,t.p);give(s,t,t.selected.map(()=>E('Target',{filter:{maxPower:6000},to:'grave'})));}break;
+ case'copyEntry':if(v!==null&&v!==undefined&&t.entries[v])api.resolveEntry(s,t.entries[v]);break;
+ case'slotPick':if(v){order(s,t,t.ids.filter(uid=>uid!==v));deploy(s,t,'deck',v,{grant:{entryPlayerAttack:true}});}break;
+ case'seven':{const y=opp.deck.find(y=>y.uid===v);if(y){const n=cost(card(y)),xs=creatures(s,1-t.p).filter(y=>cost(card(y))===n),ids=[...t.ids,...xs.flatMap(y=>api.allLayers(y).map(y=>y.uid))];pending(s,{...t,p:1-t.p},'bottomBatch',{ids});move(s,xs.map(y=>({player:1-t.p,uid:y.uid,to:'deck',destroy:false})));}break;}
+ case'roadLock':(s.g35SpellLocks??=[]).push({p:1-t.p,turn:s.turn,color:v});break;
+ case'finalRemove':pending(s,t,'finalRemove',{colorsLeft:t.colorsLeft.slice(1),chosen:[...t.chosen,v]});break;
+ case'maximum':{const y=own.battle.find(y=>y.uid===v);if(y){(y.g35Maximum??=[]).push({turn:s.turn,n:creatures(s,t.p).length});}break;}
+ case'freedom':if(t.left>1)pending(s,t,'freedom',{left:t.left-1});give(s,t,[C(['freedomBottom','freedomSpeed','freedomIgnore'][v])]);break;
+ case'freedomBottom':if(v)api.moveBattleCard(s,v.p,v.uid,'deck');break;
+ case'freedomSpeed':{const y=own.battle.find(y=>y.uid===v);if(y)(y.g34Grants??=[]).push({turn:s.turn,entryPlayerAttack:true});break;}
+ case'freedomIgnore':{const y=opp.battle.find(y=>y.uid===v);if(y)y.g35Ignored=s.turn;break;}
+ case'gaigingReveal':if(v)pending(s,t,'gaigingTop');break;
+ case'gaigingTop':if(v)deploy(s,t,'deck',t.target);else zoneMove(s,t.p,'deck',t.target,'hand',t);break;
+ case'souryu':if(v){pending(s,t,'souryuFight',{target:v});deploy(s,t,'mana',v);}break;
+ case'endWorld':pending(s,t,'endWorld',{selected:[...t.selected,v]});break;
+ case'containerRevive':if(v)deploy(s,t,'grave',t.target);break;
+ case'mobiusWin':if(v&&opp.shields.length)api.breakShields(s,1-t.p,opp.shields.slice(0,1).map(y=>y.uid));break;
+ case'mobiusChosen':if(v&&opp.shields.length)api.breakShields(s,1-t.p,opp.shields.slice(0,3).map(y=>y.uid));break;
+ case'barugaBurn':case'universeBurn':if(v&&x){const y=api.allLayers(x).slice(1).find(y=>y.uid===v),last=api.allLayers(x).length===2;api.moveBattleCard(s,t.p,v,'grave');if(t.name==='universeBurn'&&last&&y&&race(card(y),'フェニックス'))api.finish(s,t.p,'究極銀河ユニバースの最後のフェニックスをメテオバーン');else if(t.name==='barugaBurn')give(s,t,[S('mana',null,1,{creature:true,max:own.mana.length-1},{deploy:true})]);}break;
+ case'vvPick':pending(s,t,'vvPick',{selected:[...t.selected,v]});break;
+ case'limone':move(s,[0,1].flatMap(p=>creatures(s,p).filter(y=>api.isEvolution(y)===v).map(y=>({player:p,uid:y.uid,to:'grave'}))));break;
+ case'sinberosRecover':if(v)zoneMove(s,t.p,'grave',t.target,'hand',t);break;
+ case'moonUnder':if(v){const y=own.battle.find(y=>y.uid===v),seed=own.battle.find(y=>y.uid===t.uid);if(y&&seed){remove(own.battle,seed.uid);(y.under??=[]).push(seed);}}break;
+ case'ppEnd':if(v)give(s,t,[E('Ramp',{n:2}),S('mana','hand',1)]);break;
+ case'hulcusLock':if(v){(s.extLimits??=[]).push({kind:'attack',uid:v,player:1-t.p,who:t.p,expires:'start'},{kind:'block',uid:v,player:1-t.p,who:t.p,expires:'start'});}break;
+ case'shuramaru':if(v)pending(s,t,'shuraJudge');break;
+ case'shuraJudge':if(v){give(s,t,[E('Put',{origin:'deck',target:t.target,execution:true}),E('ExactMove',{owner:t.p,target:t.uid,to:'hand'})]);}else order(s,t,[t.target]);break;
+ case'majin':if(v){zoneMove(s,t.p,'deck',v.uid,v.to,t);order(s,t,t.ids.filter(uid=>uid!==v.uid));}break;
+ case'quasarPick':{const to=['shields','hand','mana','grave','under'][t.step];zoneMove(s,t.p,'deck',v,to,t);pending(s,t,'quasarPick',{ids:t.ids.filter(id=>id!==v),step:t.step+1});break;}
+ case'quasarGrave':if(v)pending(s,t,'quasarGrave',{selected:[...t.selected,v]});else{const xs=t.selected.map(uid=>remove(own.grave,uid)).filter(Boolean);for(const y of xs)clear(y,'deck');api.shuffleLibrary(s,t.p,xs);}break;
+ case'isekai':if(v){const p=s.players.findIndex(own=>own.battle.some(y=>y.uid===v)),y=s.players[p].battle.find(y=>y.uid===v);if(y){pending(s,t,'isekaiReveal',{owner:p,max:cost(card(y))});move(s,[{player:p,uid:v,to:'grave'}]);}}break;
+ case'rebirth':if(v){pending(s,t,'rebirthPut',{sacrifice:v});move(s,[{player:t.p,uid:v,to:'grave'}]);}break;
+ case'worldAttack':move(s,opp.battle.filter(y=>colors(effective(y,s)).includes(v)).map(y=>({player:1-t.p,uid:y.uid,to:'grave'})));break;
+ case'untapMana':{const y=own.mana.find(y=>y.uid===v);if(y&&api.canUntap(y))y.tapped=false;pending(s,t,'untapMana',{selected:[...t.selected,v]});break;}
+ case'sixfall':if(v){if(!t.host)pending(s,t,'sixfall',{host:v,stage:1});else{const p=t.owner,host=s.players[p].battle.find(y=>y.uid===t.host),y=s.players[p].battle.find(y=>y.uid===v);if(host&&y&&host!==y&&api.canLeave(s,p,y)){remove(s.players[p].battle,y.uid);api.evolutionBase?.(s,p,y);(host.under??=[]).push(y);}}}break;
+ case'alternative':case'fujiEnd':alternativeChosen(s,t,v);break;
+ case'gerachoSwap':if(v&&x){const attack=s.attack?structuredClone(s.attack):null,oldUid=x.uid,y=own.grave.find(y=>y.uid===v);if(y&&api.canLeave(s,t.p,x)){pending(s,t,'gerachoFinish',{target:v,oldUid,attack});move(s,[{player:t.p,uid:x.uid,to:'grave',destroy:false}]);}}break;
+ case'nefer':if(v)zoneMove(s,t.p,'deck',t.target,'hand',t);break;
+ case'terminal':if(v){(s.g35Terminal??=[false,false])[t.p]=true;for(const y of creatures(s,t.p))if(effective(y,s).blocker&&api.canUntap(y))y.tapped=false;if(creatures(s,t.p).filter(y=>effective(y,s).blocker).length>=12)pending(s,t,'extraTurn');}break;
+ case'infinityPick':order(s,t,t.ids.filter(uid=>uid!==v?.uid));if(v)execute(s,t,'deck',v.uid,v.face);break;
+ case'untapOther':{const y=own.battle.find(y=>y.uid===v);if(y&&api.canUntap(y))y.tapped=false;break;}
+ case'chief':if(v===0)give(s,t,[S('hand',null,1,{race:'ジョーカーズ',max:5},{deploy:true})]);else pending(s,t,'big1');break;
+ case'big1':{const y=own.battle.find(y=>y.uid===v);if(y)pending(s,t,'copyEntry',{copy:y.cardId});break;}
+ case'chiefBase':cast(s,t.p,t.uid,false,v);break;
+ case'jazzy':{const y=own.grave.find(y=>y.uid===v);if(y){const n=cost(card(y));zoneMove(s,t.p,'grave',v,'hand',t);give(s,t,[E('Target',{filter:{max:n},to:'grave'})]);}break;}
+ default:throw Error('未実装の15画像選択：'+t.name);
+ }return true;}
+ function pendingOrder(s,t,v){put(s,{...t,ids:t.ids.filter(uid=>uid!==v),ordered:[...(t.ordered||[]),v]});}
+ function altPayable(s,p,c,r,ids=null){const own=s.players[p],rows=r==='joragon'?creatures(s,p).filter(y=>j(card(y))&&api.canLeave(s,p,y)&&(!ids||ids.includes(y.uid))):['hand','mana'].flatMap(z=>own[z].filter(y=>y.cardId!==c.id&&(!ids||ids.includes(y.uid))));const virtual=r==='joragon'?{...s,players:s.players.map((a,i)=>i===p?{...a,battle:a.battle.filter(y=>!rows.includes(y))}:a)}:s;return api.canPay(virtual,p,{...c,cost:Math.max(1,cost(c)-rows.length),printedCost:c.cost});}
+ function alternative(s,t){const own=data(s,t),c=card(t.source),selected=t.selected||[];if(t.role==='chief'){pending(s,t,'chiefBase');return;}if(t.role==='alpha'){give(s,t,[E('Put',{origin:'hand',target:t.uid,execution:true,payment:{cost:5,civilizations:['光','水','自然'],fixedPayment:true}})]);return;}const rows=t.role==='tree'?['hand','mana'].flatMap(origin=>own[origin].filter(y=>y.uid!==t.uid&&!selected.includes(y.uid)).map(y=>({y,origin}))):creatures(s,t.p).filter(y=>j(effective(y,s))&&api.canLeave(s,t.p,y)&&!selected.includes(y.uid)).map(y=>({y,origin:'battle'}));choice(s,{...t,name:'alternative',selected,rows:t.rows||[]},t.role==='tree'?'召喚後に墓地へ置く手札・マナを選ぶ':t.role==='fuji'?'合計コスト7以上のジョーカーズを手札へ戻す':'戻してコストを減らすジョーカーズを選ぶ',[...rows.map(({y,origin})=>opt(card(y).name,{uid:y.uid,origin},t.role==='fuji'?3:1,y.cardId)),...((t.role==='fuji'?(t.rows||[]).reduce((n,r)=>n+r.cost,0)>=7:altPayable(s,t.p,c,t.role,selected))?[opt('確定する',null,0)]:[]),opt('やめる','cancel',-50)]);}
+ function alternativeChosen(s,t,v){if(v==='cancel')return;if(v){pending(s,t,'alternative',{selected:[...t.selected,v.uid],rows:[...t.rows,{...v,cost:cost(card(data(s,t)[v.origin].find(y=>y.uid===v.uid)))}]});return;}const own=data(s,t),x=own.hand.find(y=>y.uid===t.uid);if(!x)return;if(t.role==='fuji'){if(t.rows.reduce((n,r)=>n+r.cost,0)<7)return;give(s,t,[C('finishAlt',{role:'fuji',target:t.uid})]);move(s,t.rows.map(r=>({player:t.p,uid:r.uid,to:'hand',destroy:false})));}else if(t.role==='joragon'){give(s,t,[C('finishAlt',{role:t.role,target:t.uid,payment:Math.max(1,cost(card(x))-t.rows.length)})]);move(s,t.rows.map(r=>({player:t.p,uid:r.uid,to:'hand',destroy:false})));}else{const n=Math.max(1,cost(card(x))-t.rows.length);x.g35TreeSelected=t.rows;cast(s,t.p,x.uid,false,null,0,{cost:n,printedCost:card(x).cost},'hand');}}
+ const event=(p,x,name,more={})=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g35_Custom',p,x.cardId,{name,uid:x.uid,incarnation:x.incarnation||0,...more})});
+ const lockAttack=(s,p,y,who)=>{(y.g35NoAttack??=[]).push({who,turns:s.players[who].turns});};
+ const hooks={
+ inherit(s,base,x){for(const k of['g35Ignored','g35NoAttack','g35Maximum','g35DrawOnBottom'])if(base[k]!==undefined)x[k]=structuredClone(base[k]);},
+ decorate(s,p,x,c){if(!s||p<0||c.type!=='creature')return c;const d={},own=s.players[p],r=c.g35Role;let bonus=0;if(active(s,p,'ruru').length)d.blocker=true;if(active(s,p,'jazzy').some(y=>api.isEvolution(y)))Object.assign(d,{speedAttacker:true,unblockable:true});if(active(s,p,'kira').length)d.speedAttacker=true;if(race(c,'ファイアー・バード')&&active(s,p,'valkyrie').length)d.speedAttacker=true;if(race(c,'ドラゴン')&&active(s,p,'valkyrie').length)d.blocker=true;if(j(c)&&active(s,p,'roadJohnny').some(y=>y.uid!==x.uid))bonus+=4000*active(s,p,'roadJohnny').filter(y=>y.uid!==x.uid).length;if(own.hand.length<=1){const brands=active(s,p,'brand').filter(y=>y.uid!==x.uid);if(brands.length){bonus+=4000*brands.length;d.poweredBreaker=true;}}if(soul(s,x,'heel')){d.poweredBreaker=true;if(used(s,'g35GraveLeft',x))bonus+=3000;}if(active(s,p,'dogiHyper').some(y=>y.hyperActive))d.speedAttacker=true;if(r==='hyperJohnny'&&jokerCount(s,p)>=5)d.unblockable=true;const max=(x.g35Maximum||[]).filter(g=>g.turn===s.turn);if(max.length)d.extraBreak=(c.extraBreak||0)+max.reduce((n,g)=>n+g.n,0);if(bonus)d.power=Number(c.power)+bonus;return Object.keys(d).length?{...c,...d}:c;},
+ discount(s,p,c){let n=0;if(c.type==='creature'){if(active(s,1-p,'alphaLion').length)n-=5*active(s,1-p,'alphaLion').length;if(c.g35Role==='chief'&&c.g27BaseUid)n+=2;if(c.g35Role==='ruru')n+=2*creatures(s,p).filter(y=>angel(effective(y,s))).length;if(c.g35Role==='roadJohnny')n+=jokerCount(s,p);if(c.g35Role==='finalJohnny')n+=2*new Set(s.players[1-p].mana.flatMap(y=>api.manaColors(card(y),s,1-p))).size;if(c.g35Role==='flameDance'&&jokerCount(s,p)>=4)n+=3;if(cost(c)>=6)n+=active(s,p,'girl').length;if(j(c))n+=active(s,p,'man').length;}return n;},
+ allowedCast(s,p,c){if(c.type!=='spell')return true;if(active(s,1-p,'alphaLion').length||active(s,1-p,'alpha').length&&!colors(c).includes('光'))return false;if((s.g35SpellLocks||[]).some(l=>l.p===p&&l.turn===s.turn&&colors(c).includes(l.color)))return false;const a=s.attack&&s.players[1-p].battle.find(x=>x.uid===s.attack.attacker);return !(a&&(a.g35Maximum||[]).some(g=>g.turn===s.turn));},
+ canLeave(s,p,x){if(card(x.cardId).g35Role==='skull'&&(s.players[p].seals||[]).some(y=>y.sealOf===x.uid))return false;return !active(s,p,'galaxy').some(y=>s.players[p].shields.some(root=>api.shieldCards(root).some(z=>z.uid===y.g35ShieldForce)));},
+ canAttack(s,p,x){return !(s.g35AttackStops||[]).some(l=>l.p===p&&l.turn===s.turn)&&!(x.g35NoAttack||[]).some(l=>l.turn===s.turn||l.who!==undefined&&s.players[l.who].turns<=l.turns);},
+ canAttackTarget(s,a,b){return !(soul(s,b,'sixfall')&&cost(effective(a,s))<cost(effective(b,s)));},
+ targetable(s,p,owner,x){if(p===owner||!soul(s,x,'sixfall'))return true;const id=s.g35ChoosingSource||s.resolvingSpell?.source||s.extSpells?.at(-1)?.spell?.id,spell=s.extSpells?.findLast(f=>f.spell.id===id)?.spell,source=spell||(id&&card(id));return !source||cost(source)>=cost(effective(x,s));},
+ noLose(s,p){return (s.g35BakuNoLose||[]).some(r=>r.p===p&&r.turn===s.turn)||s.players[p].deck.length<=5&&active(s,p,'rose').length>0&&!(s.attack?.player===1-p&&s.attack.target==='player'&&!s.players[p].shields.length);},
+ shieldTrigger(s,p,x,c){return c.g35Role==='bakus'&&creatures(s,1-p).length>=3||c.g35Role==='intrusion'&&s.players[p].grave.filter(y=>colors(card(y)).includes('闇')&&['creature','seed'].includes(card(y).type)).length>=2;},
+ entry(s,p,y,o){const c=card(y),r=c.g35Role,stopped=o.selfMuted||api.selfStopped(s,p);if(y.g35TreeSelected){for(const row of y.g35TreeSelected)zoneMove(s,p,row.origin,row.uid,'grave',{p});delete y.g35TreeSelected;}if(api.isCreature(s,y)){for(const w of active(s,1-p,'mira'))lockAttack(s,p,y,1-p);if(!stopped){for(const w of active(s,p,'girl'))if(cost(c)>=6)queue(s,p,w,[E('Target',{element:true,filter:{max:3},to:'deck'})]);for(const w of active(s,p,'hulcus'))on(s,p,w,'hulcusEntry',{target:y.uid});}if(demon(c))for(const z of s.players[p].grave.filter(z=>card(z).g35Role==='sinberos'))on(s,p,z,'sinberosRecover',{target:z.uid});}if(r==='mira'&&o.revolution&&!stopped&&!s.finalUsed?.[p]){(s.finalUsed??=[false,false])[p]=true;(s.finalHistory??=[false,false])[p]=true;on(s,p,y,'miraFinal');}},
+ attack(s,p,x){if(api.selfStopped(s,p)||api.ignored(s,x))return;const r=effective(x,s).g35Role;const defs={galaxy:[C('galaxyAttack')],joragon:[C('joragonLoot')],melaventure:[C('melaSweep')],finalJohnny:[E('Offer',{defs:[C('finalRemove')]})],gaiging:[C('gaigingReveal')],venom:[E('Mill',{owner:1-p,n:1})],baruga:[C('barugaBurn')],universe:[C('universeBurn')],alpha:[C('alphaAttack')],world:[C('worldAttack')],scorpion:[C('scorpionAttack')],geracho:[C('gerachoSwap')],chief:[C('chief')],bakus:[E('Offer',{defs:[C('untapOther')]})]}[r];if(defs)queue(s,p,x,defs);for(let i=0;i<soul(s,x,'graveName');i++)queue(s,p,x,[C('graveNameRevive',{max:cost(effective(x,s))})]);if(colors(effective(x,s)).length>1)for(const w of active(s,p,'dogiHyper').filter(w=>w.hyperActive))queue(s,p,w,[S('mana',null,1,{creature:true,max:cost(effective(x,s))-1},{deploy:true,optional:true})]);if(r==='mobius'&&x.hyperActive)queue(s,p,x,[C('untapOther')]);},
+ attackEnd(s,a,x){if(!x)return;const r=effective(x,s).g35Role;if(r==='mouja')on(s,a.player,x,'moujaLoot');if(r==='katsu')queue(s,a.player,x,[E('Look',{n:3,stages:[{to:'hand',n:1,filter:{creature:true},optional:true}]})]);if(r==='hyperJohnny'&&jokerCount(s,a.player)>=5&&!creatures(s,1-a.player).length&&!s.players[1-a.player].shields.length)api.finish(s,a.player,'ジョーカーズの勝利');},
+ untapped(s,p,x){for(const w of active(s,1-p,'mira'))lockAttack(s,p,x,1-p);},
+ spellCast(s,p,c){for(const w of active(s,p,'leo'))queue(s,p,w,[E('Draw',{n:1,optional:true})]);execution(s,p);},
+ played(s,p,c,x,origin,permit){if(c.type!=='spell')execution(s,p);if(permit?.startsWith('g35:'))(s.g35Permits??={})[permit]=s.turn;},
+ discarded(s,t,x,actual){if(actual&&j(card(x)))for(const w of active(s,t.p,'joragon'))on(s,t.p,w,'copyEntry',{copy:x.cardId});},
+ graveAdded(s,p,all){for(const x of all)if(card(x).g35Role==='iwashin')on(s,p,x,'iwashin');for(const w of active(s,1-p,'venom'))if(!used(s,'g35FirstGrave',w)){mark(s,'g35FirstGrave',w);queue(s,1-p,w,[E('Draw',{n:1,optional:true})]);}},
+ graveDeparted(s,before){for(const p of[0,1])if(before[p].some(uid=>!s.players[p].grave.some(x=>x.uid===uid)))for(const x of s.players[p].battle)if(soul(s,x,'heel')&&!used(s,'g35GraveLeft',x)){mark(s,'g35GraveLeft',x);queue(s,p,x,[E('Draw',{n:1,optional:true})]);}},
+ shieldAdded(s,p){for(const x of s.players[p].grave.filter(x=>card(x).g35Role==='container'))on(s,p,x,'containerRevive',{target:x.uid});},
+ block(s,p,x){if(effective(x,s).g35Role==='galaxy')on(s,p,x,'galaxyAttack');},
+ unsealed(s,p,uid){const x=s.players[p].battle.find(x=>x.uid===uid);if(!x||(s.players[p].seals||[]).some(y=>y.sealOf===uid))return;if(card(x).g35Role==='vv')queue(s,p,x,[C('extraTurn')]);if(card(x.cardId).g35Role==='skull')on(s,p,x,'skullOpen');},
+ battleWins(s,p,w){const x=s.players[p].battle.find(x=>x.uid===w.uid);return x&&effective(x,s).g35Role==='mobius'?[event(p,x,'mobiusWin')]:[];},
+ snapshot(s){return{fuji:[0,1].map(p=>active(s,p,'fuji').map(x=>({...x}))),limone:[0,1].map(p=>active(s,p,'limone').map(x=>({...x}))),roles:[0,1].map(p=>s.players[p].battle.map(x=>({uid:x.uid,c:effective(x,s)})))};},
+ leaving(s,p,x,snapshot,to,destroy){const c=snapshot?.roles?.[p]?.find(y=>y.uid===x.uid)?.c||effective(x,s),r=c.g35Role;if(j(c))for(const w of snapshot?.fuji?.[p]||active(s,p,'fuji'))if(w.uid!==x.uid&&!used(s,'g35Fuji',w)){mark(s,'g35Fuji',w);on(s,p,w,'copyEntry',{copy:x.cardId});}if(r==='bakus'&&to==='mana')(s.g35BakuNoLose??=[]).push({p,turn:s.turn});if(r==='quasar')on(s,p,x,'quasarLeave');if(r==='venom'&&to==='grave'&&destroy)queue(s,p,x,[E('Offer',{defs:[E('Put',{origin:'grave',target:x.uid,tapped:true})]})]);if(to==='deck'&&x.g35DrawOnBottom)queue(s,p,x,[E('Draw',{n:1})]);if(to==='grave'&&destroy)for(const w of snapshot?.limone?.[1-p]||active(s,1-p,'limone'))if(!used(s,'g35Limone',w)){mark(s,'g35Limone',w);queue(s,1-p,w,[E('Discard',{n:2})]);}},
+ turnStart(s,p){const out=[];for(const x of active(s,p,'lastJudge'))if(!s.g35Terminal?.[p])out.push(event(p,x,'terminal'));for(const x of active(s,p,'shuramaru'))out.push(event(p,x,'shuramaru'));for(const x of s.players[p].battle.filter(x=>card(x.cardId).g35Role==='skull'))out.push(event(p,x,'skullUnseal'));for(const r of s.g35Deferred||[])if(r.p===p)out.push(event(p,{uid:r.uid,cardId:r.cardId},'deferredReturn',{target:r.uid}));return out;},
+ end(s){const out=[];for(const p of[0,1]){if(s.active===p){for(const r of['punisher','infinity'])for(const x of active(s,p,r))out.push(event(p,x,r==='infinity'?'infinity':'punisher'));for(const x of s.players[p].hand.filter(x=>card(x).g35Role==='fuji'))out.push(event(p,x,'fujiEnd'));if(active(s,p,'ruru').length)for(const x of creatures(s,p))out.push({...event(p,x,'noop'),task:task('g34_Untap',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})});}else for(const x of s.players[p].battle)if(soul(s,x,'pp'))out.push(event(p,x,'ppEnd'));}return out;},
+ expire(s,when,p){if(when==='start')s.g35ZeroMana=(s.g35ZeroMana||[]).filter(l=>l.who!==p||s.players[p].turns<l.turns);},
+ lossOptions(s,p){return active(s,p,'bakus').filter(x=>api.canLeave(s,p,x)).map(x=>opt(card(x).name+'をかわりにマナへ置く',{kind:'g35Baku',uid:x.uid},50,x.cardId));},
+ mainActions(s,p){const own=s.players[p],out=[];for(const x of own.hand){const c=card(x),r=c.g35Role;if(!api.canCast(s,p,c,'hand')||c.type==='creature'&&!api.canEnter(s,p,c,{origin:'hand',execution:true}))continue;if(r==='chief'&&api.evolutionBases(s,p,c).length&&api.canPay(s,p,{...c,g27BaseUid:api.evolutionBases(s,p,c)[0].uid}))out.push({kind:'play',alternative:'fifteenPhoto',uid:x.uid,cardId:c.id,role:r,label:c.name+'をNEO進化として召喚する（2軽減）'});const z=r==='alphaLion'&&creatures(s,p).filter(y=>angel(effective(y,s))).length>=5||r==='maximum'&&jokerCount(s,p)>=11||r==='freedom'&&jokerCount(s,p)>=7||r==='nyary'&&creatures(s,p).some(y=>colors(effective(y,s)).length===0)||r==='crossfire'&&own.grave.filter(y=>card(y).type==='creature').length>=6&&!own.battle.some(y=>card(y).name===c.name);if(z&&(!c.evolution||api.evolutionBases(s,p,c).length))out.push({kind:'play',uid:x.uid,cardId:c.id,cost:0,freeSummon:'G・ゼロ',label:c.name+'をG・ゼロで使う'});if(['joragon','tree'].includes(r)&&altPayable(s,p,c,r)&&!creatures(s,1-p).some(y=>effective(y,s).noCostReduction)||r==='alpha'&&own.mana.filter(y=>angel(card(y))).length>=3&&api.canPay(s,p,{cost:5,civilizations:['光','水','自然'],fixedPayment:true}))out.push({kind:'play',alternative:'fifteenPhoto',uid:x.uid,cardId:c.id,role:r,label:c.name+'の代替コストを選ぶ'});}
+ for(const origin of['mana','grave'])for(const x of own[origin]){const permits=[];if(origin==='mana'){for(const w of active(s,p,'ben'))if(!usedPermit(s,w,'ben'))permits.push({w,role:'ben',free:race(card(x),'ディスタス')});for(const w of own.battle)if(soul(s,w,'moon')&&demon(card(x)))permits.push({w,role:'moon'});}else for(const w of own.battle)if(soul(s,w,'tebulk')&&!usedPermit(s,w,'tebulk'))permits.push({w,role:'tebulk'});for(const row of permits)for(const[cFace,c]of faces(card(x)).entries())if((row.role==='moon'||c.type==='creature')&&api.canCast(s,p,c,origin)&&(c.type!=='creature'||api.canEnter(s,p,c,{origin,execution:true})&&(!c.evolution||api.evolutionBases(s,p,c).length))&&(row.free||api.canPay(s,p,{...c,summonOrigin:origin})))out.push({kind:'play',uid:x.uid,cardId:x.cardId,face:cFace,origin,manaPermit:'g35:'+row.role+':'+key(row.w),...(row.free?{freeSummon:'ディスタス召喚'}:{}),cost:row.free?0:api.summonCost(s,p,{...c,summonOrigin:origin}),label:card(x).name+'を'+(origin==='mana'?'マナ':'墓地')+'から使う'});}
+ return out;},
+ replacementOptions(s,p,c,origin){const rows=[];if(c.type!=='creature')return rows;for(const x of s.players[1-p].battle){if(api.ignored(s,x))continue;const r=card(x).g35Role,to=r==='van'&&/コマンド|ドラゴン/.test(c.race)?'grave':r==='pp'&&cost(c)>s.players[p].mana.length?'mana':r==='zoro'&&s.active===1-p&&origin!=='extra'?'extra':r==='baby'&&s.active===p&&jokerCount(s,1-p)>=3&&cost(c)>s.players[p].mana.length?'deck':null;if(to)rows.push({source:x.cardId,owner:1-p,to,g35Role:r,g35Uid:x.uid});}return rows;},
+ replaced(s,e,r){if(r.g35Role==='zoro')(s.g35Deferred??=[]).push({p:e.p,uid:e.inst.uid,cardId:e.inst.cardId});if(r.g35Role==='baby')move(s,[{player:r.owner,uid:r.g35Uid,to:'deck',destroy:false}]);},
+ selected(s,p,a,d){const value=a.kind==='extended'?d?.choices?.[a.choice]?.value:null,ids=new Set([...(a.targets||[]).map(t=>t.uid),...(['effect','fight','dragonTap'].includes(a.kind)?[a.target||a.uid]:[]),...(typeof value==='string'?[value]:value?.uid?[value.uid]:[])]);for(const x of s.players[1-p].battle)if(ids.has(x.uid)){const r=effective(x,s).g35Role;if(r==='gaiging')on(s,1-p,x,'extraTurn');if(r==='mobius'&&x.hyperActive)on(s,1-p,x,'mobiusChosen');}},
+ beforeBreak(s,defender,uids){const ctx=s.breakContext,x=ctx&&s.players[ctx.player].battle.find(x=>x.uid===ctx.sourceUid);if(!ctx||ctx.g35Prepared||!x||effective(x,s).g35Role!=='hyperJohnny'||x.entered!==s.turn||defender===ctx.player)return false;ctx.g35Prepared=true;put(s,task('g35_Custom',ctx.player,x.cardId,{name:'masterBreak',uid:x.uid,incarnation:x.incarnation||0,defender,uids:[...uids],context:structuredClone(ctx)}));return true;},
+ };
+ function usedPermit(s,x,r){return s.g35Permits?.['g35:'+r+':'+key(x)]===s.turn;}
+ function execution(s,p){for(const x of active(s,1-p,'stella'))on(s,1-p,x,'stellaUse');}
+ return{...hooks,run,chosen,alternative:(s,p,a)=>pending(s,{p,source:a.cardId,uid:a.uid,role:a.role,selected:[],rows:[]},'alternative')};
+}
