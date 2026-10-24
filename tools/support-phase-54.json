@@ -1,0 +1,109 @@
+{
+  "phase": 54,
+  "checkedAt": "2026-10-25",
+  "description": "水魔導具・ディスペクターの追加スクショ2枚に不足していた3種類の効果。デッキは自動登録しない。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/48745/",
+    "https://dm.takaratomy.co.jp/rule/qa/42959/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp07-070",
+      "name": "堕呪 カージグリ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-070",
+      "faces": [
+        {
+          "name": "堕呪 カージグリ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "魔導具",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "hand",
+            "title": "手札に戻す相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dm25rp4-004",
+      "name": "LOVE＆ABYSS",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-004",
+      "faces": [
+        {
+          "name": "LOVE＆ABYSS",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "プレイヤーを１人選ぶ。そのプレイヤーはバトルゾーン、手札、墓地にある自身のカードをすべて山札に加えてシャッフルする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "recommended",
+        "recommendRole": "love"
+      }
+    },
+    {
+      "id": "dmrp20-028",
+      "name": "Disゾロスター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-028",
+      "faces": [
+        {
+          "name": "Disゾロスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇/自然",
+          "civilizations": [
+            "光",
+            "闇",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から１枚目をシールド化する。その後、自分の山札の上から１枚目を墓地に置く。その後、自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "オラクル/ディスタス",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Custom",
+            "name": "shieldMandatory"
+          },
+          {
+            "op": "Mill",
+            "n": 1
+          },
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      }
+    }
+  ]
+}

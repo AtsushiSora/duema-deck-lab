@@ -8,6 +8,19 @@ export function createRecommendedRules(api){
  function run(s,t){
   if(!t.op.startsWith('g36'))return false;const own=s.players[t.p],opp=s.players[1-t.p];
   switch(t.op){
+   case'g36Love':choice(s,t,'山札に戻すプレイヤーを選ぶ',[
+    opt('相手の場・手札・墓地を山札に戻す',1-t.p,20+opp.battle.length*8+opp.hand.length*3+opp.grave.length),
+    opt('自分の場・手札・墓地を山札に戻す',t.p,(own.deck.length<5?60:0)-own.battle.length*10+own.grave.length)
+   ]);break;
+   case'g36LoveFinish':{
+    const target=s.players[t.owner],before=new Set(t.deck);
+    // Replacement payments and cards entering a new zone are new objects.
+    // Only the hand/grave objects present when the batch began participate.
+    for(const row of t.rows){const x=target[row.origin].find(x=>x.uid===row.uid&&(x.zoneSerial||0)===row.serial);if(x){remove(target[row.origin],x.uid);clear(x,'deck');api.addZone(s,t.owner,'deck',x);}}
+    const added=target.deck.filter(x=>!before.has(x.uid));target.deck=target.deck.filter(x=>before.has(x.uid));
+    api.shuffleLibrary(s,t.owner,added,t.source);
+    api.log(s,t.p,'zoneShuffle',(t.owner===t.p?'自分':'相手')+'の場・手札・墓地から'+added.length+'枚を山札に戻す',{cardId:t.source});api.deckCheck(s,t.owner);break;
+   }
    case'g36Look':case'g36Memory':{
     const hidden=reserved(own),xs=own.deck.filter(x=>!hidden.has(x.uid)).slice(0,t.op==='g36Memory'?own.deck.length:t.n),ids=xs.map(x=>x.uid);
     if(!ids.length)break;(own.g36Protected??=[]).push(...ids);
@@ -53,6 +66,11 @@ export function createRecommendedRules(api){
  function chosen(s,t,v){
   if(!t.op.startsWith('g36'))return false;const own=s.players[t.p];
   switch(t.op){
+   case'g36Love':{
+    const target=s.players[v],rows=['hand','grave'].flatMap(origin=>target[origin].map(x=>({origin,uid:x.uid,serial:x.zoneSerial||0})));
+    put(s,continuation(t,'g36LoveFinish',{owner:v,rows,deck:target.deck.map(x=>x.uid)}));
+    move(s,api.visibleBattleCards(s,v).map(x=>({player:v,uid:x.uid,to:'deck',destroy:false,controller:t.controller??t.p})));break;
+   }
    case'g36Look':case'g36Memory':{
     const x=remove(own.deck,v);if(!x){release(own,t.ids);break;}const c=card(x);
     const bounce=t.enemyOnly?faces(c).some(f=>f.type==='creature'&&Number(f.power)>=6000):faces(c).some(f=>colors(f).some(c=>c==='火'||c==='自然'));
@@ -74,7 +92,7 @@ export function createRecommendedRules(api){
  return {run,chosen,
   effect(s,p,c){if(c.effect!=='recommended')return false;const role=c.recommendRole;
    if(role==='chaff'){lock(s,p,{kind:'cast',player:1-p,spellCost:c.cost,spellSource:c.id});api.draw(s,p,1);return true;}
-   const op={dondon:'Look',surasura:'Look',memory:'Memory',pixie:'Pixie',purify:'Purify',dna:'DNA',jack:'Jack',scrapper:'Scrapper'}[role];if(!op)throw Error('未実装のおすすめカード：'+role);
+   const op={love:'Love',dondon:'Look',surasura:'Look',memory:'Memory',pixie:'Pixie',purify:'Purify',dna:'DNA',jack:'Jack',scrapper:'Scrapper'}[role];if(!op)throw Error('未実装のおすすめカード：'+role);
    put(s,task('g36'+op,p,c.id,{...(role==='dondon'?{n:5}:role==='surasura'?{n:4,enemyOnly:true}:role==='scrapper'?{selected:[],budget:5000}:{})}));return true;
   },
   allowedEntry(s,p,c,{execution}){return c?.type!=='creature'||execution||s.active!==p||!creatures(s,1-p).some(x=>!api.ignored(s,x)&&effective(x,s).recommendRole==='senno');},

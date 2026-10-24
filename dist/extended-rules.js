@@ -1,4 +1,4 @@
-import {createRecommendedRules} from './recommended-rules.js?v=0.89';
+import {createRecommendedRules} from './recommended-rules.js?v=0.90';
 import {createSixPhotoRules} from './six-photo-rules.js?v=0.86';
 import {createShieldPhotoRules} from './shield-photo-rules.js?v=0.84';
 import {createKenjiPhotoRules} from './kenji-photo-rules.js?v=0.82';

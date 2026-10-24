@@ -1,3 +1,4 @@
+import {PHOTO_REVISED_TWO} from './fixtures/photo-revised-two.mjs';
 import {APP_VERSION} from '../dist/app-updates.js';
 import {PHOTO_FIFTEEN_DECKS} from './fixtures/photo-fifteen-decks.mjs';
 import {PHOTO_SIX_DECKS} from './fixtures/photo-six-decks.mjs';
@@ -47,3 +48,5 @@ if(validateDeck(PHOTO_HIKARISMA).length||registry.coverage(PHOTO_HIKARISMA).unsu
 for(const deck of PHOTO_SIX_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported)throw Error('6枚の画像に未対応カードがあります：'+deck.name);console.log('Checked all six screenshots:106 names /240 physical copies.');
 
 for(const deck of PHOTO_FIFTEEN_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported)throw Error('15枚の画像に未対応カードがあります：'+deck.name);console.log('Checked all fifteen screenshots:159 names /600 physical copies.');
+
+for(const deck of PHOTO_REVISED_TWO)if(validateDeck(deck).length||registry.coverage(deck).unsupported)throw Error('追加の2枚の画像に未対応カードがあります：'+deck.name);console.log('Checked both revised screenshots:80 supported copies.');
