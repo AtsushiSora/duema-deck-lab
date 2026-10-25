@@ -41,7 +41,22 @@ export const ENVIRONMENT_LISTS=[
 
 export const VIRIDE_TARGET='env-viride-practice';
 export const ENVIRONMENT_TARGET='env-gp2026-pinky';
-// Count both physical copies and distinct card names; partial support never enables a battle.
+// Tournament names use the event year/season, never the catalogue verification date.
+// Super CS V Osaka: https://dm.takaratomy.co.jp/coverage/dmscs05b_photo/ (2023-07-29).
+// Super CS IX Niigata: https://dm.takaratomy.co.jp/coverage/dmscs09a_bd3/ (2026).
+export function environmentYear(deck){
+ const tournament=deck.tournament||deck,label=tournament.event||'',match=label.match(/(?:^|[^0-9])(20[0-9]{2})(?![0-9])/);
+ if(match)return Number(match[1]);
+ const slug=String(tournament.source||'').match(/^https:\/\/dm\.takaratomy\.co\.jp\/coverage\/([^/]+)\//)?.[1];
+ if(slug?.startsWith('dmscs09a_'))return 2026;
+ if(slug?.startsWith('dmscs05b_'))return 2023;
+ return null;
+}
+export function groupEnvironmentDecks(decks){
+ const groups=new Map();for(const deck of decks){const year=environmentYear(deck);if(!groups.has(year))groups.set(year,[]);groups.get(year).push(deck);}
+ return [...groups].sort(([a],[b])=>(b??0)-(a??0)).map(([year,decks])=>({year,decks}));
+}
+// Count physical copies and distinct names; partial support never enables a battle.
 export function environmentSupport(deck,registry){
  const rows=registry.resolveRows(deck.cards),supported=rows.filter(r=>registry.get(r.id).supported),unsupported=rows.filter(r=>!registry.get(r.id).supported);
  return {supportedCopies:supported.reduce((n,r)=>n+r.count,0),totalCopies:rows.reduce((n,r)=>n+r.count,0),supportedTypes:supported.length,totalTypes:rows.length,unsupported};
