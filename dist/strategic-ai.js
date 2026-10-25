@@ -1,6 +1,6 @@
 // Bounded planning over public positions. Unknown cards stay unknown: no actual
 // deck order, shields, opponent hand, game seed or game RNG enters this module.
-import {heroCardRole} from './hero-draw.js?v=0.88';
+import {heroCardRole} from './hero-draw.js?v=0.96.0';
 export function createStrategicAI(api){
  const {card,faces,effective,power,isCreature,legal,step,rank:baseRank,observe,mark}=api;
  const cap=n=>Math.min(20,Number(n)||0);

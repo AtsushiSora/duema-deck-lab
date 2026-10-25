@@ -1,12 +1,18 @@
 // CPU challenge draw policy. Inputs contain only the CPU's own cards and public
 // battlefield information. No enemy hand identities, shields or deck order.
 export const HERO_IDS=Object.freeze(['shobu','katta','joe','win']);
+export const RIVAL_IDS=Object.freeze(['hakuoh','basara','kira','kaiza']);
+export const CHALLENGER_IDS=Object.freeze([...HERO_IDS,...RIVAL_IDS]);
 // Shared priorities describe the intended route, never a separate rules bonus.
 const plans={
  shobu:{setup:['dm23sd1-014','dmbd15-006','dmx11-012','dmbd16-011'],bridge:['dm23rp3-005','dm23rp4-S05'],engine:[]},
  katta:{setup:['dmx11-012','dmbd16-011'],bridge:['dmrp04m-016','dmex15-b002'],engine:['dm23ex2-016']},
  joe:{setup:['dmsd01-012','dmsd01-011','promoy19-014'],bridge:['dm24bd2-010','dmex12-010'],engine:['dmr10-039','dmrp05-m02']},
- win:{setup:['dmsd17-014','dmbd10-009','dm23ex1-044'],bridge:['dm22rp2-S5','dm23rp3-S05'],engine:['dm22rp1-1B','dm23rp2-005']}
+ win:{setup:['dmsd17-014','dmbd10-009','dm23ex1-044'],bridge:['dm22rp2-S5','dm23rp3-S05'],engine:['dm22rp1-1B','dm23rp2-005']},
+ hakuoh:{setup:['dmr15-007','dm08-043','dmrp17-073'],bridge:['dmr14-034','dm24rp1-012','dm16-007'],engine:['dm04-001','dm15-s01']},
+ basara:{setup:['dmrp01-041','dm01-094','dm26ex2-020'],bridge:['dmr17-081','dmex17-102'],engine:['dmr17-l02','dm25rp3-DM1','dm22ex2-S07']},
+ kira:{setup:['dmrp05-011','dmrp22-027','dmrp17-073','dm08-043'],bridge:['dmr13-016','dmrp14-024','dm23rp4-011'],engine:['dmrp04s-m02','dm24sp1-008']},
+ kaiza:{setup:['dm23sd1-014','dmbd15-006','dmbd16-011','dmbd16-008'],bridge:['dm23rp3-005','dm23rp3-S01'],engine:['dm23rp4-OR2','dm23rp3-S07']}
 };
 export function heroCardRole(heroId,id){const plan=plans[heroId];return plan&&Object.keys(plan).find(k=>plan[k].includes(id))||'';}
 const ramps=new Set(['ramp1','ramp2','dragonRamp2','ramp2Return1','girlsRupia','dogiRamp','untapTwoMana']);
@@ -60,7 +66,8 @@ export function chooseHeroDraw(candidates,position){
  const score=c=>Math.max(...c.faces.map(f=>{
   const n=cheap(f),body=f.type==='creature',near=n<=mana+2;
   const chain=f.rev&&battle.some(x=>!x.tapped&&x.cost>=(f.rev.min||0)&&(!f.rev.race||String(x.race).includes(f.rev.race))&&(!f.rev.nameIncludes||String(x.name).includes(f.rev.nameIncludes))&&(!f.rev.multicolor||x.civilizations?.length>1));
-  const usable=f.usable||chain;
+  const invasion=heroId==='basara'&&f.invasion&&battle.some(x=>!x.tapped&&!x.sealed&&!x.attackLocked&&!x.noPlayerAttack&&x.cost>=(f.invasion.min||0)&&(f.invasion.categories||['コマンド']).some(r=>String(x.race).includes(r))&&x.civilizations?.some(v=>f.invasion.colors.includes(v)));
+  const usable=f.usable||chain||invasion;
   const role=heroCardRole(heroId,c.id);
   let v=usable?40:near?12:-Math.max(0,n-mana)*5;
   if(body)v+=Math.min(n,10)*2+(usable&&!affordable?18:0);
@@ -71,6 +78,7 @@ export function chooseHeroDraw(candidates,position){
   if(role==='engine'&&usable&&!battle.some(x=>x.id===c.id))v+=30;
   if(f.g35Role==='nyary')v+=usable&&hand.length<=3?55:-25;
   if(chain)v+=55;
+  if(invasion)v+=55;
   if(f.blocker&&usable||f.travelMMM&&shields===0)v+=danger?40:7;
   if(removal.has(f.effect)&&usable)v+=enemyBattle.length?(danger?55:25):-20;
   if(f.speedAttacker||f.machFighter)v+=usable?15:3;
@@ -79,6 +87,10 @@ export function chooseHeroDraw(candidates,position){
   if(heroId==='win'&&/アビス/.test(f.race||''))v+=13+(n<=5&&usable?9:0);
   if(heroId==='katta'&&f.rev)v+=battle.some(x=>x.cost>=5)?35:5;
   if(heroId==='shobu'&&/ドラゴン/.test(f.race||''))v+=10;
+  if(heroId==='hakuoh'&&/エンジェル・コマンド/.test(f.race||''))v+=12;
+  if(heroId==='basara'&&/コマンド/.test(f.race||''))v+=12;
+  if(heroId==='kira'&&/メタリカ|マスター・ドラゴン/.test(f.race||''))v+=12;
+  if(heroId==='kaiza'&&/アーマード/.test(f.race||''))v+=12;
   if(body&&f.speedAttacker&&enemyShields<=2&&usable)v+=45;
   if(!usable&&f.civilizations?.some(x=>!colors.includes(x)))v+=mana<5?25:8;
   if(!active&&danger&&(f.blocker||f.trigger))v+=10;

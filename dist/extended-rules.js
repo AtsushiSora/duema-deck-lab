@@ -1,6 +1,6 @@
 import {createEnvironmentRules} from './environment-rules.js?v=0.91.1';
 import {createRecommendedRules} from './recommended-rules.js?v=0.94.0';
-import {createSixPhotoRules} from './six-photo-rules.js?v=0.91.1';
+import {createSixPhotoRules} from './six-photo-rules.js?v=0.96.0';
 import {createShieldPhotoRules} from './shield-photo-rules.js?v=0.84';
 import {createKenjiPhotoRules} from './kenji-photo-rules.js?v=0.82';
 import {createPhoenixRules} from './phoenix-rules.js?v=0.86';

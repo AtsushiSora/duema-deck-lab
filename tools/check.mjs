@@ -9,7 +9,7 @@ import{PHOTO_DARK_MADO}from'./fixtures/photo-dark-mado.mjs';
 import{CARD_IMAGES}from'../dist/card-images.js';
 import{PHOTO_WATER_MADO}from'./fixtures/photo-water-mado.mjs';
 import{PHOTO_BOLSHACK}from'./fixtures/photo-bolshack.mjs';
-import{resolveHeroDecks}from'../dist/hero-challenge.js';
+import{resolveHeroDecks,resolveRivalDecks}from'../dist/hero-challenge.js';
 import{resolveEnvironmentDecks}from'../dist/environment.js';
 import{setCards,validateDeck,ENGINE_VERSION}from'../dist/engine.js';
 import{validateDetails}from'./detail-validation.mjs';
@@ -30,6 +30,8 @@ const starters=resolveStarter25Decks(registry);console.log(`Checked ${starters.l
 setCards(supported);const environments=resolveEnvironmentDecks(registry);for(const d of environments){const errors=validateDeck(d);if(errors.length)throw Error(d.name+'：'+errors.join(' / '));}console.log(`Checked ${environments.length} environment decks with complete effect coverage.`);
 
 const heroes=resolveHeroDecks(JSON.parse(await readFile(new URL('../dist/hero-decks.json',import.meta.url),'utf8')),registry);for(const d of heroes){const errors=validateDeck(d);if(errors.length)throw Error(d.name+'：'+errors.join(' / '));}console.log(`Checked ${heroes.length} protagonist challenge decks with forty supported cards each.`);
+
+const rivals=resolveRivalDecks(JSON.parse(await readFile(new URL('../dist/rival-decks.json',import.meta.url),'utf8')),registry);for(const d of rivals){const errors=validateDeck(d);if(errors.length)throw Error(d.name+'：'+errors.join(' / '));}console.log(`Checked ${rivals.length} rival challenge decks with forty supported cards each.`);
 
 if(validateDeck(PHOTO_BOLSHACK).length||registry.coverage(PHOTO_BOLSHACK).unsupported)throw Error('画像の40枚が未対応です');console.log('Checked the screenshot Bolshack deck: 40 supported copies.');
 
