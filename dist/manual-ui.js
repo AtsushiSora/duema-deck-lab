@@ -29,6 +29,9 @@ export function manualModel(s,ui={}){
 }
 function decisionHelp(s){
  const d=s.decision;
+ if(d.task?.op==='g37DarkMasters')return '相手の手札を確認して3枚まで選びます。「この選択で捨てさせる」で少ない枚数でも確定できます。';
+ if(d.task?.op==='g37Bounce')return '自分・相手のどちらからも3体まで選べます。確定すると選んだクリーチャーをまとめて手札に戻します。';
+ if(d.task?.op==='g37TapMode')return '今のタップ状態を確認し、「タップする」か「アンタップする」を選びます。その後1枚引きます。';
  if(d.task?.op==='gsDeclare'||d.task?.op==='gsTarget')return 'G・ストライクは、選んだ相手をこのターン攻撃できなくします。タップ・アンタップ状態は変わりません。';
  if(d.type==='manaPayment')return '使うマナをタップして選び、文明と必要数を確認して確定します。選択中のカードはもう一度タップすると外せます。';
  if(d.type==='everShields')return 'シールド2つを選ぶとクリーチャーを残せます。S・トリガーは使えません。この置換効果で選んだG城も手札へ戻ります。';
@@ -102,6 +105,7 @@ function decisionHelp(s){
 export function boardChoice(s,ui,player,zone,uid){return boardChoiceModel(s,ui,player,zone,uid,manualModel(s,ui));}
 function boardChoiceModel(s,ui,player,zone,uid,m){
  if(!m.human)return null;
+ if(s.decision?.type==='extended'&&s.decision.task.op.startsWith('g37')){const d=s.decision,op=d.task.op,own=['g37Testa','g37Cho','g37Never','g37ShieldHand'],field=['g37Bounce','g37ChoTargets','g37OwnDestroy','g37EnemyDestroy','g37Yobirin','g37Smoke','g37TapTarget','g37Starfield'];const legalZone=own.includes(op)&&zone==='hand'&&player===d.player||op==='g37DarkMasters'&&zone==='hand'&&player!==d.player||field.includes(op)&&zone==='battle'&&(['g37Bounce','g37TapTarget'].includes(op)||player===(op==='g37ChoTargets'?1-d.player:d.player))||op==='g37Darts'&&zone==='shields'&&player===d.task.owner||op==='g37DartsUse'&&zone==='shields'&&player===d.player;if(legalZone){const actions=m.actions.filter(a=>a.kind==='extended'&&(d.choices[a.choice]?.value?.uid??d.choices[a.choice]?.value)===uid);return actions.length===1?actions[0]:null;}}
  let matches=[];
  if(s.decision?.type==='extended'&&s.decision.task.op.startsWith('g31_')){const d=s.decision,allowed={g31_Bases:['battle','grave'],g31_Sacrifice:['battle'],g31_DestroySmall:['battle'],g31_RecoverPick:['grave'],g31_Reload:['hand'],g31_Heavy:['battle'],g31_ManaTrash:['mana'],g31_NonCreature:['battle'],g31_Oni:['shields'],g31_ApolloShields:['shields'],g31_Xeno:['hand'],g31_Link:['battle']}[d.task.op]||[];if(allowed.includes(zone)){const a=m.actions.filter(a=>a.kind==='extended'&&d.choices[a.choice]?.value===uid);if(a.length===1)return a[0];}}
 
@@ -188,6 +192,7 @@ export function manualBoardHTML(s,ui,{art,icon}){
  }).join('')||`<div class="play-empty">${icon('decks',22)}<span>クリーチャーはまだいません</span></div>`}</div>`;
  const playerAttack=m.attacker?m.actions.find(a=>a.kind==='attack'&&a.uid===m.attacker&&a.target==='player'&&!a.shield):null;
  const policies=[];
+ if(s.players.some(p=>p.battle.some(x=>effectiveCard(x,s).g37Role==='parthenon')))for(const p of[0,1])policies.push((p?'相手':'自分')+'のパルテノン制限：登場 '+(s.players[p].enteredThisTurn||0)+'/3体・呪文 '+(s.g37Spells?.[p]?.turn===s.turn?s.g37Spells[p].n:0)+'/3枚（このターン）');
  for(const who of [0,1]){const b=s.players[who].battle.map(x=>effectiveCard(x,s)),label=who?'相手':'自分';if(b.some(c=>c.newWorld))policies.push(label+'の新世壊：魔導具・ドルスザク呪文の禁止を無視。魔導具を下に置いて1枚引ける');if(b.some(c=>c.onlyLightSpells))policies.push((who?'自分':'相手')+'は光以外の呪文を唱えられない（新世壊の例外あり）');if(b.some(c=>c.manaUntapThree))policies.push((who?'自分':'相手')+'がターン開始時にアンタップできるマナは3枚まで');}
 
  if(momoActive(s))policies.push('モモムゲン：両者の多色ではないクリーチャー能力・呪文効果を無視');
@@ -226,7 +231,7 @@ function mainActions(s,ui,m,h){
  if(!m.human)return `<div class="manual-wait"><span class="running-dot"></span><div><strong>相手AIが考えています</strong><small>盤面を見ながら待ちましょう。</small></div></div>`;
  if(ui.confirm!==null){const a=m.actions.find(a=>a.id===ui.confirm&&a.kind==='endTurn');if(a)return `<div class="end-turn-review"><strong>まだ攻撃できるクリーチャーがいます</strong><p>攻撃せずにターンを終了しますか？</p><div class="manual-secondary"><button class="btn" data-action="manual-cancel-end">対戦に戻る</button><button class="btn primary" data-action="manual-confirm-end" data-index="${a.id}">ターンを終える</button></div></div>`;}
  if(m.attackChoice){const route=attackRoute(s,ui);return `<div class="attack-preview-review"><small>攻撃先を確認</small><strong>${esc(route.from.label)}<span>→ ${esc(route.to.label)}</span></strong><div class="manual-primary"><button class="btn primary" data-action="manual-confirm-attack" data-index="${m.attackChoice.id}">攻撃を確定</button><button class="btn ghost" data-action="manual-cancel-attack">選び直す</button></div></div>`;}
- if(s.decision)return `${s.decision.task?.op==='g13_Murder'?'<button class="btn full" data-action="zone-detail" data-player="1" data-zone="hand">相手の手札を見る</button>':''}${choicesHTML(s,ui,m,h)}`;
+ if(s.decision)return `${['g13_Murder','g37DarkMasters'].includes(s.decision.task?.op)?'<button class="btn full" data-action="zone-detail" data-player="1" data-zone="hand">相手の手札を見る</button>':''}${choicesHTML(s,ui,m,h)}`;
  if(s.phase==='charge'){
   const a=m.actions.find(a=>a.kind==='charge'&&a.uid===ui.hand),skip=m.actions.find(a=>a.kind==='skipCharge');
   return `${selectedHandHTML(s,m,h)}<div class="manual-primary"><button class="btn primary" data-action="battle-step" data-index="${a?.id??''}" ${a?'':'disabled'}>${h.icon('bolt',17)} マナに置く</button>${button(skip,{quiet:true,label:'置かずに進む'})}</div>`;
