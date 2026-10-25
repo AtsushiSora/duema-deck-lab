@@ -1,3 +1,4 @@
+import * as opponentProgress from '../dist/opponent-progress.js';
 import * as battleInsights from '../dist/battle-insights.js';
 import * as appUpdates from '../dist/app-updates.js';
 import {createCardArt} from '../dist/card-art.js';
@@ -14,7 +15,7 @@ const app=(await readFile(new URL('../dist/app.js',import.meta.url),'utf8')).rep
 function harness(state,{mobile=false,scrollers={},autoPay=true}={}){
  const listeners={},errors=[],timers=new Map();let serial=0;
  const root={innerHTML:''},dialog={innerHTML:'',open:false,addEventListener(){},showModal(){this.open=true;},close(){this.open=false;}},toast={textContent:'',classList:{add(){},remove(){}}},classes=new Set();
- const context=vm.createContext({createCardArt,shieldCards,...battleInsights,...appUpdates,...e,...manual,...visuals,...fit,...handUI,...cardInfo,...aiPlayback,battleCard:e.card,PRESETS,createCatalogue,fixtureRegistry:createCatalogue(snapshot,data.cards,details),fixtureState:state,fixtureDecks:[target,target],console:{log(){},error:e=>errors.push(e)},structuredClone,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL,Intl,Date,CSS:{escape:x=>x},localStorage:{getItem:()=>null,setItem(){}},location:{hash:'',pathname:'/'},history:{replaceState(){}},setTimeout:f=>{timers.set(++serial,f);return serial;},clearTimeout:id=>timers.delete(id),clearInterval(){},setInterval:()=>++serial,
+ const context=vm.createContext({...opponentProgress,createCardArt,shieldCards,...battleInsights,...appUpdates,...e,...manual,...visuals,...fit,...handUI,...cardInfo,...aiPlayback,battleCard:e.card,PRESETS,createCatalogue,fixtureRegistry:createCatalogue(snapshot,data.cards,details),fixtureState:state,fixtureDecks:[target,target],console:{log(){},error:e=>errors.push(e)},structuredClone,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL,Intl,Date,CSS:{escape:x=>x},localStorage:{getItem:()=>null,setItem(){}},location:{hash:'',pathname:'/'},history:{replaceState(){}},setTimeout:f=>{timers.set(++serial,f);return serial;},clearTimeout:id=>timers.delete(id),clearInterval(){},setInterval:()=>++serial,
   document:{querySelector:s=>s==='#app'?root:s==='#dialog'?dialog:s==='#toast'?toast:scrollers[s]||null,querySelectorAll:s=>s==='.play-creatures,.shield-tiles'?scrollers.lanes||[]:[],activeElement:null,body:{classList:{toggle:(key,on)=>on?classes.add(key):classes.delete(key)}},addEventListener:(name,f)=>listeners[name]=f},window:{innerHeight:800,addEventListener(){},scrollTo(){},matchMedia:q=>({matches:mobile&&q==='(max-width: 850px)'})}});
  vm.runInContext(app,context);
  vm.runInContext("registry=fixtureRegistry;cards=registry.cards;battleCards=fixtureRegistry.cards.filter(c=>c.supported);battle={state:fixtureState,decks:fixtureDecks,practice:true};view='manual';manualUI=newManualUI();selectedHand=null;render();",context);
@@ -251,4 +252,21 @@ test('update preserves an in-progress payment and a draft, and the restored paym
 test('update aborts on a failed backup and defers incompatible rules until the battle is finished',async()=>{
  const s=setup(),h=harness(s,{mobile:true}),before=structuredClone(s);let u=updateHarness(h,{quota:true});await h.click('apply-update');assert.equal(u.navigations.length,0);assert.deepEqual(s,before);assert.match(h.read('document.querySelector("#toast").textContent'),/保存できません/);
  u=updateHarness(h,{engineVersion:'future'});await h.click('apply-update');assert.equal(u.navigations.length,0);assert.match(h.read('dialog.innerHTML'),/対戦が終わってから更新/);assert.deepEqual(s,before);
+});
+
+test('a real human direct attack records the defeated opponent and its mark appears after returning to selection',async()=>{
+ const s=e.createGame([PRESETS[0],target],{seed:707,first:0});
+ const own=s.players[0];let attacker;
+ for(const zone of ['deck','hand','shields']){const i=own[zone].findIndex(c=>c.cardId==='dm01-097');if(i>=0){attacker=own[zone].splice(i,1)[0];break;}}
+ assert.ok(attacker);attacker.entered=0;attacker.tapped=false;own.battle.push(attacker);
+ s.players[1].deck.push(...s.players[1].shields.splice(0),...s.players[1].hand.splice(0));s.turn=11;s.phase='attack';
+ const ids=e.physicalCards(s).map(c=>c.uid).sort(),h=harness(s,{mobile:true});assert.equal(h.read('saved.defeatedDecks'),undefined);
+ const attack=e.getLegalActions(s).find(a=>a.kind==='attack'&&a.uid===attacker.uid&&a.target==='player'&&!a.shield);assert.ok(attack);
+ await h.click('battle-step',{index:String(attack.id)});assert.equal(s.winner,null);
+ await h.click('manual-confirm-attack',{index:String(attack.id)});assert.equal(s.decision?.type,'block');
+ h.read("step(battle.state,getLegalActions(battle.state).find(a=>a.kind==='noBlock'));render()");assert.equal(s.winner,0);
+ assert.ok(h.read('isOpponentDefeated(battle.decks[1],saved.defeatedDecks,registry)'));
+ assert.deepEqual(e.physicalCards(s).map(c=>c.uid).sort(),ids);
+ h.read('saved.defeatedDecks=JSON.parse(JSON.stringify(saved.defeatedDecks));showOpponentPicker()');
+ assert.ok(h.read('opponentMark(battle.decks[1])').includes('✓ 撃破済み'));
 });
