@@ -70,8 +70,8 @@ export function createEnvironmentRules(api){
  discarded(s,t,x,actual){if(t.g37Follow==='testa'&&actual)put(s,task('draw',t.p,t.source,{n:2}));if(t.g37Follow==='cho')put(s,follow(t,'ChoTargets',{selected:[],budget:actual?(faces(card(x)).some(c=>cost(c)===Infinity)?'∞':Math.max(...faces(card(x)).map(cost))):0}));},
  attack(s,p,x){if(api.ignored(s,x)||api.selfStopped(s,p))return;const role=effective(x,s).g37Role;if(role==='shuffle'){enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g9Number',p,x.cardId,{family:'shuffle'})});}if(role==='blue')queue(s,p,x,'Smash');if(role==='smoke')queue(s,p,x,'Smoke');},
  end(s){const p=1-s.active;return s.players[p].hand.filter(x=>card(x).g37Role==='blue'&&creatures(s,1-p).length>=creatures(s,p).length+4&&!activeBlue(s,p)).map(x=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g37Blue',p,x.cardId,{uid:x.uid})}));},
- snapshot(s){return [0,1].flatMap(p=>api.selfStopped(s,p)?[]:active(s,p,'yobirin').map(x=>({p,uid:x.uid,source:x.cardId})));},
- leaving(s,p,x,snapshot,destroy){if(!destroy||!api.isCreature(s,x))return;for(const w of snapshot||[])enqueue(s,w.p,{uid:w.uid,source:w.source,effect:'extended',task:task('optionalDrawOne',w.p,w.source)});},
+ snapshot(s){return {creatures:s.players.flatMap(p=>p.battle.filter(x=>api.isCreature(s,x)).map(x=>x.uid)),watchers:[0,1].flatMap(p=>api.selfStopped(s,p)?[]:active(s,p,'yobirin').map(x=>({p,uid:x.uid,source:x.cardId})))};},
+ leaving(s,p,x,snapshot,destroy){if(!destroy||!(snapshot?snapshot.creatures.includes(x.uid):api.isCreature(s,x)))return;for(const w of snapshot?.watchers||[])enqueue(s,w.p,{uid:w.uid,source:w.source,effect:'extended',task:task('optionalDrawOne',w.p,w.source)});},
  beforeBreak(s,p,uids){const ctx=s.breakContext,a=ctx&&!ctx.reverse&&ctx.player!==p&&s.players[ctx.player].battle.find(x=>x.uid===ctx.sourceUid);if(!a||effective(a,s).g37Role!=='adamski')return false;const n=uids.filter(uid=>api.findShield(s.players[p],uid)).length;s.breakContext=null;api.mill(s,p,2*n);api.log(s,s.active,'breakReplace','アダムスキー：シールド'+n+'つのブレイクを山札'+2*n+'枚の墓地送りに置き換える',{cardId:a.cardId});return true;}
  };
 }

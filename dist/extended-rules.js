@@ -1,6 +1,6 @@
-import {createEnvironmentRules} from './environment-rules.js?v=0.91';
+import {createEnvironmentRules} from './environment-rules.js?v=0.91.1';
 import {createRecommendedRules} from './recommended-rules.js?v=0.90';
-import {createSixPhotoRules} from './six-photo-rules.js?v=0.91';
+import {createSixPhotoRules} from './six-photo-rules.js?v=0.91.1';
 import {createShieldPhotoRules} from './shield-photo-rules.js?v=0.84';
 import {createKenjiPhotoRules} from './kenji-photo-rules.js?v=0.82';
 import {createPhoenixRules} from './phoenix-rules.js?v=0.86';
@@ -26,7 +26,7 @@ import {createJaouRules} from './jaou-rules.js?v=0.82';
 import {createZardRules} from './zard-rules.js?v=0.77';
 import {createHunterRules} from './hunter-rules.js?v=0.77';
 import {createArmoredRules} from './armored-rules.js?v=0.77';
-import {createMagicRules} from './magic-rules.js?v=0.91';
+import {createMagicRules} from './magic-rules.js?v=0.91.1';
 import {createMechaRules} from './mecha-rules.js?v=0.77';
 import {createKiyonagaRules} from './kiyonaga-rules.js?v=0.84';
 import {createGransectRules} from './gransect-rules.js?v=0.77';
