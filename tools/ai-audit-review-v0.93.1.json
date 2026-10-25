@@ -1,0 +1,77 @@
+{
+  "engine": "0.55.2",
+  "ai": "2.2.1",
+  "scope": "85構成のミラーと先攻・後攻を分けた別対面、計255試合。端末だけに保存された未共有の編集内容は別構成として未取得。",
+  "fixedIssues": [
+    {
+      "issue": "optional_losing_battle",
+      "reproducer": "starter25-10:mirror / seed949081",
+      "before": "任意バトルで勝てない高コストの相手を選んでしまい、先読みがガラワルドの召喚も見送っていた。",
+      "after": "バトル中のパワーとスレイヤー、双方の盤面価値を比較。勝てる相手を選ぶか、任意のバトルを見送る。",
+      "operations": [
+        "g10_Fight",
+        "darkFight",
+        "g3_Fight",
+        "g35_Fight",
+        "g11_Fight"
+      ]
+    },
+    {
+      "issue": "futile_direct_attacks",
+      "reproducer": "hero-shobu:mirror / seed989441",
+      "before": "相手の敗北防止が適用中でもダイレクトアタックと革命チェンジを繰り返し、検証が長引いていた。",
+      "after": "ダイレクトアタックに対する敗北防止をエンジンの公開盤面の判定で確認し、シールド0で無効なら盤面処理やターン終了を選ぶ。",
+      "specialCase": "Roseの山札切れ防止はダイレクトアタックを防がないことも検証。"
+    }
+  ],
+  "reviews": [
+    {
+      "job": "starter25-10:control-second",
+      "kind": "review_empty_board_pass",
+      "resolution": "intentional",
+      "reason": "相手のクイーン&かぼちゃうちゃうが、印刷コスト8のガラワルドをマナへ置き換える。自分のマナは7枚で、支払いが4マナに軽減されても印刷コストは変わらないため、手札を保持する判断を維持。",
+      "evidence": {
+        "ownMana": 7,
+        "printedCost": 8,
+        "payment": 4,
+        "source": "dist/galaxy-rules.js: replacementOptions g26Queen"
+      }
+    },
+    {
+      "job": "env-viride-practice:mirror",
+      "kind": "review_missed_direct_attack",
+      "resolution": "intentional",
+      "reason": "相手の終極宣言による「ゲームに負けない」が適用中。シールド0でもそのターンはダイレクトアタックで勝てないため、ターンを終了する判断が正しい。",
+      "evidence": {
+        "target": 0,
+        "g26Extreme": [
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "job": "hero-shobu:mirror",
+      "kind": "review_missed_direct_attack",
+      "resolution": "intentional",
+      "reason": "相手のg7NoLose（次の自分のターンのはじめまでゲームに負けない）が適用中。防がれるダイレクトアタックの反復を避け、ターン終了を選ぶ。",
+      "evidence": {
+        "target": 1,
+        "source": "dist/armored-rules.js: noLose / expire"
+      }
+    },
+    {
+      "job": "photo-fifteen-11:control-second",
+      "kind": "review_missed_direct_attack",
+      "resolution": "intentional",
+      "reason": "相手のg26Extreme[0]が適用中。ダイレクトアタックで勝てないため、ターンを終了する判断が正しい。",
+      "evidence": {
+        "target": 0,
+        "g26Extreme": [
+          true,
+          false
+        ]
+      }
+    }
+  ]
+}

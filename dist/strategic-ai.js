@@ -72,6 +72,7 @@ export function createStrategicAI(api){
  function decisionChoice(s,rows){
   const task=s.decision?.task,p=rows[0]?.a.player;
   const defense=defenseChoice(s,rows,p);if(defense)return defense;
+  if(['g10_Fight','darkFight','g3_Fight','g35_Fight','g11_Fight'].includes(task?.op))return fightChoice(s,rows,p,task);
   if(task?.op==='g9FireModes')return fireModes(s,rows,p,task);
   if(task?.op==='g9FireMode')return fireTarget(s,rows,p,task);
   if(task?.op==='gsTarget')return rows.map(r=>{
@@ -111,6 +112,15 @@ export function createStrategicAI(api){
   return blocks.map(r=>{const x=own.battle.find(x=>x.uid===r.a.uid);return {...r,value:(power(x,false,s)>=power(attacker,true,s)?100:0)-creatureValue(s,x)};})
    .sort((a,b)=>b.value-a.value||a.a.id-b.a.id)[0].a;
  }
+ function fightChoice(s,rows,p,t){
+  const own=s.players[p].battle.find(x=>x.uid===t.uid&&(t.incarnation===undefined||(x.incarnation||0)===t.incarnation));
+  if(!own)return rows[0]?.a;
+  const c=effective(own,s),ap=power(own,s.attack?.attacker===own.uid,s),loss=creatureValue(s,own);
+  return rows.map(r=>{const uid=s.decision.choices[r.a.choice]?.value,target=s.players[1-p].battle.find(x=>x.uid===uid);if(!target)return {...r,value:0};
+   const d=effective(target,s),bp=power(target,s.attack?.attacker===target.uid,s),wins=ap>bp,loses=ap<=bp||d.slayer,kills=ap>=bp||c.slayer;
+   return {...r,value:(kills?creatureValue(s,target):0)-(loses?loss+1:0)+(wins&&c.gachiWinDraw&&s.players[p].deck.length>1?8:0)};
+  }).sort((a,b)=>b.value-a.value||a.a.id-b.a.id)[0]?.a;
+ }
  function firstAttack(s,x){const n=x.g9AttackTurn===s.turn?(x.g9AttackCount||0):0;return n===0||n===1&&s.attack?.attacker===x.uid;}
  function speedGain(s,p,x,source){
   if(p!==s.active||x.tapped||api.canAttack(s,p,x))return false;
@@ -143,7 +153,7 @@ export function createStrategicAI(api){
  function pressure(s,p){
   const own=s.players[p],opp=s.players[1-p],ready=own.battle.filter(x=>canHit(s,p,x)),blocks=opp.battle.filter(x=>!x.tapped&&effective(x,s).blocker).length;
   const hits=ready.map(x=>damage(effective(x,s))).sort((a,b)=>a-b).slice(blocks);
-  let shields=opp.shields.length;for(const hit of hits){if(shields===0)return 110;shields=Math.max(0,shields-hit);}
+  let shields=opp.shields.length;for(const hit of hits){if(shields===0)return api.directAttackProtected(s,1-p)?(opp.shields.length-shields)*5:110;shields=Math.max(0,shields-hit);}
   return (opp.shields.length-shields)*5;
  }
  function value(s,p){
@@ -192,11 +202,13 @@ export function createStrategicAI(api){
   const blockers=them.battle.filter(x=>!x.tapped&&effective(x,ctx).blocker);
   const hits=unique.filter(a=>effective(find(p,a.uid),ctx).unblockable||!blockers.length)
    .map(a=>damage(effective(find(p,a.uid),ctx))).sort((a,b)=>a-b);
-  let shields=them.shields.length,lethal=false;for(const hit of hits){if(shields===0){lethal=true;break;}shields=Math.max(0,shields-hit);}
+  const protectedPlayer=api.directAttackProtected(s,1-p);
+  let shields=them.shields.length,lethal=false;for(const hit of hits){if(shields===0){lethal=!protectedPlayer;break;}shields=Math.max(0,shields-hit);}
   return rows.map(r=>{
    const a=r.a;if(a.kind!=='attack')return r;
    const x=find(p,a.uid),c=effective(x,ctx);let score=r.value;
    if(a.target==='player'){
+    if(them.shields.length===0&&protectedPlayer)return {...r,value:-10};
     score=28+Math.min(them.shields.length,damage(c))*7+(c.unblockable?10:0);
     if(them.shields.length===0)score+=150;
     if(lethal)score+=120+damage(c)*3;
