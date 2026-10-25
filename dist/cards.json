@@ -25927,21 +25927,354 @@
       "g37Role": "galaxyMax",
       "supportBatch": "phase-55",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-053",
+      "name": "サイバー・チューン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nカードを３枚引く。その後、自分の手札を２枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-053",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 3
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 2
+        }
+      ],
+      "trigger": true,
+      "supportBatch": "phase-56",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22-011",
+      "name": "コラプス・ウェーブ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nいずれかのマナゾーンからカードを１枚選び、持ち主の山札の一番上に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-011",
+      "limit": 4,
+      "trigger": true,
+      "effect": "recommended",
+      "recommendRole": "collapse",
+      "supportBatch": "phase-56",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr11-018",
+      "name": "フェアリー・シャワー",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から２枚を見る。そのうちの１枚を自分の手札に加え、もう１枚をマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-018",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1
+            }
+          ],
+          "rest": "mana"
+        }
+      ],
+      "trigger": true,
+      "supportBatch": "phase-56",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-085",
+      "name": "フェアリー・ソング",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "自分の山札の上から２枚を、タップしてマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-085",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 2,
+          "tapped": true
+        }
+      ],
+      "supportBatch": "phase-56",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm11-043",
+      "name": "エマージェンシー・タイフーン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)カードを２枚まで引く。その後、自分の手札を１枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-043",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2,
+          "optional": true
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1
+        }
+      ],
+      "trigger": true,
+      "supportBatch": "phase-56",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-090",
+      "name": "ブレイン・タッチ",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n相手の手札を１枚見ないで選び、捨てさせる。\nカードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-090",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "n": 1,
+          "random": true
+        },
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-56",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm02-035",
+      "name": "マナ・クライシス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S(シールド)・トリガー(このカードをシールドゾーンから手札に戻すとき、コストを支払わずにすぐ使ってよい。)\n相手のマナゾーンからカードを１枚選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-035",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "owner": "opponent",
+          "to": "grave",
+          "n": 1
+        }
+      ],
+      "trigger": true,
+      "supportBatch": "phase-56",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr15-007",
+      "name": "制御の翼 オリオティス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2500,
+      "race": "ジャスティス・ウイング",
+      "text": "ブロッカー ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n相手が、自身のマナゾーンにあるカードの枚数よりコストの大きいクリーチャーをバトルゾーンに出した時、相手はそのクリーチャーを自身の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-007",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "recommendRole": "mixel",
+      "supportBatch": "phase-56",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd18-002",
+      "name": "蒼狼の大王 イザナギテラス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ナイト/オリジン/ポセイディア・ドラゴン",
+      "text": "ブロッカー ブロッカー\nこのクリーチャーが出た時、自分の山札の上から５枚を見る。その中から１枚を手札に加え、残りを好きな順序で山札の下に置く。その後、コスト３以下の呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd18-002",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 5,
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1
+            }
+          ],
+          "after": [
+            {
+              "op": "Execute",
+              "origin": "hand",
+              "spellOnly": true,
+              "max": 3
+            }
+          ]
+        }
+      ],
+      "blocker": true,
+      "supportBatch": "phase-56",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-023",
+      "name": "埋没のカルマ オリーブオイル",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "オラクル/グレートメカオー",
+      "text": "S・トリガー S・トリガー\nブロッカー ブロッカー\nこのクリーチャーは攻撃することができない。\nこのクリーチャーをバトルゾーンに出した時、プレイヤーを一人選ぶ。そのプレイヤーは、自身の墓地のカードをすべて山札に加え、シャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-023",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "effect": "recommended",
+      "recommendRole": "olive",
+      "noAttack": true,
+      "supportBatch": "phase-56",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-017",
+      "name": "サイバー・I・チョイス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 3000,
+      "race": "サイバー・コマンド",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、「S・トリガー」を持つカードを１枚、自分の手札からコストを支払わずに使ってもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-017",
+      "limit": 1,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "trigger": true
+        }
+      ],
+      "trigger": true,
+      "supportBatch": "phase-56",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex06-015",
+      "name": "ドンドン水撒くナウ",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー\n自分の山札の上から２枚を、タップして自分のマナゾーンに置く。\nクリーチャーを１体、自分のマナゾーンから手札に戻す。その後、そのクリーチャー以下のコストを持つ相手のクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex06-015",
+      "limit": 4,
+      "trigger": true,
+      "effect": "recommended",
+      "recommendRole": "water",
+      "supportBatch": "phase-56",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 55,
+    "phase": 56,
     "checkedAt": "2026-10-25",
-    "baseCount": 1146,
-    "newEffectCards": 19,
+    "baseCount": 1165,
+    "newEffectCards": 12,
     "newVanillaCards": 0,
-    "totalCount": 1165,
+    "totalCount": 1177,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/45071/",
-      "https://dm.takaratomy.co.jp/rule/qa/41300/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37786/",
-      "https://dm.takaratomy.co.jp/rule/qa/48473/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "対応済みカードの対戦検証と改善"
@@ -27097,6 +27430,24 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/48745/",
           "https://dm.takaratomy.co.jp/rule/qa/42959/"
+        ],
+        "next": [
+          "対応済みカードの対戦検証と改善"
+        ]
+      },
+      {
+        "phase": 55,
+        "checkedAt": "2026-10-25",
+        "baseCount": 1146,
+        "newEffectCards": 19,
+        "newVanillaCards": 0,
+        "totalCount": 1165,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/45071/",
+          "https://dm.takaratomy.co.jp/rule/qa/41300/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37786/",
+          "https://dm.takaratomy.co.jp/rule/qa/48473/"
         ],
         "next": [
           "対応済みカードの対戦検証と改善"

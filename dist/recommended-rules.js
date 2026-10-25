@@ -8,6 +8,11 @@ export function createRecommendedRules(api){
  function run(s,t){
   if(!t.op.startsWith('g36'))return false;const own=s.players[t.p],opp=s.players[1-t.p];
   switch(t.op){
+   case'g36Olive':choice(s,t,'墓地を山札に戻すプレイヤーを選ぶ',[opt('自分',t.p,own.deck.length<8?50:own.grave.length),opt('相手',1-t.p,opp.grave.length*3)]);break;
+   case'g36Collapse':choice(s,t,'山札の上に置くマナを1枚選ぶ',[t.p,1-t.p].flatMap(p=>s.players[p].mana.map(x=>opt((p===t.p?'自分：':'相手：')+(x.faceDown?'裏向きのマナ':card(x).name),{p,uid:x.uid},p===t.p?-10:10+(x.faceDown?0:cost(card(x))),x.faceDown?undefined:x.cardId))));break;
+   case'g36Water':put(s,task('g34_Ramp',t.p,t.source,{n:2,tapped:true}),continuation(t,'g36WaterPick'));break;
+   case'g36WaterPick':choice(s,t,'マナから手札に戻すクリーチャーを1体選ぶ',own.mana.filter(x=>!x.faceDown&&card(x).type==='creature').map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)));break;
+   case'g36WaterBounce':choice(s,t,'戻したクリーチャー以下のコストの相手を手札に戻す？',[...api.targetOptions(s,t.p,creatures(s,1-t.p).filter(x=>cost(effective(x,s))<=t.max)),skip()]);break;
    case'g36Love':choice(s,t,'山札に戻すプレイヤーを選ぶ',[
     opt('相手の場・手札・墓地を山札に戻す',1-t.p,20+opp.battle.length*8+opp.hand.length*3+opp.grave.length),
     opt('自分の場・手札・墓地を山札に戻す',t.p,(own.deck.length<5?60:0)-own.battle.length*10+own.grave.length)
@@ -66,6 +71,10 @@ export function createRecommendedRules(api){
  function chosen(s,t,v){
   if(!t.op.startsWith('g36'))return false;const own=s.players[t.p];
   switch(t.op){
+   case'g36Olive':{const target=s.players[v],xs=target.grave.splice(0);for(const x of xs)clear(x,'deck');api.shuffleLibrary(s,v,xs,t.source);api.log(s,t.p,'graveShuffle',(v===t.p?'自分':'相手')+'の墓地'+xs.length+'枚を山札に戻す',{cardId:t.source});break;}
+   case'g36Collapse':{const x=remove(s.players[v.p].mana,v.uid);if(x){clear(x,'deck');s.players[v.p].deck.unshift(x);api.log(s,t.p,'manaToTop',(v.p===t.p?'自分':'相手')+'のマナ1枚を山札の上に置く',{cardId:t.source});}break;}
+   case'g36WaterPick':{const x=remove(own.mana,v);if(x){const max=cost(card(x));clear(x,'hand');api.addZone(s,t.p,'hand',x);put(s,continuation(t,'g36WaterBounce',{max}));}break;}
+   case'g36WaterBounce':if(v)move(s,[{player:1-t.p,uid:v,to:'hand',destroy:false}]);break;
    case'g36Love':{
     const target=s.players[v],rows=['hand','grave'].flatMap(origin=>target[origin].map(x=>({origin,uid:x.uid,serial:x.zoneSerial||0})));
     put(s,continuation(t,'g36LoveFinish',{owner:v,rows,deck:target.deck.map(x=>x.uid)}));
@@ -92,7 +101,7 @@ export function createRecommendedRules(api){
  return {run,chosen,
   effect(s,p,c){if(c.effect!=='recommended')return false;const role=c.recommendRole;
    if(role==='chaff'){lock(s,p,{kind:'cast',player:1-p,spellCost:c.cost,spellSource:c.id});api.draw(s,p,1);return true;}
-   const op={love:'Love',dondon:'Look',surasura:'Look',memory:'Memory',pixie:'Pixie',purify:'Purify',dna:'DNA',jack:'Jack',scrapper:'Scrapper'}[role];if(!op)throw Error('未実装のおすすめカード：'+role);
+   const op={olive:'Olive',collapse:'Collapse',water:'Water',love:'Love',dondon:'Look',surasura:'Look',memory:'Memory',pixie:'Pixie',purify:'Purify',dna:'DNA',jack:'Jack',scrapper:'Scrapper'}[role];if(!op)throw Error('未実装のおすすめカード：'+role);
    put(s,task('g36'+op,p,c.id,{...(role==='dondon'?{n:5}:role==='surasura'?{n:4,enemyOnly:true}:role==='scrapper'?{selected:[],budget:5000}:{})}));return true;
   },
   allowedEntry(s,p,c,{execution}){return c?.type!=='creature'||execution||s.active!==p||!creatures(s,1-p).some(x=>!api.ignored(s,x)&&effective(x,s).recommendRole==='senno');},
