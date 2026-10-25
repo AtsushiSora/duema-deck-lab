@@ -7,7 +7,7 @@ export function createStrategicAI(api){
  const body=c=>c.type==='creature';
  const damage=c=>c.breaker==='∞'?20:Number(c.breaker)||1;
  const key=a=>JSON.stringify(Object.fromEntries(Object.entries(a).filter(([k])=>k!=='id'&&k!=='label')));
- const publicCounters=['g35BakuNoLose','g35SpellLocks','g35ZeroMana','g35AttackStops','g35Deferred','g35Permits','g35Terminal','g35FinalRev','g35Fuji','g35FirstGrave','g35Limone','g35GraveLeft','g34Executions','g34ShieldLeftTurn','g34Muku','g34Scarlet','g34Souzan','g34FirstTap','g34Discounts','g31Discounts','g31ExtraTurn','g29Grants','g29Delays','g29MolReady','challenge','g28DragonOnce','g27WestUsed','extLimits','once','extraTurns','noManaUse','creaturesEntered','finalUsed','finalHistory','g26Extreme','g26GardenUsed','darkTriggers',
+ const publicCounters=['g37Gifts','g37Spells','g35BakuNoLose','g35SpellLocks','g35ZeroMana','g35AttackStops','g35Deferred','g35Permits','g35Terminal','g35FinalRev','g35Fuji','g35FirstGrave','g35Limone','g35GraveLeft','g34Executions','g34ShieldLeftTurn','g34Muku','g34Scarlet','g34Souzan','g34FirstTap','g34Discounts','g31Discounts','g31ExtraTurn','g29Grants','g29Delays','g29MolReady','challenge','g28DragonOnce','g27WestUsed','extLimits','once','extraTurns','noManaUse','creaturesEntered','finalUsed','finalHistory','g26Extreme','g26GardenUsed','darkTriggers',
   'g13JagaUsed','g12LossUsed','g12NoLose','g15StarUsed','g16UsedMana','g17ManaUsed','g19MekraidUsed',
   'g20Attacks','g21ZenonUsed','g22UsedDiscount','g22UsedMana','g23Attacks','g23BalEntered','g25ManaUsed',
   'g2Spells','g3AttackSerial','g3CycleUsed','g3Debts','g3ReverseUsed','g5NextSummons','g7Battles',
@@ -71,9 +71,13 @@ export function createStrategicAI(api){
  }
  function decisionChoice(s,rows){
   const task=s.decision?.task,p=rows[0]?.a.player;
-  if(hero(s,p)&&task?.op==='gsTarget')return rows.map(r=>{
+  const defense=defenseChoice(s,rows,p);if(defense)return defense;
+  if(task?.op==='g9FireModes')return fireModes(s,rows,p,task);
+  if(task?.op==='g9FireMode')return fireTarget(s,rows,p,task);
+  if(task?.op==='gsTarget')return rows.map(r=>{
    const uid=s.decision.choices[r.a.choice]?.value,x=s.players[1-p].battle.find(x=>x.uid===uid);
-   return {...r,value:x&&api.canAttack(s,1-p,x)?100+damage(effective(x,s))*10+creatureValue(s,x):x?-10:0};
+   const immune=s.players[1-p].battle.some(y=>isCreature(s,y)&&effective(y,s).ignoreAttackLocks);
+   return {...r,value:x&&!immune&&api.canAttack(s,1-p,x)?100+damage(effective(x,s))*10+creatureValue(s,x):x?-10:0};
   }).sort((a,b)=>b.value-a.value||a.a.id-b.a.id)[0]?.a;
   if(hero(s,p)&&task?.op==='g35_Custom'&&task.name==='alternative'&&task.role==='joragon'){
    const confirm=rows.find(r=>s.decision.choices[r.a.choice]?.value===null);if(confirm)return confirm.a;
@@ -94,6 +98,41 @@ export function createStrategicAI(api){
    return {...r,value:r.value-(isEngine(c)&&copies===1?40:0)-keepValue(s,r.a.player,x)+(copies>1?6:0)+(c.abyssRush||c.graveCast?8:0)};
   }).sort((a,b)=>b.value-a.value||a.a.id-b.a.id)[0].a;
  }
+ // Tactical choices use our hand and public creatures, never hidden shield cards.
+ function canHit(s,p,x){return api.canAttack(s,p,x)&&!effective(x,s).noPlayerAttack&&api.canAttackPlayer(s,x);}
+ function defenseChoice(s,rows,p){
+  if(s.decision?.type!=='block'||s.attack?.target!=='player')return null;
+  const own=s.players[p],enemy=s.players[1-p],attacker=enemy.battle.find(x=>x.uid===s.attack.attacker),blocks=rows.filter(r=>r.a.kind==='block');
+  if(!attacker||!blocks.length||!own.shields.length||effective(attacker,s).noShieldBreak||damage(effective(attacker,s))<own.shields.length)return null;
+  const next=enemy.battle.filter(x=>canHit(s,1-p,x)),blockable=next.filter(x=>!effective(x,s).unblockable&&!x.unblocked).length;
+  // If this hit removes every shield, reserve enough defenses for the remaining
+  // visible attackers. Otherwise block the large hit with the least costly body.
+  if(next.length<=Math.min(blocks.length,blockable))return null;
+  return blocks.map(r=>{const x=own.battle.find(x=>x.uid===r.a.uid);return {...r,value:(power(x,false,s)>=power(attacker,true,s)?100:0)-creatureValue(s,x)};})
+   .sort((a,b)=>b.value-a.value||a.a.id-b.a.id)[0].a;
+ }
+ function firstAttack(s,x){const n=x.g9AttackTurn===s.turn?(x.g9AttackCount||0):0;return n===0||n===1&&s.attack?.attacker===x.uid;}
+ function speedGain(s,p,x,source){
+  if(p!==s.active||x.tapped||api.canAttack(s,p,x))return false;
+  const spell=faces(card(source)).find(c=>c.type==='spell'),y={...x,g9Speed:[...(x.g9Speed||[]),{turn:s.turn,cost:spell.cost,spellSource:source}]};
+  const view={...s,players:s.players.map((own,i)=>i===p?{...own,battle:own.battle.map(z=>z.uid===x.uid?y:z)}:own)};
+  return api.canAttack(view,p,y);
+ }
+ function untapGain(s,p,x){return p===s.active&&firstAttack(s,x)&&!(x.g9Untap||[]).some(g=>g.turn===s.turn)&&api.canUntap(x)&&(api.canAttack(s,p,x)||s.attack?.attacker===x.uid);}
+ function fireModes(s,rows,p,t){
+  const own=s.players[p],selected=t.selected||[],times=n=>selected.filter(x=>x===n).length;
+  const small=own.hand.filter(x=>card(x).type==='creature'&&Number(card(x).cost)<=3).sort((a,b)=>creatureValue(s,b)-creatureValue(s,a));
+  const planned=small.slice(0,times(0)).map(x=>({...x,entered:s.turn,tapped:false}));
+  const future={...s,players:s.players.map((x,i)=>i===p?{...x,battle:[...x.battle,...planned]}:x)};
+  const speed=[...own.battle,...planned].filter(x=>speedGain(future,p,x,t.source));
+  const untap=[...own.battle,...planned].filter(x=>untapGain(future,p,x)||times(1)>0&&speedGain(future,p,x,t.source)&&firstAttack(future,x));
+  return rows.map(r=>{const mode=s.decision.choices[r.a.choice].value;return {...r,value:mode===0?(small.length>times(0)?35:0):mode===1?(speed.length>times(1)?32:0):(untap.length>times(2)?28:0)};})
+   .sort((a,b)=>b.value-a.value||a.a.id-b.a.id)[0].a;
+ }
+ function fireTarget(s,rows,p,t){return rows.map(r=>{
+  const uid=s.decision.choices[r.a.choice]?.value,x=s.players[p].battle.find(x=>x.uid===uid),useful=x&&(t.mode===1?speedGain(s,p,x,t.source):untapGain(s,p,x));
+  return {...r,value:x?(useful?100:0)+creatureValue(s,x):0};
+ }).sort((a,b)=>b.value-a.value||a.a.id-b.a.id)[0].a;}
  function creatureValue(s,x){
   const c=effective(x,s);if(!isCreature(s,x))return c.type==='field'?20:c.type==='gear'?12:8;
   return 24+cap(c.cost)*1.8+Math.min(12,power(x,false,s)/2000)+Math.min(8,damage(c)*2)+
@@ -102,10 +141,7 @@ export function createStrategicAI(api){
  }
  function board(s,p){return s.players[p].battle.reduce((n,x)=>n+creatureValue(s,x),0);}
  function pressure(s,p){
-  const own=s.players[p],opp=s.players[1-p],ready=own.battle.filter(x=>{
-   const c=effective(x,s);return isCreature(s,x)&&!x.tapped&&!c.noAttack&&!c.noPlayerAttack&&
-    (x.entered<s.turn||c.speedAttacker||c.evolution||c.neoEvolution&&x.under?.length);
-  }),blocks=opp.battle.filter(x=>!x.tapped&&effective(x,s).blocker).length;
+  const own=s.players[p],opp=s.players[1-p],ready=own.battle.filter(x=>canHit(s,p,x)),blocks=opp.battle.filter(x=>!x.tapped&&effective(x,s).blocker).length;
   const hits=ready.map(x=>damage(effective(x,s))).sort((a,b)=>a-b).slice(blocks);
   let shields=opp.shields.length;for(const hit of hits){if(shields===0)return 110;shields=Math.max(0,shields-hit);}
   return (opp.shields.length-shields)*5;
