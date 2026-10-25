@@ -1,3 +1,4 @@
+import {historicalMetadata} from './historical-regulations.js';
 // Account backups contain deck lists only. Local match history stays on this device.
 export const ACCOUNT_SCHEMA=1,MAX_ACCOUNT_DECKS=1000,MAX_ACCOUNT_CHARS=200000,MAX_ACCOUNT_BYTES=700000;
 const text=(s,max)=>typeof s==='string'?s.slice(0,max):'';
@@ -5,7 +6,7 @@ const validId=id=>typeof id==='string'&&/^[A-Za-z0-9:_-]{1,128}$/.test(id);
 function cleanDeck(input,registry,category){
  if(!input||!validId(input.id)||typeof input.name!=='string'||!Array.isArray(input.cards)||input.cards.length>40)throw Error('保存デッキの形式が正しくありません');
  const errors=registry.validate(input);if(errors.length)throw Error(text(input.name,80)+'：'+errors[0]);
- const deck={id:input.id,name:text(input.name,120),format:input.format||'original',cards:registry.resolveRows(input.cards).map(r=>({id:r.id,count:r.count})),category};
+ const deck={id:input.id,name:text(input.name,120),format:input.format||'original',cards:registry.resolveRows(input.cards).map(r=>({id:r.id,count:r.count})),...historicalMetadata(input,registry.resolveRows(input.cards)),category};
  if(typeof input.favorite==='boolean')deck.favorite=input.favorite;
  for(const k of['created','updated'])if(typeof input[k]==='string'&&Number.isFinite(Date.parse(input[k])))deck[k]=input[k];
  for(const k of['description','templateId','sourceTitle'])if(typeof input[k]==='string')deck[k]=text(input[k],k==='description'?2000:200);

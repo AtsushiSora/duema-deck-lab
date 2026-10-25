@@ -1,4 +1,5 @@
-import {setCards,runGame,runSummary,aggregate} from './engine.js?v=0.91.1';
+import {historicalMetadata} from './historical-regulations.js';
+import {setCards,runGame,runSummary,aggregate} from './engine.js?v=0.92';
 self.onmessage=async({data})=>{
  try{setCards(data.cards);const results=[];
  for(let oi=0;oi<data.opponents.length;oi++){
@@ -9,7 +10,7 @@ self.onmessage=async({data})=>{
    games.push(runSummary(runGame([data.deck,opponent],{seed,first})));
    if((i+1)%20===0||i+1===data.count)postMessage({type:'progress',completed:oi*data.count+i+1,total:data.opponents.length*data.count,current:opponent.name,stats:aggregate(games)});
   }
-  results.push({opponent:{id:opponent.id,name:opponent.name,cards:opponent.cards,format:'original'},games,stats:aggregate(games)});
+  results.push({opponent:{id:opponent.id,name:opponent.name,cards:opponent.cards,format:'original',...historicalMetadata(opponent)},games,stats:aggregate(games)});
  }
  postMessage({type:'done',results});
  }catch(e){postMessage({type:'error',message:e.message});}
