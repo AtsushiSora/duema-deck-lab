@@ -1,0 +1,131 @@
+{
+  "phase": 57,
+  "checkedAt": "2026-10-25",
+  "description": "既存の共通処理で動かすドロー1種類・通常チャージャー3種類。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dm14-021",
+      "name": "トリプル・ブレイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-021",
+      "faces": [
+        {
+          "name": "トリプル・ブレイン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "カードを３枚まで引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "drawUpTo3"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-021.jpg"
+    },
+    {
+      "id": "dm08-043",
+      "name": "ブレイン・チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-043",
+      "faces": [
+        {
+          "name": "ブレイン・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "カードを１枚引く。\nチャージャー(この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ],
+        "normalCharger": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm08-043.jpg"
+    },
+    {
+      "id": "dm08-032",
+      "name": "クリムゾン・チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-032",
+      "faces": [
+        {
+          "name": "クリムゾン・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトルゾーンにあるパワー2000以下の相手のクリーチャーを１体選び、持ち主の墓地に置く。\nチャージャー(この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "destroySmall",
+        "normalCharger": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm08-032.jpg"
+    },
+    {
+      "id": "dm08-047",
+      "name": "リバース・チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-047",
+      "faces": [
+        {
+          "name": "リバース・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の墓地からクリーチャーを１体選び、自分の手札に加える。\nチャージャー(この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "owner": "self",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "normalCharger": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm08-047.jpg"
+    }
+  ]
+}

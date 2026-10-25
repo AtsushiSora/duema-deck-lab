@@ -26264,15 +26264,112 @@
       "recommendRole": "water",
       "supportBatch": "phase-56",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm14-021",
+      "name": "トリプル・ブレイン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "カードを３枚まで引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-021",
+      "limit": 4,
+      "effect": "drawUpTo3",
+      "supportBatch": "phase-57",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm08-043",
+      "name": "ブレイン・チャージャー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "カードを１枚引く。\nチャージャー(この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-043",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "normalCharger": true,
+      "supportBatch": "phase-57",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm08-032",
+      "name": "クリムゾン・チャージャー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにあるパワー2000以下の相手のクリーチャーを１体選び、持ち主の墓地に置く。\nチャージャー(この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-032",
+      "limit": 4,
+      "effect": "destroySmall",
+      "normalCharger": true,
+      "supportBatch": "phase-57",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm08-047",
+      "name": "リバース・チャージャー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "自分の墓地からクリーチャーを１体選び、自分の手札に加える。\nチャージャー(この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-047",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "owner": "self",
+          "to": "hand",
+          "n": 1,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "normalCharger": true,
+      "supportBatch": "phase-57",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 56,
+    "phase": 57,
     "checkedAt": "2026-10-25",
-    "baseCount": 1165,
-    "newEffectCards": 12,
+    "baseCount": 1177,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 1177,
+    "totalCount": 1181,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -27448,6 +27545,20 @@
           "https://dm.takaratomy.co.jp/rule/qa/41300/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37786/",
           "https://dm.takaratomy.co.jp/rule/qa/48473/"
+        ],
+        "next": [
+          "対応済みカードの対戦検証と改善"
+        ]
+      },
+      {
+        "phase": 56,
+        "checkedAt": "2026-10-25",
+        "baseCount": 1165,
+        "newEffectCards": 12,
+        "newVanillaCards": 0,
+        "totalCount": 1177,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "対応済みカードの対戦検証と改善"
