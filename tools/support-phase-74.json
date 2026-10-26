@@ -1,0 +1,235 @@
+{
+  "phase": 74,
+  "checkedAt": "2026-10-27",
+  "description": "墓地・マナ回収、手札補充、シールド追加、一時強化を補う主要呪文6種類。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/42947/",
+    "https://dm.takaratomy.co.jp/rule/qa/46248/"
+  ],
+  "cards": [
+    {
+      "id": "dm01-058",
+      "name": "ダーク・リバース",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm01-058",
+      "faces": [
+        {
+          "name": "ダーク・リバース",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S(シールド)・トリガー(このカードをシールドゾーンから手札に戻すとき、コストを支払わずにすぐ使ってよい。)\n自分の墓地からクリーチャーを１体選び、自分の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": false,
+            "filter": {
+              "creature": true
+            },
+            "title": "墓地から手札に戻すクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-10-27",
+        "sha256": "908b79f70bb304bae7adbbc69fd3b8f4dc1c9abf43455d83b412c0f78be8b07d",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm01-058.jpg"
+    },
+    {
+      "id": "dmr11-040",
+      "name": "ブレイン・タイフーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-040",
+      "faces": [
+        {
+          "name": "ブレイン・タイフーン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "カードを３枚まで引く。その後、自分の手札を１枚捨てる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3,
+            "optional": true
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-10-27",
+        "sha256": "061062b6ded95ee448583806c545399d357491898ad2a8545af937d82a8c52ed",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr11-040.jpg"
+    },
+    {
+      "id": "dm03-035",
+      "name": "深緑の魔方陣",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-035",
+      "faces": [
+        {
+          "name": "深緑の魔方陣",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S(シールド)・トリガー(このカードをシールドゾーンから手札に加えるとき、コストを支払わずにすぐ使ってよい)\n自分のマナゾーンからカードを１枚選び、裏向きにしてシールドに加える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "champion",
+        "g62Effect": "ManaShield",
+        "trigger": true
+      },
+      "verification": {
+        "checkedAt": "2026-10-27",
+        "sha256": "1f9d3ab1a14f02a2930065f85c55856b8b5ea1074ea8e64a0e4f10b52f887de6",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm03-035.jpg"
+    },
+    {
+      "id": "dm13-050",
+      "name": "ピクシー・コクーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-050",
+      "faces": [
+        {
+          "name": "ピクシー・コクーン",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー\nクリーチャーを１体、自分のマナゾーンから自分の手札に戻す。\nこの呪文を唱えた後、墓地に置くかわりにタップして自分のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "champion",
+        "g62Effect": "Cocoon",
+        "trigger": true,
+        "normalCharger": true,
+        "manaFinishTapped": true
+      },
+      "verification": {
+        "checkedAt": "2026-10-27",
+        "sha256": "d2dad32a6216934895e187b98f2ee3e7b006a33402b1ab4293e8d3501d1de73d",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-050.jpg"
+    },
+    {
+      "id": "dm07-032",
+      "name": "エナジー・チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-032",
+      "faces": [
+        {
+          "name": "エナジー・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "バトルゾーンにある自分のクリーチャーを１体選ぶ。このターンが終わるまで、そのクリーチャーのパワーは+2000される。\nチャージャー(この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "champion",
+        "g62Effect": "Energy",
+        "normalCharger": true
+      },
+      "verification": {
+        "checkedAt": "2026-10-27",
+        "sha256": "3b58ce0177b7e89d7a373f8540f0c102c43b93dba92269d801060f7a54f9a9e0",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm07-032.jpg"
+    },
+    {
+      "id": "dm07-029",
+      "name": "ブラッディ・チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-029",
+      "faces": [
+        {
+          "name": "ブラッディ・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "バトルゾーンにある自分のクリーチャーを１体選ぶ。このターンが終わるまで、そのクリーチャーは「スレイヤー」を得る。(このクリーチャーとバトルした相手クリーチャーは、勝っても持ち主の墓地に置かれる)\nチャージャー(この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "champion",
+        "g62Effect": "Bloody",
+        "normalCharger": true
+      },
+      "verification": {
+        "checkedAt": "2026-10-27",
+        "sha256": "b3579a14f6a3d33bf375af8a6364c81a567d4ed584cdeddf0f4e49b24d5b53f3",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm07-029.jpg"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-27",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 162,
+    "allSixUnrestricted": true
+  }
+}

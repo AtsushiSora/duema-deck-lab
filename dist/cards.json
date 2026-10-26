@@ -32206,23 +32206,169 @@
       "trigger": true,
       "supportBatch": "phase-73",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm01-058",
+      "name": "ダーク・リバース",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "S(シールド)・トリガー(このカードをシールドゾーンから手札に戻すとき、コストを支払わずにすぐ使ってよい。)\n自分の墓地からクリーチャーを１体選び、自分の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm01-058",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "trigger": true,
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": false,
+          "filter": {
+            "creature": true
+          },
+          "title": "墓地から手札に戻すクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-74",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr11-040",
+      "name": "ブレイン・タイフーン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "カードを３枚まで引く。その後、自分の手札を１枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-040",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 3,
+          "optional": true
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-74",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm03-035",
+      "name": "深緑の魔方陣",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S(シールド)・トリガー(このカードをシールドゾーンから手札に加えるとき、コストを支払わずにすぐ使ってよい)\n自分のマナゾーンからカードを１枚選び、裏向きにしてシールドに加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-035",
+      "limit": 4,
+      "effect": "champion",
+      "g62Effect": "ManaShield",
+      "trigger": true,
+      "supportBatch": "phase-74",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm13-050",
+      "name": "ピクシー・コクーン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー\nクリーチャーを１体、自分のマナゾーンから自分の手札に戻す。\nこの呪文を唱えた後、墓地に置くかわりにタップして自分のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-050",
+      "limit": 4,
+      "effect": "champion",
+      "g62Effect": "Cocoon",
+      "trigger": true,
+      "normalCharger": true,
+      "manaFinishTapped": true,
+      "supportBatch": "phase-74",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm07-032",
+      "name": "エナジー・チャージャー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある自分のクリーチャーを１体選ぶ。このターンが終わるまで、そのクリーチャーのパワーは+2000される。\nチャージャー(この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-032",
+      "limit": 4,
+      "effect": "champion",
+      "g62Effect": "Energy",
+      "normalCharger": true,
+      "supportBatch": "phase-74",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm07-029",
+      "name": "ブラッディ・チャージャー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある自分のクリーチャーを１体選ぶ。このターンが終わるまで、そのクリーチャーは「スレイヤー」を得る。(このクリーチャーとバトルした相手クリーチャーは、勝っても持ち主の墓地に置かれる)\nチャージャー(この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-029",
+      "limit": 4,
+      "effect": "champion",
+      "g62Effect": "Bloody",
+      "normalCharger": true,
+      "supportBatch": "phase-74",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 73,
+    "phase": 74,
     "checkedAt": "2026-10-27",
-    "baseCount": 1410,
+    "baseCount": 1416,
     "newEffectCards": 6,
     "newVanillaCards": 0,
-    "totalCount": 1416,
+    "totalCount": 1422,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36900/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36901/",
-      "https://dm.takaratomy.co.jp/rule/qa/42529/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36034/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+      "https://dm.takaratomy.co.jp/rule/qa/42947/",
+      "https://dm.takaratomy.co.jp/rule/qa/46248/"
     ],
     "next": [
       "対応済みカードの対戦検証と改善"
@@ -33667,6 +33813,26 @@
         "totalCount": 1410,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "対応済みカードの対戦検証と改善"
+        ]
+      },
+      {
+        "phase": 73,
+        "checkedAt": "2026-10-27",
+        "baseCount": 1410,
+        "newEffectCards": 6,
+        "newVanillaCards": 0,
+        "totalCount": 1416,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36900/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36901/",
+          "https://dm.takaratomy.co.jp/rule/qa/42529/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36034/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
         ],
         "next": [
           "対応済みカードの対戦検証と改善"

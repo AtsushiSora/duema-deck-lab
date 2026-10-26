@@ -8,7 +8,7 @@ const play=(s,id)=>{s.players[s.active].hand.push(inst(id));act(s,'play',a=>a.ca
 const pick=(s,value)=>{const a=e.getLegalActions(s).find(a=>a.kind==='extended'&&JSON.stringify(s.decision.choices[a.choice].value)===JSON.stringify(value));assert.ok(a,JSON.stringify(s.decision));e.step(s,a);};
 const uids=s=>e.physicalCards(s).map(x=>x.uid).sort();
 test('two photos retain their exact forty cards and three new official definitions have usable effects',()=>{
- assert.equal(data.cards.length,1416);assert.equal(data.supportExpansion.phase,73);assert.equal(manifest.cards.length,3);
+ assert.equal(data.cards.length,1422);assert.equal(data.supportExpansion.phase,74);assert.equal(manifest.cards.length,3);
  for(const row of manifest.cards){const c=e.card(row.id);assert.equal(c.name,row.name);assert.deepEqual(details.cards.find(x=>x.id===row.id).faces,row.faces);assert.equal(registry.get(row.id).supported,true);for(const[k,v]of Object.entries(row.spec))assert.deepEqual(c[k],v);}
  for(const d of PHOTO_REVISED_TWO){assert.equal(d.cards.reduce((n,x)=>n+x.count,0),40);assert.deepEqual(e.validateDeck(d),[]);assert.ok(d.cards.every(x=>registry.get(x.id).supported));}
  assert.equal(e.card(K).race,'魔導具');assert.equal(e.card(K).trigger,true);assert.equal(e.card(L).race,'');
