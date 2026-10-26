@@ -4,6 +4,7 @@ import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,sa
 import {createCardArt} from './card-art.js';
 import {resolveHeroDecks,resolveRivalDecks,challengeOptions,recordHeroResult,heroChallengeHTML} from './hero-challenge.js';
 import {recordManualVictory,isOpponentDefeated,defeatedBadgeHTML} from './opponent-progress.js';
+import {resolveChampions,championsHTML} from './champions.js';
 import {shieldCards} from './shield-state.js';
 import {createAIPlayback,aiSpeedLabel,applyAIHighlights,AI_SPEEDS} from './ai-playback.js';
 import {createOnlineClient} from './online.js';
@@ -46,6 +47,7 @@ let homeQuery='',homeOrder='selected',environmentYearFilter='all',environmentPic
 let deckViewId=null,deckReturnView='decks',editorReturnView='decks',deckQuery='',deckSort='cost',deckDisplay='grid',editHistory=[];
 let appUpdates=null,updateResumeRecovery=null;
 let randomOpponent=null;
+let champions=null,championRole='opponent',championYear='all',championSeries='all';
 let manualUI=newManualUI(),manualVisualCleanup=()=>{},aiPlayback=null,aiPlaybackBattle=null;
 const allDecks=()=>[...saved.decks,...saved.friends,...environmentDecks,...starterDecks,...heroDecks,...rivalDecks,...(randomOpponent?[randomOpponent]:[])],myDeck=()=>saved.decks.find(d=>d.id===saved.selected)||saved.decks[0];
 const opponentDecks=()=>saved.friends;
@@ -76,7 +78,13 @@ function environmentProgressHTML(d,{target=false}={}){
  const p=environmentSupport(d,registry),complete=p.supportedCopies===p.totalCopies;
  return `<section class="environment-support ${target?'target-support':''}" aria-label="${esc(d.name)}の効果対応状況">${target?`<span class="badge green">${complete?'40枚対応済み':'優先して対応中'}</span><h3 class="mt8">${esc(d.name)}</h3>`:''}<div class="row spread mt8"><strong>効果対応 ${p.supportedCopies} / ${p.totalCopies}枚</strong><small>${p.supportedTypes} / ${p.totalTypes}種類</small></div><progress max="${p.totalCopies}" value="${p.supportedCopies}" aria-label="${esc(d.name)}の対応枚数"></progress>${target?`<p class="small">${complete?'40枚の効果に対応し、デッキ全体の自動対戦を検証済みです。手動・自動対戦に使えます。':'現在はカード効果を実装中です。この大会リストでの対戦は、残りの効果対応後に検証します。'}</p><ol class="support-roadmap"><li>1. カード効果</li><li>2. デッキ対戦の検証</li><li class="current">3. AI・分析の改善</li></ol>`:''}<details class="mt8"><summary>カードごとの対応を見る</summary><div class="environment-support-list mt8">${d.cards.map(r=>{const c=card(r.id);return `<div><button class="details-link" data-action="card-detail" data-id="${esc(c.id)}">${esc(c.name)}</button><span class="${c.supported?'green':'muted'}">${r.count}枚 · ${c.supported?'効果対応済み':'未対応'}</span></div>`;}).join('')}</div></details></section>`;
 }
-function environmentEntryHTML(role,{compact=false}={}){return `<button class="btn soft full environment-entry ${compact?'compact':''}" data-action="choose-environment" data-role="${role}" aria-label="${role==='opponent'?'相手':'自分'}の環境デッキを選ぶ">${icon('spark',16)}<span>環境デッキを選ぶ</span>${icon('chevron',13)}</button>`;}
+function championEntryHTML(role){return `<button class="btn soft full environment-entry" data-action="choose-champions" data-role="${role}" aria-label="${role==='opponent'?'相手':'自分'}の歴代優勝デッキを選ぶ"><span>歴代大会の優勝デッキ</span>${icon('chevron',13)}</button>`;}
+async function openChampions(role=championRole){
+ if(!['mine','opponent'].includes(role))throw Error('デッキの選択先を確認してください');
+ if(!champions){const response=await fetch('champion-decks.json?v='+APP_VERSION,{cache:'no-cache'});if(!response.ok)throw Error('公式優勝デッキを読み込めませんでした');champions=resolveChampions(await response.json(),registry);}
+ championRole=role;showDialog(role==='opponent'?'歴代の優勝デッキを相手に選ぶ':'歴代の優勝デッキを使う',championsHTML(champions,{role,year:championYear,series:championSeries,art,mark:opponentMark}));
+}
+function environmentEntryHTML(role,{compact=false}={}){return `<button class="btn soft full environment-entry ${compact?'compact':''}" data-action="choose-environment" data-role="${role}" aria-label="${role==='opponent'?'相手':'自分'}の環境デッキを選ぶ">${icon('spark',16)}<span>環境デッキを選ぶ</span>${icon('chevron',13)}</button>${championEntryHTML(role)}`;}
 function environmentHTML({role=editRole,direct=false}={}){
  const fixed=environmentDecks.filter(d=>!d.tournament.practice).length,practiceCount=environmentDecks.length-fixed;
  const opponent=role==='opponent',ordered=[...environmentDecks].sort((a,b)=>Number(deckReadiness(b).kind==='green')-Number(deckReadiness(a).kind==='green'));
@@ -466,6 +474,11 @@ document.addEventListener('click',async event=>{
  else if(action==='use-deck'){saved.selected=id;comparisonId=null;persist();view='battle';render();window.scrollTo(0,0);}
  else if(action==='select-my-deck')selectDeckDialog();
  else if(action==='environment-year'){const year=el.dataset.year;if(year!=='all'&&!groupEnvironmentDecks(environmentDecks).some(g=>String(g.year??'unknown')===year))return;environmentYearFilter=year;refreshEnvironmentYears();}
+ else if(action==='choose-champions'){championYear='all';championSeries='all';await openChampions(el.dataset.role);}
+ else if(action==='champion-year'){championYear=el.dataset.year;await openChampions();}
+ else if(action==='champion-series'){championSeries=el.dataset.series;await openChampions();}
+ else if(action==='pick-champion'){const recipe=champions?.records.find(r=>r.id===id),role=el.dataset.role;if(!recipe?.deck||!['mine','opponent'].includes(role))throw Error('公式構成を確認してください');saveCopiedDeck(recipe.deck,role,{nextView:'battle'});}
+ else if(action==='export-champion'){const recipe=champions?.records.find(r=>r.id===id);if(!recipe)throw Error('公式リストを選択してください');const {deck,playable,unsupportedCopies,...original}=recipe;download(recipe.id+'.json',JSON.stringify({schemaVersion:1,kind:'official-tournament-recipe',recipe:original},null,2));toast('追加カードを含む公式構成を保存しました');}
  else if(action==='choose-environment')showEnvironmentPicker(el.dataset.role);
  else if(action==='pick-environment'){const role=el.dataset.role,source=environmentDecks.find(x=>x.id===id);if(!source||!['mine','opponent'].includes(role))throw Error('環境デッキと保存先を選択してください');saveCopiedDeck(source,role,{nextView:'battle'});}
  else if(action==='pick-my-deck'){saved.selected=id;persist();closeDialog();render();}

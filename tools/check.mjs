@@ -1,3 +1,4 @@
+import {resolveChampions} from '../dist/champions.js';
 import {PHOTO_REVISED_TWO} from './fixtures/photo-revised-two.mjs';
 import {APP_VERSION} from '../dist/app-updates.js';
 import {PHOTO_FIFTEEN_DECKS} from './fixtures/photo-fifteen-decks.mjs';
@@ -28,6 +29,8 @@ const details=JSON.parse(await readFile(new URL('../dist/details.json',import.me
 const starters=resolveStarter25Decks(registry);console.log(`Checked ${starters.length} official starter decks; ${starters.filter(d=>!registry.coverage(d).unsupported).length} with complete effect coverage.`);
 
 setCards(supported);const environments=resolveEnvironmentDecks(registry);for(const d of environments){const errors=validateDeck(d);if(errors.length)throw Error(d.name+'：'+errors.join(' / '));}console.log(`Checked ${environments.length} environment decks with complete effect coverage.`);
+
+const championData=JSON.parse(await readFile(new URL('../dist/champion-decks.json',import.meta.url),'utf8')),championManifest=JSON.parse(await readFile(new URL('../tools/champion-sources-v0.97.0.json',import.meta.url),'utf8'));if(JSON.stringify(championData)!==JSON.stringify(championManifest))throw Error('公式優勝リストの照合記録が一致しません');const champions=resolveChampions(championData,registry);for(const r of champions.records.filter(r=>r.playable))if(validateDeck(r.deck).length)throw Error('対戦可能な優勝リストを確認してください');console.log('Checked '+champions.records.length+' intact official champion recipes; '+champions.records.filter(r=>r.playable).length+' battle-ready; '+champions.gaps.length+' source gaps retained explicitly.');
 
 const heroes=resolveHeroDecks(JSON.parse(await readFile(new URL('../dist/hero-decks.json',import.meta.url),'utf8')),registry);for(const d of heroes){const errors=validateDeck(d);if(errors.length)throw Error(d.name+'：'+errors.join(' / '));}console.log(`Checked ${heroes.length} protagonist challenge decks with forty supported cards each.`);
 
