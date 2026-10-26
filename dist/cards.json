@@ -32730,19 +32730,174 @@
       "g65Effect": "CloneLightning",
       "supportBatch": "phase-77",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmd24-001",
+      "name": "ボルメテウス・ブラック・ドラゴン",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "アーマード・ドラゴン/デーモン・コマンド",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体破壊する。\nこのクリーチャーがシールドをブレイクする時、相手はそのシールドを自身の手札に加えるかわりに墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd24-001",
+      "limit": 4,
+      "breaker": 2,
+      "shieldBurn": true,
+      "effect": "destroy",
+      "supportBatch": "phase-78",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-101",
+      "name": "メテオ・チャージャー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "相手の「ブロッカー」を持つクリーチャーを１体破壊する。\nチャージャー（この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-101",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g66Role": "meteor",
+      "normalCharger": true,
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "blocker": true
+          },
+          "title": "破壊する相手のブロッカーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-78",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-039",
+      "name": "レインボー・スパーク",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを２体まで選び、タップする。\nマナ武装 ２：自分のマナゾーンに多色カードが２枚以上あれば、カードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-039",
+      "limit": 4,
+      "trigger": true,
+      "effect": "champion",
+      "g66Effect": "Rainbow",
+      "supportBatch": "phase-78",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm28-043",
+      "name": "天雷の導士アヴァラルド公",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "アーク・セラフィム/ナイト",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を表向きにする。その中から呪文を好きな数手札に加え、残りを好きな順序で山札の一番下に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-043",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "public": true,
+          "stages": [
+            {
+              "to": "hand",
+              "n": "all",
+              "optional": true,
+              "filter": {
+                "spell": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-78",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25-007",
+      "name": "スーパー・スパーク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンにある相手のクリーチャーをすべてタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-007",
+      "limit": 4,
+      "trigger": true,
+      "effect": "tapAll",
+      "g66Role": "spark",
+      "supportBatch": "phase-78",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm10-s03",
+      "name": "ハリケーン・クロウラー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "アースイーター",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の手札をすべて自分のマナゾーンに置く。その後、同じ枚数のカードを自分のマナゾーンから自分の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-s03",
+      "limit": 4,
+      "effect": "champion",
+      "g66Effect": "Hurricane",
+      "supportBatch": "phase-78",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 77,
+    "phase": 78,
     "checkedAt": "2026-10-27",
-    "baseCount": 1434,
+    "baseCount": 1440,
     "newEffectCards": 6,
     "newVanillaCards": 0,
-    "totalCount": 1440,
+    "totalCount": 1446,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37323/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35165/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/34821/",
+      "https://dm.takaratomy.co.jp/rule/qa/31824/",
+      "https://dm.takaratomy.co.jp/rule/qa/40636/"
     ],
     "next": [
       "対応済みカードの対戦検証と改善"
@@ -34260,6 +34415,22 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf",
           "https://dm.takaratomy.co.jp/rule/qa/42947/",
           "https://dm.takaratomy.co.jp/rule/qa/40927/"
+        ],
+        "next": [
+          "対応済みカードの対戦検証と改善"
+        ]
+      },
+      {
+        "phase": 77,
+        "checkedAt": "2026-10-27",
+        "baseCount": 1434,
+        "newEffectCards": 6,
+        "newVanillaCards": 0,
+        "totalCount": 1440,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37323/"
         ],
         "next": [
           "対応済みカードの対戦検証と改善"
