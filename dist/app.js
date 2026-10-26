@@ -1,10 +1,10 @@
 import {historicalProfile,historicalMetadata} from './historical-regulations.js';
 import {creatureStatusModel,creatureStatusHTML,recordBattleAction,createBattleReport,encodeBattleData} from './battle-insights.js?v=0.100.0';
-import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.104.0';
-import {createCardArt} from './card-art.js?v=0.104.0';
+import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.105.0';
+import {createCardArt} from './card-art.js?v=0.105.0';
 import {resolveHeroDecks,resolveRivalDecks,challengeOptions,recordHeroResult,heroChallengeHTML} from './hero-challenge.js';
 import {recordManualVictory,recordManualResult,manualResultSummary,isOpponentDefeated,defeatedBadgeHTML} from './opponent-progress.js';
-import {resolveChampions,championsHTML,isOriginalChampion} from './champions.js?v=0.104.0';
+import {resolveChampions,championsHTML,isOriginalChampion} from './champions.js?v=0.105.0';
 import {shieldCards} from './shield-state.js';
 import {createAIPlayback,aiSpeedLabel,applyAIHighlights,AI_SPEEDS} from './ai-playback.js?v=0.100.0';
 import {createOnlineClient} from './online.js';
@@ -171,7 +171,7 @@ function startSimulation(deck,options={}){
  const opponentErrors=opponents.flatMap(d=>validateDeck(d));if(opponentErrors.length){toast('相手デッキ：'+opponentErrors[0]);return;}
  const n=options.count||base?.count||count,seed=options.seed??base?.seed??crypto.getRandomValues(new Uint32Array(1))[0],f=options.first||base?.first||first;
  running={completed:0,total:n*opponents.length,current:opponents[0].name,deck:clone(deck),count:n,seed,first:f,opponents:clone(opponents),baseline:base?.id||null};view='analysis';render();
- worker=new Worker(new URL('./worker.js?v=0.104.0',import.meta.url),{type:'module'});
+ worker=new Worker(new URL('./worker.js?v=0.105.0',import.meta.url),{type:'module'});
  worker.onmessage=({data})=>{
   if(data.type==='progress'){if(!running)return;Object.assign(running,data);renderProgress();}
   if(data.type==='done'){

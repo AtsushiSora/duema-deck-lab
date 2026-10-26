@@ -4,7 +4,7 @@ export function createSagaChampionRules(api){
  const race=(c,q)=>String(c.race).includes(q),queue=(s,t,op,more={})=>put(s,{...t,op:'g45_'+op,...more});
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g45_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  const live=(s,t)=>s.players[t.p].battle.find(x=>api.layers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)));
- const manaCount=(s,p,color)=>s.players[p].mana.filter(y=>(s.players[p].battle.some(z=>card(z).casablanca&&!api.ignored(s,z))?['光','水','闇','火','自然']:api.manaColors(card(y))).includes(color)).length;
+ const manaCount=(s,p,color)=>s.players[p].mana.filter(y=>(s.players[p].battle.some(z=>(card(z).casablanca||card(z).g51Courtney)&&!api.ignored(s,z))?['光','水','闇','火','自然']:api.manaColors(card(y))).includes(color)).length;
  const allowed=(s,p,z)=>!api.canMoveZone||api.canMoveZone(s,p,z),count=(s,p,n)=>api.lookCount?api.lookCount(s,p,n):api.deckLocked(s,p)?0:n;
  const reserved=own=>new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&/Protected$|Reveals$/.test(k)).flatMap(([,v])=>v));
  function reveal(s,t,n){const own=s.players[t.p],held=reserved(own),xs=own.deck.filter(x=>!held.has(x.uid)).slice(0,count(s,t.p,n));(own.g34Protected??=[]).push(...xs.map(x=>x.uid));api.log(s,t.p,'reveal',card(t.source).name+'で公開：'+xs.map(x=>card(x).name).join('・'),{cardId:t.source});return xs.map(x=>x.uid);}
