@@ -34,7 +34,7 @@ export function createSixPhotoRules(api){
  case'g34_TapAll':for(const y of creatures(s,1-t.p))api.tap(s,1-t.p,y);break;
  case'g34_Discard':put(s,task('discard',t.owner==='self'?t.p:t.owner??1-t.p,t.source,{causedBy:t.p,n:t.n??1,random:!!t.random,optional:!!t.optional}));break;
  case'g34_Lock':(s.extLimits??=[]).push({...t.limit,player:t.limit.player??1-t.p,who:t.limit.who??t.p,expires:'start'});break;
- case'g34_Untap':if(x&&api.canUntap(x)){const was=x.tapped;x.tapped=false;if(was)hooks.untapped(s,t.p,x);}break;
+ case'g34_Untap':if(x&&api.canUntap(x)){const was=x.tapped;x.tapped=false;if(was)combined.untapped(s,t.p,x);}break;
  case'g34_Execute':{const origin=t.origin||'hand',rows=own[origin].flatMap(y=>faces(card(y)).flatMap((c,face)=>matches(s,t.p,{...y,cardId:y.cardId},t.filter)&&(!t.spellOnly||c.type==='spell')&&(t.max===undefined||cost(c)<=t.max)&&(!t.trigger||c.trigger||c.triggerPlus||c.superTrigger)&&api.canCast(s,t.p,c,origin)&&(c.type!=='creature'||api.canEnter(s,t.p,c,{origin,execution:true})&&(!c.evolution||api.evolutionBases(s,t.p,c).length))?[opt(c.name,{uid:y.uid,face,origin},20+cost(c),y.cardId)]:[]));choice(s,t,t.title||'コストを支払わず実行するカードを選ぶ',[...rows,...(t.optional===false?[]:[skip()])]);break;}
  case'g34_Choose':choice(s,t,t.title||'効果を選ぶ',t.modes.map((m,i)=>opt(m.label||'効果'+(i+1),i,m.score??10)));break;
  case'g34_Custom':custom(s,t);break;
