@@ -14,7 +14,7 @@ const action=(s,kind,predicate=()=>true)=>{const a=getLegalActions(s).find(x=>x.
 const setup=id=>{const s=createGame([PRESETS[0],PRESETS[1]],{seed:120});s.phase='main';give(s,0,'hand',[id]);give(s,0,'mana',Array.from({length:8},()=>id));give(s,0,'battle',[]);give(s,1,'battle',[]);return s;};
 
 test('expansion adds nine fully handled abilities and fifty-one explicitly reviewed vanilla cards',()=>{
- const added=data.cards.filter(c=>c.supportBatch==='phase-1');assert.equal(added.length,60);assert.equal(added.filter(c=>c.supportKind==='effect').length,9);assert.equal(added.filter(c=>c.supportKind==='vanilla').length,51);assert.equal(data.cards.length,1404);
+ const added=data.cards.filter(c=>c.supportBatch==='phase-1');assert.equal(added.length,60);assert.equal(added.filter(c=>c.supportKind==='effect').length,9);assert.equal(added.filter(c=>c.supportKind==='vanilla').length,51);assert.equal(data.cards.length,1410);
  for(const c of added){const d=details.cards.find(d=>d.id===c.id);assert.ok(d);assert.equal(d.faces.length,1);assert.equal(d.status,'complete');assert.equal(c.text,d.faces[0].abilityText||'能力なし');if(c.supportKind==='vanilla'){assert.equal(d.faces[0].abilityText,'');assert.equal(c.type,'creature');}}
  assert.ok(!data.cards.some(c=>c.name==='炎のたてがみ(バーニング・ヘアー)'));
 });
