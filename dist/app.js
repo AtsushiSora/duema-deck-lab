@@ -1,6 +1,6 @@
 import {historicalProfile,historicalMetadata} from './historical-regulations.js';
 import {creatureStatusModel,creatureStatusHTML,recordBattleAction,createBattleReport,encodeBattleData} from './battle-insights.js?v=0.99.0';
-import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.99.0';
+import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.99.1';
 import {createCardArt} from './card-art.js?v=0.99.0';
 import {resolveHeroDecks,resolveRivalDecks,challengeOptions,recordHeroResult,heroChallengeHTML} from './hero-challenge.js';
 import {recordManualVictory,isOpponentDefeated,defeatedBadgeHTML} from './opponent-progress.js';
