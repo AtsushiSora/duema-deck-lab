@@ -31355,15 +31355,208 @@
       "g55Stepple": true,
       "supportBatch": "phase-67",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25-023",
+      "name": "アクア・スーパーエメラル",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "リキッド・ピープル",
+      "text": "ブロッカー\nこのクリーチャーをバトルゾーンに出した時、自分の手札を１枚、裏向きにしてシールドに加えてもよい。そうした場合、自分のシールドを１枚、手札に加える。ただし、その「S・トリガー」は使えない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-023",
+      "limit": 4,
+      "effect": "champion",
+      "g56Effect": "Emeral",
+      "blocker": true,
+      "supportBatch": "phase-68",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm13-039",
+      "name": "パルピィ・ゴービー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ゲル・フィッシュ",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から５枚を見る。その後、それを好きな順番で元に戻す。\nこのクリーチャーは攻撃することができない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-039",
+      "limit": 4,
+      "effect": "champion",
+      "g56Effect": "Parpi",
+      "blocker": true,
+      "noAttack": true,
+      "supportBatch": "phase-68",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm27-041",
+      "name": "クゥリャン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "サイバーロード",
+      "text": "このクリーチャーをバトルゾーンに出した時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-041",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-68",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22-025",
+      "name": "封魔ゴーゴンシャック",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "グランド・デビル",
+      "text": "呪文を唱えるコストは２多くなる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-025",
+      "limit": 4,
+      "g56SpellTax": 2,
+      "supportBatch": "phase-68",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx05-011",
+      "name": "セブ・コアクマン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "サイバーロード/エイリアン",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚をすべてのプレイヤーに見せてもよい。その中から光のカードと闇のカードをすべて自分の手札に加え、残りを墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-011",
+      "limit": 4,
+      "effect": "champion",
+      "g56Effect": "Sev",
+      "supportBatch": "phase-68",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr08-029",
+      "name": "白骨の守護者ホネンビー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ガーディアン",
+      "text": "ブロッカー\nこのクリーチャーは攻撃することができない。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を墓地に置いてもよい。そうした場合、クリーチャーを１体、自分の墓地から手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-029",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "blocker": true,
+      "noAttack": true,
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "山札の上3枚を墓地へ置き、墓地からクリーチャー1体を手札へ戻す？",
+          "defs": [
+            {
+              "op": "Mill",
+              "n": 3
+            },
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "hand",
+              "n": 1,
+              "optional": false,
+              "filter": {
+                "creature": true
+              },
+              "title": "墓地から手札に戻すクリーチャーを1体選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-68",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-075",
+      "name": "黙示賢者ソルハバキ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ライトブリンガー/グラディエーター/オリジン",
+      "text": "このクリーチャーをバトルゾーンに出した時、カードを１枚、自分のマナゾーンから手札に戻してもよい。そうした場合、自分の手札を１枚、自分のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-075",
+      "limit": 4,
+      "effect": "champion",
+      "g56Effect": "Sol",
+      "supportBatch": "phase-68",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd20-013",
+      "name": "爆砕面 ジョニーウォーカー",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ヒューマノイド爆",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、このクリーチャーを破壊してもよい。そうした場合、次のうちいずれかひとつを選ぶ。　▼自分の山札の上から１枚目をマナゾーンに置く。　▼相手のパワー2000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd20-013",
+      "limit": 4,
+      "effect": "champion",
+      "g56Effect": "Johnny",
+      "supportBatch": "phase-68",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 67,
+    "phase": 68,
     "checkedAt": "2026-10-26",
-    "baseCount": 1371,
+    "baseCount": 1379,
     "newEffectCards": 8,
     "newVanillaCards": 0,
-    "totalCount": 1379,
+    "totalCount": 1387,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -32720,6 +32913,20 @@
         "newEffectCards": 12,
         "newVanillaCards": 0,
         "totalCount": 1371,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "対応済みカードの対戦検証と改善"
+        ]
+      },
+      {
+        "phase": 67,
+        "checkedAt": "2026-10-26",
+        "baseCount": 1371,
+        "newEffectCards": 8,
+        "newVanillaCards": 0,
+        "totalCount": 1379,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
