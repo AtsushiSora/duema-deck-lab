@@ -1,3 +1,4 @@
+import {policyRemove} from './champion-zone-policy.js';
 // No.01: entry-trigger copies retain their own controller and reference creature.
 export function createMaruruRules(api){
  const {card,cost,effective,creatures,put,task,choice,opt,skip,remove,clear,move}=api;
@@ -27,7 +28,7 @@ export function createMaruruRules(api){
  case'g1_KiinaryRevive':put(s,task('putCreature',t.p,t.source,{origin:'grave',uid:v}));break;
  case'g1_WatchBounce':if(v)put(s,{...t,selected:[...t.selected,v]});else{const rows=bounceRows(s,t.selected);if(rows.length)move(s,rows);}break;
  case'g1_Skip':if(v)api.skipTurn(s,t.p,t.source);break;
- case'g1_ManaHand':if(v){const x=remove(own.mana,v);if(x){clear(x,'hand');own.hand.push(x);}}break;
+ case'g1_ManaHand':if(v){const x=policyRemove(s,t.p,'mana',v,api);if(x){clear(x,'hand');own.hand.push(x);}}break;
  case'g1_Sky':put(s,{...t,op:'g1_SkyDeploy'});if(v)move(s,[{player:1-t.p,uid:v,to:'mana'}]);break;
  case'g1_SkyDeploy':if(v)put(s,task('putCreature',t.p,t.source,{origin:'mana',uid:v}));break;
  case'g1_Copy':if(v){const e=structuredClone(t.original),source=api.copySource(e.source,t.source);e.player=t.p;e.uid=t.uid;e.incarnation=t.incarnation;e.source=source;e.lastKnownPower=t.lastKnownPower;const copyKey='copy:'+t.uid+':'+(s.copySerial=(s.copySerial||0)+1);if(e.key)e.key=copyKey;if(e.task){const old=e.task;e.task={...old,p:old.p===t.original.player?t.p:1-t.p,source,uid:t.uid,incarnation:t.incarnation};for(const field of ['causedBy','controller','player','owner','who'])if(old[field]===0||old[field]===1)e.task[field]=1-old[field];if(old.key)e.task.key=copyKey;if(old.op==='g19Yobi')e.task.max=cost(card(t.source));}api.log(s,t.p,'copyEntry','オルゲイトで'+card(t.original.source).name+'の能力を使う',{cardId:t.source});api.resolveEntry(s,e);}break;

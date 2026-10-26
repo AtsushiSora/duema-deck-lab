@@ -1,3 +1,4 @@
+import {policyRemove,policyLook} from './champion-zone-policy.js';
 // Physical multi-base evolution and Phoenix effects. All choices survive JSON round-trips.
 export function createPhoenixRules(api){
  const {card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,move,enter,cast,targetOptions}=api;
@@ -7,7 +8,7 @@ export function createPhoenixRules(api){
  const poppo=(s,p)=>creatures(s,p).some(x=>effective(x,s).g31Poppo);
  const complex=(s,p,c,options={})=>!!c.g31Evolution||!!c.evolution&&phoenix(c)&&options.execution!==false&&poppo(s,p);
  const definition=c=>c.g31Evolution||{zone:'battle',conditions:[c.evolution]};
- function candidates(s,p,c,options={}){const d=definition(c),zones=d.zone==='grave'?['grave']:d.zone==='deck'?[]:options.execution!==false&&phoenix(c)&&poppo(s,p)?['battle','grave']:['battle'];return zones.flatMap(zone=>s.players[p][zone].filter(x=>zone==='grave'?card(x).type==='creature':api.isCreature(s,x)).map(x=>({x,zone})));}
+ function candidates(s,p,c,options={}){const d=definition(c),zones=d.zone==='grave'?['grave']:d.zone==='deck'?[]:options.execution!==false&&phoenix(c)&&poppo(s,p)?['battle','grave']:['battle'];return zones.filter(zone=>api.canMoveZone(s,p,zone)).flatMap(zone=>s.players[p][zone].filter(x=>zone==='grave'?card(x).type==='creature':api.isCreature(s,x)).map(x=>({x,zone})));}
  const matches=(s,x,condition)=>condition.creature||api.matchesEvolution(x,condition,s);
  function completions(s,p,c,selected=[],options={}){const d=definition(c);if(d.zone==='deck')return s.players[p].deck.length>0;const pool=candidates(s,p,c,options).filter(r=>r.x.uid!==options.exclude).sort((a,b)=>Number(selected.includes(b.x.uid))-Number(selected.includes(a.x.uid)));if(d.variable)return selected.length>0&&new Set(selected).size===selected.length&&selected.every(uid=>pool.some(r=>r.x.uid===uid&&matches(s,r.x,d.conditions[0])));if(selected.length>d.conditions.length||new Set(selected).size!==selected.length||selected.some(uid=>!pool.some(r=>r.x.uid===uid)))return false;function visit(i,used){if(i===d.conditions.length)return selected.every(uid=>used.includes(uid));return pool.some(r=>!used.includes(r.x.uid)&&matches(s,r.x,d.conditions[i])&&visit(i+1,[...used,r.x.uid]));}return visit(0,[]);}
  function bases(s,p,c,options={}){if(!definition(c).variable&&!completions(s,p,c,[],options))return[];if(definition(c).zone==='deck')return s.players[p].deck.slice(0,3);return candidates(s,p,c,options).filter(r=>completions(s,p,c,[r.x.uid],options)).map(r=>r.x);}
@@ -27,7 +28,7 @@ export function createPhoenixRules(api){
  case'g31_ZeroLeave':put(s,task('discard',1-t.p,t.source,{n:2,causedBy:t.p}),task('g31_ManaTrash',t.p,t.source,{max:2,optional:true}));break;
  case'g31_Fel':put(s,task('g31_Sacrifice',t.p,t.source,{n:2,selected:[],after:[task('discard',1-t.p,t.source,{n:2,causedBy:t.p})]}));break;
  case'g31_Sacrifice':{const list=creatures(s,t.p).filter(x=>!t.selected.includes(x.uid));if(t.selected.length<t.n&&list.length)choice(s,t,'破壊する自分のクリーチャーを選ぶ（'+t.selected.length+'/'+t.n+'）',list.map(x=>opt(card(x).name,x.uid,-cost(card(x))+(effective(x,s).exLife?20:0),x.cardId)));else{put(s,...(t.after||[]));if(t.selected.length)move(s,t.selected.map(uid=>({player:t.p,uid,to:'grave'})));}break;}
- case'g31_Gate':{const list=api.deckLocked(s,t.p)?[]:own.deck.slice(0,3),n=list.filter(x=>phoenix(card(x))).length;api.log(s,t.p,'reveal',list.map(x=>card(x).name).join(' / '),{cardId:t.source});put(s,...Array.from({length:n},()=>task('g5ExtraTurn',t.p,t.source)));break;}
+ case'g31_Gate':{const list=api.deckLocked(s,t.p)?[]:policyLook(s,t.p,3,own.deck,api),n=list.filter(x=>phoenix(card(x))).length;api.log(s,t.p,'reveal',list.map(x=>card(x).name).join(' / '),{cardId:t.source});put(s,...Array.from({length:n},()=>task('g5ExtraTurn',t.p,t.source)));break;}
  case'g31_Reverse':choice(s,t,'山札の上3枚を墓地に置く？',[opt('3枚置き、相手1体を破壊する',true,own.deck.length>3?30:-100),skip()]);break;
  case'g31_Abu':put(s,task('mill',t.p,t.source,{n:2}),task('g31_DestroySmall',t.p,t.source));break;
  case'g31_DestroySmall':choice(s,t,'墓地の枚数よりコストが小さい相手を破壊する',targetOptions(s,t.p,creatures(s,1-t.p).filter(x=>cost(card(x))<own.grave.length)));break;
@@ -38,7 +39,7 @@ export function createPhoenixRules(api){
  case'g31_Mill':choice(s,t,'山札の上3枚を墓地に置く？',[opt('3枚置く',true,own.deck.length>3?20:-100),skip()]);break;
  case'g31_Heavy':choice(s,t,'自分の1体を破壊して1枚引き、相手にも1体破壊させる？',[...creatures(s,t.p).map(x=>opt(card(x).name,x.uid,creatures(s,1-t.p).length?30-cost(card(x)):-20,x.cardId)),skip()]);break;
  case'g31_Metal':choice(s,t,'相手のマナ1枚と、クリーチャーでない場のカード1枚を破壊する？',[opt('使う',true,opp.mana.length||opp.battle.some(x=>!api.isCreature(s,x))?30:0),skip()]);break;
- case'g31_ManaTrash':{const selected=t.selected||[];if(selected.length===t.max||!opp.mana.some(x=>!selected.includes(x.uid))){for(const uid of selected){const x=remove(opp.mana,uid);if(x){clear(x,'grave');api.addZone(s,opp,'grave',x);}}break;}choice(s,{...t,selected},'墓地に置く相手のマナを選ぶ',[...opp.mana.filter(x=>!selected.includes(x.uid)).map(x=>opt(card(x).name,x.uid,20,x.cardId)),...(t.optional?[opt('この内容で確定',null,0)]:[])]);break;}
+ case'g31_ManaTrash':{const selected=t.selected||[];if(selected.length===t.max||!opp.mana.some(x=>!selected.includes(x.uid))){for(const uid of selected){const x=policyRemove(s,1-t.p,'mana',uid,api);if(x){clear(x,'grave');api.addZone(s,opp,'grave',x);}}break;}choice(s,{...t,selected},'墓地に置く相手のマナを選ぶ',[...opp.mana.filter(x=>!selected.includes(x.uid)).map(x=>opt(card(x).name,x.uid,20,x.cardId)),...(t.optional?[opt('この内容で確定',null,0)]:[])]);break;}
  case'g31_NonCreature':choice(s,t,'相手のクリーチャーでないカードを破壊する',targetOptions(s,t.p,opp.battle.filter(x=>!api.isCreature(s,x))));break;
  case'g31_Oni':choice(s,t,'手札に戻す自分のシールドを選ぶ',own.shields.map((x,i)=>opt('シールド'+(i+1),x.uid,10)));if(!own.shields.length)put(s,task('g31_OniDiscount',t.p,t.source));break;
  case'g31_OniDiscount':(s.g31Discounts??=[]).push({p:t.p,turn:s.turn,source:t.source});break;
@@ -58,18 +59,18 @@ export function createPhoenixRules(api){
  case'g31_Sacrifice':put(s,{...t,selected:[...t.selected,v]});break;
  case'g31_Reverse':if(v)put(s,task('mill',t.p,t.source,{n:3}),task('g31_DestroySmall',t.p,t.source));break;
  case'g31_DestroySmall':case'g31_NonCreature':if(v)move(s,[{player:1-t.p,uid:v,to:'grave'}]);break;
- case'g31_RecoverPick':if(v){const x=remove(own.grave,v);if(x){clear(x,'hand');own.hand.push(x);}}break;
+ case'g31_RecoverPick':if(v){const x=policyRemove(s,t.p,'grave',v,api);if(x){clear(x,'hand');own.hand.push(x);}}break;
  case'g31_Reload':if(v)put(s,task('discardChosen',t.p,t.source,{n:1,causedBy:t.p,uid:v}),task('draw',t.p,t.source,{n:1}));break;
  case'g31_Mill':if(v)put(s,task('mill',t.p,t.source,{n:3}));break;
  case'g31_Heavy':if(v){put(s,task('draw',t.p,t.source,{n:1}),task('g24_EnemySacrifice',1-t.p,t.source));move(s,[{player:t.p,uid:v,to:'grave'}]);}break;
  case'g31_Metal':if(v)put(s,task('g31_ManaTrash',t.p,t.source,{max:1}),task('g31_NonCreature',t.p,t.source));break;
- case'g31_ManaTrash':if(v)put(s,{...t,selected:[...t.selected,v]});else{for(const uid of t.selected){const x=remove(s.players[1-t.p].mana,uid);if(x){clear(x,'grave');api.addZone(s,s.players[1-t.p],'grave',x);}}}break;
+ case'g31_ManaTrash':if(v)put(s,{...t,selected:[...t.selected,v]});else{for(const uid of t.selected){const x=policyRemove(s,1-t.p,'mana',uid,api);if(x){clear(x,'grave');api.addZone(s,s.players[1-t.p],'grave',x);}}}break;
  case'g31_Oni':api.moveShield(s,t.p,v,'hand',{replacement:true});put(s,task('g31_OniDiscount',t.p,t.source));break;
  case'g31_Meteor':{const x=live(s,t);if(!x)break;if(v&&detach(s,t.p,x,v)){if(t.kind==='apollo')put(s,{...t,count:(t.count||0)+1});else if(t.kind==='pluto')put(s,task('mill',t.p,t.source,{n:3}),task('destroyPower',t.p,t.source,{max:'∞'}));else put(s,task('g31_GodRevive',t.p,t.source));}else if(t.kind==='apollo'&&t.count)apolloMinus(s,t);break;}
- case'g31_GodRevive':{const x=remove(own.grave,v);if(x)enter(s,t.p,x,null,{origin:'grave',execution:false});break;}
+ case'g31_GodRevive':{const x=policyRemove(s,t.p,'grave',v,api);if(x)enter(s,t.p,x,null,{origin:'grave',execution:false});break;}
  case'g31_ApolloShields':put(s,{...t,selected:[...t.selected,v]});break;
  case'g31_Xeno':if(v){const base=live(s,t),x=remove(own.hand,v);if(x&&base){enter(s,t.p,x,base.uid,{origin:'hand',execution:false,g31Force:true});const top=own.battle.find(y=>api.layers(y).some(z=>z.uid===x.uid));if(top)(top.g31EndDeath??=[]).push({turn:s.turn,uid:x.uid,incarnation:x.incarnation||0});}}break;
- case'g31_XenoReturn':if(v){const x=remove(own.grave,t.uid);if(x){clear(x,'hand');own.hand.push(x);}}break;
+ case'g31_XenoReturn':if(v){const x=policyRemove(s,t.p,'grave',t.uid,api);if(x){clear(x,'hand');own.hand.push(x);}}break;
  case'g31_Link':{const x=remove(own.g31Holding,t.uid);if(x)enter(s,t.p,x,t.base,{...t.options,g31Linked:true,g31Partner:v});break;}
  default:throw Error('未実装のフェニックス選択：'+t.op);
  }return true;}

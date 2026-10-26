@@ -1,3 +1,5 @@
+import {policyLook} from './champion-zone-policy.js';
+import {policyTake} from './champion-zone-policy.js';
 // Screenshot Kenji deck: each reveal, source card and replacement stays physical.
 export function createKenjiPhotoRules(api){
  const {card,cost,effective,creatures,layers,put,task,choice,opt,skip,remove,clear,enter,cast,move,targetOptions}=api;
@@ -12,7 +14,7 @@ export function createKenjiPhotoRules(api){
  case'g32_Cube':{api.shuffleLibrary(s,t.p);if(api.deckLocked(s,t.p))break;const y=own.deck[0];if(!y)break;api.log(s,t.p,'reveal',card(y).name,{cardId:y.cardId});if(card(y).type==='creature'){if(canPut(s,t.p,y,'deck'))choice(s,t,'ミステリー・キューブ：このクリーチャーを出す？',[opt('出す',y.uid,50,y.cardId),skip()]);}else{remove(own.deck,y.uid);const to=api.deckRedirect(s,t.p)?'grave':'mana';clear(y,to);api.addZone(s,own,to,y);api.deckCheck(s,t.p);}break;}
  case'g32_Put':{const y=own[t.origin].find(y=>y.uid===t.target),bases=t.bases? t.bases.filter(uid=>own.battle.some(b=>b.uid===uid)):null;if(!y||!canPut(s,t.p,y,t.origin,bases)){if(t.batch)put(s,t.batch);break;}if(card(y).evolution){const remaining=t.batch?.selected||[];choice(s,t,'進化元を選ぶ',api.evolutionBases(s,t.p,card(y)).filter(b=>(!bases||bases.includes(b.uid))&&(!t.batch||assignable(s,t.p,remaining,bases.filter(uid=>uid!==b.uid)))).map(b=>opt(card(b).name,b.uid,5,b.cardId)));}else deploy(s,t,null);break;}
  case'g32_Galaxy':if(!api.deckLocked(s,t.p))put(s,{...t,op:'g32_GalaxyPick',selected:[],bases:own.battle.map(x=>x.uid)});break;
- case'g32_GalaxyPick':{const xs=own.deck.filter(y=>(!own.entryLimitThisTurn||!t.selected.length)&&!t.selected.includes(y.uid)&&canPut(s,t.p,y,'deck',t.bases)&&assignable(s,t.p,[...t.selected,y.uid],t.bases));if(t.selected.length>=2||!xs.length){if(t.selected.length){s.g32DeployBatch=true;put(s,{...t,op:'g32_Batch'});}else finishBatch(s,t);break;}choice(s,t,'ギャラクシー：山札から2体まで選ぶ（'+t.selected.length+'/2）',[...xs.map(y=>opt(card(y).name,y.uid,20+cost(card(y)),y.cardId)),opt('選択を確定する',null,0)]);break;}
+ case'g32_GalaxyPick':{const xs=policyLook(s,t.p,own.deck.length,own.deck,api).filter(y=>(!own.entryLimitThisTurn||!t.selected.length)&&!t.selected.includes(y.uid)&&canPut(s,t.p,y,'deck',t.bases)&&assignable(s,t.p,[...t.selected,y.uid],t.bases));if(t.selected.length>=2||!xs.length){if(t.selected.length){s.g32DeployBatch=true;put(s,{...t,op:'g32_Batch'});}else finishBatch(s,t);break;}choice(s,t,'ギャラクシー：山札から2体まで選ぶ（'+t.selected.length+'/2）',[...xs.map(y=>opt(card(y).name,y.uid,20+cost(card(y)),y.cardId)),opt('選択を確定する',null,0)]);break;}
  case'g32_Batch':{s.g32DeployBatch=true;const selected=t.selected.filter(uid=>own.deck.some(y=>y.uid===uid));if(!selected.length){finishBatch(s,t);break;}choice(s,{...t,selected},'同時に出すクリーチャーの処理順を選ぶ',selected.map(uid=>{const y=own.deck.find(y=>y.uid===uid);return opt(card(y).name,uid,cost(card(y)),y.cardId);}));break;}
  case'g32_Cocoon':{api.resolveEffect(s,t.p,{...card(t.source),effect:'ramp1'});put(s,{...t,op:'g32_RecyclePlayer'});break;}
  case'g32_RecyclePlayer':choice(s,t,'墓地をシャッフルして山札の下に置くプレイヤーを選ぶ？',[opt('自分',t.p,own.grave.length>5?15:-5),opt('相手',1-t.p,opp.grave.length>5?20:-5),skip()]);break;
@@ -36,7 +38,7 @@ export function createKenjiPhotoRules(api){
  case'g32_Put':deploy(s,t,v);break;
  case'g32_GalaxyPick':if(v)put(s,{...t,selected:[...t.selected,v]});else if(t.selected.length)put(s,{...t,op:'g32_Batch'});else finishBatch(s,t);break;
  case'g32_Batch':put(s,{...t,op:'g32_Put',target:v,origin:'deck',batch:{...t,selected:t.selected.filter(uid=>uid!==v)}});break;
- case'g32_RecyclePlayer':if(v!==null){const target=s.players[v],all=target.grave.splice(0);for(const y of all)clear(y,'deck');target.deck.push(...api.shuffled(all,s));}if(t.super)put(s,{...t,op:'g32_CocoonDeploy'});break;
+ case'g32_RecyclePlayer':if(v!==null){const target=s.players[v],all=policyTake(s,v,'grave',api);for(const y of all)clear(y,'deck');target.deck.push(...api.shuffled(all,s));}if(t.super)put(s,{...t,op:'g32_CocoonDeploy'});break;
  case'g32_CocoonDeploy':if(v)put(s,{...t,op:'g32_Put',target:v,origin:'mana'});break;
  case'g32_PandaMinus':if(v){const y=s.players[1-t.p].battle.find(y=>y.uid===v);if(y)(y.powerModifiers??=[]).push({amount:-own.grave.length*1000,expires:'end',who:s.active});}break;
  case'g32_Jaouga8':if(v){api.moveShield(s,t.p,v,'grave');for(const y of own.mana)if(api.canUntap(y))y.tapped=false;}break;

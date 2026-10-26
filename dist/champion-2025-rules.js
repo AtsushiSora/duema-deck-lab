@@ -1,3 +1,4 @@
+import {policyRemove} from './champion-zone-policy.js';
 // Exact 2025 champion lists: zone choices and delayed targets retain physical identities.
 export function createChampion2025Rules(api){
  const {card,faces,cost,colors,effective,power,creatures,put,task,choice,opt,skip}=api;
@@ -16,7 +17,7 @@ export function createChampion2025Rules(api){
  function chosen(s,t,v){if(!t.op.startsWith('g42_'))return false;switch(t.op){
  case'g42_BigGuard':if(v)put(s,task('g34_Put',t.p,t.source,{origin:'deck',target:t.target,tapped:true,execution:false}),{...t,op:'g42_Lure'});else release(s,t.p,t.target);break;
  case'g42_MinoAttack':if(v&&live(s,t.p,v.uid,v.incarnation))api.castBattleSpell(s,t.p,v.uid,v.incarnation,v.source,'大虹帝 ミノガミ');break;
- case'g42_MinoReturn':if(v&&big(s,t.p)){const x=s.players[t.p].grave.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);if(x){api.remove(s.players[t.p].grave,x.uid);api.clear(x,'hand');api.addZone(s,t.p,'hand',x);}}break;
+ case'g42_MinoReturn':if(v&&big(s,t.p)){const x=s.players[t.p].grave.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);if(x){policyRemove(s,t.p,'grave',x.uid,api);api.clear(x,'hand');api.addZone(s,t.p,'hand',x);}}break;
  default:throw Error('未実装の2025優勝デッキ選択：'+t.op);
  }return true;}
  return {run,chosen,

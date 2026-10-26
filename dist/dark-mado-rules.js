@@ -1,3 +1,4 @@
+import {policyRemove} from './champion-zone-policy.js';
 // Screenshot dark-mado effects. Choices and continuations contain physical UIDs only.
 export function createDarkMadoRules(api){
  const {card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,move,cast,on,targetOptions}=api;
@@ -64,8 +65,8 @@ export function createDarkMadoRules(api){
    case'g30_JawSelect':put(s,v?{...t,selected:[...t.selected,v]}:{...t,op:'g30_JawDeploy',uids:t.selected});break;
    case'g30_JawDeploy':put(s,task('putCreature',t.p,t.source,{origin:'grave',uid:v}),{...t,uids:t.uids.filter(uid=>uid!==v)});break;
    case'g30_Funz':{const selected=t.selected||[];if(v)put(s,{...t,selected:[...selected,v]});else if(selected.length)move(s,selected.map(uid=>({player:1-t.p,uid,to:'hand',destroy:false})));break;}
-   case'g30_GraveHand':{const x=remove(own.grave,v);if(x){clear(x,'hand');own.hand.push(x);}break;}
-   case'g30_Tin':if(v){const x=own.grave.find(x=>x.uid===t.uid&&serial(x)===t.serial);if(x){remove(own.grave,x.uid);api.enter(s,t.p,x,null,{origin:'grave',execution:false,tapped:true});}}break;
+   case'g30_GraveHand':{const x=policyRemove(s,t.p,'grave',v,api);if(x){clear(x,'hand');own.hand.push(x);}break;}
+   case'g30_Tin':if(v){const x=own.grave.find(x=>x.uid===t.uid&&serial(x)===t.serial);if(x&&api.canMoveZone(s,t.p,'grave')){policyRemove(s,t.p,'grave',x.uid,api);api.enter(s,t.p,x,null,{origin:'grave',execution:false,tapped:true});}}break;
    default:throw Error('未実装の闇魔導具選択：'+t.op);
   }return true;
  }

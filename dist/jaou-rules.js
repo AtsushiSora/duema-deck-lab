@@ -1,3 +1,4 @@
+import {policyRemove,policyLook} from './champion-zone-policy.js';
 // No.03: declared attack spells, delayed mana obligations, and spell recasting.
 export function createJaouRules(api){
  const {card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,move,enter,cast,enqueue,targetOptions}=api;
@@ -14,7 +15,7 @@ export function createJaouRules(api){
  case'g3_CycleEntry':put(s,task('execute',t.p,t.source,{origin:'grave',max:4,spellOnly:true}));break;
  case'g3_CycleRepeat':{const x=own.grave.find(x=>x.uid===t.spell),c=x&&faces(card(x))[t.face];if(x&&(x.zoneSerial||0)===t.serial+1&&c?.type==='spell'&&api.canCast(s,t.p,c,'grave')&&s.g3CycleUsed?.[t.key]!==s.turn)choice(s,t,'手札から唱えた呪文を墓地からもう一度唱えますか？',[opt(c.name+'を唱える',true,25,x.cardId),skip()]);break;}
  case'g3_Jaouga':choice(s,t,'自分のシールドをすべて手札に加えますか？',[opt('すべて手札へ（S・トリガー不可）',true,own.shields.length?15:0),skip()]);break;
- case'g3_Katsu':{const uids=own.deck.slice(0,5).map(x=>x.uid);(own.g3Protected??=[]).push(...uids);if(uids.length)choice(s,{...t,uids},'上5枚から公開して手札に加えるカードを選ぶ',uids.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,10+cost(card(x)),x.cardId);}));break;}
+ case'g3_Katsu':{const uids=policyLook(s,t.p,5,own.deck,api).map(x=>x.uid);(own.g3Protected??=[]).push(...uids);if(uids.length)choice(s,{...t,uids},'上5枚から公開して手札に加えるカードを選ぶ',uids.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,10+cost(card(x)),x.cardId);}));break;}
  case'g3_Order':{if(!t.uids.length){own.g3Protected=(own.g3Protected||[]).filter(uid=>!t.protected.includes(uid));if(t.bounce)put(s,task('g3_Bounce',t.p,t.source));break;}if(t.uids.length===1){const x=remove(own.deck,t.uids[0]);if(x)own.deck.push(x);put(s,{...t,uids:[]});break;}choice(s,t,'残りを山札の下へ置く順序を選ぶ',t.uids.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,0,x.cardId);}));break;}
  case'g3_Bounce':choice(s,t,'手札に戻すクリーチャーを選ぶ',[...targetOptions(s,t.p,[...creatures(s,t.p),...creatures(s,1-t.p)]).map(o=>({...o,score:own.battle.some(x=>x.uid===o.value)?-10:o.score})),skip()]);break;
  case'g3_Minus':choice(s,t,'パワーを－∞する相手のクリーチャーを選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));break;
@@ -37,7 +38,7 @@ export function createJaouRules(api){
  case'g3_Order':{const x=remove(own.deck,value);if(x)own.deck.push(x);put(s,{...t,uids:t.uids.filter(uid=>uid!==value)});break;}
  case'g3_Bounce':if(value){const player=s.players.findIndex(p=>p.battle.some(x=>x.uid===value));move(s,[{player,uid:value,to:'hand',destroy:false}]);}break;
  case'g3_Minus':{const x=s.players[1-t.p].battle.find(x=>x.uid===value);if(x)(x.powerModifiers??=[]).push({amount:'-infinity',spellCost:4,spellSource:t.source,expires:'end',who:s.active});break;}
- case'g3_JaouDeploy':{const x=remove(own.grave,value);if(x){enter(s,t.p,x,null,{origin:'grave',execution:false});if(own.battle.some(y=>y.uid===x.uid))put(s,task('g3_Fight',t.p,t.source,{uid:x.uid,incarnation:x.incarnation||0}));}break;}
+ case'g3_JaouDeploy':{const x=policyRemove(s,t.p,'grave',value,api);if(x){enter(s,t.p,x,null,{origin:'grave',execution:false});if(own.battle.some(y=>y.uid===x.uid))put(s,task('g3_Fight',t.p,t.source,{uid:x.uid,incarnation:x.incarnation||0}));}break;}
  case'g3_Fight':if(value){const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation),y=s.players[1-t.p].battle.find(x=>x.uid===value);if(x&&y)api.battle(s,t.p,x,1-t.p,y,s.attack?.attacker);}break;
  case'g3_FinalSelect':if(value){const x=own[value.origin].find(x=>x.uid===value.uid);put(s,{...t,selected:[...t.selected,value],budget:t.budget-cost(card(x))});}else put(s,...t.selected.map(x=>task('putCreature',t.p,t.source,{...x})));break;
  case'g3_Declare':if(value){const row=t.remaining[0];api.log(s,t.p,'attackDeclare',card(row.source).name+'の'+(row.reverse?'逆転撃':'鬼エンド')+'を使用宣言',{cardId:row.source});}put(s,{...t,remaining:t.remaining.slice(1),declared:value?[...t.declared,t.remaining[0]]:t.declared});break;

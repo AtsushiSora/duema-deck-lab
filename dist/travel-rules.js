@@ -1,3 +1,4 @@
+import {policyRemove,policyLook} from './champion-zone-policy.js';
 // No.14: copied entry abilities and distinct end-of-attack/after-attack windows.
 export function createTravelRules(api){
  const {card,faces,cost,effective,creatures,put,task,choice,opt,skip,remove,clear,move,enter,cast,draw,targetOptions}=api;
@@ -14,7 +15,7 @@ export function createTravelRules(api){
  case'g14_Afro':put(s,task('discard',t.p,t.source,{causedBy:t.p,n:1}),task('draw',t.p,t.source,{n:2}));break;
  case'g14_Katsura':{const x=own.deck.pop();if(x){clear(x,'grave');api.addZone(s,own,'grave',x);put(s,task('g14_KatsuraPut',t.p,t.source,{target:x.uid}));}api.deckCheck(s,t.p);break;}
  case'g14_KatsuraPut':{const x=own.grave.find(x=>x.uid===t.target);if(x&&card(x).type==='creature'&&joker(card(x))&&cost(card(x))<=6&&canPut(s,t.p,x,'grave'))put(s,task('g14_Put',t.p,t.source,{target:x.uid,origin:'grave'}));break;}
- case'g14_Prison':{const ids=own.deck.slice(0,4).map(x=>x.uid);(own.g14Protected??=[]).push(...ids);choice(s,{...t,ids},'上4枚からジョーカーズ・クリーチャーを1体手札へ',[...ids.map(uid=>own.deck.find(x=>x.uid===uid)).filter(x=>card(x).type==='creature'&&joker(card(x))).map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)),skip()]);break;}
+ case'g14_Prison':{const ids=policyLook(s,t.p,4,own.deck,api).map(x=>x.uid);(own.g14Protected??=[]).push(...ids);choice(s,{...t,ids},'上4枚からジョーカーズ・クリーチャーを1体手札へ',[...ids.map(uid=>own.deck.find(x=>x.uid===uid)).filter(x=>card(x).type==='creature'&&joker(card(x))).map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)),skip()]);break;}
  case'g14_Order':{const ids=t.ids.filter(uid=>own.deck.some(x=>x.uid===uid));if(ids.length<=1){for(const uid of ids)own.deck.push(remove(own.deck,uid));own.g14Protected=(own.g14Protected||[]).filter(uid=>!t.protected.includes(uid));break;}choice(s,{...t,ids},'残りを山札の下へ置く順序を選ぶ',ids.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,0,x.cardId);}));break;}
  case'g14_RevZero':if(!own.shields.length)chooseHand(s,t,7,true,false);break;
  case'g14_MMM':if(mmmReady(s,t.p)&&own.hand.some(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial)&&api.canEnter(s,t.p,card(t.source),{origin:'hand',execution:false}))choice(s,t,'MMM-ジョーキングを手札から出す？',[opt('出す',true,30,t.source),skip()]);break;
@@ -51,7 +52,7 @@ export function createTravelRules(api){
  case'g14_Zero':if(v){const scope=String(s.g14Serial=(s.g14Serial||0)+1);for(const x of creatures(s,1-t.p))(x.g14IgnoreScopes??=[]).push(scope);api.lock(s,t.p,{kind:'travelIgnore',player:1-t.p,scope,expires:'end',who:s.active});}break;
  case'g14_Helt':draw(s,t.p,v);break;
  case'g14_TimeWin':if(v){put(s,task('g14_ReturnMana',t.p,t.source));ramp(s,t.p,2);}break;
- case'g14_ReturnMana':{const x=remove(own.mana,v);if(x){clear(x,'hand');own.hand.push(x);}break;}
+ case'g14_ReturnMana':{const x=policyRemove(s,t.p,'mana',v,api);if(x){clear(x,'hand');own.hand.push(x);}break;}
  case'g14_Chicken':move(s,[{player:1-t.p,uid:v,to:'grave'}]);break;
  case'g14_MomoShield':if(v){api.shieldTo(s,t.p,v,'hand');}break;
  case'g14_DashDeclare':{const [d,...remaining]=t.remaining;put(s,{...t,remaining,declared:v?[...t.declared,d]:t.declared});break;}

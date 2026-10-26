@@ -1,3 +1,4 @@
+import {policyRemove,policyTake,policyLook} from './champion-zone-policy.js';
 // Curated utility cards. All continuations contain serializable physical IDs.
 export function createRecommendedRules(api){
  const {card,faces,cost,colors,power,effective,creatures,put,task,choice,opt,skip,remove,clear,move,enqueue,targetable,lock}=api;
@@ -21,13 +22,13 @@ export function createRecommendedRules(api){
     const target=s.players[t.owner],before=new Set(t.deck);
     // Replacement payments and cards entering a new zone are new objects.
     // Only the hand/grave objects present when the batch began participate.
-    for(const row of t.rows){const x=target[row.origin].find(x=>x.uid===row.uid&&(x.zoneSerial||0)===row.serial);if(x){remove(target[row.origin],x.uid);clear(x,'deck');api.addZone(s,t.owner,'deck',x);}}
+    for(const row of t.rows){const x=target[row.origin].find(x=>x.uid===row.uid&&(x.zoneSerial||0)===row.serial);if(x&&api.canMoveZone(s,t.owner,row.origin)){remove(target[row.origin],x.uid);clear(x,'deck');api.addZone(s,t.owner,'deck',x);}}
     const added=target.deck.filter(x=>!before.has(x.uid));target.deck=target.deck.filter(x=>before.has(x.uid));
     api.shuffleLibrary(s,t.owner,added,t.source);
     api.log(s,t.p,'zoneShuffle',(t.owner===t.p?'自分':'相手')+'の場・手札・墓地から'+added.length+'枚を山札に戻す',{cardId:t.source});api.deckCheck(s,t.owner);break;
    }
    case'g36Look':case'g36Memory':{
-    const hidden=reserved(own),xs=own.deck.filter(x=>!hidden.has(x.uid)).slice(0,t.op==='g36Memory'?own.deck.length:t.n),ids=xs.map(x=>x.uid);
+    const hidden=reserved(own),xs=policyLook(s,t.p,t.op==='g36Memory'?own.deck.length:t.n,own.deck.filter(x=>!hidden.has(x.uid)),api),ids=xs.map(x=>x.uid);
     if(!ids.length)break;(own.g36Protected??=[]).push(...ids);
     api.log(s,t.p,'look',card(t.source).name+'：山札'+(t.op==='g36Memory'?'':'の上'+ids.length+'枚')+'を確認',{cardId:t.source});
     choice(s,{...t,ids},'手札に加えるカードを1枚選ぶ',xs.map(x=>opt(card(x).name,x.uid,15+cost(card(x)),x.cardId)));break;
@@ -66,14 +67,14 @@ export function createRecommendedRules(api){
    default:throw Error('未実装のおすすめカード効果：'+t.op);
   }return true;
  }
- function shuffleSelected(s,t){const own=s.players[1-t.p],xs=t.selected.map(uid=>remove(own.grave,uid)).filter(Boolean);if(!xs.length)return;for(const x of xs)clear(x,'deck');api.shuffleLibrary(s,1-t.p,xs,t.source);api.log(s,t.p,'graveShuffle','相手の墓地'+xs.length+'枚を山札に戻す',{cardId:t.source});}
+ function shuffleSelected(s,t){const own=s.players[1-t.p],xs=t.selected.map(uid=>policyRemove(s,1-t.p,'grave',uid,api)).filter(Boolean);if(!xs.length)return;for(const x of xs)clear(x,'deck');api.shuffleLibrary(s,1-t.p,xs,t.source);api.log(s,t.p,'graveShuffle','相手の墓地'+xs.length+'枚を山札に戻す',{cardId:t.source});}
  function destroySelected(s,t){if(t.selected.length)move(s,t.selected.map(uid=>({player:1-t.p,uid,to:'grave',destroy:true})));}
  function chosen(s,t,v){
   if(!t.op.startsWith('g36'))return false;const own=s.players[t.p];
   switch(t.op){
-   case'g36Olive':{const target=s.players[v],xs=target.grave.splice(0);for(const x of xs)clear(x,'deck');api.shuffleLibrary(s,v,xs,t.source);api.log(s,t.p,'graveShuffle',(v===t.p?'自分':'相手')+'の墓地'+xs.length+'枚を山札に戻す',{cardId:t.source});break;}
-   case'g36Collapse':{const x=remove(s.players[v.p].mana,v.uid);if(x){clear(x,'deck');s.players[v.p].deck.unshift(x);api.log(s,t.p,'manaToTop',(v.p===t.p?'自分':'相手')+'のマナ1枚を山札の上に置く',{cardId:t.source});}break;}
-   case'g36WaterPick':{const x=remove(own.mana,v);if(x){const max=cost(card(x));clear(x,'hand');api.addZone(s,t.p,'hand',x);put(s,continuation(t,'g36WaterBounce',{max}));}break;}
+   case'g36Olive':{const target=s.players[v],xs=policyTake(s,v,'grave',api);for(const x of xs)clear(x,'deck');api.shuffleLibrary(s,v,xs,t.source);api.log(s,t.p,'graveShuffle',(v===t.p?'自分':'相手')+'の墓地'+xs.length+'枚を山札に戻す',{cardId:t.source});break;}
+   case'g36Collapse':{const x=policyRemove(s,v.p,'mana',v.uid,api);if(x){clear(x,'deck');s.players[v.p].deck.unshift(x);api.log(s,t.p,'manaToTop',(v.p===t.p?'自分':'相手')+'のマナ1枚を山札の上に置く',{cardId:t.source});}break;}
+   case'g36WaterPick':{const x=policyRemove(s,t.p,'mana',v,api);if(x){const max=cost(card(x));clear(x,'hand');api.addZone(s,t.p,'hand',x);put(s,continuation(t,'g36WaterBounce',{max}));}break;}
    case'g36WaterBounce':if(v)move(s,[{player:1-t.p,uid:v,to:'hand',destroy:false}]);break;
    case'g36Love':{
     const target=s.players[v],rows=['hand','grave'].flatMap(origin=>target[origin].map(x=>({origin,uid:x.uid,serial:x.zoneSerial||0})));
@@ -90,7 +91,7 @@ export function createRecommendedRules(api){
    }
    case'g36Order':put(s,{...t,ids:t.ids.filter(uid=>uid!==v),ordered:[...t.ordered,v]});break;
    case'g36Bounce':if(v){const owner=s.players.findIndex(p=>p.battle.some(x=>x.uid===v));if(owner>=0)move(s,[{player:owner,uid:v,to:'hand',destroy:false}]);}break;
-   case'g36Recover':if(v){const x=remove(own.mana,v);if(x){clear(x,'hand');api.addZone(s,t.p,'hand',x);}}break;
+   case'g36Recover':if(v){const x=policyRemove(s,t.p,'mana',v,api);if(x){clear(x,'hand');api.addZone(s,t.p,'hand',x);}}break;
    case'g36Grave':if(v)put(s,{...t,selected:[...t.selected,v]});else shuffleSelected(s,t);break;
    case'g36DNA':if(v)api.shieldTop(s,t.p,card(t.source));break;
    case'g36Jack':if(v)api.moveBattleCard(s,1-t.p,v,'grave');break;

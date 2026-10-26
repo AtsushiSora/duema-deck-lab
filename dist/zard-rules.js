@@ -1,16 +1,17 @@
+import {policyRemove,policyLook} from './champion-zone-policy.js';
 // No.02: five-colour resource choices and SSS invasion continuations.
 export function createZardRules(api){
  const {card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,move,enter,cast,draw,enqueue,targetOptions}=api;
  const on=(s,p,x,op,more={})=>enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  const allColors=c=>[...new Set(faces(c).flatMap(colors))];
  const five=list=>['光','水','闇','火','自然'].every(c=>list.includes(c));
- const mark=(s,p,n)=>{const own=s.players[p],uids=own.deck.slice(0,n).map(x=>x.uid);(own.g2Protected??=[]).push(...uids);return uids;};
+ const mark=(s,p,n)=>{const own=s.players[p],uids=policyLook(s,p,n,own.deck,api).map(x=>x.uid);(own.g2Protected??=[]).push(...uids);return uids;};
  const unmark=(s,p,uids)=>{const own=s.players[p];own.g2Protected=(own.g2Protected||[]).filter(x=>!uids.includes(x));};
  const ready=(s,p,x,origin)=>card(x).type==='creature'&&api.canEnter(s,p,card(x),{origin,execution:false})&&(!card(x).evolution||api.evolutionBases(s,p,card(x)).length);
  function inherited(s,a,b){for(const k of['entered','buff','unblocked','tapLocks','buffSources','unblockSpellCost','powerModifiers','skipUntap','gospelSpeed','g19Protected','g19Blocker','g2Blocker','justDiverActive','g9Speed','g9Untap','g9AttackTurn','g9AttackCount'])if(a[k]!==undefined)b[k]=structuredClone(a[k]);api.inherit(s,a,b);}
  function ramp(s,p,n){const own=s.players[p];for(let i=0;i<n&&s.winner===null;i++){const x=api.takeTop(s,p);if(x){const to=api.deckRedirect(s,p)?'grave':'mana';clear(x,to);api.addZone(s,own,to,x);}api.deckCheck(s,p);}}
  function run(s,t){if(!t.op.startsWith('g2_'))return false;const own=s.players[t.p],opp=s.players[1-t.p];switch(t.op){
-  case'g2_Zard':{const list=['hand','grave'].flatMap(origin=>own[origin].flatMap(x=>faces(card(x)).flatMap((c,face)=>c.type==='spell'&&cost(c)<=7&&api.canCast(s,t.p,c)?[opt(c.name+'（'+(origin==='hand'?'手札':'墓地')+'）',{uid:x.uid,origin,face},20+cost(c),x.cardId)]:[])));choice(s,t,'コスト7以下の呪文を唱えますか？',[...list,skip()]);break;}
+  case'g2_Zard':{const list=['hand','grave'].flatMap(origin=>own[origin].flatMap(x=>faces(card(x)).flatMap((c,face)=>c.type==='spell'&&cost(c)<=7&&api.canCast(s,t.p,c,origin)?[opt(c.name+'（'+(origin==='hand'?'手札':'墓地')+'）',{uid:x.uid,origin,face},20+cost(c),x.cardId)]:[])));choice(s,t,'コスト7以下の呪文を唱えますか？',[...list,skip()]);break;}
   case'g2_End':choice(s,t,'ザーディクリカで破壊とドローを行いますか？',[opt('相手1体を破壊し、1枚引く',true,own.deck.length>1?20:-50),skip()]);break;
   case'g2_Dogi':ramp(s,t.p,2);put(s,task('g2_ReturnCreature',t.p,t.source));break;
   case'g2_ReturnCreature':choice(s,t,'マナから手札に戻すクリーチャーを選ぶ',own.mana.filter(x=>!x.faceDown&&card(x).type==='creature').map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)));break;
@@ -37,13 +38,13 @@ export function createZardRules(api){
  function chosen(s,t,value){if(!t.op.startsWith('g2_'))return false;const own=s.players[t.p];switch(t.op){
   case'g2_Zard':if(value){const x=own[value.origin].find(x=>x.uid===value.uid);x.finishTo='deck';cast(s,t.p,x.uid,true,null,value.face,null,value.origin,'ザーディクリカ');}break;
   case'g2_End':if(value)put(s,task('destroyPower',t.p,t.source,{max:5500}),task('draw',t.p,t.source,{n:1}));break;
-  case'g2_ReturnCreature':{const x=remove(own.mana,value);if(x){clear(x,'hand');own.hand.push(x);}break;}
+  case'g2_ReturnCreature':{const x=policyRemove(s,t.p,'mana',value,api);if(x){clear(x,'hand');own.hand.push(x);}break;}
   case'g2_Damd':put(s,task('g2_DamdTo',t.p,t.source,{target:value}));break;
   case'g2_DamdTo':move(s,[{player:1-t.p,uid:t.target,to:value,destroy:false}]);break;
   case'g2_Five':if(value==='all')put(s,...[0,1,2,3,4].map(mode=>task('g2_FiveMode',t.p,t.source,{mode})));else put(s,{...t,selected:[...t.selected,value]});break;
   case'g2_FiveMode':if(t.mode===3)move(s,[{player:1-t.p,uid:value,to:'grave'}]);break;
   case'g2_Sign':{const x=remove(own.hand,value);enter(s,t.p,x,null,{origin:'hand',execution:false});if(own.battle.some(y=>y.uid===x.uid)){(x.g2Blocker??=[]).push({who:t.p,turns:own.turns});}break;}
-  case'g2_Aqua':if(value&&!api.deckLocked(s,t.p)){const list=own.deck.splice(0,5);api.log(s,t.p,'reveal','アクアンで上5枚を公開：'+list.map(x=>card(x).name).join('、'),{cardId:t.source});for(const x of list){const to=allColors(card(x)).some(c=>['光','闇'].includes(c))?'hand':'grave';clear(x,to);api.addZone(s,own,to,x);}api.deckCheck(s,t.p);}break;
+  case'g2_Aqua':if(value&&!api.deckLocked(s,t.p)){const list=own.deck.splice(0,api.lookCount(s,t.p,5));api.log(s,t.p,'reveal','アクアンで上5枚を公開：'+list.map(x=>card(x).name).join('、'),{cardId:t.source});for(const x of list){const to=allColors(card(x)).some(c=>['光','闇'].includes(c))?'hand':'grave';clear(x,to);api.addZone(s,own,to,x);}api.deckCheck(s,t.p);}break;
   case'g2_BossDeploy':if(value)put(s,task('putCreature',t.p,t.source,{origin:'hand',uid:value}));break;
   case'g2_ChooseHand':put(s,{...t,op:'g2_ChooseMana',hand:value,uids:t.uids.filter(uid=>uid!==value)});break;
   case'g2_ChooseMana':put(s,{...t,op:'g2_AllocateFinish',mana:value,uids:t.uids.filter(uid=>uid!==value)});break;

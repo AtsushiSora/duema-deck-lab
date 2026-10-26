@@ -1,3 +1,4 @@
+import {policyLook} from './champion-zone-policy.js';
 // No.18: cross gears remain independent battlefield elements, linked by incarnation.
 export function createSamuraiRules(api){
  const {card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,cast,targetOptions}=api;
@@ -12,7 +13,7 @@ export function createSamuraiRules(api){
  const canUse=(s,p,c,origin)=>api.canCast(s,p,c,origin)&&(c.type==='spell'||api.canEnter(s,p,c,{origin,execution:true})&&(!c.evolution||api.evolutionBases(s,p,c).length));
  function cross(s,p,g,x){g.crossedTo={uid:x.uid,incarnation:x.incarnation||0};api.log(s,p,'crossGear',card(g).name+'を'+card(x).name+'にクロス',{cardId:g.cardId,target:x.uid});}
  function freeCross(g,c){return c.type==='creature'&&(g.doss&&samurai(c)||g.zangeki&&c.name==='ボルメテウス・武者・ドラゴン');}
- const protect=(own,n)=>{const uids=own.deck.slice(0,n).map(x=>x.uid);(own.g18Protected??=[]).push(...uids);return uids;};
+ const protect=(s,p,n)=>{const own=s.players[p];const uids=policyLook(s,p,n,own.deck,api).map(x=>x.uid);(own.g18Protected??=[]).push(...uids);return uids;};
  const release=(own,uids)=>own.g18Protected=(own.g18Protected||[]).filter(uid=>!uids.includes(uid));
  function run(s,t){if(!t.op.startsWith('g18_'))return false;const own=s.players[t.p];switch(t.op){
  case'g18_Generate':choice(s,t,'侍流ジェネレートで手札のクロスギアを使う？',[...own.hand.filter(x=>card(x).type==='gear'&&canUse(s,t.p,card(x),'hand')).map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)),skip()]);break;
@@ -21,7 +22,7 @@ export function createSamuraiRules(api){
  case'g18_Musashi':{const max=own.battle.filter(x=>colors(card(x)).includes('火')).length;choice(s,t,'火のエレメント数以下の相手エレメントを破壊（上限'+max+'）',targetOptions(s,t.p,s.players[1-t.p].battle.filter(x=>cost(card(x))<=max)));if(!s.decision)put(s,task('g18_MusashiDraw',t.p,t.source,{remaining:own.battle.filter(x=>colors(card(x)).includes('光')).length}));break;}
  case'g18_MusashiDraw':if(t.remaining>0)choice(s,t,'光のエレメント1つにつき1枚まで引く（残り'+t.remaining+'枚）',[opt('もう1枚引く',true,own.deck.length>1?10:-20),opt('ここまでで止める',null,0)]);break;
  case'g18_MusashiUse':{const max=own.hand.length,list=own.hand.flatMap(x=>faces(card(x)).flatMap((c,face)=>!c.evolution&&!c.sMax&&(samurai(c)||armored(c))&&cost(c)<=max&&canUse(s,t.p,c,'hand')?[opt(c.name,{uid:x.uid,face},20+cost(c),x.cardId)]:[]));choice(s,t,'手札枚数以下のサムライ・アーマードを使う（上限'+max+'）',[...list,skip()]);break;}
- case'g18_Mekraid':{const uids=protect(own,3),list=uids.flatMap(uid=>{const x=own.deck.find(x=>x.uid===uid);return faces(card(x)).flatMap((c,face)=>samurai(c)&&cost(c)<=5&&canUse(s,t.p,c,'deck')?[opt(c.name,{uid,face},20+cost(c),x.cardId)]:[]);});choice(s,{...t,uids},'サムライ・メクレイド5：上3枚から1枚使う',[...list,skip()]);break;}
+ case'g18_Mekraid':{const uids=protect(s,t.p,3),list=uids.flatMap(uid=>{const x=own.deck.find(x=>x.uid===uid);return faces(card(x)).flatMap((c,face)=>samurai(c)&&cost(c)<=5&&canUse(s,t.p,c,'deck')?[opt(c.name,{uid,face},20+cost(c),x.cardId)]:[]);});choice(s,{...t,uids},'サムライ・メクレイド5：上3枚から1枚使う',[...list,skip()]);break;}
  case'g18_Use':{const x=own[t.origin].find(x=>x.uid===t.uid),c=x&&faces(card(x))[t.face||0];if(!x||!canUse(s,t.p,c,t.origin))break;if(c.evolution||c.neoEvolution)choice(s,t,'サムライの進化元を選ぶ',[...(c.neoEvolution?[opt('進化せずに出す',null,0)]:[]),...api.evolutionBases(s,t.p,c).map(x=>opt(card(x).name,x.uid,5,x.cardId))]);else cast(s,t.p,x.uid,true,null,t.face||0,null,t.origin,t.reason||'サムライの能力');break;}
  case'g18_Order':{const remaining=t.remaining.filter(uid=>own.deck.some(x=>x.uid===uid));if(remaining.length<2){for(const uid of remaining){const x=remove(own.deck,uid);own.deck.push(x);}release(own,t.protected);break;}choice(s,{...t,remaining},'残りを山札の下へ置く順序を選ぶ',remaining.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,0,x.cardId);}));break;}
  case'g18_Maroku':{const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation);if(x&&api.isCreature(s,x)&&attached(s,t.p,x).length)put(s,{...t,op:'g18_Mekraid',maroku:true});break;}

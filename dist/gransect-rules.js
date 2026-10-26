@@ -1,3 +1,4 @@
+import {policyRemove,policyTake,policyLook} from './champion-zone-policy.js';
 // No.16: current battlefield types, optional choices and serialized reveal continuations.
 export function createGransectRules(api){
  const {card,faces,cost,colors,effective,power,creatures,put,task,choice,opt,skip,remove,clear,draw,move,log,targetOptions}=api;
@@ -6,7 +7,7 @@ export function createGransectRules(api){
  function ramp(s,p,n,tapped=false){const own=s.players[p],all=own.deck.splice(0,n),to=api.deckRedirect(s,p)?'grave':'mana';for(const x of all){clear(x,to);if(tapped&&to==='mana')x.tapped=true;api.addZone(s,own,to,x);}log(s,p,'ramp','山札の上から'+all.length+'枚を'+(to==='mana'?'マナ':'墓地')+'へ');api.deckCheck(s,p);return all;}
  function finishReveal(s,t){const own=s.players[t.p];for(const uid of t.selected){const x=remove(own.deck,uid);if(x){clear(x,'hand');own.hand.push(x);}}if(t.selected.length)api.deckCheck(s,t.p);const rest=t.uids.filter(uid=>!t.selected.includes(uid));if(t.bottom)put(s,task('g20Bottom',t.p,t.source,{uids:rest}));else{let moved=0;for(const uid of rest){const x=remove(own.deck,uid);if(x){const to=api.deckRedirect(s,t.p)?'grave':'mana';clear(x,to);if(to==='mana')x.tapped=true;api.addZone(s,own,to,x);moved++;}}if(moved)api.deckCheck(s,t.p);}}
  function run(s,t){if(!t.op.startsWith('g16'))return false;const own=s.players[t.p];switch(t.op){
-  case'g16ShakoRecycle':{const all=own.grave.splice(0);for(const x of all)clear(x,'deck');api.shuffleLibrary(s,t.p,all,t.source);log(s,t.p,'shuffleGrave','シャコガイルで自分の墓地を山札に戻してシャッフル',{cardId:t.source});break;}
+  case'g16ShakoRecycle':{const all=policyTake(s,t.p,'grave',api);for(const x of all)clear(x,'deck');api.shuffleLibrary(s,t.p,all,t.source);log(s,t.p,'shuffleGrave','シャコガイルで自分の墓地を山札に戻してシャッフル',{cardId:t.source});break;}
   case'g16ShakoStart':put(s,task('draw',t.p,t.source,{n:5}),task('discard',t.p,t.source,{causedBy:t.p,n:3}));break;
   case'g16Nacht':ramp(s,t.p,2);put(s,task('g16ManaReturn',t.p,t.source));break;
   case'g16ManaReturn':choice(s,t,'マナから手札に戻すクリーチャーを選ぶ',own.mana.filter(x=>card(x).type==='creature').map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)));break;
@@ -17,7 +18,7 @@ export function createGransectRules(api){
   case'g16OptionalRamp':choice(s,t,'山札の上から何枚マナに置く？',[0,1,2].map(n=>opt(n+'枚',n,n&&own.deck.length>n?5+n:0)));break;
   case'g16ManaTarget':choice(s,t,'マナに置く相手のクリーチャーを選ぶ',targetOptions(s,t.p,creatures(s,1-t.p).filter(x=>t.max==='∞'||power(x,x.uid===s.attack?.attacker,s)<=t.max)));break;
   case'g16Howl':{const p=1-t.p,max=s.players[p].mana.length,list=creatures(s,p).filter(x=>cost(card(x))>max);if(list.length)move(s,list.map(x=>({player:p,uid:x.uid,to:'mana'})));break;}
-  case'g16Reveal':{const uids=own.deck.slice(0,t.n).map(x=>x.uid),hits=uids.filter(uid=>{const x=own.deck.find(x=>x.uid===uid);return card(x).type==='creature'&&Number(card(x).power)>=12000;});log(s,t.p,'reveal','山札の上'+t.n+'枚を公開：'+own.deck.slice(0,t.n).map(x=>card(x).name).join('、'),{cardId:t.source});if(t.all||!hits.length)finishReveal(s,{...t,uids,selected:hits});else put(s,{...t,op:'g16RevealSelect',uids,hits,selected:[]});break;}
+  case'g16Reveal':{const uids=policyLook(s,t.p,t.n,own.deck,api).map(x=>x.uid),hits=uids.filter(uid=>{const x=own.deck.find(x=>x.uid===uid);return card(x).type==='creature'&&Number(card(x).power)>=12000;});log(s,t.p,'reveal','山札の上'+t.n+'枚を公開：'+policyLook(s,t.p,t.n,own.deck,api).map(x=>card(x).name).join('、'),{cardId:t.source});if(t.all||!hits.length)finishReveal(s,{...t,uids,selected:hits});else put(s,{...t,op:'g16RevealSelect',uids,hits,selected:[]});break;}
   case'g16RevealSelect':{const list=t.hits.filter(uid=>!t.selected.includes(uid));if(!list.length){finishReveal(s,t);break;}choice(s,t,'手札に加えるパワー12000以上を選ぶ（'+t.selected.length+'枚）',[...list.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,10+cost(card(x)),x.cardId);}),opt('ここまでで確定',null,0)]);break;}
   case'g16Plant':{const x=ramp(s,t.p,1)[0];if(x&&card(x).type==='creature'&&Number(card(x).power)>=12000&&s.winner===null)ramp(s,t.p,1);break;}
   case'g16Smash':{const c=card(t.source);if(faces(c)[1]&&api.canCast(s,t.p,faces(c)[1]))choice(s,t,'スマッシュ・バーストで呪文側を唱える？',[opt('ソニック・ダンスを唱える',true,creatures(s,1-t.p).some(x=>power(x,false,s)<=7000)?20:-1,c.id),skip()]);break;}
@@ -27,10 +28,10 @@ export function createGransectRules(api){
   default:throw Error('未実装のグランセクト効果：'+t.op);
  }return true;}
  function chosen(s,t,value){if(!t.op.startsWith('g16'))return false;const own=s.players[t.p];switch(t.op){
-  case'g16ManaReturn':{const x=remove(own.mana,value);if(x){clear(x,'hand');own.hand.push(x);}break;}
-  case'g16NachtReturn':if(value){const x=remove(own.mana,t.uid);if(x){clear(x,'hand');own.hand.push(x);}}break;
+  case'g16ManaReturn':{const x=policyRemove(s,t.p,'mana',value,api);if(x){clear(x,'hand');own.hand.push(x);}break;}
+  case'g16NachtReturn':if(value){const x=policyRemove(s,t.p,'mana',t.uid,api);if(x){clear(x,'hand');own.hand.push(x);}}break;
   case'g16NaturalGo':if(value)put(s,task('putCreature',t.p,t.source,value));break;
-  case'g16RecyclePlayer':{const p=s.players[value],all=api.shuffled(p.grave.splice(0),Math.floor(api.random(s)*4294967296));for(const x of all)clear(x,'deck');p.deck.push(...all);log(s,t.p,'shuffleGrave','選んだプレイヤーの墓地をシャッフルして山札の下へ',{cardId:t.source});break;}
+  case'g16RecyclePlayer':{const p=s.players[value],all=api.shuffled(policyTake(s,value,'grave',api),Math.floor(api.random(s)*4294967296));for(const x of all)clear(x,'deck');p.deck.push(...all);log(s,t.p,'shuffleGrave','選んだプレイヤーの墓地をシャッフルして山札の下へ',{cardId:t.source});break;}
   case'g16OptionalRamp':if(value)ramp(s,t.p,value);break;
   case'g16ManaTarget':if(value)move(s,[{player:1-t.p,uid:value,to:'mana'}]);break;
   case'g16RevealSelect':if(value)put(s,{...t,selected:[...t.selected,value]});else finishReveal(s,t);break;

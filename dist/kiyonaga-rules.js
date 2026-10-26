@@ -1,3 +1,4 @@
+import {policyRemove,policyLook} from './champion-zone-policy.js';
 // No.21: Twinpact faces, pending cards, simultaneous targets and last-known abilities.
 export function createKiyonagaRules(api){
  const {card,faces,cost,effective,creatures,put,task,choice,opt,skip,remove,clear,draw,move,cast,enter,log,targetOptions}=api;
@@ -8,10 +9,10 @@ export function createKiyonagaRules(api){
  const canPut=(s,p,x,origin,execution=false)=>api.canEnter(s,p,card(x),{origin,execution})&&(!card(x).evolution||api.evolutionBases(s,p,card(x)).some(y=>y.uid!==x.uid));
  function kiyoRest(s,t){const own=s.players[t.p],to=api.deckRedirect(s,t.p)?'grave':'mana',all=[...(own.g21Holding||[]),...t.rest.flatMap(uid=>{const x=remove(own.deck,uid);return x?[x]:[];})];own.g21Holding=[];delete own.g21Protected;for(const x of all){clear(x,to);api.addZone(s,own,to,x);}if(all.length)api.deckCheck(s,t.p);log(s,t.p,'kiyonagaMana','清永で残り'+all.length+'枚を'+(to==='mana'?'マナ':'墓地')+'へ',{cardId:t.source});}
  function run(s,t){if(!t.op.startsWith('g21'))return false;const own=s.players[t.p],opp=s.players[1-t.p];switch(t.op){
-  case'g21KiyoReveal':{const all=own.deck.slice(0,3);log(s,t.p,'reveal','清永で公開：'+all.map(x=>card(x).name).join('、'),{cardId:t.source});if(distinct(all))put(s,task('g21KiyoSelect',t.p,t.source,{uids:all.map(x=>x.uid),selected:[]}));else kiyoRest(s,{...t,rest:all.map(x=>x.uid)});break;}
+  case'g21KiyoReveal':{const all=policyLook(s,t.p,3,own.deck,api);log(s,t.p,'reveal','清永で公開：'+all.map(x=>card(x).name).join('、'),{cardId:t.source});if(distinct(all))put(s,task('g21KiyoSelect',t.p,t.source,{uids:all.map(x=>x.uid),selected:[]}));else kiyoRest(s,{...t,rest:all.map(x=>x.uid)});break;}
   case'g21KiyoSelect':{const list=t.uids.filter(uid=>!t.selected.includes(uid)).map(uid=>own.deck.find(x=>x.uid===uid)).filter(x=>x&&card(x).type!=='spell'&&cost(card(x))<=9);choice(s,t,'使うコスト9以下のエレメントをすべて選ぶ（'+t.selected.length+'枚）',[...list.map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)),opt('選択を確定',null,0)]);break;}
   case'g21KiyoUse':{const list=(own.g21Holding||[]).filter(x=>canPut(s,t.p,x,'deck',true)&&api.canCast(s,t.p,card(x)));if(!list.length){kiyoRest(s,t);break;}choice(s,t,'清永で次に使うエレメントを選ぶ',list.map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)));break;}
-  case'g21Gohaten':{for(const p of[s.active,1-s.active]){const own=s.players[p];own.g21ManaPending=own.mana.filter(x=>card(x).type==='creature');own.mana=own.mana.filter(x=>card(x).type!=='creature');}put(s,task('g21GohatenUse',s.active,t.source,{next:1-s.active}));break;}
+  case'g21Gohaten':{for(const p of[s.active,1-s.active]){const own=s.players[p];if(!api.canMoveZone(s,p,'mana')){own.g21ManaPending=[];continue;}own.g21ManaPending=own.mana.filter(x=>card(x).type==='creature');own.mana=own.mana.filter(x=>card(x).type!=='creature');}put(s,task('g21GohatenUse',s.active,t.source,{next:1-s.active}));break;}
   case'g21GohatenUse':{const list=(own.g21ManaPending||[]).filter(x=>canPut(s,t.p,x,'mana')||card(x).manaEvolution&&api.canEnter(s,t.p,card(x),{origin:'mana',execution:false}));if(!list.length){own.mana.push(...(own.g21ManaPending||[]));own.g21ManaPending=[];if(t.next!==undefined)put(s,task('g21GohatenUse',t.next,t.source));break;}choice(s,t,'轟破天で次にマナから出すクリーチャーを選ぶ',list.map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)));break;}
   case'g21Enter':{const x=own[t.zone]?.find(x=>x.uid===t.uid);if(x&&t.zone==='g21ManaPending'&&card(x).manaEvolution&&!api.evolutionBases(s,t.p,card(x)).length){remove(own[t.zone],x.uid);own.mana.push(x);break;}if(!x||!canPut(s,t.p,x,t.origin,t.execution))break;const c=card(x),bases=api.evolutionBases(s,t.p,c).filter(y=>y.uid!==x.uid);if(c.evolution||c.neoEvolution)choice(s,t,'進化元を選ぶ',[...(c.neoEvolution?[opt('進化させずに出す',false,1)]:[]),...bases.map(x=>opt(card(x).name,x.uid,2,x.cardId))]);else doEnter(s,t,null);break;}
   case'g21BreakNine':{const shields=opp.shields,n=Math.min(9,shields.length);if(n===shields.length){if(n)api.breakShields(s,1-t.p,shields.map(x=>x.uid));}else put(s,task('g21BreakChoose',t.p,t.source,{selected:[],n}));break;}
@@ -44,7 +45,7 @@ export function createKiyonagaRules(api){
   case'g21CobaltDraw':if(value)draw(s,t.p,2);break;
   case'g21Shutter':if(value)put(s,{...t,selected:[...t.selected,value]});else finishShutter(s,t);break;
   case'g21Mega':if(value){const x=own[t.origin].find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.zoneSerial);if(x){if(t.origin==='grave')api.castBattleSpell(s,t.p,x.uid,0,t.source,'メガ・ラスト・バースト');else cast(s,t.p,x.uid,true,null,1,null,t.origin,'メガ・ラスト・バースト');}}break;
-  case'g21MinoRecover':{const x=remove(own.grave,value);if(x){const to=api.manaRedirect(s,t.p)?'grave':'mana';clear(x,to);api.addZone(s,own,to,x);}break;}
+  case'g21MinoRecover':{const x=policyRemove(s,t.p,'grave',value,api);if(x){const to=api.manaRedirect(s,t.p)?'grave':'mana';clear(x,to);api.addZone(s,own,to,x);}break;}
   case'g21MinoAttack':if(value)put(s,task('putCreature',t.p,t.source,{uid:value,origin:'mana'}));break;
   case'g21Fortress':if(value)put(s,{...t,selected:[...t.selected,value]});else finishFortress(s,t);break;
   default:throw Error('未実装の清永デッキ選択：'+t.op);

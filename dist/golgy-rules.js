@@ -1,3 +1,4 @@
+import {policyRemove,policyLook} from './champion-zone-policy.js';
 // NEO stacks, super-soul and library continuations use physical identities throughout.
 export function createGolgyRules(api){
  const {card,cost,colors,effective,creatures,put,task,choice,opt,skip,enqueue,log,targetOptions}=api;
@@ -8,7 +9,7 @@ export function createGolgyRules(api){
  const pool=(s,t)=>(t.ids||[]).map(uid=>s.players[t.p].deck.find(x=>x.uid===uid)).filter(Boolean);
  const release=(s,p,ids)=>{s.players[p].g27Protected=(s.players[p].g27Protected||[]).filter(uid=>!ids.includes(uid));};
  function reveal(s,t,n,publicly){
-  const own=s.players[t.p],excluded=own.g27Protected||[],list=own.deck.filter(x=>!excluded.includes(x.uid)).slice(0,n);own.g27Protected=[...excluded,...list.map(x=>x.uid)];
+  const own=s.players[t.p],excluded=own.g27Protected||[],list=policyLook(s,t.p,n,own.deck.filter(x=>!excluded.includes(x.uid)),api);own.g27Protected=[...excluded,...list.map(x=>x.uid)];
   log(s,t.p,publicly?'reveal':'look',publicly?card(t.source).name+'で公開：'+list.map(x=>card(x).name).join('・'):card(t.source).name+'：山札の上'+list.length+'枚を確認',{cardId:t.source});return list.map(x=>x.uid);
  }
  const order=(s,t,ids)=>put(s,{...t,op:'g27_Order',ids});
@@ -25,7 +26,7 @@ export function createGolgyRules(api){
   case'g27_Kohaku':{const x=live(s,t);if(x)x.g26Stay=t.p;break;}
   case'g27_Golgy':{const n=count(s,t),safe=Math.min(n,Math.max(0,own.deck.length-1));choice(s,t,'ゴルギーオージャー：先にマナへ置く枚数を選ぶ',Array.from({length:Math.min(n,own.deck.length)+1},(_,i)=>opt(i+'枚をマナへ',i,i===safe?35:i>safe?-100:5+i)));break;}
   case'g27_Recover':{const selected=t.selected||[],list=own.mana.filter(x=>!selected.includes(x.uid));if(selected.length>=3||!list.length){put(s,{...t,op:'g27_RecoverDone',selected});break;}choice(s,{...t,selected},'マナから手札へ戻すカード（3枚まで）',[...list.map(x=>opt(card(x).name,x.uid,own.mana.length-selected.length>4?cost(card(x)): -15,x.cardId)),opt('ここまでで確定',null,0)]);break;}
-  case'g27_RecoverDone':{const list=t.selected.map(uid=>api.remove(own.mana,uid)).filter(Boolean);for(const x of list)api.clear(x,'hand');api.addZone(s,t.p,'hand',...list);log(s,t.p,'recover','ゴルギーオージャー：マナから'+list.length+'枚を手札へ',{cardId:t.source});break;}
+  case'g27_RecoverDone':{const list=t.selected.map(uid=>policyRemove(s,t.p,'mana',uid,api)).filter(Boolean);for(const x of list)api.clear(x,'hand');api.addZone(s,t.p,'hand',...list);log(s,t.p,'recover','ゴルギーオージャー：マナから'+list.length+'枚を手札へ',{cardId:t.source});break;}
   case'g27_Win':if(count(s,t)>=10)api.finish(s,t.p,'ゴルギーオージャー：含まれるカード10枚以上で攻撃して勝利');break;
   case'g27_Big':{const ids=reveal(s,t,2,false);put(s,{...t,op:'g27_BigPick',ids});break;}
   case'g27_BigPick':choice(s,t,'見たカードから1枚を手札またはマナへ',pool(s,t).flatMap(x=>['hand','mana'].map(to=>opt(card(x).name+'を'+(to==='hand'?'手札':'マナ')+'へ',{uid:x.uid,to},to==='mana'&&own.mana.length<6?25:to==='hand'?10+cost(card(x)):0,x.cardId))));if(!pool(s,t).length)release(s,t.p,t.ids);break;
@@ -55,7 +56,7 @@ export function createGolgyRules(api){
   case'g27_RaidPick':{const x=live(s,t);if(v&&x){const y=api.remove(own.deck,v);if(y){release(s,t.p,[v]);api.clear(y,'battle');(x.under??=[]).push(y);log(s,t.p,'evolve','超魂レイド：'+card(y).name+'を進化元へ',{cardId:t.source});}}order(s,t,t.ids.filter(uid=>uid!==v||own.deck.some(x=>x.uid===uid)));break;}
   case'g27_Order':{const x=api.remove(own.deck,v);if(x)own.deck.push(x);release(s,t.p,[v]);order(s,t,t.ids.filter(uid=>uid!==v));break;}
   case'g27_Shield':if(v)api.move(s,[{player:1-t.p,uid:v,to:'shields',destroy:false}]);break;
-  case'g27_KanDeath':{if(v===null||v==='shield'&&!api.canAddShield(s,t.p))break;const target=v==='shield'?null:creatures(s,t.p).find(x=>x.uid===v&&(card(x).neoEvolution||card(x).evolution||card(x).sMax));if(v!=='shield'&&!target)break;const list=t.cards.flatMap(r=>{const x=own.grave.find(x=>x.uid===r.uid&&(x.zoneSerial||0)===r.serial);return x?[api.remove(own.grave,r.uid)]:[];});for(const x of list)api.clear(x,v==='shield'?'shields':'battle');if(target)(target.under??=[]).push(...list);else if(list.length){const [root,...rest]=list;root.faceUp=true;own.shields.push(root);api.notifyShieldAdded(s,t.p,root);for(const x of rest)api.addShieldCard(s,t.p,root.uid,x);}log(s,t.p,'evolve','カンツォーネ：下にあった'+list.length+'枚を'+(target?'進化元へ':'1つの表向きシールドへ'),{cardId:t.source});break;}
+  case'g27_KanDeath':{if(v===null||!api.canMoveZone(s,t.p,'grave')||v==='shield'&&!api.canAddShield(s,t.p))break;const target=v==='shield'?null:creatures(s,t.p).find(x=>x.uid===v&&(card(x).neoEvolution||card(x).evolution||card(x).sMax));if(v!=='shield'&&!target)break;const list=t.cards.flatMap(r=>{const x=own.grave.find(x=>x.uid===r.uid&&(x.zoneSerial||0)===r.serial);return x?[policyRemove(s,t.p,'grave',r.uid,api)]:[];});for(const x of list)api.clear(x,v==='shield'?'shields':'battle');if(target)(target.under??=[]).push(...list);else if(list.length){const [root,...rest]=list;root.faceUp=true;own.shields.push(root);api.notifyShieldAdded(s,t.p,root);for(const x of rest)api.addShieldCard(s,t.p,root.uid,x);}log(s,t.p,'evolve','カンツォーネ：下にあった'+list.length+'枚を'+(target?'進化元へ':'1つの表向きシールドへ'),{cardId:t.source});break;}
   case'g27_Untap':case'g27_Tap':put(s,{...t,selected:[...t.selected,v]});break;
   case'g27_HandTop':{const x=api.remove(own.hand,v);if(x){api.clear(x,'deck');own.deck.unshift(x);log(s,t.p,'handToDeck','竜騎公：手札1枚を山札の上へ',{cardId:t.source});}break;}
   case'g27_West':if(v&&(s.g27WestUsed||{})[t.useKey]!==s.turn){(s.g27WestUsed??={})[t.useKey]=s.turn;put(s,{...t,op:'g27_WestLook'});}break;

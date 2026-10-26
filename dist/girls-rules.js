@@ -1,3 +1,4 @@
+import {policyRemove,policyLook} from './champion-zone-policy.js';
 // No.08: dragon entry effects, shared shield groups, and serializable reveal choices.
 export function createGirlsRules(api){
  const {card,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,move,enter}=api;
@@ -15,14 +16,14 @@ export function createGirlsRules(api){
  case'g8_Try':{const selected=t.selected||[],options=api.targetOptions(s,t.p,creatures(s,1-t.p).filter(x=>!selected.includes(x.uid)));if(selected.length===2||!options.length){if(selected.length)move(s,selected.map(uid=>({player:1-t.p,uid,to:'hand'})));break;}choice(s,{...t,selected},'手札に戻す相手のクリーチャーを2体まで選ぶ（'+selected.length+'/2）',[...options,opt('ここまでで確定',null,0)]);break;}
  case'g8_TryDie':{const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation);if(x&&(own.brokenThisTurn||0)<2)move(s,[{player:t.p,uid:x.uid,to:'grave'}]);break;}
  case'g8_Mega':{const rows=creatures(s,1-t.p).filter(x=>api.power(x,x.uid===s.attack?.attacker,s)<=13000).map(x=>({player:1-t.p,uid:x.uid,to:'grave'}));if(rows.length)move(s,rows);break;}
- case'g8_Gyai':{const uids=own.deck.slice(0,3).map(x=>x.uid);own.g8Protected=uids;api.log(s,t.p,'reveal','ギャイで公開：'+own.deck.slice(0,3).map(x=>card(x).name).join('、'),{cardId:t.source});put(s,{...t,op:'g8_GyaiPick',uids,selected:[]});break;}
+ case'g8_Gyai':{const uids=policyLook(s,t.p,3,own.deck,api).map(x=>x.uid);own.g8Protected=uids;api.log(s,t.p,'reveal','ギャイで公開：'+policyLook(s,t.p,3,own.deck,api).map(x=>card(x).name).join('、'),{cardId:t.source});put(s,{...t,op:'g8_GyaiPick',uids,selected:[]});break;}
  case'g8_GyaiPick':{const options=t.uids.filter(uid=>!t.selected.includes(uid)).map(uid=>own.deck.find(x=>x.uid===uid)).filter(x=>x&&card(x).type==='creature'&&dragon(card(x)));choice(s,t,'手札に加えるドラゴンを選ぶ（残りはタップしてマナへ）',[...options.map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)),opt('ここまでで確定',null,0)]);break;}
  case'g8_Arshu':ramp(s,t.p,1);put(s,{...t,op:'g8_ArshuReturn'});break;
  case'g8_ArshuReturn':choice(s,t,'流星アーシュ：マナからドラゴンを1体手札に戻す',own.mana.filter(x=>!x.faceDown&&card(x).type==='creature'&&dragon(card(x))).map(x=>opt(card(x).name,x.uid,cost(card(x)),x.cardId)));break;
  case'g8_ArshuBounce':choice(s,t,'戻したドラゴンのコスト以下の相手1体を手札へ',api.targetOptions(s,t.p,creatures(s,1-t.p).filter(x=>cost(card(x))<=t.max)));break;
  case'g8_Rupia':{const top=ramp(s,t.p,1)[0];if(top&&dragon(card(top))&&s.winner===null&&!s.lossEvent)ramp(s,t.p,1);break;}
  case'g8_Untap':for(const x of creatures(s,t.p))if(colors(card(x)).length>1&&api.canUntap(x))x.tapped=false;break;
- case'g8_Final':if(!s.finalUsed?.[t.p]){(s.finalUsed??=[false,false])[t.p]=true;(s.finalHistory??=[false,false])[t.p]=true;if(api.deckLocked(s,t.p))break;const uids=own.deck.slice(0,4).map(x=>x.uid);own.g8Protected=uids;api.log(s,t.p,'reveal','ドギラゴン閃のファイナル革命で上4枚を公開：'+own.deck.slice(0,4).map(x=>card(x).name).join('、'),{cardId:t.source});put(s,{...t,op:'g8_FinalPick',uids,selected:[],budget:6});}break;
+ case'g8_Final':if(!s.finalUsed?.[t.p]){(s.finalUsed??=[false,false])[t.p]=true;(s.finalHistory??=[false,false])[t.p]=true;if(api.deckLocked(s,t.p))break;const uids=policyLook(s,t.p,4,own.deck,api).map(x=>x.uid);own.g8Protected=uids;api.log(s,t.p,'reveal','ドギラゴン閃のファイナル革命で上4枚を公開：'+policyLook(s,t.p,4,own.deck,api).map(x=>card(x).name).join('、'),{cardId:t.source});put(s,{...t,op:'g8_FinalPick',uids,selected:[],budget:6});}break;
  case'g8_FinalPick':{const rows=t.uids.filter(uid=>!t.selected.includes(uid)).map(uid=>own.deck.find(x=>x.uid===uid)).filter(x=>x&&canPut(s,t.p,x,'deck')&&!card(x).evolution&&!card(x).sMax&&colors(card(x)).length>1&&cost(card(x))<=t.budget);choice(s,t,'合計コスト6以下の多色クリーチャーを選ぶ（残り'+t.budget+'）',[...rows.map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)),opt('ここまでで確定',null,0)]);break;}
  case'g8_FinalNext':{const list=t.selected.filter(uid=>own.deck.some(x=>x.uid===uid));if(!list.length){finishReveal(s,t);break;}choice(s,{...t,selected:list},'次に出すクリーチャーを選ぶ',list.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,20+cost(card(x)),x.cardId);}));break;}
  case'g8_DragonShield':choice(s,t,'ドラゴン・W・ブレイカー：シールドの増やし方を選ぶ',[opt('山札の上を裏向きの新しいシールドにする','new',own.shields.length<4?20:8),opt('山札の上を表向きで既存のシールドに重ねる','stack',own.shields.length?15:-20)]);break;
@@ -37,7 +38,7 @@ export function createGirlsRules(api){
  case'g8_Zeos':if(v)move(s,[{player:1-t.p,uid:v,to:'shields',destroy:false}]);break;
  case'g8_Try':if(v)put(s,{...t,selected:[...t.selected,v]});else if(t.selected.length)move(s,t.selected.map(uid=>({player:1-t.p,uid,to:'hand'})));break;
  case'g8_GyaiPick':if(v)put(s,{...t,selected:[...t.selected,v]});else{for(const uid of t.selected){const x=remove(own.deck,uid);if(x){clear(x,'hand');own.hand.push(x);}}finishReveal(s,t,true);}break;
- case'g8_ArshuReturn':{const x=remove(own.mana,v);if(x){const max=cost(card(x));clear(x,'hand');own.hand.push(x);put(s,{...t,op:'g8_ArshuBounce',max});}break;}
+ case'g8_ArshuReturn':{const x=policyRemove(s,t.p,'mana',v,api);if(x){const max=cost(card(x));clear(x,'hand');own.hand.push(x);put(s,{...t,op:'g8_ArshuBounce',max});}break;}
  case'g8_ArshuBounce':move(s,[{player:1-t.p,uid:v,to:'hand'}]);break;
  case'g8_FinalPick':if(v){const x=own.deck.find(x=>x.uid===v);put(s,{...t,selected:[...t.selected,v],budget:t.budget-cost(card(x))});}else put(s,{...t,op:'g8_FinalNext'});break;
  case'g8_FinalNext':put(s,task('putCreature',t.p,t.source,{uid:v,origin:'deck',deckCheck:true}),{...t,selected:t.selected.filter(uid=>uid!==v)});break;

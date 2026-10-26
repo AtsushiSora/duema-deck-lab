@@ -1,3 +1,4 @@
+import {policyRemove,policyLook} from './champion-zone-policy.js';
 // Serializable choices for the phase-44 cards. Hidden libraries stay reserved
 // until the complete look/deploy/order instruction has finished.
 export function createBandeRules(api){
@@ -6,7 +7,7 @@ export function createBandeRules(api){
  const live=(s,t)=>s.players[t.p].battle.find(x=>!x.sealed&&api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)));
  const release=(s,p,ids)=>{s.players[p].g28Protected=(s.players[p].g28Protected||[]).filter(uid=>!ids.includes(uid));};
  const pool=(s,t)=>(t.ids||[]).map(uid=>s.players[t.p].deck.find(x=>x.uid===uid)).filter(Boolean);
- const look=(s,t,n)=>{const own=s.players[t.p],list=own.deck.filter(x=>!own.g28Protected?.includes(x.uid)).slice(0,n);own.g28Protected=[...(own.g28Protected||[]),...list.map(x=>x.uid)];log(s,t.p,'look',card(t.source).name+'：山札の上'+list.length+'枚を確認',{cardId:t.source});return list.map(x=>x.uid);};
+ const look=(s,t,n)=>{const own=s.players[t.p],list=policyLook(s,t.p,n,own.deck.filter(x=>!own.g28Protected?.includes(x.uid)),api);own.g28Protected=[...(own.g28Protected||[]),...list.map(x=>x.uid)];log(s,t.p,'look',card(t.source).name+'：山札の上'+list.length+'枚を確認',{cardId:t.source});return list.map(x=>x.uid);};
  const order=(s,t,ids)=>put(s,{...t,op:'g28_Order',ids});
  const bases=(s,p,c,noEvolve=false)=>noEvolve?[null]:[...(!c.evolution||c.graveEvolution?[null]:[]),...(!c.graveEvolution&&(c.evolution||c.neoEvolution)?api.evolutionBases(s,p,c):[])];
  const deployable=(s,p,x,origin,noEvolve=false)=>{const c=card(x);return c.type==='creature'&&(!noEvolve||!c.evolution&&!c.sMax)&&api.canEnter(s,p,c,{origin,execution:false})&&bases(s,p,c,noEvolve).length>0;};
@@ -56,7 +57,7 @@ export function createBandeRules(api){
  case'g28_Dagra':api.moveShield(s,t.p,v,'mana');break;
  case'g28_ManaDeploy':if(v)put(s,{...t,op:'g28_Deploy',origin:'mana',uid:v,noEvolve:true});break;
  case'g28_Gyai':if(v){const to=api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana',batch=[];for(let i=0;i<2;i++){const x=api.takeTop(s,t.p);if(x){clear(x,to);x.tapped=to==='mana';batch.push(x);}}api.addZone(s,t.p,to,...batch);log(s,t.p,'ramp','ギャイ：山札の上'+batch.length+'枚を'+(to==='mana'?'タップしてマナ':'墓地')+'へ',{cardId:t.source});api.deckCheck(s,t.p);}put(s,{...t,op:'g28_GyaiRecover'});break;
- case'g28_GyaiRecover':if(v){const x=remove(own.mana,v);if(x){clear(x,'hand');api.addZone(s,t.p,'hand',x);log(s,t.p,'recover','ギャイ：ドラゴン・カードをマナから手札へ',{cardId:x.cardId});}}break;
+ case'g28_GyaiRecover':if(v){const x=policyRemove(s,t.p,'mana',v,api);if(x){clear(x,'hand');api.addZone(s,t.p,'hand',x);log(s,t.p,'recover','ギャイ：ドラゴン・カードをマナから手札へ',{cardId:x.cardId});}}break;
  default:throw Error('未実装の主要カード選択：'+t.op);
  }return true;}
  return {run,chosen,

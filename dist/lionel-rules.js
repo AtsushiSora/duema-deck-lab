@@ -1,3 +1,4 @@
+import {policyTake,policyLook} from './champion-zone-policy.js';
 // No.15: seed/evolution play, Star reconstruction and S-MAX state checks.
 export function createLionelRules(api){
  const {card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,cast,enter,move,draw,targetOptions}=api;
@@ -14,7 +15,7 @@ export function createLionelRules(api){
  case'g15_LightSeed':choice(s,t,'手札から光のタマシードを1枚出す？',[...own.hand.filter(x=>card(x).type==='seed'&&colors(card(x)).includes('光')&&api.canEnter(s,t.p,card(x),{origin:'hand',execution:false})).map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)),skip()]);break;
  case'g15_StarEvo':if(s.g15StarUsed?.[t.key]!==s.turn)choice(s,t,'ライオネル：手札からコスト6以下の進化を出す？（各ターン1回）',[...own.hand.filter(x=>evolve(card(x))&&cost(card(x))<=6&&api.canEnter(s,t.p,card(x),{origin:'hand',execution:false})&&(!card(x).evolution||api.evolutionBases(s,t.p,card(x)).length)).map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)),skip()]);break;
  case'g15_Peace':if(t.remaining)choice(s,t,'理想と平和：残り'+t.remaining+'回（同じ能力も選べます）',[opt('上2枚の光・水を手札へ','look',own.hand.length<5?20:8),opt('山札の上1枚をシールド化','shield',own.shields.length<5?14:6),opt('コスト3以下のエレメントをシールド化','element',s.players[1-t.p].battle.some(x=>cost(card(x))<=3)?22:-2)]);break;
- case'g15_Look':{const uids=own.deck.slice(0,2).map(x=>x.uid),take=uids.filter(uid=>faces(card(own.deck.find(x=>x.uid===uid))).some(c=>colors(c).some(v=>['光','水'].includes(v))));for(const uid of take){const x=remove(own.deck,uid);api.clear(x,'hand');own.hand.push(x);}put(s,task('g15_Order',t.p,t.source,{remaining:uids.filter(uid=>!take.includes(uid))}));api.deckCheck(s,t.p);break;}
+ case'g15_Look':{const uids=policyLook(s,t.p,2,own.deck,api).map(x=>x.uid),take=uids.filter(uid=>faces(card(own.deck.find(x=>x.uid===uid))).some(c=>colors(c).some(v=>['光','水'].includes(v))));for(const uid of take){const x=remove(own.deck,uid);api.clear(x,'hand');own.hand.push(x);}put(s,task('g15_Order',t.p,t.source,{remaining:uids.filter(uid=>!take.includes(uid))}));api.deckCheck(s,t.p);break;}
  case'g15_Order':{const list=t.remaining.filter(uid=>own.deck.some(x=>x.uid===uid));if(list.length<2){for(const uid of list)own.deck.push(remove(own.deck,uid));break;}choice(s,{...t,remaining:list},'残りを山札の下へ置く順序を選ぶ',list.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,0,x.cardId);}));break;}
  case'g15_PeaceElement':choice(s,t,'シールド化するコスト3以下のエレメントを選ぶ',targetOptions(s,t.p,[0,1].flatMap(p=>s.players[p].battle.filter(x=>cost(card(x))<=3))));break;
  case'g15_Rune':choice(s,t,'山札の上3枚を墓地に置く？（置かなくても墓地のカードを使えます）',[opt('3枚墓地に置く',true,own.deck.length>3?8:-20),skip()]);break;
@@ -51,7 +52,7 @@ export function createLionelRules(api){
  case'g15_LightEvolution':if(v)put(s,task('g15_Deploy',t.p,t.source,{uid:v,blocker:true}));break;
  case'g15_Deploy':deploy(s,t,v);break;
  case'g15_Tap':if(v){const x=own.battle.find(x=>x.uid===v);if(x)api.tap(s,t.p,x);}break;
- case'g15_Song':{const target=s.players[v],all=target.grave.splice(0);for(const x of all)api.clear(x,'deck');target.deck.push(...api.shuffled(all,Math.floor(api.random(s)*4294967296)));draw(s,t.p,2);break;}
+ case'g15_Song':{const target=s.players[v],all=policyTake(s,v,'grave',api);for(const x of all)api.clear(x,'deck');target.deck.push(...api.shuffled(all,Math.floor(api.random(s)*4294967296)));draw(s,t.p,2);break;}
  case'g15_Keep':{const kept=v?[...t.kept,v]:t.kept;if(t.other!==undefined)put(s,{...t,p:t.other,other:undefined,kept});else put(s,task('g15_HeartMove',t.controller,t.source,{kept}));break;}
  case'g15_SmaxKeep':{const resume=s.g15SmaxResume;delete s.g15SmaxResume;s.decision=null;s.g15ResumeAfterMove=resume;move(s,own.battle.filter(x=>card(x).sMax&&x.uid!==v).map(x=>({player:t.p,uid:x.uid,to:'hand'})));if(!s.decision&&!s.leaving){s.decision=s.g15ResumeAfterMove;delete s.g15ResumeAfterMove;}break;}
  case'g15_NonBreakST':{const x=own.hand.find(x=>x.uid===t.uid);if(v&&x&&api.canCast(s,t.p,card(x))&&(card(x).type==='spell'||api.canEnter(s,t.p,card(x),{origin:'hand',execution:true})))cast(s,t.p,t.uid,true);break;}

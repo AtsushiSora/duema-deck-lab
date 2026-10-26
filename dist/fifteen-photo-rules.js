@@ -1,3 +1,4 @@
+import {policyRemove,policyLook} from './champion-zone-policy.js';
 // Fifteen screenshot decks. Continuations store physical UIDs, never copies of game cards.
 export function createFifteenPhotoRules(api){
  const {card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,move,enter,cast,targetOptions,start,canPut,key,live}=api;
@@ -14,8 +15,8 @@ export function createFifteenPhotoRules(api){
  const offer=(s,t,title,more={})=>choice(s,{...t,...more},title,[opt('使う',true,more.score??10),skip()]);
  const target=(s,t,title,list,optional=false)=>choice(s,t,title,[...targetOptions(s,t.p,list),...(optional?[skip()]:[])]);
  const queue=(s,p,x,defs)=>api.send(s,p,x,'Sequence',{defs});
- function zoneMove(s,p,origin,uid,to,t={}){if(to==='shields'&&!api.canAddShield(s,p)){if(origin==='deck')s.players[p].g35Protected=(s.players[p].g35Protected||[]).filter(x=>x!==uid);return;}if(origin==='battle'){move(s,[{player:p,uid,to,destroy:to==='grave',controller:t.controller??t.p}]);return;}const own=s.players[p],x=remove(own[origin],uid);if(!x)return;own.g35Protected=(own.g35Protected||[]).filter(id=>id!==uid);const dest=origin==='deck'&&['mana','shields'].includes(to)&&api.deckRedirect(s,p)||to==='mana'&&api.manaRedirect(s,p)?'grave':to;clear(x,dest);if(t.tapped&&dest==='mana')x.tapped=true;if(dest==='under'){const u=unit(s,t);if(u)(u.under??=[]).push(x);else api.addZone(s,p,'grave',x);}else api.addZone(s,p,dest,x);if(dest==='shields')api.notifyShieldAdded(s,p,x);}
- function reveal(s,t,n,p=t.p){if(api.deckLocked(s,p))return[];const own=s.players[p],reserved=new Set(Object.entries(own).filter(([k,v])=>/Protected$|Reveals$/.test(k)&&Array.isArray(v)).flatMap(([,v])=>v)),ids=own.deck.filter(x=>!reserved.has(x.uid)).slice(0,n).map(x=>x.uid);(own.g35Protected??=[]).push(...ids);api.log(s,t.p,'reveal',card(t.source).name+'：'+ids.map(id=>card(own.deck.find(x=>x.uid===id)).name).join('・'),{cardId:t.source});return ids;}
+ function zoneMove(s,p,origin,uid,to,t={}){if(!api.canMoveZone(s,p,origin))return;if(to==='shields'&&!api.canAddShield(s,p)){if(origin==='deck')s.players[p].g35Protected=(s.players[p].g35Protected||[]).filter(x=>x!==uid);return;}if(origin==='battle'){move(s,[{player:p,uid,to,destroy:to==='grave',controller:t.controller??t.p}]);return;}const own=s.players[p],x=remove(own[origin],uid);if(!x)return;own.g35Protected=(own.g35Protected||[]).filter(id=>id!==uid);const dest=origin==='deck'&&['mana','shields'].includes(to)&&api.deckRedirect(s,p)||to==='mana'&&api.manaRedirect(s,p)?'grave':to;clear(x,dest);if(t.tapped&&dest==='mana')x.tapped=true;if(dest==='under'){const u=unit(s,t);if(u)(u.under??=[]).push(x);else api.addZone(s,p,'grave',x);}else api.addZone(s,p,dest,x);if(dest==='shields')api.notifyShieldAdded(s,p,x);}
+ function reveal(s,t,n,p=t.p){if(api.deckLocked(s,p))return[];const own=s.players[p],reserved=new Set(Object.entries(own).filter(([k,v])=>/Protected$|Reveals$/.test(k)&&Array.isArray(v)).flatMap(([,v])=>v)),ids=policyLook(s,p,n,own.deck.filter(x=>!reserved.has(x.uid)),api).map(x=>x.uid);(own.g35Protected??=[]).push(...ids);api.log(s,t.p,'reveal',card(t.source).name+'：'+ids.map(id=>card(own.deck.find(x=>x.uid===id)).name).join('・'),{cardId:t.source});return ids;}
  function order(s,t,ids,p=t.p,top=false){put(s,task('g35_Order',p,t.source,{ids,ordered:[],top}));}
  function deploy(s,t,origin,uid,more={}){give(s,t,[E('Put',{origin,target:uid,...more})]);}
  function execute(s,t,origin,uid,face=0,more={}){give(s,t,[C('executeCard',{origin,target:uid,face,...more})]);}
@@ -57,7 +58,7 @@ export function createFifteenPhotoRules(api){
  case'graveAllMana':for(const y of [...own.grave])zoneMove(s,t.p,'grave',y.uid,'mana',{...t,tapped:true});break;
  case'souryu':choice(s,t,'マナから非進化を1体出す',own.mana.filter(y=>card(y).type==='creature'&&!card(y).evolution&&cost(card(y))<own.mana.length&&canPut(s,t.p,y,'mana')).map(y=>opt(card(y).name,y.uid,15+cost(card(y)),y.cardId)));break;
  case'souryuFight':{const y=own.battle.find(y=>y.uid===t.target);if(y&&colors(card(y)).some(v=>['火','自然'].includes(v)))put(s,task('g35_Fight',t.p,t.source,{uid:y.uid,optional:true}));break;}
- case'endWorld':{const selected=t.selected||[];if(selected.length>=Math.min(3,own.deck.length)){for(const y of [...own.deck])if(!selected.includes(y.uid))zoneMove(s,t.p,'deck',y.uid,'grave',t);order(s,t,selected,t.p,true);break;}choice(s,{...t,selected},'山札に残す3枚を選ぶ（'+selected.length+'/3）',own.deck.filter(y=>!selected.includes(y.uid)).map(y=>opt(card(y).name,y.uid,cost(card(y)),y.cardId)));break;}
+ case'endWorld':{const selected=t.selected||[],view=policyLook(s,t.p,own.deck.length,own.deck,api);if(selected.length>=Math.min(3,view.length)){for(const y of [...own.deck])if(!selected.includes(y.uid))zoneMove(s,t.p,'deck',y.uid,'grave',t);order(s,t,selected,t.p,true);break;}choice(s,{...t,selected},'山札に残す3枚を選ぶ（'+selected.length+'/3）',view.filter(y=>!selected.includes(y.uid)).map(y=>opt(card(y).name,y.uid,cost(card(y)),y.cardId)));break;}
  case'topShield':{if(!api.canAddShield(s,t.p))break;const y=api.takeTop(s,t.p);if(y){clear(y,'shields');api.addZone(s,t.p,'shields',y);api.notifyShieldAdded(s,t.p,y);}api.deckCheck(s,t.p);break;}
  case'containerRevive':{const y=own.grave.find(y=>y.uid===t.target);if(y)offer(s,t,'DARK MEMORY CONTAINERを墓地から出す？');break;}
  case'ulfeusCast':pickExecute(s,t,{colorsAny:['光','火'],filter:{spell:true}});break;
@@ -108,10 +109,10 @@ export function createFifteenPhotoRules(api){
  case'noop':break;
  case'executeCard':{const y=own[t.origin]?.find(y=>y.uid===t.target),c=y&&faces(card(y))[t.face||0];if(!c||!api.canCast(s,t.p,c,t.origin))break;if(c.type==='spell'){own.g35Protected=(own.g35Protected||[]).filter(uid=>uid!==y.uid);cast(s,t.p,y.uid,true,null,t.face||0,null,t.origin);}else give(s,t,[E('Put',{origin:t.origin,target:y.uid,face:t.face||0,execution:true})]);break;}
  case'finishAlt':{const y=own.hand.find(y=>y.uid===t.target);if(y){if(t.role==='fuji')deploy(s,t,'hand',y.uid);else if(api.canPay(s,t.p,{...card(y),cost:t.payment,printedCost:card(y).cost}))cast(s,t.p,y.uid,false,null,0,{cost:t.payment,printedCost:card(y).cost},'hand');}break;}
- case'gerachoFinish':{if(!own.grave.some(y=>y.uid===t.oldUid))break;const y=remove(own.grave,t.target);if(y){enter(s,t.p,y,null,{origin:'grave',execution:false});if(own.battle.includes(y)&&t.attack){s.attack={...t.attack,attacker:y.uid};}}break;}
+ case'gerachoFinish':{if(!own.grave.some(y=>y.uid===t.oldUid))break;const y=policyRemove(s,t.p,'grave',t.target,api);if(y){enter(s,t.p,y,null,{origin:'grave',execution:false});if(own.battle.includes(y)&&t.attack){s.attack={...t.attack,attacker:y.uid};}}break;}
  case'nefer':{const y=peek(s,t.p);if(y){api.log(s,t.p,'reveal',card(y).name,{cardId:y.cardId});if(j(card(y)))choice(s,{...t,target:y.uid},'ジョーカーズを手札に加える？',[opt('加える',true,10,y.cardId),skip()]);}break;}
  case'terminal':if(!s.g35Terminal?.[t.p])offer(s,t,'終極宣言：ブロッカーをすべてアンタップする？');break;
- case'extraTurn':(s.extraTurns??=[]).push({player:t.p,source:t.source});break;
+ case'extraTurn':if(api.canAddTurn(s,t.p))(s.extraTurns??=[]).push({player:t.p,source:t.source});break;
  case'infinity':if(x){api.shuffleLibrary(s,t.p);const ids=reveal(s,t,own.battle.filter(y=>['creature','seed','gear','field'].includes(effective(y,s).type)).length);pending(s,t,'infinityPick',{ids});}break;
  case'infinityPick':pickExecute(s,t,{origin:'deck',ids:t.ids,optional:true});break;
  case'untapOther':target(s,t,'アンタップする自分の他のクリーチャーを選ぶ',creatures(s,t.p).filter(y=>y.uid!==t.uid),false);break;
@@ -164,7 +165,7 @@ export function createFifteenPhotoRules(api){
  case'shuraJudge':if(v){give(s,t,[E('Put',{origin:'deck',target:t.target,execution:true}),E('ExactMove',{owner:t.p,target:t.uid,to:'hand'})]);}else order(s,t,[t.target]);break;
  case'majin':if(v){zoneMove(s,t.p,'deck',v.uid,v.to,t);order(s,t,t.ids.filter(uid=>uid!==v.uid));}break;
  case'quasarPick':{const to=['shields','hand','mana','grave','under'][t.step];zoneMove(s,t.p,'deck',v,to,t);pending(s,t,'quasarPick',{ids:t.ids.filter(id=>id!==v),step:t.step+1});break;}
- case'quasarGrave':if(v)pending(s,t,'quasarGrave',{selected:[...t.selected,v]});else{const xs=t.selected.map(uid=>remove(own.grave,uid)).filter(Boolean);for(const y of xs)clear(y,'deck');api.shuffleLibrary(s,t.p,xs);}break;
+ case'quasarGrave':if(v)pending(s,t,'quasarGrave',{selected:[...t.selected,v]});else{const xs=t.selected.map(uid=>policyRemove(s,t.p,'grave',uid,api)).filter(Boolean);for(const y of xs)clear(y,'deck');api.shuffleLibrary(s,t.p,xs);}break;
  case'isekai':if(v){const p=s.players.findIndex(own=>own.battle.some(y=>y.uid===v)),y=s.players[p].battle.find(y=>y.uid===v);if(y){pending(s,t,'isekaiReveal',{owner:p,max:cost(card(y))});move(s,[{player:p,uid:v,to:'grave'}]);}}break;
  case'rebirth':if(v){pending(s,t,'rebirthPut',{sacrifice:v});move(s,[{player:t.p,uid:v,to:'grave'}]);}break;
  case'worldAttack':move(s,opp.battle.filter(y=>colors(effective(y,s)).includes(v)).map(y=>({player:1-t.p,uid:y.uid,to:'grave'})));break;

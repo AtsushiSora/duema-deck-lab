@@ -1,3 +1,4 @@
+import {policyRemove,policyLook} from './champion-zone-policy.js';
 // No.17: Giant mana permissions, protected looks and optional battle replacement.
 export function createGiantRules(api){
  const {card,faces,cost,effective,creatures,put,task,choice,opt,skip,remove,clear,draw,move,enter,cast,targetOptions}=api;
@@ -5,7 +6,7 @@ export function createGiantRules(api){
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  const canPut=(s,p,x,origin)=>!x.faceDown&&card(x).type==='creature'&&api.canEnter(s,p,card(x),{origin,execution:false})&&(!card(x).evolution||api.evolutionBases(s,p,card(x)).length);
  function ramp(s,p,n){for(let i=0;i<n&&s.winner===null&&!s.lossEvent;i++){const x=api.takeTop(s,p);if(x){const to=api.deckRedirect(s,p)?'grave':'mana';clear(x,to);api.addZone(s,s.players[p],to,x);}api.deckCheck(s,p);}}
- const protect=(own,n)=>{const uids=own.deck.slice(0,n).map(x=>x.uid);(own.g17Protected??=[]).push(...uids);return uids;};
+ const protect=(s,p,n)=>{const own=s.players[p];const uids=policyLook(s,p,n,own.deck,api).map(x=>x.uid);(own.g17Protected??=[]).push(...uids);return uids;};
  const unprotect=(own,uids)=>own.g17Protected=(own.g17Protected||[]).filter(x=>!uids.includes(x));
  function battleList(s,t,p){const row=t.rows.find(x=>x.p===p),x=row&&s.players[p].battle.find(x=>x.uid===row.uid&&(x.incarnation||0)===row.inc);return x&&api.isCreature(s,x)&&giant(effective(x,s))?creatures(s,p).filter(y=>y.uid!==x.uid&&effective(y,s).galacticBattle):[];}
  function finishBattle(s,t,sub=null){const rows=t.rows.map(x=>sub&&x.p===sub.p?{...x,uid:sub.uid,inc:sub.inc}:x),[a,b]=rows.map(r=>s.players[r.p].battle.find(x=>x.uid===r.uid&&(x.incarnation||0)===r.inc));if(a&&b&&api.isCreature(s,a)&&api.isCreature(s,b))api.battle(s,rows[0].p,a,rows[1].p,b,t.attacking,true);}
@@ -17,10 +18,10 @@ export function createGiantRules(api){
  case'g17_Ramp':ramp(s,t.p,t.n??1);break;
  case'g17_Scarlet':choice(s,t,'他のジャイアントをマナに置いてメクレイド8する？',[...own.battle.filter(x=>['creature','seed'].includes(card(x).type)&&x.uid!==t.uid&&giant(effective(x,s))&&api.canLeave(s,t.p,x)&&!api.manaMoveForbidden(s,t.p,x)).map(x=>opt(card(x).name,x.uid,Math.max(1,15-cost(card(x))),x.cardId)),skip()]);break;
  case'g17_AfterScarlet':if(own.mana.some(x=>x.uid===t.moved))put(s,task('g17_Mekraid',t.p,t.source));break;
- case'g17_Mekraid':{const uids=protect(own,3),options=uids.flatMap(uid=>{const x=own.deck.find(x=>x.uid===uid);return faces(card(x)).flatMap((c,face)=>giant(c)&&cost(c)<=8&&api.canCast(s,t.p,c)&&(c.type==='spell'||api.canEnter(s,t.p,c,{origin:'deck',execution:true})&&(!c.evolution||api.evolutionBases(s,t.p,c).length))?[opt(c.name,{uid,face},20+cost(c),x.cardId)]:[]);});choice(s,{...t,uids},'上3枚からコスト8以下のジャイアントを使う',[...options,skip()]);break;}
+ case'g17_Mekraid':{const uids=protect(s,t.p,3),options=uids.flatMap(uid=>{const x=own.deck.find(x=>x.uid===uid);return faces(card(x)).flatMap((c,face)=>giant(c)&&cost(c)<=8&&api.canCast(s,t.p,c)&&(c.type==='spell'||api.canEnter(s,t.p,c,{origin:'deck',execution:true})&&(!c.evolution||api.evolutionBases(s,t.p,c).length))?[opt(c.name,{uid,face},20+cost(c),x.cardId)]:[]);});choice(s,{...t,uids},'上3枚からコスト8以下のジャイアントを使う',[...options,skip()]);break;}
  case'g17_MekUse':{const x=own.deck.find(x=>x.uid===t.uid),c=x&&faces(card(x))[t.face||0];if(!x)break;if(c.evolution||c.neoEvolution)choice(s,t,'メクレイドの進化元を選ぶ',[...(c.neoEvolution?[opt('進化せずに出す',null,1)]:[]),...api.evolutionBases(s,t.p,c).map(x=>opt(card(x).name,x.uid,5,x.cardId))]);else cast(s,t.p,x.uid,true,null,t.face||0,null,'deck','ジャイアント・メクレイド');break;}
  case'g17_Order':if(!t.uids.length){unprotect(own,t.protected);if(t.after)put(s,t.after);break;}if(t.uids.length===1){const x=remove(own.deck,t.uids[0]);if(x)own.deck.push(x);put(s,{...t,uids:[]});break;}choice(s,t,'残りを山札の下へ置く順序を選ぶ',t.uids.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,0,x.cardId);}));break;
- case'g17_Lake':{const uids=protect(own,6);put(s,task('g17_LakePick',t.p,t.source,{uids,selected:[],max:Math.min(2,uids.length)}));break;}
+ case'g17_Lake':{const uids=protect(s,t.p,6);put(s,task('g17_LakePick',t.p,t.source,{uids,selected:[],max:Math.min(2,uids.length)}));break;}
  case'g17_LakePick':if(t.selected.length===t.max){for(const uid of t.selected){const x=remove(own.deck,uid);if(x){clear(x,'hand');own.hand.push(x);}}put(s,task('g17_Order',t.p,t.source,{uids:t.uids.filter(x=>!t.selected.includes(x)),protected:t.uids,after:task('g17_RevealHand',t.p,t.source)}));api.deckCheck(s,t.p);}else choice(s,t,'上6枚から手札へ加えるカードを選ぶ（'+t.selected.length+'/2）',t.uids.filter(x=>!t.selected.includes(x)).map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,10+cost(card(x)),x.cardId);}));break;
  case'g17_RevealHand':choice(s,t,'手札を1枚見せて同じコストの相手を戻す？',[...own.hand.map(x=>opt(card(x).name,x.uid,creatures(s,1-t.p).some(y=>faces(card(x)).some(c=>cost(c)===cost(card(y))))?20:-1,x.cardId)),skip()]);break;
  case'g17_RevealCost':{const x=own.hand.find(x=>x.uid===t.uid);if(x){const cs=[...new Set(faces(card(x)).map(cost))];if(cs.length>1)choice(s,t,'公開したカードのどちらのコストを使う？',cs.map(n=>opt(String(n),n===Infinity?'∞':n,creatures(s,1-t.p).some(x=>cost(card(x))===n)?10:0)));else put(s,task('g17_LakeBounce',t.p,t.source,{max:cs[0]===Infinity?'∞':cs[0]}));}break;}
@@ -30,7 +31,7 @@ export function createGiantRules(api){
  case'g17_TouchDeploy':choice(s,t,'選んだ相手より小さいコストをマナから出す',[...own.mana.filter(x=>canPut(s,t.p,x,'mana')&&(t.max==='∞'||cost(card(x))<t.max)).map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)),skip()]);break;
  case'g17_YukiReturn':choice(s,t,'マナからクリーチャーを3体まで手札へ（'+t.selected.length+'/3）',[...own.mana.filter(x=>!x.faceDown&&card(x).type==='creature'&&!t.selected.includes(x.uid)&&t.selected.length<3).map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)),opt('この選択で戻す',null,t.selected.length?20:0)]);break;
  case'g17_YukiCharge':choice(s,t,'手札を3枚までタップしてマナへ（'+t.selected.length+'/3）',[...own.hand.filter(x=>!t.selected.includes(x.uid)&&t.selected.length<3).map(x=>opt(card(x).name,x.uid,own.mana.length<6?10:-2,x.cardId)),opt('この選択でマナへ',null,t.selected.length?20:0)]);break;
- case'g17_Space':{const uids=protect(own,2);if(uids.length)choice(s,{...t,uids},'上2枚から手札に加えるカードを選ぶ',uids.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,10+cost(card(x)),x.cardId);}));break;}
+ case'g17_Space':{const uids=protect(s,t.p,2);if(uids.length)choice(s,{...t,uids},'上2枚から手札に加えるカードを選ぶ',uids.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,10+cost(card(x)),x.cardId);}));break;}
  case'g17_WinRamp':choice(s,t,'バトル勝利：山札の上1枚をマナに置きますか？',[opt('1枚をマナへ',true,own.deck.length>1?10:-20),skip()]);break;
  case'g17_ReturnMana':choice(s,t,'マナを1枚手札に戻しますか？',[...own.mana.map(x=>opt(x.faceDown?'裏向きのマナ':card(x).name,x.uid,own.hand.length<3?10:cost(card(x))-5,x.cardId)),skip()]);break;
  case'g17_Sineraria':if(own.battle.some(x=>['creature','seed'].includes(card(x).type)&&x.uid!==t.uid&&giant(effective(x,s))))draw(s,t.p,1);break;
@@ -57,11 +58,11 @@ export function createGiantRules(api){
  case'g17_LakeBounce':case'g17_Bounce':move(s,[{player:1-t.p,uid:v,to:'hand'}]);break;
  case'g17_OrbShield':if(v)api.shieldTo(s,1-t.p,v,'mana');break;
  case'g17_Touch':{const x=s.players[1-t.p].battle.find(x=>x.uid===v);if(x){put(s,task('g17_TouchDeploy',t.p,t.source,{max:cost(card(x))===Infinity?'∞':cost(card(x))}));move(s,[{player:1-t.p,uid:v,to:'mana'}]);}break;}
- case'g17_YukiReturn':if(v)put(s,{...t,selected:[...t.selected,v]});else{for(const uid of t.selected){const x=remove(own.mana,uid);if(x){clear(x,'hand');own.hand.push(x);}}put(s,task('g17_YukiCharge',t.p,t.source,{selected:[]}));}break;
+ case'g17_YukiReturn':if(v)put(s,{...t,selected:[...t.selected,v]});else{for(const uid of t.selected){const x=policyRemove(s,t.p,'mana',uid,api);if(x){clear(x,'hand');own.hand.push(x);}}put(s,task('g17_YukiCharge',t.p,t.source,{selected:[]}));}break;
  case'g17_YukiCharge':if(v)put(s,{...t,selected:[...t.selected,v]});else for(const uid of t.selected){const x=remove(own.hand,uid);if(x){clear(x,'mana');x.tapped=true;api.addZone(s,own,'mana',x);}}break;
  case'g17_Space':{const x=remove(own.deck,v);if(x){clear(x,'hand');own.hand.push(x);}for(const uid of t.uids.filter(uid=>uid!==v)){const x=remove(own.deck,uid);if(x){const to=api.deckRedirect(s,t.p)?'grave':'mana';clear(x,to);api.addZone(s,own,to,x);}}unprotect(own,t.uids);api.deckCheck(s,t.p);break;}
  case'g17_WinRamp':if(v)ramp(s,t.p,1);put(s,task('g17_ReturnMana',t.p,t.source));break;
- case'g17_ReturnMana':if(v){const x=remove(own.mana,v);if(x){clear(x,'hand');own.hand.push(x);}}break;
+ case'g17_ReturnMana':if(v){const x=policyRemove(s,t.p,'mana',v,api);if(x){clear(x,'hand');own.hand.push(x);}}break;
  case'g17_Lock':{const x=s.players[1-t.p].battle.find(x=>x.uid===v);if(x)for(const kind of['attack','block'])api.lock(s,t.p,{kind,player:1-t.p,uid:v,incarnation:x.incarnation||0});break;}
  case'g17_BattleReplace':if(v){const x=own.battle.find(x=>x.uid===v);api.log(s,t.p,'battleReplace',card(x).name+'がかわりにバトルする',{cardId:x.cardId});finishBattle(s,t,{p:t.p,uid:v,inc:x.incarnation||0});}else put(s,{...t,p:t.rows[0].p,owners:t.owners.slice(1)});break;
  default:throw Error('未実装のジャイアント選択：'+t.op);

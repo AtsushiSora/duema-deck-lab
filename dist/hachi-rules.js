@@ -1,3 +1,4 @@
+import {policyLook} from './champion-zone-policy.js';
 // No.11: end-of-attack judges, command support and 5.S.D. library state.
 export function createHachiRules(api){
  const {card,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,move,enqueue,log,targetOptions}=api;
@@ -5,7 +6,7 @@ export function createHachiRules(api){
  const live=(s,t)=>s.players[t.p].battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===(t.incarnation||0)&&!x.sealed);
  function run(s,t){if(!t.op.startsWith('g11_'))return false;const own=s.players[t.p];switch(t.op){
  case'g11_Judge':api.singleJudge(s,t.p,t.source,t.uid,task('g11_Search',t.p,t.source));break;
- case'g11_Search':if(!api.deckLocked(s,t.p)){choice(s,t,'山札から特攻の忠剣ハチ公を出す？',[...own.deck.filter(x=>card(x).type==='creature'&&card(x).name.includes('特攻の忠剣ハチ公')&&api.canEnter(s,t.p,card(x),{origin:'deck',execution:false})).map(x=>opt(card(x).name,x.uid,35,x.cardId)),skip()]);}break;
+ case'g11_Search':if(!api.deckLocked(s,t.p)){choice(s,t,'山札から特攻の忠剣ハチ公を出す？',[...policyLook(s,t.p,own.deck.length,own.deck,api).filter(x=>card(x).type==='creature'&&card(x).name.includes('特攻の忠剣ハチ公')&&api.canEnter(s,t.p,card(x),{origin:'deck',execution:false})).map(x=>opt(card(x).name,x.uid,35,x.cardId)),skip()]);}break;
  case'g11_Shuffle':api.shuffleLibrary(s,t.p);break;
  case'g11_Final':if(!s.finalUsed?.[t.p]){(s.finalUsed??=[false,false])[t.p]=true;(s.finalHistory??=[false,false])[t.p]=true;for(const x of creatures(s,t.p))if(x.uid!==t.uid&&api.canUntap(x))x.tapped=false;log(s,t.p,'finalRevolution','レッドギラゾーン：他のクリーチャーをすべてアンタップ',{cardId:t.source});}break;
  case'g11_RedZ':choice(s,t,'墓地に置く相手のシールドを選ぶ',s.players[1-t.p].shields.map((x,i)=>opt('シールド'+(i+1),x.uid,10)));break;

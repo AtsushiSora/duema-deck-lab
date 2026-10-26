@@ -1,15 +1,16 @@
+import {policyRemove,policyLook} from './champion-zone-policy.js';
 // No.10: library permissions, protected batch deployment and per-draw replacements.
 export function createGachiroboRules(api){
  const {card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,draw,move,enter,targetOptions}=api;
  const canPut=(s,p,x,origin)=>card(x).type==='creature'&&api.canEnter(s,p,card(x),{origin,execution:false})&&(!card(x).evolution||api.evolutionBases(s,p,card(x)).length);
- const protect=(own,n)=>{const uids=own.deck.slice(0,n).map(x=>x.uid);(own.g10Protected??=[]).push(...uids);return uids;};
+ const protect=(s,p,n)=>{const own=s.players[p];const uids=policyLook(s,p,n,own.deck,api).map(x=>x.uid);(own.g10Protected??=[]).push(...uids);return uids;};
  const release=(own,uids)=>own.g10Protected=(own.g10Protected||[]).filter(uid=>!uids.includes(uid));
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task(op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  function arrange(s,p,list){if(!list.length)return true;return list.some(x=>{if(!canPut(s,p,x,'deck'))return false;const c=card(x),rest=list.filter(y=>y.uid!==x.uid),bases=c.evolution?api.evolutionBases(s,p,c):[null];return bases.some(base=>{const v=structuredClone(s),own=v.players[p];if(base)remove(c.graveEvolution?own.grave:own.battle,base.uid);own.battle.push({...x,entered:s.turn});return arrange(v,p,rest);});});}
  function enterBatch(s,t,base=null){const own=s.players[t.p],x=remove(own.deck,t.uid);put(s,{...t,op:'g10_Next',remaining:t.remaining.filter(uid=>uid!==t.uid)});if(x){enter(s,t.p,x,base,{origin:'deck',execution:false});api.deckCheck(s,t.p);}}
  function run(s,t){if(!t.op.startsWith('g10_'))return false;const own=s.players[t.p];switch(t.op){
- case'g10_Robo':{const uids=protect(own,3),list=uids.map(uid=>own.deck.find(x=>x.uid===uid)),success=list.length&&list.every(x=>card(x).type==='creature'&&cost(card(x))===cost(card(list[0])));api.log(s,t.p,'reveal','ガチロボで公開：'+list.map(x=>card(x).name).join('、'),{cardId:t.source});put(s,success?{...t,op:'g10_Next',remaining:uids,protected:uids,rest:[],failedTop:true}:{...t,op:'g10_Order',remaining:uids,protected:uids});break;}
- case'g10_Magrul':{const uids=protect(own,4);put(s,{...t,op:'g10_Select',uids,selected:[],budget:9});break;}
+ case'g10_Robo':{const uids=protect(s,t.p,3),list=uids.map(uid=>own.deck.find(x=>x.uid===uid)),success=list.length&&list.every(x=>card(x).type==='creature'&&cost(card(x))===cost(card(list[0])));api.log(s,t.p,'reveal','ガチロボで公開：'+list.map(x=>card(x).name).join('、'),{cardId:t.source});put(s,success?{...t,op:'g10_Next',remaining:uids,protected:uids,rest:[],failedTop:true}:{...t,op:'g10_Order',remaining:uids,protected:uids});break;}
+ case'g10_Magrul':{const uids=protect(s,t.p,4);put(s,{...t,op:'g10_Select',uids,selected:[],budget:9});break;}
  case'g10_Select':{const list=t.uids.filter(uid=>!t.selected.includes(uid)).map(uid=>own.deck.find(x=>x.uid===uid)).filter(x=>card(x).type==='creature'&&colors(card(x)).length>1&&cost(card(x))<=t.budget&&api.canEnter(s,t.p,card(x),{origin:'deck',execution:false})&&arrange(s,t.p,[...t.selected.map(uid=>own.deck.find(x=>x.uid===uid)),x]));choice(s,t,'上4枚から多色クリーチャーを合計9コストまで選ぶ（残り'+t.budget+'）',[...list.map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)),opt('この選択で出す',null,t.selected.length?25:0)]);break;}
  case'g10_Next':{const list=t.remaining.map(uid=>own.deck.find(x=>x.uid===uid)).filter(x=>x&&canPut(s,t.p,x,'deck'));if(!list.length){put(s,{...t,op:'g10_Order',remaining:t.failedTop?[]:[...t.rest,...t.remaining],protected:t.protected});break;}if(list.length===1)put(s,{...t,op:'g10_Enter',uid:list[0].uid});else choice(s,t,'次に出すクリーチャーを選ぶ（登場順）',list.map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)));break;}
  case'g10_Enter':{const x=own.deck.find(x=>x.uid===t.uid);if(!x||!canPut(s,t.p,x,'deck')){put(s,{...t,op:'g10_Next',remaining:t.remaining.filter(uid=>uid!==t.uid),rest:[...t.rest,t.uid]});break;}const c=card(x);if(c.evolution||c.neoEvolution)choice(s,t,'山札から出すクリーチャーの進化元を選ぶ',[...(c.neoEvolution?[opt('進化せずに出す',null,0)]:[]),...api.evolutionBases(s,t.p,c).map(x=>opt(card(x).name,x.uid,5,x.cardId))]);else enterBatch(s,t);break;}
@@ -17,7 +18,7 @@ export function createGachiroboRules(api){
  case'g10_Cambiare':for(const x of creatures(s,1-t.p)){api.tap(s,1-t.p,x);x.skipUntap=true;}break;
  case'g10_Shield':choice(s,t,'シールド化する相手のエレメントを選ぶ',[...targetOptions(s,t.p,s.players[1-t.p].battle),skip()]);break;
  case'g10_Fight':{const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation);if(x&&api.isCreature(s,x))choice(s,t,'ガラワルドで相手とバトルしますか？',[...targetOptions(s,t.p,creatures(s,1-t.p)),skip()]);break;}
- case'g10_Cougar':{const uids=protect(own,3);choice(s,{...t,uids},'上3枚からクリーチャーを1体手札に加える？ 残りはマナへ',[...uids.map(uid=>own.deck.find(x=>x.uid===uid)).filter(x=>card(x).type==='creature').map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)),skip()]);break;}
+ case'g10_Cougar':{const uids=protect(s,t.p,3);choice(s,{...t,uids},'上3枚からクリーチャーを1体手札に加える？ 残りはマナへ',[...uids.map(uid=>own.deck.find(x=>x.uid===uid)).filter(x=>card(x).type==='creature').map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)),skip()]);break;}
  case'g10_Mystery':{api.shuffleLibrary(s,t.p);if(api.deckLocked(s,t.p))break;const x=own.deck[0];if(!x){api.deckCheck(s,t.p);break;}api.log(s,t.p,'reveal','ミステリー・ディザスターで公開：'+card(x).name,{cardId:x.cardId});if(card(x).type==='creature'){if(canPut(s,t.p,x,'deck'))put(s,task('putCreature',t.p,t.source,{origin:'deck',uid:x.uid,deckCheck:true}));}else{own.deck.shift();const to=api.deckRedirect(s,t.p)?'grave':'mana';clear(x,to);api.addZone(s,own,to,x);api.deckCheck(s,t.p);}break;}
  case'g10_Nicol':put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:7}));break;
  case'g10_Destroy':choice(s,t,'破壊する相手のクリーチャーを選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));break;
@@ -43,7 +44,7 @@ export function createGachiroboRules(api){
  case'g10_Destroy':move(s,[{player:1-t.p,uid:v,to:'grave'}]);break;
  case'g10_Bounce':{const player=s.players.findIndex(p=>p.battle.some(x=>x.uid===v));if(player>=0)move(s,[{player,uid:v,to:'hand'}]);break;}
  case'g10_Guignol':put(s,{...t,op:v==='bounce'?'g10_Bounce':'g10_GuignolMill'});break;
- case'g10_GuignolMill':if(v){const x=remove(own.grave,v);if(x){clear(x,'hand');own.hand.push(x);}}break;
+ case'g10_GuignolMill':if(v){const x=policyRemove(s,t.p,'grave',v,api);if(x){clear(x,'hand');own.hand.push(x);}}break;
  case'g10_RevDeclare':{const row=s.g10RevDeclarations.shift();if(v){api.log(s,t.p,'revolutionZero','カンビアーレの革命0を使用宣言',{cardId:t.source});api.enqueue(s,t.p,{uid:row.uid,source:row.source,effect:'extended',task:task('g10_RevSummon',t.p,row.source,row)});}break;}
  default:throw Error('未実装のガチロボ選択：'+t.op);
  }return true;}

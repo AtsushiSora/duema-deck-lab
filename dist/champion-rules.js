@@ -1,3 +1,4 @@
+import {policyRemove,policyTake} from './champion-zone-policy.js';
 // Exact champion-list additions. All choices refer to physical UIDs and survive JSON replay.
 export function createChampionRules(api){
  const{card,faces,cost,effective,creatures,put,task,choice,opt,skip,remove,clear,move,targetOptions}=api;
@@ -6,7 +7,7 @@ export function createChampionRules(api){
  const live=(s,t)=>s.players[t.p].battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===(t.incarnation||0));
  const queue=(s,t,op,more={})=>put(s,{...t,op:'g38_'+op,...more});
  function trialFinish(s,t){const own=s.players[t.p],ids=t.ids||[],all=!api.deckLocked(s,t.p)&&ids.length===own.deck.length;if(all){own.g38LibrarySafe=true;put(s,task('g5ExtraTurn',t.p,t.source));}const rows=ids.map(uid=>remove(own.deck,uid)).filter(Boolean);own.g38Protected=(own.g38Protected||[]).filter(uid=>!ids.includes(uid));for(const x of rows){clear(x,'hand');own.hand.push(x);}api.log(s,t.p,'trial','公開した'+rows.length+'枚を手札に加える'+(all?'。山札切れで負けない効果を得る':''),{cardId:t.source});api.deckCheck(s,t.p);}
- function trial(s,t){const own=s.players[t.p],ids=t.ids||[],next=api.deckLocked(s,t.p)?null:own.deck.find(x=>!ids.includes(x.uid));if(!next){trialFinish(s,t);return;}const values=[...new Set(faces(card(next)).map(c=>cost(c)===Infinity?'∞':cost(c)))];(own.g38Protected??=[]).push(next.uid);api.log(s,t.p,'reveal',card(next).name,{cardId:next.cardId});const more={...t,ids:[...ids,next.uid],costs:t.costs||[]};if(values.length>1)choice(s,{...more,op:'g38_TrialCost'},'神の試練：公開した'+card(next).name+'のどちらのコストを参照する？',values.map(n=>opt('コスト'+n,n,more.costs.includes(n)?-20:20,next.cardId)));else trialCost(s,more,values[0]);}
+ function trial(s,t){const own=s.players[t.p],ids=t.ids||[],next=api.deckLocked(s,t.p)?null:own.deck.find(x=>!ids.includes(x.uid));if(!next){trialFinish(s,t);return;}const values=[...new Set(faces(card(next)).map(c=>cost(c)===Infinity?'∞':cost(c)))];(own.g38Protected??=[]).push(next.uid);api.log(s,t.p,'reveal',card(next).name,{cardId:next.cardId});const more={...t,ids:[...ids,next.uid],costs:t.costs||[]};if(api.lookPublic?.(s,t.p)){trialFinish(s,more);return;}if(values.length>1)choice(s,{...more,op:'g38_TrialCost'},'神の試練：公開した'+card(next).name+'のどちらのコストを参照する？',values.map(n=>opt('コスト'+n,n,more.costs.includes(n)?-20:20,next.cardId)));else trialCost(s,more,values[0]);}
  function trialCost(s,t,n){if(t.costs.includes(n))trialFinish(s,t);else queue(s,t,'Trial',{costs:[...t.costs,n]});}
  function run(s,t){if(!t.op.startsWith('g38_'))return false;const own=s.players[t.p];switch(t.op){
  case'g38_Party':{const selected=t.selected||[],rows=creatures(s,1-t.p).filter(x=>!selected.some(y=>y.uid===x.uid));if(selected.length===3||!rows.length){queue(s,t,'PartySend',{selected,stage:0,used:[]});break;}choice(s,{...t,selected},'パーティ：移動させる相手のクリーチャーを3体まで選ぶ（'+selected.length+'/3）',[...targetOptions(s,t.p,rows),opt('ここまでで確定',null,0)]);break;}
@@ -19,13 +20,13 @@ export function createChampionRules(api){
  case'g38_TeaReturn':choice(s,t,'シールドを1つ手札に加える（S・トリガーは使わない）',own.shields.map((x,i)=>opt('シールド'+(i+1),x.uid,5)));break;
  case'g38_Yabadan':choice(s,t,'ヤバーダン：破壊する相手のクリーチャーを選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));break;
  case'g38_YabadanMill':choice(s,t,'山札の上から'+t.n+'枚を墓地に置く？',[opt('墓地に置く',true,t.n<own.deck.length?10:-100),skip()]);break;
- case'g38_Another':for(const p of[s.active,1-s.active]){const rows=[...s.players[p].hand.splice(0),...s.players[p].grave.splice(0)];for(const x of rows)clear(x,'deck');api.shuffleLibrary(s,p,rows,t.source);}put(s,...[s.active,1-s.active].map(p=>task('draw',p,t.source,{n:5})));break;
+ case'g38_Another':for(const p of[s.active,1-s.active]){const rows=[...s.players[p].hand.splice(0),...policyTake(s,p,'grave',api)];for(const x of rows)clear(x,'deck');api.shuffleLibrary(s,p,rows,t.source);}put(s,...[s.active,1-s.active].map(p=>task('draw',p,t.source,{n:5})));break;
  case'g38_Trial':trial(s,t);break;
  case'g38_Mondo':own.g38LibrarySafe=true;api.draw(s,t.p,5);if(!own.deck.length)put(s,task('g5ExtraTurn',t.p,t.source));break;
  case'g38_DoryumCost':{const selected=(t.selected||[]).filter(uid=>own.hand.some(x=>x.uid===uid));if(selected.length===2){put(s,task('g38_DoryumCast',t.p,t.source,{target:t.target}));api.discardSelected(s,{...t,n:2,causedBy:t.p},selected);break;}choice(s,{...t,selected},'ド・リュミーズ：捨てる魔導具を2枚選ぶ（'+selected.length+'/2）',own.hand.filter(x=>x.uid!==t.target&&!selected.includes(x.uid)&&magic(x)).map(x=>opt(card(x).name,x.uid,15-cost(card(x)),x.cardId)));break;}
  case'g38_DoryumCast':if(own.hand.some(x=>x.uid===t.target)&&api.canCast(s,t.p,card(t.source),'hand'))api.cast(s,t.p,t.target,true,null,0,null,'hand','ド・リュミーズの代替コスト');break;
  case'g38_Ukidu':{const options=[0,1].flatMap(p=>s.players[p].shields.map((x,i)=>opt((p===t.p?'自分':'相手')+'のシールド'+(i+1),{p,uid:x.uid},p===t.p?-2:10)));if(options.length)choice(s,t,'ウキドゥ：見るシールドを選ぶ',options);else put(s,task('draw',t.p,t.source,{n:1}));break;}
- case'g38_Croce':for(const p of[s.active,1-s.active]){const rows=s.players[p].grave.splice(0);for(const x of rows)clear(x,'deck');api.shuffleLibrary(s,p,rows,t.source);}break;
+ case'g38_Croce':for(const p of[s.active,1-s.active]){const rows=policyTake(s,p,'grave',api);for(const x of rows)clear(x,'deck');api.shuffleLibrary(s,p,rows,t.source);}break;
  case'g38_MelaBreak':{const p=t.defender,shields=s.players[p].shields,n=Math.min(2,shields.length),selected=(t.selected||[]).filter(uid=>shields.some(x=>x.uid===uid));if(!n){if(p!==t.p)queue(s,t,'MelaBreak',{defender:t.p,selected:[]});break;}if(n===shields.length||selected.length===n){api.interruptBreak(s,p,n===shields.length?shields.map(x=>x.uid):selected,task(p!==t.p?'g38_MelaBreak':'g38_Done',t.p,t.source,{defender:t.p,selected:[]}));break;}choice(s,{...t,selected},'メラヴォルガル：'+(p===t.p?'自分':'相手')+'のブレイクするシールドを選ぶ（'+selected.length+'/'+n+'）',shields.filter(x=>!selected.includes(x.uid)).map((x,i)=>opt('シールド'+(shields.indexOf(x)+1),x.uid,0)));break;}
  case'g38_Done':break;
  case'g38_Sycrill':choice(s,t,'サイクリル：コスト4以下の呪文を墓地から手札に戻す？',[...own.grave.filter(x=>faces(card(x)).some(c=>c.type==='spell'&&cost(c)<=4)).map(x=>opt(card(x).name,x.uid,15,x.cardId)),skip()]);break;
@@ -47,9 +48,9 @@ export function createChampionRules(api){
  case'g38_Ukidu':{const x=api.findShield(s.players[v.p],v.uid);if(x){const label=api.shieldCards(x).map(y=>card(y).name).join(' / ');choice(s,{...t,op:'g38_UkiduReplace',target:v},'確認したシールド：'+label+'。墓地に置いて新しいシールドに替える？',[opt('墓地へ置き、新しいシールドに替える',true,v.p===t.p?-1:10),opt('そのままにする',false,0)]);}else put(s,task('draw',t.p,t.source,{n:1}));break;}
  case'g38_UkiduReplace':if(v&&api.findShield(s.players[t.target.p],t.target.uid)){api.moveShield(s,t.target.p,t.target.uid,'grave');api.shieldTop(s,t.target.p,card(t.source));}put(s,task('draw',t.p,t.source,{n:1}));break;
  case'g38_MelaBreak':queue(s,t,'MelaBreak',{selected:[...t.selected,v]});break;
- case'g38_Sycrill':if(v){const x=remove(own.grave,v);if(x){clear(x,'hand');own.hand.push(x);}}break;
+ case'g38_Sycrill':if(v){const x=policyRemove(s,t.p,'grave',v,api);if(x){clear(x,'hand');own.hand.push(x);}}break;
  case'g38_Mantis':queue(s,{...t,p:t.controller},'Mantis',{selected:[...t.selected,v]});break;
- case'g38_Land':{const x=remove(own.mana,v);if(x){clear(x,'battle');api.enter(s,t.p,x,null,{origin:'mana',execution:false});queue(s,t,'LandFight',{uid:x.uid,incarnation:x.incarnation||0});}break;}
+ case'g38_Land':{const x=policyRemove(s,t.p,'mana',v,api);if(x){clear(x,'battle');api.enter(s,t.p,x,null,{origin:'mana',execution:false});queue(s,t,'LandFight',{uid:x.uid,incarnation:x.incarnation||0});}break;}
  case'g38_LandFight':if(v){const x=live(s,t),y=s.players[1-t.p].battle.find(x=>x.uid===v);if(x&&y)api.battle(s,t.p,x,1-t.p,y);}break;
  default:throw Error('未実装の優勝デッキ選択：'+t.op);
  }return true;}

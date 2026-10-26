@@ -1,3 +1,4 @@
+import {policyRemove,policyLook} from './champion-zone-policy.js';
 // Photo-deck effects: physical continuations, independent choices and delayed grants.
 export function createBolshackRules(api){
  const{card,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,enter,cast,move,log,targetOptions}=api;
@@ -7,7 +8,7 @@ export function createBolshackRules(api){
  const reserved=own=>new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&/Protected$|Reveals$/.test(k)).flatMap(([,v])=>v));
  const release=(s,p,ids)=>{s.players[p].g29Protected=(s.players[p].g29Protected||[]).filter(x=>!ids.includes(x));};
  const pool=(s,t)=>(t.ids||[]).map(uid=>s.players[t.p].deck.find(x=>x.uid===uid)).filter(Boolean);
- function reveal(s,t,n,publicly=true){const own=s.players[t.p],skip=reserved(own),all=own.deck.filter(x=>!skip.has(x.uid)).slice(0,n);own.g29Protected=[...(own.g29Protected||[]),...all.map(x=>x.uid)];log(s,t.p,publicly?'reveal':'look',card(t.source).name+(publicly?'で公開：'+all.map(x=>card(x).name).join('・'):'：山札の上'+all.length+'枚を確認'),{cardId:t.source});return all.map(x=>x.uid);}
+ function reveal(s,t,n,publicly=true){const own=s.players[t.p],skip=reserved(own),all=policyLook(s,t.p,n,own.deck.filter(x=>!skip.has(x.uid)),api);own.g29Protected=[...(own.g29Protected||[]),...all.map(x=>x.uid)];log(s,t.p,publicly?'reveal':'look',card(t.source).name+(publicly?'で公開：'+all.map(x=>card(x).name).join('・'):'：山札の上'+all.length+'枚を確認'),{cardId:t.source});return all.map(x=>x.uid);}
  const bases=(s,p,c)=>[...(!c.evolution||c.graveEvolution?[null]:[]),...(!c.graveEvolution&&(c.evolution||c.neoEvolution)?api.evolutionBases(s,p,c):[])];
  const canPut=(s,p,x,origin)=>card(x).type==='creature'&&api.canEnter(s,p,card(x),{origin,execution:false})&&bases(s,p,card(x)).length>0&&(!card(x).graveEvolution||s.players[p].grave.some(y=>y.uid!==x.uid&&card(y).type==='creature')); 
  const delay=(s,p,x,kind,source)=>(s.g29Delays??=[]).push({p,uid:x.uid,incarnation:x.incarnation||0,turn:s.turn,kind,source});
@@ -33,7 +34,7 @@ export function createBolshackRules(api){
  case'g29_MolAttack':{const ids=reveal(s,t,1),x=ids.length?own.deck.find(x=>x.uid===ids[0]):null;if(x&&dragon(card(x))&&canPut(s,t.p,x,'deck'))put(s,{...t,op:'g29_Deploy',uid:x.uid,origin:'deck'});else put(s,{...t,op:'g29_Order',ids});break;}
  case'g29_Untap':{const x=live(s,t);if(x&&api.canUntap(x))x.tapped=false;break;}
  case'g29_Invincible':put(s,{...t,p:1-t.p,op:'g29_InvPick',selected:[]});break;
- case'g29_InvPick':{const rows=[...own.mana.map(x=>({uid:x.uid,zone:'mana',label:card(x).name,cardId:x.cardId})),...own.shields.flatMap((root,i)=>api.shieldCards(root).map((x,j)=>({uid:x.uid,zone:'shields',label:'シールド'+(i+1)+(api.shieldCards(root).length>1?'の'+(j+1)+'枚目':'')})))].filter(x=>!t.selected.some(y=>y.uid===x.uid));if(t.selected.length>=2||!rows.length){for(const x of t.selected)if(x.zone==='shields')api.moveShield(s,t.p,x.uid,'grave',{cardOnly:true});else{const y=remove(own.mana,x.uid);if(y){clear(y,'grave');api.addZone(s,t.p,'grave',y);}}break;}choice(s,t,'墓地に置く自分のマナ・シールドを合計2枚選ぶ（'+t.selected.length+'/2）',rows.map(x=>opt(x.label,{uid:x.uid,zone:x.zone},x.zone==='mana'?-cost(card(x.cardId)):-10,x.cardId)));break;}
+ case'g29_InvPick':{const rows=[...own.mana.map(x=>({uid:x.uid,zone:'mana',label:card(x).name,cardId:x.cardId})),...own.shields.flatMap((root,i)=>api.shieldCards(root).map((x,j)=>({uid:x.uid,zone:'shields',label:'シールド'+(i+1)+(api.shieldCards(root).length>1?'の'+(j+1)+'枚目':'')})))].filter(x=>!t.selected.some(y=>y.uid===x.uid));if(t.selected.length>=2||!rows.length){for(const x of t.selected)if(x.zone==='shields')api.moveShield(s,t.p,x.uid,'grave',{cardOnly:true});else{const y=policyRemove(s,t.p,'mana',x.uid,api);if(y){clear(y,'grave');api.addZone(s,t.p,'grave',y);}}break;}choice(s,t,'墓地に置く自分のマナ・シールドを合計2枚選ぶ（'+t.selected.length+'/2）',rows.map(x=>opt(x.label,{uid:x.uid,zone:x.zone},x.zone==='mana'?-cost(card(x.cardId)):-10,x.cardId)));break;}
  case'g29_Land':api.shuffleLibrary(s,t.p,[],t.source);put(s,{...t,op:'g29_LandPick',ids:reveal(s,t,5)});break;
  case'g29_LandPick':{const list=pool(s,t).filter(x=>card(x).type==='creature'&&(dragon(card(x))||card(x).neoEvolution)&&canPut(s,t.p,x,'deck'));if(!list.length)put(s,{...t,op:'g29_Order'});else choice(s,t,'王闘の大地：出すドラゴンまたはNEOを選ぶ',list.map(x=>opt(card(x).name,x.uid,30+cost(card(x)),x.cardId)));break;}
  case'g29_EndMove':{const x=live(s,t);if(x)move(s,[{player:t.p,uid:x.uid,to:t.kind==='mana'?'mana':'grave',destroy:t.kind!=='mana'}]);break;}
@@ -54,7 +55,7 @@ export function createBolshackRules(api){
  case'g29_BTSelect':if(v)put(s,{...t,selected:[...t.selected,v]});else put(s,...t.selected.map(uid=>({...t,op:'g29_Deploy',uid,origin:'deck'})),{...t,op:'g29_Order',ids:t.ids.filter(x=>!t.selected.includes(x))},{...t,op:'g29_BTBounce'});break;
  case'g29_Deploy':doPut(s,t,v);break;
  case'g29_Order':{const x=remove(own.deck,v);if(x)own.deck.push(x);release(s,t.p,[v]);put(s,{...t,ids:t.ids.filter(x=>x!==v)});break;}
- case'g29_RevivePick':if(v==='reset')put(s,{...t,selected:[]});else if(v)put(s,{...t,selected:[...t.selected,v]});else{own.g29Reviving=t.selected.map(uid=>remove(own.grave,uid)).filter(Boolean);put(s,{...t,op:'g29_ReviveNext'});}break;
+ case'g29_RevivePick':if(v==='reset')put(s,{...t,selected:[]});else if(v)put(s,{...t,selected:[...t.selected,v]});else{own.g29Reviving=t.selected.map(uid=>policyRemove(s,t.p,'grave',uid,api)).filter(Boolean);put(s,{...t,op:'g29_ReviveNext'});}break;
  case'g29_ReviveNext':put(s,{...t,op:'g29_Deploy',zone:'g29Reviving',origin:'grave',uid:v,ignoreEntry:true},t);break;
  case'g29_InvPick':put(s,{...t,selected:[...t.selected,v]});break;
  case'g29_LandPick':put(s,{...t,op:'g29_Deploy',uid:v,origin:'deck',land:true},{...t,op:'g29_Order',ids:t.ids.filter(uid=>uid!==v)});break;

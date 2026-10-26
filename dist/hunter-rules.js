@@ -1,3 +1,4 @@
+import {policyLook} from './champion-zone-policy.js';
 // No.12: one-shot Gachinko judges, Hunter deployment and loss replacements.
 export function createHunterRules(api){
  const {card,faces,cost,effective,creatures,put,task,choice,opt,skip,draw,move,cast,remove,clear,targetOptions,shieldTo,lock}=api;
@@ -13,7 +14,7 @@ export function createHunterRules(api){
    const bases=first.evolution?api.evolutionBases(s,t.p,first):[null];return bases.some(base=>{const battle=own.battle.filter(y=>y.uid!==base?.uid);battle.push({...x,entered:s.turn,...(base?{under:[base]}:{})});const next={...s,players:s.players.map((y,i)=>i===t.p?{...y,battle,enteredThisTurn:(y.enteredThisTurn||0)+1}:y)};return usable(next,t.p,c);});
   });
  }
- function reveal(s,t,n){const uids=s.players[t.p].deck.slice(0,n).map(x=>x.uid);(s.players[t.p].g12Reveals??=[]).push(...uids);return uids;}
+ function reveal(s,t,n){const uids=policyLook(s,t.p,n,s.players[t.p].deck,api).map(x=>x.uid);(s.players[t.p].g12Reveals??=[]).push(...uids);return uids;}
  function bottom(s,t){const own=s.players[t.p];own.g12Reveals=(own.g12Reveals||[]).filter(uid=>!t.uids.includes(uid));put(s,task('g20Bottom',t.p,t.source,{uids:t.uids.filter(uid=>own.deck.some(x=>x.uid===uid))}));}
  function use(s,t,base=null){const own=s.players[t.p],x=own[t.origin||'deck'].find(x=>x.uid===t.uid);if(x&&usable(s,t.p,faces(card(x))[t.face||0],t.origin||'deck')){cast(s,t.p,x.uid,true,base,t.face||0,null,t.origin||'deck',t.reason||'W・メクレイド');if((t.origin||'deck')==='deck')api.deckCheck(s,t.p);}}
  function run(s,t){if(!t.op.startsWith('g12'))return false;const own=s.players[t.p];switch(t.op){

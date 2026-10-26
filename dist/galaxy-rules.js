@@ -1,3 +1,4 @@
+import {policyTake} from './champion-zone-policy.js';
 // No.22: serializable continuations and permissions for the Galaxy list.
 export function createGalaxyRules(api){
  const {card,faces,cost,colors,effective,power,creatures,put,task,choice,opt,skip,remove,clear,move,cast,draw,log,targetOptions}=api;
@@ -25,7 +26,7 @@ export function createGalaxyRules(api){
  }return true;}
  function chosen(s,t,value){if(!t.op.startsWith('g22'))return false;const own=s.players[t.p];switch(t.op){
   case'g22UntapMana':if(value)put(s,{...t,selected:[...t.selected,value]});else for(const uid of t.selected){const x=own.mana.find(x=>x.uid===uid);if(x&&api.canUntap(x))x.tapped=false;}break;
-  case'g22Shuffle':{const p=s.players[value],all=p.grave.splice(0);for(const x of all)clear(x,'deck');api.shuffleLibrary(s,value,all,t.source);log(s,t.p,'shuffleGrave','選んだプレイヤーの墓地を山札に戻してシャッフルする',{cardId:t.source});break;}
+  case'g22Shuffle':{const p=s.players[value],all=policyTake(s,value,'grave',api);for(const x of all)clear(x,'deck');api.shuffleLibrary(s,value,all,t.source);log(s,t.p,'shuffleGrave','選んだプレイヤーの墓地を山札に戻してシャッフルする',{cardId:t.source});break;}
   case'g22ManaPermit':{const x=own.mana.find(x=>x.uid===value);if(x)x.g22ManaAllowed=s.turn;break;}
   case'g22Speed':{const x=own.battle.find(x=>x.uid===value);if(x)x.gospelSpeed=s.turn;break;}
   case'g22Replace':applyReplacement(s,value,t.entryUid);break;

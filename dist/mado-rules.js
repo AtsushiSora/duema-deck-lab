@@ -1,4 +1,5 @@
-import {createDarkMadoRules} from './dark-mado-rules.js?v=0.82';
+import {policyTake,policyLook} from './champion-zone-policy.js';
+import {createDarkMadoRules} from './dark-mado-rules.js?v=0.104.0';
 // No.04: explicit declarations, New World replacement, and physical Mugen bases.
 export function createMadoRules(api){
  const {card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,move,draw,log,targetOptions}=api;
@@ -26,7 +27,7 @@ export function createMadoRules(api){
  case'g4_Gokusatsu':move(s,[0,1].flatMap(p=>creatures(s,p).map(x=>({player:p,uid:x.uid,to:'grave',destroy:true}))));break;
  case'g4_Dollar':put(s,task('destroyPower',t.p,t.source,{max:'∞'}),task('discard',1-t.p,t.source,{n:1,random:true,causedBy:t.p}));break;
  case'g4_Airvo':{const list=[0,1].flatMap(p=>api.visibleBattleCards(s,p).flatMap(top=>api.layers(top).filter(x=>(x===top?[card(x)]:faces(card(x))).some(c=>cost(c)<=7)).filter(x=>x!==top||api.targetable(s,t.p,p,top)).map(x=>({x,top,p}))));const forced=list.filter(r=>r.p!==t.p&&r.x===r.top&&effective(r.top,s).forceTarget);choice(s,t,'エアヴォ：コスト7以下のカードを1枚、手札に戻す',(forced.length?forced:list).map(({x,top,p})=>opt(card(x).name,{uid:x.uid,top:top.uid,player:p},p===t.p?(x===top?-15:10):cost(card(x))*3,card(x).id)));break;}
- case'g4_Gon':{const uids=own.deck.slice(0,3).map(x=>x.uid);own.g4Protected=uids;if(uids.length)choice(s,{...t,uids},'ゴンパドゥ：上3枚から手札に加える1枚を選ぶ',uids.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,card(x).newWorld&&!fields(s,t.p).length?150:Math.min(30,cost(card(x))),x.cardId);}));break;}
+ case'g4_Gon':{const uids=policyLook(s,t.p,3,own.deck,api).map(x=>x.uid);own.g4Protected=uids;if(uids.length)choice(s,{...t,uids},'ゴンパドゥ：上3枚から手札に加える1枚を選ぶ',uids.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,card(x).newWorld&&!fields(s,t.p).length?150:Math.min(30,cost(card(x))),x.cardId);}));break;}
  case'g4_Blood':choice(s,t,'墓地を山札に戻すプレイヤーを選ぶ',[opt('自分の墓地',t.p,own.deck.length<12?35:-3),opt('相手の墓地',1-t.p,opp.grave.length>5?30:2)]);break;
  case'g4_Untap':{const selected=t.selected||[],available=t.uids.filter(uid=>!selected.includes(uid)&&own.mana.some(x=>x.uid===uid&&x.tapped&&api.canUntap(x)));if(selected.length===3||!available.length){for(const uid of selected){const x=own.mana.find(x=>x.uid===uid);if(x&&api.canUntap(x))x.tapped=false;}break;}choice(s,{...t,selected},'ガ・リュザーク：アンタップするマナを3枚まで選ぶ（'+selected.length+'/3）',[...available.map(uid=>{const x=own.mana.find(x=>x.uid===uid);return opt(card(x).name,uid,20+colors(card(x)).length,x.cardId);}),opt('ここまでで確定',null,0)]);break;}
  default:throw Error('未実装の水魔導具効果：'+t.op);
@@ -38,7 +39,7 @@ export function createMadoRules(api){
  case'g4_World':{const x=live(s,t);if(v&&x){x.g4WorldUsed=true;const watchers=dark.gateWatchers(s,t.p);api.cast(s,t.p,v.uid,true,null,v.face,null,v.origin,'無月の門99');dark.gateUsed(s,t.p,watchers);}break;}
  case'g4_Airvo':api.moveBattleCard(s,v.player,v.uid,'hand');break;
  case'g4_Gon':{const x=remove(own.deck,v);if(x){clear(x,'hand');own.hand.push(x);}finishLook(s,t);api.deckCheck(s,t.p);break;}
- case'g4_Blood':{const p=s.players[v],all=p.grave.splice(0);for(const x of all)clear(x,'deck');put(s,task('draw',t.p,t.source,{n:1}));api.shuffleLibrary(s,v,all,t.source);log(s,t.p,'graveShuffle',(v===t.p?'自分':'相手')+'の墓地'+all.length+'枚を山札に加えてシャッフル',{cardId:t.source});break;}
+ case'g4_Blood':{const p=s.players[v],all=policyTake(s,v,'grave',api);for(const x of all)clear(x,'deck');put(s,task('draw',t.p,t.source,{n:1}));api.shuffleLibrary(s,v,all,t.source);log(s,t.p,'graveShuffle',(v===t.p?'自分':'相手')+'の墓地'+all.length+'枚を山札に加えてシャッフル',{cardId:t.source});break;}
  case'g4_Untap':if(v)put(s,{...t,selected:[...t.selected,v]});else for(const uid of t.selected){const x=own.mana.find(x=>x.uid===uid);if(x&&api.canUntap(x))x.tapped=false;}break;
  default:throw Error('未実装の水魔導具選択：'+t.op);
  }return true;}

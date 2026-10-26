@@ -1,3 +1,5 @@
+import {policyLook} from './champion-zone-policy.js';
+import {policyRemove} from './champion-zone-policy.js';
 // Original champion continuation: all decisions contain UIDs, never detached cards.
 export function createChampionContinuationRules(api){
  const {card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,move,targetOptions}=api;
@@ -28,7 +30,7 @@ export function createChampionContinuationRules(api){
  case'g40_Orzekia':queue(s,t,'OrzekiaEnemy',{selected:[]});choice(s,t,'オルゼキア：破壊する自分のクリーチャーを選ぶ',creatures(s,t.p).map(x=>opt(card(x).name,x.uid,x.cardId===t.source?10:-cost(card(x)),x.cardId)));break;
  case'g40_OrzekiaEnemy':{const rows=creatures(s,1-t.p),selected=t.selected.filter(uid=>rows.some(x=>x.uid===uid)),n=Math.min(2,rows.length);if(selected.length===n){if(n)move(s,selected.map(uid=>({player:1-t.p,uid,to:'grave',destroy:true,controller:t.p})));break;}choice(s,{...t,selected},'オルゼキア：破壊する自分のクリーチャーを2体選ぶ（'+selected.length+'/'+n+'）',rows.filter(x=>!selected.includes(x.uid)).map(x=>opt(card(x).name,x.uid,-cost(card(x)),x.cardId)));s.decision.player=1-t.p;break;}
  case'g40_Salvage':choice(s,{...t,selected:t.selected||[]},'墓地から手札に戻すクリーチャーを選ぶ（好きな数）',[...own.grave.filter(x=>card(x).type==='creature'&&!(t.selected||[]).includes(x.uid)).map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)),skip()]);break;
- case'g40_Sword':{const locked=api.deckLocked(s,t.p);if(!locked)api.log(s,t.p,'look','神秘の宝剣：自分の山札を確認',{cardId:t.source});choice(s,t,'タップしてマナに置く自然ではないカードを選ぶ？',[...(!locked?own.deck.filter(x=>!api.manaColors(card(x),s,t.p).includes('自然')).map(x=>opt(card(x).name,x.uid,card(x).g40Acashic&&!own.battle.some(y=>effective(y,s).g40Acashic)?100:10,x.cardId)):[]),skip()]);break;}
+ case'g40_Sword':{const locked=api.deckLocked(s,t.p);if(!locked)api.log(s,t.p,'look','神秘の宝剣：自分の山札を確認',{cardId:t.source});choice(s,t,'タップしてマナに置く自然ではないカードを選ぶ？',[...(!locked?policyLook(s,t.p,own.deck.length,own.deck,api).filter(x=>!api.manaColors(card(x),s,t.p).includes('自然')).map(x=>opt(card(x).name,x.uid,card(x).g40Acashic&&!own.battle.some(y=>effective(y,s).g40Acashic)?100:10,x.cardId)):[]),skip()]);break;}
  case'g40_LastBurst':{const x=own.grave.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);if(x&&api.canCast(s,t.p,faces(card(x))[1],'grave'))choice(s,t,'ラスト・バーストでH.D.2.を唱える？',[opt('H.D.2.を唱える',true,10,x.cardId),skip()]);break;}
  default:throw Error('未実装の優勝デッキ継続効果：'+t.op);
  }return true;}
@@ -44,7 +46,7 @@ export function createChampionContinuationRules(api){
  case'g40_PlayerRamp':put(s,task('g34_Ramp',v,t.source,{n:2,controller:t.p}));break;
  case'g40_Orzekia':move(s,[{player:t.p,uid:v,to:'grave',destroy:true}]);break;
  case'g40_OrzekiaEnemy':queue(s,t,'OrzekiaEnemy',{selected:[...t.selected,v]});break;
- case'g40_Salvage':if(v)queue(s,t,'Salvage',{selected:[...t.selected,v]});else for(const uid of t.selected){const x=remove(own.grave,uid);if(x){clear(x,'hand');api.addZone(s,t.p,'hand',x);}}break;
+ case'g40_Salvage':if(v)queue(s,t,'Salvage',{selected:[...t.selected,v]});else for(const uid of t.selected){const x=policyRemove(s,t.p,'grave',uid,api);if(x){clear(x,'hand');api.addZone(s,t.p,'hand',x);}}break;
  case'g40_Sword':{const x=v&&own.deck.find(x=>x.uid===v);if(x){remove(own.deck,v);const to=api.deckRedirect(s,t.p)?'grave':'mana';clear(x,to);if(to==='mana')x.tapped=true;api.addZone(s,t.p,to,x);}api.shuffleLibrary(s,t.p,[],t.source);api.deckCheck(s,t.p);break;}
  case'g40_LastBurst':if(v)api.castBattleSpell(s,t.p,t.uid,0,t.source,'ラスト・バースト');break;
  default:throw Error('未実装の優勝デッキ継続選択：'+t.op);

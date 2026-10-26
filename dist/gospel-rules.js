@@ -1,3 +1,4 @@
+import {policyRemove} from './champion-zone-policy.js';
 // No.05: effects use serializable continuations, including nested spell casts.
 export function createGospelRules(api){
  const {card,faces,cost,colors,power,creatures,put,task,choice,opt,skip,remove,removeShield,clear,move,cast,draw,log,canCast,canEnter,targetOptions,lock}=api;
@@ -11,7 +12,7 @@ export function createGospelRules(api){
   case'g5Dolsuzaku':{const list=['hand','grave'].flatMap(origin=>own[origin].filter(x=>!t.selected.some(y=>y.uid===x.uid)&&card(x).type==='creature'&&card(x).race.includes('ドルスザク')&&canEnter(s,t.p,card(x),{origin,execution:true})).map(x=>opt(card(x).name,{origin,uid:x.uid},30,x.cardId)));const max=own.entryLimitThisTurn?Math.max(0,1-(own.enteredThisTurn||0)):4;if(t.selected.length<max&&list.length)choice(s,t,'召喚するドルスザクを4体まで先に選ぶ（'+t.selected.length+'体）',[...list,opt('ここまでで確定',null,0)]);else put(s,{...t,op:'g5PrepareSummons'});break;}
   case'g5PrepareSummons':{own.g5Holding??=[];for(const row of t.selected){const x=remove(own[row.origin],row.uid);if(x){x.g5Origin=row.origin;own.g5Holding.push(x);}}put(s,...t.selected.map(row=>task('g5Summon',t.p,t.source,row)));break;}
   case'g5Summon':{const x=own.g5Holding?.find(x=>x.uid===t.uid);if(x){if(canEnter(s,t.p,card(x),{origin:x.g5Origin,execution:true}))cast(s,t.p,t.uid,true,null,0,null,'g5Holding','ドルスザクの能力');else{remove(own.g5Holding,x.uid);api.addZone(s,own,x.g5Origin,x);delete x.g5Origin;}}break;}
-  case'g5ExtraTurn':{const q=s.extraTurns??=[];q.unshift({player:t.p,createdTurn:s.turn});const current=q.filter(x=>x.createdTurn===s.turn),older=q.filter(x=>x.createdTurn!==s.turn);s.extraTurns=[...current.filter(x=>x.player===s.active),...current.filter(x=>x.player!==s.active),...older];}log(s,t.p,'extraTurn','このターンの後に追加ターンを行う',{cardId:t.source});break;
+  case'g5ExtraTurn':{if(!api.canAddTurn(s,t.p))break;const q=s.extraTurns??=[];q.unshift({player:t.p,createdTurn:s.turn});const current=q.filter(x=>x.createdTurn===s.turn),older=q.filter(x=>x.createdTurn!==s.turn);s.extraTurns=[...current.filter(x=>x.player===s.active),...current.filter(x=>x.player!==s.active),...older];}log(s,t.p,'extraTurn','このターンの後に追加ターンを行う',{cardId:t.source});break;
   case'g5Frozen':{const detach=parent=>{for(const x of [...(parent.under||[])]){detach(x);if(card(x).type!=='creature'){parent.under=parent.under.filter(y=>y.uid!==x.uid);if(x.under?.length)parent.under.push(...x.under);clear(x);api.addZone(s,opp,'grave',x);}}};for(const top of opp.battle.filter(x=>!x.sealed))detach(top);const moves=api.visibleBattleCards(s,1-t.p).filter(x=>card(x).type!=='creature').map(x=>({player:1-t.p,uid:x.uid,to:'grave'}));put(s,task('g5FreezeRest',t.p,t.source));if(moves.length)move(s,moves);break;}
   case'g5FreezeRest':{for(const x of opp.shields.flatMap(api.shieldCards).filter(x=>x.faceUp))api.moveShield(s,1-t.p,x.uid,'grave',{cardOnly:true});for(const x of creatures(s,1-t.p)){api.tap(s,1-t.p,x);x.skipUntap=true;}for(const x of opp.mana){x.tapped=true;x.skipUntap=true;}log(s,t.p,'freeze','相手のクリーチャーとマナをタップし、次の相手ターン開始時のアンタップを止める',{cardId:t.source});break;}
   case'g5Judge':{const uids=[[],[]],moves=[];for(const p of[s.active,1-s.active])for(const x of creatures(s,p))if(cost(card(x))>=s.players[p].mana.length){uids[p].push(...api.layers(x).map(y=>y.uid));moves.push({player:p,uid:x.uid,to:'deck'});}put(s,...[s.active,1-s.active].map(p=>task('g5OrderBottom',p,t.source,{uids:uids[p]})));if(moves.length)move(s,moves);break;}
@@ -30,12 +31,12 @@ export function createGospelRules(api){
   default:throw Error('未実装のゴスペル効果：'+t.op);
  }return true;}
  function chosen(s,t,value){if(!t.op.startsWith('g5'))return false;const own=s.players[t.p];switch(t.op){
-  case'g5Recover':if(value)put(s,{...t,selected:[...t.selected,value]});else for(const uid of t.selected){const x=remove(own.grave,uid);if(x){clear(x,'hand');own.hand.push(x);}}break;
+  case'g5Recover':if(value)put(s,{...t,selected:[...t.selected,value]});else for(const uid of t.selected){const x=policyRemove(s,t.p,'grave',uid,api);if(x){clear(x,'hand');own.hand.push(x);}}break;
   case'g5Dolsuzaku':if(value)put(s,{...t,selected:[...t.selected,value]});else put(s,{...t,op:'g5PrepareSummons'});break;
   case'g5OrderBottom':{const x=remove(own.deck,value);own.deck.push(x);put(s,{...t,uids:t.uids.filter(uid=>uid!==value)});break;}
   case'g5Triple':if(value===0)put(s,task('g5TapThree',t.p,t.source,{uids:[]}));if(value===1)draw(s,t.p,3);if(value===2&&!oppNoReduce(s,t.p))discount(s,t.p,t.source,3);break;
   case'g5TapThree':if(value)put(s,{...t,uids:[...t.uids,value]});else for(const uid of t.uids){const x=s.players[1-t.p].battle.find(x=>x.uid===uid);if(x)api.tap(s,1-t.p,x);}break;
-  case'g5Siren':{const x=remove(own.mana,value);if(x){clear(x,'hand');own.hand.push(x);}put(s,task('g5HandMana',t.p,t.source));break;}
+  case'g5Siren':{const x=policyRemove(s,t.p,'mana',value,api);if(x){clear(x,'hand');own.hand.push(x);}put(s,task('g5HandMana',t.p,t.source));break;}
   case'g5HandMana':{const x=remove(own.hand,value);if(x){clear(x,'mana');api.addZone(s,own,'mana',x);api.handMana(s,t.p,x);}break;}
   case'g5Courage':if(value===0)put(s,task('discard',t.p,t.source,{causedBy:t.p,n:1}),task('draw',t.p,t.source,{n:2}));else put(s,task('destroyPower',t.p,t.source,{max:2000}));break;
   case'g5DestroyElement':if(value.zone==='battle')move(s,[{player:1-t.p,uid:value.uid,to:'grave'}]);else{api.moveShield(s,1-t.p,value.uid,'grave',{cardOnly:true});}break;

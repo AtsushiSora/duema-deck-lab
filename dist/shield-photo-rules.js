@@ -1,3 +1,4 @@
+import {policyLook} from './champion-zone-policy.js';
 // Face-up shields use physical cards and stable shield groups, including stacked shields.
 export function createShieldPhotoRules(api){
  const{card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,enter,cast,move,targetOptions}=api;
@@ -7,7 +8,7 @@ export function createShieldPhotoRules(api){
  const momoKey=x=>x.uid+'@'+(x.incarnation||0),momos=(s,p)=>s.players[p].battle.filter(x=>card(x).g41Momo&&!api.ignored(s,x)&&api.isCreature(s,x)&&s.g41MomoUsed?.[momoKey(x)]!==s.turn);
  const replaceable=(s,pending,to)=>!pending.options.virtualArgs||api.canReplaceExecution(s,pending.p,pending.options.virtualArgs[0],to);
  const pool=(s,t)=>(t.ids||[]).map(uid=>s.players[t.p].deck.find(x=>x.uid===uid)).filter(Boolean);
- function look(s,t,n){if(api.deckLocked(s,t.p))return[];const own=s.players[t.p],protectedIds=new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&/Protected$|Reveals$/.test(k)).flatMap(([,v])=>v)),xs=own.deck.filter(x=>!protectedIds.has(x.uid)).slice(0,n);own.g33Protected=[...(own.g33Protected||[]),...xs.map(x=>x.uid)];api.log(s,t.p,'look',card(t.source).name+'：山札の上'+xs.length+'枚を確認',{cardId:t.source});return xs.map(x=>x.uid);}
+ function look(s,t,n){if(api.deckLocked(s,t.p))return[];const own=s.players[t.p],protectedIds=new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&/Protected$|Reveals$/.test(k)).flatMap(([,v])=>v)),xs=policyLook(s,t.p,n,own.deck.filter(x=>!protectedIds.has(x.uid)),api);own.g33Protected=[...(own.g33Protected||[]),...xs.map(x=>x.uid)];api.log(s,t.p,'look',card(t.source).name+'：山札の上'+xs.length+'枚を確認',{cardId:t.source});return xs.map(x=>x.uid);}
  function release(s,p,uid){s.players[p].g33Protected=(s.players[p].g33Protected||[]).filter(x=>x!==uid);}
  function addFace(s,p,x,fromDeck=false){if(!x)return;clear(x,'shields');if(fromDeck&&s.players.some(y=>y.battle.some(x=>effective(x,s).deckRedirect)))api.addZone(s,p,'grave',x);else{x.faceUp=true;api.addZone(s,p,'shields',x);api.notifyShieldAdded(s,p,x);api.log(s,p,'shieldAdd',card(x).name+'を表向きでシールド化',{cardId:x.cardId});}}
  function faceTop(s,p){if(!api.canAddShield(s,p))return;addFace(s,p,api.takeTop(s,p),true);api.deckCheck(s,p);}

@@ -1,3 +1,4 @@
+import {policyRemove} from './champion-zone-policy.js';
 // No.24: physical grave evolution, ordered under-card replacements, and entry events.
 export function createGraveRules(api){
  const {card,cost,effective,creatures,put,task,choice,opt,skip,remove,clear,enter,cast,move}=api;
@@ -30,10 +31,10 @@ export function createGraveRules(api){
  function chosen(s,t,v){if(!t.op.startsWith('g24_'))return false;const own=s.players[t.p];switch(t.op){
  case'g24_Bases':if(v==='reset')put(s,{...t,selected:[]});else if(v)put(s,{...t,selected:[...t.selected,v]});else if(v===false){if(t.mode==='cast'){const a=[...t.args];a[2]=t.selected;a[4]={...(typeof a[4]==='object'&&a[4]||{}),graveBaseCount:t.selected.length};cast(s,t.p,...a);}else{const x=remove(own.g24Holding,t.uid);if(x)enter(s,t.p,x,t.selected,t.options);}}break;
  case'g24_Meteor':if(v){const x=live(s,t);if(x&&detach(s,t.p,x,v,'grave'))put(s,task('g24_Minus',t.p,t.source,{amount:9000}),task('g24_DoomRevive',t.p,t.source));}break;
- case'g24_DoomRevive':{const x=remove(own.grave,v);if(x)enter(s,t.p,x,null,{origin:'grave',execution:false});break;}
+ case'g24_DoomRevive':{const x=policyRemove(s,t.p,'grave',v,api);if(x)enter(s,t.p,x,null,{origin:'grave',execution:false});break;}
  case'g24_Minus':{const x=s.players[1-t.p].battle.find(x=>x.uid===v);if(x)(x.powerModifiers??=[]).push({amount:-t.amount,expires:'end',who:s.active,...(t.spellCost===undefined?{}:{spellCost:t.spellCost,spellSource:t.source})});break;}
- case'g24_GraveHand':{const x=remove(own.grave,v);if(x){clear(x,'hand');own.hand.push(x);}break;}
- case'g24_Ura':if(v){const selected=[...t.selected,v],x=live(s,t);if(selected.length<5)put(s,{...t,selected});else if(x&&selected.every(uid=>own.grave.some(y=>y.uid===uid))){for(const uid of selected){const y=remove(own.grave,uid);clear(y,'battle');(x.under??=[]).push(y);}put(s,task('destroyCost',t.p,t.source,{max:Number.MAX_SAFE_INTEGER,optional:false}));}}break;
+ case'g24_GraveHand':{const x=policyRemove(s,t.p,'grave',v,api);if(x){clear(x,'hand');own.hand.push(x);}break;}
+ case'g24_Ura':if(v){const selected=[...t.selected,v],x=live(s,t);if(selected.length<5)put(s,{...t,selected});else if(x&&api.canMoveZone(s,t.p,'grave')&&selected.every(uid=>own.grave.some(y=>y.uid===uid))){for(const uid of selected){const y=policyRemove(s,t.p,'grave',uid,api);clear(y,'battle');(x.under??=[]).push(y);}put(s,task('destroyCost',t.p,t.source,{max:Number.MAX_SAFE_INTEGER,optional:false}));}}break;
  case'g24_UraReplace':{if(!v){beginUra(s,t.p,t.uid,t.mode);break;}const selected=[...t.selected,v];if(selected.length<5){beginUra(s,t.p,t.uid,t.mode,selected);break;}const x=own.battle.find(x=>x.uid===t.uid);for(const uid of selected)detach(s,t.p,x,uid,'deck');api.log(s,t.p,'uraReplace','下のカード5枚を山札の下に置き、'+(t.mode==='loss'?'敗北':'離脱')+'を置換',{cardId:t.source});if(t.mode==='loss')api.completeLossReplacement(s,'ウラギリダムス：下の5枚を山札に戻して敗北を置換');else s.leaving.rows.find(x=>x.player===t.p&&x.uid===t.uid).plan={kind:'ura'};break;}
  case'g24_Loot':if(v)put(s,task('discardChosen',t.p,t.source,{n:1,causedBy:t.p,uid:v}),task('draw',t.p,t.source,{n:2}));break;
  case'g24_Timp':if(v){const x=live(s,t);if(x){put(s,task('g24_TimpAfter',t.p,t.source,{destroyed:x.uid,serial:x.zoneSerial||0}));move(s,[{player:t.p,uid:x.uid,to:'grave'}]);}}break;

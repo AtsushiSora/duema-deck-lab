@@ -1,3 +1,4 @@
+import {policyRemove,policyLook} from './champion-zone-policy.js';
 // No.25: grave/mana summons, ultimate evolution and physical-card replacements.
 export function createKenjiRules(api){
  const {card,faces,cost,effective,creatures,put,task,choice,opt,skip,remove,clear,enter,cast,move,targetOptions}=api;
@@ -21,7 +22,7 @@ export function createKenjiRules(api){
  case'g25_Dida':for(const x of s.players[1-t.p].hand.splice(0)){clear(x,'mana');api.addZone(s,s.players[1-t.p],'mana',x);api.handMana(s,1-t.p,x);}break;
  case'g25_Mill':{const ids=own.deck.slice(0,3).map(x=>x.uid);put(s,task('g25_Milled',t.p,t.source,{uids:ids}));api.mill(s,t.p,3);break;}
  case'g25_Milled':{const list=own.grave.filter(x=>t.uids.includes(x.uid)&&canPut(s,t.p,x,'grave'));choice(s,t,'今墓地に置いた3枚からクリーチャーを1体出す',list.map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)));break;}
- case'g25_Plan':case'g25_Heart':{const uids=own.deck.slice(0,t.op==='g25_Plan'?6:4).map(x=>x.uid);(own.g25Protected??=[]).push(...uids);if(t.op==='g25_Heart')choice(s,{...t,uids},'上4枚から進化クリーチャーを1枚手札に加える？',[...uids.map(uid=>own.deck.find(x=>x.uid===uid)).filter(x=>evo(card(x))).map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)),skip()]);else{const take=uids.filter(uid=>evo(card(own.deck.find(x=>x.uid===uid))));for(const uid of take){const x=remove(own.deck,uid);clear(x,'hand');own.hand.push(x);}put(s,task('g25_Order',t.p,t.source,{uids:uids.filter(uid=>!take.includes(uid)),protected:uids}));api.deckCheck(s,t.p);}break;}
+ case'g25_Plan':case'g25_Heart':{const uids=policyLook(s,t.p,t.op==='g25_Plan'?6:4,own.deck,api).map(x=>x.uid);(own.g25Protected??=[]).push(...uids);if(t.op==='g25_Heart')choice(s,{...t,uids},'上4枚から進化クリーチャーを1枚手札に加える？',[...uids.map(uid=>own.deck.find(x=>x.uid===uid)).filter(x=>evo(card(x))).map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)),skip()]);else{const take=uids.filter(uid=>evo(card(own.deck.find(x=>x.uid===uid))));for(const uid of take){const x=remove(own.deck,uid);clear(x,'hand');own.hand.push(x);}put(s,task('g25_Order',t.p,t.source,{uids:uids.filter(uid=>!take.includes(uid)),protected:uids}));api.deckCheck(s,t.p);}break;}
  case'g25_Order':{const ids=t.uids.filter(uid=>own.deck.some(x=>x.uid===uid));if(ids.length<=1){for(const uid of ids)own.deck.push(remove(own.deck,uid));own.g25Protected=(own.g25Protected||[]).filter(uid=>!t.protected.includes(uid));break;}choice(s,{...t,uids:ids},'残りを山札の下に置く順序を選ぶ',ids.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,0,x.cardId);}));break;}
  case'g25_Pegasus':choice(s,t,'ギュンター：山札の上から何枚マナに置く？',Array.from({length:Math.min(3,own.deck.length)+1},(_,n)=>opt(n+'枚',n,n<own.deck.length?n*5:-100)));break;
  case'g25_PegPick':{const bases=[...own.battle,...own.grave].map(x=>x.uid),selected=t.selected||[];choice(s,{...t,selected},'マナから出すクリーチャーをすべて選ぶ（'+selected.length+'体）',[...own.mana.filter(x=>!selected.includes(x.uid)&&canPut(s,t.p,x,'mana')&&(!own.entryLimitThisTurn||!selected.length)&&assignable(s,t.p,[...selected,x.uid],bases)).map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)),opt('選択を確定する',null,0)]);break;}
@@ -44,7 +45,7 @@ export function createKenjiRules(api){
  case'g25_PegUse':put(s,{...t,op:'g25_PegEnter',target:v});break;
  case'g25_PegEnter':pegEnter(s,t,v);break;
  case'g25_Put':deploy(s,t,v);break;
- case'g25_ReturnMana':{const x=remove(own.mana,v);if(x){clear(x,'hand');own.hand.push(x);}break;}
+ case'g25_ReturnMana':{const x=policyRemove(s,t.p,'mana',v,api);if(x){clear(x,'hand');own.hand.push(x);}break;}
  case'g25_Oni':if(v)beginOni(s,t.p,t.uid,t.mode,[...t.selected,v]);else if(t.selected.length)beginOni(s,t.p,t.uid,t.mode,[]);else if(t.mode==='leave'){const r=s.leaving.rows.find(x=>x.uid===t.uid&&x.player===t.p);s.decision={type:'leaveReplace',player:t.p,uid:t.uid,mandatory:!!(r.ex||r.gneo||r.star||r.to==='mana'&&api.manaRedirect(s,t.p))};}else s.decision=null;break;
  default:throw Error('未実装のケンジ選択：'+t.op);
  }return true;}
