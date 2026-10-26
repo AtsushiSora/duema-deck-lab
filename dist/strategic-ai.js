@@ -7,7 +7,7 @@ export function createStrategicAI(api){
  const body=c=>c.type==='creature';
  const damage=c=>c.breaker==='∞'?20:Number(c.breaker)||1;
  const key=a=>JSON.stringify(Object.fromEntries(Object.entries(a).filter(([k])=>k!=='id'&&k!=='label')));
- const publicCounters=['g39ClinnUsed','g37Gifts','g37Spells','g35BakuNoLose','g35SpellLocks','g35ZeroMana','g35AttackStops','g35Deferred','g35Permits','g35Terminal','g35FinalRev','g35Fuji','g35FirstGrave','g35Limone','g35GraveLeft','g34Executions','g34ShieldLeftTurn','g34Muku','g34Scarlet','g34Souzan','g34FirstTap','g34Discounts','g31Discounts','g31ExtraTurn','g29Grants','g29Delays','g29MolReady','challenge','g28DragonOnce','g27WestUsed','extLimits','once','extraTurns','noManaUse','creaturesEntered','finalUsed','finalHistory','g26Extreme','g26GardenUsed','darkTriggers',
+ const publicCounters=['g40Dachi','g40Summons','g40BadDebt','g39ClinnUsed','g37Gifts','g37Spells','g35BakuNoLose','g35SpellLocks','g35ZeroMana','g35AttackStops','g35Deferred','g35Permits','g35Terminal','g35FinalRev','g35Fuji','g35FirstGrave','g35Limone','g35GraveLeft','g34Executions','g34ShieldLeftTurn','g34Muku','g34Scarlet','g34Souzan','g34FirstTap','g34Discounts','g31Discounts','g31ExtraTurn','g29Grants','g29Delays','g29MolReady','challenge','g28DragonOnce','g27WestUsed','extLimits','once','extraTurns','noManaUse','creaturesEntered','finalUsed','finalHistory','g26Extreme','g26GardenUsed','darkTriggers',
   'g13JagaUsed','g12LossUsed','g12NoLose','g15StarUsed','g16UsedMana','g17ManaUsed','g19MekraidUsed',
   'g20Attacks','g21ZenonUsed','g22UsedDiscount','g22UsedMana','g23Attacks','g23BalEntered','g25ManaUsed',
   'g2Spells','g3AttackSerial','g3CycleUsed','g3Debts','g3ReverseUsed','g5NextSummons','g7Battles',
@@ -50,18 +50,21 @@ export function createStrategicAI(api){
   mark(out);return out;
  }
  function clone(s){const out=structuredClone(s);mark(out);return out;}
- const isEngine=c=>c.graveSpellReduction||c.gachiAttack||c.newWorld||c.kurokami||c.abyssLord||c.samuraiGenerate;
+ const isEngine=c=>c.g40Acashic||c.g40Fiona||c.g40Chuchu||c.graveSpellReduction||c.gachiAttack||c.newWorld||c.kurokami||c.abyssLord||c.samuraiGenerate;
  const hero=(s,p)=>s.challenge&&s.challenge.seat===p?s.challenge.heroId:null;
  function keepValue(s,p,x){
-  const id=hero(s,p);if(!id)return 0;
-  const own=s.players[p],role=heroCardRole(id,x.cardId),copies=own.hand.filter(y=>y.cardId===x.cardId).length;
+  const id=hero(s,p),own=s.players[p],c=card(x);if(!id&&!c.g40Fiona&&!c.g40Acashic&&!c.g40Chuchu)return 0;
+  const hasField=own.battle.some(y=>card(y).g40Acashic&&effective(y,s).g40Acashic),manaField=own.mana.some(y=>card(y).g40Acashic),fiona=own.hand.some(y=>card(y).g40Fiona);
+  const champion=c.g40Fiona&&!hasField&&(manaField||own.hand.some(y=>card(y).g40Acashic))?35:c.g40Acashic&&!hasField&&!manaField&&fiona?-30:c.g40Chuchu&&own.mana.length<4?15:0;
+  if(!id)return champion;
+  const role=heroCardRole(id,x.cardId),copies=own.hand.filter(y=>y.cardId===x.cardId).length;
   let v=role==='setup'?(own.mana.length<4?26:3):role==='engine'?24:role==='bridge'?17:0;
   if(s.challenge.signature.includes(x.cardId))v+=own.mana.length>=4?22:8;
   if(own.battle.some(y=>y.cardId===x.cardId))v*=.35;
-  return v/Math.max(1,copies);
+  return champion+v/Math.max(1,copies);
  }
  function rank(s){
-  const rows=baseRank(s),p=rows[0]?.a.player;if(!hero(s,p))return rows;
+  const rows=baseRank(s),p=rows[0]?.a.player;if(!hero(s,p)&&!s.players[p]?.hand.some(x=>card(x).g40Fiona||card(x).g40Acashic||card(x).g40Chuchu))return rows;
   const own=s.players[p];return rows.map(r=>{
    const a=r.a,x=own.hand.find(x=>x.uid===a.uid);let value=r.value;
    if(a.kind==='charge'&&x)value-=keepValue(s,p,x);
@@ -169,7 +172,8 @@ export function createStrategicAI(api){
   const safety=own.shields.length===0?-30:Math.min(5,own.shields.length)*7;
   const heroPlan=hero(s,p)?own.battle.reduce((n,x)=>n+(heroCardRole(hero(s,p),x.cardId)==='engine'?35:0),0)+
    (own.battle.some(x=>effective(x,s).abyssLordGrave)?Math.min(5,own.grave.filter(x=>/アビス/.test(card(x).race)).length)*8:0):0;
-  return board(s,p)-board(s,1-p)*1.08+hand+gravePlan+heroPlan-opp.hand.length*5+
+  const championPlan=own.battle.some(x=>card(x).g40Acashic&&effective(x,s).g40Acashic)?80:own.mana.some(x=>card(x).g40Acashic)&&own.hand.some(x=>card(x).g40Fiona)?50:0;
+  return board(s,p)-board(s,1-p)*1.08+hand+gravePlan+heroPlan+championPlan-opp.hand.length*5+
    Math.min(mana,7)*(hero(s,p)?18:11)+Math.max(0,Math.min(mana-7,5))*3+colors*2+safety+
    pressure(s,p)-(own.shields.length<danger?18:0)-(own.deck.length<=3?(4-own.deck.length)*16:0);
  }

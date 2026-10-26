@@ -1,3 +1,5 @@
+import * as opponentProgress from '../dist/opponent-progress.js';
+import {APP_VERSION} from '../dist/app-updates.js';
 import {createCardArt} from '../dist/card-art.js';
 import test from 'node:test';import assert from 'node:assert/strict';import vm from 'node:vm';import fs from 'node:fs';
 import {createImageMatcher}from'../dist/card-fingerprint.js';
@@ -5,7 +7,7 @@ import {e,PRESETS,data,details,snapshot} from './target-fixture.mjs';import * as
 const source=fs.readFileSync(new URL('../dist/app.js',import.meta.url),'utf8').replace(/^import .*;\n/gm,'').replace(/\bboot\(\);\s*$/,'').replaceAll('import.meta.url',JSON.stringify(new URL('../dist/app.js',import.meta.url).href));
 function harness({failImageIndex=false}={}){const root={innerHTML:''},dialog={innerHTML:'',open:false,showModal(){this.open=true;},close(){this.open=false;},addEventListener(){}},toast={textContent:'',classList:{add(){},remove(){}}},listeners={},fields={},writes=[],errors=[],revoked=[];const registry=createCatalogue(snapshot,data.cards,details),rows=PRESETS[0].cards.map(r=>({...r,confirmed:true}));let reads=0,imageReads=0;
  class LocalURL extends URL{static createObjectURL(){return'blob:test-image';}static revokeObjectURL(x){revoked.push(x);}}
- const ctx=vm.createContext({createCardArt,...e,...cardInfo,...manual,...environment,...recognition,...supportImport,...supportUI,battleCard:e.card,createCatalogue,prepareDeckCopy,PRESETS,fixtureRegistry:registry,fixtureData:data,fixtureRows:rows,structuredClone,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL:LocalURL,Intl,Date,
+ const ctx=vm.createContext({...opponentProgress,APP_VERSION,createCardArt,...e,...cardInfo,...manual,...environment,...recognition,...supportImport,...supportUI,battleCard:e.card,createCatalogue,prepareDeckCopy,PRESETS,fixtureRegistry:registry,fixtureData:data,fixtureRows:rows,structuredClone,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL:LocalURL,Intl,Date,
  createImageMatcher,fetch:async()=>{if(failImageIndex)throw Error('offline');return{ok:true,json:async()=>({schemaVersion:1,entries:[[data.cards[0].id,btoa('\0'.repeat(288))]]})};},
  prepareSupportScreenshot:async()=>({canvas:{width:1200,height:1000},grid:{...supportImport.makeSupportGrid(1200,1000),detected:true}}),readSupportScreenshot:async(_,options)=>{reads++;if(typeof options.matchImage==='function')imageReads++;options.onProgress(40,40);return{rows:structuredClone(rows),slots:[],text:'card text'};},
  Tesseract:{createWorker:async()=>({setParameters:async()=>{},recognize:async()=>({data:{text:''}})})},

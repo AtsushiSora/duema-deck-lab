@@ -1,11 +1,11 @@
 import {RIVAL_IDS} from './hero-draw.js';
-import {paymentReviewHTML} from './battle-insights.js?v=0.99.0';
+import {paymentReviewHTML} from './battle-insights.js?v=0.100.0';
 import {sourceCardBadge,sourceCardLabel} from './card-info.js';
 import {shieldCards} from './shield-state.js';
-import {aiPlaybackHTML,aiSpeedLabel} from './ai-playback.js?v=0.99.0';
-import {handCardModel,handShelfHTML,handInspectorHTML,handEvolutionButtonHTML} from './hand-ui.js?v=0.99.0';
+import {aiPlaybackHTML,aiSpeedLabel} from './ai-playback.js?v=0.100.0';
+import {handCardModel,handShelfHTML,handInspectorHTML,handEvolutionButtonHTML} from './hand-ui.js?v=0.100.0';
 import {getLegalActions,manaSelectionStatus,manaColors,card,power,effectiveCard,isEvolution,canUntap,abilitiesIgnored,genmuActive,momoActive,selfTriggersStopped,manaValue,manaValueAt,exLifeShieldInfo,exLifeShields,shieldGuardSources,playFaces,attackLocked,evolutionBases,canCastSpell,canEnterCreature,summonCost,paymentPool,manaPayment} from './engine.js';
-import {attackRoute,previewAttackAction} from './battle-visuals.js?v=0.99.0';
+import {attackRoute,previewAttackAction} from './battle-visuals.js?v=0.100.0';
 import {pageWindow} from './board-fit.js';
 import {battlePrimaryAction} from './battle-controls.js';
 
