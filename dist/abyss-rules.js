@@ -11,7 +11,7 @@ export function createAbyssRules(api){
  const protect=(s,p,n)=>{const own=s.players[p];const ids=policyLook(s,p,n,own.deck.filter(x=>!(own.g13Protected||[]).includes(x.uid)),api).map(x=>x.uid);(own.g13Protected??=[]).push(...ids);return ids;};
  const release=(own,ids)=>own.g13Protected=(own.g13Protected||[]).filter(x=>!ids.includes(x));
  function grant(s,x,conditional){(x.g13Rush??=[]).push({turn:s.turn,conditional,attacked:false});}
- function sbPairs(s,t){const own=s.players[t.p];return own.hand.filter(x=>card(x).strikeBack&&api.canCast(s,t.p,card(x))&&!t.declared?.includes(x.uid)).flatMap(x=>t.costs.filter(uid=>uid!==x.uid&&own.hand.some(y=>y.uid===uid&&(card(x).strikeBackRace?api.faces(card(y)).some(c=>String(c.race).includes(card(x).strikeBackRace)):dark(y)))).map(uid=>opt(card(x).name+'：'+card(own.hand.find(y=>y.uid===uid)).name+'を捨ててS・バック',{uid:x.uid,cost:uid},35,x.cardId)));}
+ function sbPairs(s,t){const own=s.players[t.p];return own.hand.filter(x=>card(x).strikeBack&&api.canCast(s,t.p,card(x))&&!t.declared?.includes(x.uid)).flatMap(x=>t.costs.filter(uid=>uid!==x.uid&&own.hand.some(y=>y.uid===uid&&(card(x).strikeBackRace?api.faces(card(y)).some(c=>String(c.race).includes(card(x).strikeBackRace)):api.faces(card(y)).some(c=>colors(c).includes(card(x).strikeBackColor||'闇'))))).map(uid=>opt(card(x).name+'：'+card(own.hand.find(y=>y.uid===uid)).name+'を捨ててS・バック',{uid:x.uid,cost:uid},35,x.cardId)));}
  function run(s,t){if(!t.op.startsWith('g13_'))return false;const own=s.players[t.p];switch(t.op){
  case'g13_Jaga':if(own.hand.length>=2)choice(s,t,'手札を2枚捨て、アビス・メクレイド5する？',[opt('2枚捨てて使う',true,30,t.source),skip()]);break;
  case'g13_Mek':{const uids=protect(s,t.p,t.double?6:3);put(s,{...t,op:'g13_MekPick',uids,selected:[],max:t.double?2:1});break;}
@@ -39,7 +39,7 @@ export function createAbyssRules(api){
  case'g13_Seal':choice(s,t,'封印する相手クリーチャーを選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));break;
  case'g13_Bella':{const x=live(s,t);if(x&&api.canLeave(s,t.p,x))choice(s,t,'ベラドンナを破壊して効果を使う？',[opt('破壊して使う',true,25,t.source),skip()]);break;}
  case'g13_BellaMode':choice(s,t,'ベラドンナ：効果を選ぶ',[opt('相手の手札を見ないで1枚捨てさせる','discard',s.players[1-t.p].hand.length?15:-10),opt('山札の上1枚をマナへ','ramp',own.mana.length<6?25:5)]);break;
- case'g13_SB':{const list=sbPairs(s,t);if(list.length)choice(s,t,'S・バック：加わる闇のシールドを捨てて使う？',[...list,opt('S・バックを使わない',null,0)]);else if(!t.window)put(s,...(t.declared||[]).map(uid=>task('g13_SBCast',t.p,t.source,{uid})));break;}
+ case'g13_SB':{const list=sbPairs(s,t);if(list.length)choice(s,t,'S・バック：条件に合うシールドのカードを捨てて使う？',[...list,opt('S・バックを使わない',null,0)]);else if(!t.window)put(s,...(t.declared||[]).map(uid=>task('g13_SBCast',t.p,t.source,{uid})));break;}
  case'g13_SBCast':{const x=own.hand.find(x=>x.uid===t.uid);if(x&&api.canCast(s,t.p,card(x))){if(card(x).evolution)put(s,task('g32_SBBase',t.p,x.cardId,{target:x.uid}));else cast(s,t.p,x.uid,true,null,0,null,'hand','S・バック');}break;}
  default:throw Error('未実装のアビス効果：'+t.op);
  }return true;}
