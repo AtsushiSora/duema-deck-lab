@@ -13,7 +13,7 @@ export function createUtilityRevivalRules(api){
  function chosen(s,t,v){if(!t.op.startsWith('g60_'))return false;switch(t.op){
  case'g60_Scale':if(v==='recover')put(s,task('g34_Select',t.p,t.source,{origin:'grave',to:'hand',n:2,optional:true,filter:{creature:true},title:'手札に戻す墓地のクリーチャーを2体まで選ぶ'}));else if(v==='minus')put(s,{...t,op:'g60_Minus'});break;
  case'g60_Minus':{const x=s.players[1-t.p].battle.find(x=>x.uid===v);if(x)(x.powerModifiers??=[]).push({amount:-5000,expires:'end',who:s.active,spellSource:t.source,spellCost:cost(card(t.source))});break;}
- case'g60_Kernel':{const x=s.players[1-t.p].battle.find(x=>x.uid===v);if(x)for(const kind of['attack','block'])api.lock(s,t.p,{kind,reason:'カーネル',player:1-t.p,uid:x.uid,incarnation:x.incarnation||0,expires:'start',who:t.p});break;}
+ case'g60_Kernel':{const x=s.players[1-t.p].battle.find(x=>x.uid===v);if(x)for(const kind of['attack','block'])api.lock(s,t.p,{kind,reason:card(t.source).name,...(card(t.source).type==='spell'?{spellCost:cost(card(t.source)),spellSource:t.source}:{}),player:1-t.p,uid:x.uid,incarnation:x.incarnation||0,expires:'start',who:t.p});break;}
  case'g60_Cabura':{const own=s.players[t.p],x=v&&own.mana.find(x=>x.uid===v);if(x&&api.canMoveZone(s,t.p,'mana')){api.remove(own.mana,x.uid);api.clear(x,'hand');api.addZone(s,t.p,'hand',x);}break;}
  default:throw Error('未実装の回収ユーティリティ選択：'+t.op);
  }return true;}
