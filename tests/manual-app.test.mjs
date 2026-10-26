@@ -1,5 +1,6 @@
 import * as championLibrary from '../dist/champions.js';
 import * as opponentProgress from '../dist/opponent-progress.js';
+import * as characterChallenges from '../dist/hero-challenge.js';
 import * as battleInsights from '../dist/battle-insights.js';
 import * as appUpdates from '../dist/app-updates.js';
 import {createCardArt} from '../dist/card-art.js';
@@ -16,7 +17,7 @@ const app=(await readFile(new URL('../dist/app.js',import.meta.url),'utf8')).rep
 function harness(state,{mobile=false,scrollers={},autoPay=true}={}){
  const listeners={},errors=[],timers=new Map();let serial=0;
  const root={innerHTML:''},dialog={innerHTML:'',open:false,addEventListener(){},showModal(){this.open=true;},close(){this.open=false;}},toast={textContent:'',classList:{add(){},remove(){}}},classes=new Set();
- const context=vm.createContext({...championLibrary,...opponentProgress,createCardArt,shieldCards,...battleInsights,...appUpdates,...e,...manual,...visuals,...fit,...handUI,...cardInfo,...aiPlayback,battleCard:e.card,PRESETS,createCatalogue,fixtureRegistry:createCatalogue(snapshot,data.cards,details),fixtureState:state,fixtureDecks:[target,target],console:{log(){},error:e=>errors.push(e)},structuredClone,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL,Intl,Date,CSS:{escape:x=>x},localStorage:{getItem:()=>null,setItem(){}},location:{hash:'',pathname:'/'},history:{replaceState(){}},setTimeout:f=>{timers.set(++serial,f);return serial;},clearTimeout:id=>timers.delete(id),clearInterval(){},setInterval:()=>++serial,
+ const context=vm.createContext({...championLibrary,...opponentProgress,...characterChallenges,createCardArt,shieldCards,...battleInsights,...appUpdates,...e,...manual,...visuals,...fit,...handUI,...cardInfo,...aiPlayback,battleCard:e.card,PRESETS,createCatalogue,fixtureRegistry:createCatalogue(snapshot,data.cards,details),fixtureState:state,fixtureDecks:[target,target],console:{log(){},error:e=>errors.push(e)},structuredClone,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL,Intl,Date,CSS:{escape:x=>x},localStorage:{getItem:()=>null,setItem(){}},location:{hash:'',pathname:'/'},history:{replaceState(){}},setTimeout:f=>{timers.set(++serial,f);return serial;},clearTimeout:id=>timers.delete(id),clearInterval(){},setInterval:()=>++serial,
   document:{querySelector:s=>s==='#app'?root:s==='#dialog'?dialog:s==='#toast'?toast:scrollers[s]||null,querySelectorAll:s=>s==='.play-creatures,.shield-tiles'?scrollers.lanes||[]:[],activeElement:null,body:{classList:{toggle:(key,on)=>on?classes.add(key):classes.delete(key)}},addEventListener:(name,f)=>listeners[name]=f},window:{innerHeight:800,addEventListener(){},scrollTo(){},matchMedia:q=>({matches:mobile&&q==='(max-width: 850px)'})}});
  vm.runInContext(app,context);
  vm.runInContext("registry=fixtureRegistry;cards=registry.cards;battleCards=fixtureRegistry.cards.filter(c=>c.supported);battle={state:fixtureState,decks:fixtureDecks,practice:true};view='manual';manualUI=newManualUI();selectedHand=null;render();",context);
@@ -270,4 +271,33 @@ test('a real human direct attack records the defeated opponent and its mark appe
  assert.deepEqual(e.physicalCards(s).map(c=>c.uid).sort(),ids);
  h.read('saved.defeatedDecks=JSON.parse(JSON.stringify(saved.defeatedDecks));showOpponentPicker()');
  assert.ok(h.read('opponentMark(battle.decks[1])').includes('✓ 撃破済み'));
+});
+
+for(const group of ['hero','rival'])test('finished '+group+' battle can change decks, cancel safely and retain the opponent and character rules',async()=>{
+ const fixture=JSON.parse(await readFile(new URL('../dist/'+(group==='hero'?'hero':'rival')+'-decks.json',import.meta.url))),registry=createCatalogue(snapshot,data.cards,details);
+ const opponent=(group==='hero'?characterChallenges.resolveHeroDecks(fixture,registry):characterChallenges.resolveRivalDecks(fixture,registry))[0];
+ const h=harness(e.createGame([PRESETS[0],opponent],{seed:111,first:0,challenge:characterChallenges.challengeOptions(opponent)}),{mobile:true});
+ h.context.fixtureOpponent=opponent;
+ h.read("saved.decks=[{...structuredClone(PRESETS[0]),id:'deck-a',name:'最初のデッキ'},{...structuredClone(fixtureDecks[0]),id:'deck-b',name:'別のデッキ'},{id:'bad',name:'未完成',cards:[]}];saved.selected='deck-a';battle.decks=structuredClone([saved.decks[0],fixtureOpponent]);battle.challengeId=fixtureOpponent.hero.id;battle.challengeGame='finished';battle.practice=false;battle.state.winner=0;battle.state.reason='勝利';render()");
+ assert.match(h.root.innerHTML,/デッキを変えて挑戦/);assert.match(h.root.innerHTML,/この相手との通算/);assert.match(h.root.innerHTML,/このデッキで 1勝 0敗/);
+ const before=h.read('JSON.stringify(battle)'),progress=h.read('JSON.stringify(saved.manualResults)');
+ await h.click('manual-change-deck');assert.match(h.read('dialog.innerHTML'),/別のデッキ/);assert.match(h.read('dialog.innerHTML'),/data-id="bad" disabled/);assert.equal(h.read('JSON.stringify(battle)'),before);
+ await h.click('close-dialog');assert.equal(h.read('JSON.stringify(saved.manualResults)'),progress);assert.equal(h.read('JSON.stringify(battle)'),before);
+ await h.click('manual-change-deck');await h.click('manual-retry-deck',{id:'bad'});assert.equal(h.read('JSON.stringify(battle)'),before);
+ await h.click('manual-retry-deck',{id:'deck-b'});
+ assert.equal(h.read('battle.decks[0].id'),'deck-b');assert.equal(h.read('saved.selected'),'deck-b');assert.equal(h.read('battle.challengeId'),opponent.hero.id);assert.equal(h.read('battle.state.challenge.heroId'),opponent.hero.id);assert.equal(h.read('battle.state.challenge.seat'),1);assert.equal(h.read('battle.practice'),false);
+ assert.equal(h.read('battle.state.winner'),null);assert.equal(h.read('battle.state.actions'),0);assert.equal(h.read('physicalCards(battle.state).length'),80);assert.equal(h.read('JSON.stringify(battle.decks[1])'),JSON.stringify(opponent));assert.equal(h.read('dialog.open'),false);assert.equal(h.read('JSON.stringify(saved.manualResults)'),progress);
+ const fresh=h.read('battle.manualGame');await h.click('manual-retry-deck',{id:'deck-a'});assert.equal(h.read('battle.manualGame'),fresh);
+ h.read('battle.state.winner=1;render();render()');assert.match(h.root.innerHTML,/1勝 1敗/);assert.match(h.root.innerHTML,/このデッキで 0勝 1敗/);assert.equal(h.read('saved.heroProgress[battle.challengeId].wins'),1);assert.equal(h.read('saved.heroProgress[battle.challengeId].losses'),1);
+ h.read('saved=JSON.parse(JSON.stringify(saved));battle.manualResultRecorded=false;battle.challengeRecorded=false;render()');assert.equal(h.read('saved.heroProgress[battle.challengeId].losses'),1);assert.match(h.root.innerHTML,/このデッキで 0勝 1敗/);
+});
+
+test('ordinary rematch uses the completed matchup snapshot and finished results cannot be counted twice',async()=>{
+ const h=harness(e.createGame([PRESETS[0],target],{seed:112,first:0}),{mobile:true});
+ h.read("battle.decks=structuredClone([PRESETS[0],fixtureDecks[1]]);battle.decks[0].id='played';battle.decks[1].name='実際に戦った相手';battle.state.winner=1;render();selectedOpp='different';saved.selected='different'");
+ assert.match(h.root.innerHTML,/このデッキで 0勝 1敗/);const old=h.read('battle.manualGame');
+ await h.click('battle-again');assert.notEqual(h.read('battle.manualGame'),old);assert.equal(h.read('battle.decks[0].id'),'played');assert.equal(h.read('battle.decks[1].name'),'実際に戦った相手');assert.equal(h.read('battle.state.challenge'),undefined);assert.equal(h.read('battle.practice'),true);
+ const fresh=h.read('battle.manualGame');await h.click('battle-again');assert.equal(h.read('battle.manualGame'),fresh);
+ h.read('battle.state.winner=0;render();render()');assert.match(h.root.innerHTML,/1勝 1敗/);assert.ok(h.read('isOpponentDefeated(battle.decks[1],saved.defeatedDecks,registry)'));
+ const data=h.read('JSON.stringify(saved.manualResults)');await h.click('manual-replay');assert.equal(h.read('JSON.stringify(saved.manualResults)'),data);
 });

@@ -57,19 +57,19 @@ test('all environment, official starter and character lists can have independent
  for(const d of lists){assert.ok(opponentProgressKey(d,registry));p=recordManualVictory(p,won(d),registry);assert.ok(isOpponentDefeated(d,p,registry));}
  assert.deepEqual(lists,before);assert.equal(opponentProgressKey({cards:[]},registry),null);assert.equal(opponentProgressKey({cards:[{id:'bad',count:40}]},registry),null);
 });
-test('existing protagonist and rival wins retain the same badge and no win/loss counts are shown',()=>{
+test('existing protagonist and rival wins retain their badge and now show the saved win/loss counts',()=>{
  for(const [group,decks]of [['hero',heroes],['rival',rivals]]){
   const legacy={[decks[0].hero.id]:{wins:1,losses:3}},html=challenge.heroChallengeHTML(decks,legacy,{group,defeated:d=>isOpponentDefeated(d,{},registry,legacy)});
-  assert.equal((html.match(/✓ 撃破済み/g)||[]).length,1);assert.ok(html.includes('もう一度挑む'));assert.ok(!html.includes('1勝'));assert.ok(!html.includes('3敗'));
+  assert.equal((html.match(/✓ 撃破済み/g)||[]).length,1);assert.ok(html.includes('もう一度挑む'));assert.ok(html.includes('1勝 3敗'));assert.ok(html.includes('0勝 0敗'));
   assert.ok(!isOpponentDefeated(decks[1],{},registry,legacy));
  }
  assert.equal(defeatedBadgeHTML(false),'');assert.ok(defeatedBadgeHTML(true).includes('✓ 撃破済み'));
 });
 test('app completion hook saves ordinary manual wins once using the started opponent snapshot',()=>{
  const h=harness();h.read('battle={state:{winner:null},decks:structuredClone([saved.decks[0],environmentDecks[0]])};recordManualOutcome()');assert.equal(h.writes.length,0);
- h.read('battle.state.winner=1;recordManualOutcome()');assert.equal(h.writes.length,0);
- h.read('battle.state.winner=0;recordManualOutcome()');assert.equal(h.writes.length,1);
- h.read('recordManualOutcome();battle.state.winner=1;recordManualOutcome()');assert.equal(h.writes.length,1);
+ h.read('battle.state.winner=1;recordManualOutcome();recordManualOutcome()');assert.equal(h.writes.length,1);
+ h.read('battle={state:{winner:0},decks:structuredClone(battle.decks)};recordManualOutcome()');assert.equal(h.writes.length,2);
+ h.read('recordManualOutcome()');assert.equal(h.writes.length,2);
  assert.ok(h.read('isOpponentDefeated(environmentDecks[0],saved.defeatedDecks,registry)'));
  h.read('saved=JSON.parse(JSON.stringify(saved));battle=null;showOpponentPicker()');assert.ok(!h.dialog.innerHTML.includes('✓ 撃破済み'));
  h.read("showEnvironmentPicker('opponent')");assert.equal((h.dialog.innerHTML.match(/✓ 撃破済み/g)||[]).length,1);
@@ -84,4 +84,30 @@ test('challenge completion preserves legacy progress, records its deck and remai
  const h=harness();h.read("battle={state:{winner:0},decks:[saved.decks[0],{...environmentDecks[0],id:'hero-shobu',hero:{id:'shobu'}}],challengeId:'shobu',challengeGame:'one'};recordManualOutcome();recordManualOutcome()");assert.equal(h.writes.length,1);assert.equal(h.read('saved.heroProgress.shobu.wins'),1);
  h.read('battle=null;saved.history.push({stats:{wins:100}});renderMatch()');assert.equal(h.writes.length,1);
  assert.equal(h.read('Object.keys(saved.defeatedDecks).length'),1);
+});
+
+test('manual records count both outcomes once, survive reloads and track each exact deck composition',()=>{
+ const {recordManualResult,manualResultSummary}=opponentProgress;
+ const a={...structuredClone(PRESETS[0]),id:'a'},b={...structuredClone(target),id:'b'},op=heroes[0];
+ const game=(id,d,winner)=>({manualGame:id,decks:[d,op],state:{winner}});
+ let progress=recordManualResult({},game('one',a,0),registry);
+ progress=JSON.parse(JSON.stringify(progress));assert.equal(recordManualResult(progress,game('one',a,0),registry),progress);
+ progress=recordManualResult(progress,game('two',b,1),registry);
+ assert.deepEqual(manualResultSummary(progress,game('x',a,0),registry),{wins:1,losses:1,games:2,winRate:50,deckWins:1,deckLosses:0,deckGames:1});
+ assert.equal(manualResultSummary(progress,game('x',{...b,id:'renamed',name:'renamed'},1),registry).deckLosses,1);
+ const changed=structuredClone(a);changed.cards[0].count--;changed.cards[1].count++;
+ assert.equal(manualResultSummary(progress,game('x',changed,0),registry).deckGames,0);
+ for(const winner of [null,-1,undefined])assert.equal(recordManualResult(progress,game('no',a,winner),registry),progress);
+ assert.equal(recordManualResult(progress,{...game('no',a,0),manualGame:null},registry),progress);
+ assert.equal(recordManualResult(progress,{...game('bad',a,0),decks:[{cards:[]},op]},registry),progress);
+ assert.equal(manualResultSummary({},game('x',a,0),registry).winRate,null);
+});
+test('character totals retain earlier wins while new deck breakdowns and ordinary matches stay separate',()=>{
+ const {recordManualResult,manualResultSummary}=opponentProgress;
+ const battle={manualGame:'new',challengeId:'shobu',challengeGame:'new',decks:[PRESETS[0],heroes[0]],state:{winner:1}};
+ const old={shobu:{wins:3,losses:2,games:['old']}};
+ const legacy=challenge.recordHeroResult(old,'shobu','new',1),p=recordManualResult({},battle,registry);
+ assert.deepEqual(manualResultSummary(p,battle,registry,legacy),{wins:3,losses:3,games:6,winRate:50,deckWins:0,deckLosses:1,deckGames:1});
+ assert.equal(manualResultSummary(p,{...battle,challengeId:null},registry,legacy).games,0);
+ const html=challenge.heroChallengeHTML(heroes,{shobu:{wins:'<img src=x>',losses:2}});assert.ok(!html.includes('<img src=x>'));
 });

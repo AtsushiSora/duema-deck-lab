@@ -1,9 +1,9 @@
 import {historicalProfile,historicalMetadata} from './historical-regulations.js';
 import {creatureStatusModel,creatureStatusHTML,recordBattleAction,createBattleReport,encodeBattleData} from './battle-insights.js?v=0.100.0';
-import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.100.0';
+import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.101.0';
 import {createCardArt} from './card-art.js?v=0.100.0';
 import {resolveHeroDecks,resolveRivalDecks,challengeOptions,recordHeroResult,heroChallengeHTML} from './hero-challenge.js';
-import {recordManualVictory,isOpponentDefeated,defeatedBadgeHTML} from './opponent-progress.js';
+import {recordManualVictory,recordManualResult,manualResultSummary,isOpponentDefeated,defeatedBadgeHTML} from './opponent-progress.js';
 import {resolveChampions,championsHTML,isOriginalChampion} from './champions.js?v=0.100.0';
 import {shieldCards} from './shield-state.js';
 import {createAIPlayback,aiSpeedLabel,applyAIHighlights,AI_SPEEDS} from './ai-playback.js?v=0.100.0';
@@ -17,7 +17,7 @@ import {bindFittedBoard,pageWindow} from './board-fit.js';
 import {attackRoute,previewAttackAction,updateBoardFeedback,bindAttackArrow} from './battle-visuals.js?v=0.100.0';
 import {setCards,card as battleCard,validateDeck,createGame,getLegalActions,attackLocked,chooseAI,step,runGame,runSummary,aggregate,power,manaValue,manaValueAt,playFaces,canCastSpell,effectiveCard,canUntap,shieldGuardSources,exLifeShields,exLifeShieldInfo,evolutionBases,isEvolution,selfTriggersStopped,abilitiesIgnored,genmuActive,peekDeckTop,RULE_VERSION,ENGINE_VERSION,AI_VERSION} from './engine.js';
 import {PRESETS} from './decks.js';
-import {newManualUI,manualModel,manualScreenHTML,manualLogHTML,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,choiceSelectionModel} from './manual-ui.js?v=0.100.0';
+import {newManualUI,manualModel,manualScreenHTML,manualLogHTML,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,choiceSelectionModel} from './manual-ui.js?v=0.101.0';
 import {resolveEnvironmentDecks,environmentSupport,groupEnvironmentDecks,ENVIRONMENT_TARGET} from './environment.js';
 import {resolveStarter25Decks,starter25Matches} from './starter25.js';
 import {prepareDeckCopy} from './deck-copy.js';
@@ -233,7 +233,22 @@ function restoreUpdatedSession(){
 }
 function showUpdateRecovery(){if(!updateResumeRecovery)return;showDialog('更新前のデータを保管しています',`<p class="small">${esc(updateResumeRecovery)}</p><p class="small mt16">デッキはこの端末に保存されています。再開できなかった対戦・編集中の内容も保管しているため、確認用に書き出せます。</p>`,`<button class="btn primary" data-action="export-update-recovery">保管データを書き出す</button><button class="btn" data-action="close-dialog">閉じる</button>`);}
 
-function startBattle(){const d=myDeck(),o=selectedOpponent();if(!o){toast('相手を選択してください');return;}const errors=[...validateDeck(d),...validateDeck(o)];if(errors.length){toast(errors[0]);return;}try{const seed=crypto.getRandomValues(new Uint32Array(1))[0];battle={state:createGame([d,o],{seed,first:first==='random'?seed%2:first==='second'?1:0}),decks:clone([d,o]),practice};aiPlayback?.dispose();aiPlayback=null;aiPlaybackBattle=null;battleUndo=[];selectedHand=null;manualUI=newManualUI();view='manual';render();window.scrollTo(0,0);scheduleAI();}catch(e){toast(e.message);}}
+function beginManualBattle(d,o,{practice=false,challengeId=null,select=false}={}){
+ const seed=randomSeed(),game=uid(),state=createGame([d,o],{seed,first:first==='random'?seed%2:first==='second'?1:0,...(challengeId?{challenge:challengeOptions(o)}:{})});
+ battle={state,decks:clone([d,o]),practice,manualGame:game,...(challengeId?{challengeId,challengeGame:game}:{})};
+ if(select){saved.selected=d.id;persist();}
+ aiPlayback?.dispose();aiPlayback=null;aiPlaybackBattle=null;battleUndo=[];selectedHand=null;manualUI=newManualUI();view='manual';render();window.scrollTo(0,0);scheduleAI();
+}
+function startBattle(){const d=myDeck(),o=selectedOpponent();if(!o){toast('相手を選択してください');return;}const errors=[...validateDeck(d),...validateDeck(o)];if(errors.length){toast(errors[0]);return;}try{beginManualBattle(d,o,{practice});}catch(e){toast(e.message);}}
+function retryManualBattle(d){
+ if(!battle||battle.state.winner===null||!d)return;
+ const o=battle.decks[1],reason=matchBlockReason(d,[o]);if(reason){toast(reason);return;}
+ const options={practice:battle.practice,challengeId:battle.challengeId||null,select:true};closeDialog();beginManualBattle(d,o,options);
+}
+function showRetryDecks(){
+ if(!battle||battle.state.winner===null)return;
+ const o=battle.decks[1];showDialog('デッキを変えて挑戦',`<p class="small">相手：${esc(o.name)}</p><p class="small mt8">デッキを選ぶと、同じ相手との対戦を始めます。</p><div class="mt16">${saved.decks.map(d=>{const reason=matchBlockReason(d,[o]),r=manualResultSummary(saved.manualResults,{...battle,decks:[d,o]},registry,saved.heroProgress);return `<button class="opponent full retry-deck" data-action="manual-retry-deck" data-id="${esc(d.id)}" ${reason?'disabled':''}>${miniDeck(d)}<span class="grow"><strong>${esc(d.name)}</strong><small>${sum(d)}枚${d.id===battle.decks[0].id?' · 今回使用':''}</small><small>${reason?esc(reason):r.deckWins+'勝 '+r.deckLosses+'敗 · このデッキで挑戦'}</small></span>${icon('chevron',15)}</button>`;}).join('')||'<p class="small">マイデッキを登録すると選べます。</p>'}</div>`);
+}
 const evolutionLayers=c=>[...(c.under||[]),...(c.godLinks||[])].flatMap(x=>[x,...evolutionLayers(x)]);
 async function loadChallengeDecks(){
  if(heroDecks.length&&rivalDecks.length)return;
@@ -241,10 +256,12 @@ async function loadChallengeDecks(){
  const nextHeroes=resolveHeroDecks(heroes,registry),nextRivals=resolveRivalDecks(rivals,registry);heroDecks=nextHeroes;rivalDecks=nextRivals;
 }
 function renderHeroChallenge(){const d=myDeck(),opponents=challengeGroup==='rival'?rivalDecks:heroDecks,reason=d?matchBlockReason(d,[opponents[0]]):'まずは自分のデッキを登録してください。';shell(`${pageHead('主人公・ライバルチャレンジ','自分のデッキで、主人公やライバルたちの切り札に挑もう。','','CHARACTER CHALLENGE')}<section class="panel"><div class="row spread wrap gap12"><div><small>挑戦するデッキ</small><h3>${esc(d?.name||'デッキ未登録')}</h3></div><button class="btn" data-action="select-my-deck">自分のデッキを選ぶ</button></div>${reason?'<p class="small mt16">'+esc(reason)+'</p>':''}<div class="setup-line"><label for="match-first">先攻・後攻</label><select class="field" id="match-first"><option value="random" ${first==='random'?'selected':''}>ランダム</option><option value="first" ${first==='first'?'selected':''}>先攻</option><option value="second" ${first==='second'?'selected':''}>後攻</option></select></div></section><div class="challenge-tabs" role="group" aria-label="挑戦する相手"><button class="btn" data-action="challenge-tab" data-group="hero" aria-pressed="${challengeGroup==='hero'}">主人公 4人</button><button class="btn" data-action="challenge-tab" data-group="rival" aria-pressed="${challengeGroup==='rival'}">ライバル 4人</button></div>${heroChallengeHTML(opponents,saved.heroProgress,{art,ready:!reason,group:challengeGroup,defeated:d=>isOpponentDefeated(d,saved.defeatedDecks,registry,saved.heroProgress)})}<p class="small challenge-theme-note">キャラクターの切り札を軸にした、アプリ独自の40枚構成です。</p><button class="btn hero-return" data-action="nav" data-view="battle">対戦の準備に戻る</button>`);}
-function startHeroChallenge(id){const d=myDeck(),o=[...heroDecks,...rivalDecks].find(x=>x.id===id);if(!d||!o)return;const errors=[...validateDeck(d),...validateDeck(o)];if(errors.length){toast(errors[0]);return;}challengeGroup=o.id.startsWith('rival-')?'rival':'hero';const seed=randomSeed();battle={state:createGame([d,o],{seed,first:first==='random'?seed%2:first==='second'?1:0,challenge:challengeOptions(o)}),decks:clone([d,o]),practice:false,challengeId:o.hero.id,challengeGame:uid()};aiPlayback?.dispose();aiPlayback=null;aiPlaybackBattle=null;battleUndo=[];selectedHand=null;manualUI=newManualUI();view='manual';render();window.scrollTo(0,0);scheduleAI();}
+function startHeroChallenge(id){const d=myDeck(),o=[...heroDecks,...rivalDecks].find(x=>x.id===id);if(!d||!o)return;const errors=[...validateDeck(d),...validateDeck(o)];if(errors.length){toast(errors[0]);return;}challengeGroup=o.id.startsWith('rival-')?'rival':'hero';beginManualBattle(d,o,{challengeId:o.hero.id});}
 function recordManualOutcome(){
- if(!battle||battle.state.winner===null)return;
+ if(!battle||![0,1].includes(battle.state.winner))return;
  let changed=false;
+ battle.manualGame||=battle.challengeGame||uid();
+ if(!battle.manualResultRecorded){const next=recordManualResult(saved.manualResults,battle,registry);if(next!==saved.manualResults){saved.manualResults=next;changed=true;}battle.manualResultRecorded=true;}
  if(battle.challengeId&&!battle.challengeRecorded){saved.heroProgress=recordHeroResult(saved.heroProgress,battle.challengeId,battle.challengeGame,battle.state.winner);battle.challengeRecorded=true;changed=true;}
  const next=recordManualVictory(saved.defeatedDecks,battle,registry);
  if(next!==saved.defeatedDecks&&battle.state.winner===0){saved.defeatedDecks=next;changed=true;}
@@ -255,6 +272,7 @@ function renderManual(){
  const s=battle.state;recordManualOutcome();const playback=ensureAIPlayback();manualUI.aiPlayback=playback.snapshot();manualUI.aiSpeed=manualUI.aiPlayback.speed;manualUI.fast=manualUI.aiSpeed==='fast';manualUI.hand=selectedHand;manualUI.mobile=window.matchMedia('(max-width: 850px)').matches;
  const short=(window.visualViewport?.height||window.innerHeight)<620;manualUI.handPageSize=short?4:6;manualUI.choicePageSize=short?2:4;
  battle.visual=updateBoardFeedback(battle.visual,s);manualUI.feedback=battle.visual.feedback;manualUI.feedbackAge=manualUI.feedback?Date.now()-manualUI.feedback.at:0;
+ manualUI.resultStats=s.winner!==null?{...manualResultSummary(saved.manualResults,battle,registry,saved.heroProgress),opponentName:battle.decks[1].name,deckName:battle.decks[0].name}:null;
  const model=manualModel(s,manualUI),changed=manualUI.context!==model.context;
  const manaScroll=$('.mana-card-track')?.scrollLeft||0;
  const shelfScroll=$('.hand-shelf-cards')?.scrollLeft||0,handScroll=$('.manual-hand-cards')?.scrollLeft||0,choiceScroll=changed?0:$('.manual-choices')?.scrollTop||0;
@@ -587,7 +605,9 @@ document.addEventListener('click',async event=>{
  else if(action==='zone-detail'){const owner=Number(el.dataset.player),p=battle.state.players[owner],zone=el.dataset.zone;if(!['mana','grave','extra','seals'].includes(zone)&&!(zone==='hand'&&owner===1&&battle.state.decision?.player===0&&['g13_Murder','g37DarkMasters'].includes(battle.state.decision.task?.op)))return;const labels={hand:'確認中の相手の手札',mana:'マナゾーン',grave:'墓地',extra:'超次元ゾーン',seals:'封印'};if(zone==='mana'&&!p.mana.some(c=>boardChoice(battle.state,manualUI,owner,zone,c.uid))){const rows=p.mana,ready=rows.filter(x=>!x.tapped).reduce((n,x)=>n+manaValueAt(battle.state,owner,x),0),total=rows.reduce((n,x)=>n+manaValue(battleCard(x)),0);showDialog((owner?'相手':'自分')+'のマナゾーン',`<p class="mana-zone-summary">使用可能 <strong>${ready}</strong> / 合計 ${total}マナ · ${rows.length}枚</p><p class="small">未使用は縦向き、使用済みは横向きで表示します。</p>${manaSummonHTML(battle.state,owner,{art})}${rows.length?manaZoneHTML(rows,{art,owner,state:battle.state}):'<p>カードはありません。</p>'}`);return;}showDialog(labels[zone],(p[zone]||[]).map(c=>{const a=boardChoice(battle.state,manualUI,owner,zone,c.uid),hidden=zone==='seals'||c.faceDown&&owner===1;return `<div class="deck-detail-row">${hidden?'':art(c.cardId)}<div class="grow"><strong>${esc(hidden?(zone==='seals'?'裏向きの封印':'裏向きのマナ'):c.faceDown?'裏向き：'+battleCard(c.cardId).name:card(c).name)}</strong><div class="small">${hidden?'中身は非公開です':card(c).civ}${zone==='mana'?' / '+(c.tapped?'使用済み':'使用可能'):''}</div></div>${a?`<button class="btn primary sm" data-action="manual-zone-choice" data-index="${a.id}">選ぶ</button>`:''}</div>`;}).join('')||'<p class="small">カードはありません。</p>');}
  else if(action==='leave-battle')showDialog('対戦を終了しますか？','<p class="small">現在の対戦は保存されません。</p>',`<button class="btn" data-action="close-dialog">対戦を続ける</button><button class="btn primary" data-action="end-battle">終了する</button>`);
  else if(action==='end-battle'){const returnView=battle?.challengeId?'challenge':'battle';clearTimeout(battleTimer);aiPlayback?.dispose();aiPlayback=null;aiPlaybackBattle=null;battle=null;closeDialog();view=returnView;render();}
- else if(action==='battle-again'){if(battle?.challengeId){const d=[...heroDecks,...rivalDecks].find(x=>x.hero.id===battle.challengeId);if(d)startHeroChallenge(d.id);}else startBattle();}
+ else if(action==='battle-again')retryManualBattle(battle?.decks[0]);
+ else if(action==='manual-change-deck')showRetryDecks();
+ else if(action==='manual-retry-deck')retryManualBattle(saved.decks.find(d=>d.id===id));
  else if(action==='manual-replay'){replayData={state:clone(battle.state),title:battle.decks.map(d=>d.name).join(' vs ')};replayIndex=0;view='replay';render();}
  else if(action==='replay-step'){replayIndex=Math.max(0,Math.min(replayData.state.log.length-1,replayIndex+Number(el.dataset.delta)));render();}
  else if(action==='replay-jump'){replayIndex=a;render();}
