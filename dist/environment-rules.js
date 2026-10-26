@@ -56,7 +56,7 @@ export function createEnvironmentRules(api){
  case'g37EnemyDestroy':if(v)move(s,[{player:t.p,uid:v,to:'grave',destroy:true,controller:t.controller}]);break;
  case'g37DarkMasters':if(v)put(s,{...t,selected:[...t.selected,v]});else discardEnemy(s,t);break;
  case'g37GalaxyMax':put(s,...(v==='shield'||v==='both'?[follow(t,'ShieldHand')]:[]),...(v==='bounce'||v==='both'?[task('g34_Target',t.p,t.source,{to:'hand'})]:[]));break;
- case'g37ShieldHand':if(v){const x=remove(own.hand,v);if(x){clear(x,'shields');x.faceUp=true;api.addZone(s,t.p,'shields',x);api.notifyShieldAdded(s,t.p,x);api.log(s,t.p,'reveal',card(x).name+'を表向きのシールドに置く',{cardId:x.cardId});}}break;
+ case'g37ShieldHand':if(v&&api.canAddShield(s,t.p)){const x=remove(own.hand,v);if(x){clear(x,'shields');x.faceUp=true;api.addZone(s,t.p,'shields',x);api.notifyShieldAdded(s,t.p,x);api.log(s,t.p,'reveal',card(x).name+'を表向きのシールドに置く',{cardId:x.cardId});}}break;
  default:throw Error('未対応の環境カード選択：'+t.op);
  }return true;}
  const activeBlue=(s,p)=>creatures(s,p).some(x=>card(x).id==='dm23bd7-003');

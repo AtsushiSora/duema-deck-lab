@@ -8,8 +8,8 @@ export function createShieldPhotoRules(api){
  function look(s,t,n){if(api.deckLocked(s,t.p))return[];const own=s.players[t.p],protectedIds=new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&/Protected$|Reveals$/.test(k)).flatMap(([,v])=>v)),xs=own.deck.filter(x=>!protectedIds.has(x.uid)).slice(0,n);own.g33Protected=[...(own.g33Protected||[]),...xs.map(x=>x.uid)];api.log(s,t.p,'look',card(t.source).name+'：山札の上'+xs.length+'枚を確認',{cardId:t.source});return xs.map(x=>x.uid);}
  function release(s,p,uid){s.players[p].g33Protected=(s.players[p].g33Protected||[]).filter(x=>x!==uid);}
  function addFace(s,p,x,fromDeck=false){if(!x)return;clear(x,'shields');if(fromDeck&&s.players.some(y=>y.battle.some(x=>effective(x,s).deckRedirect)))api.addZone(s,p,'grave',x);else{x.faceUp=true;api.addZone(s,p,'shields',x);api.notifyShieldAdded(s,p,x);api.log(s,p,'shieldAdd',card(x).name+'を表向きでシールド化',{cardId:x.cardId});}}
- function faceTop(s,p){addFace(s,p,api.takeTop(s,p),true);api.deckCheck(s,p);}
- function take(s,t,uid,to){const x=remove(s.players[t.p].deck,uid);release(s,t.p,uid);if(x){if(to==='shields')addFace(s,t.p,x,true);else{clear(x,to);api.addZone(s,t.p,to,x);}}return x;}
+ function faceTop(s,p){if(!api.canAddShield(s,p))return;addFace(s,p,api.takeTop(s,p),true);api.deckCheck(s,p);}
+ function take(s,t,uid,to){if(to==='shields'&&!api.canAddShield(s,t.p)){release(s,t.p,uid);return null;}const x=remove(s.players[t.p].deck,uid);release(s,t.p,uid);if(x){if(to==='shields')addFace(s,t.p,x,true);else{clear(x,to);api.addZone(s,t.p,to,x);}}return x;}
  function run(s,t){if(!t.op.startsWith('g33_'))return false;const own=s.players[t.p],opp=s.players[1-t.p];switch(t.op){
  case'g33_FaceTop':faceTop(s,t.p);break;
  case'g33_Hikari':case'g33_Resolve':{const ids=look(s,t,t.op==='g33_Hikari'?2:3);if(ids.length)put(s,{...t,op:'g33_FacePick',ids,resolve:t.op==='g33_Resolve'});break;}
@@ -46,7 +46,7 @@ export function createShieldPhotoRules(api){
  case'g33_Destroy':if(v)move(s,[{player:1-t.p,uid:v,to:'grave'}]);break;
  case'g33_Bounce':if(v)move(s,[{player:1-t.p,uid:v,to:'hand',destroy:false}]);break;
  case'g33_Mirror':if(v)put(s,{...t,op:'g33_MirrorShield'});break;
- case'g33_MirrorShield':{const x=api.takeTop(s,t.p);if(x){clear(x,'shields');if(s.players.some(y=>y.battle.some(x=>effective(x,s).deckRedirect)))api.addZone(s,t.p,'grave',x);else api.addShieldCard(s,t.p,v,x);}api.deckCheck(s,t.p);break;}
+ case'g33_MirrorShield':{if(!api.canAddShield(s,t.p))break;const x=api.takeTop(s,t.p);if(x){clear(x,'shields');if(s.players.some(y=>y.battle.some(x=>effective(x,s).deckRedirect)))api.addZone(s,t.p,'grave',x);else api.addShieldCard(s,t.p,v,x);}api.deckCheck(s,t.p);break;}
  case'g33_D4':put(s,{...t,op:'g33_D4Flip',owner:v.p,shield:v.uid});break;
  case'g33_D4Flip':if(v){const x=shields(s,t.owner).find(x=>x.uid===v.uid);if(x)x.faceUp=v.faceUp;}api.draw(s,t.p,2);break;
  case'g33_Parfe':put(s,{...t,op:v==='add'?'g33_FaceTop':'g33_ParfeRemove'});break;

@@ -42,7 +42,7 @@ export function createGirlsRules(api){
  case'g8_FinalPick':if(v){const x=own.deck.find(x=>x.uid===v);put(s,{...t,selected:[...t.selected,v],budget:t.budget-cost(card(x))});}else put(s,{...t,op:'g8_FinalNext'});break;
  case'g8_FinalNext':put(s,task('putCreature',t.p,t.source,{uid:v,origin:'deck',deckCheck:true}),{...t,selected:t.selected.filter(uid=>uid!==v)});break;
  case'g8_DragonShield':if(v==='new')api.shieldTop(s,t.p,card(t.source));else if(own.shields.length&&!api.deckLocked(s,t.p)){const x=own.deck[0];if(x){api.log(s,t.p,'reveal','ドラゴン・W・ブレイカーで公開：'+card(x).name,{cardId:t.source});put(s,{...t,op:'g8_DragonShieldStack'});}}break;
- case'g8_DragonShieldStack':{const x=api.takeTop(s,t.p);if(x){if(api.deckRedirect(s,t.p)){clear(x);api.addZone(s,own,'grave',x);}else{clear(x,'shields');api.addShieldCard(s,t.p,v,x);}api.deckCheck(s,t.p);}break;}
+ case'g8_DragonShieldStack':{if(!api.canAddShield(s,t.p))break;const x=api.takeTop(s,t.p);if(x){if(api.deckRedirect(s,t.p)){clear(x);api.addZone(s,own,'grave',x);}else{clear(x,'shields');api.addShieldCard(s,t.p,v,x);}api.deckCheck(s,t.p);}break;}
  default:throw Error('未実装のドラゴン娘選択：'+t.op);
  }return true;}
  return{run,chosen,manaPermits(s,p,x){return card(x).type==='creature'&&dragon(card(x))?creatures(s,p).filter(y=>effective(y,s).dragonManaOnce&&(s.g8ManaUses||{})[key(y)]!==s.turn).map(y=>'g8:'+key(y)):[];},

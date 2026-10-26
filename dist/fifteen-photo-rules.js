@@ -14,7 +14,7 @@ export function createFifteenPhotoRules(api){
  const offer=(s,t,title,more={})=>choice(s,{...t,...more},title,[opt('使う',true,more.score??10),skip()]);
  const target=(s,t,title,list,optional=false)=>choice(s,t,title,[...targetOptions(s,t.p,list),...(optional?[skip()]:[])]);
  const queue=(s,p,x,defs)=>api.send(s,p,x,'Sequence',{defs});
- function zoneMove(s,p,origin,uid,to,t={}){if(origin==='battle'){move(s,[{player:p,uid,to,destroy:to==='grave',controller:t.controller??t.p}]);return;}const own=s.players[p],x=remove(own[origin],uid);if(!x)return;own.g35Protected=(own.g35Protected||[]).filter(id=>id!==uid);const dest=origin==='deck'&&['mana','shields'].includes(to)&&api.deckRedirect(s,p)||to==='mana'&&api.manaRedirect(s,p)?'grave':to;clear(x,dest);if(t.tapped&&dest==='mana')x.tapped=true;if(dest==='under'){const u=unit(s,t);if(u)(u.under??=[]).push(x);else api.addZone(s,p,'grave',x);}else api.addZone(s,p,dest,x);if(dest==='shields')api.notifyShieldAdded(s,p,x);}
+ function zoneMove(s,p,origin,uid,to,t={}){if(to==='shields'&&!api.canAddShield(s,p)){if(origin==='deck')s.players[p].g35Protected=(s.players[p].g35Protected||[]).filter(x=>x!==uid);return;}if(origin==='battle'){move(s,[{player:p,uid,to,destroy:to==='grave',controller:t.controller??t.p}]);return;}const own=s.players[p],x=remove(own[origin],uid);if(!x)return;own.g35Protected=(own.g35Protected||[]).filter(id=>id!==uid);const dest=origin==='deck'&&['mana','shields'].includes(to)&&api.deckRedirect(s,p)||to==='mana'&&api.manaRedirect(s,p)?'grave':to;clear(x,dest);if(t.tapped&&dest==='mana')x.tapped=true;if(dest==='under'){const u=unit(s,t);if(u)(u.under??=[]).push(x);else api.addZone(s,p,'grave',x);}else api.addZone(s,p,dest,x);if(dest==='shields')api.notifyShieldAdded(s,p,x);}
  function reveal(s,t,n,p=t.p){if(api.deckLocked(s,p))return[];const own=s.players[p],reserved=new Set(Object.entries(own).filter(([k,v])=>/Protected$|Reveals$/.test(k)&&Array.isArray(v)).flatMap(([,v])=>v)),ids=own.deck.filter(x=>!reserved.has(x.uid)).slice(0,n).map(x=>x.uid);(own.g35Protected??=[]).push(...ids);api.log(s,t.p,'reveal',card(t.source).name+'：'+ids.map(id=>card(own.deck.find(x=>x.uid===id)).name).join('・'),{cardId:t.source});return ids;}
  function order(s,t,ids,p=t.p,top=false){put(s,task('g35_Order',p,t.source,{ids,ordered:[],top}));}
  function deploy(s,t,origin,uid,more={}){give(s,t,[E('Put',{origin,target:uid,...more})]);}
@@ -58,7 +58,7 @@ export function createFifteenPhotoRules(api){
  case'souryu':choice(s,t,'マナから非進化を1体出す',own.mana.filter(y=>card(y).type==='creature'&&!card(y).evolution&&cost(card(y))<own.mana.length&&canPut(s,t.p,y,'mana')).map(y=>opt(card(y).name,y.uid,15+cost(card(y)),y.cardId)));break;
  case'souryuFight':{const y=own.battle.find(y=>y.uid===t.target);if(y&&colors(card(y)).some(v=>['火','自然'].includes(v)))put(s,task('g35_Fight',t.p,t.source,{uid:y.uid,optional:true}));break;}
  case'endWorld':{const selected=t.selected||[];if(selected.length>=Math.min(3,own.deck.length)){for(const y of [...own.deck])if(!selected.includes(y.uid))zoneMove(s,t.p,'deck',y.uid,'grave',t);order(s,t,selected,t.p,true);break;}choice(s,{...t,selected},'山札に残す3枚を選ぶ（'+selected.length+'/3）',own.deck.filter(y=>!selected.includes(y.uid)).map(y=>opt(card(y).name,y.uid,cost(card(y)),y.cardId)));break;}
- case'topShield':{const y=api.takeTop(s,t.p);if(y){clear(y,'shields');api.addZone(s,t.p,'shields',y);api.notifyShieldAdded(s,t.p,y);}api.deckCheck(s,t.p);break;}
+ case'topShield':{if(!api.canAddShield(s,t.p))break;const y=api.takeTop(s,t.p);if(y){clear(y,'shields');api.addZone(s,t.p,'shields',y);api.notifyShieldAdded(s,t.p,y);}api.deckCheck(s,t.p);break;}
  case'containerRevive':{const y=own.grave.find(y=>y.uid===t.target);if(y)offer(s,t,'DARK MEMORY CONTAINERを墓地から出す？');break;}
  case'ulfeusCast':pickExecute(s,t,{colorsAny:['光','火'],filter:{spell:true}});break;
  case'mobiusWin':offer(s,t,'バトル勝利：シールドを1つブレイクする？');break;
@@ -130,7 +130,7 @@ export function createFifteenPhotoRules(api){
  case'shieldForce':if(x&&v)x.g35ShieldForce=v;break;
  case'galaxyShield':if(v)api.moveShield(s,t.p,v,'hand');pending(s,t,'galaxyHand');break;
  case'galaxyHand':if(v)pending(s,t,'galaxyFace',{target:v});break;
- case'galaxyFace':{const y=remove(own.hand,t.target);if(y){clear(y,'shields');y.faceUp=v;api.addZone(s,t.p,'shields',y);api.notifyShieldAdded(s,t.p,y);}break;}
+ case'galaxyFace':{if(!api.canAddShield(s,t.p))break;const y=remove(own.hand,t.target);if(y){clear(y,'shields');y.faceUp=v;api.addZone(s,t.p,'shields',y);api.notifyShieldAdded(s,t.p,y);}break;}
  case'punisher':case'ulfeusCast':if(v)execute(s,t,t.exec.origin,v.uid,v.face);else if(t.name==='punisher')api.draw(s,t.p,1);break;
  case'deadBottom':zoneMove(s,t.p,t.origin,v,'deck',t);break;
  case'chooseShield':api.moveShield(s,t.owner??t.p,v,t.to||'grave');break;
