@@ -1,10 +1,10 @@
 import {historicalProfile,historicalMetadata} from './historical-regulations.js';
 import {creatureStatusModel,creatureStatusHTML,recordBattleAction,createBattleReport,encodeBattleData} from './battle-insights.js?v=0.100.0';
-import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.105.1';
+import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.105.2';
 import {createCardArt} from './card-art.js?v=0.105.0';
 import {resolveHeroDecks,resolveRivalDecks,challengeOptions,recordHeroResult,heroChallengeHTML} from './hero-challenge.js';
 import {recordManualVictory,recordManualResult,manualResultSummary,isOpponentDefeated,defeatedBadgeHTML} from './opponent-progress.js';
-import {resolveChampions,championsHTML,isOriginalChampion} from './champions.js?v=0.105.1';
+import {resolveChampions,championsHTML,isOriginalChampion} from './champions.js?v=0.105.2';
 import {shieldCards} from './shield-state.js';
 import {createAIPlayback,aiSpeedLabel,applyAIHighlights,AI_SPEEDS} from './ai-playback.js?v=0.100.0';
 import {createOnlineClient} from './online.js';
@@ -614,8 +614,30 @@ document.addEventListener('click',async event=>{
  else if(action==='replay-play'){if(replayTimer){clearInterval(replayTimer);replayTimer=null;render();}else{if(replayIndex===replayData.state.log.length-1)replayIndex=0;replayTimer=setInterval(()=>{if(view!=='replay'){clearInterval(replayTimer);replayTimer=null;return;}if(replayIndex<replayData.state.log.length-1)replayIndex++;else{clearInterval(replayTimer);replayTimer=null;}render();},700);render();}}
  }catch(e){toast(e.message||'操作を完了できませんでした');console.error(e);}
 });
-document.addEventListener('compositionend',event=>{if(event.target.id==='home-deck-search')event.target.dispatchEvent(new Event('input',{bubbles:true}));});
-document.addEventListener('input',event=>{const e=event.target;if(e.id==='home-deck-search'){if(event.isComposing)return;const caret=e.selectionStart;homeQuery=e.value;render();const input=$('#home-deck-search');input?.focus({preventScroll:true});input?.setSelectionRange(caret,caret);return;}if(e.id==='deck-card-search'){const caret=e.selectionStart;deckQuery=e.value;render();const input=$('#deck-card-search');input?.focus({preventScroll:true});input?.setSelectionRange(caret,caret);return;}if(e.id==='starter25-search'){const caret=e.selectionStart;starterQuery=e.value;refreshStarter25();const input=$('#starter25-search');input?.focus({preventScroll:true});input?.setSelectionRange(caret,caret);return;}if(e.id==='manual-choice-search'){const caret=e.selectionStart;manualUI.filter=e.value;manualUI.choicePage=0;render();const input=$('#manual-choice-search');input?.focus({preventScroll:true});input?.setSelectionRange(caret,caret);return;}if(e.id==='ocr-card-search'){const matches=e.value.trim()?cards.filter(c=>norm(c.name).includes(norm(e.value))).slice(0,20):[];$('#ocr-search-results').innerHTML=matches.length?matches.map(c=>`<button class="opponent full" data-action="ocr-pick-apply" data-index="${e.dataset.index}" data-id="${c.id}">${esc(c.name)}</button>`).join(''):'候補がありません。カード名を入力してください。';return;}if(e.id==='deck-name' &&edit){edit.name=e.value;return;}if(e.id==='card-search'||e.id==='opponent-search'){const caret=e.selectionStart;if(e.id==='card-search'){query=e.value;page=0;}else opponentQuery=e.value;render();const replacement=$('#'+e.id);replacement?.focus();replacement?.setSelectionRange(caret,caret);}if(e.id==='replay-range'){replayIndex=Number(e.value);render();}});
+const searchInputIds=new Set(['home-deck-search','deck-card-search','starter25-search','manual-choice-search','ocr-card-search','card-search','opponent-search']);
+const composingSearchInputs=new WeakSet(),appliedSearchValues=new WeakMap();
+function applySearchInput(e){
+ if(e.isConnected===false||composingSearchInputs.has(e)||appliedSearchValues.get(e)===e.value)return;
+ const value=e.value,start=e.selectionStart,end=e.selectionEnd??start,direction=e.selectionDirection||'none';
+ appliedSearchValues.set(e,value);
+ if(e.id==='home-deck-search')homeQuery=value;
+ else if(e.id==='deck-card-search')deckQuery=value;
+ else if(e.id==='starter25-search')starterQuery=value;
+ else if(e.id==='manual-choice-search'){manualUI.filter=value;manualUI.choicePage=0;}
+ else if(e.id==='card-search'){query=value;page=0;}
+ else if(e.id==='opponent-search')opponentQuery=value;
+ else if(e.id==='ocr-card-search'){const matches=value.trim()?cards.filter(c=>norm(c.name).includes(norm(value))).slice(0,20):[];$('#ocr-search-results').innerHTML=matches.length?matches.map(c=>`<button class="opponent full" data-action="ocr-pick-apply" data-index="${e.dataset.index}" data-id="${c.id}">${esc(c.name)}</button>`).join(''):'候補がありません。カード名を入力してください。';return;}
+ if(e.id==='starter25-search')refreshStarter25();else render();
+ const replacement=$('#'+e.id);
+ if(replacement){appliedSearchValues.set(replacement,value);replacement.focus({preventScroll:true});if(start!==null)replacement.setSelectionRange(start,end,direction);}
+}
+document.addEventListener('compositionstart',event=>{if(searchInputIds.has(event.target.id))composingSearchInputs.add(event.target);});
+document.addEventListener('compositionend',event=>{const e=event.target;if(!searchInputIds.has(e.id))return;composingSearchInputs.delete(e);
+ // Browsers send the final input before or after compositionend. Finish once,
+ // after the committed text is available, without removing a live IME field.
+ Promise.resolve().then(()=>applySearchInput(e));
+});
+document.addEventListener('input',event=>{const e=event.target;if(searchInputIds.has(e.id)){if(!event.isComposing&&!composingSearchInputs.has(e))applySearchInput(e);return;}if(e.id==='deck-name'&&edit){edit.name=e.value;return;}if(e.id==='replay-range'){replayIndex=Number(e.value);render();}});
 document.addEventListener('change',async event=>{const e=event.target;if(e.id==='home-deck-sort'){if(['selected','updated','name'].includes(e.value)){homeOrder=e.value;render();$('#home-deck-sort')?.focus({preventScroll:true});}return;}if(e.id==='deck-sort'){if(['cost','name','count'].includes(e.value)){deckSort=e.value;render();$('#deck-sort')?.focus({preventScroll:true});}return;}if(e.id==='online-deck'){onlineDeckId=e.value;return;}if(e.id==='online-code'){onlineCode=e.value;return;}
  if(e.id==='cost-filter'){costFilter=e.value;page=0;render();}if(e.id==='type-filter'){typeFilter=e.value;page=0;render();}
  if(e.id==='match-count'){count=Number(e.value);render();$('#match-count')?.focus({preventScroll:true});}if(e.id==='match-first'){first=e.value;render();$('#match-first')?.focus({preventScroll:true});}if(e.id==='all-opponents'){allOpp=e.checked;render();}if(e.id==='practice-mode')practice=e.checked;
