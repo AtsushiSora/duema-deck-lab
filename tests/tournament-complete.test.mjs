@@ -14,7 +14,7 @@ const hit=(s,shields)=>{give(s,0,'battle',['dm01-075']);give(s,1,'shields',shiel
 
 test('both additions pin every official face and all four exact tournament lists now have forty supported copies',()=>{
  for(const phase of [15,16]){const m=JSON.parse(fs.readFileSync(new URL('../tools/support-phase-'+phase+'.json',import.meta.url)));assert.equal(m.cards.length,phase===15?11:15);for(const row of m.cards){const c=e.card(row.id),d=details.cards.find(x=>x.id===row.id);assert.deepEqual(row.faces,d.faces);assert.equal(c.source,row.source);for(const f of row.faces)assert.ok(c.text.includes(f.abilityText));for(const [k,v]of Object.entries(row.spec))assert.deepEqual(c[k],v);}}
- for(const d of decks){assert.equal(environmentSupport(d,registry).supportedCopies,40);assert.equal(environmentSupport(d,registry).unsupported.length,0);assert.deepEqual(e.validateDeck(d),[]);}assert.equal(data.cards.length,1398);
+ for(const d of decks){assert.equal(environmentSupport(d,registry).supportedCopies,40);assert.equal(environmentSupport(d,registry).unsupported.length,0);assert.deepEqual(e.validateDeck(d),[]);}assert.equal(data.cards.length,1404);
 });
 test('HACK rejects creature entries from grave, accepts spells and hand entries, and Z rush adds a temporary entry-turn attack ban',()=>{
  const s=setup();give(s,1,'battle',[HACK]);assert.equal(e.canEnterCreature(s,0,e.card(NIBAI),{origin:'grave',execution:false}),false);assert.equal(e.canEnterCreature(s,0,e.card(NIBAI),{origin:'hand',execution:false}),true);assert.equal(e.canEnterCreature(s,0,e.card(UR),{origin:'grave',execution:false}),true);

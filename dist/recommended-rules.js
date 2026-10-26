@@ -83,7 +83,7 @@ export function createRecommendedRules(api){
    }
    case'g36Look':case'g36Memory':{
     const x=remove(own.deck,v);if(!x){release(own,t.ids);break;}const c=card(x);
-    const bounce=t.enemyOnly?faces(c).some(f=>f.type==='creature'&&Number(f.power)>=6000):faces(c).some(f=>colors(f).some(c=>c==='火'||c==='自然'));
+    const bounce=t.enemyOnly?faces(c).some(f=>f.type==='creature'&&Number(f.power)>=6000):faces(c).some(f=>colors(f).some(c=>(t.bounceColors||['火','自然']).includes(c)));
     release(own,[x.uid]);clear(x,'hand');api.addZone(s,t.p,'hand',x);
     if(t.op==='g36Memory'){release(own,t.ids);api.shuffleLibrary(s,t.p);api.log(s,t.p,'search','山札からカードを1枚手札に加え、シャッフルする',{cardId:t.source});}
     else{api.log(s,t.p,'reveal',card(t.source).name+'で公開：'+c.name,{cardId:x.cardId});put(s,continuation(t,'g36Order',{ids:t.ids.filter(uid=>uid!==v),protected:t.ids,ordered:[],bounce,enemyOnly:t.enemyOnly}));}
@@ -103,7 +103,7 @@ export function createRecommendedRules(api){
   effect(s,p,c){if(c.effect!=='recommended')return false;const role=c.recommendRole;
    if(role==='chaff'){lock(s,p,{kind:'cast',player:1-p,spellCost:c.cost,spellSource:c.id});api.draw(s,p,1);return true;}
    const op={olive:'Olive',collapse:'Collapse',water:'Water',love:'Love',dondon:'Look',surasura:'Look',memory:'Memory',pixie:'Pixie',purify:'Purify',dna:'DNA',jack:'Jack',scrapper:'Scrapper'}[role];if(!op)throw Error('未実装のおすすめカード：'+role);
-   put(s,task('g36'+op,p,c.id,{...(role==='dondon'?{n:5}:role==='surasura'?{n:4,enemyOnly:true}:role==='scrapper'?{selected:[],budget:5000}:{})}));return true;
+   put(s,task('g36'+op,p,c.id,{...(role==='dondon'?{n:5,bounceColors:c.bounceColors||['火','自然']}:role==='surasura'?{n:4,enemyOnly:true}:role==='scrapper'?{selected:[],budget:5000}:{})}));return true;
   },
   allowedEntry(s,p,c,{execution}){return c?.type!=='creature'||execution||s.active!==p||!creatures(s,1-p).some(x=>!api.ignored(s,x)&&effective(x,s).recommendRole==='senno');},
   entry(s,p,x){if(!api.isCreature(s,x)||cost(card(x))<=s.players[p].mana.length)return;

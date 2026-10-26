@@ -1,4 +1,4 @@
 import fs from 'node:fs/promises';import assert from 'node:assert/strict';import crypto from 'node:crypto';import {parseDetail} from './detail-parser.mjs';
-const path=process.argv[2];if(!path)throw Error('Manifest path required');const m=JSON.parse(await fs.readFile(path));m.checkedAt='2026-10-26';
+const path=process.argv[2];if(!path)throw Error('Manifest path required');const m=JSON.parse(await fs.readFile(path));m.checkedAt=process.argv[3]||new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tokyo'}).format(new Date());
 for(const row of m.cards){const response=await fetch(row.source,{signal:AbortSignal.timeout(20000)});assert.ok(response.ok,row.id);const html=await response.text(),detail=parseDetail(html,row);assert.deepEqual(detail.faces,row.faces);row.verification={checkedAt:m.checkedAt,sha256:crypto.createHash('sha256').update(html).digest('hex'),facesMatched:true};const image=html.match(/class=["']card-img["'][^>]*>\s*<img[^>]*src=["']([^"']+)/)?.[1]||html.match(/property="og:image" content="([^"]+)"/)?.[1];row.image=new URL(image,row.source).href;console.log('Verified '+row.name);}
 await fs.writeFile(path,JSON.stringify(m,null,2)+'\n');
