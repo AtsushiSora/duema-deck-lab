@@ -1,0 +1,7 @@
+// Audit battle readiness independently of the archive's display and button labels.
+import fs from'node:fs';import assert from'node:assert/strict';
+import{createCatalogue}from'../dist/catalogue.js';import{resolveChampions}from'../dist/champions.js';import{setCards,validateDeck}from'../dist/engine.js';
+const read=f=>JSON.parse(fs.readFileSync(new URL('../'+f,import.meta.url))),supported=read('dist/cards.json').cards,registry=createCatalogue(read('dist/catalogue.json'),supported,read('dist/details.json'));setCards(supported);
+const archive=resolveChampions(read('dist/champion-decks.json'),registry),records=archive.records.map(r=>{const zones=[{name:'メインデッキ',cards:r.cards},...r.extraZones],missing=zones.flatMap(z=>z.cards.filter(x=>!registry.get(x.id).supported).map(x=>({zone:z.name,id:x.id,name:x.name,count:x.count}))),blockers=[...(r.mainCount!==40?['メイン'+r.mainCount+'枚の対戦処理']:[]),...r.extraZones.map(z=>z.name+'の対戦処理'),...(missing.length?['カード効果 '+new Set(missing.map(x=>x.id)).size+'種類']:[])];assert.equal(r.playable,blockers.length===0);if(r.playable)assert.deepEqual(validateDeck(r.deck),[]);return{id:r.id,event:r.event,player:r.player,source:r.source,playable:r.playable,blockers,missing};});
+const report={total:records.length,playable:records.filter(r=>r.playable).length,pending:records.filter(r=>!r.playable).length,pendingCardTypes:new Set(records.flatMap(r=>r.missing.map(x=>x.id))).size,additionalZoneOrSize:archive.records.filter(r=>r.extraCount||r.mainCount!==40).length,records};
+console.log(JSON.stringify(report,null,2));

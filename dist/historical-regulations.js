@@ -1,5 +1,5 @@
 import {HISTORICAL_DECKS} from './historical-decks.js';
-import {CHAMPION_PROFILES} from './champion-profiles.js';
+import {CHAMPION_PROFILES} from './champion-profiles.js?v=0.98.0';
 const verifiedProfiles=[...HISTORICAL_DECKS,...CHAMPION_PROFILES];
 // Historical exceptions apply only to a verified, unchanged tournament forty.
 // Dates, tournament labels or caller-supplied limits never grant an exception.

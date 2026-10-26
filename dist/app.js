@@ -47,7 +47,7 @@ let homeQuery='',homeOrder='selected',environmentYearFilter='all',environmentPic
 let deckViewId=null,deckReturnView='decks',editorReturnView='decks',deckQuery='',deckSort='cost',deckDisplay='grid',editHistory=[];
 let appUpdates=null,updateResumeRecovery=null;
 let randomOpponent=null;
-let champions=null,championRole='opponent',championYear='all',championSeries='all';
+let champions=null,championRole='opponent',championYear='all',championSeries='all',championAvailability='all';
 let manualUI=newManualUI(),manualVisualCleanup=()=>{},aiPlayback=null,aiPlaybackBattle=null;
 const allDecks=()=>[...saved.decks,...saved.friends,...environmentDecks,...starterDecks,...heroDecks,...rivalDecks,...(randomOpponent?[randomOpponent]:[])],myDeck=()=>saved.decks.find(d=>d.id===saved.selected)||saved.decks[0];
 const opponentDecks=()=>saved.friends;
@@ -82,7 +82,7 @@ function championEntryHTML(role){return `<button class="btn soft full environmen
 async function openChampions(role=championRole){
  if(!['mine','opponent'].includes(role))throw Error('デッキの選択先を確認してください');
  if(!champions){const response=await fetch('champion-decks.json?v='+APP_VERSION,{cache:'no-cache'});if(!response.ok)throw Error('公式優勝デッキを読み込めませんでした');champions=resolveChampions(await response.json(),registry);}
- championRole=role;showDialog(role==='opponent'?'歴代の優勝デッキを相手に選ぶ':'歴代の優勝デッキを使う',championsHTML(champions,{role,year:championYear,series:championSeries,art,mark:opponentMark}));
+ championRole=role;showDialog(role==='opponent'?'歴代の優勝デッキを相手に選ぶ':'歴代の優勝デッキを使う',championsHTML(champions,{role,year:championYear,series:championSeries,availability:championAvailability,art,mark:opponentMark}));
 }
 function environmentEntryHTML(role,{compact=false}={}){return `<button class="btn soft full environment-entry ${compact?'compact':''}" data-action="choose-environment" data-role="${role}" aria-label="${role==='opponent'?'相手':'自分'}の環境デッキを選ぶ">${icon('spark',16)}<span>環境デッキを選ぶ</span>${icon('chevron',13)}</button>${championEntryHTML(role)}`;}
 function environmentHTML({role=editRole,direct=false}={}){
@@ -171,7 +171,7 @@ function startSimulation(deck,options={}){
  const opponentErrors=opponents.flatMap(d=>validateDeck(d));if(opponentErrors.length){toast('相手デッキ：'+opponentErrors[0]);return;}
  const n=options.count||base?.count||count,seed=options.seed??base?.seed??crypto.getRandomValues(new Uint32Array(1))[0],f=options.first||base?.first||first;
  running={completed:0,total:n*opponents.length,current:opponents[0].name,deck:clone(deck),count:n,seed,first:f,opponents:clone(opponents),baseline:base?.id||null};view='analysis';render();
- worker=new Worker(new URL('./worker.js?v=0.96.0',import.meta.url),{type:'module'});
+ worker=new Worker(new URL('./worker.js?v=0.98.0',import.meta.url),{type:'module'});
  worker.onmessage=({data})=>{
   if(data.type==='progress'){if(!running)return;Object.assign(running,data);renderProgress();}
   if(data.type==='done'){
@@ -474,8 +474,9 @@ document.addEventListener('click',async event=>{
  else if(action==='use-deck'){saved.selected=id;comparisonId=null;persist();view='battle';render();window.scrollTo(0,0);}
  else if(action==='select-my-deck')selectDeckDialog();
  else if(action==='environment-year'){const year=el.dataset.year;if(year!=='all'&&!groupEnvironmentDecks(environmentDecks).some(g=>String(g.year??'unknown')===year))return;environmentYearFilter=year;refreshEnvironmentYears();}
- else if(action==='choose-champions'){championYear='all';championSeries='all';await openChampions(el.dataset.role);}
+ else if(action==='choose-champions'){championYear='all';championSeries='all';championAvailability='all';await openChampions(el.dataset.role);}
  else if(action==='champion-year'){championYear=el.dataset.year;await openChampions();}
+ else if(action==='champion-availability'){championAvailability=el.dataset.availability==='ready'?'ready':'all';await openChampions();}
  else if(action==='champion-series'){championSeries=el.dataset.series;await openChampions();}
  else if(action==='pick-champion'){const recipe=champions?.records.find(r=>r.id===id),role=el.dataset.role;if(!recipe?.deck||!['mine','opponent'].includes(role))throw Error('公式構成を確認してください');saveCopiedDeck(recipe.deck,role,{nextView:'battle'});}
  else if(action==='export-champion'){const recipe=champions?.records.find(r=>r.id===id);if(!recipe)throw Error('公式リストを選択してください');const {deck,playable,unsupportedCopies,...original}=recipe;download(recipe.id+'.json',JSON.stringify({schemaVersion:1,kind:'official-tournament-recipe',recipe:original},null,2));toast('追加カードを含む公式構成を保存しました');}

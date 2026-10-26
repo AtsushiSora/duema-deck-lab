@@ -68,7 +68,9 @@ export const CHAMPION_PROFILES=[
     "source": "https://dm.takaratomy.co.jp/coverage/dmgp2023-2nd_decklist",
     "checkedAt": "2026-10-26",
     "year": 2023,
-    "limits": {},
+    "limits": {
+      "dmex15-b014": 1
+    },
     "cards": [
       {
         "id": "dmrp04m-014",
@@ -950,7 +952,9 @@ export const CHAMPION_PROFILES=[
     "source": "https://dm.takaratomy.co.jp/coverage/dmnt23_decklist_o",
     "checkedAt": "2026-10-26",
     "year": 2023,
-    "limits": {},
+    "limits": {
+      "dm23rp1-S3": 1
+    },
     "cards": [
       {
         "id": "dm23rp3-015",
@@ -1300,6 +1304,7 @@ export const CHAMPION_PROFILES=[
     "checkedAt": "2026-10-26",
     "year": 2024,
     "limits": {
+      "dm23rp1-S3": 1,
       "dmrp12-s01": 4
     },
     "cards": [
