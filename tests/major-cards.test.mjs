@@ -6,7 +6,7 @@ const TUNE='dmr22-053',COLLAPSE='dm22-011',SHOWER='dmr11-018',SONG='dmrp16-085',
 const pick=(s,value)=>{const a=e.getLegalActions(s).find(a=>a.kind==='extended'&&JSON.stringify(s.decision.choices[a.choice].value)===JSON.stringify(value));assert.ok(a,JSON.stringify(s.decision));e.step(s,a);};
 const play=(s,id)=>{s.players[s.active].hand.push(inst(id));act(s,'play',a=>a.cardId===id);};
 test('twelve major cards use verified faces, effect definitions, real art and current limits',()=>{
- assert.equal(manifest.cards.length,12);assert.equal(data.cards.length,1512);assert.equal(data.supportExpansion.phase,89);
+ assert.equal(manifest.cards.length,12);assert.equal(data.cards.length,1518);assert.equal(data.supportExpansion.phase,90);
  for(const row of manifest.cards){const c=e.card(row.id);assert.equal(c.name,row.name);assert.deepEqual(details.cards.find(x=>x.id===row.id).faces,row.faces);for(const[k,v]of Object.entries(row.spec))assert.deepEqual(c[k],v);assert.equal(registry.get(row.id).supported,true);assert.match(row.image,/^https:\/\/dm\.takaratomy\.co\.jp\/wp-content\/card\/cardimage\//);assert.equal(c.limit,row.id===CHOICE?1:4);}
  const deck={cards:[{id:CHOICE,count:2},{id:N,count:38}]};assert.ok(registry.validate(deck).some(x=>x.includes('チョイス')));
 });
