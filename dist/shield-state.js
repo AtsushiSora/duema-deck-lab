@@ -2,7 +2,7 @@
 export const shieldCards=x=>x?[x,...(x.shieldStack||[])]:[];
 export const shieldGroup=x=>x.shieldGroup||x.uid;
 export const findShield=(own,uid)=>own.shields.find(x=>x.uid===uid||shieldGroup(x)===uid);
-export function attachShield(own,uid,x){const root=findShield(own,uid);if(!root)return false;root.shieldGroup=shieldGroup(root);x.faceUp=true;x.shieldCardOnly=true;(root.shieldStack??=[]).push(x);return true;}
+export function attachShield(own,uid,x,{faceUp=true}={}){const root=findShield(own,uid);if(!root)return false;root.shieldGroup=shieldGroup(root);x.faceUp=faceUp;if(faceUp)x.shieldCardOnly=true;else delete x.shieldCardOnly;(root.shieldStack??=[]).push(x);return true;}
 export function detachShieldCard(own,uid){
  const root=own.shields.find(x=>shieldCards(x).some(y=>y.uid===uid));if(!root)return null;
  const group=shieldGroup(root),index=own.shields.indexOf(root);let x;
