@@ -52,13 +52,29 @@ export function createStrategicAI(api){
  function clone(s){const out=structuredClone(s);mark(out);return out;}
  const isEngine=c=>c.g40Acashic||c.g40Fiona||c.g40Chuchu||c.graveSpellReduction||c.gachiAttack||c.newWorld||c.kurokami||c.abyssLord||c.samuraiGenerate;
  const hero=(s,p)=>s.challenge&&s.challenge.seat===p?s.challenge.heroId:null;
+ // Play/charge priorities only. Opening hands and corrected draws keep their
+ // existing policy; adding a route here gives no extra cards or discounts.
+ function characterRole(id,x){
+  const c=card(x);
+  if(['shobu','katta','kaiza'].includes(id)&&['dmbd16-008','dmex04-027'].includes(x.cardId))return 'setup';
+  if(id==='joe'&&c.g35Role==='parly')return 'setup';
+  if(id==='win'&&['dm06-110','dm22rp1-017'].includes(x.cardId))return 'setup';
+  if(id==='hakuoh'&&(c.wellkius||c.g88Lodriess))return 'engine';
+  if(id==='kira'&&x.cardId==='dm24ex4-032')return 'setup';
+  return heroCardRole(id,x.cardId);
+ }
  function keepValue(s,p,x){
   const id=hero(s,p),own=s.players[p],c=card(x);if(!id&&!c.g40Fiona&&!c.g40Acashic&&!c.g40Chuchu)return 0;
   const hasField=own.battle.some(y=>card(y).g40Acashic&&effective(y,s).g40Acashic),manaField=own.mana.some(y=>card(y).g40Acashic),fiona=own.hand.some(y=>card(y).g40Fiona);
   const champion=c.g40Fiona&&!hasField&&(manaField||own.hand.some(y=>card(y).g40Acashic))?35:c.g40Acashic&&!hasField&&!manaField&&fiona?-30:c.g40Chuchu&&own.mana.length<4?15:0;
   if(!id)return champion;
-  const role=heroCardRole(id,x.cardId),copies=own.hand.filter(y=>y.cardId===x.cardId).length;
+  const role=characterRole(id,x),copies=own.hand.filter(y=>y.cardId===x.cardId).length;
   let v=role==='setup'?(own.mana.length<4?26:3):role==='engine'?24:role==='bridge'?17:0;
+  // A gate without a legal recipient is not a route. Keep the only suitable
+  // recipient while the corresponding spell is still in hand.
+  if(c.type==='creature'&&!c.evolution&&own.hand.some(y=>y.uid!==x.uid&&faces(card(y)).some(f=>
+   f.effect==='heavensGate'&&c.blocker&&api.colors(c).includes('光')||
+   f.effect==='dragonSign'&&cap(c.cost)<=7&&api.colors(c).includes('光')&&/ドラゴン/.test(c.race))))v+=18;
   if(s.challenge.signature.includes(x.cardId))v+=own.mana.length>=4?22:8;
   if(own.battle.some(y=>y.cardId===x.cardId))v*=.35;
   return champion+v/Math.max(1,copies);
@@ -75,6 +91,7 @@ export function createStrategicAI(api){
  function decisionChoice(s,rows){
   const task=s.decision?.task,p=rows[0]?.a.player;
   const defense=defenseChoice(s,rows,p);if(defense)return defense;
+  const deployment=characterDeployment(s,rows,p,task);if(deployment)return deployment;
   if(['g10_Fight','darkFight','g3_Fight','g35_Fight','g11_Fight'].includes(task?.op))return fightChoice(s,rows,p,task);
   if(task?.op==='g9FireModes')return fireModes(s,rows,p,task);
   if(task?.op==='g9FireMode')return fireTarget(s,rows,p,task);
@@ -99,8 +116,36 @@ export function createStrategicAI(api){
   return rows.map(r=>{
    const choice=s.decision.choices[r.a.choice],x=own.hand.find(x=>x.uid===choice?.value);if(!x)return r;
    const c=card(x),copies=own.hand.filter(y=>y.cardId===x.cardId).length;
-   return {...r,value:r.value-(isEngine(c)&&copies===1?40:0)-keepValue(s,r.a.player,x)+(copies>1?6:0)+(c.abyssRush||c.graveCast?8:0)};
+   // Joragon copies the discarded Joker's entry ability. Value the public
+   // result of that copy, rather than always discarding the largest card.
+   const bigOne=hero(s,p)==='joe'&&/ジョーカーズ/.test(c.race)&&s.players[p].battle.some(y=>effective(y,s).g35Role==='joragon');
+   const jokers=own.battle.filter(y=>/ジョーカーズ/.test(effective(y,s).race)).length;
+   const copy=bigOne?(c.effect==='travelHelt'&&s.players[p].deck.length>jokers?jokers*16:
+    c.prisonZero&&own.shields===0?35:c.g35Role==='parly'&&own.grave.length?18:0):0;
+   return {...r,value:r.value-(isEngine(c)&&copies===1?40:0)-keepValue(s,r.a.player,x)+(copies>1?6:0)+(c.abyssRush||c.graveCast?8:0)+copy};
   }).sort((a,b)=>b.value-a.value||a.a.id-b.a.id)[0].a;
+ }
+ function characterDeployment(s,rows,p,t){
+  if(!hero(s,p)||!t)return null;
+  const gate=t.op==='g20Select',sign=t.op==='g2_Sign',abyss=t.op==='g34_Select'&&t.deploy&&hero(s,p)==='win';
+  if(!gate&&!sign&&!abyss)return null;
+  const own=s.players[p],field=own.battle.map(y=>effective(y,s));
+  return rows.map(r=>{
+   const v=s.decision.choices[r.a.choice]?.value,origin=abyss?v?.origin:t.origin||'hand',uid=abyss?v?.uid:v;
+   const x=own[origin]?.find(y=>y.uid===uid);if(!x)return r;
+   const c=card(x),rest=own.hand.filter(y=>y.uid!==uid&&!(t.selected||[]).includes(y.uid)).map(card);
+   let bonus=0;
+   if(gate){
+    if(c.wellkius&&rest.some(d=>d.blocker))bonus+=65;
+    if(c.effect==='saiphogate'&&rest.some(d=>d.blocker&&!d.evolution&&api.colors(d).includes('光')))bonus+=45;
+    // Deploy the draw engine first when the same gate will deploy another
+    // blocker afterwards. Duplicate engines do not displace an entry chain.
+    if(c.g88Lodriess&&!field.some(d=>d.g88Lodriess)&&t.max-(t.selected?.length||0)>1&&rest.some(d=>d.blocker&&!d.evolution&&api.colors(d).includes('光')))bonus+=100;
+   }
+   if(sign&&c.savakGuard&&s.players[1-p].battle.length)bonus+=30;
+   if(abyss&&c.abyssLordGrave&&!field.some(d=>d.abyssLordGrave))bonus+=60;
+   return {...r,value:r.value+bonus};
+  }).sort((a,b)=>b.value-a.value||a.a.id-b.a.id)[0]?.a;
  }
  // Tactical choices use our hand and public creatures, never hidden shield cards.
  function canHit(s,p,x){return api.canAttack(s,p,x)&&!effective(x,s).noPlayerAttack&&api.canAttackPlayer(s,x);}
@@ -170,7 +215,7 @@ export function createStrategicAI(api){
   const colors=new Set(own.mana.flatMap(x=>api.colors(card(x)))).size;
   const danger=opp.battle.filter(x=>isCreature(s,x)&&!effective(x,s).noPlayerAttack).length;
   const safety=own.shields.length===0?-30:Math.min(5,own.shields.length)*7;
-  const heroPlan=hero(s,p)?own.battle.reduce((n,x)=>n+(heroCardRole(hero(s,p),x.cardId)==='engine'?35:0),0)+
+  const heroPlan=hero(s,p)?own.battle.reduce((n,x)=>n+(characterRole(hero(s,p),x)==='engine'?35:0),0)+
    (own.battle.some(x=>effective(x,s).abyssLordGrave)?Math.min(5,own.grave.filter(x=>/アビス/.test(card(x).race)).length)*8:0):0;
   const championPlan=own.battle.some(x=>card(x).g40Acashic&&effective(x,s).g40Acashic)?80:own.mana.some(x=>card(x).g40Acashic)&&own.hand.some(x=>card(x).g40Fiona)?50:0;
   return board(s,p)-board(s,1-p)*1.08+hand+gravePlan+heroPlan+championPlan-opp.hand.length*5+
