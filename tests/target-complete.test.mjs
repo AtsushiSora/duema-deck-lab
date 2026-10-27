@@ -3,7 +3,7 @@ import {e,PRESETS,data,details,snapshot,manifest,target,DOGI,VEG,GEN,GG,DREAM,RO
 import {createCatalogue} from '../dist/catalogue.js';import {environmentSupport} from '../dist/environment.js';
 
 test('all fourteen official target names and forty copies are fully supported; the three final manifests pin every field',()=>{
- assert.equal(e.ENGINE_VERSION,'0.106.0');assert.equal(data.cards.length,1599);assert.equal(data.supportExpansion.phase,104);assert.equal(manifest.cards.length,3);
+ assert.equal(e.ENGINE_VERSION,'0.107.0');assert.equal(data.cards.length,1601);assert.equal(data.supportExpansion.phase,105);assert.equal(manifest.cards.length,3);
  for(const row of manifest.cards){const c=e.card(row.id),d=details.cards.find(x=>x.id===row.id);assert.deepEqual(row.face,d.faces[0]);assert.equal(c.text,d.faces[0].abilityText);assert.equal(c.source,row.source);assert.equal(c.cost,row.face.costText==='∞'?'∞':row.face.cost);assert.equal(c.power,row.face.powerText==='∞'?'∞':Number(row.face.powerText));for(const[k,v]of Object.entries(row.spec))assert.deepEqual(c[k],v);}
  const p=environmentSupport(target,createCatalogue(snapshot,data.cards,details));assert.equal(p.supportedCopies,40);assert.equal(p.supportedTypes,14);assert.equal(p.unsupported.length,0);assert.deepEqual(e.validateDeck(target),[]);assert.doesNotThrow(()=>e.createGame([target,target]));
 });

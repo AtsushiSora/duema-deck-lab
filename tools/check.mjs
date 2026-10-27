@@ -1,4 +1,4 @@
-import {PHOTO_OCTOBER_DECKS} from '../dist/photo-october-decks.js';
+import {PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS} from '../dist/photo-october-decks.js';
 import {resolveChampions} from '../dist/champions.js';
 import {PHOTO_REVISED_TWO} from './fixtures/photo-revised-two.mjs';
 import {PHOTO_REVISED_THREE} from './fixtures/photo-revised-three.mjs';
@@ -60,3 +60,5 @@ for(const deck of PHOTO_REVISED_TWO)if(validateDeck(deck).length||registry.cover
 for(const d of PHOTO_REVISED_THREE)if(validateDeck(d).length||registry.coverage(d).unsupported)throw Error('改訂3画像の40枚構成を確認してください：'+d.name);console.log('Checked three revised screenshots:53 supported identities and120 physical copies.');
 
 for(const d of PHOTO_OCTOBER_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('今回の画像の40枚が未対応です：'+d.name);console.log('Checked both October screenshots: 37 identities and 80 supported copies.');
+
+const photoTruth=JSON.parse(await readFile(new URL('./fixtures/photo-october28-slots.json',import.meta.url),'utf8'));for(const[d,i]of PHOTO_OCTOBER_28_DECKS.map((d,i)=>[d,i])){const grouped=new Map();for(const id of photoTruth.slots[i])grouped.set(id,(grouped.get(id)||0)+1);if(validateDeck(d).length||registry.coverage(d).unsupported||photoTruth.slots[i].length!==40||JSON.stringify([...grouped])!==JSON.stringify(d.cards.map(r=>[r.id,r.count])))throw Error('10月28日の画像の40枚を確認してください：'+d.name);}console.log('Checked all three October28 screenshots: 52 list identities and 120 supported copies.');

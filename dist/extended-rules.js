@@ -1,4 +1,4 @@
-import {createUtilityDispectorSeeds} from './utility-dispector-seeds.js?v=0.145.0';
+import {createUtilityDispectorSeeds} from './utility-dispector-seeds.js?v=0.148.0';
 import {createUtilityNatureDeployment} from './utility-nature-deployment.js?v=0.144.0';
 import {createUtilityLightControl} from './utility-light-control.js?v=0.143.0';
 import {createUtilityTwinSupport} from './utility-twin-support.js?v=0.142.0';
@@ -7,7 +7,7 @@ import {createUtilityGraveKnights} from './utility-grave-knights.js?v=0.140.0';
 import {createUtilityRomanoRules} from './utility-romano-rules.js?v=0.141.0';
 import {createUtilityWaterChain} from './utility-water-chain.js?v=0.138.0';
 import {createUtilityNatureSupport} from './utility-nature-support.js?v=0.137.0';
-import {createUtilityManaSearch} from './utility-mana-search.js?v=0.139.0';
+import {createUtilityManaSearch} from './utility-mana-search.js?v=0.148.0';
 import {createUtilityGuardRules} from './utility-guard-rules.js?v=0.135.0';
 import {createUtilityDragonSearch} from './utility-dragon-search.js?v=0.134.0';
 import {createUtilityEvolutionRules} from './utility-evolution-rules.js?v=0.133.0';
