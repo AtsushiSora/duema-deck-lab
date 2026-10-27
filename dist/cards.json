@@ -36585,15 +36585,168 @@
       "g92Effect": "Rainbow",
       "supportBatch": "phase-107",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp17-065",
+      "name": "ロジック・Re:キューブ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "{GS} G・ストライク（この呪文を自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分の山札の上から４枚を見る。その中から呪文を１枚相手に見せ、手札に加えてもよい。残りを好きな順序で山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-065",
+      "limit": 4,
+      "gStrike": true,
+      "g89Logic": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 4,
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "spell": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-108",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx13-028",
+      "name": "デ・バウラ・チャージャー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "呪文を１枚、自分の墓地から手札に戻す。\nチャージャー（この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-028",
+      "limit": 4,
+      "effect": "champion",
+      "g89Effect": "Recover",
+      "normalCharger": true,
+      "supportBatch": "phase-108",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-035",
+      "name": "Rev.スパーク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、タップする。\n革命２―自分のシールドが２つ以下なら、相手のクリーチャーをすべてタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-035",
+      "limit": 4,
+      "trigger": true,
+      "effect": "champion",
+      "g89Effect": "RevSpark",
+      "supportBatch": "phase-108",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex08-234",
+      "name": "AND・スパーク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のシールドが２つ以下なら、相手のクリーチャーをすべてタップする。\n自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-234",
+      "limit": 4,
+      "trigger": true,
+      "effect": "champion",
+      "g89Effect": "AndSpark",
+      "supportBatch": "phase-108",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr16g-020",
+      "name": "マスター・スパーク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにある相手のクリーチャーをすべてタップする。\nカードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-020",
+      "limit": 4,
+      "trigger": true,
+      "g89Master": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "TapAll"
+        },
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-108",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd06-006",
+      "name": "反撃のサイレント・スパーク",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n次のうちいずれかひとつを選ぶ。\n▼バトルゾーンにある相手のクリーチャーをすべてタップする。\n▼カードを２枚まで引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd06-006",
+      "limit": 4,
+      "trigger": true,
+      "effect": "champion",
+      "g89Effect": "SilentSpark",
+      "supportBatch": "phase-108",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 107,
+    "phase": 108,
     "checkedAt": "2026-10-28",
-    "baseCount": 1607,
+    "baseCount": 1613,
     "newEffectCards": 6,
     "newVanillaCards": 0,
-    "totalCount": 1613,
+    "totalCount": 1619,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -38608,6 +38761,20 @@
         "newEffectCards": 6,
         "newVanillaCards": 0,
         "totalCount": 1607,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "対応済みカードの対戦検証と改善"
+        ]
+      },
+      {
+        "phase": 107,
+        "checkedAt": "2026-10-28",
+        "baseCount": 1607,
+        "newEffectCards": 6,
+        "newVanillaCards": 0,
+        "totalCount": 1613,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
         ],

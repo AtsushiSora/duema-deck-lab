@@ -15,10 +15,15 @@ export function createUtilityLightControl(api){
  case'g89_Julius':{const recover=graveSpells(s,t.p),remove=gears(s,t.p);choice(s,t,'ユリウスの攻撃時能力を選ぶ',[...(recover.length?[opt('墓地の呪文を1枚手札に戻す','recover',20)]:[]),...(remove.length?[opt('相手のクロスギアを1枚墓地に置く','gear',25)]:[]),opt('使わない',null,0)]);break;}
  case'g89_Recover':choice(s,t,'墓地から手札に戻す呪文を1枚選ぶ',graveSpells(s,t.p).map(x=>opt(card(x).name,x.uid,10+Math.min(30,cost(card(x))),x.cardId)));break;
  case'g89_Gear':choice(s,t,'墓地に置く相手のクロスギアを1枚選ぶ',gears(s,t.p));break;
+ case'g89_RevSpark':put(s,task('g34_Target',t.p,t.source,{tap:true,title:'タップする相手のクリーチャーを1体選ぶ'}),follow(t,'RevAll'));break;
+ case'g89_RevAll':if(own.shields.length<=2)for(const x of living(s,1-t.p))api.tap(s,1-t.p,x);break;
+ case'g89_AndSpark':if(own.shields.length<=2)for(const x of living(s,1-t.p))api.tap(s,1-t.p,x);api.shieldTop(s,t.p,card(t.source));break;
+ case'g89_SilentSpark':{const n=living(s,1-t.p).filter(x=>!x.tapped).length,win=living(s,t.p).some(x=>effective(x,s).shako);choice(s,t,'反撃のサイレント・スパーク：効果を選ぶ',[opt('相手のクリーチャーをすべてタップ','tap',n*10),opt('カードを2枚まで引く','draw',own.deck.length<=2&&win?1000:own.deck.length>1?own.hand.length<5?24:10:0)]);break;}
  case'g89_Amore':for(const player of[0,1])(s.extLimits??=[]).push({kind:'attack',player,expires:'end',who:s.active,controller:t.p,source:t.source});break;
  default:throw Error('未実装の光の制御効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g89_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g89_SilentSpark':put(s,task(v==='tap'?'g34_TapAll':'g92_Neo',t.p,t.source));break;
  case'g89_Petrova':{const x=own.battle.find(x=>key(x)===key(t));if(x)x.g89Race=v;break;}
  case'g89_Ulfeus':if(v&&ulfeus(s,t.p)){const row=spells(s,t.p).find(r=>r.x.uid===v.uid&&r.face===v.face);if(row)api.cast(s,t.p,row.x.uid,true,null,row.face,null,'hand','龍聖霊ウルフェウス');}break;
  case'g89_Julius':if(v)put(s,follow(t,v==='recover'?'Recover':'Gear'));break;

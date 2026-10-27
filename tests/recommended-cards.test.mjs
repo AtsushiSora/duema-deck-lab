@@ -8,7 +8,7 @@ const play=(s,id,face=0)=>{s.players[s.active].hand.push(inst(id));act(s,'play',
 const queued=(s,p,id,origin='hand')=>{const x=inst(id);s.players[p][origin].push(x);s.extTasks=[{op:'putCreature',p,source:id,origin,uid:x.uid}];act(s,'toAttack');return x;};
 const end=s=>{drain(s);s.phase='attack';act(s,'endTurn');drain(s);};
 test('twelve live-verified recommended definitions have complete effects, canonical identities and four-copy limits',()=>{
- assert.equal(manifest.cards.length,12);assert.equal(data.cards.length,1613);assert.equal(data.supportExpansion.phase,107);
+ assert.equal(manifest.cards.length,12);assert.equal(data.cards.length,1619);assert.equal(data.supportExpansion.phase,108);
  for(const r of manifest.cards){const c=e.card(r.id);assert.equal(c.name,r.name);assert.deepEqual(details.cards.find(x=>x.id===r.id).faces,r.faces);for(const[k,v]of Object.entries(r.spec))assert.deepEqual(c[k],v);assert.equal(c.limit,4);assert.equal(registry.get(r.id).supported,true);}
 });
 test('Dondon shows five, publicly takes a fire card, orders all misses then allows own creature bounce',()=>{

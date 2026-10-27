@@ -1,7 +1,7 @@
 import {createUtilityHandSupport} from './utility-hand-support.js?v=0.150.0';
 import {createUtilityDispectorSeeds} from './utility-dispector-seeds.js?v=0.148.0';
 import {createUtilityNatureDeployment} from './utility-nature-deployment.js?v=0.144.0';
-import {createUtilityLightControl} from './utility-light-control.js?v=0.143.0';
+import {createUtilityLightControl} from './utility-light-control.js?v=0.151.0';
 import {createUtilityTwinSupport} from './utility-twin-support.js?v=0.142.0';
 import {createUtilityRaidRules} from './utility-raid-rules.js?v=0.141.0';
 import {createUtilityGraveKnights} from './utility-grave-knights.js?v=0.140.0';
@@ -53,7 +53,7 @@ import {createOriginalChampionRules} from './champion-original-rules.js?v=0.145.
 import {createChampionRules} from './champion-rules.js?v=0.104.0';
 import {createEnvironmentRules} from './environment-rules.js?v=0.104.0';
 import {createRecommendedRules} from './recommended-rules.js?v=0.111.0';
-import {createSixPhotoRules} from './six-photo-rules.js?v=0.114.0';
+import {createSixPhotoRules} from './six-photo-rules.js?v=0.151.0';
 import {createShieldPhotoRules} from './shield-photo-rules.js?v=0.104.0';
 import {createKenjiPhotoRules} from './kenji-photo-rules.js?v=0.104.0';
 import {createPhoenixRules} from './phoenix-rules.js?v=0.104.0';

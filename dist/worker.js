@@ -1,5 +1,5 @@
 import {historicalMetadata} from './historical-regulations.js';
-import {setCards,runGame,runSummary,aggregate} from './engine.js?v=0.150.0';
+import {setCards,runGame,runSummary,aggregate} from './engine.js?v=0.151.0';
 self.onmessage=async({data})=>{
  try{setCards(data.cards);const results=[];
  for(let oi=0;oi<data.opponents.length;oi++){
