@@ -37382,15 +37382,195 @@
       ],
       "supportBatch": "phase-112",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx20-019",
+      "name": "ゴーゴー・ジゴッチ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ファイアー・バード炎/革命軍",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から５枚を見る。その中からドラゴンを１体選び、相手に見せてから手札に加えてもよい。その後、残りのカードを好きな順序で山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx20-019",
+      "limit": 4,
+      "g113Role": "gogo",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 5,
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "creature": true,
+                "race": "ドラゴン"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-113",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp1-072",
+      "name": "シェル・アンラーク",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "コロニー・ビートル",
+      "text": "このクリーチャーが出た時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-072",
+      "limit": 4,
+      "g113Role": "shell",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "mana",
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-113",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm07-024",
+      "name": "スプラッシュ・ゼブラフィッシュ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ゲル・フィッシュ",
+      "text": "このクリーチャーがバトルゾーンに出たとき、自分のマナゾーンからカードを１枚選び、自分の手札に戻す。\nこのクリーチャーはブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-024",
+      "limit": 4,
+      "unblockable": true,
+      "g113Role": "zebra",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "title": "マナから手札に戻すカードを1枚選ぶ"
+        }
+      ],
+      "supportBatch": "phase-113",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx22b-107",
+      "name": "キング・シビレアシダケ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "バルーン・マッシュルーム",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分の手札を好きな数、タップしてマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-107",
+      "limit": 4,
+      "g113Role": "king",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "mana",
+          "n": "all",
+          "optional": true,
+          "tapped": true,
+          "title": "タップしてマナに置く手札を好きな枚数選ぶ"
+        }
+      ],
+      "supportBatch": "phase-113",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-059",
+      "name": "コートスタン＝コルトスタイン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "アビスロイヤル",
+      "text": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\nこのクリーチャーが出た時、自分の山札の上から３枚を墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-059",
+      "limit": 4,
+      "abyssRush": true,
+      "g113Role": "court",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 3
+        }
+      ],
+      "supportBatch": "phase-113",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex1-086",
+      "name": "エメラルド・クーラー",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1500,
+      "race": "スプラッシュ・クイーン",
+      "text": "このクリーチャーが出た時、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-086",
+      "limit": 4,
+      "g113Role": "emerald",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-113",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 112,
+    "phase": 113,
     "checkedAt": "2026-10-28",
-    "baseCount": 1637,
+    "baseCount": 1643,
     "newEffectCards": 6,
     "newVanillaCards": 0,
-    "totalCount": 1643,
+    "totalCount": 1649,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf"
@@ -39480,6 +39660,21 @@
         "totalCount": 1637,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "対応済みカードの対戦検証と改善"
+        ]
+      },
+      {
+        "phase": 112,
+        "checkedAt": "2026-10-28",
+        "baseCount": 1637,
+        "newEffectCards": 6,
+        "newVanillaCards": 0,
+        "totalCount": 1643,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf"
         ],
         "next": [
           "対応済みカードの対戦検証と改善"
