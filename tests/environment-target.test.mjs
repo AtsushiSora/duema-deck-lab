@@ -14,7 +14,7 @@ const setup=()=>{const s=createGame([PRESETS[0],PRESETS[1]],{seed:49});s.phase='
 const cast=(s,id)=>{give(s,0,'hand',[id]);act(s,'play');};
 
 test('four fully pinned cards retain their fields while the unchanged tournament list retains its current progress',()=>{
- assert.equal(ENGINE_VERSION,'0.84.0');assert.equal(data.cards.length,1482);assert.equal(manifest.cards.length,4);assert.equal(data.supportExpansion.phase,84);
+ assert.equal(ENGINE_VERSION,'0.85.0');assert.equal(data.cards.length,1488);assert.equal(manifest.cards.length,4);assert.equal(data.supportExpansion.phase,85);
  const registry=createCatalogue(snapshot,data.cards,details),decks=resolveEnvironmentDecks(registry),target=decks.find(d=>d.id===ENVIRONMENT_TARGET),p=environmentSupport(target,registry);
  assert.equal(p.supportedCopies,40);assert.equal(p.totalCopies,40);assert.equal(p.supportedTypes,14);assert.equal(p.totalTypes,14);assert.equal(p.unsupported.reduce((n,r)=>n+r.count,0),0);assert.deepEqual(validateDeck(target),[]);assert.doesNotThrow(()=>createGame([target,PRESETS[0]]));
  for(const row of manifest.cards){const d=details.cards.find(c=>c.id===row.id),c=card(row.id);assert.deepEqual(row.face,d.faces[0]);assert.equal(row.name,c.name);assert.equal(row.source,c.source);assert.equal(c.text,row.face.abilityText);for(const[k,v]of Object.entries(row.spec))assert.deepEqual(c[k],v);assert.equal(c.supportBatch,'phase-5');}
