@@ -1,4 +1,4 @@
-import{CARD_IMAGES}from'./card-images.js?v=0.136.0';
+import{CARD_IMAGES}from'./card-images.js?v=0.137.0';
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const colors={'火':'#cf5144','水':'#358cbd','自然':'#449477','光':'#c0a34b','闇':'#7f649b'};
 const validImage=url=>/^https:\/\/dm\.takaratomy\.co\.jp\/wp-content\/card\/(?:cardimage|cardthumb)\/[A-Za-z0-9_.-]+\.(?:jpg|png|webp)$/.test(url);
