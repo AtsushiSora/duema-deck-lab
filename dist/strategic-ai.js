@@ -201,7 +201,7 @@ export function createStrategicAI(api){
  function attackChoice(s,rows,p){
   const v=observe(s,p),ctx={...v,players:v.players.map(x=>({...x,shields:Array(x.shields).fill({})}))};
   const me=ctx.players[p],them=ctx.players[1-p],find=(who,uid)=>ctx.players[who].battle.find(x=>x.uid===uid);
-  const playerAttacks=rows.filter(r=>r.a.kind==='attack'&&r.a.target==='player');
+  const playerAttacks=rows.filter(r=>r.a.kind==='attack'&&r.value>-1000&&r.a.target==='player');
   const unique=[...new Map(playerAttacks.map(r=>[r.a.uid,r.a])).values()];
   const blockers=them.battle.filter(x=>!x.tapped&&effective(x,ctx).blocker);
   const hits=unique.filter(a=>effective(find(p,a.uid),ctx).unblockable||!blockers.length)
@@ -209,7 +209,8 @@ export function createStrategicAI(api){
   const protectedPlayer=api.directAttackProtected(s,1-p);
   let shields=them.shields.length,lethal=false;for(const hit of hits){if(shields===0){lethal=!protectedPlayer;break;}shields=Math.max(0,shields-hit);}
   return rows.map(r=>{
-   const a=r.a;if(a.kind!=='attack')return r;
+   // Preserve the effect policy's fatal-attack exclusion in both scoring and lethal estimates.
+   const a=r.a;if(a.kind!=='attack'||r.value<=-1000)return r;
    const x=find(p,a.uid),c=effective(x,ctx);let score=r.value;
    if(a.target==='player'){
     if(them.shields.length===0&&protectedPlayer)return {...r,value:-10};
