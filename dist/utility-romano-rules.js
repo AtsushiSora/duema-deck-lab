@@ -7,7 +7,7 @@ export function createUtilityRomanoRules(api){
  function run(s,t){if(!t.op.startsWith('g85_'))return false;const own=s.players[t.p];switch(t.op){
  case'g85_RomanoCast':{const rows=api.canMoveZone(s,t.p,'grave')?own.grave.flatMap(x=>faces(card(x)).flatMap((c,face)=>c.type==='spell'&&colors(c).includes('闇')&&cost(c)<=6&&api.canCast(s,t.p,c,'grave')?[opt(c.name,{uid:x.uid,face},20+cost(c),x.cardId)]:[])):[];choice(s,t,'墓地から闇のコスト6以下の呪文を1枚まで無料で唱える',[...rows,opt('唱えない',null,0)]);break;}
  case'g85_Strike':case'g85_Zanji':{const options=api.targetOptions(s,t.p,living(s,1-t.p));if(options.length)choice(s,t,'パワーを'+t.amount+'する相手のクリーチャーを1体選ぶ',options.map(o=>({...o,score:api.power(s.players[1-t.p].battle.find(x=>x.uid===o.value),false,s)<=-t.amount?40+o.score:o.score})));else if(t.sweep)weaken(s,t,null);break;}
- case'g85_Jack':choice(s,t,'破壊する相手のパワー2000以下のクリーチャーを1体選ぶ',api.targetOptions(s,t.p,living(s,1-t.p).filter(x=>api.power(x,false,s)<=2000)));break;
+ case'g85_Jack':{const max=t.maxPower??2000;choice(s,t,'破壊する相手のパワー'+max+'以下のクリーチャーを1体選ぶ',api.targetOptions(s,t.p,living(s,1-t.p).filter(x=>api.power(x,false,s)<=max)));break;}
  case'g85_ZamarDiscard':if(monoDark(s,t.p))put(s,task('discard',1-t.p,t.source,{n:1,random:true,causedBy:t.p}));break;
  default:throw Error('未実装のロマノフ・闇の防御効果：'+t.op);
  }return true;}
@@ -17,7 +17,7 @@ export function createUtilityRomanoRules(api){
  case'g85_Jack':if(v)api.move(s,[{player:1-t.p,uid:v,to:'grave',destroy:true,controller:t.p}]);break;
  default:throw Error('未実装のロマノフ・闇の防御選択：'+t.op);
  }return true;}
- return{run,chosen,monoDark,effect(s,p,c,uid){if(!c.g85Effect)return false;const amount=c.g85Effect==='Strike'?-5000:-2000,sweep=c.g85Effect==='Strike'&&!!s.extSpells?.find(f=>f.inst.uid===uid)?.inst.g85RomanoCast;put(s,task('g85_'+c.g85Effect,p,c.id,{uid,amount,spell:c.type==='spell',sweep}));return true;},
+ return{run,chosen,monoDark,effect(s,p,c,uid){if(!c.g85Effect)return false;const amount=c.g85Effect==='Strike'?-5000:-2000,sweep=c.g85Effect==='Strike'&&!!s.extSpells?.find(f=>f.inst.uid===uid)?.inst.g85RomanoCast;put(s,task('g85_'+c.g85Effect,p,c.id,{uid,amount,spell:c.type==='spell',sweep,maxPower:c.g85JackMax??2000}));return true;},
  decorate(s,p,x,c){return c.g85Zamar&&monoDark(s,p)?{...c,power:c.power+2000}:c;},
  attack(s,p,x){if(api.selfStopped(s,p))return;const c=effective(x,s),op=c.g85Romano?'RomanoCast':c.g85Zamar&&monoDark(s,p)?'ZamarDiscard':null;if(op)api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g85_'+op,p,x.cardId)});},
  mainActions(s,p){const own=s.players[p];if(own.grave.filter(x=>card(x).type==='creature').length<6)return[];return own.hand.filter(x=>card(x).g85Morse&&api.canCast(s,p,card(x),'hand')&&api.canEnter(s,p,card(x),{origin:'hand',execution:true})).map(x=>({kind:'play',uid:x.uid,cardId:x.cardId,cost:0,freeSummon:'G・ゼロ',label:card(x).name+'をG・ゼロで召喚'}));}};

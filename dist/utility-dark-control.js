@@ -21,10 +21,10 @@ export function createUtilityDarkControl(api){
  case'g78_BottomOrder':put(s,follow(t,'BottomOrder',{ordered:[...t.ordered,v]}));break;
  default:throw Error('未実装の闇の妨害選択：'+t.op);
  }return true;}
- function snapshot(s){return [0,1].flatMap(p=>living(s,p).map(x=>({p,uid:x.uid,incarnation:x.incarnation||0,cardId:x.cardId,fly:!!effective(x,s).g78Fly,train:!!effective(x,s).g78Train})));}
+ function snapshot(s){return [0,1].flatMap(p=>living(s,p).map(x=>({p,uid:x.uid,incarnation:x.incarnation||0,cardId:x.cardId,fly:!!effective(x,s).g78Fly,flyCount:Number(effective(x,s).g78Fly)||0,train:!!effective(x,s).g78Train})));}
  return{run,chosen,snapshot,effect(s,p,c,uid){if(!c.g78Effect)return false;put(s,task('g78_'+c.g78Effect,p,c.id,{uid}));return true;},
  attack(s,p,x){if(effective(x,s).g78Jelly&&!api.selfStopped(s,p))queue(s,p,x,task('discard',1-p,x.cardId,{n:1,random:true,causedBy:p}));},
- leaving(s,p,x,before,to,destroy){if(to!=='grave'||!destroy)return;const rows=before||snapshot(s),victim=rows.find(y=>y.p===p&&key(y)===key(x));if(!victim)return;if(victim.fly)queue(s,p,victim,task('discard',1-p,x.cardId,{n:1,random:true,causedBy:p}));
+ leaving(s,p,x,before,to,destroy){if(to!=='grave'||!destroy)return;const rows=before||snapshot(s),victim=rows.find(y=>y.p===p&&key(y)===key(x));if(!victim)return;if(victim.fly)queue(s,p,victim,task('discard',1-p,x.cardId,{n:victim.flyCount||1,random:true,causedBy:p}));
   // A Star evolution may reveal a previously ignored watcher as its top leaves.
   const watchers=[...rows.filter(y=>y.train),...snapshot(s).filter(y=>y.train&&!rows.some(r=>r.p===y.p&&key(r)===key(y)))];
   for(const y of watchers)if(y.p!==p||key(y)!==key(x))queue(s,y.p,y,task('g34_Draw',y.p,y.cardId,{n:1,optional:true}));
