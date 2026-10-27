@@ -7,7 +7,7 @@ export function createUtilityRomanoRules(api){
  function run(s,t){if(!t.op.startsWith('g85_'))return false;const own=s.players[t.p];switch(t.op){
  case'g85_RomanoCast':{const rows=api.canMoveZone(s,t.p,'grave')?own.grave.flatMap(x=>faces(card(x)).flatMap((c,face)=>c.type==='spell'&&colors(c).includes('闇')&&cost(c)<=6&&api.canCast(s,t.p,c,'grave')?[opt(c.name,{uid:x.uid,face},20+cost(c),x.cardId)]:[])):[];choice(s,t,'墓地から闇のコスト6以下の呪文を1枚まで無料で唱える',[...rows,opt('唱えない',null,0)]);break;}
  case'g85_Strike':case'g85_Zanji':{const options=api.targetOptions(s,t.p,living(s,1-t.p));if(options.length)choice(s,t,'パワーを'+t.amount+'する相手のクリーチャーを1体選ぶ',options.map(o=>({...o,score:api.power(s.players[1-t.p].battle.find(x=>x.uid===o.value),false,s)<=-t.amount?40+o.score:o.score})));else if(t.sweep)weaken(s,t,null);break;}
- case'g85_Jack':{const max=t.maxPower??2000;choice(s,t,'破壊する相手のパワー'+max+'以下のクリーチャーを1体選ぶ',api.targetOptions(s,t.p,living(s,1-t.p).filter(x=>api.power(x,false,s)<=max)));break;}
+ case'g85_Jack':{const max=t.maxPower??2000;choice(s,t,'破壊する相手のパワー'+max+'以下のクリーチャーを1体選ぶ',api.targetOptions(s,t.p,living(s,1-t.p).filter(x=>api.power(x,x.uid===s.attack?.attacker,s)<=max)));break;}
  case'g85_ZamarDiscard':if(monoDark(s,t.p))put(s,task('discard',1-t.p,t.source,{n:1,random:true,causedBy:t.p}));break;
  default:throw Error('未実装のロマノフ・闇の防御効果：'+t.op);
  }return true;}

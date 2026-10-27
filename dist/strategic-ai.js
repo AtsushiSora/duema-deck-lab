@@ -5,7 +5,7 @@ export function createStrategicAI(api){
  const {card,faces,effective,power,isCreature,legal,step,rank:baseRank,observe,mark}=api;
  const cap=n=>Math.min(20,Number(n)||0);
  const body=c=>c.type==='creature';
- const damage=c=>c.breaker==='∞'?20:Number(c.breaker)||1;
+ const damage=c=>c.breaker==='∞'?20:(Number(c.breaker)||1)+(Number(c.extraBreak)||0);
  const key=a=>JSON.stringify(Object.fromEntries(Object.entries(a).filter(([k])=>k!=='id'&&k!=='label')));
  const publicCounters=['g43Skip','g43UntapLimits','g47ManaLeft','g47ManaSeedUsed','g48MimiUsed','g49MolUsed','g50DiscardSerial','g42Lures','g41MomoUsed','g40Dachi','g40Summons','g40BadDebt','g39ClinnUsed','g37Gifts','g37Spells','g35BakuNoLose','g35SpellLocks','g35ZeroMana','g35AttackStops','g35Deferred','g35Permits','g35Terminal','g35FinalRev','g35Fuji','g35FirstGrave','g35Limone','g35GraveLeft','g34Executions','g34ShieldLeftTurn','g34Muku','g34Scarlet','g34Souzan','g34FirstTap','g34Discounts','g31Discounts','g31ExtraTurn','g29Grants','g29Delays','g29MolReady','challenge','g28DragonOnce','g27WestUsed','extLimits','once','extraTurns','noManaUse','creaturesEntered','finalUsed','finalHistory','g26Extreme','g26GardenUsed','darkTriggers',
   'g13JagaUsed','g12LossUsed','g12NoLose','g15StarUsed','g16UsedMana','g17ManaUsed','g19MekraidUsed',
