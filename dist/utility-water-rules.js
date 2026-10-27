@@ -26,6 +26,7 @@ export function createUtilityWaterRules(api){
  }
  function finishConcrete(s,t){if(!api.canMoveZone(s,1-t.p,'grave'))return;const own=s.players[1-t.p],xs=(t.selected||[]).map(uid=>api.remove(own.grave,uid)).filter(Boolean);for(const x of xs)api.clear(x,'deck');own.deck.push(...xs);}
  function tutor(s,t){
+  if(api.deckLocked(s,t.p))return;
   const own=s.players[t.p],reserved=new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&/Protected$|Reveals$/.test(k)).flatMap(([,v])=>v));
   const rows=own.deck.filter(x=>!reserved.has(x.uid)).slice(0,api.lookCount(s,t.p,t.n));
   if(!rows.length)return;

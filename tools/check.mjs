@@ -1,3 +1,4 @@
+import {UTILITY107_DECKS} from './fixtures/utility107.mjs';
 import {UTILITY106_DECKS} from './fixtures/utility106.mjs';
 import {PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS} from '../dist/photo-october-decks.js';
 import {resolveChampions} from '../dist/champions.js';
@@ -65,3 +66,5 @@ for(const d of PHOTO_OCTOBER_DECKS)if(validateDeck(d).length||registry.coverage(
 const photoTruth=JSON.parse(await readFile(new URL('./fixtures/photo-october28-slots.json',import.meta.url),'utf8'));for(const[d,i]of PHOTO_OCTOBER_28_DECKS.map((d,i)=>[d,i])){const grouped=new Map();for(const id of photoTruth.slots[i])grouped.set(id,(grouped.get(id)||0)+1);if(validateDeck(d).length||registry.coverage(d).unsupported||photoTruth.slots[i].length!==40||JSON.stringify([...grouped])!==JSON.stringify(d.cards.map(r=>[r.id,r.count])))throw Error('10月28日の画像の40枚を確認してください：'+d.name);}console.log('Checked all three October28 screenshots: 52 list identities and 120 supported copies.');
 
 for(const d of UTILITY106_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第106段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase106 effect-test decks: six new names in legal forty-card lists.');
+
+for(const d of UTILITY107_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第107段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase107 effect-test decks: six new names in legal forty-card lists.');
