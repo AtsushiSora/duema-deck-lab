@@ -36861,19 +36861,198 @@
       "effect": "destroy",
       "supportBatch": "phase-109",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm21-039",
+      "name": "ウィザード・リザレクション",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n自分の山札の上から１枚目を自分のマナゾーンに置く。その後、呪文を１枚、自分のマナゾーンから手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-039",
+      "limit": 4,
+      "trigger": true,
+      "g110Role": "wizard",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "filter": {
+            "spell": true
+          },
+          "title": "マナから手札に戻す呪文を1枚選ぶ"
+        }
+      ],
+      "supportBatch": "phase-110",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm09-011",
+      "name": "アナライズ・チャージャー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにあるクリーチャーを２体まで選び、持ち主の手札に戻す。\nチャージャー(この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-011",
+      "limit": 4,
+      "normalCharger": true,
+      "g110Role": "analyze",
+      "effect": "champion",
+      "g52Effect": "Teleport",
+      "supportBatch": "phase-110",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm08-026",
+      "name": "ウェーブ・ランス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻す。それがドラゴンであれば、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-026",
+      "limit": 4,
+      "g110Role": "wave",
+      "effect": "champion",
+      "g52Effect": "Wave",
+      "supportBatch": "phase-110",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd16-006",
+      "name": "ヴァルハラ・マジック",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにある相手のクリーチャーを１体選び、タップする。\nカードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd16-006",
+      "limit": 4,
+      "trigger": true,
+      "g110Role": "valhalla",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true
+        },
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-110",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd27-004",
+      "name": "イフリート・ハンド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のコスト９以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd27-004",
+      "limit": 4,
+      "trigger": true,
+      "g110Role": "ifrit",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "max": 9
+          }
+        }
+      ],
+      "supportBatch": "phase-110",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-018",
+      "name": "アンシーン・ハンド",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のアンタップしているクリーチャーを１体破壊する。\nクリーチャーを１体、自分の墓地から手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-018",
+      "limit": 4,
+      "trigger": true,
+      "g110Role": "unseen",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "untapped": true
+          }
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "filter": {
+            "creature": true
+          },
+          "title": "墓地から手札に戻すクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-110",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 109,
+    "phase": 110,
     "checkedAt": "2026-10-28",
-    "baseCount": 1619,
+    "baseCount": 1625,
     "newEffectCards": 6,
     "newVanillaCards": 0,
-    "totalCount": 1625,
+    "totalCount": 1631,
     "ruleSource": [
-      "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/card/detail/?id=dmd11-015",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34995/"
+      "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
     "next": [
       "対応済みカードの対戦検証と改善"
@@ -38916,6 +39095,22 @@
         "totalCount": 1619,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "対応済みカードの対戦検証と改善"
+        ]
+      },
+      {
+        "phase": 109,
+        "checkedAt": "2026-10-28",
+        "baseCount": 1619,
+        "newEffectCards": 6,
+        "newVanillaCards": 0,
+        "totalCount": 1625,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmd11-015",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34995/"
         ],
         "next": [
           "対応済みカードの対戦検証と改善"

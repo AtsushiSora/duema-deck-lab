@@ -41,6 +41,8 @@ export function createUtilityWaterRules(api){
   case'g52_Energy':put(s,...(race(s,t.p,'グレートメカオー')?[task('g34_Target',t.p,t.source,{anyOwner:true,to:'hand',optional:false})]:[]),{...t,op:'g52_EnergyDraw'});break;
   case'g52_EnergyDraw':if(race(s,t.p,'キカイヒーロー'))put(s,task('g34_Draw',t.p,t.source,{n:1,optional:true}));break;
   case'g52_Teleport':teleport(s,t);break;
+  case'g52_Wave':{const own=s.players[t.p],options=api.targetOptions(s,t.p,[t.p,1-t.p].flatMap(p=>creatures(s,p))).map(o=>{const p=s.players.findIndex(p=>p.battle.some(x=>x.uid===o.value)),x=s.players[p].battle.find(x=>x.uid===o.value),win=own.deck.length<=1&&/ドラゴン/.test(effective(x,s).race||'')&&creatures(s,t.p).some(y=>y.uid!==x.uid&&effective(y,s).shako);return{...o,value:{p,uid:x.uid},label:(p===t.p?'自分：':'相手：')+o.label,score:win?1000:(p===t.p?-1:1)*(15+Math.min(cost(card(x)),30))};});choice(s,t,'手札に戻すクリーチャーを1体選ぶ',options);break;}
+  case'g52_WaveDraw':{const win=creatures(s,t.p).some(x=>effective(x,s).shako);choice(s,t,'ドラゴンを選んだので、カードを1枚引いてもよい',[opt('1枚引く',1,own.deck.length>1?10:win?1000:-1000),opt('引かない',0,0)]);break;}
   case'g52_Concrete':concrete(s,t);break;
   case'g52_Tutor':tutor(s,t);break;
   case'g52_Reduction':{const c=payment(s,t.p,t.args,0),max=c&&liveReduction(s,t.p);if(!c)break;const options=Array.from({length:max+1},(_,n)=>({n,c:payment(s,t.p,t.args,n)})).filter(({c})=>api.canPay(s,t.p,c)).map(({n,c})=>opt(n===0?'軽減しない（'+api.summonCost(s,t.p,c)+'マナ）':n+'体分軽減（'+api.summonCost(s,t.p,c)+'マナ）',n,n*4));choice(s,t,'アクア・エボリューターの軽減を使う？',options);break;}
@@ -49,6 +51,8 @@ export function createUtilityWaterRules(api){
  function chosen(s,t,v){if(!t.op.startsWith('g52_'))return false;switch(t.op){
   case'g52_TopHand':queue(s,t,'TopHand',{selected:[...t.selected,v]});break;
   case'g52_Teleport':if(v)queue(s,t,'Teleport',{selected:[...t.selected,v]});else finishTeleport(s,t);break;
+  case'g52_Wave':{const x=s.players[v.p]?.battle.find(x=>x.uid===v.uid);if(x){if(/ドラゴン/.test(effective(x,s).race||''))queue(s,t,'WaveDraw');api.move(s,[{player:v.p,uid:x.uid,to:'hand',destroy:false,controller:t.p}]);}break;}
+  case'g52_WaveDraw':if(v)api.draw(s,t.p,1);break;
   case'g52_Concrete':if(v)queue(s,t,'Concrete',{selected:[...t.selected,v]});else finishConcrete(s,t);break;
   case'g52_Reduction':{const args=[...t.args],alt=args[4];args[4]={...(alt===null||alt===undefined?{}:typeof alt==='object'?alt:{cost:alt}),g52Reduction:v};api.cast(s,t.p,...args);break;}
   default:throw Error('未実装の水ユーティリティ選択：'+t.op);

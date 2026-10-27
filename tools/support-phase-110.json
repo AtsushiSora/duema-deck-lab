@@ -1,0 +1,272 @@
+{
+  "phase": 110,
+  "checkedAt": "2026-10-28",
+  "description": "手札補充、マナと墓地からの回収、バウンスと防御を支える6種類。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dm21-039",
+      "name": "ウィザード・リザレクション",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-039",
+      "faces": [
+        {
+          "name": "ウィザード・リザレクション",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n自分の山札の上から１枚目を自分のマナゾーンに置く。その後、呪文を１枚、自分のマナゾーンから手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g110Role": "wizard",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "spell": true
+            },
+            "title": "マナから手札に戻す呪文を1枚選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "8740fd46f280f976bf27ee857d6852bcdaeec3321c682a91f25db85cc351af87",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-039.jpg"
+    },
+    {
+      "id": "dm09-011",
+      "name": "アナライズ・チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-011",
+      "faces": [
+        {
+          "name": "アナライズ・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "バトルゾーンにあるクリーチャーを２体まで選び、持ち主の手札に戻す。\nチャージャー(この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "g110Role": "analyze",
+        "effect": "champion",
+        "g52Effect": "Teleport"
+      },
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "4001b371af0d265c4a99331d38d3a8e9f0ab9e3395f39ccb1868a6b522c71e77",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-011.jpg"
+    },
+    {
+      "id": "dm08-026",
+      "name": "ウェーブ・ランス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-026",
+      "faces": [
+        {
+          "name": "ウェーブ・ランス",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻す。それがドラゴンであれば、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g110Role": "wave",
+        "effect": "champion",
+        "g52Effect": "Wave"
+      },
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "337e4b4a1452f0d9667810de339901a9d1b8fc28364c7f6ac9d5c4d1b3ff60fe",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm08-026.jpg"
+    },
+    {
+      "id": "dmd16-006",
+      "name": "ヴァルハラ・マジック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd16-006",
+      "faces": [
+        {
+          "name": "ヴァルハラ・マジック",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにある相手のクリーチャーを１体選び、タップする。\nカードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g110Role": "valhalla",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "802eca7760ff3d6736d6fea3ab2fc5fa2618b8f9f934b395cd29ff94757c7c49",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd16-006.jpg"
+    },
+    {
+      "id": "dmd27-004",
+      "name": "イフリート・ハンド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd27-004",
+      "faces": [
+        {
+          "name": "イフリート・ハンド",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のコスト９以下のクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g110Role": "ifrit",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "max": 9
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "67724c17e1bf32dad4564b16e619acbb01703ceb8bc657ee999da21592bae8a8",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd27-004.jpg"
+    },
+    {
+      "id": "dmrp14-018",
+      "name": "アンシーン・ハンド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-018",
+      "faces": [
+        {
+          "name": "アンシーン・ハンド",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のアンタップしているクリーチャーを１体破壊する。\nクリーチャーを１体、自分の墓地から手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g110Role": "unseen",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "untapped": true
+            }
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "title": "墓地から手札に戻すクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "6dee1882d710912c9ce49241fd6c8299ffe5750a16a4574c05b3c3e52d8d2edb",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-018.jpg"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-28",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 129,
+    "allSixUnrestricted": true,
+    "limits": {
+      "dm21-039": 4,
+      "dm09-011": 4,
+      "dm08-026": 4,
+      "dmd16-006": 4,
+      "dmd27-004": 4,
+      "dmrp14-018": 4
+    }
+  }
+}
