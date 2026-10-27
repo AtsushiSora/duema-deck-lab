@@ -1,3 +1,4 @@
+import {PHOTO_OCTOBER_DECKS} from '../dist/photo-october-decks.js';
 import {resolveChampions} from '../dist/champions.js';
 import {PHOTO_REVISED_TWO} from './fixtures/photo-revised-two.mjs';
 import {PHOTO_REVISED_THREE} from './fixtures/photo-revised-three.mjs';
@@ -57,3 +58,5 @@ for(const deck of PHOTO_FIFTEEN_DECKS)if(validateDeck(deck).length||registry.cov
 
 for(const deck of PHOTO_REVISED_TWO)if(validateDeck(deck).length||registry.coverage(deck).unsupported)throw Error('追加の2枚の画像に未対応カードがあります：'+deck.name);console.log('Checked both revised screenshots:80 supported copies.');
 for(const d of PHOTO_REVISED_THREE)if(validateDeck(d).length||registry.coverage(d).unsupported)throw Error('改訂3画像の40枚構成を確認してください：'+d.name);console.log('Checked three revised screenshots:53 supported identities and120 physical copies.');
+
+for(const d of PHOTO_OCTOBER_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('今回の画像の40枚が未対応です：'+d.name);console.log('Checked both October screenshots: 37 identities and 80 supported copies.');
