@@ -6,7 +6,7 @@ const TRIPLE='dm14-021',BRAIN='dm08-043',CRIMSON='dm08-032',REVERSE='dm08-047',N
 const play=(s,id)=>{const x=inst(id);s.players[0].hand.push(x);act(s,'play',a=>a.cardId===id);return x;};
 const pick=(s,value)=>{const a=e.getLegalActions(s).find(a=>a.kind==='extended'&&JSON.stringify(s.decision.choices[a.choice].value)===JSON.stringify(value));assert.ok(a,JSON.stringify(s.decision));e.step(s,a);};
 test('four utility definitions preserve canonical names, official effects, real art and four-copy limits',()=>{
- assert.equal(manifest.cards.length,4);assert.equal(data.cards.length,1649);assert.equal(data.supportExpansion.phase,113);
+ assert.equal(manifest.cards.length,4);assert.equal(data.cards.length,1655);assert.equal(data.supportExpansion.phase,114);
  for(const row of manifest.cards){const c=e.card(row.id);assert.equal(c.name,row.name);assert.deepEqual(details.cards.find(x=>x.id===row.id).faces,row.faces);for(const[k,v]of Object.entries(row.spec))assert.deepEqual(c[k],v);assert.equal(c.limit,4);assert.equal(registry.get(row.id).supported,true);assert.equal(CARD_IMAGES[row.id],row.image);}
 });
 test('Triple Brain chooses zero to three cards and preserves library order and physical identities',()=>{

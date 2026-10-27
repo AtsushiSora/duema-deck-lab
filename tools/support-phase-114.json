@@ -1,0 +1,259 @@
+{
+  "phase": 114,
+  "checkedAt": "2026-10-28",
+  "description": "全体バウンス、墓地のマナ化、タップ相手の除去、呪文検索とアビスラッシュのクリーチャー6種類。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm01-018",
+      "name": "ソーサーヘッド・シャーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm01-018",
+      "faces": [
+        {
+          "name": "ソーサーヘッド・シャーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、バトルゾーンにあるパワー2000以下のクリーチャーをすべて、 持ち主の手札に戻す。",
+          "race": "ゲル・フィッシュ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g114Role": "shark",
+        "g75Effect": "Shark",
+        "effect": "champion"
+      },
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "3da36bb53962725211aba8ce26f3e1c37d61a74f7cb0e81f0811cd530d809e1d",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm01-018.jpg"
+    },
+    {
+      "id": "dm01-010",
+      "name": "トゲ刺しマンドラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm01-010",
+      "faces": [
+        {
+          "name": "トゲ刺しマンドラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、自分の墓地からクリーチャーを１体選び、自分のマナゾーンに置いてよい。",
+          "race": "ツリーフォーク",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g114Role": "mandra",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "mana",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "title": "墓地からマナに置くクリーチャーを1体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "c614f4a20ee8a7fd9d0fa41da583bcdff0a9db6aba6344f244efda7b7793488a",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm01-010.jpg"
+    },
+    {
+      "id": "dmsd01-003",
+      "name": "ドツキ万次郎",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd01-003",
+      "faces": [
+        {
+          "name": "ドツキ万次郎",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、相手のタップしているクリーチャーを１体選び、相手はそれを自身の山札の一番下に置く。",
+          "race": "ジョーカーズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g114Role": "dotsuki",
+        "g78Effect": "Dotsuki",
+        "effect": "champion"
+      },
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "f98083c591390828edb5422a902d7d6b2bd3019a827cffb99e0f38979499dd78",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd01-003.jpg"
+    },
+    {
+      "id": "dmr22-065",
+      "name": "タイム１ ドレミXII",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-065",
+      "faces": [
+        {
+          "name": "タイム１ ドレミXII",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を見る。その中から呪文を１枚選び、相手に見せてから自分の手札に加えてもよい。その後、残りを好きな順序で山札の一番下に置く。",
+          "race": "ドレミ団",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g114Role": "doremi",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "stages": [
+              {
+                "to": "hand",
+                "n": 1,
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "spell": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "2970af1c2750aeedbafbf47b6eb620d097bb733fe270d8e83c9b22d5ae87c131",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-065.jpg"
+    },
+    {
+      "id": "dmrp04s-088",
+      "name": "ボゴボゴウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-088",
+      "faces": [
+        {
+          "name": "ボゴボゴウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。\nこのクリーチャーが破壊される時、墓地に置くかわりに自分のマナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g114Role": "bogo",
+        "destroyToMana": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "e148a3244ed5409527c66fa258eaa9c586053a914219332855e6c003c5eaaa26",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-088.jpg"
+    },
+    {
+      "id": "dm22sd1-005",
+      "name": "ベル＝ゲルエール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22sd1-005",
+      "faces": [
+        {
+          "name": "ベル＝ゲルエール",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\nこのクリーチャーが出た時、自分の山札の上から２枚を墓地に置く。",
+          "race": "アビスロイヤル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g114Role": "bell",
+        "abyssRush": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 2
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "929dd61497c0c402fe653e4268b77a7a93a7fc1c3210c2b30804279e25d9dfc5",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22sd1-005.jpg"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-28",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 129,
+    "allSixUnrestricted": true,
+    "limits": {
+      "dm01-018": 4,
+      "dm01-010": 4,
+      "dmsd01-003": 4,
+      "dmr22-065": 4,
+      "dmrp04s-088": 4,
+      "dm22sd1-005": 4
+    }
+  }
+}

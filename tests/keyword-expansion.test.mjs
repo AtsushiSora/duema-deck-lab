@@ -16,7 +16,7 @@ const act=(s,kind,predicate=()=>true)=>{const a=getLegalActions(s).find(a=>a.kin
 const attackSetup=(id='dm05-015',shields=['dm01-075','dm01-075','dm01-075','dm01-075','dm01-075'])=>{const s=createGame([PRESETS[0],PRESETS[1]],{seed:21});s.phase='attack';give(s,0,'battle',[id]);give(s,1,'battle',[]);give(s,1,'shields',shields);return s;};
 
 test('phase 2 freezes 173 complete official keyword cards and retains all previous registration identities',()=>{
- const added=data.cards.filter(c=>c.supportBatch==='phase-2');assert.equal(added.length,173);assert.equal(data.cards.length,1649);assert.equal(new Set(added.map(c=>c.id)).size,173);assert.equal(manifest.cards.length,173);
+ const added=data.cards.filter(c=>c.supportBatch==='phase-2');assert.equal(added.length,173);assert.equal(data.cards.length,1655);assert.equal(new Set(added.map(c=>c.id)).size,173);assert.equal(manifest.cards.length,173);
  const registry=createCatalogue(snapshot,data.cards,details);assert.equal(registry.cards.length,11833);
  for(const c of added){const d=details.cards.find(x=>x.id===c.id),row=manifest.cards.find(x=>x.id===c.id),f=d.faces[0];assert.equal(d.status,'complete');assert.equal(d.faces.length,1);assert.equal(f.typeText,'クリーチャー');assert.equal(f.civilizations.length,1);assert.equal(c.text,f.abilityText);assert.equal(c.cost,f.cost);assert.equal(c.power,Number(f.powerText));assert.deepEqual(keywordSpec(c.text),row.spec);for(const[k,v]of Object.entries(row.spec))assert.equal(c[k],v);assert.equal(registry.get(c.id).supported,true);}
  assert.equal(added.filter(c=>c.breaker).length,56);assert.equal(added.filter(c=>c.breaker===3).length,10);

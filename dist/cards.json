@@ -37562,15 +37562,180 @@
       ],
       "supportBatch": "phase-113",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm01-018",
+      "name": "ソーサーヘッド・シャーク",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "ゲル・フィッシュ",
+      "text": "このクリーチャーがバトルゾーンに出たとき、バトルゾーンにあるパワー2000以下のクリーチャーをすべて、 持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm01-018",
+      "limit": 4,
+      "g114Role": "shark",
+      "g75Effect": "Shark",
+      "effect": "champion",
+      "supportBatch": "phase-114",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm01-010",
+      "name": "トゲ刺しマンドラ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ツリーフォーク",
+      "text": "このクリーチャーがバトルゾーンに出たとき、自分の墓地からクリーチャーを１体選び、自分のマナゾーンに置いてよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm01-010",
+      "limit": 4,
+      "g114Role": "mandra",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "mana",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "title": "墓地からマナに置くクリーチャーを1体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-114",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd01-003",
+      "name": "ドツキ万次郎",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ジョーカーズ",
+      "text": "このクリーチャーがバトルゾーンに出た時、相手のタップしているクリーチャーを１体選び、相手はそれを自身の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd01-003",
+      "limit": 4,
+      "g114Role": "dotsuki",
+      "g78Effect": "Dotsuki",
+      "effect": "champion",
+      "supportBatch": "phase-114",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-065",
+      "name": "タイム１ ドレミXII",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ドレミ団",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を見る。その中から呪文を１枚選び、相手に見せてから自分の手札に加えてもよい。その後、残りを好きな順序で山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-065",
+      "limit": 4,
+      "g114Role": "doremi",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "spell": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-114",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-088",
+      "name": "ボゴボゴウ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "グランセクト",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。\nこのクリーチャーが破壊される時、墓地に置くかわりに自分のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-088",
+      "limit": 4,
+      "g114Role": "bogo",
+      "destroyToMana": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-114",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22sd1-005",
+      "name": "ベル＝ゲルエール",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "アビスロイヤル",
+      "text": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\nこのクリーチャーが出た時、自分の山札の上から２枚を墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22sd1-005",
+      "limit": 4,
+      "g114Role": "bell",
+      "abyssRush": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-114",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 113,
+    "phase": 114,
     "checkedAt": "2026-10-28",
-    "baseCount": 1643,
+    "baseCount": 1649,
     "newEffectCards": 6,
     "newVanillaCards": 0,
-    "totalCount": 1649,
+    "totalCount": 1655,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf"
@@ -39672,6 +39837,21 @@
         "newEffectCards": 6,
         "newVanillaCards": 0,
         "totalCount": 1643,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf"
+        ],
+        "next": [
+          "対応済みカードの対戦検証と改善"
+        ]
+      },
+      {
+        "phase": 113,
+        "checkedAt": "2026-10-28",
+        "baseCount": 1643,
+        "newEffectCards": 6,
+        "newVanillaCards": 0,
+        "totalCount": 1649,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf"
