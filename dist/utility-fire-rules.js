@@ -10,6 +10,11 @@ export function createUtilityFireRules(api){
  case'g75_Arrow':put(s,follow(t,'Destroy',{limit:6000,both:true}),follow(t,'BurnShield'));break;
  case'g75_Meteor':put(s,follow(t,'Destroy',{limit:6000,blocker:true}));break;
  case'g75_Rush':put(s,follow(t,'Destroy',{limit:6000}),task('discard',t.p,t.source,{n:1,causedBy:t.p}));break;
+ case'g75_Burst':put(s,follow(t,'Sweep',{limit:3000}),follow(t,'BurstDraw'));break;
+ case'g75_BurstDraw':if(living(s,t.p).some(x=>currentPower(s,x)>=6000))api.draw(s,t.p,1);break;
+ case'g75_Spear':put(s,follow(t,'Sweep',{limit:4000,both:true}));break;
+ case'g75_Duel':put(s,follow(t,'Sweep',{blockers:true,both:true}));break;
+ case'g75_Sweep':{const rows=(t.both?[t.p,1-t.p]:[1-t.p]).flatMap(p=>living(s,p).filter(x=>t.blockers?effective(x,s).blocker:currentPower(s,x)<=t.limit).map(x=>({player:p,uid:x.uid,to:'grave',destroy:true,controller:t.p})));if(rows.length)api.move(s,rows);break;}
  case'g75_Destroy':{const list=(t.both?[t.p,1-t.p]:[1-t.p]).flatMap(p=>living(s,p)).filter(x=>currentPower(s,x)<=t.limit&&(!t.blocker||effective(x,s).blocker));choice(s,t,'破壊するパワー'+t.limit+'以下'+(t.blocker?'のブロッカー':'のクリーチャー')+'を1体選ぶ',targetOptions(s,t.p,list).map(o=>({...o,label:(own.battle.some(x=>x.uid===o.value)?'自分：':'相手：')+o.label,score:own.battle.some(x=>x.uid===o.value)?-10-o.score:15+o.score})));break;}
  case'g75_BurnShield':choice(s,t,'墓地に置く自分のシールドを1つ選ぶ（S・トリガーは使えません）',own.shields.map((x,i)=>opt('シールド '+(i+1)+'（カード'+api.shieldCards(x).length+'枚）',x.uid,-api.shieldCards(x).length)));break;
  case'g75_Scrapper':put(s,follow(t,'CostPick',{selected:[],total:0}));break;

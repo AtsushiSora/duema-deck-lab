@@ -8,6 +8,8 @@ export function createUtilityDarkControl(api){
  function finishOrder(s,t,ids){const own=s.players[t.p],xs=ids.map(uid=>api.remove(own.deck,uid)).filter(Boolean);own.deck.push(...xs);}
  function run(s,t){if(!t.op.startsWith('g78_'))return false;const own=s.players[t.p];switch(t.op){
  case'g78_Orzekia':put(s,follow(t,'Sacrifice',{n:1,selected:[]}),follow(t,'Sacrifice',{p:1-t.p,n:2,selected:[]}));break;
+ // The latest printed wording destroys the controller's creature first, then the opponent's.
+ case'g78_Dio':put(s,follow(t,'Sacrifice',{controller:t.p,n:1,selected:[]}),follow(t,'Sacrifice',{controller:t.p,p:1-t.p,n:1,selected:[]}));break;
  case'g78_Sacrifice':{const options=targetOptions(s,t.p,living(s,t.p).filter(x=>!t.selected.some(r=>r.uid===x.uid)));if(t.selected.length>=t.n||!options.length){destroy(s,t);break;}choice(s,t,'破壊する自分のクリーチャーを'+t.n+'体選ぶ（'+t.selected.length+'/'+t.n+'）',options.map(o=>({...o,score:-o.score+(card(o.cardId).g78Fly?15:0)})));break;}
  case'g78_Gajira':choice(s,t,'墓地に置く相手のシールドを1つ選ぶ（S・トリガーは使えません）',s.players[1-t.p].shields.filter(x=>!api.shieldCards(x).some(y=>y.g37ShieldHeld)).map((x,i)=>opt('シールド '+(i+1)+'（カード'+api.shieldCards(x).length+'枚）',x.uid,api.shieldCards(x).length)));break;
  case'g78_Alexei':{const options=targetOptions(s,t.p,[t.p,1-t.p].flatMap(p=>s.players[p].battle.filter(x=>!x.sealed&&(card(x).type==='gear'||/サムライ/.test(effective(x,s).race||'')))));choice(s,t,'山札の一番下に戻すサムライまたはクロスギアを1つまで選ぶ',[...options.map(o=>({...o,label:(own.battle.some(x=>x.uid===o.value)?'自分：':'相手：')+o.label,score:own.battle.some(x=>x.uid===o.value)?-10-o.score:15+o.score})),opt('戻さない',null,0)]);break;}
