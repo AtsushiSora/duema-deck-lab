@@ -1,4 +1,4 @@
-import {createUtilityHandSupport} from './utility-hand-support.js?v=0.150.0';
+import {createUtilityHandSupport} from './utility-hand-support.js?v=0.154.0';
 import {createUtilityDispectorSeeds} from './utility-dispector-seeds.js?v=0.148.0';
 import {createUtilityNatureDeployment} from './utility-nature-deployment.js?v=0.144.0';
 import {createUtilityLightControl} from './utility-light-control.js?v=0.151.0';

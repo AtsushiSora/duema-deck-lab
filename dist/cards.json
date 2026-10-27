@@ -37042,15 +37042,207 @@
       ],
       "supportBatch": "phase-110",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmsd08-007",
+      "name": "ガガガン・ジョーカーズ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "ジョーカーズ",
+      "text": "自分の山札の上から３枚を見る。その中からクリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、残りを好きな順序で自分の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd08-007",
+      "limit": 4,
+      "g111Role": "gagan",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "stages": [
+            {
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-111",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-074",
+      "name": "エール・ライフ",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n自分の山札の上から１枚目をマナゾーンに置く。\n相手の「ブロッカー」を持つクリーチャーを１体、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-074",
+      "limit": 4,
+      "g111Role": "yell",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        },
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-111",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx22b-163",
+      "name": "ガールズ・ジャーニー",
+      "civ": "光/水/自然",
+      "civilizations": [
+        "光",
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nカードを３枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-163",
+      "limit": 4,
+      "trigger": true,
+      "g111Role": "journey",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 3
+        }
+      ],
+      "supportBatch": "phase-111",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx07-016",
+      "name": "オンセン・ブレイン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nカードを１枚引く。その後、相手のシールドが２枚以下ならば、カードをさらに２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx07-016",
+      "limit": 4,
+      "trigger": true,
+      "g111Role": "onsen",
+      "effect": "champion",
+      "g92Effect": "Onsen",
+      "supportBatch": "phase-111",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr06-014",
+      "name": "ウェディング・ゲート",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n光でも進化でもないエンジェル・コマンドを２体まで、自分の手札からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-014",
+      "limit": 4,
+      "trigger": true,
+      "g111Role": "wedding",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "notColor": "光",
+            "race": "エンジェル・コマンド"
+          },
+          "title": "手札から出す光でも進化でもないエンジェル・コマンドを2体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-111",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex2-048",
+      "name": "インフェルノ・ポータル",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "闇のクリーチャーを１体、自分の墓地から出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-048",
+      "limit": 4,
+      "g111Role": "portal",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "creature": true,
+            "color": "闇"
+          },
+          "title": "墓地から出す闇のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-111",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 110,
+    "phase": 111,
     "checkedAt": "2026-10-28",
-    "baseCount": 1625,
+    "baseCount": 1631,
     "newEffectCards": 6,
     "newVanillaCards": 0,
-    "totalCount": 1631,
+    "totalCount": 1637,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/"
     ],
@@ -39111,6 +39303,20 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/card/detail/?id=dmd11-015",
           "https://dm.takaratomy.co.jp/rule/qa_old/34995/"
+        ],
+        "next": [
+          "対応済みカードの対戦検証と改善"
+        ]
+      },
+      {
+        "phase": 110,
+        "checkedAt": "2026-10-28",
+        "baseCount": 1625,
+        "newEffectCards": 6,
+        "newVanillaCards": 0,
+        "totalCount": 1631,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/"
         ],
         "next": [
           "対応済みカードの対戦検証と改善"

@@ -22,6 +22,8 @@ export function createUtilityHandSupport(api){
  case'g92_Typhoon':{const ids=own.hand.map(x=>x.uid);put(s,follow(t,'Order',{ids,count:ids.length,ordered:[]}));break;}
  case'g92_Order':order(s,t);break;
  case'g92_Snow':if(own.mana.length<s.players[1-t.p].mana.length)put(s,task('g34_Ramp',t.p,t.source,{n:2}));break;
+ case'g92_Onsen':put(s,task('g34_Draw',t.p,t.source,{n:1}),follow(t,'OnsenBonus'));break;
+ case'g92_OnsenBonus':if(s.players[1-t.p].shields.length<=2)put(s,task('g34_Draw',t.p,t.source,{n:2}));break;
  case'g92_Rainbow':put(s,task('g34_Target',t.p,t.source,{filter:{max:5},to:'hand',title:'手札に戻すコスト5以下の相手のクリーチャーを1体選ぶ'}),follow(t,'RainbowDiscard'));break;
  case'g92_RainbowDiscard':if(multicolorMana(s,t.p)>=2)put(s,task('discard',1-t.p,t.source,{n:1,causedBy:t.p,random:true}));break;
  default:throw Error('未実装の手札・攻撃補助効果：'+t.op);

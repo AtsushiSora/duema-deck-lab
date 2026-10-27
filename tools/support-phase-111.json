@@ -1,0 +1,283 @@
+{
+  "phase": 111,
+  "checkedAt": "2026-10-28",
+  "description": "クリーチャー検索、マナ加速、手札補充と手札・墓地からの展開を支える6種類。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmsd08-007",
+      "name": "ガガガン・ジョーカーズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd08-007",
+      "faces": [
+        {
+          "name": "ガガガン・ジョーカーズ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分の山札の上から３枚を見る。その中からクリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "ジョーカーズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g111Role": "gagan",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "stages": [
+              {
+                "to": "hand",
+                "n": 1,
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "abb24ff7bfbf348a1e7c78689528ec2c6ae79286743d77226bf453b8e1c363ce",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd08-007.jpg"
+    },
+    {
+      "id": "dmr23-074",
+      "name": "エール・ライフ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-074",
+      "faces": [
+        {
+          "name": "エール・ライフ",
+          "typeText": "呪文",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分の山札の上から１枚目をマナゾーンに置く。\n相手の「ブロッカー」を持つクリーチャーを１体、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g111Role": "yell",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "e9b49ed4ac981bd7866cb871037466d2915bbb06e6676e6ecac7adb8daee8529",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-074.jpg"
+    },
+    {
+      "id": "dmx22b-163",
+      "name": "ガールズ・ジャーニー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-163",
+      "faces": [
+        {
+          "name": "ガールズ・ジャーニー",
+          "typeText": "呪文",
+          "civilizationText": "光/水/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nカードを３枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g111Role": "journey",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "b36dcc767d2bf362c6d537f062ff25c9e623ea882e28e48ea7f91e6af63c2275",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22b-163.jpg"
+    },
+    {
+      "id": "dmx07-016",
+      "name": "オンセン・ブレイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx07-016",
+      "faces": [
+        {
+          "name": "オンセン・ブレイン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nカードを１枚引く。その後、相手のシールドが２枚以下ならば、カードをさらに２枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g111Role": "onsen",
+        "effect": "champion",
+        "g92Effect": "Onsen"
+      },
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "a4e824d4d47085cf652e90942c3f84ba2b7294eb04fedd21809e1d9676ad3c2b",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx07-016.jpg"
+    },
+    {
+      "id": "dmr06-014",
+      "name": "ウェディング・ゲート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-014",
+      "faces": [
+        {
+          "name": "ウェディング・ゲート",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n光でも進化でもないエンジェル・コマンドを２体まで、自分の手札からバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g111Role": "wedding",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "notColor": "光",
+              "race": "エンジェル・コマンド"
+            },
+            "title": "手札から出す光でも進化でもないエンジェル・コマンドを2体まで選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "c003192793e178bdb59236826d753cb19bf9775be1a9ad0ac4075afc642a577d",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-014.jpg"
+    },
+    {
+      "id": "dm24ex2-048",
+      "name": "インフェルノ・ポータル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-048",
+      "faces": [
+        {
+          "name": "インフェルノ・ポータル",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "闇のクリーチャーを１体、自分の墓地から出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g111Role": "portal",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "color": "闇"
+            },
+            "title": "墓地から出す闇のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "516998b99b1fd13e31407614d111362b7c580e478db36619505ba96fd41d7376",
+        "facesMatched": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex2-048.jpg"
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-28",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 129,
+    "allSixUnrestricted": true,
+    "limits": {
+      "dmsd08-007": 4,
+      "dmr23-074": 4,
+      "dmx22b-163": 4,
+      "dmx07-016": 4,
+      "dmr06-014": 4,
+      "dm24ex2-048": 4
+    }
+  }
+}
