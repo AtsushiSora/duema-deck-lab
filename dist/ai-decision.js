@@ -2,7 +2,7 @@ import {chooseAI} from './engine.js';
 
 // One local worker per active manual match. Only the chosen action returns;
 // the worker never executes a move on the live game or sends data externally.
-export function createAIDecision({cards,createWorker=()=>new Worker(new URL('./ai-decision-worker.js?v=0.148.0',import.meta.url),{type:'module'}),fallback=chooseAI}={}){
+export function createAIDecision({cards,createWorker=()=>new Worker(new URL('./ai-decision-worker.js?v=0.149.0',import.meta.url),{type:'module'}),fallback=chooseAI}={}){
  let worker=null,pending=null,serial=0,disabled=false,disposed=false;
  const stop=()=>{worker?.terminate();worker=null;};
  const cancel=()=>{const old=pending;pending=null;serial++;stop();old?.resolve(null);};
