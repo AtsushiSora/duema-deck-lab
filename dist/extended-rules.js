@@ -1,4 +1,4 @@
-import {createUtilityKnightRules} from './utility-knight-rules.js?v=0.122.0';
+import {createUtilityKnightRules} from './utility-knight-rules.js?v=0.123.0';
 import {createUtilityModalRules} from './utility-modal-rules.js?v=0.121.0';
 import {createUtilitySacrificeRules} from './utility-sacrifice-rules.js?v=0.120.0';
 import {createUtilityRecoveryRules} from './utility-recovery-rules.js?v=0.119.0';
