@@ -1,0 +1,4524 @@
+{
+  "release": "0.147.0",
+  "engineVersion": "0.106.0",
+  "aiVersion": "2.3.34",
+  "baselineCommit": "0fa746d9c8b121abf80843619ab4b415cc936599",
+  "checkedAt": "2026-10-27",
+  "scope": "CPU tactics, local worker responsiveness and broader paired evaluation. Character recipes and opening/draw assistance are byte-for-byte unchanged.",
+  "limits": {
+    "finishAttackers": 8,
+    "finishBlockers": 5,
+    "finishShields": 10,
+    "finishNodes": 1800,
+    "mainPlanning": "unchanged deterministic size/node budget"
+  },
+  "preservedSha256": {
+    "hero-decks.json": "4e6c8bf5e30bf556c96ead77e720035ca865c30fa523f549a5f58e0117fec4d9",
+    "rival-decks.json": "060bc6465da627292aff155c03f7543468ba604040e9dcfc36fe1f67d7107387",
+    "hero-draw.js": "4a77ddaf01770e73433a3c3818dcee8e98f1dbc6fcd7a6120e798a8d0839e1b2",
+    "champion-decks.json": "3aca4f8c10bf237c99037cdefeffb4999a7f6950f6ed62191068138bf21b845c",
+    "cards.json": "decc00fd8a28fbf3946f9d717b183153b8935b460706ca5b5bd35871456d5de7",
+    "environment.js": "8d4467ee9c9aac2c56c0ef7a4ef1b96e7ea03b024eae141c9ed57f8512c9a1d1",
+    "starter25-data.js": "d2f03b1150e4000a02d62c4e3268c61d45428828b74d2244a94a1eba6771c014"
+  },
+  "sourceSha256": {
+    "strategic-ai.js": "5f77c375042d004adaecd678efbc41366eddc529de9d67b7d6f0a8409555b367",
+    "attack-plan.js": "5ea63af3c57443f67c60d6fa27e432dbbd9164a2fb8a65e1d9df69dcdb9db033",
+    "ai-playback.js": "a014ffbefdb6085b89bdac95a8e570bf2db027525d030edc078b15b094e08f1b",
+    "ai-decision.js": "597010d869f5e23da477457ad2e7f23aaf2849cbf4688192fe11432dff1fd105",
+    "ai-decision-worker.js": "02675ef0f85913f456c37766e1e40c5e4ce83d7df7a914ee5754affdebba5a02"
+  },
+  "comparison": [
+    {
+      "id": "hakuoh",
+      "name": "白凰",
+      "gamesEach": 32,
+      "beforeWins": 15,
+      "afterWins": 15,
+      "cpuFirst": {
+        "before": 7,
+        "after": 7,
+        "gamesEach": 16
+      },
+      "cpuSecond": {
+        "before": 8,
+        "after": 8,
+        "gamesEach": 16
+      }
+    },
+    {
+      "id": "kira",
+      "name": "キラ",
+      "gamesEach": 32,
+      "beforeWins": 20,
+      "afterWins": 20,
+      "cpuFirst": {
+        "before": 10,
+        "after": 10,
+        "gamesEach": 16
+      },
+      "cpuSecond": {
+        "before": 10,
+        "after": 10,
+        "gamesEach": 16
+      }
+    }
+  ],
+  "latencyCaution": "The raw post-change batch contains a 116799ms wall-clock outlier at hakuoh seed147202. This is retained, not discarded. An isolated rerun of the same game completed with a maximum recorded decision of 1654ms. A separate real-worker probe of its action54 position is recorded below. The cause of the extreme batch measurement is unconfirmed. These measurements do not guarantee phone latency or a reduction in computation time.",
+  "runtimeNote": "Paired and six-character batches began before the version-label/cache update. Their tactical logic and recipes match the final implementation; original runtime labels are retained. The completed production-worker tests and slow-position probe use the final release modules.",
+  "limitations": "Eight fixed CPU opponents, two seeds per initiative per matchup, 32 games per character per version. Outcomes were unchanged on this paired set. Focused position tests establish the new decisions; this is not evidence of improved overall human win rate. Timings are from this development host.",
+  "tests": {
+    "focused": 189,
+    "navigation": 67,
+    "moduleCache": 1,
+    "total": 257,
+    "productionWorkerCompletedMatch": true,
+    "physicalIdentityConservation": true
+  },
+  "before": {
+    "engineVersion": "0.105.0",
+    "aiVersion": "2.3.33",
+    "revisions": [
+      {
+        "mode": "before",
+        "engineVersion": "0.105.0",
+        "aiVersion": "2.3.33"
+      }
+    ],
+    "seedBase": 147000,
+    "rounds": 2,
+    "opponents": [
+      {
+        "id": "practice-rg",
+        "name": "火自然ビート",
+        "cards": [
+          {
+            "id": "dm01-100",
+            "count": 4
+          },
+          {
+            "id": "dm01-097",
+            "count": 4
+          },
+          {
+            "id": "dm01-098",
+            "count": 4
+          },
+          {
+            "id": "dm01-095",
+            "count": 4
+          },
+          {
+            "id": "dm01-101",
+            "count": 4
+          },
+          {
+            "id": "dm01-108",
+            "count": 4
+          },
+          {
+            "id": "dm01-103",
+            "count": 4
+          },
+          {
+            "id": "dm01-104",
+            "count": 4
+          },
+          {
+            "id": "dm01-106",
+            "count": 4
+          },
+          {
+            "id": "dm01-110",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "env-gp2026-pinky",
+        "name": "ドギラゴン王道（ピンキ→）",
+        "cards": [
+          {
+            "id": "dm23bd4-008",
+            "count": 2
+          },
+          {
+            "id": "dm26rp1-S002",
+            "count": 2
+          },
+          {
+            "id": "dm25sp2-014",
+            "count": 4
+          },
+          {
+            "id": "dm23ex3-S07",
+            "count": 4
+          },
+          {
+            "id": "dm25rp3-012",
+            "count": 4
+          },
+          {
+            "id": "dm23ex2-016",
+            "count": 4
+          },
+          {
+            "id": "dm24ex2-019",
+            "count": 4
+          },
+          {
+            "id": "dm25rp4-DM1",
+            "count": 4
+          },
+          {
+            "id": "dm26rp1-S008",
+            "count": 1
+          },
+          {
+            "id": "sp-020",
+            "count": 1
+          },
+          {
+            "id": "dm25rp3-S09",
+            "count": 1
+          },
+          {
+            "id": "dmrp15-km1",
+            "count": 1
+          },
+          {
+            "id": "dm22ex1-030",
+            "count": 4
+          },
+          {
+            "id": "dmx11-012",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "photo-fifteen-4",
+        "name": "追加画像 4",
+        "cards": [
+          {
+            "id": "dm26rp2-S010",
+            "count": 4
+          },
+          {
+            "id": "dm22ex2-S07",
+            "count": 4
+          },
+          {
+            "id": "dm23ex3-S07",
+            "count": 4
+          },
+          {
+            "id": "dm22ex1-011",
+            "count": 4
+          },
+          {
+            "id": "dm26rp2-S005",
+            "count": 4
+          },
+          {
+            "id": "dm26rp1-S006",
+            "count": 3
+          },
+          {
+            "id": "dmex12-035",
+            "count": 4
+          },
+          {
+            "id": "dmex17-102",
+            "count": 4
+          },
+          {
+            "id": "dmd27-003",
+            "count": 1
+          },
+          {
+            "id": "dm26rp2-OR001",
+            "count": 4
+          },
+          {
+            "id": "dmex10-012",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "photo-fifteen-13",
+        "name": "追加画像 13",
+        "cards": [
+          {
+            "id": "dm22ex1-007",
+            "count": 4
+          },
+          {
+            "id": "dmx14-001",
+            "count": 1
+          },
+          {
+            "id": "dmrp17-km2",
+            "count": 4
+          },
+          {
+            "id": "dm24rp4-OR1",
+            "count": 2
+          },
+          {
+            "id": "dm25rp2-S03",
+            "count": 4
+          },
+          {
+            "id": "dm25rp1-S10",
+            "count": 4
+          },
+          {
+            "id": "dmex17-111",
+            "count": 4
+          },
+          {
+            "id": "dm25rp1-006",
+            "count": 4
+          },
+          {
+            "id": "dm25rp4-027",
+            "count": 4
+          },
+          {
+            "id": "dm25rp2-051",
+            "count": 4
+          },
+          {
+            "id": "dm22rp1-017",
+            "count": 4
+          },
+          {
+            "id": "dmrp03-036",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "env-magic-practice",
+        "name": "赤青マジック（いっぺこ）",
+        "cards": [
+          {
+            "id": "dm23rp2-059",
+            "count": 4
+          },
+          {
+            "id": "dmd27-003",
+            "count": 1
+          },
+          {
+            "id": "dm23ex1-074",
+            "count": 3
+          },
+          {
+            "id": "dm23rp3-006",
+            "count": 4
+          },
+          {
+            "id": "dm23rp3-OR2",
+            "count": 4
+          },
+          {
+            "id": "dm23ex1-003",
+            "count": 2
+          },
+          {
+            "id": "dm23rp2-013",
+            "count": 4
+          },
+          {
+            "id": "dm23rp3-013",
+            "count": 2
+          },
+          {
+            "id": "dm23rp1-013",
+            "count": 4
+          },
+          {
+            "id": "dm23rp3-S04",
+            "count": 2
+          },
+          {
+            "id": "dm23rp2-060",
+            "count": 2
+          },
+          {
+            "id": "dm23rp4-003",
+            "count": 4
+          },
+          {
+            "id": "dmrp11-007",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "env-heavens-practice",
+        "name": "4色天門（さくやま）",
+        "cards": [
+          {
+            "id": "dmbd10-010",
+            "count": 4
+          },
+          {
+            "id": "dm25bd2-014",
+            "count": 4
+          },
+          {
+            "id": "dm25rp3-S06",
+            "count": 4
+          },
+          {
+            "id": "dmex17-021",
+            "count": 4
+          },
+          {
+            "id": "dmr19-s03",
+            "count": 1
+          },
+          {
+            "id": "dmrp22-2B",
+            "count": 1
+          },
+          {
+            "id": "dmrp18-s09",
+            "count": 3
+          },
+          {
+            "id": "dm23ex1-003",
+            "count": 2
+          },
+          {
+            "id": "dmrp14-s05",
+            "count": 1
+          },
+          {
+            "id": "dmrp13-km3",
+            "count": 2
+          },
+          {
+            "id": "dm23bd7-003",
+            "count": 1
+          },
+          {
+            "id": "dm24rp4-002",
+            "count": 4
+          },
+          {
+            "id": "dm25rp1-S07",
+            "count": 4
+          },
+          {
+            "id": "dm39-026",
+            "count": 1
+          },
+          {
+            "id": "dm16-007",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "env-scs9-niigata-rose",
+        "name": "墓地ソース（ろーず）",
+        "cards": [
+          {
+            "id": "dmd09-001",
+            "count": 4
+          },
+          {
+            "id": "dmex14-019",
+            "count": 1
+          },
+          {
+            "id": "dm26rp1-S008",
+            "count": 1
+          },
+          {
+            "id": "dm22ex1-007",
+            "count": 3
+          },
+          {
+            "id": "dmrp13-km3",
+            "count": 2
+          },
+          {
+            "id": "dm26rp2-S001",
+            "count": 4
+          },
+          {
+            "id": "dm23rp3-050",
+            "count": 4
+          },
+          {
+            "id": "dm24ex4-039",
+            "count": 4
+          },
+          {
+            "id": "dm25ex1-029",
+            "count": 4
+          },
+          {
+            "id": "dmbd08-a-003",
+            "count": 4
+          },
+          {
+            "id": "dm25ex1-063",
+            "count": 4
+          },
+          {
+            "id": "dmrp06-s06",
+            "count": 4
+          },
+          {
+            "id": "dmex17-105",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "env-complex-practice",
+        "name": "青黒COMPLEX（カルマ）",
+        "cards": [
+          {
+            "id": "dm23rp4-S02",
+            "count": 1
+          },
+          {
+            "id": "dmrp01-041",
+            "count": 4
+          },
+          {
+            "id": "dm25rp1-006",
+            "count": 1
+          },
+          {
+            "id": "dm23rp2-015",
+            "count": 4
+          },
+          {
+            "id": "dm24ex1-028",
+            "count": 4
+          },
+          {
+            "id": "dmr19-004",
+            "count": 2
+          },
+          {
+            "id": "dm23rp3-S03",
+            "count": 4
+          },
+          {
+            "id": "dm23rp4-017",
+            "count": 4
+          },
+          {
+            "id": "dm23ex1-003",
+            "count": 3
+          },
+          {
+            "id": "dmrp15-km1",
+            "count": 1
+          },
+          {
+            "id": "dm23rp1-013",
+            "count": 3
+          },
+          {
+            "id": "dm24bd4-007",
+            "count": 4
+          },
+          {
+            "id": "dm22ex1-086",
+            "count": 3
+          },
+          {
+            "id": "dmrp12-s08",
+            "count": 2
+          }
+        ]
+      }
+    ],
+    "method": "8 fixed public opponents, paired seeds and both first-player positions, 2 rounds. Challenge opening/draw policy unchanged. Every action legal; eighty physical card identities conserved.",
+    "note": "少数条件のCPU同士の比較です。対人勝率や全対面での優劣を示す数値ではありません。",
+    "games": 64,
+    "latencyMs": {
+      "median": 3,
+      "p95": 591,
+      "max": 9164
+    },
+    "results": [
+      {
+        "mode": "before",
+        "characterId": "hakuoh",
+        "name": "白凰",
+        "wins": 15,
+        "total": 32,
+        "games": [
+          {
+            "opponent": "practice-rg",
+            "first": 0,
+            "seed": 147000,
+            "winner": 1,
+            "turn": 18,
+            "actions": 98,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 3,
+              "dm04-001": 1,
+              "dm24rp1-012": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 435
+          },
+          {
+            "opponent": "practice-rg",
+            "first": 1,
+            "seed": 147017,
+            "winner": 1,
+            "turn": 17,
+            "actions": 97,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 3,
+              "dm24rp1-012": 1,
+              "dmr14-034": 2,
+              "dmc52-003": 1,
+              "dm04-001": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 542
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 0,
+            "seed": 147101,
+            "winner": 0,
+            "turn": 15,
+            "actions": 106,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 3,
+              "dmr02-006": 1,
+              "dm24rp1-012": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 891
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 1,
+            "seed": 147118,
+            "winner": 0,
+            "turn": 16,
+            "actions": 140,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 4,
+              "dmr02-006": 1,
+              "dm16-007": 1,
+              "dmc52-003": 1,
+              "dm01-052": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 385
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 0,
+            "seed": 147202,
+            "winner": 0,
+            "turn": 9,
+            "actions": 109,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 3,
+              "dm24rp1-012": 1,
+              "dmr02-006": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1612
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 1,
+            "seed": 147219,
+            "winner": 0,
+            "turn": 14,
+            "actions": 169,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 1,
+              "dm16-007": 1,
+              "dm01-052": 1,
+              "dmc52-003": 1,
+              "dm24rp1-012": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 4509
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 0,
+            "seed": 147303,
+            "winner": 0,
+            "turn": 13,
+            "actions": 98,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 1,
+              "dmc52-003": 1,
+              "dm16-007": 1,
+              "dm04-001": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 603
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 1,
+            "seed": 147320,
+            "winner": 1,
+            "turn": 18,
+            "actions": 110,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 4,
+              "dmc52-003": 2
+            },
+            "reason": "追加画像 13の山札がなくなった",
+            "maxDecisionMs": 184
+          },
+          {
+            "opponent": "env-magic-practice",
+            "first": 0,
+            "seed": 147404,
+            "winner": 1,
+            "turn": 18,
+            "actions": 133,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr02-006": 2,
+              "dmr14-034": 3,
+              "dm04-001": 1,
+              "dm24rp1-012": 3
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 435
+          },
+          {
+            "opponent": "env-magic-practice",
+            "first": 1,
+            "seed": 147421,
+            "winner": 0,
+            "turn": 14,
+            "actions": 124,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 2,
+              "dmc52-003": 1,
+              "dm16-007": 1,
+              "dm24rp1-012": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 4063
+          },
+          {
+            "opponent": "env-heavens-practice",
+            "first": 0,
+            "seed": 147505,
+            "winner": 1,
+            "turn": 25,
+            "actions": 172,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 3,
+              "dmr14-034": 2,
+              "dm04-001": 2,
+              "dm24rp1-012": 3,
+              "dm23ex2-005": 1
+            },
+            "reason": "4色天門（さくやま）の山札がなくなった",
+            "maxDecisionMs": 1395
+          },
+          {
+            "opponent": "env-heavens-practice",
+            "first": 1,
+            "seed": 147522,
+            "winner": 0,
+            "turn": 22,
+            "actions": 139,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 4,
+              "dm24rp1-012": 3,
+              "dm04-001": 1,
+              "dmrp17-073": 1,
+              "dm23ex2-005": 1,
+              "dmc52-003": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 2515
+          },
+          {
+            "opponent": "env-scs9-niigata-rose",
+            "first": 0,
+            "seed": 147606,
+            "winner": 0,
+            "turn": 15,
+            "actions": 109,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 1,
+              "dm23ex2-005": 1,
+              "dmr02-006": 1,
+              "dm24rp1-012": 3,
+              "dmr14-034": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1095
+          },
+          {
+            "opponent": "env-scs9-niigata-rose",
+            "first": 1,
+            "seed": 147623,
+            "winner": 1,
+            "turn": 21,
+            "actions": 150,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 4,
+              "dmc52-003": 1,
+              "dm16-007": 1,
+              "dm24rp1-012": 2,
+              "dm04-001": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 4607
+          },
+          {
+            "opponent": "env-complex-practice",
+            "first": 0,
+            "seed": 147707,
+            "winner": 1,
+            "turn": 14,
+            "actions": 97,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 1,
+              "dmc52-003": 2,
+              "dm24rp1-012": 1,
+              "dm04-001": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1264
+          },
+          {
+            "opponent": "env-complex-practice",
+            "first": 1,
+            "seed": 147724,
+            "winner": 0,
+            "turn": 24,
+            "actions": 236,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 4,
+              "dm23ex2-005": 2,
+              "dm24rp1-012": 3,
+              "dm04-001": 1,
+              "dmr02-006": 3,
+              "dmrp17-073": 1,
+              "dmr14-034": 1,
+              "dm01-052": 1,
+              "dmc52-003": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 4144
+          },
+          {
+            "opponent": "practice-rg",
+            "first": 0,
+            "seed": 157007,
+            "winner": 1,
+            "turn": 12,
+            "actions": 90,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dm24rp1-012": 1,
+              "dm23ex2-005": 1,
+              "dm16-007": 1,
+              "dm04-001": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1823
+          },
+          {
+            "opponent": "practice-rg",
+            "first": 1,
+            "seed": 157024,
+            "winner": 1,
+            "turn": 21,
+            "actions": 123,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 4,
+              "dmc52-003": 1,
+              "dm04-001": 1,
+              "dm24rp1-012": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 390
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 0,
+            "seed": 157108,
+            "winner": 0,
+            "turn": 17,
+            "actions": 158,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 2,
+              "dm16-007": 1,
+              "dm01-052": 2,
+              "dm24rp1-012": 3,
+              "dmr02-006": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1788
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 1,
+            "seed": 157125,
+            "winner": 0,
+            "turn": 12,
+            "actions": 126,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 3,
+              "dmr14-034": 1,
+              "dm24rp1-012": 1,
+              "dm16-007": 2,
+              "dm04-001": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1151
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 0,
+            "seed": 157209,
+            "winner": 0,
+            "turn": 15,
+            "actions": 141,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 3,
+              "dmr02-006": 2,
+              "dm24rp1-012": 2,
+              "dm01-052": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 667
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 1,
+            "seed": 157226,
+            "winner": 1,
+            "turn": 15,
+            "actions": 118,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 3,
+              "dm04-001": 1,
+              "dm24rp1-012": 2,
+              "dmr02-006": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 742
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 0,
+            "seed": 157310,
+            "winner": 0,
+            "turn": 13,
+            "actions": 101,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 3
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 223
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 1,
+            "seed": 157327,
+            "winner": 0,
+            "turn": 10,
+            "actions": 84,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 344
+          },
+          {
+            "opponent": "env-magic-practice",
+            "first": 0,
+            "seed": 157411,
+            "winner": 1,
+            "turn": 18,
+            "actions": 148,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 6,
+              "dm24rp1-012": 3,
+              "dmr14-034": 1,
+              "dm04-001": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1689
+          },
+          {
+            "opponent": "env-magic-practice",
+            "first": 1,
+            "seed": 157428,
+            "winner": 1,
+            "turn": 15,
+            "actions": 90,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 2,
+              "dm24rp1-012": 2,
+              "dm04-001": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 195
+          },
+          {
+            "opponent": "env-heavens-practice",
+            "first": 0,
+            "seed": 157512,
+            "winner": 0,
+            "turn": 13,
+            "actions": 82,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 1,
+              "dm01-052": 1,
+              "dmc52-003": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 3868
+          },
+          {
+            "opponent": "env-heavens-practice",
+            "first": 1,
+            "seed": 157529,
+            "winner": 0,
+            "turn": 12,
+            "actions": 114,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 3,
+              "dm23ex2-005": 1,
+              "dmc52-003": 1,
+              "dm24rp1-012": 1
+            },
+            "reason": "白凰の山札がなくなった",
+            "maxDecisionMs": 4730
+          },
+          {
+            "opponent": "env-scs9-niigata-rose",
+            "first": 0,
+            "seed": 157613,
+            "winner": 1,
+            "turn": 20,
+            "actions": 116,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 3,
+              "dm24rp1-012": 3,
+              "dm04-001": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 206
+          },
+          {
+            "opponent": "env-scs9-niigata-rose",
+            "first": 1,
+            "seed": 157630,
+            "winner": 1,
+            "turn": 21,
+            "actions": 133,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 2,
+              "dmc52-003": 2,
+              "dm24rp1-012": 3,
+              "dm23ex2-005": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 609
+          },
+          {
+            "opponent": "env-complex-practice",
+            "first": 0,
+            "seed": 157714,
+            "winner": 1,
+            "turn": 15,
+            "actions": 113,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 3,
+              "dm16-007": 1,
+              "dmr14-034": 3
+            },
+            "reason": "青黒COMPLEX（カルマ）の山札がなくなった",
+            "maxDecisionMs": 3338
+          },
+          {
+            "opponent": "env-complex-practice",
+            "first": 1,
+            "seed": 157731,
+            "winner": 0,
+            "turn": 23,
+            "actions": 233,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 3,
+              "dmr14-034": 2,
+              "dmc52-003": 2,
+              "dm24rp1-012": 1,
+              "dmrp09-s03": 1,
+              "dmr02-006": 2
+            },
+            "reason": "白凰の山札がなくなった",
+            "maxDecisionMs": 4487
+          }
+        ]
+      },
+      {
+        "mode": "before",
+        "characterId": "kira",
+        "name": "キラ",
+        "wins": 20,
+        "total": 32,
+        "games": [
+          {
+            "opponent": "practice-rg",
+            "first": 0,
+            "seed": 147000,
+            "winner": 1,
+            "turn": 12,
+            "actions": 73,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 2,
+              "dmrp05-011": 1,
+              "dmd30-003": 1,
+              "dm23rp4-011": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1478
+          },
+          {
+            "opponent": "practice-rg",
+            "first": 1,
+            "seed": 147017,
+            "winner": 1,
+            "turn": 13,
+            "actions": 75,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 2,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 3
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 249
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 0,
+            "seed": 147101,
+            "winner": 1,
+            "turn": 18,
+            "actions": 160,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmrp05-011": 2,
+              "dmd30-003": 1,
+              "dmx22a-012": 1,
+              "dm23rp4-011": 2,
+              "dmr13-016": 2,
+              "dmrp17-073": 1,
+              "dm24sp1-008": 2,
+              "dmr02-006": 1,
+              "dmrp04s-m02": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1058
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 1,
+            "seed": 147118,
+            "winner": 0,
+            "turn": 12,
+            "actions": 100,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 2,
+              "dmr02-006": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 261
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 0,
+            "seed": 147202,
+            "winner": 0,
+            "turn": 11,
+            "actions": 136,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 1,
+              "dmrp05-011": 1,
+              "dmrp14-024": 2,
+              "dm23rp4-011": 1,
+              "dmr02-006": 2,
+              "dm24ex4-032": 1,
+              "dmr13-016": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 388
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 1,
+            "seed": 147219,
+            "winner": 0,
+            "turn": 12,
+            "actions": 119,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmrp05-011": 1,
+              "dmr02-006": 1,
+              "dm24ex4-032": 2,
+              "dm24sp1-008": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 911
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 0,
+            "seed": 147303,
+            "winner": 0,
+            "turn": 13,
+            "actions": 106,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmd30-003": 2,
+              "dm23rp4-011": 1,
+              "dmr02-006": 1,
+              "dmrp05-011": 1,
+              "dmx22a-012": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1189
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 1,
+            "seed": 147320,
+            "winner": 1,
+            "turn": 16,
+            "actions": 97,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 3,
+              "dmr13-016": 1
+            },
+            "reason": "追加画像 13の山札がなくなった",
+            "maxDecisionMs": 232
+          },
+          {
+            "opponent": "env-magic-practice",
+            "first": 0,
+            "seed": 147404,
+            "winner": 1,
+            "turn": 16,
+            "actions": 153,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 2,
+              "dmrp14-024": 2,
+              "dmrp05-011": 2,
+              "dm24sp1-008": 1,
+              "dm23rp4-011": 2,
+              "dmr13-016": 1,
+              "dm24ex4-032": 1,
+              "dmr02-006": 1,
+              "dmrp04s-m02": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1087
+          },
+          {
+            "opponent": "env-magic-practice",
+            "first": 1,
+            "seed": 147421,
+            "winner": 0,
+            "turn": 18,
+            "actions": 135,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 4,
+              "dmrp05-011": 2,
+              "dm23rp4-011": 3,
+              "dmd30-003": 2,
+              "dmrp04s-m02": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 2144
+          },
+          {
+            "opponent": "env-heavens-practice",
+            "first": 0,
+            "seed": 147505,
+            "winner": 1,
+            "turn": 12,
+            "actions": 96,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 2,
+              "dmrp05-011": 4,
+              "dm24sp1-008": 1,
+              "dmd30-003": 1,
+              "dm23rp4-011": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 2420
+          },
+          {
+            "opponent": "env-heavens-practice",
+            "first": 1,
+            "seed": 147522,
+            "winner": 0,
+            "turn": 20,
+            "actions": 126,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 4,
+              "dmr02-006": 1,
+              "dmr13-016": 2,
+              "dmrp14-024": 1,
+              "dmd30-003": 1,
+              "dmrp04s-m02": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 344
+          },
+          {
+            "opponent": "env-scs9-niigata-rose",
+            "first": 0,
+            "seed": 147606,
+            "winner": 1,
+            "turn": 12,
+            "actions": 106,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 2,
+              "dmrp05-011": 2,
+              "dmr02-006": 2,
+              "dmx22a-012": 1,
+              "dm24ex4-032": 1,
+              "dmr13-016": 1,
+              "dm23rp4-011": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 604
+          },
+          {
+            "opponent": "env-scs9-niigata-rose",
+            "first": 1,
+            "seed": 147623,
+            "winner": 1,
+            "turn": 13,
+            "actions": 84,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 2,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 1,
+              "dmrp04s-m02": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 658
+          },
+          {
+            "opponent": "env-complex-practice",
+            "first": 0,
+            "seed": 147707,
+            "winner": 1,
+            "turn": 25,
+            "actions": 256,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmrp05-011": 2,
+              "dmd30-003": 2,
+              "dmr02-006": 2,
+              "dm23rp4-011": 3,
+              "dmrp04s-m02": 4
+            },
+            "reason": "青黒COMPLEX（カルマ）の山札がなくなった",
+            "maxDecisionMs": 9164
+          },
+          {
+            "opponent": "env-complex-practice",
+            "first": 1,
+            "seed": 147724,
+            "winner": 0,
+            "turn": 16,
+            "actions": 129,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 3,
+              "dmrp14-024": 3,
+              "dm24ex4-032": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1919
+          },
+          {
+            "opponent": "practice-rg",
+            "first": 0,
+            "seed": 157007,
+            "winner": 1,
+            "turn": 10,
+            "actions": 80,
+            "firstCreature": 2,
+            "played": {
+              "dmr02-006": 1,
+              "dmrp22-027": 1,
+              "dmrp14-024": 1,
+              "dmr13-016": 1,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1166
+          },
+          {
+            "opponent": "practice-rg",
+            "first": 1,
+            "seed": 157024,
+            "winner": 1,
+            "turn": 13,
+            "actions": 78,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 3
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 342
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 0,
+            "seed": 157108,
+            "winner": 1,
+            "turn": 12,
+            "actions": 81,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmrp05-011": 2,
+              "dmr13-016": 1,
+              "dmrp14-024": 1,
+              "dm23rp4-011": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1411
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 1,
+            "seed": 157125,
+            "winner": 0,
+            "turn": 12,
+            "actions": 92,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 2,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 3
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 5559
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 0,
+            "seed": 157209,
+            "winner": 0,
+            "turn": 11,
+            "actions": 93,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 1,
+              "dm24sp1-008": 1,
+              "dmrp14-024": 1,
+              "dmx22a-012": 1,
+              "dmrp05-011": 2,
+              "dm23rp4-011": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 519
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 1,
+            "seed": 157226,
+            "winner": 1,
+            "turn": 11,
+            "actions": 58,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 2,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 1,
+              "dm24ex4-032": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 166
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 0,
+            "seed": 157310,
+            "winner": 1,
+            "turn": 14,
+            "actions": 85,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 3
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 399
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 1,
+            "seed": 157327,
+            "winner": 1,
+            "turn": 11,
+            "actions": 91,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 2,
+              "dmrp05-011": 1,
+              "dmr13-016": 1,
+              "dm23rp4-011": 2,
+              "dmr02-006": 1
+            },
+            "reason": "追加画像 13の山札がなくなった",
+            "maxDecisionMs": 833
+          },
+          {
+            "opponent": "env-magic-practice",
+            "first": 0,
+            "seed": 157411,
+            "winner": 0,
+            "turn": 19,
+            "actions": 223,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dm24sp1-008": 2,
+              "dmrp05-011": 4,
+              "dmd30-003": 1,
+              "dmr13-016": 3,
+              "dmx22a-012": 1,
+              "dmr02-006": 3,
+              "dm23rp4-011": 1,
+              "dmrp04s-m02": 2,
+              "dm24ex4-032": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 5531
+          },
+          {
+            "opponent": "env-magic-practice",
+            "first": 1,
+            "seed": 157428,
+            "winner": 1,
+            "turn": 19,
+            "actions": 178,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 4,
+              "dmrp05-011": 3,
+              "dm23rp4-011": 2,
+              "dm24sp1-008": 2,
+              "dmrp04s-m02": 2,
+              "dmr02-006": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1690
+          },
+          {
+            "opponent": "env-heavens-practice",
+            "first": 0,
+            "seed": 157512,
+            "winner": 0,
+            "turn": 17,
+            "actions": 134,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 4,
+              "dmrp05-011": 2,
+              "dm24sp1-008": 1,
+              "dm23rp4-011": 2,
+              "dmrp04s-m02": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1497
+          },
+          {
+            "opponent": "env-heavens-practice",
+            "first": 1,
+            "seed": 157529,
+            "winner": 1,
+            "turn": 13,
+            "actions": 123,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 2,
+              "dmrp05-011": 3,
+              "dm24ex4-032": 1,
+              "dmrp14-024": 2,
+              "dmd30-003": 1,
+              "dmr02-006": 2,
+              "dmr13-016": 1,
+              "dm23rp4-011": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 951
+          },
+          {
+            "opponent": "env-scs9-niigata-rose",
+            "first": 0,
+            "seed": 157613,
+            "winner": 1,
+            "turn": 14,
+            "actions": 109,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 2,
+              "dmrp05-011": 3,
+              "dm23rp4-011": 2,
+              "dmx22a-012": 1,
+              "dmrp04s-m02": 1,
+              "dmr13-016": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 344
+          },
+          {
+            "opponent": "env-scs9-niigata-rose",
+            "first": 1,
+            "seed": 157630,
+            "winner": 1,
+            "turn": 13,
+            "actions": 87,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 1,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 4
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 400
+          },
+          {
+            "opponent": "env-complex-practice",
+            "first": 0,
+            "seed": 157714,
+            "winner": 0,
+            "turn": 13,
+            "actions": 123,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 4,
+              "dmrp05-011": 3,
+              "dmrp14-024": 1,
+              "dm23rp4-011": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 2070
+          },
+          {
+            "opponent": "env-complex-practice",
+            "first": 1,
+            "seed": 157731,
+            "winner": 1,
+            "turn": 17,
+            "actions": 131,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 4,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 2,
+              "dmd30-003": 2,
+              "dmrp04s-m02": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1531
+          }
+        ]
+      }
+    ]
+  },
+  "after": {
+    "engineVersion": "0.105.0",
+    "aiVersion": "2.3.33",
+    "revisions": [
+      {
+        "mode": "after",
+        "engineVersion": "0.105.0",
+        "aiVersion": "2.3.33"
+      }
+    ],
+    "seedBase": 147000,
+    "rounds": 2,
+    "opponents": [
+      {
+        "id": "practice-rg",
+        "name": "火自然ビート",
+        "cards": [
+          {
+            "id": "dm01-100",
+            "count": 4
+          },
+          {
+            "id": "dm01-097",
+            "count": 4
+          },
+          {
+            "id": "dm01-098",
+            "count": 4
+          },
+          {
+            "id": "dm01-095",
+            "count": 4
+          },
+          {
+            "id": "dm01-101",
+            "count": 4
+          },
+          {
+            "id": "dm01-108",
+            "count": 4
+          },
+          {
+            "id": "dm01-103",
+            "count": 4
+          },
+          {
+            "id": "dm01-104",
+            "count": 4
+          },
+          {
+            "id": "dm01-106",
+            "count": 4
+          },
+          {
+            "id": "dm01-110",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "env-gp2026-pinky",
+        "name": "ドギラゴン王道（ピンキ→）",
+        "cards": [
+          {
+            "id": "dm23bd4-008",
+            "count": 2
+          },
+          {
+            "id": "dm26rp1-S002",
+            "count": 2
+          },
+          {
+            "id": "dm25sp2-014",
+            "count": 4
+          },
+          {
+            "id": "dm23ex3-S07",
+            "count": 4
+          },
+          {
+            "id": "dm25rp3-012",
+            "count": 4
+          },
+          {
+            "id": "dm23ex2-016",
+            "count": 4
+          },
+          {
+            "id": "dm24ex2-019",
+            "count": 4
+          },
+          {
+            "id": "dm25rp4-DM1",
+            "count": 4
+          },
+          {
+            "id": "dm26rp1-S008",
+            "count": 1
+          },
+          {
+            "id": "sp-020",
+            "count": 1
+          },
+          {
+            "id": "dm25rp3-S09",
+            "count": 1
+          },
+          {
+            "id": "dmrp15-km1",
+            "count": 1
+          },
+          {
+            "id": "dm22ex1-030",
+            "count": 4
+          },
+          {
+            "id": "dmx11-012",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "photo-fifteen-4",
+        "name": "追加画像 4",
+        "cards": [
+          {
+            "id": "dm26rp2-S010",
+            "count": 4
+          },
+          {
+            "id": "dm22ex2-S07",
+            "count": 4
+          },
+          {
+            "id": "dm23ex3-S07",
+            "count": 4
+          },
+          {
+            "id": "dm22ex1-011",
+            "count": 4
+          },
+          {
+            "id": "dm26rp2-S005",
+            "count": 4
+          },
+          {
+            "id": "dm26rp1-S006",
+            "count": 3
+          },
+          {
+            "id": "dmex12-035",
+            "count": 4
+          },
+          {
+            "id": "dmex17-102",
+            "count": 4
+          },
+          {
+            "id": "dmd27-003",
+            "count": 1
+          },
+          {
+            "id": "dm26rp2-OR001",
+            "count": 4
+          },
+          {
+            "id": "dmex10-012",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "photo-fifteen-13",
+        "name": "追加画像 13",
+        "cards": [
+          {
+            "id": "dm22ex1-007",
+            "count": 4
+          },
+          {
+            "id": "dmx14-001",
+            "count": 1
+          },
+          {
+            "id": "dmrp17-km2",
+            "count": 4
+          },
+          {
+            "id": "dm24rp4-OR1",
+            "count": 2
+          },
+          {
+            "id": "dm25rp2-S03",
+            "count": 4
+          },
+          {
+            "id": "dm25rp1-S10",
+            "count": 4
+          },
+          {
+            "id": "dmex17-111",
+            "count": 4
+          },
+          {
+            "id": "dm25rp1-006",
+            "count": 4
+          },
+          {
+            "id": "dm25rp4-027",
+            "count": 4
+          },
+          {
+            "id": "dm25rp2-051",
+            "count": 4
+          },
+          {
+            "id": "dm22rp1-017",
+            "count": 4
+          },
+          {
+            "id": "dmrp03-036",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "env-magic-practice",
+        "name": "赤青マジック（いっぺこ）",
+        "cards": [
+          {
+            "id": "dm23rp2-059",
+            "count": 4
+          },
+          {
+            "id": "dmd27-003",
+            "count": 1
+          },
+          {
+            "id": "dm23ex1-074",
+            "count": 3
+          },
+          {
+            "id": "dm23rp3-006",
+            "count": 4
+          },
+          {
+            "id": "dm23rp3-OR2",
+            "count": 4
+          },
+          {
+            "id": "dm23ex1-003",
+            "count": 2
+          },
+          {
+            "id": "dm23rp2-013",
+            "count": 4
+          },
+          {
+            "id": "dm23rp3-013",
+            "count": 2
+          },
+          {
+            "id": "dm23rp1-013",
+            "count": 4
+          },
+          {
+            "id": "dm23rp3-S04",
+            "count": 2
+          },
+          {
+            "id": "dm23rp2-060",
+            "count": 2
+          },
+          {
+            "id": "dm23rp4-003",
+            "count": 4
+          },
+          {
+            "id": "dmrp11-007",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "env-heavens-practice",
+        "name": "4色天門（さくやま）",
+        "cards": [
+          {
+            "id": "dmbd10-010",
+            "count": 4
+          },
+          {
+            "id": "dm25bd2-014",
+            "count": 4
+          },
+          {
+            "id": "dm25rp3-S06",
+            "count": 4
+          },
+          {
+            "id": "dmex17-021",
+            "count": 4
+          },
+          {
+            "id": "dmr19-s03",
+            "count": 1
+          },
+          {
+            "id": "dmrp22-2B",
+            "count": 1
+          },
+          {
+            "id": "dmrp18-s09",
+            "count": 3
+          },
+          {
+            "id": "dm23ex1-003",
+            "count": 2
+          },
+          {
+            "id": "dmrp14-s05",
+            "count": 1
+          },
+          {
+            "id": "dmrp13-km3",
+            "count": 2
+          },
+          {
+            "id": "dm23bd7-003",
+            "count": 1
+          },
+          {
+            "id": "dm24rp4-002",
+            "count": 4
+          },
+          {
+            "id": "dm25rp1-S07",
+            "count": 4
+          },
+          {
+            "id": "dm39-026",
+            "count": 1
+          },
+          {
+            "id": "dm16-007",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "env-scs9-niigata-rose",
+        "name": "墓地ソース（ろーず）",
+        "cards": [
+          {
+            "id": "dmd09-001",
+            "count": 4
+          },
+          {
+            "id": "dmex14-019",
+            "count": 1
+          },
+          {
+            "id": "dm26rp1-S008",
+            "count": 1
+          },
+          {
+            "id": "dm22ex1-007",
+            "count": 3
+          },
+          {
+            "id": "dmrp13-km3",
+            "count": 2
+          },
+          {
+            "id": "dm26rp2-S001",
+            "count": 4
+          },
+          {
+            "id": "dm23rp3-050",
+            "count": 4
+          },
+          {
+            "id": "dm24ex4-039",
+            "count": 4
+          },
+          {
+            "id": "dm25ex1-029",
+            "count": 4
+          },
+          {
+            "id": "dmbd08-a-003",
+            "count": 4
+          },
+          {
+            "id": "dm25ex1-063",
+            "count": 4
+          },
+          {
+            "id": "dmrp06-s06",
+            "count": 4
+          },
+          {
+            "id": "dmex17-105",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "env-complex-practice",
+        "name": "青黒COMPLEX（カルマ）",
+        "cards": [
+          {
+            "id": "dm23rp4-S02",
+            "count": 1
+          },
+          {
+            "id": "dmrp01-041",
+            "count": 4
+          },
+          {
+            "id": "dm25rp1-006",
+            "count": 1
+          },
+          {
+            "id": "dm23rp2-015",
+            "count": 4
+          },
+          {
+            "id": "dm24ex1-028",
+            "count": 4
+          },
+          {
+            "id": "dmr19-004",
+            "count": 2
+          },
+          {
+            "id": "dm23rp3-S03",
+            "count": 4
+          },
+          {
+            "id": "dm23rp4-017",
+            "count": 4
+          },
+          {
+            "id": "dm23ex1-003",
+            "count": 3
+          },
+          {
+            "id": "dmrp15-km1",
+            "count": 1
+          },
+          {
+            "id": "dm23rp1-013",
+            "count": 3
+          },
+          {
+            "id": "dm24bd4-007",
+            "count": 4
+          },
+          {
+            "id": "dm22ex1-086",
+            "count": 3
+          },
+          {
+            "id": "dmrp12-s08",
+            "count": 2
+          }
+        ]
+      }
+    ],
+    "method": "8 fixed public opponents, paired seeds and both first-player positions, 2 rounds. Challenge opening/draw policy unchanged. Every action legal; eighty physical card identities conserved.",
+    "note": "少数条件のCPU同士の比較です。対人勝率や全対面での優劣を示す数値ではありません。",
+    "games": 64,
+    "latencyMs": {
+      "median": 3,
+      "p95": 563,
+      "max": 116799
+    },
+    "results": [
+      {
+        "mode": "after",
+        "characterId": "hakuoh",
+        "name": "白凰",
+        "wins": 15,
+        "total": 32,
+        "games": [
+          {
+            "opponent": "practice-rg",
+            "first": 0,
+            "seed": 147000,
+            "winner": 1,
+            "turn": 18,
+            "actions": 98,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 3,
+              "dm04-001": 1,
+              "dm24rp1-012": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 475
+          },
+          {
+            "opponent": "practice-rg",
+            "first": 1,
+            "seed": 147017,
+            "winner": 1,
+            "turn": 17,
+            "actions": 97,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 3,
+              "dm24rp1-012": 1,
+              "dmr14-034": 2,
+              "dmc52-003": 1,
+              "dm04-001": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 547
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 0,
+            "seed": 147101,
+            "winner": 0,
+            "turn": 15,
+            "actions": 106,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 3,
+              "dmr02-006": 1,
+              "dm24rp1-012": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 959
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 1,
+            "seed": 147118,
+            "winner": 0,
+            "turn": 16,
+            "actions": 140,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 4,
+              "dmr02-006": 1,
+              "dm16-007": 1,
+              "dmc52-003": 1,
+              "dm01-052": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 391
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 0,
+            "seed": 147202,
+            "winner": 0,
+            "turn": 9,
+            "actions": 102,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 3,
+              "dm24rp1-012": 1,
+              "dmr02-006": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 116799
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 1,
+            "seed": 147219,
+            "winner": 0,
+            "turn": 14,
+            "actions": 164,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 1,
+              "dm16-007": 1,
+              "dm01-052": 1,
+              "dmc52-003": 1,
+              "dm24rp1-012": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 4885
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 0,
+            "seed": 147303,
+            "winner": 0,
+            "turn": 13,
+            "actions": 98,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 1,
+              "dmc52-003": 1,
+              "dm16-007": 1,
+              "dm04-001": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 639
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 1,
+            "seed": 147320,
+            "winner": 1,
+            "turn": 18,
+            "actions": 110,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 4,
+              "dmc52-003": 2
+            },
+            "reason": "追加画像 13の山札がなくなった",
+            "maxDecisionMs": 196
+          },
+          {
+            "opponent": "env-magic-practice",
+            "first": 0,
+            "seed": 147404,
+            "winner": 1,
+            "turn": 18,
+            "actions": 133,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr02-006": 2,
+              "dmr14-034": 3,
+              "dm04-001": 1,
+              "dm24rp1-012": 3
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 453
+          },
+          {
+            "opponent": "env-magic-practice",
+            "first": 1,
+            "seed": 147421,
+            "winner": 0,
+            "turn": 14,
+            "actions": 124,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 2,
+              "dmc52-003": 1,
+              "dm16-007": 1,
+              "dm24rp1-012": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 4638
+          },
+          {
+            "opponent": "env-heavens-practice",
+            "first": 0,
+            "seed": 147505,
+            "winner": 1,
+            "turn": 25,
+            "actions": 172,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 3,
+              "dmr14-034": 2,
+              "dm04-001": 2,
+              "dm24rp1-012": 3,
+              "dm23ex2-005": 1
+            },
+            "reason": "4色天門（さくやま）の山札がなくなった",
+            "maxDecisionMs": 1683
+          },
+          {
+            "opponent": "env-heavens-practice",
+            "first": 1,
+            "seed": 147522,
+            "winner": 0,
+            "turn": 22,
+            "actions": 139,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 4,
+              "dm24rp1-012": 3,
+              "dm04-001": 1,
+              "dmrp17-073": 1,
+              "dm23ex2-005": 1,
+              "dmc52-003": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 3175
+          },
+          {
+            "opponent": "env-scs9-niigata-rose",
+            "first": 0,
+            "seed": 147606,
+            "winner": 0,
+            "turn": 15,
+            "actions": 102,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 1,
+              "dm23ex2-005": 1,
+              "dmr02-006": 1,
+              "dm24rp1-012": 3,
+              "dmr14-034": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1353
+          },
+          {
+            "opponent": "env-scs9-niigata-rose",
+            "first": 1,
+            "seed": 147623,
+            "winner": 1,
+            "turn": 21,
+            "actions": 150,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 4,
+              "dmc52-003": 1,
+              "dm16-007": 1,
+              "dm24rp1-012": 2,
+              "dm04-001": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 6166
+          },
+          {
+            "opponent": "env-complex-practice",
+            "first": 0,
+            "seed": 147707,
+            "winner": 1,
+            "turn": 14,
+            "actions": 97,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 1,
+              "dmc52-003": 2,
+              "dm24rp1-012": 1,
+              "dm04-001": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1677
+          },
+          {
+            "opponent": "env-complex-practice",
+            "first": 1,
+            "seed": 147724,
+            "winner": 0,
+            "turn": 24,
+            "actions": 236,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 4,
+              "dm23ex2-005": 2,
+              "dm24rp1-012": 3,
+              "dm04-001": 1,
+              "dmr02-006": 3,
+              "dmrp17-073": 1,
+              "dmr14-034": 1,
+              "dm01-052": 1,
+              "dmc52-003": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 6181
+          },
+          {
+            "opponent": "practice-rg",
+            "first": 0,
+            "seed": 157007,
+            "winner": 1,
+            "turn": 12,
+            "actions": 90,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dm24rp1-012": 1,
+              "dm23ex2-005": 1,
+              "dm16-007": 1,
+              "dm04-001": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 2441
+          },
+          {
+            "opponent": "practice-rg",
+            "first": 1,
+            "seed": 157024,
+            "winner": 1,
+            "turn": 21,
+            "actions": 123,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 4,
+              "dmc52-003": 1,
+              "dm04-001": 1,
+              "dm24rp1-012": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 528
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 0,
+            "seed": 157108,
+            "winner": 0,
+            "turn": 17,
+            "actions": 155,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 2,
+              "dm16-007": 1,
+              "dm01-052": 2,
+              "dm24rp1-012": 3,
+              "dmr02-006": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 2513
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 1,
+            "seed": 157125,
+            "winner": 0,
+            "turn": 12,
+            "actions": 127,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 3,
+              "dmr14-034": 1,
+              "dm24rp1-012": 1,
+              "dm16-007": 2,
+              "dm04-001": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1634
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 0,
+            "seed": 157209,
+            "winner": 0,
+            "turn": 15,
+            "actions": 141,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 3,
+              "dmr02-006": 2,
+              "dm24rp1-012": 2,
+              "dm01-052": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 901
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 1,
+            "seed": 157226,
+            "winner": 1,
+            "turn": 15,
+            "actions": 118,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 3,
+              "dm04-001": 1,
+              "dm24rp1-012": 2,
+              "dmr02-006": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1067
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 0,
+            "seed": 157310,
+            "winner": 0,
+            "turn": 13,
+            "actions": 101,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 3
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 398
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 1,
+            "seed": 157327,
+            "winner": 0,
+            "turn": 10,
+            "actions": 84,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 494
+          },
+          {
+            "opponent": "env-magic-practice",
+            "first": 0,
+            "seed": 157411,
+            "winner": 1,
+            "turn": 18,
+            "actions": 148,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 6,
+              "dm24rp1-012": 3,
+              "dmr14-034": 1,
+              "dm04-001": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 2390
+          },
+          {
+            "opponent": "env-magic-practice",
+            "first": 1,
+            "seed": 157428,
+            "winner": 1,
+            "turn": 15,
+            "actions": 90,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 2,
+              "dm24rp1-012": 2,
+              "dm04-001": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 328
+          },
+          {
+            "opponent": "env-heavens-practice",
+            "first": 0,
+            "seed": 157512,
+            "winner": 0,
+            "turn": 13,
+            "actions": 82,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 1,
+              "dm01-052": 1,
+              "dmc52-003": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 4937
+          },
+          {
+            "opponent": "env-heavens-practice",
+            "first": 1,
+            "seed": 157529,
+            "winner": 0,
+            "turn": 12,
+            "actions": 114,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 3,
+              "dm23ex2-005": 1,
+              "dmc52-003": 1,
+              "dm24rp1-012": 1
+            },
+            "reason": "白凰の山札がなくなった",
+            "maxDecisionMs": 4917
+          },
+          {
+            "opponent": "env-scs9-niigata-rose",
+            "first": 0,
+            "seed": 157613,
+            "winner": 1,
+            "turn": 20,
+            "actions": 116,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 3,
+              "dm24rp1-012": 3,
+              "dm04-001": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 192
+          },
+          {
+            "opponent": "env-scs9-niigata-rose",
+            "first": 1,
+            "seed": 157630,
+            "winner": 1,
+            "turn": 21,
+            "actions": 133,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 2,
+              "dmr14-034": 2,
+              "dmc52-003": 2,
+              "dm24rp1-012": 3,
+              "dm23ex2-005": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 618
+          },
+          {
+            "opponent": "env-complex-practice",
+            "first": 0,
+            "seed": 157714,
+            "winner": 1,
+            "turn": 15,
+            "actions": 113,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 3,
+              "dm16-007": 1,
+              "dmr14-034": 3
+            },
+            "reason": "青黒COMPLEX（カルマ）の山札がなくなった",
+            "maxDecisionMs": 3213
+          },
+          {
+            "opponent": "env-complex-practice",
+            "first": 1,
+            "seed": 157731,
+            "winner": 0,
+            "turn": 21,
+            "actions": 217,
+            "firstCreature": 2,
+            "played": {
+              "dmr15-007": 3,
+              "dmr14-034": 2,
+              "dmc52-003": 2,
+              "dm24rp1-012": 1,
+              "dmrp09-s03": 1,
+              "dm08-043": 1,
+              "dm04-001": 2
+            },
+            "reason": "白凰の山札がなくなった",
+            "maxDecisionMs": 5788
+          }
+        ]
+      },
+      {
+        "mode": "after",
+        "characterId": "kira",
+        "name": "キラ",
+        "wins": 20,
+        "total": 32,
+        "games": [
+          {
+            "opponent": "practice-rg",
+            "first": 0,
+            "seed": 147000,
+            "winner": 1,
+            "turn": 12,
+            "actions": 73,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 2,
+              "dmrp05-011": 1,
+              "dmd30-003": 1,
+              "dm23rp4-011": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1391
+          },
+          {
+            "opponent": "practice-rg",
+            "first": 1,
+            "seed": 147017,
+            "winner": 1,
+            "turn": 13,
+            "actions": 75,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 2,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 3
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 252
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 0,
+            "seed": 147101,
+            "winner": 1,
+            "turn": 18,
+            "actions": 160,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmrp05-011": 2,
+              "dmd30-003": 1,
+              "dmx22a-012": 1,
+              "dm23rp4-011": 2,
+              "dmr13-016": 2,
+              "dmrp17-073": 1,
+              "dm24sp1-008": 2,
+              "dmr02-006": 1,
+              "dmrp04s-m02": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1039
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 1,
+            "seed": 147118,
+            "winner": 0,
+            "turn": 12,
+            "actions": 100,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 2,
+              "dmr02-006": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 261
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 0,
+            "seed": 147202,
+            "winner": 0,
+            "turn": 11,
+            "actions": 136,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 1,
+              "dmrp05-011": 1,
+              "dmrp14-024": 2,
+              "dm23rp4-011": 1,
+              "dmr02-006": 2,
+              "dm24ex4-032": 1,
+              "dmr13-016": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 367
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 1,
+            "seed": 147219,
+            "winner": 0,
+            "turn": 12,
+            "actions": 119,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmrp05-011": 1,
+              "dmr02-006": 1,
+              "dm24ex4-032": 2,
+              "dm24sp1-008": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 905
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 0,
+            "seed": 147303,
+            "winner": 0,
+            "turn": 13,
+            "actions": 106,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmd30-003": 2,
+              "dm23rp4-011": 1,
+              "dmr02-006": 1,
+              "dmrp05-011": 1,
+              "dmx22a-012": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1194
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 1,
+            "seed": 147320,
+            "winner": 1,
+            "turn": 16,
+            "actions": 97,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 3,
+              "dmr13-016": 1
+            },
+            "reason": "追加画像 13の山札がなくなった",
+            "maxDecisionMs": 226
+          },
+          {
+            "opponent": "env-magic-practice",
+            "first": 0,
+            "seed": 147404,
+            "winner": 1,
+            "turn": 16,
+            "actions": 153,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 2,
+              "dmrp14-024": 2,
+              "dmrp05-011": 2,
+              "dm24sp1-008": 1,
+              "dm23rp4-011": 2,
+              "dmr13-016": 1,
+              "dm24ex4-032": 1,
+              "dmr02-006": 1,
+              "dmrp04s-m02": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1073
+          },
+          {
+            "opponent": "env-magic-practice",
+            "first": 1,
+            "seed": 147421,
+            "winner": 0,
+            "turn": 18,
+            "actions": 135,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 4,
+              "dmrp05-011": 2,
+              "dm23rp4-011": 3,
+              "dmd30-003": 2,
+              "dmrp04s-m02": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1798
+          },
+          {
+            "opponent": "env-heavens-practice",
+            "first": 0,
+            "seed": 147505,
+            "winner": 1,
+            "turn": 12,
+            "actions": 97,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 2,
+              "dmrp05-011": 4,
+              "dm24sp1-008": 1,
+              "dmd30-003": 1,
+              "dm23rp4-011": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1955
+          },
+          {
+            "opponent": "env-heavens-practice",
+            "first": 1,
+            "seed": 147522,
+            "winner": 0,
+            "turn": 20,
+            "actions": 126,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 4,
+              "dmr02-006": 1,
+              "dmr13-016": 2,
+              "dmrp14-024": 1,
+              "dmd30-003": 1,
+              "dmrp04s-m02": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 219
+          },
+          {
+            "opponent": "env-scs9-niigata-rose",
+            "first": 0,
+            "seed": 147606,
+            "winner": 1,
+            "turn": 12,
+            "actions": 106,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 2,
+              "dmrp05-011": 2,
+              "dmr02-006": 2,
+              "dmx22a-012": 1,
+              "dm24ex4-032": 1,
+              "dmr13-016": 1,
+              "dm23rp4-011": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 760
+          },
+          {
+            "opponent": "env-scs9-niigata-rose",
+            "first": 1,
+            "seed": 147623,
+            "winner": 1,
+            "turn": 13,
+            "actions": 84,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 2,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 1,
+              "dmrp04s-m02": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 550
+          },
+          {
+            "opponent": "env-complex-practice",
+            "first": 0,
+            "seed": 147707,
+            "winner": 1,
+            "turn": 25,
+            "actions": 256,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmrp05-011": 2,
+              "dmd30-003": 2,
+              "dmr02-006": 2,
+              "dm23rp4-011": 3,
+              "dmrp04s-m02": 4
+            },
+            "reason": "青黒COMPLEX（カルマ）の山札がなくなった",
+            "maxDecisionMs": 7067
+          },
+          {
+            "opponent": "env-complex-practice",
+            "first": 1,
+            "seed": 147724,
+            "winner": 0,
+            "turn": 16,
+            "actions": 129,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 3,
+              "dmrp14-024": 3,
+              "dm24ex4-032": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1260
+          },
+          {
+            "opponent": "practice-rg",
+            "first": 0,
+            "seed": 157007,
+            "winner": 1,
+            "turn": 10,
+            "actions": 82,
+            "firstCreature": 2,
+            "played": {
+              "dmr02-006": 1,
+              "dmrp22-027": 1,
+              "dmrp14-024": 1,
+              "dmr13-016": 1,
+              "dmrp05-011": 2,
+              "dm23rp4-011": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 853
+          },
+          {
+            "opponent": "practice-rg",
+            "first": 1,
+            "seed": 157024,
+            "winner": 1,
+            "turn": 13,
+            "actions": 78,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 3
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 236
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 0,
+            "seed": 157108,
+            "winner": 1,
+            "turn": 12,
+            "actions": 81,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmrp05-011": 2,
+              "dmr13-016": 1,
+              "dmrp14-024": 1,
+              "dm23rp4-011": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1038
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 1,
+            "seed": 157125,
+            "winner": 0,
+            "turn": 10,
+            "actions": 72,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 1,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 919
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 0,
+            "seed": 157209,
+            "winner": 0,
+            "turn": 11,
+            "actions": 93,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 1,
+              "dm24sp1-008": 1,
+              "dmrp14-024": 1,
+              "dmx22a-012": 1,
+              "dmrp05-011": 2,
+              "dm23rp4-011": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 385
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 1,
+            "seed": 157226,
+            "winner": 1,
+            "turn": 11,
+            "actions": 58,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 2,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 1,
+              "dm24ex4-032": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 233
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 0,
+            "seed": 157310,
+            "winner": 1,
+            "turn": 14,
+            "actions": 85,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 3
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 300
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 1,
+            "seed": 157327,
+            "winner": 1,
+            "turn": 11,
+            "actions": 91,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 2,
+              "dmrp05-011": 1,
+              "dmr13-016": 1,
+              "dm23rp4-011": 2,
+              "dmr02-006": 1
+            },
+            "reason": "追加画像 13の山札がなくなった",
+            "maxDecisionMs": 625
+          },
+          {
+            "opponent": "env-magic-practice",
+            "first": 0,
+            "seed": 157411,
+            "winner": 0,
+            "turn": 19,
+            "actions": 223,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 3,
+              "dm24sp1-008": 2,
+              "dmrp05-011": 4,
+              "dmd30-003": 1,
+              "dmr13-016": 3,
+              "dmx22a-012": 1,
+              "dmr02-006": 3,
+              "dm23rp4-011": 1,
+              "dmrp04s-m02": 2,
+              "dm24ex4-032": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 3966
+          },
+          {
+            "opponent": "env-magic-practice",
+            "first": 1,
+            "seed": 157428,
+            "winner": 1,
+            "turn": 19,
+            "actions": 178,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 4,
+              "dmrp05-011": 3,
+              "dm23rp4-011": 2,
+              "dm24sp1-008": 2,
+              "dmrp04s-m02": 2,
+              "dmr02-006": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1221
+          },
+          {
+            "opponent": "env-heavens-practice",
+            "first": 0,
+            "seed": 157512,
+            "winner": 0,
+            "turn": 17,
+            "actions": 134,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 4,
+              "dmrp05-011": 2,
+              "dm24sp1-008": 1,
+              "dm23rp4-011": 2,
+              "dmrp04s-m02": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1062
+          },
+          {
+            "opponent": "env-heavens-practice",
+            "first": 1,
+            "seed": 157529,
+            "winner": 1,
+            "turn": 13,
+            "actions": 123,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 2,
+              "dmrp05-011": 3,
+              "dm24ex4-032": 1,
+              "dmrp14-024": 2,
+              "dmd30-003": 1,
+              "dmr02-006": 2,
+              "dmr13-016": 1,
+              "dm23rp4-011": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 641
+          },
+          {
+            "opponent": "env-scs9-niigata-rose",
+            "first": 0,
+            "seed": 157613,
+            "winner": 1,
+            "turn": 14,
+            "actions": 109,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 2,
+              "dmrp05-011": 3,
+              "dm23rp4-011": 2,
+              "dmx22a-012": 1,
+              "dmrp04s-m02": 1,
+              "dmr13-016": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 238
+          },
+          {
+            "opponent": "env-scs9-niigata-rose",
+            "first": 1,
+            "seed": 157630,
+            "winner": 1,
+            "turn": 13,
+            "actions": 87,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 1,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 4
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 285
+          },
+          {
+            "opponent": "env-complex-practice",
+            "first": 0,
+            "seed": 157714,
+            "winner": 0,
+            "turn": 13,
+            "actions": 123,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 4,
+              "dmrp05-011": 3,
+              "dmrp14-024": 1,
+              "dm23rp4-011": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1437
+          },
+          {
+            "opponent": "env-complex-practice",
+            "first": 1,
+            "seed": 157731,
+            "winner": 1,
+            "turn": 17,
+            "actions": 131,
+            "firstCreature": 2,
+            "played": {
+              "dmrp22-027": 4,
+              "dmrp05-011": 1,
+              "dm23rp4-011": 2,
+              "dmd30-003": 2,
+              "dmrp04s-m02": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1056
+          }
+        ]
+      }
+    ]
+  },
+  "otherCharacters": {
+    "engineVersion": "0.105.0",
+    "aiVersion": "2.3.33",
+    "revisions": [
+      {
+        "mode": "after",
+        "engineVersion": "0.105.0",
+        "aiVersion": "2.3.33"
+      }
+    ],
+    "seedBase": 147000,
+    "rounds": 1,
+    "opponents": [
+      {
+        "id": "practice-rg",
+        "name": "火自然ビート",
+        "cards": [
+          {
+            "id": "dm01-100",
+            "count": 4
+          },
+          {
+            "id": "dm01-097",
+            "count": 4
+          },
+          {
+            "id": "dm01-098",
+            "count": 4
+          },
+          {
+            "id": "dm01-095",
+            "count": 4
+          },
+          {
+            "id": "dm01-101",
+            "count": 4
+          },
+          {
+            "id": "dm01-108",
+            "count": 4
+          },
+          {
+            "id": "dm01-103",
+            "count": 4
+          },
+          {
+            "id": "dm01-104",
+            "count": 4
+          },
+          {
+            "id": "dm01-106",
+            "count": 4
+          },
+          {
+            "id": "dm01-110",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "env-gp2026-pinky",
+        "name": "ドギラゴン王道（ピンキ→）",
+        "cards": [
+          {
+            "id": "dm23bd4-008",
+            "count": 2
+          },
+          {
+            "id": "dm26rp1-S002",
+            "count": 2
+          },
+          {
+            "id": "dm25sp2-014",
+            "count": 4
+          },
+          {
+            "id": "dm23ex3-S07",
+            "count": 4
+          },
+          {
+            "id": "dm25rp3-012",
+            "count": 4
+          },
+          {
+            "id": "dm23ex2-016",
+            "count": 4
+          },
+          {
+            "id": "dm24ex2-019",
+            "count": 4
+          },
+          {
+            "id": "dm25rp4-DM1",
+            "count": 4
+          },
+          {
+            "id": "dm26rp1-S008",
+            "count": 1
+          },
+          {
+            "id": "sp-020",
+            "count": 1
+          },
+          {
+            "id": "dm25rp3-S09",
+            "count": 1
+          },
+          {
+            "id": "dmrp15-km1",
+            "count": 1
+          },
+          {
+            "id": "dm22ex1-030",
+            "count": 4
+          },
+          {
+            "id": "dmx11-012",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "photo-fifteen-4",
+        "name": "追加画像 4",
+        "cards": [
+          {
+            "id": "dm26rp2-S010",
+            "count": 4
+          },
+          {
+            "id": "dm22ex2-S07",
+            "count": 4
+          },
+          {
+            "id": "dm23ex3-S07",
+            "count": 4
+          },
+          {
+            "id": "dm22ex1-011",
+            "count": 4
+          },
+          {
+            "id": "dm26rp2-S005",
+            "count": 4
+          },
+          {
+            "id": "dm26rp1-S006",
+            "count": 3
+          },
+          {
+            "id": "dmex12-035",
+            "count": 4
+          },
+          {
+            "id": "dmex17-102",
+            "count": 4
+          },
+          {
+            "id": "dmd27-003",
+            "count": 1
+          },
+          {
+            "id": "dm26rp2-OR001",
+            "count": 4
+          },
+          {
+            "id": "dmex10-012",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "photo-fifteen-13",
+        "name": "追加画像 13",
+        "cards": [
+          {
+            "id": "dm22ex1-007",
+            "count": 4
+          },
+          {
+            "id": "dmx14-001",
+            "count": 1
+          },
+          {
+            "id": "dmrp17-km2",
+            "count": 4
+          },
+          {
+            "id": "dm24rp4-OR1",
+            "count": 2
+          },
+          {
+            "id": "dm25rp2-S03",
+            "count": 4
+          },
+          {
+            "id": "dm25rp1-S10",
+            "count": 4
+          },
+          {
+            "id": "dmex17-111",
+            "count": 4
+          },
+          {
+            "id": "dm25rp1-006",
+            "count": 4
+          },
+          {
+            "id": "dm25rp4-027",
+            "count": 4
+          },
+          {
+            "id": "dm25rp2-051",
+            "count": 4
+          },
+          {
+            "id": "dm22rp1-017",
+            "count": 4
+          },
+          {
+            "id": "dmrp03-036",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "method": "4 fixed public opponents, paired seeds and both first-player positions, 1 rounds. Challenge opening/draw policy unchanged. Every action legal; eighty physical card identities conserved.",
+    "note": "少数条件のCPU同士の比較です。対人勝率や全対面での優劣を示す数値ではありません。",
+    "games": 48,
+    "latencyMs": {
+      "median": 1,
+      "p95": 770,
+      "max": 8935
+    },
+    "results": [
+      {
+        "mode": "after",
+        "characterId": "shobu",
+        "name": "切札勝舞",
+        "wins": 5,
+        "total": 8,
+        "games": [
+          {
+            "opponent": "practice-rg",
+            "first": 0,
+            "seed": 147000,
+            "winner": 1,
+            "turn": 12,
+            "actions": 100,
+            "firstCreature": 3,
+            "played": {
+              "dmbd16-011": 3,
+              "dm23rp3-005": 1,
+              "dm23rp3-S07": 1,
+              "dm23sd1-014": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 3096
+          },
+          {
+            "opponent": "practice-rg",
+            "first": 1,
+            "seed": 147017,
+            "winner": 1,
+            "turn": 9,
+            "actions": 93,
+            "firstCreature": 3,
+            "played": {
+              "dmbd16-011": 2,
+              "dm23sd1-014": 1,
+              "dm23rp4-S05": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 4977
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 0,
+            "seed": 147101,
+            "winner": 1,
+            "turn": 10,
+            "actions": 84,
+            "firstCreature": 2,
+            "played": {
+              "dm23rp4-010": 1,
+              "dm23sd1-014": 1,
+              "dmbd16-011": 1,
+              "dmbd15-006": 1,
+              "dmex04-027": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1794
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 1,
+            "seed": 147118,
+            "winner": 1,
+            "turn": 13,
+            "actions": 213,
+            "firstCreature": 3,
+            "played": {
+              "dmbd16-011": 1,
+              "dm23rp4-010": 2,
+              "dm23sd1-014": 2,
+              "dm23rp3-005": 1,
+              "dm23rp4-S05": 1,
+              "dm23ex2-037": 1,
+              "dm23rp3-S07": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 8935
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 0,
+            "seed": 147202,
+            "winner": 0,
+            "turn": 9,
+            "actions": 90,
+            "firstCreature": 3,
+            "played": {
+              "dmbd16-011": 1,
+              "dm23rp4-010": 1,
+              "dm23sd1-014": 2,
+              "dmbd15-006": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 2028
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 1,
+            "seed": 147219,
+            "winner": 0,
+            "turn": 10,
+            "actions": 97,
+            "firstCreature": 3,
+            "played": {
+              "dm23sd1-014": 1,
+              "dmbd16-011": 1,
+              "dm23ex2-037": 1,
+              "dm23rp4-S05": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1443
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 0,
+            "seed": 147303,
+            "winner": 0,
+            "turn": 9,
+            "actions": 70,
+            "firstCreature": 3,
+            "played": {
+              "dmbd16-011": 2,
+              "dmbd15-006": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1488
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 1,
+            "seed": 147320,
+            "winner": 1,
+            "turn": 11,
+            "actions": 79,
+            "firstCreature": 3,
+            "played": {
+              "dm23sd1-014": 1,
+              "dmbd16-011": 2,
+              "dmbd15-006": 1,
+              "dm23rp3-S07": 1,
+              "dm23rp4-S05": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 2289
+          }
+        ]
+      },
+      {
+        "mode": "after",
+        "characterId": "katta",
+        "name": "切札勝太",
+        "wins": 6,
+        "total": 8,
+        "games": [
+          {
+            "opponent": "practice-rg",
+            "first": 0,
+            "seed": 147000,
+            "winner": 1,
+            "turn": 10,
+            "actions": 84,
+            "firstCreature": 3,
+            "played": {
+              "dmx11-012": 1,
+              "dmbd16-011": 2,
+              "dm23ex2-016": 2,
+              "dm24ex2-019": 1,
+              "dm23ex3-S07": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 4460
+          },
+          {
+            "opponent": "practice-rg",
+            "first": 1,
+            "seed": 147017,
+            "winner": 1,
+            "turn": 9,
+            "actions": 69,
+            "firstCreature": 3,
+            "played": {
+              "dmx11-012": 1,
+              "dmbd16-011": 1,
+              "dmex15-b002": 2,
+              "dm23ex2-016": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 2409
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 0,
+            "seed": 147101,
+            "winner": 1,
+            "turn": 8,
+            "actions": 57,
+            "firstCreature": 3,
+            "played": {
+              "dmx11-012": 1,
+              "dmbd16-008": 1,
+              "dm23ex3-S07": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 693
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 1,
+            "seed": 147118,
+            "winner": 1,
+            "turn": 9,
+            "actions": 95,
+            "firstCreature": 3,
+            "played": {
+              "dmx11-012": 1,
+              "dm23ex2-016": 2,
+              "dmbd16-011": 2,
+              "dm22ex1-030": 1,
+              "dm23ex3-S07": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 7234
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 0,
+            "seed": 147202,
+            "winner": 0,
+            "turn": 7,
+            "actions": 50,
+            "firstCreature": 3,
+            "played": {
+              "dmx11-012": 1,
+              "dmbd16-008": 1,
+              "dmbd16-011": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 102
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 1,
+            "seed": 147219,
+            "winner": 1,
+            "turn": 11,
+            "actions": 96,
+            "firstCreature": 3,
+            "played": {
+              "dmx11-012": 1,
+              "dmbd16-011": 1,
+              "dm23ex2-016": 2,
+              "dmex15-b002": 1,
+              "dm25rp4-DM1": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1841
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 0,
+            "seed": 147303,
+            "winner": 0,
+            "turn": 7,
+            "actions": 73,
+            "firstCreature": 3,
+            "played": {
+              "dmx11-012": 1,
+              "dm23ex3-S07": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 187
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 1,
+            "seed": 147320,
+            "winner": 1,
+            "turn": 9,
+            "actions": 82,
+            "firstCreature": 3,
+            "played": {
+              "dmx11-012": 1,
+              "dmbd16-011": 1,
+              "dm23ex2-016": 2,
+              "dm23ex3-S07": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 890
+          }
+        ]
+      },
+      {
+        "mode": "after",
+        "characterId": "joe",
+        "name": "切札ジョー",
+        "wins": 5,
+        "total": 8,
+        "games": [
+          {
+            "opponent": "practice-rg",
+            "first": 0,
+            "seed": 147000,
+            "winner": 1,
+            "turn": 10,
+            "actions": 106,
+            "firstCreature": 2,
+            "played": {
+              "dmsd01-012": 1,
+              "promoy19-014": 3,
+              "dmsd01-011": 1,
+              "dmrp01-012": 1,
+              "dm24bd2-001": 2,
+              "dm24bd2-010": 1,
+              "dmr10-039": 1,
+              "dmrp05-m02": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 7918
+          },
+          {
+            "opponent": "practice-rg",
+            "first": 1,
+            "seed": 147017,
+            "winner": 0,
+            "turn": 8,
+            "actions": 50,
+            "firstCreature": 3,
+            "played": {
+              "promoy19-014": 2,
+              "dmsd01-011": 1,
+              "dmsd01-012": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 2004
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 0,
+            "seed": 147101,
+            "winner": 1,
+            "turn": 8,
+            "actions": 65,
+            "firstCreature": 2,
+            "played": {
+              "dmsd01-011": 1,
+              "dmsd01-012": 1,
+              "promoy19-014": 2,
+              "dmsd01-004": 1,
+              "dm24bd2-010": 1,
+              "dm24bd2-001": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 2261
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 1,
+            "seed": 147118,
+            "winner": 0,
+            "turn": 10,
+            "actions": 122,
+            "firstCreature": 2,
+            "played": {
+              "dmsd01-011": 2,
+              "dmsd01-012": 1,
+              "promoy19-014": 2,
+              "dmex12-010": 1,
+              "dm24bd2-010": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 4782
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 0,
+            "seed": 147202,
+            "winner": 1,
+            "turn": 10,
+            "actions": 98,
+            "firstCreature": 2,
+            "played": {
+              "dmsd01-011": 2,
+              "dmsd01-012": 1,
+              "promoy19-014": 2,
+              "dmrp01-012": 1,
+              "dm24bd2-010": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1189
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 1,
+            "seed": 147219,
+            "winner": 1,
+            "turn": 9,
+            "actions": 104,
+            "firstCreature": 2,
+            "played": {
+              "dmsd01-011": 1,
+              "dmsd01-012": 1,
+              "promoy19-014": 2,
+              "dmrp05-m02": 1,
+              "dmex12-010": 1,
+              "dm23ex2-017": 1,
+              "dmr10-039": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 2482
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 0,
+            "seed": 147303,
+            "winner": 0,
+            "turn": 9,
+            "actions": 83,
+            "firstCreature": 2,
+            "played": {
+              "dmsd01-011": 1,
+              "dmsd01-012": 2,
+              "promoy19-014": 1,
+              "dmex12-010": 1,
+              "dm24bd2-001": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1313
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 1,
+            "seed": 147320,
+            "winner": 1,
+            "turn": 7,
+            "actions": 45,
+            "firstCreature": 2,
+            "played": {
+              "dmsd01-012": 1,
+              "promoy19-014": 1,
+              "dmsd01-011": 1,
+              "dm24bd2-001": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 304
+          }
+        ]
+      },
+      {
+        "mode": "after",
+        "characterId": "win",
+        "name": "斬札ウィン",
+        "wins": 4,
+        "total": 8,
+        "games": [
+          {
+            "opponent": "practice-rg",
+            "first": 0,
+            "seed": 147000,
+            "winner": 1,
+            "turn": 10,
+            "actions": 72,
+            "firstCreature": 3,
+            "played": {
+              "dm06-110": 2,
+              "dm23rp2-005": 2,
+              "dm22rp1-1B": 1,
+              "dm23ex1-044": 1,
+              "dm22rp2-S5": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 2482
+          },
+          {
+            "opponent": "practice-rg",
+            "first": 1,
+            "seed": 147017,
+            "winner": 1,
+            "turn": 11,
+            "actions": 77,
+            "firstCreature": 3,
+            "played": {
+              "dmsd17-014": 1,
+              "dm22rp2-S5": 1,
+              "dm22rp1-1B": 2,
+              "dm23ex1-044": 2,
+              "dm23rp2-005": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 3339
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 0,
+            "seed": 147101,
+            "winner": 1,
+            "turn": 8,
+            "actions": 76,
+            "firstCreature": 3,
+            "played": {
+              "dmsd17-014": 1,
+              "dm06-110": 1,
+              "dm22rp1-1B": 3,
+              "dm23ex1-044": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 2962
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 1,
+            "seed": 147118,
+            "winner": 0,
+            "turn": 12,
+            "actions": 86,
+            "firstCreature": 3,
+            "played": {
+              "dmsd17-014": 2,
+              "dm22rp2-S5": 1,
+              "dm22rp1-1B": 2,
+              "dm23rp3-S05": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 2850
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 0,
+            "seed": 147202,
+            "winner": 0,
+            "turn": 9,
+            "actions": 63,
+            "firstCreature": 3,
+            "played": {
+              "dmsd17-014": 1,
+              "dm22rp1-1B": 2,
+              "dmex12-035": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 287
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 1,
+            "seed": 147219,
+            "winner": 1,
+            "turn": 11,
+            "actions": 92,
+            "firstCreature": 3,
+            "played": {
+              "dmsd17-014": 1,
+              "dm22rp1-1B": 2,
+              "dm23ex1-044": 2,
+              "dm23rp2-005": 3,
+              "dmbd10-009": 1,
+              "dm23rp3-S05": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 2499
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 0,
+            "seed": 147303,
+            "winner": 0,
+            "turn": 9,
+            "actions": 81,
+            "firstCreature": 3,
+            "played": {
+              "dmsd17-014": 1,
+              "dm22rp1-1B": 2,
+              "dm22rp1-017": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 333
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 1,
+            "seed": 147320,
+            "winner": 0,
+            "turn": 10,
+            "actions": 100,
+            "firstCreature": 3,
+            "played": {
+              "dmsd17-014": 1,
+              "dm22rp1-1B": 2,
+              "dm23ex1-044": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1315
+          }
+        ]
+      },
+      {
+        "mode": "after",
+        "characterId": "basara",
+        "name": "赤城山バサラ",
+        "wins": 6,
+        "total": 8,
+        "games": [
+          {
+            "opponent": "practice-rg",
+            "first": 0,
+            "seed": 147000,
+            "winner": 1,
+            "turn": 10,
+            "actions": 63,
+            "firstCreature": 2,
+            "played": {
+              "dmrp01-041": 2,
+              "dmbd21-014": 1,
+              "dmex17-102": 2
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1167
+          },
+          {
+            "opponent": "practice-rg",
+            "first": 1,
+            "seed": 147017,
+            "winner": 1,
+            "turn": 11,
+            "actions": 89,
+            "firstCreature": 3,
+            "played": {
+              "dmrp01-041": 1,
+              "dmex17-102": 1,
+              "dm25rp3-DM1": 1,
+              "dmr17-l02": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 880
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 0,
+            "seed": 147101,
+            "winner": 1,
+            "turn": 8,
+            "actions": 69,
+            "firstCreature": 2,
+            "played": {
+              "dmrp01-041": 1,
+              "dmbd21-014": 1,
+              "dm26ex2-020": 1,
+              "dmr17-081": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 1245
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 1,
+            "seed": 147118,
+            "winner": 1,
+            "turn": 11,
+            "actions": 91,
+            "firstCreature": 3,
+            "played": {
+              "dmrp01-041": 1,
+              "dmr17-081": 2,
+              "dmr09-021": 1,
+              "dmex17-102": 1,
+              "dm26ex2-020": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 2453
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 0,
+            "seed": 147202,
+            "winner": 0,
+            "turn": 9,
+            "actions": 82,
+            "firstCreature": 2,
+            "played": {
+              "dmrp01-041": 2,
+              "dmex17-102": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 133
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 1,
+            "seed": 147219,
+            "winner": 1,
+            "turn": 11,
+            "actions": 84,
+            "firstCreature": 3,
+            "played": {
+              "dmrp01-041": 1,
+              "dmex17-102": 1,
+              "dmr17-081": 2,
+              "dmr09-021": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 763
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 0,
+            "seed": 147303,
+            "winner": 0,
+            "turn": 9,
+            "actions": 78,
+            "firstCreature": 2,
+            "played": {
+              "dmrp01-041": 2,
+              "dmex17-102": 1,
+              "dm01-094": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 385
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 1,
+            "seed": 147320,
+            "winner": 1,
+            "turn": 9,
+            "actions": 51,
+            "firstCreature": 3,
+            "played": {
+              "dmrp01-041": 1,
+              "dmr17-081": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 224
+          }
+        ]
+      },
+      {
+        "mode": "after",
+        "characterId": "kaiza",
+        "name": "プリンス・カイザ",
+        "wins": 5,
+        "total": 8,
+        "games": [
+          {
+            "opponent": "practice-rg",
+            "first": 0,
+            "seed": 147000,
+            "winner": 1,
+            "turn": 10,
+            "actions": 89,
+            "firstCreature": 2,
+            "played": {
+              "dm23sd1-014": 1,
+              "dmbd15-006": 2,
+              "dmbd16-011": 1,
+              "dm23rp3-005": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 2015
+          },
+          {
+            "opponent": "practice-rg",
+            "first": 1,
+            "seed": 147017,
+            "winner": 1,
+            "turn": 9,
+            "actions": 83,
+            "firstCreature": 2,
+            "played": {
+              "dm23sd1-014": 2,
+              "dmbd15-006": 1,
+              "dm23rp3-S01": 1,
+              "dm23rp3-005": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 2470
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 0,
+            "seed": 147101,
+            "winner": 0,
+            "turn": 9,
+            "actions": 63,
+            "firstCreature": 2,
+            "played": {
+              "dm23sd1-014": 3,
+              "dm23rp3-064": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 680
+          },
+          {
+            "opponent": "env-gp2026-pinky",
+            "first": 1,
+            "seed": 147118,
+            "winner": 1,
+            "turn": 9,
+            "actions": 91,
+            "firstCreature": 2,
+            "played": {
+              "dm23sd1-014": 1,
+              "dmbd15-006": 1,
+              "dmr13-016": 1,
+              "dm23rp3-064": 1,
+              "dm23rp3-005": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 289
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 0,
+            "seed": 147202,
+            "winner": 0,
+            "turn": 7,
+            "actions": 83,
+            "firstCreature": 2,
+            "played": {
+              "dm23sd1-014": 1,
+              "dmbd15-006": 1,
+              "dmr13-016": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 190
+          },
+          {
+            "opponent": "photo-fifteen-4",
+            "first": 1,
+            "seed": 147219,
+            "winner": 1,
+            "turn": 9,
+            "actions": 78,
+            "firstCreature": 2,
+            "played": {
+              "dm23sd1-014": 2,
+              "dmbd15-006": 1,
+              "dm23rp3-005": 1,
+              "dmr13-016": 1,
+              "dmbd16-011": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 820
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 0,
+            "seed": 147303,
+            "winner": 0,
+            "turn": 9,
+            "actions": 68,
+            "firstCreature": 2,
+            "played": {
+              "dm23sd1-014": 2,
+              "dmbd16-011": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 791
+          },
+          {
+            "opponent": "photo-fifteen-13",
+            "first": 1,
+            "seed": 147320,
+            "winner": 1,
+            "turn": 11,
+            "actions": 67,
+            "firstCreature": 2,
+            "played": {
+              "dm23sd1-014": 1,
+              "dmbd15-006": 1,
+              "dm23rp3-005": 1,
+              "dm23rp3-S01": 1
+            },
+            "reason": "ダイレクトアタックが成立",
+            "maxDecisionMs": 406
+          }
+        ]
+      }
+    ]
+  },
+  "isolatedReplay": {
+    "seed": 147202,
+    "first": 0,
+    "character": "hakuoh",
+    "winner": 0,
+    "actions": 102,
+    "maxRecordedDecisionMs": 1654,
+    "traceSource": "tools/benchmarks/character-ai-0.147.0-trace.json"
+  },
+  "workerProbe": {
+    "seed": 147202,
+    "character": "hakuoh",
+    "actions": 54,
+    "synchronousMs": 1808,
+    "workerRoundtripMs": 1738,
+    "mainLoopHeartbeatTicks": 146,
+    "heartbeatIntervalMs": 10,
+    "chosenActionMatches": true
+  }
+}

@@ -1,5 +1,6 @@
 import {shieldCards} from './shield-state.js';
 import {card,getLegalActions,chooseAI,step} from './engine.js';
+import {createAIDecision} from './ai-decision.js?v=0.147.0';
 
 export const AI_SPEEDS={slow:{label:'ゆっくり',delay:3000},normal:{label:'標準',delay:2000},fast:{label:'速い',delay:700}};
 export const aiSpeedLabel=speed=>(AI_SPEEDS[speed]||AI_SPEEDS.normal).label;
@@ -43,15 +44,18 @@ export function aiResultCues(before,s,{opponentOnly=false}={}){
 
 // This clock advances the existing engine only at a validated AI action boundary.
 // Reading cues, changing speed, pausing and opening a dialog never execute a move.
-export function createAIPlayback({getState,isActive=()=>true,isBlocked=()=>false,onChange=()=>{},timer=setTimeout,cancelTimer=clearTimeout,legal=getLegalActions,choose=chooseAI,execute=step,speed='normal'}={}){
- let currentSpeed=AI_SPEEDS[speed]?speed:'normal',paused=false,cue=null,queue=[],plan=null,handle=null,generation=0,disposed=false,position=0,total=0;
- const active=()=>!disposed&&isActive(),aiTurn=()=>{const s=getState();return s&&s.winner===null&&legal(s)[0]?.player===1;};
+export function createAIPlayback({getState,isActive=()=>true,isBlocked=()=>false,onChange=()=>{},timer=setTimeout,cancelTimer=clearTimeout,legal=getLegalActions,choose=null,cancelChoose=()=>{},disposeChoose=()=>{},cards=null,execute=step,speed='normal'}={}){
+ const chooser=!choose&&cards&&typeof Worker!=='undefined'?createAIDecision({cards}):null,pick=choose||(chooser?s=>chooser.choose(s):chooseAI);
+ let currentSpeed=AI_SPEEDS[speed]?speed:'normal',paused=false,cue=null,queue=[],plan=null,handle=null,generation=0,disposed=false,position=0,total=0,thinking=false,thinkingGeneration=0;
+ const active=()=>!disposed&&isActive(),aiTurn=()=>{const s=getState();return s&&s.winner===null&&(s.decision?.player??s.active)===1;};
  const clear=()=>{generation++;if(handle!==null)cancelTimer(handle);handle=null;};
- const snapshot=()=>({speed:currentSpeed,paused,cue,position,total,hasNext:!!plan||queue.length>0||!!aiTurn(),pending:queue.length+(plan?1:0)});
+ const snapshot=()=>({speed:currentSpeed,paused,cue,position,total,thinking,hasNext:thinking||!!plan||queue.length>0||!!aiTurn(),pending:queue.length+(plan?1:0)});
  const notify=()=>onChange(snapshot());
- const schedule=()=>{clear();if(!active()||isBlocked()||paused||!snapshot().hasNext)return;const token=generation;handle=timer(()=>{handle=null;if(token!==generation||!active()||isBlocked()||paused)return;advance();},AI_SPEEDS[currentSpeed].delay);};
+ const cancelThinking=()=>{thinkingGeneration++;if(!thinking)return;thinking=false;cue=null;chooser?.cancel();cancelChoose();};
+ const schedule=()=>{clear();if(!active()||isBlocked()||paused||thinking||!snapshot().hasNext)return;const token=generation;handle=timer(()=>{handle=null;if(token!==generation||!active()||isBlocked()||paused)return;advance();},AI_SPEEDS[currentSpeed].delay);};
+ const announce=(s,a)=>{if(!a||a.player!==1)return false;plan={signature:JSON.stringify(a),actions:s.actions};cue=aiActionCue(s,a);position=0;total=0;return true;};
  function advance(){
-  clear();if(!active()||isBlocked())return false;
+  clear();if(!active()||isBlocked()||thinking)return false;
   const s=getState();
   if(plan){
    const pending=plan;plan=null;
@@ -61,28 +65,42 @@ export function createAIPlayback({getState,isActive=()=>true,isBlocked=()=>false
    cue=queue.shift()||{label:'相手の行動の結果',text:'相手の選択を処理しました',keys:[],zones:[],turn:s.turn,stage:'result'};
   }else if(queue.length){cue=queue.shift();position++;}
   else if(aiTurn()){
-   const a=choose(s);if(!a||a.player!==1)return false;
-   plan={signature:JSON.stringify(a),actions:s.actions};cue=aiActionCue(s,a);position=0;total=0;
+   const result=pick(s);
+   if(result&&typeof result.then==='function'){
+    const token=++thinkingGeneration,actions=s.actions;thinking=true;cue={label:'相手の行動',text:'相手が考えています…',keys:[],zones:[],turn:s.turn,stage:'thinking'};position=0;total=0;notify();
+    Promise.resolve(result).then(a=>{
+     if(token!==thinkingGeneration)return;
+     thinking=false;cue=null;
+     if(!active()||isBlocked()||getState()!==s||s.actions!==actions||!aiTurn())return;
+     if(a&&legal(s).some(x=>x.player===1&&JSON.stringify(x)===JSON.stringify(a)))announce(s,a);
+     notify();schedule();
+    }).catch(()=>{
+     if(token!==thinkingGeneration)return;
+     thinking=false;if(!active())return;
+     paused=true;cue={label:'相手の行動',text:'相手の思考を再開してください',keys:[],zones:[],turn:s.turn,stage:'error'};notify();
+    });return true;
+   }
+   if(!announce(s,result))return false;
   }else return false;
   notify();schedule();return true;
  }
  return {
   snapshot,capture:()=>aiPublicSnapshot(getState()),
-  start(){if(!active()||isBlocked())return;if(!cue&&!plan&&!queue.length&&aiTurn()&&!paused)advance();else schedule();},
-  suspend:clear,
+  start(){if(!active()||isBlocked()||thinking)return;if(!cue&&!plan&&!queue.length&&aiTurn()&&!paused)advance();else schedule();},
+  suspend(){clear();cancelThinking();},
   setSpeed(value){if(!AI_SPEEDS[value])return;currentSpeed=value;notify();schedule();},
-  togglePause(){paused=!paused;notify();if(!paused&&!cue&&aiTurn())advance();else schedule();},
+  togglePause(){paused=!paused;if(paused)cancelThinking();notify();if(!paused&&!cue&&aiTurn())advance();else schedule();},
   next(){if(!active()||isBlocked())return;paused=true;if(!advance())notify();},
-  reset(){clear();queue=[];plan=null;cue=null;position=0;total=0;},
-  recordHuman(before){clear();plan=null;queue=aiResultCues(before,getState(),{opponentOnly:true});total=queue.length;position=total?1:0;cue=queue.shift()||null;},
-  dispose(){clear();disposed=true;queue=[];plan=null;cue=null;}
+  reset(){clear();cancelThinking();queue=[];plan=null;cue=null;position=0;total=0;},
+  recordHuman(before){clear();cancelThinking();plan=null;queue=aiResultCues(before,getState(),{opponentOnly:true});total=queue.length;position=total?1:0;cue=queue.shift()||null;},
+  dispose(){clear();cancelThinking();chooser?.dispose();disposeChoose();disposed=true;queue=[];plan=null;cue=null;}
  };
 }
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function aiPlaybackHTML(playback){
  if(!playback?.cue&&!playback?.hasNext)return '';
  const {paused,hasNext,position,total,speed}=playback,cue=playback.cue||{label:'相手の行動',text:paused?'相手AIを一時停止しています':'相手の行動を確認します'};
- return `<section class="ai-playback ${paused?'is-paused':''}" aria-label="相手AIの行動を確認"><button class="ai-cue" data-action="manual-ai-detail" aria-label="行動の説明を詳しく見る"><small>${paused?'一時停止中 · ':''}${esc(cue.label)}${total>1?` · ${position}/${total}`:''}</small><strong role="status" aria-live="polite" aria-atomic="true">${esc(cue.text)}</strong></button><div class="ai-playback-buttons"><button data-action="manual-speed" aria-label="AIの速さを変更">速さ：${aiSpeedLabel(speed)}</button><button data-action="manual-ai-pause" aria-pressed="${paused}" ${!hasNext&&!paused?'disabled':''}>${paused?'▶ 再開':'Ⅱ 一時停止'}</button><button data-action="manual-ai-next" ${hasNext?'':'disabled'}>次へ ›</button></div></section>`;
+ return `<section class="ai-playback ${paused?'is-paused':''}" aria-label="相手AIの行動を確認"><button class="ai-cue" data-action="manual-ai-detail" aria-label="行動の説明を詳しく見る"><small>${paused?'一時停止中 · ':''}${esc(cue.label)}${total>1?` · ${position}/${total}`:''}</small><strong role="status" aria-live="polite" aria-atomic="true">${esc(cue.text)}</strong></button><div class="ai-playback-buttons"><button data-action="manual-speed" aria-label="AIの速さを変更">速さ：${aiSpeedLabel(speed)}</button><button data-action="manual-ai-pause" aria-pressed="${paused}" ${!hasNext&&!paused?'disabled':''}>${paused?'▶ 再開':'Ⅱ 一時停止'}</button><button data-action="manual-ai-next" ${hasNext&&!playback.thinking?'':'disabled'}>次へ ›</button></div></section>`;
 }
 export function applyAIHighlights(area,cue){
  if(!area?.querySelectorAll||!cue)return;

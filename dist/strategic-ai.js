@@ -1,6 +1,7 @@
 // Bounded planning over public positions. Unknown cards stay unknown: no actual
 // deck order, shields, opponent hand, game seed or game RNG enters this module.
 import {heroCardRole} from './hero-draw.js?v=0.96.0';
+import {visibleFinishRoutes} from './attack-plan.js?v=0.147.0';
 export function createStrategicAI(api){
  const {card,faces,effective,power,isCreature,legal,step,rank:baseRank,observe,mark}=api;
  const cap=n=>Math.min(20,Number(n)||0);
@@ -85,6 +86,11 @@ export function createStrategicAI(api){
    const a=r.a,x=own.hand.find(x=>x.uid===a.uid);let value=r.value;
    if(a.kind==='charge'&&x)value-=keepValue(s,p,x);
    if(a.kind==='play'&&x)value+=keepValue(s,p,x)*.6;
+   if(hero(s,p)==='hakuoh'&&a.baseUid){
+    const base=own.battle.find(y=>y.uid===a.baseUid),c=base&&effective(base,s);
+    if(c?.wellkius&&!own.battle.some(y=>y.uid!==base.uid&&effective(y,s).wellkius))value-=30;
+    if(c?.g88Lodriess&&!own.battle.some(y=>y.uid!==base.uid&&effective(y,s).g88Lodriess))value-=22;
+   }
    return {...r,value};
   }).sort((a,b)=>b.value-a.value||a.a.id-b.a.id);
  }
@@ -108,7 +114,8 @@ export function createStrategicAI(api){
   }
   if(hero(s,p)&&task?.op==='revResolve'){
    const x=s.players[p].battle.find(x=>x.uid===task.attacker),incoming=card(task.source),old=x&&effective(x,s);
-   if(old&&(x.cardId===incoming.id||old.shieldBurn&&!incoming.shieldBurn||damage(old)>damage(incoming)&&cap(old.cost)>=cap(incoming.cost)))
+   const keepGuard=hero(s,p)==='kira'&&old?.blocker&&old.samuraiEndUntap&&!incoming.blocker&&s.players[p].shields.length<=2&&s.players[1-p].battle.some(y=>isCreature(s,y)&&!effective(y,s).noPlayerAttack);
+   if(old&&(keepGuard||x.cardId===incoming.id||old.shieldBurn&&!incoming.shieldBurn||damage(old)>damage(incoming)&&cap(old.cost)>=cap(incoming.cost)))
     return rows.find(r=>!s.decision.choices[r.a.choice]?.value)?.a||rows[0]?.a;
   }
   if(!['discard','discardSelect'].includes(task?.op))return rows[0]?.a;
@@ -248,11 +255,24 @@ export function createStrategicAI(api){
   const me=ctx.players[p],them=ctx.players[1-p],find=(who,uid)=>ctx.players[who].battle.find(x=>x.uid===uid);
   const playerAttacks=rows.filter(r=>r.a.kind==='attack'&&r.value>-1000&&r.a.target==='player');
   const unique=[...new Map(playerAttacks.map(r=>[r.a.uid,r.a])).values()];
-  const blockers=them.battle.filter(x=>!x.tapped&&effective(x,ctx).blocker);
-  const hits=unique.filter(a=>effective(find(p,a.uid),ctx).unblockable||!blockers.length)
-   .map(a=>damage(effective(find(p,a.uid),ctx))).sort((a,b)=>a-b);
+  const blockers=them.battle.filter(x=>!x.tapped&&effective(x,ctx).blocker&&isCreature(ctx,x));
+  const routes=visibleFinishRoutes(unique.map(a=>{const x=find(p,a.uid),c=effective(x,ctx);return {uid:a.uid,damage:c.noShieldBreak?0:damage(c),blockers:api.blockersFor(ctx,1-p,x)};}),blockers.map(x=>x.uid),them.shields.length,{protectedPlayer:api.directAttackProtected(s,1-p)});
   const protectedPlayer=api.directAttackProtected(s,1-p);
-  let shields=them.shields.length,lethal=false;for(const hit of hits){if(shields===0){lethal=!protectedPlayer;break;}shields=Math.max(0,shields-hit);}
+  const lethal=routes.winning.size>0;
+  const defensiveHero=['hakuoh','kira'].includes(hero(s,p));
+  const reserve=new Set();
+  if(defensiveHero&&!lethal&&me.shields.length<=2){
+   // Estimate only the visible counterattack after untapping. Existing attack
+   // locks still apply, so this does not invent threats from a hidden hand.
+   const future={...ctx,active:1-p,turn:ctx.turn+1,players:ctx.players.map((own,i)=>({...own,battle:own.battle.map(x=>i===1-p&&api.canUntap(x)?{...x,tapped:false}:x)}))};
+   const attacks=future.players[1-p].battle.filter(x=>canHit(future,1-p,x)).map(x=>({uid:x.uid,damage:effective(x,future).noShieldBreak?0:damage(effective(x,future)),blockers:api.blockersFor(future,p,x)}));
+   const guards=me.battle.filter(x=>!x.tapped&&effective(x,ctx).blocker&&isCreature(ctx,x)).map(x=>x.uid);
+   if(guards.length&&attacks.length&&visibleFinishRoutes(attacks,guards,me.shields.length).winning.size===0){
+    for(const uid of guards){const c=effective(find(p,uid),ctx);if(c.samuraiEndUntap||c.flare)continue;
+     if(visibleFinishRoutes(attacks,guards.filter(x=>x!==uid),me.shields.length).winning.size)reserve.add(uid);
+    }
+   }
+  }
   return rows.map(r=>{
    // Preserve the effect policy's fatal-attack exclusion in both scoring and lethal estimates.
    const a=r.a;if(a.kind!=='attack'||r.value<=-1000)return r;
@@ -262,8 +282,10 @@ export function createStrategicAI(api){
     score=28+Math.min(them.shields.length,damage(c))*7+(c.unblockable?10:0);
     if(them.shields.length===0)score+=150;
     if(lethal)score+=120+damage(c)*3;
+    if(routes.winning.size){score+=routes.winning.has(a.uid)?200:-200;}
     if(!c.unblockable&&blockers.some(y=>power(y,false,ctx)>=power(x,true,ctx)))score-=35;
-    if(c.blocker&&me.shields.length===0&&!lethal)score-=35;
+    if(c.blocker&&me.shields.length===0&&!lethal&&!defensiveHero)score-=35;
+    if(reserve.has(a.uid))score-=90;
     if(hero(s,p)){
      if(c.shieldBurn||c.burnShields)score+=them.shields.length?28:0;
      if(s.challenge.signature.includes(x.cardId))score+=them.shields.length?8:0;
