@@ -10,6 +10,9 @@ export function createUtilityResourceRules(api){
  function finishManaReturn(s,t){if(!api.canMoveZone(s,t.p,'mana'))return;const own=s.players[t.p];for(const uid of t.selected||[]){const x=api.remove(own.mana,uid);if(x){api.clear(x,'hand');api.addZone(s,t.p,'hand',x);}}}
  function finishChain(s,t){put(s,{...t,op:'g61_Sacrifice',controller:t.p});const rows=(t.selected||[]).filter(r=>s.players[1-t.p].battle.some(x=>key(x)===key(r)));if(rows.length)api.move(s,rows.map(r=>({player:1-t.p,uid:r.uid,to:'grave',destroy:true,controller:t.p})));}
  function run(s,t){if(!t.op.startsWith('g61_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g61_Poseidon':choice(s,t,'カードを2枚引きますか？',[opt('2枚引く',true,own.deck.length>2||creatures(s,t.p).some(x=>api.effective(x,s).shako)?20:-1000),opt('引かない',false,0)]);break;
+ case'g61_Jet':choice(s,t,'破壊する相手のタップ済みクリーチャーを1体選ぶ',api.targetOptions(s,t.p,creatures(s,1-t.p).filter(x=>x.tapped)));break;
+ case'g61_ShellStorm':{const p=1-t.p;choice(s,{...t,p,controller:t.p},'マナゾーンに置く自分のクリーチャーを1体選ぶ',creatures(s,p).map(x=>opt(card(x).name,x.uid,api.canLeave(s,p,x)?-Math.min(cost(card(x)),20):50,x.cardId)));break;}
  case'g61_Izana':choice(s,t,'破壊する相手のパワー2000以下1体を選ぶ',api.targetOptions(s,t.p,creatures(s,1-t.p).filter(x=>currentPower(s,x)<=2000)));break;
  case'g61_Cannon':choice(s,t,'破壊する相手のパワー'+(t.metamorph?6000:2000)+'以下1体を選ぶ',api.targetOptions(s,t.p,creatures(s,1-t.p).filter(x=>currentPower(s,x)<=(t.metamorph?6000:2000))));break;
  case'g61_Punish':if(t.metamorph)choice(s,t,'相手の手札を見て、捨てさせる1枚を選ぶ',s.players[1-t.p].hand.map(x=>{const c=card(x),deploy=(c.enemyDiscardDeploy||c.discardDeploy&&t.p===s.active)&&api.canEnter(s,1-t.p,c,{origin:'hand',execution:false});return opt(c.name,x.uid,(deploy?-80:10)+Math.min(cost(c),20)*3,x.cardId);}));else put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:1}));break;
@@ -55,7 +58,9 @@ export function createUtilityResourceRules(api){
  default:throw Error('未実装の資源ユーティリティ効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g61_'))return false;const own=s.players[t.p];switch(t.op){
- case'g61_Izana':case'g61_Cannon':if(v)api.move(s,[{player:1-t.p,uid:v,to:'grave',destroy:true,controller:t.p}]);break;
+ case'g61_Poseidon':if(v)api.draw(s,t.p,2);break;
+ case'g61_ShellStorm':if(v)api.move(s,[{player:t.p,uid:v,to:'mana',destroy:false,controller:t.controller}]);break;
+ case'g61_Jet':case'g61_Izana':case'g61_Cannon':if(v)api.move(s,[{player:1-t.p,uid:v,to:'grave',destroy:true,controller:t.p}]);break;
  case'g61_Punish':if(v)put(s,task('discardChosen',1-t.p,t.source,{uid:v,causedBy:t.p,n:1}));break;
  case'g61_Smoke':{const x=creatures(s,1-t.p).find(x=>x.uid===v);if(x){queue(s,t,'SmokeDraw',{colors:api.colors(api.effective(x,s))});api.move(s,[{player:1-t.p,uid:x.uid,to:'grave',destroy:true,controller:t.p}]);}break;}
  case'g61_Draco':{const x=creatures(s,1-t.p).find(x=>x.uid===v);if(x){if(String(api.effective(x,s).race).includes('ドラゴン'))queue(s,t,'DracoShield');api.tap(s,1-t.p,x);}break;}

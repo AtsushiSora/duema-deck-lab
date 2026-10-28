@@ -1,3 +1,4 @@
+import {UTILITY131_DECKS} from './fixtures/utility131.mjs';
 import {UTILITY130_DECKS} from './fixtures/utility130.mjs';
 import {UTILITY129_DECKS} from './fixtures/utility129.mjs';
 import {UTILITY128_DECKS} from './fixtures/utility128.mjs';
@@ -137,3 +138,5 @@ for(const d of UTILITY128_DECKS)if(validateDeck(d).length||registry.coverage(d).
 for(const d of UTILITY129_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第129段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase129 effect-test decks: six new names in legal forty-card lists.');
 
 for(const d of UTILITY130_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第130段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase130 effect-test decks: six new names in legal forty-card lists.');
+
+for(const d of UTILITY131_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第131段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase131 effect-test decks: six new names in legal forty-card lists.');
