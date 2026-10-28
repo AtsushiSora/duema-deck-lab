@@ -1,3 +1,4 @@
+import {routeToAction} from './navigation-route-helper.mjs';
 import {PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS} from '../dist/photo-october-decks.js';
 import test from 'node:test';import assert from 'node:assert/strict';import vm from 'node:vm';import {readFile} from 'node:fs/promises';
 import {APP_VERSION} from '../dist/app-updates.js';import {createCardArt} from '../dist/card-art.js';import {e,PRESETS,data,details,snapshot,target} from './target-fixture.mjs';
@@ -14,7 +15,7 @@ function harness({empty=false,unsupported=false}={}){
  vm.runInContext(app,context);
  vm.runInContext("registry=fixtureRegistry;cards=registry.cards;battleCards=fixtureData.cards;metadata=fixtureData;environmentDecks=resolveEnvironmentDecks(registry);saved=fixtureSaved;view='battle';render();",context);
  const read=code=>vm.runInContext(code,context);
- return {root,dialog,writes,read,click:async(action,extra={})=>{
+ return {root,dialog,writes,read,click:async(action,extra={})=>{if(await routeToAction({action,extra,getHTML:()=>dialog.open?dialog.innerHTML:root.innerHTML,fire:(action,extra)=>listeners.click({target:{closest:()=>({dataset:{action,...extra},closest:()=>null})}})}))return;
   const html=dialog.open?dialog.innerHTML:root.innerHTML;
   const buttons=[...html.matchAll(/<button\b([^>]*)>[\s\S]*?<\/button>/g)].map(m=>m[1]);
   assert.ok(buttons.some(attrs=>attrs.includes(`data-action="${action}"`)&&Object.entries(extra).every(([k,v])=>attrs.includes(`data-${k}="${v}"`))&&!/\bdisabled\b/.test(attrs)),`visible enabled button: ${action} ${JSON.stringify(extra)}`);

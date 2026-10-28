@@ -1,3 +1,4 @@
+import {routeToAction} from './navigation-route-helper.mjs';
 import {PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS} from '../dist/photo-october-decks.js';
 import * as championLibrary from '../dist/champions.js';
 import * as opponentProgress from '../dist/opponent-progress.js';
@@ -24,7 +25,7 @@ function harness({empty=false}={}){
  vm.runInContext(app,context);
  vm.runInContext("registry=fixtureRegistry;cards=registry.cards;battleCards=fixtureData.cards;metadata=fixtureData;environmentDecks=resolveEnvironmentDecks(registry);saved=fixtureSaved;view='battle';render();",context);
  const read=code=>vm.runInContext(code,context);
- return {root,dialog,writes,read,click:async(action,extra={})=>{
+ return {root,dialog,writes,read,click:async(action,extra={})=>{if(await routeToAction({action,extra,getHTML:()=>dialog.open?dialog.innerHTML:root.innerHTML,fire:(action,extra)=>listeners.click({target:{closest:()=>({dataset:{action,...extra},closest:()=>null})}})}))return;
   const html=dialog.open?dialog.innerHTML:root.innerHTML;
   const buttons=[...html.matchAll(/<button\b([^>]*)>[\s\S]*?<\/button>/g)].map(m=>m[1]);
   assert.ok(buttons.some(attrs=>attrs.includes(`data-action="${action}"`)&&Object.entries(extra).every(([k,v])=>attrs.includes(`data-${k}="${v}"`))&&!/\bdisabled\b/.test(attrs)),`visible enabled button: ${action} ${JSON.stringify(extra)}`);
@@ -32,10 +33,10 @@ function harness({empty=false}={}){
  }};
 }
 
-test('match overview exposes own and opponent environment buttons; each picker leads to playable deck selection',async()=>{
+test('match preparation opens both deck-source pickers; each leads to playable deck selection',async()=>{
  const h=harness();
- assert.match(h.root.innerHTML, /aria-label="自分の環境デッキを選ぶ"/);
- assert.match(h.root.innerHTML, /aria-label="相手の環境デッキを選ぶ"/);
+ assert.match(h.root.innerHTML, /aria-label="自分のデッキを変更"/);
+ assert.match(h.root.innerHTML, /aria-label="相手デッキを変更"/);
  await h.click('select-my-deck');await h.click('choose-environment',{role:'mine'});
  assert.ok(h.dialog.open);const html=h.dialog.innerHTML;
  assert.match(html,/バイケン（Grimoire）/);
