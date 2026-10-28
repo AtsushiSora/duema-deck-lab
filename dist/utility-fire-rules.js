@@ -7,6 +7,7 @@ export function createUtilityFireRules(api){
  const key=x=>x.uid+'@'+(x.incarnation||0);
  function destroySelected(s,t){const moves=t.selected.filter(r=>s.players[1-t.p].battle.some(x=>key(x)===key(r))).map(r=>({player:1-t.p,uid:r.uid,to:'grave',destroy:true,controller:t.p}));if(moves.length)api.move(s,moves);}
  function run(s,t){if(!t.op.startsWith('g75_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g75_Gush':put(s,follow(t,'Destroy',{limit:3000}));break;
  case'g75_Drill':put(s,follow(t,'Destroy',{limit:6000}));break;
  case'g75_Scramble':choice(s,t,'スピードアタッカーを与える自分のクリーチャーを1体選ぶ',targetOptions(s,t.p,living(s,t.p)));break;
  case'g75_Quake':for(const x of living(s,t.p)){(x.powerModifiers??=[]).push({amount:1000,expires:'end',who:s.active,spellSource:t.source,spellCost:cost(card(t.source))});(x.g34Grants??=[]).push({turn:s.turn,attackUntapped:true,spellSource:t.source,spellCost:cost(card(t.source))});}break;

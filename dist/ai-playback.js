@@ -1,6 +1,6 @@
 import {shieldCards} from './shield-state.js';
 import {card,getLegalActions,chooseAI,step} from './engine.js';
-import {createAIDecision} from './ai-decision.js?v=0.168.0';
+import {createAIDecision} from './ai-decision.js?v=0.169.0';
 
 export const AI_SPEEDS={slow:{label:'ゆっくり',delay:3000},normal:{label:'標準',delay:2000},fast:{label:'速い',delay:700}};
 export const aiSpeedLabel=speed=>(AI_SPEEDS[speed]||AI_SPEEDS.normal).label;
