@@ -7,6 +7,9 @@ export function createUtilityResourceRules(api){
  const release=(s,p,ids)=>s.players[p].g34Protected=(s.players[p].g34Protected||[]).filter(uid=>!ids.includes(uid));
  function look(s,t,n){const own=s.players[t.p],held=new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&/Protected$|Reveals$/.test(k)).flatMap(([,v])=>v)),xs=own.deck.filter(x=>!held.has(x.uid)).slice(0,api.lookCount(s,t.p,n));(own.g34Protected??=[]).push(...xs.map(x=>x.uid));if(xs.length)api.log(s,t.p,api.lookPublic(s,t.p)?'reveal':'look',card(t.source).name+'：山札の'+xs.length+'枚を確認'+(api.lookPublic(s,t.p)?'：'+xs.map(x=>card(x).name).join('・'):''),{cardId:t.source});return xs;}
  function run(s,t){if(!t.op.startsWith('g61_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g61_Vines':put(s,{...t,op:'g61_Sacrifice',p:1-t.p,blocker:true,controller:t.p});break;
+ case'g61_Zekira':put(s,{...t,op:'g61_Sacrifice',controller:t.p});break;
+ case'g61_Sacrifice':choice(s,t,'破壊する自分の'+(t.blocker?'ブロッカー':'クリーチャー')+'を1体選ぶ',api.targetOptions(s,t.p,creatures(s,t.p).filter(x=>!t.blocker||api.effective(x,s).blocker)).map(o=>({...o,score:api.canLeave(s,t.p,own.battle.find(x=>x.uid===o.value))?-cost(card(o.cardId))*4:50})));break;
  case'g61_Genesis':choice(s,t,'破壊してカードを3枚引く自分のクリーチャーを1体まで選ぶ',[...api.targetOptions(s,t.p,creatures(s,t.p)).map(o=>({...o,score:own.deck.length>3||creatures(s,t.p).some(x=>x.uid!==o.value&&api.effective(x,s).shako)?40-cost(card(o.cardId))*3:-1000})),opt('破壊せずに使わない',null,0)]);break;
  case'g61_Protection':queue(s,t,'ProtectionDraw');if(api.canAddShield(s,t.p))choice(s,t,'新しいシールドとして裏向きに加える手札を1枚選ぶ',own.hand.map(x=>opt(card(x).name,x.uid,faces(card(x)).some(c=>c.trigger)?30:15-Math.min(cost(card(x)),30),x.cardId)));break;
  case'g61_ProtectionDraw':if(own.shields.length>s.players[1-t.p].shields.length)put(s,task('g34_Draw',t.p,t.source,{n:1,optional:true}));break;
@@ -22,6 +25,7 @@ export function createUtilityResourceRules(api){
  default:throw Error('未実装の資源ユーティリティ効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g61_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g61_Sacrifice':if(v)api.move(s,[{player:t.p,uid:v,to:'grave',destroy:true,controller:t.controller??t.p}]);break;
  case'g61_Genesis':{const x=creatures(s,t.p).find(x=>x.uid===v);if(x){put(s,task('g34_Draw',t.p,t.source,{n:3}));api.move(s,[{player:t.p,uid:x.uid,to:'grave',destroy:true,controller:t.p}]);}break;}
  case'g61_Protection':{const x=own.hand.find(x=>x.uid===v);if(x&&api.canAddShield(s,t.p)){api.remove(own.hand,x.uid);api.clear(x,'shields');api.addZone(s,t.p,'shields',x);api.notifyShieldAdded(s,t.p,x);}break;}
  case'g61_DeathGate':{const x=creatures(s,1-t.p).find(x=>x.uid===v&&!x.tapped);if(x){const n=cost(api.effective(x,s));queue(s,t,'Revive',{max:Number.isFinite(n)?n:'∞'});api.move(s,[{player:1-t.p,uid:x.uid,to:'grave',destroy:true,controller:t.p}]);}break;}
