@@ -39,8 +39,15 @@ test('normal and twinpact hand actions expose legal faces, disabled reasons and 
  const s=setup();give(s,0,'hand',[RS]);give(s,0,'mana',Array(3).fill('dm01-097'));const ui={...newManualUI(),hand:s.players[0].hand[0].uid},html=markup(s,ui);assert.ok(html.includes('呪文を使う'));assert.ok(!html.includes('召喚する'));assert.ok(html.includes('能力を見る'));assert.equal(selectionHint(s,s.players[0].hand[0]),'使用できます');
  const t=setup();give(t,0,'battle',[DOGI]);give(t,0,'hand',[DOGI]);assert.match(selectionHint(t,t.players[0].hand[0]),/同名/);assert.ok(!buttonIds(markup(t,{...newManualUI(),hand:t.players[0].hand[0].uid})).some(id=>e.getLegalActions(t)[id].kind==='play'));
 });
-test('mana summons remain accessible in the main-step extra methods and hand details are hidden by default during attacks',()=>{
- const s=setup();give(s,0,'mana',[VEG,...Array(8).fill('dm01-108')]);assert.ok(markup(s).includes('マナ・墓地などから使う'));assert.ok(markup(s).includes('マナの暴龍'));s.phase='attack';give(s,0,'battle',[GG]);const closed=markup(s);assert.ok(!closed.includes('class="manual-hand-cards"'));assert.ok(closed.includes('手札を見る'));assert.ok(markup(s,{...newManualUI(),handOpen:true}).includes('class="manual-hand-cards"'));
+test('mana summons remain accessible and the desktop hand stays visible during attacks even after panel minimization',()=>{
+ const s=setup();give(s,0,'mana',[VEG,...Array(8).fill('dm01-108')]);assert.ok(markup(s).includes('マナ・墓地などから使う'));assert.ok(markup(s).includes('マナの暴龍'));s.phase='attack';give(s,0,'battle',[GG]);const visible=markup(s);assert.ok(visible.includes('class="manual-hand-cards"'));assert.ok(!visible.includes('手札を見る'));assert.ok(markup(s,{...newManualUI(),handOpen:false,panelMinimized:true}).includes('class="manual-hand-cards"'));
+});
+test('desktop hand stays visible with every card during mana payment without changing the pending decision',()=>{
+ const s=setup();give(s,0,'hand',['dm14-108',...Array(11).fill('dm01-108')]);
+ const play=e.getLegalActions(s).find(a=>a.kind==='play'&&a.cardId==='dm14-108');assert.ok(play);e.step(s,play,{manualMana:true});assert.equal(s.decision.type,'manaPayment');
+ const before=structuredClone(s),html=markup(s,{...newManualUI(),panelMinimized:true});
+ assert.ok(html.includes('class="manual-hand-cards"'));for(const x of s.players[0].hand)assert.ok(html.includes(`data-action="hand-card" data-uid="${x.uid}"`));
+ assert.match(html,/支払うマナを選ぼう/);assert.deepEqual(s,before);
 });
 test('card names and log content are escaped, while current public power and game restrictions remain readable',()=>{
  const s=setup();give(s,0,'battle',[GEN]);give(s,1,'battle',[Y]);s.log.push({turn:1,player:1,text:'<img src=x onerror=alert(1)>',type:'play'});const html=markup(s);assert.ok(html.includes('&lt;img'));assert.ok(!html.includes('<img src=x'));assert.ok(html.includes('∞'));assert.ok(html.includes('ゲンム：'));assert.ok(html.includes('能力無効'));assert.ok(html.includes('対戦ログ'));

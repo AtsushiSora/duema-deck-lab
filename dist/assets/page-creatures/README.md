@@ -4,6 +4,8 @@
 
 | ページ | カード | 公式ページ |
 | --- | --- | --- |
+| CPUと手動で対戦のボタン | ボルシャック・ドギラゴン | https://dm.takaratomy.co.jp/card/detail/?id=dmr19-l02 |
+| 自動対戦の分析のボタン | 聖霊王アルファディオス | https://dm.takaratomy.co.jp/card/detail/?id=dm15-s01 |
 | 対戦する | 竜皇神 ボルシャック・バクテラス | https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-OR2 |
 | デッキ管理・編集 | 百族の長 プチョヘンザ | https://dm.takaratomy.co.jp/card/detail/?id=dmr21-l01 |
 | CPU対戦の準備 | ボルメテウス・サファイア・ドラゴン | https://dm.takaratomy.co.jp/card/detail/?id=dmc27-004 |
