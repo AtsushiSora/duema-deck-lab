@@ -16,7 +16,7 @@ const end=s=>{s.phase='attack';act(s,'endTurn');drain(s);};
 const conserve=s=>{const all=e.physicalCards(s);assert.equal(all.length,80);assert.equal(new Set(all.map(x=>x.uid)).size,80);};
 
 test('Viride adds ten complete effects and the original historical forty',()=>{
- const m=JSON.parse(fs.readFileSync(new URL('../tools/support-phase-42.json',import.meta.url)));assert.equal(m.cards.length,10);assert.equal(data.cards.length,1763);
+ const m=JSON.parse(fs.readFileSync(new URL('../tools/support-phase-42.json',import.meta.url)));assert.equal(m.cards.length,10);assert.equal(data.cards.length,1769);
  for(const r of m.cards){assert.deepEqual(details.cards.find(x=>x.id===r.id).faces,r.faces);for(const[k,v]of Object.entries(r.spec))assert.deepEqual(e.card(r.id)[k],v);}
  assert.equal(registry.coverage(target).supported,40);assert.deepEqual(e.validateDeck(target),[]);assert.equal(target.cards.find(r=>r.id===S).count,4);assert.equal(e.card(S).limit,1);assert.equal(target.tournament.practice,undefined);assert.equal(target.historicalId,VIRIDE_TARGET);assert.equal(opponents.length,49);
  const bad=structuredClone(target);delete bad.historicalId;assert.ok(e.validateDeck(bad).some(x=>x.includes('1枚')));

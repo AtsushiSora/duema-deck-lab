@@ -10,9 +10,13 @@ export function createUtilityResourceRules(api){
  function finishManaReturn(s,t){if(!api.canMoveZone(s,t.p,'mana'))return;const own=s.players[t.p];for(const uid of t.selected||[]){const x=api.remove(own.mana,uid);if(x){api.clear(x,'hand');api.addZone(s,t.p,'hand',x);}}}
  function finishChain(s,t){put(s,{...t,op:'g61_Sacrifice',controller:t.p});const rows=(t.selected||[]).filter(r=>s.players[1-t.p].battle.some(x=>key(x)===key(r)));if(rows.length)api.move(s,rows.map(r=>({player:1-t.p,uid:r.uid,to:'grave',destroy:true,controller:t.p})));}
  function run(s,t){if(!t.op.startsWith('g61_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g61_Night':queue(s,t,'Angler',{optional:false});break;
+ case'g61_Nenbutsu':choice(s,t,'相手の山札の一番下に戻す墓地のカードを1枚選ぶ',(api.canMoveZone(s,1-t.p,'grave')?s.players[1-t.p].grave:[]).map(x=>opt(card(x).name,x.uid,10+Math.min(cost(card(x)),20),x.cardId)));break;
+ case'g61_Maria':choice(s,t,'手札に戻す自分のコスト4以下1体を選ぶ',api.targetOptions(s,t.p,creatures(s,t.p).filter(x=>cost(api.effective(x,s))<=4)).map(o=>{const x=own.battle.find(x=>x.uid===o.value);return{...o,score:!api.canLeave(s,t.p,x)?60:x.uid===t.uid?-50:x.cardId===t.source?-40:10-Math.min(cost(card(x)),20)};}));break;
+ case'g61_Lamp':if(own.grave.some(x=>card(x).name===card(t.source).name))put(s,task('g34_Draw',t.p,t.source,{n:1,optional:true}));break;
  case'g61_Negio':{const grave=api.canMoveZone(s,t.p,'grave')&&own.grave.length;choice(s,t,'山札の一番上に置く自分のマナを1枚選ぶ？',[...(api.canMoveZone(s,t.p,'mana')?own.mana.filter(x=>!(own.g34ManaHeld||[]).includes(x.uid)):[]).map(x=>opt(x.faceDown?'裏向きのマナ':card(x).name,x.uid,grave?(x.tapped?25:10):-10,x.faceDown?null:x.cardId)),opt('置かない',null,0)]);break;}
  case'g61_NegioGrave':choice(s,t,'マナに置く自分の墓地のカードを1枚選ぶ',(api.canMoveZone(s,t.p,'grave')?own.grave:[]).map(x=>opt(card(x).name,x.uid,10-Math.min(cost(card(x)),20),x.cardId)));break;
- case'g61_Angler':{const owner=1-t.p;choice(s,t,'相手のマナを1枚、手札へ戻す？',[...(api.canMoveZone(s,owner,'mana')?s.players[owner].mana.filter(x=>!(s.players[owner].g34ManaHeld||[]).includes(x.uid)):[]).map(x=>opt(x.faceDown?'裏向きのマナ':card(x).name,x.uid,x.faceDown?10:20-Math.min(cost(card(x)),15),x.faceDown?null:x.cardId)),opt('戻さない',null,0)]);break;}
+ case'g61_Angler':{const owner=1-t.p;choice(s,t,t.optional===false?'相手の手札へ戻すマナを1枚選ぶ':'相手のマナを1枚、手札へ戻す？',[...(api.canMoveZone(s,owner,'mana')?s.players[owner].mana.filter(x=>!(s.players[owner].g34ManaHeld||[]).includes(x.uid)):[]).map(x=>opt(x.faceDown?'裏向きのマナ':card(x).name,x.uid,x.faceDown?10:20-Math.min(cost(card(x)),15),x.faceDown?null:x.cardId)),...(t.optional===false?[]:[opt('戻さない',null,0)])]);break;}
  case'g61_NovaBurn':choice(s,t,'破壊する相手のパワー3000以下1体を選ぶ',api.targetOptions(s,t.p,creatures(s,1-t.p).filter(x=>currentPower(s,x)<=3000)));break;
  case'g61_Poseidon':choice(s,t,'カードを2枚引きますか？',[opt('2枚引く',true,own.deck.length>2||creatures(s,t.p).some(x=>api.effective(x,s).shako)?20:-1000),opt('引かない',false,0)]);break;
  case'g61_Jet':choice(s,t,'破壊する相手のタップ済みクリーチャーを1体選ぶ',api.targetOptions(s,t.p,creatures(s,1-t.p).filter(x=>x.tapped)));break;
@@ -62,6 +66,8 @@ export function createUtilityResourceRules(api){
  default:throw Error('未実装の資源ユーティリティ効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g61_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g61_Nenbutsu':if(v&&api.canMoveZone(s,1-t.p,'grave')){const x=api.remove(s.players[1-t.p].grave,v);if(x){api.clear(x,'deck');s.players[1-t.p].deck.push(x);api.log(s,t.p,'reveal',card(t.source).name+'：'+card(x).name+'を相手の山札の一番下へ',{cardId:x.cardId});}}break;
+ case'g61_Maria':if(v)api.move(s,[{player:t.p,uid:v,to:'hand',destroy:false,controller:t.p}]);break;
  case'g61_Negio':if(v&&api.canMoveZone(s,t.p,'mana')){const x=api.remove(own.mana,v);if(x){api.clear(x,'deck');own.deck.unshift(x);api.log(s,t.p,'manaTop',card(t.source).name+'：マナ1枚を山札の一番上へ',{cardId:t.source});queue(s,t,'NegioGrave');}}break;
  case'g61_NegioGrave':if(v&&api.canMoveZone(s,t.p,'grave')){const x=own.grave.find(x=>x.uid===v);if(x&&!api.manaRedirect(s,t.p)){api.remove(own.grave,v);api.clear(x,'mana');api.addZone(s,t.p,'mana',x);api.log(s,t.p,'reveal',card(t.source).name+'：'+card(x).name+'をマナへ',{cardId:x.cardId});}}break;
  case'g61_Angler':if(v&&api.canMoveZone(s,1-t.p,'mana')){const x=api.remove(s.players[1-t.p].mana,v);if(x){api.clear(x,'hand');api.addZone(s,1-t.p,'hand',x);api.log(s,t.p,'manaReturn',card(t.source).name+'：相手のマナ1枚を手札へ',{cardId:t.source});}}break;
