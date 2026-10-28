@@ -2,6 +2,7 @@
 export function createUtilityResourceRules(api){
  const{card,faces,cost,put,task,choice,opt}=api;
  const key=x=>x.uid+'@'+(x.incarnation||0);
+ const currentPower=(s,x)=>api.power(x,x.uid===s.attack?.attacker||s.attackLifecycle?.uid===x.uid&&(s.attackLifecycle.incarnation||0)===(x.incarnation||0),s);
  const creatures=(s,p)=>api.creatures(s,p).filter(x=>!x.sealed);
  const queue=(s,t,op,more={})=>put(s,{...t,op:'g61_'+op,...more});
  const release=(s,p,ids)=>s.players[p].g34Protected=(s.players[p].g34Protected||[]).filter(uid=>!ids.includes(uid));
@@ -9,6 +10,9 @@ export function createUtilityResourceRules(api){
  function finishManaReturn(s,t){if(!api.canMoveZone(s,t.p,'mana'))return;const own=s.players[t.p];for(const uid of t.selected||[]){const x=api.remove(own.mana,uid);if(x){api.clear(x,'hand');api.addZone(s,t.p,'hand',x);}}}
  function finishChain(s,t){put(s,{...t,op:'g61_Sacrifice',controller:t.p});const rows=(t.selected||[]).filter(r=>s.players[1-t.p].battle.some(x=>key(x)===key(r)));if(rows.length)api.move(s,rows.map(r=>({player:1-t.p,uid:r.uid,to:'grave',destroy:true,controller:t.p})));}
  function run(s,t){if(!t.op.startsWith('g61_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g61_StrongDraw':if(creatures(s,t.p).some(x=>currentPower(s,x)>=6000))put(s,task('g34_Draw',t.p,t.source,{n:1,optional:true}));break;
+ case'g61_StrongCrash':case'g61_StrongTrap':case'g61_StrongBreath':{queue(s,t,'StrongDraw');const xs=creatures(s,1-t.p).filter(x=>t.op==='g61_StrongCrash'?api.effective(x,s).blocker:t.op==='g61_StrongTrap'?currentPower(s,x)<=5000:!x.tapped);choice(s,t,t.op==='g61_StrongTrap'?'マナに置くパワー5000以下の相手1体を選ぶ':t.op==='g61_StrongCrash'?'破壊する相手のブロッカー1体を選ぶ':'破壊する相手のアンタップ済みクリーチャー1体を選ぶ',api.targetOptions(s,t.p,xs));break;}
+ case'g61_Spiritual':{const n=creatures(s,1-t.p).filter(x=>x.tapped).length;if(n)put(s,task('g34_Draw',t.p,t.source,{n,optional:true}));break;}
  case'g61_ManaFactory':put(s,{...t,op:'g61_ManaReturn',n:2,optional:true,selected:[]});break;
  case'g61_ManaWave':put(s,{...t,op:'g61_ManaReturn',n:1,optional:false,selected:[]});break;
  case'g61_ManaReturn':{const xs=api.canMoveZone(s,t.p,'mana')?own.mana.filter(x=>!t.selected.includes(x.uid)&&!(own.g34ManaHeld||[]).includes(x.uid)):[];if(t.selected.length>=t.n||!xs.length){finishManaReturn(s,t);break;}choice(s,t,'マナから手札に戻すカードを'+t.n+'枚'+(t.optional?'まで':'')+'選ぶ（'+t.selected.length+'/'+t.n+'）',[...xs.map(x=>opt(x.faceDown?'裏向きのマナ':card(x).name,x.uid,x.faceDown?15:15+Math.min(cost(card(x)),15)+(x.tapped?10:0),x.faceDown?null:x.cardId)),...(t.optional?[opt('ここまでで確定',null,0)]:[])]);break;}
@@ -24,7 +28,7 @@ export function createUtilityResourceRules(api){
  case'g61_Zekira':put(s,{...t,op:'g61_Sacrifice',controller:t.p});break;
  case'g61_Sacrifice':choice(s,t,'破壊する自分の'+(t.blocker?'ブロッカー':'クリーチャー')+'を1体選ぶ',api.targetOptions(s,t.p,creatures(s,t.p).filter(x=>!t.blocker||api.effective(x,s).blocker)).map(o=>({...o,score:api.canLeave(s,t.p,own.battle.find(x=>x.uid===o.value))?-cost(card(o.cardId))*4:50})));break;
  case'g61_Genesis':choice(s,t,'破壊してカードを3枚引く自分のクリーチャーを1体まで選ぶ',[...api.targetOptions(s,t.p,creatures(s,t.p)).map(o=>({...o,score:own.deck.length>3||creatures(s,t.p).some(x=>x.uid!==o.value&&api.effective(x,s).shako)?40-cost(card(o.cardId))*3:-1000})),opt('破壊せずに使わない',null,0)]);break;
- case'g61_Protection':queue(s,t,'ProtectionDraw');if(api.canAddShield(s,t.p))choice(s,t,'新しいシールドとして裏向きに加える手札を1枚選ぶ',own.hand.map(x=>opt(card(x).name,x.uid,faces(card(x)).some(c=>c.trigger)?30:15-Math.min(cost(card(x)),30),x.cardId)));break;
+ case'g61_StrongGuard':case'g61_Protection':queue(s,t,t.op==='g61_StrongGuard'?'StrongDraw':'ProtectionDraw');if(api.canAddShield(s,t.p))choice(s,t,'新しいシールドとして裏向きに加える手札を1枚選ぶ',own.hand.map(x=>opt(card(x).name,x.uid,faces(card(x)).some(c=>c.trigger)?30:15-Math.min(cost(card(x)),30),x.cardId)));break;
  case'g61_ProtectionDraw':if(own.shields.length>s.players[1-t.p].shields.length)put(s,task('g34_Draw',t.p,t.source,{n:1,optional:true}));break;
  case'g61_DeathGate':choice(s,t,'破壊する相手のアンタップしているクリーチャーを1体選ぶ',api.targetOptions(s,t.p,creatures(s,1-t.p).filter(x=>!x.tapped)));break;
  case'g61_Revive':put(s,task('g34_Select',t.p,t.source,{origin:'grave',n:1,deploy:true,optional:true,filter:{creature:true,nonEvolution:true,belowCost:t.max==='∞'?Number.MAX_SAFE_INTEGER:t.max},title:'破壊しようとした相手よりコストが小さい、進化ではない1体を墓地から出す？'}));break;
@@ -38,13 +42,14 @@ export function createUtilityResourceRules(api){
  default:throw Error('未実装の資源ユーティリティ効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g61_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g61_StrongCrash':case'g61_StrongTrap':case'g61_StrongBreath':if(v)api.move(s,[{player:1-t.p,uid:v,to:t.op==='g61_StrongTrap'?'mana':'grave',destroy:t.op!=='g61_StrongTrap',controller:t.p}]);break;
  case'g61_ManaReturn':if(v)put(s,{...t,selected:[...t.selected,v]});else finishManaReturn(s,t);break;
  case'g61_Choker':if(v)put(s,task('g34_Select',t.p,t.source,{origin:'grave',to:'hand',n:'all',filter:{race:'ドラゴン'},title:'墓地のドラゴンをすべて手札へ戻す'}));break;
  case'g61_Escort':if(v)api.move(s,[{player:t.p,uid:v,to:'hand',destroy:false,controller:t.p}]);break;
  case'g61_Chain':if(v){const x=s.players[1-t.p].battle.find(x=>x.uid===v);if(x)put(s,{...t,selected:[...t.selected,{uid:x.uid,incarnation:x.incarnation||0}]});}else finishChain(s,t);break;
  case'g61_Sacrifice':if(v)api.move(s,[{player:t.p,uid:v,to:'grave',destroy:true,controller:t.controller??t.p}]);break;
  case'g61_Genesis':{const x=creatures(s,t.p).find(x=>x.uid===v);if(x){put(s,task('g34_Draw',t.p,t.source,{n:3}));api.move(s,[{player:t.p,uid:x.uid,to:'grave',destroy:true,controller:t.p}]);}break;}
- case'g61_Protection':{const x=own.hand.find(x=>x.uid===v);if(x&&api.canAddShield(s,t.p)){api.remove(own.hand,x.uid);api.clear(x,'shields');api.addZone(s,t.p,'shields',x);api.notifyShieldAdded(s,t.p,x);}break;}
+ case'g61_StrongGuard':case'g61_Protection':{const x=own.hand.find(x=>x.uid===v);if(x&&api.canAddShield(s,t.p)){api.remove(own.hand,x.uid);api.clear(x,'shields');api.addZone(s,t.p,'shields',x);api.notifyShieldAdded(s,t.p,x);}break;}
  case'g61_DeathGate':{const x=creatures(s,1-t.p).find(x=>x.uid===v&&!x.tapped);if(x){const n=cost(api.effective(x,s));queue(s,t,'Revive',{max:Number.isFinite(n)?n:'∞'});api.move(s,[{player:1-t.p,uid:x.uid,to:'grave',destroy:true,controller:t.p}]);}break;}
  case'g61_RagmarPick':queue(s,{...t,p:t.controller},'RagmarPick',{owners:t.owners.slice(1),selected:[...t.selected,{p:t.p,uid:v}]});break;
  case'g61_Sonic':{const x=creatures(s,t.p).find(x=>x.uid===v);if(x)put(s,task('g34_Untap',t.p,t.source,{uid:x.uid,incarnation:x.incarnation||0}));break;}
