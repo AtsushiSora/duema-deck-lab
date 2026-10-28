@@ -7,6 +7,10 @@ export function createUtilityFireRules(api){
  const key=x=>x.uid+'@'+(x.incarnation||0);
  function destroySelected(s,t){const moves=t.selected.filter(r=>s.players[1-t.p].battle.some(x=>key(x)===key(r))).map(r=>({player:1-t.p,uid:r.uid,to:'grave',destroy:true,controller:t.p}));if(moves.length)api.move(s,moves);}
  function run(s,t){if(!t.op.startsWith('g75_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g75_Drill':put(s,follow(t,'Destroy',{limit:6000}));break;
+ case'g75_Scramble':choice(s,t,'スピードアタッカーを与える自分のクリーチャーを1体選ぶ',targetOptions(s,t.p,living(s,t.p)));break;
+ case'g75_Quake':for(const x of living(s,t.p)){(x.powerModifiers??=[]).push({amount:1000,expires:'end',who:s.active,spellSource:t.source,spellCost:cost(card(t.source))});(x.g34Grants??=[]).push({turn:s.turn,attackUntapped:true,spellSource:t.source,spellCost:cost(card(t.source))});}break;
+ case'g75_AngelSong':case'g75_Shine3':{const rows=[0,1].flatMap(p=>living(s,p).filter(x=>t.op==='g75_Shine3'?cost(effective(x,s))<=3:!api.colors(effective(x,s)).includes('光')).map(x=>({p,x})));for(const {p,x}of rows)api.tap(s,p,x);break;}
  case'g75_Aventure':if(s.players[1-t.p].mana.length>own.mana.length)put(s,task('g34_Ramp',t.p,t.source,{n:1}));break;
  case'g75_Geo':{const rows=[0,1].flatMap(p=>living(s,p)),min=Math.min(...rows.map(x=>currentPower(s,x)));choice(s,t,'パワーが一番小さいクリーチャーを1体までマナに置く',[...targetOptions(s,t.p,rows.filter(x=>currentPower(s,x)===min)).map(o=>{const p=s.players.findIndex(p=>p.battle.some(x=>x.uid===o.value)),x=s.players[p].battle.find(x=>x.uid===o.value);return {...o,value:{p,uid:x.uid,incarnation:x.incarnation||0},score:(p===t.p?-1:1)*(20+cost(card(x)))};}),opt('置かない',null,0)]);break;}
  case'g75_Muse':{const rows=[t.p,1-t.p].flatMap(p=>living(s,p).filter(x=>currentPower(s,x)<=3000).map(x=>({p,x})));for(const {p,x}of rows)api.tap(s,p,x);break;}
@@ -34,6 +38,7 @@ export function createUtilityFireRules(api){
  default:throw Error('未実装の火の除去効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g75_'))return false;switch(t.op){
+ case'g75_Scramble':{const x=living(s,t.p).find(x=>x.uid===v);if(x)(x.g34Grants??=[]).push({turn:s.turn,speedAttacker:true,spellSource:t.source,spellCost:cost(card(t.source))});break;}
  case'g75_Geo':if(v&&s.players[v.p]?.battle.some(x=>key(x)===key(v)))api.move(s,[{player:v.p,uid:v.uid,to:'mana',destroy:false,controller:t.p}]);break;
  case'g75_Destroy':if(v){const p=s.players.findIndex(p=>p.battle.some(x=>x.uid===v));if(p>=0)api.move(s,[{player:p,uid:v,to:'grave',destroy:true,controller:t.p}]);}break;
  case'g75_Dolzark':if(v)api.move(s,[{player:1-t.p,uid:v,to:'mana',destroy:false,controller:t.p}]);break;
