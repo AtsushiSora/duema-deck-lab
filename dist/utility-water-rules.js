@@ -57,7 +57,7 @@ export function createUtilityWaterRules(api){
   case'g52_Reduction':{const args=[...t.args],alt=args[4];args[4]={...(alt===null||alt===undefined?{}:typeof alt==='object'?alt:{cost:alt}),g52Reduction:v};api.cast(s,t.p,...args);break;}
   default:throw Error('未実装の水ユーティリティ選択：'+t.op);
  }return true;}
- return {run,chosen,discount:reduction,
+ return {run,chosen,discount:(s,p,c)=>reduction(s,p,c)+(c.g116Librarian?s.players[p].mana.filter(x=>card(x).type==='creature').length:0),
   effect(s,p,c,uid){if(!c.g52Effect)return false;put(s,task('g52_'+c.g52Effect,p,c.id,{uid,...(c.g52TutorColors?{colors:c.g52TutorColors,n:c.g52TutorCount}:{})}));return true;},
   beforeCast(s,p,args){if(args[1]||args[4]?.fixedPayment||args[4]?.g52Reduction!==undefined)return false;const c=payment(s,p,args,0);if(!c||!evolution(s,p,c))return false;const n=liveReduction(s,p);if(!n||api.summonCost(s,p,c)===api.summonCost(s,p,{...c,g52Reduction:n}))return false;put(s,task('g52_Reduction',p,c.id,{args}));return true;},
   variants(s,p,actions){const d=s.decision;if(d?.type!=='evolution'||d.playAction?.freeSummon)return actions;const a=d.playAction||{},c=faces(card(d.source))[a.face||0];if(!c?.neoEvolution||!liveReduction(s,p))return actions;return actions.filter(x=>x.kind!=='evolve'||api.canPay(s,p,{...c,summonOrigin:a.origin||'hand',g27BaseUid:x.baseUid||null,...(a.snowReducers?{snowReducers:a.snowReducers}:{}),...(a.magicReducers?{magicReducers:a.magicReducers}:{}),...(a.g7Payment?{g7Payment:a.g7Payment}:{}),...(a.g18Reducers!==undefined?{g18Reducers:a.g18Reducers}:{}),...(a.g26Reducers!==undefined?{g26Reducers:a.g26Reducers}:{}),...(a.g42Reduction!==undefined?{g42Reduction:a.g42Reduction}:{})}));}
