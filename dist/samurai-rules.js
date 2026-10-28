@@ -47,7 +47,7 @@ export function createSamuraiRules(api){
  default:throw Error('未実装のサムライ選択：'+t.op);
  }return true;}
  return {run,chosen,
- unblocked(s,p,x){return p>=0&&api.isCreature(s,x)&&attached(s,p,x).some(g=>card(g).g125CrossUnblock&&active(s,g));},
+ unblocked(s,p,x,c=card(x)){if(p<0||x.sealed||c.type!=='creature'||!api.isCreature(s,x))return false;if(attached(s,p,x).some(g=>card(g).g125CrossUnblock&&active(s,g)))return true;const vs=colors(c);return s.players[p].battle.some(y=>!y.sealed&&(card(y).g128WaterAura||card(y).g128LightDarkAura)&&api.isCreature(s,y)&&active(s,y)&&(card(y).g128WaterAura&&y.uid!==x.uid&&vs.includes('水')||card(y).g128LightDarkAura&&vs.some(v=>v==='光'||v==='闇')));},
  protected(s,p,x){return api.isCreature(s,x)&&attached(s,p,x).some(g=>card(g).g119Petro&&active(s,g));},
  effect(s,p,c,uid,entry){const op={samuraiBui:'g18_Bui',samuraiMusashi:'g18_Musashi',samuraiMekraid:'g18_Mekraid',samuraiFlash:'g18_Flash'}[c.effect];if(!op)return false;put(s,task(op,p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;},
  cleanup(s){for(const p of[0,1])for(const g of gears(s,p))if(g.crossedTo&&!live(s,p,g))delete g.crossedTo;},

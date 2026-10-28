@@ -10,6 +10,10 @@ export function createUtilityResourceRules(api){
  function finishManaReturn(s,t){if(!api.canMoveZone(s,t.p,'mana'))return;const own=s.players[t.p];for(const uid of t.selected||[]){const x=api.remove(own.mana,uid);if(x){api.clear(x,'hand');api.addZone(s,t.p,'hand',x);}}}
  function finishChain(s,t){put(s,{...t,op:'g61_Sacrifice',controller:t.p});const rows=(t.selected||[]).filter(r=>s.players[1-t.p].battle.some(x=>key(x)===key(r)));if(rows.length)api.move(s,rows.map(r=>({player:1-t.p,uid:r.uid,to:'grave',destroy:true,controller:t.p})));}
  function run(s,t){if(!t.op.startsWith('g61_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g61_Accident':{const rows=[0,1].flatMap(p=>creatures(s,p).filter(x=>s.players[p].battle.some(g=>card(g).type==='gear'&&g.crossedTo?.uid===x.uid&&g.crossedTo.incarnation===(x.incarnation||0))).map(x=>({player:p,uid:x.uid,to:'grave',destroy:true,controller:t.p})));if(rows.length)api.move(s,rows);break;}
+ case'g61_Backflow':{const groups=[s.active,1-s.active].map(p=>({p,cards:api.canMoveZone(s,p,'mana')?s.players[p].mana.filter(x=>!(s.players[p].g34ManaHeld||[]).includes(x.uid)):[]}));for(const {p,cards}of groups)for(const x of cards)api.remove(s.players[p].mana,x.uid);for(const {p,cards}of groups){for(const x of cards)api.clear(x,'hand');if(cards.length){api.addZone(s,p,'hand',...cards);api.log(s,p,'manaReturn',card(t.source).name+'：マナ'+cards.length+'枚を手札へ',{cardId:t.source});}}break;}
+ case'g61_Kurt':choice(s,t,'山札の一番上に戻す墓地の呪文を1枚選ぶ',(api.canMoveZone(s,t.p,'grave')?own.grave.filter(x=>faces(card(x)).some(c=>c.type==='spell')):[]).map(x=>opt(card(x).name,x.uid,x.cardId===t.source?-5:30-Math.min(20,Math.abs(Math.min(...faces(card(x)).filter(c=>c.type==='spell').map(cost))-own.mana.length)),x.cardId)));break;
+ case'g61_Justice':{const rows=[0,1].flatMap(p=>creatures(s,p).filter(x=>!api.effective(x,s).blocker).map(x=>({p,x})));for(const {p,x}of rows)api.tap(s,p,x);break;}
  case'g61_StrongDraw':if(creatures(s,t.p).some(x=>currentPower(s,x)>=6000))put(s,task('g34_Draw',t.p,t.source,{n:1,optional:true}));break;
  case'g61_StrongCrash':case'g61_StrongTrap':case'g61_StrongBreath':{queue(s,t,'StrongDraw');const xs=creatures(s,1-t.p).filter(x=>t.op==='g61_StrongCrash'?api.effective(x,s).blocker:t.op==='g61_StrongTrap'?currentPower(s,x)<=5000:!x.tapped);choice(s,t,t.op==='g61_StrongTrap'?'マナに置くパワー5000以下の相手1体を選ぶ':t.op==='g61_StrongCrash'?'破壊する相手のブロッカー1体を選ぶ':'破壊する相手のアンタップ済みクリーチャー1体を選ぶ',api.targetOptions(s,t.p,xs));break;}
  case'g61_Spiritual':{const n=creatures(s,1-t.p).filter(x=>x.tapped).length;if(n)put(s,task('g34_Draw',t.p,t.source,{n,optional:true}));break;}
@@ -42,6 +46,7 @@ export function createUtilityResourceRules(api){
  default:throw Error('未実装の資源ユーティリティ効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g61_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g61_Kurt':if(v&&api.canMoveZone(s,t.p,'grave')){const x=api.remove(own.grave,v);if(x){api.clear(x,'deck');own.deck.unshift(x);api.log(s,t.p,'reveal',card(t.source).name+'で山札の一番上へ：'+card(x).name,{cardId:x.cardId});}}break;
  case'g61_StrongCrash':case'g61_StrongTrap':case'g61_StrongBreath':if(v)api.move(s,[{player:1-t.p,uid:v,to:t.op==='g61_StrongTrap'?'mana':'grave',destroy:t.op!=='g61_StrongTrap',controller:t.p}]);break;
  case'g61_ManaReturn':if(v)put(s,{...t,selected:[...t.selected,v]});else finishManaReturn(s,t);break;
  case'g61_Choker':if(v)put(s,task('g34_Select',t.p,t.source,{origin:'grave',to:'hand',n:'all',filter:{race:'ドラゴン'},title:'墓地のドラゴンをすべて手札へ戻す'}));break;
