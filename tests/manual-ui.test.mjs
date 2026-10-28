@@ -18,6 +18,14 @@ test('both public mana strips show every card and its tap state without changing
  assert.match(html,/炎のたてがみ・未使用・アンタップ・マナを拡大/);
  assert.deepEqual(s,before);
 });
+test('phone restores the classic mana counters, placement highlight and AI anchors without changing the game',()=>{
+ const s=e.createGame([target,target],{seed:2020}),ui={...newManualUI(),mobile:true,hand:s.players[0].hand[0].uid},before=structuredClone(s),html=markup(s,ui);
+ assert.ok(!html.includes('class="play-mana '));
+ for(const p of [0,1])assert.match(html,new RegExp(`data-playback-zone="${p}:mana"[^>]*data-action="zone-detail"[^>]*data-player="${p}"[^>]*data-zone="mana"`));
+ assert.equal((html.match(/hand-mana-target/g)||[]).length,1);
+ assert.match(html,/class="hand-shelf"/);assert.match(html,/class="manual-mobile-dock"/);
+ assert.deepEqual(s,before);
+});
 test('the board conceals opposing face-down mana identities while its owner can inspect them',()=>{
  const s=setup();give(s,0,'mana',['dm01-108']);give(s,1,'mana',['dm23ex3-024']);s.players[1].mana[0].faceDown=true;
  let html=markup(s);assert.match(html,/裏向きのマナ・未使用・アンタップ/);assert.ok(!html.includes('dm23ex3-024'));assert.ok(!html.includes('インカ'));

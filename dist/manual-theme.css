@@ -1,4 +1,4 @@
-/* A quiet black playmat, gold frames, public mana, and shields along the left edge. */
+/* Desktop only (the stylesheet link is limited to widths above 850px). */
 body.manual-playing{
  --ink:#f4efde;--muted:#a6b7b7;--green:#98e3c2;--green-dark:#09624e;--line:#bda36645;
  --mint:#102c27;--paper:#0b181b;--bg:#030709;--metal:#d6b76e;--accent:#9be6c8;
@@ -189,49 +189,6 @@ body.manual-playing{
  .manual-playing .manual-hand-cards{--desktop-hand-cols:6!important;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}
  .manual-playing .manual-guide{max-height:75px}
 }
-/* Phones prioritize readable creatures and hand cards. Mana opens from the counter. */
-@media(max-width:850px){
- .manual-playing .manual-topbar{border-radius:0 0 7px 7px;margin:0;padding:0 5px}
- .manual-playing :is(.opponent-field,.own-field){--shield-rail-width:44px;grid-template-columns:var(--shield-rail-width) minmax(0,1fr);grid-template-rows:28px 34px minmax(0,1fr);column-gap:5px;padding:3px 5px}
- .manual-playing :is(.opponent-field,.own-field)>.play-player{grid-column:1/-1;grid-row:1;height:28px;min-height:0}
- .manual-playing .play-player>strong{font-size:11px;line-height:1.4}
- .manual-playing :is(.opponent-field,.own-field)>.play-resources{grid-column:1/-1;grid-row:2;height:34px;font-size:10px;gap:5px;justify-content:space-between}
- .manual-playing .play-resources button{height:34px;min-height:34px;font-size:10px}
- .manual-playing .play-resources b{font-size:14px}
- .manual-playing .play-resources small{font-size:10px}
- .manual-playing .play-resources [data-zone="mana"]{min-width:78px;justify-content:center;padding:0 6px;border:1px solid var(--field-line);border-radius:6px;background:#18342f;color:#edfaed}
- .manual-playing .opponent-field .play-resources [data-zone="mana"]{background:#3a211f;color:#ffe8d2}
- .manual-playing :is(.opponent-field,.own-field)>.play-shields{grid-column:1;grid-row:3;min-height:0;height:100%;gap:1px;border-left:0;border-right:1px solid #c5a35666;padding:0 3px 0 0}
- .manual-playing .play-shields>.zone-caption{flex-basis:44px;height:44px;min-height:44px;font-size:10px}
- .manual-playing :is(.opponent-field,.own-field)>.play-creatures{grid-column:2;grid-row:3}
- .manual-playing .play-mana{display:none}
- .manual-playing .play-creature{--creature-tools-height:0px;max-width:140px;--picture-width:min(140px,var(--fit-width,140px))}
- .manual-playing .creature-picture .art-card,.manual-playing .is-tapped .creature-picture .art-card{width:100%;height:100%;aspect-ratio:auto;transform:none}
- .manual-playing .creature-picture .official-card-image{object-fit:cover;object-position:50% 27%}
- .manual-playing .is-tapped .creature-picture{opacity:.85}
- .manual-playing .compact-creature-name{font-size:11px;line-height:1.4;background:#071820f2;min-height:0;padding:2px 3px}
- .manual-playing .compact-creature-state{font-size:10px;line-height:15px}
- .manual-playing .creature-current-power{font-size:12px;line-height:18px}
- .manual-playing .play-creatures.is-dense .compact-creature-name{font-size:10px}
- .manual-playing .manual-mobile-dock{border-radius:0 0 7px 7px}
- .manual-playing .manual-mobile-dock button{font-size:13px}
- .manual-playing .manual-guide h2{font-size:14px}
- .manual-playing .hand-shelf-card{flex-basis:100px;width:100px;max-width:100px}
- .manual-playing .hand-shelf-card>strong{font-size:11px;line-height:1.35;min-height:30px;color:#fff2d5;background:#0b2029f2}
- .manual-playing .hand-shelf-cost,.manual-playing .hand-cost-mobile{background:#183e31;color:#e5f7ce}
- .manual-playing .hand-shelf-ready{background:#0d543a;color:#d7ffeb;font-size:9px}
- .manual-playing .hand-shelf-head{color:#f2e5c2}
- .manual-playing .hand-shelf-head small{color:#c0d2c9}
- .manual-playing .hand-shelf-head strong{font-size:12px}
- .manual-playing .shield-tile{max-height:45px;max-width:31px;justify-self:center;align-self:center}
-}
-@media(max-width:850px) and (max-height:650px){
- .manual-playing :is(.opponent-field,.own-field){grid-template-rows:26px 32px minmax(0,1fr)}
- .manual-playing :is(.opponent-field,.own-field)>.play-player{height:26px}
- .manual-playing :is(.opponent-field,.own-field)>.play-resources,.manual-playing .play-resources button{height:32px;min-height:32px}
- .manual-playing .play-resources [data-zone="mana"]{min-width:72px;padding:0 4px}
- .manual-playing .play-creatures.is-dense .compact-creature-name{font-size:9px}
-}
 @media(forced-colors:active){
  .manual-playing :is(.manual-topbar,.play-board,.manual-console,.play-mana){border:1px solid CanvasText;background:Canvas;color:CanvasText;box-shadow:none}
  .manual-playing .shield-tile{background:Canvas;color:CanvasText;border:1px solid CanvasText}
@@ -241,12 +198,5 @@ body.manual-playing{
  .manual-playing .compact-creature-name,.manual-playing .creature-source-count{display:none}
  .manual-playing .creature-current-power{font-size:9px;line-height:13px}
  .manual-playing .compact-creature-state{font-size:8px;line-height:11px}
-}
-@media(max-width:850px){
- @container (max-height:110px){
-  .manual-playing .compact-creature-name{display:-webkit-box;font-size:10px;line-height:1.3;-webkit-line-clamp:2}
-  .manual-playing .compact-creature-state{font-size:9px;line-height:12px}
-  .manual-playing .creature-current-power{font-size:10px;line-height:14px}
- }
 }
 .manual-playing .play-creatures.is-tiny .compact-creature-state{display:none}
