@@ -1,0 +1,141 @@
+{
+  "phase": 139,
+  "checkedAt": "2026-10-29",
+  "description": "手札補充の王立アカデミー・ホウエイルと、S・トリガー除去の時を戻す水時計、オンソク・ハリテを追加。既存の選択・移動・ドロー処理を使用。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmr19-078",
+      "name": "オンソク・ハリテ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-078",
+      "faces": [
+        {
+          "name": "オンソク・ハリテ",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー6000以下のクリーチャーを１体選び、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g139Role": "harite",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 6000
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-078.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "ba5e422fb3f8d538618df2c6a1e0799ccf29b296621a378a78e6816cd2161b6c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-072",
+      "name": "王立アカデミー・ホウエイル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-072",
+      "faces": [
+        {
+          "name": "王立アカデミー・ホウエイル",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "カードを３枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g139Role": "howeiru",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-072.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "3a1bf8144fb782019b5c07dedccb59744db91af7d200f14c71bff706cbaf2879",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp06-072",
+      "name": "時を戻す水時計",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-072",
+      "faces": [
+        {
+          "name": "時を戻す水時計",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー3000以下のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g139Role": "waterClock",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "hand",
+            "filter": {
+              "maxPower": 3000
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-072.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "99391b59f6f5088c528d8c148103cfa34f3ddeccba8511697430286c301cb289",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-29",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 160,
+    "allThreeUnrestricted": true,
+    "limits": {
+      "dmr19-078": 4,
+      "dmrp01-072": 4,
+      "dmrp06-072": 4
+    }
+  }
+}

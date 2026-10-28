@@ -37,7 +37,8 @@ export function createUtilityWaterRules(api){
  }
  function run(s,t){if(!t.op.startsWith('g52_'))return false;const own=s.players[t.p];switch(t.op){
   case'g52_Brain':put(s,task('g34_Draw',t.p,t.source,{n:3,optional:true}),{...t,op:'g52_TopHand',selected:[]});break;
-  case'g52_TopHand':{const selected=t.selected||[],n=Math.min(2,own.hand.length);if(selected.length>=n){const rows=selected.map(uid=>api.remove(own.hand,uid)).filter(Boolean);for(const x of rows)api.clear(x,'deck');own.deck.unshift(...rows);break;}choice(s,{...t,selected},'山札の上に戻す手札を順に選ぶ（'+selected.length+'/'+n+'）',own.hand.filter(x=>!selected.includes(x.uid)).map(x=>opt(card(x).name,x.uid,-Math.min(cost(card(x)),30),x.cardId)));break;}
+  case'g52_Book':put(s,task('g34_Draw',t.p,t.source,{n:2}),{...t,op:'g52_TopHand',n:1,selected:[]});break;
+  case'g52_TopHand':{const selected=t.selected||[],n=Math.min(t.n??2,own.hand.length);if(selected.length>=n){const rows=selected.map(uid=>api.remove(own.hand,uid)).filter(Boolean);for(const x of rows)api.clear(x,'deck');own.deck.unshift(...rows);break;}choice(s,{...t,selected},'山札の上に戻す手札を順に選ぶ（'+selected.length+'/'+n+'）',own.hand.filter(x=>!selected.includes(x.uid)).map(x=>opt(card(x).name,x.uid,-Math.min(cost(card(x)),30),x.cardId)));break;}
   case'g52_Energy':put(s,...(race(s,t.p,'グレートメカオー')?[task('g34_Target',t.p,t.source,{anyOwner:true,to:'hand',optional:false})]:[]),{...t,op:'g52_EnergyDraw'});break;
   case'g52_EnergyDraw':if(race(s,t.p,'キカイヒーロー'))put(s,task('g34_Draw',t.p,t.source,{n:1,optional:true}));break;
   case'g52_Teleport':teleport(s,t);break;

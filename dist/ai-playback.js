@@ -1,13 +1,14 @@
+import {displayTurn} from './turn-count.js';
 import {shieldCards} from './shield-state.js';
 import {card,getLegalActions,chooseAI,step} from './engine.js';
-import {createAIDecision} from './ai-decision.js?v=0.181.0';
+import {createAIDecision} from './ai-decision.js?v=0.208.0';
 
 export const AI_SPEEDS={slow:{label:'ゆっくり',delay:3000},normal:{label:'標準',delay:2000},fast:{label:'速い',delay:700}};
 export const aiSpeedLabel=speed=>(AI_SPEEDS[speed]||AI_SPEEDS.normal).label;
 const visible=x=>!x.faceDown&&!x.hidden;
 const rows=(p,player)=>['battle','mana','grave','extra'].flatMap(zone=>(p[zone]||[]).filter(visible).map(x=>({player,zone,uid:x.uid,cardId:x.cardId}))).concat((p.shields||[]).flatMap(shieldCards).filter(x=>x.faceUp).map(x=>({player,zone:'shields',uid:x.uid,cardId:x.cardId})));
 // Only public identities and counts enter presentation snapshots. Draws stay anonymous.
-export function aiPublicSnapshot(s){return {actions:s.actions,turn:s.turn,logIndex:s.log.length,players:s.players.map((p,player)=>({cards:rows(p,player),deck:p.deck.length,hand:p.hand.length,mana:p.mana.length,grave:p.grave.length,shields:p.shields.length,battle:p.battle.length}))};}
+export function aiPublicSnapshot(s){return {actions:s.actions,turn:s.turn,round:displayTurn(s),logIndex:s.log.length,players:s.players.map((p,player)=>({cards:rows(p,player),deck:p.deck.length,hand:p.hand.length,mana:p.mana.length,grave:p.grave.length,shields:p.shields.length,battle:p.battle.length}))};}
 const cueKeys=(snapshot,id)=>snapshot.players.flatMap(p=>p.cards.filter(x=>x.cardId===id&&x.zone==='battle').map(x=>`creature:${x.player}:${x.uid}`));
 export function aiActionCue(s,a){
  const snapshot=aiPublicSnapshot(s),source=snapshot.players.flatMap(p=>p.cards).find(x=>x.uid===a.uid),cardId=source?.cardId||null,keys=cardId?cueKeys(snapshot,cardId):[];
@@ -24,7 +25,7 @@ export function aiActionCue(s,a){
  else if(a.kind==='toAttack')text='相手が攻撃のステップに進みます';
  else if(a.kind==='endTurn')text='相手がターンを終えます';
  else if(a.kind==='noBlock')text='相手はブロックせずに攻撃を受けます';
- return {label:'相手の行動',text,cardId,keys,zones,turn:s.turn,stage:'before'};
+ return {label:'相手の行動',text,cardId,keys,zones,turn:s.turn,round:displayTurn(s),stage:'before'};
 }
 export function aiResultCues(before,s,{opponentOnly=false}={}){
  const after=aiPublicSnapshot(s),publicIds=new Set([...before.players,...after.players].flatMap(p=>p.cards.map(x=>x.cardId)));
@@ -38,7 +39,7 @@ export function aiResultCues(before,s,{opponentOnly=false}={}){
   // Never attach a private card thumbnail, even if a log contains its internal ID.
   const zoneMap={draw:['deck','hand'],charge:['mana'],ramp:['mana'],break:['shields'],shieldAdd:['shields'],exLifeAdd:['shields'],leave:['battle','grave'],play:['battle'],search:['hand']};
   const zones=zoneMap[e.type]?.map(z=>`${e.player}:${z}`)||changes;
-  return {label:e.player===1?'相手の行動の結果':'あなたの場の変化',text,cardId,keys:cardId?cueKeys(after,cardId):[],zones,turn:e.turn,stage:'result'};
+  return {label:e.player===1?'相手の行動の結果':'あなたの場の変化',text,cardId,keys:cardId?cueKeys(after,cardId):[],zones,turn:e.turn,round:displayTurn(e),stage:'result'};
  });
 }
 
@@ -62,12 +63,12 @@ export function createAIPlayback({getState,isActive=()=>true,isBlocked=()=>false
    const a=s.actions===pending.actions?legal(s).find(a=>a.player===1&&JSON.stringify(a)===pending.signature):null;
    if(!a){queue=[];cue=null;notify();schedule();return false;}
    const before=aiPublicSnapshot(s);execute(s,a);queue=aiResultCues(before,s);total=queue.length;position=queue.length?1:0;
-   cue=queue.shift()||{label:'相手の行動の結果',text:'相手の選択を処理しました',keys:[],zones:[],turn:s.turn,stage:'result'};
+   cue=queue.shift()||{label:'相手の行動の結果',text:'相手の選択を処理しました',keys:[],zones:[],turn:s.turn,round:displayTurn(s),stage:'result'};
   }else if(queue.length){cue=queue.shift();position++;}
   else if(aiTurn()){
    const result=pick(s);
    if(result&&typeof result.then==='function'){
-    const token=++thinkingGeneration,actions=s.actions;thinking=true;cue={label:'相手の行動',text:'相手が考えています…',keys:[],zones:[],turn:s.turn,stage:'thinking'};position=0;total=0;notify();
+    const token=++thinkingGeneration,actions=s.actions;thinking=true;cue={label:'相手の行動',text:'相手が考えています…',keys:[],zones:[],turn:s.turn,round:displayTurn(s),stage:'thinking'};position=0;total=0;notify();
     Promise.resolve(result).then(a=>{
      if(token!==thinkingGeneration)return;
      thinking=false;cue=null;
@@ -77,7 +78,7 @@ export function createAIPlayback({getState,isActive=()=>true,isBlocked=()=>false
     }).catch(()=>{
      if(token!==thinkingGeneration)return;
      thinking=false;if(!active())return;
-     paused=true;cue={label:'相手の行動',text:'相手の思考を再開してください',keys:[],zones:[],turn:s.turn,stage:'error'};notify();
+     paused=true;cue={label:'相手の行動',text:'相手の思考を再開してください',keys:[],zones:[],turn:s.turn,round:displayTurn(s),stage:'error'};notify();
     });return true;
    }
    if(!announce(s,result))return false;

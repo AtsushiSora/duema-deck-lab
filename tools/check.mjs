@@ -1,3 +1,14 @@
+import {UTILITY149_DECKS} from './fixtures/utility149.mjs';
+import {UTILITY148_DECKS} from './fixtures/utility148.mjs';
+import {UTILITY147_DECKS} from './fixtures/utility147.mjs';
+import {UTILITY146_DECKS} from './fixtures/utility146.mjs';
+import {UTILITY145_DECKS} from './fixtures/utility145.mjs';
+import {UTILITY144_DECKS} from './fixtures/utility144.mjs';
+import {UTILITY143_DECKS} from './fixtures/utility143.mjs';
+import {UTILITY142_DECKS} from './fixtures/utility142.mjs';
+import {UTILITY141_DECKS} from './fixtures/utility141.mjs';
+import {UTILITY140_DECKS} from './fixtures/utility140.mjs';
+import {UTILITY139_DECKS} from './fixtures/utility139.mjs';
 import {UTILITY138_DECKS} from './fixtures/utility138.mjs';
 import {UTILITY137_DECKS} from './fixtures/utility137.mjs';
 import {UTILITY136_DECKS} from './fixtures/utility136.mjs';
@@ -161,3 +172,25 @@ for(const d of UTILITY136_DECKS)if(validateDeck(d).length||registry.coverage(d).
 for(const d of UTILITY137_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第137段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase137 effect-test decks: six new names in legal forty-card lists.');
 
 for(const d of UTILITY138_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第138段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase138 effect-test decks: three new names in legal forty-card lists.');
+
+for(const d of UTILITY139_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第139段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase139 effect-test decks: three new names in legal forty-card lists.');
+
+for(const d of UTILITY140_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第140段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase140 effect-test decks: six new names in legal forty-card lists.');
+
+for(const d of UTILITY141_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第141段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase141 effect-test decks: six new names in legal forty-card lists.');
+
+for(const d of UTILITY142_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第142段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase142 effect-test decks: six new names in legal forty-card lists.');
+
+for(const d of UTILITY143_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第143段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase143 effect-test decks: six new names in legal forty-card lists.');
+
+for(const d of UTILITY144_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第144段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase144 effect-test decks: six new names in legal forty-card lists.');
+
+for(const d of UTILITY145_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第145段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase145 effect-test decks: six new names in legal forty-card lists.');
+
+for(const d of UTILITY146_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第146段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase146 effect-test decks: six new names in legal forty-card lists.');
+
+for(const d of UTILITY147_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第147段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase147 effect-test decks: six new names in legal forty-card lists.');
+
+for(const d of UTILITY148_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第148段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase148 effect-test decks: six new names in legal forty-card lists.');
+
+for(const d of UTILITY149_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第149段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase149 effect-test decks: six new names in legal forty-card lists.');

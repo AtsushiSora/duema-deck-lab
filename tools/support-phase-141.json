@@ -1,0 +1,260 @@
+{
+  "phase": 141,
+  "checkedAt": "2026-10-29",
+  "description": "手札交換、コスト3以下のカード除去、小型一掃、ブロッカーとドロー、シールド追加、タップとアンタップ制限・攻撃時ドローを持つクリーチャー6種類。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/45800/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316687/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp2-061",
+      "name": "～空想騎士人形～",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-061",
+      "faces": [
+        {
+          "name": "～空想騎士人形～",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーが出た時、カードを１枚引き、自分の手札を１枚捨てる。\nこのクリーチャーは攻撃できない。",
+          "race": "デスパペット/スチーム・ナイト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g141Role": "doll",
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-061.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "7963ab3dc790b78b231f69309cb152a949684c3bfc32e29f737209b28c0d468a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-041",
+      "name": "”乱振“のハンマー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-041",
+      "faces": [
+        {
+          "name": "”乱振“のハンマー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、バトルゾーンにある相手のコスト３以下のカードを１枚選び、持ち主の墓地に置く。",
+          "race": "ゼノパーツ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g141Role": "hammer",
+        "effect": "destroyBattleCard3"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-041.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "4e6d1588affdf91fc5367f8cfb078975013a9f53e7f35e69d071c42d8caca318",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-049",
+      "name": "“SPK”のコンセント",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-049",
+      "faces": [
+        {
+          "name": "“SPK”のコンセント",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手のパワー1000以下のクリーチャーをすべて破壊する。",
+          "race": "ゼノパーツ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g141Role": "socket",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 1000
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-049.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "a736e03fc5e4edc7c89e8aa14b59aeddec85b32e224c209a796f25f957e25464",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr17-067",
+      "name": "T・ノトシーゴ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-067",
+      "faces": [
+        {
+          "name": "T・ノトシーゴ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、カードを１枚引く。",
+          "race": "サイバー・ウイルス海/革命軍",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g141Role": "notoshigo",
+        "blocker": true,
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-067.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "41a7b3c4b8e31c5d0cabb993b9a4f54effac87b7c56c2d12f264e1d701aa243f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-032",
+      "name": "P・M・O・M・Y",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-032",
+      "faces": [
+        {
+          "name": "P・M・O・M・Y",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を裏向きにして、新しいシールドとして自分のシールドゾーンに置く。",
+          "race": "スターライト・ツリー/イニシャルズ",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g141Role": "pmomy",
+        "effect": "shieldTop1"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-032.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "ff80bd29fd33de3f5087270bb0ce4c01c18821667bb444344c502d9c1213a3aa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-026",
+      "name": "Disクチック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-026",
+      "faces": [
+        {
+          "name": "Disクチック",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水/火",
+          "civilizations": [
+            "光",
+            "水",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。\nこのクリーチャーが攻撃する時、カードを１枚引く。",
+          "race": "サイバー・ウイルス/ドラゴノイド/ディスタス",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g141Role": "kuchiku",
+        "speedAttacker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "lock": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-026.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "dded33992f9a815e1e37aecd0cfcceaa5a841d498eb4ac74ad854dcbc69d9ac1",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-29",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 160,
+    "allSixUnrestricted": true,
+    "limits": {
+      "dm25rp2-061": 4,
+      "dmrp16-041": 4,
+      "dmrp02-049": 4,
+      "dmr17-067": 4,
+      "dmr21-032": 4,
+      "dmrp20-026": 4
+    }
+  }
+}

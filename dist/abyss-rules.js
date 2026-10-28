@@ -25,7 +25,7 @@ export function createAbyssRules(api){
  case'g13_WMek':choice(s,t,'アビス・W・メクレイド5する？',[opt('上6枚から2枚まで使う',true,30,t.source),skip()]);break;
  case'g13_Lord':choice(s,t,'墓地・マナからコスト6以下のアビスを出す？',[...['grave','mana'].flatMap(origin=>own[origin].filter(x=>abyss(card(x))&&cost(card(x))<=6&&canPut(s,t.p,x,origin)).map(x=>opt(card(x).name,{origin,uid:x.uid},30+cost(card(x)),x.cardId))),skip()]);break;
  case'g13_Return':{const x=own.battle.find(x=>!x.sealed&&api.allLayers(x).some(y=>y.uid===t.uid&&(y.incarnation||0)===t.incarnation));if(x)move(s,[{player:t.p,uid:x.uid,to:'deck',destroy:false}]);break;}
- case'g13_Murder':choice(s,t,'相手の手札を見る：捨てさせるクリーチャーを選ぶ',s.players[1-t.p].hand.filter(x=>card(x).type==='creature').map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)));break;
+ case'g13_Murder':{const hand=s.players[1-t.p].hand,rows=hand.filter(x=>t.anyCard|| (t.nonCreature?card(x).type!=='creature':card(x).type==='creature'));choice(s,t,'相手の手札を見る：捨てさせる'+(t.anyCard?'カード1枚':t.nonCreature?'クリーチャー以外のカード':'クリーチャー')+'を選ぶ',[...rows.map(x=>{const c=card(x),risk=t.anyCard&&(c.enemyDiscardDeploy||c.discardDeploy&&t.p===s.active)&&api.canEnter(s,1-t.p,c,{origin:'hand',execution:false});return opt(c.name,x.uid,(risk?-80:20)+cost(c),x.cardId);}),...(!rows.length&&t.nonCreature&&hand.length?[opt('手札の確認を終える',null,0)]:[])]);break;}
  case'g13_Borrow':if(darkCount(s,t.p)>=3)choice(s,t,'シビルカウント3：能力を使う相手の墓地のカードを選ぶ',[...s.players[1-t.p].grave.map(x=>opt(card(x).name,x.uid,api.entryAbilities(s,t.p,x.cardId,t).length?25+cost(card(x)):-10,x.cardId)),skip()]);break;
  case'g13_BorrowAbility':{const x=s.players[1-t.p].grave.find(x=>x.uid===t.target&&(x.zoneSerial||0)===t.serial);if(!x)break;const entries=api.entryAbilities(s,t.p,x.cardId,t);choice(s,t,'使う登場時能力を1つ選ぶ',[...entries.map((entry,i)=>opt(entry.label,{entry},20,x.cardId)),opt('能力を使わず、山札の下へ置く',null,0)]);break;}
  case'g13_BorrowBottom':{const x=s.players[1-t.p].grave.find(x=>x.uid===t.target&&(x.zoneSerial||0)===t.serial);if(x&&api.canMoveZone(s,1-t.p,'grave')){policyRemove(s,1-t.p,'grave',x.uid,api);clear(x,'deck');s.players[1-t.p].deck.push(x);}break;}
@@ -52,7 +52,7 @@ export function createAbyssRules(api){
  case'g13_Sis':{const x=s.players[1-t.p].battle.find(x=>x.uid===v);if(x)(x.powerModifiers??=[]).push({amount:'-infinity',expires:'end',who:s.active});break;}
  case'g13_WMek':if(v)put(s,task('g13_Mek',t.p,t.source,{double:true}));break;
  case'g13_Lord':if(v)put(s,task('putCreature',t.p,t.source,v));break;
- case'g13_Murder':put(s,task('discardChosen',1-t.p,t.source,{uid:v,n:1,causedBy:t.p}));break;
+ case'g13_Murder':if(v)put(s,task('discardChosen',1-t.p,t.source,{uid:v,n:1,causedBy:t.p}));break;
  case'g13_Borrow':if(v){const x=s.players[1-t.p].grave.find(x=>x.uid===v);put(s,{...t,op:'g13_BorrowAbility',target:v,serial:x.zoneSerial||0});}break;
  case'g13_BorrowAbility':{put(s,{...t,op:'g13_BorrowBottom'});if(v){const entry=v.entry;log(s,t.p,'borrowEntry',card(t.source).name+'で'+card(entry.original).name+'の登場時能力を使う',{cardId:t.source});api.resolveEntry(s,entry);}break;}
  case'g13_Makua':if(v==='mana')put(s,task('g13_Ramp',t.p,t.source));else if(v==='grave')put(s,task('g13_GravePlayer',t.p,t.source));else{const list=s.players[1-t.p].battle.filter(x=>!x.sealed&&card(x).type!=='creature'&&cost(card(x))<=5);if(list.length)move(s,list.map(x=>({player:1-t.p,uid:x.uid,to:'mana',destroy:false})));}break;
