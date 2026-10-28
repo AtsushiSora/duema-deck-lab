@@ -10,6 +10,14 @@ export function createUtilityResourceRules(api){
  function finishManaReturn(s,t){if(!api.canMoveZone(s,t.p,'mana'))return;const own=s.players[t.p];for(const uid of t.selected||[]){const x=api.remove(own.mana,uid);if(x){api.clear(x,'hand');api.addZone(s,t.p,'hand',x);}}}
  function finishChain(s,t){put(s,{...t,op:'g61_Sacrifice',controller:t.p});const rows=(t.selected||[]).filter(r=>s.players[1-t.p].battle.some(x=>key(x)===key(r)));if(rows.length)api.move(s,rows.map(r=>({player:1-t.p,uid:r.uid,to:'grave',destroy:true,controller:t.p})));}
  function run(s,t){if(!t.op.startsWith('g61_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g61_Cannon':choice(s,t,'破壊する相手のパワー'+(t.metamorph?6000:2000)+'以下1体を選ぶ',api.targetOptions(s,t.p,creatures(s,1-t.p).filter(x=>currentPower(s,x)<=(t.metamorph?6000:2000))));break;
+ case'g61_Punish':if(t.metamorph)choice(s,t,'相手の手札を見て、捨てさせる1枚を選ぶ',s.players[1-t.p].hand.map(x=>{const c=card(x),deploy=(c.enemyDiscardDeploy||c.discardDeploy&&t.p===s.active)&&api.canEnter(s,1-t.p,c,{origin:'hand',execution:false});return opt(c.name,x.uid,(deploy?-80:10)+Math.min(cost(c),20)*3,x.cardId);}));else put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:1}));break;
+ case'g61_Smoke':choice(s,t,'破壊する相手のアンタップしている1体を選ぶ',api.targetOptions(s,t.p,creatures(s,1-t.p).filter(x=>!x.tapped)));break;
+ case'g61_SmokeDraw':if(own.mana.some(x=>!x.faceDown&&api.manaColors(card(x),s,t.p).some(v=>t.colors.includes(v))))put(s,task('g34_Draw',t.p,t.source,{n:1,optional:true}));break;
+ case'g61_Draco':choice(s,t,'タップする相手のクリーチャーを1体選ぶ',api.targetOptions(s,t.p,creatures(s,1-t.p)).map(o=>{const x=s.players[1-t.p].battle.find(x=>x.uid===o.value),dragon=String(api.effective(x,s).race).includes('ドラゴン'),risk=dragon&&api.canAddShield(s,t.p)&&own.deck.length<=1;return{...o,score:risk?-1000:(x.tapped?0:25)+Math.min(cost(card(x)),15)+(dragon&&api.canAddShield(s,t.p)?20:0)};}));break;
+ case'g61_DracoShield':api.shieldTop(s,t.p,card(t.source));break;
+ case'g61_Swamp':choice(s,t,'このターンのパワーを-3000する相手のタップ済み1体を選ぶ',api.targetOptions(s,t.p,creatures(s,1-t.p).filter(x=>x.tapped)).map(o=>{const x=s.players[1-t.p].battle.find(x=>x.uid===o.value);return{...o,score:Math.min(cost(card(x)),15)+(currentPower(s,x)<=3000?35:5)};}));break;
+ case'g61_GloryStone':if(s.players[1-t.p].mana.length>own.mana.length){const x=api.takeTop(s,t.p);if(x){const to=api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana';api.clear(x,to);api.addZone(s,t.p,to,x);api.log(s,t.p,'reveal',card(t.source).name+'：'+card(x).name+'を'+(to==='mana'?'マナ':'墓地')+'へ',{cardId:x.cardId});api.deckCheck(s,t.p);}}break;
  case'g61_Accident':{const rows=[0,1].flatMap(p=>creatures(s,p).filter(x=>s.players[p].battle.some(g=>card(g).type==='gear'&&g.crossedTo?.uid===x.uid&&g.crossedTo.incarnation===(x.incarnation||0))).map(x=>({player:p,uid:x.uid,to:'grave',destroy:true,controller:t.p})));if(rows.length)api.move(s,rows);break;}
  case'g61_Backflow':{const groups=[s.active,1-s.active].map(p=>({p,cards:api.canMoveZone(s,p,'mana')?s.players[p].mana.filter(x=>!(s.players[p].g34ManaHeld||[]).includes(x.uid)):[]}));for(const {p,cards}of groups)for(const x of cards)api.remove(s.players[p].mana,x.uid);for(const {p,cards}of groups){for(const x of cards)api.clear(x,'hand');if(cards.length){api.addZone(s,p,'hand',...cards);api.log(s,p,'manaReturn',card(t.source).name+'：マナ'+cards.length+'枚を手札へ',{cardId:t.source});}}break;}
  case'g61_Kurt':choice(s,t,'山札の一番上に戻す墓地の呪文を1枚選ぶ',(api.canMoveZone(s,t.p,'grave')?own.grave.filter(x=>faces(card(x)).some(c=>c.type==='spell')):[]).map(x=>opt(card(x).name,x.uid,x.cardId===t.source?-5:30-Math.min(20,Math.abs(Math.min(...faces(card(x)).filter(c=>c.type==='spell').map(cost))-own.mana.length)),x.cardId)));break;
@@ -46,6 +54,11 @@ export function createUtilityResourceRules(api){
  default:throw Error('未実装の資源ユーティリティ効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g61_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g61_Cannon':if(v)api.move(s,[{player:1-t.p,uid:v,to:'grave',destroy:true,controller:t.p}]);break;
+ case'g61_Punish':if(v)put(s,task('discardChosen',1-t.p,t.source,{uid:v,causedBy:t.p,n:1}));break;
+ case'g61_Smoke':{const x=creatures(s,1-t.p).find(x=>x.uid===v);if(x){queue(s,t,'SmokeDraw',{colors:api.colors(api.effective(x,s))});api.move(s,[{player:1-t.p,uid:x.uid,to:'grave',destroy:true,controller:t.p}]);}break;}
+ case'g61_Draco':{const x=creatures(s,1-t.p).find(x=>x.uid===v);if(x){if(String(api.effective(x,s).race).includes('ドラゴン'))queue(s,t,'DracoShield');api.tap(s,1-t.p,x);}break;}
+ case'g61_Swamp':{const x=creatures(s,1-t.p).find(x=>x.uid===v);if(x)(x.powerModifiers??=[]).push({amount:-3000,expires:'end',who:s.active,spellSource:t.source,spellCost:cost(card(t.source))});break;}
  case'g61_Kurt':if(v&&api.canMoveZone(s,t.p,'grave')){const x=api.remove(own.grave,v);if(x){api.clear(x,'deck');own.deck.unshift(x);api.log(s,t.p,'reveal',card(t.source).name+'で山札の一番上へ：'+card(x).name,{cardId:x.cardId});}}break;
  case'g61_StrongCrash':case'g61_StrongTrap':case'g61_StrongBreath':if(v)api.move(s,[{player:1-t.p,uid:v,to:t.op==='g61_StrongTrap'?'mana':'grave',destroy:t.op!=='g61_StrongTrap',controller:t.p}]);break;
  case'g61_ManaReturn':if(v)put(s,{...t,selected:[...t.selected,v]});else finishManaReturn(s,t);break;
@@ -64,5 +77,5 @@ export function createUtilityResourceRules(api){
  case'g61_ClockBottom':{const x=own.deck.find(x=>x.uid===v);if(x&&t.ids.includes(v)){api.remove(own.deck,x.uid);own.deck.push(x);}release(s,t.p,t.ids);break;}
  default:throw Error('未実装の資源ユーティリティ選択：'+t.op);
  }return true;}
- return{run,chosen,attack(s,p,x){if(api.effective(x,s).g125Grappler&&!api.selfStopped(s,p))api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g61_Grappler',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})});},effect(s,p,c,uid,entry){if(!c.g61Effect)return false;put(s,task('g61_'+c.g61Effect,p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;}};
+ return{run,chosen,attack(s,p,x){if(api.effective(x,s).g125Grappler&&!api.selfStopped(s,p))api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g61_Grappler',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})});},effect(s,p,c,uid,entry){if(!c.g61Effect)return false;put(s,task('g61_'+c.g61Effect,p,c.id,{uid,incarnation:entry?.incarnation||0,...(c.g129Role==='cannon'||c.g129Role==='punish'?{metamorph:c.g129Metamorph??s.players[p].mana.length>=7}:{})}));return true;}};
 }
