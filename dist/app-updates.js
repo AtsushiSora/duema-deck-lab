@@ -1,5 +1,5 @@
 import {encodeBattleData,decodeBattleData} from './battle-insights.js?v=0.100.0';
-export const APP_VERSION='0.182.0';
+export const APP_VERSION='0.183.0';
 export const UPDATE_RESUME_KEY='duema-update-resume-v1';
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const versionParts=v=>/^\d+\.\d+\.\d+$/.test(v||'')?v.split('.').map(Number):null;
@@ -25,7 +25,7 @@ export function saveUpdateResume(storage,value){
  const data={format:'duema-update-resume',formatVersion:1,savedAt:new Date().toISOString(),...value};
  const encoded=encodeBattleData(data);storage.setItem(UPDATE_RESUME_KEY,encoded);if(storage.getItem(UPDATE_RESUME_KEY)!==encoded)throw Error('更新前の保存を確認できませんでした');return data;
 }
-export function readUpdateResume(storage){const raw=storage.getItem(UPDATE_RESUME_KEY);if(!raw)return null;const data=decodeBattleData(raw);if(data.format!=='duema-update-resume'||data.formatVersion!==1||typeof data.engineVersion!=='string'||!['decks','manual','editor','battle','challenge','analysis','history','deck','account','replay','online'].includes(data.view))throw Error('更新前の保存データを確認できませんでした');return data;}
+export function readUpdateResume(storage){const raw=storage.getItem(UPDATE_RESUME_KEY);if(!raw)return null;const data=decodeBattleData(raw);if(data.format!=='duema-update-resume'||data.formatVersion!==1||typeof data.engineVersion!=='string'||!['decks','manual','editor','battle','tournament','challenge','analysis','history','deck','account','replay','online'].includes(data.view))throw Error('更新前の保存データを確認できませんでした');return data;}
 export function validateBattleResume(battle,engineVersion,legal){
  if(!battle)return;
  const s=battle.state;if(!s||s.version!==engineVersion||!Array.isArray(s.players)||s.players.length!==2||!Number.isSafeInteger(s.actions))throw Error('この対戦は現在のルール版で再開できません。保存データを書き出せます。');
