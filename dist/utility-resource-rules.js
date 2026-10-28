@@ -6,7 +6,12 @@ export function createUtilityResourceRules(api){
  const queue=(s,t,op,more={})=>put(s,{...t,op:'g61_'+op,...more});
  const release=(s,p,ids)=>s.players[p].g34Protected=(s.players[p].g34Protected||[]).filter(uid=>!ids.includes(uid));
  function look(s,t,n){const own=s.players[t.p],held=new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&/Protected$|Reveals$/.test(k)).flatMap(([,v])=>v)),xs=own.deck.filter(x=>!held.has(x.uid)).slice(0,api.lookCount(s,t.p,n));(own.g34Protected??=[]).push(...xs.map(x=>x.uid));if(xs.length)api.log(s,t.p,api.lookPublic(s,t.p)?'reveal':'look',card(t.source).name+'：山札の'+xs.length+'枚を確認'+(api.lookPublic(s,t.p)?'：'+xs.map(x=>card(x).name).join('・'):''),{cardId:t.source});return xs;}
+ function finishChain(s,t){put(s,{...t,op:'g61_Sacrifice',controller:t.p});const rows=(t.selected||[]).filter(r=>s.players[1-t.p].battle.some(x=>key(x)===key(r)));if(rows.length)api.move(s,rows.map(r=>({player:1-t.p,uid:r.uid,to:'grave',destroy:true,controller:t.p})));}
  function run(s,t){if(!t.op.startsWith('g61_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g61_Demise':put(s,{...t,op:'g61_Sacrifice',p:1-t.p,controller:t.p});break;
+ case'g61_Escort':choice(s,t,'手札へ戻す自分のクリーチャーを1体選ぶ',api.targetOptions(s,t.p,creatures(s,t.p)).map(o=>({...o,score:api.canLeave(s,t.p,own.battle.find(x=>x.uid===o.value))?-cost(card(o.cardId))*4-(o.value===t.uid?10:0):50})));break;
+ case'g61_Wave':{const rows=[t.p,1-t.p].flatMap(p=>creatures(s,p).filter(x=>!(p===t.p&&key(x)===key(t))&&api.colors(api.effective(x,s)).length<2).map(x=>({player:p,uid:x.uid,to:'hand',destroy:false,controller:t.p})));if(rows.length)api.move(s,rows);break;}
+ case'g61_Chain':{const selected=t.selected||[],options=api.targetOptions(s,t.p,creatures(s,1-t.p).filter(x=>!selected.some(r=>key(r)===key(x))));if(selected.length>=2||!options.length){finishChain(s,t);break;}choice(s,{...t,selected},'破壊する相手のクリーチャーを2体まで選ぶ（'+selected.length+'/2）',[...options,opt('ここまでで確定',null,0)]);break;}
  case'g61_Eco':{for(let i=0;i<2;i++){const x=api.takeTop(s,t.p);if(!x)break;const dragon=faces(card(x)).some(c=>String(c.race).includes('ドラゴン')),to=api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana';api.clear(x,to);api.addZone(s,t.p,to,x);api.log(s,t.p,'reveal',card(t.source).name+'：'+card(x).name+'を'+(to==='mana'?'マナ':'墓地')+'へ',{cardId:x.cardId});if(!dragon)break;}api.deckCheck(s,t.p);break;}
  case'g61_Vines':put(s,{...t,op:'g61_Sacrifice',p:1-t.p,blocker:true,controller:t.p});break;
  case'g61_Zekira':put(s,{...t,op:'g61_Sacrifice',controller:t.p});break;
@@ -26,6 +31,8 @@ export function createUtilityResourceRules(api){
  default:throw Error('未実装の資源ユーティリティ効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g61_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g61_Escort':if(v)api.move(s,[{player:t.p,uid:v,to:'hand',destroy:false,controller:t.p}]);break;
+ case'g61_Chain':if(v){const x=s.players[1-t.p].battle.find(x=>x.uid===v);if(x)put(s,{...t,selected:[...t.selected,{uid:x.uid,incarnation:x.incarnation||0}]});}else finishChain(s,t);break;
  case'g61_Sacrifice':if(v)api.move(s,[{player:t.p,uid:v,to:'grave',destroy:true,controller:t.controller??t.p}]);break;
  case'g61_Genesis':{const x=creatures(s,t.p).find(x=>x.uid===v);if(x){put(s,task('g34_Draw',t.p,t.source,{n:3}));api.move(s,[{player:t.p,uid:x.uid,to:'grave',destroy:true,controller:t.p}]);}break;}
  case'g61_Protection':{const x=own.hand.find(x=>x.uid===v);if(x&&api.canAddShield(s,t.p)){api.remove(own.hand,x.uid);api.clear(x,'shields');api.addZone(s,t.p,'shields',x);api.notifyShieldAdded(s,t.p,x);}break;}
