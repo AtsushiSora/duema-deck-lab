@@ -7,6 +7,7 @@ export function createUtilityFireRules(api){
  const key=x=>x.uid+'@'+(x.incarnation||0);
  function destroySelected(s,t){const moves=t.selected.filter(r=>s.players[1-t.p].battle.some(x=>key(x)===key(r))).map(r=>({player:1-t.p,uid:r.uid,to:'grave',destroy:true,controller:t.p}));if(moves.length)api.move(s,moves);}
  function run(s,t){if(!t.op.startsWith('g75_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g75_Dolzark':choice(s,t,'マナに置くパワー5000以下の相手クリーチャーを1体まで選ぶ',[...targetOptions(s,t.p,living(s,1-t.p).filter(x=>currentPower(s,x)<=5000)),opt('置かない',null,0)]);break;
  case'g75_Kiryu':for(const x of living(s,t.p))(x.g34Grants??=[]).push({turn:s.turn,speedAttacker:true,slayer:true,destroyToMana:true});break;
  case'g75_Dolbo':put(s,follow(t,'Destroy',{limit:6000}),follow(t,'ReturnLarge'));break;
  case'g75_ReturnLarge':choice(s,t,'手札に戻すパワー6000より大きい相手クリーチャーを1体選ぶ',targetOptions(s,t.p,living(s,1-t.p).filter(x=>currentPower(s,x)>6000)));break;
@@ -30,6 +31,7 @@ export function createUtilityFireRules(api){
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g75_'))return false;switch(t.op){
  case'g75_Destroy':if(v){const p=s.players.findIndex(p=>p.battle.some(x=>x.uid===v));if(p>=0)api.move(s,[{player:p,uid:v,to:'grave',destroy:true,controller:t.p}]);}break;
+ case'g75_Dolzark':if(v)api.move(s,[{player:1-t.p,uid:v,to:'mana',destroy:false,controller:t.p}]);break;
  case'g75_ReturnLarge':if(v)api.move(s,[{player:1-t.p,uid:v,to:'hand',destroy:false,controller:t.p}]);break;
  case'g75_BurnShield':if(v)api.moveShield(s,t.p,v,'grave');break;
  case'g75_CostPick':if(v){const x=s.players[1-t.p].battle.find(x=>x.uid===v);if(x)put(s,follow(t,'CostPick',{selected:[...t.selected,{uid:x.uid,incarnation:x.incarnation||0}],total:t.total+cost(card(x))}));}else destroySelected(s,t);break;
@@ -37,6 +39,6 @@ export function createUtilityFireRules(api){
  case'g75_Gear':if(v)api.move(s,[{player:1-t.p,uid:v,to:'grave',destroy:false,controller:t.p}]);break;
  default:throw Error('未実装の火の除去選択：'+t.op);
  }return true;}
- return{run,chosen,effect(s,p,c,uid){if(!c.g75Effect)return false;put(s,task('g75_'+c.g75Effect,p,c.id,{uid}));return true;},
+ return{run,chosen,attack(s,p,x){if(!String(effective(x,s).race).includes('ドラゴン'))return;for(const y of living(s,p).filter(y=>y.uid!==x.uid&&effective(y,s).g117Dolzark))api.enqueue(s,p,{uid:y.uid,incarnation:y.incarnation||0,source:y.cardId,effect:'extended',task:task('g75_Dolzark',p,y.cardId,{uid:y.uid,incarnation:y.incarnation||0})});},effect(s,p,c,uid){if(!c.g75Effect)return false;put(s,task('g75_'+c.g75Effect,p,c.id,{uid}));return true;},
  end(s){return living(s,s.active).filter(x=>effective(x,s).g75Exze).map(x=>({player:s.active,uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g75_Return',s.active,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})}));}};
 }

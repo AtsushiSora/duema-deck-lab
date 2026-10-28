@@ -33,5 +33,5 @@ export function createUtilityNatureSupport(api){
  default:throw Error('未実装の自然の展開補助選択：'+t.op);
  }return true;}
  return{run,chosen,starUseful:(s,p)=>nonEvolution(s,p).some(x=>starValue(s,p,x)>0),effect(s,p,c,uid){if(!c.g83Effect)return false;put(s,task('g83_'+c.g83Effect,p,c.id,{uid}));return true;},
- decorate(s,p,x,c){if(c.g116ShieldDragon){const n=s.players.reduce((n,p)=>n+(Array.isArray(p.shields)?p.shields.length:p.shields),0);c={...c,power:c.power+n*2000};}if(c.type!=='creature'||x.sealed||!String(c.race).includes('ビーストフォーク'))return c;const n=living(s,p).filter(y=>y.uid!==x.uid&&y.tapped&&card(y).g83Valiant&&!api.ignored(s,y)).length;return n?{...c,power:c.power+2000*n}:c;}};
+ decorate(s,p,x,c){if(c.g117GraveCreaturePower)c={...c,power:c.power+s.players[p].grave.filter(x=>card(x).type==='creature').length*c.g117GraveCreaturePower};if(c.g116ShieldDragon){const n=s.players.reduce((n,p)=>n+(Array.isArray(p.shields)?p.shields.length:p.shields),0);c={...c,power:c.power+n*2000};}if(c.type!=='creature'||x.sealed||!String(c.race).includes('ビーストフォーク'))return c;const n=living(s,p).filter(y=>y.uid!==x.uid&&y.tapped&&card(y).g83Valiant&&!api.ignored(s,y)).length;return n?{...c,power:c.power+2000*n}:c;}};
 }
