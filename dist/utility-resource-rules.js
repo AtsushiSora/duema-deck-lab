@@ -8,6 +8,8 @@ export function createUtilityResourceRules(api){
  function look(s,t,n){const own=s.players[t.p],held=new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&/Protected$|Reveals$/.test(k)).flatMap(([,v])=>v)),xs=own.deck.filter(x=>!held.has(x.uid)).slice(0,api.lookCount(s,t.p,n));(own.g34Protected??=[]).push(...xs.map(x=>x.uid));if(xs.length)api.log(s,t.p,api.lookPublic(s,t.p)?'reveal':'look',card(t.source).name+'：山札の'+xs.length+'枚を確認'+(api.lookPublic(s,t.p)?'：'+xs.map(x=>card(x).name).join('・'):''),{cardId:t.source});return xs;}
  function finishChain(s,t){put(s,{...t,op:'g61_Sacrifice',controller:t.p});const rows=(t.selected||[]).filter(r=>s.players[1-t.p].battle.some(x=>key(x)===key(r)));if(rows.length)api.move(s,rows.map(r=>({player:1-t.p,uid:r.uid,to:'grave',destroy:true,controller:t.p})));}
  function run(s,t){if(!t.op.startsWith('g61_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g61_Grappler':{const n=creatures(s,t.p).filter(x=>key(x)!==key(t)&&x.tapped).length;if(n)put(s,task('g34_Draw',t.p,t.source,{n,optional:true}));break;}
+ case'g61_Choker':{const dragons=own.grave.filter(x=>String(card(x).race).includes('ドラゴン')),left=own.grave.filter(x=>!dragons.includes(x)&&card(x).type==='creature'),risk=creatures(s,t.p).some(x=>{const c=api.effective(x,s);return c.g117GraveCreaturePower&&!left.length||c.g122DarkGravePower&&!left.some(x=>api.colors(card(x)).includes('闇'));});choice(s,t,'墓地のドラゴンをすべて手札に戻す？',[opt('すべて戻す',true,api.canMoveZone(s,t.p,'grave')&&dragons.length&&!risk?30:-10),opt('戻さない',null,0)]);break;}
  case'g61_Demise':put(s,{...t,op:'g61_Sacrifice',p:1-t.p,controller:t.p});break;
  case'g61_Escort':choice(s,t,'手札へ戻す自分のクリーチャーを1体選ぶ',api.targetOptions(s,t.p,creatures(s,t.p)).map(o=>({...o,score:api.canLeave(s,t.p,own.battle.find(x=>x.uid===o.value))?-cost(card(o.cardId))*4-(o.value===t.uid?10:0):50})));break;
  case'g61_Wave':{const rows=[t.p,1-t.p].flatMap(p=>creatures(s,p).filter(x=>!(p===t.p&&key(x)===key(t))&&api.colors(api.effective(x,s)).length<2).map(x=>({player:p,uid:x.uid,to:'hand',destroy:false,controller:t.p})));if(rows.length)api.move(s,rows);break;}
@@ -31,6 +33,7 @@ export function createUtilityResourceRules(api){
  default:throw Error('未実装の資源ユーティリティ効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g61_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g61_Choker':if(v)put(s,task('g34_Select',t.p,t.source,{origin:'grave',to:'hand',n:'all',filter:{race:'ドラゴン'},title:'墓地のドラゴンをすべて手札へ戻す'}));break;
  case'g61_Escort':if(v)api.move(s,[{player:t.p,uid:v,to:'hand',destroy:false,controller:t.p}]);break;
  case'g61_Chain':if(v){const x=s.players[1-t.p].battle.find(x=>x.uid===v);if(x)put(s,{...t,selected:[...t.selected,{uid:x.uid,incarnation:x.incarnation||0}]});}else finishChain(s,t);break;
  case'g61_Sacrifice':if(v)api.move(s,[{player:t.p,uid:v,to:'grave',destroy:true,controller:t.controller??t.p}]);break;
@@ -45,5 +48,5 @@ export function createUtilityResourceRules(api){
  case'g61_ClockBottom':{const x=own.deck.find(x=>x.uid===v);if(x&&t.ids.includes(v)){api.remove(own.deck,x.uid);own.deck.push(x);}release(s,t.p,t.ids);break;}
  default:throw Error('未実装の資源ユーティリティ選択：'+t.op);
  }return true;}
- return{run,chosen,effect(s,p,c,uid,entry){if(!c.g61Effect)return false;put(s,task('g61_'+c.g61Effect,p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;}};
+ return{run,chosen,attack(s,p,x){if(api.effective(x,s).g125Grappler&&!api.selfStopped(s,p))api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g61_Grappler',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})});},effect(s,p,c,uid,entry){if(!c.g61Effect)return false;put(s,task('g61_'+c.g61Effect,p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;}};
 }
