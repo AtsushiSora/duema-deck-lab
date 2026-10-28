@@ -5,14 +5,14 @@ import vm from 'node:vm';
 
 const source=fs.readFileSync(new URL('../dist/app.js',import.meta.url),'utf8');
 const binding=source.slice(source.indexOf('const searchInputIds='),source.indexOf("document.addEventListener('change'"));
-const ids=['home-deck-search','deck-card-search','starter25-search','manual-choice-search','ocr-card-search','card-search','opponent-search'];
+const ids=['tournament-deck-search','home-deck-search','deck-card-search','starter25-search','manual-choice-search','ocr-card-search','card-search','opponent-search'];
 function harness(id){
  const listeners={},nodes=new Map(),updates=[],results={innerHTML:''};
  const field=(value='')=>({id,value,isConnected:true,selectionStart:value.length,selectionEnd:value.length,selectionDirection:'none',dataset:{index:'2'},focus(options){this.focusOptions=options;},setSelectionRange(...range){this.range=range;}});
  let current=field();nodes.set('#'+id,current);nodes.set('#ocr-search-results',results);
  const redraw=kind=>{updates.push(kind);current.isConnected=false;current=field(read(`({homeQuery,deckQuery,starterQuery,manual:manualUI.filter,query,opponentQuery})`)[{ 'home-deck-search':'homeQuery','deck-card-search':'deckQuery','starter25-search':'starterQuery','manual-choice-search':'manual','card-search':'query','opponent-search':'opponentQuery'}[id]]);nodes.set('#'+id,current);};
- const ctx=vm.createContext({Promise,document:{addEventListener:(type,fn)=>listeners[type]=fn},$:s=>nodes.get(s),render:()=>redraw('page'),refreshStarter25:()=>redraw('picker'),cards:[{id:'jasmine',name:'霞み妖精ジャスミン'},{id:'clock',name:'終末の時計 ザ・クロック'}],norm:s=>s.normalize('NFKC').toLowerCase(),esc:s=>s});
- vm.runInContext("let homeQuery='',deckQuery='',starterQuery='',query='',opponentQuery='',page=5,manualUI={filter:'',choicePage:3},edit={name:''},replayIndex=0;",ctx);
+ const ctx=vm.createContext({Promise,document:{addEventListener:(type,fn)=>listeners[type]=fn},$:s=>nodes.get(s),render:()=>redraw('page'),refreshStarter25:()=>redraw('picker'),refreshTournamentPicker:()=>{updates.push('tournament');results.innerHTML=read('tournamentDeckQuery');},cards:[{id:'jasmine',name:'霞み妖精ジャスミン'},{id:'clock',name:'終末の時計 ザ・クロック'}],norm:s=>s.normalize('NFKC').toLowerCase(),esc:s=>s});
+ vm.runInContext("let homeQuery='',deckQuery='',starterQuery='',query='',opponentQuery='',tournamentDeckQuery='',page=5,manualUI={filter:'',choicePage:3},edit={name:''},replayIndex=0;",ctx);
  vm.runInContext(binding,ctx);
  function read(code){return vm.runInContext(code,ctx);}
  return{read,updates,results,get input(){return current;},emit(type,options={}){listeners[type]({target:current,...options});},emitFor(type,target,options={}){listeners[type]({target,...options});}};
@@ -22,7 +22,8 @@ for(const id of ids)test(`${id}: Japanese conversion stays intact until commit, 
  const h=harness(id),original=h.input;h.emit('compositionstart');
  for(const value of ['し','じゃす','ジャスミン']){original.value=value;h.emit('input',{isComposing:true});h.emit('input',{isComposing:false});assert.equal(h.input,original);assert.equal(original.isConnected,true);assert.equal(h.updates.length,0);assert.equal(h.results.innerHTML,'');}
  original.selectionStart=2;original.selectionEnd=4;original.selectionDirection='backward';h.emit('compositionend');await Promise.resolve();
- if(id==='ocr-card-search'){assert.match(h.results.innerHTML,/霞み妖精ジャスミン/);assert.doesNotMatch(h.results.innerHTML,/ザ・クロック/);assert.equal(h.input,original);}
+ if(id==='tournament-deck-search'){assert.equal(h.read('tournamentDeckQuery'),'ジャスミン');assert.equal(h.input,original);assert.equal(h.updates.length,1);assert.equal(h.results.innerHTML,'ジャスミン');}
+ else if(id==='ocr-card-search'){assert.match(h.results.innerHTML,/霞み妖精ジャスミン/);assert.doesNotMatch(h.results.innerHTML,/ザ・クロック/);assert.equal(h.input,original);}
  else{assert.equal(h.updates.length,1);assert.equal(h.input.value,'ジャスミン');assert.deepEqual(h.input.range,[2,4,'backward']);assert.equal(h.input.focusOptions.preventScroll,true);}
 });
 
