@@ -7,6 +7,8 @@ export function createUtilityFireRules(api){
  const key=x=>x.uid+'@'+(x.incarnation||0);
  function destroySelected(s,t){const moves=t.selected.filter(r=>s.players[1-t.p].battle.some(x=>key(x)===key(r))).map(r=>({player:1-t.p,uid:r.uid,to:'grave',destroy:true,controller:t.p}));if(moves.length)api.move(s,moves);}
  function run(s,t){if(!t.op.startsWith('g75_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g75_Muse':{const rows=[t.p,1-t.p].flatMap(p=>living(s,p).filter(x=>currentPower(s,x)<=3000).map(x=>({p,x})));for(const {p,x}of rows)api.tap(s,p,x);break;}
+ case'g75_Jams':if(living(s,t.p).some(x=>key(x)!==key(t)&&String(effective(x,s).race).includes('アーク・セラフィム')))put(s,task('g34_Target',t.p,t.source,{tap:true,optional:true,title:'タップする相手クリーチャーを1体まで選ぶ'}));break;
  case'g75_Dolzark':choice(s,t,'マナに置くパワー5000以下の相手クリーチャーを1体まで選ぶ',[...targetOptions(s,t.p,living(s,1-t.p).filter(x=>currentPower(s,x)<=5000)),opt('置かない',null,0)]);break;
  case'g75_Kiryu':for(const x of living(s,t.p))(x.g34Grants??=[]).push({turn:s.turn,speedAttacker:true,slayer:true,destroyToMana:true});break;
  case'g75_Dolbo':put(s,follow(t,'Destroy',{limit:6000}),follow(t,'ReturnLarge'));break;
@@ -39,6 +41,13 @@ export function createUtilityFireRules(api){
  case'g75_Gear':if(v)api.move(s,[{player:1-t.p,uid:v,to:'grave',destroy:false,controller:t.p}]);break;
  default:throw Error('未実装の火の除去選択：'+t.op);
  }return true;}
- return{run,chosen,attack(s,p,x){if(!String(effective(x,s).race).includes('ドラゴン'))return;for(const y of living(s,p).filter(y=>y.uid!==x.uid&&effective(y,s).g117Dolzark))api.enqueue(s,p,{uid:y.uid,incarnation:y.incarnation||0,source:y.cardId,effect:'extended',task:task('g75_Dolzark',p,y.cardId,{uid:y.uid,incarnation:y.incarnation||0})});},effect(s,p,c,uid){if(!c.g75Effect)return false;put(s,task('g75_'+c.g75Effect,p,c.id,{uid}));return true;},
+ return{run,chosen,
+ attack(s,p,x){if(!String(effective(x,s).race).includes('ドラゴン'))return;for(const y of living(s,p)){
+  const c=effective(y,s),base={uid:y.uid,incarnation:y.incarnation||0},queue=t=>api.enqueue(s,p,{...base,source:y.cardId,effect:'extended',task:t});
+  if(y.uid!==x.uid&&c.g117Dolzark)queue(task('g75_Dolzark',p,y.cardId,base));
+  if(c.g118Zalms&&(y.uid!==x.uid||!api.selfStopped(s,p)))queue(task('g34_Offer',p,y.cardId,{...base,title:'山札の上1枚を公開し、ドラゴンなら手札、それ以外ならマナに置く？',defs:[{op:'Look',n:1,public:true,stages:[{to:'hand',n:1,filter:{creature:true,race:'ドラゴン'}}],rest:'mana'}]}));
+ }},
+ battleWins(s,p,w){const x=w&&s.players[p].battle.find(x=>x.uid===w.uid);return x&&effective(x,s).g118WinUntap?[{player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Offer',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,title:'バトルに勝ったサンバースト・NEXをアンタップする？',defs:[{op:'Untap'}]})}]:[];},
+ effect(s,p,c,uid,entry){if(!c.g75Effect)return false;put(s,task('g75_'+c.g75Effect,p,c.id,{uid,incarnation:entry?.incarnation??s.players[p].battle.find(x=>x.uid===uid)?.incarnation??0}));return true;},
  end(s){return living(s,s.active).filter(x=>effective(x,s).g75Exze).map(x=>({player:s.active,uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g75_Return',s.active,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})}));}};
 }

@@ -42,7 +42,7 @@ export function createUtilityControlRules(api){
  case'g56_JohnnyBurn':{const x=s.players[1-t.p].battle.find(x=>x.uid===v);if(x&&api.power(x,false,s)<=2000)api.move(s,[{player:1-t.p,uid:x.uid,to:'grave',destroy:true,controller:t.p}]);break;}
  default:throw Error('未実装のコントロールユーティリティ選択：'+t.op);
  }return true;}
- return{run,chosen,
+ return{run,chosen,mainActions(s,p){return (s.players[p].spellsThisTurn||0)>0?s.players[p].hand.filter(x=>card(x).g118SpellZero&&api.canCast(s,p,card(x),'hand')&&api.canEnter(s,p,card(x),{origin:'hand',execution:true})).map(x=>({kind:'play',uid:x.uid,cardId:x.cardId,origin:'hand',cost:0,freeSummon:'G・ゼロ',label:card(x).name+'をG・ゼロで召喚'})):[];},
   spellTax:(s,p,c)=>c.type==='spell'?s.players.reduce((n,_,p)=>n+api.creatures(s,p).reduce((n,x)=>n+(api.effective(x,s).g56SpellTax||0),0),0):0,
   effect(s,p,c,uid,entry){if(!c.g56Effect)return false;put(s,task('g56_'+c.g56Effect,p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;}
  };
