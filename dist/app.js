@@ -1,13 +1,13 @@
-import {TOURNAMENT_SIZES,selectTournamentParticipants,createLocalTournament,validLocalTournament,currentTournamentRound,humanTournamentMatch,recordTournamentMatch,localTournamentHTML} from './local-tournament.js?v=0.191.0';
+import {TOURNAMENT_SIZES,selectTournamentParticipants,createLocalTournament,validLocalTournament,currentTournamentRound,humanTournamentMatch,recordTournamentMatch,localTournamentHTML} from './local-tournament.js?v=0.193.0';
 import {PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS} from './photo-october-decks.js?v=0.148.0';
 import {createPlayTimeTracker,formatPlayTime,playTimeStorageNote} from './play-time.js?v=0.125.0';
 import {historicalProfile,historicalMetadata} from './historical-regulations.js';
 import {creatureStatusModel,creatureStatusHTML,recordBattleAction,createBattleReport,encodeBattleData,decodeBattleData} from './battle-insights.js?v=0.100.0';
-import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.191.0';
+import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.193.0';
 import {createCardArt} from './card-art.js?v=0.181.0';
 import {resolveHeroDecks,resolveRivalDecks,challengeOptions,recordHeroResult,heroChallengeHTML} from './hero-challenge.js';
 import {recordManualVictory,recordManualResult,manualResultSummary,isOpponentDefeated,defeatedBadgeHTML} from './opponent-progress.js';
-import {resolveChampions,championsHTML,isOriginalChampion} from './champions.js?v=0.191.0';
+import {resolveChampions,championsHTML,isOriginalChampion} from './champions.js?v=0.193.0';
 import {shieldCards} from './shield-state.js';
 import {createAIPlayback,aiSpeedLabel,applyAIHighlights,AI_SPEEDS} from './ai-playback.js?v=0.181.0';
 import {createOnlineClient} from './online.js';
@@ -20,7 +20,7 @@ import {bindFittedBoard,pageWindow} from './board-fit.js';
 import {attackRoute,previewAttackAction,updateBoardFeedback,bindAttackArrow} from './battle-visuals.js?v=0.100.0';
 import {setCards,card as battleCard,validateDeck,createGame,getLegalActions,attackLocked,chooseAI,step,runGame,runSummary,aggregate,power,manaValue,manaValueAt,playFaces,canCastSpell,effectiveCard,canUntap,shieldGuardSources,exLifeShields,exLifeShieldInfo,evolutionBases,isEvolution,selfTriggersStopped,abilitiesIgnored,genmuActive,peekDeckTop,RULE_VERSION,ENGINE_VERSION,AI_VERSION} from './engine.js';
 import {PRESETS} from './decks.js';
-import {newManualUI,manualModel,manualScreenHTML,manualLogHTML,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,choiceSelectionModel} from './manual-ui.js?v=0.191.0';
+import {newManualUI,manualModel,manualScreenHTML,manualLogHTML,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,choiceSelectionModel} from './manual-ui.js?v=0.193.0';
 import {resolveEnvironmentDecks,environmentSupport,groupEnvironmentDecks,ENVIRONMENT_TARGET} from './environment.js';
 import {resolveStarter25Decks,starter25Matches} from './starter25.js';
 import {prepareDeckCopy} from './deck-copy.js';
@@ -286,7 +286,7 @@ function advanceLocalTournament(){
  const t=activeTournament();if(!t||t.champion||tournamentWorker)return;if(tournamentCheckpoint()){startTournamentHumanMatch();return;}
  const round=currentTournamentRound(t),jobs=round.filter(m=>m.winner===null&&!m.players.includes('human')).map(m=>({...m,decks:m.players.map(id=>t.players.find(p=>p.id===id).deck)}));
  if(!jobs.length){startTournamentHumanMatch();return;}
- const owner=t.id,instance=new Worker(new URL('./tournament-worker.js?v=0.191.0',import.meta.url),{type:'module'});tournamentWorker=instance;view='tournament';render();
+ const owner=t.id,instance=new Worker(new URL('./tournament-worker.js?v=0.193.0',import.meta.url),{type:'module'});tournamentWorker=instance;view='tournament';render();
  const fail=message=>{if(tournamentWorker!==instance)return;stopTournamentWorker();toast('CPU対戦を進められませんでした：'+message);};
  instance.onmessage=({data})=>{if(tournamentWorker!==instance||activeTournament()?.id!==owner)return;
   if(data.type==='result'){try{const current=activeTournament(),m=current.rounds.flat().find(m=>m.id===data.matchId);if(!m||![0,1].includes(data.winner))throw Error('対戦結果を確認してください');saved.localTournament=recordTournamentMatch(current,m.id,m.players[data.winner],data.reason);persist();if(view==='tournament')render();}catch(e){fail(e.message);}}
@@ -427,7 +427,7 @@ function renderManual(){
  const manaScroll=$('.mana-card-track')?.scrollLeft||0;
  const shelfScroll=$('.hand-shelf-cards')?.scrollLeft||0,handScroll=$('.manual-hand-cards')?.scrollLeft||0,choiceScroll=changed?0:$('.manual-choices')?.scrollTop||0;
  const boardScroll=$('.manual-board-area')?.scrollTop||0,controlsScroll=changed?0:$('.manual-console-content')?.scrollTop||0;
- const lanes=[...document.querySelectorAll('.play-creatures,.shield-tiles')].map(el=>el.scrollLeft);
+ const lanes=[...document.querySelectorAll('.play-creatures,.shield-tiles,.board-mana-cards')].map(el=>el.scrollLeft);
  const previous=$('.manual-console-content')?.dataset?.selectedHand||'',handChanged=previous!==String(model.hand?.uid||'');
  const active=document.activeElement,focusKey=active?.dataset?.focusKey,wasPlaying=!!active?.closest('.manual-stage');
  const choiceContext=s.decision?`${s.decision.type}:${s.decision.task?.op||''}:${s.decision.source||''}:${s.decision.player}`:'';if(manualUI.choiceContext!==choiceContext)manualUI.choiceOrigin='all';manualUI.choiceContext=choiceContext;
@@ -439,7 +439,7 @@ function renderManual(){
  const shelf=$('.hand-shelf-cards');if(shelf)shelf.scrollLeft=shelfScroll;
  const hand=$('.manual-hand-cards');if(hand)hand.scrollLeft=handScroll;
  const board=$('.manual-board-area');if(board)board.scrollTop=boardScroll;
- document.querySelectorAll('.play-creatures,.shield-tiles').forEach((el,i)=>el.scrollLeft=lanes[i]||0);
+ document.querySelectorAll('.play-creatures,.shield-tiles,.board-mana-cards').forEach((el,i)=>el.scrollLeft=lanes[i]||0);
  const controls=$('.manual-console-content');if(controls){controls.dataset.selectedHand=manualUI.hand||'';controls.scrollTop=handChanged?0:controlsScroll;}
  const choices=$('.manual-choices');if(choices)choices.scrollTop=choiceScroll;
  applyAIHighlights(board,manualUI.aiPlayback?.cue);

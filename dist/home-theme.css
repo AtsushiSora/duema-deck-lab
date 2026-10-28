@@ -45,6 +45,13 @@ body.home-screen{background:#000;color:#f8efcf;color-scheme:dark}
  .home-card{--cut:11px;padding:4px;--edge:2px}.home-card:after{inset:6px}.home-card-copy{padding-right:5%;padding-left:6%}
  .home-screen .dashboard-foot{font-size:10px;gap:15px;margin-top:20px}
 }
-@media(min-width:1000px){.home-screen .dashboard-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.home-screen .site-shell>.main{padding-top:42px}}
+@media(min-width:851px){
+ .home-screen .site-header-inner{max-width:1280px}
+ .home-screen .site-shell>.main{max-width:1320px;padding:clamp(24px,6vh,56px) 24px 30px}
+ .home-screen .dashboard-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+ .home-screen .home-card-copy strong{font-size:clamp(18px,2.2vw,29px)}
+ .home-screen .home-card-copy small{font-size:clamp(9px,.95vw,13px)}
+ .home-screen .home-card-icon svg{width:clamp(19px,2vw,25px);height:clamp(19px,2vw,25px)}
+}
 @media(prefers-reduced-motion:reduce){.home-card{transition:none}.home-card:hover,.home-card:focus-visible{transform:none}}
 @media(forced-colors:active){.home-card{border:3px solid ButtonText;clip-path:none}.home-card-copy strong{color:ButtonText;background:none;filter:none}.home-card:focus-visible{outline:3px solid Highlight;outline-offset:3px}}

@@ -5,6 +5,25 @@ const h={art:id=>`<span class="test-art" data-card="${id}"></span>`,icon:name=>`
 const markup=(s,ui=newManualUI())=>manualScreenHTML(s,ui,{...h,practice:true,undoCount:1});
 const buttonIds=html=>[...html.matchAll(/<button\b[^>]*>/g)].filter(x=>x[0].includes('data-action="battle-step"')&&!x[0].includes('disabled')).map(x=>Number(x[0].match(/data-index="(\d+)"/)?.[1]));
 
+test('both public mana strips show every card and its tap state without changing the game',()=>{
+ const s=setup();for(const p of [0,1]){give(s,p,'mana',Array(18).fill('dm01-108'));s.players[p].mana[0].tapped=true;}
+ const before=structuredClone(s),html=markup(s);
+ assert.equal((html.match(/class="play-mana /g)||[]).length,2);
+ for(const p of [0,1]){
+  assert.equal((html.match(new RegExp(`data-playback-zone="${p}:mana"`,'g'))||[]).length,1);
+  assert.match(html,new RegExp(`${p?'相手':'自分'}のマナを拡大・使用可能17・合計18`));
+  for(const x of s.players[p].mana)assert.ok(html.includes(`data-visual-key="mana:${p}:${x.uid}"`));
+ }
+ assert.match(html,/炎のたてがみ・使用済・タップ中・マナを拡大/);
+ assert.match(html,/炎のたてがみ・未使用・アンタップ・マナを拡大/);
+ assert.deepEqual(s,before);
+});
+test('the board conceals opposing face-down mana identities while its owner can inspect them',()=>{
+ const s=setup();give(s,0,'mana',['dm01-108']);give(s,1,'mana',['dm23ex3-024']);s.players[1].mana[0].faceDown=true;
+ let html=markup(s);assert.match(html,/裏向きのマナ・未使用・アンタップ/);assert.ok(!html.includes('dm23ex3-024'));assert.ok(!html.includes('インカ'));
+ give(s,0,'mana',['dm23ex3-024']);s.players[0].mana[0].faceDown=true;html=markup(s);assert.match(html,/裏向き：清浄のカルマ インカ/);assert.equal((html.match(/data-card="dm23ex3-024"/g)||[]).length,1);
+});
+
 test('manual screen renders the three phase steps, current guidance, readable cards and only valid engine action buttons',()=>{
  const s=e.createGame([target,target],{seed:20}),ui=newManualUI();ui.hand=s.players[0].hand[0].uid;const html=markup(s,ui);assert.ok(html.includes('マナに置くカードを選ぼう'));assert.ok(html.includes('aria-current="step"'));assert.ok(html.includes('manual-hand-cards'));assert.ok(html.includes('能力を見る'));assert.ok(html.includes('data-action="battle-hint"'));assert.ok(html.includes('data-action="undo-battle"'));assert.ok(html.includes('data-action="manual-log"'));const ids=e.getLegalActions(s).map(a=>a.id);assert.ok(buttonIds(html).every(x=>ids.includes(x)));assert.equal(manualModel(s,ui).hand.uid,ui.hand);
 });
