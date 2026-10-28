@@ -3,7 +3,9 @@ export function fitBoardGrid(count,width,height,{shield=false,rail=false}={}){
  if(!Number.isSafeInteger(count)||count<0||!Number.isFinite(width)||!Number.isFinite(height)||width<=0||height<=0)return null;
  if(!count)return {columns:1,rows:1,gap:0,cellWidth:width,cellHeight:height,dense:false,tiny:false};
  let best=null;
- for(let columns=1;columns<=(rail&&width<=56&&count<=10?1:count);columns++){
+ const verticalGap=Math.min(3,width/5,height/(count*5)),verticalHeight=(height-verticalGap*(count-1))/count;
+ const keepColumn=rail&&width<=56&&count<=10&&verticalHeight>=18;
+ for(let columns=1;columns<=(keepColumn?1:count);columns++){
   const rows=Math.ceil(count/columns),gap=Math.min(3,width/(columns*5),height/(rows*5)),cellWidth=(width-gap*(columns-1))/columns,cellHeight=(height-gap*(rows-1))/rows;
   const score=Math.min(cellWidth/(shield?38:70),cellHeight/(shield?32:74));
   if(!best||score>best.score+1e-9)best={columns,rows,gap,cellWidth,cellHeight,score};

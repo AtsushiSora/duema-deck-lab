@@ -45,3 +45,30 @@
  :is(.manual-playing,.online-playing) .hand-shelf-card>strong{font-size:9px;line-height:1.25;min-height:23px;bottom:2px}
  :is(.manual-playing,.online-playing) .hand-shelf-cost{font-size:10px;line-height:17px}
 }
+/* When even a fitted rail is too small, its large count opens the full picker. */
+@media(max-width:850px){
+ :is(.manual-playing,.online-playing) .shield-tiles.is-rail-micro{visibility:hidden}
+ :is(.manual-playing,.online-playing) .play-shields:has(.shield-tiles.is-rail-micro)>.shield-rail-open{flex-wrap:wrap;align-content:center;gap:2px;background:#284d56;border:1px solid #72978e;border-radius:6px}
+ :is(.manual-playing,.online-playing) .play-shields:has(.shield-tiles.is-rail-micro)>.shield-rail-open:after{content:'拡大';width:100%;font-size:9px;line-height:12px;color:#d7eee4}
+}
+/* Small portrait phones need the space for the battlefield, not tall toolbars. */
+@media(max-width:430px) and (max-height:650px) and (orientation:portrait){
+ .manual-playing .manual-topbar{height:40px;min-height:40px}
+ .manual-playing .manual-turnbar{height:26px;min-height:26px;padding-block:1px}
+ .manual-playing .manual-stage{--hand-shelf-height:92px}
+ .manual-playing .hand-shelf-head{height:20px;min-height:20px}
+ .manual-playing .hand-shelf-card{flex-basis:90px;width:90px;max-width:90px}
+ .manual-playing .hand-shelf-art{bottom:31px}
+ .manual-playing .hand-shelf-card>strong{font-size:10px;line-height:1.35;min-height:27px}
+ .manual-playing .hand-shelf-cost{font-size:12px;line-height:19px}
+ .manual-playing .ai-playback{min-height:48px;max-height:48px}
+ .manual-playing .ai-cue{min-height:44px;padding:2px 5px}
+ .manual-playing .ai-cue>small{font-size:8px;line-height:10px}
+ .manual-playing .ai-cue>strong{font-size:10px;line-height:13px}
+ .manual-playing .ai-playback-buttons{flex-basis:184px;grid-template-columns:64px 62px 46px;padding:2px 3px;gap:3px}
+ .manual-playing .ai-playback-buttons button{min-height:44px;font-size:9px}
+ .manual-playing :is(.opponent-field,.own-field){grid-template-rows:24px 26px minmax(0,1fr);padding-block:2px}
+ .manual-playing :is(.opponent-field,.own-field)>.play-player{height:24px}
+ .manual-playing :is(.opponent-field,.own-field)>.play-resources{height:26px}
+ .manual-playing .play-resources button{height:26px}
+}
