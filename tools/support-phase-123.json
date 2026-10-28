@@ -1,0 +1,240 @@
+{
+  "phase": 123,
+  "checkedAt": "2026-10-28",
+  "description": "登場時や攻撃時の手札補充、双方から選べるバウンス、ドラゴンに応じたマナ加速、ターン終了時の手札帰還とクロス先の強化の6種類。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm20-040",
+      "name": "アクア・ハルク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-040",
+      "faces": [
+        {
+          "name": "アクア・ハルク",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)このクリーチャーをバトルゾーンに出した時、カードを１枚引いてもよい。",
+          "race": "リキッド・ピープル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g123Role": "hulk",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-040.jpg",
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "655827540ad92a116305ba216a38c396691a662c74e2ed3cdff04739bc7550a0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm02-010",
+      "name": "アクア・バウンザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-010",
+      "faces": [
+        {
+          "name": "アクア・バウンザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃するとき、このクリーチャーをタップして、その攻撃を阻止してよい。そのあと、その相手クリーチャーとバトルする。)\nこのクリーチャーがバトルゾーンに出たとき、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻してよい。",
+          "race": "リキッド・ピープル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g123Role": "bouncer",
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "hand",
+            "optional": true,
+            "title": "手札へ戻すクリーチャーを1体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm02-010.jpg",
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "84d33cd1fea1388b9cac144208e49ce8e8cf22793c30c2f72afae6b1b813fefc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm02-011",
+      "name": "ウォルタ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-011",
+      "faces": [
+        {
+          "name": "ウォルタ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃するとき、カードを１枚引いてよい。",
+          "race": "サイバーロード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g123Role": "wolta",
+        "g34Attack": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm02-011.jpg",
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "c40f3d633aa1b02a34eeaa348c51d9f18b969d1e93560f9512cbca45d4257e15",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm38-055",
+      "name": "エコ・アイニー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-055",
+      "faces": [
+        {
+          "name": "エコ・アイニー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目をマナゾーンに置く。そのカードがドラゴンであれば、自分の山札の上からさらに１枚、自分のマナゾーンに置く。",
+          "race": "ファイアー・バード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g123Role": "eco",
+        "effect": "champion",
+        "g61Effect": "Eco"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-055.jpg",
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "bba5b67a9b1bfcfe0a09e40c09ac2a77b28a9eff44ed6e952a44a79e0508c097",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-060",
+      "name": "エグゼズ・ワイバーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-060",
+      "faces": [
+        {
+          "name": "エグゼズ・ワイバーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分のターンが終わるとき、このクリーチャーがバトルゾーンにあれば、自分の手札に戻す。",
+          "race": "アーマード・ワイバーン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g123Role": "exzez",
+        "speedAttacker": true,
+        "noPlayerAttack": true,
+        "g75Exze": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-060.jpg",
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "d8cabce03707866b773f73ec908e347e63defa7360f3e74eddab337f3c7d2f63",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-110",
+      "name": "エメラルド・クロー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-110",
+      "faces": [
+        {
+          "name": "エメラルド・クロー",
+          "typeText": "クロスギア",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "クロスギア:このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れても、このカードはバトルゾーンに残る。\nこれをクロスしたクリーチャーのパワーは+2000される。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g123Role": "claw",
+        "type": "gear",
+        "g123CrossPower": 2000
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-110.jpg",
+      "verification": {
+        "checkedAt": "2026-10-28",
+        "sha256": "85a3ae6b9832b1b542459634cfb17c84d0efd7f0e920731bc8335113488c524d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-28",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 129,
+    "allSixUnrestricted": true,
+    "limits": {
+      "dm20-040": 4,
+      "dm02-010": 4,
+      "dm02-011": 4,
+      "dm38-055": 4,
+      "dm06-060": 4,
+      "dm14-110": 4
+    }
+  }
+}
