@@ -27,3 +27,9 @@ test('shield rails preserve a readable column and use multiple columns before ca
  for(const n of[11,20,40,80]){const g=fitBoardGrid(n,40,60,{shield:true,rail:true});assert.ok(g.columns*g.rows>=n);assert.ok(g.columns*g.cellWidth+(g.columns-1)*g.gap<=40+1e-6);}
  assert.ok(fitBoardGrid(5,350,38,{shield:true,rail:true}).columns>1);
 });
+
+test('a transformed board fits cards in layout pixels instead of magnifying its density twice',()=>{
+ const properties=new Map(),grid={clientWidth:240,clientHeight:120,dataset:{fitGrid:'creatures',fitCount:'12'},getBoundingClientRect:()=>({width:480,height:240}),style:{setProperty:(k,v)=>properties.set(k,v)},classList:{toggle(){}}};
+ const stop=bindFittedBoard({querySelectorAll:()=>[grid]},{addEventListener(){},removeEventListener(){}}),expected=fitBoardGrid(12,240,120);
+ assert.equal(properties.get('--fit-cols'),String(expected.columns));assert.equal(properties.get('--fit-width'),expected.cellWidth+'px');assert.equal(properties.get('--fit-height'),expected.cellHeight+'px');stop();
+});

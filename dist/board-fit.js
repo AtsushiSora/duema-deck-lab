@@ -15,7 +15,7 @@ export function fitBoardGrid(count,width,height,{shield=false,rail=false}={}){
 export function bindFittedBoard(area,view=globalThis.window){
  if(!area?.querySelectorAll)return ()=>{};
  const grids=[...area.querySelectorAll('[data-fit-grid]')];
- const fit=()=>{for(const el of grids){const bounds=el.getBoundingClientRect(),g=fitBoardGrid(Number(el.dataset.fitCount),bounds.width,bounds.height,{shield:el.dataset.fitGrid==='shields',rail:el.dataset.fitLayout==='rail'});if(!g)continue;
+ const fit=()=>{for(const el of grids){const bounds=el.getBoundingClientRect(),g=fitBoardGrid(Number(el.dataset.fitCount),el.clientWidth??bounds.width,el.clientHeight??bounds.height,{shield:el.dataset.fitGrid==='shields',rail:el.dataset.fitLayout==='rail'});if(!g)continue;
   for(const [name,value]of [['cols',g.columns],['rows',g.rows],['gap',g.gap+'px'],['height',g.cellHeight+'px'],['width',g.cellWidth+'px']])el.style.setProperty('--fit-'+name,String(value));el.classList.toggle('is-dense',g.dense);el.classList.toggle('is-tiny',g.tiny);el.classList.toggle('is-rail-micro',el.dataset.fitLayout==='rail'&&Math.min(g.cellWidth,g.cellHeight)<11);
  }};
  view?.addEventListener('resize',fit);const Observer=view?.ResizeObserver||globalThis.ResizeObserver,observer=Observer?new Observer(fit):null;for(const el of grids)observer?.observe(el);fit();

@@ -1,3 +1,4 @@
+import * as battleZoom from '../dist/battle-zoom.js';
 import {PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS} from '../dist/photo-october-decks.js';
 import * as championLibrary from '../dist/champions.js';
 import * as opponentProgress from '../dist/opponent-progress.js';
@@ -18,7 +19,7 @@ const app=(await readFile(new URL('../dist/app.js',import.meta.url),'utf8')).rep
 function harness(state,{mobile=false,scrollers={},autoPay=true}={}){
  const listeners={},errors=[],timers=new Map();let serial=0;
  const root={innerHTML:''},dialog={innerHTML:'',open:false,addEventListener(){},showModal(){this.open=true;},close(){this.open=false;}},toast={textContent:'',classList:{add(){},remove(){}}},classes=new Set();
- const context=vm.createContext({PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS,...championLibrary,...opponentProgress,...characterChallenges,createCardArt,shieldCards,...battleInsights,...appUpdates,...e,...manual,...visuals,...fit,...handUI,...cardInfo,...aiPlayback,battleCard:e.card,PRESETS,createCatalogue,fixtureRegistry:createCatalogue(snapshot,data.cards,details),fixtureState:state,fixtureDecks:[target,target],console:{log(){},error:e=>errors.push(e)},structuredClone,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL,Intl,Date,CSS:{escape:x=>x},localStorage:{getItem:()=>null,setItem(){}},location:{hash:'',pathname:'/'},history:{replaceState(){}},setTimeout:f=>{timers.set(++serial,f);return serial;},clearTimeout:id=>timers.delete(id),clearInterval(){},setInterval:()=>++serial,
+ const context=vm.createContext({PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS,...battleZoom,...championLibrary,...opponentProgress,...characterChallenges,createCardArt,shieldCards,...battleInsights,...appUpdates,...e,...manual,...visuals,...fit,...handUI,...cardInfo,...aiPlayback,battleCard:e.card,PRESETS,createCatalogue,fixtureRegistry:createCatalogue(snapshot,data.cards,details),fixtureState:state,fixtureDecks:[target,target],console:{log(){},error:e=>errors.push(e)},structuredClone,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL,Intl,Date,CSS:{escape:x=>x},localStorage:{getItem:()=>null,setItem(){}},location:{hash:'',pathname:'/'},history:{replaceState(){}},setTimeout:f=>{timers.set(++serial,f);return serial;},clearTimeout:id=>timers.delete(id),clearInterval(){},setInterval:()=>++serial,
   document:{querySelector:s=>s==='#app'?root:s==='#dialog'?dialog:s==='#toast'?toast:scrollers[s]||null,querySelectorAll:s=>s==='.play-creatures,.shield-tiles,.board-mana-cards'?scrollers.lanes||[]:[],activeElement:null,body:{classList:{toggle:(key,on)=>on?classes.add(key):classes.delete(key)}},addEventListener:(name,f)=>listeners[name]=f},window:{innerHeight:800,addEventListener(){},scrollTo(){},matchMedia:q=>({matches:mobile&&q==='(max-width: 850px)'})}});
  vm.runInContext(app,context);
  vm.runInContext("registry=fixtureRegistry;cards=registry.cards;battleCards=fixtureRegistry.cards.filter(c=>c.supported);battle={state:fixtureState,decks:fixtureDecks,practice:true};view='manual';manualUI=newManualUI();selectedHand=null;render();",context);
@@ -301,4 +302,30 @@ test('ordinary rematch uses the completed matchup snapshot and finished results 
  const fresh=h.read('battle.manualGame');await h.click('battle-again');assert.equal(h.read('battle.manualGame'),fresh);
  h.read('battle.state.winner=0;render();render()');assert.match(h.root.innerHTML,/1勝 1敗/);assert.ok(h.read('isOpponentDefeated(battle.decks[1],saved.defeatedDecks,registry)'));
  const data=h.read('JSON.stringify(saved.manualResults)');await h.click('manual-replay');assert.equal(h.read('JSON.stringify(saved.manualResults)'),data);
+});
+
+test('zoom preferences survive a real charge and undo, while slider dragging defers only view replacement',async()=>{
+ const s=e.createGame([target,target],{seed:2020}),h=harness(s,{mobile:true}),hand=s.players[0].hand[0],a=e.getLegalActions(s).find(a=>a.kind==='charge'&&a.uid===hand.uid),before=structuredClone(s);
+ assert.ok(h.root.innerHTML.includes('aria-label="表示サイズを調整"'));assert.ok(h.root.innerHTML.includes('フィールドと手札をまとめて調整'));
+ h.read("manualUI.zoom={profile:'mobile',percent:145,mode:'manual'};manualUI.zoomScroll={board:{left:30,top:80},hand:{left:55,top:10}};manualUI.zoomOpen=true;manualZoomDragging=true;manualUI.logOpen=true;renderManual()");
+ assert.equal(h.read('manualZoomRenderQueued'),true);assert.ok(!h.root.innerHTML.includes('manual-side is-open'));assert.deepEqual(s,before);
+ h.read('manualZoomDragging=false;manualZoomRenderQueued=false;renderManual()');assert.ok(h.root.innerHTML.includes('manual-side is-open'));assert.deepEqual(s,before);
+ await h.click('hand-card',{uid:hand.uid});await h.click('battle-step',{index:String(a.id)});
+ assert.equal(h.read('manualUI.zoom.percent'),145);assert.equal(h.read('manualUI.zoomScroll.board.top'),80);assert.equal(h.read('manualUI.zoomScroll.hand.left'),55);
+ await h.click('undo-battle');assert.equal(h.read('battle.state.phase'),'charge');assert.equal(h.read('manualUI.zoom.percent'),145);assert.equal(h.read('manualUI.zoomScroll.hand.left'),55);
+});
+
+test('each effect detail opens its ability text without resolving it and returns to the same filtered choice page',async()=>{
+ const {eringiEffectOrder}=await import('./choice-detail-fixture.mjs');
+ for(const mobile of [false,true]){
+  const s=eringiEffectOrder(),h=harness(s,{mobile}),before=structuredClone(s),context=h.read('manualModel(battle.state,manualUI).context');
+  h.read("manualUI.filter='エリンギ';manualUI.choicePageSize=1;manualUI.choicePage=1;render()");
+  for(const a of e.getLegalActions(s)){
+   await h.click('manual-choice-detail',{index:String(a.id),context});assert.equal(h.read('dialog.open'),true);assert.match(h.read('dialog.innerHTML'),/能力文/);assert.ok(h.read('dialog.innerHTML').includes(a.label));assert.match(h.read('dialog.innerHTML'),/効果の選択に戻る/);assert.deepEqual(s,before);
+   await h.click('close-dialog');assert.equal(h.read('dialog.open'),false);assert.equal(h.read('manualUI.filter'),'エリンギ');assert.equal(h.read('manualUI.choicePage'),1);assert.deepEqual(s,before);
+  }
+  await h.click('manual-choice-detail',{index:'999',context});assert.equal(h.read('dialog.open'),false);assert.deepEqual(s,before);
+  await h.click('manual-choice-detail',{index:'0',context:'stale'});assert.equal(h.read('dialog.open'),false);assert.deepEqual(s,before);
+  const a=e.getLegalActions(s)[0];await h.click('battle-step',{index:String(a.id)});assert.ok(s.actions>before.actions);assert.notDeepEqual(s.decision,before.decision);
+ }
 });

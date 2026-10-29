@@ -58,14 +58,16 @@ export function bindAttackArrow(area,svg,route,view=globalThis.window){
  const find=key=>[...area.querySelectorAll('[data-visual-key]')].find(el=>el.dataset.visualKey===key);
  const draw=()=>{
   const from=find(route.from.key),to=find(route.to.key);if(!from||!to){svg.style.display='none';return;}
-  const bounds=area.getBoundingClientRect(),frame=area.parentElement.getBoundingClientRect();
-  const geometry=attackArrowGeometry(bounds,from.getBoundingClientRect(),to.getBoundingClientRect(),{fromClip:from.closest('.play-creatures,.shield-tiles')?.getBoundingClientRect(),toClip:to.closest('.play-creatures,.shield-tiles')?.getBoundingClientRect()});
+  const scale=Number(area.closest?.('.battle-zoom-canvas')?.dataset.battleZoomScale)||1;
+  const rect=el=>{const r=el.getBoundingClientRect();return {left:r.left/scale,top:r.top/scale,right:(r.right??r.left+r.width)/scale,bottom:(r.bottom??r.top+r.height)/scale,width:r.width/scale,height:r.height/scale};};
+  const bounds=rect(area),frame=rect(area.parentElement);
+  const geometry=attackArrowGeometry(bounds,rect(from),rect(to),{fromClip:from.closest('.play-creatures,.shield-tiles')?rect(from.closest('.play-creatures,.shield-tiles')):undefined,toClip:to.closest('.play-creatures,.shield-tiles')?rect(to.closest('.play-creatures,.shield-tiles')):undefined});
   if(!geometry){svg.style.display='none';return;}
   svg.style.display='block';svg.style.left=`${bounds.left-frame.left}px`;svg.style.top=`${bounds.top-frame.top}px`;svg.style.width=`${geometry.width}px`;svg.style.height=`${geometry.height}px`;svg.setAttribute('viewBox',`0 0 ${geometry.width} ${geometry.height}`);
   svg.querySelector('.attack-arrow-line').setAttribute('d',geometry.path);svg.querySelector('.attack-arrow-origin').setAttribute('cx',geometry.start.x);svg.querySelector('.attack-arrow-origin').setAttribute('cy',geometry.start.y);svg.classList.toggle('has-clipped-end',geometry.clipped);
   const note=area.parentElement.querySelector('.attack-offscreen-note');if(note)note.textContent=geometry.clipped?'画面外の対象あり・盤面をスクロール':'';
  };
- area.addEventListener('scroll',draw,{capture:true,passive:true});view?.addEventListener('resize',draw);
+ area.parentElement.addEventListener?.('battlezoomchange',draw);area.addEventListener('scroll',draw,{capture:true,passive:true});view?.addEventListener('resize',draw);
  const Observer=view?.ResizeObserver||globalThis.ResizeObserver,observer=Observer?new Observer(draw):null;observer?.observe(area);draw();
- return ()=>{area.removeEventListener('scroll',draw,true);view?.removeEventListener('resize',draw);observer?.disconnect();};
+ return ()=>{area.parentElement.removeEventListener?.('battlezoomchange',draw);area.removeEventListener('scroll',draw,true);view?.removeEventListener('resize',draw);observer?.disconnect();};
 }

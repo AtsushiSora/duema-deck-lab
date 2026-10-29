@@ -45,3 +45,15 @@ test('SVG binding redraws on nested scroll and resize, clears missing endpoints,
  const view={addEventListener:(n,f)=>listeners.set(n,f),removeEventListener:(n,f)=>{assert.equal(listeners.get(n),f);listeners.delete(n);},ResizeObserver:class{observe(){}disconnect(){disconnected=true;}}};
  const stop=bindAttackArrow(area,svg,{from:{key:'from'},to:{key:'to'}},view),first=attributes.get('d');assert.equal(svg.style.display,'block');y=150;listeners.get('scroll')();assert.notEqual(attributes.get('d'),first);y=800;listeners.get('resize')();assert.ok(classes.has('has-clipped-end'));assert.ok(note.textContent.includes('画面外'));targets=false;listeners.get('scroll')();assert.equal(svg.style.display,'none');stop();assert.equal(listeners.size,0);assert.equal(disconnected,true);assert.doesNotThrow(()=>bindAttackArrow(null,null,null)());
 });
+
+test('attack arrows keep the same card anchors at reduced and magnified battle display sizes',()=>{
+ const drawAt=scale=>{
+  const attrs=new Map(),line={setAttribute:(key,value)=>attrs.set(key,value)},origin={setAttribute(){}};
+  const rect=(left,top,width,height)=>({left:left*scale,top:top*scale,width:width*scale,height:height*scale});
+  const source={dataset:{visualKey:'from'},getBoundingClientRect:()=>rect(50,240,50,60),closest:()=>null},target={dataset:{visualKey:'to'},getBoundingClientRect:()=>rect(200,40,50,60),closest:()=>null};
+  const area={closest:()=>({dataset:{battleZoomScale:String(scale)}}),getBoundingClientRect:()=>rect(10,10,300,350),parentElement:{getBoundingClientRect:()=>rect(10,10,300,350),querySelector:()=>null},querySelectorAll:()=>[source,target],addEventListener(){},removeEventListener(){}};
+  const svg={style:{},setAttribute:(key,value)=>attrs.set(key,value),querySelector:selector=>selector==='.attack-arrow-line'?line:origin,classList:{toggle(){}}};
+  const stop=bindAttackArrow(area,svg,{from:{key:'from'},to:{key:'to'}},{addEventListener(){},removeEventListener(){}});stop();return {path:attrs.get('d'),box:attrs.get('viewBox'),style:svg.style};
+ };
+ const expected=drawAt(1);for(const scale of [.5,.7,1.6,2]){const actual=drawAt(scale);assert.equal(actual.path,expected.path);assert.equal(actual.box,expected.box);assert.equal(actual.style.width,expected.style.width);assert.equal(actual.style.display,'block');}
+});
