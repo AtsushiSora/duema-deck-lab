@@ -59,8 +59,8 @@ export function paymentReviewModel(s){
  const baseValue=use.baseUids??a.baseUid,baseIds=Array.isArray(baseValue)?baseValue:baseValue?[baseValue]:[];
  const bases=baseIds.map(uid=>{const found=ownPhysical(s,d.player,uid);return found?zoneLabel[found.zone]+found.index+' '+card(found.inst).name:'選択した進化元';});
  const target=a.kind==='crossGear'?ownPhysical(s,d.player,a.target):null;
- const method=a.kind==='crossGear'?'クロスする':a.kind==='pandora'?'パンドラ・シフト':(use.type||face?.type)==='spell'?'呪文を唱える':bases.length?'進化して召喚':'召喚・使用';
- const context=bases.length?'進化元：'+bases.join(' ＋ '):target?'クロス先：場'+target.index+' '+card(target.inst).name:face?.neoEvolution?'進化元なしで召喚':(use.type||face?.type)==='spell'?'効果の対象は、支払い後に必要に応じて選びます。':'進化元・対象の選択はありません。';
+ const method=a.kind==='galaxyShield'?'ギャラクシールドでシールドに置く':a.kind==='crossGear'?'クロスする':a.kind==='pandora'?'パンドラ・シフト':(use.type||face?.type)==='spell'?'呪文を唱える':bases.length?'進化して召喚':'召喚・使用';
+ const context=a.kind==='galaxyShield'?'表向きのシールドに置きます。次の自分のターンのはじめに召喚します。':bases.length?'進化元：'+bases.join(' ＋ '):target?'クロス先：場'+target.index+' '+card(target.inst).name:face?.neoEvolution?'進化元なしで召喚':(use.type||face?.type)==='spell'?'効果の対象は、支払い後に必要に応じて選びます。':'進化元・対象の選択はありません。';
  const selected=d.selected.map(uid=>d.pool.find(x=>x.uid===uid)).filter(Boolean).map(x=>({uid:x.uid,id:x.cardId,name:card(x).name}));
  return {name,method,context,cost:d.cost,selected,status:manaSelectionStatus(d),origin:a.kind==='crossGear'?'場':zoneLabel[use.origin||a.origin||'hand']||'手札'};
 }

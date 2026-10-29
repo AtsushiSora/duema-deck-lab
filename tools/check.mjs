@@ -1,3 +1,7 @@
+import {PHOTO167_DECKS} from './fixtures/photo167.mjs';
+import {STANDARD166_DECKS} from './fixtures/standard166.mjs';
+import {STANDARD165_DECKS} from './fixtures/standard165.mjs';
+import {UTILITY164_DECKS} from './fixtures/utility164.mjs';
 import {UTILITY163_DECKS} from './fixtures/utility163.mjs';
 import {UTILITY162_DECKS} from './fixtures/utility162.mjs';
 import {UTILITY161_DECKS} from './fixtures/utility161.mjs';
@@ -236,3 +240,11 @@ for(const d of UTILITY161_DECKS)if(validateDeck(d).length||registry.coverage(d).
 for(const d of UTILITY162_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第162段階の終炎の竜皇検証用40枚を確認してください：'+d.name);console.log('Checked both phase162 decks: Bolshack Hyper Dragon and its OVER-hyper donors.');
 
 for(const d of UTILITY163_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第163段階の手札破壊・除去・侵略の検証用40枚を確認してください：'+d.name);console.log('Checked both phase163 decks: six utility cards with all seven faces supported.');
+
+for(const d of UTILITY164_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第164段階の補充・シンパシー検証用40枚を確認してください：'+d.name);console.log('Checked both phase164 decks: six resource and sympathy cards in supported forty-card lists.');
+
+for(const d of STANDARD165_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第165段階の共通能力検証用40枚を確認してください：'+d.name);console.log('Checked all twenty-five phase165 decks: 243 new names in legal forty-card lists.');
+
+for(const d of STANDARD166_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第166段階の共通能力検証用40枚を確認してください：'+d.name);console.log('Checked all fifteen phase166 decks: 142 new names in legal forty-card lists.');
+
+for(const d of PHOTO167_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('写真167の40枚を確認してください：'+d.name);console.log('Checked both photographed phase167 decks: all eighty slots supported.');

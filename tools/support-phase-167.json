@@ -1,0 +1,206 @@
+{
+  "phase": 167,
+  "checkedAt": "2026-10-29",
+  "description": "写真2枚の未対応4種類。アビスNEO＋EXライフと超魂レイド、墓地DDD、ギャラクシールド、代替コストとエレメント破壊。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/47355/",
+    "https://dm.takaratomy.co.jp/rule/qa/40467/",
+    "https://dm.takaratomy.co.jp/rule/qa/43920/"
+  ],
+  "cards": [
+    {
+      "id": "dm26ex4-038",
+      "name": "切札縫合 ジャシン＝ジャシン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-038",
+      "faces": [
+        {
+          "name": "切札縫合 ジャシン＝ジャシン",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水/闇/火/自然",
+          "civilizations": [
+            "水",
+            "闇",
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "NEO進化：アビス・クリーチャー１体の上に置いてもよい。\nEXライフ\n超魂レイド（このクリーチャーが出た時、山札の上から３枚を表向きにする。その中からこのクリーチャーの進化元になれるカードを１枚、この下に置いてもよい。残りを好きな順序で山札の下に置く）\nマッハファイター\nスレイヤー\nT・ブレイカー\nこのクリーチャーが攻撃する時、カードを２枚引き、自分の手札を２枚捨てる。その後、コスト５以下のアビス・クリーチャーを２体まで、自分の墓地から出してもよい。",
+          "race": "ディスペクター/アビスロイヤル/デーモン・コマンド",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "category": "アビス"
+            }
+          ]
+        },
+        "exLife": true,
+        "g27Raid": true,
+        "machFighter": true,
+        "slayer": true,
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 2
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 2,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "race": "アビス",
+              "max": 5
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-038.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "df5404193761014676d24ff475f1d39d0c1bf99b0c3af7deb405fa5c7ce8a95a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp3-S03",
+      "name": "危険深淵 デンジャラス＝ジャック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-S03",
+      "faces": [
+        {
+          "name": "危険深淵 デンジャラス＝ジャック",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーの「D・D・D」を墓地から使ってもよい。\nD・D・D [dd05]\nNEO進化：水、闇、または火のクリーチャー１体の上に置いてもよい。\nW・ブレイカー\n相手のクリーチャーはタップして出る。",
+          "race": "アビスロイヤル",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "ddd": {
+          "cost": 5,
+          "fromGrave": true
+        },
+        "breaker": 2,
+        "opponentTapEntry": true,
+        "g167Danger": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-S03.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "c60934c2bd5ecbd977b014f3bc5217085d78fb7683ac14500d33f0f40668c513",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp3-022",
+      "name": "輝晶 エヴァ-3",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-022",
+      "faces": [
+        {
+          "name": "輝晶 エヴァ-3",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ギャラクシールド [lw02]（このカードを実行するコストのかわりに、 [lw02]を支払ってこのカードを表向きでシールド化してもよい）\n自分のターンのはじめに、このクリーチャーが表向きで自分のシールドゾーンにあれば、コストを支払ったものとして召喚する。\nこのカードが表向きで自分のシールドゾーンに置かれた時またはこのクリーチャーが出た時、相手のクリーチャーを１体選び、タップする。次の自分のターンのはじめまで、それはアンタップしない。\nササゲール３",
+          "race": "メタリカ/エンジェル・コマンド/ディスタス/チーム銀河",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "champion",
+        "g167Eva": true,
+        "sasage": 3
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-022.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "4cafba674b215d6d98cbc0a77f816b23d20283feb16a8f9614dad70c3a2ba88f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex4-051",
+      "name": "ペダンティック・クラフト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-051",
+      "faces": [
+        {
+          "name": "ペダンティック・クラフト",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "この呪文を[ff01]支払って唱えてもよい。そうしたら、自分のエレメントを１つ破壊する。\n相手のコスト４以下のエレメントを１つ選び、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "champion",
+        "g167Craft": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-051.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "c460afbe0bd32e99defa7f4cb18a07300e08de94c97271c8cefb3ca18027c041",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-29",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26ex4-038": 4,
+      "dm25rp3-S03": 4,
+      "dm26rp3-022": 4,
+      "dm26ex4-051": 4
+    }
+  }
+}

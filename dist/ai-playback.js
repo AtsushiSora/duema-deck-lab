@@ -1,7 +1,7 @@
 import {displayTurn} from './turn-count.js';
 import {shieldCards} from './shield-state.js';
 import {card,getLegalActions,chooseAI,step} from './engine.js';
-import {createAIDecision} from './ai-decision.js?v=0.229.3';
+import {createAIDecision} from './ai-decision.js?v=0.233.0';
 
 export const AI_SPEEDS={slow:{label:'ゆっくり',delay:3000},normal:{label:'標準',delay:2000},fast:{label:'速い',delay:700}};
 export const aiSpeedLabel=speed=>(AI_SPEEDS[speed]||AI_SPEEDS.normal).label;
@@ -14,6 +14,7 @@ export function aiActionCue(s,a){
  const snapshot=aiPublicSnapshot(s),source=snapshot.players.flatMap(p=>p.cards).find(x=>x.uid===a.uid),cardId=source?.cardId||null,keys=cardId?cueKeys(snapshot,cardId):[];
  let text='相手が能力の選択を行います',zones=[];
  if(a.kind==='charge'){text='相手がカードをマナに置きます';zones=['1:mana'];}
+ else if(a.kind==='galaxyShield'){text='相手がギャラクシールドで表向きのシールドに置きます';zones=['1:shields'];}
  else if(a.kind==='pandora'){text='相手がパンドラ・シフトで超次元ゾーンへ置きます';zones=['1:extra'];}
  else if(a.kind==='play')text=source?`相手が「${card(cardId).name}」を使います`:'相手がカードを使います';
  else if(a.kind==='attack'){
