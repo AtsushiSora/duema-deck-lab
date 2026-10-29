@@ -7,6 +7,7 @@
  body.manual-playing{
   --manual-browser-overlap:max(64px,env(safe-area-inset-bottom));
   --manual-edge-height:calc(100vh + var(--manual-browser-overlap));
+  --manual-toolbar-top:44px;--manual-phase-height:28px;
   overflow:visible;overflow-x:clip;overflow-y:auto;
   overscroll-behavior-y:auto;
  }
@@ -24,6 +25,15 @@
   position:sticky;top:env(safe-area-inset-top);z-index:10;
   margin-inline:0;padding-inline:6px;
  }
+ /* The document can scroll behind the browser chrome, while its controls stay
+    available. The board, hand tracks and popups retain their own clipping. */
+ body.manual-playing :is(.manual-layout,.manual-stage){overflow:visible}
+ body.manual-playing .manual-turnbar{
+  position:sticky;top:calc(env(safe-area-inset-top) + var(--manual-toolbar-top));z-index:6;
+ }
+ body.manual-playing .ai-playback{
+  position:sticky;top:calc(env(safe-area-inset-top) + var(--manual-toolbar-top) + var(--manual-phase-height));z-index:6;
+ }
  body.manual-playing .manual-mobile-dock{
   flex-basis:var(--manual-dock-height,50px);height:var(--manual-dock-height,50px);
   padding-bottom:3px;border-radius:0;
@@ -35,4 +45,10 @@
 }
 @media (display-mode:browser) and (max-width:850px) and (orientation:portrait){
  body.manual-playing .manual-topbar{background:#f4f7f8}
+}
+@media (display-mode:browser) and (max-width:430px) and (max-height:650px) and (orientation:portrait){
+ body.manual-playing{--manual-toolbar-top:40px;--manual-phase-height:26px}
+}
+@media (display-mode:browser) and (min-width:480px) and (max-width:1100px) and (max-height:600px) and (orientation:landscape){
+ body.manual-playing{--manual-toolbar-top:35px;--manual-phase-height:27px}
 }

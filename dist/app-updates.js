@@ -1,5 +1,5 @@
 import {encodeBattleData,decodeBattleData} from './battle-insights.js?v=0.100.0';
-export const APP_VERSION='0.229.2';
+export const APP_VERSION='0.229.3';
 export const UPDATE_RESUME_KEY='duema-update-resume-v1';
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const versionParts=v=>/^\d+\.\d+\.\d+$/.test(v||'')?v.split('.').map(Number):null;

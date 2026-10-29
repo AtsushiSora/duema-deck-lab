@@ -70,6 +70,14 @@ test('phone keeps a single scrollable hand and opens a card only on request',asy
  assert.equal(h.read('manualUI.mobilePanel'),'closed');
 });
 
+test('initial human log toolbar opens and closes without executing a game action',async()=>{
+ for(const mobile of[false,true]){const s=e.createGame([target,target],{seed:2020,first:0}),h=harness(s,{mobile}),before=structuredClone(s);
+  const controls=h.root.innerHTML.match(/<div class="ai-playback-buttons">([\s\S]*?)<\/div>/)?.[1];assert.ok(controls);assert.match(controls,/data-action="manual-ai-next" disabled/);assert.match(controls,/data-action="manual-log"/);
+  await h.click('manual-log');if(mobile){assert.ok(h.read('dialog.open'));assert.match(h.read('dialog.innerHTML'),/対戦ログ/);await h.click('close-dialog');}else{assert.ok(h.read('manualUI.logOpen'));await h.click('manual-log');}
+  assert.deepEqual(s,before);assert.ok(h.root.innerHTML.includes('ai-playback-buttons'));
+ }
+});
+
 test('an AI transition to a required human decision reopens a minimized panel without changing the game',async()=>{
  const s=setup();give(s,0,'battle',['dm01-084']);give(s,1,'battle',['dm01-108']);s.active=1;s.phase='attack';const h=harness(s,{mobile:true});await h.click('manual-panel-toggle');assert.equal(h.read('manualUI.panelMinimized'),true);
  e.step(s,e.getLegalActions(s).find(a=>a.kind==='attack'));assert.equal(s.decision.type,'block');

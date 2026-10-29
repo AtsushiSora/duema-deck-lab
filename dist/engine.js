@@ -3,7 +3,7 @@ export {displayTurn} from './turn-count.js';
 import {deckCopyLimit} from './historical-regulations.js?v=0.98.0';
 import {CHALLENGER_IDS,chooseHeroDraw,chooseHeroOpening} from './hero-draw.js?v=0.96.0';
 import {shieldCards,shieldGroup,findShield,attachShield,detachShieldCard} from './shield-state.js';
-import {createExtendedRules} from './extended-rules.js?v=0.229.2';
+import {createExtendedRules} from './extended-rules.js?v=0.229.3';
 import {createStrategicAI} from './strategic-ai.js?v=0.220.0';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.166';

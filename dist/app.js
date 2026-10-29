@@ -6,13 +6,13 @@ import {PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS} from './p
 import {createPlayTimeTracker,formatPlayTime,playTimeStorageNote} from './play-time.js?v=0.125.0';
 import {historicalProfile,historicalMetadata} from './historical-regulations.js';
 import {creatureStatusModel,creatureStatusHTML,recordBattleAction,createBattleReport,encodeBattleData,decodeBattleData} from './battle-insights.js?v=0.100.0';
-import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.229.2';
-import {createCardArt} from './card-art.js?v=0.229.2';
+import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.229.3';
+import {createCardArt} from './card-art.js?v=0.229.3';
 import {resolveHeroDecks,resolveRivalDecks,challengeOptions,recordHeroResult,heroChallengeHTML} from './hero-challenge.js';
 import {recordManualVictory,recordManualResult,manualResultSummary,isOpponentDefeated,defeatedBadgeHTML} from './opponent-progress.js';
 import {resolveChampions,championsHTML,isOriginalChampion} from './champions.js?v=0.220.0';
 import {shieldCards} from './shield-state.js';
-import {createAIPlayback,aiSpeedLabel,applyAIHighlights,AI_SPEEDS} from './ai-playback.js?v=0.229.2';
+import {createAIPlayback,aiSpeedLabel,applyAIHighlights,AI_SPEEDS} from './ai-playback.js?v=0.229.3';
 import {createOnlineClient} from './online.js';
 import {onlineScreenHTML,onlinePrimaryAction,onlinePendingMove} from './online-ui.js';
 import {createAccountClient} from './account.js';
@@ -23,7 +23,7 @@ import {bindFittedBoard,pageWindow} from './board-fit.js';
 import {attackRoute,previewAttackAction,updateBoardFeedback,bindAttackArrow} from './battle-visuals.js?v=0.225.0';
 import {setCards,card as battleCard,validateDeck,createGame,getLegalActions,attackLocked,chooseAI,step,runGame,runSummary,aggregate,power,manaValue,manaValueAt,playFaces,canCastSpell,effectiveCard,canUntap,shieldGuardSources,exLifeShields,exLifeShieldInfo,evolutionBases,isEvolution,selfTriggersStopped,abilitiesIgnored,genmuActive,peekDeckTop,RULE_VERSION,ENGINE_VERSION,AI_VERSION} from './engine.js';
 import {PRESETS} from './decks.js';
-import {newManualUI,manualModel,manualScreenHTML,manualLogHTML,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,choiceSelectionModel,choiceDetailCard} from './manual-ui.js?v=0.229.2';
+import {newManualUI,manualModel,manualScreenHTML,manualLogHTML,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,choiceSelectionModel,choiceDetailCard} from './manual-ui.js?v=0.229.3';
 import {resolveEnvironmentDecks,environmentSupport,groupEnvironmentDecks,ENVIRONMENT_TARGET} from './environment.js';
 import {resolveStarter25Decks,starter25Matches} from './starter25.js';
 import {prepareDeckCopy} from './deck-copy.js';
@@ -290,7 +290,7 @@ function advanceLocalTournament(){
  const t=activeTournament();if(!t||t.champion||tournamentWorker)return;if(tournamentCheckpoint()){startTournamentHumanMatch();return;}
  const round=currentTournamentRound(t),jobs=round.filter(m=>m.winner===null&&!m.players.includes('human')).map(m=>({...m,decks:m.players.map(id=>t.players.find(p=>p.id===id).deck)}));
  if(!jobs.length){startTournamentHumanMatch();return;}
- const owner=t.id,instance=new Worker(new URL('./tournament-worker.js?v=0.229.2',import.meta.url),{type:'module'});tournamentWorker=instance;view='tournament';render();
+ const owner=t.id,instance=new Worker(new URL('./tournament-worker.js?v=0.229.3',import.meta.url),{type:'module'});tournamentWorker=instance;view='tournament';render();
  const fail=message=>{if(tournamentWorker!==instance)return;stopTournamentWorker();toast('CPU対戦を進められませんでした：'+message);};
  instance.onmessage=({data})=>{if(tournamentWorker!==instance||activeTournament()?.id!==owner)return;
   if(data.type==='result'){try{const current=activeTournament(),m=current.rounds.flat().find(m=>m.id===data.matchId);if(!m||![0,1].includes(data.winner))throw Error('対戦結果を確認してください');saved.localTournament=recordTournamentMatch(current,m.id,m.players[data.winner],data.reason);persist();if(view==='tournament')render();}catch(e){fail(e.message);}}
@@ -325,7 +325,7 @@ function startSimulation(deck,options={}){
  const opponentErrors=opponents.flatMap(d=>validateDeck(d));if(opponentErrors.length){toast('相手デッキ：'+opponentErrors[0]);return;}
  const n=options.count||base?.count||count,seed=options.seed??base?.seed??crypto.getRandomValues(new Uint32Array(1))[0],f=options.first||base?.first||first;
  running={completed:0,total:n*opponents.length,current:opponents[0].name,deck:clone(deck),count:n,seed,first:f,opponents:clone(opponents),baseline:base?.id||null};view='analysis';render();
- worker=new Worker(new URL('./worker.js?v=0.229.2',import.meta.url),{type:'module'});
+ worker=new Worker(new URL('./worker.js?v=0.229.3',import.meta.url),{type:'module'});
  worker.onmessage=({data})=>{
   if(data.type==='progress'){if(!running)return;Object.assign(running,data);renderProgress();}
   if(data.type==='done'){

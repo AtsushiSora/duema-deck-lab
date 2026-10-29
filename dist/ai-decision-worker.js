@@ -1,4 +1,4 @@
-import {setCards,chooseAI} from './engine.js?v=0.229.2';
+import {setCards,chooseAI} from './engine.js?v=0.229.3';
 self.onmessage=({data})=>{
  try{
   if(data.type==='init'){setCards(data.cards);return;}
