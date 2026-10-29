@@ -1,3 +1,4 @@
+import * as battleLayout from '../dist/battle-layout.js';
 import * as battleZoom from '../dist/battle-zoom.js';
 import {PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS} from '../dist/photo-october-decks.js';
 import * as championLibrary from '../dist/champions.js';
@@ -16,11 +17,11 @@ import * as fit from '../dist/board-fit.js';
 import * as handUI from '../dist/hand-ui.js';
 import * as aiPlayback from '../dist/ai-playback.js';
 const app=(await readFile(new URL('../dist/app.js',import.meta.url),'utf8')).replace(/^import .*;\n/gm,'').replace(/\bboot\(\);\s*$/,'').replaceAll('import.meta.url',JSON.stringify(new URL('../dist/app.js',import.meta.url).href));
-function harness(state,{mobile=false,scrollers={},autoPay=true}={}){
+function harness(state,{mobile=false,landscape=false,scrollers={},autoPay=true}={}){
  const listeners={},errors=[],timers=new Map();let serial=0;
  const root={innerHTML:''},dialog={innerHTML:'',open:false,addEventListener(){},showModal(){this.open=true;},close(){this.open=false;}},toast={textContent:'',classList:{add(){},remove(){}}},classes=new Set();
- const context=vm.createContext({PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS,...battleZoom,...championLibrary,...opponentProgress,...characterChallenges,createCardArt,shieldCards,...battleInsights,...appUpdates,...e,...manual,...visuals,...fit,...handUI,...cardInfo,...aiPlayback,battleCard:e.card,PRESETS,createCatalogue,fixtureRegistry:createCatalogue(snapshot,data.cards,details),fixtureState:state,fixtureDecks:[target,target],console:{log(){},error:e=>errors.push(e)},structuredClone,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL,Intl,Date,CSS:{escape:x=>x},localStorage:{getItem:()=>null,setItem(){}},location:{hash:'',pathname:'/'},history:{replaceState(){}},setTimeout:f=>{timers.set(++serial,f);return serial;},clearTimeout:id=>timers.delete(id),clearInterval(){},setInterval:()=>++serial,
-  document:{querySelector:s=>s==='#app'?root:s==='#dialog'?dialog:s==='#toast'?toast:scrollers[s]||null,querySelectorAll:s=>s==='.play-creatures,.shield-tiles,.board-mana-cards'?scrollers.lanes||[]:[],activeElement:null,body:{classList:{toggle:(key,on)=>on?classes.add(key):classes.delete(key)}},addEventListener:(name,f)=>listeners[name]=f},window:{innerHeight:800,addEventListener(){},scrollTo(){},matchMedia:q=>({matches:mobile&&q==='(max-width: 850px)'})}});
+ const context=vm.createContext({PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS,...battleLayout,...battleZoom,...championLibrary,...opponentProgress,...characterChallenges,createCardArt,shieldCards,...battleInsights,...appUpdates,...e,...manual,...visuals,...fit,...handUI,...cardInfo,...aiPlayback,battleCard:e.card,PRESETS,createCatalogue,fixtureRegistry:createCatalogue(snapshot,data.cards,details),fixtureState:state,fixtureDecks:[target,target],console:{log(){},error:e=>errors.push(e)},structuredClone,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL,Intl,Date,CSS:{escape:x=>x},localStorage:{getItem:()=>null,setItem(){}},location:{hash:'',pathname:'/'},history:{replaceState(){}},setTimeout:f=>{timers.set(++serial,f);return serial;},clearTimeout:id=>timers.delete(id),clearInterval(){},setInterval:()=>++serial,
+  document:{querySelector:s=>s==='#app'?root:s==='#dialog'?dialog:s==='#toast'?toast:scrollers[s]||null,querySelectorAll:s=>s==='.play-creatures,.shield-tiles,.board-mana-cards'?scrollers.lanes||[]:[],activeElement:null,body:{classList:{toggle:(key,on)=>on?classes.add(key):classes.delete(key)}},addEventListener:(name,f)=>listeners[name]=f},window:{innerHeight:800,addEventListener(){},scrollTo(){},matchMedia:q=>({matches:q===battleLayout.PHONE_LANDSCAPE_QUERY?landscape:mobile&&q==='(max-width: 850px)'})}});
  vm.runInContext(app,context);
  vm.runInContext("registry=fixtureRegistry;cards=registry.cards;battleCards=fixtureRegistry.cards.filter(c=>c.supported);battle={state:fixtureState,decks:fixtureDecks,practice:true};view='manual';manualUI=newManualUI();selectedHand=null;render();",context);
  return {state,root,context,classes,errors,timers,read:code=>vm.runInContext(code,context),click:async(action,extra={})=>{const button={dataset:{action,...extra},closest:()=>null};await listeners.click({target:{closest:()=>button}});
@@ -328,4 +329,17 @@ test('each effect detail opens its ability text without resolving it and returns
   await h.click('manual-choice-detail',{index:'0',context:'stale'});assert.equal(h.read('dialog.open'),false);assert.deepEqual(s,before);
   const a=e.getLegalActions(s)[0];await h.click('battle-step',{index:String(a.id)});assert.ok(s.actions>before.actions);assert.notDeepEqual(s.decision,before.decision);
  }
+});
+
+
+test('phone landscape uses the desktop controls and rotation preserves the hand selection and full game state',async()=>{
+ const moves=[],desktopViewport={scrollLeft:11,scrollTop:23},phoneViewport={scrollLeft:55,scrollTop:0},desktopHand={scrollIntoView:()=>moves.push('desktop'),closest:()=>desktopViewport},phoneHand={scrollIntoView:()=>moves.push('phone'),closest:()=>phoneViewport};
+ const scrollers={'.manual-hand-card.is-selected':desktopHand,'.hand-shelf-card.is-selected':phoneHand,'.manual-hand-card.is-selected,.hand-shelf-card.is-selected':phoneHand};
+ const s=e.createGame([target,target],{seed:2020}),h=harness(s,{mobile:true,scrollers}),before=structuredClone(s),uid=s.players[0].hand[0].uid;
+ await h.click('hand-card',{uid});assert.equal(h.read('manualUI.mobilePanel'),'card');
+ h.read("window.matchMedia=q=>({matches:q===PHONE_LANDSCAPE_QUERY||q==='(max-width: 850px)'});render()");
+ assert.equal(h.read('manualUI.mobile'),false);assert.equal(h.read('manualUI.landscape'),true);assert.deepEqual(moves,['desktop']);assert.equal(h.read('manualUI.zoomScroll.hand.top'),23);assert.equal(h.read('selectedHand'),uid);assert.ok(h.root.innerHTML.includes('class="manual-hand-card'));assert.ok(!h.root.innerHTML.includes('class="play-mana '));assert.deepEqual(s,before);
+ h.read("window.matchMedia=q=>({matches:q==='(max-width: 850px)'});render()");assert.equal(h.read('manualUI.mobile'),true);assert.equal(h.read('manualUI.mobilePanel'),'card');assert.deepEqual(moves,['desktop','phone']);assert.equal(h.read('manualUI.zoomScroll.hand.left'),55);assert.ok(h.root.innerHTML.includes('hand-inspector'));assert.equal(h.read('selectedHand'),uid);assert.deepEqual(s,before);
+ h.read("window.matchMedia=q=>({matches:q===PHONE_LANDSCAPE_QUERY||q==='(max-width: 850px)'});render()");
+ const a=e.getLegalActions(s).find(a=>a.kind==='charge'&&a.uid===uid);await h.click('battle-step',{index:String(a.id)});assert.equal(s.actions,before.actions+1);assert.equal(s.phase,'main');assert.equal(h.read('manualUI.landscape'),true);
 });

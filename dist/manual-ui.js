@@ -1,4 +1,4 @@
-import {battleZoomControlsHTML} from './battle-zoom.js?v=0.224.0';
+import {battleZoomControlsHTML} from './battle-zoom.js?v=0.225.0';
 import {displayTurn} from './turn-count.js';
 import {RIVAL_IDS} from './hero-draw.js';
 import {paymentReviewHTML} from './battle-insights.js?v=0.100.0';
@@ -206,7 +206,7 @@ function mobileDockHTML(s,ui,m){
 }
 
 export function manualBoardHTML(s,ui,{art,icon}){
- const m=manualModel(s,ui),route=attackRoute(s,ui),handSelection=handCardModel(s,ui.hand,ui.handFace,m.actions),destinations=handSelection?.destinations||[],inlineMana=!ui.mobile;
+ const m=manualModel(s,ui),route=attackRoute(s,ui),handSelection=handCardModel(s,ui.hand,ui.handFace,m.actions),destinations=handSelection?.destinations||[],inlineMana=!ui.mobile&&!ui.landscape;
  const specialZones=(p,who)=>`${p.extra?.length||p.seals?.length?`<div class="play-special-zones">${p.extra?.length?`<button data-action="zone-detail" data-player="${who}" data-zone="extra">超次元 <b>${p.extra.length}</b> ›</button>`:''}${p.seals?.length?`<button data-action="zone-detail" data-player="${who}" data-zone="seals">封印 <b>${p.seals.length}</b> ›</button>`:''}</div>`:''}`;
  const resources=(p,who)=>{
   const ready=p.mana.filter(x=>!x.tapped).reduce((n,x)=>n+manaValueAt(s,who,x),0),total=p.mana.reduce((n,x)=>n+manaValue(card(x)),0);

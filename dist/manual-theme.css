@@ -1,4 +1,4 @@
-/* Desktop only (the stylesheet link is limited to widths above 850px). */
+/* Desktop and compact landscape share the dark battle materials. */
 body.manual-playing{
  --ink:#f4efde;--muted:#a6b7b7;--green:#98e3c2;--green-dark:#09624e;--line:#bda36645;
  --mint:#102c27;--paper:#0b181b;--bg:#030709;--metal:#d6b76e;--accent:#9be6c8;
@@ -142,7 +142,7 @@ body.manual-playing{
 .manual-playing .manual-log-event>p{color:#e8e6d2}
 .manual-playing :focus-visible{outline-color:#f7d992}
 /* PC: one screen, hand at right, left rail spans the full field. */
-@media(min-width:851px){
+@media(min-width:851px),(min-width:480px) and (max-width:1100px) and (max-height:600px) and (orientation:landscape){
  .manual-playing .manual-topbar{flex-basis:44px;min-height:44px}
  .manual-playing .play-board{grid-template-rows:minmax(0,1fr) 14px minmax(0,1fr)}
  .manual-playing :is(.opponent-field,.own-field){--shield-rail-width:50px;display:grid;grid-template-columns:var(--shield-rail-width) minmax(0,1fr);padding:5px 8px 5px 5px;column-gap:8px;row-gap:0;align-content:stretch}
@@ -170,11 +170,11 @@ body.manual-playing{
  .manual-playing .manual-action-body{order:3;flex:1;min-height:0;overflow:auto}
  .manual-playing .manual-console-footer{order:4}
 }
-@media(min-width:851px) and (max-height:750px){
+@media(min-width:851px) and (max-height:750px),(min-width:480px) and (max-width:1100px) and (max-height:600px) and (orientation:landscape){
  .manual-playing .manual-hand{max-height:clamp(135px,33dvh,245px)}
  .manual-playing .manual-hand-cards{--desktop-hand-cols:6!important;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}
 }
-@media(min-width:851px) and (max-height:650px){
+@media(min-width:851px) and (max-height:650px),(min-width:480px) and (max-width:1100px) and (max-height:600px) and (orientation:landscape){
  .manual-playing .manual-topbar{flex-basis:36px;min-height:36px}
  .manual-playing :is(.opponent-field,.own-field){--shield-rail-width:42px;padding:3px 5px;column-gap:5px}
  .manual-playing .opponent-field{grid-template-rows:23px 24px 48px minmax(0,1fr)}

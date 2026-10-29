@@ -1,11 +1,12 @@
-import {bindBattleZoom} from './battle-zoom.js?v=0.224.0';
+import {manualLayout,PHONE_LANDSCAPE_QUERY} from './battle-layout.js?v=0.225.0';
+import {bindBattleZoom} from './battle-zoom.js?v=0.225.0';
 import {displayTurn} from './turn-count.js';
 import {TOURNAMENT_SIZES,selectTournamentParticipants,createLocalTournament,validLocalTournament,currentTournamentRound,humanTournamentMatch,recordTournamentMatch,localTournamentHTML} from './local-tournament.js?v=0.220.0';
 import {PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS} from './photo-october-decks.js?v=0.148.0';
 import {createPlayTimeTracker,formatPlayTime,playTimeStorageNote} from './play-time.js?v=0.125.0';
 import {historicalProfile,historicalMetadata} from './historical-regulations.js';
 import {creatureStatusModel,creatureStatusHTML,recordBattleAction,createBattleReport,encodeBattleData,decodeBattleData} from './battle-insights.js?v=0.100.0';
-import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.224.0';
+import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.225.0';
 import {createCardArt} from './card-art.js?v=0.220.0';
 import {resolveHeroDecks,resolveRivalDecks,challengeOptions,recordHeroResult,heroChallengeHTML} from './hero-challenge.js';
 import {recordManualVictory,recordManualResult,manualResultSummary,isOpponentDefeated,defeatedBadgeHTML} from './opponent-progress.js';
@@ -19,10 +20,10 @@ import {accountScreenHTML} from './account-ui.js';
 import {mergeAccountSnapshot} from './account-data.js';
 import {preferredHandFace} from './hand-ui.js?v=0.100.0';
 import {bindFittedBoard,pageWindow} from './board-fit.js';
-import {attackRoute,previewAttackAction,updateBoardFeedback,bindAttackArrow} from './battle-visuals.js?v=0.224.0';
+import {attackRoute,previewAttackAction,updateBoardFeedback,bindAttackArrow} from './battle-visuals.js?v=0.225.0';
 import {setCards,card as battleCard,validateDeck,createGame,getLegalActions,attackLocked,chooseAI,step,runGame,runSummary,aggregate,power,manaValue,manaValueAt,playFaces,canCastSpell,effectiveCard,canUntap,shieldGuardSources,exLifeShields,exLifeShieldInfo,evolutionBases,isEvolution,selfTriggersStopped,abilitiesIgnored,genmuActive,peekDeckTop,RULE_VERSION,ENGINE_VERSION,AI_VERSION} from './engine.js';
 import {PRESETS} from './decks.js';
-import {newManualUI,manualModel,manualScreenHTML,manualLogHTML,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,choiceSelectionModel,choiceDetailCard} from './manual-ui.js?v=0.224.0';
+import {newManualUI,manualModel,manualScreenHTML,manualLogHTML,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,choiceSelectionModel,choiceDetailCard} from './manual-ui.js?v=0.225.0';
 import {resolveEnvironmentDecks,environmentSupport,groupEnvironmentDecks,ENVIRONMENT_TARGET} from './environment.js';
 import {resolveStarter25Decks,starter25Matches} from './starter25.js';
 import {prepareDeckCopy} from './deck-copy.js';
@@ -423,7 +424,7 @@ function recordManualOutcome(){
 function renderManual(){
  if(manualZoomDragging){manualZoomRenderQueued=true;return;}
  if(!battle){view='battle';render();return;}
- const s=battle.state;recordManualOutcome();checkpointTournamentBattle();manualUI.tournament=!!battle.tournamentId;const playback=ensureAIPlayback();manualUI.aiPlayback=playback.snapshot();manualUI.aiSpeed=manualUI.aiPlayback.speed;manualUI.fast=manualUI.aiSpeed==='fast';manualUI.hand=selectedHand;manualUI.mobile=window.matchMedia('(max-width: 850px)').matches;
+ const s=battle.state;recordManualOutcome();checkpointTournamentBattle();manualUI.tournament=!!battle.tournamentId;const playback=ensureAIPlayback();manualUI.aiPlayback=playback.snapshot();manualUI.aiSpeed=manualUI.aiPlayback.speed;manualUI.fast=manualUI.aiSpeed==='fast';manualUI.hand=selectedHand;const wasMobile=manualUI.mobile,wasLandscape=manualUI.landscape;Object.assign(manualUI,manualLayout(window));const layoutChanged=wasMobile!==undefined&&(wasMobile!==manualUI.mobile||wasLandscape!==manualUI.landscape);if(wasMobile===false&&manualUI.mobile&&selectedHand&&!s.decision)manualUI.mobilePanel='card';
  const short=(window.visualViewport?.height||window.innerHeight)<620;manualUI.handPageSize=short?4:6;manualUI.choicePageSize=short?2:4;
  battle.visual=updateBoardFeedback(battle.visual,s);manualUI.feedback=battle.visual.feedback;manualUI.feedbackAge=manualUI.feedback?Date.now()-manualUI.feedback.at:0;
  manualUI.resultStats=s.winner!==null?{...manualResultSummary(saved.manualResults,battle,registry,saved.heroProgress),opponentName:battle.decks[1].name,deckName:battle.decks[0].name}:null;
@@ -450,7 +451,8 @@ function renderManual(){
  document.querySelectorAll('.play-creatures,.shield-tiles,.board-mana-cards').forEach((el,i)=>{el.scrollLeft=lanes[i]?.left||0;el.scrollTop=lanes[i]?.top||0;});
  if(handChanged&&manualUI.mobilePanel==='card')$('.hand-inspector h3')?.focus({preventScroll:true});
  else if(focusKey&&(!changed||focusKey.startsWith('mana-')||focusKey==='battle-zoom-range'))document.querySelector(`[data-focus-key="${CSS.escape(focusKey)}"]`)?.focus({preventScroll:true});
- else if(wasPlaying&&changed){const guide=$('.manual-guide');guide?.focus({preventScroll:true});if(!window.matchMedia('(max-width: 850px)').matches&&model.human&&s.decision&&guide&&guide.getBoundingClientRect().top>window.innerHeight*.65)guide.scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}
+ else if(wasPlaying&&changed){const guide=$('.manual-guide');guide?.focus({preventScroll:true});if(!manualUI.mobile&&model.human&&s.decision&&guide&&guide.getBoundingClientRect().top>window.innerHeight*.65)guide.scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}
+ if(layoutChanged){const selected=document.querySelector(manualUI.mobile?'.hand-shelf-card.is-selected':'.manual-hand-card.is-selected');selected?.scrollIntoView?.({block:'nearest',inline:'nearest'});const viewport=selected?.closest?.('.battle-zoom-viewport');if(viewport)manualUI.zoomScroll.hand={left:viewport.scrollLeft,top:viewport.scrollTop};}
 }
 function humanAction(i,confirmed=false,number=undefined){
  if(!battle)return;const s=battle.state,a=getLegalActions(s)[Number(i)];if(!a||a.player!==0)return;if(number!==undefined){if(s.decision?.task?.op!=='g9Number'||!(number==='∞'||Number.isSafeInteger(number)&&number>=0))return;a.number=number;}manualUI.panelMinimized=false;manualUI.mobilePanel='actions';
@@ -768,7 +770,7 @@ document.addEventListener('click',async event=>{
  else if(action==='export-update-recovery'){const raw=sessionStorage.getItem(UPDATE_RESUME_KEY);if(raw)download('duema-update-recovery.json',raw);}
  else if(action==='manual-options')showManualOptions();
  else if(action==='manual-help'){if(!battle)return;const m=manualModel(battle.state,manualUI);showDialog('今の操作',`<h3>${esc(m.title)}</h3><p class="small mt16">${esc(m.help)}</p><p class="small mt16">手札は左右にスワイプし、カードをタップして拡大できます。下のボタンは「マナを置かずに進む」「攻撃へ進む」「ターン終了」など、状況に合わせて変わります。特殊な使い方・ヒント・ログは右上のメニューから開けます。</p>${$('.play-policies ul')?'<h3 class="mt16">適用中の制限・効果</h3>'+$('.play-policies ul').outerHTML:''}`,`<button class="btn primary" data-action="close-dialog">対戦に戻る</button>`);}
- else if(action==='manual-log'){if(window.matchMedia('(max-width: 850px)').matches&&battle)showDialog('対戦ログ',manualLogHTML(battle.state),`<button class="btn primary" data-action="close-dialog">対戦に戻る</button>`);else{if(dialog.open)closeDialog();manualUI.logOpen=!manualUI.logOpen;render();}}
+ else if(action==='manual-log'){if(manualUI.mobile&&battle)showDialog('対戦ログ',manualLogHTML(battle.state),`<button class="btn primary" data-action="close-dialog">対戦に戻る</button>`);else{if(dialog.open)closeDialog();manualUI.logOpen=!manualUI.logOpen;render();}}
  else if(action==='manual-speed'){const p=ensureAIPlayback();if(p){const order=['normal','slow','fast'];p.setSpeed(order[(order.indexOf(p.snapshot().speed)+1)%order.length]);closeDialog();}}
  else if(action==='manual-ai-speed'){ensureAIPlayback()?.setSpeed(el.dataset.speed);closeDialog();}
  else if(action==='manual-ai-pause'){ensureAIPlayback()?.togglePause();closeDialog();}
@@ -838,6 +840,7 @@ async function boot(){try{const responses=await Promise.all([fetch('cards.json?v
  }catch(e){root.innerHTML=`<div class="boot"><h2>読み込みできませんでした</h2><p>${esc(e.message)}</p><button class="btn primary" onclick="location.reload()">再読み込み</button></div>`;}}
 const manualBreakpoint=window.matchMedia?.('(max-width: 850px)');
 manualBreakpoint?.addEventListener?.('change',()=>{if(view==='manual')render();});
+window.matchMedia?.(PHONE_LANDSCAPE_QUERY)?.addEventListener?.('change',()=>{if(view==='manual')render();});
 window.addEventListener('online',()=>{if(view==='online')void onlineClient?.refresh();});
 document.addEventListener('visibilitychange',()=>{onlineClient?.setActive(view==='online'&&!document.hidden);if(document.hidden)aiPlayback?.suspend();else{if(view==='manual')scheduleAI();void appUpdates?.check();}});
 boot();

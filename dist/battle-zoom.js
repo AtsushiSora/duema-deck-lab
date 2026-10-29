@@ -20,7 +20,7 @@ export function bindBattleZoom(root,ui,{view=globalThis.window,storage,onInterac
  if(!root?.querySelector)return ()=>{};
  const toggle=root.querySelector('.battle-zoom-toggle'),panel=root.querySelector('.battle-zoom-panel'),range=root.querySelector('#battle-zoom-range');
  if(!toggle||!panel||!range)return ()=>{};
- const doc=root.ownerDocument,profile=ui.mobile?'mobile':'desktop';
+ const doc=root.ownerDocument,profile=ui.mobile||ui.landscape?'mobile':'desktop';
  if(storage===undefined)try{storage=globalThis.localStorage;}catch{}
  if(ui.zoom?.kind!=='cards'||ui.zoom.profile!==profile)ui.zoom=readBattleZoom(storage,profile);
  ui.zoomScroll??={};

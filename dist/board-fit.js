@@ -1,3 +1,4 @@
+import {manualLayout} from './battle-layout.js?v=0.225.0';
 // All cards receive a cell inside the available region; no scrolling or omission.
 export function fitBoardGrid(count,width,height,{shield=false,rail=false}={}){
  if(!Number.isSafeInteger(count)||count<0||!Number.isFinite(width)||!Number.isFinite(height)||width<=0||height<=0)return null;
@@ -38,7 +39,7 @@ export function sizedBoardGrid(count,width,height,{scale=1,maxWidth=132,...optio
 export function bindFittedBoard(area,view=globalThis.window){
  if(!area?.querySelectorAll)return ()=>{};
  const grids=[...area.querySelectorAll('[data-fit-grid]')];
- const fit=()=>{for(const el of grids){const bounds=el.getBoundingClientRect(),scale=Number(area.dataset?.cardScale)||1,shield=el.dataset.fitGrid==='shields',count=Number(el.dataset.fitCount),mobile=view?.matchMedia?.('(max-width: 850px)').matches,style=view?.getComputedStyle?.(el),padding=key=>parseFloat(style?.[key])||0,width=(el.clientWidth??bounds.width)-padding('paddingLeft')-padding('paddingRight'),height=(el.clientHeight??bounds.height)-padding('paddingTop')-padding('paddingBottom');
+ const fit=()=>{for(const el of grids){const bounds=el.getBoundingClientRect(),scale=Number(area.dataset?.cardScale)||1,shield=el.dataset.fitGrid==='shields',count=Number(el.dataset.fitCount),layout=manualLayout(view),mobile=layout.mobile||layout.landscape,style=view?.getComputedStyle?.(el),padding=key=>parseFloat(style?.[key])||0,width=(el.clientWidth??bounds.width)-padding('paddingLeft')-padding('paddingRight'),height=(el.clientHeight??bounds.height)-padding('paddingTop')-padding('paddingBottom');
   const g=shield?sizedBoardGrid(count,width,height,{scale,maxWidth:48,shield:true,rail:el.dataset.fitLayout==='rail'}):portraitBoardGrid(count,width,height,{scale,maxWidth:mobile?126:132,tools:mobile?0:24});if(!g)continue;
   el.classList.toggle('is-card-sized',scale!==1&&count>0);
   el.classList.toggle('has-card-slots',count>0);
