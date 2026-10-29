@@ -1,4 +1,4 @@
-import {createFifteenPhotoRules} from './fifteen-photo-rules.js?v=0.226.0';
+import {createFifteenPhotoRules} from './fifteen-photo-rules.js?v=0.227.0';
 // Six photographed deck lists: serializable effects, physical cards and explicit choices.
 export function createSixPhotoRules(api){
  const{card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,enter,cast,move,targetOptions}=api;
@@ -182,7 +182,7 @@ export function createSixPhotoRules(api){
  };
  function countExecution(s,p,c){const prev=s.g34Executions?.[p];(s.g34Executions??=[null,null])[p]={turn:s.turn,n:prev?.turn===s.turn?prev.n+1:1};if(s.active!==p&&cost(c)<=9)for(const x of active(s,1-p,'dokindante'))queue(s,1-p,x,[E('Draw',{n:1,optional:true}),exec('hand',9,{spellOnly:true})]);}
 
- const fifteen=createFifteenPhotoRules({...api,start,tasks,send,key,live,matches,canPut});
+ const fifteen=createFifteenPhotoRules({...api,start,tasks,send,key,live,matches,canPut,notifyUntapped:(s,p,x)=>combined.untapped(s,p,x)});
  const combined={...hooks};
  for(const k of ['entry','attack','attackStart','tapped','untapped','shieldLeft','graveAdded','played','spellCast','leaving','attackEnd','expire','inherit']){const a=hooks[k],b=fifteen[k];if(b)combined[k]=(...args)=>{a?.(...args);b(...args);};}
  for(const k of ['turnStart','end','mainActions'])combined[k]=(...args)=>[...(hooks[k]?.(...args)||[]),...(fifteen[k]?.(...args)||[])];

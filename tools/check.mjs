@@ -1,3 +1,4 @@
+import {UTILITY162_DECKS} from './fixtures/utility162.mjs';
 import {UTILITY161_DECKS} from './fixtures/utility161.mjs';
 import {UTILITY160_DECKS} from './fixtures/utility160.mjs';
 import {UTILITY159_DECKS} from './fixtures/utility159.mjs';
@@ -230,3 +231,5 @@ for(const d of UTILITY159_DECKS)if(validateDeck(d).length||registry.coverage(d).
 for(const d of UTILITY160_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第160段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase160 effect-test decks: twenty photograph cards in legal forty-card lists.');
 
 for(const d of UTILITY161_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第161段階の指定カード検証用40枚を確認してください：'+d.name);console.log('Checked both phase161 decks: all six requested cards plus Sasage targets.');
+
+for(const d of UTILITY162_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第162段階の終炎の竜皇検証用40枚を確認してください：'+d.name);console.log('Checked both phase162 decks: Bolshack Hyper Dragon and its OVER-hyper donors.');

@@ -4,7 +4,7 @@ import {RIVAL_IDS} from './hero-draw.js';
 import {paymentReviewHTML} from './battle-insights.js?v=0.100.0';
 import {sourceCardBadge,sourceCardLabel} from './card-info.js';
 import {shieldCards} from './shield-state.js';
-import {aiPlaybackHTML,aiSpeedLabel} from './ai-playback.js?v=0.226.0';
+import {aiPlaybackHTML,aiSpeedLabel} from './ai-playback.js?v=0.227.0';
 import {handCardModel,handShelfHTML,handInspectorHTML,handEvolutionButtonHTML} from './hand-ui.js?v=0.100.0';
 import {getLegalActions,manaSelectionStatus,manaColors,card,power,effectiveCard,isEvolution,canUntap,abilitiesIgnored,genmuActive,momoActive,selfTriggersStopped,manaValue,manaValueAt,exLifeShieldInfo,exLifeShields,shieldGuardSources,playFaces,attackLocked,evolutionBases,canCastSpell,canEnterCreature,summonCost,paymentPool,manaPayment} from './engine.js';
 import {attackRoute,previewAttackAction} from './battle-visuals.js?v=0.100.0';
@@ -22,7 +22,7 @@ export function manualModel(s,ui={}){
  const attacker=human&&!s.decision&&actions.some(a=>a.kind==='attack'&&a.uid===ui.attacker)?ui.attacker:null;
  const source=s.decision?.source||s.resolvingSpell?.source||s.judge?.source;
  const selected=s.decision?.task?.selected,chosen=selected?.length||s.decision?.chosen?.length||0;
- const progress=s.decision?.type==='extended'&&Array.isArray(selected)?`${chosen}${s.decision.task.op==='g5Dolsuzaku'?' / 4体':s.decision.task.op==='g26_Select'?' / 2体':s.decision.task.op==='g4_Gate'?' / '+s.decision.task.n+'つ':s.decision.task.op==='g4_Untap'?' / 3枚':s.decision.task.op==='g2_Five'?' / 2回':s.decision.task.op==='g12Select'?' / 2枚':s.decision.task.op==='g20Select'?' / '+s.decision.task.max+'体':s.decision.task.op==='g19BojiSelect'?' / 2体':s.decision.task.op==='g19Untap'?' / 3体':s.decision.task.op==='g8_Try'?' / 2体':s.decision.task.op==='g1_WatchBounce'?' / 2体':s.decision.task.op==='g21Shutter'?' / 2体':s.decision.task.op==='g21Fortress'?' / 3つ':s.decision.task.op==='g21BreakChoose'?' / 9つ':'枚選択'}`:s.decision?.type==='everShields'?`${chosen} / 2つ`:s.decision?.type==='leaveMana'?`${chosen} / 3枚`:s.decision?.type==='mugen'?`${chosen} / ${card(s.decision.source).mugenCrime}体`:s.decision?.type==='manaTop'?`${chosen} / ${s.decision.count}枚`:s.decision?.type==='infinityShields'?`${chosen} / ${s.decision.count}つ`:s.decision?.type==='shieldGuard'?`${s.shieldBreak.protections.length}つ保護`:null;
+ const progress=s.decision?.type==='extended'&&Array.isArray(selected)?`${chosen}${s.decision.task.op==='hyperCost'?' / '+s.decision.task.n+'体':s.decision.task.op==='g5Dolsuzaku'?' / 4体':s.decision.task.op==='g26_Select'?' / 2体':s.decision.task.op==='g4_Gate'?' / '+s.decision.task.n+'つ':s.decision.task.op==='g4_Untap'?' / 3枚':s.decision.task.op==='g2_Five'?' / 2回':s.decision.task.op==='g12Select'?' / 2枚':s.decision.task.op==='g20Select'?' / '+s.decision.task.max+'体':s.decision.task.op==='g19BojiSelect'?' / 2体':s.decision.task.op==='g19Untap'?' / 3体':s.decision.task.op==='g8_Try'?' / 2体':s.decision.task.op==='g1_WatchBounce'?' / 2体':s.decision.task.op==='g21Shutter'?' / 2体':s.decision.task.op==='g21Fortress'?' / 3つ':s.decision.task.op==='g21BreakChoose'?' / 9つ':'枚選択'}`:s.decision?.type==='everShields'?`${chosen} / 2つ`:s.decision?.type==='leaveMana'?`${chosen} / 3枚`:s.decision?.type==='mugen'?`${chosen} / ${card(s.decision.source).mugenCrime}体`:s.decision?.type==='manaTop'?`${chosen} / ${s.decision.count}枚`:s.decision?.type==='infinityShields'?`${chosen} / ${s.decision.count}つ`:s.decision?.type==='shieldGuard'?`${s.shieldBreak.protections.length}つ保護`:null;
  let title=s.winner!==null?(s.winner===0?'勝利！':'対戦終了'):!human?'相手の行動を待っています':s.decision?(s.decision.title||titles[s.decision.type]||'行動を選ぼう'):s.phase==='charge'?'マナに置くカードを選ぼう':s.phase==='main'?hand?'このカードをどう使う？':'使うカードを手札から選ぼう':attacker?'攻撃先を選ぼう':'攻撃するクリーチャーを選ぼう';
  if(s.decision?.type==='mugen')title='タップする'+card(s.decision.source).mugenCrime+'体を選ぼう';
  if(s.decision?.type==='block'&&actions.some(a=>a.kind==='guardman'))title='ブロック・ガードマンを選ぼう';
@@ -33,6 +33,7 @@ export function manualModel(s,ui={}){
 }
 function decisionHelp(s){
  const d=s.decision;
+ if(d.task?.op==='hyperCost'&&d.task.n===2)return '自分の他のアンタップしているクリーチャーを2体選びます。2体を選び終えるまではタップしません。「ハイパー化をやめる」で取り消せます。';
  if(d.task?.op==='g35_Custom'&&d.task.name==='terminal')return '自分のターンのはじめに使えます。手札のブロッカーを好きな数出し、その後、自分のブロッカーが12体以上なら追加ターンを得ます。終極宣言は他のカードと合わせてゲーム中1回です。';
  if(d.task?.op==='g34_Select'&&d.task.after?.some(t=>t.op==='g35_Custom'&&t.name==='terminalCount'))return '手札から出すブロッカーを選び、「ここまでで確定」を押してください。0体でも確定できます。マナは使いません。出した後の場でブロッカー12体以上を確認します。';
  if(d.task?.op==='g5Dolsuzaku')return '「手札」「墓地」で候補を切り替え、合計4体まで選べます。選び終わったら「ここまでで確定」を押してください。';
