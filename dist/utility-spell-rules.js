@@ -3,8 +3,13 @@ export function createUtilitySpellRules(api){
  const{card,cost,put,task,choice,opt}=api;
  const creatures=(s,p)=>api.creatures(s,p).filter(x=>!x.sealed);
  const recoverable=x=>!x.faceDown&&card(x).type==='creature';
+ const manaSpell=(s,p,x)=>!x.faceDown&&!(s.players[p].g34ManaHeld||[]).includes(x.uid)&&api.faces(card(x)).some(c=>c.type==='spell');
  const corridorColors=(s,p,x)=>api.manaColors(x.faceDown?{civilizations:[],civ:'無色'}:card(x),s,p).some(c=>['光','闇','火','自然'].includes(c));
  function run(s,t){if(!t.op.startsWith('g62_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g62_Hunter':choice(s,t,'マナから手札に戻すクロスギアを1枚まで選ぶ',[...(api.canMoveZone(s,t.p,'mana')?own.mana.filter(x=>!x.faceDown&&card(x).type==='gear'&&!(own.g34ManaHeld||[]).includes(x.uid)):[]).map(x=>opt(card(x).name,x.uid,(x.tapped?20:0)+Math.min(cost(card(x)),20),x.cardId)),opt('戻さない',null,0)]);break;
+ case'g62_Naval':put(s,{...t,op:'g62_Cube',optional:true});break;
+ case'g62_Cube':if(api.canMoveZone(s,t.p,'mana'))choice(s,t,'マナから手札に戻す呪文を1枚'+(t.optional?'まで':'')+'選ぶ',[...own.mana.filter(x=>manaSpell(s,t.p,x)).map(x=>opt(card(x).name,x.uid,(x.tapped?20:0)+Math.min(cost(card(x)),20),x.cardId)),...(t.optional?[opt('戻さない',null,0)]:[])]);break;
+ case'g62_Offering':choice(s,t,'マナから手札に戻すゴッドを1体まで選ぶ',[...(api.canMoveZone(s,t.p,'mana')?own.mana.filter(x=>recoverable(x)&&!(own.g34ManaHeld||[]).includes(x.uid)&&String(card(x).race).includes('ゴッド')):[]).map(x=>opt(card(x).name,x.uid,(x.tapped?20:0)+Math.min(cost(card(x)),20),x.cardId)),opt('戻さない',null,0)]);break;
  case'g62_Corridor':if(api.canMoveZone(s,t.p,'mana'))choice(s,t,'マナから手札に戻す光・闇・火・自然のカードを1枚選ぶ',own.mana.filter(x=>!(own.g34ManaHeld||[]).includes(x.uid)&&corridorColors(s,t.p,x)).map(x=>opt(x.faceDown?'裏向きのマナ':card(x).name,x.uid,(x.tapped?20:0)+(x.faceDown?10:Math.min(cost(card(x)),20)),x.faceDown?undefined:x.cardId)));break;
  case'g62_Torpedo':if(api.canMoveZone(s,t.p,'mana'))choice(s,t,'手札に戻す自分のマナを1枚選ぶ',own.mana.filter(x=>!(own.g34ManaHeld||[]).includes(x.uid)).map(x=>opt(x.faceDown?'裏向きのマナ':card(x).name,x.uid,(x.tapped?20:0)+Math.min(cost(card(x)),20),x.faceDown?undefined:x.cardId)));break;
  case'g62_Booster':choice(s,t,'このターンのパワーを+4000する自分のクリーチャーを1体選ぶ',api.targetOptions(s,t.p,creatures(s,t.p)));break;
@@ -17,6 +22,9 @@ export function createUtilitySpellRules(api){
  default:throw Error('未実装の補助呪文：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g62_'))return false;const own=s.players[t.p];switch(t.op){
+ case'g62_Hunter':{const x=own.mana.find(x=>x.uid===v);if(x&&!x.faceDown&&card(x).type==='gear'&&!(own.g34ManaHeld||[]).includes(x.uid)&&api.canMoveZone(s,t.p,'mana')){api.remove(own.mana,x.uid);api.clear(x,'hand');api.addZone(s,t.p,'hand',x);api.log(s,t.p,'manaReturn',card(t.source).name+'：'+card(x).name+'をマナから手札へ',{cardId:x.cardId});}break;}
+ case'g62_Cube':{const x=own.mana.find(x=>x.uid===v);if(x&&api.canMoveZone(s,t.p,'mana')&&manaSpell(s,t.p,x)){api.remove(own.mana,x.uid);api.clear(x,'hand');api.addZone(s,t.p,'hand',x);api.log(s,t.p,'manaReturn',card(t.source).name+'：'+card(x).name+'をマナから手札へ',{cardId:x.cardId});}break;}
+ case'g62_Offering':{const x=own.mana.find(x=>x.uid===v);if(x&&api.canMoveZone(s,t.p,'mana')&&recoverable(x)&&String(card(x).race).includes('ゴッド')){api.remove(own.mana,x.uid);api.clear(x,'hand');api.addZone(s,t.p,'hand',x);api.log(s,t.p,'manaReturn',card(t.source).name+'：'+card(x).name+'をマナから手札へ',{cardId:x.cardId});}break;}
  case'g62_Corridor':{const x=own.mana.find(x=>x.uid===v);if(x&&api.canMoveZone(s,t.p,'mana')&&corridorColors(s,t.p,x)){const hidden=!!x.faceDown,label=hidden?'裏向きのマナ':card(x).name;api.remove(own.mana,x.uid);api.clear(x,'hand');api.addZone(s,t.p,'hand',x);api.log(s,t.p,'manaReturn',card(t.source).name+'：'+label+'をマナから手札へ',{cardId:hidden?t.source:x.cardId});}break;}
  case'g62_Torpedo':{const x=own.mana.find(x=>x.uid===v);if(x&&api.canMoveZone(s,t.p,'mana')){api.remove(own.mana,x.uid);api.clear(x,'hand');api.addZone(s,t.p,'hand',x);api.log(s,t.p,'manaReturn',card(t.source).name+'：'+card(x).name+'をマナから手札へ',{cardId:x.cardId});}break;}
  case'g62_Booster':{const x=creatures(s,t.p).find(x=>x.uid===v);if(x)(x.powerModifiers??=[]).push({amount:4000,expires:'end',who:s.active,spellSource:t.source,spellCost:cost(card(t.source))});break;}

@@ -1,3 +1,15 @@
+import {UTILITY161_DECKS} from './fixtures/utility161.mjs';
+import {UTILITY160_DECKS} from './fixtures/utility160.mjs';
+import {UTILITY159_DECKS} from './fixtures/utility159.mjs';
+import {UTILITY158_DECKS} from './fixtures/utility158.mjs';
+import {UTILITY157_DECKS} from './fixtures/utility157.mjs';
+import {UTILITY156_DECKS} from './fixtures/utility156.mjs';
+import {UTILITY155_DECKS} from './fixtures/utility155.mjs';
+import {UTILITY154_DECKS} from './fixtures/utility154.mjs';
+import {UTILITY153_DECKS} from './fixtures/utility153.mjs';
+import {UTILITY152_DECKS} from './fixtures/utility152.mjs';
+import {UTILITY151_DECKS} from './fixtures/utility151.mjs';
+import {UTILITY150_DECKS} from './fixtures/utility150.mjs';
 import {UTILITY149_DECKS} from './fixtures/utility149.mjs';
 import {UTILITY148_DECKS} from './fixtures/utility148.mjs';
 import {UTILITY147_DECKS} from './fixtures/utility147.mjs';
@@ -194,3 +206,27 @@ for(const d of UTILITY147_DECKS)if(validateDeck(d).length||registry.coverage(d).
 for(const d of UTILITY148_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第148段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase148 effect-test decks: six new names in legal forty-card lists.');
 
 for(const d of UTILITY149_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第149段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase149 effect-test decks: six new names in legal forty-card lists.');
+
+for(const d of UTILITY150_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第150段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase150 effect-test decks: six new names in legal forty-card lists.');
+
+for(const d of UTILITY151_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第151段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase151 effect-test decks: six new names in legal forty-card lists.');
+
+for(const d of UTILITY152_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第152段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase152 effect-test decks: six new names in legal forty-card lists.');
+
+for(const d of UTILITY153_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第153段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase153 effect-test decks: six new names in legal forty-card lists.');
+
+for(const d of UTILITY154_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第154段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase154 effect-test decks: six new names in legal forty-card lists.');
+
+for(const d of UTILITY155_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第155段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase155 effect-test decks: twelve new names in legal forty-card lists.');
+
+for(const d of UTILITY156_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第156段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase156 effect-test decks: six new names in legal forty-card lists.');
+
+for(const d of UTILITY157_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第157段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase157 effect-test decks: six new spells in legal forty-card lists.');
+
+for(const d of UTILITY158_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第158段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase158 effect-test decks: six new spells in legal forty-card lists.');
+
+for(const d of UTILITY159_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第159段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase159 effect-test decks: nineteen photograph cards in legal forty-card lists.');
+
+for(const d of UTILITY160_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第160段階の検証用40枚を確認してください：'+d.name);console.log('Checked both phase160 effect-test decks: twenty photograph cards in legal forty-card lists.');
+
+for(const d of UTILITY161_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第161段階の指定カード検証用40枚を確認してください：'+d.name);console.log('Checked both phase161 decks: all six requested cards plus Sasage targets.');
