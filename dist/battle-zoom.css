@@ -27,12 +27,12 @@
 .manual-playing [data-fit-grid].has-card-slots{grid-template-columns:repeat(var(--fit-cols),var(--fit-width));grid-template-rows:repeat(var(--fit-rows),var(--fit-height));overflow:auto;overscroll-behavior:contain;touch-action:pan-x pan-y pinch-zoom;justify-content:safe center;align-content:start;justify-items:stretch}
 .manual-playing .board-card-slot{position:relative;min-width:0;min-height:0;width:var(--fit-width);height:var(--fit-height)}
 .manual-playing .board-card-slot>.play-creature,.manual-playing .board-card-slot>.shield-tile{position:absolute;left:0;top:0;width:var(--base-card-width);height:var(--base-card-height);max-width:none;max-height:none;transform:scale(var(--card-render-scale,1));transform-origin:top left}
-.manual-playing .board-card-slot>.play-creature{display:flex;flex-direction:column;--creature-tools-height:var(--card-tools-height,0px)}
+.manual-playing .board-card-slot>.play-creature{left:var(--card-slot-offset,0px);display:flex;flex-direction:column;--creature-tools-height:var(--card-tools-height,0px)}
 .manual-playing .board-card-slot .creature-tap{flex:1;min-height:0;height:auto;transform:none}
 .manual-playing .board-card-slot .creature-tools{flex-basis:var(--card-tools-height,0px)}
 .manual-playing .board-card-slot .creature-picture{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden}
-.manual-playing .board-card-slot .creature-picture>.art-card{position:relative;inset:auto;width:100%;height:100%;max-width:none;max-height:none;aspect-ratio:5/7;transform:none}
+.manual-playing .board-card-slot .creature-picture>.art-card{position:relative;inset:auto;width:var(--card-art-width,100%);height:var(--card-art-height,100%);max-width:none;max-height:none;aspect-ratio:var(--card-aspect-ratio,5/7);transform:none}
 .manual-playing .board-card-slot .creature-picture .official-card-image{object-fit:contain;object-position:center}
-.manual-playing .board-card-slot .is-tapped .creature-picture>.art-card{width:calc(var(--base-card-width) * 5 / 7);height:var(--base-card-width);transform:rotate(90deg)}
+.manual-playing .board-card-slot .is-tapped .creature-picture>.art-card{width:var(--tapped-card-width,calc(var(--base-card-width) * 5 / 7));height:var(--tapped-card-height,var(--base-card-width));transform:rotate(90deg)}
 .manual-playing .battle-zoom-card-track{overflow:visible!important;flex:none!important;box-sizing:border-box;touch-action:pan-x pan-y pinch-zoom}
 .manual-playing .battle-zoom-mana{flex:1;min-width:0;min-height:0}

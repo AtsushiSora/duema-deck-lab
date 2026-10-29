@@ -54,3 +54,16 @@ test('portrait cards preserve the complete 5:7 image and scale the entire card f
  }
  const tall=portraitBoardGrid(1,310,220);assert.equal(tall.baseWidth,126);assert.equal(tall.baseHeight,176.4);const short=portraitBoardGrid(1,310,90);assert.ok(short.baseWidth<tall.baseWidth);assert.ok(short.baseHeight<=90+1e-6);assert.equal(portraitBoardGrid(1,0,200),null);
 });
+
+test('landscape fields use their printed aspect ratio, including in a mixed battle zone and after image loading',()=>{
+ const props=()=>{const values=new Map();return {values,setProperty:(k,v)=>values.set(k,v)};};
+ const image={naturalWidth:0,naturalHeight:0},field={dataset:{cardAspect:String(7/5)},style:props(),querySelector:()=>image},creature={dataset:{cardAspect:String(5/7)},style:props(),querySelector:()=>null},slots=[field],events=new Map(),area={dataset:{cardScale:'1'},querySelectorAll:()=>[grid],addEventListener:(k,f)=>events.set(k,f),removeEventListener:k=>events.delete(k)};
+ const grid={clientWidth:300,clientHeight:200,dataset:{fitGrid:'creatures',fitCount:'1'},style:props(),querySelectorAll:()=>slots,getBoundingClientRect:()=>({width:300,height:200}),classList:{toggle(){}}};
+ let resize;const view={matchMedia:q=>({matches:q==='(max-width: 850px)'}),addEventListener:(k,f)=>resize=f,removeEventListener:()=>resize=null};
+ const stop=bindFittedBoard(area,view),number=(slot,key)=>parseFloat(slot.style.values.get('--'+key)),ratio=slot=>number(slot,'base-card-width')/number(slot,'base-card-height');
+ assert.ok(Math.abs(ratio(field)-7/5)<1e-8);assert.ok(number(field,'base-card-width')>170);assert.ok(number(field,'base-card-height')<130);
+ image.naturalWidth=650;image.naturalHeight=465;events.get('load')();assert.ok(Math.abs(ratio(field)-650/465)<1e-8);
+ slots.push(creature);grid.dataset.fitCount='2';resize();assert.ok(Math.abs(ratio(field)-650/465)<1e-8);assert.ok(Math.abs(ratio(creature)-5/7)<1e-8);assert.ok(number(field,'base-card-height')<number(creature,'base-card-height'));
+ const base=number(field,'base-card-width');area.dataset.cardScale='2';events.get('battlecardsizechange')();assert.equal(number(field,'base-card-width'),base);assert.ok(Math.abs(ratio(field)-650/465)<1e-8);
+ stop();assert.equal(events.size,0);assert.equal(resize,null);
+});
