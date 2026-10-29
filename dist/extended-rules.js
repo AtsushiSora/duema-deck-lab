@@ -25,7 +25,7 @@ import {createUtilityBlockRules} from './utility-block-rules.js?v=0.126.0';
 import {createUtilityShieldSpells} from './utility-shield-spells.js?v=0.124.0';
 import {createUtilityKnightRules} from './utility-knight-rules.js?v=0.124.0';
 import {createUtilityModalRules} from './utility-modal-rules.js?v=0.161.0';
-import {createUtilitySacrificeRules} from './utility-sacrifice-rules.js?v=0.120.0';
+import {createUtilitySacrificeRules} from './utility-sacrifice-rules.js?v=0.229.0';
 import {createUtilityRecoveryRules} from './utility-recovery-rules.js?v=0.119.0';
 import {createUtilityExchangeRules} from './utility-exchange-rules.js?v=0.118.0';
 import {createUtilityBattleRules} from './utility-battle-rules.js?v=0.117.0';
@@ -67,7 +67,7 @@ import {createGolgyRules} from './golgy-rules.js?v=0.104.0';
 import {createVirideRules} from './viride-rules.js';
 import {createHachiRules} from './hachi-rules.js?v=0.104.0';
 import {createAbyssRules} from './abyss-rules.js?v=0.220.0';
-import {createRedzoneRules} from './redzone-rules.js?v=0.86';
+import {createRedzoneRules} from './redzone-rules.js?v=0.229.0';
 import {createMadoRules} from './mado-rules.js?v=0.104.0';
 import {createGirlsRules} from './girls-rules.js?v=0.104.0';
 import {createMaruruRules} from './maruru-rules.js?v=0.104.0';
@@ -106,6 +106,7 @@ export function createExtendedRules(api){
  const locked=(s,p,x,kind)=>{
   if(kind==='attack'&&creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks))return false;
   if(kind==='attack'&&utilityLightControl.locked(s,x))return true;
+  if(kind==='attack'&&x.entered===s.turn&&effective(x,s).speedAttacker&&[0,1].some(q=>creatures(s,q).some(y=>effective(y,s).g163Dione)))return true;
   if(['attack','block'].includes(kind)&&s.g4Combat?.[p]?.turn===s.turn&&s.g4Combat[p].count>=1&&(s.extLimits||[]).some(l=>l.kind==='g4Combat'&&l.player===p&&!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})))return true;
   if((s.extLimits||[]).some(l=>l.kind==='numberLock'&&(l.creatureSource||!api.spellIgnored(s,{type:'spell',cost:2}))&&l.player===p&&x.g9LockScopes?.includes(l.scope)&&cost(card(x))===(l.cost==='∞'?Infinity:l.cost)))return true;
   return (s.extLimits||[]).some(l=>l.kind===kind&&l.player===p&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}))&&(!l.uid||layers(x).some(y=>y.uid===l.uid&&(y.incarnation||0)===(l.incarnation||0)))&&(l.cost===undefined||faces(card(x)).some(c=>cost(c)===(l.cost==='∞'?Infinity:Number(l.cost)))));

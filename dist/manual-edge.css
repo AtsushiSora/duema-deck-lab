@@ -1,0 +1,37 @@
+/* Let browser toolbars overlap the bottom of a phone duel. Use the large
+   viewport so the board does not shrink when the address bar opens. Keep the
+   document scrollable so covered hand/action controls can be brought into view.
+   Installed apps retain their existing safe-area layout. */
+@media (display-mode:browser) and (max-width:850px),
+       (display-mode:browser) and (min-width:480px) and (max-width:1100px) and (max-height:600px) and (orientation:landscape){
+ body.manual-playing{
+  --manual-edge-height:100vh;
+  overflow:visible;overflow-x:clip;overflow-y:auto;
+  overscroll-behavior-y:auto;
+ }
+ @supports(height:100lvh){body.manual-playing{--manual-edge-height:100lvh}}
+ body.manual-playing #app,
+ body.manual-playing.has-app-update #app,
+ body.manual-playing .app-shell{
+  height:var(--manual-edge-height);min-height:0;max-height:none;overflow:visible;
+ }
+ body.manual-playing .main.manual-page{
+  height:100%;min-height:0;max-height:none;overflow:visible;
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
+ }
+ body.manual-playing .manual-topbar{
+  position:sticky;top:env(safe-area-inset-top);z-index:10;
+  margin-inline:0;padding-inline:6px;
+ }
+ body.manual-playing .manual-mobile-dock{
+  flex-basis:var(--manual-dock-height,50px);height:var(--manual-dock-height,50px);
+  padding-bottom:3px;border-radius:0;
+ }
+ /* Vertical gestures may reach the document after a card list reaches its end. */
+ body.manual-playing :is(.play-creatures,.shield-tiles,.manual-hand-cards,.hand-shelf-cards){
+  overscroll-behavior-y:auto;touch-action:pan-x pan-y pinch-zoom;
+ }
+}
+@media (display-mode:browser) and (max-width:850px) and (orientation:portrait){
+ body.manual-playing .manual-topbar{background:#f4f7f8}
+}
