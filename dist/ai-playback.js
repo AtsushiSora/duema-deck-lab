@@ -1,7 +1,7 @@
 import {displayTurn} from './turn-count.js';
 import {shieldCards} from './shield-state.js';
 import {card,getLegalActions,chooseAI,step} from './engine.js';
-import {createAIDecision} from './ai-decision.js?v=0.229.1';
+import {createAIDecision} from './ai-decision.js?v=0.229.2';
 
 export const AI_SPEEDS={slow:{label:'ゆっくり',delay:3000},normal:{label:'標準',delay:2000},fast:{label:'速い',delay:700}};
 export const aiSpeedLabel=speed=>(AI_SPEEDS[speed]||AI_SPEEDS.normal).label;
@@ -101,7 +101,7 @@ const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 export function aiPlaybackHTML(playback){
  if(!playback?.cue&&!playback?.hasNext)return '';
  const {paused,hasNext,position,total,speed}=playback,cue=playback.cue||{label:'相手の行動',text:paused?'相手AIを一時停止しています':'相手の行動を確認します'};
- return `<section class="ai-playback ${paused?'is-paused':''}" aria-label="相手AIの行動を確認"><button class="ai-cue" data-action="manual-ai-detail" aria-label="行動の説明を詳しく見る"><small>${paused?'一時停止中 · ':''}${esc(cue.label)}${total>1?` · ${position}/${total}`:''}</small><strong role="status" aria-live="polite" aria-atomic="true">${esc(cue.text)}</strong></button><div class="ai-playback-buttons"><button data-action="manual-speed" aria-label="AIの速さを変更">速さ：${aiSpeedLabel(speed)}</button><button data-action="manual-ai-pause" aria-pressed="${paused}" ${!hasNext&&!paused?'disabled':''}>${paused?'▶ 再開':'Ⅱ 一時停止'}</button><button data-action="manual-ai-next" ${hasNext&&!playback.thinking?'':'disabled'}>次へ ›</button></div></section>`;
+ return `<section class="ai-playback ${paused?'is-paused':''}" aria-label="相手AIの行動を確認"><button class="ai-cue" data-action="manual-ai-detail" aria-label="行動の説明を詳しく見る"><small>${paused?'一時停止中 · ':''}${esc(cue.label)}${total>1?` · ${position}/${total}`:''}</small><strong role="status" aria-live="polite" aria-atomic="true">${esc(cue.text)}</strong></button><div class="ai-playback-buttons"><button data-action="manual-speed" aria-label="AIの速さを変更"><span class="ai-speed-prefix">速さ：</span>${aiSpeedLabel(speed)}</button><button data-action="manual-ai-pause" aria-pressed="${paused}" ${!hasNext&&!paused?'disabled':''}>${paused?'▶ 再開':'Ⅱ 一時停止'}</button><button data-action="manual-ai-next" ${hasNext&&!playback.thinking?'':'disabled'}>次へ ›</button><button type="button" data-action="manual-log" aria-label="対戦ログを開く">ログ</button></div></section>`;
 }
 export function applyAIHighlights(area,cue){
  if(!area?.querySelectorAll||!cue)return;
