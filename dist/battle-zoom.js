@@ -25,24 +25,25 @@ export function bindBattleZoom(root,ui,{view=globalThis.window,storage,onInterac
  if(ui.zoom?.kind!=='cards'||ui.zoom.profile!==profile)ui.zoom=readBattleZoom(storage,profile);
  ui.zoomScroll??={};
  const regions=[],disposers=[];
- function region(host,content,key){
+ function region(host,content,key,{row=false,mana=false}={}){
   if(!host||!content)return;
   const rect=content.getBoundingClientRect(),viewport=doc.createElement('div'),space=doc.createElement('div'),canvas=doc.createElement('div');
-  viewport.className='battle-zoom-viewport';viewport.dataset.zoomRegion=key;viewport.tabIndex=0;viewport.setAttribute('role','region');viewport.setAttribute('aria-label','手札・上下左右にスクロール');
+  viewport.className='battle-zoom-viewport';viewport.dataset.zoomRegion=key;viewport.tabIndex=0;viewport.setAttribute('role','region');viewport.setAttribute('aria-label',mana?'マナのカード・上下左右にスクロール':'手札・上下左右にスクロール');
   space.className='battle-zoom-space';canvas.className='battle-zoom-canvas';
-  viewport.classList.add('battle-zoom-hand');viewport.style.height=rect.height+'px';content.replaceWith(viewport);canvas.append(content);content.classList.add('battle-zoom-hand-track');
+  viewport.classList.add(mana?'battle-zoom-mana':'battle-zoom-hand');viewport.style.height=rect.height+'px';content.replaceWith(viewport);canvas.append(content);content.classList.add('battle-zoom-hand-track','battle-zoom-card-track');
   space.append(canvas);viewport.append(space);
-  const item={host,content,viewport,space,canvas,key,width:0,height:0,contentWidth:0,contentHeight:0};regions.push(item);
+  const item={host,content,viewport,space,canvas,key,row,width:0,height:0,contentWidth:0,contentHeight:0};regions.push(item);
   const remember=()=>{ui.zoomScroll[key]={left:viewport.scrollLeft,top:viewport.scrollTop};};viewport.addEventListener('scroll',remember,{passive:true});disposers.push(()=>{remember();viewport.removeEventListener('scroll',remember);});
  }
  const board=root.querySelector('.manual-board-area');
- const hand=root.querySelector(ui.mobile?'.hand-shelf-cards':'.manual-hand-cards');if(hand?.querySelector('.manual-hand-card,.hand-shelf-card'))region(hand.parentElement,hand,'hand');
+ const hand=root.querySelector(ui.mobile?'.hand-shelf-cards':'.manual-hand-cards');if(hand?.querySelector('.manual-hand-card,.hand-shelf-card'))region(hand.parentElement,hand,'hand',{row:ui.mobile});
+ root.querySelectorAll('.board-mana-cards').forEach((track,i)=>{if(track.querySelector('.board-mana-card'))region(track.parentElement,track,'mana-'+i,{row:true,mana:true});});
  function measure(){
   for(const r of regions){
    // Restore intrinsic sizing before measuring; transformed bounds would count zoom twice.
    r.canvas.style.width=r.viewport.clientWidth+'px';r.canvas.style.height=r.viewport.clientHeight+'px';
    r.width=r.viewport.clientWidth;r.height=r.viewport.clientHeight;
-   if(ui.mobile){r.content.style.width=r.width+'px';r.content.style.height=r.height+'px';r.contentWidth=Math.max(r.width,r.content.scrollWidth);r.contentHeight=r.height;r.content.style.width=r.contentWidth+'px';}
+   if(r.row){r.content.style.width=r.width+'px';r.content.style.height=r.height+'px';r.contentWidth=Math.max(r.width,r.content.scrollWidth);r.contentHeight=r.height;r.content.style.width=r.contentWidth+'px';}
    else{r.content.style.width=r.width+'px';r.content.style.height='auto';r.contentWidth=r.width;r.contentHeight=Math.max(r.height,r.content.scrollHeight);}
    r.canvas.style.width=r.contentWidth+'px';r.canvas.style.height=r.contentHeight+'px';
   }

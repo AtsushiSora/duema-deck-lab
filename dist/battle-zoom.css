@@ -23,12 +23,16 @@
 }
 @media(max-width:390px){.manual-top-tools{gap:0!important}.manual-top-tools .battle-zoom-toggle{min-width:36px;width:36px;padding:5px}.manual-top-tools>.icon-btn{min-width:36px;width:36px}}
 
-/* Only card cells change size; the board and zone summaries never transform. */
-.manual-playing [data-fit-grid].is-card-sized{grid-template-columns:repeat(var(--fit-cols),var(--fit-width));grid-template-rows:repeat(var(--fit-rows),var(--fit-height));overflow:auto!important;overscroll-behavior:contain;touch-action:pan-x pan-y pinch-zoom;justify-content:safe center;align-content:start;justify-items:stretch}
-.manual-playing .play-creatures.is-card-sized>.play-creature{max-width:none;--picture-width:var(--fit-width);--picture-height:max(1px,calc(var(--fit-height) - var(--creature-tools-height,0px)))}
-.manual-playing .shield-tiles.is-card-sized>.shield-tile{max-width:none;width:100%;height:100%}
-@media(min-width:851px){
- .manual-playing .board-mana-cards{overflow:auto;align-items:flex-start}
- .manual-playing .board-mana-card{flex-basis:calc(48px * var(--battle-card-scale,1));height:calc(100% * var(--battle-card-scale,1))}
-}
-@media(min-width:851px) and (max-height:750px){.manual-playing .board-mana-card{flex-basis:calc(39px * var(--battle-card-scale,1))}}
+/* Scale each complete card, including its border and all labels. */
+.manual-playing [data-fit-grid].has-card-slots{grid-template-columns:repeat(var(--fit-cols),var(--fit-width));grid-template-rows:repeat(var(--fit-rows),var(--fit-height));overflow:auto;overscroll-behavior:contain;touch-action:pan-x pan-y pinch-zoom;justify-content:safe center;align-content:start;justify-items:stretch}
+.manual-playing .board-card-slot{position:relative;min-width:0;min-height:0;width:var(--fit-width);height:var(--fit-height)}
+.manual-playing .board-card-slot>.play-creature,.manual-playing .board-card-slot>.shield-tile{position:absolute;left:0;top:0;width:var(--base-card-width);height:var(--base-card-height);max-width:none;max-height:none;transform:scale(var(--card-render-scale,1));transform-origin:top left}
+.manual-playing .board-card-slot>.play-creature{display:flex;flex-direction:column;--creature-tools-height:var(--card-tools-height,0px)}
+.manual-playing .board-card-slot .creature-tap{flex:1;min-height:0;height:auto;transform:none}
+.manual-playing .board-card-slot .creature-tools{flex-basis:var(--card-tools-height,0px)}
+.manual-playing .board-card-slot .creature-picture{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden}
+.manual-playing .board-card-slot .creature-picture>.art-card{position:relative;inset:auto;width:100%;height:100%;max-width:none;max-height:none;aspect-ratio:5/7;transform:none}
+.manual-playing .board-card-slot .creature-picture .official-card-image{object-fit:contain;object-position:center}
+.manual-playing .board-card-slot .is-tapped .creature-picture>.art-card{width:calc(var(--base-card-width) * 5 / 7);height:var(--base-card-width);transform:rotate(90deg)}
+.manual-playing .battle-zoom-card-track{overflow:visible!important;flex:none!important;box-sizing:border-box;touch-action:pan-x pan-y pinch-zoom}
+.manual-playing .battle-zoom-mana{flex:1;min-width:0;min-height:0}

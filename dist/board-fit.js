@@ -12,7 +12,22 @@ export function fitBoardGrid(count,width,height,{shield=false,rail=false}={}){
  }
  const {score,...grid}=best;return {...grid,dense:grid.cellWidth<58||grid.cellHeight<58,tiny:grid.cellWidth<30||grid.cellHeight<28};
 }
-// Resize card cells inside a fixed zone, rather than scaling the zone itself.
+// Keep the entire printed card in portrait, including in a short phone viewport.
+export function portraitBoardGrid(count,width,height,{maxWidth=126,tools=0,scale=1}={}){
+ if(!fitBoardGrid(count,width,height))return null;
+ if(!count)return fitBoardGrid(0,width,height);
+ let best=null;
+ for(let columns=1;columns<=count;columns++){
+  const rows=Math.ceil(count/columns),gap=Math.min(6,width/(columns*5),height/(rows*5)),availableWidth=(width-gap*(columns-1))/columns,availableHeight=(height-gap*(rows-1))/rows;
+  const toolHeight=Math.min(tools,availableHeight*.2),cardWidth=Math.max(.1,Math.min(maxWidth,availableWidth,(availableHeight-toolHeight)*5/7));
+  if(!best||cardWidth>best.baseWidth+1e-6)best={columns,rows,gap,baseWidth:cardWidth,baseHeight:cardWidth*7/5+toolHeight,toolHeight};
+ }
+ scale=Number.isFinite(scale)?Math.max(.1,Math.min(2,scale)):1;
+ const cellWidth=best.baseWidth*scale,cellHeight=best.baseHeight*scale;
+ const columns=scale===1?best.columns:Math.max(1,Math.min(count,Math.floor((width+best.gap)/(cellWidth+best.gap)))),rows=Math.ceil(count/columns);
+ return {...best,columns,rows,cellWidth,cellHeight,scale,dense:best.baseWidth<58||best.baseHeight<58,tiny:best.baseWidth<30||best.baseHeight<28};
+}
+// Reserve scaled cells; their contents are rendered once at the base dimensions.
 export function sizedBoardGrid(count,width,height,{scale=1,maxWidth=132,...options}={}){
  const base=fitBoardGrid(count,width,height,options);if(!base||!count||scale===1)return base;
  scale=Number.isFinite(scale)?Math.max(.1,Math.min(2,scale)):1;
@@ -23,8 +38,13 @@ export function sizedBoardGrid(count,width,height,{scale=1,maxWidth=132,...optio
 export function bindFittedBoard(area,view=globalThis.window){
  if(!area?.querySelectorAll)return ()=>{};
  const grids=[...area.querySelectorAll('[data-fit-grid]')];
- const fit=()=>{for(const el of grids){const bounds=el.getBoundingClientRect(),scale=Number(area.dataset?.cardScale)||1,shield=el.dataset.fitGrid==='shields',count=Number(el.dataset.fitCount),g=sizedBoardGrid(count,el.clientWidth??bounds.width,el.clientHeight??bounds.height,{scale,maxWidth:shield?48:view?.matchMedia?.('(max-width: 850px)').matches?126:132,shield,rail:el.dataset.fitLayout==='rail'});if(!g)continue;
+ const fit=()=>{for(const el of grids){const bounds=el.getBoundingClientRect(),scale=Number(area.dataset?.cardScale)||1,shield=el.dataset.fitGrid==='shields',count=Number(el.dataset.fitCount),mobile=view?.matchMedia?.('(max-width: 850px)').matches,style=view?.getComputedStyle?.(el),padding=key=>parseFloat(style?.[key])||0,width=(el.clientWidth??bounds.width)-padding('paddingLeft')-padding('paddingRight'),height=(el.clientHeight??bounds.height)-padding('paddingTop')-padding('paddingBottom');
+  const g=shield?sizedBoardGrid(count,width,height,{scale,maxWidth:48,shield:true,rail:el.dataset.fitLayout==='rail'}):portraitBoardGrid(count,width,height,{scale,maxWidth:mobile?126:132,tools:mobile?0:24});if(!g)continue;
   el.classList.toggle('is-card-sized',scale!==1&&count>0);
+  el.classList.toggle('has-card-slots',count>0);
+  const base=shield?fitBoardGrid(count,width,height,{shield:true,rail:el.dataset.fitLayout==='rail'}):g;
+  const baseWidth=shield?Math.min(48,base.cellWidth):g.baseWidth,baseHeight=shield?base.cellHeight:g.baseHeight;
+  for(const [name,value]of [['base-card-width',baseWidth+'px'],['base-card-height',baseHeight+'px'],['card-render-scale',scale],['card-tools-height',(g.toolHeight||0)+'px']])el.style.setProperty('--'+name,String(value));
   for(const [name,value]of [['cols',g.columns],['rows',g.rows],['gap',g.gap+'px'],['height',g.cellHeight+'px'],['width',g.cellWidth+'px']])el.style.setProperty('--fit-'+name,String(value));el.classList.toggle('is-dense',g.dense);el.classList.toggle('is-tiny',g.tiny);el.classList.toggle('is-rail-micro',scale===1&&el.dataset.fitLayout==='rail'&&Math.min(g.cellWidth,g.cellHeight)<11);
  }};
  area.addEventListener?.('battlecardsizechange',fit);view?.addEventListener('resize',fit);const Observer=view?.ResizeObserver||globalThis.ResizeObserver,observer=Observer?new Observer(fit):null;for(const el of grids)observer?.observe(el);fit();

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {fitBoardGrid,sizedBoardGrid,bindFittedBoard,pageWindow} from '../dist/board-fit.js';
+import {fitBoardGrid,sizedBoardGrid,portraitBoardGrid,bindFittedBoard,pageWindow} from '../dist/board-fit.js';
 
 test('every one of up to eighty cards fits inside portrait and landscape regions without overflow',()=>{
  for(const width of [140,280,320,390,720])for(const height of [12,28,60,120,240])for(let n=0;n<=80;n++)for(const shield of [false,true]){
@@ -30,7 +30,7 @@ test('shield rails preserve a readable column and use multiple columns before ca
 
 test('a transformed board fits cards in layout pixels instead of magnifying its density twice',()=>{
  const properties=new Map(),grid={clientWidth:240,clientHeight:120,dataset:{fitGrid:'creatures',fitCount:'12'},getBoundingClientRect:()=>({width:480,height:240}),style:{setProperty:(k,v)=>properties.set(k,v)},classList:{toggle(){}}};
- const stop=bindFittedBoard({querySelectorAll:()=>[grid]},{addEventListener(){},removeEventListener(){}}),expected=fitBoardGrid(12,240,120);
+ const stop=bindFittedBoard({querySelectorAll:()=>[grid]},{addEventListener(){},removeEventListener(){}}),expected=portraitBoardGrid(12,240,120,{maxWidth:132,tools:24});
  assert.equal(properties.get('--fit-cols'),String(expected.columns));assert.equal(properties.get('--fit-width'),expected.cellWidth+'px');assert.equal(properties.get('--fit-height'),expected.cellHeight+'px');stop();
 });
 
@@ -43,4 +43,14 @@ test('card sizing changes card cells inside a fixed viewport and keeps all cards
   for(const scale of [.5,.75,1.5,2]){const grid=sizedBoardGrid(count,width,height,{...options,scale});assert.ok(grid.columns*grid.rows>=count);assert.ok(grid.cellWidth>previous);assert.equal(grid.cellWidth,Math.min(options.maxWidth,base.cellWidth)*scale);assert.equal(grid.cellHeight,base.cellHeight*scale);previous=grid.cellWidth;}
  }
  assert.deepEqual(sizedBoardGrid(0,300,140,{scale:2}),fitBoardGrid(0,300,140));
+});
+
+
+test('portrait cards preserve the complete 5:7 image and scale the entire card from stable base dimensions',()=>{
+ for(const count of [1,2,3,8,40,80])for(const width of [80,280,390,700])for(const height of [28,100,200,400])for(const tools of [0,24]){
+  const base=portraitBoardGrid(count,width,height,{tools});assert.ok(base.columns*base.rows>=count);assert.ok(base.cellWidth>0&&base.cellHeight>0);
+  assert.ok(Math.abs((base.baseHeight-base.toolHeight)/base.baseWidth-7/5)<1e-6);assert.ok(base.columns*base.cellWidth+(base.columns-1)*base.gap<=width+1e-6);assert.ok(base.rows*base.cellHeight+(base.rows-1)*base.gap<=height+1e-6);
+  for(const scale of [.5,.75,1.5,2]){const zoom=portraitBoardGrid(count,width,height,{tools,scale});assert.equal(zoom.baseWidth,base.baseWidth);assert.equal(zoom.baseHeight,base.baseHeight);assert.equal(zoom.cellWidth,base.baseWidth*scale);assert.equal(zoom.cellHeight,base.baseHeight*scale);assert.equal(zoom.dense,base.dense);assert.equal(zoom.tiny,base.tiny);assert.ok(zoom.columns*zoom.rows>=count);}
+ }
+ const tall=portraitBoardGrid(1,310,220);assert.equal(tall.baseWidth,126);assert.equal(tall.baseHeight,176.4);const short=portraitBoardGrid(1,310,90);assert.ok(short.baseWidth<tall.baseWidth);assert.ok(short.baseHeight<=90+1e-6);assert.equal(portraitBoardGrid(1,0,200),null);
 });
