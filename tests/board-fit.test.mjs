@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {fitBoardGrid,bindFittedBoard,pageWindow} from '../dist/board-fit.js';
+import {fitBoardGrid,sizedBoardGrid,bindFittedBoard,pageWindow} from '../dist/board-fit.js';
 
 test('every one of up to eighty cards fits inside portrait and landscape regions without overflow',()=>{
  for(const width of [140,280,320,390,720])for(const height of [12,28,60,120,240])for(let n=0;n<=80;n++)for(const shield of [false,true]){
@@ -32,4 +32,15 @@ test('a transformed board fits cards in layout pixels instead of magnifying its 
  const properties=new Map(),grid={clientWidth:240,clientHeight:120,dataset:{fitGrid:'creatures',fitCount:'12'},getBoundingClientRect:()=>({width:480,height:240}),style:{setProperty:(k,v)=>properties.set(k,v)},classList:{toggle(){}}};
  const stop=bindFittedBoard({querySelectorAll:()=>[grid]},{addEventListener(){},removeEventListener(){}}),expected=fitBoardGrid(12,240,120);
  assert.equal(properties.get('--fit-cols'),String(expected.columns));assert.equal(properties.get('--fit-width'),expected.cellWidth+'px');assert.equal(properties.get('--fit-height'),expected.cellHeight+'px');stop();
+});
+
+
+test('card sizing changes card cells inside a fixed viewport and keeps all cards reachable by scrolling',()=>{
+ for(const count of [1,3,10,40,80])for(const width of [40,280,720])for(const height of [60,140,300])for(const shield of [false,true]){
+  const options={shield,rail:shield,maxWidth:shield?48:126},base=fitBoardGrid(count,width,height,options);
+  assert.deepEqual(sizedBoardGrid(count,width,height,{...options,scale:1}),base);
+  let previous=0;
+  for(const scale of [.5,.75,1.5,2]){const grid=sizedBoardGrid(count,width,height,{...options,scale});assert.ok(grid.columns*grid.rows>=count);assert.ok(grid.cellWidth>previous);assert.equal(grid.cellWidth,Math.min(options.maxWidth,base.cellWidth)*scale);assert.equal(grid.cellHeight,base.cellHeight*scale);previous=grid.cellWidth;}
+ }
+ assert.deepEqual(sizedBoardGrid(0,300,140,{scale:2}),fitBoardGrid(0,300,140));
 });

@@ -1,4 +1,4 @@
-import {battleZoomControlsHTML} from './battle-zoom.js?v=0.221.0';
+import {battleZoomControlsHTML} from './battle-zoom.js?v=0.223.0';
 import {displayTurn} from './turn-count.js';
 import {RIVAL_IDS} from './hero-draw.js';
 import {paymentReviewHTML} from './battle-insights.js?v=0.100.0';

@@ -87,10 +87,10 @@ test('phone menu retains speed, help, hints, undo and logs without navigating aw
  h.read('battle.practice=false');await h.click('manual-options');assert.ok(!h.read('dialog.innerHTML').includes('data-action="battle-hint"'));assert.ok(!h.read('dialog.innerHTML').includes('data-action="undo-battle"'));
 });
 
-test('board and horizontal lane positions survive display changes, while a new hand selection brings its controls to the top',async()=>{
- const s=e.createGame([target,target],{seed:2020}),scrollers={'.manual-board-area':{scrollTop:120},'.manual-hand-cards':{scrollLeft:60},'.hand-shelf-cards':{scrollLeft:220},'.manual-console-content':{scrollTop:90,dataset:{}},lanes:[{scrollLeft:41},{scrollLeft:72}]},h=harness(s,{mobile:true,scrollers});
+test('board and both lane scroll directions survive display changes, while a new hand selection brings its controls to the top',async()=>{
+ const s=e.createGame([target,target],{seed:2020}),scrollers={'.manual-board-area':{scrollTop:120},'.manual-hand-cards':{scrollLeft:60},'.hand-shelf-cards':{scrollLeft:220},'.manual-console-content':{scrollTop:90,dataset:{}},lanes:[{scrollLeft:41,scrollTop:19},{scrollLeft:72,scrollTop:37}]},h=harness(s,{mobile:true,scrollers});
  scrollers['.manual-console-content'].scrollTop=90;await h.click('manual-panel-toggle');
- assert.equal(scrollers['.manual-board-area'].scrollTop,120);assert.equal(scrollers['.manual-hand-cards'].scrollLeft,60);assert.equal(scrollers['.hand-shelf-cards'].scrollLeft,220);assert.equal(scrollers['.manual-console-content'].scrollTop,90);assert.deepEqual(scrollers.lanes.map(x=>x.scrollLeft),[41,72]);
+ assert.equal(scrollers['.manual-board-area'].scrollTop,120);assert.equal(scrollers['.manual-hand-cards'].scrollLeft,60);assert.equal(scrollers['.hand-shelf-cards'].scrollLeft,220);assert.equal(scrollers['.manual-console-content'].scrollTop,90);assert.deepEqual(scrollers.lanes.map(x=>[x.scrollLeft,x.scrollTop]),[[41,19],[72,37]]);
  await h.click('manual-panel-toggle');await h.click('hand-card',{uid:s.players[0].hand[0].uid});assert.equal(scrollers['.manual-console-content'].scrollTop,0);assert.equal(scrollers['.manual-board-area'].scrollTop,120);
 });
 
@@ -306,8 +306,8 @@ test('ordinary rematch uses the completed matchup snapshot and finished results 
 
 test('zoom preferences survive a real charge and undo, while slider dragging defers only view replacement',async()=>{
  const s=e.createGame([target,target],{seed:2020}),h=harness(s,{mobile:true}),hand=s.players[0].hand[0],a=e.getLegalActions(s).find(a=>a.kind==='charge'&&a.uid===hand.uid),before=structuredClone(s);
- assert.ok(h.root.innerHTML.includes('aria-label="表示サイズを調整"'));assert.ok(h.root.innerHTML.includes('フィールドと手札をまとめて調整'));
- h.read("manualUI.zoom={profile:'mobile',percent:145,mode:'manual'};manualUI.zoomScroll={board:{left:30,top:80},hand:{left:55,top:10}};manualUI.zoomOpen=true;manualZoomDragging=true;manualUI.logOpen=true;renderManual()");
+ assert.ok(h.root.innerHTML.includes('aria-label="カードサイズを調整"'));assert.ok(h.root.innerHTML.includes('場と手札のカードだけを調整'));
+ h.read("manualUI.zoom={kind:'cards',profile:'mobile',percent:145,mode:'manual'};manualUI.zoomScroll={board:{left:30,top:80},hand:{left:55,top:10}};manualUI.zoomOpen=true;manualZoomDragging=true;manualUI.logOpen=true;renderManual()");
  assert.equal(h.read('manualZoomRenderQueued'),true);assert.ok(!h.root.innerHTML.includes('manual-side is-open'));assert.deepEqual(s,before);
  h.read('manualZoomDragging=false;manualZoomRenderQueued=false;renderManual()');assert.ok(h.root.innerHTML.includes('manual-side is-open'));assert.deepEqual(s,before);
  await h.click('hand-card',{uid:hand.uid});await h.click('battle-step',{index:String(a.id)});

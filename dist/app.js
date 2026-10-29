@@ -1,11 +1,11 @@
-import {bindBattleZoom} from './battle-zoom.js?v=0.221.0';
+import {bindBattleZoom} from './battle-zoom.js?v=0.223.0';
 import {displayTurn} from './turn-count.js';
 import {TOURNAMENT_SIZES,selectTournamentParticipants,createLocalTournament,validLocalTournament,currentTournamentRound,humanTournamentMatch,recordTournamentMatch,localTournamentHTML} from './local-tournament.js?v=0.220.0';
 import {PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS} from './photo-october-decks.js?v=0.148.0';
 import {createPlayTimeTracker,formatPlayTime,playTimeStorageNote} from './play-time.js?v=0.125.0';
 import {historicalProfile,historicalMetadata} from './historical-regulations.js';
 import {creatureStatusModel,creatureStatusHTML,recordBattleAction,createBattleReport,encodeBattleData,decodeBattleData} from './battle-insights.js?v=0.100.0';
-import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.222.0';
+import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.223.0';
 import {createCardArt} from './card-art.js?v=0.220.0';
 import {resolveHeroDecks,resolveRivalDecks,challengeOptions,recordHeroResult,heroChallengeHTML} from './hero-challenge.js';
 import {recordManualVictory,recordManualResult,manualResultSummary,isOpponentDefeated,defeatedBadgeHTML} from './opponent-progress.js';
@@ -19,10 +19,10 @@ import {accountScreenHTML} from './account-ui.js';
 import {mergeAccountSnapshot} from './account-data.js';
 import {preferredHandFace} from './hand-ui.js?v=0.100.0';
 import {bindFittedBoard,pageWindow} from './board-fit.js';
-import {attackRoute,previewAttackAction,updateBoardFeedback,bindAttackArrow} from './battle-visuals.js?v=0.221.0';
+import {attackRoute,previewAttackAction,updateBoardFeedback,bindAttackArrow} from './battle-visuals.js?v=0.223.0';
 import {setCards,card as battleCard,validateDeck,createGame,getLegalActions,attackLocked,chooseAI,step,runGame,runSummary,aggregate,power,manaValue,manaValueAt,playFaces,canCastSpell,effectiveCard,canUntap,shieldGuardSources,exLifeShields,exLifeShieldInfo,evolutionBases,isEvolution,selfTriggersStopped,abilitiesIgnored,genmuActive,peekDeckTop,RULE_VERSION,ENGINE_VERSION,AI_VERSION} from './engine.js';
 import {PRESETS} from './decks.js';
-import {newManualUI,manualModel,manualScreenHTML,manualLogHTML,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,choiceSelectionModel,choiceDetailCard} from './manual-ui.js?v=0.222.0';
+import {newManualUI,manualModel,manualScreenHTML,manualLogHTML,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,choiceSelectionModel,choiceDetailCard} from './manual-ui.js?v=0.223.0';
 import {resolveEnvironmentDecks,environmentSupport,groupEnvironmentDecks,ENVIRONMENT_TARGET} from './environment.js';
 import {resolveStarter25Decks,starter25Matches} from './starter25.js';
 import {prepareDeckCopy} from './deck-copy.js';
@@ -431,7 +431,7 @@ function renderManual(){
  const manaScroll=$('.mana-card-track')?.scrollLeft||0;
  const shelfScroll=$('.hand-shelf-cards')?.scrollLeft||0,handScroll=$('.manual-hand-cards')?.scrollLeft||0,choiceScroll=changed?0:$('.manual-choices')?.scrollTop||0;
  const boardScroll=$('.manual-board-area')?.scrollTop||0,controlsScroll=changed?0:$('.manual-console-content')?.scrollTop||0;
- const lanes=[...document.querySelectorAll('.play-creatures,.shield-tiles,.board-mana-cards')].map(el=>el.scrollLeft);
+ const lanes=[...document.querySelectorAll('.play-creatures,.shield-tiles,.board-mana-cards')].map(el=>({left:el.scrollLeft,top:el.scrollTop||0}));
  const previous=$('.manual-console-content')?.dataset?.selectedHand||'',handChanged=previous!==String(model.hand?.uid||'');
  const active=document.activeElement,focusKey=active?.dataset?.focusKey,wasPlaying=!!active?.closest('.manual-stage');
  const choiceContext=s.decision?`${s.decision.type}:${s.decision.task?.op||''}:${s.decision.source||''}:${s.decision.player}`:'';if(manualUI.choiceContext!==choiceContext)manualUI.choiceOrigin='all';manualUI.choiceContext=choiceContext;
@@ -443,11 +443,11 @@ function renderManual(){
  const shelf=$('.hand-shelf-cards');if(shelf)shelf.scrollLeft=shelfScroll;
  const hand=$('.manual-hand-cards');if(hand)hand.scrollLeft=handScroll;
  const board=$('.manual-board-area');if(board)board.scrollTop=boardScroll;
- document.querySelectorAll('.play-creatures,.shield-tiles,.board-mana-cards').forEach((el,i)=>el.scrollLeft=lanes[i]||0);
  const controls=$('.manual-console-content');if(controls){controls.dataset.selectedHand=manualUI.hand||'';controls.scrollTop=handChanged?0:controlsScroll;}
  const choices=$('.manual-choices');if(choices)choices.scrollTop=choiceScroll;
  applyAIHighlights(board,manualUI.aiPlayback?.cue);
- const stopZoom=bindBattleZoom($('.manual-page'),manualUI,{view:window,onInteraction:(busy,cancelled=false)=>{manualZoomDragging=busy;if(cancelled){manualZoomRenderQueued=false;return;}if(!busy&&manualZoomRenderQueued){manualZoomRenderQueued=false;render();}}}),stopFit=bindFittedBoard(board,window),stopArrow=bindAttackArrow(board,$('.attack-overlay'),attackRoute(s,manualUI),window);manualVisualCleanup=()=>{stopZoom();stopFit();stopArrow();};
+ const stopFit=bindFittedBoard(board,window),stopZoom=bindBattleZoom($('.manual-page'),manualUI,{view:window,onInteraction:(busy,cancelled=false)=>{manualZoomDragging=busy;if(cancelled){manualZoomRenderQueued=false;return;}if(!busy&&manualZoomRenderQueued){manualZoomRenderQueued=false;render();}}}),stopArrow=bindAttackArrow(board,$('.attack-overlay'),attackRoute(s,manualUI),window);manualVisualCleanup=()=>{stopZoom();stopFit();stopArrow();};
+ document.querySelectorAll('.play-creatures,.shield-tiles,.board-mana-cards').forEach((el,i)=>{el.scrollLeft=lanes[i]?.left||0;el.scrollTop=lanes[i]?.top||0;});
  if(handChanged&&manualUI.mobilePanel==='card')$('.hand-inspector h3')?.focus({preventScroll:true});
  else if(focusKey&&(!changed||focusKey.startsWith('mana-')||focusKey==='battle-zoom-range'))document.querySelector(`[data-focus-key="${CSS.escape(focusKey)}"]`)?.focus({preventScroll:true});
  else if(wasPlaying&&changed){const guide=$('.manual-guide');guide?.focus({preventScroll:true});if(!window.matchMedia('(max-width: 850px)').matches&&model.human&&s.decision&&guide&&guide.getBoundingClientRect().top>window.innerHeight*.65)guide.scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}

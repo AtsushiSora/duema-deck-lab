@@ -67,7 +67,7 @@ export function bindAttackArrow(area,svg,route,view=globalThis.window){
   svg.querySelector('.attack-arrow-line').setAttribute('d',geometry.path);svg.querySelector('.attack-arrow-origin').setAttribute('cx',geometry.start.x);svg.querySelector('.attack-arrow-origin').setAttribute('cy',geometry.start.y);svg.classList.toggle('has-clipped-end',geometry.clipped);
   const note=area.parentElement.querySelector('.attack-offscreen-note');if(note)note.textContent=geometry.clipped?'画面外の対象あり・盤面をスクロール':'';
  };
- area.parentElement.addEventListener?.('battlezoomchange',draw);area.addEventListener('scroll',draw,{capture:true,passive:true});view?.addEventListener('resize',draw);
+ area.parentElement.addEventListener?.('battlezoomchange',draw);area.addEventListener('battlecardsizechange',draw);area.addEventListener('scroll',draw,{capture:true,passive:true});view?.addEventListener('resize',draw);
  const Observer=view?.ResizeObserver||globalThis.ResizeObserver,observer=Observer?new Observer(draw):null;observer?.observe(area);draw();
- return ()=>{area.parentElement.removeEventListener?.('battlezoomchange',draw);area.removeEventListener('scroll',draw,true);view?.removeEventListener('resize',draw);observer?.disconnect();};
+ return ()=>{area.parentElement.removeEventListener?.('battlezoomchange',draw);area.removeEventListener('battlecardsizechange',draw);area.removeEventListener('scroll',draw,true);view?.removeEventListener('resize',draw);observer?.disconnect();};
 }

@@ -1,9 +1,9 @@
 // Presentation preferences only: never change game state or card actions.
-export const BATTLE_ZOOM_KEY='duema.battleZoom.v1';
+export const BATTLE_ZOOM_KEY='duema.cardSize.v1';
 export const clampBattleZoom=value=>Number.isFinite(Number(value))?Math.max(10,Math.min(200,Math.round(Number(value)))):100;
 export function readBattleZoom(storage,profile){
- try{const entry=JSON.parse(storage?.getItem(BATTLE_ZOOM_KEY)||'{}')[profile];if(entry&&typeof entry.percent==='number')return {profile,percent:clampBattleZoom(entry.percent),mode:entry.mode==='fit'?'fit':'manual'};}catch{}
- return {profile,percent:100,mode:'manual'};
+ try{const entry=JSON.parse(storage?.getItem(BATTLE_ZOOM_KEY)||'{}')[profile];if(entry&&typeof entry.percent==='number')return {kind:'cards',profile,percent:clampBattleZoom(entry.percent),mode:entry.mode==='fit'?'fit':'manual'};}catch{}
+ return {kind:'cards',profile,percent:100,mode:'manual'};
 }
 export function saveBattleZoom(storage,setting){
  try{let all;try{all=JSON.parse(storage.getItem(BATTLE_ZOOM_KEY)||'{}');}catch{}if(!all||typeof all!=='object'||Array.isArray(all))all={};all[setting.profile]={percent:clampBattleZoom(setting.percent),mode:setting.mode==='fit'?'fit':'manual'};storage.setItem(BATTLE_ZOOM_KEY,JSON.stringify(all));}catch{}
@@ -13,7 +13,7 @@ export function fitBattleZoom(regions){
  return clampBattleZoom(Math.floor(Math.min(1,...ratios)*100));
 }
 export function battleZoomControlsHTML(){
- return `<div class="battle-zoom-tools"><button class="icon-btn battle-zoom-toggle" type="button" aria-label="表示サイズを調整" title="表示サイズ" aria-expanded="false" aria-controls="battle-zoom-panel"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 6 6M6.5 10h7M10 6.5v7"/></svg></button><section id="battle-zoom-panel" class="battle-zoom-panel" aria-label="表示サイズ" hidden><div class="battle-zoom-heading"><strong>表示サイズ</strong><output for="battle-zoom-range">100%</output><button type="button" class="battle-zoom-close" aria-label="表示サイズを閉じる">×</button></div><p>フィールドと手札をまとめて調整</p><div class="battle-zoom-slider"><button type="button" data-zoom-step="-10" aria-label="10パーセント縮小">−</button><input id="battle-zoom-range" data-focus-key="battle-zoom-range" type="range" min="10" max="200" step="1" value="100" aria-label="フィールドと手札の表示倍率"><button type="button" data-zoom-step="10" aria-label="10パーセント拡大">＋</button></div><div class="battle-zoom-presets"><button type="button" data-zoom-fit>画面に合わせる</button><button type="button" data-zoom-reset>元に戻す</button></div><small>拡大した部分は上下・左右にスクロール</small></section></div>`;
+ return `<div class="battle-zoom-tools"><button class="icon-btn battle-zoom-toggle" type="button" aria-label="カードサイズを調整" title="カードサイズ" aria-expanded="false" aria-controls="battle-zoom-panel"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 6 6M6.5 10h7M10 6.5v7"/></svg></button><section id="battle-zoom-panel" class="battle-zoom-panel" aria-label="カードサイズ" hidden><div class="battle-zoom-heading"><strong>カードサイズ</strong><output for="battle-zoom-range">100%</output><button type="button" class="battle-zoom-close" aria-label="カードサイズを閉じる">×</button></div><p>場と手札のカードだけを調整</p><div class="battle-zoom-slider"><button type="button" data-zoom-step="-10" aria-label="10パーセント縮小">−</button><input id="battle-zoom-range" data-focus-key="battle-zoom-range" type="range" min="10" max="200" step="1" value="100" aria-label="カードの表示倍率"><button type="button" data-zoom-step="10" aria-label="10パーセント拡大">＋</button></div><div class="battle-zoom-presets"><button type="button" data-zoom-fit>画面に合わせる</button><button type="button" data-zoom-reset>元に戻す</button></div><small>盤面・枚数表示・操作ボタンは元の大きさ</small></section></div>`;
 }
 
 export function bindBattleZoom(root,ui,{view=globalThis.window,storage,onInteraction=()=>{}}={}){
@@ -22,29 +22,27 @@ export function bindBattleZoom(root,ui,{view=globalThis.window,storage,onInterac
  if(!toggle||!panel||!range)return ()=>{};
  const doc=root.ownerDocument,profile=ui.mobile?'mobile':'desktop';
  if(storage===undefined)try{storage=globalThis.localStorage;}catch{}
- if(ui.zoom?.profile!==profile)ui.zoom=readBattleZoom(storage,profile);
+ if(ui.zoom?.kind!=='cards'||ui.zoom.profile!==profile)ui.zoom=readBattleZoom(storage,profile);
  ui.zoomScroll??={};
  const regions=[],disposers=[];
- function region(host,content,key,board=false){
+ function region(host,content,key){
   if(!host||!content)return;
   const rect=content.getBoundingClientRect(),viewport=doc.createElement('div'),space=doc.createElement('div'),canvas=doc.createElement('div');
-  viewport.className='battle-zoom-viewport';viewport.dataset.zoomRegion=key;viewport.tabIndex=0;viewport.setAttribute('role','region');viewport.setAttribute('aria-label',board?'盤面・上下左右にスクロール':'手札・上下左右にスクロール');
+  viewport.className='battle-zoom-viewport';viewport.dataset.zoomRegion=key;viewport.tabIndex=0;viewport.setAttribute('role','region');viewport.setAttribute('aria-label','手札・上下左右にスクロール');
   space.className='battle-zoom-space';canvas.className='battle-zoom-canvas';
-  if(board){host.classList.add('has-battle-zoom');while(host.firstChild)canvas.append(host.firstChild);host.append(viewport);}
-  else{viewport.classList.add('battle-zoom-hand');viewport.style.height=rect.height+'px';content.replaceWith(viewport);canvas.append(content);content.classList.add('battle-zoom-hand-track');}
+  viewport.classList.add('battle-zoom-hand');viewport.style.height=rect.height+'px';content.replaceWith(viewport);canvas.append(content);content.classList.add('battle-zoom-hand-track');
   space.append(canvas);viewport.append(space);
-  const item={host,content,viewport,space,canvas,key,board,width:0,height:0,contentWidth:0,contentHeight:0};regions.push(item);
+  const item={host,content,viewport,space,canvas,key,width:0,height:0,contentWidth:0,contentHeight:0};regions.push(item);
   const remember=()=>{ui.zoomScroll[key]={left:viewport.scrollLeft,top:viewport.scrollTop};};viewport.addEventListener('scroll',remember,{passive:true});disposers.push(()=>{remember();viewport.removeEventListener('scroll',remember);});
  }
- const frame=root.querySelector('.manual-board-frame');region(frame,root.querySelector('.manual-board-area'),'board',true);
- const hand=root.querySelector(ui.mobile?'.hand-shelf-cards':'.manual-hand-cards');region(hand?.parentElement,hand,'hand');
+ const board=root.querySelector('.manual-board-area');
+ const hand=root.querySelector(ui.mobile?'.hand-shelf-cards':'.manual-hand-cards');if(hand?.querySelector('.manual-hand-card,.hand-shelf-card'))region(hand.parentElement,hand,'hand');
  function measure(){
   for(const r of regions){
    // Restore intrinsic sizing before measuring; transformed bounds would count zoom twice.
    r.canvas.style.width=r.viewport.clientWidth+'px';r.canvas.style.height=r.viewport.clientHeight+'px';
    r.width=r.viewport.clientWidth;r.height=r.viewport.clientHeight;
-   if(r.board){r.contentWidth=r.width;r.contentHeight=r.height;}
-   else if(ui.mobile){r.content.style.width=r.width+'px';r.content.style.height=r.height+'px';r.contentWidth=Math.max(r.width,r.content.scrollWidth);r.contentHeight=r.height;r.content.style.width=r.contentWidth+'px';}
+   if(ui.mobile){r.content.style.width=r.width+'px';r.content.style.height=r.height+'px';r.contentWidth=Math.max(r.width,r.content.scrollWidth);r.contentHeight=r.height;r.content.style.width=r.contentWidth+'px';}
    else{r.content.style.width=r.width+'px';r.content.style.height='auto';r.contentWidth=r.width;r.contentHeight=Math.max(r.height,r.content.scrollHeight);}
    r.canvas.style.width=r.contentWidth+'px';r.canvas.style.height=r.contentHeight+'px';
   }
@@ -64,7 +62,8 @@ export function bindBattleZoom(root,ui,{view=globalThis.window,storage,onInterac
   }
   appliedPercent=percent;range.value=String(percent);range.setAttribute('aria-valuetext',percent+'パーセント');panel.querySelector('output').textContent=percent+'%';
   panel.querySelector('[data-zoom-fit]').setAttribute('aria-pressed',String(ui.zoom.mode==='fit'));
-  toggle.classList.toggle('is-zoomed',percent!==100);toggle.title=`表示サイズ：${percent}%`;
+  root.style.setProperty('--battle-card-scale',String(scale));if(board){board.dataset.cardScale=String(scale);board.dispatchEvent(new view.Event('battlecardsizechange'));}
+  toggle.classList.toggle('is-zoomed',percent!==100);toggle.title=`カードサイズ：${percent}%`;
  }
  function position(){const rect=toggle.getBoundingClientRect(),width=Math.min(306,(view.innerWidth||doc.documentElement.clientWidth)-16);panel.style.width=width+'px';panel.style.left=Math.max(8,Math.min(rect.right-width,(view.innerWidth||doc.documentElement.clientWidth)-width-8))+'px';panel.style.top=Math.min(rect.bottom+8,Math.max(8,(view.visualViewport?.height||view.innerHeight)-panel.offsetHeight-8))+'px';}
  function open(value,focus=false){ui.zoomOpen=value;panel.hidden=!value;toggle.setAttribute('aria-expanded',String(value));if(value){position();if(focus)range.focus({preventScroll:true});}}
