@@ -4,7 +4,7 @@ import {RIVAL_IDS} from './hero-draw.js';
 import {paymentReviewHTML} from './battle-insights.js?v=0.100.0';
 import {sourceCardBadge,sourceCardLabel} from './card-info.js';
 import {shieldCards} from './shield-state.js';
-import {aiPlaybackHTML,aiSpeedLabel} from './ai-playback.js?v=0.220.0';
+import {aiPlaybackHTML,aiSpeedLabel} from './ai-playback.js?v=0.226.0';
 import {handCardModel,handShelfHTML,handInspectorHTML,handEvolutionButtonHTML} from './hand-ui.js?v=0.100.0';
 import {getLegalActions,manaSelectionStatus,manaColors,card,power,effectiveCard,isEvolution,canUntap,abilitiesIgnored,genmuActive,momoActive,selfTriggersStopped,manaValue,manaValueAt,exLifeShieldInfo,exLifeShields,shieldGuardSources,playFaces,attackLocked,evolutionBases,canCastSpell,canEnterCreature,summonCost,paymentPool,manaPayment} from './engine.js';
 import {attackRoute,previewAttackAction} from './battle-visuals.js?v=0.100.0';
@@ -33,6 +33,8 @@ export function manualModel(s,ui={}){
 }
 function decisionHelp(s){
  const d=s.decision;
+ if(d.task?.op==='g35_Custom'&&d.task.name==='terminal')return '自分のターンのはじめに使えます。手札のブロッカーを好きな数出し、その後、自分のブロッカーが12体以上なら追加ターンを得ます。終極宣言は他のカードと合わせてゲーム中1回です。';
+ if(d.task?.op==='g34_Select'&&d.task.after?.some(t=>t.op==='g35_Custom'&&t.name==='terminalCount'))return '手札から出すブロッカーを選び、「ここまでで確定」を押してください。0体でも確定できます。マナは使いません。出した後の場でブロッカー12体以上を確認します。';
  if(d.task?.op==='g5Dolsuzaku')return '「手札」「墓地」で候補を切り替え、合計4体まで選べます。選び終わったら「ここまでで確定」を押してください。';
  if(d.task?.op==='g37DarkMasters')return '相手の手札を確認して3枚まで選びます。「この選択で捨てさせる」で少ない枚数でも確定できます。';
  if(d.task?.op==='g37Bounce')return '自分・相手のどちらからも3体まで選べます。確定すると選んだクリーチャーをまとめて手札に戻します。';

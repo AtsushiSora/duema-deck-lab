@@ -1,4 +1,4 @@
-import {createFifteenPhotoRules} from './fifteen-photo-rules.js?v=0.104.0';
+import {createFifteenPhotoRules} from './fifteen-photo-rules.js?v=0.226.0';
 // Six photographed deck lists: serializable effects, physical cards and explicit choices.
 export function createSixPhotoRules(api){
  const{card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,enter,cast,move,targetOptions}=api;

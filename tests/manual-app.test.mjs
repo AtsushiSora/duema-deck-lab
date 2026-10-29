@@ -316,6 +316,17 @@ test('zoom preferences survive a real charge and undo, while slider dragging def
  await h.click('undo-battle');assert.equal(h.read('battle.state.phase'),'charge');assert.equal(h.read('manualUI.zoom.percent'),145);assert.equal(h.read('manualUI.zoomScroll.hand.left'),55);
 });
 
+test('Final End buttons deploy hand blockers and retain effect details in portrait, landscape and desktop',async()=>{
+ for(const layout of[{mobile:true},{landscape:true},{}]){
+  const s=setup(),judge='dm24ex4-012',blocker='dm01-076';give(s,0,'battle',[judge,...Array(9).fill(blocker)]);give(s,0,'hand',[blocker,blocker]);give(s,0,'mana',[]);s.active=1;s.phase='attack';e.step(s,e.getLegalActions(s).find(a=>a.kind==='endTurn'));
+  const h=harness(s,layout);assert.match(h.root.innerHTML,/ファイナル・エンド/);assert.match(h.root.innerHTML,/ゲーム中1回/);const use=e.getLegalActions(s).find(a=>a.kind==='extended'&&s.decision.choices[a.choice].value===true);await h.click('battle-step',{index:String(use.id)});
+  assert.equal(s.decision.task.op,'g34_Select');assert.match(h.root.innerHTML,/ここまでで確定/);assert.match(h.root.innerHTML,/choice-detail/);
+  const first=e.getLegalActions(s).find(a=>s.decision.choices[a.choice].value?.uid),context=h.read('manualModel(battle.state,manualUI).context'),before=structuredClone(s);await h.click('manual-choice-detail',{index:String(first.id),context});assert.match(h.read('dialog.innerHTML'),/ブロッカー/);assert.deepEqual(s,before);await h.click('close-dialog');
+  const ids=s.players[0].hand.map(x=>x.uid);for(const uid of ids){const a=e.getLegalActions(s).find(a=>s.decision.choices[a.choice].value?.uid===uid);await h.click('battle-step',{index:String(a.id)});}
+  assert.equal(s.players[0].battle.length,12);assert.equal(s.extraTurns.length,1);assert.equal(s.phase,'charge');assert.match(h.root.innerHTML,/マナに置く/);assert.deepEqual(h.errors,[]);
+ }
+});
+
 test('each effect detail opens its ability text without resolving it and returns to the same filtered choice page',async()=>{
  const {eringiEffectOrder}=await import('./choice-detail-fixture.mjs');
  for(const mobile of [false,true]){
