@@ -1,0 +1,888 @@
+{
+  "phase": 186,
+  "checkedAt": "2026-10-29",
+  "description": "条件を持つ墓地回収、任意の墓地肥やしと回収を完全照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm23bd5-005",
+      "name": "Disザルフェル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd5-005",
+      "faces": [
+        {
+          "name": "Disザルフェル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇/自然",
+          "civilizations": [
+            "光",
+            "闇",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカー ブロッカー\nこのクリーチャーが出た時、相手のコスト７以下のクリーチャーを１体選び、持ち主のマナゾーンに置いてもよい。\n自分のターンの終わりに、自分の山札の上から１枚目を墓地に置く。その後、カードを１枚、自分の墓地から手札に戻す。",
+          "race": "デーモン・コマンド/ナイト/ディスタス",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "optional": true,
+            "filter": {
+              "max": 7
+            }
+          }
+        ],
+        "g174End": [
+          {
+            "op": "Mill",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd5-005.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "81d1e14f1709807eee78d452d6c39e917780adad6e8597f5ded6d37010781433",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-033",
+      "name": "Mの悪魔龍 セオイセチア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-033",
+      "faces": [
+        {
+          "name": "Mの悪魔龍 セオイセチア",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を墓地に置く。その後、闇と火を両方持つクリーチャーをすべて、自分の墓地から手札に戻す。",
+          "race": "デーモン・コマンド・ドラゴン/イニシャルズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 3
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": "all",
+            "filter": {
+              "creature": true,
+              "colorsAll": [
+                "闇",
+                "火"
+              ]
+            },
+            "title": "闇と火を両方持つ墓地のクリーチャーをすべて選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-033.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "86eb0dab5fad1d908c5b2f737e2a9e696606702051e1145752e15bbfff2bf9b7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-008",
+      "name": "アクア呪文師 スペルビー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-008",
+      "faces": [
+        {
+          "name": "アクア呪文師 スペルビー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー\nこのクリーチャーは攻撃することができない。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を墓地に置いてもよい。そうした場合、呪文を１枚、自分の墓地から手札に戻す。",
+          "race": "リキッド・ピープル閃",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g186GraveMill": true,
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 3
+              },
+              {
+                "op": "Select",
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "spell": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-008.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "d3484cc7f7b76e0c2afb6e9c867ba9ad33db627e569d6e1e0e6b6f6cd4f0213b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-027",
+      "name": "いも虫ライダー・ヒーハー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-027",
+      "faces": [
+        {
+          "name": "いも虫ライダー・ヒーハー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スレイヤー(このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)\nこのクリーチャーが破壊された時、他のハンターを１体、自分の墓地から手札に戻してもよい。",
+          "race": "デスパペット/パラサイトワーム/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "slayer": true,
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "race": "ハンター"
+            },
+            "g186Other": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-027.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "cb80878378fbcdcae2cecb1be5b1e1e64213404c81adb3ab3f49e16a8d5d85a4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr08-028",
+      "name": "ウスワライ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-028",
+      "faces": [
+        {
+          "name": "ウスワライ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、無色クリーチャーを２体まで、自分の墓地から手札に戻してもよい。",
+          "race": "トライストーン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 2,
+            "filter": {
+              "creature": true,
+              "noColor": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-028.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "99f547f595cc9e52db98db176623aaf960d939ff601ee58083345858b653c34d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "sp-033",
+      "name": "ギガジラス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=sp-033",
+      "faces": [
+        {
+          "name": "ギガジラス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが攻撃する時、クリーチャーを１体、自分の墓地から自分の手札に戻してもよい。",
+          "race": "キマイラ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/sp-033.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "01b84d0a883235444bcb83aea0a1a87bc24582881cb7382bdac37e2f058e6da3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex16-037",
+      "name": "スクリーム・チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-037",
+      "faces": [
+        {
+          "name": "スクリーム・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の山札の上から４枚を墓地に置く。その後、闇のカードを１枚、自分の墓地から手札に戻す。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 4
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "anyFaceColor": "闇"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex16-037.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "988e5bde0c7ec02c3293c1b0abd1097ac4cbe465e76b11289aa1004ad9a5eada",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr07-047",
+      "name": "ゼッコウチョ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-047",
+      "faces": [
+        {
+          "name": "ゼッコウチョ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スレイヤー(このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)\nこのクリーチャーが破壊された時、ドラゴン・ゾンビを１体、自分の墓地から手札に戻してもよい。",
+          "race": "トライストーン",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "slayer": true,
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン・ゾンビ"
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-047.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "d5b9770f23ea9d3c18703e4ffecdd9d3fce8e2092f94f58c60fe8a18d85e7c99",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-079",
+      "name": "ダムダム・ジョーカーズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-079",
+      "faces": [
+        {
+          "name": "ダムダム・ジョーカーズ",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分の山札の上から２枚を墓地に置く。\nジョーカーズ・クリーチャーを１体、自分の墓地から手札に戻してもよい。",
+          "race": "ジョーカーズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 2
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "race": "ジョーカーズ"
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-079.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "659493a298c90e0f6f44d527bfbf718c78ecdf4d7e810987b4e4db1c8673849d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-091",
+      "name": "チューシャ・ジューシャ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-091",
+      "faces": [
+        {
+          "name": "チューシャ・ジューシャ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが破壊された時、他のクリーチャーを１体、自分の墓地から手札に戻してもよい。",
+          "race": "ファンキー・ナイトメア",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g186Other": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-091.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "e331bf6a7dcb88ac51db75796e5913dd81967d7eb69e7dc0eff705385c46a454",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp21-017",
+      "name": "デュザメの黒像",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-017",
+      "faces": [
+        {
+          "name": "デュザメの黒像",
+          "typeText": "タマシード",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "シンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、自分の山札の上から４枚を墓地に置く。その後、進化クリーチャーを２体まで、自分の墓地から手札に戻す。",
+          "race": "デーモン・コマンド/レクスターズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "shinkalize": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 4
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 2,
+            "filter": {
+              "creature": true,
+              "evolution": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-017.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "b126d757b8c5ec5bddddfccaf3ea959df79687998042b77573a727af5bb88c2e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-017",
+      "name": "フェンス＝カドゥッセンス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-017",
+      "faces": [
+        {
+          "name": "フェンス＝カドゥッセンス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "このクリーチャーを自分の墓地から召喚してもよい。\nT・ブレイカー\nこのクリーチャーが出た時、カードを好きな枚数、自分の墓地から手札に戻してもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "14000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "graveSummon": true,
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": "all",
+            "optional": true,
+            "title": "手札に戻す墓地のカードを好きな枚数選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-017.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "8af128177ba3a50fee32d11b389764de6151a38384b3068c5ba8e7aa4759d17f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22sd1-010",
+      "name": "フォーク＝フォック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22sd1-010",
+      "faces": [
+        {
+          "name": "フォーク＝フォック",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から３枚を墓地に置いてもよい。そうしたら、アビスを１枚、自分の墓地から手札に戻してもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g186GraveMill": true,
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 3
+              },
+              {
+                "op": "Select",
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "race": "アビス"
+                },
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22sd1-010.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "0e3e2b655f1fb5df5bbfa1bdcfc389d6314d334d62e234f4f573b1cde72b9029",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-077",
+      "name": "凶鬼38号 キリー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-077",
+      "faces": [
+        {
+          "name": "凶鬼38号 キリー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが破壊された時、他のクリーチャーを１体、自分の墓地から手札に戻す。",
+          "race": "マフィ・ギャング",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g186Other": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-077.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "7dbe818be33919ee5a121c011671ad7aea9df30bce10f9bca30c86fd914a027c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr11-029",
+      "name": "神託の守護者 胡椒",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-029",
+      "faces": [
+        {
+          "name": "神託の守護者 胡椒",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー\nブロッカー ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが破壊された時、他のクリーチャーを１体、自分の墓地から手札に戻してもよい。",
+          "race": "オラクル/ガーディアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g186Other": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr11-029.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "a90b4f0e40e7986c69aae9d480811359954fc65b5b417e044c2901ed3d1efff5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-046",
+      "name": "聖黒 アシュライ-２",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-046",
+      "faces": [
+        {
+          "name": "聖黒 アシュライ-２",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターンの終わりに、自分の山札の上から１枚目を墓地に置く。\nこのクリーチャーが破壊された時、他のクリーチャーを１体、自分の墓地から手札に戻してもよい。\nササゲール２（ディスペクターを召喚する時、コストを２少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "シャイン・モンスター/ダーク・モンスター/ディスタス",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "sasage": 2,
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g186Other": true,
+            "optional": true
+          }
+        ],
+        "g174End": [
+          {
+            "op": "Mill",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-046.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "69260f4ea9a686d68e4eea087729c2e5a14425e34329a76d8ae5d5a563acaf4f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx10-009",
+      "name": "絶叫の影ガナル・スクリーム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx10-009",
+      "faces": [
+        {
+          "name": "絶叫の影ガナル・スクリーム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から４枚を墓地に置いてもよい。そうした場合、クリーチャーを１体、自分の墓地から手札に戻す。",
+          "race": "ゴースト/アンノイズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g186GraveMill": true,
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 4
+              },
+              {
+                "op": "Select",
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx10-009.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "0f9062076c79492b97679c0c9e9d0895b1a081d79d50d58dbfc402a883009b6d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd22-003",
+      "name": "夢幻騎士 ダースレイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd22-003",
+      "faces": [
+        {
+          "name": "夢幻騎士 ダースレイン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化-自分の闇のクリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を墓地に置いてもよい。そうした場合、クリーチャーを１体、自分の墓地から手札に戻す。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "ダーク・ナイトメア",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "civilization": "闇"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g186GraveMill": true,
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 3
+              },
+              {
+                "op": "Select",
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd22-003.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "06a71b3d3b79c7fb433f7d086cacac57282a57f43e5cba12eb9c69107967e27c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-29",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23bd5-005": 4,
+      "dmr23-033": 4,
+      "dmr16g-008": 4,
+      "dmr01-027": 4,
+      "dmr08-028": 4,
+      "sp-033": 4,
+      "dmex16-037": 4,
+      "dmr07-047": 4,
+      "dmrp19-079": 4,
+      "dmr13-091": 4,
+      "dmrp21-017": 4,
+      "dm24rp2-017": 4,
+      "dm22sd1-010": 4,
+      "dmrp04s-077": 4,
+      "dmr11-029": 4,
+      "dmrp19-046": 4,
+      "dmx10-009": 4,
+      "dmd22-003": 4
+    }
+  }
+}

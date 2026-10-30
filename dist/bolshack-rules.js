@@ -76,8 +76,8 @@ export function createBolshackRules(api){
  grants:(s,p,x)=>(s.g29Grants||[]).some(t=>t.p===p&&t.turn===s.turn&&live(s,t)?.uid===x.uid),
  snapshot(s,rows){return rows.filter(r=>{const x=s.players[r.player].battle.find(x=>x.uid===r.uid);return x&&effective(x,s).g29Arc;}).map(x=>x.uid);},
  leaving(s,p,x,snapshot){if(snapshot?.includes(x.uid))on(s,p,x,'g29_ArcLeave');},
- mainActions(s,p){return s.players[p].hand.filter(x=>card(x).bad===3&&!creatures(s,1-p).some(x=>effective(x,s).noCostReduction)&&api.canCast(s,p,card(x),'hand')&&api.canEnter(s,p,card(x),{origin:'hand',execution:true})&&api.canPay(s,p,{...card(x),cost:Math.max(1,cost(card(x))-3)})).map(x=>({kind:'play',uid:x.uid,cardId:x.cardId,alternative:'bad',cost:api.summonCost(s,p,{...card(x),cost:Math.max(1,cost(card(x))-3)}),label:card(x).name+'をB・A・D 3で召喚（終了時に破壊）'}));},
- alternative(s,p,a){const x=s.players[p].hand.find(x=>x.uid===a.uid);cast(s,p,a.uid,false,null,0,{cost:Math.max(1,cost(card(x))-3)});delay(s,p,x,'destroy',x.cardId);},
+ mainActions(s,p){return s.players[p].hand.filter(x=>(card(x).bad===3||card(x).g175Bad)&&!creatures(s,1-p).some(x=>effective(x,s).noCostReduction)&&api.canCast(s,p,card(x),'hand')&&api.canEnter(s,p,card(x),{origin:'hand',execution:true})&&api.canPay(s,p,{...card(x),cost:Math.max(1,cost(card(x))-(card(x).g175Bad?card(x).bad:3))})).map(x=>({kind:'play',uid:x.uid,cardId:x.cardId,alternative:'bad',cost:api.summonCost(s,p,{...card(x),cost:Math.max(1,cost(card(x))-(card(x).g175Bad?card(x).bad:3))}),label:card(x).name+'をB・A・D '+card(x).bad+'で召喚（終了時に破壊）'}));},
+ alternative(s,p,a){const x=s.players[p].hand.find(x=>x.uid===a.uid);cast(s,p,a.uid,false,null,0,{cost:Math.max(1,cost(card(x))-(card(x).g175Bad?card(x).bad:3))});delay(s,p,x,'destroy',x.cardId);},
  end(s){const list=(s.g29Delays||[]).filter(x=>x.turn===s.turn);s.g29Delays=(s.g29Delays||[]).filter(x=>x.turn!==s.turn);return list.map(t=>({player:t.p,uid:t.uid,source:t.source,effect:'extended',task:{...t,op:'g29_EndMove'}}));},
  expire(s,when){if(when==='end')s.g29Grants=(s.g29Grants||[]).filter(x=>x.turn!==s.turn);}
  };

@@ -1,3 +1,38 @@
+import {TABOO202_DECK} from './fixtures/taboo202.mjs';
+import {STANDARD201_DECKS} from './fixtures/standard201.mjs';
+import {STANDARD200_DECKS} from './fixtures/standard200.mjs';
+import {STANDARD199_DECKS} from './fixtures/standard199.mjs';
+import {STANDARD198_DECKS} from './fixtures/standard198.mjs';
+import {STANDARD197_DECKS} from './fixtures/standard197.mjs';
+import {STANDARD196_DECKS} from './fixtures/standard196.mjs';
+import {STANDARD195_DECKS} from './fixtures/standard195.mjs';
+import {STANDARD194_DECKS} from './fixtures/standard194.mjs';
+import {STANDARD193_DECKS} from './fixtures/standard193.mjs';
+import {STANDARD192_DECKS} from './fixtures/standard192.mjs';
+import {STANDARD191_DECKS} from './fixtures/standard191.mjs';
+import {STANDARD190_DECKS} from './fixtures/standard190.mjs';
+import {STANDARD189_DECKS} from './fixtures/standard189.mjs';
+import {STANDARD188_DECKS} from './fixtures/standard188.mjs';
+import {STANDARD187_DECKS} from './fixtures/standard187.mjs';
+import {STANDARD186_DECKS} from './fixtures/standard186.mjs';
+import {STANDARD185_DECKS} from './fixtures/standard185.mjs';
+import {STANDARD184_DECKS} from './fixtures/standard184.mjs';
+import {STANDARD183_DECKS} from './fixtures/standard183.mjs';
+import {STANDARD182_DECKS} from './fixtures/standard182.mjs';
+import {STANDARD181_DECKS} from './fixtures/standard181.mjs';
+import {STANDARD180_DECKS} from './fixtures/standard180.mjs';
+import {STANDARD179_DECKS} from './fixtures/standard179.mjs';
+import {STANDARD178_DECKS} from './fixtures/standard178.mjs';
+import {STANDARD177_DECKS} from './fixtures/standard177.mjs';
+import {STANDARD176_DECKS} from './fixtures/standard176.mjs';
+import {STANDARD175_DECKS} from './fixtures/standard175.mjs';
+import {STANDARD174_DECKS} from './fixtures/standard174.mjs';
+import {STANDARD173_DECKS} from './fixtures/standard173.mjs';
+import {STANDARD172_DECKS} from './fixtures/standard172.mjs';
+import {STANDARD171_DECKS} from './fixtures/standard171.mjs';
+import {STANDARD170_DECKS} from './fixtures/standard170.mjs';
+import {STANDARD169_DECKS} from './fixtures/standard169.mjs';
+import {STANDARD168_DECKS} from './fixtures/standard168.mjs';
 import {PHOTO167_DECKS} from './fixtures/photo167.mjs';
 import {STANDARD166_DECKS} from './fixtures/standard166.mjs';
 import {STANDARD165_DECKS} from './fixtures/standard165.mjs';
@@ -104,7 +139,7 @@ if(validateDeck(PHOTO_BOLSHACK).length||registry.coverage(PHOTO_BOLSHACK).unsupp
 
 if(validateDeck(PHOTO_WATER_MADO).length||registry.coverage(PHOTO_WATER_MADO).unsupported)throw Error('画像の水魔導具40枚が未対応です');console.log('Checked the screenshot water-mado deck: 40 supported copies.');
 
-if(Object.keys(CARD_IMAGES).length!==supported.length||supported.some(c=>!/^https:\/\/dm\.takaratomy\.co\.jp\/wp-content\/card\/cardimage\/[A-Za-z0-9_.-]+\.(jpg|png|webp)$/.test(CARD_IMAGES[c.id]||'')))throw Error('実カード画像の参照が不足しています');console.log('Checked actual card image URLs for all '+supported.length+' supported cards.');
+if(Object.keys(CARD_IMAGES).length!==supported.length||supported.some(c=>!/^https:\/\/dm\.takaratomy\.co\.jp\/wp-content\/card\/cardimage\/[A-Za-z0-9_.+-]+\.(jpg|png|webp)$/.test(CARD_IMAGES[c.id]||'')))throw Error('実カード画像の参照が不足しています');console.log('Checked actual card image URLs for all '+supported.length+' supported cards.');
 
 if(validateDeck(PHOTO_DARK_MADO).length||registry.coverage(PHOTO_DARK_MADO).unsupported)throw Error('画像の闇魔導具40枚が未対応です');console.log('Checked the screenshot dark-mado deck: 40 supported copies.');
 
@@ -248,3 +283,72 @@ for(const d of STANDARD165_DECKS)if(validateDeck(d).length||registry.coverage(d)
 for(const d of STANDARD166_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第166段階の共通能力検証用40枚を確認してください：'+d.name);console.log('Checked all fifteen phase166 decks: 142 new names in legal forty-card lists.');
 
 for(const d of PHOTO167_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('写真167の40枚を確認してください：'+d.name);console.log('Checked both photographed phase167 decks: all eighty slots supported.');
+
+for(const d of STANDARD168_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第168段階の40枚を確認してください：'+d.name);console.log('Checked all three phase168 decks: seventeen new names supported.');
+
+for(const d of STANDARD169_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第169段階の40枚を確認してください：'+d.name);console.log('Checked both phase169 decks: nineteen new names supported.');
+
+for(const d of STANDARD170_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第170段階の40枚を確認してください：'+d.name);console.log('Checked all five phase170 decks: forty-seven new names supported.');
+
+for(const d of STANDARD171_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第171段階の40枚を確認してください：'+d.name);console.log('Checked all four phase171 decks: thirty-three new names supported.');
+
+for(const d of STANDARD172_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第172段階の40枚を確認してください：'+d.name);console.log('Checked all five phase172 decks: thirty-eight new names supported.');
+
+for(const d of STANDARD173_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第173段階の40枚を確認してください：'+d.name);console.log('Checked all three phase173 decks: twenty-two new names supported.');
+
+for(const d of STANDARD174_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第174段階の40枚を確認してください：'+d.name);console.log('Checked all three phase174 decks: nineteen new names supported.');
+
+for(const d of STANDARD175_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第175段階の40枚を確認してください：'+d.name);console.log('Checked phase175 forty-card deck: five new names supported.');
+
+for(const d of STANDARD176_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第176段階の40枚を確認してください：'+d.name);console.log('Checked phase176 forty-card deck: six new names supported.');
+
+for(const d of STANDARD177_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第177段階の40枚を確認してください：'+d.name);console.log('Checked two phase177 forty-card decks: eleven new names supported.');
+
+for(const d of STANDARD178_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第178段階の40枚を確認してください：'+d.name);console.log('Checked phase178 forty-card deck: nine new names supported.');
+
+for(const d of STANDARD179_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第179段階の40枚を確認してください：'+d.name);console.log('Checked phase179 forty-card deck: five new names supported.');
+
+for(const d of STANDARD180_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第180段階の40枚を確認してください：'+d.name);console.log('Checked two phase180 forty-card decks: fourteen new names supported.');
+
+for(const d of STANDARD181_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第181段階の40枚を確認してください：'+d.name);console.log('Checked phase181 forty-card deck: eight new names supported.');
+
+for(const d of STANDARD182_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第182段階の40枚を確認してください：'+d.name);console.log('Checked two phase182 forty-card decks: eleven new names supported.');
+
+for(const d of STANDARD183_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第183段階の40枚を確認してください：'+d.name);console.log('Checked phase183 forty-card deck: nine new names supported.');
+
+for(const d of STANDARD184_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第184段階の40枚を確認してください：'+d.name);console.log('Checked three phase184 forty-card decks: twenty-five new names supported.');
+
+for(const d of STANDARD185_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第185段階の40枚を確認してください：'+d.name);console.log('Checked two phase185 forty-card decks: seventeen new names supported.');
+
+for(const d of STANDARD186_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第186段階の40枚を確認してください：'+d.name);console.log('Checked two phase186 forty-card decks: eighteen new names supported.');
+
+for(const d of STANDARD187_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第187段階の40枚を確認してください：'+d.name);console.log('Checked five phase187 forty-card decks: forty new names supported.');
+
+for(const d of STANDARD188_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第188段階の40枚を確認してください：'+d.name);console.log('Checked two phase188 forty-card decks: eighteen new names supported.');
+
+for(const d of STANDARD189_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第189段階の40枚を確認してください：'+d.name);console.log('Checked phase189 forty-card deck: five new names supported.');
+
+for(const d of STANDARD190_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第190段階の40枚を確認してください：'+d.name);console.log('Checked three phase190 forty-card decks: twenty new names supported.');
+
+for(const d of STANDARD191_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第191段階の40枚を確認してください：'+d.name);console.log('Checked phase191 forty-card deck: five new names supported.');
+
+for(const d of STANDARD192_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第192段階の40枚を確認してください：'+d.name);console.log('Checked two phase192 forty-card decks: thirteen new names supported.');
+
+for(const d of STANDARD193_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第193段階の40枚を確認してください：'+d.name);console.log('Checked phase193 forty-card deck: seven new names supported.');
+
+for(const d of STANDARD194_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第194段階の40枚を確認してください：'+d.name);console.log('Checked phase194 forty-card deck: six new names supported.');
+
+for(const d of STANDARD195_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第195段階の40枚を確認してください：'+d.name);console.log('Checked phase195 forty-card deck: nine new names supported.');
+
+for(const d of STANDARD196_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第196段階の40枚を確認してください：'+d.name);console.log('Checked phase196 forty-card deck: nine new names supported.');
+
+for(const d of STANDARD197_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第197段階の40枚を確認してください：'+d.name);console.log('Checked phase197 forty-card deck: ten new names supported.');
+
+for(const d of STANDARD198_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第198段階の40枚を確認してください：'+d.name);console.log('Checked phase198 forty-card deck: twelve new names supported.');
+
+for(const d of STANDARD199_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第199段階の40枚を確認してください：'+d.name);console.log('Checked phase199 forty-card deck: ten new names supported.');
+
+for(const d of STANDARD200_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第200段階の40枚を確認してください：'+d.name);console.log('Checked phase200 forty-card deck: six new names supported.');
+
+for(const d of STANDARD201_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第201段階の40枚を確認してください：'+d.name);console.log('Checked phase201 forty-card decks: fifteen new names supported.');
+if(validateDeck(TABOO202_DECK).length||registry.coverage(TABOO202_DECK).unsupported||TABOO202_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第202段階の40枚を確認してください');console.log('Checked phase202 forty-card deck: 深淵の禁忌 アビスベル=ジャシン帝 supported.');

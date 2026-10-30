@@ -1,0 +1,1325 @@
+{
+  "phase": 184,
+  "checkedAt": "2026-10-29",
+  "description": "選択する能力とマナを墓地に置く効果を完全照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp2-068",
+      "name": "アチコチ・鳴・ピッピ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-068",
+      "faces": [
+        {
+          "name": "アチコチ・鳴・ピッピ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、次のうちいずれか１つを選ぶ。\n▶相手の「ブロッカー」を持つクリーチャーを１体選び、破壊する。\n▶カードを１枚引く。",
+          "race": "アーマード・ファイアー・バード",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手の「ブロッカー」を持つクリーチャーを１体選び、破壊する。",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "blocker": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "カードを１枚引く。",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-068.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "016f7a1a545821b5c8cb2a11cc8b0ac204c13600245829d233c65ddf43b4844e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex01-018",
+      "name": "カラフル・ナスオ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex01-018",
+      "faces": [
+        {
+          "name": "カラフル・ナスオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から４枚をタップしてマナゾーンに置く。その後、自分のマナゾーンのカードを４枚、墓地に置く。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 4,
+            "tapped": true
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "grave",
+            "n": 4,
+            "g184ManaLoss": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex01-018.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "89b327056f71054143cf3b3d6f1ec856c7f3f059e6d5ad5d9d4cc00158627ad1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx11-059",
+      "name": "クリクリ・イガラーズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-059",
+      "faces": [
+        {
+          "name": "クリクリ・イガラーズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、次のうちいずれかひとつを選ぶ。\n▼クリーチャーを１体、自分の墓地からマナゾーンにタップして置く。\n▼クリーチャーを１体、自分のマナゾーンから手札に戻す。",
+          "race": "ワイルド・ベジーズ/アンノイズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "クリーチャーを１体、自分の墓地からマナゾーンにタップして置く。",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "grave",
+                    "to": "mana",
+                    "n": 1,
+                    "tapped": true,
+                    "filter": {
+                      "creature": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "クリーチャーを１体、自分のマナゾーンから手札に戻す。",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "mana",
+                    "to": "hand",
+                    "n": 1,
+                    "filter": {
+                      "creature": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx11-059.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "16bad2aadd23618b3275dd4a1e53bee3b2e02569833233566f9acdb32ba1779f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-082",
+      "name": "ゴロザウルス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-082",
+      "faces": [
+        {
+          "name": "ゴロザウルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、次のうちいずれか１つを選ぶ。 __相手の「ブロッカー」を持つクリーチャーを１体破壊する。 __相手のパワー1000以下のクリーチャーを１体破壊する。",
+          "race": "ロック・ビースト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "blocker": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "相手のパワー1000以下のクリーチャーを１体破壊する。",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 1000
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-082.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "84cccfe191e3f268e367652c058ebf8fba8f9b001c1efd935dd3c51563fee65c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr03-047",
+      "name": "ジオ・ナスディーノ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-047",
+      "faces": [
+        {
+          "name": "ジオ・ナスディーノ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、カードを１枚、自分のマナゾーンから墓地に置く。その後、カードを１枚引いてもよい。",
+          "race": "ワイルド・ベジーズ/エイリアン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "grave",
+            "n": 1,
+            "g184ManaLoss": true
+          },
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-047.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "5af5b885e80aaf1ca0174c17b18c4fa9de231021eda1af4a173477b26be2f8c0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-047",
+      "name": "ダンディ・ライフ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-047",
+      "faces": [
+        {
+          "name": "ダンディ・ライフ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から２枚を、タップしてマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 2,
+            "tapped": true
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "grave",
+            "n": 1,
+            "g184ManaLoss": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-047.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "20fd29fdcf5d0098c7298e8020e95c00bace1709c5837c03378fcb9d68ff2c14",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx22a-037",
+      "name": "デュエマ・ボーイ ダイキ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22a-037",
+      "faces": [
+        {
+          "name": "デュエマ・ボーイ ダイキ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーがバトルゾーンに出た時、次のうちいずれかひとつを選ぶ。 ▼カードを１枚引く。 ▼自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "ヒューマノイド/ヒーロー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "カードを１枚引く。",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "自分の山札の上から１枚目をマナゾーンに置く。",
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22a-037.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "d5da1143c8835157e8936674dc8d2d0cc4f5271ce958b090ccbf55bcdfe1d7dc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp15-094",
+      "name": "ドクバリ変怪",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-094",
+      "faces": [
+        {
+          "name": "ドクバリ変怪",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、次のうちいずれか１つを選ぶ。\n▶︎相手の手札を１枚見ないで選び、捨てさせる。\n▶︎自分の手札を１枚捨て、その後、カードを２枚引く。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手の手札を１枚見ないで選び、捨てさせる。",
+                "defs": [
+                  {
+                    "op": "Discard",
+                    "n": 1,
+                    "random": true
+                  }
+                ]
+              },
+              {
+                "label": "自分の手札を１枚捨て、その後、カードを２枚引く。",
+                "defs": [
+                  {
+                    "op": "Discard",
+                    "owner": "self",
+                    "n": 1
+                  },
+                  {
+                    "op": "Draw",
+                    "n": 2
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-094.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "3f72ede6cdf3388f82a7efa52804da4f05a2b0352f27110f1968af6245fbac7a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-086",
+      "name": "バッドドッグ・プレス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-086",
+      "faces": [
+        {
+          "name": "バッドドッグ・プレス",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の手札を１枚捨て、その後、カードを２枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          },
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-086.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "15945eba3043980a46888dafacc0824c3dd94126a93bbb46e70fbfc6950ba70a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp07-080",
+      "name": "ピーター・バーガー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-080",
+      "faces": [
+        {
+          "name": "ピーター・バーガー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の手札を１枚捨て、その後、カードを１枚引く。",
+          "race": "ジョーカーズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-080.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "cc5036c73fcf01ad972d66682a13fd292b50bff8d03e80ded475db603bd725b3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy16-sp3d08",
+      "name": "ブルマン・チュリス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-sp3d08",
+      "faces": [
+        {
+          "name": "ブルマン・チュリス",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "NEO進化：自分の火のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが攻撃する時、自分の手札を１枚捨て、その後、カードを１枚引く。",
+          "race": "ビートジョッキー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-sp3d08.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "b12823d294d7112db706e7ddd1afa67ef8a818cf5ee98bf81d36b2f9ebd0c4ef",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd14-006",
+      "name": "ヘットルとフエートル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd14-006",
+      "faces": [
+        {
+          "name": "ヘットルとフエートル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、次のうちいずれか１つを選ぶ。\n▶相手の「ブロッカー」を持つクリーチャーを１体破壊する。\n▶自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "ジョーカーズ/チーム切札",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "blocker": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "自分の山札の上から１枚目をマナゾーンに置く。",
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd14-006.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "f2e0d74d76c4df968553d5a9395787f298498a1c2d2cd97b372a79da7ef27c4e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex2-058",
+      "name": "ボルシャック・大河・ルピア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-058",
+      "faces": [
+        {
+          "name": "ボルシャック・大河・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、次のうちいずれか１つを選ぶ。\n▶相手のパワー3000以下のクリーチャーをすべて破壊する。\n▶相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "アーマード・ドラゴン/ファイアー・バード",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のパワー3000以下のクリーチャーをすべて破壊する。",
+                "defs": [
+                  {
+                    "op": "Sweep",
+                    "to": "grave",
+                    "filter": {
+                      "creature": true,
+                      "maxPower": 3000
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "mana"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex2-058.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "cff3790e691c76c51ec959c5d300f794741d01650abfe30178ed804ccbba186a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-051",
+      "name": "炎龍神の翔天 コルピア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-051",
+      "faces": [
+        {
+          "name": "炎龍神の翔天 コルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが出た時、自分の手札を１枚捨て、その後、カードを１枚引く。",
+          "race": "ファイアー・バード/ディスタス",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-051.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "95d3032f2fd23c92629156b194d78df6e444d0bf25e47b44e2b8e7be57de2354",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-047",
+      "name": "鎧亜 イカロス-２",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-047",
+      "faces": [
+        {
+          "name": "鎧亜 イカロス-２",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、次のうちいずれか１つを選ぶ。\n▶相手のクリーチャーを１体選びタップする。\n▶相手のコスト３以下のクリーチャーを１体破壊する。\nササゲール２（ディスペクターを召喚する時、コストを２少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "ロスト・クルセイダー/ディスタス",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "sasage": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のクリーチャーを１体選びタップする。",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "tap": true
+                  }
+                ]
+              },
+              {
+                "label": "相手のコスト３以下のクリーチャーを１体破壊する。",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "max": 3
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-047.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "0f65c354953c4fcec8bd59c4ef99f9e9ddcd6353e09e8389858aad222302a24e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm15-005",
+      "name": "護法僧リョクドウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-005",
+      "faces": [
+        {
+          "name": "護法僧リョクドウ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分のワンダー・トリック１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から２枚を自分のマナゾーンに置く。その後、クリーチャーを１体、自分のマナゾーンから手札に戻す。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ワンダー・トリック",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "ワンダー・トリック"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 2
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm15-005.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "04fb3296a5bf648cc4708d575adf3a28b06712b12e639461555ce2f78db79a7b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp3-075",
+      "name": "轟速奪取 トップギジャ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-075",
+      "faces": [
+        {
+          "name": "轟速奪取 トップギジャ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのクリーチャーが出た時、自分の山札の上から１枚をマナゾーンに置く。\nこのクリーチャーが破壊された時、カードを１枚、自分のマナゾーンから墓地に置く。",
+          "race": "アウトレイジ/侵略者",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "grave",
+            "n": 1,
+            "g184ManaLoss": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-075.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "bc20cfb9dd364f7107c7f9ad4281993fd9d13b42d014e30831143760940dda12",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp12-090",
+      "name": "取り替わる取引 オースター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-090",
+      "faces": [
+        {
+          "name": "取り替わる取引 オースター",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の手札を２枚捨て、その後、カードを２枚引く。",
+          "race": "アウトレイジ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 2
+          },
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-090.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "bac01ed10e1e6e6add5f6e2869cae964193defa731c868bdbd38b287a1d205a4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-077",
+      "name": "樹瓜の菜将 カンバーナイト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-077",
+      "faces": [
+        {
+          "name": "樹瓜の菜将 カンバーナイト",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーを、自分のマナゾーンから召喚してもよい。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから墓地に置く。",
+          "race": "デーモン・コマンド/ワイルド・ベジーズ/不死樹王国",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "manaSummon": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "grave",
+            "n": 1,
+            "g184ManaLoss": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-077.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "c96ca92393c952695c6698250e2136c5db669435ec3f62c63808e2f9b1221589",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd09-003",
+      "name": "双砲 ロードスター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd09-003",
+      "faces": [
+        {
+          "name": "双砲 ロードスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーをバトルゾーンに出した時、カードを１枚、自分のマナゾーンから墓地に置く。\nW・ブレイカー",
+          "race": "アウトレイジ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "grave",
+            "n": 1,
+            "g184ManaLoss": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd09-003.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "90c96e7f167857ed2adfc8d2a541ef30770c077407a67f00e1a40986dbf22b2a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp12-095",
+      "name": "増神兵ドコンジョダー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-095",
+      "faces": [
+        {
+          "name": "増神兵ドコンジョダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃する時、自分の手札を１枚捨て、その後、カードを１枚引く。",
+          "race": "アーマロイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-095.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "576dfc0b95e54b90a1db3477e64ff91ef8f0af91b28808bb3f8e5c5ef680be07",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-074",
+      "name": "蓄暗呪文「デスイキル・チャージャー」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-074",
+      "faces": [
+        {
+          "name": "蓄暗呪文「デスイキル・チャージャー」",
+          "typeText": "呪文",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の山札の上から２枚をタップしてマナゾーンに置く。その後、カードを２枚、自分のマナゾーンから墓地に置く。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 2,
+            "tapped": true
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "grave",
+            "n": 2,
+            "g184ManaLoss": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-074.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "36c73413ea10244a425cde01364b8d87f28b655b4998aa185f6ef0c57cbddbc4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd13-004",
+      "name": "伝説の秘法 超動",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd13-004",
+      "faces": [
+        {
+          "name": "伝説の秘法 超動",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれかひとつを選ぶ。 　▼カードを２枚引く。 　▼相手のパワー3000以下のクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "カードを２枚引く。",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2
+                  }
+                ]
+              },
+              {
+                "label": "相手のパワー3000以下のクリーチャーを１体破壊する。",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 3000
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd13-004.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "9fe834c6722575e367c6f2a67a5f09a35b9ce387dca231e9c1b94f5e5a0625de",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-051",
+      "name": "網斧の天秤",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-051",
+      "faces": [
+        {
+          "name": "網斧の天秤",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれかひとつを選ぶ。▼カードを１枚、自分のマナゾーンから手札に戻す。▼相手のパワー5000以下のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "カードを１枚、自分のマナゾーンから手札に戻す。",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "mana",
+                    "to": "hand",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "相手のパワー5000以下のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "mana",
+                    "filter": {
+                      "maxPower": 5000
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-051.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "05319ad7da46555e4cc35f603462c00350456b34b30aa266d87cdcb7eee65488",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-045",
+      "name": "隕襲電融 メテオスナイパー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-045",
+      "faces": [
+        {
+          "name": "隕襲電融 メテオスナイパー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分の手札を１枚捨て、カードを２枚引く。",
+          "race": "ディスペクター/アーマード・ドラゴン/リキッド・ピープル",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "exLife": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          },
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-045.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "39766b603efbb540cc83d87e8b8380f84fa23719f7c0fd7b16d2cddb9783cb90",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-29",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp2-068": 4,
+      "dmex01-018": 4,
+      "dmx11-059": 4,
+      "dmrp01-082": 4,
+      "dmr03-047": 4,
+      "dmrp20-047": 4,
+      "dmx22a-037": 4,
+      "dmrp15-094": 4,
+      "dmrp04s-086": 4,
+      "dmrp07-080": 4,
+      "promoy16-sp3d08": 4,
+      "dmsd14-006": 4,
+      "dm24ex2-058": 4,
+      "dmrp20-051": 4,
+      "dmrp19-047": 4,
+      "dm15-005": 4,
+      "dm25rp3-075": 4,
+      "dmrp12-090": 4,
+      "dmex14-077": 4,
+      "dmd09-003": 4,
+      "dmrp12-095": 4,
+      "dm23rp4-074": 4,
+      "dmd13-004": 4,
+      "dmr19-051": 4,
+      "dmrp17-045": 4
+    }
+  }
+}

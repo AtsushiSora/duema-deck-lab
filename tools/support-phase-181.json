@@ -1,0 +1,354 @@
+{
+  "phase": 181,
+  "checkedAt": "2026-10-29",
+  "description": "ドロー後の手札交換、ランダム手札破壊、タップ状態のマナ加速を完全照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dm25ex1-085",
+      "name": "トテントン&ボントボ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-085",
+      "faces": [
+        {
+          "name": "トテントン&ボントボ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "T・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーが出た時、自分の山札の上から２枚をタップしてマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻す。",
+          "race": "グランセクト",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 2,
+            "tapped": true
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex1-085.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "58cd74f3785b8152f4549c857e7d04c58d633372a06292243a5a2ff7309bdf50",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp1-032",
+      "name": "フェイト・ガルペンター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-032",
+      "faces": [
+        {
+          "name": "フェイト・ガルペンター",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nこのクリーチャーが出た時、カードを３枚引き、自分の手札を３枚捨てる。",
+          "race": "マーフォーク",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 3
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-032.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "3306a603ba08472d4cabc2dc64d257655ebe895a166ed7da6309d66a2d833da7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-069",
+      "name": "海郷 エマジェン-１",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-069",
+      "faces": [
+        {
+          "name": "海郷 エマジェン-１",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが破壊された時、カードを２枚引き、その後、自分の手札を１枚捨てる。\nササゲール１（ディスペクターを召喚する時、コストを１少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "ムートピア/ディスタス",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "sasage": 1,
+        "g172Death": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-069.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "6ff41aa02cdd737b15f3167a020729b3dde52c4aee30e1b595c2137490739213",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd16-014",
+      "name": "戯具 ドゥゲンダ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd16-014",
+      "faces": [
+        {
+          "name": "戯具 ドゥゲンダ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、カードを２枚引き、その後、自分の手札を２枚捨てる。",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd16-014.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "36dbf817ca2f2b755217829975bd64a50c0c6ce9f3237cb4ed4b5595d017d5bc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc44-006",
+      "name": "幻槍のジルコン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc44-006",
+      "faces": [
+        {
+          "name": "幻槍のジルコン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー\nこのクリーチャーは攻撃することができない。\nこのクリーチャーをバトルゾーンに出した時、カードを１枚引き、その後、自分の手札を１枚捨てる。",
+          "race": "スピリット・クォーツ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc44-006.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "414a61ca1f8b356c230b003e517368152f142e042ac0c2401f9ce83dee7a00a5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp08-070",
+      "name": "旋風大好き ツルギーオ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-070",
+      "faces": [
+        {
+          "name": "旋風大好き ツルギーオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、カードを１枚引き、その後、自分の手札を１枚捨てる。",
+          "race": "ムートピア",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-070.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "1e0231eac396f3af1aa2ec014bc5aa0ce5d10463596d0dcb34c7173bc051b25c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04m-050",
+      "name": "堕魔 グリペイジ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-050",
+      "faces": [
+        {
+          "name": "堕魔 グリペイジ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、相手の手札を見ないで１枚選び、捨てさせる。",
+          "race": "マフィ・ギャング/魔導具",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1,
+            "random": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04m-050.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "4174d8d61a2298d26ac67ecc3bba8b69b62ae255b61ad58fe3e5106c9ebcfe9c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-092",
+      "name": "注射人形エミリー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-092",
+      "faces": [
+        {
+          "name": "注射人形エミリー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが破壊された時、相手の手札を見ないで１枚選び、捨てさせる。",
+          "race": "デスパペット",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Discard",
+            "n": 1,
+            "random": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-092.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "2bee3512117e94ec39b13abccae89d2227e1bb5cb02fbc79db63341bbb86b9b6",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-29",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25ex1-085": 4,
+      "dm26rp1-032": 4,
+      "dmrp18-069": 4,
+      "dmsd16-014": 4,
+      "dmc44-006": 4,
+      "dmrp08-070": 4,
+      "dmrp04m-050": 4,
+      "dm36-092": 4
+    }
+  }
+}

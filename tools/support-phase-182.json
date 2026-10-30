@@ -1,0 +1,514 @@
+{
+  "phase": 182,
+  "checkedAt": "2026-10-29",
+  "description": "手札からのマナ追加とマナ回収を完全照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp1-048",
+      "name": "～王家の御曹司～",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-048",
+      "faces": [
+        {
+          "name": "～王家の御曹司～",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水/闇",
+          "civilizations": [
+            "光",
+            "水",
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－4000する。（パワー０以下のクリーチャーは破壊される）\nこのクリーチャーが離れた時、カードを１枚引いてもよい。",
+          "race": "エンジェル・コマンド/ロスト・クルセイダー/スチーム・ナイト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -4000
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-048.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "e40c8f99fe1c21c0578d4d263ecac7fe209405f8e9af6fbb58af889e402009da",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-035",
+      "name": "スナイプ・バグ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-035",
+      "faces": [
+        {
+          "name": "スナイプ・バグ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが破壊された時、カードを１枚、自分のマナゾーンから自分の手札に戻す。その後、自分の山札の上から１枚目を自分のマナゾーンに置く。",
+          "race": "ジャイアント・インセクト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1
+          },
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-035.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "af4141f9ac7f566a8dcad880bfb77b789e31ecb0c7f0bcb43e6e447869362c46",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-053",
+      "name": "スナフ・マッシュルーム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-053",
+      "faces": [
+        {
+          "name": "スナフ・マッシュルーム",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが破壊された時、自分の手札を好きな枚数、自分のマナゾーンに置いてもよい。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "mana",
+            "n": "all",
+            "optional": true,
+            "title": "マナに置く手札を好きな枚数選ぶ",
+            "g182HandMana": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-053.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "9f8080ece948ea7dd1b6c85b2814c4ecc2d764b2c68bed609dd0ce2fd73387a0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-010",
+      "name": "だいこんぐ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-010",
+      "faces": [
+        {
+          "name": "だいこんぐ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の手札を好きな数、タップしてマナゾーンに置く。その後、クリーチャーを好きな数、自分のマナゾーンから手札に戻す。",
+          "race": "グランセクト",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "mana",
+            "n": "all",
+            "optional": true,
+            "title": "マナに置く手札を好きな枚数選ぶ",
+            "g182HandMana": true,
+            "tapped": true
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": "all",
+            "optional": true,
+            "title": "手札に戻すマナのクリーチャーを好きな枚数選ぶ",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-010.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "55d924cfa20bd01bca87539b55481d904c254b570e5835d2a4732e656315c48f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-059",
+      "name": "チョコっとハウス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-059",
+      "faces": [
+        {
+          "name": "チョコっとハウス",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃する時、自分の手札を１枚、マナゾーンに置く。",
+          "race": "ジョーカーズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "mana",
+            "n": 1,
+            "g182HandMana": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-059.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "aad0ef0c4afa23461297532531742b7750a6d1c118dbc0cb8763d31a3f52c61f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-060",
+      "name": "マッスル・ポテト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-060",
+      "faces": [
+        {
+          "name": "マッスル・ポテト",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してよい)\nこのクリーチャーをバトルゾーンに出した時、自分の手札を２枚まで、自分のマナゾーンに加えてもよい。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "mana",
+            "n": 2,
+            "g182HandMana": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-060.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "c758ac6a72e25230471c6f0fb7a1345848f1e06721d7c99c765bef1886483d6f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy15-029",
+      "name": "一族 ダママ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy15-029",
+      "faces": [
+        {
+          "name": "一族 ダママ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選び、タップする。その後、自分の手札を１枚、マナゾーンに置いてもよい。",
+          "race": "革命軍/ダママ団",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "mana",
+            "n": 1,
+            "g182HandMana": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy15-029.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "92c681509c2ceb886175772225961092c88a39e494d7001d4f8cd816b67497ac",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-049",
+      "name": "楽球の妖精",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-049",
+      "faces": [
+        {
+          "name": "楽球の妖精",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分の手札を１枚、マナゾーンに置いてもよい。\nこのクリーチャーが離れた時、カードを１枚、自分のマナゾーンから手札に加えてもよい。",
+          "race": "ジャイアント・スノーフェアリー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "mana",
+            "n": 1,
+            "g182HandMana": true,
+            "optional": true
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-049.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "0c87e2a13f3724c25dbf38a4a5ff9279b9044b7fe163d7d3b88f318556c71ef7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy21-084",
+      "name": "深淵の背信者 ブラック＝クラック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy21-084",
+      "faces": [
+        {
+          "name": "深淵の背信者 ブラック＝クラック",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\nこのクリーチャーが出た時、自分の手札を１枚捨てる。\nこのクリーチャーが離れた時、カードを２枚引く。",
+          "race": "アビスチャンネル/コロコロイヤル",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "abyssRush": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy21-084.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "ec360c92f44d4fd9f6da01126ed2aadbc3a8c3b4ee2bb1798cb508cf0ee3c5bf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-093",
+      "name": "大冒犬ヤッタルワン GS",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-093",
+      "faces": [
+        {
+          "name": "大冒犬ヤッタルワン GS",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのクリーチャーが出た時、自分の手札を１枚マナゾーンに置いてもよい。",
+          "race": "ドリームメイト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "mana",
+            "n": 1,
+            "g182HandMana": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-093.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "85ae0c4be69912f5d8c93ac9f4a08e539e7c942c87a0855c15c6ec6f543df4af",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-104",
+      "name": "暴芋の鋼体",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-104",
+      "faces": [
+        {
+          "name": "暴芋の鋼体",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の手札を１枚、マナゾーンに置く。",
+          "race": "ワイルド・ベジーズ/暴拳王国",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "mana",
+            "n": 1,
+            "g182HandMana": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-104.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "c98644c44e991be80815d9199c75ddf667c7ec992e0598708186e6024234638e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-29",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp1-048": 4,
+      "dm14-035": 4,
+      "dm16-053": 4,
+      "dmrp04s-010": 4,
+      "dmrp02-059": 4,
+      "dm10-060": 4,
+      "promoy15-029": 4,
+      "dm23rp1-049": 4,
+      "promoy21-084": 4,
+      "dmrp19-093": 4,
+      "dmex14-104": 4
+    }
+  }
+}

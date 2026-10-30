@@ -1,0 +1,229 @@
+{
+  "phase": 179,
+  "checkedAt": "2026-10-29",
+  "description": "味方の手札戻し、相手へのドロー、相手ターン開始時の能力を完全照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp4-066",
+      "name": "オア:ナテハ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-066",
+      "faces": [
+        {
+          "name": "オア:ナテハ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、相手の手札を１枚見ないで選び、捨てさせる。\nこのクリーチャーが破壊された時、相手はカードを１枚引く。",
+          "race": "ノワールアビス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1,
+            "random": true
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "Draw",
+            "owner": "opponent",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-066.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "4af2a8e07d9a85d9968f9895c4076a39d8f653a683970c54163d9f65370d3f0f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-039",
+      "name": "愛されし者 イルカイル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-039",
+      "faces": [
+        {
+          "name": "愛されし者 イルカイル",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分のターンの終わりに、自分のクリーチャーを１体、手札に戻してもよい。",
+          "race": "ムートピア",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g174End": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "hand",
+            "g179Return": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-039.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "626a0fe31aa86e71cda05c28f7d44ee4ea799c1d683028f082e4a17327ec7f65",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-030",
+      "name": "炎勢混成 ガウスルヴィス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-030",
+      "faces": [
+        {
+          "name": "炎勢混成 ガウスルヴィス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n相手のターンのはじめに、相手のクリーチャーを１体選びタップする。",
+          "race": "ディスペクター/エンジェル・コマンド/ティラノ・ドレイク",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "exLife": true,
+        "breaker": 2,
+        "g179OpponentStart": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-030.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "16ab7625a1e14eaa466f910275a4f177a4f60e0d28ae7e9957728705b9e7457b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp03-070",
+      "name": "貝獣 アリサ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-070",
+      "faces": [
+        {
+          "name": "貝獣 アリサ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の他のクリーチャーを１体、手札に戻してもよい。",
+          "race": "ムートピア",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "hand",
+            "g179Return": true,
+            "g179Other": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-070.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "001834959ed4635898dbc1362ec05124a86153b7800f8f6596a4a95d4fa52dd9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-036",
+      "name": "冬の日スパイラル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-036",
+      "faces": [
+        {
+          "name": "冬の日スパイラル",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、持ち主の手札に戻す。\n自分のクリーチャーを１体手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "hand"
+          },
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "hand",
+            "g179Return": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-036.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "efae4d517a89f24e9e4b85339cd21eccf4338306a6be5763da5ac1a8014d6c00",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-29",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp4-066": 4,
+      "dmrp01-039": 4,
+      "dmrp19-030": 4,
+      "dmrp03-070": 4,
+      "dmrp20-036": 4
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import {card,effectiveCard,power,isEvolution,canUntap,abilitiesIgnored,attackLocked,canCreatureAttack,exLifeShields,getLegalActions,manaSelectionStatus,playFaces,spellIgnored} from './engine.js';
+import {card,effectiveCard,power,isEvolution,canUntap,skipsStartUntap,abilitiesIgnored,attackLocked,canCreatureAttack,exLifeShields,getLegalActions,manaSelectionStatus,playFaces,spellIgnored} from './engine.js';
 import {sourceCardCount} from './card-info.js';
 
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -28,6 +28,8 @@ export function creatureStatusModel(s,player,uid){
  if(creature){rows.push(['現在のパワー',number(power(x,x.uid===s.attack?.attacker,s))]);
   const legal=s.active===player&&s.phase==='attack'&&!s.decision?getLegalActions(s).some(a=>a.kind==='attack'&&a.uid===uid):null;
   rows.push(['攻撃',s.winner!==null?'対戦終了':reasons.length?reasons.join(' / '):legal===false?'選べる攻撃先がない':s.active!==player?'現在は'+side(s.active)+'のターン（持ち主の攻撃ステップで判定）':s.decision?'能力・支払いの選択を解決中':s.phase!=='attack'?side(player)+'の攻撃ステップで攻撃可能':'攻撃可能']);
+  if(c.g38BattleBonus)effects.push({name:'バトル中のパワー +'+number(c.g38BattleBonus),until:'この能力が有効な間（通常のパワーには含まない）'});
+  if(c.noCreatureAttack)effects.push({name:'クリーチャーには攻撃できない',until:'この能力が有効な間'});
   if(c.noPlayerAttack)effects.push({name:'相手プレイヤーには攻撃できない',until:'この能力が有効な間'});
   rows.push([isEvolution(x)?'進化元':'下のカード',sourceCardCount(x)+'枚']);
   const shields=exLifeShields(s,player,x),positions=shields.map(y=>own.shields.indexOf(y)+1);
@@ -42,7 +44,7 @@ export function creatureStatusModel(s,player,uid){
   for(const l of x.tapLocks||[])effects.push({name:'アンタップ制限',until:typeof l==='number'?'次の'+side(l)+'のターン開始まで':effectExpiry(s,{...l,expires:'start'})});
   if(x.g32NoUntap||x.g34NoUntap)effects.push({name:'アンタップ制限',until:'カードの条件を満たすまで'});
  }
- if(x.skipUntap)effects.push({name:'次の'+side(player)+'のターン開始時にアンタップしない',until:'次の'+side(player)+'のターン開始時に解除判定'});
+ if(skipsStartUntap(s,x))effects.push({name:'次の'+side(player)+'のターン開始時にアンタップしない',until:'次の'+side(player)+'のターン開始時に解除判定'});
  if(x.justDiverActive&&c.justDiver)effects.push({name:'ジャストダイバー',until:'次の'+side(player)+'のターン開始まで'});
  const sources=(x.under||[]).flatMap(layers).map(y=>({uid:y.uid,id:y.faceDown?null:y.cardId,name:y.faceDown?'裏向きのカード':card(y).name}));
  return {player,uid,position,id:x.cardId,name:card(x).name,hidden:false,rows,effects:[...new Map(effects.map(e=>[e.name+e.until,e])).values()],sources};

@@ -1,0 +1,435 @@
+{
+  "phase": 199,
+  "checkedAt": "2026-10-30",
+  "description": "相手が選ぶ手札破壊と、タップ状態・現在のパワーを条件とする除去を完全照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/42947/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37323/"
+  ],
+  "cards": [
+    {
+      "id": "dmr02-015",
+      "name": "ジェラシー・ベル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-015",
+      "faces": [
+        {
+          "name": "ジェラシー・ベル",
+          "typeText": "呪文",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n自分の手札を１枚捨てる。その後、相手は自身の手札を２枚選んで捨てる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          },
+          {
+            "op": "Discard",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr02-015.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "c3e51d1c7bbb8727a7fc5d27fd88b39c64e704d1245f8960891bb1cb602c9aa9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-051",
+      "name": "トラップ・チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-051",
+      "faces": [
+        {
+          "name": "トラップ・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n相手のタップしているクリーチャーを１体選び、持ち主のマナゾーンに置く。\nチャージャー（この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "filter": {
+              "tapped": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-051.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "d4bdb154faff804383203aebe74aac6cbbfcd2b03d6bfbb36ab658faa7e4547d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr04-041",
+      "name": "ヤミノザビグライド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-041",
+      "faces": [
+        {
+          "name": "ヤミノザビグライド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは攻撃することができない。\nこのクリーチャーが破壊された時、相手は自身の手札を１枚選んで捨てる。",
+          "race": "ダーク・モンスター/エイリアン",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g172Death": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr04-041.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "16927f23ba66465e28f6486111a6dbe89cc4e34b2b39bed87a4d7db5c3d325db",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-071",
+      "name": "悪魔 ガンヴィ-２",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-071",
+      "faces": [
+        {
+          "name": "悪魔 ガンヴィ-２",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが破壊された時、相手のタップしているクリーチャーを１体破壊する。\nササゲール２（ディスペクターを召喚する時、コストを２少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "デーモン・コマンド/ディスタス",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "sasage": 2,
+        "g172Death": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "tapped": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-071.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "1dfabc5dc26a559c396edaa3e1aca90aab1e2ca1c12dc7512515f437ee116a2b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-039",
+      "name": "光獅接続 シャウライガー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-039",
+      "faces": [
+        {
+          "name": "光獅接続 シャウライガー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手は自身の手札を１枚選んで捨てる。",
+          "race": "ディスペクター/デーモン・コマンド/エンジェル・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "exLife": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-039.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "bfb703f5e823e43a981b998084d7339ac4016c248d50719d61a703a07ac8e0ab",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp14-070",
+      "name": "死将バイヒコウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-070",
+      "faces": [
+        {
+          "name": "死将バイヒコウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンを離れた時、相手は自身の手札を２枚選んで捨てる。",
+          "race": "ダークロード/不死樹王国",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Leave": [
+          {
+            "op": "Discard",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-070.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "f81162a58080ecc3c1b1c91359ec4509c0c7036f85710261ba444caa43617493",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-089",
+      "name": "消男",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-089",
+      "faces": [
+        {
+          "name": "消男",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは攻撃することができない。\nこのクリーチャーがブロックした時、相手は自身の手札を１枚選んで捨てる。",
+          "race": "ヘドリアン/エイリアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g178Block": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-089.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "27ca80a4f6686f06b905a83a9f86ead04c1b38df86ff838647a768487fbb591e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd04-003",
+      "name": "西部人形ザビ・バレル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd04-003",
+      "faces": [
+        {
+          "name": "西部人形ザビ・バレル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは攻撃することができない。\nこのクリーチャーをバトルゾーンに出した時、相手は自身の手札を１枚選んで捨てる。",
+          "race": "デスパペット/エイリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd04-003.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "b49a5b3df84b89e48593002154abcd762e5f7623ef6bd942fdddb42828503961",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp11-085",
+      "name": "反射秘宝 ドハティ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-085",
+      "faces": [
+        {
+          "name": "反射秘宝 ドハティ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが破壊された時、相手は自身の手札を１枚選んで捨てる。",
+          "race": "パンドラボックス",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "g172Death": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-085.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "7306feee30f2222f25355a190a27156788bea30ec23ddcff984c040c55d07181",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd11-011",
+      "name": "無法のレイジクリスタル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd11-011",
+      "faces": [
+        {
+          "name": "無法のレイジクリスタル",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにある相手の、パワー6000以上のクリーチャーを１体選び、持ち主の手札に戻す。その後、相手のパワー6000以下のクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "hand",
+            "filter": {
+              "minPower": 6000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 6000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd11-011.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "6b41b2b85550e12c25604f6ddda432f047e6b713e7bf53aad7b0dfc188d2914d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-30",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr02-015": 4,
+      "dmr21-051": 4,
+      "dmr04-041": 4,
+      "dmrp20-071": 4,
+      "dmrp17-039": 4,
+      "dmrp14-070": 4,
+      "dmr05-089": 4,
+      "dmd04-003": 4,
+      "dmrp11-085": 4,
+      "dmd11-011": 4,
+      "dmr22-017": 0
+    }
+  },
+  "deferred": [
+    {
+      "id": "dmr22-017",
+      "name": "裏切りの魔狼月下城",
+      "reason": "公式の現行プレミアム殿堂。固定の当時構成がないため今回の通常対戦追加から除外。",
+      "source": "https://dm.takaratomy.co.jp/rule/regulation/"
+    }
+  ]
+}

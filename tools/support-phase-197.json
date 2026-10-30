@@ -1,0 +1,516 @@
+{
+  "phase": 197,
+  "checkedAt": "2026-10-30",
+  "description": "解決時のマナ武装条件によるタップ・除去・ドロー・手札破壊・マナ加速を完全照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/40025/",
+    "https://dm.takaratomy.co.jp/rule/qa/45939/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp20-062",
+      "name": "Disヴァルチャ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-062",
+      "faces": [
+        {
+          "name": "Disヴァルチャ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nマナ武装 ４：このクリーチャーが出た時、自分のマナゾーンに多色カードが４枚以上あれば、相手のクリーチャーを１体選び、タップする。 次の相手のターンのはじめに、そのクリーチャーはアンタップしない。",
+          "race": "アーク・セラフィム/ディスタス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfMana",
+            "n": 4,
+            "multi": true,
+            "defs": [
+              {
+                "op": "Target",
+                "tap": true,
+                "lock": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-062.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "b5bcaa8ef27f42291f5ce59ab1776d7722fe10cef30caebbda4eafde150e75f8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr22-052",
+      "name": "J・ゴーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-052",
+      "faces": [
+        {
+          "name": "J・ゴーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナ武装 ２：このクリーチャーが攻撃する時、自分のマナゾーンに多色カードが２枚以上あれば、カードを１枚引く。",
+          "race": "サイバー・ウイルス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "IfMana",
+            "n": 2,
+            "multi": true,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-052.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "76716d679e430aedbac19768144ffa825cf26347514cbbe902e7fd942cf4bb89",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-083",
+      "name": "アクア操縦士 ニュートン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-083",
+      "faces": [
+        {
+          "name": "アクア操縦士 ニュートン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナ武装 ３：このクリーチャーをバトルゾーンに出した時、自分のマナゾーンに水のカードが３枚以上あれば、カードを１枚引いてもよい。\nこのクリーチャーはブロックされない。",
+          "race": "リキッド・ピープル閃",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "unblockable": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfMana",
+            "n": 3,
+            "color": "水",
+            "defs": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-083.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "b171a2665ab1a7d95f1d03f417f50d6b0c54e6d26ec3a40b5b1a332d1f93097e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-058",
+      "name": "ジェニ・メタル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-058",
+      "faces": [
+        {
+          "name": "ジェニ・メタル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナ武装 ３-このクリーチャーが攻撃する時、自分のマナゾーンに闇のカードが３枚以上あれば、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "ファンキー・ナイトメア",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "IfMana",
+            "n": 3,
+            "color": "闇",
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 1,
+                "random": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-058.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "3a6d63260e82fcd293529e9b8bbc0bae2e674af7931067defc00c28b1a38e4ca",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr22-057",
+      "name": "ニジイロ・ホラニャン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-057",
+      "faces": [
+        {
+          "name": "ニジイロ・ホラニャン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナ武装 ２：このクリーチャーが攻撃する時、自分のマナゾーンに多色カードが２枚以上あれば、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "ファンキー・ナイトメア",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "IfMana",
+            "n": 2,
+            "multi": true,
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 1,
+                "random": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-057.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "9be1202b49659ac9c442275943d20da5923ec4fcfc3ff37c837fe9489df2ab8d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-046",
+      "name": "レインボー・ライフ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-046",
+      "faces": [
+        {
+          "name": "レインボー・ライフ",
+          "typeText": "呪文",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー3000以下のクリーチャーを１体、破壊する。\nマナ武装 ２：自分のマナゾーンに多色カードが２枚以上あれば、自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "maxPower": 3000
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "grave",
+            "title": "破壊する相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "IfMana",
+            "n": 2,
+            "multi": true,
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-046.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "2109a12072bd931b28a19711677b1e528b9c69d30791da2a6ff25dbc7edd9d7b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-107",
+      "name": "青銅の面 ナム=ダエッド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-107",
+      "faces": [
+        {
+          "name": "青銅の面 ナム=ダエッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ガードマン（自分の他のクリーチャーが攻撃される時、このクリーチャーをタップしてもよい。そうした場合、攻撃クリーチャーはかわりにこのクリーチャーを攻撃する）\nマナ武装 ３：このクリーチャーをバトルゾーンに出した時、自分のマナゾーンに自然のカードが３枚以上あれば、自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "ビーストフォーク號",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "guardman": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfMana",
+            "n": 3,
+            "color": "自然",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-107.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "4548116fc4b77d8af0ee1213b110d60366cfb2dbf60217f37c09abb1043f2173",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr22-063",
+      "name": "虹色の面 ドベラス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-063",
+      "faces": [
+        {
+          "name": "虹色の面 ドベラス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナ武装 ２：このクリーチャーが攻撃する時、自分のマナゾーンに多色カードが２枚以上あれば、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+          "race": "ビーストフォーク號",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "IfMana",
+            "n": 2,
+            "multi": true,
+            "defs": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-063.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "4a65dee75a215d36ddfca19ba22de699ef5e743a0e60d0e538ee89482f7c8360",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-092",
+      "name": "爆弾魔 タイガマイト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-092",
+      "faces": [
+        {
+          "name": "爆弾魔 タイガマイト",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナ武装 ３：このクリーチャーをバトルゾーンに出した時、自分のマナゾーンに闇のカードが３枚以上あれば、相手は自身の手札を１枚選び、捨てる。\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+          "race": "ファンキー・ナイトメア",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "slayer": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfMana",
+            "n": 3,
+            "color": "闇",
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-092.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "9745838e740f52841a1a3a2dc1e9f323c30708b6730894e3c9ee68d7284568d2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd20-008",
+      "name": "爆流剣術 紅蓮の太刀",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd20-008",
+      "faces": [
+        {
+          "name": "爆流剣術 紅蓮の太刀",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー3000以下のクリーチャーを１体破壊する。\nマナ武装 ５：自分のマナゾーンに火のカードが５枚以上あれば、相手のパワー6000以下のクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "maxPower": 3000
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "grave",
+            "title": "破壊する相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "IfMana",
+            "n": 5,
+            "color": "火",
+            "defs": [
+              {
+                "op": "Select",
+                "owner": "opponent",
+                "origin": "battle",
+                "n": 1,
+                "filter": {
+                  "creature": true,
+                  "maxPower": 6000
+                },
+                "g173Targets": true,
+                "g193Select": true,
+                "to": "grave",
+                "title": "破壊する相手のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd20-008.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "bf7884ceef8a463b4be514f244c36b36d81659008ff1216184c46dccc21136a4",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-30",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp20-062": 4,
+      "dmr22-052": 4,
+      "dmr13-083": 4,
+      "dmr18-058": 4,
+      "dmr22-057": 4,
+      "dmr23-046": 4,
+      "dmr13-107": 4,
+      "dmr22-063": 4,
+      "dmr13-092": 4,
+      "dmd20-008": 4
+    }
+  }
+}

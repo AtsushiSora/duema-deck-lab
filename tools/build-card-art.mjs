@@ -3,7 +3,7 @@ import fs from'node:fs/promises';
 import{extractName,canonicalName}from'./catalogue-parser.mjs';
 const root=new URL('../',import.meta.url),cache=new URL('tools/research/card-art/',root),out=new URL('dist/card-images.js',root),cards=JSON.parse(await fs.readFile(new URL('dist/cards.json',root),'utf8')).cards;
 await fs.mkdir(cache,{recursive:true});let records={};try{records=JSON.parse(await fs.readFile(new URL('sources.json',cache),'utf8'));}catch{}
-const official=url=>/^https:\/\/dm\.takaratomy\.co\.jp\/wp-content\/card\/(cardimage|cardthumb)\/[A-Za-z0-9_.-]+\.(?:jpg|png|webp)$/.test(url);
+const official=url=>/^https:\/\/dm\.takaratomy\.co\.jp\/wp-content\/card\/(cardimage|cardthumb)\/[A-Za-z0-9_.+-]+\.(?:jpg|png|webp)$/.test(url);
 const reference=JSON.parse(await fs.readFile(new URL('tools/image-reference-prints.json',root),'utf8')).prints;
 for(const c of cards){const r=reference.find(r=>r.id===c.id&&r.canonicalId===c.id&&canonicalName(r.name)===canonicalName(c.name));if(r&&official(r.image))records[c.id]={name:c.name,source:c.source,image:r.image,checkedAt:'2026-10-24'};}
 const pending=cards.filter(c=>!records[c.id]||canonicalName(records[c.id].name)!==canonicalName(c.name)),errors=[];let n=0,done=0;

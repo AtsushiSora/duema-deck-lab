@@ -1,0 +1,569 @@
+{
+  "phase": 198,
+  "checkedAt": "2026-10-30",
+  "description": "任意の自他クリーチャーの手札戻し、未タップ対象、全体バウンスとマナ武装の墓地利用を完全照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmr17-068",
+      "name": "K・マノーミ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-068",
+      "faces": [
+        {
+          "name": "K・マノーミ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナ武装 ３：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンに水のカードが３枚以上あれば、クリーチャーを１体選び、持ち主の手札に戻してもよい。",
+          "race": "サイバー・ウイルス海",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfMana",
+            "n": 3,
+            "color": "水",
+            "defs": [
+              {
+                "op": "Target",
+                "anyOwner": true,
+                "to": "hand",
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-068.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "66fc46758f094e9306465a533cf8ba7ca832652f98df3d055e53a7fcae2fdf8f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd06-004",
+      "name": "キング・ケーレ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd06-004",
+      "faces": [
+        {
+          "name": "キング・ケーレ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは攻撃することができない。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+          "race": "リヴァイアサン/アンノイズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "hand",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd06-004.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "c79236bd53c4131b80f8ffda5bf30ef2b59e835b65fa49800d2a90cf3460ff6d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm15-040",
+      "name": "ハンマーヘッド・クラスター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-040",
+      "faces": [
+        {
+          "name": "ハンマーヘッド・クラスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは攻撃することができない。\nこのクリーチャーが破壊された時、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+          "race": "サイバー・クラスター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g172Death": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "hand",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm15-040.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "a1ea63ac1e303fbb0789564e63272af40b2d0072a7e5ac7d24190eeb1e9f8113",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr17-075",
+      "name": "暗黒鎧 ゴルドバット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-075",
+      "faces": [
+        {
+          "name": "暗黒鎧 ゴルドバット",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナ武装 ３：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンに闇のカードが３枚以上あれば、山札の上から１枚目を墓地に置いてもよい。その後、クリーチャーを１体、自分の墓地から手札に戻してもよい。",
+          "race": "ダーク・ナイトメア",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfMana",
+            "n": 3,
+            "color": "闇",
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 1,
+                "optional": true
+              },
+              {
+                "op": "Select",
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "creature": true
+                },
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-075.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "ff3d5916f4e0f8256a5ae1ebaedf33c12a3ce857087c7309d219852590dfb771",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr15-011",
+      "name": "英雄奥義 スパイラル・ハリケーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-011",
+      "faces": [
+        {
+          "name": "英雄奥義 スパイラル・ハリケーン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻す。\nマナ武装 ７：自分のマナゾーンに水のカードが７枚以上あれば、バトルゾーンにある相手のクリーチャーをすべて持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "hand"
+          },
+          {
+            "op": "IfMana",
+            "n": 7,
+            "color": "水",
+            "defs": [
+              {
+                "op": "Sweep",
+                "to": "hand",
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-011.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "59ea5681d538b5cbd1db5f61521211c09807ab65a27dbcd1b2815187df7c3665",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr10-038",
+      "name": "王機の神兵 ヴォルビック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-038",
+      "faces": [
+        {
+          "name": "王機の神兵 ヴォルビック",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\nこのクリーチャーは攻撃することができない。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+          "race": "オラクル/グレートメカオー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "hand",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-038.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "4ad3c8de5fc0f4eff604efad79712249d429bef2cc64fb6b3acce3ccb84af780",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-022",
+      "name": "幾何学艦隊ピタゴラス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-022",
+      "faces": [
+        {
+          "name": "幾何学艦隊ピタゴラス",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにある相手のタップされていないクリーチャーを１体選び、持ち主の手札に戻す。\nマナ武装 ５：自分のマナゾーンに水のカードが５枚以上あれば、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "hand",
+            "filter": {
+              "untapped": true
+            }
+          },
+          {
+            "op": "IfMana",
+            "n": 5,
+            "color": "水",
+            "defs": [
+              {
+                "op": "Target",
+                "anyOwner": true,
+                "to": "hand",
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-022.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "4dfaa436d4430305bf9f234bca77f58a009e303de729b1c8fdce597861b5b211",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx13-005",
+      "name": "真実の名 アカデミアン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-005",
+      "faces": [
+        {
+          "name": "真実の名 アカデミアン",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "リキッド・ピープル/アンノウン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "hand",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx13-005.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "636be210ef86294ab1f9df67410f403ea0c582a4e090f2682cc2884eda07c880",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr12-037",
+      "name": "戦攻魔海 アラジル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-037",
+      "faces": [
+        {
+          "name": "戦攻魔海 アラジル",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカー ブロッカー\nこのクリーチャーが破壊された時、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+          "race": "オラクル/アースイーター",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g172Death": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "hand",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr12-037.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "2c46397a276cdb3cb02ab2ab2fcd1c12da83b7387aeec747c1868b40cd68f146",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm39-002",
+      "name": "大河海嶺・K・アトランティス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-002",
+      "faces": [
+        {
+          "name": "大河海嶺・K・アトランティス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーはブロックされない。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが破壊された時、バトルゾーンにある相手のクリーチャーをすべて持ち主の手札に戻す。",
+          "race": "サイバー・コマンド/リヴァイアサン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "unblockable": true,
+        "breaker": 2,
+        "g172Death": [
+          {
+            "op": "Sweep",
+            "to": "hand",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-002.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "c7e3483e85deb1c4127a1d3e8b1ccb4034322e3e0fe639fda275d76e031b5264",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd17-003",
+      "name": "超閃機 ヴィルヴィスヴィード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd17-003",
+      "faces": [
+        {
+          "name": "超閃機 ヴィルヴィスヴィード",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分のリキッド・ピープル１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "リキッド・ピープル閃",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "リキッド・ピープル"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "hand",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd17-003.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "525d0879477defc81faceb6525ea548051f6c1103fb0085c756e72bd26f25238",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsp01-003",
+      "name": "放浪宮殿 トライデン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp01-003",
+      "faces": [
+        {
+          "name": "放浪宮殿 トライデン",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "NEO進化：自分の水のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーがバトルゾーンに出た時、カードを３枚引く。その後、自分の手札を２枚捨てる。\nこのクリーチャーが攻撃する時、クリーチャーを１体選び、持ち主の手札に戻してもよい。",
+          "race": "ムートピア",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 2
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "hand",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsp01-003.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "9ecba87af45a815db5c38feed363bd7d5552e3d24d9865e6cf5e8dfc33ee968c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-30",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr17-068": 4,
+      "dmd06-004": 4,
+      "dm15-040": 4,
+      "dmr17-075": 4,
+      "dmr15-011": 4,
+      "dmr10-038": 4,
+      "dmr13-022": 4,
+      "dmx13-005": 4,
+      "dmr12-037": 4,
+      "dm39-002": 4,
+      "dmd17-003": 4,
+      "dmsp01-003": 4
+    }
+  }
+}

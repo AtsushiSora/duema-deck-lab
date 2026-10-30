@@ -1,0 +1,443 @@
+{
+  "phase": 183,
+  "checkedAt": "2026-10-29",
+  "description": "手札を山札の上・下へ戻す効果と任意の手札交換を完全照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmr07-025",
+      "name": "SL機装パワフル・ナムロック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-025",
+      "faces": [
+        {
+          "name": "SL機装パワフル・ナムロック",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは攻撃することができない。\nこのクリーチャーをバトルゾーンに出した時、カードを１枚引いてもよい。そうした場合、自分の手札を１枚、自分の山札の上に置く。",
+          "race": "グレートメカオー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              },
+              {
+                "op": "Select",
+                "origin": "hand",
+                "to": "deckTop",
+                "n": 1,
+                "g183Return": true,
+                "title": "山札の上に戻す手札を選ぶ（先に選んだカードが一番上）"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-025.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "4ab1634f15ef0db3949522ba8d3d9f32a0f4b813b0c45dbf9ef0867e63b47df8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp15-078",
+      "name": "メガヒット・チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-078",
+      "faces": [
+        {
+          "name": "メガヒット・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の手札を１枚、山札の一番下に置く。その後、カードを１枚引く。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "deck",
+            "n": 1,
+            "g183Return": true,
+            "title": "山札の下に戻す手札を選ぶ（先に選んだカードから下へ）"
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-078.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "e87ef33d11f2a73a3ba528a3b94692a9457807f06ed36566aff0b94134792b26",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex2-089",
+      "name": "ワダフミノミコト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-089",
+      "faces": [
+        {
+          "name": "ワダフミノミコト",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのクリーチャーが出た時、カードを３枚引き、自分の手札を１枚山札の上に置く。",
+          "race": "ミズガミ/ロスト・クルセイダー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "deckTop",
+            "n": 1,
+            "g183Return": true,
+            "title": "山札の上に戻す手札を選ぶ（先に選んだカードが一番上）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-089.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "b6907549017d92c5224d0fd986383ea4c121158426d5158f6acc3fd32d47280a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-coro10",
+      "name": "隠れ潜む者 シードラン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-coro10",
+      "faces": [
+        {
+          "name": "隠れ潜む者 シードラン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\nこのクリーチャーが攻撃する時、カードを２枚引き、その後、自分の手札を１枚、山札の上に置く。",
+          "race": "ムートピア/レクスターズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "justDiver": true,
+        "g34Attack": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "deckTop",
+            "n": 1,
+            "g183Return": true,
+            "title": "山札の上に戻す手札を選ぶ（先に選んだカードが一番上）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-coro10.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "87b0acefe7197bfc3fba79a3b7af77ff4cb1a5cc26c449eb71fd01f7c3ac5283",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-071",
+      "name": "音監者 ズージャモタリ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-071",
+      "faces": [
+        {
+          "name": "音監者 ズージャモタリ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "パワーアタッカー+4000（攻撃中、このクリーチャーのパワーを+4000する）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーはブロックされない。\nこのクリーチャーが攻撃する時、自分の手札を１枚、山札の上に置く。",
+          "race": "ムートピア/美孔麗王国",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackBonus": 4000,
+        "breaker": 2,
+        "unblockable": true,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "deckTop",
+            "n": 1,
+            "g183Return": true,
+            "title": "山札の上に戻す手札を選ぶ（先に選んだカードが一番上）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-071.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "eafae29c00ffe74a997aded0dd556ec8fcd52d8f4c8b449e2aa99fd44be24880",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex13-082",
+      "name": "照明者 イタツキバアタリ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-082",
+      "faces": [
+        {
+          "name": "照明者 イタツキバアタリ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の手札を１枚、山札の上に置く。",
+          "race": "ムートピア/美孔麗王国",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "deckTop",
+            "n": 1,
+            "g183Return": true,
+            "title": "山札の上に戻す手札を選ぶ（先に選んだカードが一番上）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-082.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "5372d6669145ec9148179e378752e3ea95da05fb64126b6d9aa29fa4e6e647b5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx22b-105",
+      "name": "精神を刻む者、ジェイス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-105",
+      "faces": [
+        {
+          "name": "精神を刻む者、ジェイス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、カードを３枚引く。その後、自分の手札を２枚、山札の一番上に置く。\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "ヒーロー/プレインズ・ウォーカー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "deckTop",
+            "n": 2,
+            "g183Return": true,
+            "title": "山札の上に戻す手札を選ぶ（先に選んだカードが一番上）"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "to": "hand"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22b-105.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "7003b8e9666519165bc46bada6abd3508de3dd1e185475e6435720d7ccd1f2d4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr12-s02",
+      "name": "超閃機 ジャバジャック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-s02",
+      "faces": [
+        {
+          "name": "超閃機 ジャバジャック",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化-自分のリキッド・ピープル１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、カードを４枚引いてもよい。そうした場合、自分の手札を２枚、好きな順序で山札の一番下に置く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "リキッド・ピープル閃",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "リキッド・ピープル"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 4
+              },
+              {
+                "op": "Select",
+                "origin": "hand",
+                "to": "deck",
+                "n": 2,
+                "g183Return": true,
+                "title": "山札の下に戻す手札を選ぶ（先に選んだカードから下へ）"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr12-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "8bd59b632eb804e0a93c0aeb9c743c3ef7af11e7c52703f6cc50d33461d75d91",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-069",
+      "name": "無法 アリス-１",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-069",
+      "faces": [
+        {
+          "name": "無法 アリス-１",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが破壊された時、カードを３枚引き、その後、自分の手札を２枚、山札の上に置く。\nササゲール１（ディスペクターを召喚する時、コストを１少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "アウトレイジ/ディスタス",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "sasage": 1,
+        "g172Death": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "deckTop",
+            "n": 2,
+            "g183Return": true,
+            "title": "山札の上に戻す手札を選ぶ（先に選んだカードが一番上）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-069.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "afe1ad9523469ac9d831ffee8ede3a9bd6b81b1871a0148338b55b890cd17d56",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-29",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr07-025": 4,
+      "dmrp15-078": 4,
+      "dm25ex2-089": 4,
+      "dmrp17-coro10": 4,
+      "dmex14-071": 4,
+      "dmex13-082": 4,
+      "dmx22b-105": 4,
+      "dmr12-s02": 4,
+      "dmrp20-069": 4
+    }
+  }
+}

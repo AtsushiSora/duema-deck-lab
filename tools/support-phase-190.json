@@ -1,0 +1,901 @@
+{
+  "phase": 190,
+  "checkedAt": "2026-10-30",
+  "description": "選んだクリーチャーの攻撃とブロックを次のターン開始まで止める効果を完全照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmex14-061",
+      "name": "「青寂の鐘笛」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-061",
+      "faces": [
+        {
+          "name": "「青寂の鐘笛」",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "ガーディアン/チーム銀河",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-061.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "3146133d3ab1872cc803d7b35542457cde8a4bb2ce271879b71cbb8dab3f9e7f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-059",
+      "name": "♪これがまあ 終のすみかか フローズン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-059",
+      "faces": [
+        {
+          "name": "♪これがまあ 終のすみかか フローズン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを３体まで選ぶ。次の自分のターンのはじめまで、それらのクリーチャーは攻撃もブロックもできない。",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 3,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを3体まで選ぶ",
+            "optional": true,
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-059.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "43b7fe1fedbbb76b433aaca82b713116ca9564fcdb665d3539e55b26d9f00c80",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2-058",
+      "name": "TUBA・クロウラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-058",
+      "faces": [
+        {
+          "name": "TUBA・クロウラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、相手のクリーチャーを３体まで選ぶ。次の自分のターンのはじめまで、それらのクリーチャーは攻撃もブロックもできない。",
+          "race": "マジック・アースイーター",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 3,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを3体まで選ぶ",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-058.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "2a6b2c59a238e0899ad132b78a5e9a1371fd4a61acd6652ae7bb304f5080829e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-071",
+      "name": "オクトーパの相対性魔力講義",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-071",
+      "faces": [
+        {
+          "name": "オクトーパの相対性魔力講義",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nカードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ",
+            "spell": true
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-071.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "eb669900eb5f8a5494b4d32521eb0d111addebeb78fc11247a4e024c56e39f35",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp22-055",
+      "name": "スナイパーの海幻",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-055",
+      "faces": [
+        {
+          "name": "スナイパーの海幻",
+          "typeText": "タマシード",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このタマシードをシールドゾーンから手札に加える時、コストを支払わずにすぐ使ってもよい）\nシンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、相手のクリーチャーを２体まで選ぶ。次の自分のターンのはじめまで、それらのクリーチャーは攻撃もブロックもできない。",
+          "race": "リキッド・ピープル/レクスターズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "shinkalize": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを2体まで選ぶ",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-055.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "cb006d1bc6f9837fef54aadc75e5f5b662a6aabfddb57390d100814594d3ccf3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp21-056",
+      "name": "ツヴァイの海幻",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-056",
+      "faces": [
+        {
+          "name": "ツヴァイの海幻",
+          "typeText": "タマシード",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（このタマシードをシールドゾーンから手札に加える時、コストを支払わずにすぐ使ってもよい）\nシンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "リキッド・ピープル/レクスターズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "shinkalize": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-056.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "7b96985b152efe01fd0e709b760313337170ca476c74620780906fc01226d1de",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-057",
+      "name": "パゴメノ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-057",
+      "faces": [
+        {
+          "name": "パゴメノ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "サイバーロード",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-057.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "31a257870ad8bf77ec65d17f0c1aa61f8cbee03089bed82722af452f11516215",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-056",
+      "name": "ルナ・トリオーンフ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-056",
+      "faces": [
+        {
+          "name": "ルナ・トリオーンフ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがタップした時、相手のクリーチャーを２体まで選ぶ。次の自分のターンのはじめまで、それらは攻撃もブロックもできない。",
+          "race": "サイバー・ムーン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g188Tapped": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを2体まで選ぶ",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-056.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "226e6cba22d8c3b76943d677c06ff69f17e51a0628b5dda2043a15713bf5425b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex2-090",
+      "name": "ワダイヌノミコト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-090",
+      "faces": [
+        {
+          "name": "ワダイヌノミコト",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが離れた時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "ミズガミ/ロスト・クルセイダー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "blocker": true,
+        "g172Leave": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-090.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "1f85567b7be5ad6c6cafc49ff36fc357c678b4c1d8a6ec435aa9620aeec56e6b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-051",
+      "name": "機術士 ゾローメ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-051",
+      "faces": [
+        {
+          "name": "機術士 ゾローメ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "マジック・コマンド",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-051.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "fd04f642cb5f8806dcd0b52f4e0f7b8da54d0519f520d3e218dcdecb57a15067",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-053",
+      "name": "戯具 グリダコチャ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-053",
+      "faces": [
+        {
+          "name": "戯具 グリダコチャ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "slayer": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-053.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "c0bef798df728736e348c7e958901edc1a79e3d92c9c37090572c047ce79694c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-071",
+      "name": "禁断の遺跡",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-071",
+      "faces": [
+        {
+          "name": "禁断の遺跡",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nカードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ",
+            "spell": true
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-071.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "e13a3909b4009ad64c2f3bc909c6b86395740c41c3bc239123bac744fa3a888f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-034",
+      "name": "金縛の天秤",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-034",
+      "faces": [
+        {
+          "name": "金縛の天秤",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれかひとつを選ぶ。▼カードを２枚引く。▼相手のクリーチャーを２体まで選ぶ。次の自分のターンのはじめまで、それらのクリーチャーは攻撃もブロックもできない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "カードを２枚引く。",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーを２体まで選ぶ。次の自分のターンのはじめまで、それらのクリーチャーは攻撃もブロックもできない。",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "owner": "opponent",
+                    "origin": "battle",
+                    "n": 2,
+                    "filter": {
+                      "creature": true
+                    },
+                    "g173Targets": true,
+                    "g190Freeze": "self",
+                    "title": "攻撃とブロックを止めるクリーチャーを2体まで選ぶ",
+                    "optional": true,
+                    "spell": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-034.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "b8b56faabe6eb97861928d086f14f7328370f895971105d2519a957c5fe49942",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-023",
+      "name": "双寄電融 キリン・レガマン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-023",
+      "faces": [
+        {
+          "name": "双寄電融 キリン・レガマン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nマッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "ディスペクター/ミステリー・トーテム/フェニックス",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "exLife": true,
+        "machFighter": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-023.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "ea0214c89e608891ff9d0a37cd0cddd0b8e7869bc175a6099eb7ba976e12e3f9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp07-037",
+      "name": "堕呪 ンカヴァイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-037",
+      "faces": [
+        {
+          "name": "堕呪 ンカヴァイ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを２体選ぶ。次の自分のターンのはじめまで、それらは攻撃もブロックもできない。",
+          "race": "魔導具",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを2体選ぶ",
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-037.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "c3fd4924f529ee0506cdb7f6741e04748a5a9767869b6397fcf1c249c89efb10",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-061",
+      "name": "茶麗音愛 ソトハネ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-061",
+      "faces": [
+        {
+          "name": "茶麗音愛 ソトハネ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\nこのクリーチャーがタップした時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "マジック・マーメイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "justDiver": true,
+        "g188Tapped": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-061.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "8e4859cbe880331a5f6c9e9b8ad80cbc41fced2b11311d10d9bcf3d517c4646b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-038",
+      "name": "波乗りサーファーBW",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-038",
+      "faces": [
+        {
+          "name": "波乗りサーファーBW",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、持ち主の手札に戻す。\n相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "hand"
+          },
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ",
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-038.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "1e377a5fb999c7bd10ced6b854782f14d390154b6ada8453f74e247b1b40d864",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp3-035",
+      "name": "爆藍月 ファンタジー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-035",
+      "faces": [
+        {
+          "name": "爆藍月 ファンタジー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nハイパーエナジー（このクリーチャーを召喚する時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない）\nブロッカー ブロッカー\nこのクリーチャーがタップした時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "ゲル・フィッシュ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "hyperEnergy": true,
+        "blocker": true,
+        "g188Tapped": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-035.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "673852c82633459a238c410771966f8e449dd29bf547c914e526c33243ee5443",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp03-071",
+      "name": "泡星都市 バブラブル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-071",
+      "faces": [
+        {
+          "name": "泡星都市 バブラブル",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを２体まで選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを2体まで選ぶ",
+            "optional": true,
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-071.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "7cf6d77dea9d5ae4fa811b871eb3cc95bc788b8b13bd3749803721ecf5fbb200",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-067",
+      "name": "猛菌 キューティ-２",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-067",
+      "faces": [
+        {
+          "name": "猛菌 キューティ-２",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nササゲール２（ディスペクターを召喚する時、コストを２少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "サイバー・ウイルス/ディスタス",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "sasage": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-067.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "d52b1f0e1a2653a84b5ba6d0a9b8ef5bfd6a66a4e80315fda4613877dd656793",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-30",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex14-061": 4,
+      "dm23rp1-059": 4,
+      "dm23rp2-058": 4,
+      "dmrp04s-071": 4,
+      "dmrp22-055": 4,
+      "dmrp21-056": 4,
+      "dm24rp2-057": 4,
+      "dm24rp2-056": 4,
+      "dm25ex2-090": 4,
+      "dmr18-051": 4,
+      "dmrp16-053": 4,
+      "dmrp19-071": 4,
+      "dmr19-034": 4,
+      "dmrp20-023": 4,
+      "dmrp07-037": 4,
+      "dm24rp1-061": 4,
+      "dmrp17-038": 4,
+      "dm24rp3-035": 4,
+      "dmrp03-071": 4,
+      "dmrp18-067": 4
+    }
+  }
+}

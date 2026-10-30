@@ -1,0 +1,75 @@
+{
+  "phase": 202,
+  "checkedAt": "2026-10-30",
+  "description": "深淵の禁忌 アビスベル=ジャシン帝：アビスラッシュ、13枚ブレイク、任意の13枚墓地送りと最大13体の闇クリーチャー展開。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36972/"
+  ],
+  "cards": [
+    {
+      "id": "dm25ex2-024",
+      "name": "深淵の禁忌 アビスベル=ジャシン帝",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-024",
+      "faces": [
+        {
+          "name": "深淵の禁忌 アビスベル=ジャシン帝",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 13,
+          "costText": "13",
+          "abilityText": "アビスラッシュ（このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、このターンの終わりに山札の下に置かれる）\nタブー・ブレイカー（このクリーチャーはシールドを13ブレイクする）\nこのクリーチャーが攻撃する時、自分の山札の上から13枚を墓地に置いてもよい。そうしたら、闇のクリーチャーを13体まで、自分の墓地から出す。",
+          "race": "アビスロイヤル",
+          "powerText": "130000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "abyssRush": true,
+        "breaker": 13,
+        "g202TabooBreaker": true,
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "g186GraveMill": true,
+            "title": "山札の上13枚を墓地に置き、闇のクリーチャーを13体まで出す？",
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 13
+              },
+              {
+                "op": "GraveArmy",
+                "n": 13,
+                "filter": {
+                  "creature": true,
+                  "color": "闇"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-024.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "fa8f6fc7331e2a7ee17ae206d3479409324e5b88ae402d9a294a7b3af4939d22",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-30",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25ex2-024": 4
+    }
+  }
+}

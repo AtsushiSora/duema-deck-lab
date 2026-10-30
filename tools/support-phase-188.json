@@ -1,0 +1,801 @@
+{
+  "phase": 188,
+  "checkedAt": "2026-10-29",
+  "description": "攻撃・ブロック・効果などでタップした時の誘発能力を完全照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp1-038",
+      "name": "アーチ＝ガーチー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-038",
+      "faces": [
+        {
+          "name": "アーチ＝ガーチー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがタップした時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－4000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "アビスロイヤル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "g188Tapped": [
+          {
+            "op": "Target",
+            "power": -4000
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-038.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "f3966464f5774f78ee828bfda2a741bcb45c09d3b469c8a3db6fe7d7f7ced3f1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-034",
+      "name": "オカルト・チューナー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-034",
+      "faces": [
+        {
+          "name": "オカルト・チューナー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、またはタップした時、カードを３枚引き、自分の手札を２枚捨てる。",
+          "race": "マーフォーク",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 2
+          }
+        ],
+        "g188Tapped": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-034.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "a7da0736d23fca5176c22a68fb769015fc8472f5f66c9dec6a063fbefd01f105",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-040",
+      "name": "カリッキ＝リッキ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-040",
+      "faces": [
+        {
+          "name": "カリッキ＝リッキ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から３枚を墓地に置く。\nこのクリーチャーがタップした時、クリーチャーを１体、自分の墓地から手札に戻してもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 3
+          }
+        ],
+        "g188Tapped": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-040.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "895b87a178bb65fde65bce97abee14d651d11cd478d38714d7baa0e26588ed7d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-065",
+      "name": "シックル＝シーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-065",
+      "faces": [
+        {
+          "name": "シックル＝シーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーがタップした時、自分の山札の上から３枚を墓地に置いてもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "slayer": true,
+        "g188Tapped": [
+          {
+            "op": "Mill",
+            "n": 3,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-065.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "1f1b062bd00067693f8f3c379e5bbb54443428cd111b6724f60748d9351f7b04",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-028",
+      "name": "シャドウ・ゴルギーニ Jr.",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-028",
+      "faces": [
+        {
+          "name": "シャドウ・ゴルギーニ Jr.",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "NEO進化：光、水、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時またはタップした時、カードを１枚引く。",
+          "race": "メカ・デル・ディネロ/スーパーカー・ドラゴン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ],
+        "g188Tapped": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-028.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "1d60962716d0ac9de9ef07b5e67d6e1fb84d068eb7587c4e98c89434e6340d2d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-074",
+      "name": "セイシュンマッタダケ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-074",
+      "faces": [
+        {
+          "name": "セイシュンマッタダケ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがタップした時、自分の山札の上から１枚目を、タップしてマナゾーンに置く。",
+          "race": "バルーン・マッシュルーム",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "guardman": true,
+        "noPlayerAttack": true,
+        "g188Tapped": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "tapped": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-074.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "99bf27f749617b2cee12e86033b98e43628cc07db0de70815b47546651fb7959",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-035",
+      "name": "バブル・ボール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-035",
+      "faces": [
+        {
+          "name": "バブル・ボール",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーは攻撃できない。\nこのクリーチャーがタップした時、カードを１枚引く。",
+          "race": "サイバー・ウイルス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "noAttack": true,
+        "g188Tapped": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-035.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "fef1a4dd7cb657d490b8b3ff18c34bd49067d83d80207fab86a48b9485e4e479",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-067",
+      "name": "ボルシャック・ゴリラ・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-067",
+      "faces": [
+        {
+          "name": "ボルシャック・ゴリラ・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがタップした時、相手のパワー3000以下のクリーチャーを１体選び、破壊する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g188Tapped": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-067.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "4a9d5ae710c551f0ff86eae73d53483b7c43d9cd0bc09993850e6763e7d7eb40",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-076",
+      "name": "ムルク・カンキン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-076",
+      "faces": [
+        {
+          "name": "ムルク・カンキン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがタップした時、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+          "race": "ミステリー・トーテム/ツォルキン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g188Tapped": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-076.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "8929b9bc36574b0f18ff4a8bd835397a1fb965f2aa0d20d7fce208642725af5e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-060",
+      "name": "ルナ・ブルーバード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-060",
+      "faces": [
+        {
+          "name": "ルナ・ブルーバード",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがタップした時、カードを１枚引いてもよい。",
+          "race": "サイバー・ムーン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "g188Tapped": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-060.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "6197ef452d54e196b9e093b37f89a4307dab9ccb5f62c6901397d5e1722d790d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-014",
+      "name": "悪魔聖霊ジェミニアス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-014",
+      "faces": [
+        {
+          "name": "悪魔聖霊ジェミニアス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、相手は自身のクリーチャーを２体選び、破壊する。\nこのクリーチャーがタップした時、相手の手札を２枚見ないで選び、捨てさせる。\nこのクリーチャーが離れた時、呪文を２枚まで、自分の墓地から手札に戻す。",
+          "race": "エンジェル・コマンド/デーモン・コマンド/ファンキー・ナイトメア",
+          "powerText": "9500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OpponentSelect",
+            "n": 2,
+            "to": "grave"
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 2,
+            "filter": {
+              "spell": true
+            },
+            "optional": true
+          }
+        ],
+        "g188Tapped": [
+          {
+            "op": "Discard",
+            "n": 2,
+            "random": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-014.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "39de800989d50693f856ca718fcb9579b9d9c4be4daee4a38390dc83fd424c11",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-069",
+      "name": "貝獣 タッカラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-069",
+      "faces": [
+        {
+          "name": "貝獣 タッカラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがタップした時、カードを１枚引く。",
+          "race": "ムートピア",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g188Tapped": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-069.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "2a3d5bf35e60f6c0b0d67c064902982054f533bfe49f2626ce4d78dd82032b7d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp3-058",
+      "name": "楽識 コフミ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-058",
+      "faces": [
+        {
+          "name": "楽識 コフミ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがタップした時、カードを２枚引いてもよい。",
+          "race": "デモンズ・レガシー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g188Tapped": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-058.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "65666723be3652023b79bb512b7bb842382521169a95f54bde389d3b81819265",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-073",
+      "name": "凶鬼43号 ドシュ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-073",
+      "faces": [
+        {
+          "name": "凶鬼43号 ドシュ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがタップした時、相手は自身の手札を１枚選び、捨てる。",
+          "race": "マフィ・ギャング",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g188Tapped": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-073.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "17e6025e94e39e7392c01d77a51735463bba56eca7730a23631f9385785e6c01",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp05-012",
+      "name": "暁の訪れ 集裏",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-012",
+      "faces": [
+        {
+          "name": "暁の訪れ 集裏",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがタップした時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。",
+          "race": "メタリカ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g188Tapped": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-012.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "b6139b93dcb007e9c8d17bca7af9d42b5ce58f5a8aa063f02a7b483cc4ee9c96",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-037",
+      "name": "拳怪！Law儿&テイル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-037",
+      "faces": [
+        {
+          "name": "拳怪！Law儿&テイル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nこのクリーチャーがタップした時、相手のパワー3000以下のクリーチャーを１体選び、破壊する。",
+          "race": "アーマード・ドラゴン/マジック・コマンド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "guardman": true,
+        "g188Tapped": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-037.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "0f9451b7452773450d0a67150c36cb1b8f8d58dfdd3b3c931e150d587d462881",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-068",
+      "name": "小さな鍛冶屋メット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-068",
+      "faces": [
+        {
+          "name": "小さな鍛冶屋メット",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがタップした時、自分の手札を１枚捨て、カードを２枚引く。",
+          "race": "ヒューマノイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g188Tapped": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          },
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-068.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "84d316b6db44e99aa5f13863b752094a9c3ce2d30939d3c84fb7850b9913b205",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-073",
+      "name": "雪狩の斧",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-073",
+      "faces": [
+        {
+          "name": "雪狩の斧",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがタップした時、自分の山札の上から３枚を見る。その中からクリーチャーを１体表向きにし、手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+          "race": "ビーストフォーク",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g188Tapped": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 3,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-073.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "4b6ae1ea1d27cbbba23849bdf51c8d802b8f8b1f79605d899cde48b23b87799f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-29",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp1-038": 4,
+      "dm24rp1-034": 4,
+      "dm24rp1-040": 4,
+      "dm24rp1-065": 4,
+      "dm25rp1-028": 4,
+      "dm24rp1-074": 4,
+      "dm24rp2-035": 4,
+      "dm24rp2-067": 4,
+      "dm24rp4-076": 4,
+      "dm24rp1-060": 4,
+      "dm24ex4-014": 4,
+      "dmrp04s-069": 4,
+      "dm24rp3-058": 4,
+      "dmrp04s-073": 4,
+      "dmrp05-012": 4,
+      "dm23rp3-037": 4,
+      "dm24rp1-068": 4,
+      "dm24rp1-073": 4
+    }
+  }
+}

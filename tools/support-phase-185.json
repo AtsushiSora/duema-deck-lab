@@ -1,0 +1,890 @@
+{
+  "phase": 185,
+  "checkedAt": "2026-10-29",
+  "description": "山札の上から確認して手札へ加え、残りを山札の下へ置く効果を完全照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmsd09-018",
+      "name": "ア・ストラ・センサー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd09-018",
+      "faces": [
+        {
+          "name": "ア・ストラ・センサー",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分の山札の上から３枚を見る。その中から呪文またはオーラを１枚選び、相手に見せてから自分の手札に加えてもよい。残りを好きな順序で山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 3,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "any": [
+                    {
+                      "spell": true
+                    },
+                    {
+                      "aura": true
+                    }
+                  ]
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd09-018.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "b4e0fcaa8df3ccd06ca516459bd7a6e84a23b477d86ff54741b5c19b94a4e513",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd21-004",
+      "name": "エヴォル・メラッチ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd21-004",
+      "faces": [
+        {
+          "name": "エヴォル・メラッチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から４枚を見る。その中から進化クリーチャーを１体、相手に見せてから自分の手札に加えてもよい。その後、残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "ファイアー・バード炎",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 4,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "evolution": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd21-004.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "02953f74d228acf0bedb62070a2286a1c4c2d3f9190a2f6f469c8a9dada99ea1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp13-016",
+      "name": "エビデンスバード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-016",
+      "faces": [
+        {
+          "name": "エビデンスバード",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から２枚を見る。その中から自然のクリーチャーを１体選び、相手に見せてから手札に加えてもよい。残りを好きな順序で山札の一番下に置く。",
+          "race": "トリックス/チームウェイブ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 2,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "color": "自然"
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp13-016.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "e2f6da9d20abc4639f3fdd251d0e556f4365a6d403c97b904a99bd19cd5f6f66",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-036",
+      "name": "クリスタル・ケイヴ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-036",
+      "faces": [
+        {
+          "name": "クリスタル・ケイヴ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から３枚を見る。その中から呪文を１枚選び、相手に見せてから手札に加えてもよい。残りを好きな順序で山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 3,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "spell": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-036.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "2e5f0df32c4d05588a42b410ed82068d6aeddc13973cce2e28db3ef77159a68a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-018",
+      "name": "ゴルドエッグ・ザ・スロットン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-018",
+      "faces": [
+        {
+          "name": "ゴルドエッグ・ザ・スロットン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、自分の山札の上から４枚を見る。その中からレクスターズを１体相手に見せ、手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+          "race": "ジョーカーズ/レクスターズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 4,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "race": "レクスターズ",
+                  "creature": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-018.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "40b3d1af254e240dd7fdc1a3e5be7bd0e6757330082170d408b717ec50f1e77d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr15-025",
+      "name": "スペルブック・チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-025",
+      "faces": [
+        {
+          "name": "スペルブック・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の山札の上から５枚を見る。その中から呪文を１枚、相手に見せてから、自分の手札に加えてもよい。残りを好きな順序で自分の山札の一番下に置く。\nチャージャー（この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 5,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "spell": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-025.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "3df389f620de1b15f22626cbb35913569dad857387e0d9dd2db3ef8df2aeb8fd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr22-021",
+      "name": "トレジャー・ナスカ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-021",
+      "faces": [
+        {
+          "name": "トレジャー・ナスカ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分の山札の上から５枚を見る。その中からコスト１のカードを１枚、相手に見せてから手札に加えてもよい。その後、残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 5,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "exactCost": 1
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-021.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "3c8f73bee542718e42fb5410a25f5807cf8ebd7335483c7408e746f1aeb47773",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-019",
+      "name": "トレジャー・マップ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-019",
+      "faces": [
+        {
+          "name": "トレジャー・マップ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分の山札の上から５枚を見る。その中から自然のクリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 5,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "color": "自然"
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-019.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "06ae84cd0f7b51b7d8cda90eb4482f4ce63bc89c42da1bf346e0cf0780c058e8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex09-027",
+      "name": "のぞぐち出世",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex09-027",
+      "faces": [
+        {
+          "name": "のぞぐち出世",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から４枚を見る。その中からジョーカーズを１枚選び、手札に加えてもよい。残りを好きな順序で山札の一番下に置く。",
+          "race": "ジョーカーズ/チーム切札",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 4,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "race": "ジョーカーズ"
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex09-027.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "dd238abcd4a3f8d41eefd0a5334050154738f4461c29862f8479341cb7657362",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-070",
+      "name": "パルプ・ブレイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-070",
+      "faces": [
+        {
+          "name": "パルプ・ブレイン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から５枚を見る。その中から１枚を手札に加え、残りを好きな順序で山札の下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 5,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-070.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "6cce63270bb52bac25b1b46e6512862c23e47828d5d56c8820b8cc6f061ab0d0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp22-051",
+      "name": "ピカピカ・ジョーカーズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-051",
+      "faces": [
+        {
+          "name": "ピカピカ・ジョーカーズ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分の山札の上から４枚を見る。その中からタマシードを１枚相手に見せ、手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+          "race": "ジョーカーズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 4,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "seed": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-051.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "0015e3794ef0bac5d410e79aaf97b16fdb8d154a150c17e131f7bd42d04299e8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-059",
+      "name": "レインボー・マップ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-059",
+      "faces": [
+        {
+          "name": "レインボー・マップ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から４枚を見る。その中から多色クリーチャーを１体相手に見せ、手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+          "race": "不死樹王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 4,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "multi": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-059.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "4542c642873694c3023821b9fd1f827b27546c643e79e9f74c7d82c825925d28",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-014",
+      "name": "鋼爵の玉 ヴァラルド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-014",
+      "faces": [
+        {
+          "name": "鋼爵の玉 ヴァラルド",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から４枚を見る。その中から呪文を１枚選び、相手に見せてから手札に加えてもよい。その後、残りを好きな順序で山札の一番下に置く。",
+          "race": "ジャスティス・オーブ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 4,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "spell": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-014.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "c4a93254d8cf6514ee89473f4868e6dd80ef53d09d8fa11f28c9b0d06a3fa920",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex17-137",
+      "name": "電脳鎧冑アカシック・オリジナル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-137",
+      "faces": [
+        {
+          "name": "電脳鎧冑アカシック・オリジナル",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から２枚を見る。その中からクリーチャーを１体相手に見せ、手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+          "race": "サイバーロード/ジャイアント・インセクト/サバイバー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 2,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-137.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "51ddfc539a9117748aad4b5ed73750e4916c9ef55f1324a1386d7b90fc09636e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-090",
+      "name": "勇猛 ギガホン-１",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-090",
+      "faces": [
+        {
+          "name": "勇猛 ギガホン-１",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から５枚を見る。その中からクリーチャーを１体相手に見せ、手札に加えてもよい。残りを好きな順序で山札の下に置く。\nササゲール１（ディスペクターを召喚する時、コストを１少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "ホーン・ビースト/ディスタス",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "sasage": 1,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 5,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-090.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "1418659368aedd243440da0d227d87160d5907dfdf670ff5cc80cef0818292e4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-047",
+      "name": "龍素記号JJ アヴァルスペーラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-047",
+      "faces": [
+        {
+          "name": "龍素記号JJ アヴァルスペーラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー ブロッカー\nこのクリーチャーは攻撃することができない。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から５枚を見る。その中から呪文を１枚選び、相手に見せてから自分の手札に加えてもよい。その後、残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "クリスタル・コマンド・ドラゴン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 5,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "spell": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-047.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "9572c1f6d3cbb35d5f6cfde2c6d2445cdcda481d3bebb34b6f09e8ddd0e898d1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp05-070",
+      "name": "貪欲な若魔導士 ミノミー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-070",
+      "faces": [
+        {
+          "name": "貪欲な若魔導士 ミノミー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を見る。その中から呪文を１枚、相手に見せてから手札に加えてもよい。残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "ムートピア",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 3,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "spell": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-070.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "6d349ab0dac9802d2ad606f80039ca4983920f20977a5e78216e6b1650faaf90",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-29",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmsd09-018": 4,
+      "dmd21-004": 4,
+      "dmrp13-016": 4,
+      "dmrp01-036": 4,
+      "dmrp20-018": 4,
+      "dmr15-025": 4,
+      "dmr22-021": 4,
+      "dmr14-019": 4,
+      "dmex09-027": 4,
+      "dmrp20-070": 4,
+      "dmrp22-051": 4,
+      "dmex14-059": 4,
+      "dmr18-014": 4,
+      "dmex17-137": 4,
+      "dmrp17-090": 4,
+      "dmr13-047": 4,
+      "dmrp05-070": 4
+    }
+  }
+}

@@ -1,0 +1,472 @@
+{
+  "phase": 196,
+  "checkedAt": "2026-10-30",
+  "description": "手札からタマシード・進化ではないクリーチャー・指定パワー以上のクリーチャーを出す効果を完全照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp21-046",
+      "name": "「星継ぎの豪傑」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-046",
+      "faces": [
+        {
+          "name": "「星継ぎの豪傑」",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、コスト４以下のタマシードを１枚、自分の手札から出してもよい。",
+          "race": "メタリカ/レクスターズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "title": "手札から出すタマシードを1枚選ぶ",
+            "filter": {
+              "seed": true,
+              "max": 4
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-046.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "82a16cdd46718de805dee78080b0d6a3be18d67466a1d8fd5d02a6ef8393a397",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-028",
+      "name": "アストマープル-T３",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-028",
+      "faces": [
+        {
+          "name": "アストマープル-T３",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、コスト３以下のクリーチャー１体またはコスト３以下のタマシードを１枚、自分の手札から出してもよい。",
+          "race": "メカ・デル・ディネロ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "title": "手札から出すクリーチャーかタマシードを1枚選ぶ",
+            "filter": {
+              "creatureOrSeed": true,
+              "max": 3
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-028.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "a37f5ae8892c477d467801e711ed9497bc6c6acbeaff8c6db4946dd6ca1b3f87",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd06-005",
+      "name": "ハッチャキ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd06-005",
+      "faces": [
+        {
+          "name": "ハッチャキ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが攻撃する時、「ブロッカー」を持つコスト５以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "サイバーロード/アンノイズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "blocker": true,
+              "max": 5,
+              "nonEvolution": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd06-005.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "9e0fdbd7d9818836bfaf5a7818037d818152d804368faeb4c8be5156f9a65d9d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsp01-006",
+      "name": "メガロ・カミキュロス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp01-006",
+      "faces": [
+        {
+          "name": "メガロ・カミキュロス",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "NEO進化：自分の自然のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nT・ブレイカー\nこのクリーチャーが攻撃する時、自然のパワー12000以上の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "グランセクト",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "color": "自然",
+              "minPower": 12000,
+              "nonEvolution": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsp01-006.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "4863419445a9ebc24f7b3bafe7cffa7c3a5240f44b58546bc27ff80c549b7454",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-054",
+      "name": "華麗の玉 レゾスタ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-054",
+      "faces": [
+        {
+          "name": "華麗の玉 レゾスタ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、光のコスト２以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "ジャスティス・オーブ/革命軍",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "color": "光",
+              "max": 2,
+              "nonEvolution": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-054.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "c7ff0759e138ba9be4404bdf046ce669560c504e280ac7f60141baf66e2a1138",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex15-b013",
+      "name": "光の兄妹 るる＆ルシファー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b013",
+      "faces": [
+        {
+          "name": "光の兄妹 るる＆ルシファー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、カードを１枚引く。その後、光のコスト８以下の進化ではないクリーチャーを１体、自分の手札から出してもよい。\nこのクリーチャーがタップした時、相手のクリーチャーを１体選び、タップする。",
+          "race": "エンジェル・コマンド・ドラゴン/ヒューマノイド/革命軍",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "color": "光",
+              "max": 8,
+              "nonEvolution": true
+            },
+            "optional": true
+          }
+        ],
+        "g188Tapped": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-b013.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "da17996b0d307ea61e25b9b4eb5586608bf99981e3657a02eaa720552e3a71d0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr03-s03",
+      "name": "仁義なき戦争 鬼流院 刃",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-s03",
+      "faces": [
+        {
+          "name": "仁義なき戦争 鬼流院 刃",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーが攻撃する時、進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+          "race": "ガイア・コマンド/ハンター",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-s03.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "a03b8075c657bbf6a7f8096f88d6fa332932677edfb446b5d298527977987f38",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx06-001",
+      "name": "天国の女帝 テレジア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx06-001",
+      "faces": [
+        {
+          "name": "天国の女帝 テレジア",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\n自分のターンのはじめに、「ブロッカー」を持つ光のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\nW・ブレイカー",
+          "race": "メカ・デル・ソル/ハンター",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g174Start": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "blocker": true,
+              "color": "光"
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx06-001.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "0d2028f3fa4e56b35848725ce9c85f2aeee8f18c1e1b70b14eb640b7c07a0450",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-001",
+      "name": "歴戦の精霊龍 カイザルバーラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-001",
+      "faces": [
+        {
+          "name": "歴戦の精霊龍 カイザルバーラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、カードを１枚引く。その後、光のコスト７以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "エンジェル・コマンド・ドラゴン/革命軍",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "color": "光",
+              "max": 7,
+              "nonEvolution": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-001.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "b5b07fda77f9960e9ebda3b80b46a9bd6bc58b4789aa5f820763810bcda24d0c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-30",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp21-046": 4,
+      "dm22rp1-028": 4,
+      "dmd06-005": 4,
+      "dmsp01-006": 4,
+      "dmr19-054": 4,
+      "dmex15-b013": 4,
+      "dmr03-s03": 4,
+      "dmx06-001": 4,
+      "dmr19-001": 4
+    }
+  }
+}

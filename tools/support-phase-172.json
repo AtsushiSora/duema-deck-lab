@@ -1,0 +1,1498 @@
+{
+  "phase": 172,
+  "checkedAt": "2026-10-29",
+  "description": "破壊された時・バトルゾーンを離れた時のドロー、手札破壊、マナ加速、除去など。発生直前の能力を保存して処理。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/39382/",
+    "https://dm.takaratomy.co.jp/rule/qa/41067/"
+  ],
+  "cards": [
+    {
+      "id": "dmr21-089",
+      "name": "【問１】 テック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-089",
+      "faces": [
+        {
+          "name": "【問１】 テック",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーがバトルゾーンを離れた時、自分の山札の上から１枚目を墓地に置いてもよい。その後、カードを１枚引いてもよい。",
+          "race": "革命軍/テック団",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Leave": [
+          {
+            "op": "Mill",
+            "n": 1,
+            "optional": true
+          },
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-089.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "e1710df3751367a192f9467dac807a3ab0673411a62f4646fd82f893e8f3eac2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-050",
+      "name": "O・マール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-050",
+      "faces": [
+        {
+          "name": "O・マール",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンを離れた時、カードを１枚引く。",
+          "race": "サイバー・ウイルス海/革命軍",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Leave": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-050.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "683395eab7ccec2ae20afc0f1a77c1c33b85daafdfaa2486913093f96d6f0916",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr09-082",
+      "name": "アクア・シャークス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-082",
+      "faces": [
+        {
+          "name": "アクア・シャークス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが破壊された時、カードを１枚引いてもよい。",
+          "race": "リキッド・ピープル/ハンター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-082.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "12104ea8c5e2de4161af75ca2c931c1291d7dc42e23c1b7c36c7f699e8f1464b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-077",
+      "name": "アダム・ケインズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-077",
+      "faces": [
+        {
+          "name": "アダム・ケインズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーが破壊された時、カードを１枚引く。その後、相手は自身の手札を１枚選び、捨てる。",
+          "race": "マフィ・ギャング",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g172Death": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-077.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "2ee43fb4fd0c185bf58ad5ea51b0c9cb58ce251d54d0b1c75a4f7a3b51d95ba4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-085",
+      "name": "アッポー・チュリス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-085",
+      "faces": [
+        {
+          "name": "アッポー・チュリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが破壊された時、カードを１枚引く。",
+          "race": "ビートジョッキー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-085.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "d47bf6ce2d543745ace32ab1bc8a02cbd1b85c454f0f621edfefad355f7b16d2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-053",
+      "name": "オタケタケM",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-053",
+      "faces": [
+        {
+          "name": "オタケタケM",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンを離れた時、相手は自身の手札を１枚選び、捨てる。",
+          "race": "ファンキー・ナイトメア/イニシャルズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Leave": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-053.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "6ce59a8b4476a726899cfe3a6ba7629abeafa09f064b5a3131134d58687387c9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp10-085",
+      "name": "カビワッサン男",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-085",
+      "faces": [
+        {
+          "name": "カビワッサン男",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが破壊された時、相手は自身の手札を１枚選び、捨てる。",
+          "race": "ヘドリアン",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-085.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "a67a5f33f3f34e9141d719dd705276e4419e40ddccae23edd01ae2a39d87ad95",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd12-016",
+      "name": "デュラン・ベルトラン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd12-016",
+      "faces": [
+        {
+          "name": "デュラン・ベルトラン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーが破壊された時、カードを１枚引く。",
+          "race": "マフィ・ギャング",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g172Death": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd12-016.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "62fda43419f3f0cd1e57b5e4fe788654cafe5bdec5a68a3b6100390485e83f50",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd13-020",
+      "name": "トムのゼリー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd13-020",
+      "faces": [
+        {
+          "name": "トムのゼリー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーがバトルゾーンを離れた時、カードを１枚引く。",
+          "race": "ジョーカーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g172Leave": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd13-020.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "12b980e9bd581cd05be118695c94e57e15e6e42208e98d02b65ad872c1e6a725",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-088",
+      "name": "ヌイグル・グルグル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-088",
+      "faces": [
+        {
+          "name": "ヌイグル・グルグル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\nこのクリーチャーは攻撃することができない。\nこのクリーチャーが破壊された時、相手は自身の手札を１枚選び、捨てる。",
+          "race": "ファンキー・ナイトメア",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g172Death": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-088.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "e169d1994fa1bb56a18e697aa7d1bbb7b61b6bed441b88cc8ff806f3e8ca48d3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-092",
+      "name": "バグ丸くん",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-092",
+      "faces": [
+        {
+          "name": "バグ丸くん",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\nこのクリーチャーが破壊された時、カードを１枚引く。",
+          "race": "ファンキー・ナイトメア",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "fightOptional",
+        "g172Death": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-092.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "0ccf74cf90bbb15047ed55ad9434de0846f4709bd167fd59503a4814d57e0539",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp09-082",
+      "name": "バッド・パンデイロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-082",
+      "faces": [
+        {
+          "name": "バッド・パンデイロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが破壊された時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－4000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "ガーゴイル",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Target",
+            "power": -4000
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-082.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "dcbce60d5bbcbf06b85ff7d187cbd55825f0a9595981d15d7262c00bb04d8b6c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-062",
+      "name": "ビリビリ・ジェリー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-062",
+      "faces": [
+        {
+          "name": "ビリビリ・ジェリー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーが破壊された時、カードを１枚引いてもよい。",
+          "race": "サイバー・ウイルス",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g172Death": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-062.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "6751e056169d190af55fdfccacc790e143b414a92b92948e9216161211e23649",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp13-072",
+      "name": "フィアー・ピアニカ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-072",
+      "faces": [
+        {
+          "name": "フィアー・ピアニカ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンを離れた時、カードを１枚引く。",
+          "race": "ガーゴイル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Leave": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp13-072.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "55acdabc51ff8ecc3fa65af51576d3ccf723618e8ed064816478956625389260",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-070",
+      "name": "ポイズンクロー・ドラグーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-070",
+      "faces": [
+        {
+          "name": "ポイズンクロー・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが破壊された時、相手は自身の手札を１枚選び、捨てる。",
+          "race": "ティラノ・ドレイク",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "g172Death": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-070.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "e2c664aafe195adf4467b12dc0834b9421ae6ea26534169abbca4b9d9cab53a3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-066",
+      "name": "ヤッタナ・讐・ヤクッピ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-066",
+      "faces": [
+        {
+          "name": "ヤッタナ・讐・ヤクッピ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nこのクリーチャーが破壊された時、相手のパワー6000以下のクリーチャーを１体選び、破壊する。",
+          "race": "アーマード・ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "guardman": true,
+        "g172Death": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 6000
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-066.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "48550d2374b7b9479ec3babb445b7e6f719c7834d54abcb27ffd413bef3bf2ce",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-076",
+      "name": "闇影 バイツ-１",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-076",
+      "faces": [
+        {
+          "name": "闇影 バイツ-１",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが破壊された時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－2000する。（パワー０以下のクリーチャーは破壊される）\nササゲール１（ディスペクターを召喚する時、コストを１少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "マフィ・ギャング/ディスタス",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "sasage": 1,
+        "g172Death": [
+          {
+            "op": "Target",
+            "power": -2000
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-076.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "029f1867bb4434e0c61759d82085df505c73eeda83f181fc3f5e05b1238c29ba",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-068",
+      "name": "貝獣 マキーガ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-068",
+      "faces": [
+        {
+          "name": "貝獣 マキーガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーが破壊された時、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "ムートピア",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g172Death": [
+          {
+            "op": "Target",
+            "to": "hand"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-068.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "8fd91b55e6466b90fce164d6d58e94975fa54d9720ccb12f5690d132bf34709f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-050",
+      "name": "機電 ドスコーピ-２",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-050",
+      "faces": [
+        {
+          "name": "機電 ドスコーピ-２",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが破壊された時、カードを１枚引く。その後、相手の「ブロッカー」を持つクリーチャーを１体破壊する。\nササゲール２（ディスペクターを召喚する時、コストを２少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "アーマロイド/マーフォーク/ディスタス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "sasage": 2,
+        "g172Death": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-050.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "3ec5d30957a35d4c6750cc0a88749f417c41009ab412a0192a8b47228334e13a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-063",
+      "name": "輝晶 ソラレイ-１",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-063",
+      "faces": [
+        {
+          "name": "輝晶 ソラレイ-１",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが破壊された時、相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。\nササゲール１（ディスペクターを召喚する時、コストを１少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "メタリカ/ディスタス",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "sasage": 1,
+        "g172Death": [
+          {
+            "op": "Target",
+            "tap": true,
+            "lock": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-063.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "7677dcc1db234b6d8d48c846812ad591b9ad751bb5f5db9bebb9fecb24d827a5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp11-084",
+      "name": "凶鬼55号 ジュジュ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-084",
+      "faces": [
+        {
+          "name": "凶鬼55号 ジュジュ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが破壊された時、カードを２枚引く。",
+          "race": "マフィ・ギャング",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-084.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "6254415686e3db2590e610d257bc0088af6172cab51a506f5f49304083a53ffa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-078",
+      "name": "凶鬼56号 ゴロン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-078",
+      "faces": [
+        {
+          "name": "凶鬼56号 ゴロン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが破壊された時、相手のアンタップしているクリーチャーを１体破壊する。",
+          "race": "マフィ・ギャング",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "untapped": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-078.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "ea79f6681591ca309dc668680ee9dfae3853c003819f125d6d303dec6bf90f4e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr08-045",
+      "name": "玉男",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-045",
+      "faces": [
+        {
+          "name": "玉男",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スレイヤー(このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)\nこのクリーチャーが破壊された時、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "ヘドリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "slayer": true,
+        "g172Death": [
+          {
+            "op": "Discard",
+            "n": 1,
+            "random": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-045.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "f279587df6e7d93718033c9a447ee6d625371ae0a9d5e2903897ee8930c6a8d8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp10-094",
+      "name": "喧嘩屋オウトッツ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-094",
+      "faces": [
+        {
+          "name": "喧嘩屋オウトッツ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nこのクリーチャーが破壊された時、相手のパワー4000以下のクリーチャーを１体破壊してもよい。",
+          "race": "ヒューマノイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "guardman": true,
+        "g172Death": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "optional": true,
+            "filter": {
+              "maxPower": 4000
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-094.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "54e7dc33c0783665ca96091b20fa9bb51c86dc28a11e026563e08cff89698cd2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp05-076",
+      "name": "堕魔 グリディナ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-076",
+      "faces": [
+        {
+          "name": "堕魔 グリディナ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが破壊された時、カードを１枚引く。",
+          "race": "マフィ・ギャング/魔導具",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-076.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "9f4c9e83b0a6989de498b555fa96189cdb1f8d39d57a54e23e2bb80bef3a0f59",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-094",
+      "name": "大地 カママドウ-１",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-094",
+      "faces": [
+        {
+          "name": "大地 カママドウ-１",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが破壊された時、相手のパワー5000以下のクリーチャーを１体選び、持ち主のマナゾーンに置いてもよい。\nササゲール１（ディスペクターを召喚する時、コストを１少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "グランセクト/ディスタス",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "sasage": 1,
+        "g172Death": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "optional": true,
+            "filter": {
+              "maxPower": 5000
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-094.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "b54111723a0ab9b9ef173ad69be726e4e91b876e0c193aa727659268c02ad834",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd04-004",
+      "name": "奪い去る者ザビフライ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd04-004",
+      "faces": [
+        {
+          "name": "奪い去る者ザビフライ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが破壊された時、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "リビング・デッド/エイリアン",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Discard",
+            "n": 1,
+            "random": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd04-004.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "6eabb02a1d261ba5375a22b7c45b474ef2862d7401d98a2160676cc3fa718eb3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-051",
+      "name": "電磁封魔イゾラド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-051",
+      "faces": [
+        {
+          "name": "電磁封魔イゾラド",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、攻撃することができない。\nこのクリーチャーが破壊された時、カードを１枚引いてもよい。",
+          "race": "グランド・デビル/サイバーロード/オリジン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g172Death": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-051.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "e885a1c420b45ed27e306271ab530709c3e20e7cdce50ec9093ea1f6e4d02300",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-058",
+      "name": "刀走！アライフvs.マープル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-058",
+      "faces": [
+        {
+          "name": "刀走！アライフvs.マープル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが破壊された時、カードを１枚引く。",
+          "race": "アビスロイヤル/メカ・デル・ディネロ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "g172Death": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-058.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "8a67472253a48db881faccf1af023e1d28ae5f7ccd0e5fad39a501bf0414c057",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-055",
+      "name": "爆子分 ダイゴロウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-055",
+      "faces": [
+        {
+          "name": "爆子分 ダイゴロウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンを離れた時、相手のパワー2000以下のクリーチャーを１体、破壊する。",
+          "race": "ヒューマノイド爆/革命軍",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Leave": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 2000
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-055.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "efb810ae09831501b8f3202498d58fdce9ffd2bc3c7edf50757b4af8ea5b22a0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp10-082",
+      "name": "半魔の夜将ホルス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-082",
+      "faces": [
+        {
+          "name": "半魔の夜将ホルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーが破壊された時、カードを１枚引く。",
+          "race": "デーモン・コマンド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "noAttack": true,
+        "g172Death": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-082.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "894d2bc744e666f0410a2842edbfdc118dedac9757b3186e27bc08b689cba3c0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-053",
+      "name": "腐聖 ベガ-２",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-053",
+      "faces": [
+        {
+          "name": "腐聖 ベガ-２",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが破壊された時、相手の手札を１枚見ないで選び、捨てさせる。\nササゲール２（ディスペクターを召喚する時、コストを２少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "イニシエート/ゴースト/ディスタス",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "sasage": 2,
+        "g172Death": [
+          {
+            "op": "Discard",
+            "n": 1,
+            "random": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-053.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "2507adbcca62cc77528cefbade9dfae4989ebe52be9a2dc44cecdd23c05d8c5d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr09-059",
+      "name": "封魔フーマー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-059",
+      "faces": [
+        {
+          "name": "封魔フーマー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーが破壊された時、相手の手札を１枚、見ないで選び、捨てさせる。",
+          "race": "グランド・デビル/エイリアン",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "slayer": true,
+        "g172Death": [
+          {
+            "op": "Discard",
+            "n": 1,
+            "random": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-059.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "fecb39c9d54a870bb60e505d2c3f70fe5e6ad84f52cc2416a281e1ab3130d2df",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr10-041",
+      "name": "魔犬人形イヌタン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-041",
+      "faces": [
+        {
+          "name": "魔犬人形イヌタン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\nこのクリーチャーは攻撃することができない。\nこのクリーチャーが破壊された時、相手は自身の手札を１枚選び、捨てる。",
+          "race": "デスパペット",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g172Death": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-041.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "0354281225d69e8aa8f62a6efdebd72770e0d83be3c94df837886d77044b59fa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-027",
+      "name": "無敵魔誕カースペイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-027",
+      "faces": [
+        {
+          "name": "無敵魔誕カースペイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火/自然",
+          "civilizations": [
+            "闇",
+            "火",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スピードアタッカー\nマッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーが破壊された時、自分の山札の上から１枚をマナゾーンに置いてもよい。",
+          "race": "デーモン・コマンド/ジャイアント",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "machFighter": true,
+        "slayer": true,
+        "g172Death": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-027.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "25a49c46c735e5748cadde007d3d094a2cf428498ce0daf4d61ed2055139fdda",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-056",
+      "name": "無電 スプラ-２",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-056",
+      "faces": [
+        {
+          "name": "無電 スプラ-２",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこのクリーチャーが破壊された時、相手のクリーチャーを１体選び、持ち主の手札に戻す。\nササゲール２（ディスペクターを召喚する時、コストを２少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "リキッド・ピープル/ビーストフォーク/ディスタス",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "sasage": 2,
+        "g172Death": [
+          {
+            "op": "Target",
+            "to": "hand"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-056.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "ba00a409d77a786f87c031112fcc703b2e9569c8f47f04ac1c67ce4b00e82704",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-059",
+      "name": "離撃の面 ジョンマジロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-059",
+      "faces": [
+        {
+          "name": "離撃の面 ジョンマジロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンを離れた時、自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "ビーストフォーク號/革命軍",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Leave": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-059.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "b2aef0214d8ecbe4c2f58a1a8c1d02dc42f456472bf9d0272a67cd0cbde2ccfd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-063",
+      "name": "龍素記号Od アイソトープ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-063",
+      "faces": [
+        {
+          "name": "龍素記号Od アイソトープ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンを離れた時、カードを１枚引く。",
+          "race": "クリスタル・ドラゴン/革命軍",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Leave": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-063.jpg",
+      "verification": {
+        "checkedAt": "2026-10-29",
+        "sha256": "c7971a07c946d9c57e4a3792de7f6ff2398ea23741f840d548139d76db96d693",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-29",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr21-089": 4,
+      "dmr23-050": 4,
+      "dmr09-082": 4,
+      "dmrp02-077": 4,
+      "dmrp01-085": 4,
+      "dmr23-053": 4,
+      "dmrp10-085": 4,
+      "dmsd12-016": 4,
+      "dmsd13-020": 4,
+      "dmr13-088": 4,
+      "dmr21-092": 4,
+      "dmrp09-082": 4,
+      "dm24rp1-062": 4,
+      "dmrp13-072": 4,
+      "dmrp16-070": 4,
+      "dm23rp4-066": 4,
+      "dmrp18-076": 4,
+      "dmrp04s-068": 4,
+      "dmrp19-050": 4,
+      "dmrp18-063": 4,
+      "dmrp11-084": 4,
+      "dmrp01-078": 4,
+      "dmr08-045": 4,
+      "dmrp10-094": 4,
+      "dmrp05-076": 4,
+      "dmrp18-094": 4,
+      "dmd04-004": 4,
+      "dm36-051": 4,
+      "dm23rp3-058": 4,
+      "dmr23-055": 4,
+      "dmrp10-082": 4,
+      "dmrp18-053": 4,
+      "dmr09-059": 4,
+      "dmr10-041": 4,
+      "dm25rp1-027": 4,
+      "dmrp18-056": 4,
+      "dmr23-059": 4,
+      "dmr21-063": 4
+    }
+  }
+}

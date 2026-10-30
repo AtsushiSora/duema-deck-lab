@@ -33,7 +33,8 @@ export function createTravelRules(api){
  case'g14_Chicken':choice(s,t,'相手のブロッカーを1体破壊する',targetOptions(s,t.p,creatures(s,1-t.p).filter(x=>effective(x,s).blocker)));break;
  case'g14_MomoShield':choice(s,t,'自分のシールド1つを手札に加える？（S・トリガー不可）',[...own.shields.map((x,i)=>opt('シールド'+(i+1),x.uid,own.shields.length>1?10:2)),skip()]);break;
  case'g14_Joe':{const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation&&x.g14Joe?.some(j=>j.key===t.key));if(x){put(s,task('g14_AfterJoe',t.p,t.source,{uid:x.uid,serial:x.zoneSerial||0}));move(s,[{player:t.p,uid:x.uid,to:'deck',destroy:false}]);}break;}
- case'g14_AfterJoe':{const x=own.deck.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial+1);if(x)draw(s,t.p,1);break;}
+ // Official QA31592: attempting the delayed bottom move is enough to draw.
+ case'g14_AfterJoe':draw(s,t.p,1);break;
  case'g14_DashDeclare':declareDash(s,t);break;
  case'g14_DashResolve':{const x=own[t.origin].find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial),permits=x&&t.origin==='mana'?api.manaPermits(s,t.p,x):[null];if(x&&permits.length&&api.canCast(s,t.p,card(x))&&api.canEnter(s,t.p,card(x),{origin:t.origin,execution:true})&&api.canPay(s,t.p,{...card(x),cost:card(x).kirifudaDash,printedCost:card(x).cost,summonOrigin:t.origin}))choice(s,t,'キリフダッシュのコストを支払って召喚する？',[...permits.map(permit=>opt('2マナで召喚する',{permit},25,x.cardId)),skip()]);break;}
  default:throw Error('未実装の旅路効果：'+t.op);

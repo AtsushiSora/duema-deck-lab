@@ -274,8 +274,8 @@ export function createStrategicAI(api){
    }
   }
   return rows.map(r=>{
-   // Preserve the effect policy's fatal-attack exclusion in both scoring and lethal estimates.
-   const a=r.a;if(a.kind!=='attack'||r.value<=-1000)return r;
+   // Preserve decisive effect scores before estimating an attack from shield damage.
+   const a=r.a;if(a.kind!=='attack'||r.value<=-1000||r.value>=1000)return r;
    const x=find(p,a.uid),c=effective(x,ctx);let score=r.value;
    if(a.target==='player'){
     if(them.shields.length===0&&protectedPlayer)return {...r,value:-10};

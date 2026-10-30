@@ -1,0 +1,343 @@
+{
+  "phase": 194,
+  "checkedAt": "2026-10-30",
+  "description": "解決時の自分のクリーチャーのパワーを条件とする追加ドローを完全照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp17-052",
+      "name": "オチャメ・トラップ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-052",
+      "faces": [
+        {
+          "name": "オチャメ・トラップ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のアンタップしているクリーチャーを１体選び、持ち主のマナゾーンに置く。\nバトルゾーンに自分のパワー6000以上のクリーチャーがあれば、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "filter": {
+              "untapped": true
+            }
+          },
+          {
+            "op": "IfOwnPower",
+            "minPower": 6000,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-052.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "26f17ca4152c461fe42273104440389b210faff0fa3b03f3136f14e4061374e8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-043",
+      "name": "ザ・ストロング・ヴォイド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-043",
+      "faces": [
+        {
+          "name": "ザ・ストロング・ヴォイド",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のアンタップしているクリーチャーを１体破壊する。\nバトルゾーンに自分のパワー6000以上のクリーチャーがあれば、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "untapped": true
+            }
+          },
+          {
+            "op": "IfOwnPower",
+            "minPower": 6000,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-043.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "e6b6f0d8df089332748b4d9243d390d36fbbf4b897a892f4f7c02d5dce3b4501",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-033",
+      "name": "ザ・ストロング・サンダー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-033",
+      "faces": [
+        {
+          "name": "ザ・ストロング・サンダー",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを２体まで選び、タップする。\nバトルゾーンに自分のパワー6000以上のクリーチャーがあれば、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを2体まで選ぶ",
+            "optional": true
+          },
+          {
+            "op": "IfOwnPower",
+            "minPower": 6000,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-033.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "a204072a72aba61bab6ccf50b021c12c243bd5d1814533c54a5bcb7af9c55205",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-039",
+      "name": "ザ・ストロング・テレポ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-039",
+      "faces": [
+        {
+          "name": "ザ・ストロング・テレポ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを２体まで選び、持ち主の手札に戻す。\nバトルゾーンに自分のパワー6000以上のクリーチャーがあれば、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "hand",
+            "title": "手札に戻す相手のクリーチャーを2体まで選ぶ",
+            "optional": true
+          },
+          {
+            "op": "IfOwnPower",
+            "minPower": 6000,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-039.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "88fb5f504bda656e5e06a21204e7f182c4da076b5a63e7bf6f07b3c581fd691c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-052",
+      "name": "ザ・ストロング・モモパワー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-052",
+      "faces": [
+        {
+          "name": "ザ・ストロング・モモパワー",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手は自身のクリーチャーを１体選び、マナゾーンに置く。\nバトルゾーンに自分のパワー6000以上のクリーチャーがあれば、カードを１枚引く。",
+          "race": "ジョーカーズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "mana"
+          },
+          {
+            "op": "IfOwnPower",
+            "minPower": 6000,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-052.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "7734ab8e5b8589a1635a43b7aad2f0f532c5be13e2b49784ea8d8f82f754656e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-072",
+      "name": "ワールド・スパイラル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-072",
+      "faces": [
+        {
+          "name": "ワールド・スパイラル",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、持ち主の手札に戻す。\nバトルゾーンに自分のパワー6000以上のクリーチャーがあれば、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "hand",
+            "title": "手札に戻す相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "IfOwnPower",
+            "minPower": 6000,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-072.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "dd5353d50fe96bc1559e7bcdd49408a46fa44c832e97e3560de5fb5400badd3a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-30",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp17-052": 4,
+      "dmrp18-043": 4,
+      "dmrp18-033": 4,
+      "dmrp18-039": 4,
+      "dmrp18-052": 4,
+      "dmrp17-072": 4
+    }
+  }
+}
