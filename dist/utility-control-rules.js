@@ -43,7 +43,7 @@ export function createUtilityControlRules(api){
  default:throw Error('未実装のコントロールユーティリティ選択：'+t.op);
  }return true;}
  return{run,chosen,mainActions(s,p){return (s.players[p].spellsThisTurn||0)>0?s.players[p].hand.filter(x=>card(x).g118SpellZero&&api.canCast(s,p,card(x),'hand')&&api.canEnter(s,p,card(x),{origin:'hand',execution:true})).map(x=>({kind:'play',uid:x.uid,cardId:x.cardId,origin:'hand',cost:0,freeSummon:'G・ゼロ',label:card(x).name+'をG・ゼロで召喚'})):[];},
-  spellTax:(s,p,c)=>c.type==='spell'?s.players.reduce((n,_,p)=>n+api.creatures(s,p).reduce((n,x)=>n+(api.effective(x,s).g56SpellTax||0),0),0):0,
+  spellTax(s,p,c){if(c.type!=='spell')return 0;const colors=api.colors(c);return s.players.reduce((n,_,owner)=>n+api.creatures(s,owner).filter(x=>!x.sealed).reduce((n,x)=>{const source=api.effective(x,s),tax=source.g222SpellTax;return n+(source.g56SpellTax||0)+(!tax||tax.opponent&&owner===p||tax.exceptColor&&colors.includes(tax.exceptColor)||tax.colors&&!tax.colors.some(color=>colors.includes(color))?0:tax.graveSpells?s.players[p].grave.filter(x=>!x.faceDown&&!(c.summonOrigin==='grave'&&x.uid===c.executionUid)&&api.faces(card(x)).some(c=>c.type==='spell')).length:tax.amount);},0),0);},
   effect(s,p,c,uid,entry){if(!c.g56Effect)return false;put(s,task('g56_'+c.g56Effect,p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;}
  };
 }

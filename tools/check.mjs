@@ -1,3 +1,13 @@
+import {STANDARD223_DECK} from './fixtures/standard223.mjs';
+import {STANDARD222_DECK} from './fixtures/standard222.mjs';
+import {STANDARD221_DECK} from './fixtures/standard221.mjs';
+import {STANDARD220_DECK} from './fixtures/standard220.mjs';
+import {STANDARD219_DECK} from './fixtures/standard219.mjs';
+import {STANDARD218_DECK} from './fixtures/standard218.mjs';
+import {STANDARD217_DECK} from './fixtures/standard217.mjs';
+import {STANDARD216_DECK} from './fixtures/standard216.mjs';
+import {STANDARD215_DECK} from './fixtures/standard215.mjs';
+import {STANDARD214_DECK} from "./fixtures/standard214.mjs";
 import {MARS213_DECK} from "./fixtures/mars213.mjs";
 import {STANDARD212_DECKS} from "./fixtures/standard212.mjs";
 import {STANDARD211_DECKS} from "./fixtures/standard211.mjs";
@@ -384,3 +394,23 @@ for(const d of STANDARD211_DECKS)if(validateDeck(d).length||registry.coverage(d)
 for(const d of STANDARD212_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error("第212段階の40枚を確認してください："+d.name);console.log("Checked phase212 forty-card decks: eleven counted-cost and sweep cards supported.");
 
 if(validateDeck(MARS213_DECK).length||registry.coverage(MARS213_DECK).unsupported||MARS213_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error("第213段階の40枚を確認してください");console.log("Checked phase213 forty-card deck: 愛銀河マーズ・シンギュラリティ supported.");
+
+if(validateDeck(STANDARD214_DECK).length||registry.coverage(STANDARD214_DECK).unsupported||STANDARD214_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error("第214段階の40枚を確認してください");console.log("Checked phase214 forty-card deck: five group-power cards supported.");
+
+if(validateDeck(STANDARD215_DECK).length||registry.coverage(STANDARD215_DECK).unsupported||STANDARD215_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error("第215段階の40枚を確認してください");console.log("Checked phase215 forty-card deck: four filtered sweep cards supported.");
+
+if(validateDeck(STANDARD216_DECK).length||registry.coverage(STANDARD216_DECK).unsupported||STANDARD216_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error("第216段階の40枚を確認してください");console.log("Checked phase216 forty-card deck: eight mana recovery and discard-draw creatures supported.");
+
+if(validateDeck(STANDARD217_DECK).length||registry.coverage(STANDARD217_DECK).unsupported||STANDARD217_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error("第217段階の40枚を確認してください");console.log("Checked phase217 forty-card deck: six filtered grave-recovery creatures supported.");
+
+if(validateDeck(STANDARD218_DECK).length||registry.coverage(STANDARD218_DECK).unsupported||STANDARD218_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error("第218段階の40枚を確認してください");console.log("Checked phase218 forty-card deck: six filtered group-tap cards supported.");
+
+if(validateDeck(STANDARD219_DECK).length||registry.coverage(STANDARD219_DECK).unsupported||STANDARD219_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error("第219段階の40枚を確認してください");console.log("Checked phase219 forty-card deck: four group-untap creatures supported.");
+
+if(validateDeck(STANDARD220_DECK).length||registry.coverage(STANDARD220_DECK).unsupported||STANDARD220_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error("第220段階の40枚を確認してください");console.log("Checked phase220 forty-card deck: six filtered mana-return cards supported.");
+
+if(validateDeck(STANDARD221_DECK).length||registry.coverage(STANDARD221_DECK).unsupported||STANDARD221_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error("第221段階の40枚を確認してください");console.log("Checked phase221 forty-card deck: four battlefield-condition cards supported.");
+
+if(validateDeck(STANDARD222_DECK).length||registry.coverage(STANDARD222_DECK).unsupported||STANDARD222_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error("第222段階の40枚を確認してください");console.log("Checked phase222 forty-card deck: seven spell-tax creatures supported.");
+
+if(validateDeck(STANDARD223_DECK).length||registry.coverage(STANDARD223_DECK).unsupported||STANDARD223_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error("第223段階の40枚を確認してください");console.log("Checked phase223 forty-card deck: eight hand-inspection cards supported.");

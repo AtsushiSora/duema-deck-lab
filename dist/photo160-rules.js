@@ -1,6 +1,6 @@
-import{createPhoto160NatureRules}from'./photo160-nature-rules.js?v=0.220.0';
-import{createPhoto160SpellRules}from'./photo160-spell-rules.js?v=0.220.0';
-import{createPhoto160FireRules}from'./photo160-fire-rules.js?v=0.220.0';
+import{createPhoto160NatureRules}from'./photo160-nature-rules.js?v=0.227.0';
+import{createPhoto160SpellRules}from'./photo160-spell-rules.js?v=0.227.0';
+import{createPhoto160FireRules}from'./photo160-fire-rules.js?v=0.227.0';
 export function createPhoto160Rules(api){
  const entries=[['nature',createPhoto160NatureRules(api)],['spell',createPhoto160SpellRules(api)],['fire',createPhoto160FireRules(api)]],modules=entries.map(([,m])=>m);
  const call=(name,...args)=>{for(const m of modules)m[name]?.(...args);},collect=(name,...args)=>modules.flatMap(m=>m[name]?.(...args)||[]),consume=(name,...args)=>modules.some(m=>m[name]?.(...args));

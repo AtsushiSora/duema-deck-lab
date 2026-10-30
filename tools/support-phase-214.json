@@ -1,0 +1,277 @@
+{
+  "phase": 214,
+  "checkedAt": "2026-10-30",
+  "description": "指定した範囲の全クリーチャーのパワーをターン終了まで増減する効果。全能力文を完全照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dmr13-005",
+      "name": "凶英雄 ツミトバツ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-005",
+      "faces": [
+        {
+          "name": "凶英雄 ツミトバツ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナ武装 ７：このクリーチャーをバトルゾーンに出した時、自分のマナゾーンに闇のカードが７枚以上あれば、そのターン、バトルゾーンにある相手のクリーチャーすべてのパワーは-7000される。（パワー０以下のクリーチャーは破壊される）\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "デーモン・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfMana",
+            "n": 7,
+            "color": "闇",
+            "defs": [
+              {
+                "op": "GroupPower",
+                "g214GroupPower": true,
+                "owner": "opponent",
+                "power": -7000,
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-005.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "30db19d0c8563d49610740b5d4e3fd112412538af853618e3178935c7a963138",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex07-s03",
+      "name": "凶鬼14号 ヴェガングル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex07-s03",
+      "faces": [
+        {
+          "name": "凶鬼14号 ヴェガングル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "相手のタップしているクリーチャー１体につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、このターン、他のクリーチャーすべてのパワーを －4000する。",
+          "race": "マフィ・ギャング/デーモン・コマンド",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "battle",
+          "owner": "opponent",
+          "filter": {
+            "creature": true,
+            "tapped": true
+          },
+          "amount": 2
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "g214GroupPower": true,
+            "owner": "both",
+            "power": -4000,
+            "filter": {
+              "creature": true
+            },
+            "other": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex07-s03.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "2ee26b005f24041673bde4ccf1226a84bf7d1908d3c449669248504b0fb891e3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy18-060",
+      "name": "九番目の旧王",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy18-060",
+      "faces": [
+        {
+          "name": "九番目の旧王",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれか１つを選ぶ。\n→相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－12000する。（パワー０以下のクリーチャーは破壊される）\n→このターン、相手のクリーチャーすべてのパワーを－3000する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－12000する。（パワー０以下のクリーチャーは破壊される）",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "power": -12000,
+                    "spell": true
+                  }
+                ]
+              },
+              {
+                "label": "このターン、相手のクリーチャーすべてのパワーを－3000する。",
+                "defs": [
+                  {
+                    "op": "GroupPower",
+                    "g214GroupPower": true,
+                    "owner": "opponent",
+                    "power": -3000,
+                    "filter": {
+                      "creature": true
+                    },
+                    "spell": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy18-060.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "8ecfb50f75dbd5225f84ddebda575377981fca4a84078a36dea9d6a99d548d3d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc38-001",
+      "name": "魔城の黒鬼オルガイザ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc38-001",
+      "faces": [
+        {
+          "name": "魔城の黒鬼オルガイザ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、そのターン、バトルゾーンにある相手のクリーチャーすべてのパワーは-1000される。(パワー０以下のクリーチャーは破壊される)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "g214GroupPower": true,
+            "owner": "opponent",
+            "power": -1000,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc38-001.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "13ee4b14d6d012ae2a54aa9f2fbe5cf8a3915be5199f726623a079a5b56dbadd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26-023",
+      "name": "傀儡霊騎ケルビレム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-023",
+      "faces": [
+        {
+          "name": "傀儡霊騎ケルビレム",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、そのターン、バトルゾーンでタップされているクリーチャーすべてのパワーは-3000される。 (パワー０以下のクリーチャーは破壊される)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーク・セラフィム/デスパペット",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "g214GroupPower": true,
+            "owner": "both",
+            "power": -3000,
+            "filter": {
+              "creature": true,
+              "tapped": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26-023.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "f48b901f8a955979421270bd36ddb88837739cd7d4ff59119e858f323c27be47",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-30",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr13-005": 4,
+      "dmex07-s03": 4,
+      "promoy18-060": 4,
+      "dmc38-001": 4,
+      "dm26-023": 4
+    }
+  }
+}

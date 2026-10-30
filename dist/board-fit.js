@@ -1,4 +1,4 @@
-import {manualLayout} from './battle-layout.js?v=0.225.0';
+import {manualLayout} from './battle-layout.js?v=0.227.0';
 // All cards receive a cell inside the available region; no scrolling or omission.
 export function fitBoardGrid(count,width,height,{shield=false,rail=false}={}){
  if(!Number.isSafeInteger(count)||count<0||!Number.isFinite(width)||!Number.isFinite(height)||width<=0||height<=0)return null;

@@ -1,7 +1,7 @@
-import{createPhoto159ResourceRules}from'./photo159-resource-rules.js?v=0.220.0';
-import{createPhoto159ShieldRules}from'./photo159-shield-rules.js?v=0.220.0';
-import{createPhoto159CombatRules}from'./photo159-combat-rules.js?v=0.220.0';
-import{createPhoto159DispectorRules}from'./photo159-dispector-rules.js?v=0.220.0';
+import{createPhoto159ResourceRules}from'./photo159-resource-rules.js?v=0.227.0';
+import{createPhoto159ShieldRules}from'./photo159-shield-rules.js?v=0.227.0';
+import{createPhoto159CombatRules}from'./photo159-combat-rules.js?v=0.227.0';
+import{createPhoto159DispectorRules}from'./photo159-dispector-rules.js?v=0.227.0';
 // Keep the photographed-card families independent while using normal engine hooks.
 export function createPhoto159Rules(api){
  const modules=[createPhoto159ResourceRules(api),createPhoto159ShieldRules(api),createPhoto159CombatRules(api),createPhoto159DispectorRules(api)];

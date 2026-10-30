@@ -1,0 +1,242 @@
+{
+  "phase": 221,
+  "checkedAt": "2026-10-30",
+  "description": "自分の場のカードを条件にしたドロー・手札交換・シールド追加。全能力文を完全照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp16-036",
+      "name": "「さぁさぁ、お代は見てのお帰りだよ！」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-036",
+      "faces": [
+        {
+          "name": "「さぁさぁ、お代は見てのお帰りだよ！」",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、持ち主の手札に戻す。\nバトルゾーンに自分の火のクリーチャーがあれば、自分の手札を１枚捨ててもよい。そうしたら、カードを２枚引く。",
+          "race": "美孔麗王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "hand",
+            "title": "手札に戻す相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "IfOwn",
+            "g221BattleCondition": true,
+            "filter": {
+              "creature": true,
+              "color": "火"
+            },
+            "defs": [
+              {
+                "op": "DiscardDraw",
+                "g216DiscardDraw": true,
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-036.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "75d99383e226b05e5412bc06f87966d5f61b1e9efd340c33273fb3611ac6ca4f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp21-030",
+      "name": "ジュエル・スパーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-030",
+      "faces": [
+        {
+          "name": "ジュエル・スパーク",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーをすべてタップする。\n自分のタマシードがあれば、自分の山札の上から１枚目をシールド化する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          },
+          {
+            "op": "IfOwn",
+            "g221BattleCondition": true,
+            "filter": {
+              "seed": true
+            },
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-030.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "4964e628e6eb654ca5955e7969d13b1e5f46428d5a6bb475a274cd9f4ffcec70",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp21-033",
+      "name": "スパイラル・ビジョン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-033",
+      "faces": [
+        {
+          "name": "スパイラル・ビジョン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを２体まで選び、持ち主の手札に戻す。\n自分のタマシードがあれば、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "hand",
+            "title": "手札に戻す相手のクリーチャーを2体まで選ぶ",
+            "optional": true
+          },
+          {
+            "op": "IfOwn",
+            "g221BattleCondition": true,
+            "filter": {
+              "seed": true
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-033.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "599a86027aa7e821655c19a6faf75e71d9fece50907d9ca2ec22554de6406bc3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-075",
+      "name": "雨跳者 ホンアメヨージョウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-075",
+      "faces": [
+        {
+          "name": "雨跳者 ホンアメヨージョウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンに自分の水のクリーチャーがあれば、カードを１枚引く。",
+          "race": "ムートピア/美孔麗王国",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "g221BattleCondition": true,
+            "filter": {
+              "creature": true,
+              "color": "水"
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-075.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "bf87f2be4b59f8011f0304b3e44ccbce3711ecc89b64afa84ec6ecb8dde987a7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-30",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp16-036": 4,
+      "dmrp21-030": 4,
+      "dmrp21-033": 4,
+      "dmrp16-075": 4
+    }
+  }
+}

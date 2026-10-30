@@ -50,6 +50,6 @@ export function createStarterRules(api){
   leaveSnapshot(s,departing){return s.players.map((_,p)=>creatures(s,p).filter(x=>effective(x,s).puppetLord).map(x=>({uid:x.uid,source:x.cardId,selfOnly:departing.some(r=>r.player===p&&r.uid===x.uid)})));},
   leaving(s,p,x,snapshot){if(puppet(card(x)))for(const w of snapshot?.[p]||[])if(!w.selfOnly||w.uid===x.uid)on(s,p,w.source,'s6MaryLeave');},
   entry(s,p,inst,options){if(p===s.active&&api.isCreature(s,inst)&&options.execution===false)for(const x of creatures(s,1-p))if(effective(x,s).oniBounce)on(s,1-p,x.cardId,'s6OniBounce',{owner:p,uid:inst.uid,incarnation:inst.incarnation||0});},
-  mainActions(s,p){return s.players[p].grave.flatMap(x=>api.faces(card(x)).flatMap((c,face)=>c.graveCast&&!api.spellIgnored(s,c)&&api.canCast(s,p,c)&&api.canPay(s,p,c)?[{kind:'play',label:'墓地から'+c.name+'を唱える',uid:x.uid,cardId:x.cardId,face,cost:api.summonCost(s,p,c),origin:'grave',ownGraveCast:true}]:[]));},
+  mainActions(s,p){return s.players[p].grave.flatMap(x=>api.faces(card(x)).flatMap((c,face)=>{const payment={...c,summonOrigin:'grave',executionUid:x.uid};return c.graveCast&&!api.spellIgnored(s,c)&&api.canCast(s,p,c)&&api.canPay(s,p,payment)?[{kind:'play',label:'墓地から'+c.name+'を唱える',uid:x.uid,cardId:x.cardId,face,cost:api.summonCost(s,p,payment),origin:'grave',ownGraveCast:true}]:[];}));},
  };
 }

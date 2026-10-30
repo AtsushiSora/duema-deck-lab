@@ -1,0 +1,204 @@
+{
+  "phase": 219,
+  "checkedAt": "2026-10-30",
+  "description": "自分のクリーチャー全体を条件に合わせてアンタップする効果。全能力文を完全照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dm01-041",
+      "name": "希望の使徒トール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm01-041",
+      "faces": [
+        {
+          "name": "希望の使徒トール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のターンの終わりに、バトルゾーンにある自分のクリーチャーをすべてアンタップしてよい。",
+          "race": "イニシエート",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g174End": [
+          {
+            "op": "Offer",
+            "g219Untap": true,
+            "title": "自分のクリーチャーをすべてアンタップする？",
+            "defs": [
+              {
+                "op": "GroupUntap",
+                "g219Untap": true,
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm01-041.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "0afd4584bbf594031483fe832af6654d7323d99c8760815d6e5d6e0165eb53b1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25-036",
+      "name": "樹海の守護者リニー・ラファロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-036",
+      "faces": [
+        {
+          "name": "樹海の守護者リニー・ラファロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分のターンの終わりに、バトルゾーンにある自分の水と自然のクリーチャーをすべてアンタップしてもよい。",
+          "race": "ガーディアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g174End": [
+          {
+            "op": "Offer",
+            "g219Untap": true,
+            "title": "自分の水と自然のクリーチャーをすべてアンタップする？",
+            "defs": [
+              {
+                "op": "GroupUntap",
+                "g219Untap": true,
+                "filter": {
+                  "creature": true,
+                  "any": [
+                    {
+                      "color": "水"
+                    },
+                    {
+                      "color": "自然"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25-036.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "373def0bb8ea76d7ceb7ae897fcb9cceb3d3e5cbd9bcd278d0b1cfcc816216d4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx12a-s02",
+      "name": "真実の皇帝 アドレナリン・マックス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12a-s02",
+      "faces": [
+        {
+          "name": "真実の皇帝 アドレナリン・マックス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "各ターン、このクリーチャーがはじめてタップした時、自分のドラゴンをすべてアンタップする。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+          "race": "レッド・コマンド・ドラゴン/アンノウン/ハンター/エイリアン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g219FirstTap": [
+          {
+            "op": "GroupUntap",
+            "g219Untap": true,
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            }
+          }
+        ],
+        "breaker": 3
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx12a-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "0370608a4f0074a87c3fbd1d08263ede4737dee8178c4056dd7cf6659fcf04f7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm21-007",
+      "name": "霊騎アガジム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-007",
+      "faces": [
+        {
+          "name": "霊騎アガジム",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃する時、バトルゾーンにある自分のセイント・ヘッドをすべてアンタップする。",
+          "race": "アーク・セラフィム",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "GroupUntap",
+            "g219Untap": true,
+            "filter": {
+              "creature": true,
+              "race": "セイント・ヘッド"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-007.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "c0eaf2ec8606ce4ad9e5d856e1ac740767439499728c4591f1f944d45facf156",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-30",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm01-041": 4,
+      "dm25-036": 4,
+      "dmx12a-s02": 4,
+      "dm21-007": 4
+    }
+  }
+}

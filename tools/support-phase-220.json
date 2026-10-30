@@ -1,0 +1,329 @@
+{
+  "phase": 220,
+  "checkedAt": "2026-10-30",
+  "description": "自分のマナから条件に合うカードを手札に戻す効果。全能力文を完全照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dmex08-197",
+      "name": "The ネギミソ漢",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-197",
+      "faces": [
+        {
+          "name": "The ネギミソ漢",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を、タップしてマナゾーンに置く。その後、《漢》または《名人》と名前にあるクリーチャーを１体、自分のマナゾーンから手札に戻してもよい。",
+          "race": "ジョーカーズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "tapped": true
+          },
+          {
+            "op": "Select",
+            "g220ManaReturn": true,
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "g220NameAny": [
+                "漢",
+                "名人"
+              ]
+            },
+            "optional": true,
+            "title": "手札に戻すマナの《漢》または《名人》と名前にあるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-197.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "defc119b28e9b91ce22d3d7232933c14b737464721d6d0bcf75232dd4376cb98",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr10-018",
+      "name": "グローバル・ナビゲーション",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-018",
+      "faces": [
+        {
+          "name": "グローバル・ナビゲーション",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにある相手の、タップされていないクリーチャーを１体選び、持ち主のマナゾーンに置く。\nクリーチャーを１体、自分のマナゾーンから手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "filter": {
+              "untapped": true
+            }
+          },
+          {
+            "op": "Select",
+            "g220ManaReturn": true,
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "optional": true,
+            "title": "手札に戻すマナのクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-018.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "0a9b5afab343557576f3ca404e0ed5056b1f27c7234897375d826a6416032059",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-056",
+      "name": "スプラッスイカ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-056",
+      "faces": [
+        {
+          "name": "スプラッスイカ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手のアンタップしているクリーチャーを１体、持ち主のマナゾーンに置く。\nクリーチャーを１体、自分のマナゾーンから手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "filter": {
+              "untapped": true
+            }
+          },
+          {
+            "op": "Select",
+            "g220ManaReturn": true,
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "optional": true,
+            "title": "手札に戻すマナのクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-056.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "453b2253c93978e7db229a649d823d408cb0ee52931f5ac19d666a4061e9c14e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-037",
+      "name": "ツッパリ・マメタ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-037",
+      "faces": [
+        {
+          "name": "ツッパリ・マメタ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、ハンターを１体、自分のマナゾーンから手札に戻してもよい。\nハンティング(バトル中、このクリーチャーのパワーは、バトルゾーンにある自分のハンター１体につき+1000される)",
+          "race": "ワイルド・ベジーズ/ハンター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g166Hunting": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "g220ManaReturn": true,
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "race": "ハンター"
+            },
+            "optional": true,
+            "title": "手札に戻すマナのハンターを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-037.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "ce1d228c74ae29dc82878d70ec6c1acf0171213b0be9eaff0e78c22cb24a5774",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-061",
+      "name": "リンネノ裁徒",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-061",
+      "faces": [
+        {
+          "name": "リンネノ裁徒",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、呪文を１枚、自分のマナゾーンから手札に戻してもよい。",
+          "race": "メタリカ/サバキスト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "g220ManaReturn": true,
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "spell": true
+            },
+            "optional": true,
+            "title": "手札に戻すマナの呪文を1枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-061.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "4520d74941892078302737197dcf4554728ddd619c7d544d0da1a36450f8c351",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr09-009",
+      "name": "二角の超人",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-009",
+      "faces": [
+        {
+          "name": "二角の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から２枚をマナゾーンに置いてもよい。その後、クリーチャーを２体まで、自分のマナゾーンから手札に戻してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "ジャイアント",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 2
+              }
+            ]
+          },
+          {
+            "op": "Select",
+            "g220ManaReturn": true,
+            "origin": "mana",
+            "to": "hand",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "optional": true,
+            "title": "手札に戻すマナのクリーチャーを2体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-009.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "3bfa0328091870c1109f23870be9c647919d18593e1f3494c286602d74a4d2f9",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-30",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex08-197": 4,
+      "dmr10-018": 4,
+      "dmrp01-056": 4,
+      "dmr01-037": 4,
+      "dmrp04s-061": 4,
+      "dmr09-009": 4
+    }
+  }
+}
