@@ -10,6 +10,12 @@ export function textContent(html,{lines=false}={}){
 }
 const cell=(html,key)=>{const re=new RegExp('<td\\b[^>]*class\\s*=\\s*[\'\"]([^\'\"]*)[\'\"][^>]*>([\\s\\S]*?)<\\/td>','gi');for(const m of html.matchAll(re))if(m[1].split(/\s+/).includes(key))return {found:true,html:m[2],text:textContent(m[2])};return {found:false,html:'',text:''};};
 const number=s=>/^\d+$/.test(s.normalize('NFKC').replace(/,/g,''))?Number(s.normalize('NFKC').replace(/,/g,'')):null;
+// Printed mana is independent of civilization count; five-color cards can be 0 or 1.
+export function printedManaValue(html){
+ const value=cell(html,'mana'),n=value.text==='-'?0:number(value.text);
+ if(!value.found||n===null)throw Error('公式のマナ数を照合できません');
+ return n;
+}
 export function parseDetail(html,expected){
  const title=extractName(html);if(!title||canonicalName(title)!==canonicalName(expected.name))throw Error('カード名を照合できません：'+expected.id);
  const sections=[...html.matchAll(/<h3\b[^>]*class\s*=\s*['"][^'"]*\bcard-name\b[^'"]*['"][^>]*>[\s\S]*?<\/h3>/gi)];
