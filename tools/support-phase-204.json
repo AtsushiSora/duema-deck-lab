@@ -1,0 +1,880 @@
+{
+  "phase": 204,
+  "checkedAt": "2026-10-30",
+  "description": "呪文を唱えた時の誘発能力と任意のドロー後の手札破棄。呪文本体を解決した後、適切なプレイヤーの誘発能力を順に処理する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37340/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36910/"
+  ],
+  "cards": [
+    {
+      "id": "dmr13-048",
+      "name": "アクア鏡師 パワードミラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-048",
+      "faces": [
+        {
+          "name": "アクア鏡師 パワードミラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のターン中に、相手が呪文を唱えた時、カードを１枚引いてもよい。",
+          "race": "リキッド・ピープル閃",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g204SpellWatch": {
+          "who": "opponent",
+          "opponentTurn": true,
+          "defs": [
+            {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-048.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "dfe0b3b6b55f7d00ddf6dc3239fac4a71a89737148b9d62207e52f6aff1c6bb8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-067",
+      "name": "アクア実験体 ゲール7号",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-067",
+      "faces": [
+        {
+          "name": "アクア実験体 ゲール7号",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃する時、カードを１枚引いてもよい。そうしたら、自分の手札を１枚捨てる。",
+          "race": "リキッド・ピープル閃",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "g204DrawDiscard": true,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              },
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-067.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "3c8493e6593916e5af14e72aca79b2361596a8ab3ab5246fc3a1452f62d92f80",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr03-038",
+      "name": "シンカイタイフーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-038",
+      "faces": [
+        {
+          "name": "シンカイタイフーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\nこのクリーチャーは攻撃することができない。\nこのクリーチャーをバトルゾーンに出した時、カードを１枚引いてもよい。そうした場合、自分の手札を１枚捨てる。",
+          "race": "ブルー・モンスター/ハンター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g204DrawDiscard": true,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              },
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-038.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "b671dc4992d64125228b513c90ec3ba6e472c9ade060a71a566fcaea6c4ceb3c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-026",
+      "name": "ミラー怪人 ドテラバラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-026",
+      "faces": [
+        {
+          "name": "ミラー怪人 ドテラバラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のターン中に、相手が呪文を唱えた時、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "ファンキー・ナイトメア",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g204SpellWatch": {
+          "who": "opponent",
+          "opponentTurn": true,
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1,
+              "random": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-026.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "e7b7b6f794b02d59cf274c8144dfd48bbd613e19fa9bcd77eb86111c584ffcd2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp05-040",
+      "name": "貝獣 ギューホ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-040",
+      "faces": [
+        {
+          "name": "貝獣 ギューホ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分が呪文を唱えた時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "ムートピア",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Target",
+              "g190Freeze": "self",
+              "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-040.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "b977bff2b92a1f8f9994ccb5b6e173a15cfc880bba0d0737308ace45a82c4470",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp06-035",
+      "name": "奇石 ウラナー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-035",
+      "faces": [
+        {
+          "name": "奇石 ウラナー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分が呪文を唱えた時、相手のクリーチャーを１体選び、タップする。",
+          "race": "メタリカ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Select",
+              "owner": "opponent",
+              "origin": "battle",
+              "n": 1,
+              "filter": {
+                "creature": true
+              },
+              "g173Targets": true,
+              "g193Select": true,
+              "g193Tap": true,
+              "title": "タップする相手のクリーチャーを1体選ぶ"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-035.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "e6564b37e2f2102ac1dfa6cf1a30cce4e8c78eb325e9b8ee477a0371d7562766",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr07-038",
+      "name": "虚構の支配者メタフィクション",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-038",
+      "faces": [
+        {
+          "name": "虚構の支配者メタフィクション",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカー\n相手が呪文を唱えた時、呪文を１枚、自分の墓地から手札に戻してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "デーモン・コマンド",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g204SpellWatch": {
+          "who": "opponent",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "hand",
+              "n": 1,
+              "filter": {
+                "spell": true
+              },
+              "optional": true
+            }
+          ]
+        },
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-038.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "2f72bd6541efe86edd5d166fbd8f166df29116967dad2aa3bff481a766b211c9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp08-042",
+      "name": "凶鬼74号 ビカリ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-042",
+      "faces": [
+        {
+          "name": "凶鬼74号 ビカリ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分が呪文を唱えた時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを －3000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "マフィ・ギャング",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Target",
+              "power": -3000
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-042.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "ed5b0a3ed620668151ba12347285ed92ec9be5a6f305a52b9e5caa053b3eb4e4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-037",
+      "name": "護鏡の面 ミラレス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-037",
+      "faces": [
+        {
+          "name": "護鏡の面 ミラレス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のターン中に、相手が呪文を唱えた時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+          "race": "ビーストフォーク號",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g204SpellWatch": {
+          "who": "opponent",
+          "opponentTurn": true,
+          "defs": [
+            {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-037.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "883d16b559474b6da287c26fa5cd72faf64b030925cd4dc058c81a2d7d9895b7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-022",
+      "name": "四真混成 ワーグレンツォ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-022",
+      "faces": [
+        {
+          "name": "四真混成 ワーグレンツォ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nEXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分が呪文を唱えた時、カードを１枚引いてもよい。",
+          "race": "ディスペクター/キング・コマンド・ドラゴン/ナイト",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "exLife": true,
+        "breaker": 2,
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-022.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "2966686654889f51d7b57d1588f8eb49f59fc7c8fa995d50a37b6219551605f5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp07-036",
+      "name": "赤き熱槍 ベタン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-036",
+      "faces": [
+        {
+          "name": "赤き熱槍 ベタン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分が呪文を唱えた時、カードを１枚引いてもよい。そうしたら、自分の手札を１枚捨てる。",
+          "race": "ムートピア",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Offer",
+              "g204DrawDiscard": true,
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                },
+                {
+                  "op": "Discard",
+                  "owner": "self",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-036.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "3580a9dba904de512670f4a2b62113895aec13956bf5cb695a3cd286bba3aa04",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-047",
+      "name": "蒼神龍アトラス・ガルー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-047",
+      "faces": [
+        {
+          "name": "蒼神龍アトラス・ガルー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分が呪文を唱えた時、カードを１枚引いてもよい。そうした場合、自分の手札を１枚捨てる。",
+          "race": "ポセイディア・ドラゴン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Offer",
+              "g204DrawDiscard": true,
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                },
+                {
+                  "op": "Discard",
+                  "owner": "self",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-047.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "22d351ed283f1e94f70f3106686882e033e03bba041d0c7d4f4b01746ecffa52",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm32-085",
+      "name": "電磁王機ピッコリ・コイルンガー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-085",
+      "faces": [
+        {
+          "name": "電磁王機ピッコリ・コイルンガー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃する時、カードを１枚引いてもよい。そうした場合、自分の手札を１枚捨てる。",
+          "race": "サイバーロード/グレートメカオー/オリジン",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "g204DrawDiscard": true,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              },
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-085.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "eb5a98ca91e03d7ad7c4adf0d3642422c5eb4d4516eeffff3183d95e69e7c813",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm31-053",
+      "name": "爆獣マチュー・スチュアート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-053",
+      "faces": [
+        {
+          "name": "爆獣マチュー・スチュアート",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分が呪文を唱えた時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+          "race": "ドリームメイト/ナイト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-053.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "6c5db64fa54021db4989bf490a57f4814e64bad36d8967941b11249c109a0552",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-080",
+      "name": "氷牙レオポル・ディーネ公",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-080",
+      "faces": [
+        {
+          "name": "氷牙レオポル・ディーネ公",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分が呪文を唱えた時、カードを１枚引いてもよい。",
+          "race": "サイバー・ウイルス/ナイト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-080.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "3c296703ed7da8350b107ebfa678bbc8260dcf7750dcdd49b2e949856078f337",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp06-070",
+      "name": "歩く賄賂 コバンザ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-070",
+      "faces": [
+        {
+          "name": "歩く賄賂 コバンザ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分が呪文を唱えた時、カードを１枚引く。",
+          "race": "ムートピア",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-070.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "fc2bd555e175d17fce1bed7cbe00dc6544d35fdba0acf8cac5bec028f5bac306",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp09-017",
+      "name": "螺旋塔 モナイアス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-017",
+      "faces": [
+        {
+          "name": "螺旋塔 モナイアス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、カードを２枚引く。\n自分が呪文を唱えた時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "ムートピア",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Target",
+              "g190Freeze": "self",
+              "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-017.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "3d2d7b4a4d8ae3cfa4c9165b37eea21aeaaaadada5064e4fc38890a9867bd1c4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-004",
+      "name": "龍素記号Fz オシロスコープ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-004",
+      "faces": [
+        {
+          "name": "龍素記号Fz オシロスコープ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分が呪文を唱えた時、バトルゾーンにある相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "クリスタル・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Target",
+              "g190Freeze": "self",
+              "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+            }
+          ]
+        },
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-004.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "3fb407e18be5325a7019db9f3ccc1514f3a211387ebf178cc06fccca52317861",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22-036",
+      "name": "霊騎ソール・デナン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-036",
+      "faces": [
+        {
+          "name": "霊騎ソール・デナン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の光の呪文を唱える時、カードを１枚引いてもよい。",
+          "race": "アーク・セラフィム",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g204SpellWatch": {
+          "who": "self",
+          "color": "光",
+          "defs": [
+            {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22-036.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "0bc3829af03c9400b08306ff406457637e3155d3970bfa9710b37445ef385301",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-30",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr13-048": 4,
+      "dmr21-067": 4,
+      "dmr03-038": 4,
+      "dmr13-026": 4,
+      "dmrp05-040": 4,
+      "dmrp06-035": 4,
+      "dmr07-038": 4,
+      "dmrp08-042": 4,
+      "dmr13-037": 4,
+      "dmrp18-022": 4,
+      "dmrp07-036": 4,
+      "dmr01-047": 4,
+      "dm32-085": 4,
+      "dm31-053": 4,
+      "dm28-080": 4,
+      "dmrp06-070": 4,
+      "dmrp09-017": 4,
+      "dmr13-004": 4,
+      "dm22-036": 4
+    }
+  }
+}

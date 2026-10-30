@@ -70494,18 +70494,3290 @@
       ],
       "supportBatch": "phase-202",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm17-s01",
+      "name": "アストラル・テンペスト",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 6000,
+      "race": "サイバー・ウイルス",
+      "text": "進化-自分のサイバー・ウイルス１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、自分のマナゾーンにあるカードの数と同じ枚数のカードを引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-s01",
+      "limit": 4,
+      "evolution": {
+        "race": "サイバー・ウイルス"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "mana"
+        }
+      ],
+      "supportBatch": "phase-203",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx13-022",
+      "name": "エナジー・ゼロ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "自分のマナゾーンにある無色カード１枚につき、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-022",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "mana",
+          "filter": {
+            "g200Colorless": true
+          }
+        }
+      ],
+      "supportBatch": "phase-203",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr06-009",
+      "name": "サイバー・D・ゲーザ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "サイバー・コマンド/ハンター",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分の、サイバー１体につき１枚、カードを引いてもよい。その後、バトルゾーンにある自分の、コマンド１体につき１枚、カードを引いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-009",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "race": "サイバー"
+          },
+          "optional": "each"
+        },
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "race": "コマンド"
+          },
+          "optional": "each"
+        }
+      ],
+      "supportBatch": "phase-203",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr02-023",
+      "name": "シンウッチ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "サイバーロード/ハンター",
+      "text": "このクリーチャーが攻撃する時、バトルゾーンにある自分のタップされているクリーチャー１体につき、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-023",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "tapped": true
+          },
+          "optional": "each"
+        }
+      ],
+      "supportBatch": "phase-203",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx02-002",
+      "name": "セルリアン・ダガー・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "アーマード・ドラゴン",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のドラゴン１体につき１枚、カードを引いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-002",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "optional": "each"
+        }
+      ],
+      "supportBatch": "phase-203",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm02-002",
+      "name": "プラズマ・チェイサー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "ゲル・フィッシュ",
+      "text": "このクリーチャーが攻撃するとき、バトルゾーンにある相手のクリーチャーと同じ枚数のカードを引いてよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-002",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "owner": "opponent",
+          "filter": {
+            "creature": true
+          },
+          "optional": "all"
+        }
+      ],
+      "supportBatch": "phase-203",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex02-047",
+      "name": "フラッシュ・スパーク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを２体選び、タップする。その後、相手のタップしているクリーチャー１体につき、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-047",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g193Tap": true,
+          "title": "タップする相手のクリーチャーを2体選ぶ"
+        },
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "owner": "opponent",
+          "filter": {
+            "creature": true,
+            "tapped": true
+          }
+        }
+      ],
+      "supportBatch": "phase-203",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy16-038",
+      "name": "ヘルコプ太",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 1000,
+      "race": "ジョーカーズ",
+      "text": "このクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分のジョーカーズ１体につき、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-038",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "race": "ジョーカーズ"
+          },
+          "optional": "each"
+        }
+      ],
+      "supportBatch": "phase-203",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp01-005",
+      "name": "ホースターズ５",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ムートピア/スペシャルズ",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の手札を数える。それと同じ枚数のカードを引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-005",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "hand",
+          "optional": "all"
+        }
+      ],
+      "supportBatch": "phase-203",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex14-073",
+      "name": "マグヌマ・ダンベガルー",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 1000,
+      "race": "トリックス/チームウェイブ",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分のマナゾーンにある多色カード１枚につき、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-073",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "mana",
+          "filter": {
+            "multi": true
+          },
+          "optional": "each"
+        }
+      ],
+      "supportBatch": "phase-203",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-020",
+      "name": "改造機装リグツユーナ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 1000,
+      "race": "グレートメカオー/アンノイズ",
+      "text": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のタップされているクリーチャー１体につき１枚、カードを引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-020",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "owner": "opponent",
+          "filter": {
+            "creature": true,
+            "tapped": true
+          },
+          "optional": "each"
+        }
+      ],
+      "supportBatch": "phase-203",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr15-024",
+      "name": "龍秘陣 龍知の計",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "自分のマナゾーンにあるドラゴン１体につき、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-024",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "mana",
+          "filter": {
+            "race": "ドラゴン"
+          }
+        }
+      ],
+      "supportBatch": "phase-203",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-017",
+      "name": "歴史を語るブレイン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "自分の墓地にある呪文１枚につき、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-017",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "grave",
+          "filter": {
+            "spell": true
+          }
+        }
+      ],
+      "supportBatch": "phase-203",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-048",
+      "name": "アクア鏡師 パワードミラー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "リキッド・ピープル閃",
+      "text": "相手のターン中に、相手が呪文を唱えた時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-048",
+      "limit": 4,
+      "g204SpellWatch": {
+        "who": "opponent",
+        "opponentTurn": true,
+        "defs": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-204",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-067",
+      "name": "アクア実験体 ゲール7号",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "リキッド・ピープル閃",
+      "text": "このクリーチャーが攻撃する時、カードを１枚引いてもよい。そうしたら、自分の手札を１枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-067",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "g204DrawDiscard": true,
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            },
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-204",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr03-038",
+      "name": "シンカイタイフーン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ブルー・モンスター/ハンター",
+      "text": "ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\nこのクリーチャーは攻撃することができない。\nこのクリーチャーをバトルゾーンに出した時、カードを１枚引いてもよい。そうした場合、自分の手札を１枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-038",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "g204DrawDiscard": true,
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            },
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-204",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-026",
+      "name": "ミラー怪人 ドテラバラ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ファンキー・ナイトメア",
+      "text": "相手のターン中に、相手が呪文を唱えた時、相手の手札を１枚見ないで選び、捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-026",
+      "limit": 4,
+      "g204SpellWatch": {
+        "who": "opponent",
+        "opponentTurn": true,
+        "defs": [
+          {
+            "op": "Discard",
+            "n": 1,
+            "random": true
+          }
+        ]
+      },
+      "supportBatch": "phase-204",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-040",
+      "name": "貝獣 ギューホ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ムートピア",
+      "text": "自分が呪文を唱えた時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-040",
+      "limit": 4,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-204",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-035",
+      "name": "奇石 ウラナー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "メタリカ",
+      "text": "自分が呪文を唱えた時、相手のクリーチャーを１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-035",
+      "limit": 4,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-204",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr07-038",
+      "name": "虚構の支配者メタフィクション",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6500,
+      "race": "デーモン・コマンド",
+      "text": "ブロッカー\n相手が呪文を唱えた時、呪文を１枚、自分の墓地から手札に戻してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-038",
+      "limit": 4,
+      "blocker": true,
+      "g204SpellWatch": {
+        "who": "opponent",
+        "defs": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "spell": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "breaker": 2,
+      "supportBatch": "phase-204",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-042",
+      "name": "凶鬼74号 ビカリ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "マフィ・ギャング",
+      "text": "自分が呪文を唱えた時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを －3000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-042",
+      "limit": 4,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "Target",
+            "power": -3000
+          }
+        ]
+      },
+      "supportBatch": "phase-204",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-037",
+      "name": "護鏡の面 ミラレス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ビーストフォーク號",
+      "text": "相手のターン中に、相手が呪文を唱えた時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-037",
+      "limit": 4,
+      "g204SpellWatch": {
+        "who": "opponent",
+        "opponentTurn": true,
+        "defs": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-204",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp18-022",
+      "name": "四真混成 ワーグレンツォ",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "ディスペクター/キング・コマンド・ドラゴン/ナイト",
+      "text": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nEXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分が呪文を唱えた時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-022",
+      "limit": 4,
+      "gStrike": true,
+      "exLife": true,
+      "breaker": 2,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-204",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-036",
+      "name": "赤き熱槍 ベタン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ムートピア",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分が呪文を唱えた時、カードを１枚引いてもよい。そうしたら、自分の手札を１枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-036",
+      "limit": 4,
+      "blocker": true,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "Offer",
+            "g204DrawDiscard": true,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              },
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-204",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-047",
+      "name": "蒼神龍アトラス・ガルー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "ポセイディア・ドラゴン",
+      "text": "自分が呪文を唱えた時、カードを１枚引いてもよい。そうした場合、自分の手札を１枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-047",
+      "limit": 4,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "Offer",
+            "g204DrawDiscard": true,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              },
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-204",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-085",
+      "name": "電磁王機ピッコリ・コイルンガー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "サイバーロード/グレートメカオー/オリジン",
+      "text": "このクリーチャーが攻撃する時、カードを１枚引いてもよい。そうした場合、自分の手札を１枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-085",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "g204DrawDiscard": true,
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            },
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-204",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm31-053",
+      "name": "爆獣マチュー・スチュアート",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ドリームメイト/ナイト",
+      "text": "自分が呪文を唱えた時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-053",
+      "limit": 4,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-204",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm28-080",
+      "name": "氷牙レオポル・ディーネ公",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "サイバー・ウイルス/ナイト",
+      "text": "自分が呪文を唱えた時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-080",
+      "limit": 4,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-204",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-070",
+      "name": "歩く賄賂 コバンザ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "ムートピア",
+      "text": "自分が呪文を唱えた時、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-070",
+      "limit": 4,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-204",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-017",
+      "name": "螺旋塔 モナイアス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ムートピア",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、カードを２枚引く。\n自分が呪文を唱えた時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-017",
+      "limit": 4,
+      "breaker": 2,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-204",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-004",
+      "name": "龍素記号Fz オシロスコープ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "クリスタル・コマンド・ドラゴン",
+      "text": "自分が呪文を唱えた時、バトルゾーンにある相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-004",
+      "limit": 4,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "breaker": 2,
+      "supportBatch": "phase-204",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22-036",
+      "name": "霊騎ソール・デナン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "アーク・セラフィム",
+      "text": "自分の光の呪文を唱える時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-036",
+      "limit": 4,
+      "g204SpellWatch": {
+        "who": "self",
+        "color": "光",
+        "defs": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-204",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-074",
+      "name": "いよかんがるー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "グランセクト",
+      "text": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\n相手のターン中、このクリーチャーのパワーを +4000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-074",
+      "limit": 4,
+      "guardman": true,
+      "g38EnemyTurnBonus": 4000,
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-107",
+      "name": "お調子者コンチワン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ドリームメイト",
+      "text": "相手のターン中、このクリーチャーのパワーは+3000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-107",
+      "limit": 4,
+      "g38EnemyTurnBonus": 3000,
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm04-041",
+      "name": "チアフル・アビス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "サイバー・ウイルス",
+      "text": "このクリーチャーがバトルゾーンにある間、バトルゾーンにある光と闇のクリーチャーすべてのパワーはそれぞれ+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-041",
+      "limit": 4,
+      "g205Aura": {
+        "power": 1000,
+        "filter": {
+          "creature": true,
+          "any": [
+            {
+              "color": "光"
+            },
+            {
+              "color": "闇"
+            }
+          ]
+        },
+        "both": true
+      },
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp02-089",
+      "name": "つたりおん",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "グランセクト",
+      "text": "自分の他のグランセクトすべてのパワーを+3000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-089",
+      "limit": 4,
+      "g205Aura": {
+        "power": 3000,
+        "filter": {
+          "creature": true,
+          "race": "グランセクト"
+        },
+        "other": true
+      },
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp1-050",
+      "name": "バザガジール・王闘・ドラゴン",
+      "civ": "光/火/自然",
+      "civilizations": [
+        "光",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "アーマード・ドラゴン",
+      "text": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\n相手のターン中、このクリーチャーのパワーを+4000する。\n自分のターンの終わりに、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-050",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "speedAttacker": true,
+      "g38EnemyTurnBonus": 4000,
+      "g166EndUntap": true,
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm04-050",
+      "name": "ピッピ・クッピー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ファイアー・バード",
+      "text": "このクリーチャーがバトルゾーンにある間、バトルゾーンにあるアーマード・ドラゴンすべてのパワーはそれぞれ+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-050",
+      "limit": 4,
+      "g205Aura": {
+        "power": 1000,
+        "filter": {
+          "creature": true,
+          "race": "アーマード・ドラゴン"
+        },
+        "both": true
+      },
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-051",
+      "name": "ホルルン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "サイバーロード",
+      "text": "相手のターン中、バトルゾーンにある自分のサイバーロードすべてのパワーは+3000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-051",
+      "limit": 4,
+      "g205Aura": {
+        "power": 3000,
+        "filter": {
+          "creature": true,
+          "race": "サイバーロード"
+        },
+        "turn": "opponent"
+      },
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-024",
+      "name": "モハメド・アント",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "ジャイアント・インセクト",
+      "text": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、自分の山札の上から２枚をマナゾーンに置いてもよい。\n相手のターン中、このクリーチャーのパワーを+10000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-024",
+      "limit": 4,
+      "guardman": true,
+      "breaker": 2,
+      "g38EnemyTurnBonus": 10000,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 2
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-073",
+      "name": "ライマー・リライド",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "グランセクト/レクスターズ",
+      "text": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\n自分の進化クリーチャーすべてのパワーを+2000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-073",
+      "limit": 4,
+      "machFighter": true,
+      "g205Aura": {
+        "power": 2000,
+        "filter": {
+          "creature": true,
+          "evolution": true
+        }
+      },
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex18-072",
+      "name": "筋肉スリヴァー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "スリヴァー",
+      "text": "自分のスリヴァーとサバイバーすべてのパワーを+1000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-072",
+      "limit": 4,
+      "g205Aura": {
+        "power": 1000,
+        "filter": {
+          "creature": true,
+          "raceAny": [
+            "スリヴァー",
+            "サバイバー"
+          ]
+        }
+      },
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-031",
+      "name": "鼓舞の精霊龍 ミカエール",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5500,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "自分の他の光のクリーチャーすべてのパワーを+2000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-031",
+      "limit": 4,
+      "g205Aura": {
+        "power": 2000,
+        "filter": {
+          "creature": true,
+          "color": "光"
+        },
+        "other": true
+      },
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-001",
+      "name": "光渦の守護者フォル・レガイア",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6500,
+      "race": "ガーディアン",
+      "text": "バトルゾーンにある自分の他のガーディアンとワイルド・ベジーズすべてのパワーは+3000される。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-001",
+      "limit": 4,
+      "g205Aura": {
+        "power": 3000,
+        "filter": {
+          "creature": true,
+          "raceAny": [
+            "ガーディアン",
+            "ワイルド・ベジーズ"
+          ]
+        },
+        "other": true
+      },
+      "breaker": 2,
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx05-009",
+      "name": "光鬼ガガ・ペトローバ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2500,
+      "race": "メカ・デル・ソル/エイリアン",
+      "text": "バトルゾーンにある自分の他のエイリアンすべてのパワーは+4000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-009",
+      "limit": 4,
+      "g205Aura": {
+        "power": 4000,
+        "filter": {
+          "creature": true,
+          "race": "エイリアン"
+        },
+        "other": true
+      },
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm15-020",
+      "name": "式神パイレーツ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ワンダー・トリック",
+      "text": "自分のターン中、バトルゾーンにある自分の他のクリーチャーすべてのパワーは+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-020",
+      "limit": 4,
+      "g205Aura": {
+        "power": 2000,
+        "filter": {
+          "creature": true
+        },
+        "turn": "own",
+        "other": true
+      },
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy11-062",
+      "name": "守護聖天ナンモ・ナイ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "ガーディアン",
+      "text": "進化-自分のガーディアン１体の上に置く。\nW・ブレイカー\nバトルゾーンにある自分の他のガーディアンすべてのパワーは+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-062",
+      "limit": 4,
+      "evolution": {
+        "race": "ガーディアン"
+      },
+      "breaker": 2,
+      "g205Aura": {
+        "power": 2000,
+        "filter": {
+          "creature": true,
+          "race": "ガーディアン"
+        },
+        "other": true
+      },
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm04-046",
+      "name": "呪いの影シャドウ・ムーン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ゴースト",
+      "text": "このクリーチャーがバトルゾーンにある間、バトルゾーンにある他の闇のクリーチャーすべてのパワーはそれぞれ+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-046",
+      "limit": 4,
+      "g205Aura": {
+        "power": 2000,
+        "filter": {
+          "creature": true,
+          "color": "闇"
+        },
+        "both": true,
+        "other": true
+      },
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm10-014",
+      "name": "曙の守護者パラ・オーレシス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2500,
+      "race": "ガーディアン",
+      "text": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n相手のターン中、自分の他のクリーチャーのパワーは+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-014",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g205Aura": {
+        "power": 2000,
+        "filter": {
+          "creature": true
+        },
+        "turn": "opponent",
+        "other": true
+      },
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm21-022",
+      "name": "城壁の守護者パルディオ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ガーディアン",
+      "text": "相手のターン中、バトルゾーンにある自分のクリーチャーすべてのパワーは+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-022",
+      "limit": 4,
+      "g205Aura": {
+        "power": 1000,
+        "filter": {
+          "creature": true
+        },
+        "turn": "opponent"
+      },
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm04-021",
+      "name": "聖弓の求道者レ・ビール",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "メカサンダー",
+      "text": "W(ダブル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーがバトルゾーンにある間、バトルゾーンにある他の光のクリーチャーすべてのパワーはそれぞれ+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-021",
+      "limit": 4,
+      "breaker": 2,
+      "g205Aura": {
+        "power": 2000,
+        "filter": {
+          "creature": true,
+          "color": "光"
+        },
+        "both": true,
+        "other": true
+      },
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp02-033",
+      "name": "青守銀 ヘイロー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "メタリカ",
+      "text": "相手のターン中、自分のクリーチャーすべてのパワーを+3000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-033",
+      "limit": 4,
+      "g205Aura": {
+        "power": 3000,
+        "filter": {
+          "creature": true
+        },
+        "turn": "opponent"
+      },
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-008",
+      "name": "北海の暴れん坊レッド・ジャッカル",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 9000,
+      "race": "ドリームメイト",
+      "text": "バトルゾーンにある自分のダイナモすべてのパワーは+3000される。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-008",
+      "limit": 4,
+      "g205Aura": {
+        "power": 3000,
+        "filter": {
+          "creature": true,
+          "race": "ダイナモ"
+        }
+      },
+      "breaker": 2,
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-047",
+      "name": "夢見がちモッフル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ドリームメイト",
+      "text": "相手のターン中、このクリーチャーのパワーを+4000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-047",
+      "limit": 4,
+      "g38EnemyTurnBonus": 4000,
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-067",
+      "name": "勇猛霊騎ペス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ホーン・ビースト/アーク・セラフィム",
+      "text": "バトルゾーンにある自分の光と火のクリーチャーすべてのパワーは+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-067",
+      "limit": 4,
+      "g205Aura": {
+        "power": 2000,
+        "filter": {
+          "creature": true,
+          "any": [
+            {
+              "color": "光"
+            },
+            {
+              "color": "火"
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy5-017",
+      "name": "烈火のカジナムル",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ブレイブ・スピリット",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nバトルゾーンにある自分のティラノ・ドレイクすべてのパワーは+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy5-017",
+      "limit": 4,
+      "speedAttacker": true,
+      "g205Aura": {
+        "power": 1000,
+        "filter": {
+          "creature": true,
+          "race": "ティラノ・ドレイク"
+        }
+      },
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-092",
+      "name": "烈司の剛腕",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ビーストフォーク",
+      "text": "相手のターン中、このクリーチャーのパワーを+4000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-092",
+      "limit": 4,
+      "g38EnemyTurnBonus": 4000,
+      "supportBatch": "phase-205",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm04-018",
+      "name": "いにしえの超人",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 9000,
+      "race": "ジャイアント",
+      "text": "W(ダブル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーは、闇のクリーチャーにブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-018",
+      "limit": 4,
+      "breaker": 2,
+      "g206NoBlock": {
+        "color": "闇"
+      },
+      "supportBatch": "phase-206",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm14-096",
+      "name": "ガンクロークの虫眼鏡",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ゼノパーツ",
+      "text": "このクリーチャーは、光または水のクリーチャーから攻撃されない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-096",
+      "limit": 4,
+      "cannotBeAttackedByCivs": [
+        "光",
+        "水"
+      ],
+      "supportBatch": "phase-206",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm01-009",
+      "name": "シェル・タワー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "コロニー・ビートル",
+      "text": "このクリーチャーは、パワー4000以下のクリーチャーにブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm01-009",
+      "limit": 4,
+      "g206NoBlock": {
+        "maxPower": 4000
+      },
+      "supportBatch": "phase-206",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm09-030",
+      "name": "ジョー・リザード",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 3000,
+      "race": "デューンゲッコー",
+      "text": "このクリーチャーは、クリーチャーを攻撃するときブロックされない。\nパワーアタッカー+3000(攻撃中、このクリーチャーのパワーは+3000される)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-030",
+      "limit": 4,
+      "g206NoBlock": {
+        "creatureAttack": true
+      },
+      "attackBonus": 3000,
+      "supportBatch": "phase-206",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm02-005",
+      "name": "ゼノ・マンティス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "ジャイアント・インセクト",
+      "text": "このクリーチャーは、パワー5000以下のクリーチャーにブロックされない。\nW(ダブル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする。)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-005",
+      "limit": 4,
+      "g206NoBlock": {
+        "maxPower": 5000
+      },
+      "breaker": 2,
+      "supportBatch": "phase-206",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-088",
+      "name": "たぴおかぴ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "グランセクト",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーは、これよりパワーが小さいクリーチャーにブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-088",
+      "limit": 4,
+      "breaker": 2,
+      "g206NoBlock": {
+        "lessPower": true
+      },
+      "supportBatch": "phase-206",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm17-050",
+      "name": "トッポ・ルンバ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ファイアー・バード",
+      "text": "このクリーチャーは、光のクリーチャーにブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-050",
+      "limit": 4,
+      "g206NoBlock": {
+        "color": "光"
+      },
+      "supportBatch": "phase-206",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-081",
+      "name": "トラノルデ1Q",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "このクリーチャーは、これよりパワーが小さいクリーチャーにブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-081",
+      "limit": 4,
+      "g206NoBlock": {
+        "lessPower": true
+      },
+      "supportBatch": "phase-206",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-105",
+      "name": "ヌケッピ・サンナン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ファイアー・バード/ハンター",
+      "text": "ハンティング(バトル中、このクリーチャーのパワーは、バトルゾーンにある自分のハンター１体につき+1000される)\nこのクリーチャーは、コスト６以下のクリーチャーにブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-105",
+      "limit": 4,
+      "g166Hunting": true,
+      "g206NoBlock": {
+        "maxCost": 6
+      },
+      "supportBatch": "phase-206",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm04-048",
+      "name": "パープル・ピアス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ブレインジャッカー",
+      "text": "このクリーチャーは、光のクリーチャーに攻撃またはブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-048",
+      "limit": 4,
+      "cannotBeAttackedByCivs": [
+        "光"
+      ],
+      "g206NoBlock": {
+        "color": "光"
+      },
+      "supportBatch": "phase-206",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm13-009",
+      "name": "パシフィック・チャンピオン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 5000,
+      "race": "マーフォーク",
+      "text": "進化-自分のマーフォーク１体の上に置く。\nこのクリーチャーは、進化クリーチャーではないクリーチャーから攻撃されない。\nこのクリーチャーは、進化クリーチャーではないクリーチャーにブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-009",
+      "limit": 4,
+      "evolution": {
+        "race": "マーフォーク"
+      },
+      "g206AttackProtection": {
+        "nonEvolution": true
+      },
+      "g206NoBlock": {
+        "nonEvolution": true
+      },
+      "supportBatch": "phase-206",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-093",
+      "name": "レタンレ・タンク",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "グランセクト",
+      "text": "このクリーチャーは、これよりパワーが小さいクリーチャーにブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-093",
+      "limit": 4,
+      "g206NoBlock": {
+        "lessPower": true
+      },
+      "supportBatch": "phase-206",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm08-036",
+      "name": "光器マーシャ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "メカ・デル・ソル",
+      "text": "ドラゴンは、このクリーチャーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-036",
+      "limit": 4,
+      "g206AttackProtection": {
+        "race": "ドラゴン"
+      },
+      "supportBatch": "phase-206",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm06-036",
+      "name": "殺戮の化身",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "ミステリー・トーテム",
+      "text": "パワーアタッカー +2000(攻撃中、このクリーチャーのパワーは+2000される)\nこのクリーチャーは、パワー5000以下のクリーチャーにブロックされない。\nW(ダブル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-036",
+      "limit": 4,
+      "attackBonus": 2000,
+      "g206NoBlock": {
+        "maxPower": 5000
+      },
+      "breaker": 2,
+      "supportBatch": "phase-206",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm04-038",
+      "name": "神速の守護者グラン・リエス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ガーディアン",
+      "text": "このクリーチャーは、闇のクリーチャーに攻撃またはブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-038",
+      "limit": 4,
+      "cannotBeAttackedByCivs": [
+        "闇"
+      ],
+      "g206NoBlock": {
+        "color": "闇"
+      },
+      "supportBatch": "phase-206",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm06-s09",
+      "name": "大昆虫ガイアマンティス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 9000,
+      "race": "ジャイアント・インセクト",
+      "text": "進化―自分のジャイアント・インセクト１体の上に置く。\nこのクリーチャーは、パワー8000以下のクリーチャーにブロックされない。\nW(ダブル )・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-s09",
+      "limit": 4,
+      "evolution": {
+        "race": "ジャイアント・インセクト"
+      },
+      "g206NoBlock": {
+        "maxPower": 8000
+      },
+      "breaker": 2,
+      "supportBatch": "phase-206",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm09-050",
+      "name": "鳥神兵クウザ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "アーマロイド",
+      "text": "このクリーチャーは、クリーチャーを攻撃するときブロックされない。\nパワーアタッカー+3000(攻撃中、このクリーチャーのパワーは+3000される)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-050",
+      "limit": 4,
+      "g206NoBlock": {
+        "creatureAttack": true
+      },
+      "attackBonus": 3000,
+      "supportBatch": "phase-206",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr15-047",
+      "name": "熱血龍 ドロドロ・ゲキカレーカラ・カレパン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ガイアール・コマンド・ドラゴン/カレーパン",
+      "text": "ドラゴンだけが、このクリーチャーを攻撃できる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-047",
+      "limit": 4,
+      "g206AttackProtection": {
+        "exceptRace": "ドラゴン"
+      },
+      "supportBatch": "phase-206",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm01-038",
+      "name": "暴走するロング・ホーン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ホーン・ビースト",
+      "text": "このクリーチャーは、パワー3000以下のクリーチャーにブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm01-038",
+      "limit": 4,
+      "g206NoBlock": {
+        "maxPower": 3000
+      },
+      "supportBatch": "phase-206",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp1-003",
+      "name": "～鉄装の氷騎士～",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "サイバーロード/スチーム・ナイト",
+      "text": "NEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。\nパワード・ブレイカー\nこれが進化クリーチャーなら、自分の手札１枚につき、このクリーチャーのパワーを+1000する。\nこのクリーチャーが攻撃する時、カードを２枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-003",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "poweredBreaker": true,
+      "g207CountPower": {
+        "zone": "hand",
+        "amount": 1000,
+        "evolution": true
+      },
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 2
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm03-s04",
+      "name": "ガルカーゴ・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "アーマード・ドラゴン",
+      "text": "W(ダブル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーのパワーは、バトルゾーンにある自分の他の火のクリーチャー１体につき+1000される。\nこのクリーチャーは、タップされていないクリーチャーを攻撃できる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-s04",
+      "limit": 4,
+      "breaker": 2,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "creature": true,
+          "color": "火"
+        },
+        "amount": 1000
+      },
+      "attackUntapped": true,
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-046",
+      "name": "ティーショット・ビートル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "ジャイアント・インセクト",
+      "text": "パワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nすべてのプレイヤーの手札１枚につき、このクリーチャーのパワーを+2000する。\nこのクリーチャーは、このクリーチャーよりパワーが小さいクリーチャーにブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-046",
+      "limit": 4,
+      "poweredBreaker": true,
+      "g207CountPower": {
+        "zone": "hand",
+        "both": true,
+        "amount": 2000
+      },
+      "g206NoBlock": {
+        "lessPower": true
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm08-048",
+      "name": "バトルシップ・ワイバーン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "アーマード・ワイバーン",
+      "text": "攻撃中、このクリーチャーのパワーは、バトルゾーンにある自分の他のタップされているクリーチャー１体につき+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-048",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "creature": true,
+          "tapped": true
+        },
+        "amount": 2000,
+        "attackOnly": true
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-074",
+      "name": "ピュアライアン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "シャイン・モンスター",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーのパワーは、バトルゾーンにある相手のタップされているクリーチャー１体につき+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-074",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g207CountPower": {
+        "zone": "battle",
+        "opponent": true,
+        "filter": {
+          "creature": true,
+          "tapped": true
+        },
+        "amount": 2000
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp1-037",
+      "name": "フォック＝ジャック",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "アビスロイヤル",
+      "text": "NEO進化：水、闇、または火のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n自分の墓地にあるカード１枚につき、このクリーチャーのパワーを+1000する。\nこのクリーチャーが攻撃する時、自分の山札の上から２枚を墓地に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-037",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "poweredBreaker": true,
+      "g207CountPower": {
+        "zone": "grave",
+        "amount": 1000
+      },
+      "g34Attack": [
+        {
+          "op": "Mill",
+          "n": 2,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmpcd01-r06",
+      "name": "ボルシャック・スピード・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 6000,
+      "race": "アーマード・ドラゴン",
+      "text": "スピードアタッカー\nW・ブレイカー\n攻撃中、自分の墓地にある火のカード１枚につき、このクリーチャーのパワーを+2000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd01-r06",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g207CountPower": {
+        "zone": "grave",
+        "filter": {
+          "color": "火"
+        },
+        "amount": 2000,
+        "attackOnly": true
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsp02-001",
+      "name": "ボルシャック・ドラゴン GS",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アーマード・ドラゴン",
+      "text": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nW・ブレイカー\n攻撃中、このクリーチャーのパワーを、自分の墓地にある火のカード１枚につき+1000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp02-001",
+      "limit": 4,
+      "gStrike": true,
+      "breaker": 2,
+      "g207CountPower": {
+        "zone": "grave",
+        "filter": {
+          "color": "火"
+        },
+        "amount": 1000,
+        "attackOnly": true
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex2-068",
+      "name": "ボルシャック・ヤング・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "アーマード・ドラゴン",
+      "text": "NEO進化：火のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n攻撃中、このクリーチャーのパワーを、自分の墓地にある火のカード１枚につき+1000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-068",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "poweredBreaker": true,
+      "g207CountPower": {
+        "zone": "grave",
+        "filter": {
+          "color": "火"
+        },
+        "amount": 1000,
+        "attackOnly": true
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm10-105",
+      "name": "喜びの化身",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ミステリー・トーテム",
+      "text": "攻撃中、このクリーチャーのパワーは、自分のマナゾーンでタップされているカード１枚につき+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-105",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "mana",
+        "filter": {
+          "tapped": true
+        },
+        "amount": 1000,
+        "attackOnly": true
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm03-033",
+      "name": "奇面ざくろ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 1000,
+      "race": "ツリーフォーク",
+      "text": "このクリーチャーのパワーは、バトルゾーンにある自分の他の自然のクリーチャー１体につき+1000される。\nこのクリーチャーは、パワー4000以下のクリーチャーにブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-033",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "creature": true,
+          "color": "自然"
+        },
+        "amount": 1000
+      },
+      "g206NoBlock": {
+        "maxPower": 4000
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx09-002",
+      "name": "機神装甲ヴァルボーグ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5000,
+      "race": "ヒューマノイド",
+      "text": "進化-自分のヒューマノイド１体の上に置く。\n攻撃中、このクリーチャーのパワーは、バトルゾーンにある他の火のクリーチャー１体につき+1000される。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx09-002",
+      "limit": 4,
+      "evolution": {
+        "race": "ヒューマノイド"
+      },
+      "g207CountPower": {
+        "zone": "battle",
+        "both": true,
+        "other": true,
+        "filter": {
+          "creature": true,
+          "color": "火"
+        },
+        "amount": 1000,
+        "attackOnly": true
+      },
+      "breaker": 2,
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm10-027",
+      "name": "機神装甲ガンダヴァル",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "ヒューマノイド",
+      "text": "進化-自分のヒューマノイド１体の上に置く。\n攻撃中、このクリーチャーのパワーは、バトルゾーンにある自分の他のタップされているクリーチャー１体につき+2000される。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-027",
+      "limit": 4,
+      "evolution": {
+        "race": "ヒューマノイド"
+      },
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "creature": true,
+          "tapped": true
+        },
+        "amount": 2000,
+        "attackOnly": true
+      },
+      "breaker": 2,
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm05-055",
+      "name": "巨翼の爪",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ビーストフォーク",
+      "text": "バトルゾーンにある間、このクリーチャーのパワーは、バトルゾーンにある相手の水と闇のクリーチャー１体につき+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-055",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "opponent": true,
+        "filter": {
+          "creature": true,
+          "colorsAny": [
+            "水",
+            "闇"
+          ]
+        },
+        "amount": 1000
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-038",
+      "name": "暁の金獅子コーン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ドリームメイト",
+      "text": "このクリーチャーのパワーは、自分のマナゾーンにある進化カード１枚につき+1000される。\nこのクリーチャーは、パワーが6000以上の時、「W・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-038",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "mana",
+        "filter": {
+          "evolution": true
+        },
+        "amount": 1000
+      },
+      "g207Breakers": [
+        {
+          "power": 6000,
+          "breaker": 2
+        }
+      ],
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-045",
+      "name": "渓谷の守護者クレスタ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ガーディアン",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーのパワーは、バトルゾーンにある相手のクリーチャー１体につき+1000される。\nこのクリーチャーは相手プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-045",
+      "limit": 4,
+      "blocker": true,
+      "g207CountPower": {
+        "zone": "battle",
+        "opponent": true,
+        "filter": {
+          "creature": true
+        },
+        "amount": 1000
+      },
+      "noPlayerAttack": true,
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm13-042",
+      "name": "血土の無僧ザハク",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "デーモン・コマンド",
+      "text": "このクリーチャーのパワーは、バトルゾーンにある相手のタップされているクリーチャー１体につき+3000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-042",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "opponent": true,
+        "filter": {
+          "creature": true,
+          "tapped": true
+        },
+        "amount": 3000
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm05-033",
+      "name": "月浴するムーン・ホーン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ホーン・ビースト",
+      "text": "W(ダブル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする)\nバトルゾーンにある間、このクリーチャーのパワーは、バトルゾーンにある相手の水と闇のクリーチャー１体につき+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-033",
+      "limit": 4,
+      "breaker": 2,
+      "g207CountPower": {
+        "zone": "battle",
+        "opponent": true,
+        "filter": {
+          "creature": true,
+          "colorsAny": [
+            "水",
+            "闇"
+          ]
+        },
+        "amount": 1000
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm03-007",
+      "name": "堅牢の伝道師アレーク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 4000,
+      "race": "バーサーカー",
+      "text": "ブロッカー(相手クリーチャーが攻撃するとき、このクリーチャーをタップして、その攻撃を阻止してよい。そのあと、その相手クリーチャーとバトルする)\nこのクリーチャーのパワーは、バトルゾーンにある自分の他の光のクリーチャー１体につき+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-007",
+      "limit": 4,
+      "blocker": true,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "creature": true,
+          "color": "光"
+        },
+        "amount": 1000
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "sp-004",
+      "name": "光器エレーナ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 3000,
+      "race": "メカ・デル・ソル",
+      "text": "このクリーチャーのパワーは、自分の墓地にある光のカード１枚につき+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=sp-004",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "grave",
+        "filter": {
+          "color": "光"
+        },
+        "amount": 1000
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm06-042",
+      "name": "光柱樹",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 1000,
+      "race": "スターライト・ツリー",
+      "text": "バトルゾーンにある間、このクリーチャーのパワーは、自分のシールド１枚につき+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-042",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "shields",
+        "amount": 2000
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm09-s04",
+      "name": "紅神龍オグリストヴァル",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 0,
+      "race": "ボルケーノ・ドラゴン",
+      "text": "このクリーチャーがバトルゾーンにある間、このクリーチャーのパワーは、自分の手札１枚につき+3000される。\nこのクリーチャーは、パワーが6000以上のとき、「W・ブレイカー」を得る。\nこのクリーチャーは、パワーが15000以上のとき、「T・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-s04",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "hand",
+        "amount": 3000
+      },
+      "g207Breakers": [
+        {
+          "power": 6000,
+          "breaker": 2
+        },
+        {
+          "power": 15000,
+          "breaker": 3
+        }
+      ],
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmpcd01-t04",
+      "name": "剛撃聖霊エリクシア",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 3000,
+      "race": "エンジェル・コマンド/ジャイアント",
+      "text": "ブロッカーブロッカー\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n自分のマナゾーンにある文明１つにつき、このクリーチャーのパワーを+3000 する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd01-t04",
+      "limit": 4,
+      "blocker": true,
+      "poweredBreaker": true,
+      "g207CountPower": {
+        "zone": "mana",
+        "civilizations": true,
+        "amount": 3000
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-014",
+      "name": "剛力の使徒イグナッチオ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "イニシエート/ハンター",
+      "text": "このクリーチャーのパワーは、バトルゾーンにある自分の他のイニシエート１体につき+2000される。\nこのクリーチャーは、パワーが6000以上の時、「W・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-014",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "creature": true,
+          "race": "イニシエート"
+        },
+        "amount": 2000
+      },
+      "g207Breakers": [
+        {
+          "power": 6000,
+          "breaker": 2
+        }
+      ],
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-044",
+      "name": "剛力の翼 スタンディグナ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ジャスティス・ウイング",
+      "text": "バトルゾーンにある自分の「ブロッカー」を持つクリーチャー１体につき、このクリーチャーのパワーは+2000される。\nこのクリーチャーは、パワーが6000以上の時、「Ｗ・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-044",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "filter": {
+          "creature": true,
+          "blocker": true
+        },
+        "amount": 2000
+      },
+      "g207Breakers": [
+        {
+          "power": 6000,
+          "breaker": 2
+        }
+      ],
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex17-085",
+      "name": "刻一黒の成長 グレートブリテン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 0,
+      "race": "アウトレイジMAX",
+      "text": "パワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこのクリーチャーのパワーを、自分の墓地にあるカード１枚につき+1000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-085",
+      "limit": 4,
+      "poweredBreaker": true,
+      "g207CountPower": {
+        "zone": "grave",
+        "amount": 1000
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx14-003",
+      "name": "七転八討 タント",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "アウトレイジ",
+      "text": "このクリーチャーのパワーは、自分の墓地にあるクリーチャー１体につき+1000される。\nこのクリーチャーは、パワーが6000以上の時、「Ｗ・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-003",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "grave",
+        "filter": {
+          "creature": true
+        },
+        "amount": 1000
+      },
+      "g207Breakers": [
+        {
+          "power": 6000,
+          "breaker": 2
+        }
+      ],
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm10-057",
+      "name": "襲撃するサベージ・ホーン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 2000,
+      "race": "ホーン・ビースト",
+      "text": "攻撃中、このクリーチャーのパワーは、自分のマナゾーンでタップされているカード１枚につき+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-057",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "mana",
+        "filter": {
+          "tapped": true
+        },
+        "amount": 2000,
+        "attackOnly": true
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm10-044",
+      "name": "祝福の伝道師クレアル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "バーサーカー",
+      "text": "このクリーチャーのパワーは、バトルゾーンにある自分の他のタップされていないクリーチャー１体につき+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-044",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "creature": true,
+          "untapped": true
+        },
+        "amount": 1000
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm10-097",
+      "name": "城神兵バガッシュ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "アーマロイド",
+      "text": "攻撃中、このクリーチャーのパワーは、バトルゾーンにある自分の他のタップされているクリーチャー１体につき+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-097",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "creature": true,
+          "tapped": true
+        },
+        "amount": 1000,
+        "attackOnly": true
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm10-s01",
+      "name": "聖断の精霊エリクシア",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 1000,
+      "race": "エンジェル・コマンド",
+      "text": "このクリーチャーのパワーは、自分のマナゾーンにあるカードの文明１つにつき+3000される。\nこのクリーチャーは、パワーが6000以上の時、「W・ブレイカー」を得る。\nこのクリーチャーは、パワーが15000以上の時、「T・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-s01",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "mana",
+        "civilizations": true,
+        "amount": 3000
+      },
+      "g207Breakers": [
+        {
+          "power": 6000,
+          "breaker": 2
+        },
+        {
+          "power": 15000,
+          "breaker": 3
+        }
+      ],
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm02-052",
+      "name": "跳躍するトルネード・ホーン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ホーン・ビースト",
+      "text": "攻撃中、このクリーチャーのパワーは、バトルゾーンにある自分のクリーチャー１体につき+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-052",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "filter": {
+          "creature": true
+        },
+        "amount": 1000,
+        "attackOnly": true
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd08-003",
+      "name": "天撃の精霊タフガイ・ペルニャー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "エンジェル・コマンド",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーのパワーは、バトルゾーンにある相手のクリーチャー１体につき+1000される。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd08-003",
+      "limit": 4,
+      "blocker": true,
+      "g207CountPower": {
+        "zone": "battle",
+        "opponent": true,
+        "filter": {
+          "creature": true
+        },
+        "amount": 1000
+      },
+      "breaker": 2,
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm02-017",
+      "name": "突神兵ドガーン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "アーマロイド",
+      "text": "攻撃中、このクリーチャーのパワーは、バトルゾーンにある自分の他のタップされているクリーチャー１体につき+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-017",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "creature": true,
+          "tapped": true
+        },
+        "amount": 2000,
+        "attackOnly": true
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-038",
+      "name": "突進するシシガミ・ホーン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "ホーン・ビースト/ハンター",
+      "text": "バトルゾーンにある自分の他のクリーチャー１体につき、このクリーチャーのパワーは+2000される。\nこのクリーチャーは、パワーが6000以上の時、「W・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-038",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "creature": true
+        },
+        "amount": 2000
+      },
+      "g207Breakers": [
+        {
+          "power": 6000,
+          "breaker": 2
+        }
+      ],
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx15-015",
+      "name": "勇気の爪 コルナゴ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 0,
+      "race": "アウトレイジ",
+      "text": "バトルゾーンにある自分の他のクリーチャー１体につき、このクリーチャーのパワーは+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-015",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "creature": true
+        },
+        "amount": 1000
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm09-019",
+      "name": "緑神龍アンリストヴァル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 0,
+      "race": "アース・ドラゴン",
+      "text": "このクリーチャーのパワーは、バトルゾーンにある自分の他の自然のクリーチャー１体につき+2000される。\nこのクリーチャーは、パワーが6000以上のとき、「W・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-019",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "creature": true,
+          "color": "自然"
+        },
+        "amount": 2000
+      },
+      "g207Breakers": [
+        {
+          "power": 6000,
+          "breaker": 2
+        }
+      ],
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm14-009",
+      "name": "緑神龍マグラグラン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 1000,
+      "race": "アース・ドラゴン",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を自分のマナゾーンに置く。\nこのクリーチャーのパワーは、自分のマナゾーンにあるカード１枚につき+1000される。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-009",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "mana",
+        "amount": 1000
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm11-047",
+      "name": "髑髏怪人スピンホイール",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "デビルマスク",
+      "text": "このクリーチャーのパワーは、バトルゾーンにある相手のタップされているクリーチャー１体につき+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-047",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "opponent": true,
+        "filter": {
+          "creature": true,
+          "tapped": true
+        },
+        "amount": 2000
+      },
+      "supportBatch": "phase-207",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 202,
+    "phase": 207,
     "checkedAt": "2026-10-30",
-    "baseCount": 2882,
-    "newEffectCards": 1,
+    "baseCount": 2959,
+    "newEffectCards": 39,
     "newVanillaCards": 0,
-    "totalCount": 2883,
+    "totalCount": 2998,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36972/"
+      "https://dm.takaratomy.co.jp/rule/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31662/"
     ],
     "next": [
       "未対応能力の共通処理を追加し、カード別の公式照合と対戦検証を継続する"
@@ -73923,6 +77195,82 @@
         "totalCount": 2882,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/"
+        ],
+        "next": [
+          "未対応能力の共通処理を追加し、カード別の公式照合と対戦検証を継続する"
+        ]
+      },
+      {
+        "phase": 202,
+        "checkedAt": "2026-10-30",
+        "baseCount": 2882,
+        "newEffectCards": 1,
+        "newVanillaCards": 0,
+        "totalCount": 2883,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36972/"
+        ],
+        "next": [
+          "未対応能力の共通処理を追加し、カード別の公式照合と対戦検証を継続する"
+        ]
+      },
+      {
+        "phase": 203,
+        "checkedAt": "2026-10-30",
+        "baseCount": 2883,
+        "newEffectCards": 13,
+        "newVanillaCards": 0,
+        "totalCount": 2896,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/31572/"
+        ],
+        "next": [
+          "未対応能力の共通処理を追加し、カード別の公式照合と対戦検証を継続する"
+        ]
+      },
+      {
+        "phase": 204,
+        "checkedAt": "2026-10-30",
+        "baseCount": 2896,
+        "newEffectCards": 19,
+        "newVanillaCards": 0,
+        "totalCount": 2915,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37340/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36910/"
+        ],
+        "next": [
+          "未対応能力の共通処理を追加し、カード別の公式照合と対戦検証を継続する"
+        ]
+      },
+      {
+        "phase": 205,
+        "checkedAt": "2026-10-30",
+        "baseCount": 2915,
+        "newEffectCards": 25,
+        "newVanillaCards": 0,
+        "totalCount": 2940,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/"
+        ],
+        "next": [
+          "未対応能力の共通処理を追加し、カード別の公式照合と対戦検証を継続する"
+        ]
+      },
+      {
+        "phase": 206,
+        "checkedAt": "2026-10-30",
+        "baseCount": 2940,
+        "newEffectCards": 19,
+        "newVanillaCards": 0,
+        "totalCount": 2959,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/"
         ],
         "next": [
           "未対応能力の共通処理を追加し、カード別の公式照合と対戦検証を継続する"

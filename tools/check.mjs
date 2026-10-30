@@ -1,3 +1,8 @@
+import {STANDARD207_DECKS} from './fixtures/standard207.mjs';
+import {STANDARD206_DECKS} from './fixtures/standard206.mjs';
+import {STANDARD205_DECKS} from './fixtures/standard205.mjs';
+import {STANDARD204_DECKS} from './fixtures/standard204.mjs';
+import {STANDARD203_DECKS} from './fixtures/standard203.mjs';
 import {TABOO202_DECK} from './fixtures/taboo202.mjs';
 import {STANDARD201_DECKS} from './fixtures/standard201.mjs';
 import {STANDARD200_DECKS} from './fixtures/standard200.mjs';
@@ -352,3 +357,10 @@ for(const d of STANDARD200_DECKS)if(validateDeck(d).length||registry.coverage(d)
 
 for(const d of STANDARD201_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第201段階の40枚を確認してください：'+d.name);console.log('Checked phase201 forty-card decks: fifteen new names supported.');
 if(validateDeck(TABOO202_DECK).length||registry.coverage(TABOO202_DECK).unsupported||TABOO202_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第202段階の40枚を確認してください');console.log('Checked phase202 forty-card deck: 深淵の禁忌 アビスベル=ジャシン帝 supported.');
+for(const d of STANDARD203_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第203段階の40枚を確認してください：'+d.name);console.log('Checked phase203 forty-card decks: thirteen count-based draw cards supported.');
+for(const d of STANDARD204_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第204段階の40枚を確認してください：'+d.name);console.log('Checked phase204 forty-card decks: nineteen spell-watch and draw-discard creatures supported.');
+for(const d of STANDARD205_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第205段階の40枚を確認してください：'+d.name);console.log('Checked phase205 forty-card decks: twenty-five continuous power creatures supported.');
+
+for(const d of STANDARD206_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第206段階の40枚を確認してください：'+d.name);console.log('Checked phase206 forty-card decks: nineteen conditional block and attack creatures supported.');
+
+for(const d of STANDARD207_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第207段階の40枚を確認してください：'+d.name);console.log('Checked phase207 forty-card decks: thirty-nine count-based power creatures supported.');

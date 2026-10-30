@@ -6,7 +6,7 @@ import {createCatalogue} from '../dist/catalogue.js';
 import {resolveEnvironmentDecks,environmentSupport,ENVIRONMENT_TARGET} from '../dist/environment.js';
 import {PRESETS} from '../dist/decks.js';
 const read=async f=>JSON.parse(await readFile(new URL('../'+f,import.meta.url),'utf8'));
-const [data,details,manifest,snapshot]=await Promise.all(['dist/cards.json','dist/details.json','tools/support-phase-11.json','dist/catalogue.json'].map(read));setCards(data.cards);
+const [data,details,manifest,snapshot,release]=await Promise.all(['dist/cards.json','dist/details.json','tools/support-phase-11.json','dist/catalogue.json','dist/release.json'].map(read));setCards(data.cards);
 const RS='dm22ex1-030',Y='dm26rp1-S002',ROD='dm23ex2-016',DREAM='dm24ex2-019',KIRA='dm25rp3-012',TERRA='sp-020',BRAIN='dm01-052',HAND='dm01-027';let serial=0;
 const inst=id=>({cardId:id,uid:'twin-'+serial++,tapped:false,entered:0,buff:0,unblocked:false});
 const give=(s,p,z,ids)=>s.players[p][z]=ids.map(inst);
@@ -18,7 +18,7 @@ const judgeDecks=(s,own=[TERRA,'dm01-108','dm01-108'],opp=['dm01-108','dm01-108'
 const drain=s=>{let n=0;while(s.decision&&s.winner===null){assert.ok(n++<120);step(s,chooseAI(s));}};
 
 test('the twinpact pins both official faces and advances only verified support while the target tournament deck is complete',()=>{
- assert.equal(ENGINE_VERSION,'0.140.0');assert.equal(data.cards.length,1796);assert.equal(data.supportExpansion.phase,138);const c=card(RS),d=details.cards.find(c=>c.id===RS),r=manifest.cards[0];assert.equal(manifest.cards.length,1);assert.deepEqual(r.faces,d.faces);assert.equal(c.cost,7);assert.equal(c.power,5000);assert.equal(c.type,'creature');assert.equal(c.source,r.source);for(const[k,v]of Object.entries(r.spec))assert.deepEqual(c[k],v);assert.ok(c.text.includes(d.faces[1].abilityText));assert.equal(playFaces(c)[1].cost,3);assert.equal(playFaces(c)[1].type,'spell');assert.equal(playFaces(c)[1].id,RS);assert.equal(isDragon(c),true);assert.equal(playFaces(c)[1].speedAttacker,undefined);
+ assert.equal(ENGINE_VERSION,release.engineVersion);assert.equal(data.cards.length,data.supportExpansion.totalCount);assert.ok(data.supportExpansion.phase>=manifest.phase);const c=card(RS),d=details.cards.find(c=>c.id===RS),r=manifest.cards[0];assert.equal(manifest.cards.length,1);assert.deepEqual(r.faces,d.faces);assert.equal(c.cost,7);assert.equal(c.power,5000);assert.equal(c.type,'creature');assert.equal(c.source,r.source);for(const[k,v]of Object.entries(r.spec))assert.deepEqual(c[k],v);assert.ok(c.text.includes(d.faces[1].abilityText));assert.equal(playFaces(c)[1].cost,3);assert.equal(playFaces(c)[1].type,'spell');assert.equal(playFaces(c)[1].id,RS);assert.equal(isDragon(c),true);assert.equal(playFaces(c)[1].speedAttacker,undefined);
  const registry=createCatalogue(snapshot,data.cards,details),target=resolveEnvironmentDecks(registry).find(d=>d.id===ENVIRONMENT_TARGET),p=environmentSupport(target,registry);assert.equal(p.supportedCopies,40);assert.equal(p.supportedTypes,14);assert.equal(p.unsupported.length,0);assert.equal(p.unsupported.reduce((n,r)=>n+r.count,0),0);assert.deepEqual(validateDeck(target),[]);assert.doesNotThrow(()=>createGame([target,PRESETS[0]]));
  assert.throws(()=>setCards([...data.cards,{...c,id:'bad-twin',spellFace:{...c.spellFace,effect:'unhandled'}}]),/未実装/);assert.ok(card(RS));
 });

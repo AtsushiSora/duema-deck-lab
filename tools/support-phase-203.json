@@ -1,0 +1,581 @@
+{
+  "phase": 203,
+  "checkedAt": "2026-10-30",
+  "description": "場・マナ・墓地・手札の公開枚数に応じたドロー。1枚ずつの任意ドローと同枚数の一括ドローを区別し、全能力文を完全照合。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/31572/"
+  ],
+  "cards": [
+    {
+      "id": "dm17-s01",
+      "name": "アストラル・テンペスト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-s01",
+      "faces": [
+        {
+          "name": "アストラル・テンペスト",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "進化-自分のサイバー・ウイルス１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、自分のマナゾーンにあるカードの数と同じ枚数のカードを引く。",
+          "race": "サイバー・ウイルス",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "サイバー・ウイルス"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "mana"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm17-s01.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "03eb80e096e5eb78aca1c11d7a836437d3578b185a24a229082dd084895801fd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx13-022",
+      "name": "エナジー・ゼロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-022",
+      "faces": [
+        {
+          "name": "エナジー・ゼロ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のマナゾーンにある無色カード１枚につき、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "mana",
+            "filter": {
+              "g200Colorless": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx13-022.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "9e3c18414e96d18edd83fe286ade9db7c61d8398d6a43800aab5f3cb9f642b97",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr06-009",
+      "name": "サイバー・D・ゲーザ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-009",
+      "faces": [
+        {
+          "name": "サイバー・D・ゲーザ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分の、サイバー１体につき１枚、カードを引いてもよい。その後、バトルゾーンにある自分の、コマンド１体につき１枚、カードを引いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "サイバー・コマンド/ハンター",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "race": "サイバー"
+            },
+            "optional": "each"
+          },
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "race": "コマンド"
+            },
+            "optional": "each"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-009.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "4820f9093c50779780792ba2ccf139666ca8fa7c925810f4dab35cf3a5d03f5b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr02-023",
+      "name": "シンウッチ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-023",
+      "faces": [
+        {
+          "name": "シンウッチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、バトルゾーンにある自分のタップされているクリーチャー１体につき、カードを１枚引いてもよい。",
+          "race": "サイバーロード/ハンター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "tapped": true
+            },
+            "optional": "each"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr02-023.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "489d439c3061420eefd66033a39faa19a5391cadeb078bb2b8536eae104fd774",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx02-002",
+      "name": "セルリアン・ダガー・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-002",
+      "faces": [
+        {
+          "name": "セルリアン・ダガー・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のドラゴン１体につき１枚、カードを引いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "optional": "each"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx02-002.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "96409da28dad8607f881f5319e2ad73f986e7d77c9139548a3edce2dd8bb1b11",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm02-002",
+      "name": "プラズマ・チェイサー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-002",
+      "faces": [
+        {
+          "name": "プラズマ・チェイサー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃するとき、バトルゾーンにある相手のクリーチャーと同じ枚数のカードを引いてよい。",
+          "race": "ゲル・フィッシュ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "owner": "opponent",
+            "filter": {
+              "creature": true
+            },
+            "optional": "all"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm02-002.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "eb448ef343232da200cc70aa2e7e02dd79605844c76e82414b11b553d952b036",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex02-047",
+      "name": "フラッシュ・スパーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-047",
+      "faces": [
+        {
+          "name": "フラッシュ・スパーク",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを２体選び、タップする。その後、相手のタップしているクリーチャー１体につき、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを2体選ぶ"
+          },
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "owner": "opponent",
+            "filter": {
+              "creature": true,
+              "tapped": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex02-047.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "ee29f54bf8c76edeea2a63416330f98707b5b33ade8ba9cfa3103522b781d537",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy16-038",
+      "name": "ヘルコプ太",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-038",
+      "faces": [
+        {
+          "name": "ヘルコプ太",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分のジョーカーズ１体につき、カードを１枚引いてもよい。",
+          "race": "ジョーカーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "race": "ジョーカーズ"
+            },
+            "optional": "each"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-038.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "f64366e8a8c1074e7a28bb69729039c22701b4f0d530ba7e17e8023e865cc637",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-005",
+      "name": "ホースターズ５",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-005",
+      "faces": [
+        {
+          "name": "ホースターズ５",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の手札を数える。それと同じ枚数のカードを引いてもよい。",
+          "race": "ムートピア/スペシャルズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "hand",
+            "optional": "all"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-005.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "1e30776fe1003eb7b9f1bddcf18a4022958879aceb27ea1e1063e2a6b46da7f0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-073",
+      "name": "マグヌマ・ダンベガルー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-073",
+      "faces": [
+        {
+          "name": "マグヌマ・ダンベガルー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分のマナゾーンにある多色カード１枚につき、カードを１枚引いてもよい。",
+          "race": "トリックス/チームウェイブ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "mana",
+            "filter": {
+              "multi": true
+            },
+            "optional": "each"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-073.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "3d9ab69ef511a6a5c7d9a86c40e1d317c61b1e98cfd213920ed57b5d4fa3a3c9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-020",
+      "name": "改造機装リグツユーナ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-020",
+      "faces": [
+        {
+          "name": "改造機装リグツユーナ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のタップされているクリーチャー１体につき１枚、カードを引いてもよい。",
+          "race": "グレートメカオー/アンノイズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "owner": "opponent",
+            "filter": {
+              "creature": true,
+              "tapped": true
+            },
+            "optional": "each"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-020.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "f293110d0937debcad31cbf742f35fee15970f4d2dca63c4e79b0f51437b5080",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr15-024",
+      "name": "龍秘陣 龍知の計",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-024",
+      "faces": [
+        {
+          "name": "龍秘陣 龍知の計",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のマナゾーンにあるドラゴン１体につき、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "mana",
+            "filter": {
+              "race": "ドラゴン"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-024.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "2c73ef3756eb332b68dfb0e6dd32bb652d031d7daf71d7078019412687b4ed5e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp06-017",
+      "name": "歴史を語るブレイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-017",
+      "faces": [
+        {
+          "name": "歴史を語るブレイン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の墓地にある呪文１枚につき、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "grave",
+            "filter": {
+              "spell": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-017.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "a833aebf1d1135efd9464e7475029c2ce00c55b08b079d30c4e360eb7ecc599d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-30",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm17-s01": 4,
+      "dmx13-022": 4,
+      "dmr06-009": 4,
+      "dmr02-023": 4,
+      "dmx02-002": 4,
+      "dm02-002": 4,
+      "dmex02-047": 4,
+      "promoy16-038": 4,
+      "dmrp01-005": 4,
+      "dmex14-073": 4,
+      "dmr05-020": 4,
+      "dmr15-024": 4,
+      "dmrp06-017": 4
+    }
+  }
+}

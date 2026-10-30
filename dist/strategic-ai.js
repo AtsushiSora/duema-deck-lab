@@ -283,7 +283,8 @@ export function createStrategicAI(api){
     if(them.shields.length===0)score+=150;
     if(lethal)score+=120+damage(c)*3;
     if(routes.winning.size){score+=routes.winning.has(a.uid)?200:-200;}
-    if(!c.unblockable&&blockers.some(y=>power(y,false,ctx)>=power(x,true,ctx)))score-=35;
+    const legalBlockers=new Set(api.blockersFor(ctx,1-p,x));
+    if(blockers.some(y=>legalBlockers.has(y.uid)&&power(y,false,ctx)>=power(x,true,ctx)))score-=35;
     if(c.blocker&&me.shields.length===0&&!lethal&&!defensiveHero)score-=35;
     if(reserve.has(a.uid))score-=90;
     if(hero(s,p)){
