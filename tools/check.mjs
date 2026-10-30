@@ -1,3 +1,7 @@
+import {MARS213_DECK} from "./fixtures/mars213.mjs";
+import {STANDARD212_DECKS} from "./fixtures/standard212.mjs";
+import {STANDARD211_DECKS} from "./fixtures/standard211.mjs";
+import {STANDARD210_DECKS} from './fixtures/standard210.mjs';
 import {STANDARD209_DECKS} from './fixtures/standard209.mjs';
 import {STANDARD208_DECKS} from './fixtures/standard208.mjs';
 import {STANDARD207_DECKS} from './fixtures/standard207.mjs';
@@ -371,3 +375,12 @@ for(const d of STANDARD208_DECKS)if(validateDeck(d).length||registry.coverage(d)
 
 for(const d of STANDARD209_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第209段階の40枚を確認してください：'+d.name);
 console.log('Checked phase209 forty-card decks: fifteen battle-power and battle-protection creatures supported.');
+
+for(const d of STANDARD210_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第210段階の40枚を確認してください：'+d.name);
+console.log('Checked phase210 forty-card decks: twenty mana-untap and tap-lock cards supported.');
+
+for(const d of STANDARD211_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error("第211段階の40枚を確認してください："+d.name);console.log("Checked phase211 forty-card decks: seven filtered Sympathy cards supported.");
+
+for(const d of STANDARD212_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error("第212段階の40枚を確認してください："+d.name);console.log("Checked phase212 forty-card decks: eleven counted-cost and sweep cards supported.");
+
+if(validateDeck(MARS213_DECK).length||registry.coverage(MARS213_DECK).unsupported||MARS213_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error("第213段階の40枚を確認してください");console.log("Checked phase213 forty-card deck: 愛銀河マーズ・シンギュラリティ supported.");

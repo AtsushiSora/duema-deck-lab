@@ -1,0 +1,469 @@
+{
+  "phase": 212,
+  "checkedAt": "2026-10-30",
+  "description": "マナ・墓地・相手クリーチャーの枚数による召喚コスト軽減。全能力文を完全照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa/49527/"
+  ],
+  "cards": [
+    {
+      "id": "dmr05-060",
+      "name": "オニウッカリ 爆マル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-060",
+      "faces": [
+        {
+          "name": "オニウッカリ 爆マル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "自分のマナゾーンにあるクリーチャー１体につき、このクリーチャーを召喚するコストは１少なくなる。ただし、コストは１より少なくならない。\nスピードアタッカー(このクリーチャーは召喚酔いしない)",
+          "race": "ヒューマノイド/ハンター/エイリアン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "mana",
+          "filter": {
+            "creature": true
+          },
+          "amount": 1
+        },
+        "speedAttacker": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-060.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "6b518cf9a314fb9308b918b324ac5ed4fff6eec6bb8743950f5e096ac1c8ff06",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx11-033",
+      "name": "オニチャッカリ 爆ゾウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-033",
+      "faces": [
+        {
+          "name": "オニチャッカリ 爆ゾウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のマナゾーンにあるクリーチャー１体につき、このクリーチャーを召喚するコストは１少なくなる。ただし、コストは１より少なくならない。",
+          "race": "ヒューマノイド/ハンター/エイリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "mana",
+          "filter": {
+            "creature": true
+          },
+          "amount": 1
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx11-033.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "0414f2e4e4b346fa5889f2f1ca46e2e8da1e260f226259e1e2f9d94b13179eec",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-s07",
+      "name": "メガ・マグマ・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-s07",
+      "faces": [
+        {
+          "name": "メガ・マグマ・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーの召喚コストを、バトルゾーンにある相手のクリーチャー１体につき１少なくする。ただし、コストは０以下にならない。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、パワー5000以下のクリーチャーをすべて破壊する。",
+          "race": "メガ・コマンド・ドラゴン/革命軍",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "battle",
+          "owner": "opponent",
+          "filter": {
+            "creature": true
+          },
+          "amount": 1
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 5000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-s07.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "ab3de9f218714bb7c094811a2f420f6e652ce699275f8aaf6e35f2ebb036d9ad",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx15-013",
+      "name": "骸骨仮面 スカルライダー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-013",
+      "faces": [
+        {
+          "name": "骸骨仮面 スカルライダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "自分の墓地にあるクリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただし、コストは１より少なくならない。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アウトレイジ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "grave",
+          "filter": {
+            "creature": true
+          },
+          "amount": 1
+        },
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx15-013.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "4996be081ba5ee2d84bf908d59d7bf472a9d330d21dddff97aeec64e474d6d3d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-064",
+      "name": "鬼奥義 ザコダケ・イッソー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-064",
+      "faces": [
+        {
+          "name": "鬼奥義 ザコダケ・イッソー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nパワー1000以下のクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 1000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-064.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "9f2385c4b6487f0580831c6944df2cfd416eae462c1c08220909434a6df597e5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-074",
+      "name": "戯具 グリゴマ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-074",
+      "faces": [
+        {
+          "name": "戯具 グリゴマ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーの召喚コストを、自分の墓地の進化クリーチャー１体につき１少なくする。ただし、コストは０以下にはならない。",
+          "race": "マフィ・ギャング/レクスターズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "grave",
+          "filter": {
+            "creature": true,
+            "evolution": true
+          },
+          "amount": 1
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-074.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "78e92b7bfefd4c62590cdc829341f7d676576b198227cee950e4094b8db554a9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-053",
+      "name": "拘束の影メリコミ・タマタマ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-053",
+      "faces": [
+        {
+          "name": "拘束の影メリコミ・タマタマ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "スレイヤー(このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)\n自分のマナゾーンにあるクリーチャー１体につき、このクリーチャーの召喚コストは１少なくなる。ただし、コストは１より少なくならない。",
+          "race": "ゴースト/エイリアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "slayer": true,
+        "g212CountDiscount": {
+          "zone": "mana",
+          "filter": {
+            "creature": true
+          },
+          "amount": 1
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-053.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "380c4af27c69dde2c8f0d27dbed7c53dc235d25f563c3605a498808bd32012e2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy13-020",
+      "name": "熱血龍 シビル・ウォード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-020",
+      "faces": [
+        {
+          "name": "熱血龍 シビル・ウォード",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、パワー3000以下のクリーチャーをすべて破壊する。\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy13-020.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "c50c1e7ae9241f6b8929e1cf93e4c98abe4cb07c3bef07c4b580279902b2fd88",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-065",
+      "name": "八面の化身",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-065",
+      "faces": [
+        {
+          "name": "八面の化身",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "自分のマナゾーンにあるクリーチャー１体につき、このクリーチャーを召喚するコストは１少なくなる。ただし、コストは１より少なくならない。\nこのクリーチャーが破壊される時、墓地に置くかわりに自分のマナゾーンに置く。",
+          "race": "ミステリー・トーテム/エイリアン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "mana",
+          "filter": {
+            "creature": true
+          },
+          "amount": 1
+        },
+        "destroyToMana": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-065.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "be5493bb4dc6e0bbc6843d6419c3a121e9eedf2c4230a5c2d34915c7232b1810",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-041",
+      "name": "優位の守護者サメンビー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-041",
+      "faces": [
+        {
+          "name": "優位の守護者サメンビー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分のマナゾーンにあるクリーチャー１体につき、このクリーチャーを召喚するコストは１少なくなる。ただし、コストは１より少なくならない。",
+          "race": "ガーディアン/エイリアン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g212CountDiscount": {
+          "zone": "mana",
+          "filter": {
+            "creature": true
+          },
+          "amount": 1
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-041.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "978caeb7a9a8784ff6ef695de34de56db4dea2758a4dbf7d6509046cd2ff8ec3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr08-013",
+      "name": "連隊の守護者ドクロンビー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-013",
+      "faces": [
+        {
+          "name": "連隊の守護者ドクロンビー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\n自分の墓地にあるガーディアン１体につき、このクリーチャーの召喚コストは１少なくなる。ただし、コストは１より少なくならない。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "ガーディアン/アンノウン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g212CountDiscount": {
+          "zone": "grave",
+          "filter": {
+            "creature": true,
+            "race": "ガーディアン"
+          },
+          "amount": 1
+        },
+        "breaker": 3
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-013.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "6dc21e7ab548b77c1e9b0988664db3f8cfea3595afd3c3102e531f7234be6738",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-30",
+    "sha256": "95b02dcc4c43044aa28b2feb78754f875ce6a888debc367963371c029908df61",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr05-060": 4,
+      "dmx11-033": 4,
+      "dmr18-s07": 4,
+      "dmx15-013": 4,
+      "dmr05-064": 4,
+      "dmrp18-074": 4,
+      "dmr05-053": 4,
+      "promoy13-020": 4,
+      "dmr05-065": 4,
+      "dmr05-041": 4,
+      "dmr08-013": 4
+    }
+  }
+}

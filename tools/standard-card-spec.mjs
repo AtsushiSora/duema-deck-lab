@@ -11,6 +11,18 @@ const flags={
  'ジャストダイバー':'justDiver','パワード・ブレイカー':'poweredBreaker','EXライフ':'exLife',
  'S・トリガー':'trigger'
 };
+function countDiscount212(line){
+ const head=line.match(/^(?:このクリーチャーの召喚コストを|このクリーチャーを召喚するコストは)(.+?)(?:1枚|1体)につき([12])少なく(?:する|なる)。ただしコストは(?:0以下(?:には|に)は?ならない|1より少なくならない)。$/),tail=line.match(/^(.+?)(?:1枚|1体)につき(?:このクリーチャーの召喚コスト(?:を|は)|このクリーチャーを召喚するコストは)([12])少なく(?:する|なる)。ただしコストは(?:0以下(?:には|に)は?ならない|1より少なくならない)。$/),m=head||tail;if(!m)return null;
+ const targets={'自分のマナゾーンにあるクリーチャー':{zone:'mana',filter:{creature:true}},'自分の墓地にあるクリーチャー':{zone:'grave',filter:{creature:true}},'自分の墓地にあるガーディアン':{zone:'grave',filter:{creature:true,race:'ガーディアン'}},'自分の墓地の進化クリーチャー':{zone:'grave',filter:{creature:true,evolution:true}},'バトルゾーンにある相手のクリーチャー':{zone:'battle',owner:'opponent',filter:{creature:true}},'相手のタップしているクリーチャー':{zone:'battle',owner:'opponent',filter:{creature:true,tapped:true}},'相手の墓地にある呪文':{zone:'grave',owner:'opponent',filter:{spell:true}}};
+ return targets[m[1]]?{...targets[m[1]],amount:Number(m[2])}:null;
+}
+function sympathy211(line){
+ const m=line.match(/^(ダブル・)?シンパシー:(.+?)\((?:このクリーチャーを召喚する時支払うコストは|このクリーチャーの召喚コストを|この呪文を唱える時支払うコストは|この呪文を唱えるコストは)(?:バトルゾーンにある)?自分の(.+?)(?:1体|1つ)につき([12])少なく(?:なる|する)。ただしコストは(?:0以下(?:には|に)は?ならない|1より少なくならない)\)$/);
+ if(!m||Number(m[4])!==(m[1]?2:1))return null;
+ const filters={"クリーチャー":{creature:true},"水のクリーチャー":{creature:true,color:"水"},"光のコスト3以下のクリーチャー":{creature:true,color:"光",max:3},"リキッド・ピープル":{creature:true,race:"リキッド・ピープル"},"ヒューマノイド":{creature:true,race:"ヒューマノイド"},"ドリームメイトまたはビークル・ビー":{creature:true,raceAny:["ドリームメイト","ビークル・ビー"]},"グレートメカオーまたはキカイヒーロー":{creature:true,raceAny:["グレートメカオー","キカイヒーロー"]},"パワー12000以上のクリーチャー":{creature:true,minPower:12000,g199Power:true},"タマシード":{seed:true}};
+ const title=m[2].replace(/と|および/g,"または");if(title!==m[3]||!filters[m[3]])return null;
+ return{amount:Number(m[4]),filter:filters[m[3]]};
+}
 function lookSpec(text){
  const m=text.match(/^自分の山札の上から([1-9]\d*)枚を見る。(?:その中から|そのうちの)(?:(.+?)を)?1(枚|体)(?:を)?(?:選び)?(?:(?:相手に)?(?:見せてから|見せ)|表向きにし)?(?:自分の)?手札に加え(てもよい。|る。|)(?:その後)?残りを好きな順序で(?:自分の)?山札の(?:一番)?下に置く。$/);if(!m)return null;
  const filters={'呪文':{spell:true},'呪文またはオーラ':{any:[{spell:true},{aura:true}]},'クリーチャー':{creature:true},'自然のクリーチャー':{creature:true,color:'自然'},'多色クリーチャー':{creature:true,multi:true},'進化クリーチャー':{creature:true,evolution:true},'タマシード':{seed:true},'コスト1のカード':{exactCost:1},'ジョーカーズ':{race:'ジョーカーズ'},'レクスターズ':{race:'レクスターズ'},'ファイアー・バード':{race:'ファイアー・バード'}};
@@ -85,6 +97,12 @@ function grantAura208(text){
 }
 function instruction(text,phase){
  let m;
+ if(phase>=212&&(m=text.match(/^パワー([1-9]\d*)以下のクリーチャーをすべて破壊する。$/)))return{op:'Sweep',both:true,to:'grave',filter:{creature:true,maxPower:+m[1],g199Power:true}};
+ if(phase>=210){
+  if(m=text.match(/^(?:自分の)?マナゾーン(?:にある|の)カードを([1-9]\d*)枚(まで)?アンタップする。$/))return{op:'Select',origin:'mana',n:+m[1],g210ManaUntap:true,title:'アンタップするマナを'+m[1]+'枚'+(m[2]?'まで':'')+'選ぶ',...(m[2]?{optional:true}:{})};
+  if(m=text.match(/^(?:バトルゾーンにある)?相手のクリーチャーを([1-9]\d*)体(まで)?選びタップする。(?:そのクリーチャーは次の相手のターンのはじめに|次の相手のターンのはじめに(?:そのクリーチャー|それら(?:のクリーチャー)?)は)アンタップ(?:し|され)ない。$/)){const common={g210TapLock:true,title:'タップして次のターンまで止めるクリーチャーを'+m[1]+'体'+(m[2]?'まで':'')+'選ぶ'};return +m[1]===1&&!m[2]?{op:'Target',tap:true,lock:true,...common}:{op:'Select',origin:'battle',owner:'opponent',n:+m[1],filter:{creature:true},g173Targets:true,g193Select:true,g193Tap:true,...common,...(m[2]?{optional:true}:{})};}
+ }
+
  if(phase>=204&&/^カードを1枚引いてもよい。そうした(?:ら|場合)自分の手札を1枚捨てる。$/.test(text))return{op:'Offer',g204DrawDiscard:true,defs:[{op:'Draw',n:1},{op:'Discard',owner:'self',n:1}]};
  if(phase>=203){const count=count203(text);if(count)return count;}
  if(phase>=201){const search=search201(text);if(search)return search;}
@@ -212,6 +230,8 @@ export function standardCardSpec(d,{phase=165}={}){
    const modal=line.match(/^(?:(?:このクリーチャーが(?:バトルゾーンに)?出た時|このクリーチャーをバトルゾーンに出した時))?次のうちいずれか(?:1つ|ひとつ)を選ぶ。$/);
    if(modal){if(entry.length||nativeEntry||((creature||seed)&&line.startsWith('次の'))||(!creature&&line.startsWith('このクリーチャー')))throw Error('独立した誘発能力の順序対応が必要');const modes=[];while(i+1<lines.length&&normalize(lines[i+1]).startsWith('▶')){const text=normalize(lines[++i]).slice(1),defs=clauses(text,phase).map(q=>instruction(q,phase));if(!defs.length||defs.some(t=>!t))throw Error('未対応の選択能力: '+text);modes.push({label:lines[i].replace(/^\s*▶/,'').trim(),defs});}if(modes.length<2)throw Error('選択能力の不足');entry.push({op:'Choose',g184Modes:true,modes});continue;}
   }
+  if(phase>=212&&creature){const reduction=countDiscount212(line);if(reduction){if(spec.g212CountDiscount)throw Error("重複する枚数軽減");spec.g212CountDiscount=reduction;continue;}}
+  if(phase>=211){const sympathy=sympathy211(line);if(sympathy){if(spec.g211Sympathy)throw Error("重複するシンパシー");spec.g211Sympathy=sympathy;continue;}}
   if(phase>=209&&creature){
    if(/^このクリーチャーはバトル中破壊されない。$/.test(line)){spec.g34BattleSafe=true;continue;}
    if(m=line.match(/^パワード・ブロッカー\+([1-9]\d*)\(ブロック中このクリーチャーのパワーを\+\1する\)$/)){spec.g209PoweredBlocker=+m[1];powerBonus=true;continue;}
@@ -318,7 +338,7 @@ export function standardCardSpec(d,{phase=165}={}){
   if(nativeEntry&&dest===entry)throw Error('未対応の複合効果');
   const parts=clauses(body,phase),tasks=parts.map(text=>instruction(text,phase));if(tasks.some(t=>!t)||!tasks.length)throw Error('未対応の能力文: '+raw);dest.push(...tasks.map(t=>!creature&&!seed&&(t.power||phase>=170&&t.lock)?{...t,spell:true}:t));
  }
- if(phase>=190&&!creature&&!seed){const mark=defs=>{for(const d of defs||[]){if(d.g190Freeze)d.spell=true;mark(d.defs);for(const m of d.modes||[])mark(m.defs);}};mark(entry);}
+ if(phase>=190&&!creature&&!seed){const mark=defs=>{for(const d of defs||[]){if(d.g190Freeze||phase>=210&&d.g210TapLock)d.spell=true;mark(d.defs);for(const m of d.modes||[])mark(m.defs);}};mark(entry);}
  if(f.typeText==='NEOクリーチャー'&&(!spec.neoEvolution||spec.exLife))throw Error('未対応のNEO進化条件');
  if(evolution&&(!spec.evolution||spec.exLife||spec.trigger))throw Error('特殊進化または進化条件の不足');
  if(creature&&f.powerText.endsWith('+')&&!powerBonus)throw Error('未実装の可変パワー');
