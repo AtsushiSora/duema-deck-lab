@@ -30,6 +30,25 @@ export function createSixPhotoRules(api){
   };
   return t.amount*rows.filter(fits).length;
  }
+ // Only identity-based filters are accepted. Source abilities are read without
+ // recursively decorating other aura recipients; ignored recipients never reach this hook.
+ function grantAuras(s,owner,x,c){
+  if(c.type!=='creature')return c;
+  const fits=f=>(!f.color||colors(c).includes(f.color))&&(!f.colorsAny||f.colorsAny.some(q=>colors(c).includes(q)))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.raceAll||f.raceAll.every(q=>race(c,q)))&&(!f.evolution||api.isEvolution(x));
+  let out=c,slayers=c.slayer?1:0;
+  for(const p of [0,1])for(const source of s.players[p].battle){const auras=card(source).g208Auras;if(!auras||source.sealed||!api.isCreature(s,source)||api.ignored(s,source))continue;
+   for(const aura of auras){if(!aura.both&&owner!==p||aura.other&&source.uid===x.uid||!fits(aura.filter))continue;
+    if(out===c)out={...c};for(const [key,value]of Object.entries(aura.grants)){if(key==='slayer'){out.slayer=true;slayers++;}else if(key==='breaker')out.breaker=out.breaker==='∞'?'∞':Math.max(Number(out.breaker)||1,value);else if(key==='attackBonus')out.attackBonus=(out.attackBonus||0)+value;else out[key]=value;}
+   }
+  }
+  if(slayers>1)out={...out,g208SlayerCount:slayers};
+  return out;
+ }
+ function battlePower209(s,x,y,c){
+  const t=c.g209BattlePower;if(!t||!s)return 0;const p=s.players.findIndex(p=>p.battle.some(z=>z.uid===x.uid));if(p<0)return 0;
+  if(t.vsBlocker&&(!y||!effective(y,s).blocker)||t.opponentMaxCost!=null&&(!y||cost(effective(y,s))>t.opponentMaxCost)||t.handMax!=null&&s.players[p].hand.length>t.handMax||t.opponentTurn&&s.active===p)return 0;
+  return t.amount*(t.graveFire?s.players[p].grave.filter(z=>faces(card(z)).some(f=>colors(f).includes('火'))).length:1);
+ }
  const reserved=own=>new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&/Protected$|Reveals$/.test(k)).flatMap(([,v])=>v));
  function look(s,t){t={...t,public:t.public||api.lookPublic(s,t.p)};if(api.deckLocked(s,t.p))return[];const own=s.players[t.p],skip=reserved(own),xs=own.deck.filter(x=>!skip.has(x.uid)).slice(0,api.lookCount(s,t.p,t.n??3));(own.g34Protected??=[]).push(...xs.map(x=>x.uid));api.log(s,t.p,t.public?'reveal':'look',card(t.source).name+'：山札の上'+xs.length+'枚'+(t.public?'を公開：'+xs.map(x=>card(x).name).join('・'):'を確認'),{cardId:t.source});return xs.map(x=>x.uid);}
  const release=(s,p,uid)=>{for(const k of['g34Protected','g35Protected'])s.players[p][k]=(s.players[p][k]||[]).filter(x=>x!==uid);};
@@ -202,6 +221,7 @@ export function createSixPhotoRules(api){
  canLeave(s,p,x){return !(effective(x,s).g34Role==='engels'&&s.g34ShieldLeftTurn!==s.turn)&&!(effective(x,s).g34Role==='perfect'&&api.power(x,false,s)>0);},
  zeroSafe:(s,x)=>!!effective(x,s).g34AlwaysWinAtZero&&api.power(x,false,s)<=0,
  winBattle:(s,x)=>!!effective(x,s).g34AlwaysWin||hooks.zeroSafe(s,x),
+ battlePower209,
  battleSafe:(s,x)=>!!effective(x,s).g34BattleSafe,
  noLose(s,p){return(s.extLimits||[]).some(l=>l.kind==='g34NoLose'&&l.player===p)||active(s,p,'valhalla').some(()=>s.players[p].mana.filter(x=>api.manaColors(card(x),s,p).includes('光')).length>=9);},
  lossOptions(s,p){return s.players[p].mana.length>=8?active(s,p,'minogami').map(x=>opt(card(x).name+'：マナ8枚を山札の下に置く',{kind:'g34Mino',uid:x.uid},60,x.cardId)):[];},
@@ -240,7 +260,7 @@ export function createSixPhotoRules(api){
  combined.discount=(...args)=>hooks.discount(...args)+fifteen.discount(...args);
  combined.snapshot=s=>({...hooks.snapshot(s),fifteen:fifteen.snapshot(s)});
  combined.leaving=(s,p,x,snapshot,to,destroy)=>{hooks.leaving(s,p,x,snapshot,to,destroy);fifteen.leaving(s,p,x,snapshot?.fifteen,to,destroy);};
- return{...combined,fifteen,run,chosen,matches,canPut,countDraw,spellWatches,auraPower,countPower,send,tasks,start,race,mecha,ninja,angel,demon,key,live,
+ return{...combined,fifteen,run,chosen,matches,canPut,countDraw,spellWatches,auraPower,countPower,grantAuras,send,tasks,start,race,mecha,ninja,angel,demon,key,live,
  effect(s,p,c,uid,entry){if(c.effect!=='sixPhoto')return false;start(s,{p,source:c.id,uid,incarnation:s.players[p].battle.find(x=>x.uid===uid)?.incarnation||0},entry?.plus&&c.g34Plus?[...c.g34Plus,...(c.g34Tasks||[])]:c.g34Tasks);return true;},
  };
 }

@@ -1,3 +1,5 @@
+import {STANDARD209_DECKS} from './fixtures/standard209.mjs';
+import {STANDARD208_DECKS} from './fixtures/standard208.mjs';
 import {STANDARD207_DECKS} from './fixtures/standard207.mjs';
 import {STANDARD206_DECKS} from './fixtures/standard206.mjs';
 import {STANDARD205_DECKS} from './fixtures/standard205.mjs';
@@ -364,3 +366,8 @@ for(const d of STANDARD205_DECKS)if(validateDeck(d).length||registry.coverage(d)
 for(const d of STANDARD206_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第206段階の40枚を確認してください：'+d.name);console.log('Checked phase206 forty-card decks: nineteen conditional block and attack creatures supported.');
 
 for(const d of STANDARD207_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第207段階の40枚を確認してください：'+d.name);console.log('Checked phase207 forty-card decks: thirty-nine count-based power creatures supported.');
+
+for(const d of STANDARD208_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第208段階の40枚を確認してください：'+d.name);console.log('Checked phase208 forty-card decks: twenty-five continuous ability-grant creatures supported.');
+
+for(const d of STANDARD209_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第209段階の40枚を確認してください：'+d.name);
+console.log('Checked phase209 forty-card decks: fifteen battle-power and battle-protection creatures supported.');

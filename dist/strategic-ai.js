@@ -164,15 +164,15 @@ export function createStrategicAI(api){
   // If this hit removes every shield, reserve enough defenses for the remaining
   // visible attackers. Otherwise block the large hit with the least costly body.
   if(next.length<=Math.min(blocks.length,blockable))return null;
-  return blocks.map(r=>{const x=own.battle.find(x=>x.uid===r.a.uid);return {...r,value:(power(x,false,s)>=power(attacker,true,s)?100:0)-creatureValue(s,x)};})
+  return blocks.map(r=>{const x=own.battle.find(x=>x.uid===r.a.uid);return {...r,value:(api.matchupPower(x,attacker,false,s,true,true)>=api.matchupPower(attacker,x,true,s)?100:0)-creatureValue(s,x)};})
    .sort((a,b)=>b.value-a.value||a.a.id-b.a.id)[0].a;
  }
  function fightChoice(s,rows,p,t){
   const own=s.players[p].battle.find(x=>x.uid===t.uid&&(t.incarnation===undefined||(x.incarnation||0)===t.incarnation));
   if(!own)return rows[0]?.a;
-  const c=effective(own,s),ap=power(own,s.attack?.attacker===own.uid,s),loss=creatureValue(s,own);
+  const c=effective(own,s),loss=creatureValue(s,own);
   return rows.map(r=>{const uid=s.decision.choices[r.a.choice]?.value,target=s.players[1-p].battle.find(x=>x.uid===uid);if(!target)return {...r,value:0};
-   const d=effective(target,s),bp=power(target,s.attack?.attacker===target.uid,s),wins=ap>bp,loses=ap<=bp||d.slayer,kills=ap>=bp||c.slayer;
+   const d=effective(target,s),ap=api.matchupPower(own,target,s.attack?.attacker===own.uid,s),bp=api.matchupPower(target,own,s.attack?.attacker===target.uid,s),wins=ap>bp,loses=!c.g34BattleSafe&&ap<=bp||d.slayer,kills=!d.g34BattleSafe&&ap>=bp||c.slayer;
    return {...r,value:(kills?creatureValue(s,target):0)-(loses?loss+1:0)+(wins&&c.gachiWinDraw&&s.players[p].deck.length>1?8:0)};
   }).sort((a,b)=>b.value-a.value||a.a.id-b.a.id)[0]?.a;
  }
@@ -284,7 +284,7 @@ export function createStrategicAI(api){
     if(lethal)score+=120+damage(c)*3;
     if(routes.winning.size){score+=routes.winning.has(a.uid)?200:-200;}
     const legalBlockers=new Set(api.blockersFor(ctx,1-p,x));
-    if(blockers.some(y=>legalBlockers.has(y.uid)&&power(y,false,ctx)>=power(x,true,ctx)))score-=35;
+    if(blockers.some(y=>legalBlockers.has(y.uid)&&api.matchupPower(y,x,false,ctx,true,true)>=api.matchupPower(x,y,true,ctx)))score-=35;
     if(c.blocker&&me.shields.length===0&&!lethal&&!defensiveHero)score-=35;
     if(reserve.has(a.uid))score-=90;
     if(hero(s,p)){
@@ -295,7 +295,7 @@ export function createStrategicAI(api){
     const y=find(1-p,a.target),d=effective(y,ctx);
     // The effect policy recognises destruction protection and mandatory attacks.
     // Keep those exclusions so an invulnerable target cannot cause a repeat loop.
-    if(r.value>0&&power(x,true,ctx)>power(y,false,ctx)&&!d.slayer)score=30+creatureValue(ctx,y)*.25+(d.blocker?18:0);
+    if(r.value>0&&api.matchupPower(x,y,true,ctx)>api.matchupPower(y,x,false,ctx)&&!d.slayer)score=30+creatureValue(ctx,y)*.25+(d.blocker?18:0);
     if(lethal)score-=100;
    }
    return {...r,value:score};

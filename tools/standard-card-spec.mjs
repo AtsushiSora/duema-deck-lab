@@ -72,6 +72,17 @@ function countPower207(text){
  if(battle){const filters={'クリーチャー':{},'光のクリーチャー':{color:'光'},'水のクリーチャー':{color:'水'},'闇のクリーチャー':{color:'闇'},'火のクリーチャー':{color:'火'},'自然のクリーチャー':{color:'自然'},'水と闇のクリーチャー':{colorsAny:['水','闇']},'タップされているクリーチャー':{tapped:true},'タップされていないクリーチャー':{untapped:true},'進化クリーチャー':{evolution:true},'「ブロッカー」を持つクリーチャー':{blocker:true},'イニシエート':{race:'イニシエート'}};const filter=filters[battle[3]];if(filter)count={zone:'battle',...(!battle[1]?{both:true}:battle[1]==='相手'?{opponent:true}:{}),...(battle[2]?{other:true}:{}),filter:{creature:true,...filter}};}
  return count?{...count,amount:+m[2],...condition}:null;
 }
+function grantAura208(text){
+ const line=text.replace(/^このクリーチャーがバトルゾーンにある間/,'');
+ const m=line.match(/^(?:バトルゾーンにある)?(自分の)?(他の)?(?:すべての)?(.+?)(?:はすべて|すべてに|すべては|は|に)(.+)$/);if(!m)return null;
+ const filters={'クリーチャー':{},'進化クリーチャー':{evolution:true},'ドラゴン':{race:'ドラゴン'},'ドラゴンとハンター両方を持つクリーチャー':{raceAll:['ドラゴン','ハンター']},'水と自然のクリーチャー':{colorsAny:['水','自然']},'光または水のクリーチャー':{colorsAny:['光','水']},'光または火のクリーチャー':{colorsAny:['光','火']},'アーク・セラフィムとワイルド・ベジーズ':{raceAny:['アーク・セラフィム','ワイルド・ベジーズ']}};
+ for(const color of colors)filters[color+'のクリーチャー']={color};
+ for(const r of ['リキッド・ピープル','コマンド・ドラゴン','デーモン・コマンド','エイリアン','アンノウン','ティラノ・ドレイク','ディスタス','サイバーロードとヘドリアン'])filters[r]=r.includes('と')?{raceAny:r.split('と')}:{race:r};
+ const filter=filters[m[3]];if(!filter)return null;const body=m[4];let grants;
+ if(body==='ブロックされない。')grants={unblockable:true};
+ else{const grant=body.match(/^((?:「[^「」]+」)(?:と「[^「」]+」)*)(?:を得る|を与える)。(?:\(.*\))?$/);if(!grant)return null;grants={};for(const word of grant[1].matchAll(/「([^「」]+)」/g)){const key={'スピードアタッカー':'speedAttacker','スレイヤー':'slayer','ブロッカー':'blocker','W・ブレイカー':'breaker','W(ダブル)・ブレイカー':'breaker'}[word[1]],power=word[1].match(/^パワーアタッカー\+([1-9]\d*)$/);if(key)grants[key]=key==='breaker'?2:true;else if(power)grants.attackBonus=+power[1];else return null;}}
+ return{filter:{creature:true,...filter},...(!m[1]?{both:true}:{}),...(m[2]?{other:true}:{}),grants};
+}
 function instruction(text,phase){
  let m;
  if(phase>=204&&/^カードを1枚引いてもよい。そうした(?:ら|場合)自分の手札を1枚捨てる。$/.test(text))return{op:'Offer',g204DrawDiscard:true,defs:[{op:'Draw',n:1},{op:'Discard',owner:'self',n:1}]};
@@ -201,6 +212,16 @@ export function standardCardSpec(d,{phase=165}={}){
    const modal=line.match(/^(?:(?:このクリーチャーが(?:バトルゾーンに)?出た時|このクリーチャーをバトルゾーンに出した時))?次のうちいずれか(?:1つ|ひとつ)を選ぶ。$/);
    if(modal){if(entry.length||nativeEntry||((creature||seed)&&line.startsWith('次の'))||(!creature&&line.startsWith('このクリーチャー')))throw Error('独立した誘発能力の順序対応が必要');const modes=[];while(i+1<lines.length&&normalize(lines[i+1]).startsWith('▶')){const text=normalize(lines[++i]).slice(1),defs=clauses(text,phase).map(q=>instruction(q,phase));if(!defs.length||defs.some(t=>!t))throw Error('未対応の選択能力: '+text);modes.push({label:lines[i].replace(/^\s*▶/,'').trim(),defs});}if(modes.length<2)throw Error('選択能力の不足');entry.push({op:'Choose',g184Modes:true,modes});continue;}
   }
+  if(phase>=209&&creature){
+   if(/^このクリーチャーはバトル中破壊されない。$/.test(line)){spec.g34BattleSafe=true;continue;}
+   if(m=line.match(/^パワード・ブロッカー\+([1-9]\d*)\(ブロック中このクリーチャーのパワーを\+\1する\)$/)){spec.g209PoweredBlocker=+m[1];powerBonus=true;continue;}
+   if(m=line.match(/^(?:このクリーチャーは)?「ブロッカー」を持つクリーチャーとの?バトル中(?:このクリーチャーの)?パワー(?:を|は)\+([1-9]\d*)(?:する|される)。$/)){spec.g209BattlePower={amount:+m[1],vsBlocker:true};powerBonus=true;continue;}
+   if(m=line.match(/^コスト([1-9]\d*)以下のクリーチャーとバトル中このクリーチャーのパワーは\+([1-9]\d*)される。$/)){spec.g209BattlePower={amount:+m[2],opponentMaxCost:+m[1]};powerBonus=true;continue;}
+   if(m=line.match(/^G・G・G:このクリーチャーがバトル中自分の手札が([1-9]\d*)枚以下ならこのクリーチャーのパワーを\+([1-9]\d*)する。$/)){spec.g209BattlePower={amount:+m[2],handMax:+m[1]};powerBonus=true;continue;}
+   if(m=line.match(/^バトル中このクリーチャーのパワーを自分の墓地にある火のカード1枚につき\+([1-9]\d*)する。$/)){spec.g209BattlePower={amount:+m[1],graveFire:true};powerBonus=true;continue;}
+   if(m=line.match(/^相手のターンバトル中このクリーチャーのパワーは\+([1-9]\d*)される。$/)){spec.g209BattlePower={amount:+m[1],opponentTurn:true};powerBonus=true;continue;}
+  }
+  if(phase>=208&&creature){const aura=grantAura208(line);if(aura){(spec.g208Auras??=[]).push(aura);continue;}}
   if(phase>=207&&creature){
    const counted=countPower207(line);if(counted){if(spec.g207CountPower)throw Error('重複する枚数パワー');spec.g207CountPower=counted;powerBonus=true;continue;}
    if(m=line.match(/^このクリーチャーはパワーが(6000|15000)以上の(?:時|とき)「(W|T)・ブレイカー」を得る。$/)){const rule={power:+m[1],breaker:m[2]==='W'?2:3};if((spec.g207Breakers||[]).some(r=>r.power===rule.power))throw Error('重複するパワー別ブレイカー');(spec.g207Breakers??=[]).push(rule);continue;}
