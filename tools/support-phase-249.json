@@ -1,0 +1,131 @@
+{
+  "phase": 249,
+  "checkedAt": "2026-10-31",
+  "description": "自分の他のアビス登場時の墓地回収と、登場時のゴッド検索を行う2種類。実際の手札破棄を条件とし、全能力文・印刷マナ数を公式照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dm23ex2-076",
+      "name": "コート=メルゲイト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-076",
+      "faces": [
+        {
+          "name": "コート=メルゲイト",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のターン中に、自分の他のアビスが出た時、自分の手札からカードを１枚捨ててもよい。そうしたら、自分の墓地からアビスを１枚手札に戻してもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g249OtherEntry": {
+          "filter": {
+            "race": "アビス"
+          },
+          "defs": [
+            {
+              "op": "DiscardFor248",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "to": "hand",
+                  "n": 1,
+                  "optional": true,
+                  "filter": {
+                    "race": "アビス"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex2-076.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "09f3f77383fff03d41b6d1a0bf44ce0bf9c34ddf35e1f0209a41b8f49742f64a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm32-056",
+      "name": "ゴッド・ガット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-056",
+      "faces": [
+        {
+          "name": "ゴッド・ガット",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー\nこのクリーチャーは攻撃することができない。\nこのクリーチャーをバトルゾーンに出した時、自分の手札を１枚捨ててもよい。そうした場合、自分の山札を見る。その中からゴッドを１枚選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "ファイアー・バード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DiscardFor248",
+            "defs": [
+              {
+                "op": "Look",
+                "g201Search": true,
+                "g200Search": true,
+                "n": "all",
+                "rest": "shuffle",
+                "stages": [
+                  {
+                    "n": 1,
+                    "to": "hand",
+                    "filter": {
+                      "race": "ゴッド"
+                    },
+                    "reveal": true,
+                    "optional": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-056.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "3235ed81e1c7f080bf98974a6fffce85ca5f91cd6dcea2dad64e128fda701ee9",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23ex2-076": 4,
+      "dm32-056": 4
+    }
+  }
+}

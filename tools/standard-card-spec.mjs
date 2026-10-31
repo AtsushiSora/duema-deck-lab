@@ -4,7 +4,7 @@ const colors=['光','水','闇','火','自然'];
 const aliasNames=new Set(['炎のたてがみ(バーニング・ヘアー)','青銅の鎧(ブロンズ・アーム・トライブ)','無敵の咆哮(マイティ・シャウター)','紅玉草(ルビー・グラス)','ワ・タンポ－ポ・タンク','【問２】ノロン&#x2934','怪力の化身(マイティ・トーテム)']);
 const normalize=s=>s.normalize('NFKC').replace(/\s|■/g,'').replaceAll('、','');
 const keyword=(line,name)=>new RegExp('^(?:'+name+'){1,2}(?:\\([^()]*\\))?$').test(line);
-const clauses=(body,phase)=>phase>=244&&discardAll244(body)||phase>=241&&fightBuff241(body)||phase>=216&&/^自分の手札を1枚捨ててもよい。そうした(?:ら|場合)カードを[1-9]\d*枚引く。$/.test(body)||phase>=201&&search201(body)||phase>=200&&look200(body)||phase>=197&&mana197(body,phase)||phase>=185&&lookSpec(body)?[body]:(phase>=181?(phase>=184?body.replace(/^自分の手札を([1-9]\d*)枚捨て(?!る)(?:その後)?/,'自分の手札を$1枚捨てる。その後'):body).replace(/^カードを([1-9]\d*)枚引き(?:その後)?/,'カードを$1枚引く。その後'):body).split('その後').filter(Boolean);
+const clauses=(body,phase)=>phase>=248&&discardForEffect248(body,phase)||phase>=244&&discardAll244(body,phase)||phase>=241&&fightBuff241(body)||phase>=216&&/^自分の手札を1枚捨ててもよい。そうした(?:ら|場合)カードを[1-9]\d*枚引く。$/.test(body)||phase>=201&&search201(body)||phase>=200&&look200(body)||phase>=197&&mana197(body,phase)||phase>=185&&lookSpec(body)?[body]:(phase>=181?(phase>=184?body.replace(/^自分の手札を([1-9]\d*)枚捨て(?!る)(?:その後)?/,'自分の手札を$1枚捨てる。その後'):body).replace(/^カードを([1-9]\d*)枚引き(?:その後)?/,'カードを$1枚引く。その後'):body).split('その後').filter(Boolean);
 const flags={
  'ブロッカー':'blocker','スピードアタッカー':'speedAttacker','スレイヤー':'slayer',
  'マッハファイター':'machFighter','ガードマン':'guardman','エスケープ':'escape',
@@ -110,14 +110,31 @@ function fightBuff241(text){
  const m=text.match(/^このターン(?:バトルゾーンにある)?自分のクリーチャー1体のパワー(?:を|は)\+([1-9]\d*)(?:する|される)。(?:その後)?(?:バトルゾーンにある)?相手のクリーチャーを1体選(ぶ|んでもよい)。その2体をバトルさせる。$/)||text.match(/^自分のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを\+([1-9]\d*)する。(?:その後)?相手のクリーチャーを1体選(ぶ|んでもよい)。その2体をバトルさせる。$/);
  return m?{op:'FightBuff241',power:+m[1],enemyOptional:m[2]==='んでもよい'}:null;
 }
-function discardAll244(text){
+function discardAll244(text,phase=244){
+ if(phase>=245)text=text.replace(/^(自分の手札をすべて捨ててもよい。)そうした場合(カードを[1-9]\d*枚引く。)$/,"$1そうしたら$2");
  if(text==='自分の手札をすべて捨てる。')return{op:'DiscardAll244',draw:0};
  const optional=text.match(/^自分の手札をすべて捨ててもよい。そうしたらカードを([1-9]\d*)枚引く。$/),mandatory=text.match(/^自分の手札をすべて捨て(?:その後)?カードを([1-9]\d*)枚引く。$/),m=optional||mandatory;
  return m?{op:'DiscardAll244',draw:Number(m[1]),...(optional?{optional:true}:{})}:null;
 }
+function discardForEffect248(text,phase=248){
+ if(phase>=249)text=text.replace(/^自分の手札からカードを1枚捨ててもよい。/,'自分の手札を1枚捨ててもよい。');
+ const m=text.match(/^自分の手札を1枚捨ててもよい。そうした(?:ら|場合)(.+)$/);if(!m)return null;
+ const tails={
+  '相手の手札を1枚見ないで選び捨てさせる。':{op:'Discard',n:1,random:true},
+  '相手は自身のクリーチャーを1体選び破壊する。':{op:'OpponentSelect',n:1,to:'grave'},
+  '相手のクリーチャーを1体選ぶ。そのターンそのクリーチャーのパワーを-6000する。(パワー0以下のクリーチャーは破壊される)':{op:'Target',power:-6000,g242PowerMinus:true,title:'パワーを-6000する相手のクリーチャーを選ぶ'},
+  'そのカードが持つ文明の数カードを引く。':{op:'DrawColors248'}
+ };
+ if(phase>=249){
+  tails['自分の墓地からアビスを1枚手札に戻してもよい。']={op:'Select',origin:'grave',to:'hand',n:1,optional:true,filter:{race:'アビス'}};
+  const search=search201(m[1]);if(search)tails[m[1]]=search;
+ }
+ return tails[m[1]]?{op:'DiscardFor248',defs:[tails[m[1]]]}:null;
+}
 function instruction(text,phase){
  let m;
- if(phase>=244){const discard=discardAll244(text);if(discard)return discard;}
+ if(phase>=248){const discard=discardForEffect248(text,phase);if(discard)return discard;}
+ if(phase>=244){const discard=discardAll244(text,phase);if(discard)return discard;}
  if(phase>=242&&(m=text.match(/^(?:バトルゾーンにある)?相手のクリーチャーを1体選ぶ。(?:この|その)ターン(?:の終わりまで)?そのクリーチャーのパワー(?:を|は)-([1-9]\d*)(?:する|される)。(?:\(パワー(?:が)?0以下のクリーチャーは破壊される\))?$/)))return{op:'Target',power:-Number(m[1]),g242PowerMinus:true,title:'パワーを-'+m[1]+'する相手のクリーチャーを選ぶ'};
  if(phase>=241){const fight=fightBuff241(text);if(fight)return fight;}
  if(phase>=240){
@@ -306,7 +323,7 @@ function instruction(text,phase){
 }
 export function standardCardSpec(d,{phase=165}={}){
  const f=d?.faces?.[0];
- if(aliasNames.has(d?.name))throw Error('既存名の別表記');
+ if(aliasNames.has(d?.name)||phase>=250&&d?.name==='アイドルマスターレオ')throw Error('既存名の別表記');
  if(d?.status!=='complete'||d.faces.length!==1||!['クリーチャー','進化クリーチャー','タマシード','呪文',...(phase>=166?['NEOクリーチャー']:[])].includes(f.typeText))throw Error('複数面・特殊カードタイプまたは情報不足');
  if(!Number.isInteger(f.cost)||f.cost<1||!f.civilizations.length||f.civilizations.some(c=>!colors.includes(c)&&c!=='無色')||new Set(f.civilizations).size!==f.civilizations.length)throw Error('コスト・文明の個別処理が必要');
  if(f.civilizations.includes('無色')&&f.civilizations.length!==1)throw Error('無色の複合文明');
@@ -316,6 +333,38 @@ export function standardCardSpec(d,{phase=165}={}){
  const lines=(phase>=184?f.abilityText.replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
  for(let i=0;i<lines.length;i++){
   const raw=lines[i],line=normalize(phase>=231?raw.replace(/^このクリーチャーがバトルゾーンに出たとき/,'このクリーチャーがバトルゾーンに出た時').replace(/^このクリーチャーが攻撃するとき/,'このクリーチャーが攻撃する時'):phase>=228?raw.replace(/^このクリーチャーが攻撃するとき/,'このクリーチャーが攻撃する時'):raw);let m,known=false;
+  if(phase>=247&&creature){
+   const handStats={
+    '自分の手札が1枚もない時このクリーチャーのパワーは+3000される。':{max:0,power:3000},
+    '自分の手札が5枚以上ならこのクリーチャーのパワーを+4000し「W・ブレイカー」を与える。(「W・ブレイカー」を持つクリーチャーはシールドを2つブレイクする)':{min:5,power:4000,breaker:2},
+    '自分の手札の枚数が相手より多い場合このクリーチャーのパワーは+6000され「W・ブレイカー」を得る。(「W・ブレイカー」を得たクリーチャーはシールドを2枚ブレイクする)':{moreThanOpponent:true,power:6000,breaker:2}
+   },handAttack={
+    'G・G・G:自分の手札が1枚以下でなければこのクリーチャーは攻撃できない。':{kind:'handCount',max:1}
+   };
+   if(handStats[line]){if(spec.g247HandStats)throw Error('重複する手札条件');spec.g247HandStats=handStats[line];powerBonus=true;continue;}
+   if(handAttack[line]){if(spec.g225AttackRequires)throw Error('重複する攻撃条件');spec.g225AttackRequires=handAttack[line];continue;}
+  }
+  if(phase>=246&&creature){
+   if(spec.g246LowHand?.grants.breaker===2&&line==='(「W・ブレイカー」を持つクリーチャーはシールドを2つブレイクする)')continue;
+   const low=line.replace(/\((?:「スピードアタッカー」を持つクリーチャーは召喚酔いしない|「パワー・アタッカー\+5000」と「W・ブレイカー」を持つクリーチャーは攻撃中パワーを\+5000されシールドを2つブレイクする)\)$/,'').match(/^G・G・G:自分の手札が1枚以下(?:なら|であれば)(.+)$/),grants={
+    'このクリーチャーに「パワー・アタッカー+5000」と「W・ブレイカー」を与える。':{attackBonus:5000,breaker:2},
+    'このクリーチャーのパワーを+3000し「W・ブレイカー」を与える。':{power:3000,breaker:2},
+    'このクリーチャーはバトルで破壊されない。':{g34BattleSafe:true},
+    'このクリーチャーに「スピードアタッカー」を与える。':{speedAttacker:true},
+    'このクリーチャーに「スピードアタッカー」と「マッハファイター」を与える。':{speedAttacker:true,machFighter:true}
+   };
+   if(low&&grants[low[1]]){if(spec.g246LowHand)throw Error('重複するG・G・G');spec.g246LowHand={max:1,grants:grants[low[1]]};if(grants[low[1]].power||grants[low[1]].attackBonus)powerBonus=true;continue;}
+   const lowAttack=line.match(/^G・G・G:このクリーチャーが攻撃する時自分の手札が1枚以下なら(.+)$/);
+   if(lowAttack){const defs=clauses(lowAttack[1],phase).map(q=>instruction(q,phase));if(attack.length||!defs.length||defs.some(d=>!d))throw Error('未対応のG・G・G攻撃時能力');attack.push({op:'IfHand246',max:1,defs});continue;}
+  }
+  if(phase>=250&&creature&&(m=line.match(/^(このクリーチャーまたは)?自分の他の(.+?)(?:をバトルゾーンに出した時|がバトルゾーンに出た時)カードを([13])枚引いてもよい。$/))){
+   const filters={'エンジェル・コマンド':{creature:true,race:'エンジェル・コマンド'},'コスト7以上のクリーチャー':{creature:true,min:7},'無色クリーチャー':{creature:true,noColor:true},'メタリカ':{creature:true,race:'メタリカ'},'サイバー・ウイルス':{creature:true,race:'サイバー・ウイルス'}};
+   if(filters[m[2]]){if(spec.g250EntryDraw)throw Error('重複する登場ドロー');spec.g250EntryDraw={filter:filters[m[2]],self:!!m[1],defs:[{op:'Offer',title:'カードを'+m[3]+'枚引く？',defs:[{op:'Draw',n:Number(m[3])}]}]};continue;}
+  }
+  if(phase>=249&&creature&&(m=line.match(/^自分のターン中に自分の他のアビスが出た時(.+)$/))){
+   const defs=clauses(m[1],phase).map(q=>instruction(q,phase));if(spec.g249OtherEntry||!defs.length||defs.some(d=>!d))throw Error('未対応の他のアビス登場能力');
+   spec.g249OtherEntry={filter:{race:'アビス'},defs};continue;
+  }
   if(phase>=230&&creature){
    if(line==='このクリーチャーをマナゾーンから召喚してもよい。'){spec.manaSummon=true;continue;}
    if(line==='自分のマナゾーンにあるカードをすべての文明のカードとして扱う。'){spec.g51Courtney=true;continue;}

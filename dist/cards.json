@@ -82123,15 +82123,787 @@
       ],
       "supportBatch": "phase-244",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-045",
+      "name": "戦慄の取引 ビッグ・パルサー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "アウトレイジ",
+      "text": "このクリーチャーが攻撃する時、自分の手札をすべて捨ててもよい。そうした場合、カードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-045",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "DiscardAll244",
+          "draw": 2,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-245",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-008",
+      "name": "熱血龍 グランドスラム",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ガイアール・コマンド・ドラゴン",
+      "text": "このクリーチャーがバトルに勝った時、自分の手札をすべて捨ててもよい。そうした場合、カードを４枚引く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-008",
+      "limit": 4,
+      "breaker": 2,
+      "g189BattleWin": [
+        {
+          "op": "DiscardAll244",
+          "draw": 4,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-245",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-084",
+      "name": "“Ｅ-闘”ララッタ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "ビートジョッキー",
+      "text": "G・G・G：自分の手札が１枚以下なら、このクリーチャーに「パワー・アタッカー+5000 」と「W・ブレイカー」を与える。（「パワー・アタッカー+5000 」と「W・ブレイカー」を持つクリーチャーは、攻撃中パワーを+5000され、シールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-084",
+      "limit": 4,
+      "g246LowHand": {
+        "max": 1,
+        "grants": {
+          "attackBonus": 5000,
+          "breaker": 2
+        }
+      },
+      "supportBatch": "phase-246",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy17-030",
+      "name": "“GoGo”ブランド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ビートジョッキー",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nG・G・G：自分の手札が１枚以下であれば、このクリーチャーのパワーを+3000し、「W・ブレイカー」を与える。\n（「W・ブレイカー」を持つクリーチャーは、シールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-030",
+      "limit": 4,
+      "speedAttacker": true,
+      "g246LowHand": {
+        "max": 1,
+        "grants": {
+          "power": 3000,
+          "breaker": 2
+        }
+      },
+      "supportBatch": "phase-246",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-083",
+      "name": "“Ｋ-殴”ララッタ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ビートジョッキー",
+      "text": "G・G・G：このクリーチャーが攻撃する時、自分の手札が１枚以下なら、相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-083",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "IfHand246",
+          "max": 1,
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "blocker": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-246",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-084",
+      "name": "“Ｍ-瑠”ララッタ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ビートジョッキー",
+      "text": "G・G・G：自分の手札が１枚以下なら、このクリーチャーはバトルで破壊されない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-084",
+      "limit": 4,
+      "g246LowHand": {
+        "max": 1,
+        "grants": {
+          "g34BattleSafe": true
+        }
+      },
+      "supportBatch": "phase-246",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-022",
+      "name": "ジャンピン気球“Jｰ空”",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ビートジョッキー",
+      "text": "G・G・G：このクリーチャーが攻撃する時、自分の手札が１枚以下なら、相手のパワー5000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-022",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "IfHand246",
+          "max": 1,
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 5000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-246",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-085",
+      "name": "ミサイル“Ｊ-飛”",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ビートジョッキー",
+      "text": "G・G・G：自分の手札が１枚以下なら、このクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-085",
+      "limit": 4,
+      "g246LowHand": {
+        "max": 1,
+        "grants": {
+          "speedAttacker": true
+        }
+      },
+      "supportBatch": "phase-246",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-040",
+      "name": "勇気のリュウセイ・ブレイブ",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 7000,
+      "race": "レッド・コマンド・ドラゴン",
+      "text": "W・ブレイカー\nこのクリーチャーは、可能なら毎ターン攻撃する。\nG・G・G：自分の手札が１枚以下なら、このクリーチャーに「スピードアタッカー」と「マッハファイター」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-040",
+      "limit": 4,
+      "breaker": 2,
+      "mustAttack": true,
+      "g246LowHand": {
+        "max": 1,
+        "grants": {
+          "speedAttacker": true,
+          "machFighter": true
+        }
+      },
+      "supportBatch": "phase-246",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-090",
+      "name": "ペルソナフクロウ",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "トリックス/チームウェイブ",
+      "text": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\n自分の手札が５枚以上なら、このクリーチャーのパワーを+4000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-090",
+      "limit": 4,
+      "machFighter": true,
+      "g247HandStats": {
+        "min": 5,
+        "power": 4000,
+        "breaker": 2
+      },
+      "supportBatch": "phase-247",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-050",
+      "name": "轟車 “Ｇ-突”",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 4000,
+      "race": "ビートジョッキー",
+      "text": "パワーアタッカー+2000（攻撃中、このクリーチャーのパワーを+2000する）\nW・ブレイカー\nG・G・G：自分の手札が１枚以下でなければ、このクリーチャーは攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-050",
+      "limit": 4,
+      "attackBonus": 2000,
+      "breaker": 2,
+      "g225AttackRequires": {
+        "kind": "handCount",
+        "max": 1
+      },
+      "supportBatch": "phase-247",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr06-011",
+      "name": "破壊機装デリート・タンク",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "グレートメカオー/アンノイズ",
+      "text": "自分の手札の枚数が相手より多い場合、このクリーチャーのパワーは+6000され、「W・ブレイカー」を得る。(「W・ブレイカー」を得たクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-011",
+      "limit": 4,
+      "g247HandStats": {
+        "moreThanOpponent": true,
+        "power": 6000,
+        "breaker": 2
+      },
+      "supportBatch": "phase-247",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24-024",
+      "name": "無神兵トッシンダー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "アーマロイド",
+      "text": "自分の手札が１枚もない時、このクリーチャーのパワーは+3000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-024",
+      "limit": 4,
+      "g247HandStats": {
+        "max": 0,
+        "power": 3000
+      },
+      "supportBatch": "phase-247",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp3-065",
+      "name": "～魔の夕暮れ～",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ダークロード/スチーム・ナイト",
+      "text": "このクリーチャーが出た時、自分の手札を１枚捨ててもよい。そうしたら、相手の手札を１枚見ないで選び、捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-065",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DiscardFor248",
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1,
+              "random": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-248",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-061",
+      "name": "アイロン＝バイロン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "アビスロイヤル",
+      "text": "このクリーチャーが出た時、自分の手札を１枚捨ててもよい。そうしたら、相手は自身のクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-061",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DiscardFor248",
+          "defs": [
+            {
+              "op": "OpponentSelect",
+              "n": 1,
+              "to": "grave"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-248",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-006",
+      "name": "オンセン・ディス・カイザー",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "レインボー・ドラゴン/エイリアン",
+      "text": "スピードアタッカー\nこのクリーチャーはブロックされない。\nこのクリーチャーが出た時、自分の手札を１枚捨ててもよい。そうしたら、そのカードが持つ文明の数、カードを引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-006",
+      "limit": 4,
+      "speedAttacker": true,
+      "unblockable": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DiscardFor248",
+          "defs": [
+            {
+              "op": "DrawColors248"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-248",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-038",
+      "name": "ギガグラウ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "キマイラ",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分の手札を１枚捨ててもよい。そうしたら、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－6000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-038",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DiscardFor248",
+          "defs": [
+            {
+              "op": "Target",
+              "power": -6000,
+              "g242PowerMinus": true,
+              "title": "パワーを-6000する相手のクリーチャーを選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-248",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr19-069",
+      "name": "暗黒鎧 ザライブ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ダーク・ナイトメア/革命軍",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分の手札を１枚捨ててもよい。そうしたら、相手の手札を１枚見ないで選び、捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-069",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DiscardFor248",
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1,
+              "random": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-248",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex2-076",
+      "name": "コート=メルゲイト",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "アビスロイヤル",
+      "text": "自分のターン中に、自分の他のアビスが出た時、自分の手札からカードを１枚捨ててもよい。そうしたら、自分の墓地からアビスを１枚手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-076",
+      "limit": 4,
+      "g249OtherEntry": {
+        "filter": {
+          "race": "アビス"
+        },
+        "defs": [
+          {
+            "op": "DiscardFor248",
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "optional": true,
+                "filter": {
+                  "race": "アビス"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-249",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-056",
+      "name": "ゴッド・ガット",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ファイアー・バード",
+      "text": "ブロッカー\nこのクリーチャーは攻撃することができない。\nこのクリーチャーをバトルゾーンに出した時、自分の手札を１枚捨ててもよい。そうした場合、自分の山札を見る。その中からゴッドを１枚選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-056",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DiscardFor248",
+          "defs": [
+            {
+              "op": "Look",
+              "g201Search": true,
+              "g200Search": true,
+              "n": "all",
+              "rest": "shuffle",
+              "stages": [
+                {
+                  "n": 1,
+                  "to": "hand",
+                  "filter": {
+                    "race": "ゴッド"
+                  },
+                  "reveal": true,
+                  "optional": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-249",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr08s-002",
+      "name": "アイドルマスター レオ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 6000,
+      "race": "エンジェル・コマンド/アイドル",
+      "text": "ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\n自分の他のエンジェル・コマンドをバトルゾーンに出した時、カードを１枚引いてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08s-002",
+      "limit": 4,
+      "blocker": true,
+      "g250EntryDraw": {
+        "filter": {
+          "creature": true,
+          "race": "エンジェル・コマンド"
+        },
+        "self": false,
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "カードを1枚引く？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "breaker": 2,
+      "supportBatch": "phase-250",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx21-050",
+      "name": "アストラル・スーパーリーフ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "サイバー・ウイルス",
+      "text": "進化―自分のサイバー・ウイルス１体の上に置く。\nW・ブレイカー\nこのクリーチャーまたは自分の他のサイバー・ウイルスがバトルゾーンに出た時、カードを３枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-050",
+      "limit": 4,
+      "evolution": {
+        "race": "サイバー・ウイルス"
+      },
+      "breaker": 2,
+      "g250EntryDraw": {
+        "filter": {
+          "creature": true,
+          "race": "サイバー・ウイルス"
+        },
+        "self": true,
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "カードを3枚引く？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-250",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr06-024",
+      "name": "衝撃機装エスケープ・フィアット",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 1000,
+      "race": "グレートメカオー",
+      "text": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャー、または自分の他のコスト７以上のクリーチャーをバトルゾーンに出した時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-024",
+      "limit": 4,
+      "trigger": true,
+      "g250EntryDraw": {
+        "filter": {
+          "creature": true,
+          "min": 7
+        },
+        "self": true,
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "カードを1枚引く？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-250",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd12-009",
+      "name": "兵法のサトリ 孫子",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "オラクル",
+      "text": "自分の他の無色クリーチャーをバトルゾーンに出した時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd12-009",
+      "limit": 4,
+      "g250EntryDraw": {
+        "filter": {
+          "creature": true,
+          "noColor": true
+        },
+        "self": false,
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "カードを1枚引く？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-250",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp01-014",
+      "name": "龍装者 バーナイン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2500,
+      "race": "ドラゴンギルド/メタリカ",
+      "text": "このクリーチャーまたは自分の他のメタリカがバトルゾーンに出た時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-014",
+      "limit": 4,
+      "g250EntryDraw": {
+        "filter": {
+          "creature": true,
+          "race": "メタリカ"
+        },
+        "self": true,
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "カードを1枚引く？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-250",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 244,
+    "phase": 250,
     "checkedAt": "2026-10-31",
-    "baseCount": 3269,
-    "newEffectCards": 7,
+    "baseCount": 3296,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 3276,
+    "totalCount": 3301,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/rule/",
@@ -86227,6 +86999,102 @@
         "newEffectCards": 5,
         "newVanillaCards": 0,
         "totalCount": 3269,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/"
+        ],
+        "next": [
+          "未対応能力の共通処理を追加し、カード別の公式照合と対戦検証を継続する"
+        ]
+      },
+      {
+        "phase": 244,
+        "checkedAt": "2026-10-31",
+        "baseCount": 3269,
+        "newEffectCards": 7,
+        "newVanillaCards": 0,
+        "totalCount": 3276,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/"
+        ],
+        "next": [
+          "未対応能力の共通処理を追加し、カード別の公式照合と対戦検証を継続する"
+        ]
+      },
+      {
+        "phase": 245,
+        "checkedAt": "2026-10-31",
+        "baseCount": 3276,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 3278,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/"
+        ],
+        "next": [
+          "未対応能力の共通処理を追加し、カード別の公式照合と対戦検証を継続する"
+        ]
+      },
+      {
+        "phase": 246,
+        "checkedAt": "2026-10-31",
+        "baseCount": 3278,
+        "newEffectCards": 7,
+        "newVanillaCards": 0,
+        "totalCount": 3285,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/"
+        ],
+        "next": [
+          "未対応能力の共通処理を追加し、カード別の公式照合と対戦検証を継続する"
+        ]
+      },
+      {
+        "phase": 247,
+        "checkedAt": "2026-10-31",
+        "baseCount": 3285,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 3289,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/"
+        ],
+        "next": [
+          "未対応能力の共通処理を追加し、カード別の公式照合と対戦検証を継続する"
+        ]
+      },
+      {
+        "phase": 248,
+        "checkedAt": "2026-10-31",
+        "baseCount": 3289,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 3294,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/"
+        ],
+        "next": [
+          "未対応能力の共通処理を追加し、カード別の公式照合と対戦検証を継続する"
+        ]
+      },
+      {
+        "phase": 249,
+        "checkedAt": "2026-10-31",
+        "baseCount": 3294,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 3296,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/",

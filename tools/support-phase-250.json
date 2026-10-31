@@ -1,0 +1,273 @@
+{
+  "phase": 250,
+  "checkedAt": "2026-10-31",
+  "description": "自身または条件に合う他の仲間の登場で、任意の固定枚数ドローを行う5種類。種族・コスト・無色・自己誘発を区別し、公式の全能力文と照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dmr08s-002",
+      "name": "アイドルマスター レオ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08s-002",
+      "faces": [
+        {
+          "name": "アイドルマスター レオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\n自分の他のエンジェル・コマンドをバトルゾーンに出した時、カードを１枚引いてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "エンジェル・コマンド/アイドル",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g250EntryDraw": {
+          "filter": {
+            "creature": true,
+            "race": "エンジェル・コマンド"
+          },
+          "self": false,
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        },
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08s-002.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "6d90eaed52c3cf490f18a7c42998afb2c4f6fdd6d91afe811f91193c343a19ba",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx21-050",
+      "name": "アストラル・スーパーリーフ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-050",
+      "faces": [
+        {
+          "name": "アストラル・スーパーリーフ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化―自分のサイバー・ウイルス１体の上に置く。\nW・ブレイカー\nこのクリーチャーまたは自分の他のサイバー・ウイルスがバトルゾーンに出た時、カードを３枚引いてもよい。",
+          "race": "サイバー・ウイルス",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "サイバー・ウイルス"
+        },
+        "breaker": 2,
+        "g250EntryDraw": {
+          "filter": {
+            "creature": true,
+            "race": "サイバー・ウイルス"
+          },
+          "self": true,
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを3枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 3
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx21-050.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "9283db6e8850fe22244cf418a8a195f6917004f8c4f9d1597e3fb23a303dc2be",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr06-024",
+      "name": "衝撃機装エスケープ・フィアット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-024",
+      "faces": [
+        {
+          "name": "衝撃機装エスケープ・フィアット",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャー、または自分の他のコスト７以上のクリーチャーをバトルゾーンに出した時、カードを１枚引いてもよい。",
+          "race": "グレートメカオー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g250EntryDraw": {
+          "filter": {
+            "creature": true,
+            "min": 7
+          },
+          "self": true,
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-024.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "db96bef1689c4df225585326657eba7f50c0f45b23aa7b85f5849fccc96a2cfa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd12-009",
+      "name": "兵法のサトリ 孫子",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd12-009",
+      "faces": [
+        {
+          "name": "兵法のサトリ 孫子",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の他の無色クリーチャーをバトルゾーンに出した時、カードを１枚引いてもよい。",
+          "race": "オラクル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g250EntryDraw": {
+          "filter": {
+            "creature": true,
+            "noColor": true
+          },
+          "self": false,
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd12-009.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "995d979385db6ac082a02346fc7d06e913515e0e4ef416e6a20b81c46c67bd8c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-014",
+      "name": "龍装者 バーナイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-014",
+      "faces": [
+        {
+          "name": "龍装者 バーナイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーまたは自分の他のメタリカがバトルゾーンに出た時、カードを１枚引いてもよい。",
+          "race": "ドラゴンギルド/メタリカ",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g250EntryDraw": {
+          "filter": {
+            "creature": true,
+            "race": "メタリカ"
+          },
+          "self": true,
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-014.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "69c0b108308436c4a89bd00eb14a1d146ec02b8d5f2bdf0da6269484e582b04e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr08s-002": 4,
+      "dmx21-050": 4,
+      "dmr06-024": 4,
+      "dmd12-009": 4,
+      "dmrp01-014": 4
+    }
+  }
+}

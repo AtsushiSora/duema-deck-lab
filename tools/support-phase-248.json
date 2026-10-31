@@ -1,0 +1,238 @@
+{
+  "phase": 248,
+  "checkedAt": "2026-10-31",
+  "description": "任意に手札1枚を捨てた場合だけ、除去・手札破棄・文明数ドローを行う5種類。全能力文・印刷マナ数を公式照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp3-065",
+      "name": "～魔の夕暮れ～",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-065",
+      "faces": [
+        {
+          "name": "～魔の夕暮れ～",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分の手札を１枚捨ててもよい。そうしたら、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "ダークロード/スチーム・ナイト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DiscardFor248",
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 1,
+                "random": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-065.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "b1cba34d03d3fb526513a7f373684268b78143ced08ba71a40bb3733c5c53980",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-061",
+      "name": "アイロン＝バイロン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-061",
+      "faces": [
+        {
+          "name": "アイロン＝バイロン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分の手札を１枚捨ててもよい。そうしたら、相手は自身のクリーチャーを１体選び、破壊する。",
+          "race": "アビスロイヤル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DiscardFor248",
+            "defs": [
+              {
+                "op": "OpponentSelect",
+                "n": 1,
+                "to": "grave"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-061.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "0c4e0328ecc92ee3b7f7e54d383b6c53b45802cd73efa293ad22ea2c46aa8c73",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-006",
+      "name": "オンセン・ディス・カイザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-006",
+      "faces": [
+        {
+          "name": "オンセン・ディス・カイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー\nこのクリーチャーはブロックされない。\nこのクリーチャーが出た時、自分の手札を１枚捨ててもよい。そうしたら、そのカードが持つ文明の数、カードを引く。",
+          "race": "レインボー・ドラゴン/エイリアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "unblockable": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DiscardFor248",
+            "defs": [
+              {
+                "op": "DrawColors248"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-006.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "10b61027b746d4529659c62ca0aef808fe8a31ab1a2ddb647d902d116be15805",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp13-038",
+      "name": "ギガグラウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-038",
+      "faces": [
+        {
+          "name": "ギガグラウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の手札を１枚捨ててもよい。そうしたら、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－6000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "キマイラ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DiscardFor248",
+            "defs": [
+              {
+                "op": "Target",
+                "power": -6000,
+                "g242PowerMinus": true,
+                "title": "パワーを-6000する相手のクリーチャーを選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp13-038.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "4a50107ffa773432f24ecddcb7770066dd51c9bebb1e7f55227ef1e5aa044a20",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-069",
+      "name": "暗黒鎧 ザライブ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-069",
+      "faces": [
+        {
+          "name": "暗黒鎧 ザライブ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の手札を１枚捨ててもよい。そうしたら、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "ダーク・ナイトメア/革命軍",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DiscardFor248",
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 1,
+                "random": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-069.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "34d05df6092edd859b41075dfa3216e2b129d185d7a5c2012a0b2ecd9fed823a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp3-065": 4,
+      "dm23rp4-061": 4,
+      "dmrp20-006": 4,
+      "dmrp13-038": 4,
+      "dmr19-069": 4
+    }
+  }
+}

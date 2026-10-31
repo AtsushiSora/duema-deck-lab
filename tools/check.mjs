@@ -1,3 +1,9 @@
+import {STANDARD250_DECK} from './fixtures/standard250.mjs';
+import {STANDARD249_DECK} from './fixtures/standard249.mjs';
+import {STANDARD248_DECK} from './fixtures/standard248.mjs';
+import {STANDARD247_DECK} from './fixtures/standard247.mjs';
+import {STANDARD246_DECK} from './fixtures/standard246.mjs';
+import {STANDARD245_DECK} from './fixtures/standard245.mjs';
 import {STANDARD244_DECK} from './fixtures/standard244.mjs';
 import {STANDARD243_DECK} from './fixtures/standard243.mjs';
 import {STANDARD242_DECK} from './fixtures/standard242.mjs';
@@ -477,3 +483,15 @@ if(validateDeck(STANDARD242_DECK).length||registry.coverage(STANDARD242_DECK).un
 if(validateDeck(STANDARD243_DECK).length||registry.coverage(STANDARD243_DECK).unsupported||STANDARD243_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第243段階の40枚を確認してください');console.log('Checked phase243 forty-card deck: five continuous power-reduction creatures supported.');
 
 if(validateDeck(STANDARD244_DECK).length||registry.coverage(STANDARD244_DECK).unsupported||STANDARD244_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第244段階の40枚を確認してください');console.log('Checked phase244 forty-card deck: seven whole-hand discard creatures and seed supported.');
+
+if(validateDeck(STANDARD245_DECK).length||registry.coverage(STANDARD245_DECK).unsupported||STANDARD245_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第245段階の40枚を確認してください');console.log('Checked phase245 forty-card deck: two optional attack and battle-win refills supported.');
+
+if(validateDeck(STANDARD246_DECK).length||registry.coverage(STANDARD246_DECK).unsupported||STANDARD246_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第246段階の40枚を確認してください');console.log('Checked phase246 forty-card deck: seven low-hand GGG creatures supported.');
+
+if(validateDeck(STANDARD247_DECK).length||registry.coverage(STANDARD247_DECK).unsupported||STANDARD247_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第247段階の40枚を確認してください');console.log('Checked phase247 forty-card deck: four hand-count power and attack conditions supported.');
+
+if(validateDeck(STANDARD248_DECK).length||registry.coverage(STANDARD248_DECK).unsupported||STANDARD248_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第248段階の40枚を確認してください');console.log('Checked phase248 forty-card deck: five discard-gated entry effects supported.');
+
+if(validateDeck(STANDARD249_DECK).length||registry.coverage(STANDARD249_DECK).unsupported||STANDARD249_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第249段階の40枚を確認してください');console.log('Checked phase249 forty-card deck: own-turn Abyss entry and discard-gated search supported.');
+
+if(validateDeck(STANDARD250_DECK).length||registry.coverage(STANDARD250_DECK).unsupported||STANDARD250_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第250段階の40枚を確認してください');console.log('Checked phase250 forty-card deck: five filtered optional entry-draw watchers supported.');
