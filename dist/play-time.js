@@ -3,11 +3,11 @@ export const PLAY_TIME_KEY='duema-deck-lab-playtime-v1';
 const SAVE_INTERVAL=10000,MAX_SAMPLE_GAP=30000;
 const validTime=n=>Number.isFinite(n)&&n>=0?Math.min(Math.floor(n),Number.MAX_SAFE_INTEGER):0;
 export function formatPlayTime(ms){const seconds=Math.floor(validTime(ms)/1000),hours=Math.floor(seconds/3600),minutes=Math.floor(seconds/60)%60;return hours.toLocaleString('ja-JP')+'時間'+String(minutes).padStart(2,'0')+'分'+String(seconds%60).padStart(2,'0')+'秒';}
-export const playTimeStorageNote=storageOK=>storageOK===false?'保存できないため、再読み込みすると今回の時間を失うことがあります。':'このブラウザに自動保存。記録開始前の時間は含みません。';
+export const playTimeStorageNote=(storageOK,syncPhase='local')=>syncPhase==='storage-error'?'端末の記録を保存できないため、アカウント同期を停止しています。':syncPhase==='offline'?'通信できないため未同期です。この端末に保存し、接続が戻ると再同期します。':syncPhase==='syncing'?'同じGoogleアカウントのプレイ時間を同期しています…':syncPhase==='synced'?'同じGoogleアカウントで使った各端末の時間を合算しています。約1分ごとに自動同期。記録開始前の時間は含みません。':storageOK===false?'保存できないため、再読み込みすると今回の時間を失うことがあります。':'このブラウザに自動保存。記録開始前の時間は含みません。';
 export function createPlayTimeCounter({storage,now=()=>performance.now(),onChange=()=>{}}={}){
  function read(){try{if(!storage)throw Error('unavailable');const raw=JSON.parse(storage.getItem(PLAY_TIME_KEY)||'null');return{total:raw?.schemaVersion===1?validTime(raw.totalMs):0,available:true};}catch{return{total:0,available:false};}}
  const initial=read();let committed=initial.total,pending=0,anchor=null,lastSave=now(),available=initial.available;
- const snapshot=()=>({totalMs:Math.min(Number.MAX_SAFE_INTEGER,Math.floor(committed+pending)),active:anchor!==null,storageOK:available});
+ const snapshot=()=>({totalMs:Math.min(Number.MAX_SAFE_INTEGER,Math.floor(committed+pending)),committedMs:committed,active:anchor!==null,storageOK:available});
  const notify=()=>onChange(snapshot());
  function save(at){if(!pending)return;const latest=read();committed=Math.max(committed,latest.total);const total=validTime(committed+pending);try{if(!storage)throw Error('unavailable');storage.setItem(PLAY_TIME_KEY,JSON.stringify({schemaVersion:1,totalMs:total}));committed=total;pending=0;available=true;}catch{available=false;}lastSave=at;}
  function update(active,{flush=false}={}){const at=now(),wasActive=anchor!==null;if(wasActive){const elapsed=at-anchor;

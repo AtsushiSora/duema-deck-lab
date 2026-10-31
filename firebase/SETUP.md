@@ -60,3 +60,13 @@ Sparkは支払情報なしで開始でき、Googleのようなソーシャルロ
 コードではアカウント切替、遅れて返る通信、保存競合、破損データの拒否、デッキの保持と取込みをテストしています。旧URLでのGoogle実ログインとFirestore初回保存は確認済みです。新しい公開URLの承認済みドメイン登録も完了しています。新URLでのGoogleログインと別端末の復元は実操作では未確認です。ローカルのRules EmulatorはJava Runtimeがないため実行していません。Sitesのブラウザ確認はユーザーの希望に従い省略しています。
 
 参考（2026-10-22確認）：[Firebase料金プラン](https://firebase.google.com/docs/projects/billing/firebase-pricing-plans)、[Firestore料金と無料枠](https://firebase.google.com/docs/firestore/pricing)、[Googleログイン](https://firebase.google.com/docs/auth/web/google-signin)、[Security Rules](https://firebase.google.com/docs/firestore/security/get-started)、[トランザクション](https://firebase.google.com/docs/firestore/manage-data/transactions)。
+
+## v0.319.0：プレイ時間の自動同期
+
+同じGoogleアカウントの各ブラウザの時間を、既存の `deckLabAccounts/{uid}` のpayloadに `_playTime:{schemaVersion:1,devices:{端末ID:累計ミリ秒}}` として記録します。ドキュメントのトップレベル4項目、所有者・Google認証の検査、サーバー更新時刻・連続版番号の制約は変えません。ルールの緩和や追加公開は不要です。Cloud Firestoreのトランザクションで端末ごとに最大値を取り、全端末分を合算します。
+
+同じpayloadに `_deckRevision` と `_deckUpdatedAt` を保持します。時計だけの書き込みでもサーバー用revisionを増やしますが、デッキ版番号は増やしません。デッキ未保存のアカウントはdeckRevision=0として、最初のデッキ保存を妨げません。新しいデッキ保存処理は現在の時計情報を保持し、時計の保存は現在のデッキを保持します。
+
+利用端末はすべてv0.319.0以降へ更新してください。旧版でデッキ保存をすると、この追加メタデータを保持しません。ログイン中は原則1分ごと・画面を離れる際に同期します。オフライン時や完了不明の再送は、同じ端末の最大値を再提示するため二重加算しません。ログアウト・アカウント切替でも端末内の未送信分は保持します。端末の保存データを消した場合、未送信の時間は復元できません。
+
+検証は、同じアカウント・2端末・再送・更新途中の再試行・ログイン切替・デッキとの同時更新をテスト用SDKで行っています。本番アカウントへの実書き込みテストはしていません。
