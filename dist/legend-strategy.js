@@ -1,6 +1,6 @@
 // Legend-only priorities share the protagonist rules: five physical opening
 // cards and ordinary paid actions. Inputs contain only own/public card data.
-import {CHARACTER_PLANS} from './character-plans.js?v=0.322.0';
+import {CHARACTER_PLANS} from './character-plans.js?v=0.330.0';
 export const legendProfile=id=>CHARACTER_PLANS[id]||null;
 const colors=f=>f.civilizations||[f.civ].filter(x=>x&&x!=='無色');
 const list=x=>x.faces||[x];

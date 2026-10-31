@@ -4,7 +4,7 @@ const colors=['光','水','闇','火','自然'];
 const aliasNames=new Set(['炎のたてがみ(バーニング・ヘアー)','青銅の鎧(ブロンズ・アーム・トライブ)','無敵の咆哮(マイティ・シャウター)','紅玉草(ルビー・グラス)','ワ・タンポ－ポ・タンク','【問２】ノロン&#x2934','怪力の化身(マイティ・トーテム)']);
 const normalize=s=>s.normalize('NFKC').replace(/\s|■/g,'').replaceAll('、','');
 const keyword=(line,name)=>new RegExp('^(?:'+name+'){1,2}(?:\\([^()]*\\))?$').test(line);
-const clauses=(body,phase)=>phase>=248&&discardForEffect248(body,phase)||phase>=244&&discardAll244(body,phase)||phase>=241&&fightBuff241(body)||phase>=216&&/^自分の手札を1枚捨ててもよい。そうした(?:ら|場合)カードを[1-9]\d*枚引く。$/.test(body)||phase>=201&&search201(body)||phase>=200&&look200(body)||phase>=197&&mana197(body,phase)||phase>=185&&lookSpec(body)?[body]:(phase>=181?(phase>=184?body.replace(/^自分の手札を([1-9]\d*)枚捨て(?!る)(?:その後)?/,'自分の手札を$1枚捨てる。その後'):body).replace(/^カードを([1-9]\d*)枚引き(?:その後)?/,'カードを$1枚引く。その後'):body).split('その後').filter(Boolean);
+const clauses=(body,phase)=>phase>=255&&look255(body)||phase>=254&&/^カードを[1-9]\d*枚引いてもよい。そうした(?:ら|場合)自分の手札を[1-9]\d*枚捨てる。$/.test(body)||phase>=248&&discardForEffect248(body,phase)||phase>=244&&discardAll244(body,phase)||phase>=241&&fightBuff241(body)||phase>=216&&/^自分の手札を1枚捨ててもよい。そうした(?:ら|場合)カードを[1-9]\d*枚引く。$/.test(body)||phase>=201&&search201(body)||phase>=200&&look200(body)||phase>=197&&mana197(body,phase)||phase>=185&&lookSpec(body)?[body]:(phase>=181?(phase>=184?body.replace(/^自分の手札を([1-9]\d*)枚捨て(?!る)(?:その後)?/,'自分の手札を$1枚捨てる。その後'):body).replace(/^カードを([1-9]\d*)枚引き(?:その後)?/,'カードを$1枚引く。その後'):body).split('その後').filter(Boolean);
 const flags={
  'ブロッカー':'blocker','スピードアタッカー':'speedAttacker','スレイヤー':'slayer',
  'マッハファイター':'machFighter','ガードマン':'guardman','エスケープ':'escape',
@@ -131,7 +131,20 @@ function discardForEffect248(text,phase=248){
  }
  return tails[m[1]]?{op:'DiscardFor248',defs:[tails[m[1]]]}:null;
 }
+function look255(text){
+ const base={op:'Look',g255Search:true},creatureToHand={n:1,public:true,stages:[{n:'all',to:'hand',filter:{creature:true}}],rest:'mana'};
+ const specs={
+  '自分の山札の上から6枚を見る。その中から3枚までタップして自分のマナゾーンに置きその後残りを好きな順序で自分の山札の一番下に置く。':{n:6,stages:[{n:3,to:'mana',tapped:true,optional:true}],rest:'bottom'},
+  '自分の山札の上から4枚を見る。それらを1枚ずつ手札マナゾーン墓地山札の下に置く。':{n:4,g255Distribute:true,stages:[{n:1,to:'hand'},{n:1,to:'mana'},{n:1,to:'grave'}],rest:'bottom'},
+  '自分の山札の上から1枚目を表向きにする。それがクリーチャーなら手札に加える。それ以外ならマナゾーンに置く。':creatureToHand,
+  '自分の山札の上から1枚目を表向きにする。それがクリーチャーなら手札に加える。そうでなければマナゾーンに置く。':creatureToHand,
+  '自分の山札の上から1枚目を表向きにする。それがアビスなら手札に加えてもよい。アビスではない場合または手札に加えない場合は墓地に置く。':{n:1,public:true,stages:[{n:1,to:'hand',filter:{anyFaceRace:'アビス'},optional:true}],rest:'grave'}
+ };
+ return specs[text]?{...base,...structuredClone(specs[text])}:null;
+}
 function instruction(text,phase){
+ if(phase>=255){const look=look255(text);if(look)return look;}
+ if(phase>=254){const m=text.match(/^カードを([1-9]\d*)枚引いてもよい。そうした(?:ら|場合)自分の手札を([1-9]\d*)枚捨てる。$/);if(m)return{op:'Offer',title:'カードを'+m[1]+'枚引き、手札を'+m[2]+'枚捨てる？',g204DrawDiscard:true,defs:[{op:'Draw',n:+m[1]},{op:'Discard',owner:'self',n:+m[2]}]};}
  let m;
  if(phase>=248){const discard=discardForEffect248(text,phase);if(discard)return discard;}
  if(phase>=244){const discard=discardAll244(text,phase);if(discard)return discard;}
@@ -356,6 +369,61 @@ export function standardCardSpec(d,{phase=165}={}){
    if(low&&grants[low[1]]){if(spec.g246LowHand)throw Error('重複するG・G・G');spec.g246LowHand={max:1,grants:grants[low[1]]};if(grants[low[1]].power||grants[low[1]].attackBonus)powerBonus=true;continue;}
    const lowAttack=line.match(/^G・G・G:このクリーチャーが攻撃する時自分の手札が1枚以下なら(.+)$/);
    if(lowAttack){const defs=clauses(lowAttack[1],phase).map(q=>instruction(q,phase));if(attack.length||!defs.length||defs.some(d=>!d))throw Error('未対応のG・G・G攻撃時能力');attack.push({op:'IfHand246',max:1,defs});continue;}
+  }
+  if(phase>=257&&(m=line.match(/^レインボーナス:(このクリーチャーがバトルゾーンに出た時|このクリーチャーが攻撃する時)?バトルゾーンに自分の多色クリーチャーがあれば(.+)$/))){
+   if(creature?!m[1]:seed||!!m[1])throw Error('未対応のレインボーナス種別');
+   const dest=m[1]==='このクリーチャーが攻撃する時'?attack:entry,defs=clauses(m[2],phase).map(q=>instruction(q,phase));
+   if(!defs.length||defs.some(d=>!d)||creature&&(dest.length||dest===entry&&nativeEntry))throw Error('未対応のレインボーナス効果');
+   dest.push({op:'IfOwn',g257Rainbow:true,filter:{creature:true,multi:true},defs});continue;
+  }
+  if(phase>=256&&(m=line.match(/^S・バック-(光|水|闇|火|自然|ハンター)\(\1(のカード)?を自分のシールドゾーンから手札に加える時そのカードを捨ててもよい。そうした場合コストを支払わずにこの(クリーチャーを召喚する|呪文を唱える)\)$/))){
+   if(spec.strikeBack||(m[1]==='ハンター'?!!m[2]:!m[2])||(creature?m[3]!=='クリーチャーを召喚する':seed||m[3]!=='呪文を唱える'))throw Error('未対応のS・バック条件');
+   spec.strikeBack=true;spec[m[1]==='ハンター'?'strikeBackRace':'strikeBackColor']=m[1];continue;
+  }
+  if(phase>=254&&creature){
+   if(keyword(line,'エターナル・Ω')){if(spec.g34Omega)throw Error('重複するエターナル・Ω');spec.g34Omega=true;continue;}
+   if(line==='自分のクリーチャーが攻撃する時カードを2枚引いてもよい。そうしたら自分の手札を1枚捨てる。'){
+    if(spec.g253AttackWatches)throw Error('重複する攻撃監視能力');spec.g253AttackWatches=[{who:'self',filter:{creature:true},defs:[instruction('カードを2枚引いてもよい。そうしたら自分の手札を1枚捨てる。',phase)]}];continue;
+   }
+  }
+  if(phase>=253&&creature){
+   const offer=n=>({op:'Offer',title:'カードを'+n+'枚引く？',defs:[{op:'Draw',n}]}),watches={
+    '自分のクリーチャーが攻撃する時それがそのターンはじめての攻撃であればカードを1枚引いてもよい。':{who:'self',first:true,filter:{creature:true},defs:[offer(1)]},
+    '自分のクリーチャーが攻撃する時それがそのターンはじめての攻撃であれば自分の手札を1枚捨ててもよい。そうしたらカードを2枚引く。':{who:'self',first:true,filter:{creature:true},defs:[{op:'DiscardDraw',g216DiscardDraw:true,n:2}]},
+    '相手のクリーチャーがバトルゾーンに出たターンに攻撃する時自分はカードを2枚引いてもよい。':{who:'opponent',entryTurn:true,filter:{creature:true},defs:[offer(2)]},
+    '自分のパワー6000以上のクリーチャーが相手プレイヤーを攻撃する時カードを1枚引いてもよい。':{who:'self',playerAttack:true,filter:{creature:true,minPower:6000,g199Power:true},defs:[offer(1)]},
+    '自分のアウトレイジが攻撃する時カードを1枚引いてもよい。':{who:'self',filter:{creature:true,race:'アウトレイジ'},defs:[offer(1)]},
+    '自分のコスト7以上のクリーチャーが攻撃する時カードを1枚引いてもよい。そうした場合自分の手札を1枚山札の一番上に置く。':{who:'self',filter:{creature:true,min:7},defs:[{op:'Offer',title:'カードを1枚引き、手札を1枚山札の上に置く？',defs:[{op:'Draw',n:1},{op:'Select',origin:'hand',to:'deckTop',n:1,g183Return:true,title:'山札の上に戻す手札を選ぶ'}]}]},
+    '自分のドラゴンが攻撃する時カードを1枚引いてもよい。その後光のコスト9以下の「ブロッカー」を持つ進化ではないクリーチャーを1体自分の手札から出してもよい。':{who:'self',filter:{creature:true,race:'ドラゴン'},defs:[offer(1),{op:'Select',origin:'hand',n:1,deploy:true,g195HandDeploy:true,filter:{creature:true,color:'光',max:9,blocker:true,nonEvolution:true},optional:true}]}
+   },watch=watches[line];
+   if(watch){if((spec.g253AttackWatches||[]).some(w=>JSON.stringify(w)===JSON.stringify(watch)))throw Error('重複する条件付き攻撃監視能力');(spec.g253AttackWatches??=[]).push(watch);continue;}
+   if(line==='相手が自分のクリーチャーを選ぶ時このクリーチャーは選べない。(ただしこのクリーチャーを攻撃またはブロックしてもよい)'){if(spec.untargetable)throw Error('重複する選択不可能力');spec.untargetable=true;continue;}
+  }
+  if(phase>=252&&(creature||seed)){
+   const attacks={
+    '自分のクリーチャーが攻撃する時カードを1枚引いてもよい。':{who:'self',filter:{creature:true},defs:[{op:'Draw',n:1}]},
+    '相手のクリーチャーが攻撃する時カードを1枚引いてもよい。':{who:'opponent',filter:{creature:true},defs:[{op:'Draw',n:1}]},
+    '相手の火または自然のクリーチャーが攻撃する時カードを1枚引いてもよい。':{who:'opponent',filter:{creature:true,any:[{color:'火'},{color:'自然'}]},defs:[{op:'Draw',n:1}]},
+    '相手のクリーチャーが攻撃する時カードを1枚引いてもよい。そうした場合自分の手札を1枚捨てる。':{who:'opponent',filter:{creature:true},defs:[{op:'Draw',n:1},{op:'Discard',n:1,owner:'self'}]}
+   },wins={
+    '自分のグランド・デビルがバトルに勝った時カードを1枚引いてもよい。':{filter:{creature:true,race:'グランド・デビル'}},
+    '自分の火のクリーチャーがバトルに勝った時カードを1枚引いてもよい。':{filter:{creature:true,color:'火'}}
+   };
+   if(attacks[line]){if(spec.g252AttackWatch)throw Error('重複する攻撃監視能力');const{defs,...watch}=attacks[line];spec.g252AttackWatch={...watch,defs:[{op:'Offer',title:'カードを1枚引く？',...(defs.some(d=>d.op==='Discard')?{g204DrawDiscard:true}:{}),defs}]};continue;}
+   if(creature&&wins[line]){if(spec.g252WinWatch)throw Error('重複するバトル勝利監視能力');spec.g252WinWatch={...wins[line],defs:[{op:'Offer',title:'カードを1枚引く？',defs:[{op:'Draw',n:1}]}]};continue;}
+  }
+  if(phase>=251&&creature){
+   const watches={
+    'このクリーチャーまたは自分のコスト6以上のクリーチャーが出た時カードを1枚引いてもよい。':{filter:{creature:true,min:6},selfAlways:true},
+    '自分のスノーフェアリーがバトルゾーンに出た時カードを1枚引いてもよい。':{filter:{creature:true,race:'スノーフェアリー'}},
+    '自分の進化クリーチャーまたはタマシードが出た時カードを1枚引いてもよい。':{filter:{any:[{creature:true,evolution:true},{seed:true}]}},
+    '自分のコスト4以下のクリーチャーがバトルゾーンに出た時カードを1枚引いてもよい。':{filter:{creature:true,max:4}},
+    '自分のアンノウンをバトルゾーンに出した時カードを1枚引いてもよい。':{filter:{creature:true,race:'アンノウン'}},
+    '自分の多色クリーチャーがバトルゾーンに出た時カードを1枚引いてもよい。':{filter:{creature:true,multi:true}},
+    '自分のパワー5000以上のクリーチャーをバトルゾーンに出した時カードを1枚引いてもよい。':{filter:{creature:true,minPower:5000,g199Power:true}},
+    'バトルゾーンに自分の進化クリーチャーまたはゴッドを出した時カードを1枚引いてもよい。':{filter:{creature:true,any:[{evolution:true},{race:'ゴッド'}]}}
+   };
+   if(watches[line]){if(spec.g251EntryDraw)throw Error('重複する条件付き登場ドロー');spec.g251EntryDraw={...watches[line],defs:[{op:'Offer',title:'カードを1枚引く？',defs:[{op:'Draw',n:1}]}]};continue;}
   }
   if(phase>=250&&creature&&(m=line.match(/^(このクリーチャーまたは)?自分の他の(.+?)(?:をバトルゾーンに出した時|がバトルゾーンに出た時)カードを([13])枚引いてもよい。$/))){
    const filters={'エンジェル・コマンド':{creature:true,race:'エンジェル・コマンド'},'コスト7以上のクリーチャー':{creature:true,min:7},'無色クリーチャー':{creature:true,noColor:true},'メタリカ':{creature:true,race:'メタリカ'},'サイバー・ウイルス':{creature:true,race:'サイバー・ウイルス'}};

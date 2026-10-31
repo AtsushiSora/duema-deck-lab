@@ -1,32 +1,32 @@
-import {createPlayTimeSync} from './play-time-sync.js?v=0.322.0';
+import {createPlayTimeSync} from './play-time-sync.js?v=0.330.0';
 import {manualLayout,PHONE_LANDSCAPE_QUERY} from './battle-layout.js?v=0.227.0';
 import {bindBattleZoom} from './battle-zoom.js?v=0.227.0';
 import {displayTurn} from './turn-count.js';
 import {TOURNAMENT_SIZES,selectTournamentParticipants,createLocalTournament,validLocalTournament,currentTournamentRound,humanTournamentMatch,recordTournamentMatch,localTournamentHTML} from './local-tournament.js?v=0.227.0';
 import {PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS} from './photo-october-decks.js?v=0.148.0';
-import {createPlayTimeTracker,formatPlayTime,playTimeStorageNote} from './play-time.js?v=0.322.0';
+import {createPlayTimeTracker,formatPlayTime,playTimeStorageNote} from './play-time.js?v=0.330.0';
 import {historicalProfile,historicalMetadata} from './historical-regulations.js';
-import {creatureStatusModel,creatureStatusHTML,recordBattleAction,createBattleReport,encodeBattleData,decodeBattleData} from './battle-insights.js?v=0.322.0';
-import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.322.0';
-import {createCardArt} from './card-art.js?v=0.322.0';
+import {creatureStatusModel,creatureStatusHTML,recordBattleAction,createBattleReport,encodeBattleData,decodeBattleData} from './battle-insights.js?v=0.330.0';
+import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.330.0';
+import {createCardArt} from './card-art.js?v=0.330.0';
 import {CHARACTER_ERAS,CHARACTER_NAMES,characterEra,characterUnlockState,recordCharacterUnlocks} from './character-roster.js';
 import {resolveCharacterDecks,characterChallengeHTML} from './character-challenge.js';
 import {resolveHeroDecks,resolveRivalDecks,challengeOptions,recordHeroResult} from './hero-challenge.js';
 import {recordManualVictory,recordManualResult,manualResultSummary,isOpponentDefeated,defeatedBadgeHTML} from './opponent-progress.js';
 import {resolveChampions,championsHTML,isOriginalChampion} from './champions.js?v=0.227.0';
 import {shieldCards} from './shield-state.js';
-import {createAIPlayback,aiSpeedLabel,applyAIHighlights,AI_SPEEDS} from './ai-playback.js?v=0.322.0';
+import {createAIPlayback,aiSpeedLabel,applyAIHighlights,AI_SPEEDS} from './ai-playback.js?v=0.330.0';
 import {createOnlineClient} from './online.js';
 import {onlineScreenHTML,onlinePrimaryAction,onlinePendingMove} from './online-ui.js';
 import {createAccountClient} from './account.js';
 import {accountScreenHTML} from './account-ui.js';
 import {mergeAccountSnapshot} from './account-data.js';
-import {preferredHandFace} from './hand-ui.js?v=0.322.0';
+import {preferredHandFace} from './hand-ui.js?v=0.330.0';
 import {bindFittedBoard,pageWindow} from './board-fit.js';
 import {attackRoute,previewAttackAction,updateBoardFeedback,bindAttackArrow} from './battle-visuals.js?v=0.227.0';
 import {setCards,card as battleCard,validateDeck,createGame,getLegalActions,attackLocked,chooseAI,step,runGame,runSummary,aggregate,power,manaValue,manaValueAt,playFaces,canCastSpell,effectiveCard,canUntap,shieldGuardSources,exLifeShields,exLifeShieldInfo,evolutionBases,isEvolution,selfTriggersStopped,abilitiesIgnored,genmuActive,peekDeckTop,RULE_VERSION,ENGINE_VERSION,AI_VERSION} from './engine.js';
 import {PRESETS} from './decks.js';
-import {newManualUI,hyperModeModel,manualModel,manualScreenHTML,manualLogHTML,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,choiceSelectionModel,choiceDetailCard} from './manual-ui.js?v=0.322.0';
+import {newManualUI,hyperModeModel,manualModel,manualScreenHTML,manualLogHTML,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,choiceSelectionModel,choiceDetailCard} from './manual-ui.js?v=0.330.0';
 import {resolveEnvironmentDecks,environmentSupport,groupEnvironmentDecks,ENVIRONMENT_TARGET} from './environment.js';
 import {resolveStarter25Decks,starter25Matches} from './starter25.js';
 import {prepareDeckCopy} from './deck-copy.js';
@@ -198,7 +198,7 @@ async function loadTournamentSources(){
  if(results.some(r=>r.status==='rejected'))toast('一部のデッキを取得できませんでした。読み込み済みのデッキから選べます');
 }
 function tournamentCandidates(source='all',own=null){
- const groups={saved:[...saved.decks,...saved.friends],environment:environmentDecks,starter:starterDecks,character:[...heroDecks,...rivalDecks,...characterDecks].filter(characterAvailable),champion:(champions?.records||[]).filter(r=>r.playable&&isOriginalChampion(r)).map(r=>r.deck)},unique=new Map(),exclude=own?deckSignature(own):null;
+ const groups={mine:saved.decks,saved:[...saved.decks,...saved.friends],environment:environmentDecks,starter:starterDecks,character:[...heroDecks,...rivalDecks,...characterDecks].filter(characterAvailable),champion:(champions?.records||[]).filter(r=>r.playable&&isOriginalChampion(r)).map(r=>r.deck)},unique=new Map(),exclude=own?deckSignature(own):null;
  for(const d of source==='all'?Object.values(groups).flat():groups[source]||[]){if(!d||!characterAvailable(d)||matchBlockReason(d,[d]))continue;const signature=deckSignature(d);if(signature!==exclude&&!unique.has(signature))unique.set(signature,d);}
  return [...unique.values()];
 }
@@ -231,7 +231,7 @@ function deleteLocalTournament(id){
  tournamentCheckpointToken=null;tournamentDraft=null;tournamentPickerSlot=null;tournamentDeckQuery='';
  closeDialog();view='tournament';render();window.scrollTo(0,0);toast('トーナメントを削除しました');return true;
 }
-const tournamentSources=[['all','すべて'],['environment','環境デッキ'],['starter','25の王道デッキ'],['character','レジェンドデュエル'],['champion','歴代大会の優勝デッキ'],['saved','保存したデッキ']];
+const tournamentSources=[['all','すべて'],['environment','環境デッキ'],['starter','25の王道デッキ'],['character','レジェンドデュエル'],['champion','歴代大会の優勝デッキ'],['mine','自分で作ったデッキ'],['saved','保存したデッキ']];
 function initializeTournamentDraft(){
  const candidates=tournamentCandidates().map((deck,i)=>({key:'deck-'+i,deck:clone(deck)}));if(!candidates.length)throw Error('対戦可能なデッキがありません');
  const own=myDeck(),ownKey=own?candidates.find(c=>deckSignature(c.deck)===deckSignature(own))?.key:null;
@@ -245,9 +245,20 @@ function tournamentSlotHTML(slot){
  const d=tournamentDraft,c=d.candidates.find(c=>c.key===d.selected[slot]),human=d.mode==='human'&&slot===0;
  return `<div class="tournament-slot ${human?'human-slot':''}"><span class="tournament-slot-number">${human?'自分':slot+1}</span><span class="grow"><strong>${c?esc(c.deck.name):'ランダム'}</strong><small>${human?'あなたが操作':c?'CPUが操作':'候補範囲から自動で選択'}</small></span><button class="btn sm" data-action="tournament-pick-slot" data-slot="${slot}" aria-label="${human?'自分':'参加枠'+(slot+1)}のデッキを選ぶ">選ぶ</button></div>`;
 }
+function tournamentOwnDeckChoices(){
+ const d=tournamentDraft;if(!d)return [];const seen=new Set();return saved.decks.flatMap(deck=>{
+  const reason=registrationErrors(deck)[0]||(coverage(deck).unsupported?'未対応カードが含まれています':validateDeck(deck)[0])||'',candidate=reason?null:d.candidates.find(c=>deckSignature(c.deck)===deckSignature(deck));
+  if(candidate&&seen.has(candidate.key))return [];if(candidate)seen.add(candidate.key);
+  return [{deck,key:candidate?.key||null,reason:reason||(!candidate?'対戦の準備を確認してください':'')}];
+ });
+}
+function tournamentOwnDeckHTML(){
+ const d=tournamentDraft,choices=tournamentOwnDeckChoices(),current=d.candidates.find(c=>c.key===d.selected[0]),used=new Set(d.selected.slice(1,d.size).filter(Boolean));
+ return `<div class="setup-line tournament-own-deck"><label for="tournament-own-deck">保存した自作デッキから選ぶ</label><select class="field" id="tournament-own-deck"><option value="" ${!current?'selected':''}>ランダム</option>${current&&!choices.some(c=>c.key===current.key)?`<option value="${current.key}" selected>選択中：${esc(current.deck.name)}</option>`:''}${choices.map((c,i)=>`<option value="${c.key||'unavailable-'+i}" ${c.key===current?.key?'selected':''} ${!c.key||used.has(c.key)?'disabled':''}>${esc(c.deck.name)}${c.reason?'（'+esc(c.reason)+'）':used.has(c.key)?'（他の枠で選択済み）':''}</option>`).join('')}</select><small class="small">${!choices.length?'デッキ管理で保存した自作デッキがここに表示されます。':'40枚すべて対戦対応の自作デッキを選べます。ほかのデッキは「選ぶ」から。'}</small></div>`;
+}
 function renderTournamentSetup(focusId=null){
  const d=tournamentDraft;if(!d)return;const human=d.mode==='human',fixed=d.selected.slice(human?1:0,d.size).filter(Boolean).length,total=d.size-(human?1:0);
- showDialog('トーナメントを作る',`<div class="tournament-setup"><p class="small">デッキを指定するか、ランダムのまま組み合わせを作れます。</p>${activeTournament()&&!activeTournament().champion?'<div class="notice mt16">開始すると、進行中のトーナメントを入れ替えます。</div>':''}<div class="setup-line"><label for="tournament-mode">対戦方法</label><select class="field" id="tournament-mode"><option value="human" ${human?'selected':''}>自分も参加（自分の試合は手動）</option><option value="cpu" ${!human?'selected':''}>すべてCPU（観戦）</option></select></div><div class="setup-line"><label for="tournament-size">参加デッキ数</label><select class="field" id="tournament-size">${TOURNAMENT_SIZES.map(n=>`<option value="${n}" ${n===d.size?'selected':''}>${n}デッキ（${human?'自分1・CPU'+(n-1):'すべてCPU'}）</option>`).join('')}</select></div>${human?`<h3 class="tournament-slots-title">自分のデッキ</h3>${tournamentSlotHTML(0)}`:''}<div class="setup-line"><label for="tournament-source">ランダムで選ぶ候補範囲</label><select class="field" id="tournament-source">${tournamentSources.map(([value,label])=>`<option value="${value}" ${value===d.source?'selected':''}>${label}${value==='all'?'からランダム':''}</option>`).join('')}</select><small class="small">指定したデッキはそのまま、残りの枠をこの範囲から選びます。</small></div>${human?`<div class="setup-line"><label for="tournament-first">自分の試合の先攻・後攻</label><select class="field" id="tournament-first"><option value="random" ${d.first==='random'?'selected':''}>ランダム</option><option value="first" ${d.first==='first'?'selected':''}>先攻</option><option value="second" ${d.first==='second'?'selected':''}>後攻</option></select></div>`:''}<details class="tournament-participants" ${d.expanded?'open':''}><summary>${human?'CPUの':'参加'}デッキを指定 <span>${fixed} / ${total}枠</span></summary><p class="small mt8">全枠を選んでも、一部だけ選んでも参加できます。組み合わせはランダムです。</p><button class="btn sm mt8" data-action="tournament-random-slots">${human?'CPUを':'全枠を'}ランダムに戻す</button><div class="tournament-slot-list">${Array.from({length:total},(_,i)=>tournamentSlotHTML(i+(human?1:0))).join('')}</div></details><p class="small mt16">同じ構成は重複させず、40枚すべて対戦可能なデッキから選びます。CPU戦が3試合続けて未決着の場合は抽選で勝ち上がりを決めます。</p></div>`,`<button class="btn" data-action="close-dialog">キャンセル</button><button class="btn primary" data-action="tournament-create">組み合わせを作る</button>`);
+ showDialog('トーナメントを作る',`<div class="tournament-setup"><p class="small">デッキを指定するか、ランダムのまま組み合わせを作れます。</p>${activeTournament()&&!activeTournament().champion?'<div class="notice mt16">開始すると、進行中のトーナメントを入れ替えます。</div>':''}<div class="setup-line"><label for="tournament-mode">対戦方法</label><select class="field" id="tournament-mode"><option value="human" ${human?'selected':''}>自分も参加（自分の試合は手動）</option><option value="cpu" ${!human?'selected':''}>すべてCPU（観戦）</option></select></div><div class="setup-line"><label for="tournament-size">参加デッキ数</label><select class="field" id="tournament-size">${TOURNAMENT_SIZES.map(n=>`<option value="${n}" ${n===d.size?'selected':''}>${n}デッキ（${human?'自分1・CPU'+(n-1):'すべてCPU'}）</option>`).join('')}</select></div>${human?`<h3 class="tournament-slots-title">自分のデッキ</h3>${tournamentSlotHTML(0)}${tournamentOwnDeckHTML()}`:''}<div class="setup-line"><label for="tournament-source">ランダムで選ぶ候補範囲</label><select class="field" id="tournament-source">${tournamentSources.map(([value,label])=>`<option value="${value}" ${value===d.source?'selected':''}>${label}${value==='all'?'からランダム':''}</option>`).join('')}</select><small class="small">指定したデッキはそのまま、残りの枠をこの範囲から選びます。</small></div>${human?`<div class="setup-line"><label for="tournament-first">自分の試合の先攻・後攻</label><select class="field" id="tournament-first"><option value="random" ${d.first==='random'?'selected':''}>ランダム</option><option value="first" ${d.first==='first'?'selected':''}>先攻</option><option value="second" ${d.first==='second'?'selected':''}>後攻</option></select></div>`:''}<details class="tournament-participants" ${d.expanded?'open':''}><summary>${human?'CPUの':'参加'}デッキを指定 <span>${fixed} / ${total}枠</span></summary><p class="small mt8">全枠を選んでも、一部だけ選んでも参加できます。組み合わせはランダムです。</p><button class="btn sm mt8" data-action="tournament-random-slots">${human?'CPUを':'全枠を'}ランダムに戻す</button><div class="tournament-slot-list">${Array.from({length:total},(_,i)=>tournamentSlotHTML(i+(human?1:0))).join('')}</div></details><p class="small mt16">同じ構成は重複させず、40枚すべて対戦可能なデッキから選びます。CPU戦が3試合続けて未決着の場合は抽選で勝ち上がりを決めます。</p></div>`,`<button class="btn" data-action="close-dialog">キャンセル</button><button class="btn primary" data-action="tournament-create">組み合わせを作る</button>`);
  const content=$('.dialog-content');if(content)content.scrollTop=d.scroll||0;if(focusId)$('#'+focusId)?.focus({preventScroll:true});
 }
 function updateTournamentSetup(e){
@@ -264,8 +275,8 @@ function tournamentPickerResultsHTML(){
 function refreshTournamentPicker(){const list=$('#tournament-pick-results');if(list)list.innerHTML=tournamentPickerResultsHTML();}
 function showTournamentDeckPicker(slot){
  const d=tournamentDraft;if(!d||!Number.isInteger(slot)||slot<0||slot>=d.size)return;
- d.expanded=$('.tournament-participants')?.open||false;d.scroll=$('.dialog-content')?.scrollTop||0;tournamentPickerSlot=slot;tournamentDeckQuery='';tournamentPickerSource='all';
- showDialog(slot===0&&d.mode==='human'?'自分のデッキを選ぶ':'参加枠'+(slot+1)+'のデッキを選ぶ',`<div class="tournament-deck-picker"><button class="btn full" data-action="tournament-slot-random">${icon('shuffle',16)}この枠はランダムにする</button><div class="setup-line"><label for="tournament-picker-source">デッキの範囲</label><select class="field" id="tournament-picker-source">${tournamentSources.map(([value,label])=>`<option value="${value}">${label}</option>`).join('')}</select></div><div class="search-wrap">${icon('search',16)}<input class="field" id="tournament-deck-search" type="search" placeholder="デッキ名で検索" aria-label="参加デッキを名前で検索"></div><div id="tournament-pick-results">${tournamentPickerResultsHTML()}</div></div>`,`<button class="btn" data-action="tournament-picker-back">設定に戻る</button>`);
+ d.expanded=$('.tournament-participants')?.open||false;d.scroll=$('.dialog-content')?.scrollTop||0;tournamentPickerSlot=slot;tournamentDeckQuery='';tournamentPickerSource=slot===0&&d.mode==='human'&&saved.decks.length?'mine':'all';
+ showDialog(slot===0&&d.mode==='human'?'自分のデッキを選ぶ':'参加枠'+(slot+1)+'のデッキを選ぶ',`<div class="tournament-deck-picker"><button class="btn full" data-action="tournament-slot-random">${icon('shuffle',16)}この枠はランダムにする</button><div class="setup-line"><label for="tournament-picker-source">デッキの範囲</label><select class="field" id="tournament-picker-source">${tournamentSources.map(([value,label])=>`<option value="${value}" ${value===tournamentPickerSource?'selected':''}>${label}</option>`).join('')}</select></div><div class="search-wrap">${icon('search',16)}<input class="field" id="tournament-deck-search" type="search" placeholder="デッキ名で検索" aria-label="参加デッキを名前で検索"></div><div id="tournament-pick-results">${tournamentPickerResultsHTML()}</div></div>`,`<button class="btn" data-action="tournament-picker-back">設定に戻る</button>`);
 }
 function selectTournamentSlot(key){const d=tournamentDraft;if(!d||tournamentPickerSlot===null)return;const slot=tournamentPickerSlot;
  if(key!==null&&(!d.candidates.some(c=>c.key===key)||d.selected.slice(0,d.size).some((v,i)=>i!==slot&&v===key))){toast('別のデッキを選んでください。同じ構成は重複できません');return;}
@@ -295,7 +306,7 @@ function advanceLocalTournament(){
  const t=activeTournament();if(!t||t.champion||tournamentWorker)return;if(tournamentCheckpoint()){startTournamentHumanMatch();return;}
  const round=currentTournamentRound(t),jobs=round.filter(m=>m.winner===null&&!m.players.includes('human')).map(m=>({...m,decks:m.players.map(id=>t.players.find(p=>p.id===id).deck)}));
  if(!jobs.length){startTournamentHumanMatch();return;}
- const owner=t.id,instance=new Worker(new URL('./tournament-worker.js?v=0.322.0',import.meta.url),{type:'module'});tournamentWorker=instance;view='tournament';render();
+ const owner=t.id,instance=new Worker(new URL('./tournament-worker.js?v=0.330.0',import.meta.url),{type:'module'});tournamentWorker=instance;view='tournament';render();
  const fail=message=>{if(tournamentWorker!==instance)return;stopTournamentWorker();toast('CPU対戦を進められませんでした：'+message);};
  instance.onmessage=({data})=>{if(tournamentWorker!==instance||activeTournament()?.id!==owner)return;
   if(data.type==='result'){try{const current=activeTournament(),m=current.rounds.flat().find(m=>m.id===data.matchId);if(!m||![0,1].includes(data.winner))throw Error('対戦結果を確認してください');saved.localTournament=recordTournamentMatch(current,m.id,m.players[data.winner],data.reason);persist();if(view==='tournament')render();}catch(e){fail(e.message);}}
@@ -330,7 +341,7 @@ function startSimulation(deck,options={}){
  const opponentErrors=opponents.flatMap(d=>validateDeck(d));if(opponentErrors.length){toast('相手デッキ：'+opponentErrors[0]);return;}
  const n=options.count||base?.count||count,seed=options.seed??base?.seed??crypto.getRandomValues(new Uint32Array(1))[0],f=options.first||base?.first||first;
  running={completed:0,total:n*opponents.length,current:opponents[0].name,deck:clone(deck),count:n,seed,first:f,opponents:clone(opponents),baseline:base?.id||null};view='analysis';render();
- worker=new Worker(new URL('./worker.js?v=0.322.0',import.meta.url),{type:'module'});
+ worker=new Worker(new URL('./worker.js?v=0.330.0',import.meta.url),{type:'module'});
  worker.onmessage=({data})=>{
   if(data.type==='progress'){if(!running)return;Object.assign(running,data);renderProgress();}
   if(data.type==='done'){
@@ -840,7 +851,7 @@ document.addEventListener('compositionend',event=>{const e=event.target;if(!sear
  Promise.resolve().then(()=>applySearchInput(e));
 });
 document.addEventListener('input',event=>{const e=event.target;if(searchInputIds.has(e.id)){if(!event.isComposing&&!composingSearchInputs.has(e))applySearchInput(e);return;}if(e.id==='deck-name'&&edit){edit.name=e.value;return;}if(e.id==='replay-range'){replayIndex=Number(e.value);render();}});
-document.addEventListener('change',async event=>{const e=event.target;if(['match-count','match-first','all-opponents','practice-mode'].includes(e.id))matchOptionsOpen=!!$('.match-options')?.open;if(['tournament-mode','tournament-size','tournament-source','tournament-first'].includes(e.id)){updateTournamentSetup(e);return;}if(e.id==='tournament-picker-source'){tournamentPickerSource=e.value;refreshTournamentPicker();return;}if(e.id==='home-deck-sort'){if(['selected','updated','name'].includes(e.value)){homeOrder=e.value;render();$('#home-deck-sort')?.focus({preventScroll:true});}return;}if(e.id==='deck-sort'){if(['cost','name','count'].includes(e.value)){deckSort=e.value;render();$('#deck-sort')?.focus({preventScroll:true});}return;}if(e.id==='online-deck'){onlineDeckId=e.value;return;}if(e.id==='online-code'){onlineCode=e.value;return;}
+document.addEventListener('change',async event=>{const e=event.target;if(['match-count','match-first','all-opponents','practice-mode'].includes(e.id))matchOptionsOpen=!!$('.match-options')?.open;if(['tournament-mode','tournament-size','tournament-source','tournament-first'].includes(e.id)){updateTournamentSetup(e);return;}if(e.id==='tournament-own-deck'){if(tournamentDraft?.mode!=='human')return;tournamentDraft.expanded=$('.tournament-participants')?.open||false;tournamentDraft.scroll=$('.dialog-content')?.scrollTop||0;tournamentPickerSlot=0;selectTournamentSlot(e.value||null);$('#tournament-own-deck')?.focus({preventScroll:true});return;}if(e.id==='tournament-picker-source'){tournamentPickerSource=e.value;refreshTournamentPicker();return;}if(e.id==='home-deck-sort'){if(['selected','updated','name'].includes(e.value)){homeOrder=e.value;render();$('#home-deck-sort')?.focus({preventScroll:true});}return;}if(e.id==='deck-sort'){if(['cost','name','count'].includes(e.value)){deckSort=e.value;render();$('#deck-sort')?.focus({preventScroll:true});}return;}if(e.id==='online-deck'){onlineDeckId=e.value;return;}if(e.id==='online-code'){onlineCode=e.value;return;}
  if(e.id==='cost-filter'){costFilter=e.value;page=0;render();}if(e.id==='type-filter'){typeFilter=e.value;page=0;render();}
  if(e.id==='match-count'){count=Number(e.value);render();$('#match-count')?.focus({preventScroll:true});}if(e.id==='match-first'){first=e.value;render();$('#match-first')?.focus({preventScroll:true});}if(e.id==='all-opponents'){allOpp=e.checked;render();}if(e.id==='practice-mode')practice=e.checked;
  if(e.id==='support-file')await processSupportPhoto(e.files[0]);

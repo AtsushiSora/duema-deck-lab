@@ -1,0 +1,1 @@
+export const STANDARD257_DECK={id:'standard257',name:'多色クリーチャーとレインボーナス',format:'original',cards:['dmex14-087','dmex14-085','dmex14-089','dmex14-056','dmex14-052','dmex14-097','dmex14-051','dmex14-010','dmex14-047','dm26-038'].map(id=>({id,count:4}))};

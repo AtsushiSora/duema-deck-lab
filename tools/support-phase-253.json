@@ -1,0 +1,390 @@
+{
+  "phase": 253,
+  "checkedAt": "2026-10-31",
+  "description": "攻撃条件による手札補充と手札展開6種類。ターン最初・登場ターン・プレイヤー攻撃・パワー・種族・コストを区別し、独立した誘発とドロー後の任意展開を処理する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dmr19-062",
+      "name": "アクア煽動兵 バードマン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-062",
+      "faces": [
+        {
+          "name": "アクア煽動兵 バードマン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のクリーチャーが攻撃する時、それがそのターンはじめての攻撃であれば、カードを１枚引いてもよい。",
+          "race": "リキッド・ピープル閃",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "first": true,
+            "filter": {
+              "creature": true
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "カードを1枚引く？",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-062.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "8e163ea3587b195a8fe89cb81d34ef8772712e04ddeec54d3ac9dfb959d00e8e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr10-037",
+      "name": "侵入する電脳者 アリス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-037",
+      "faces": [
+        {
+          "name": "侵入する電脳者 アリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のアウトレイジが攻撃する時、カードを１枚引いてもよい。\n自分のコスト７以上のクリーチャーが攻撃する時、カードを１枚引いてもよい。そうした場合、自分の手札を１枚、山札の一番上に置く。",
+          "race": "アウトレイジ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "filter": {
+              "creature": true,
+              "race": "アウトレイジ"
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "カードを1枚引く？",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "who": "self",
+            "filter": {
+              "creature": true,
+              "min": 7
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "カードを1枚引き、手札を1枚山札の上に置く？",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  },
+                  {
+                    "op": "Select",
+                    "origin": "hand",
+                    "to": "deckTop",
+                    "n": 1,
+                    "g183Return": true,
+                    "title": "山札の上に戻す手札を選ぶ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-037.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "c5380cd22465ef3dc9f8dcf0935516aa30fc08f682a1019f69c2c1c6c08d058a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp08-034",
+      "name": "走らせぬ者 カエランコ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-034",
+      "faces": [
+        {
+          "name": "走らせぬ者 カエランコ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "NEO進化：自分の水のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\n相手のクリーチャーが、バトルゾーンに出たターンに攻撃する時、自分はカードを２枚引いてもよい。",
+          "race": "ムートピア",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "g253AttackWatches": [
+          {
+            "who": "opponent",
+            "entryTurn": true,
+            "filter": {
+              "creature": true
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "カードを2枚引く？",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-034.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "106cad97340b1cd8aff460258aba99368cf0f0635e58ec3e5d99acefb3e86230",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex18-s04",
+      "name": "天龍神アークゼオス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-s04",
+      "faces": [
+        {
+          "name": "天龍神アークゼオス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "ブロッカー ブロッカー\nT・ブレイカー\n自分のドラゴンが攻撃する時、カードを１枚引いてもよい。その後、光のコスト９以下の、「ブロッカー」を持つ進化ではないクリーチャーを１体、自分の手札から出してもよい。\n相手が自分のクリーチャーを選ぶ時、このクリーチャーは選べない。（ただし、このクリーチャーを攻撃またはブロックしてもよい）",
+          "race": "ファイブ・オリジン・ドラゴン",
+          "powerText": "15500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 3,
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "カードを1枚引く？",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 1,
+                "deploy": true,
+                "g195HandDeploy": true,
+                "filter": {
+                  "creature": true,
+                  "color": "光",
+                  "max": 9,
+                  "blocker": true,
+                  "nonEvolution": true
+                },
+                "optional": true
+              }
+            ]
+          }
+        ],
+        "untargetable": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "bfde2fc83a3402410ec109c44dade7c6252613fc2980397620cef9a8b4b0b42b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-076",
+      "name": "爆煽動 アイラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-076",
+      "faces": [
+        {
+          "name": "爆煽動 アイラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のクリーチャーが攻撃する時、それがそのターンはじめての攻撃であれば、自分の手札を１枚捨ててもよい。そうしたら、カードを２枚引く。",
+          "race": "ヒューマノイド爆/革命軍",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "first": true,
+            "filter": {
+              "creature": true
+            },
+            "defs": [
+              {
+                "op": "DiscardDraw",
+                "g216DiscardDraw": true,
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-076.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "fdaee101c5541a94854d488409d80d634c9173ab038f7fe4063ab9224c785643",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-074",
+      "name": "錬粋SANDAR-33",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-074",
+      "faces": [
+        {
+          "name": "錬粋SANDAR-33",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "NEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のパワー6000以上のクリーチャーが相手プレイヤーを攻撃する時、カードを１枚引いてもよい。",
+          "race": "アーク・セラフィム/テクノ・サムライ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "playerAttack": true,
+            "filter": {
+              "creature": true,
+              "minPower": 6000,
+              "g199Power": true
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "カードを1枚引く？",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-074.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "392530c7f1befe5ac601114f81a7702949fb217c237c4d822d6bb73e5b2484a7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr19-062": 4,
+      "dmr10-037": 4,
+      "dmrp08-034": 4,
+      "dmex18-s04": 4,
+      "dmr19-076": 4,
+      "dm25rp1-074": 4
+    }
+  }
+}

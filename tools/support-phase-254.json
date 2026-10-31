@@ -1,0 +1,381 @@
+{
+  "phase": 254,
+  "checkedAt": "2026-10-31",
+  "description": "任意ドロー後の手札交換とエターナル・Ωの7種類。進化・NEO進化、EXライフ、可変パワーとブレイク数、離れる時の手札置換を含めた全能力を処理する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dmx13-011",
+      "name": "「武」の頂 マキシマム・ザ・マックス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-011",
+      "faces": [
+        {
+          "name": "「武」の頂 マキシマム・ザ・マックス",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "パワーアタッカー+12000（攻撃中、このクリーチャーのパワーは+12000される）\nワールド・ブレイカー（このクリーチャーは相手のシールドをすべてブレイクする）\nエターナル・Ω（このクリーチャーがバトルゾーンを離れる時、かわりに手札に戻す）",
+          "race": "アンノウン/ゼニス",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackBonus": 12000,
+        "breaker": "∞",
+        "worldBreaker": true,
+        "g34Omega": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx13-011.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "a8280c07ddbc1f7e3e2d01ca57be9d217c9e48f1b335b7aac40d29b4b43d6928",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp4-059",
+      "name": "～叡智、自在なり～",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-059",
+      "faces": [
+        {
+          "name": "～叡智、自在なり～",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "NEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが攻撃する時、カードを２枚引いてもよい。そうしたら、自分の手札を２枚捨てる。",
+          "race": "グランド・デビル/スチーム・ナイト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "title": "カードを2枚引き、手札を2枚捨てる？",
+            "g204DrawDiscard": true,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 2
+              },
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-059.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "dd3eb8be86135ef9b4becdffead8ffb5b625d90bc684e4766b41755352ce01c2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-002",
+      "name": "プラチナ・ワルスラS",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-002",
+      "faces": [
+        {
+          "name": "プラチナ・ワルスラS",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "進化：自分の水のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが攻撃する時、カードを３枚引いてもよい。そうしたら、自分の手札を１枚捨てる。",
+          "race": "マジック・コマンド/イニシャルズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "civilization": "水"
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "title": "カードを3枚引き、手札を1枚捨てる？",
+            "g204DrawDiscard": true,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              },
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-002.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "6143be3e442b9f4f8390fa14d73198d5e439b34b960f44db5370372ab775e977",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-s10",
+      "name": "悪撃縫合 ドルゲペイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-s10",
+      "faces": [
+        {
+          "name": "悪撃縫合 ドルゲペイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇/自然",
+          "civilizations": [
+            "水",
+            "闇",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nマッハファイター\nパワード・ブレイカー\n自分のクリーチャーが攻撃する時、カードを２枚引いてもよい。そうしたら、自分の手札を１枚捨てる。\n自分の墓地のカード１枚につき、このクリーチャーのパワーを+1000する。",
+          "race": "ディスペクター/デーモン・コマンド/ジャイアント",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "exLife": true,
+        "machFighter": true,
+        "poweredBreaker": true,
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "filter": {
+              "creature": true
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "カードを2枚引き、手札を1枚捨てる？",
+                "g204DrawDiscard": true,
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2
+                  },
+                  {
+                    "op": "Discard",
+                    "owner": "self",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "g207CountPower": {
+          "zone": "grave",
+          "amount": 1000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-s10.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "4daa6f7a76b41e6d58ec001f86cd03a0a85289031fed50b1cba564499c9484c5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-059",
+      "name": "才能人形アリミ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-059",
+      "faces": [
+        {
+          "name": "才能人形アリミ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、カードを２枚引いてもよい。そうしたら、自分の手札を１枚捨てる。",
+          "race": "マジック・デスパペット",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "カードを2枚引き、手札を1枚捨てる？",
+            "g204DrawDiscard": true,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 2
+              },
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-059.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "3fce2fc244c474a877dfbdbd7f0baf316b4f43373a36d18796746106a4e5dca7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr03-032",
+      "name": "猛菌妖精コナユキ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-032",
+      "faces": [
+        {
+          "name": "猛菌妖精コナユキ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが攻撃する時、カードを２枚引いてもよい。そうした場合、自分の手札を２枚捨てる。",
+          "race": "スノーフェアリー/サイバー・ウイルス",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "title": "カードを2枚引き、手札を2枚捨てる？",
+            "g204DrawDiscard": true,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 2
+              },
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-032.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "a735d462d62d87d9eb961420eae73724f5290722c45bdd418366a49b15668a13",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-017",
+      "name": "龍装者 スペレート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-017",
+      "faces": [
+        {
+          "name": "龍装者 スペレート",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、カードを３枚引いてもよい。そうしたら、自分の手札を１枚捨てる。",
+          "race": "ドラゴンギルド/ムートピア",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "カードを3枚引き、手札を1枚捨てる？",
+            "g204DrawDiscard": true,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 3
+              },
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-017.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "06b88293c1bbf6fec3426faa87f957400d2398fb0d49649fcf2cf96bc4916f2a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx13-011": 4,
+      "dm25rp4-059": 4,
+      "dmr23-002": 4,
+      "dmrp18-s10": 4,
+      "dm24rp4-059": 4,
+      "dmr03-032": 4,
+      "dmrp01-017": 4
+    }
+  }
+}

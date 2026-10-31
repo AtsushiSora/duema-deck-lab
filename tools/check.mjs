@@ -1,5 +1,12 @@
+import {STANDARD257_DECK} from './fixtures/standard257.mjs';
 import{resolveCharacterDecks}from'../dist/character-challenge.js';
 import{CHARACTER_ERAS}from'../dist/character-roster.js';
+import {STANDARD256_DECK} from './fixtures/standard256.mjs';
+import {STANDARD255_DECK} from './fixtures/standard255.mjs';
+import {STANDARD254_DECK} from './fixtures/standard254.mjs';
+import {STANDARD253_DECK} from './fixtures/standard253.mjs';
+import {STANDARD252_DECK} from './fixtures/standard252.mjs';
+import {STANDARD251_DECK} from './fixtures/standard251.mjs';
 import {STANDARD250_DECK} from './fixtures/standard250.mjs';
 import {STANDARD249_DECK} from './fixtures/standard249.mjs';
 import {STANDARD248_DECK} from './fixtures/standard248.mjs';
@@ -499,3 +506,17 @@ if(validateDeck(STANDARD248_DECK).length||registry.coverage(STANDARD248_DECK).un
 if(validateDeck(STANDARD249_DECK).length||registry.coverage(STANDARD249_DECK).unsupported||STANDARD249_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第249段階の40枚を確認してください');console.log('Checked phase249 forty-card deck: own-turn Abyss entry and discard-gated search supported.');
 
 if(validateDeck(STANDARD250_DECK).length||registry.coverage(STANDARD250_DECK).unsupported||STANDARD250_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第250段階の40枚を確認してください');console.log('Checked phase250 forty-card deck: five filtered optional entry-draw watchers supported.');
+
+if(validateDeck(STANDARD251_DECK).length||registry.coverage(STANDARD251_DECK).unsupported||STANDARD251_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第251段階の40枚を確認してください');console.log('Checked phase251 forty-card deck: eight conditional optional entry-draw watchers supported.');
+
+if(validateDeck(STANDARD252_DECK).length||registry.coverage(STANDARD252_DECK).unsupported||STANDARD252_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第252段階の40枚を確認してください');console.log('Checked phase252 forty-card deck: six attack and battle-win draw watchers supported.');
+
+if(validateDeck(STANDARD253_DECK).length||registry.coverage(STANDARD253_DECK).unsupported||STANDARD253_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第253段階の40枚を確認してください');console.log('Checked phase253 forty-card deck: six conditional attack watchers and blocker deployment supported.');
+
+if(validateDeck(STANDARD254_DECK).length||registry.coverage(STANDARD254_DECK).unsupported||STANDARD254_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第254段階の40枚を確認してください');console.log('Checked phase254 forty-card deck: seven optional draw-discard and Omega cards supported.');
+
+if(validateDeck(STANDARD255_DECK).length||registry.coverage(STANDARD255_DECK).unsupported||STANDARD255_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第255段階の40枚を確認してください');console.log('Checked phase255 forty-card deck: five top-library selection and distribution cards supported.');
+
+if(validateDeck(STANDARD256_DECK).length||registry.coverage(STANDARD256_DECK).unsupported||STANDARD256_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第256段階の40枚を確認してください');console.log('Checked phase256 forty-card deck: eight color and race Strike Back cards supported.');
+
+if(validateDeck(STANDARD257_DECK).length||registry.coverage(STANDARD257_DECK).unsupported||STANDARD257_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第257段階の40枚を確認してください');console.log('Checked phase257 forty-card deck: nine conditional Rainbow Bonus cards supported.');

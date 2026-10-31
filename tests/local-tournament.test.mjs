@@ -95,3 +95,26 @@ test('failed persistence leaves the tournament and running worker intact and con
  await h.click('tournament-delete',{id:'cup'});await h.click('tournament-confirm-delete',{id:'cup'});assert.equal(h.read('JSON.stringify(saved)===beforeFailedDelete'),true);assert.ok(!worker.stopped);assert.ok(h.dialog.open);assert.equal(h.read('storageOK'),false);assert.match(h.toast.textContent,/トーナメントは残っています/);
  h.read('localStorage.setItem=originalWrite');await h.click('tournament-confirm-delete',{id:'cup'});assert.equal(h.read('saved.localTournament'),null);assert.equal(worker.stopped,true);assert.equal(h.read('storageOK'),true);
 });
+
+test('tournament setup directly selects a saved custom deck and fixes that forty as the human entrant',async()=>{
+ const h=harness();h.read("saved.decks.push({...structuredClone(PRESETS[1]),id:'custom',name:'手作りの40枚'});const savedBefore=JSON.stringify(saved.decks)");await h.click('tournament-new');
+ assert.match(h.dialog.innerHTML,/保存した自作デッキから選ぶ/);assert.match(h.dialog.innerHTML,/id="tournament-own-deck"/);assert.match(h.dialog.innerHTML,/手作りの40枚/);
+ const key=h.read("tournamentOwnDeckChoices().find(c=>c.deck.id==='custom').key");assert.ok(key);await h.change('tournament-own-deck',key);assert.equal(h.read('tournamentDraft.selected[0]'),key);
+ await h.change('tournament-size','4');await h.change('tournament-source','environment');assert.equal(h.read('tournamentDraft.selected[0]'),key);await h.click('tournament-create');
+ assert.equal(h.read("saved.localTournament.players.find(p=>p.id==='human').deck.name"),'手作りの40枚');assert.equal(h.read('JSON.stringify(saved.decks)===savedBefore'),true);assert.equal(h.read('saved.selected'),'mine');
+});
+test('own picker opens in the custom-only scope, excluding saved opponents, while CPU slots can use custom scope too',async()=>{
+ const h=harness();h.read("saved.decks.push({...structuredClone(PRESETS[1]),id:'custom',name:'自作二つ目'});saved.friends=[{...structuredClone(PRESETS[2]),id:'friend',name:'相手の保存デッキ'}]");await h.click('tournament-new');await h.click('tournament-pick-slot',{slot:'0'});
+ assert.equal(h.read('tournamentPickerSource'),'mine');assert.match(h.dialog.innerHTML,/<option value="mine" selected>/);assert.equal(h.read("tournamentDraftPool('mine').length"),2);assert.ok(h.read("tournamentPickerResultsHTML().includes('自作二つ目')"));assert.ok(!h.read("tournamentPickerResultsHTML().includes('相手の保存デッキ')"));
+ const custom=h.read("tournamentOwnDeckChoices().find(c=>c.deck.id==='custom').key");await h.click('tournament-picker-back');await h.click('tournament-pick-slot',{slot:'1'});await h.change('tournament-picker-source','mine');await h.click('tournament-pick-deck',{key:custom});assert.equal(h.read('tournamentDraft.selected[1]'),custom);
+ const own=h.read('tournamentDraft.selected[0]');await h.change('tournament-own-deck',custom);assert.equal(h.read('tournamentDraft.selected[0]'),own);assert.match(h.toast.textContent,/同じ構成は重複できません/);
+});
+test('custom selection can return to random, survives CPU mode, and unavailable custom decks show a disabled reason',async()=>{
+ const h=harness();h.read("saved.decks.push({...structuredClone(PRESETS[1]),id:'short',name:'未完成 <40枚>',cards:[{id:PRESETS[1].cards[0].id,count:1}]})");await h.click('tournament-new');
+ assert.equal(h.read("tournamentOwnDeckChoices().find(c=>c.deck.id==='short').key"),null);assert.ok(h.read("!!tournamentOwnDeckChoices().find(c=>c.deck.id==='short').reason"));assert.match(h.dialog.innerHTML,/<option[^>]*disabled[^>]*>未完成 &lt;40枚&gt;（/);
+ const key=h.read('tournamentDraft.selected[0]');await h.change('tournament-own-deck','unavailable-1');assert.equal(h.read('tournamentDraft.selected[0]'),key);await h.change('tournament-own-deck','');assert.equal(h.read('tournamentDraft.selected[0]'),null);await h.change('tournament-own-deck',key);
+ await h.change('tournament-mode','cpu');assert.ok(!h.dialog.innerHTML.includes('id="tournament-own-deck"'));assert.equal(h.read('tournamentDraft.selected[0]'),key);await h.change('tournament-mode','human');assert.equal(h.read('tournamentDraft.selected[0]'),key);assert.match(h.dialog.innerHTML,/id="tournament-own-deck"/);
+});
+test('empty custom collection explains how to save a deck and still allows built-in or random entrants',async()=>{
+ const h=harness();h.read('saved.decks=[]');await h.click('tournament-new');assert.match(h.dialog.innerHTML,/デッキ管理で保存した自作デッキがここに表示されます/);await h.click('tournament-pick-slot',{slot:'0'});assert.equal(h.read('tournamentPickerSource'),'all');assert.ok(h.read("tournamentDraftPool('all').length>4"));
+});

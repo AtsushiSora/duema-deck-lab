@@ -1,0 +1,326 @@
+{
+  "phase": 252,
+  "checkedAt": "2026-10-31",
+  "description": "攻撃時とバトル勝利時の条件付きドロー6種類。タマシードを含む監視元と相手の攻撃、火・自然・グランド・デビルの条件、任意ドロー後の強制捨て札を区別する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dm30-041",
+      "name": "アクア・アンカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-041",
+      "faces": [
+        {
+          "name": "アクア・アンカー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手のクリーチャーが攻撃する時、カードを１枚引いてもよい。そうした場合、自分の手札を１枚捨てる。",
+          "race": "リキッド・ピープル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g252AttackWatch": {
+          "who": "opponent",
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引く？",
+              "g204DrawDiscard": true,
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                },
+                {
+                  "op": "Discard",
+                  "n": 1,
+                  "owner": "self"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm30-041.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "88cb588188e21bcc9f4d0230ecb3172da84e149ba2d1ad2810b9a88f7c8462af",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm20-041",
+      "name": "ウェービング・アルゴルス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-041",
+      "faces": [
+        {
+          "name": "ウェービング・アルゴルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のグランド・デビルがバトルに勝った時、カードを１枚引いてもよい。",
+          "race": "ディープ・マリーン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g252WinWatch": {
+          "filter": {
+            "creature": true,
+            "race": "グランド・デビル"
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-041.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "6cfa2b3a691845e04aa52aac27153421daf074c4ce30efaa43b39ac8ad3db60f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-080",
+      "name": "ドルンカ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-080",
+      "faces": [
+        {
+          "name": "ドルンカ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手の火または自然のクリーチャーが攻撃する時、カードを１枚引いてもよい。",
+          "race": "サイバーロード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g252AttackWatch": {
+          "who": "opponent",
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "color": "火"
+              },
+              {
+                "color": "自然"
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-080.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "5a1886658991e5fab805ef9301aa7e6cd72e4f78dd8e744dbb1e1ac8d798465f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-031",
+      "name": "ハイパーソニック・ゴールデンタイヤ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-031",
+      "faces": [
+        {
+          "name": "ハイパーソニック・ゴールデンタイヤ",
+          "typeText": "タマシード",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のクリーチャーが攻撃する時、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g252AttackWatch": {
+          "who": "self",
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-031.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "f6ccd34f2f9570c97f530c7f2ff4f476650935f2701d2b13bb82840d91e3cd58",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-056",
+      "name": "鎧冑 アナリス-２",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-056",
+      "faces": [
+        {
+          "name": "鎧冑 アナリス-２",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーは攻撃できない。\n相手のクリーチャーが攻撃する時、カードを１枚引いてもよい。\nササゲール２（ディスペクターを召喚する時、コストを２少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "ジャイアント・インセクト/サイバーロード/ディスタス",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "noAttack": true,
+        "g252AttackWatch": {
+          "who": "opponent",
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        },
+        "sasage": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-056.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "38e1cf759c116ddc42b71607621d4a34e5a0b2547c257132d4c9e0e650ddc1cb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-061",
+      "name": "爆打者 猛トラック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-061",
+      "faces": [
+        {
+          "name": "爆打者 猛トラック",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の火のクリーチャーがバトルに勝った時、カードを１枚引いてもよい。",
+          "race": "ヒューマノイド爆",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g252WinWatch": {
+          "filter": {
+            "creature": true,
+            "color": "火"
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-061.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "0e91eb9ddc39f78e669071a0ce3ecb3964dd512e21abb59fb7dbecae4c29db3b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm30-041": 4,
+      "dm20-041": 4,
+      "dm14-080": 4,
+      "dm22rp1-031": 4,
+      "dmrp17-056": 4,
+      "dmr13-061": 4
+    }
+  }
+}

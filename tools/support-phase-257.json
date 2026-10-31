@@ -1,0 +1,523 @@
+{
+  "phase": 257,
+  "checkedAt": "2026-10-31",
+  "description": "レインボーナスの条件付き効果。自分の多色クリーチャーを解決時に確認し、登場時・攻撃時・呪文の追加効果を区別する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dmex14-087",
+      "name": "「巻貝の潜水兵」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-087",
+      "faces": [
+        {
+          "name": "「巻貝の潜水兵」",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "レインボーナス：このクリーチャーがバトルゾーンに出た時、バトルゾーンに自分の多色クリーチャーがあれば、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "スプラッシュ・クイーン/チーム銀河",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "g257Rainbow": true,
+            "filter": {
+              "creature": true,
+              "multi": true
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "g190Freeze": "self",
+                "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-087.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "5aead3b6728be254b5cbfb9db1a0ab89db71f84b546dad0a7f9506c86b89c51e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-085",
+      "name": "アクア・サバイテイク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-085",
+      "faces": [
+        {
+          "name": "アクア・サバイテイク",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nレインボーナス：このクリーチャーがバトルゾーンに出た時、バトルゾーンに自分の多色クリーチャーがあれば、クリーチャーを１体選び、持ち主の手札に戻してもよい。",
+          "race": "リキッド・ピープル/チームウェイブ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "g257Rainbow": true,
+            "filter": {
+              "creature": true,
+              "multi": true
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "anyOwner": true,
+                "to": "hand",
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-085.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "e487b5eb9b26ef5d86e198bf6d9ae75a2a80187cc17b05e38ba3f15d51d1c27a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-089",
+      "name": "カラクリ入道",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-089",
+      "faces": [
+        {
+          "name": "カラクリ入道",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nレインボーナス：このクリーチャーがバトルゾーンに出た時、バトルゾーンに自分の多色クリーチャーがあれば、相手は自身の手札を１枚選んで捨てる。",
+          "race": "デスパペット/鬼札王国",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "slayer": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "g257Rainbow": true,
+            "filter": {
+              "creature": true,
+              "multi": true
+            },
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-089.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "ff835c68944bca64ca36321d2a1a1834f8b3bb2900e47c26252ca027bbbfe2d6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-056",
+      "name": "デモニオのファイナル砲撃",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-056",
+      "faces": [
+        {
+          "name": "デモニオのファイナル砲撃",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー3000以下のクリーチャーを１体破壊する。\nレインボーナス：バトルゾーンに自分の多色クリーチャーがあれば、相手のパワー4000以下のクリーチャーを１体破壊する。",
+          "race": "鬼札王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "IfOwn",
+            "g257Rainbow": true,
+            "filter": {
+              "creature": true,
+              "multi": true
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 4000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-056.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "348b62b8ce58b3531e8eff060152ffc8f6f9b3c5b1796900640576561cd19ab9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-052",
+      "name": "黒歴史の白詩集",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-052",
+      "faces": [
+        {
+          "name": "黒歴史の白詩集",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体破壊する。\n自分のシールドを１つ、墓地に置く。\nレインボーナス：バトルゾーンに自分の多色クリーチャーがあれば、クリーチャーを１体、自分の墓地から手札に戻す。",
+          "race": "月光王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "grave",
+            "title": "破壊する相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "ShieldGrave",
+            "g239ShieldGrave": true
+          },
+          {
+            "op": "IfOwn",
+            "g257Rainbow": true,
+            "filter": {
+              "creature": true,
+              "multi": true
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "g228Recovery": true,
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "g228Face": {
+                    "type": "creature"
+                  }
+                },
+                "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-052.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "27bec3ebdf6903e571777cace6501de72ccee15bcdbc066cb9c776c74fe4fb07",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-097",
+      "name": "四代目 羅封屋ツェル之助",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-097",
+      "faces": [
+        {
+          "name": "四代目 羅封屋ツェル之助",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。\nレインボーナス：このクリーチャーが攻撃する時、バトルゾーンに自分の多色クリーチャーがあれば、自分のマナゾーンのカードを４枚までアンタップする。",
+          "race": "ジョーカーズ/チーム切札",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "g257Rainbow": true,
+            "filter": {
+              "creature": true,
+              "multi": true
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "mana",
+                "n": 4,
+                "g210ManaUntap": true,
+                "title": "アンタップするマナを4枚まで選ぶ",
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-097.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "96baf3645e1010910281e56f2c6d8b58fcca6b25cb367959101d73cafaa8297e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-051",
+      "name": "不死樹の不思議温泉",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-051",
+      "faces": [
+        {
+          "name": "不死樹の不思議温泉",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－4000する。（パワー０以下のクリーチャーは破壊される）\nレインボーナス：バトルゾーンに自分の多色クリーチャーがあれば、自分の山札の上から４枚を墓地に置いてもよい。",
+          "race": "不死樹王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -4000,
+            "g242PowerMinus": true,
+            "title": "パワーを-4000する相手のクリーチャーを選ぶ",
+            "spell": true
+          },
+          {
+            "op": "IfOwn",
+            "g257Rainbow": true,
+            "filter": {
+              "creature": true,
+              "multi": true
+            },
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 4,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-051.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "39055d23f8cc6bcd1539797906fe4d7fd43cb143a37dbe2398d597be73a9ddc1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-010",
+      "name": "暴歌の妖精",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-010",
+      "faces": [
+        {
+          "name": "暴歌の妖精",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のマナゾーンにあるカードを、すべての文明のカードとして扱う。\nレインボーナス：このクリーチャーがバトルゾーンに出た時、バトルゾーンに自分の多色クリーチャーがあれば、自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "スノーフェアリー/暴拳王国",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g51Courtney": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "g257Rainbow": true,
+            "filter": {
+              "creature": true,
+              "multi": true
+            },
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-010.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "ba3f86338ea808dafff0f5855c6107767e30e0ebce06fb30f96e8e34cf396e2f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-047",
+      "name": "夢見遊山",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-047",
+      "faces": [
+        {
+          "name": "夢見遊山",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、持ち主の手札に戻す。\nレインボーナス：バトルゾーンに自分の多色クリーチャーがあれば、カードを１枚引く。",
+          "race": "チーム零",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "hand",
+            "title": "手札に戻す相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "IfOwn",
+            "g257Rainbow": true,
+            "filter": {
+              "creature": true,
+              "multi": true
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-047.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "5528c6e455b513e8a6252dcd21047ecfed6b3daa1e057dc19062a7cff0c8fbd8",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex14-087": 4,
+      "dmex14-085": 4,
+      "dmex14-089": 4,
+      "dmex14-056": 4,
+      "dmex14-052": 4,
+      "dmex14-097": 4,
+      "dmex14-051": 4,
+      "dmex14-010": 4,
+      "dmex14-047": 4
+    }
+  }
+}

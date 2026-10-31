@@ -1,0 +1,273 @@
+{
+  "phase": 255,
+  "checkedAt": "2026-10-31",
+  "description": "山札上からの振り分け5種類。任意のタップマナ加速、4つのゾーンへの振り分け、クリーチャーとアビスの公開判定、残りの並べ替えを区別する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp3-069",
+      "name": "ア:メツトヒ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-069",
+      "faces": [
+        {
+          "name": "ア:メツトヒ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から１枚目を表向きにする。それがアビスなら、手札に加えてもよい。アビスではない場合、または、手札に加えない場合は、墓地に置く。",
+          "race": "ヴェールアビス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 1,
+            "public": true,
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "anyFaceRace": "アビス"
+                },
+                "optional": true
+              }
+            ],
+            "rest": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-069.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "55597b4403229b0df9f102fe60f08a6159a284cd5af9c52fe7666c31154aeaf8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp06-053",
+      "name": "すももんが",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-053",
+      "faces": [
+        {
+          "name": "すももんが",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を表向きにする。それがクリーチャーなら、手札に加える。それ以外なら、マナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 1,
+            "public": true,
+            "stages": [
+              {
+                "n": "all",
+                "to": "hand",
+                "filter": {
+                  "creature": true
+                }
+              }
+            ],
+            "rest": "mana"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-053.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "9e46f2ceff73bbee0ef917038a41247d80446d06ba980c408f5b23006cdd9965",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr02-014",
+      "name": "ダンシング・フィーバー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-014",
+      "faces": [
+        {
+          "name": "ダンシング・フィーバー",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の山札の上から６枚を見る。その中から３枚まで、タップして自分のマナゾーンに置き、その後、残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 6,
+            "stages": [
+              {
+                "n": 3,
+                "to": "mana",
+                "tapped": true,
+                "optional": true
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr02-014.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "0ad4ecfeadc44d3690ec2c3fc7deea183a26ce865a6b0bdee43743209e592e8d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex1-N025",
+      "name": "ディザスター・チューン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N025",
+      "faces": [
+        {
+          "name": "ディザスター・チューン",
+          "typeText": "呪文",
+          "civilizationText": "水/闇/自然",
+          "civilizations": [
+            "水",
+            "闇",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の山札の上から４枚を見る。それらを１枚ずつ、手札、マナゾーン、墓地、山札の下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 4,
+            "g255Distribute": true,
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand"
+              },
+              {
+                "n": 1,
+                "to": "mana"
+              },
+              {
+                "n": 1,
+                "to": "grave"
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex1-N025.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "c3ae95be35d2e84418df5bbb315576664614f3d884182d07e268137de597e738",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-071",
+      "name": "ポッピン・マメスレー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-071",
+      "faces": [
+        {
+          "name": "ポッピン・マメスレー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から１枚目を表向きにする。それがクリーチャーなら手札に加える。そうでなければ、マナゾーンに置く。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 1,
+            "public": true,
+            "stages": [
+              {
+                "n": "all",
+                "to": "hand",
+                "filter": {
+                  "creature": true
+                }
+              }
+            ],
+            "rest": "mana"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-071.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "af8e81d97f29948ff61468ee2244de64cfe9eb488e31a72bccdd3615ea39b76d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp3-069": 4,
+      "dmrp06-053": 4,
+      "dmr02-014": 4,
+      "dm26ex1-N025": 4,
+      "dm22rp2-071": 4
+    }
+  }
+}
