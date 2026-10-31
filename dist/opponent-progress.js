@@ -20,7 +20,7 @@ export function isOpponentDefeated(deck,progress,registry,heroProgress){
  if(key&&progress?.[key]===true)return true;
  // Retain marks earned in character challenges before general marks existed.
  const id=deck?.hero?.id;
- return !!(id&&['hero-'+id,'rival-'+id].includes(deck.id)&&heroProgress?.[id]?.wins>0);
+ return !!(id&&['hero-'+id,'rival-'+id,'character-'+id].includes(deck.id)&&heroProgress?.[id]?.wins>0);
 }
 export function defeatedBadgeHTML(defeated){
  return defeated?'<span class="badge green defeated-badge">✓ 撃破済み</span>':'';

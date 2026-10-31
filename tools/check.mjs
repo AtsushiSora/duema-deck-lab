@@ -1,3 +1,5 @@
+import{resolveCharacterDecks}from'../dist/character-challenge.js';
+import{CHARACTER_ERAS}from'../dist/character-roster.js';
 import {STANDARD250_DECK} from './fixtures/standard250.mjs';
 import {STANDARD249_DECK} from './fixtures/standard249.mjs';
 import {STANDARD248_DECK} from './fixtures/standard248.mjs';
@@ -182,6 +184,8 @@ const championData=JSON.parse(await readFile(new URL('../dist/champion-decks.jso
 const heroes=resolveHeroDecks(JSON.parse(await readFile(new URL('../dist/hero-decks.json',import.meta.url),'utf8')),registry);for(const d of heroes){const errors=validateDeck(d);if(errors.length)throw Error(d.name+'：'+errors.join(' / '));}console.log(`Checked ${heroes.length} protagonist challenge decks with forty supported cards each.`);
 
 const rivals=resolveRivalDecks(JSON.parse(await readFile(new URL('../dist/rival-decks.json',import.meta.url),'utf8')),registry);for(const d of rivals){const errors=validateDeck(d);if(errors.length)throw Error(d.name+'：'+errors.join(' / '));}console.log(`Checked ${rivals.length} rival challenge decks with forty supported cards each.`);
+
+const characters=resolveCharacterDecks(JSON.parse(await readFile(new URL('../dist/character-decks.json',import.meta.url),'utf8')),registry);for(const d of characters){const errors=validateDeck(d);if(errors.length)throw Error(d.name+'：'+errors.join(' / '));}if(heroes.length+rivals.length+characters.length!==36||CHARACTER_ERAS.flatMap(e=>e.bosses).length!==8)throw Error('キャラクター構成が一致しません');console.log('Checked 36 character decks, including 8 unlockable bosses.');
 
 if(validateDeck(PHOTO_BOLSHACK).length||registry.coverage(PHOTO_BOLSHACK).unsupported)throw Error('画像の40枚が未対応です');console.log('Checked the screenshot Bolshack deck: 40 supported copies.');
 

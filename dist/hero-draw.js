@@ -1,8 +1,10 @@
+import {EXTRA_CHARACTER_IDS} from './character-roster.js?v=0.320.0';
+import {CHARACTER_PLANS} from './character-plans.js?v=0.320.0';
 // CPU challenge draw policy. Inputs contain only the CPU's own cards and public
 // battlefield information. No enemy hand identities, shields or deck order.
 export const HERO_IDS=Object.freeze(['shobu','katta','joe','win']);
 export const RIVAL_IDS=Object.freeze(['hakuoh','basara','kira','kaiza']);
-export const CHALLENGER_IDS=Object.freeze([...HERO_IDS,...RIVAL_IDS]);
+export const CHALLENGER_IDS=Object.freeze([...HERO_IDS,...RIVAL_IDS,...EXTRA_CHARACTER_IDS]);
 // Shared priorities describe the intended route, never a separate rules bonus.
 const plans={
  shobu:{setup:['dm23sd1-014','dmbd15-006','dmx11-012','dmbd16-011'],bridge:['dm23rp3-005','dm23rp4-S05'],engine:[]},
@@ -14,7 +16,7 @@ const plans={
  kira:{setup:['dmrp05-011','dmrp22-027','dmrp17-073','dm08-043'],bridge:['dmr13-016','dmrp14-024','dm23rp4-011'],engine:['dmrp04s-m02','dm24sp1-008']},
  kaiza:{setup:['dm23sd1-014','dmbd15-006','dmbd16-011','dmbd16-008'],bridge:['dm23rp3-005','dm23rp3-S01'],engine:['dm23rp4-OR2','dm23rp3-S07']}
 };
-export function heroCardRole(heroId,id){const plan=plans[heroId];return plan&&Object.keys(plan).find(k=>plan[k].includes(id))||'';}
+export function heroCardRole(heroId,id){const plan=plans[heroId]||CHARACTER_PLANS[heroId];return plan&&['setup','bridge','engine'].find(k=>plan[k]?.includes(id))||'';}
 const ramps=new Set(['ramp1','ramp2','dragonRamp2','ramp2Return1','girlsRupia','dogiRamp','untapTwoMana']);
 const removal=new Set(['destroy','destroySmall','destroyUntapped','destroy6000','destroyWeakerLimitNextTurn','bounce','bounceSmall','tapAll','vtBounce','abyssMurder','abyssMakua','abyssSis','superheroSweep']);
 const cheap=c=>Math.min(30,Number(c.cost)||0);
@@ -66,7 +68,7 @@ export function chooseHeroDraw(candidates,position){
  const score=c=>Math.max(...c.faces.map(f=>{
   const n=cheap(f),body=f.type==='creature',near=n<=mana+2;
   const chain=f.rev&&battle.some(x=>!x.tapped&&x.cost>=(f.rev.min||0)&&(!f.rev.race||String(x.race).includes(f.rev.race))&&(!f.rev.nameIncludes||String(x.name).includes(f.rev.nameIncludes))&&(!f.rev.multicolor||x.civilizations?.length>1));
-  const invasion=heroId==='basara'&&f.invasion&&battle.some(x=>!x.tapped&&!x.sealed&&!x.attackLocked&&!x.noPlayerAttack&&x.cost>=(f.invasion.min||0)&&(f.invasion.categories||['コマンド']).some(r=>String(x.race).includes(r))&&x.civilizations?.some(v=>f.invasion.colors.includes(v)));
+  const invasion=['basara','basara-final'].includes(heroId)&&f.invasion&&battle.some(x=>!x.tapped&&!x.sealed&&!x.attackLocked&&!x.noPlayerAttack&&x.cost>=(f.invasion.min||0)&&(f.invasion.categories||['コマンド']).some(r=>String(x.race).includes(r))&&x.civilizations?.some(v=>f.invasion.colors.includes(v)));
   const usable=f.usable||chain||invasion;
   const role=heroCardRole(heroId,c.id);
   let v=usable?40:near?12:-Math.max(0,n-mana)*5;
@@ -83,6 +85,7 @@ export function chooseHeroDraw(candidates,position){
   if(removal.has(f.effect)&&usable)v+=enemyBattle.length?(danger?55:25):-20;
   if(f.speedAttacker||f.machFighter)v+=usable?15:3;
   if(signature.includes(c.id))v+=usable?30:near?22:-8;
+  if(CHARACTER_PLANS[heroId]?.races?.some(r=>String(f.race||'').includes(r)))v+=12;
   if(heroId==='joe'&&/ジョーカーズ/.test(f.race||''))v+=12+(battle.length>=2?10:0);
   if(heroId==='win'&&/アビス/.test(f.race||''))v+=13+(n<=5&&usable?9:0);
   if(heroId==='katta'&&f.rev)v+=battle.some(x=>x.cost>=5)?35:5;

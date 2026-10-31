@@ -1,3 +1,5 @@
+import * as characterRoster from '../dist/character-roster.js';
+import * as extraCharacters from '../dist/character-challenge.js';
 import {routeToAction} from './navigation-route-helper.mjs';
 import {PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS} from '../dist/photo-october-decks.js';
 import * as championLibrary from '../dist/champions.js';
@@ -25,7 +27,7 @@ const app=(await readFile(new URL('../dist/app.js',import.meta.url),'utf8')).rep
 function harness({empty=false}={}){
  const listeners={},errors=[],writes=[],root={innerHTML:''},dialog={innerHTML:'',open:false,addEventListener(){},showModal(){this.open=true;},close(){this.open=false;}},toast={textContent:'',classList:{add(){},remove(){}}};
  const registry=createCatalogue(snapshot,data.cards,details);
- const context=vm.createContext({PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS,...championLibrary,...opponentProgress,APP_VERSION,createCardArt,...e,...manual,...cardInfo,...environment,battleCard:e.card,PRESETS,createCatalogue,prepareDeckCopy,...challenge,resolveStarter25Decks,starter25Matches,fixtureRegistry:registry,fixtureSaved:{decks:empty?[]:[{...structuredClone(PRESETS[0]),id:'original',name:'元のデッキ',category:'自分'}],friends:[],history:[],selected:'original'},fixtureData:data,
+ const context=vm.createContext({...characterRoster,...extraCharacters,PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS,...championLibrary,...opponentProgress,APP_VERSION,createCardArt,...e,...manual,...cardInfo,...environment,battleCard:e.card,PRESETS,createCatalogue,prepareDeckCopy,...challenge,resolveStarter25Decks,starter25Matches,fixtureRegistry:registry,fixtureSaved:{decks:empty?[]:[{...structuredClone(PRESETS[0]),id:'original',name:'元のデッキ',category:'自分'}],friends:[],history:[],selected:'original'},fixtureData:data,
   console:{error:e=>errors.push(e)},structuredClone,btoa,atob,crypto:globalThis.crypto,TextDecoder,TextEncoder,URL,Intl,Date,
   localStorage:{getItem:()=>null,setItem:(key,value)=>writes.push(JSON.parse(value))},setTimeout:()=>1,clearTimeout(){},clearInterval(){},setInterval:()=>1,
   document:{querySelector:s=>s==='#app'?root:s==='#dialog'?dialog:s==='#toast'?toast:null,querySelectorAll:()=>[],body:{classList:{toggle(){}}},addEventListener:(name,f)=>listeners[name]=f},window:{addEventListener(){},scrollTo(){}},location:{hash:'',pathname:'/',origin:'https://example.test'},history:{replaceState(){}}});
@@ -112,4 +114,16 @@ test('character totals retain earlier wins while new deck breakdowns and ordinar
  assert.deepEqual(manualResultSummary(p,battle,registry,legacy),{wins:3,losses:3,games:6,winRate:50,deckWins:0,deckLosses:1,deckGames:1});
  assert.equal(manualResultSummary(p,{...battle,challengeId:null},registry,legacy).games,0);
  const html=challenge.heroChallengeHTML(heroes,{shobu:{wins:'<img src=x>',losses:2}});assert.ok(!html.includes('<img src=x>'));
+});
+
+const extraManifest=JSON.parse(await readFile(new URL('../dist/character-decks.json',import.meta.url)));
+function seedCharacterSources(h){h.read(`heroDecks=resolveHeroDecks(${JSON.stringify({schemaVersion:1,heroes:heroes.map(d=>({...d.hero,cards:d.cards}))})},registry);rivalDecks=resolveRivalDecks(${JSON.stringify({schemaVersion:1,rivals:rivals.map(d=>({...d.hero,cards:d.cards}))})},registry);characterDecks=resolveCharacterDecks(${JSON.stringify(extraManifest)},registry);`);}
+test('character screen switches generations, shows previews and starts a new normal challenge with separate records',async()=>{
+ const h=harness();seedCharacterSources(h);h.read("view='challenge';challengeGroup='shobu';renderHeroChallenge()");assert.match(h.root.innerHTML,/黒城凶死郎/);assert.match(h.root.innerHTML,/ザキラ/);await h.click('challenge-tab',{group:'win'});assert.match(h.root.innerHTML,/ウガタ/);assert.match(h.root.innerHTML,/あと<strong>7人/);await h.click('hero-deck',{id:'character-karen'});assert.match(h.dialog.innerHTML,/40枚/);await h.click('close-dialog');h.read("render=()=>{};scheduleAI=()=>{}");await h.click('hero-start',{id:'character-ugata'});assert.equal(h.read('battle.challengeId'),'ugata');assert.equal(h.read('battle.state.challenge.heroId'),'ugata');h.read("battle.state.winner=0;recordManualOutcome();recordManualOutcome()");assert.equal(h.read('saved.heroProgress.ugata.wins'),1);assert.equal(h.read("saved.manualResults['character:ugata'].wins"),1);assert.equal(h.read('saved.history.length'),0);
+});
+test('locked bosses cannot start from direct handlers or copied opponents and are absent from tournament candidates',()=>{
+ const h=harness();seedCharacterSources(h);h.read("render=()=>{};scheduleAI=()=>{};startHeroChallenge('character-zakira')");assert.equal(h.read('battle'),null);h.read("beginManualBattle(saved.decks[0],{...characterDecks.find(d=>d.hero.id==='zakira'),id:'copied-boss'})");assert.equal(h.read('battle'),null);assert.equal(h.read("tournamentCandidates('character').some(d=>d.hero.id==='zakira')"),false);assert.equal(h.read("tournamentCandidates('character').length"),28);
+});
+test('last normal victory unlocks bosses once, preserves old wins and lets a boss start after saved state reload',()=>{
+ const h=harness();seedCharacterSources(h);h.read("render=()=>{};scheduleAI=()=>{};saved.heroProgress=Object.fromEntries(CHARACTER_ERAS[0].normal.slice(0,-1).map(id=>[id,{wins:1,losses:0,games:['old-'+id]}]));startHeroChallenge('character-george');battle.state.winner=0;recordManualOutcome();const stored=JSON.stringify(saved);recordManualOutcome()");assert.equal(h.read('saved.characterUnlocks.zakira'),true);assert.equal(h.read('saved.heroProgress.shobu.wins'),1);assert.equal(h.read('saved.heroProgress.george.wins'),1);assert.equal(h.read("tournamentCandidates('character').some(d=>d.hero.id==='zakira')"),true);h.read("saved=JSON.parse(stored);saved.heroProgress.george={wins:0,losses:2};startHeroChallenge('character-zakira')");assert.equal(h.read('battle.challengeId'),'zakira');h.read("battle.state.winner=1;recordManualOutcome()");assert.equal(h.read('saved.heroProgress.zakira.losses'),1);assert.equal(h.read('saved.characterUnlocks.zakira'),true);
 });

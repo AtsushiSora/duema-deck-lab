@@ -1,3 +1,5 @@
+import * as characterRoster from '../dist/character-roster.js';
+import * as extraCharacters from '../dist/character-challenge.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -11,7 +13,7 @@ function harness(id){
  const field=(value='')=>({id,value,isConnected:true,selectionStart:value.length,selectionEnd:value.length,selectionDirection:'none',dataset:{index:'2'},focus(options){this.focusOptions=options;},setSelectionRange(...range){this.range=range;}});
  let current=field();nodes.set('#'+id,current);nodes.set('#ocr-search-results',results);
  const redraw=kind=>{updates.push(kind);current.isConnected=false;current=field(read(`({homeQuery,deckQuery,starterQuery,manual:manualUI.filter,query,opponentQuery})`)[{ 'home-deck-search':'homeQuery','deck-card-search':'deckQuery','starter25-search':'starterQuery','manual-choice-search':'manual','card-search':'query','opponent-search':'opponentQuery'}[id]]);nodes.set('#'+id,current);};
- const ctx=vm.createContext({Promise,document:{addEventListener:(type,fn)=>listeners[type]=fn},$:s=>nodes.get(s),render:()=>redraw('page'),refreshStarter25:()=>redraw('picker'),refreshTournamentPicker:()=>{updates.push('tournament');results.innerHTML=read('tournamentDeckQuery');},cards:[{id:'jasmine',name:'霞み妖精ジャスミン'},{id:'clock',name:'終末の時計 ザ・クロック'}],norm:s=>s.normalize('NFKC').toLowerCase(),esc:s=>s});
+ const ctx=vm.createContext({...characterRoster,...extraCharacters,Promise,document:{addEventListener:(type,fn)=>listeners[type]=fn},$:s=>nodes.get(s),render:()=>redraw('page'),refreshStarter25:()=>redraw('picker'),refreshTournamentPicker:()=>{updates.push('tournament');results.innerHTML=read('tournamentDeckQuery');},cards:[{id:'jasmine',name:'霞み妖精ジャスミン'},{id:'clock',name:'終末の時計 ザ・クロック'}],norm:s=>s.normalize('NFKC').toLowerCase(),esc:s=>s});
  vm.runInContext("let homeQuery='',deckQuery='',starterQuery='',query='',opponentQuery='',tournamentDeckQuery='',page=5,manualUI={filter:'',choicePage:3},edit={name:''},replayIndex=0;",ctx);
  vm.runInContext(binding,ctx);
  function read(code){return vm.runInContext(code,ctx);}

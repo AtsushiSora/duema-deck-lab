@@ -1,3 +1,5 @@
+import * as characterRoster from '../dist/character-roster.js';
+import * as extraCharacters from '../dist/character-challenge.js';
 import * as challenges from '../dist/hero-challenge.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -28,7 +30,7 @@ const app=(await readFile(new URL('../dist/app.js',import.meta.url),'utf8')).rep
 function harness(){
  const root={innerHTML:''},dialog={open:false,innerHTML:'',addEventListener(){},showModal(){this.open=true;},close(){this.open=false;}},toast={textContent:'',classList:{add(){},remove(){}}},fields={},workers=[],writes=[],listeners={};
  class FakeWorker{constructor(){workers.push(this);}postMessage(v){this.job=v;}terminate(){this.stopped=true;}emit(v){this.onmessage({data:v});}}
- const ctx=vm.createContext({...tournament,...challenges,...progress,...info,...manual,...environment,...updates,...insights,...e,createCatalogue,createCardArt,battleCard:e.card,PRESETS,PHOTO_RECENT_DECKS:[],PHOTO_OCTOBER_DECKS:[],PHOTO_OCTOBER_28_DECKS:[],fixtureRegistry:registry,fixtureSources:sources,fixtureData:data,structuredClone,crypto:globalThis.crypto,Date,URL,Intl,TextDecoder,TextEncoder,Worker:FakeWorker,console,
+ const ctx=vm.createContext({...characterRoster,...extraCharacters,...tournament,...challenges,...progress,...info,...manual,...environment,...updates,...insights,...e,createCatalogue,createCardArt,battleCard:e.card,PRESETS,PHOTO_RECENT_DECKS:[],PHOTO_OCTOBER_DECKS:[],PHOTO_OCTOBER_28_DECKS:[],fixtureRegistry:registry,fixtureSources:sources,fixtureData:data,structuredClone,crypto:globalThis.crypto,Date,URL,Intl,TextDecoder,TextEncoder,Worker:FakeWorker,console,
  localStorage:{getItem:()=>null,setItem:(_k,v)=>writes.push(JSON.parse(v))},setTimeout:()=>1,clearTimeout(){},setInterval:()=>1,clearInterval(){},document:{querySelector:s=>s==='#app'?root:s==='#dialog'?dialog:s==='#toast'?toast:fields[s]||null,querySelectorAll:()=>[],body:{classList:{toggle(){}}},addEventListener:(name,fn)=>listeners[name]=fn},window:{addEventListener(){},scrollTo(){}}});
  vm.runInContext(app,ctx);const read=c=>vm.runInContext(c,ctx);read("registry=fixtureRegistry;cards=registry.cards;battleCards=fixtureData.cards;environmentDecks=fixtureSources;saved={decks:[{...structuredClone(PRESETS[0]),id:'mine',name:'自分'}],friends:[],history:[],selected:'mine'};loadTournamentSources=async()=>{};render=()=>{};scheduleAI=()=>{};");
  return {read,root,dialog,toast,fields,workers,writes,change:async(id,value)=>listeners.change({target:{id,value,matches:()=>false}}),click:async(action,extra={})=>{const b={dataset:{action,...extra},closest:()=>null};await listeners.click({target:{closest:()=>b}});}};
