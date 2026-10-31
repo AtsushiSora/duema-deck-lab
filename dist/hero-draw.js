@@ -1,5 +1,6 @@
-import {EXTRA_CHARACTER_IDS} from './character-roster.js?v=0.321.0';
-import {CHARACTER_PLANS} from './character-plans.js?v=0.321.0';
+import {legendOpeningBonus,legendDrawBonus} from './legend-strategy.js?v=0.322.0';
+import {EXTRA_CHARACTER_IDS} from './character-roster.js?v=0.322.0';
+import {CHARACTER_PLANS} from './character-plans.js?v=0.322.0';
 // CPU challenge draw policy. Inputs contain only the CPU's own cards and public
 // battlefield information. No enemy hand identities, shields or deck order.
 export const HERO_IDS=Object.freeze(['shobu','katta','joe','win']);
@@ -43,7 +44,7 @@ export function chooseHeroOpening(candidates,heroId){
   const coverage=new Set(hand.flatMap(colors));score+=coverage.size*6;
   score+=Math.min(2,hand.filter(c=>colors(c).length<=1).length)*9;
   score-=Math.max(0,hand.filter(c=>c.faces.every(f=>cheap(f)>=7)).length-2)*20;
-  return score;
+  return score+legendOpeningBonus(hand,heroId);
  };
  // Collapse identical copies while retaining enough physical instances for a hand.
  let beam=[{hand:[],last:-1,value:0}];
@@ -97,7 +98,7 @@ export function chooseHeroDraw(candidates,position){
   if(body&&f.speedAttacker&&enemyShields<=2&&usable)v+=45;
   if(!usable&&f.civilizations?.some(x=>!colors.includes(x)))v+=mana<5?25:8;
   if(!active&&danger&&(f.blocker||f.trigger))v+=10;
-  return v-(seen.get(c.id)||0)*18;
+  return v-(seen.get(c.id)||0)*18+legendDrawBonus({id:c.id,faces:[f]},position);
  }));
  let best=candidates[0],value=score(best);for(const c of candidates.slice(1)){const n=score(c);if(n>value||n===value&&c.id.localeCompare(best.id)<0){best=c;value=n;}}
  return best.uid;

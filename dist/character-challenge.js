@@ -1,4 +1,4 @@
-import{CHARACTER_ERAS,EXTRA_CHARACTER_IDS,CHARACTER_NAMES,characterEra,isCharacterBoss,characterCleared,characterUnlockState}from'./character-roster.js?v=0.321.0';
+import{CHARACTER_ERAS,EXTRA_CHARACTER_IDS,CHARACTER_NAMES,characterEra,isCharacterBoss,characterCleared,characterUnlockState}from'./character-roster.js?v=0.322.0';
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function resolveCharacterDecks(data,registry){
  if(data?.schemaVersion!==1||data.characters?.length!==EXTRA_CHARACTER_IDS.length)throw Error('キャラクターデータの形式が正しくありません');const seen=new Set();

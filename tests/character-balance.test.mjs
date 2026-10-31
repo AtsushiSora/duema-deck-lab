@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import crypto from 'node:crypto';
-import {e,setup,give,act,drain} from './target-fixture.mjs';
+import {chooseHeroOpening,chooseHeroDraw} from '../dist/hero-draw.js';
+import {e,setup,give,act,drain,PRESETS} from './target-fixture.mjs';
 const read=p=>JSON.parse(fs.readFileSync(new URL('../'+p,import.meta.url)));
 const characters=[...read('dist/hero-decks.json').heroes,...read('dist/rival-decks.json').rivals],record=read('tools/character-balance-0.146.0.json');
 const challenge=(s,id)=>{s.active=1;s.challenge={heroId:id,seat:1,signature:characters.find(h=>h.id===id).signature};return s;};
@@ -12,7 +12,11 @@ test('eight themed decks retain their signatures with only two to six physical r
  for(const h of characters){const change=record.changes.find(x=>x.id===h.id);assert.deepEqual(h.cards,change.after);assert.deepEqual(e.validateDeck(h),[]);assert.equal(h.cards.reduce((n,x)=>n+x.count,0),40);
   const before=new Map(change.before.map(x=>[x.id,x.count])),added=h.cards.reduce((n,x)=>n+Math.max(0,x.count-(before.get(x.id)||0)),0);assert.ok(added>=2&&added<=6,h.id);assert.ok(h.signature.every(id=>h.cards.some(x=>x.id===id)&&change.before.some(x=>x.id===id)));
  }
- assert.equal(crypto.createHash('sha256').update(fs.readFileSync(new URL('../dist/hero-draw.js',import.meta.url))).digest('hex'),record.openingAndDrawPolicySha256);
+ // Compare behavior instead of a whole-file hash: this shared module also
+ // contains the new characters' independent policies.
+ const samples=read('tools/fixtures/legacy-draw-0.321.0.json').cases;
+ for(const row of samples){const h=characters.find(x=>x.id===row.id),s=e.createGame([PRESETS[0],{name:h.name,cards:h.cards}],{seed:row.seed}),pool=[...s.players[1].hand,...s.players[1].deck].map(x=>({uid:x.uid,id:x.cardId,faces:e.playFaces(e.card(x))}));assert.deepEqual(chooseHeroOpening(pool,h.id),row.opening,h.id);for(const draw of row.draws){const candidates=pool.map(x=>({...x,faces:x.faces.map(f=>({...f,usable:!f.evolution&&f.cost<=draw.mana}))}));assert.equal(chooseHeroDraw(candidates,{heroId:h.id,signature:h.signature,mana:draw.mana,hand:pool.slice(0,2),battle:[],enemyBattle:[],shields:5,enemyShields:3}),draw.uid,h.id);}}
+
  for(const row of record.cards){assert.ok(row.verification.facesMatched);assert.equal(record.regulationVerification.limits[row.id],4);}
 });
 test('dragon characters keep the sole early twinpact ramp instead of charging it',()=>{

@@ -1,6 +1,7 @@
+import {legendProfile,legendKeepBonus} from './legend-strategy.js?v=0.322.0';
 // Bounded planning over public positions. Unknown cards stay unknown: no actual
 // deck order, shields, opponent hand, game seed or game RNG enters this module.
-import {heroCardRole} from './hero-draw.js?v=0.96.0';
+import {heroCardRole} from './hero-draw.js?v=0.322.0';
 import {visibleFinishRoutes} from './attack-plan.js?v=0.147.0';
 export function createStrategicAI(api){
  const {card,faces,effective,power,isCreature,legal,step,rank:baseRank,observe,mark}=api;
@@ -64,7 +65,8 @@ export function createStrategicAI(api){
   if(id==='kira'&&x.cardId==='dm24ex4-032')return 'setup';
   return heroCardRole(id,x.cardId);
  }
- function keepValue(s,p,x){
+ function legendPosition(s,p){const own=s.players[p];return {heroId:hero(s,p),mana:own.mana.length,hand:own.hand.map(y=>({id:y.cardId,uid:y.uid,faces:faces(card(y))})),battle:own.battle.map(y=>({...effective(y,s),id:y.cardId})),manaCards:own.mana.map(card),grave:own.grave.map(card)};}
+ function keepValue(s,p,x,legendView=null){
   const id=hero(s,p),own=s.players[p],c=card(x);if(!id&&!c.g40Fiona&&!c.g40Acashic&&!c.g40Chuchu)return 0;
   const hasField=own.battle.some(y=>card(y).g40Acashic&&effective(y,s).g40Acashic),manaField=own.mana.some(y=>card(y).g40Acashic),fiona=own.hand.some(y=>card(y).g40Fiona);
   const champion=c.g40Fiona&&!hasField&&(manaField||own.hand.some(y=>card(y).g40Acashic))?35:c.g40Acashic&&!hasField&&!manaField&&fiona?-30:c.g40Chuchu&&own.mana.length<4?15:0;
@@ -78,14 +80,16 @@ export function createStrategicAI(api){
    f.effect==='dragonSign'&&cap(c.cost)<=7&&api.colors(c).includes('光')&&/ドラゴン/.test(c.race))))v+=18;
   if(s.challenge.signature.includes(x.cardId))v+=own.mana.length>=4?22:8;
   if(own.battle.some(y=>y.cardId===x.cardId))v*=.35;
-  return champion+v/Math.max(1,copies);
+  const extra=legendProfile(id)?legendKeepBonus({id:x.cardId,uid:x.uid,faces:faces(c)}, legendView||legendPosition(s,p)):0;
+  return champion+v/Math.max(1,copies)+extra;
  }
  function rank(s){
   const rows=baseRank(s),p=rows[0]?.a.player;if(!hero(s,p)&&!s.players[p]?.hand.some(x=>card(x).g40Fiona||card(x).g40Acashic||card(x).g40Chuchu))return rows;
-  const own=s.players[p];return rows.map(r=>{
+  const own=s.players[p],legendView=legendProfile(hero(s,p))?legendPosition(s,p):null,keepCache=new Map();
+  const keep=x=>{if(!keepCache.has(x.uid))keepCache.set(x.uid,keepValue(s,p,x,legendView));return keepCache.get(x.uid);};return rows.map(r=>{
    const a=r.a,x=own.hand.find(x=>x.uid===a.uid);let value=r.value;
-   if(a.kind==='charge'&&x)value-=keepValue(s,p,x);
-   if(a.kind==='play'&&x)value+=keepValue(s,p,x)*.6;
+   if(a.kind==='charge'&&x)value-=keep(x);
+   if(a.kind==='play'&&x)value+=keep(x)*.6;
    if(hero(s,p)==='hakuoh'&&a.baseUid){
     const base=own.battle.find(y=>y.uid===a.baseUid),c=base&&effective(base,s);
     if(c?.wellkius&&!own.battle.some(y=>y.uid!==base.uid&&effective(y,s).wellkius))value-=30;
@@ -259,7 +263,7 @@ export function createStrategicAI(api){
   const routes=visibleFinishRoutes(unique.map(a=>{const x=find(p,a.uid),c=effective(x,ctx);return {uid:a.uid,damage:c.noShieldBreak?0:damage(c),blockers:api.blockersFor(ctx,1-p,x)};}),blockers.map(x=>x.uid),them.shields.length,{protectedPlayer:api.directAttackProtected(s,1-p)});
   const protectedPlayer=api.directAttackProtected(s,1-p);
   const lethal=routes.winning.size>0;
-  const defensiveHero=['hakuoh','kira'].includes(hero(s,p));
+  const defensiveHero=['hakuoh','kira'].includes(hero(s,p))||['gate','gods'].includes(legendProfile(hero(s,p))?.style);
   const reserve=new Set();
   if(defensiveHero&&!lethal&&me.shields.length<=2){
    // Estimate only the visible counterattack after untapping. Existing attack

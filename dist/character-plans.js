@@ -1,26 +1,28 @@
 // Public deck priorities for character CPU draws; no opponent hidden data.
 export const CHARACTER_PLANS=Object.freeze({
   "kurojo": {
+    "style": "grave",
     "setup": [
+      "dmd04-005",
       "dmr01-056",
       "dm24ex1-028",
       "dm22rp1-017"
     ],
     "bridge": [
-      "dm23rp3-S03",
-      "dm16-044",
       "dm01-027",
       "dmex12-035",
-      "dm22ex2-016"
+      "dm24bd4-007"
     ],
     "engine": [
-      "dm14-s05"
+      "dm14-s05",
+      "dm23rp3-S03"
     ],
     "races": [
       "デーモン・コマンド"
     ]
   },
   "mimi": {
+    "style": "tribal",
     "setup": [
       "dm24ex1-086",
       "dm31-042",
@@ -42,6 +44,7 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "tenchi": {
+    "style": "evolve",
     "setup": [
       "dm14-040",
       "dmsd20-016",
@@ -62,6 +65,7 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "george": {
+    "style": "tribal",
     "setup": [
       "dm26-038",
       "dm30-043",
@@ -69,24 +73,25 @@ export const CHARACTER_PLANS=Object.freeze({
     ],
     "bridge": [
       "dm28-078",
-      "dmc52-003",
-      "dm22rp1-2A",
       "dm01-052",
       "dmr02-006",
       "dm05-024"
     ],
     "engine": [
-      "dmr06-024"
+      "dmr06-024",
+      "dmc52-003",
+      "dm22rp1-2A"
     ],
     "races": [
       "グレートメカオー"
     ]
   },
   "zakira": {
+    "style": "evolve",
     "setup": [
       "dmr01-056",
       "dm06-062",
-      "dm01-097",
+      "dm01-100",
       "dm24ex1-028"
     ],
     "bridge": [
@@ -104,13 +109,14 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "lucifer": {
+    "style": "gate",
     "setup": [
+      "dm24ex4-032",
       "dmrp17-073",
       "dmr15-007"
     ],
     "bridge": [
       "dmd30-003",
-      "dm24ex4-032",
       "dmr13-016",
       "dmr02-006",
       "dm01-052",
@@ -126,6 +132,7 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "kojiro": {
+    "style": "grave",
     "setup": [
       "dmbd10-009",
       "dm06-110",
@@ -134,19 +141,20 @@ export const CHARACTER_PLANS=Object.freeze({
     ],
     "bridge": [
       "dm23rp3-S03",
-      "dm23rp2-005",
       "dm22rp2-S5",
       "dm01-027",
       "dm01-039"
     ],
     "engine": [
-      "dmd33-002"
+      "dmd33-002",
+      "dm23rp2-005"
     ],
     "races": [
       "デーモン・コマンド"
     ]
   },
   "benchan": {
+    "style": "evolve",
     "setup": [
       "dm01-080",
       "dm01-083",
@@ -169,8 +177,10 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "butchake": {
+    "style": "ramp",
     "setup": [
       "dm25rp4-050",
+      "dm23rp2-045",
       "dm06-110",
       "dmsd17-014"
     ],
@@ -187,15 +197,17 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "hokaben": {
+    "style": "dragon",
     "setup": [
       "dmbd16-011",
       "dm06-062",
       "dmx11-012",
-      "dmsd17-014"
+      "dmsd17-014",
+      "dmex04-027",
+      "dmbd16-008"
     ],
     "bridge": [
-      "dm23rp4-010",
-      "dmex04-027"
+      "dm23rp4-010"
     ],
     "engine": [
       "dm38-003",
@@ -206,9 +218,9 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "yodel": {
+    "style": "ramp",
     "setup": [
       "dm24ex1-023",
-      "dmex12-074",
       "dmrp20-046",
       "dmbd10-009",
       "dm24bd5-010",
@@ -219,21 +231,23 @@ export const CHARACTER_PLANS=Object.freeze({
       "dmrp17-029"
     ],
     "engine": [
-      "dm25ex1-011"
+      "dm25ex1-011",
+      "dmex12-074"
     ],
     "races": [
       "スノーフェアリー"
     ]
   },
   "yomi": {
+    "style": "gate",
     "setup": [
       "dmd10-005",
-      "dmr11-039",
       "dmr08-055",
       "dm06-110",
       "dmsd17-014"
     ],
     "bridge": [
+      "dmrp16-085",
       "dmr10-034",
       "dm16-007",
       "dm24rp1-012"
@@ -247,6 +261,7 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "izumo": {
+    "style": "gods",
     "setup": [
       "dmbd10-010",
       "dmrp17-028",
@@ -267,6 +282,7 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "basara-final": {
+    "style": "invasion",
     "setup": [
       "dm26ex2-020",
       "dmex17-102",
@@ -288,17 +304,18 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "boltz": {
+    "style": "swarm",
     "setup": [
       "dmrp01-084",
       "dmrp01-024",
       "dm01-100",
       "dmrp19-084",
       "dmex16-068",
-      "dmbd16-011"
+      "dmrp06-025",
+      "dmex04-027"
     ],
     "bridge": [
-      "dmex04-027",
-      "dmrp17-029"
+      "dm22rp1-006"
     ],
     "engine": [
       "dmrp02-m02",
@@ -309,17 +326,18 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "cap": {
+    "style": "tribal",
     "setup": [
       "dmrp01-041",
       "dmrp12-077",
       "dmrp07-068",
+      "dmrp08-072",
+      "dmrp07-071",
       "dmrp17-073",
       "dmr09-021"
     ],
     "bridge": [
       "dmrp17-067",
-      "dmrp10-075",
-      "dm01-052",
       "dm05-024"
     ],
     "engine": [
@@ -330,7 +348,9 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "momo": {
+    "style": "ramp",
     "setup": [
+      "dm25ex1-011",
       "dmrp20-046",
       "dmsd17-014",
       "dm06-110",
@@ -338,7 +358,6 @@ export const CHARACTER_PLANS=Object.freeze({
     ],
     "bridge": [
       "dmex16-081",
-      "dm25ex1-011",
       "dmrp18-011",
       "dmrp17-029"
     ],
@@ -352,6 +371,7 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "hyde": {
+    "style": "evolve",
     "setup": [
       "dm01-080",
       "dm27-041",
@@ -374,6 +394,7 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "himiko": {
+    "style": "spell",
     "setup": [
       "dm29-017",
       "dm11-043",
@@ -393,6 +414,7 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "zero": {
+    "style": "grave",
     "setup": [
       "dmrp04m-014",
       "dmrp04m-049",
@@ -414,6 +436,7 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "abaku": {
+    "style": "pressure",
     "setup": [
       "dmrp14-003",
       "dmex16-068",
@@ -435,6 +458,7 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "gendle": {
+    "style": "ramp",
     "setup": [
       "dmbd10-010",
       "dmrp17-028",
@@ -454,6 +478,7 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "ugata": {
+    "style": "grave",
     "setup": [
       "dm24ex1-028",
       "dm23rp3-013",
@@ -476,6 +501,7 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "boy": {
+    "style": "tribal",
     "setup": [
       "dm24rp4-053",
       "dm23rp4-033",
@@ -498,6 +524,7 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "karen": {
+    "style": "tribal",
     "setup": [
       "dm25ex1-061",
       "dm23rp4-055",
@@ -519,9 +546,11 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "fargo": {
+    "style": "ramp",
     "setup": [
       "dm25rp4-050",
       "dm23rp3-013",
+      "dm23rp2-045",
       "dmsd17-014"
     ],
     "bridge": [
@@ -538,6 +567,7 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "issa": {
+    "style": "spell",
     "setup": [
       "dm23ex1-074",
       "dm23rp2-013",
@@ -559,6 +589,7 @@ export const CHARACTER_PLANS=Object.freeze({
     ]
   },
   "kaiza-final": {
+    "style": "dragon",
     "setup": [
       "dmbd16-011",
       "dm23sd1-014",
