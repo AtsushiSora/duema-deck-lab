@@ -1,0 +1,110 @@
+{
+  "phase": 229,
+  "checkedAt": "2026-10-31",
+  "description": "相手の手札の呪文面の文明を確認して一括破棄する2種類。全能力文・印刷マナ数を公式照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm06-045",
+      "name": "レイン・アロー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-045",
+      "faces": [
+        {
+          "name": "レイン・アロー",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手の手札を見て、その中から闇の呪文をすべて選び出し、持ち主の墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "InspectHand",
+            "g223Inspect": true,
+            "discard": true,
+            "filter": {
+              "g228Face": {
+                "type": "spell",
+                "color": "闇"
+              }
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-045.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "46e3bfd6604b2214a107ff3c0198f34b096d31fce00a07049470d977f99a76e1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc27-022",
+      "name": "レインボー・アロー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc27-022",
+      "faces": [
+        {
+          "name": "レインボー・アロー",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手の手札を見る。その中から光の呪文以外の呪文をすべて捨てさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "InspectHand",
+            "g223Inspect": true,
+            "discard": true,
+            "filter": {
+              "g228Face": {
+                "type": "spell",
+                "exceptColor": "光"
+              }
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc27-022.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "17210995538d0f2735a74cb7e71c01f7812f5dc23037c6d1469a43e32540da3c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm06-045": 4,
+      "dmc27-022": 4
+    }
+  }
+}

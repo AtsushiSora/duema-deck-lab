@@ -1,0 +1,412 @@
+{
+  "phase": 237,
+  "checkedAt": "2026-10-31",
+  "description": "登場時と攻撃時に使う能力、闇・アビス指定の墓地展開。全能力文・印刷マナ数を公式照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp3-057",
+      "name": "アメンボギー・ストライダー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-057",
+      "faces": [
+        {
+          "name": "アメンボギー・ストライダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時または攻撃する時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "ジャイアント・インセクト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-057.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "7fc88794f082eed78c914bae5e798740c985fa507622c4c97cb3fdd72ee01310",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2-062",
+      "name": "ド:ニーワ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-062",
+      "faces": [
+        {
+          "name": "ド:ニーワ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが出た時または攻撃する時、コスト３以下のアビス・クリーチャーを１体、自分の墓地から出してもよい。",
+          "race": "ノワールアビス",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "max": 3,
+              "race": "アビス"
+            },
+            "optional": true,
+            "title": "墓地から出すクリーチャーを1体選ぶ"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "max": 3,
+              "race": "アビス"
+            },
+            "optional": true,
+            "title": "墓地から出すクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-062.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "7b263c43ded857a75336a8208f50dbc15860eb29e397de66767c3c2dd875078a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04m-s05",
+      "name": "ハインリヒ・ダーマルク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-s05",
+      "faces": [
+        {
+          "name": "ハインリヒ・ダーマルク",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、自分の山札の上から１枚目を墓地に置いてもよい。そうしたら、闇のコスト４以下のクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+          "race": "マフィ・ギャング",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g186GraveMill": true,
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 1
+              },
+              {
+                "op": "Select",
+                "origin": "grave",
+                "n": 1,
+                "deploy": true,
+                "g236GraveDeploy": true,
+                "filter": {
+                  "creature": true,
+                  "max": 4,
+                  "color": "闇"
+                },
+                "optional": false,
+                "title": "墓地から出すクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "g186GraveMill": true,
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 1
+              },
+              {
+                "op": "Select",
+                "origin": "grave",
+                "n": 1,
+                "deploy": true,
+                "g236GraveDeploy": true,
+                "filter": {
+                  "creature": true,
+                  "max": 4,
+                  "color": "闇"
+                },
+                "optional": false,
+                "title": "墓地から出すクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04m-s05.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "19d570618836909b05dd34b4a6d08c921ed116f4917f641f7aba7a5dfa0ac3ce",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-053",
+      "name": "ぽぽどーどー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-053",
+      "faces": [
+        {
+          "name": "ぽぽどーどー",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "NEO進化：自分の自然のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-053.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "b409dbef3c7b77dbf11a46912ff909cd8abe8dbcb5fdae8cc7346d80800c7703",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-008",
+      "name": "悪剣連結 ダブルソード・レッド・アウゼス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-008",
+      "faces": [
+        {
+          "name": "悪剣連結 ダブルソード・レッド・アウゼス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nW・ブレイカー\nこのクリーチャーが出た時または攻撃する時、相手の手札を２枚見ないで選び、捨てさせる。",
+          "race": "ディスペクター/デーモン・コマンド/アーマード・ドラゴン",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "exLife": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 2,
+            "random": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "n": 2,
+            "random": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-008.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "4ea44cbe468e49d957599789b0d83a003c8876a402f1c7ac93313721c1b36108",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-032",
+      "name": "奇石 タトイズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-032",
+      "faces": [
+        {
+          "name": "奇石 タトイズ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "NEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、クリーチャーを１体選び、タップしてもよい。",
+          "race": "メタリカ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true,
+            "anyOwner": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true,
+            "anyOwner": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-032.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "b02c330265c3c43434dab15da1015fb0d33b6c7720f81d556f3171e3a5d060ca",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp1-015",
+      "name": "電磁麗姫ガルリー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-015",
+      "faces": [
+        {
+          "name": "電磁麗姫ガルリー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー\nジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\nこのクリーチャーが出た時または攻撃する時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "スプラッシュ・クイーン/サイバーロード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "justDiver": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-015.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "18c02e314bc089ac1c66411d278397dc2805d0166210d05020483dde159a704b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp3-057": 4,
+      "dm23rp2-062": 4,
+      "dmrp04m-s05": 4,
+      "dmrp02-053": 4,
+      "dmrp17-008": 4,
+      "dmrp01-032": 4,
+      "dm26rp1-015": 4
+    }
+  }
+}

@@ -19,7 +19,7 @@ export function createUtilityExpansionRules(api){
  case'g54_Fortune':if(s.players[1-t.p].shields.length<=3)put(s,task('g34_Draw',t.p,t.source,{n:2,optional:true}));break;
  default:throw Error('未実装の追加ユーティリティ効果：'+t.op);
  }return true;}
- function chosen(s,t,v){if(t.op==='g55_ShieldHand'){const moved=api.moveShield(s,t.p,v,'hand');api.log(s,t.p,'shieldHand',card(t.source).name+'：シールド1つ（カード'+moved.length+'枚）を手札へ加えた（S・トリガーは使えない）',{cardId:t.source});return true;}if(t.op!=='g54_Search')return false;const own=s.players[t.p],x=v&&own.deck.find(x=>x.uid===v);if(x){api.remove(own.deck,x.uid);api.log(s,t.p,'reveal',card(t.source).name+'で公開：'+card(x).name,{cardId:x.cardId});api.clear(x,t.top?'deck':'hand');}
+ function chosen(s,t,v){if(t.op==='g55_ShieldHand'){const moved=api.moveShield(s,t.p,v,'hand',{noST:!!t.g238ShieldHand});api.log(s,t.p,'shieldHand',card(t.source).name+'：シールド1つ（カード'+moved.length+'枚）を手札へ加えた（S・トリガーは使えない）',{cardId:t.source});return true;}if(t.op!=='g54_Search')return false;const own=s.players[t.p],x=v&&own.deck.find(x=>x.uid===v);if(x){api.remove(own.deck,x.uid);api.log(s,t.p,'reveal',card(t.source).name+'で公開：'+card(x).name,{cardId:x.cardId});api.clear(x,t.top?'deck':'hand');}
   if(x&&!t.top)api.addZone(s,t.p,'hand',x);api.shuffleLibrary(s,t.p,[],t.source);if(x&&t.top)own.deck.unshift(x);api.deckCheck(s,t.p);return true;
  }
  return{run,chosen,

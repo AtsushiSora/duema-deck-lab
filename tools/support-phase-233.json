@@ -1,0 +1,423 @@
+{
+  "phase": 233,
+  "checkedAt": "2026-10-31",
+  "description": "登場時と離れた時の両方で同じ能力が誘発する8種類。全能力文・印刷マナ数を公式照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp1-069",
+      "name": "オールトザウルス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-069",
+      "faces": [
+        {
+          "name": "オールトザウルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、または離れた時、相手のパワー3000以下のクリーチャーを１体選び、破壊する。",
+          "race": "ロック・ビースト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-069.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "ae7e538135f788272c733582d0b35eff3928df953cfc47d4903b157fa2843fad",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-015",
+      "name": "シャンデリア＝ベリア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-015",
+      "faces": [
+        {
+          "name": "シャンデリア＝ベリア",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時または離れた時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを-4000する。",
+          "race": "アビスロイヤル",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "abyssRush": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -4000
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Target",
+            "power": -4000
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-015.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "921be904d8e9a919efe82f930082ba870a7217d8d272b2116789aa2ebfc48a7f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp3-060",
+      "name": "ビーチボーイズ・Ⅱ・メン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-060",
+      "faces": [
+        {
+          "name": "ビーチボーイズ・Ⅱ・メン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時または離れた時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "ジョーカーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-060.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "13b605c6f2d7b196e4f5480046bd2a0b2daa321fc1d6aefd0f2c61b665dbefca",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp2-058",
+      "name": "宇宙 バリアスキー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-058",
+      "faces": [
+        {
+          "name": "宇宙 バリアスキー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時または離れた時、相手のクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+          "race": "マジック・コマンド/S級侵略者",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "hand",
+            "optional": true
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Target",
+            "to": "hand",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-058.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "6217aaa3eb6d3f781427cd4dbfa0835e427f83a4b5f89d1b2d6fa132545535f8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-063",
+      "name": "汽球男",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-063",
+      "faces": [
+        {
+          "name": "汽球男",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、または離れた時、相手は自身の手札を１枚選び、捨てる。",
+          "race": "ヘドリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-063.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "613bc0e32447ab8d6c17c901cb603d79faf44321dc646c695033e556560c878b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-033",
+      "name": "二角魚",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-033",
+      "faces": [
+        {
+          "name": "二角魚",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、または離れた時、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "フィッシュ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "hand",
+            "title": "手札に戻す相手のクリーチャーを1体選ぶ"
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "hand",
+            "title": "手札に戻す相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-033.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "10502b2814460a7a3e014345f088b0ab7c8f6d3fcf62c970820ebbf0b57302b4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-049",
+      "name": "熱愛妖精バニタス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-049",
+      "faces": [
+        {
+          "name": "熱愛妖精バニタス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、または離れた時、自分の山札の上から１枚目をタップしてマナゾーンに置く。",
+          "race": "スノーフェアリー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "tapped": true
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "tapped": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-049.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "b6ab27e77c8d9af04d15cddb3620042ee29035cea84e60e7035d3c57f99a3ea9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-054",
+      "name": "予言者ケイス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-054",
+      "faces": [
+        {
+          "name": "予言者ケイス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、または離れた時、相手のクリーチャーを１体選び、タップする。",
+          "race": "ライトブリンガー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを1体選ぶ"
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-054.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "85d2629e44f86c8742beb563a967bb5828355ecb7b0fdb9076fc5e6bd0239f72",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp1-069": 4,
+      "dm22rp1-015": 4,
+      "dm26rp3-060": 4,
+      "dm26rp2-058": 4,
+      "dm24rp1-063": 4,
+      "dm24rp1-033": 4,
+      "dm24rp1-049": 4,
+      "dm24rp1-054": 4
+    }
+  }
+}

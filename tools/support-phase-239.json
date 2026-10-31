@@ -1,0 +1,411 @@
+{
+  "phase": 239,
+  "checkedAt": "2026-10-31",
+  "description": "自分のシールドを墓地に置く能力。全能力文・印刷マナ数を公式照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp04s-031",
+      "name": "セツナノ裁徒",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-031",
+      "faces": [
+        {
+          "name": "セツナノ裁徒",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。\nこのクリーチャーがバトルゾーンを離れた時、自分のシールドを１つ、墓地に置く。",
+          "race": "メタリカ/サバキスト",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "ShieldGrave",
+            "g239ShieldGrave": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-031.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "711a44a2a2d7dd86bca719fa5b213b452bda9e5de771be18a734c6c668b9c78a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-066",
+      "name": "ボルカニック・ランス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-066",
+      "faces": [
+        {
+          "name": "ボルカニック・ランス",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー6000以下のクリーチャーを１体破壊する。\n自分のシールドをひとつ選び、墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 6000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "ShieldGrave",
+            "g239ShieldGrave": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-066.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "486b6bb59f30f569a1915c816c7f2aac931506e5825848e78cd585e00e93b7ad",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-071",
+      "name": "ロウゴク童子",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-071",
+      "faces": [
+        {
+          "name": "ロウゴク童子",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーが出た時、自分のシールドを１つ墓地に置く。",
+          "race": "デモニオ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldGrave",
+            "g239ShieldGrave": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-071.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "1846bf61b07068db1fbe25a4ae04eadb31cbf4d5cb822786e4df58f45ed11f5d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr12-012",
+      "name": "阿弥陀ハンド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-012",
+      "faces": [
+        {
+          "name": "阿弥陀ハンド",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のシールドをひとつ墓地に置く。\n相手のクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldGrave",
+            "g239ShieldGrave": true
+          },
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "grave",
+            "title": "破壊する相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr12-012.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "f7fdce68f3b5d18132c1f27307c2f7fc9da9213bb2e0f9a37c15790332b1ee18",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-063",
+      "name": "聖邪を汲むミズドリ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-063",
+      "faces": [
+        {
+          "name": "聖邪を汲むミズドリ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分のシールドを１つ墓地に置く。\n自分のターンの終わりに、このクリーチャーをアンタップする。",
+          "race": "エンジェル・コマンド/デーモン・コマンド/月光王国",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g166EndUntap": true,
+        "g34Attack": [
+          {
+            "op": "ShieldGrave",
+            "g239ShieldGrave": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-063.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "75c418eddf29dc49dfec9b42c1bf6e0959185489e806518964ab91c71e765acf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm02-012",
+      "name": "魔将ダーク・フリード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-012",
+      "faces": [
+        {
+          "name": "魔将ダーク・フリード",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃するとき、自分のシールドを１枚選び、自分の墓地に置く。\nW(ダブル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする。)",
+          "race": "ダークロード",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "ShieldGrave",
+            "g239ShieldGrave": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm02-012.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "bd77539f5408d2d7dc553f907c8204f88ca6e7855fdf1c52f19f14e4cc0b316c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp15-074",
+      "name": "無慈悲な取り立て",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-074",
+      "faces": [
+        {
+          "name": "無慈悲な取り立て",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手のクリーチャーを１体破壊する。\n自分のシールドを１つ、墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "grave",
+            "title": "破壊する相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "ShieldGrave",
+            "g239ShieldGrave": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-074.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "f7f67264a76482fc150a09ca6b97c90e14388c8e917f99e9180777548e802f66",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm32-044",
+      "name": "黙示聖獣カラドリウス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-044",
+      "faces": [
+        {
+          "name": "黙示聖獣カラドリウス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を、裏向きのまま自分のシールドゾーンに加えてもよい。\nこのクリーチャーがバトルゾーンを離れた時、自分のシールドを１枚墓地に置く。",
+          "race": "ライトブリンガー/シャイン・モンスター/オリジン",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "ShieldGrave",
+            "g239ShieldGrave": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-044.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "b09603c1e096378e49affab1d6c0bea8a75d0b7586e26987a4ea7a3b5ac903a7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm32-091",
+      "name": "妖蟲闘竜ベノム・ドラグーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-091",
+      "faces": [
+        {
+          "name": "妖蟲闘竜ベノム・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが破壊された時、自分のシールドを１枚墓地に置く。",
+          "race": "パラサイトワーム/ティラノ・ドレイク",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "ShieldGrave",
+            "g239ShieldGrave": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-091.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "1b0a3615f7fc75f254b6aa8fd5a40f0e01d4075535873a91ec4a211b30f24de8",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp04s-031": 4,
+      "dmr18-066": 4,
+      "dm24rp4-071": 4,
+      "dmr12-012": 4,
+      "dmex14-063": 4,
+      "dm02-012": 4,
+      "dmrp15-074": 4,
+      "dm32-044": 4,
+      "dm32-091": 4
+    }
+  }
+}

@@ -1,3 +1,24 @@
+import {STANDARD244_DECK} from './fixtures/standard244.mjs';
+import {STANDARD243_DECK} from './fixtures/standard243.mjs';
+import {STANDARD242_DECK} from './fixtures/standard242.mjs';
+import {STANDARD241_DECK} from './fixtures/standard241.mjs';
+import {STANDARD240_DECK} from './fixtures/standard240.mjs';
+import {STANDARD239_DECK} from './fixtures/standard239.mjs';
+import {STANDARD238_DECK} from './fixtures/standard238.mjs';
+import {STANDARD237_DECK} from './fixtures/standard237.mjs';
+import {STANDARD236_DECK} from './fixtures/standard236.mjs';
+import {STANDARD235_DECK} from './fixtures/standard235.mjs';
+import {STANDARD234_DECK} from './fixtures/standard234.mjs';
+import {STANDARD233_DECK} from './fixtures/standard233.mjs';
+import {STANDARD232_DECK} from './fixtures/standard232.mjs';
+import {STANDARD231_DECK} from './fixtures/standard231.mjs';
+import {STANDARD230_DECK} from './fixtures/standard230.mjs';
+import {STANDARD229_DECK} from './fixtures/standard229.mjs';
+import {STANDARD228_DECK} from './fixtures/standard228.mjs';
+import {STANDARD227_DECK} from './fixtures/standard227.mjs';
+import {STANDARD226_DECK} from './fixtures/standard226.mjs';
+import {STANDARD225_DECK} from './fixtures/standard225.mjs';
+import {STANDARD224_DECK} from './fixtures/standard224.mjs';
 import {STANDARD223_DECK} from './fixtures/standard223.mjs';
 import {STANDARD222_DECK} from './fixtures/standard222.mjs';
 import {STANDARD221_DECK} from './fixtures/standard221.mjs';
@@ -414,3 +435,45 @@ if(validateDeck(STANDARD221_DECK).length||registry.coverage(STANDARD221_DECK).un
 if(validateDeck(STANDARD222_DECK).length||registry.coverage(STANDARD222_DECK).unsupported||STANDARD222_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error("第222段階の40枚を確認してください");console.log("Checked phase222 forty-card deck: seven spell-tax creatures supported.");
 
 if(validateDeck(STANDARD223_DECK).length||registry.coverage(STANDARD223_DECK).unsupported||STANDARD223_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error("第223段階の40枚を確認してください");console.log("Checked phase223 forty-card deck: eight hand-inspection cards supported.");
+
+if(validateDeck(STANDARD224_DECK).length||registry.coverage(STANDARD224_DECK).unsupported||STANDARD224_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第224段階の40枚を確認してください');console.log('Checked phase224 forty-card deck: seven compulsory-attack creatures supported.');
+
+if(validateDeck(STANDARD225_DECK).length||registry.coverage(STANDARD225_DECK).unsupported||STANDARD225_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第225段階の40枚を確認してください');console.log('Checked phase225 forty-card deck: nine conditional attackers supported.');
+
+if(validateDeck(STANDARD226_DECK).length||registry.coverage(STANDARD226_DECK).unsupported||STANDARD226_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第226段階の40枚を確認してください');console.log('Checked phase226 forty-card deck: eight stealth creatures and their evolution bases supported.');
+
+if(validateDeck(STANDARD227_DECK).length||registry.coverage(STANDARD227_DECK).unsupported||STANDARD227_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第227段階の40枚を確認してください');console.log('Checked phase227 forty-card deck: five conditional attack and block protections supported.');
+
+if(validateDeck(STANDARD228_DECK).length||registry.coverage(STANDARD228_DECK).unsupported||STANDARD228_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第228段階の40枚を確認してください');console.log('Checked phase228 forty-card deck: six typed recovery and attack-trigger cards supported.');
+
+if(validateDeck(STANDARD229_DECK).length||registry.coverage(STANDARD229_DECK).unsupported||STANDARD229_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第229段階の40枚を確認してください');console.log('Checked phase229 forty-card deck: two color-filtered spell discard cards supported.');
+
+if(validateDeck(STANDARD230_DECK).length||registry.coverage(STANDARD230_DECK).unsupported||STANDARD230_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第230段階の40枚を確認してください');console.log('Checked phase230 forty-card deck: mana summoning and two all-color mana creatures supported.');
+
+if(validateDeck(STANDARD231_DECK).length||registry.coverage(STANDARD231_DECK).unsupported||STANDARD231_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第231段階の40枚を確認してください');console.log('Checked phase231 forty-card deck: six entry tap and bounce creatures supported.');
+
+if(validateDeck(STANDARD232_DECK).length||registry.coverage(STANDARD232_DECK).unsupported||STANDARD232_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第232段階の40枚を確認してください');console.log('Checked phase232 forty-card deck: four return, non-dragon removal and blocker-bounce cards supported.');
+
+if(validateDeck(STANDARD233_DECK).length||registry.coverage(STANDARD233_DECK).unsupported||STANDARD233_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第233段階の40枚を確認してください');console.log('Checked phase233 forty-card deck: eight entry and leave trigger creatures supported.');
+
+if(validateDeck(STANDARD234_DECK).length||registry.coverage(STANDARD234_DECK).unsupported||STANDARD234_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第234段階の40枚を確認してください');console.log('Checked phase234 forty-card deck: entry and own-start draw creatures supported.');
+
+if(validateDeck(STANDARD235_DECK).length||registry.coverage(STANDARD235_DECK).unsupported||STANDARD235_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第235段階の40枚を確認してください');console.log('Checked phase235 forty-card deck: selected tap/untap, block and own-end untap.');
+
+if(validateDeck(STANDARD236_DECK).length||registry.coverage(STANDARD236_DECK).unsupported||STANDARD236_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第236段階の40枚を確認してください');console.log('Checked phase236 forty-card deck: eight grave-deployment cards supported.');
+
+if(validateDeck(STANDARD237_DECK).length||registry.coverage(STANDARD237_DECK).unsupported||STANDARD237_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第237段階の40枚を確認してください');console.log('Checked phase237 forty-card deck: seven entry-and-attack creatures supported.');
+
+if(validateDeck(STANDARD238_DECK).length||registry.coverage(STANDARD238_DECK).unsupported||STANDARD238_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第238段階の40枚を確認してください');console.log('Checked phase238 forty-card deck: nine shield-to-hand cards supported.');
+
+if(validateDeck(STANDARD239_DECK).length||registry.coverage(STANDARD239_DECK).unsupported||STANDARD239_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第239段階の40枚を確認してください');console.log('Checked phase239 forty-card deck: nine self shield-to-grave cards supported.');
+
+if(validateDeck(STANDARD240_DECK).length||registry.coverage(STANDARD240_DECK).unsupported||STANDARD240_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第240段階の40枚を確認してください');console.log('Checked phase240 forty-card deck: eleven effect-battle cards supported.');
+
+if(validateDeck(STANDARD241_DECK).length||registry.coverage(STANDARD241_DECK).unsupported||STANDARD241_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第241段階の40枚を確認してください');console.log('Checked phase241 forty-card deck: six power boost and battle cards supported.');
+
+if(validateDeck(STANDARD242_DECK).length||registry.coverage(STANDARD242_DECK).unsupported||STANDARD242_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第242段階の40枚を確認してください');console.log('Checked phase242 forty-card deck: eleven targeted power-reduction cards supported.');
+
+if(validateDeck(STANDARD243_DECK).length||registry.coverage(STANDARD243_DECK).unsupported||STANDARD243_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第243段階の40枚を確認してください');console.log('Checked phase243 forty-card deck: five continuous power-reduction creatures supported.');
+
+if(validateDeck(STANDARD244_DECK).length||registry.coverage(STANDARD244_DECK).unsupported||STANDARD244_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第244段階の40枚を確認してください');console.log('Checked phase244 forty-card deck: seven whole-hand discard creatures and seed supported.');

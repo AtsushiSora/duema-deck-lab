@@ -1,0 +1,310 @@
+{
+  "phase": 228,
+  "checkedAt": "2026-10-30",
+  "description": "文明・種類・コストを実際の面ごとに確認する墓地回収と旧表記の攻撃時能力。全能力文・印刷マナ数を公式照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dm03-024",
+      "name": "キング・ボニータス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-024",
+      "faces": [
+        {
+          "name": "キング・ボニータス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーが攻撃するとき、自分の山札を見る。その中から水のカードを１枚選び、相手に見せてから自分の手札に加えてよい。その後、山札をシャッフルする。",
+          "race": "リヴァイアサン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "anyFaceColor": "水"
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm03-024.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "afb62ad3f05207d8d049c1db0438a455e52c6cfd0767e780629638d0b311dc4b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-094",
+      "name": "旧知との遭遇",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-094",
+      "faces": [
+        {
+          "name": "旧知との遭遇",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n闇のクリーチャーを２体まで、自分の墓地から手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 2,
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "color": "闇"
+              }
+            },
+            "optional": true,
+            "title": "手札に戻す墓地の闇のクリーチャーを2体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-094.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "bbec0402ced918464bdf7173b071562c928954506fc6faeedaf2312fe752ac17",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-037",
+      "name": "聖騎士リーンカーネル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-037",
+      "faces": [
+        {
+          "name": "聖騎士リーンカーネル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、クロスギアを１枚、自分の墓地から自分の手札に戻してもよい。",
+          "race": "レインボー・ファントム",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "gear"
+              }
+            },
+            "optional": true,
+            "title": "手札に戻す墓地のクロスギアを1枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-037.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "b972cf32f37cb5d226d40288540235e8998da658e8f6150e7f66f0a7d0718675",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm03-012",
+      "name": "憎悪の騎士ガミル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-012",
+      "faces": [
+        {
+          "name": "憎悪の騎士ガミル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃するとき、自分の墓地から闇のクリーチャーを１体選び、自分の手札に戻してよい。",
+          "race": "デーモン・コマンド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "color": "闇"
+              }
+            },
+            "optional": true,
+            "title": "手札に戻す墓地の闇のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm03-012.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "10cfc6db77bed2fc26e7da8ac049dbd8a25e8dcb8997bbb0175a15b2ed41467e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr15-035",
+      "name": "白夜の翼 ノワル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-035",
+      "faces": [
+        {
+          "name": "白夜の翼 ノワル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、光のコスト３以下のクリーチャーを１体、自分の墓地から手札に戻してもよい。",
+          "race": "ジャスティス・ウイング",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "color": "光",
+                "max": 3
+              }
+            },
+            "optional": true,
+            "title": "手札に戻す墓地の光のコスト3以下のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-035.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "4f42f71fd279c61fd1b8e4916be67ac734020ee5775a71d9662bb84f319eb531",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm03-021",
+      "name": "雷電の求道者ラ・ビュー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-021",
+      "faces": [
+        {
+          "name": "雷電の求道者ラ・ビュー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃するとき、自分の墓地から光の呪文を１枚、自分の手札に戻してよい。",
+          "race": "メカサンダー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "spell",
+                "color": "光"
+              }
+            },
+            "optional": true,
+            "title": "手札に戻す墓地の光の呪文を1枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm03-021.jpg",
+      "verification": {
+        "checkedAt": "2026-10-30",
+        "sha256": "63077940d5b7f2bc6abe0e909f5dcf1278a1173fffab73587861d195d9d7879f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-30",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm03-024": 4,
+      "dmr13-094": 4,
+      "dm16-037": 4,
+      "dm03-012": 4,
+      "dmr15-035": 4,
+      "dm03-021": 4
+    }
+  }
+}

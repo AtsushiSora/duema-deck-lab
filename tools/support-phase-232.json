@@ -1,0 +1,186 @@
+{
+  "phase": 232,
+  "checkedAt": "2026-10-31",
+  "description": "自身を含む味方の手札戻し、マナ回収、ドラゴン以外の除去、ブロッカーの一括手札戻し。全能力文・印刷マナ数を公式照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dmr13-050",
+      "name": "アクア忍者 ライヤ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-050",
+      "faces": [
+        {
+          "name": "アクア忍者 ライヤ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分のクリーチャーを１体、バトルゾーンから手札に戻す。",
+          "race": "リキッド・ピープル閃",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "hand"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-050.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "47bf1b14a67cf8c00db59bd519aaf444de7335e0091c4e00a792de2d668f5ddd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx21-052",
+      "name": "黄昏地獄拳",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-052",
+      "faces": [
+        {
+          "name": "黄昏地獄拳",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "カードを２枚引く。\nバトルゾーンにある「ブロッカー」を持つクリーチャーをすべて持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "hand",
+            "filter": {
+              "creature": true,
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx21-052.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "8147524d200749232a13fb74d8842108a7e23b0d851e236af2fa80c5569fcfea",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm05-043",
+      "name": "岩肌魚",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-043",
+      "faces": [
+        {
+          "name": "岩肌魚",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、自分のマナゾーンから１枚選び、自分の手札に戻す。",
+          "race": "フィッシュ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "g232ManaReturn": true,
+            "title": "手札に戻すマナを1枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm05-043.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "9b1bf7358c760bfa3ba34f47613e8a3a8b3c99a3597b8cbe203981a9081efcb5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-070",
+      "name": "古龍の罠",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-070",
+      "faces": [
+        {
+          "name": "古龍の罠",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトルゾーンにある相手の、ドラゴン以外のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "filter": {
+              "notRace": "ドラゴン"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-070.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "244a23f82af4fcdfe3f0ea1ca6885fd9aeb0cf36c2f0ce3b849798b586cde5ce",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr13-050": 4,
+      "dmx21-052": 4,
+      "dm05-043": 4,
+      "dmr13-070": 4
+    }
+  }
+}

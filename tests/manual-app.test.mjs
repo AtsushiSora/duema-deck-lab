@@ -382,3 +382,30 @@ test('phone landscape uses the desktop controls and rotation preserves the hand 
  h.read("window.matchMedia=q=>({matches:q===PHONE_LANDSCAPE_QUERY||q==='(max-width: 850px)'});render()");
  const a=e.getLegalActions(s).find(a=>a.kind==='charge'&&a.uid===uid);await h.click('battle-step',{index:String(a.id)});assert.equal(s.actions,before.actions+1);assert.equal(s.phase,'main');assert.equal(h.read('manualUI.landscape'),true);
 });
+
+test('Hyper activation is visible in the own-field header and card status without opening the extra-actions menu',async()=>{
+ for(const mobile of[true,false]){const s=setup();give(s,0,'battle',['dm24rp1-S05','dm01-108']);const [source,ally]=s.players[0].battle,h=harness(s,{mobile}),before=structuredClone(s);
+  assert.match(h.root.innerHTML,/data-action="manual-hyper-methods"/);assert.match(h.root.innerHTML,/aria-label="ハイパー化"/);
+  await h.click('manual-hyper-methods');assert.match(h.read('dialog.innerHTML'),/ハイパー化するクリーチャーを選ぶ/);assert.match(h.read('dialog.innerHTML'),/超霊淵 ヤバーダン＝ロウをハイパー化する/);assert.deepEqual(s,before);
+  await h.click('manual-creature',{uid:source.uid,player:'0'});assert.match(h.read('dialog.innerHTML'),/>ハイパー化する</);assert.deepEqual(s,before);
+  const a=e.getLegalActions(s).find(a=>a.kind==='hyper');await h.click('battle-step',{index:String(a.id)});assert.equal(s.decision.task.op,'hyperCost');assert.equal(source.hyperActive,undefined);assert.equal(ally.tapped,false);
+  const select=e.getLegalActions(s).find(a=>s.decision.choices[a.choice].value===ally.uid);await h.click('battle-step',{index:String(select.id)});assert.equal(ally.tapped,true);assert.equal(source.tapped,false);assert.equal(e.power(source,false,s),9000);assert.equal(source.hyperActive,true);assert.doesNotMatch(h.root.innerHTML,/data-action="manual-hyper-methods"/);
+  await h.click('manual-status',{uid:source.uid,player:'0'});assert.match(h.read('dialog.innerHTML'),/ハイパーモード解放中/);assert.doesNotMatch(h.read('dialog.innerHTML'),/>ハイパー化する</);
+ }
+});
+
+test('Hyper card status explains unavailable costs, phases, and ignored abilities using legal actions',async()=>{
+ for(const mode of['alone','tappedAlly','seedAlly','sealedAlly','opponent','attack','charge','ignored','sealed']){const s=setup();give(s,0,'battle',['dm24rp1-S05','dm01-108']);const [source,ally]=s.players[0].battle;
+  if(mode==='alone')s.players[0].battle.pop();if(mode==='tappedAlly')ally.tapped=true;if(mode==='seedAlly')ally.cardId='dmrp21-006';if(mode==='sealedAlly')ally.sealed=true;
+  if(mode==='opponent')s.active=1;if(['attack','charge'].includes(mode))s.phase=mode;if(mode==='ignored')give(s,1,'battle',['dmrp15-km1']);if(mode==='sealed')source.sealed=true;
+  const h=harness(s,{mobile:true}),before=structuredClone(s);assert.doesNotMatch(h.root.innerHTML,/data-action="manual-hyper-methods"/);await h.click('manual-status',{uid:source.uid,player:'0'});
+  assert.match(h.read('dialog.innerHTML'),mode==='ignored'?/能力が無視/:mode==='sealed'?/封印中/:mode==='opponent'?/自分のターン/:['attack','charge'].includes(mode)?/召喚・呪文のステップ/:/現在0体/);assert.doesNotMatch(h.read('dialog.innerHTML'),/>ハイパー化する</);assert.deepEqual(s,before);
+ }
+});
+
+test('OVER Hyper uses the same visible entry and requires both distinct allies before tapping',async()=>{
+ const s=setup();give(s,0,'battle',['dm24rp2-OR1','dm01-108','dm01-097']);const [source,a,b]=s.players[0].battle,h=harness(s,{mobile:true});assert.match(h.root.innerHTML,/data-action="manual-hyper-methods"/);
+ await h.click('manual-status',{uid:source.uid,player:'0'});assert.match(h.read('dialog.innerHTML'),/>OVERハイパー化する</);let action=e.getLegalActions(s).find(a=>a.kind==='hyper');await h.click('battle-step',{index:String(action.id)});
+ action=e.getLegalActions(s).find(x=>s.decision.choices[x.choice].value===a.uid);await h.click('battle-step',{index:String(action.id)});assert.equal(a.tapped,false);assert.equal(b.tapped,false);assert.ok(!source.hyperActive);
+ action=e.getLegalActions(s).find(x=>s.decision.choices[x.choice].value===b.uid);await h.click('battle-step',{index:String(action.id)});assert.ok(source.hyperActive);assert.ok(a.tapped&&b.tapped);assert.equal(source.tapped,false);
+});
