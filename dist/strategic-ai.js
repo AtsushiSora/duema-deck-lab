@@ -1,7 +1,7 @@
-import {legendProfile,legendKeepBonus} from './legend-strategy.js?v=0.330.0';
+import {legendProfile,legendKeepBonus} from './legend-strategy.js?v=0.331.0';
 // Bounded planning over public positions. Unknown cards stay unknown: no actual
 // deck order, shields, opponent hand, game seed or game RNG enters this module.
-import {heroCardRole} from './hero-draw.js?v=0.330.0';
+import {heroCardRole} from './hero-draw.js?v=0.331.0';
 import {visibleFinishRoutes} from './attack-plan.js?v=0.147.0';
 export function createStrategicAI(api){
  const {card,faces,effective,power,isCreature,legal,step,rank:baseRank,observe,mark}=api;

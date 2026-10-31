@@ -4,13 +4,14 @@ const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 export function tournamentRandom(seed){let n=seed>>>0;return ()=>{n=(n+0x6D2B79F5)>>>0;let t=n;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return ((t^(t>>>14))>>>0)/4294967296;};}
 function shuffled(values,random){const a=[...values];for(let i=a.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function makeRound(ids,round,random){return Array.from({length:ids.length/2},(_,i)=>({id:`r${round}-m${i}`,players:ids.slice(i*2,i*2+2),seed:Math.floor(random()*4294967296),first:Math.floor(random()*2),winner:null,reason:''}));}
-export function selectTournamentParticipants({candidates,selected,size,seed,randomKeys=null}){
+export function selectTournamentParticipants({candidates,selected,size,seed,randomKeys=null,fallbackKeys=null}){
  if(!TOURNAMENT_SIZES.includes(size)||!Array.isArray(selected)||selected.length!==size)throw Error('参加数を確認してください');
  const byKey=new Map(candidates.map(c=>[c.key,c.deck])),fixed=selected.filter(k=>k!=null);
  if(fixed.some(k=>!byKey.has(k)))throw Error('選択したデッキを確認してください');
  if(new Set(fixed).size!==fixed.length)throw Error('同じ構成のデッキは重複して参加できません');
- const used=new Set(fixed),allowed=randomKeys===null?null:new Set(randomKeys),pool=shuffled(candidates.filter(c=>!used.has(c.key)&&(!allowed||allowed.has(c.key))),tournamentRandom(seed));
- const needed=size-fixed.length;if(pool.length<needed)throw Error('ランダム枠に使えるデッキは'+pool.length+'件です。参加数を減らすか、候補範囲を広げるか、枠ごとにデッキを選んでください');
+ const used=new Set(fixed),allowed=randomKeys===null?null:new Set(randomKeys),random=tournamentRandom(seed),pool=shuffled(candidates.filter(c=>!used.has(c.key)&&(!allowed||allowed.has(c.key))),random),needed=size-fixed.length;
+ if(pool.length<needed&&fallbackKeys!==null){const fallback=new Set(fallbackKeys),available=new Set([...used,...pool.map(c=>c.key)]);pool.push(...shuffled(candidates.filter(c=>fallback.has(c.key)&&!available.has(c.key)),random));}
+ if(pool.length<needed)throw Error('ランダム枠に使えるデッキは'+pool.length+'件です。参加数を減らすか、候補範囲を広げるか、枠ごとにデッキを選んでください');
  let i=0;return selected.map(k=>copy(k==null?pool[i++].deck:byKey.get(k)));
 }
 export function createLocalTournament({id,deck,opponents=[],participants=null,size=8,seed,first='random',mode='human'}){
