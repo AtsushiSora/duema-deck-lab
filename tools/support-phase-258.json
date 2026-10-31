@@ -1,0 +1,544 @@
+{
+  "phase": 258,
+  "checkedAt": "2026-10-31",
+  "description": "シビルカウントの登場時・攻撃時・呪文効果。同文明のクリーチャーとタマシードを重複なく合算し、解決時に閾値を確認する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa/41983/",
+    "https://dm.takaratomy.co.jp/rule/qa/42949/"
+  ],
+  "cards": [
+    {
+      "id": "dm22rp1-059",
+      "name": "♪古池や 蛙飛び込む スパイラル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-059",
+      "faces": [
+        {
+          "name": "♪古池や 蛙飛び込む スパイラル",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のクリーチャーを１体選び、持ち主の手札に戻す。\nシビルカウント ２：自分の水のクリーチャーまたは水のタマシードが合計２つ以上あれば、カードを１枚引く。",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "hand",
+            "title": "手札に戻す相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creatureOrSeed": true,
+              "color": "水",
+              "g258Civil": 2
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-059.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "f00accb4a81cded065e15a4f255e79ecdfe9d90fa91f1db4ca8c73c18b83b364",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22sd1-002",
+      "name": "カップ=ギャラップ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22sd1-002",
+      "faces": [
+        {
+          "name": "カップ=ギャラップ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nシビルカウント３：このクリーチャーが攻撃する時、自分の闇のクリーチャーまたは闇のタマシードが合計３つ以上あれば、相手のクリーチャーを１体破壊する。",
+          "race": "アビスロイヤル",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "abyssRush": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creatureOrSeed": true,
+              "color": "闇",
+              "g258Civil": 3
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "owner": "opponent",
+                "origin": "battle",
+                "n": 1,
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true,
+                "to": "grave",
+                "title": "破壊する相手のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22sd1-002.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "97ae37299007b0bd8891899160a6ff909ed0fcaef7850fcaadc5c83cdef88d1b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-055",
+      "name": "トロワ・サイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-055",
+      "faces": [
+        {
+          "name": "トロワ・サイン",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nシビルカウント２：自分の光のクリーチャーまたは光のタマシードが合計２つ以上あれば、カードを１枚引く。\nコスト３以下のクリーチャー１体またはコスト３以下のタマシードを１枚、自分の手札から出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creatureOrSeed": true,
+              "color": "光",
+              "g258Civil": 2
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "title": "手札から出すクリーチャーかタマシードを1枚選ぶ",
+            "filter": {
+              "creatureOrSeed": true,
+              "max": 3
+            },
+            "optional": false
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-055.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "eda6e2cb6a3be7fe85aaa8199a9ccec274dac1b89862fd08475154048daf05d9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-061",
+      "name": "ブック＝ラギルップ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-061",
+      "faces": [
+        {
+          "name": "ブック＝ラギルップ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "シビルカウント３：このクリーチャーが攻撃する時、自分の闇のクリーチャーまたは闇のタマシードが合計３つ以上あれば、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "アビスロイヤル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creatureOrSeed": true,
+              "color": "闇",
+              "g258Civil": 3
+            },
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 1,
+                "random": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-061.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "959f7b77afde167ea6bc474f835c6fe0223d09f2adf72cbd66dac04043e374d0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-060",
+      "name": "黒天の影オミナス・ウインド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-060",
+      "faces": [
+        {
+          "name": "黒天の影オミナス・ウインド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "シビルカウント ３：このクリーチャーが攻撃する時、自分の闇のクリーチャーまたは闇のタマシードが合計３つ以上あれば、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－3000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "ゴースト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creatureOrSeed": true,
+              "color": "闇",
+              "g258Civil": 3
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "power": -3000,
+                "g242PowerMinus": true,
+                "title": "パワーを-3000する相手のクリーチャーを選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-060.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "958917a3ffc913cc2640b0d206097158a97da883add8914054c317e503c49705",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-046",
+      "name": "式神オーダーメイド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-046",
+      "faces": [
+        {
+          "name": "式神オーダーメイド",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "シビルカウント ３：このクリーチャーが攻撃する時、自分の自然のクリーチャーまたは自然のタマシードが合計３つ以上あれば、自分の山札の上から３枚を見る。その中からクリーチャーを１体相手に見せ、手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+          "race": "ワンダー・トリック",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creatureOrSeed": true,
+              "color": "自然",
+              "g258Civil": 3
+            },
+            "defs": [
+              {
+                "op": "Look",
+                "g185Search": true,
+                "n": 3,
+                "rest": "bottom",
+                "stages": [
+                  {
+                    "n": 1,
+                    "to": "hand",
+                    "filter": {
+                      "creature": true
+                    },
+                    "reveal": true,
+                    "optional": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-046.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "3aac2dbffc951ee2fcacf2ee9d149a941cc72a3783a9649e7c244f2c3e927ebe",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-029",
+      "name": "巡霊者ヴニース",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-029",
+      "faces": [
+        {
+          "name": "巡霊者ヴニース",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "シビルカウント３：このクリーチャーが出た時、自分の光のクリーチャーまたは光のタマシードが合計３つ以上あれば、カードを１枚引く。",
+          "race": "コスモ・ウォーカー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creatureOrSeed": true,
+              "color": "光",
+              "g258Civil": 3
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-029.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "8923a1e0166ab152fc290e1f4da8773b634b333d4b7e9bb13b9bd50b0314d07b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-064",
+      "name": "精神呪文「ダラクマ」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-064",
+      "faces": [
+        {
+          "name": "精神呪文「ダラクマ」",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手の手札を見て１枚選び、捨てさせる。\nシビルカウント２：自分の闇のクリーチャーまたは闇のタマシードが合計２つ以上あれば、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "InspectOne258"
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creatureOrSeed": true,
+              "color": "闇",
+              "g258Civil": 2
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-064.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "236101a05cce23dca70695f09ed9d6a6152547edec649ab5bbd8d61578138e7f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-057",
+      "name": "鉄人轟砲クロガネ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-057",
+      "faces": [
+        {
+          "name": "鉄人轟砲クロガネ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "シビルカウント ３：このクリーチャーが攻撃する時、自分の水のクリーチャーまたは水のタマシードが合計３つ以上あれば、カードを１枚引く。",
+          "race": "グレートメカオー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creatureOrSeed": true,
+              "color": "水",
+              "g258Civil": 3
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-057.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "12a607924eff194816cb2e18eb01656bcdd614f81c2e30bac9bb729a800421de",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-072",
+      "name": "氷転妖精ウェッジ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-072",
+      "faces": [
+        {
+          "name": "氷転妖精ウェッジ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "シビルカウント３：このクリーチャーが攻撃する時、自分の自然のクリーチャーまたは自然のタマシードが合計３つ以上あれば、自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "スノーフェアリー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creatureOrSeed": true,
+              "color": "自然",
+              "g258Civil": 3
+            },
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-072.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "80251b595b0fcec4f3654446532a0a7ad07db294fb2cee1829ae3dee7c94610d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22rp1-059": 4,
+      "dm22sd1-002": 4,
+      "dm22rp1-055": 4,
+      "dm22rp1-061": 4,
+      "dm22rp2-060": 4,
+      "dm22rp2-046": 4,
+      "dm22rp1-029": 4,
+      "dm22rp1-064": 4,
+      "dm22rp1-057": 4,
+      "dm22rp1-072": 4
+    }
+  }
+}

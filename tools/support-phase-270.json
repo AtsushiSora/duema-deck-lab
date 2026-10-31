@@ -1,0 +1,543 @@
+{
+  "phase": 270,
+  "checkedAt": "2026-10-31",
+  "description": "自分の指定文明クリーチャーを条件とする追加の破壊・タップ・ドロー・マナ追加。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp13-070",
+      "name": "キリサキ童子",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-070",
+      "faces": [
+        {
+          "name": "キリサキ童子",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーが攻撃する時、バトルゾーンに自分の火のクリーチャーがあれば、相手のパワー3000以下のクリーチャーを１体破壊する。",
+          "race": "ヒューマノイド/鬼札王国",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "slayer": true,
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "color": "火"
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 3000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp13-070.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "fd0c106dfc5c1f7f5b7e66c673be3b4d3acba58faa3b64bb5d0122dafe27c856",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-047",
+      "name": "ゴリミング・トラップ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-047",
+      "faces": [
+        {
+          "name": "ゴリミング・トラップ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体、持ち主のマナゾーンに置く。\nバトルゾーンに自分の光のクリーチャーがあれば、相手のクリーチャーを２体まで選び、タップする。",
+          "race": "暴拳王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "mana",
+            "title": "マナに置く相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "color": "光"
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "owner": "opponent",
+                "origin": "battle",
+                "n": 2,
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true,
+                "g193Tap": true,
+                "title": "タップする相手のクリーチャーを2体まで選ぶ",
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-047.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "109ad4aab6c24f01e5a6ec89215fae3d179a17c83f62448934aba4f408aa5750",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-043",
+      "name": "スパダチ・ジェネレーション!!!",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-043",
+      "faces": [
+        {
+          "name": "スパダチ・ジェネレーション!!!",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー3000以下のクリーチャーを１体破壊する。\nバトルゾーンに自分の自然のクリーチャーがあれば、自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "ジョーカーズ/チーム切札",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "color": "自然"
+            },
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-043.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "ef73697a2f1a380f105e9b4227233d9675fc531ae71a25710ff088247dcaeaba",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr03-045",
+      "name": "ドンドン叩くナウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-045",
+      "faces": [
+        {
+          "name": "ドンドン叩くナウ",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手の「ブロッカー」を持つクリーチャーを１体破壊する。\nバトルゾーンに自分の光または水のクリーチャーがあれば、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "blocker": true
+            }
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "any": [
+                {
+                  "color": "光"
+                },
+                {
+                  "color": "水"
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-045.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "dd960f4ddb27d6377b7602cb74e013d275f22d959af711328a5ba269aeef04e7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-065",
+      "name": "戯具 グリデンデ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-065",
+      "faces": [
+        {
+          "name": "戯具 グリデンデ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、カードを１枚引く。その後、バトルゾーンに自分の闇のクリーチャーがあれば、相手は自身の手札を１枚選んで捨てる。",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "color": "闇"
+            },
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-065.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "35803f0d8c04b60f69a140743e18be04a727a610688dd1a0268ddce439b335cd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-039",
+      "name": "業王の破戒",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-039",
+      "faces": [
+        {
+          "name": "業王の破戒",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体破壊する。\nバトルゾーンに自分の水のクリーチャーがあれば、相手のパワー3000以下のクリーチャーをすべて持ち主の手札に戻す。",
+          "race": "チーム零",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "grave",
+            "title": "破壊する相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "color": "水"
+            },
+            "defs": [
+              {
+                "op": "Sweep",
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "maxPower": 3000
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-039.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "4de0833c162b24cb1434116ec72788584338ef2e4161e07f54c12da777a358d9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-032",
+      "name": "紫の夜に幕を下すスパーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-032",
+      "faces": [
+        {
+          "name": "紫の夜に幕を下すスパーク",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーをすべてタップする。\nバトルゾーンに自分の闇のクリーチャーがあれば、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－7000 する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "月光王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "color": "闇"
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "power": -7000,
+                "g242PowerMinus": true,
+                "title": "パワーを-7000する相手のクリーチャーを選ぶ",
+                "spell": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-032.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "ad6785954bf8ac2979a6e1dbee2b7e90a56eeed11402171b77725aa1a4e48732",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-069",
+      "name": "腐敗の悪魔龍 ラフデジア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-069",
+      "faces": [
+        {
+          "name": "腐敗の悪魔龍 ラフデジア",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、クリーチャーを１体、自分の墓地から手札に戻す。その後、バトルゾーンに自分の火のクリーチャーがあれば、他のクリーチャーを１体、自分の墓地から手札に戻す。",
+          "race": "デーモン・ドラゴン/革命軍",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "color": "火"
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "creature": true
+                },
+                "g186Other": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-069.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "b7a19aea9a112ef18093a9a5ab7f8e628581858244f9fa26d13d2bd93bb42306",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-060",
+      "name": "暴杖の羊飼",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-060",
+      "faces": [
+        {
+          "name": "暴杖の羊飼",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンに自分の自然のクリーチャーがあれば、自分の山札の上から１枚目をタップしてマナゾーンに置く。",
+          "race": "ビーストフォーク/暴拳王国",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "color": "自然"
+            },
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1,
+                "tapped": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-060.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "cf41755681ad43e618135ff8d74331341a492e9d1f44983f07d3b792ce0d48f6",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp13-070": 4,
+      "dmrp16-047": 4,
+      "dmrp16-043": 4,
+      "dmr03-045": 4,
+      "dmrp16-065": 4,
+      "dmrp16-039": 4,
+      "dmrp16-032": 4,
+      "dmr21-069": 4,
+      "dmrp16-060": 4
+    }
+  }
+}

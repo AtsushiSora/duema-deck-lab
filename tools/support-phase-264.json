@@ -1,0 +1,240 @@
+{
+  "phase": 264,
+  "checkedAt": "2026-10-31",
+  "description": "タマシードの存在に応じた常在付与・追加処理と、クリーチャーまたはタマシードを選ぶ効果。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp22-066",
+      "name": "KAGEKIRINUSHI",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-066",
+      "faces": [
+        {
+          "name": "KAGEKIRINUSHI",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のタマシードがあれば、このクリーチャーに「パワーアタッカー+7000」と「T・ブレイカー」を与える。（「パワーアタッカー+7000」と「T・ブレイカー」を持つクリーチャーは、攻撃中パワーを+7000され、シールドを３つブレイクする）",
+          "race": "イブユニット/デモニオ/鬼レクスターズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "seed": true
+          },
+          "grants": {
+            "attackBonus": 7000,
+            "breaker": 3
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-066.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "85414b5c50e1822356c0c411abc140eb04f24c50cd76b885acbe9433e983e552",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp22-041",
+      "name": "コクーン・ビートルズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-041",
+      "faces": [
+        {
+          "name": "コクーン・ビートルズ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャー１体またはタマシードを１枚選び、持ち主のマナゾーンに置く。その後、自分のタマシードがあれば、自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creatureOrSeed": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "mana",
+            "title": "マナゾーンに置く相手のクリーチャーかタマシードを1枚選ぶ"
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "seed": true
+            },
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-041.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "af47824cdc85c25a7fb67bdf6291483a0ce478a236ac543089ec49d96dadf4fa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp21-066",
+      "name": "解体爺ピーカプ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-066",
+      "faces": [
+        {
+          "name": "解体爺ピーカプ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のタマシードがあれば、このクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "マシン・イーター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "seed": true
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-066.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "5968a3eab6f27ccf9385d8a64b29ef68e3a121486851dd4161c5a28c4cab6420",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-051",
+      "name": "光器デュアリ・スタンド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-051",
+      "faces": [
+        {
+          "name": "光器デュアリ・スタンド",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分のターンの終わりに、自分のタマシードがあれば、このクリーチャーをアンタップする。",
+          "race": "メカ・デル・ソル",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g174End": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "seed": true
+            },
+            "defs": [
+              {
+                "op": "Untap"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-051.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "997ae76c2a8fa0a4bfeb07b062236c37299062649627ef626f55e9d93b42d45c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp22-054",
+      "name": "歩ルク忍ノビ「夜坂」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-054",
+      "faces": [
+        {
+          "name": "歩ルク忍ノビ「夜坂」",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが破壊される時、墓地に置くかわりに手札に戻す。\n自分のタマシードがあれば、このクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+          "race": "アダムユニット/デモニオ/鬼レクスターズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "destroyToHand": true,
+        "g260Self": {
+          "filter": {
+            "seed": true
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-054.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "fd638b87a5f439aa0f4ffd12f5614bcd0eb16304e4dec250d2671521edb9f26e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp22-066": 4,
+      "dmrp22-041": 4,
+      "dmrp21-066": 4,
+      "dm22rp2-051": 4,
+      "dmrp22-054": 4
+    }
+  }
+}

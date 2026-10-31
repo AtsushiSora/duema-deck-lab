@@ -1,0 +1,254 @@
+{
+  "phase": 268,
+  "checkedAt": "2026-10-31",
+  "description": "複数のマナ武装による攻撃保護・ブロック回避・強化と、登場時および攻撃時のバトル。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dmr15-023",
+      "name": "アクア新参兵 アイザック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-023",
+      "faces": [
+        {
+          "name": "アクア新参兵 アイザック",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナ武装 ３：このクリーチャーが攻撃する時、自分のマナゾーンに水のカードが３枚以上あれば、カードを１枚引いてもよい。\nマナ武装 ５：自分のマナゾーンに水のカードが５枚以上あれば、このクリーチャーは攻撃またはブロックされない。",
+          "race": "リキッド・ピープル閃",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g268ManaGrants": [
+          {
+            "filter": {
+              "g267Mana": {
+                "n": 5,
+                "color": "水"
+              }
+            },
+            "grants": {
+              "cannotBeAttacked": true,
+              "unblockable": true
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "IfMana",
+            "n": 3,
+            "color": "水",
+            "defs": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-023.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "c66eb6ae07f6148f3b6a23cd424132475ce20efcd932ae91c17aada661f033e8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd20-003",
+      "name": "斬英雄 マッカラン・ボナパルト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd20-003",
+      "faces": [
+        {
+          "name": "斬英雄 マッカラン・ボナパルト",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ガードマン（自分の他のクリーチャーが攻撃される時、このクリーチャーをタップしてもよい。そうした場合、攻撃クリーチャーはかわりにこのクリーチャーを攻撃する）\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選んでもよい。このクリーチャーと選んだクリーチャーをバトルさせる。\nマナ武装 ７：自分のマナゾーンに火のカードが７枚以上あれば、このクリーチャーのパワーは+4000され、「W・ブレイカー」を得る。",
+          "race": "ヒューマノイド爆",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "guardman": true,
+        "g268ManaGrants": [
+          {
+            "filter": {
+              "g267Mana": {
+                "n": 7,
+                "color": "火"
+              }
+            },
+            "grants": {
+              "power": 4000,
+              "breaker": 2
+            }
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd20-003.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "491c4bbb348a1ac2a3c4ec7d44de996b1fb5ab20887a763af3e17aab57f53199",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr20-010",
+      "name": "登場！ハムカツマン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-010",
+      "faces": [
+        {
+          "name": "登場！ハムカツマン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nスピードアタッカー\nW・ブレイカー\nマナ武装 ５―このクリーチャーが攻撃する時、自分のマナゾーンに火のカードが５枚以上あれば、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのクリーチャーとこのクリーチャーをバトルさせる。\nマナ武装 ３―自分のマナゾーンに自然のカードが３枚以上あれば、このクリーチャーのパワーを+5000し、「T・ブレイカー」を与える。",
+          "race": "メガ・コマンド・ドラゴン/革命軍",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g268ManaGrants": [
+          {
+            "filter": {
+              "g267Mana": {
+                "n": 3,
+                "color": "自然"
+              }
+            },
+            "grants": {
+              "power": 5000,
+              "breaker": 3
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "IfMana",
+            "n": 5,
+            "color": "火",
+            "defs": [
+              {
+                "op": "Fight240",
+                "self": true,
+                "optional": false
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr20-010.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "482007c618c474b324acb277dc4dae6fec837aba446a8f47f4d46cc15bde189d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr15-030",
+      "name": "勇気伝承 ゲット Jr.",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-030",
+      "faces": [
+        {
+          "name": "勇気伝承 ゲット Jr.",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナ武装 ３：自分のマナゾーンに火のカードが３枚以上あれば、このクリーチャーはコスト４以下のクリーチャーに攻撃されない。\nマナ武装 ５：自分のマナゾーンに火のカードが５枚以上あれば、このクリーチャーは「パワーアタッカー+4000」と「W・ブレイカー」を得る。",
+          "race": "ヒューマノイド爆",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g268ManaGrants": [
+          {
+            "filter": {
+              "g267Mana": {
+                "n": 3,
+                "color": "火"
+              }
+            },
+            "grants": {
+              "g206AttackProtection": {
+                "maxCost": 4
+              }
+            }
+          },
+          {
+            "filter": {
+              "g267Mana": {
+                "n": 5,
+                "color": "火"
+              }
+            },
+            "grants": {
+              "attackBonus": 4000,
+              "breaker": 2
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-030.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "e0b7378b3dbd72f537d7eee40ec338ff753ce3eafff529c1dd8e5ff28b7a0f62",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr15-023": 4,
+      "dmd20-003": 4,
+      "dmr20-010": 4,
+      "dmr15-030": 4
+    }
+  }
+}

@@ -1,3 +1,18 @@
+import {STANDARD272_DECK} from './fixtures/standard272.mjs';
+import {STANDARD271_DECK} from './fixtures/standard271.mjs';
+import {STANDARD270_DECK} from './fixtures/standard270.mjs';
+import {STANDARD269_DECK} from './fixtures/standard269.mjs';
+import {STANDARD268_DECK} from './fixtures/standard268.mjs';
+import {STANDARD267_DECK} from './fixtures/standard267.mjs';
+import {STANDARD266_DECK} from './fixtures/standard266.mjs';
+import {STANDARD265_DECK} from './fixtures/standard265.mjs';
+import {STANDARD264_DECK} from './fixtures/standard264.mjs';
+import {STANDARD263_DECK} from './fixtures/standard263.mjs';
+import {STANDARD262_DECK} from './fixtures/standard262.mjs';
+import {STANDARD261_DECK} from './fixtures/standard261.mjs';
+import {STANDARD260_DECK} from './fixtures/standard260.mjs';
+import {STANDARD259_DECK} from './fixtures/standard259.mjs';
+import {STANDARD258_DECK} from './fixtures/standard258.mjs';
 import {STANDARD257_DECK} from './fixtures/standard257.mjs';
 import{resolveCharacterDecks}from'../dist/character-challenge.js';
 import{CHARACTER_ERAS}from'../dist/character-roster.js';
@@ -520,3 +535,33 @@ if(validateDeck(STANDARD255_DECK).length||registry.coverage(STANDARD255_DECK).un
 if(validateDeck(STANDARD256_DECK).length||registry.coverage(STANDARD256_DECK).unsupported||STANDARD256_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第256段階の40枚を確認してください');console.log('Checked phase256 forty-card deck: eight color and race Strike Back cards supported.');
 
 if(validateDeck(STANDARD257_DECK).length||registry.coverage(STANDARD257_DECK).unsupported||STANDARD257_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第257段階の40枚を確認してください');console.log('Checked phase257 forty-card deck: nine conditional Rainbow Bonus cards supported.');
+
+if(validateDeck(STANDARD258_DECK).length||registry.coverage(STANDARD258_DECK).unsupported||STANDARD258_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第258段階の40枚を確認してください');console.log('Checked phase258 forty-card deck: ten Civil Count triggered and spell cards supported.');
+
+if(validateDeck(STANDARD259_DECK).length||registry.coverage(STANDARD259_DECK).unsupported||STANDARD259_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第259段階の40枚を確認してください');console.log('Checked phase259 forty-card deck: six tap, end-step, battle and library-order cards supported.');
+
+if(validateDeck(STANDARD260_DECK).length||registry.coverage(STANDARD260_DECK).unsupported||STANDARD260_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第260段階の40枚を確認してください');console.log('Checked phase260 forty-card deck: five continuous Civil Count and Rainbow Bonus self grants supported.');
+
+if(validateDeck(STANDARD261_DECK).length||registry.coverage(STANDARD261_DECK).unsupported||STANDARD261_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第261段階の40枚を確認してください');console.log('Checked phase261 forty-card deck: conditional discounts, optional free spells and fixed hand refill supported.');
+
+if(validateDeck(STANDARD262_DECK).length||registry.coverage(STANDARD262_DECK).unsupported||STANDARD262_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第262段階の40枚を確認してください');console.log('Checked phase262 forty-card deck: hand-count bounce, temporary freeze and water-element draw supported.');
+
+if(validateDeck(STANDARD263_DECK).length||registry.coverage(STANDARD263_DECK).unsupported||STANDARD263_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第263段階の40枚を確認してください');console.log('Checked phase263 forty-card deck: race-specific continuous power boosts and optional Mechao draws supported.');
+
+if(validateDeck(STANDARD264_DECK).length||registry.coverage(STANDARD264_DECK).unsupported||STANDARD264_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第264段階の40枚を確認してください');console.log('Checked phase264 forty-card deck: tamaseed-dependent grants, end untap and creature/seed removal supported.');
+
+if(validateDeck(STANDARD265_DECK).length||registry.coverage(STANDARD265_DECK).unsupported||STANDARD265_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第265段階の40枚を確認してください');console.log('Checked phase265 forty-card deck: shield-count power, breakers and untapped attack permission supported.');
+
+if(validateDeck(STANDARD266_DECK).length||registry.coverage(STANDARD266_DECK).unsupported||STANDARD266_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第266段階の40枚を確認してください');console.log('Checked phase266 forty-card deck: Revolution entry, attack, block and conditional shield addition supported.');
+
+if(validateDeck(STANDARD267_DECK).length||registry.coverage(STANDARD267_DECK).unsupported||STANDARD267_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第267段階の40枚を確認してください');console.log('Checked phase267 forty-card deck: color and multicolor Mana Armament static grants supported.');
+
+if(validateDeck(STANDARD268_DECK).length||registry.coverage(STANDARD268_DECK).unsupported||STANDARD268_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第268段階の40枚を確認してください');console.log('Checked phase268 forty-card deck: multiple Mana Armament grants, attack protection and self battles supported.');
+
+if(validateDeck(STANDARD269_DECK).length||registry.coverage(STANDARD269_DECK).unsupported||STANDARD269_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第269段階の40枚を確認してください');console.log('Checked phase269 forty-card deck: Hyper creature presence grants and attack-end destruction supported.');
+
+if(validateDeck(STANDARD270_DECK).length||registry.coverage(STANDARD270_DECK).unsupported||STANDARD270_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第270段階の40枚を確認してください');console.log('Checked phase270 forty-card deck: own creature civilization conditions and sequential extra effects supported.');
+
+if(validateDeck(STANDARD271_DECK).length||registry.coverage(STANDARD271_DECK).unsupported||STANDARD271_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第271段階の40枚を確認してください');console.log('Checked phase271 forty-card deck: conditional race additions, battle safety, stats and end untap supported.');
+
+if(validateDeck(STANDARD272_DECK).length||registry.coverage(STANDARD272_DECK).unsupported||STANDARD272_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第272段階の40枚を確認してください');console.log('Checked phase272 forty-card deck: Metamorph static grants, attack restriction override, death replacement and grave recovery supported.');

@@ -1,0 +1,281 @@
+{
+  "phase": 266,
+  "checkedAt": "2026-10-31",
+  "description": "革命の登場時・攻撃時・ブロック時能力と、シールド数を条件としたシールド追加。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dmr07-039",
+      "name": "プルプル・キュアー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-039",
+      "faces": [
+        {
+          "name": "プルプル・キュアー",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n自分のシールドがふたつ以下であれば、自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに加える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g265ShieldsMax": 2
+            },
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-039.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "fe3de65cce16086cb4298df15c1273e1006e1ef9abb2fbaaf78a70ea1cef0bd2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy14-spd01",
+      "name": "レッツ・ドギラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-spd01",
+      "faces": [
+        {
+          "name": "レッツ・ドギラゴン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分の火のクリーチャー１体の上に置く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n革命２-このクリーチャーが攻撃する時、自分のシールドが２つ以下なら、相手のパワー9000以下のクリーチャーを１体破壊する。",
+          "race": "メガ・コマンド・ドラゴン/革命軍",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "civilization": "火"
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g265ShieldsMax": 2
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 9000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy14-spd01.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "46a37c91b73859b529330efb94d5bc7c6a1dd38d9dc26b8647e398de05c1c485",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx20-003",
+      "name": "悪魔龍王 ギランギラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx20-003",
+      "faces": [
+        {
+          "name": "悪魔龍王 ギランギラー",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化―自分の闇のクリーチャー１体の上に置く。\nW・ブレイカー\n革命２―このクリーチャーが攻撃する時、自分のシールドが２つ以下なら、相手のクリーチャーを１体破壊する。",
+          "race": "デーモン・コマンド・ドラゴン/革命軍",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "civilization": "闇"
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g265ShieldsMax": 2
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "owner": "opponent",
+                "origin": "battle",
+                "n": 1,
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true,
+                "to": "grave",
+                "title": "破壊する相手のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx20-003.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "fc6f5511370c786baf54003957c89821bb6f7bc7fcff0d4d78c236741f8f4f18",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-068",
+      "name": "暗黒鎧 ギャーギャン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-068",
+      "faces": [
+        {
+          "name": "暗黒鎧 ギャーギャン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n革命２―このクリーチャーがブロックした時、自分のシールドが２つ以下なら、相手は自身の手札を１枚選んで捨てる。",
+          "race": "ダーク・ナイトメア/革命軍",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g178Block": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g265ShieldsMax": 2
+            },
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-068.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "f5b88cb6dae71b426df9904ea5098ad42f40f15c4d268e688e278fab037a745a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-034",
+      "name": "暗黒鎧 ホネデビル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-034",
+      "faces": [
+        {
+          "name": "暗黒鎧 ホネデビル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n革命２―このクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、闇のクリーチャーを２体まで、自分の墓地から手札に戻す。",
+          "race": "ダーク・ナイトメア/革命軍",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g265ShieldsMax": 2
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "g228Recovery": true,
+                "origin": "grave",
+                "to": "hand",
+                "n": 2,
+                "filter": {
+                  "g228Face": {
+                    "type": "creature",
+                    "color": "闇"
+                  }
+                },
+                "optional": true,
+                "title": "手札に戻す墓地の闇のクリーチャーを2体まで選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-034.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "09a9c0fdd5f0a71a1bcdd9fb3125a619205c4bed0baa4b435a84e8b170442230",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr07-039": 4,
+      "promoy14-spd01": 4,
+      "dmx20-003": 4,
+      "dmr19-068": 4,
+      "dmr18-034": 4
+    }
+  }
+}

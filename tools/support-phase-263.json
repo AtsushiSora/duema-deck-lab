@@ -1,0 +1,236 @@
+{
+  "phase": 263,
+  "checkedAt": "2026-10-31",
+  "description": "ドラゴン・オラクル・グレートメカオーへの継続パワー加算と、グレートメカオー数に応じた任意ドロー。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "promoy14-068",
+      "name": "メガ・カラクリ・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-068",
+      "faces": [
+        {
+          "name": "メガ・カラクリ・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n自分の火または自然のドラゴンのパワーを+3000する。",
+          "race": "メガ・コマンド・ドラゴン/革命軍",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g205Aura": {
+          "power": 3000,
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン",
+            "any": [
+              {
+                "color": "火"
+              },
+              {
+                "color": "自然"
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy14-068.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "637a7ea9e4aa62dadce2fb4583ea2863370e567299dbb17d8b468ef198d4c990",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx17-027",
+      "name": "高貴の精霊龍 ペトローズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx17-027",
+      "faces": [
+        {
+          "name": "高貴の精霊龍 ペトローズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンにある自分の他のドラゴンすべてのパワーは+4000される。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g205Aura": {
+          "power": 4000,
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "other": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx17-027.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "e2db11186ec03d934a812a4c6f6b75f813d08363036d63ac9ab16f3c512182f5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr10-035",
+      "name": "慈愛のマントラ フリル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-035",
+      "faces": [
+        {
+          "name": "慈愛のマントラ フリル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のターン中、バトルゾーンにある自分のオラクルすべてのパワーは+3000される。",
+          "race": "オラクル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g205Aura": {
+          "power": 3000,
+          "filter": {
+            "creature": true,
+            "race": "オラクル"
+          },
+          "turn": "opponent"
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-035.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "be3eae4c1b898474faf308f96658b359906193057d03c72dab65f8a30878cd4e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx11-071",
+      "name": "特警機装パトロール・ファンクション",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-071",
+      "faces": [
+        {
+          "name": "特警機装パトロール・ファンクション",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のグレートメカオー１体につき１枚、カードを引いてもよい。",
+          "race": "グレートメカオー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "race": "グレートメカオー"
+            },
+            "optional": "each"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx11-071.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "51c8e539ce326ef9b7509e8a5832ac36e059b513dd43e66659d08dd85dfc3817",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-004",
+      "name": "封魔ニューロ・マルヴァス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-004",
+      "faces": [
+        {
+          "name": "封魔ニューロ・マルヴァス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のグレートメカオー１体につき１枚、カードを引いてもよい。\nバトルゾーンにある自分のグレートメカオーすべてのパワーは+1000される。",
+          "race": "グランド・デビル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g205Aura": {
+          "power": 1000,
+          "filter": {
+            "creature": true,
+            "race": "グレートメカオー"
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "race": "グレートメカオー"
+            },
+            "optional": "each"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-004.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "8175817a85574ac27a7fd29ec7518ae6a0ee3b0acfc4670521a03c4bbd8e673f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy14-068": 4,
+      "dmx17-027": 4,
+      "dmr10-035": 4,
+      "dmx11-071": 4,
+      "dm19-004": 4
+    }
+  }
+}

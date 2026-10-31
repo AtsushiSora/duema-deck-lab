@@ -1,6 +1,6 @@
-import {legendOpeningBonus,legendDrawBonus} from './legend-strategy.js?v=0.331.0';
-import {EXTRA_CHARACTER_IDS} from './character-roster.js?v=0.331.0';
-import {CHARACTER_PLANS} from './character-plans.js?v=0.331.0';
+import {legendOpeningBonus,legendDrawBonus} from './legend-strategy.js?v=0.346.0';
+import {EXTRA_CHARACTER_IDS} from './character-roster.js?v=0.346.0';
+import {CHARACTER_PLANS} from './character-plans.js?v=0.346.0';
 // CPU challenge draw policy. Inputs contain only the CPU's own cards and public
 // battlefield information. No enemy hand identities, shields or deck order.
 export const HERO_IDS=Object.freeze(['shobu','katta','joe','win']);

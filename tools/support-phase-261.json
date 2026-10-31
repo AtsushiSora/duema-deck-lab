@@ -1,0 +1,286 @@
+{
+  "phase": 261,
+  "checkedAt": "2026-10-31",
+  "description": "場の条件による召喚コスト軽減・無料詠唱と、登場時の手札補充。印刷コストと支払額を区別し、手札5枚までの強制ドローを処理する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa/49236/"
+  ],
+  "cards": [
+    {
+      "id": "dm22rp2-S3",
+      "name": "Eine k’Reine",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-S3",
+      "faces": [
+        {
+          "name": "Eine k’Reine",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "シビルカウント３：自分の水のクリーチャーまたは水のタマシードが合計３つ以上あれば、このクリーチャーを召喚するコストは３少なくなる。\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、自分の手札が４枚以下なら、５枚になるようカードを引く。\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "マジック・スプラッシュ・クイーン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g261Discount": {
+          "filter": {
+            "creatureOrSeed": true,
+            "color": "水",
+            "g258Civil": 3
+          },
+          "amount": 3
+        },
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Refill261",
+            "max": 4,
+            "n": 5
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-S3.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "0d24635e559ba47306ab1baab5f54afe0f60c6d730a11b0d29a9670bb50d50c0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-005",
+      "name": "じゅくしていないゾンビバナナ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-005",
+      "faces": [
+        {
+          "name": "じゅくしていないゾンビバナナ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nレインボーナス：バトルゾーンに自分の多色クリーチャーがあれば、このクリーチャーの召喚コストを４少なくする。\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体破壊する。",
+          "race": "リビング・デッド/不死樹王国/スペシャルズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g261Discount": {
+          "filter": {
+            "creature": true,
+            "multi": true
+          },
+          "amount": 4
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "grave",
+            "title": "破壊する相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-005.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "e6b4e80e3572f0455a2807933144c84edbe307a345843e42a20901f4fd3aa3ab",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-011",
+      "name": "閃光呪文「スパーク」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-011",
+      "faces": [
+        {
+          "name": "閃光呪文「スパーク」",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nシビルカウント ４：自分の光のクリーチャーまたは光のタマシードが合計４つ以上あれば、この呪文をコストを支払わずに唱えてもよい。\n相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g261Free": {
+          "filter": {
+            "creatureOrSeed": true,
+            "color": "光",
+            "g258Civil": 4
+          },
+          "label": "シビルカウント4"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-011.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "a880190a8e9ae06cf6442bdecd39b93c2bb6eae784d4a7b7ce060cf4d985bb09",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-017",
+      "name": "堕獄呪文「ハンド」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-017",
+      "faces": [
+        {
+          "name": "堕獄呪文「ハンド」",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nシビルカウント ４：自分の闇のクリーチャーまたは闇のタマシードが合計４つ以上あれば、この呪文をコストを支払わずに唱えてもよい。\n相手のクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g261Free": {
+          "filter": {
+            "creatureOrSeed": true,
+            "color": "闇",
+            "g258Civil": 4
+          },
+          "label": "シビルカウント4"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "grave",
+            "title": "破壊する相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-017.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "fc8867f07aac7990efa9c0bf653b2656acc9a3e21e2054a7d41cea749d20fe1a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-025",
+      "name": "野生呪文「トラップ」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-025",
+      "faces": [
+        {
+          "name": "野生呪文「トラップ」",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nシビルカウント ４：自分の自然のクリーチャーまたは自然のタマシードが合計４つ以上あれば、この呪文をコストを支払わずに唱えてもよい。\n相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g261Free": {
+          "filter": {
+            "creatureOrSeed": true,
+            "color": "自然",
+            "g258Civil": 4
+          },
+          "label": "シビルカウント4"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "mana",
+            "title": "マナに置く相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-025.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "35f8f568a3da96c906749848a4072298a38285aab269436a206ad11719c1ad6f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22rp2-S3": 4,
+      "dmex14-005": 4,
+      "dm22rp2-011": 4,
+      "dm22rp2-017": 4,
+      "dm22rp2-025": 4
+    }
+  }
+}

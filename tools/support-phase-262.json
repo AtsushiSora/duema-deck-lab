@@ -1,0 +1,286 @@
+{
+  "phase": 262,
+  "checkedAt": "2026-10-31",
+  "description": "ドロー後の手札枚数に応じた全体バウンス・任意バウンス・攻撃ブロック停止と、水のクリーチャー／タマシード数に応じた任意ドロー。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa/43773/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp2-016",
+      "name": "♪ハイパーで ハイクがますます ハイクラス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-016",
+      "faces": [
+        {
+          "name": "♪ハイパーで ハイクがますます ハイクラス",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー\nカードを１枚引く。\n次の自分のターンのはじめまで、自分の手札の枚数以下のコストを持つ相手のクリーチャーはすべて、攻撃もブロックもできない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "HandCost262",
+            "defs": [
+              {
+                "op": "Freeze262",
+                "g190Freeze": "self",
+                "filter": {
+                  "creature": true
+                },
+                "spell": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-016.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "3a5a59e1fef27921a91ec5f757cc9a7ca1fe5a733490f3ee16c451cb639fb22c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-015",
+      "name": "B.F.F. モーメント",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-015",
+      "faces": [
+        {
+          "name": "B.F.F. モーメント",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nカードを１枚引く。\n自分の手札の枚数以下のコストを持つ相手のクリーチャーをすべて、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "HandCost262",
+            "defs": [
+              {
+                "op": "Sweep",
+                "filter": {
+                  "creature": true
+                },
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-015.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "0acd387861880131ae4231c0fddf6a1007fabbece2cd6e5c84eebe249eb95f38",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp21-3A",
+      "name": "ギュウジン丸の海幻",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-3A",
+      "faces": [
+        {
+          "name": "ギュウジン丸の海幻",
+          "typeText": "タマシード",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "{GS} G・ストライク（このタマシードを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nシンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、自分の水のクリーチャー１体または水のタマシード１枚につき、カードを１枚引いてもよい。その後、自分の手札の枚数以下のコストを持つ相手のクリーチャーをすべて、持ち主の手札に戻す。",
+          "race": "ジ・アンサー/レクスターズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "shinkalize": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "g262Elements": true,
+            "filter": {
+              "creatureOrSeed": true,
+              "color": "水"
+            },
+            "optional": "each"
+          },
+          {
+            "op": "HandCost262",
+            "defs": [
+              {
+                "op": "Sweep",
+                "filter": {
+                  "creature": true
+                },
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-3A.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "1c9eb95a0c1e397a63b3f1f635b0c9497ffb2b2391a74ffc358278b351d4ad2b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-040",
+      "name": "マジカル・バキューム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-040",
+      "faces": [
+        {
+          "name": "マジカル・バキューム",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "カードを２枚引く。その後、自分の手札の枚数よりコストが小さいクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "HandCost262",
+            "below": true,
+            "defs": [
+              {
+                "op": "Target",
+                "anyOwner": true,
+                "optional": true,
+                "filter": {
+                  "creature": true
+                },
+                "to": "hand",
+                "title": "手札の枚数よりコストが小さいクリーチャーを1体まで選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-040.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "d907b2fc51a23cdca916212945e1a1bead1bd5b988a4c80a421a75b1352ff637",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp07-015",
+      "name": "特級潜湿艦 リゲタリア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-015",
+      "faces": [
+        {
+          "name": "特級潜湿艦 リゲタリア",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、カードを２枚引く。その後、自分の手札の枚数よりコストが小さい他のクリーチャーをすべて持ち主の手札に戻す。",
+          "race": "ムートピア",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "HandCost262",
+            "below": true,
+            "defs": [
+              {
+                "op": "Sweep",
+                "both": true,
+                "g262Other": true,
+                "filter": {
+                  "creature": true
+                },
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-015.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "8f4d285de3dd540d0ac5851acec1cfae319014546892105a98edad0e2b6dd1ba",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp2-016": 4,
+      "dmrp19-015": 4,
+      "dmrp21-3A": 4,
+      "dmrp02-040": 4,
+      "dmrp07-015": 4
+    }
+  }
+}

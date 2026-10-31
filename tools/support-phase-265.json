@@ -1,0 +1,221 @@
+{
+  "phase": 265,
+  "checkedAt": "2026-10-31",
+  "description": "自分のシールド数に応じた継続パワー・パワーアタッカー・ブレイカーとアンタップクリーチャーへの攻撃許可。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dmr20-052",
+      "name": "O・スシー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-052",
+      "faces": [
+        {
+          "name": "O・スシー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n革命２―自分のシールドが２つ以下なら、このクリーチャーのパワーを+4000する。",
+          "race": "サイバー・ウイルス海/革命軍",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g260Self": {
+          "filter": {
+            "g265ShieldsMax": 2
+          },
+          "grants": {
+            "power": 4000
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr20-052.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "bc7f204a8fe153b47785b1506750d02ad8f58883854bcb4d182698afeb329295",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-024",
+      "name": "アングリーチャージ・ドラグーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-024",
+      "faces": [
+        {
+          "name": "アングリーチャージ・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のシールドが３枚以下の時、このクリーチャーのパワーは+3000され、「W・ブレイカー」を得る。",
+          "race": "ティラノ・ドレイク",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g265ShieldsMax": 3
+          },
+          "grants": {
+            "power": 3000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-024.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "71cdb411d4e77893c74044eeeeda21b94d62a62703d13093000ddad319d940a1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm07-031",
+      "name": "クレーターザウルス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-031",
+      "faces": [
+        {
+          "name": "クレーターザウルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のシールドが１枚もなければ、このクリーチャーは「パワーアタッカー+3000」を得、タップされていないクリーチャーを攻撃することができる。",
+          "race": "ロック・ビースト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g265ShieldsMax": 0
+          },
+          "grants": {
+            "attackBonus": 3000,
+            "attackUntapped": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm07-031.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "5b694c3d08afa37a1526915b174ed2913aa1c7a55e70cc266aef557ac74e3a35",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy14-005",
+      "name": "ゴウ・トリプラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-005",
+      "faces": [
+        {
+          "name": "ゴウ・トリプラゴン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分の火のクリーチャー１体の上に置く。\nW・ブレイカー\n革命２-自分のシールドが２つ以下なら、このクリーチャーのパワーを+8000し、「T・ブレイカー」を与える。（「T・ブレイカー」を持つクリーチャーはシールドを３つブレイクする）",
+          "race": "メガ・コマンド・ドラゴン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "civilization": "火"
+        },
+        "breaker": 2,
+        "g260Self": {
+          "filter": {
+            "g265ShieldsMax": 2
+          },
+          "grants": {
+            "power": 8000,
+            "breaker": 3
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy14-005.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "bfdc308623b5a2fa0a4cafda52f2b0b729389012ef23f17dfead9e0d243826fc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-073",
+      "name": "プロペ・ポルカ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-073",
+      "faces": [
+        {
+          "name": "プロペ・ポルカ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "革命２―自分のシールドが２つ以下なら、このクリーチャーはパワーを+1000され、アンタップしているクリーチャーを攻撃できる。",
+          "race": "ファイアー・バード炎/革命軍",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g265ShieldsMax": 2
+          },
+          "grants": {
+            "power": 1000,
+            "attackUntapped": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-073.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "10ae8f460d7d86c4c9a2e2003a9e23860aa4dff6b5578f2749419dd7421919b1",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr20-052": 4,
+      "dm28-024": 4,
+      "dm07-031": 4,
+      "promoy14-005": 4,
+      "dmr19-073": 4
+    }
+  }
+}

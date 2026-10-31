@@ -1,0 +1,335 @@
+{
+  "phase": 259,
+  "checkedAt": "2026-10-31",
+  "description": "条件付きのタップ時・ターン終了時能力、山札上の順序選択、任意の効果バトル。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dmex14-048",
+      "name": "「未来は努力で変えられる！」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-048",
+      "faces": [
+        {
+          "name": "「未来は努力で変えられる！」",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分の山札の上から２枚を見て、好きな順序で元に戻す。\nレインボーナス：バトルゾーンに自分の多色クリーチャーがあれば、カードを１枚引く。",
+          "race": "美孔麗王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 2,
+            "stages": [],
+            "rest": "top",
+            "g259OrderTop": true
+          },
+          {
+            "op": "IfOwn",
+            "g257Rainbow": true,
+            "filter": {
+              "creature": true,
+              "multi": true
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-048.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "7a9fb76d0aa3db130400fb3498637da2ae6a58d705b0d47788b88d75f75a15eb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-013",
+      "name": "♪目には青葉 テレポーテーション 初がつお",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-013",
+      "faces": [
+        {
+          "name": "♪目には青葉 テレポーテーション 初がつお",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "カードを１枚引く。その後、相手のクリーチャー１体またはタマシードを１枚選び、持ち主の手札に戻す。\nシビルカウント２：自分の水のクリーチャーまたは水のタマシードが合計２つ以上あれば、カードを１枚引く。その後、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creatureOrSeed": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "hand",
+            "title": "手札に戻す相手のクリーチャーかタマシードを1枚選ぶ"
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creatureOrSeed": true,
+              "color": "水",
+              "g258Civil": 2
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              },
+              {
+                "op": "Select",
+                "owner": "opponent",
+                "origin": "battle",
+                "n": 1,
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true,
+                "to": "hand",
+                "title": "手札に戻す相手のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-013.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "717714bbeab1961d8140bc382ee3952c952ff14b7a245fe0a9307cfbbb6d0c94",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-094",
+      "name": "U・S・A・DANKU",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-094",
+      "faces": [
+        {
+          "name": "U・S・A・DANKU",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "バトル中、このクリーチャーのパワーを+2000する。\nレインボーナス：このクリーチャーがバトルゾーンに出た時、バトルゾーンに自分の多色クリーチャーがあれば、相手のクリーチャーを１体選んでもよい。このクリーチャーとその選んだクリーチャーをバトルさせる。",
+          "race": "ビートジョッキー/チームボンバー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g38BattleBonus": 2000,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "g257Rainbow": true,
+            "filter": {
+              "creature": true,
+              "multi": true
+            },
+            "defs": [
+              {
+                "op": "Fight240",
+                "self": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-094.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "24867c16cc0a643828b62f4d8aecbe1449a42d65a69c64e64042680ea1e37dfb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-009",
+      "name": "ジャマリーリョ-S８",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-009",
+      "faces": [
+        {
+          "name": "ジャマリーリョ-S８",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nシビルカウント３：このクリーチャーをタップした時、自分の光のクリーチャーまたは光のタマシードが合計３つ以上あれば、自分の山札の上から１枚目をシールド化する。",
+          "race": "メカ・デル・ディネロ",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "g188Tapped": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creatureOrSeed": true,
+              "color": "光",
+              "g258Civil": 3
+            },
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-009.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "41aebde6082929c15ad30712550381ee0165dd07fc82fabd830e79d2f85b7b66",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-082",
+      "name": "ロイヤル・アドニス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-082",
+      "faces": [
+        {
+          "name": "ロイヤル・アドニス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を見て、好きな順序で元に戻す。",
+          "race": "スプラッシュ・クイーン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "stages": [],
+            "rest": "top",
+            "g259OrderTop": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-082.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "691283202831558cf491023b06947c433a9d7f0ec81a5c0f0b432bdc82265fc2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-083",
+      "name": "偽善と欺瞞のマリア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-083",
+      "faces": [
+        {
+          "name": "偽善と欺瞞のマリア",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "レインボーナス：自分のターンの終わりに、バトルゾーンに自分の多色クリーチャーがあれば、このクリーチャーをアンタップする。",
+          "race": "メタリカ/月光王国",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g174End": [
+          {
+            "op": "IfOwn",
+            "g257Rainbow": true,
+            "filter": {
+              "creature": true,
+              "multi": true
+            },
+            "defs": [
+              {
+                "op": "Untap"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-083.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "412dc1db2e02764df83076f89610ecab449ebf062a8a7192e819a52f654fcecd",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex14-048": 4,
+      "dm22rp1-013": 4,
+      "dmex14-094": 4,
+      "dm22rp1-009": 4,
+      "dm24-082": 4,
+      "dmex14-083": 4
+    }
+  }
+}
