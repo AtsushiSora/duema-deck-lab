@@ -1,3 +1,9 @@
+import {STANDARD337_DECKS} from './fixtures/standard337.mjs';
+import {STANDARD336_DECKS} from './fixtures/standard336.mjs';
+import {STANDARD335_DECKS} from './fixtures/standard335.mjs';
+import {STANDARD334_DECKS} from './fixtures/standard334.mjs';
+import {STANDARD333_DECKS} from './fixtures/standard333.mjs';
+import {STANDARD332_DECKS} from './fixtures/standard332.mjs';
 import {STANDARD331_DECKS} from './fixtures/standard331.mjs';
 import {STANDARD330_DECKS} from './fixtures/standard330.mjs';
 import {STANDARD329_DECKS} from './fixtures/standard329.mjs';
@@ -738,3 +744,15 @@ for(const deck of STANDARD329_DECKS)if(validateDeck(deck).length||registry.cover
 for(const deck of STANDARD330_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第330段階の40枚を確認してください');console.log('Checked phase330 forties: tribal power counts, conditional breakers, evolution and guardman supported.');
 
 for(const deck of STANDARD331_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第331段階の40枚を確認してください');console.log('Checked phase331 forties: name and tribe power auras, blockers and race additions supported.');
+
+for(const deck of STANDARD332_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第332段階の40枚を確認してください');console.log('Checked phase332 forties: own civilization, tribe and evolution conditions, power and attack power supported.');
+
+for(const deck of STANDARD333_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第333段階の40枚を確認してください');console.log('Checked phase333 forties: negative counted power, shield groups and physical shield cards supported.');
+
+for(const deck of STANDARD334_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第334段階の40枚を確認してください');console.log('Checked phase334 forties: own and opposing zone thresholds, shield comparison, other tribes and both-side evolutions supported.');
+
+for(const deck of STANDARD335_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第335段階の40枚を確認してください');console.log('Checked phase335 forties: targeted temporary power and single or multiple unblockable grants supported.');
+
+for(const deck of STANDARD336_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第336段階の40枚を確認してください');console.log('Checked phase336 forties: temporary speed, powered breaker, slayer, untapped attack and target protection grants supported.');
+
+for(const deck of STANDARD337_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第337段階の40枚を確認してください');console.log('Checked phase337 forties: temporary power attackers and public ally conditions for attack power, breakers and untapped attacks supported.');

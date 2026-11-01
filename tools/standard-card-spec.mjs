@@ -83,6 +83,7 @@ function aura205(text,phase=205){
 }
 function countPower207(text,phase=207){
  let line=text,condition={};
+ const negative=phase>=333&&line.match(/^(このクリーチャーのパワー(?:を|は).+?につき)-([1-9]\d*)(する|される)。(?:\(パワー0以下のクリーチャーは破壊される\))?$/);if(negative)line=line.replace('-'+negative[2],'+'+negative[2]);
  if(line.startsWith('これが進化クリーチャーなら')){condition.evolution=true;line=line.slice('これが進化クリーチャーなら'.length);}
  for(const [prefix,value]of [['攻撃中',{attackOnly:true}],['自分のターン中',{turn:'own'}],['相手のターン中',{turn:'opponent'}]])if(line.startsWith(prefix)){condition={...condition,...value};line=line.slice(prefix.length);break;}
  line=line.replace(/^(?:このクリーチャーがバトルゾーンにある間|バトルゾーンにある間)/,'');
@@ -98,13 +99,15 @@ function countPower207(text,phase=207){
  if(target==='自分のマナゾーンでタップされているカード')count={zone:'mana',filter:{tapped:true}};
  if(['自分のマナゾーンにあるカードの文明','自分のマナゾーンにある文明'].includes(target))count={zone:'mana',civilizations:true};
  if(target==='自分のシールド')count={zone:'shields'};
+ if(phase>=333){if(target==='相手のシールド')count={zone:'shields',opponent:true};const shield=target.match(/^(自分|相手)のシールドゾーンにあるカード$/);if(shield)count={zone:'shields',g333ShieldCards:true,...(shield[1]==='相手'?{opponent:true}:{})};}
  if(phase>=330){
   const grave=target.match(/^自分の墓地(?:にある|の)(ファイアー・バード|デーモン・コマンド|サムライ|アビス・カード)$/);
   if(grave)count={zone:'grave',filter:{race:grave[1]==='アビス・カード'?'アビス':grave[1]}};
  }
  const battle=target.match(/^バトルゾーンにある(?:(自分|相手)の)?(他の)?(.+)$/);
  if(battle){const filters={'クリーチャー':{},'光のクリーチャー':{color:'光'},'水のクリーチャー':{color:'水'},'闇のクリーチャー':{color:'闇'},'火のクリーチャー':{color:'火'},'自然のクリーチャー':{color:'自然'},'水と闇のクリーチャー':{colorsAny:['水','闇']},'タップされているクリーチャー':{tapped:true},'タップされていないクリーチャー':{untapped:true},'進化クリーチャー':{evolution:true},'「ブロッカー」を持つクリーチャー':{blocker:true},'イニシエート':{race:'イニシエート'}};if(phase>=330)for(const r of['アーク・セラフィム','セイント・ヘッド','ビーストフォーク','サムライ','ヒューマノイド','ファイアー・バード','ドラゴン','スノーフェアリー','ドリームメイト','グレートメカオー']){filters[r]={race:r};filters[r+'・クリーチャー']={race:r};}const filter=filters[battle[3]];if(filter)count={zone:'battle',...(!battle[1]?{both:true}:battle[1]==='相手'?{opponent:true}:{}),...(battle[2]?{other:true}:{}),filter:{creature:true,...filter}};}
- return count?{...count,amount:+m[2],...condition}:null;
+ if(phase>=333&&battle&&/^(光または自然|光または水|火または自然|水または闇)のクリーチャー$/.test(battle[3]))count={zone:'battle',...(!battle[1]?{both:true}:battle[1]==='相手'?{opponent:true}:{}),...(battle[2]?{other:true}:{}),filter:{creature:true,colorsAny:battle[3].replace('のクリーチャー','').split('または')}};
+ return count?{...count,amount:+m[2]*(negative?-1:1),...condition}:null;
 }
 function grantAura208(text,phase=208){
  const line=text.replace(/^このクリーチャーがバトルゾーンにある間/,'');
@@ -184,6 +187,22 @@ function judge318(text,phase){
  const def=instruction(m[1],phase);return def?{op:'Judge318',defs:[def]}:null;
 }
 function instruction(text,phase){
+ if(phase>=337){
+  const line=text.replace(/^(?:バトルゾーンにある)?自分の(他の)?クリーチャー1体は(このターン(?:の終わりまで)?)/,'$2自分の$1クリーチャー1体は');
+  const m=line.match(/^(?:この|その)ターン(?:の終わりまで)?(?:バトルゾーンにある)?自分の(他の)?クリーチャー1体(?:は|に)「パワーアタッカー\+([1-9]\d*)」(?:を得る|を与える)。(\([^()]*\))?$/);
+  if(m&&(!m[3]||['(攻撃中「パワーアタッカー+'+m[2]+'」を持つクリーチャーのパワーを+'+m[2]+'する)','(「パワーアタッカー+'+m[2]+'」を得たクリーチャーのパワーは攻撃中+'+m[2]+'される)'].includes(m[3])))return{op:'Target',owner:'self',power:+m[2],g337PowerAttacker:true,...(m[1]?{g179Other:true}:{}),title:'このターン、パワーアタッカー+'+m[2]+'を与える自分の'+(m[1]?'他の':'')+'クリーチャーを1体選ぶ'};
+ }
+ if(phase>=336){let m;
+  if(m=text.match(/^(?:この|その)ターン(?:バトルゾーンにある)?自分の(他の)?(クリーチャー|ハンター)1体(?:は|に)「スピードアタッカー」(?:を得る|を与える)。(?:\(「スピードアタッカー」を(?:得たクリーチャー|持つクリーチャー)は召喚酔いしない\))?$/))return{op:'Target',owner:'self',...(m[1]?{g179Other:true}:{}),...(m[2]==='ハンター'?{filter:{creature:true,race:'ハンター'}}:{}),g301Grant:true,grant:{speedAttacker:true},title:'このターン、スピードアタッカーを与える自分の'+(m[1]?'他の':'')+(m[2]==='ハンター'?'ハンター':'クリーチャー')+'を1体選ぶ'};
+  if(m=text.match(/^(?:自分のクリーチャーを1体選ぶ。このターンそのクリーチャー|このターン自分のクリーチャー1体)のパワーを\+([1-9]\d*)し「パワード・ブレイカー」を与える。\(「パワード・ブレイカー」を持つクリーチャーはそのパワー6000ごとにシールドをさらに1つブレイクする\)$/))return{op:'Target',owner:'self',power:+m[1],grant:{poweredBreaker:true},title:'このターン、パワーを+'+m[1]+'し、パワード・ブレイカーを与える自分のクリーチャーを1体選ぶ'};
+  if(text==='このターン自分のクリーチャー1体はブロックされず相手がクリーチャーを選ぶ時そのクリーチャーを選べない。')return{op:'Target',owner:'self',grant:{unblockable:true,untargetable:true},title:'このターン、ブロックされず相手に選ばれなくする自分のクリーチャーを1体選ぶ'};
+  if(text==='このターン自分のクリーチャー1体は「スレイヤー」を得アンタップしているクリーチャーを攻撃できる。(「スレイヤー」を持つクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)')return{op:'Target',owner:'self',grant:{slayer:true,attackUntapped:true},title:'このターン、スレイヤーとアンタップ攻撃を与える自分のクリーチャーを1体選ぶ'};
+ }
+ if(phase>=335){let m;
+  if(m=text.match(/^(?:この|その)ターン(?:バトルゾーンにある)?自分の(他の)?クリーチャー1体のパワー(?:を|は)\+([1-9]\d*)(?:する|される)。$/))return{op:'Target',owner:'self',power:+m[2],...(m[1]?{g179Other:true}:{}),title:'パワーを+'+m[2]+'する自分の'+(m[1]?'他の':'')+'クリーチャーを1体選ぶ'};
+  if(m=text.match(/^(?:この|その)ターン(?:バトルゾーンにある)?自分の(他の)?クリーチャー1体はブロックされない。$/))return{op:'Target',owner:'self',grant:{unblockable:true},...(m[1]?{g179Other:true}:{}),title:'このターン、ブロックされなくする自分の'+(m[1]?'他の':'')+'クリーチャーを1体選ぶ'};
+  if(m=text.match(/^バトルゾーンにある自分のクリーチャーを([1-9]\d*)体まで選ぶ。このターンそのクリーチャーはブロックされない。$/))return{op:'Select',owner:'self',origin:'battle',n:+m[1],optional:true,filter:{creature:true},g173Targets:true,g193Select:true,g335Grant:{unblockable:true},title:'このターン、ブロックされなくする自分のクリーチャーを'+m[1]+'体まで選ぶ'};
+ }
  if(phase>=329&&text==='スプラッシュ・クイーン・クリーチャーを1体自分の手札から出してもよい。')return{op:'Select',origin:'hand',n:1,deploy:true,g195HandDeploy:true,filter:{creature:true,race:'スプラッシュ・クイーン'},optional:true};
  if(phase>=326){
   if(text==='自分のマナゾーンでタップされているカードをすべて自分の手札に戻す。')return{op:'RecoverAll326',zones:['mana'],filter:{tapped:true}};
@@ -538,6 +557,30 @@ export function standardCardSpec(d,{phase=165}={}){
  for(let i=0;i<lines.length;i++){
   const raw=lines[i],line=normalize(phase>=231?raw.replace(/^このクリーチャーがバトルゾーンに出たとき/,'このクリーチャーがバトルゾーンに出た時').replace(/^このクリーチャーが攻撃するとき/,'このクリーチャーが攻撃する時'):phase>=228?raw.replace(/^このクリーチャーが攻撃するとき/,'このクリーチャーが攻撃する時'):raw);let m,known=false;
   if(phase>=278&&creature&&line==='自分のクリーチャーがバトルに勝った時相手のシールドを1つブレイクしてもよい。'){if(spec.g252WinWatch)throw Error('重複するバトル勝利監視能力');spec.g252WinWatch={filter:{creature:true},defs:[{op:'Offer',defs:[{op:'Break278'}]}]};continue;}
+  if(phase>=337&&creature){
+   const head=line.match(/^バトルゾーンに自分の(.+?)(が他に1体でもあれば|が1体でもあれば|があれば)(.+)$/);
+   if(head){const filters={'火のクリーチャー':{creature:true,color:'火'},'無色クリーチャー':{creature:true,noColor:true},'ドラゴンまたは自分のコスト7以上のクリーチャー':{creature:true,any:[{race:'ドラゴン'},{min:7}]},'光水闇または火のクリーチャー':{creature:true,any:['光','水','闇','火'].map(color=>({color}))}},filter=filters[head[1]],body=head[3];let grants;
+    const pa=body.match(/^このクリーチャーは「パワーアタッカー\+([1-9]\d*)」(と「W・ブレイカー」)?を得る。(\([^()]*\))?$/);
+    if(pa&&(!pa[3]||['(攻撃中そのクリーチャーのパワーは+'+pa[1]+'される)','(攻撃中「パワーアタッカー+'+pa[1]+'」を得たクリーチャーのパワーは+'+pa[1]+'される)'].includes(pa[3])))grants={attackBonus:+pa[1],...(pa[2]?{breaker:2}:{})};
+    if(body==='このクリーチャーはタップしていないクリーチャーを攻撃できる。')grants={attackUntapped:true};
+    const p=body.match(/^このクリーチャーのパワーは\+([1-9]\d*)され「W・ブレイカー」を得る。$/);if(p)grants={power:+p[1],breaker:2};
+    if(filter&&grants){if(spec.g260Self)throw Error('重複する味方条件');spec.g260Self={filter:{...filter,...(head[2].includes('他に')?{g334Other:true}:{})},grants};if(grants.power||grants.attackBonus)powerBonus=true;continue;}
+   }
+  }
+  if(phase>=334&&creature){
+   let filter,body;
+   if(m=line.match(/^自分のマナゾーンに(光|水|闇|火|自然)のカードがあれば(.+)$/)){filter={g267Mana:{n:1,color:m[1]}};body=m[2];}
+   else if(line.startsWith('ラビリンス:自分のシールドの数が相手より多ければ')){filter={g334ZoneCount:{zone:'shields',moreThanOpponent:true}};body=line.slice('ラビリンス:自分のシールドの数が相手より多ければ'.length);}
+   else if(line.startsWith('バトルゾーンに進化クリーチャーが1体でもあれば')){filter={creature:true,evolution:true,g334Both:true};body=line.slice('バトルゾーンに進化クリーチャーが1体でもあれば'.length);}
+   else if(line.startsWith('バトルゾーンに自分のグランド・デビルが他に1体でもあれば')){filter={creature:true,race:'グランド・デビル',g334Other:true};body=line.slice('バトルゾーンに自分のグランド・デビルが他に1体でもあれば'.length);}
+   else if(m=line.match(/^相手の墓地にカードが([1-9]\d*)枚以上ある時(.+)$/)){filter={g334ZoneCount:{zone:'grave',opponent:true,min:+m[1]}};body=m[2];}
+   else if(m=line.match(/^相手のシールドが([0-9]+)つ以下なら(.+)$/)){filter={g334ZoneCount:{zone:'shields',opponent:true,max:+m[1]}};body=m[2];}
+   if(filter){let grants;if(m=body.match(/^このクリーチャーのパワー(?:を|は)\+([1-9]\d*)(?:する|される)。$/))grants={power:+m[1]};else if(m=body.match(/^このクリーチャーのパワーは\+([1-9]\d*)され「W・ブレイカー」を得る。$/))grants={power:+m[1],breaker:2};else if(m=body.match(/^このクリーチャーのパワーを\+([1-9]\d*)し種族にソニック・コマンドを追加する。$/))grants={power:+m[1],raceAdd:['ソニック・コマンド']};if(grants){if(spec.g260Self)throw Error('重複する常在条件');spec.g260Self={filter,grants};powerBonus=true;continue;}}
+  }
+  if(phase>=332&&creature){
+   const condition=line.replace(/^自分の進化クリーチャーがバトルゾーンにある時/,'バトルゾーンに自分の進化クリーチャーがあれば'),m=condition.match(/^バトルゾーンに自分の(.+?)が(?:ある間|1体でもあれば|あれば)(攻撃中)?このクリーチャーのパワーは\+([1-9]\d*)される。$/);
+   if(m){const filters={'進化クリーチャー':{evolution:true}};for(const color of colors)filters[color+'のクリーチャー']={color};for(const r of['ドリームメイト','グレートメカオー','グランド・デビル','アーク・セラフィム','アーマロイド','ヒューマノイド'])filters[r]={race:r};if(filters[m[1]]){if(spec.g260Self)throw Error('重複する味方条件');spec.g260Self={filter:{creature:true,...filters[m[1]]},grants:{[m[2]?'attackBonus':'power']:+m[3]}};powerBonus=true;continue;}}
+  }
   if(phase>=331&&creature&&line==='バトルゾーンにある自分の他のクリーチャーすべてのパワーは+500され種族に「ヒーロー」を追加する。'){if(spec.g205Aura||spec.g208Auras)throw Error('重複する常在付与能力');spec.g205Aura={power:500,filter:{creature:true},other:true};spec.g208Auras=[{filter:{creature:true},other:true,grants:{raceAdd:['ヒーロー']}}];continue;}
   if(phase>=330&&creature){
    if(m=line.match(/^このクリーチャーはパワーが6000以上の(?:時|とき)「W・ブレイカー」を得る。\(このクリーチャーはシールドを2枚ブレイクする\)$/)){if((spec.g207Breakers||[]).some(r=>r.power===6000))throw Error('重複するパワー別ブレイカー');(spec.g207Breakers??=[]).push({power:6000,breaker:2});continue;}
@@ -1105,7 +1148,7 @@ export function standardCardSpec(d,{phase=165}={}){
   if(nativeEntry&&dest===entry)throw Error('未対応の複合効果');
   const parts=clauses(body,phase),tasks=parts.map(text=>instruction(text,phase));if(tasks.some(t=>!t)||!tasks.length)throw Error('未対応の能力文: '+raw);dest.push(...tasks.map(t=>!creature&&!seed&&(t.power||phase>=170&&t.lock)?{...t,spell:true}:t));
  }
- if(phase>=190&&!creature&&!seed){const mark=defs=>{for(const d of defs||[]){if(d.g190Freeze||phase>=210&&d.g210TapLock||phase>=214&&d.power)d.spell=true;mark(d.defs);for(const m of d.modes||[])mark(m.defs);}};mark(entry);}
+ if(phase>=190&&!creature&&!seed){const mark=defs=>{for(const d of defs||[]){if(d.g190Freeze||phase>=210&&d.g210TapLock||phase>=214&&d.power||phase>=335&&(d.grant||d.g335Grant))d.spell=true;mark(d.defs);for(const m of d.modes||[])mark(m.defs);}};mark(entry);}
  if(f.typeText==='スター進化クリーチャー'&&!spec.starEvolution)throw Error('スター進化条件の不足');
  if(f.typeText==='NEOクリーチャー'&&(!spec.neoEvolution||spec.exLife))throw Error('未対応のNEO進化条件');
  if(evolution&&(!spec.evolution||spec.exLife||spec.trigger))throw Error('特殊進化または進化条件の不足');

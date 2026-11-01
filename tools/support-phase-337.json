@@ -1,0 +1,369 @@
+{
+  "phase": 337,
+  "checkedAt": "2026-11-01",
+  "description": "選択した味方への一時的なパワーアタッカー付与と、味方の文明・無色・種族・コスト条件による常在能力を共通処理で扱う。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmr08-048",
+      "name": "ドスコイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-048",
+      "faces": [
+        {
+          "name": "ドスコイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトルゾーンに自分の無色クリーチャーがあれば、このクリーチャーはタップしていないクリーチャーを攻撃できる。\nパワーアタッカー+3000(攻撃中、このクリーチャーのパワーは+3000される)",
+          "race": "トライストーン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "noColor": true
+          },
+          "grants": {
+            "attackUntapped": true
+          }
+        },
+        "attackBonus": 3000
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "6c41550adf806d8631a09871b8b549ac5e35b91512923daba3a18ed33ff31c48",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm30-048",
+      "name": "マグマ・チョップスター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-048",
+      "faces": [
+        {
+          "name": "マグマ・チョップスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、そのターン、バトルゾーンにある自分のクリーチャー１体は「パワーアタッカー+3000」を得る。",
+          "race": "ビッグマッスル",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 3000,
+            "g337PowerAttacker": true,
+            "title": "このターン、パワーアタッカー+3000を与える自分のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm30-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "2f04230983eb4a4b13568dc7c9c97bb2679fcb381e2efa33f5529311e4504314",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-099",
+      "name": "炎獣兵マグナム・ブルース",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-099",
+      "faces": [
+        {
+          "name": "炎獣兵マグナム・ブルース",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "バトルゾーンに自分の火のクリーチャーが他に１体でもあれば、このクリーチャーは「パワーアタッカー+3000」を得る。(攻撃中、そのクリーチャーのパワーは+3000される)",
+          "race": "ドラゴノイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "color": "火",
+            "g334Other": true
+          },
+          "grants": {
+            "attackBonus": 3000
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-099.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "f3b04f8c47bf602c06fcf8d56fc8c00cffd7fd48ab0370ee32d905cbf4fbf9a2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm20-051",
+      "name": "吸炎掌",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-051",
+      "faces": [
+        {
+          "name": "吸炎掌",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手のパワー2000以下のクリーチャーを１体破壊する。\nバトルゾーンにある自分のクリーチャー１体は、このターンの終わりまで「パワーアタッカー+2000」を得る。(「パワーアタッカー+2000」を得たクリーチャーのパワーは、攻撃中、+2000される)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 2000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 2000,
+            "g337PowerAttacker": true,
+            "title": "このターン、パワーアタッカー+2000を与える自分のクリーチャーを1体選ぶ",
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "cae984a30a69d6ce24efa0f7a0a64b48dfa357785d3c2ee57c88314f9111dc03",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-083",
+      "name": "激砲手ブルカノドン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-083",
+      "faces": [
+        {
+          "name": "激砲手ブルカノドン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、そのターン、自分の他のクリーチャー１体に「パワーアタッカー+3000」を与える。（攻撃中、「パワーアタッカー+3000」を持つクリーチャーのパワーを+3000する）",
+          "race": "ドラゴノイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 3000,
+            "g337PowerAttacker": true,
+            "g179Other": true,
+            "title": "このターン、パワーアタッカー+3000を与える自分の他のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-083.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "b2f949f65af1b73b995ae0c848f9435ce5e61b45918320eab02b12431e26e3f1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-027",
+      "name": "彩色の超人",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-027",
+      "faces": [
+        {
+          "name": "彩色の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "バトルゾーンに自分の光、水、闇、または火のクリーチャーが１体でもあれば、このクリーチャーのパワーは+4000され、「W・ブレイカー」を得る。",
+          "race": "ジャイアント",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "color": "光"
+              },
+              {
+                "color": "水"
+              },
+              {
+                "color": "闇"
+              },
+              {
+                "color": "火"
+              }
+            ]
+          },
+          "grants": {
+            "power": 4000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "503aab67b09e123ac74bf5a0592145c376fe00a74bd74efc9c4955af5a3b060b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr09-099",
+      "name": "情熱のサトリ 油坊",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-099",
+      "faces": [
+        {
+          "name": "情熱のサトリ 油坊",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "バトルゾーンに自分の無色クリーチャーがあれば、このクリーチャーは「パワーアタッカー+4000」を得る。（攻撃中、「パワーアタッカー+4000」を得たクリーチャーのパワーは+4000される）",
+          "race": "オラクル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "noColor": true
+          },
+          "grants": {
+            "attackBonus": 4000
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-099.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "a9fc1b7e798ff220e42c4ae0753375cc9a65f833186f1c341153c131ea01d34a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr07-015",
+      "name": "龍拳撃破オニコブシ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-015",
+      "faces": [
+        {
+          "name": "龍拳撃破オニコブシ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "バトルゾーンに自分のドラゴンまたは自分のコスト７以上のクリーチャーがあれば、このクリーチャーは「パワーアタッカー+7000」と「W・ブレイカー」を得る。",
+          "race": "ヒューマノイド/ハンター/エイリアン",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "race": "ドラゴン"
+              },
+              {
+                "min": 7
+              }
+            ]
+          },
+          "grants": {
+            "attackBonus": 7000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "88a954688e35aaf478badaa7b6c0820029c360a5f715f1cdf18822b8b373088e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr08-048": 4,
+      "dm30-048": 4,
+      "dm06-099": 4,
+      "dm20-051": 4,
+      "dmrp01-083": 4,
+      "dm24-027": 4,
+      "dmr09-099": 4,
+      "dmr07-015": 4
+    }
+  }
+}

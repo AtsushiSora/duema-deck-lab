@@ -1,0 +1,270 @@
+{
+  "phase": 334,
+  "checkedAt": "2026-11-01",
+  "description": "常在条件の共通判定を自他のシールド・墓地枚数、双方の進化クリーチャー、他の種族へ拡張する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmr19-077",
+      "name": "音速 ピード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-077",
+      "faces": [
+        {
+          "name": "音速 ピード",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手のシールドが２つ以下なら、このクリーチャーのパワーを+3000し、種族にソニック・コマンドを追加する。",
+          "race": "ヒューマノイド爆/侵略者",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "opponent": true,
+              "max": 2
+            }
+          },
+          "grants": {
+            "power": 3000,
+            "raceAdd": [
+              "ソニック・コマンド"
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-077.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "34822fa42cb549b1fa8982160f3ffa12f651bdb366c14628c8ab205e54683563",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd02-006",
+      "name": "奇石 プラステ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd02-006",
+      "faces": [
+        {
+          "name": "奇石 プラステ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ラビリンス：自分のシールドの数が相手より多ければ、このクリーチャーのパワーを+4000する。",
+          "race": "メタリカ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "moreThanOpponent": true
+            }
+          },
+          "grants": {
+            "power": 4000
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd02-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "0c9b1758c7f9bee9c08352a91a1146215b73bea6c1ad3d2e8fa524f240f7c476",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-054",
+      "name": "剛力の腕甲",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-054",
+      "faces": [
+        {
+          "name": "剛力の腕甲",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "バトルゾーンに進化クリーチャーが１体でもあれば、このクリーチャーのパワーは+3000される。",
+          "race": "ビーストフォーク",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "evolution": true,
+            "g334Both": true
+          },
+          "grants": {
+            "power": 3000
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "2aa08af3daf833e1484cb83a3056f7295bd933e58f4afc7064fdeaf8f41d7685",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-099",
+      "name": "弾け山のラルビン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-099",
+      "faces": [
+        {
+          "name": "弾け山のラルビン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のマナゾーンに自然のカードがあれば、このクリーチャーのパワーは+2000される。",
+          "race": "ドリームメイト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g267Mana": {
+              "n": 1,
+              "color": "自然"
+            }
+          },
+          "grants": {
+            "power": 2000
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-099.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "dcf563b46dcd88e74a8cbc24e704787db5a9672ce61024de66b9d2999ed8bb89",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-093",
+      "name": "封魔エリゴウル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-093",
+      "faces": [
+        {
+          "name": "封魔エリゴウル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "バトルゾーンに自分のグランド・デビルが他に１体でもあれば、このクリーチャーのパワーは+2000される。",
+          "race": "グランド・デビル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "race": "グランド・デビル",
+            "g334Other": true
+          },
+          "grants": {
+            "power": 2000
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-093.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "529810f9c37047c231de0007e0d7e638211e716e9f7784e6edc31c32f78430ff",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm37-043",
+      "name": "乱墓流男",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-043",
+      "faces": [
+        {
+          "name": "乱墓流男",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手の墓地にカードが３枚以上ある時、このクリーチャーのパワーは+3000され、「W・ブレイカー」を得る。",
+          "race": "ヘドリアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "grave",
+              "opponent": true,
+              "min": 3
+            }
+          },
+          "grants": {
+            "power": 3000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "e41bfa2b18b84cfc7e307e476ea653ba57dfcebf9ec96766c3304d33541efb25",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr19-077": 4,
+      "dmsd02-006": 4,
+      "dm16-054": 4,
+      "dm24-099": 4,
+      "dm19-093": 4,
+      "dm37-043": 4
+    }
+  }
+}

@@ -1,0 +1,295 @@
+{
+  "phase": 333,
+  "checkedAt": "2026-11-01",
+  "description": "常在の枚数計算を負のパワー修正、双方の場の文明条件、シールドの束と物理カード数の区別へ広げる。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37429/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35701/"
+  ],
+  "cards": [
+    {
+      "id": "dm14-053",
+      "name": "ギガロスター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-053",
+      "faces": [
+        {
+          "name": "ギガロスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーのパワーは、バトルゾーンにある光または自然のクリーチャー１体につき-1000される。(パワー０以下のクリーチャーは破壊される)",
+          "race": "キマイラ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g207CountPower": {
+          "zone": "battle",
+          "both": true,
+          "filter": {
+            "creature": true,
+            "colorsAny": [
+              "光",
+              "自然"
+            ]
+          },
+          "amount": -1000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "e9ee1922cf958ed9b23dbde882fedfa86b18cd9af38e2b1d6f6996831be25bcc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm04-053",
+      "name": "シェル・キャノン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-053",
+      "faces": [
+        {
+          "name": "シェル・キャノン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S(シールド)・トリガー(このカードをシールドゾーンから手札に加えるとき、コストを支払わずにすぐ召喚してよい)\nこのクリーチャーがバトルゾーンにある間、このクリーチャーのパワーは、自分のシールドゾーンにあるカード１枚につき+1000される。",
+          "race": "コロニー・ビートル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g207CountPower": {
+          "zone": "shields",
+          "g333ShieldCards": true,
+          "amount": 1000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm04-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "f3aac36629c90832369e7734e772dfcf4f29ed3f824bd0fbb25f7f256a1fbf70",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-050",
+      "name": "パターン・エッグ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-050",
+      "faces": [
+        {
+          "name": "パターン・エッグ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーのパワーは、バトルゾーンにある火または自然のクリーチャー１体につき-1000される。(パワー０以下のクリーチャーは破壊される)\nこのクリーチャーはブロックされない。",
+          "race": "サイバー・ウイルス",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g207CountPower": {
+          "zone": "battle",
+          "both": true,
+          "filter": {
+            "creature": true,
+            "colorsAny": [
+              "火",
+              "自然"
+            ]
+          },
+          "amount": -1000
+        },
+        "unblockable": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "0ab14435b76501dd63218fcbe1cdf44ebb62d16ee067d4260907b837d37c69b7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm21-030",
+      "name": "究極兵士ファルゲン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-030",
+      "faces": [
+        {
+          "name": "究極兵士ファルゲン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーのパワーは、自分のマナゾーンにあるカード１枚につき-1000される。(パワー０以下のクリーチャーは破壊される)",
+          "race": "ヒューマノイド",
+          "powerText": "6000-",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g207CountPower": {
+          "zone": "mana",
+          "amount": -1000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "2dfab38bba899ba2d32419a149dec2a1f54b6533f4978ce81a1d99affdaee350",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-044",
+      "name": "命運の守護者ティオス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-044",
+      "faces": [
+        {
+          "name": "命運の守護者ティオス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーのパワーは、自分のシールドゾーンにあるカード１枚につき+1000される。",
+          "race": "ガーディアン",
+          "powerText": "0",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g207CountPower": {
+          "zone": "shields",
+          "g333ShieldCards": true,
+          "amount": 1000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "0fe40501937c18f4ef1e2dac9b550ddbc5ac482165072349f9f13a8520086eb8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm29-015",
+      "name": "猛神兵マキシムドボン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-015",
+      "faces": [
+        {
+          "name": "猛神兵マキシムドボン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーのパワーは、相手のシールド１枚につき-1000される。\nこのクリーチャーは、パワーが6000以上の時、「W・ブレイカー」を得る。",
+          "race": "アーマロイド",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g207CountPower": {
+          "zone": "shields",
+          "opponent": true,
+          "amount": -1000
+        },
+        "g207Breakers": [
+          {
+            "power": 6000,
+            "breaker": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm29-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "84e254d67b31322591d66e5020f0d60a4c6a006c754f092bc53930d8c9a26020",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-061",
+      "name": "螺神兵ボロック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-061",
+      "faces": [
+        {
+          "name": "螺神兵ボロック",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーのパワーは、バトルゾーンにある光または水のクリーチャー１体につき-1000される。(パワー０以下のクリーチャーは破壊される)",
+          "race": "アーマロイド",
+          "powerText": "1000-",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g207CountPower": {
+          "zone": "battle",
+          "both": true,
+          "filter": {
+            "creature": true,
+            "colorsAny": [
+              "光",
+              "水"
+            ]
+          },
+          "amount": -1000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-061.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "721a7c62e432ac035b65c97c902a1d1786448444b1e1df0e7101fa3e32b33c17",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm14-053": 4,
+      "dm04-053": 4,
+      "dm14-050": 4,
+      "dm21-030": 4,
+      "dm28-044": 4,
+      "dm29-015": 4,
+      "dm14-061": 4
+    }
+  }
+}

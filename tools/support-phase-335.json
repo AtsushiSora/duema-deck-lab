@@ -1,0 +1,324 @@
+{
+  "phase": 335,
+  "checkedAt": "2026-11-01",
+  "description": "味方1体へのターン中パワー上昇・ブロック不可と、任意の複数体への能力付与を共通処理で扱う。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dm01-016",
+      "name": "レーザー・ウイング",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm01-016",
+      "faces": [
+        {
+          "name": "レーザー・ウイング",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンにある自分のクリーチャーを２体まで選ぶ。このターン、そのクリーチャーはブロックされない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "self",
+            "origin": "battle",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g335Grant": {
+              "unblockable": true
+            },
+            "title": "このターン、ブロックされなくする自分のクリーチャーを2体まで選ぶ",
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm01-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "2ebdf5054a774359c5856c9ea9801766f28dec3bd9d74e7a8e45f2e4d7c6719b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr15-053",
+      "name": "宴会の面 ソスソス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-053",
+      "faces": [
+        {
+          "name": "宴会の面 ソスソス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、そのターン、バトルゾーンにある自分の他のクリーチャー１体のパワーは+3000される。",
+          "race": "ビーストフォーク號",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 3000,
+            "g179Other": true,
+            "title": "パワーを+3000する自分の他のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "4f7d70f45620a2fdeaa3f6491014e07b2fea2841c709337ec875d3a83a37c012",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-085",
+      "name": "雪精 サエポヨ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-085",
+      "faces": [
+        {
+          "name": "雪精 サエポヨ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、そのターン、自分のクリーチャー１体のパワーを+2000する。",
+          "race": "スノーフェアリー風/革命軍",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 2000,
+            "title": "パワーを+2000する自分のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-085.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "300d1188816301c238079c77d7b42ad1051f57f5b67de8d6cba41ac5640416df",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-071",
+      "name": "雪精 モコムック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-071",
+      "faces": [
+        {
+          "name": "雪精 モコムック",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、そのターン、自分の他のクリーチャー１体のパワーを+3000する。",
+          "race": "スノーフェアリー風",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 3000,
+            "g179Other": true,
+            "title": "パワーを+3000する自分の他のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-071.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "5036207fced31e66c7a7545294c5de9acd9c5a9ff29f85c2aef2c80a467e07e5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr12-040",
+      "name": "閃光する穿孔",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-040",
+      "faces": [
+        {
+          "name": "閃光する穿孔",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このターン、バトルゾーンにある自分のクリーチャー１体はブロックされない。\nカードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "unblockable": true
+            },
+            "title": "このターン、ブロックされなくする自分のクリーチャーを1体選ぶ",
+            "spell": true
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr12-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "5a0f0db94485d7bcad2ac739156387ec53d31a655ba3e3d0906047e8f295f4ec",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp2-062",
+      "name": "天災のSSS級計画",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-062",
+      "faces": [
+        {
+          "name": "天災のSSS級計画",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nこのターン、自分のクリーチャー１体のパワーを＋4000する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ",
+            "spell": true
+          },
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 4000,
+            "title": "パワーを+4000する自分のクリーチャーを1体選ぶ",
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-062.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "a9fa6563a7648d52a2fb7b48eb28a9de753c9ddd51ef68e3e28a3abf43b37f25",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-082",
+      "name": "裏切りの親衛隊ペッパー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-082",
+      "faces": [
+        {
+          "name": "裏切りの親衛隊ペッパー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーはブロックされない。\nこのクリーチャーが攻撃する時、そのターン、バトルゾーンにある自分の他のクリーチャー１体はブロックされない。",
+          "race": "サイバーロード/ハンター/エイリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "unblockable": true,
+        "g34Attack": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "unblockable": true
+            },
+            "g179Other": true,
+            "title": "このターン、ブロックされなくする自分の他のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-082.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "490d008d062f40582f1cd74e2f97b869458e8be887c0e56b519bf1768908b08d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm01-016": 4,
+      "dmr15-053": 4,
+      "dmr19-085": 4,
+      "dmr18-071": 4,
+      "dmr12-040": 4,
+      "dm26rp2-062": 4,
+      "dmr05-082": 4
+    }
+  }
+}
