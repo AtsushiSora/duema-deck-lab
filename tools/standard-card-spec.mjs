@@ -4,7 +4,7 @@ const colors=['光','水','闇','火','自然'];
 const aliasNames=new Set(['炎のたてがみ(バーニング・ヘアー)','青銅の鎧(ブロンズ・アーム・トライブ)','無敵の咆哮(マイティ・シャウター)','紅玉草(ルビー・グラス)','ワ・タンポ－ポ・タンク','【問２】ノロン&#x2934','怪力の化身(マイティ・トーテム)']);
 const normalize=s=>s.normalize('NFKC').replace(/\s|■/g,'').replaceAll('、','');
 const keyword=(line,name)=>new RegExp('^(?:'+name+'){1,2}(?:\\([^()]*\\))?$').test(line);
-const clauses=(body,phase)=>phase>=310&&modal310(body)||phase>=270&&presence270(body,phase)||phase>=255&&look255(body)||phase>=254&&/^カードを[1-9]\d*枚引いてもよい。そうした(?:ら|場合)自分の手札を[1-9]\d*枚捨てる。$/.test(body)||phase>=248&&discardForEffect248(body,phase)||phase>=244&&discardAll244(body,phase)||phase>=241&&fightBuff241(body)||phase>=216&&/^自分の手札を1枚捨ててもよい。そうした(?:ら|場合)カードを[1-9]\d*枚引く。$/.test(body)||phase>=201&&search201(body)||phase>=200&&look200(body)||phase>=197&&mana197(body,phase)||phase>=185&&lookSpec(body)?[body]:(phase>=181?(phase>=184?body.replace(/^自分の手札を([1-9]\d*)枚捨て(?!る)(?:その後)?/,'自分の手札を$1枚捨てる。その後'):body).replace(/^カードを([1-9]\d*)枚引き(?:その後)?/,'カードを$1枚引く。その後'):body).split('その後').filter(Boolean);
+const clauses=(body,phase)=>phase>=318&&judge318(body,phase)||phase>=310&&modal310(body)||phase>=270&&presence270(body,phase)||phase>=255&&look255(body)||phase>=254&&/^カードを[1-9]\d*枚引いてもよい。そうした(?:ら|場合)自分の手札を[1-9]\d*枚捨てる。$/.test(body)||phase>=248&&discardForEffect248(body,phase)||phase>=244&&discardAll244(body,phase)||phase>=241&&fightBuff241(body)||phase>=216&&/^自分の手札を1枚捨ててもよい。そうした(?:ら|場合)カードを[1-9]\d*枚引く。$/.test(body)||phase>=201&&search201(body)||phase>=200&&look200(body)||phase>=197&&mana197(body,phase)||phase>=185&&lookSpec(body)?[body]:(phase>=181?(phase>=184?body.replace(/^自分の手札を([1-9]\d*)枚捨て(?!る)(?:その後)?/,'自分の手札を$1枚捨てる。その後'):body).replace(/^カードを([1-9]\d*)枚引き(?:その後)?/,'カードを$1枚引く。その後'):body).split('その後').filter(Boolean);
 const flags={
  'ブロッカー':'blocker','スピードアタッカー':'speedAttacker','スレイヤー':'slayer',
  'マッハファイター':'machFighter','ガードマン':'guardman','エスケープ':'escape',
@@ -149,7 +149,26 @@ function presence270(text,phase){
  return{op:'IfOwn',filter:{creature:true,...(m[2]?{any:[{color:m[1]},{color:m[2]}]}:{color:m[1]})},defs};
 }
 function modal310(text){if(text==='バトルゾーンにある相手のクリーチャーを1体選んで持ち主の手札に戻すか自分の山札からコスト3以下のクリーチャーを1体選び相手に見せてから手札に加えその後山札をシャッフルする。')return{op:'Choose',g184Modes:true,modes:[{label:'相手クリーチャー1体を手札に戻す',defs:[{op:'Target',to:'hand'}]},{label:'山札からコスト3以下のクリーチャーを手札に加える',defs:[{op:'Look',g310Search:true,g201Search:true,g200Search:true,n:'all',rest:'shuffle',stages:[{n:1,to:'hand',filter:{creature:true,max:3},reveal:true,optional:true}]}]}]};return null;}
+function judge318(text,phase){
+ const m=text.match(/^相手とガチンコ・ジャッジする。自分が勝ったら(.+)\(ガチンコ・ジャッジ:各プレイヤーは自身の山札の上から1枚目を見せそれを一番下に置く。そのカードのコストが相手以上であれば自分の勝ちとする\)$/);
+ if(!m||m[1].includes('ガチンコ・ジャッジ'))return null;
+ const def=instruction(m[1],phase);return def?{op:'Judge318',defs:[def]}:null;
+}
 function instruction(text,phase){
+ if(phase>=318){const judge=judge318(text,phase);if(judge)return judge;}
+ if(phase>=317){
+  const element=text.match(/^相手のコスト([1-9]\d*)以下のエレメントを1つ選(?:び|んで)破壊(する|してもよい)。$/);
+  if(element)return{op:'Target',to:'grave',element:true,...(element[2]==='してもよい'?{optional:true}:{}),filter:{max:+element[1]}};
+ }
+ if(phase>=316&&text==='バトルゾーンにある相手のクリーチャー1体につきカードを1枚引いてもよい。')return{op:'CountDraw',zone:'battle',owner:'opponent',filter:{creature:true},optional:'each'};
+ if(phase>=313){
+  const boost=text.match(/^(?:その|この)ターン(?:の終わりまで)?このクリーチャーのパワー(?:は|を)\+([1-9]\d*)(?:する。|される。|され「([WT])・ブレイカー」を得る。)$/);
+  if(boost)return{op:'SelfBoost313',power:+boost[1],...(boost[2]?{breaker:boost[2]==='W'?2:3}:{})};
+ }
+ if(phase>=312){
+  const m=text.match(/^(?:コスト([1-9]\d*)以下の)?(進化ではない)?(デーモン・コマンド|アンノウン|ドリームメイト|無色クリーチャー)を1体自分の手札から(?:バトルゾーンに)?出(す|してもよい)。$/);
+  if(m)return{op:'Select',origin:'hand',n:1,deploy:true,g195HandDeploy:true,filter:{creature:true,...(m[3]==='無色クリーチャー'?{noColor:true}:{race:m[3]}),...(m[1]?{max:+m[1]}:{}),...(m[2]?{nonEvolution:true}:{})},optional:m[4]==='してもよい'};
+ }
  if(phase>=311){
   const deployments={
    'コスト7以下のデーモン・コマンドを1体自分の手札からバトルゾーンに出してもよい。':{creature:true,max:7,race:'デーモン・コマンド'},
@@ -720,6 +739,24 @@ export function standardCardSpec(d,{phase=165}={}){
    };
    if(watches[line]){if(spec.g303DeathWatch)throw Error('重複する破壊監視能力');const{optional,...watch}=watches[line];spec.g303DeathWatch={...watch,defs:optional?[{op:'Offer',title:'カードを1枚引く？',defs:[{op:'Draw',n:1}]}]:[{op:'Draw',n:1}]};continue;}
   }
+  if(phase>=317&&creature){
+   const win=line.match(/^自分の(ハンター|火のクリーチャー)がバトルに勝った時(相手は自身の手札を1枚選び捨てる。|相手のシールドをひとつブレイクする。)$/);
+   if(win){if(spec.g252WinWatch)throw Error('重複するバトル勝利監視能力');spec.g252WinWatch={filter:{creature:true,...(win[1]==='ハンター'?{race:'ハンター'}:{color:'火'})},defs:[instruction(win[2],phase)]};continue;}
+   if(line==='自分の他のクリーチャーをバトルゾーンに出した時このクリーチャーを破壊する。'){if(spec.g250EntryDraw)throw Error('重複する登場監視');spec.g250EntryDraw={filter:{creature:true},self:false,defs:[{op:'SelfDestroy'}]};continue;}
+  }
+  if(phase>=316&&creature){
+   if(line==='このカードは4枚より多くデッキに入れることができる。'){if(spec.g314Unlimited)throw Error('重複するデッキ枚数能力');spec.g314Unlimited=true;continue;}
+   const draw=line.match(/^自分の(エンジェル・コマンドまたはドラゴン|スプラッシュ・クイーン)が(?:バトルゾーンに)?出た時カードを1枚引いてもよい。$/);
+   if(draw){if(spec.g251EntryDraw)throw Error('重複する登場監視');spec.g251EntryDraw={filter:{creature:true,...(draw[1]==='スプラッシュ・クイーン'?{race:draw[1]}:{raceAny:['エンジェル・コマンド','ドラゴン']})},defs:[{op:'Offer',title:'カードを1枚引く？',defs:[{op:'Draw',n:1}]}]};continue;}
+  }
+  if(phase>=314&&creature){
+   if(line==='《'+normalize(f.name)+'》は4枚より多くデッキに入れることができる。'){if(spec.g314Unlimited)throw Error('重複するデッキ枚数能力');spec.g314Unlimited=true;continue;}
+   if(line==='自分の名前に《遊撃師団》を持つクリーチャーが5体以上バトルゾーンにあればこのクリーチャーのパワーは+5000され「W・ブレイカー」を得る。'){if(spec.g260Self)throw Error('重複する味方条件');spec.g260Self={filter:{creature:true,name:'遊撃師団',g258Civil:5},grants:{power:5000,breaker:2}};powerBonus=true;continue;}
+   const other=line.match(/^(自分の)?他のクリーチャーが(?:バトルゾーンに)?出た時このクリーチャーを(タップする|アンタップする|アンタップしてもよい)。$/);
+   if(other){if(spec.g314OtherEntry)throw Error('重複する他の登場監視');const def={op:other[2]==='タップする'?'SelfTap314':'Untap'};spec.g314OtherEntry={who:other[1]?'self':'both',defs:other[2]==='アンタップしてもよい'?[{op:'Offer',title:'このクリーチャーをアンタップする？',defs:[def]}]:[def]};continue;}
+   const draw=line.match(/^自分の(多色クリーチャー|パワー([1-9]\d*)以上のクリーチャー|超化獣クリーチャー|名前に《遊撃師団》を持つクリーチャー)(?:をバトルゾーンに出した時|が(?:バトルゾーンに)?出た時)カードを1枚引いてもよい。$/);
+   if(draw){if(spec.g251EntryDraw)throw Error('重複する登場監視');const filter=draw[2]?{minPower:+draw[2],g199Power:true}:draw[1]==='多色クリーチャー'?{multi:true}:draw[1]==='超化獣クリーチャー'?{race:'超化獣'}:{name:'遊撃師団'};spec.g251EntryDraw={filter:{creature:true,...filter},defs:[{op:'Offer',title:'カードを1枚引く？',defs:[{op:'Draw',n:1}]}]};continue;}
+  }
   if(phase>=251&&creature){
    const watches={
     'このクリーチャーまたは自分のコスト6以上のクリーチャーが出た時カードを1枚引いてもよい。':{filter:{creature:true,min:6},selfAlways:true},
@@ -770,6 +807,10 @@ export function standardCardSpec(d,{phase=165}={}){
   if(phase>=292){
    if(creature&&line==='自分の手札が1枚もない時このクリーチャーは「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)'){if(spec.g246LowHand)throw Error('重複する手札条件');spec.g246LowHand={max:0,grants:{speedAttacker:true}};continue;}
    if(seed&&line==='自分のターンの終わりに自分の手札が1枚もなければカードを1枚引く。'){if(turnEnd.length)throw Error('重複する終了時能力');turnEnd.push(instruction('自分の手札が1枚もなければカードを1枚引く。',phase));continue;}
+  }
+  if(phase>=319&&creature){
+   const tribe=line.match(/^自分の(ゴッド|ドラゴン|コマンド・ドラゴン|エイリアン|ドリームメイト|ジョーカーズ)(?:・クリーチャー)?の召喚コストを1少なく(?:する|してもよい)。ただしコストは(?:0以下(?:には|に)?ならない|1より(?:少なく|小さく)ならない)。$/);
+   if(tribe){if(spec.g290SummonAura)throw Error('重複する召喚コスト軽減');spec.g290SummonAura={race:tribe[1],amount:1};continue;}
   }
   if(phase>=290&&creature){
    const tribe=line.match(/^自分の(メタリカ|ムートピア|マフィ・ギャング|グランセクト)(?:を召喚するコスト|の召喚コスト)を1少なくする。ただしコストは0以下(?:には|に)?ならない。$/);
@@ -884,7 +925,7 @@ export function standardCardSpec(d,{phase=165}={}){
    if(m=line.match(/^自分のシールド1つにつきこのクリーチャーのパワーを-([1-9]\d*)する。$/)){if(spec.g207CountPower)throw Error('重複する枚数パワー');spec.g207CountPower={zone:'shields',amount:-Number(m[1])};powerBonus=true;continue;}
   }
   if(phase>=205&&creature){const aura=aura205(line,phase);if(aura){if(spec.g205Aura)throw Error('重複する常在パワー能力');spec.g205Aura=aura;continue;}const bonus=line.match(/^(自分|相手)のターン中このクリーチャーのパワー(?:を|は)\+([1-9]\d*)(?:する|される)。$/);if(bonus){const key=bonus[1]==='自分'?'ownTurnBonus':'g38EnemyTurnBonus';if(spec[key])throw Error('重複するターン中のパワー能力');spec[key]=+bonus[2];powerBonus=true;continue;}}
-  if(phase>=204&&creature){const watch=line.match(/^(相手のターン中に)?(自分|相手)が呪文を唱えた時(.+)$/),colored=line.match(/^自分の(光|水|闇|火|自然)の呪文を唱える時(.+)$/);if(watch||colored){if(spec.g204SpellWatch)throw Error('独立した呪文誘発能力の順序対応が必要');const body=watch?watch[3]:colored[2],single=instruction(body,phase),defs=single?[single]:clauses(body,phase).map(text=>instruction(text,phase));if(!defs.length||defs.some(d=>!d))throw Error('未対応の能力文: '+raw);spec.g204SpellWatch={who:watch&&watch[2]==='相手'?'opponent':'self',...(watch?.[1]?{opponentTurn:true}:{}),...(colored?{color:colored[1]}:{}),defs};continue;}}
+  if(phase>=204&&creature){const watch=line.match(/^(相手のターン中に)?(自分|相手)が呪文を唱えた時(.+)$/),colored=line.match(/^自分の(光|水|闇|火|自然)の呪文を唱える時(.+)$/);if(watch||colored){if(spec.g204SpellWatch)throw Error('独立した呪文誘発能力の順序対応が必要');const body=watch?watch[3]:colored[2],single=instruction(body,phase),defs=single?[single]:clauses(body,phase).map(text=>instruction(text,phase));if(!defs.length||defs.some(d=>!d))throw Error('未対応の能力文: '+raw);spec.g204SpellWatch={who:watch&&watch[2]==='相手'?'opponent':'self',...(watch?.[1]?{opponentTurn:true}:{}),...(colored?{color:colored[1]}:{}),defs};if(phase>=313&&defs.some(d=>d.op==='SelfBoost313'))powerBonus=true;continue;}}
   if(phase>=201&&creature&&(m=line.match(/^このクリーチャーが(?:バトルゾーンに)?出たとき(.+)$/))){const search=search201(m[1]);if(search){if(entry.length||nativeEntry)throw Error('独立した誘発能力の順序対応が必要');entry.push(search);continue;}}
   if(phase>=203&&creature&&(m=line.match(/^このクリーチャーが(?:バトルゾーンに出たとき|攻撃するとき)(.+)$/))){const count=count203(m[1]);if(count){const dest=line.startsWith('このクリーチャーが攻撃')?attack:entry;if(dest.length||dest===entry&&nativeEntry)throw Error('独立した誘発能力の順序対応が必要');dest.push(count);continue;}}
   if(phase>=197&&creature){const mana=mana197(line,phase);if(mana?.event){const dest=mana.event==='entry'?entry:mana.event==='attack'?attack:death;if(dest.length||dest===entry&&nativeEntry)throw Error('独立した誘発能力の順序対応が必要');dest.push(mana.task);continue;}}
@@ -957,7 +998,12 @@ export function standardCardSpec(d,{phase=165}={}){
   };
   if(creature&&staticFlags[line]){spec[staticFlags[line]]=true;continue;}
   if(!creature&&!seed&&keyword(line,'チャージャー')){spec.normalCharger=true;continue;}
-  // Single-body race/civilization evolution only. Complex evolution rules stay pending.
+  // Single-body alternatives reuse the native evolution matcher, never multiple bases.
+  if(phase>=312&&evolution){
+   const simple=line.match(/^進化[-―−:]自分の(ナイト|サムライ|ハンター)・クリーチャー1体の上に置く。$/),either=line.match(/^進化[-―−:]自分の(パラサイトワーム|ゴースト|オリジン|アーマード・ドラゴン|ファイアー・バード|エンジェル・コマンド|デーモン・コマンド)または(パラサイトワーム|ゴースト|オリジン|アーマード・ドラゴン|ファイアー・バード|エンジェル・コマンド|デーモン・コマンド)1体の上に置く。$/);
+   if(simple||either){if(spec.evolution||either&&either[1]===either[2])throw Error('重複進化条件');spec.evolution=simple?{race:simple[1]}:{any:[{race:either[1]},{race:either[2]}]};continue;}
+  }
+  // Other complex evolution rules stay pending.
   if(evolution&&(m=line.match(/^進化[-―−:]自分の([^。/]+)1体の上に置く。$/))){if(spec.evolution)throw Error('重複進化条件');const q=m[1];if(q.endsWith('のクリーチャー')&&colors.includes(q.slice(0,-7)))spec.evolution={civilization:q.slice(0,-7)};else if(!/[、または以上以下枚体]|クリーチャー/.test(q))spec.evolution={race:phase>=226&&q==='ツリー・フォーク'?'ツリーフォーク':q};else throw Error('複雑な進化条件');continue;}
   if(phase>=169){
    const trigger=creature&&line.match(/^(?:このクリーチャーが(?:バトルゾーンに)?出た時|このクリーチャーをバトルゾーンに出した時)(.+)$/),body=trigger?trigger[1]:!creature&&!seed?line:null;

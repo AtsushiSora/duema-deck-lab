@@ -1,0 +1,372 @@
+{
+  "phase": 312,
+  "checkedAt": "2026-11-01",
+  "description": "種族指定の進化条件と手札展開を共通化し、関連する7種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/37133/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37476/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37477/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37475/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36772/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35535/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31410/"
+  ],
+  "cards": [
+    {
+      "id": "dmd12-010",
+      "name": "犠心のイザナイ 一休",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd12-010",
+      "faces": [
+        {
+          "name": "犠心のイザナイ 一休",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが破壊された時、コスト７以下の、進化ではない無色クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "オラクル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "noColor": true,
+              "max": 7,
+              "nonEvolution": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd12-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "82d1b2cd466f4543078aaf439208557bef9bca5ceab12fe90958707ae1eb11e6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex12-015",
+      "name": "激烈元気モーニンジョー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-015",
+      "faces": [
+        {
+          "name": "激烈元気モーニンジョー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーがバトルゾーンに出た時、ドリームメイトを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "ドリームメイト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "race": "ドリームメイト"
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "96f5ded17ded2e95ce05a80e86198fe171e06620f92c6c69c3694710e384d783",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm30-009",
+      "name": "戦劇エンペラー・キンタ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-009",
+      "faces": [
+        {
+          "name": "戦劇エンペラー・キンタ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化-自分のサムライ・クリーチャー１体の上に置く。\n相手が呪文を唱えた時、このクリーチャーをアンタップしてもよい。\nW・ブレイカー",
+          "race": "サイバーロード/サムライ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "サムライ"
+        },
+        "g204SpellWatch": {
+          "who": "opponent",
+          "defs": [
+            {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Untap"
+                }
+              ]
+            }
+          ]
+        },
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm30-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "2f9ec7c82e71b92ac424ef03b0465f68686f82f7e13ec326ba8fa7c57ae25a84",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp3-041",
+      "name": "不吉秘宝コーデン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-041",
+      "faces": [
+        {
+          "name": "不吉秘宝コーデン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分のクリーチャーが破壊された時、カードを１枚引いてもよい。",
+          "race": "パンドラボックス",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g303DeathWatch": {
+          "self": true,
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "61db502f319497135210bf2b5559cea6110cda641496982e9f57f1fe8c7db4b4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm32-023",
+      "name": "腐敗怪蟲ドグマグ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-023",
+      "faces": [
+        {
+          "name": "腐敗怪蟲ドグマグ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分のパラサイトワームまたはゴースト１体の上に置く。\nバトルゾーンにある自分のクリーチャーはすべて「スレイヤー」を得る。(「スレイヤー」を得たクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "パラサイトワーム/ゴースト",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "パラサイトワーム"
+            },
+            {
+              "race": "ゴースト"
+            }
+          ]
+        },
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "slayer": true
+            }
+          }
+        ],
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "3c61b2f90dd41742f1863c0b19bebd1e5a555d171732e0eec45910a7017a1f7f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm30-036",
+      "name": "幽騎士ブリュンヒルデ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-036",
+      "faces": [
+        {
+          "name": "幽騎士ブリュンヒルデ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "進化-自分のナイト・クリーチャー１体の上に置く。\n自分が呪文を唱えた時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。",
+          "race": "レインボー・ファントム/ナイト",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "ナイト"
+        },
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Target",
+              "tap": true,
+              "optional": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm30-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "b0627136ab34c28962f512b329ce54fcc3ae2e100209802ffcb5d143c150cfc1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc62-008",
+      "name": "凰翔竜機バルキリー・ルピア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc62-008",
+      "faces": [
+        {
+          "name": "凰翔竜機バルキリー・ルピア",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分のアーマード・ドラゴンまたはファイアー・バード１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からドラゴンを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "アーマード・ドラゴン/ファイアー・バード",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "アーマード・ドラゴン"
+            },
+            {
+              "race": "ファイアー・バード"
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "race": "ドラゴン",
+                  "creature": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc62-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "aac29b1cf97e84fa2ec464356fc8c1448f653a03a225d06a9d6fa68010dd30be",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmd12-010": 4,
+      "dmex12-015": 4,
+      "dm30-009": 4,
+      "dm24rp3-041": 4,
+      "dm32-023": 4,
+      "dm30-036": 4,
+      "dmc62-008": 4
+    }
+  }
+}

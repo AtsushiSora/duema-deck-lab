@@ -1,0 +1,282 @@
+{
+  "phase": 316,
+  "checkedAt": "2026-11-01",
+  "description": "種族指定の登場ドロー・相手のクリーチャー数ドロー・同名枚数例外の共通文法を広げて6種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/37133/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37476/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37477/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37475/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36772/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35535/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31410/"
+  ],
+  "cards": [
+    {
+      "id": "dm25ex2-092",
+      "name": "O・HA・NA・S",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-092",
+      "faces": [
+        {
+          "name": "O・HA・NA・S",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、カードを１枚引いてもよい。\nこのカードは、４枚より多くデッキに入れることができる。",
+          "race": "リキッド・ピープル閃/イニシャルズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g314Unlimited": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-092.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "601abfcdd3c1f08120b08dcd52fb6ca871523052a73105fd1f8eaae83ae7906f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp09-016",
+      "name": "アクア・ディープス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-016",
+      "faces": [
+        {
+          "name": "アクア・ディープス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある相手のクリーチャー１体につき、カードを１枚引いてもよい。",
+          "race": "リキッド・ピープル",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "owner": "opponent",
+            "filter": {
+              "creature": true
+            },
+            "optional": "each"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "ee7aed9f54ec86a311a3347f7dd730a2fdd37770f61adf8be07bc3592ad7741e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc43-004",
+      "name": "エンドラ・パッピー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc43-004",
+      "faces": [
+        {
+          "name": "エンドラ・パッピー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分のエンジェル・コマンドまたはドラゴンがバトルゾーンに出た時、カードを１枚引いてもよい。",
+          "race": "ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "エンジェル・コマンド",
+              "ドラゴン"
+            ]
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc43-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "2e2072e3a0865ebed4d44259187f8e04d0d10be4b62596742ec33596405d81c1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-062",
+      "name": "シル＝シャルロット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-062",
+      "faces": [
+        {
+          "name": "シル＝シャルロット",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\nこのカードは、４枚より多くデッキに入れることができる。",
+          "race": "アビスロイヤル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "abyssRush": true,
+        "g314Unlimited": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-062.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "6089025c9c140b4ddc5d06bb503a751dfb5ce387f305104671b9f64bba845211",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex12-058",
+      "name": "マリブ・リッキー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-058",
+      "faces": [
+        {
+          "name": "マリブ・リッキー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分のスプラッシュ・クイーンがバトルゾーンに出た時、カードを１枚引いてもよい。",
+          "race": "スプラッシュ・クイーン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "race": "スプラッシュ・クイーン"
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-058.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "b254b30e956401b6b37c2c80ada89400a8b5ddb7b1082899565ba1dc4fb0e830",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy16-105",
+      "name": "堕魔 ドゥザイコ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-105",
+      "faces": [
+        {
+          "name": "堕魔 ドゥザイコ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このカードは、４枚より多くデッキに入れることができる。",
+          "race": "マフィ・ギャング/魔導具",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g314Unlimited": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-105.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "5c39c6d7226c97b748b665171bba9e8e9f5d1a7133a571e47a8b589865c10428",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25ex2-092": 4,
+      "dmrp09-016": 4,
+      "dmc43-004": 4,
+      "dm22rp2-062": 4,
+      "dmex12-058": 4,
+      "promoy16-105": 4
+    }
+  }
+}

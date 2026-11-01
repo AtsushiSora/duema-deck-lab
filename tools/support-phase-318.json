@@ -1,0 +1,799 @@
+{
+  "phase": 318,
+  "checkedAt": "2026-11-01",
+  "description": "単発のガチンコ・ジャッジと勝利時の既存効果をつなぐ共通文法で16種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/37133/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37476/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37477/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37475/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36772/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35535/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31410/"
+  ],
+  "cards": [
+    {
+      "id": "dmr05-084",
+      "name": "アクア・ハンマープライス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-084",
+      "faces": [
+        {
+          "name": "アクア・ハンマープライス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃する時、相手とガチンコ・ジャッジする。自分が勝ったら、カードを１枚引いてもよい。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)",
+          "race": "リキッド・ピープル/ハンター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-084.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "7da1655196aac912a3f0e7c8085a3ce9d890c01abad5c94d1fb3196345fb56ee",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-049",
+      "name": "アクア・プロフェッサー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-049",
+      "faces": [
+        {
+          "name": "アクア・プロフェッサー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが攻撃する時、相手とガチンコ・ジャッジする。自分が勝ったら、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻してもよい。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)",
+          "race": "リキッド・ピープル/ハンター",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Target",
+                "anyOwner": true,
+                "to": "hand",
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "ba1aed0c11978c70be77e81c56430b224abfc8153e3f731ad1ce50b66ec7cfd9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-025",
+      "name": "ギャンブル将軍ゴーサウザンド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-025",
+      "faces": [
+        {
+          "name": "ギャンブル将軍ゴーサウザンド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃する時、相手とガチンコ・ジャッジする。自分が勝ったら、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-5000される。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)\nW・ブレイカー",
+          "race": "デーモン・コマンド/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Target",
+                "power": -5000,
+                "g242PowerMinus": true,
+                "title": "パワーを-5000する相手のクリーチャーを選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "95841407c86c1e29ef828a30a5a6218aeba25efce9b67f5a9a66d892d9d80d89",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr08-032",
+      "name": "ミサイル・バーストG",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-032",
+      "faces": [
+        {
+          "name": "ミサイル・バーストG",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー\n相手のパワー3000以下のクリーチャーを１体、破壊する。\n相手とガチンコ・ジャッジする。自分が勝ったら、相手のパワー6000以下のクリーチャーを１体、破壊する。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 6000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "a8dce133f8fa4a678168b591c8b4268bc2e2e990beda182f36a33fc420bc8861",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr08-030",
+      "name": "暗殺の守護者イカリング",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-030",
+      "faces": [
+        {
+          "name": "暗殺の守護者イカリング",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー\nこのクリーチャーは攻撃することができない。\nこのクリーチャーがブロックした時、相手とガチンコ・ジャッジする。自分が勝ったら、相手のタップされていないクリーチャーを１体破壊する。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)",
+          "race": "ガーディアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g178Block": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "untapped": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "8f0086b91293a71fbaacee433a0b56609828ffa73bc112f6e7980a107308373d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-009",
+      "name": "夏山の超人",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-009",
+      "faces": [
+        {
+          "name": "夏山の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃する時、相手とガチンコ・ジャッジする。自分が勝ったら、バトルゾーンにある相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ジャイアント",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Select",
+                "owner": "opponent",
+                "origin": "battle",
+                "n": 1,
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true,
+                "to": "mana",
+                "title": "マナに置く相手のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "a7a38e151a3c067901937aeff24c6dd90cde0c25335435419cebed8e156c2911",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr06-032",
+      "name": "格調の超人",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-032",
+      "faces": [
+        {
+          "name": "格調の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、相手とガチンコ・ジャッジする。自分が勝ったら、バトルゾーンにある相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)",
+          "race": "ジャイアント/エイリアン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Select",
+                "owner": "opponent",
+                "origin": "battle",
+                "n": 1,
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true,
+                "to": "mana",
+                "title": "マナに置く相手のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "3c9900574fcb8b6977f037c064d6b0f1726018198160831d6ec5f77bcdf2644a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy11-015",
+      "name": "偽りの名 バッファ・ロデオーレ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-015",
+      "faces": [
+        {
+          "name": "偽りの名 バッファ・ロデオーレ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー ブロッカー\nこのクリーチャーが攻撃する時またはブロックした時、相手とガチンコ・ジャッジする。自分が勝ったら、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加えてもよい。（ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする）\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "エンジェル・コマンド/アンノウン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "g178Block": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy11-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "7b6019c92c7c4290f0da4876ddbb2f006cb2b5bb71a9bbaf52f9986941dae9ae",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-002",
+      "name": "光器スパーク・ビヨンセ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-002",
+      "faces": [
+        {
+          "name": "光器スパーク・ビヨンセ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃する時、相手とガチンコ・ジャッジする。自分が勝ったら、バトルゾーンにある相手のクリーチャーをすべてタップする。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "メカ・デル・ソル/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "TapAll"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "5a2e7b7f3ca67195cc4cdf44670be0f51a067061ecea4c9e15dd9ec9f4ab9de6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr06-007",
+      "name": "光器リスベット・ラヴィーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-007",
+      "faces": [
+        {
+          "name": "光器リスベット・ラヴィーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカー\nこのクリーチャーをバトルゾーンに出した時、相手とガチンコ・ジャッジする。自分が勝ったら、バトルゾーンにある相手のクリーチャーを２体まで選び、タップする。そのクリーチャーは次の相手のターンのはじめにアンタップされない。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "メカ・デル・ソル",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "battle",
+                "owner": "opponent",
+                "n": 2,
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true,
+                "g193Tap": true,
+                "g210TapLock": true,
+                "title": "タップして次のターンまで止めるクリーチャーを2体まで選ぶ",
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "e314e2d6e6be0563cc9e229c42e1882c388fbaf2b2a976498533bc6ad20d4a90",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-100",
+      "name": "獣鬼イッキとクマサン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-100",
+      "faces": [
+        {
+          "name": "獣鬼イッキとクマサン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃する時、相手とガチンコ・ジャッジする。自分が勝ったら、相手のパワー3000以下のクリーチャーを１体破壊する。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)",
+          "race": "ヒューマノイド/ハンター/エイリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 3000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-100.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "2f1a82f9fe96d8d3a3630036e3c63c0f2a363c33c2c0c5290856212ee72b5a80",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr06-027",
+      "name": "穿孔の影ノーテン・ドリル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-027",
+      "faces": [
+        {
+          "name": "穿孔の影ノーテン・ドリル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、相手とガチンコ・ジャッジする。自分が勝ったら、クリーチャーを２体まで、自分の墓地から手札に戻してもよい。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)",
+          "race": "ゴースト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Select",
+                "g228Recovery": true,
+                "origin": "grave",
+                "to": "hand",
+                "n": 2,
+                "filter": {
+                  "g228Face": {
+                    "type": "creature"
+                  }
+                },
+                "optional": true,
+                "title": "手札に戻す墓地のクリーチャーを2体まで選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "cd033ed5ab888d8d21bdc84030f7be7b5ec38cfb44bf6d523fd5779cf10554f7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-107",
+      "name": "早起きトイプーちゃん",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-107",
+      "faces": [
+        {
+          "name": "早起きトイプーちゃん",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃する時、相手とガチンコ・ジャッジする。自分が勝ったら、自分の山札の上から１枚目をマナゾーンに置く。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)",
+          "race": "ドリームメイト/ハンター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-107.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "8d4addd14452880a21644504b947d967976d2293844720c00d6740f699a31085",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-012",
+      "name": "白獅子の精霊ムッタメガス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-012",
+      "faces": [
+        {
+          "name": "白獅子の精霊ムッタメガス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、相手とガチンコ・ジャッジする。自分が勝ったら、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加えてもよい。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)",
+          "race": "エンジェル・コマンド/アンノイズ",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "3e78031478b89026f1f7c6d575e0e9c24bcc249083401a2ea75916b4f92397a4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-092",
+      "name": "粉砕の影ブチクダキ・フード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-092",
+      "faces": [
+        {
+          "name": "粉砕の影ブチクダキ・フード",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃する時、相手とガチンコ・ジャッジする。自分が勝ったら、相手の手札を１枚見ないで選び、捨てさせる。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)",
+          "race": "ゴースト/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 1,
+                "random": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-092.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "128869f42a9d3f64ae61b0381d96fbc670077cd6e191a0cc677113fb94c4b233",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd07-006",
+      "name": "緑神龍オーバーブースト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd07-006",
+      "faces": [
+        {
+          "name": "緑神龍オーバーブースト",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃する時、相手とガチンコ・ジャッジする。自分が勝ったら、自分の山札の上から２枚をマナゾーンに置いてもよい。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アース・ドラゴン/ハンター/エイリアン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 2
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd07-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "3b1809f3faa1462fde085ea1f2eb378c4f6b9b2c90e4cbcd1132d1d5cdf7c04f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr05-084": 4,
+      "dmr05-049": 4,
+      "dmr05-025": 4,
+      "dmr08-032": 4,
+      "dmr08-030": 4,
+      "dmr05-009": 4,
+      "dmr06-032": 4,
+      "promoy11-015": 4,
+      "dmr05-002": 4,
+      "dmr06-007": 4,
+      "dmr05-100": 4,
+      "dmr06-027": 4,
+      "dmr05-107": 4,
+      "dmr05-012": 4,
+      "dmr05-092": 4,
+      "dmd07-006": 4
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import {createPhoto167Rules} from './photo167-rules.js?v=0.385.0';
+import {createPhoto167Rules} from './photo167-rules.js?v=0.395.0';
 import{createUtility161Rules}from'./utility161-rules.js?v=0.227.0';
 import{createPhoto160Rules}from'./photo160-rules.js?v=0.227.0';
 import {createPhoto159Rules} from './photo159-rules.js?v=0.227.0';
@@ -26,7 +26,7 @@ import {createUtilityBlockRules} from './utility-block-rules.js?v=0.126.0';
 import {createUtilityShieldSpells} from './utility-shield-spells.js?v=0.124.0';
 import {createUtilityKnightRules} from './utility-knight-rules.js?v=0.124.0';
 import {createUtilityModalRules} from './utility-modal-rules.js?v=0.161.0';
-import {createUtilitySacrificeRules} from './utility-sacrifice-rules.js?v=0.385.0';
+import {createUtilitySacrificeRules} from './utility-sacrifice-rules.js?v=0.395.0';
 import {createUtilityRecoveryRules} from './utility-recovery-rules.js?v=0.119.0';
 import {createUtilityExchangeRules} from './utility-exchange-rules.js?v=0.118.0';
 import {createUtilityBattleRules} from './utility-battle-rules.js?v=0.117.0';
@@ -39,9 +39,9 @@ import {createUtilityManaRules} from './utility-mana-rules.js?v=0.111.0';
 import {createUtilityDefenseRules} from './utility-defense-rules.js?v=0.168.0';
 import {createUtilityTacticsRules} from './utility-tactics-rules.js?v=0.109.0';
 import {createUtilityControlRules} from './utility-control-rules.js?v=0.227.0';
-import {createUtilityExpansionRules} from './utility-expansion-rules.js?v=0.385.0';
+import {createUtilityExpansionRules} from './utility-expansion-rules.js?v=0.395.0';
 import {createUtilityWaterRules} from './utility-water-rules.js?v=0.227.0';
-import {createUtilityNatureRules} from './utility-nature-rules.js?v=0.385.0';
+import {createUtilityNatureRules} from './utility-nature-rules.js?v=0.395.0';
 import {createUtilityDarkRules} from './utility-dark-rules.js?v=0.105.0';
 import {createSagaChampionRules} from './champion-saga-rules.js?v=0.105.0';
 import {createControlChampionRules} from './champion-control-rules.js?v=0.104.0';
@@ -52,28 +52,28 @@ import {createCombatChampionRules} from './champion-combat-rules.js?v=0.104.0';
 import {createJuniorChampionRules} from './champion-junior-rules.js?v=0.104.0';
 import {createChampion2025Rules} from './champion-2025-rules.js?v=0.104.0';
 import {createPhotoRevisionRules} from './photo-revisions-rules.js?v=0.103.0';
-import {createChampionContinuationRules} from './champion-continuation-rules.js?v=0.385.0';
+import {createChampionContinuationRules} from './champion-continuation-rules.js?v=0.395.0';
 import {createOriginalChampionRules} from './champion-original-rules.js?v=0.227.0';
 import {createChampionRules} from './champion-rules.js?v=0.104.0';
 import {createEnvironmentRules} from './environment-rules.js?v=0.104.0';
 import {createRecommendedRules} from './recommended-rules.js?v=0.111.0';
-import {createSixPhotoRules} from './six-photo-rules.js?v=0.385.0';
+import {createSixPhotoRules} from './six-photo-rules.js?v=0.395.0';
 import {createShieldPhotoRules} from './shield-photo-rules.js?v=0.104.0';
 import {createKenjiPhotoRules} from './kenji-photo-rules.js?v=0.227.0';
-import {createPhoenixRules} from './phoenix-rules.js?v=0.385.0';
-import {createBolshackRules} from './bolshack-rules.js?v=0.385.0';
+import {createPhoenixRules} from './phoenix-rules.js?v=0.395.0';
+import {createBolshackRules} from './bolshack-rules.js?v=0.395.0';
 import {createBandeRules} from './bande-rules.js';
 import {blockedLibraryTask} from './library-policy.js?v=0.89';
-import {createGolgyRules} from './golgy-rules.js?v=0.104.0';
+import {createGolgyRules} from './golgy-rules.js?v=0.395.0';
 import {createVirideRules} from './viride-rules.js';
 import {createHachiRules} from './hachi-rules.js?v=0.104.0';
 import {createAbyssRules} from './abyss-rules.js?v=0.227.0';
-import {createRedzoneRules} from './redzone-rules.js?v=0.385.0';
+import {createRedzoneRules} from './redzone-rules.js?v=0.395.0';
 import {createMadoRules} from './mado-rules.js?v=0.104.0';
 import {createGirlsRules} from './girls-rules.js?v=0.104.0';
 import {createMaruruRules} from './maruru-rules.js?v=0.104.0';
 import {createGraveRules} from './grave-rules.js?v=0.104.0';
-import {createTravelRules} from './travel-rules.js?v=0.385.0';
+import {createTravelRules} from './travel-rules.js?v=0.395.0';
 import {createKenjiRules} from './kenji-rules.js?v=0.104.0';
 import {createLionelRules} from './lionel-rules.js?v=0.104.0';
 import {createSamuraiRules} from './samurai-rules.js?v=0.171.0';
@@ -88,7 +88,7 @@ import {createMechaRules} from './mecha-rules.js?v=0.104.0';
 import {createKiyonagaRules} from './kiyonaga-rules.js?v=0.104.0';
 import {createGransectRules} from './gransect-rules.js?v=0.111.0';
 import {createGateRules} from './gate-rules.js?v=0.104.0';
-import {createGalaxyRules} from './galaxy-rules.js?v=0.385.0';
+import {createGalaxyRules} from './galaxy-rules.js?v=0.395.0';
 import {createGospelRules} from './gospel-rules.js?v=0.104.0';
 import {createStarterRules} from './starter-rules.js?v=0.227.0';
 // Serializable continuations for the verified tournament-card effects.
@@ -132,7 +132,7 @@ export function createExtendedRules(api){
  const original=createOriginalChampionRules({...api,gravePermits:(s,p,x,c)=>[...utilityDispectorSeeds.gravePermits(s,p,x,c),...six.gravePermits294(s,p,x,c)],creatures,put,task,choice,opt,skip,targetOptions,manaPermits:(s,p,x)=>[...(card(x).manaSummon?[null]:[]),...galaxy.manaPermits(s,p,x),...kenji.manaPermits(s,p,x),...gran.manaPermits(s,p,x),...girls.manaPermits(s,p,x),...six.manaPermits297(s,p,x)]});
  const champion=createChampionRules({...api,creatures,put,task,choice,opt,skip,targetOptions,discardSelected:(s,t,ids)=>beginDiscardBatch(s,t,ids)});
  const recommended=createRecommendedRules({...api,creatures,put,task,choice,opt,skip,targetOptions,targetable,lock});
- const six=createSixPhotoRules({...api,snowVariants:(s,p,c)=>galaxy.reductionVariants(s,p,c),creatures,put,task,choice,opt,skip,targetOptions,targetable,canLeave,snapshot:(s,rows)=>({six:six.snapshot(s)}),discardSelected:(s,p,ids,source,causedBy,afterDiscard248=null)=>beginDiscardBatch(s,{p,source,causedBy,n:ids.length,...(afterDiscard248?{afterDiscard248}:{})},ids)});
+ const six=createSixPhotoRules({...api,snowVariants:(s,p,c)=>galaxy.reductionVariants(s,p,c),creatures,put,task,choice,opt,skip,targetOptions,targetable,canLeave,snapshot:(s,rows)=>({six:six.snapshot(s)}),discardSelected:(s,p,ids,source,causedBy,afterDiscard248=null,afterDiscard321=null)=>beginDiscardBatch(s,{p,source,causedBy,n:ids.length,...(afterDiscard248?{afterDiscard248}:{}),...(afterDiscard321?{afterDiscard321}:{})},ids)});
  const shieldPhoto=createShieldPhotoRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const photo=createKenjiPhotoRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const bolshack=createBolshackRules({...api,creatures,put,task,choice,opt,skip,targetOptions,targetable,lock});
@@ -205,7 +205,7 @@ export function createExtendedRules(api){
    case 'optionalDrawOne':choice(s,t,'カードを1枚引きますか？',[opt('1枚引く',true,own.deck.length>1?10:-10),skip()]);break;
    case 'optionalLoot':choice(s,t,`カードを${t.n}枚引いて、1枚捨てますか？`,[opt('引いてから1枚捨てる',true,own.deck.length>t.n?20:-10),skip()]);break;
    case 'discardSelect':{const available=own.hand.filter(x=>!t.selected.includes(x.uid));if(t.selected.length>=t.n||!available.length){beginDiscardBatch(s,t,t.selected);break;}choice(s,t,'捨てる手札を選ぶ（'+t.selected.length+'枚選択済み）',[...available.map(x=>opt(card(x).name,x.uid,t.selfDiscard?-cost(card(x)):cost(card(x)),x.cardId)),...(t.optional?[opt('ここまでで確定',null,0)]:[])]);break;}
-   case 'discardBatch':{const b=s.extDiscardBatches[t.batchId];if(!b)break;if(!b.uids.length){delete s.extDiscardBatches[t.batchId];if(b.actual&&t.afterDiscard248)put(s,t.afterDiscard248);if(b.randomDiscardAfter&&b.actual)put(s,task('discard',1-b.p,b.source,{causedBy:b.p,n:b.actual,random:true}));break;}const [uid,...rest]=b.uids;b.uids=rest;if(own.hand.some(x=>x.uid===uid))put(s,{...t,op:'discardChosen',uid,n:1});else put(s,t);break;}
+   case 'discardBatch':{const b=s.extDiscardBatches[t.batchId];if(!b)break;if(!b.uids.length){delete s.extDiscardBatches[t.batchId];if(b.actual&&t.afterDiscard248)put(s,t.afterDiscard248);if(t.afterDiscard321)put(s,{...t.afterDiscard321,discarded:!!b.actual});if(b.randomDiscardAfter&&b.actual)put(s,task('discard',1-b.p,b.source,{causedBy:b.p,n:b.actual,random:true}));break;}const [uid,...rest]=b.uids;b.uids=rest;if(own.hand.some(x=>x.uid===uid))put(s,{...t,op:'discardChosen',uid,n:1});else put(s,t);break;}
    case 'discard':{
     if(t.n>1&&!t.all){if(t.random){const available=[...own.hand],chosen=[];while(chosen.length<t.n&&available.length)chosen.push(available.splice(Math.floor(random(s)*available.length),1)[0].uid);beginDiscardBatch(s,t,chosen);}else put(s,{...t,op:'discardSelect',selected:[]});break;}
     if(t.all&&own.hand.some(x=>discardDeploy(s,t,x))){beginDiscardBatch(s,t,own.hand.map(x=>x.uid));break;}
@@ -289,7 +289,7 @@ export function createExtendedRules(api){
   }
  }
  const revCard=(s,p,uid)=>s.players[p].hand.find(x=>x.uid===uid)||s.players[p].shields.flatMap(api.shieldCards).find(x=>x.uid===uid&&x.faceUp&&card(x).sRev);
- function revMatches(s,x,c){const r=c.rev;return !!r&&api.isCreature(s,x)&&(r.any|| (r.categories?r.categories.some(q=>String(card(x).race).includes(q)):r.race?String(card(x).race).includes(r.race):card(x).race.includes('ドラゴン')))&&(!r.nameIncludes||card(x).name.includes(r.nameIncludes))&&(!r.multicolor||colors(card(x)).length>1)&&(!r.powerMin||power(x,false,s)>=r.powerMin)&&cost(card(x))>=(r.min||0)&&(!r.colors||colors(card(x)).some(v=>r.colors.includes(v)));}
+ function revMatches(s,x,c){const r=c.rev;return !!r&&api.isCreature(s,x)&&(r.any|| (r.categories?r.categories.some(q=>String(card(x).race).includes(q)):r.race?String(card(x).race).includes(r.race):card(x).race.includes('ドラゴン')))&&(!r.nameIncludes||card(x).name.includes(r.nameIncludes))&&(!r.multicolor||colors(card(x)).length>1)&&(!r.powerMin||power(x,x.uid===s.attack?.attacker,s)>=r.powerMin)&&cost(card(x))>=(r.min||0)&&(!r.colors||colors(card(x)).some(v=>r.colors.includes(v)));}
  function startSwap(s,t,uid,revolution){const own=s.players[t.p],incoming=revCard(s,t.p,t.uid),origin=incoming&&own.hand.includes(incoming)?'hand':'shields';if(incoming&&galaxy.entryWouldReplace(s,t.p,card(incoming),origin,false)){log(s,t.p,'swapFailed','登場の置き換えにより入れ替えは実行されない',{cardId:t.source});return;}const old=nowCreature(s,t.p,uid);if(!old||!incoming)return;if(card(old).starEvolution&&old.under?.length){log(s,t.p,'swapFailed','スター進化の構成カードすべては戻せないため入れ替えできない',{cardId:t.source});return;}const attack=s.attack&&[s.attack.attacker,s.attack.target,s.attack.blockUid].includes(uid)?structuredClone(s.attack):null;put(s,{...t,op:'swapFinish',old:uid,tapped:old.tapped,attack,revolution,origin});move(s,[{player:t.p,uid,exchange:true,to:origin==='hand'?'hand':'shields',...(origin==='shields'?{shieldAttach:api.shieldGroup(own.shields.find(root=>api.shieldCards(root).some(y=>y.uid===incoming.uid)))}:{}),destroy:false}]);}
  function beginDiscardBatch(s,t,uids){const batchId=String(s.extDiscardSerial=(s.extDiscardSerial||0)+1);(s.extDiscardBatches??={})[batchId]={p:t.p,source:t.source,uids:[...uids],actual:0,randomDiscardAfter:t.randomDiscardAfter};put(s,{...t,op:'discardBatch',batchId,n:1,randomDiscardAfter:false});}
  function discardCard(s,t,x){

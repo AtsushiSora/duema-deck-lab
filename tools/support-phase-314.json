@@ -1,0 +1,556 @@
+{
+  "phase": 314,
+  "checkedAt": "2026-11-01",
+  "description": "他のクリーチャーの登場に反応するタップ・アンタップと条件付きドローの共通処理を拡張する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/37133/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37476/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37477/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37475/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36772/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35535/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31410/"
+  ],
+  "cards": [
+    {
+      "id": "dmr04-022",
+      "name": "サイバー・S・リエス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-022",
+      "faces": [
+        {
+          "name": "サイバー・S・リエス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の多色クリーチャーをバトルゾーンに出した時、カードを１枚引いてもよい。",
+          "race": "サイバー・コマンド/エイリアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "multi": true
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr04-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "ed407cd72f90b9578778995b7f03ed7e9fdfd05a631ba0fc20ee738a8daba5de",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-090",
+      "name": "トテントン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-090",
+      "faces": [
+        {
+          "name": "トテントン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のパワー12000以上のクリーチャーがバトルゾーンに出た時、カードを１枚引いてもよい。",
+          "race": "グランセクト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "minPower": 12000,
+            "g199Power": true
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-090.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "5ea92981efe63cb74997e4ff3ae2dfa69e9327ca2577d62290251101f191fb0a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm17-026",
+      "name": "ファニー・クロウラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-026",
+      "faces": [
+        {
+          "name": "ファニー・クロウラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\n他のクリーチャーがバトルゾーンに出た時、このクリーチャーをタップする。\nこのクリーチャーは攻撃することができない。",
+          "race": "アースイーター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g314OtherEntry": {
+          "who": "both",
+          "defs": [
+            {
+              "op": "SelfTap314"
+            }
+          ]
+        },
+        "noAttack": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm17-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "c38eca76124a11bd2bca592bbf817fe92935c3c40b11fff0dffcf1ef24047f8b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm12-051",
+      "name": "ロンリーのホッチキス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-051",
+      "faces": [
+        {
+          "name": "ロンリーのホッチキス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "他のクリーチャーがバトルゾーンに出た時、このクリーチャーをタップする。",
+          "race": "ゼノパーツ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g314OtherEntry": {
+          "who": "both",
+          "defs": [
+            {
+              "op": "SelfTap314"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "c908792cb5bee22340110711587f27dcfb453421c8eb350b748c16f063212c95",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-019",
+      "name": "師団の先導者 ツラトゥストラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-019",
+      "faces": [
+        {
+          "name": "師団の先導者 ツラトゥストラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の、名前に《遊撃師団》を持つクリーチャーをバトルゾーンに出した時、カードを１枚引いてもよい。",
+          "race": "ジャスティス・ウイング/オラクル",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "name": "遊撃師団"
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "d5ae4823668c7c63adc5b9496c5d19785fd6ca8a4db4fe33c427e03b0be45aa0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-053",
+      "name": "星姫械 シリエスター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-053",
+      "faces": [
+        {
+          "name": "星姫械 シリエスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分の超化獣クリーチャーが出た時、カードを１枚引いてもよい。",
+          "race": "メカ・デル・ステラ",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "race": "超化獣"
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "b7c453a5bb55eb4dc2f7d9226053c53a6f9307b99a27fd9cf91746d2442f431b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm12-012",
+      "name": "独神兵ローンスピナー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-012",
+      "faces": [
+        {
+          "name": "独神兵ローンスピナー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "他のクリーチャーがバトルゾーンに出た時、このクリーチャーをタップする。",
+          "race": "アーマロイド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g314OtherEntry": {
+          "who": "both",
+          "defs": [
+            {
+              "op": "SelfTap314"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "2fd4b176aff8cae2e93f46173c62adacfa95eabcf5df901b88834a6645c1f4db",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16s-040",
+      "name": "遊撃師団 アクアーミー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-040",
+      "faces": [
+        {
+          "name": "遊撃師団 アクアーミー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "《遊撃師団 アクアーミー》は、４枚より多くデッキに入れることができる。\n自分の、名前に《遊撃師団》を持つクリーチャーが５体以上バトルゾーンにあれば、このクリーチャーのパワーは+5000され、「W・ブレイカー」を得る。",
+          "race": "リキッド・ピープル閃",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g314Unlimited": true,
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "name": "遊撃師団",
+            "g258Civil": 5
+          },
+          "grants": {
+            "power": 5000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "57ca41a021f82471e23e907e5f9362d25ba6b34c445f17d6e1d20593ca66de3a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-046",
+      "name": "遊撃師団 ニッカ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-046",
+      "faces": [
+        {
+          "name": "遊撃師団 ニッカ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "《遊撃師団 ニッカ》は、４枚より多くデッキに入れることができる。\nパワーアタッカー+2000（攻撃中、このクリーチャーのパワーは+2000される）\n自分の、名前に《遊撃師団》を持つクリーチャーが５体以上バトルゾーンにあれば、このクリーチャーのパワーは+5000され、「W・ブレイカー」を得る。",
+          "race": "ヒューマノイド爆",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g314Unlimited": true,
+        "attackBonus": 2000,
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "name": "遊撃師団",
+            "g258Civil": 5
+          },
+          "grants": {
+            "power": 5000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "c61bd9ce5ae75e721dacd5a5a7cf71a4c1ccb754f554c73dc3a5fde050281cd1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-043",
+      "name": "遊撃師団 ブッチビーズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-043",
+      "faces": [
+        {
+          "name": "遊撃師団 ブッチビーズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "《遊撃師団 ブッチビーズ》は、４枚より多くデッキに入れることができる。\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n自分の、名前に《遊撃師団》を持つクリーチャーが５体以上バトルゾーンにあれば、このクリーチャーのパワーは+5000され、「W・ブレイカー」を得る。",
+          "race": "ファンキー・ナイトメア",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g314Unlimited": true,
+        "slayer": true,
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "name": "遊撃師団",
+            "g258Civil": 5
+          },
+          "grants": {
+            "power": 5000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "ab463d496e58cd265219405ca81675fd3b95cdefcb10808e1a600cdc813132a0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-051",
+      "name": "遊撃師団 プレプレ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-051",
+      "faces": [
+        {
+          "name": "遊撃師団 プレプレ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "《遊撃師団 プレプレ》は、４枚より多くデッキに入れることができる。\n自分の、名前に《遊撃師団》を持つクリーチャーが５体以上バトルゾーンにあれば、このクリーチャーのパワーは+5000され、「W・ブレイカー」を得る。",
+          "race": "ビーストフォーク號",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g314Unlimited": true,
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "name": "遊撃師団",
+            "g258Civil": 5
+          },
+          "grants": {
+            "power": 5000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "07dc14355f7e91488ff945beca6b5ee020dfa7b4e8945ed63e1efcb67ad46d7d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-031",
+      "name": "予言者ジャロッド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-031",
+      "faces": [
+        {
+          "name": "予言者ジャロッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分の他のクリーチャーが出た時、このクリーチャーをアンタップしてもよい。",
+          "race": "ライトブリンガー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g314OtherEntry": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "このクリーチャーをアンタップする？",
+              "defs": [
+                {
+                  "op": "Untap"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "75878d71b4b156405adf73f90df752c59e6d7136c0bbdfe2c842c4df5a15538d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr04-022": 4,
+      "dmrp01-090": 4,
+      "dm17-026": 4,
+      "dm12-051": 4,
+      "dmr16g-019": 4,
+      "dm24rp2-053": 4,
+      "dm12-012": 4,
+      "dmr16s-040": 4,
+      "dmr16g-046": 4,
+      "dmr16g-043": 4,
+      "dmr16g-051": 4,
+      "dm24rp4-031": 4
+    }
+  }
+}

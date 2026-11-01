@@ -1,0 +1,385 @@
+{
+  "phase": 317,
+  "checkedAt": "2026-11-01",
+  "description": "コスト指定のエレメント除去・バトル勝利時能力・他の登場による自己破壊の共通文法を広げて8種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/37133/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37476/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37477/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37475/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36772/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35535/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31410/"
+  ],
+  "cards": [
+    {
+      "id": "dm23sd1-011",
+      "name": "ザーク・砲・ピッチ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd1-011",
+      "faces": [
+        {
+          "name": "ザーク・砲・ピッチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、相手のコスト３以下のエレメントを１つ選んで破壊する。",
+          "race": "アーマード・ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "element": true,
+            "filter": {
+              "max": 3
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23sd1-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "8c777591567002450f569041ff052a8710bbda9c194c1f9cf0c79c5c287068ab",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr07-046",
+      "name": "ステッピ・ジナン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-046",
+      "faces": [
+        {
+          "name": "ステッピ・ジナン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のハンターがバトルに勝った時、相手は自身の手札を１枚選び、捨てる。",
+          "race": "ファイアー・バード/ハンター",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g252WinWatch": {
+          "filter": {
+            "creature": true,
+            "race": "ハンター"
+          },
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "50da6eaa39032c1db3ae0e262d3e47194e90661b4b6197ad8fc0f59bedbd2ece",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-020",
+      "name": "ボルシャック・バリスタ・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-020",
+      "faces": [
+        {
+          "name": "ボルシャック・バリスタ・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが出た時、相手のコスト４以下のエレメントを１つ選び、破壊する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "speedAttacker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "element": true,
+            "filter": {
+              "max": 4
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "1404b3c6e504b5adac763853691674475c6606caa5e16e43f03ab5f281edd803",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm17-044",
+      "name": "独身秘宝ミリアポッド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-044",
+      "faces": [
+        {
+          "name": "独身秘宝ミリアポッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の他のクリーチャーをバトルゾーンに出した時、このクリーチャーを破壊する。",
+          "race": "パンドラボックス",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g250EntryDraw": {
+          "filter": {
+            "creature": true
+          },
+          "self": false,
+          "defs": [
+            {
+              "op": "SelfDestroy"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm17-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "ba12d2e782a83c6c55d4bb28bbe637ea79360583bba33c59b25f7ddb70178ff8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp3-068",
+      "name": "迫撃兵ショウマ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-068",
+      "faces": [
+        {
+          "name": "迫撃兵ショウマ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、相手のコスト３以下のエレメントを１つ選び、破壊する。",
+          "race": "ヒューマノイド",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "element": true,
+            "filter": {
+              "max": 3
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-068.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "135d2d44b579065b31877b9e8c54b4f368296e5131add9fa248c52fdf393a671",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd15-007",
+      "name": "爆槍 ヘーゼル・バーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd15-007",
+      "faces": [
+        {
+          "name": "爆槍 ヘーゼル・バーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の火のクリーチャーがバトルに勝った時、相手のシールドをひとつブレイクする。",
+          "race": "ヒューマノイド爆",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g252WinWatch": {
+          "filter": {
+            "creature": true,
+            "color": "火"
+          },
+          "defs": [
+            {
+              "op": "Break278"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd15-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "329e92e3aadd5074d975ab72a613c16aa1fb6ebc5908c38e0436867db403fc63",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-069",
+      "name": "魔誕炎怒アゲバーロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-069",
+      "faces": [
+        {
+          "name": "魔誕炎怒アゲバーロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、相手のコスト３以下のエレメントを１つ選び、破壊する。",
+          "race": "デーモン・コマンド/デモンズ・レガシー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "element": true,
+            "filter": {
+              "max": 3
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-069.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "2922634e70e7bd2acd7e37e5e70ed46f7d7fc7cb23f5ebe65bbcc8398e85a5fb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-051",
+      "name": "魔誕幻獣ボンメェ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-051",
+      "faces": [
+        {
+          "name": "魔誕幻獣ボンメェ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、次のうちいずれか１つを選ぶ。\n▶相手のコスト４以下のエレメントを１つ選び、破壊する。\n▶自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "デーモン・コマンド/ドリームメイト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のコスト４以下のエレメントを１つ選び、破壊する。",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "element": true,
+                    "filter": {
+                      "max": 4
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "自分の山札の上から１枚目をマナゾーンに置く。",
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "da6199eae087bb69e8cba05e45342f9ae6866e5a5862285a436022d3bdf495ee",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23sd1-011": 4,
+      "dmr07-046": 4,
+      "dm23rp4-020": 4,
+      "dm17-044": 4,
+      "dm24rp3-068": 4,
+      "dmd15-007": 4,
+      "dm24rp4-069": 4,
+      "dm24rp4-051": 4
+    }
+  }
+}

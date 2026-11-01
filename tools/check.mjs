@@ -1,3 +1,13 @@
+import {REQUESTED321_DECK} from './fixtures/requested321.mjs';
+import {REQUESTED320_DECK} from './fixtures/requested320.mjs';
+import {STANDARD319_DECK} from './fixtures/standard319.mjs';
+import {STANDARD318_DECKS} from './fixtures/standard318.mjs';
+import {STANDARD317_DECK} from './fixtures/standard317.mjs';
+import {STANDARD316_DECK} from './fixtures/standard316.mjs';
+import {STANDARD315_DECK} from './fixtures/standard315.mjs';
+import {STANDARD314_DECKS} from './fixtures/standard314.mjs';
+import {STANDARD313_DECK} from './fixtures/standard313.mjs';
+import {STANDARD312_DECK} from './fixtures/standard312.mjs';
 import {STANDARD311_DECK} from './fixtures/standard311.mjs';
 import {STANDARD310_DECK} from './fixtures/standard310.mjs';
 import {STANDARD309_DECK} from './fixtures/standard309.mjs';
@@ -682,3 +692,19 @@ if(validateDeck(STANDARD309_DECK).length||registry.coverage(STANDARD309_DECK).un
 if(validateDeck(STANDARD310_DECK).length||registry.coverage(STANDARD310_DECK).unsupported||STANDARD310_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第310段階の40枚を確認してください');console.log('Checked phase310 forty-card deck: exact-name mana deployment and modal library search supported.');
 
 if(validateDeck(STANDARD311_DECK).length||registry.coverage(STANDARD311_DECK).unsupported||STANDARD311_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第311段階の40枚を確認してください');console.log('Checked phase311 forty-card deck: race, cost and civilization filtered death-trigger hand deployment supported.');
+
+if(validateDeck(STANDARD312_DECK).length||registry.coverage(STANDARD312_DECK).unsupported||STANDARD312_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第312段階の40枚を確認してください');console.log('Checked phase312 forty-card deck: shared tribal evolution, hand deployment and death draw supported.');
+
+if(validateDeck(STANDARD313_DECK).length||registry.coverage(STANDARD313_DECK).unsupported||STANDARD313_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第313段階の40枚を確認してください');console.log('Checked phase313 forty-card deck: shared spell-trigger self power and breaker boosts supported.');
+
+for(const deck of STANDARD314_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第314段階の40枚を確認してください');console.log('Checked phase314 forty-card decks: other-entry tap/untap, filtered draws and unlimited squad copies supported.');
+if(validateDeck(STANDARD315_DECK).length||registry.coverage(STANDARD315_DECK).unsupported||STANDARD315_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第315段階の40枚を確認してください');console.log('Checked phase315 forty-card deck: existing entry power, battle-win boost and unrestricted copies reused; current bans preserved.');
+if(validateDeck(STANDARD316_DECK).length||registry.coverage(STANDARD316_DECK).unsupported||STANDARD316_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第316段階の40枚を確認してください');console.log('Checked phase316 forty-card deck: tribal entry draws, opposing-creature count draws, Abyss Rush and unrestricted copies supported.');
+if(validateDeck(STANDARD317_DECK).length||registry.coverage(STANDARD317_DECK).unsupported||STANDARD317_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第317段階の40枚を確認してください');console.log('Checked phase317 forty-card deck: cost-filtered element removal, mandatory battle-win effects and other-entry self destruction supported.');
+for(const deck of STANDARD318_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第318段階の40枚を確認してください');console.log('Checked phase318 forty-card decks: single Gachinko judges and conditional native effects supported.');
+
+if(validateDeck(STANDARD319_DECK).length||registry.coverage(STANDARD319_DECK).unsupported||STANDARD319_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第319段階の40枚を確認してください');console.log('Checked phase319 forty-card deck: tribal cost reductions, entry draw/mill and static power/speed grants supported.');
+
+if(validateDeck(REQUESTED320_DECK).length||registry.coverage(REQUESTED320_DECK).unsupported||REQUESTED320_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第320段階の40枚を確認してください');console.log('Checked phase320 requested cards: Golgy Next DDD and Jave both faces supported.');
+
+if(validateDeck(REQUESTED321_DECK).length||registry.coverage(REQUESTED321_DECK).unsupported||REQUESTED321_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第321段階の40枚を確認してください');console.log('Checked phase321 requested cards: Magibomber, costless-entry battles and conditional infinite power supported.');

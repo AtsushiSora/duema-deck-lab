@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {championDefinition} from './champion-definition.mjs';
+const read=f=>JSON.parse(fs.readFileSync(new URL(f,import.meta.url),'utf8'));
+const write=(f,v)=>fs.writeFileSync(new URL(f,import.meta.url),JSON.stringify(v,null,2)+'\n');
+const phase=321,batch='phase-321',baseCount=3679,details=read('../dist/details.json'),data=read('../dist/cards.json');
+ const m=read('./support-phase-321.json'),refs=read('./image-reference-prints.json');assert.equal(m.cards.length,2);assert.ok(m.regulationVerification?.limits);
+ for(const row of m.cards){const detail=details.cards.find(d=>d.id===row.id);assert.deepEqual(row.faces,detail.faces);assert.ok(row.verification?.facesMatched);assert.match(row.verification.sha256,/^[a-f0-9]{64}$/);assert.ok(row.image?.startsWith('https://dm.takaratomy.co.jp/'));const old=data.cards.find(c=>c.id===row.id||c.name===row.name);assert.ok(!old||old.supportBatch===batch,'Do not overwrite an existing definition');const def={...championDefinition(row,batch),limit:row.spec.g314Unlimited&&m.regulationVerification.limits[row.id]===4?40:m.regulationVerification.limits[row.id],supportKind:row.faces[0].abilityText.trim()?'effect':'vanilla'};if(old)data.cards[data.cards.indexOf(old)]=def;else data.cards.push(def);const ref={id:row.id,canonicalId:row.id,name:row.name,image:row.image,source:row.source},i=refs.prints.findIndex(r=>r.id===row.id);if(i<0)refs.prints.push(ref);else refs.prints[i]=ref;}
+ const old=data.supportExpansion,vanilla=m.cards.filter(c=>!c.faces[0].abilityText.trim()).length;
+ data.supportExpansion={phase,checkedAt:m.checkedAt,baseCount,newEffectCards:m.cards.length-vanilla,newVanillaCards:vanilla,totalCount:data.cards.length,ruleSource:m.rules,next:['未対応能力の共通処理を追加し、カード別の公式照合と対戦検証を継続する'],history:[...(old.history||[]),Object.fromEntries(Object.entries(old).filter(([k])=>k!=='history'))].filter(x=>x.phase<phase)};
+ assert.equal(data.cards.length,baseCount+m.cards.length);write('../dist/cards.json',data);write('./image-reference-prints.json',refs);console.log('Added '+m.cards.length+' types; '+data.cards.length+' supported.');
