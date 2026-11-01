@@ -1,0 +1,141 @@
+{
+  "phase": 288,
+  "checkedAt": "2026-11-01",
+  "description": "裏向きマナ追加と、その枚数で切り替わる墓地クリーチャー展開。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dm23ex3-041",
+      "name": "「我が名はツラトゥストラ！」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-041",
+      "faces": [
+        {
+          "name": "「我が名はツラトゥストラ！」",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "コスト３以下のクリーチャーを１体、自分の墓地から出す。\n水晶武装４：自分のマナゾーンに裏向きのカードが４枚以上あれば、かわりにコスト８以下のクリーチャーを１体、自分の墓地から出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g286FaceDownMana": 4
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "n": 1,
+                "deploy": true,
+                "g236GraveDeploy": true,
+                "filter": {
+                  "creature": true,
+                  "max": 8
+                },
+                "title": "墓地からコスト8以下のクリーチャーを1体選ぶ"
+              }
+            ],
+            "elseDefs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "n": 1,
+                "deploy": true,
+                "g236GraveDeploy": true,
+                "filter": {
+                  "creature": true,
+                  "max": 3
+                },
+                "title": "墓地からコスト3以下のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "fd86a4bea5d328a199051229e9d79bc0024a2c2028a906fa70357962c2621f68",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-029",
+      "name": "シャングリラ・クリスタル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-029",
+      "faces": [
+        {
+          "name": "シャングリラ・クリスタル",
+          "typeText": "呪文",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク（この呪文を自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分の山札の上から１枚目を裏向きのまま、タップしてマナゾーンに置く。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）\n水晶武装２：自分のマナゾーンに裏向きのカードが２枚以上あれば、自分の山札の上から１枚目を裏向きのままマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "tapped": true,
+            "faceDown": true
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g286FaceDownMana": 2
+            },
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1,
+                "faceDown": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "8f75cf9ba6b6a678f72c8aa09727dbc3b0fdd23cddfd609fcc3bb7719c0b2de1",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23ex3-041": 4,
+      "dm23ex3-029": 4
+    }
+  }
+}

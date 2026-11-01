@@ -138,7 +138,7 @@ export function createFifteenPhotoRules(api){
  case'punisher':case'ulfeusCast':if(v)execute(s,t,t.exec.origin,v.uid,v.face);else if(t.name==='punisher')api.draw(s,t.p,1);break;
  case'deadBottom':zoneMove(s,t.p,t.origin,v,'deck',t);break;
  case'chooseShield':api.moveShield(s,t.owner??t.p,v,t.to||'grave');break;
- case'moujaDiscard':{const y=own.hand.find(y=>y.uid===v),multi=y&&colors(card(y)).length>1;api.discardSelected(s,t.p,[v],t.source,t.p);if(multi&&x&&api.canUntap(x))x.tapped=false;break;}
+ case'moujaDiscard':{const y=own.hand.find(y=>y.uid===v),multi=y&&colors(card(y)).length>1;api.discardSelected(s,t.p,[v],t.source,t.p);if(multi&&x)api.untap(s,t.p,x);break;}
  case'brandDiscard':if(v)pending(s,t,'brandDiscard',{selected:[...t.selected,v]});else{api.discardSelected(s,t.p,t.selected,t.source,t.p);give(s,t,t.selected.map(()=>E('Target',{filter:{maxPower:6000},to:'grave'})));}break;
  case'copyEntry':if(v!==null&&v!==undefined&&t.entries[v])api.resolveEntry(s,t.entries[v]);break;
  case'slotPick':if(v){order(s,t,t.ids.filter(uid=>uid!==v));deploy(s,t,'deck',v,{grant:{entryPlayerAttack:true}});}break;
@@ -180,7 +180,7 @@ export function createFifteenPhotoRules(api){
  case'hyperBolshackPut':give(s,t,[...(v?[E('Put',{origin:'deck',target:t.top,delayed:'grave'})]:[]),E('Order',{ids:[t.top],rest:'top',ordered:[]})]);break;
  case'terminal':if(v&&!s.g7TerminalUsed?.[t.p]){(s.g7TerminalUsed??=[false,false])[t.p]=true;api.log(s,t.p,'ability',card(t.source).name+'：ファイナル・エンド（終極宣言）を使用',{cardId:t.source});give(s,t,[S('hand',null,'all',{creature:true,blocker:true},{deploy:true,optional:true,title:'ファイナル・エンド：手札から出すブロッカーを好きな数選ぶ',after:[C('terminalCount')]})]);}break;
  case'infinityPick':order(s,t,t.ids.filter(uid=>uid!==v?.uid));if(v)execute(s,t,'deck',v.uid,v.face);break;
- case'untapOther':{const y=own.battle.find(y=>y.uid===v);if(y&&api.canUntap(y))y.tapped=false;break;}
+ case'untapOther':{const y=own.battle.find(y=>y.uid===v);if(y)api.untap(s,t.p,y);break;}
  case'chief':if(v===0)give(s,t,[S('hand',null,1,{race:'ジョーカーズ',max:5},{deploy:true})]);else pending(s,t,'big1');break;
  case'big1':{const y=own.battle.find(y=>y.uid===v);if(y)pending(s,t,'copyEntry',{copy:y.cardId});break;}
  case'chiefBase':cast(s,t.p,t.uid,false,v);break;

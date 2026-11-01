@@ -51,7 +51,7 @@ export function createGalaxyRules(api){
 
  function variants(s,p,c){const list=reducers(s,p,c).map(key),subsets=list.reduce((all,x)=>[...all,...all.map(a=>[...a,x])],[[]]);return subsets.filter(x=>x.length!==list.length);}
  function playAllowed(s,p,c,origin){return api.canCast(s,p,c)&&api.canEnter(s,p,c,{origin,execution:true})&&(!c.evolution||api.evolutionBases(s,p,c).length);}
- return {run,chosen,manaPermits(s,p,x){return [...(x.g22ManaAllowed===s.turn?[null]:[]),...manaAuthorities(s,p).map(key)];},
+ return {run,chosen,reductionVariants:variants,manaPermits(s,p,x){return [...(x.g22ManaAllowed===s.turn?[null]:[]),...manaAuthorities(s,p).map(key)];},
   effect(s,p,c){switch(c.effect){case'destroy6000':put(s,task('destroyPower',p,c.id,{max:6000}));break;case'masterGGGLoot':put(s,task('g22Master',p,c.id));break;case'untapTwoMana':put(s,task('g22UntapMana',p,c.id,{selected:[]}));break;case'fairyDiscard6000':put(s,task('g22FairySpell',p,c.id));break;case'graveShuffle':put(s,task('g22Shuffle',p,c.id));break;case'permitManaSummon':put(s,task('g22ManaPermit',p,c.id));break;default:return false;}return true;},
   discount:(s,p,c)=>chosenReducers(s,p,c).length,
   played(s,p,c,inst,origin,permit){for(const x of chosenReducers(s,p,c))(s.g22UsedDiscount??={})[key(x)]=s.turn;if(origin==='mana'){delete inst.g22ManaAllowed;if(permit)(s.g22UsedMana??={})[permit]=s.turn;}},

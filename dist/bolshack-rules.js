@@ -32,7 +32,7 @@ export function createBolshackRules(api){
  case'g29_Loot':api.draw(s,t.p,3);put(s,task('discard',t.p,t.source,{n:3,causedBy:t.p}));break;
  case'g29_Mol':{const list=[0,1].flatMap(p=>creatures(s,p).filter(x=>!dragon(effective(x,s))).map(x=>({player:p,uid:x.uid,to:'grave'})));if(list.length)move(s,list);break;}
  case'g29_MolAttack':{const ids=reveal(s,t,1),x=ids.length?own.deck.find(x=>x.uid===ids[0]):null;if(x&&dragon(card(x))&&canPut(s,t.p,x,'deck'))put(s,{...t,op:'g29_Deploy',uid:x.uid,origin:'deck'});else put(s,{...t,op:'g29_Order',ids});break;}
- case'g29_Untap':{const x=live(s,t);if(x&&api.canUntap(x))x.tapped=false;break;}
+ case'g29_Untap':{const x=live(s,t);if(x)api.untap(s,t.p,x);break;}
  case'g29_Invincible':put(s,{...t,p:1-t.p,op:'g29_InvPick',selected:[]});break;
  case'g29_InvPick':{const rows=[...own.mana.map(x=>({uid:x.uid,zone:'mana',label:card(x).name,cardId:x.cardId})),...own.shields.flatMap((root,i)=>api.shieldCards(root).map((x,j)=>({uid:x.uid,zone:'shields',label:'シールド'+(i+1)+(api.shieldCards(root).length>1?'の'+(j+1)+'枚目':'')})))].filter(x=>!t.selected.some(y=>y.uid===x.uid));if(t.selected.length>=2||!rows.length){for(const x of t.selected)if(x.zone==='shields')api.moveShield(s,t.p,x.uid,'grave',{cardOnly:true});else{const y=policyRemove(s,t.p,'mana',x.uid,api);if(y){clear(y,'grave');api.addZone(s,t.p,'grave',y);}}break;}choice(s,t,'墓地に置く自分のマナ・シールドを合計2枚選ぶ（'+t.selected.length+'/2）',rows.map(x=>opt(x.label,{uid:x.uid,zone:x.zone},x.zone==='mana'?-cost(card(x.cardId)):-10,x.cardId)));break;}
  case'g29_Land':api.shuffleLibrary(s,t.p,[],t.source);put(s,{...t,op:'g29_LandPick',ids:reveal(s,t,5)});break;
@@ -62,7 +62,7 @@ export function createBolshackRules(api){
  case'g29_Jura':api.mill(s,t.p,v);put(s,{...t,op:'g29_JuraPick'});break;
  case'g29_JuraPick':if(v)put(s,{...t,op:'g29_Deploy',...v});break;
  case'g29_Danger':put(s,{...t,op:'g29_DangerMode',target:v});break;
- case'g29_DangerMode':{const p=s.players.findIndex(x=>x.battle.some(y=>y.uid===t.target)),x=p<0?null:s.players[p].battle.find(x=>x.uid===t.target);if(x){if(v)api.tap(s,p,x);else if(api.canUntap(x))x.tapped=false;}break;}
+ case'g29_DangerMode':{const p=s.players.findIndex(x=>x.battle.some(y=>y.uid===t.target)),x=p<0?null:s.players[p].battle.find(x=>x.uid===t.target);if(x){if(v)api.tap(s,p,x);else api.untap(s,p,x);}break;}
  case'g29_Arc':if(v)put(s,{...t,op:'g29_Deploy',uid:v,origin:'hand'});break;
  case'g29_ArcLeave':if(v)api.shieldTop(s,t.p,card(t.source));break;
  case'g29_Bird':{const x=pool(s,t)[0];if(v&&x){remove(own.deck,x.uid);clear(x,'hand');api.addZone(s,t.p,'hand',x);log(s,t.p,'reveal','ボルバディで公開：'+card(x).name,{cardId:x.cardId});api.deckCheck(s,t.p);}release(s,t.p,t.ids);break;}

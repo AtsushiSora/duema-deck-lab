@@ -1,0 +1,129 @@
+{
+  "phase": 286,
+  "checkedAt": "2026-11-01",
+  "description": "裏向きマナ枚数による水晶武装の呪文軽減と光・無色ブロッカーの手札展開。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dm23ex3-038",
+      "name": "「見よ！この美しき水晶の華を!!」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-038",
+      "faces": [
+        {
+          "name": "「見よ！この美しき水晶の華を!!」",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "水晶武装２：自分のマナゾーンに裏向きのカードが２枚以上あれば、この呪文を唱えるコストを２少なくする。\nカードを２枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g261Discount": {
+          "filter": {
+            "g286FaceDownMana": 2
+          },
+          "amount": 2
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "0bb372d1216eb9264294fae86e86f3c82de5ef6e7dcfd51ceb45fc726bf95b38",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-013",
+      "name": "ライオネル・ゲート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-013",
+      "faces": [
+        {
+          "name": "ライオネル・ゲート",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーをすべてタップする。\n水晶武装４：自分のマナゾーンに裏向きのカードが４枚以上あれば、光または無色の「ブロッカー」を持つクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g286FaceDownMana": 4
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 1,
+                "deploy": true,
+                "g195HandDeploy": true,
+                "filter": {
+                  "creature": true,
+                  "blocker": true,
+                  "any": [
+                    {
+                      "color": "光"
+                    },
+                    {
+                      "noColor": true
+                    }
+                  ]
+                },
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "02cc6ed3733739b6d14b6e47ce1b32266629902760b5da21f081fb3690e18174",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23ex3-038": 4,
+      "dm23ex3-013": 4
+    }
+  }
+}

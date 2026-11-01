@@ -51,7 +51,7 @@ export function createBandeRules(api){
  case'g28_Modes':put(s,{...t,remaining:t.remaining-1,selected:[...t.selected,v]});break;
  case'g28_HandDeck':{const x=remove(own.hand,v.uid);if(x){clear(x,'deck');if(v.to==='top')own.deck.unshift(x);else own.deck.push(x);}break;}
  case'g28_ElementMana':{const p=s.players.findIndex(p=>p.battle.some(x=>x.uid===v));if(p>=0)api.move(s,[{player:p,uid:v,to:'mana',destroy:false}]);break;}
- case'g28_Balance':if(v===0)put(s,{...t,op:'g28_TapPick',selected:[]});else for(const x of creatures(s,t.p))if(api.canUntap(x))x.tapped=false;break;
+ case'g28_Balance':if(v===0)put(s,{...t,op:'g28_TapPick',selected:[]});else for(const x of creatures(s,t.p))api.untap(s,t.p,x);break;
  case'g28_TapPick':if(v)put(s,{...t,selected:[...t.selected,v]});else for(const uid of t.selected)api.tap(s,1-t.p,s.players[1-t.p].battle.find(x=>x.uid===uid));break;
  case'g28_TakaPick':if(v){const x=remove(own.deck,v);release(s,t.p,[v]);if(x){log(s,t.p,'reveal',card(t.source).name+'で公開：'+card(x).name,{cardId:x.cardId});clear(x,'hand');api.addZone(s,t.p,'hand',x);}}order(s,t,t.ids.filter(uid=>uid!==v));break;
  case'g28_Dagra':api.moveShield(s,t.p,v,'mana');break;

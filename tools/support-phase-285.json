@@ -1,0 +1,143 @@
+{
+  "phase": 285,
+  "checkedAt": "2026-11-01",
+  "description": "全マナ文明による登場効果、水のマナ武装による最初の呪文軽減、全マナタップによるパワー上昇。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dmd17-004",
+      "name": "アクア隠密 アサシングリード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd17-004",
+      "faces": [
+        {
+          "name": "アクア隠密 アサシングリード",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分のマナゾーンにあるカードがすべて水のカードなら、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+          "race": "リキッド・ピープル閃",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g282AllMana": {
+                "color": "水"
+              }
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "anyOwner": true,
+                "to": "hand",
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd17-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "3dce3c41f9951d4845de5b0db015903f6522e593d9a203ac1adb65153141b3c3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-011",
+      "name": "アクア大尉 ガリレオ・ガリレイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-011",
+      "faces": [
+        {
+          "name": "アクア大尉 ガリレオ・ガリレイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナ武装 ５：自分のマナゾーンに水のカードが５枚以上あれば、各ターンに自分が唱える最初の呪文のコストを３少なくしてもよい。ただし、コストは１より少なくならない。",
+          "race": "リキッド・ピープル閃",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g279FirstSpellDiscount": 3,
+        "g285FirstSpellMana": {
+          "color": "水",
+          "n": 5
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "5fb15248000a3c43d890e99c69ccace1a80ea3f0df7dc7079038a46aee320fd6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm13-046",
+      "name": "剣撃士ザック・ランバー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-046",
+      "faces": [
+        {
+          "name": "剣撃士ザック・ランバー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のマナゾーンのカードがすべてタップされている時、このクリーチャーのパワーは+2000される。",
+          "race": "ドラゴノイド",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g285AllManaTapped": true
+          },
+          "grants": {
+            "power": 2000
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "7b524dd08aa4c69a4a548b6b3ec9a3824af8670e8ef5c5786878828767a68bd8",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmd17-004": 4,
+      "dmr14-011": 4,
+      "dm13-046": 4
+    }
+  }
+}

@@ -36,8 +36,8 @@ export function createShieldPhotoRules(api){
  case'g33_Dogi':(s.extLimits??=[]).push({kind:'entryCost',player:1-t.p,max:7,expires:'end',who:s.active});break;
  case'g33_Final':if(!s.finalUsed?.[t.p]){(s.finalUsed??=[false,false])[t.p]=true;(s.finalHistory??=[false,false])[t.p]=true;api.draw(s,t.p,1);put(s,{...t,op:'g33_FinalPick'});}break;
  case'g33_FinalPick':choice(s,t,'コスト6以下の多色カードを手札かマナから実行する？',[...['hand','mana'].flatMap(origin=>own[origin].flatMap(x=>faces(card(x)).flatMap((c,face)=>cost(c)<=6&&colors(c).length>1&&api.canCast(s,t.p,c,origin)&&(c.type!=='creature'||api.canEnter(s,t.p,c,{origin,execution:true})&&(!c.evolution||api.evolutionBases(s,t.p,c).length))?[opt((origin==='hand'?'手札：':'マナ：')+c.name,{uid:x.uid,origin,face},20+cost(c),x.cardId)]:[]))),skip()]);break;
- case'g33_UntapDragons':for(const x of creatures(s,t.p))if(dragon(effective(x,s))&&api.canUntap(x))x.tapped=false;break;
- case'g33_UntapArmored':for(const x of creatures(s,t.p))if(armored(effective(x,s))&&api.canUntap(x))x.tapped=false;break;
+ case'g33_UntapDragons':for(const x of creatures(s,t.p))if(dragon(effective(x,s)))api.untap(s,t.p,x);break;
+ case'g33_UntapArmored':for(const x of creatures(s,t.p))if(armored(effective(x,s)))api.untap(s,t.p,x);break;
  case'g33_Shachi':{const x=own.battle.find(x=>x.uid===t.target&&(x.incarnation||0)===t.targetInc);if(x&&api.isCreature(s,x))move(s,[{player:t.p,uid:x.uid,to:'grave',by:1-t.p}]);break;}
  case'g33_Counter':{const pending=s.g33Executions?.find(x=>x.inst.uid===t.target),xs=up(s,t.p);if(!pending)break;const opts=[];if(replaceable(s,pending,'grave')&&creatures(s,t.p).some(x=>effective(x,s).g33Hikari))opts.push(...xs.map(x=>opt(card(x).name+'を裏返し、実行するカードを墓地へ',x.uid,30,x.cardId)));if(replaceable(s,pending,'mana'))opts.push(...momos(s,t.p).map(x=>opt(card(x).name+'で実行するカードをマナへ',{momo:momoKey(x)},30,x.cardId)));if(opts.length)choice(s,t,'「'+pending.c.name+'」の実行を置き換える？',[...opts,skip()]);else finishExecution(s,t.target,null);break;}
  default:throw Error('未実装の表向きシールド効果：'+t.op);

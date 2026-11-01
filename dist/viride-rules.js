@@ -21,7 +21,7 @@ export function createVirideRules(api){
    const list=own.hand.filter(x=>card(x).type==='creature'&&cost(card(x))<=t.max&&api.canEnter(s,t.p,card(x),{origin:'hand',execution:false})&&(!card(x).evolution||api.evolutionBases(s,t.p,card(x)).length));
    choice(s,t,'ウィリデ：コスト'+t.max+'以下を手札から出す？',[...list.map(x=>opt(card(x).name,x.uid,30+cost(card(x)),x.cardId)),skip()]);break;
   }
-  case'g26_Zaze':{const x=live(s,t);if(x&&api.canUntap(x))x.tapped=false;choice(s,t,'ザゼ・ゼーン：効果を1つ選ぶ',[opt('カードを1枚引く','draw',own.deck.length>2?10:-50),opt('相手1体をタップし、次のターンもアンタップさせない','tap',creatures(s,1-t.p).length?20:-10),opt('次の自分のターンまで、このクリーチャーは離れない','stay',x?15:-10)]);break;}
+  case'g26_Zaze':{const x=live(s,t);if(x)api.untap(s,t.p,x);choice(s,t,'ザゼ・ゼーン：効果を1つ選ぶ',[opt('カードを1枚引く','draw',own.deck.length>2?10:-50),opt('相手1体をタップし、次のターンもアンタップさせない','tap',creatures(s,1-t.p).length?20:-10),opt('次の自分のターンまで、このクリーチャーは離れない','stay',x?15:-10)]);break;}
   case'g26_Tap':choice(s,t,'タップし、次のターンのアンタップを止める相手を選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));break;
   case'g26_Ever':choice(s,t,'エバーラスト：シールド化するエレメントを選ぶ？',[...targetOptions(s,t.p,[...own.battle,...s.players[1-t.p].battle].filter(x=>!x.sealed)).map(o=>({...o,score:s.players[1-t.p].battle.some(x=>x.uid===o.value)?30:0})),opt('エレメントを選ばない',null,5)]);break;
   case'g26_EverAfter':if(!s.players[t.owner].shields.flatMap(api.shieldCards).some(x=>x.uid===t.target))put(s,{...t,op:'g26_TopShield'});break;

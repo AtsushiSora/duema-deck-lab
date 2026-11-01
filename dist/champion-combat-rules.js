@@ -39,18 +39,18 @@ export function createCombatChampionRules(api){
  case'g50_KingdomAdd':if(x){const ids=look(s,t,1,true),y=pool(s,{...t,ids})[0];if(y){remove(own.deck,y.uid);clear(y,'battle');(x.under??=[]).push(y);}release(s,t.p,ids);api.deckCheck(s,t.p);}break;
  case'g50_KingdomFour':choice(s,t,'破壊する相手のコスト9以下のクリーチャーを選ぶ',targetOptions(s,t.p,creatures(s,1-t.p).filter(y=>cost(effective(y,s))<=9)));break;
  case'g50_Canbero':opp.entryLimitNextTurn=true;api.log(s,t.p,'entryLimit','キャンベロ：次の相手ターン、出せるクリーチャーは1体まで',{cardId:t.source});break;
- case'g50_CanberoUntap':{const y=own.battle.find(y=>api.layers(y).some(z=>t.ids.includes(z.uid)));if(y&&api.isCreature(s,y)&&api.canUntap(y))y.tapped=false;break;}
+ case'g50_CanberoUntap':{const y=own.battle.find(y=>api.layers(y).some(z=>t.ids.includes(z.uid)));if(y&&api.isCreature(s,y))api.untap(s,t.p,y);break;}
  case'g50_JoEvolve':case'g50_RxEvolve':if(x){const jo=t.op==='g50_JoEvolve',rows=own.hand.filter(y=>card(y).evolution&&(!jo||card(y).name.includes('モモキング'))&&(jo||cost(card(y))<=7)&&canPut(s,t.p,y,'hand')&&api.evolutionBases(s,t.p,card(y)).some(b=>b.uid===x.uid));choice(s,t,'このクリーチャーの上に置く進化クリーチャーを選ぶ',[...rows.map(y=>opt(card(y).name,y.uid,40+cost(card(y)),y.cardId)),skip()]);}break;
  case'g50_Rx':put(s,task('discard',t.p,t.source,{causedBy:t.p,n:1}),task('draw',t.p,t.source,{n:2}),{...t,op:'g50_RxEvolve'});break;
  case'g50_JoEnd':if(x&&api.isCreature(s,x))choice(s,t,'シンカパワー：一番上のカードを墓地に置き、アンタップして1枚引く？',[opt('一番上を墓地に置く',true,x.under?.length?45:-20),skip()]);break;
- case'g50_JoAfter':{if(!own.grave.some(y=>y.uid===t.target&&(y.zoneSerial||0)>t.serial))break;const y=own.battle.find(y=>api.layers(y).some(z=>t.ids.includes(z.uid)));if(y&&api.canUntap(y))y.tapped=false;api.draw(s,t.p,1);break;}
- case'g50_Untap':if(x&&api.canUntap(x))x.tapped=false;break;
+ case'g50_JoAfter':{if(!own.grave.some(y=>y.uid===t.target&&(y.zoneSerial||0)>t.serial))break;const y=own.battle.find(y=>api.layers(y).some(z=>t.ids.includes(z.uid)));if(y)api.untap(s,t.p,y);api.draw(s,t.p,1);break;}
+ case'g50_Untap':if(x)api.untap(s,t.p,x);break;
  case'g50_Bolbal':queue(s,t,'BolbalShields',{selected:[],n:Math.min(2,own.shields.length)});break;
  case'g50_BolbalShields':{const list=own.shields.filter(y=>!t.selected.includes(y.uid));if(t.selected.length>=t.n||!list.length){breakAll(s,t,t.p,t.selected,{...t,op:'g50_Battle'});break;}choice(s,t,'ブレイクする自分のシールドを2つ選ぶ',list.map(y=>opt('シールド'+(own.shields.indexOf(y)+1),y.uid,0)));break;}
  case'g50_BolbalEnd':choice(s,t,'パワー6000以下のクリーチャーをすべて破壊する？',[opt('すべて破壊する',true,creatures(s,1-t.p).filter(y=>api.power(y,false,s)<=6000).length*20-creatures(s,t.p).filter(y=>api.power(y,false,s)<=6000).length*15),skip()]);break;
  case'g50_GodEnd':choice(s,t,'ゴッド・モモキング：カードを何枚引く？',[0,1,2].map(n=>opt(n+'枚引く',n,own.deck.length>n?n*10:-100)));break;
  case'g50_GodDiscard':if(own.hand.length)choice(s,t,'捨てる手札を1枚選ぶ',own.hand.map(y=>opt(card(y).name,y.uid,(card(y).name.includes('モモキング')?35:0)+(rek(card(y))?20:0)-cost(card(y)),y.cardId)));break;
- case'g50_GodAfter':{const ids=s.g14Discards?.[t.key]||[];delete s.g14Discards?.[t.key];if(ids.some(id=>card(id).name.includes('モモキング'))&&x&&api.canUntap(x))x.tapped=false;if(ids.some(id=>rek(card(id))))put(s,task('g34_Target',t.p,t.source,{to:'hand',title:'手札に戻す相手のクリーチャーを選ぶ'}));break;}
+ case'g50_GodAfter':{const ids=s.g14Discards?.[t.key]||[];delete s.g14Discards?.[t.key];if(ids.some(id=>card(id).name.includes('モモキング'))&&x)api.untap(s,t.p,x);if(ids.some(id=>rek(card(id))))put(s,task('g34_Target',t.p,t.source,{to:'hand',title:'手札に戻す相手のクリーチャーを選ぶ'}));break;}
  case'g50_Nex':{const ids=look(s,t,1,true),y=pool(s,{...t,ids})[0];if(y&&(rek(card(y))||card(y).type==='creature'&&fire(card(y)))){if(canPut(s,t.p,y,'deck'))queue(s,t,'Deploy',{target:y.uid,origin:'deck',optional:false});else release(s,t.p,ids);}else if(y){remove(own.deck,y.uid);release(s,t.p,ids);clear(y,'grave');api.addZone(s,t.p,'grave',y);}release(s,t.p,ids.filter(uid=>uid!==y?.uid));api.deckCheck(s,t.p);break;}
  case'g50_Deploy':{const y=own[t.origin]?.find(y=>y.uid===t.target);if(!y||!canPut(s,t.p,y,t.origin,!!t.execution)){if(t.origin==='deck'&&y){release(s,t.p,[y.uid]);if(t.failureTo==='grave'){remove(own.deck,y.uid);clear(y,'grave');api.addZone(s,t.p,'grave',y);}}break;}if(card(y).evolution)choice(s,t,'進化元を選ぶ',api.evolutionBases(s,t.p,card(y)).map(b=>opt(card(b).name,b.uid,10,b.cardId)));else deploy(s,t);break;}
  case'g50_Duel':put(s,task('g34_Target',t.p,t.source,{to:'mana',title:'マナゾーンに置く相手のクリーチャーを選ぶ'}),{...t,op:'g50_DuelPut'});break;

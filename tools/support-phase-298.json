@@ -1,0 +1,193 @@
+{
+  "phase": 298,
+  "checkedAt": "2026-11-01",
+  "description": "手札からの召喚禁止、タップ誘発・任意・他のドラゴン不在時の自己マナ移動。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37476/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37477/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37475/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36772/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35535/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31410/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp4-076",
+      "name": "ARA結-510",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-076",
+      "faces": [
+        {
+          "name": "ARA結-510",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "NEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが出た時、このクリーチャーをタップしてマナゾーンに置いてもよい。",
+          "race": "ワイルド・ベジーズ/テクノ・サムライ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g298SelfMana": true,
+            "title": "このクリーチャーをタップしてマナに置く？",
+            "defs": [
+              {
+                "op": "SelfMana297",
+                "tapped": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-076.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "cd8eb71f6bda798e1ab362bf2efa5968b9edbba0859e935872f83884b5cb27d0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-075",
+      "name": "BARUGA-猿蒸86",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-075",
+      "faces": [
+        {
+          "name": "BARUGA-猿蒸86",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、自分の他のドラゴンがなければ、このクリーチャーをマナゾーンに置く。",
+          "race": "アース・ドラゴン/テクノ・サムライ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SelfMana297",
+            "unlessOtherDragon": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-075.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "972926fff504f728e88ce27c6532c8272a40cbc2257e22c3bbd3abfe2c55438a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-073",
+      "name": "大冒犬ヤッタルツー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-073",
+      "faces": [
+        {
+          "name": "大冒犬ヤッタルツー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーを自分のマナゾーンから召喚してもよい。\nこのクリーチャーがタップした時、このクリーチャーをタップしてマナゾーンに置く。",
+          "race": "ドリームメイト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "manaSummon": true,
+        "g188Tapped": [
+          {
+            "op": "SelfMana297",
+            "tapped": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-073.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "8ec6abbc2e18b2bbf1558a252b9cb0b223e378aed4a6c91c6ca3820f09f70dc2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-075",
+      "name": "地底探検モーグ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-075",
+      "faces": [
+        {
+          "name": "地底探検モーグ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーは、自分の手札から召喚できない。\nこのクリーチャーを、自分のマナゾーンから召喚してもよい。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "ドリームメイト",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g298NoHandSummon": true,
+        "manaSummon": true,
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-075.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "03f3ae816bf6869a1dfdd1d51d060c887f0f2a923319c46de4afb5143689144c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp4-076": 4,
+      "dm25rp1-075": 4,
+      "dm24rp2-073": 4,
+      "dm24rp4-075": 4
+    }
+  }
+}

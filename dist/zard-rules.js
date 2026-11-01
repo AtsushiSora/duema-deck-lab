@@ -15,7 +15,7 @@ export function createZardRules(api){
   case'g2_End':choice(s,t,'ザーディクリカで破壊とドローを行いますか？',[opt('相手1体を破壊し、1枚引く',true,own.deck.length>1?20:-50),skip()]);break;
   case'g2_Dogi':ramp(s,t.p,2);put(s,task('g2_ReturnCreature',t.p,t.source));break;
   case'g2_ReturnCreature':choice(s,t,'マナから手札に戻すクリーチャーを選ぶ',own.mana.filter(x=>!x.faceDown&&card(x).type==='creature').map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)));break;
-  case'g2_Untap':{const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation);if(x&&api.canUntap(x))x.tapped=false;break;}
+  case'g2_Untap':{const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation);if(x)api.untap(s,t.p,x);break;}
   case'g2_Dolf':{const rows=creatures(s,1-t.p).filter(x=>colors(card(x)).filter(c=>c!=='無色').length<2).map(x=>({player:1-t.p,uid:x.uid,to:'grave'}));if(rows.length)move(s,rows);break;}
   case'g2_Damd':choice(s,t,'墓地・マナ・手札へ移動する相手を選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));break;
   case'g2_DamdTo':choice(s,t,'選んだクリーチャーの移動先',[opt('墓地','grave',10),opt('マナ','mana',5),opt('手札','hand',0)]);break;

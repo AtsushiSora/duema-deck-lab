@@ -1,0 +1,140 @@
+{
+  "phase": 307,
+  "checkedAt": "2026-11-01",
+  "description": "破壊時のシールドブレイク・低コストエレメント破壊・墓地肥やしとタップ登場。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37476/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37477/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37475/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36772/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35535/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31410/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp06-076",
+      "name": "凶鬼53号 グルーグ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-076",
+      "faces": [
+        {
+          "name": "凶鬼53号 グルーグ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーはタップしてバトルゾーンに出る。\nこのクリーチャーが破壊された時、自分の山札の上から２枚を墓地に置く。",
+          "race": "マフィ・ギャング",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g295EnterTapped": true,
+        "g172Death": [
+          {
+            "op": "Mill",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-076.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "52dcbb92ebccd807a76ff657edfd5a7ec65bb553339fb9ca53eb89c838240427",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm39-027",
+      "name": "鉄球男爵マッセリーノ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-027",
+      "faces": [
+        {
+          "name": "鉄球男爵マッセリーノ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが破壊された時、相手のシールドを１枚ブレイクする。",
+          "race": "ダークロード",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Break278"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "3e4b4f62444f8d81091640e088e7c5dc4521c3e4324d28e66022e9ef4fd059fa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-067",
+      "name": "爆神兵ピュロボルス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-067",
+      "faces": [
+        {
+          "name": "爆神兵ピュロボルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが破壊された時、相手のコスト４以下のエレメントを１つ選んで破壊する。",
+          "race": "アーマロイド",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "element": true,
+            "filter": {
+              "max": 4
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-067.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "b4ecdb533c91c4d322d3f537096579cd678a1302a65765a6c30144591ff03ba0",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp06-076": 4,
+      "dm39-027": 4,
+      "dm23rp1-067": 4
+    }
+  }
+}

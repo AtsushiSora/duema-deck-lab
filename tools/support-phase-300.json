@@ -1,0 +1,312 @@
+{
+  "phase": 300,
+  "checkedAt": "2026-11-01",
+  "description": "登場時・アンタップ時の強制処理、タップ時のマナ加速と速攻クリーチャーの終了時回収。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37476/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37477/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37475/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36772/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35535/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31410/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp04s-091",
+      "name": "イモモシ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-091",
+      "faces": [
+        {
+          "name": "イモモシ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがタップされた時、自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g188Tapped": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-091.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "c9c152aa34e720515672e8d2901e1622f90fec01d82699e8bcd8bfefdd22963a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp08-045",
+      "name": "クサーリ戦車 ナゲット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-045",
+      "faces": [
+        {
+          "name": "クサーリ戦車 ナゲット",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがアンタップした時、相手のシールドを１つブレイクする。",
+          "race": "ビートジョッキー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g299Untapped": [
+          {
+            "op": "Break278"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "f19c90c9c9f796e08965c181a9ed7a115b458c5308376e7788ba2b4c232bc945",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-069",
+      "name": "リトルバット・ワイバーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-069",
+      "faces": [
+        {
+          "name": "リトルバット・ワイバーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、またはアンタップした時、自分の手札を１枚捨て、カードを１枚引く。",
+          "race": "アーマード・ワイバーン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g299Untapped": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-069.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "28f68eb5e171fb04729907c95a67be9ed41bd053014891dd77d76199f80bd069",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-063",
+      "name": "掘々人形ジェニス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-063",
+      "faces": [
+        {
+          "name": "掘々人形ジェニス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、またはアンタップした時、クリーチャーを１体、自分の墓地から手札に戻す。",
+          "race": "デスパペット",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g299Untapped": [
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-063.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "e915d0e5f31b0bc3997e57222dd2fbc703d7cf29f7b77e1e1fe98c0eb9ed1af8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-052",
+      "name": "前衛の守護者カセル・デルト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-052",
+      "faces": [
+        {
+          "name": "前衛の守護者カセル・デルト",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは相手プレイヤーを攻撃できない。\nこのクリーチャーが出た時、またはアンタップした時、相手のクリーチャーを１体選び、タップする。",
+          "race": "ガーディアン",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g299Untapped": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを1体選ぶ"
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "16afd5cc402e93efddc994c2b89a154f269aea3319122c19ea98cbd4ef2d9859",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx04-014",
+      "name": "流星のエグゼドライブ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx04-014",
+      "faces": [
+        {
+          "name": "流星のエグゼドライブ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\n自分のターンの終わりに、このクリーチャーを自分の手札に戻す。",
+          "race": "ドラゴノイド/ハンター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g174End": [
+          {
+            "op": "SelfHand299"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx04-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "cd9637419ccce452c1cca57ea03d9cee786a126cb59074786fbbaf6c9b83638b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp04s-091": 4,
+      "dmrp08-045": 4,
+      "dm24rp2-069": 4,
+      "dm24rp2-063": 4,
+      "dm24rp2-052": 4,
+      "dmx04-014": 4
+    }
+  }
+}

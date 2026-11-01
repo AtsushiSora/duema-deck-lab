@@ -23,7 +23,7 @@ export function createKenjiPhotoRules(api){
  case'g32_PandaMinus':choice(s,t,'墓地の枚数×1000パワーを下げる相手を選ぶ？',[...targetOptions(s,t.p,creatures(s,1-t.p)),skip()]);break;
  case'g32_Jaouga8':choice(s,t,'自分のシールド1つを墓地に置き、マナをすべてアンタップする？',[...own.shields.map((y,i)=>opt('シールド'+(i+1),y.uid,20)),skip()]);break;
  case'g32_AddTop':if(x)choice(s,t,'山札の上1枚をこのクリーチャーの下に置く？',[opt('下に置く',true,own.deck.length>2?20:-100),skip()]);break;
- case'g32_Wake':case'g32_MomoUntap':if(x&&api.canUntap(x))x.tapped=false;break;
+ case'g32_Wake':case'g32_MomoUntap':if(x)api.untap(s,t.p,x);break;
  case'g32_ComplexAttack':if(x)choice(s,t,'下のカード1枚を墓地へ置く？',[...(x.under||[]).map(y=>opt(card(y).name,y.uid,canPut(s,t.p,y,'grave')?cost(card(y))*3:0,y.cardId)),skip()]);break;
  case'g32_DolfSweep':move(s,[0,1].flatMap(p=>creatures(s,p).map(y=>({player:p,uid:y.uid,to:'grave'}))));break;
  case'g32_DrawChoice':choice(s,t,'Dol-Fal-20th：カードを1枚引く？',[opt('引く',true,own.deck.length>3?10:-100),skip()]);break;

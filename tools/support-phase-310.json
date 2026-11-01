@@ -1,0 +1,189 @@
+{
+  "phase": 310,
+  "checkedAt": "2026-11-01",
+  "description": "破壊時に同名のマナを出す能力と、相手の手札戻しまたは自分の山札検索。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/37133/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37476/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37477/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37475/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36772/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35535/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31410/"
+  ],
+  "cards": [
+    {
+      "id": "dmr05-068",
+      "name": "ねぼすけリスくん",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-068",
+      "faces": [
+        {
+          "name": "ねぼすけリスくん",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが破壊された時、《ねぼすけリスくん》を１体、自分のマナゾーンからバトルゾーンに出してもよい。",
+          "race": "ドリームメイト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "g201ExactName": "ねぼすけリスくん"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-068.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "3938ab4aaf4c4627fea95fa264512a39010409719936c3512c749427386e49bc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26-048",
+      "name": "封魔鎧冑バリエル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-048",
+      "faces": [
+        {
+          "name": "封魔鎧冑バリエル",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが破壊された時、バトルゾーンにある相手のクリーチャーを１体選んで持ち主の手札に戻すか、自分の山札からコスト３以下のクリーチャーを１体選び相手に見せてから手札に加え、その後山札をシャッフルする。",
+          "race": "グランド・デビル/ジャイアント・インセクト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手クリーチャー1体を手札に戻す",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "hand"
+                  }
+                ]
+              },
+              {
+                "label": "山札からコスト3以下のクリーチャーを手札に加える",
+                "defs": [
+                  {
+                    "op": "Look",
+                    "g310Search": true,
+                    "g201Search": true,
+                    "g200Search": true,
+                    "n": "all",
+                    "rest": "shuffle",
+                    "stages": [
+                      {
+                        "n": 1,
+                        "to": "hand",
+                        "filter": {
+                          "creature": true,
+                          "max": 3
+                        },
+                        "reveal": true,
+                        "optional": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "843d6755ad9c1d2b5af4043fec4408643a4f0b5a9045cf31f191d39b8e2df4c3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm17-034",
+      "name": "復活するバイタル・ホーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-034",
+      "faces": [
+        {
+          "name": "復活するバイタル・ホーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが破壊された時《復活するバイタル・ホーン》を１体、自分のマナゾーンからバトルゾーンに置いてもよい。",
+          "race": "ホーン・ビースト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "g201ExactName": "復活するバイタル・ホーン"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm17-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "569246a713153649b89305e900da8ae91010bc6e352875cc92fbeac56aff391c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr05-068": 4,
+      "dm26-048": 4,
+      "dm17-034": 4
+    }
+  }
+}

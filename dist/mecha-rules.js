@@ -37,7 +37,7 @@ export function createMechaRules(api){
   case'g19AmeliaReturn':choice(s,t,'手札に加える自分のシールドを選ぶ（S・トリガー不可）',own.shields.map((x,i)=>opt('シールド'+(i+1),x.uid,0)));break;
   case'g19Minus':choice(s,t,'このターンのパワーを-3000する相手を選ぶ',targetOptions(s,t.p,creatures(s,1-t.p)));break;
   case'g19SheketAttack':choice(s,t,'シールド化する相手のクリーチャーを選ぶ',[...targetOptions(s,t.p,creatures(s,1-t.p)),skip()]);break;
-  case'g19Untap':{const list=creatures(s,t.p).filter(x=>x.tapped&&!t.selected.includes(x.uid)&&api.canUntap(x));if(t.selected.length===3||!list.length){for(const uid of t.selected){const x=own.battle.find(x=>x.uid===uid);if(x&&api.canUntap(x))x.tapped=false;}break;}choice(s,t,'アンタップする自分のクリーチャーを3体まで選ぶ',[...list.map(x=>opt(card(x).name,x.uid,10,x.cardId)),opt('ここまでで確定',null,0)]);break;}
+  case'g19Untap':{const list=creatures(s,t.p).filter(x=>x.tapped&&!t.selected.includes(x.uid)&&api.canUntap(x));if(t.selected.length===3||!list.length){for(const uid of t.selected){const x=own.battle.find(x=>x.uid===uid);if(x)api.untap(s,t.p,x);}break;}choice(s,t,'アンタップする自分のクリーチャーを3体まで選ぶ',[...list.map(x=>opt(card(x).name,x.uid,10,x.cardId)),opt('ここまでで確定',null,0)]);break;}
   case'g19BeforeCommit':s.g19BreakSequence={...t,tasks:(s.extTasks||[]).splice(0)};break;
   default:throw Error('未実装のメカ効果：'+t.op);
  }return true;}
@@ -61,7 +61,7 @@ export function createMechaRules(api){
   case'g19AmeliaReturn':{shieldTo(s,t.p,value,'hand');break;}
   case'g19Minus':{const x=s.players[1-t.p].battle.find(x=>x.uid===value);if(x)(x.powerModifiers??=[]).push({amount:-3000,expires:'end',who:s.active});break;}
   case'g19SheketAttack':if(value)move(s,[{player:1-t.p,uid:value,to:'shields'}]);break;
-  case'g19Untap':if(value)put(s,{...t,selected:[...t.selected,value]});else for(const uid of t.selected){const x=own.battle.find(x=>x.uid===uid);if(x&&api.canUntap(x))x.tapped=false;}break;
+  case'g19Untap':if(value)put(s,{...t,selected:[...t.selected,value]});else for(const uid of t.selected){const x=own.battle.find(x=>x.uid===uid);if(x)api.untap(s,t.p,x);}break;
   default:throw Error('未実装のメカ選択：'+t.op);
  }return true;}
  const oppLive=(s,t)=>s.players[1-t.p].battle.some(x=>x.uid===t.target&&(x.incarnation||0)===t.targetIncarnation);

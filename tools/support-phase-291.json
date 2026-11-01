@@ -1,0 +1,205 @@
+{
+  "phase": 291,
+  "checkedAt": "2026-11-01",
+  "description": "自身または味方のコスト6以上のクリーチャー登場によるタップ固定・パワー低下・任意マナ加速・破壊。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dm26ex4-084",
+      "name": "Disエビンビー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-084",
+      "faces": [
+        {
+          "name": "Disエビンビー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーまたは自分のコスト６以上のクリーチャーが出た時、相手のクリーチャーを１体選び、タップする。次の自分のターンのはじめまで、そのクリーチャーはアンタップしない。",
+          "race": "ガーディアン/スチーム・ナイト/ディスタス",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "min": 6
+          },
+          "selfAlways": true,
+          "defs": [
+            {
+              "op": "Target",
+              "tap": true,
+              "g291UntapUntilSelf": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-084.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "c1844b1317e2e2c90ef734db89eaab05e5f660abea60a06e1a5fbaaf2c643d5b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex4-089",
+      "name": "Disオニゾウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-089",
+      "faces": [
+        {
+          "name": "Disオニゾウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーまたは自分のコスト６以上のクリーチャーが出た時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－3000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "ヒューマノイド/スチーム・ナイト/ディスタス",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "min": 6
+          },
+          "selfAlways": true,
+          "defs": [
+            {
+              "op": "Target",
+              "power": -3000,
+              "g242PowerMinus": true,
+              "title": "パワーを-3000する相手のクリーチャーを選ぶ"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-089.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "eb547f2ee8ff22c0a6d5f02f365dd869abe7bc6742f0399ffcc36d687e479cbb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex4-096",
+      "name": "Disシラウオ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-096",
+      "faces": [
+        {
+          "name": "Disシラウオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーまたは自分のコスト６以上のクリーチャーが出た時、自分の山札の上から１枚をマナゾーンに置いてもよい。",
+          "race": "ジャイアント/スチーム・ナイト/ディスタス",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "min": 6
+          },
+          "selfAlways": true,
+          "defs": [
+            {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-096.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "6282887f4076ef6627da90437ae025ba2619c34551a5139af21212d1f73a7b1d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex4-094",
+      "name": "Disモエル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-094",
+      "faces": [
+        {
+          "name": "Disモエル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーまたは自分のコスト６以上のクリーチャーが出た時、相手のパワー4000以下のクリーチャーを１体選び、破壊する。",
+          "race": "ヒューマノイド/スチーム・ナイト/ディスタス",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "min": 6
+          },
+          "selfAlways": true,
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 4000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-094.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "da3cbb9fdd7378e4db834f51801f2e67c8072d56928be438a66f61379da4614f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26ex4-084": 4,
+      "dm26ex4-089": 4,
+      "dm26ex4-096": 4,
+      "dm26ex4-094": 4
+    }
+  }
+}

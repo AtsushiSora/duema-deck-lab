@@ -30,9 +30,9 @@ export function createArmoredRules(api){
   case'g7VolDeath':choice(s,t,'手札から出すコスト7以下のボルシャックを選ぶ',[...own.hand.filter(x=>card(x).type==='creature'&&cost(card(x))<=7&&card(x).name.includes('ボルシャック')&&canPut(s,t.p,x,'hand')).map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)),skip()]);break;
   case'g7Terminal':if(!s.g7TerminalUsed?.[t.p])choice(s,t,'終極宣言で全シールドをブレイクする？（ゲーム中1回）',[opt('終極宣言する',true,own.shields.length<=2?30:-3),skip()]);break;
   case'g7TerminalProtect':(s.g7NoLose??=[]).push({p:t.p,turn:s.turn});api.log(s,t.p,'noLose','次の自分のターンのはじめまでゲームに負けない',{cardId:t.source});break;
-  case'g7BakuUntap':{const source=unit(s,t);for(const x of creatures(s,t.p))if(x.uid!==source?.uid&&api.canUntap(x))x.tapped=false;break;}
-  case'g7FlareUntap':{const x=unit(s,t);if(x&&api.canUntap(x))x.tapped=false;break;}
-  case'g7ParaAttack':if(own.hand.length<=1){const x=unit(s,t);if(x&&api.canUntap(x))x.tapped=false;draw(s,t.p,2);}break;
+  case'g7BakuUntap':{const source=unit(s,t);for(const x of creatures(s,t.p))if(x.uid!==source?.uid)api.untap(s,t.p,x);break;}
+  case'g7FlareUntap':{const x=unit(s,t);if(x)api.untap(s,t.p,x);break;}
+  case'g7ParaAttack':if(own.hand.length<=1){const x=unit(s,t);if(x)api.untap(s,t.p,x);draw(s,t.p,2);}break;
   case'g7ParaEnd':{const x=unit(s,t);if(x)move(s,[{player:t.p,uid:x.uid,to:'grave'}]);break;}
   case'g7ValSelect':{const list=[...creatures(s,t.p),...creatures(s,1-t.p)].filter(x=>x.uid!==(unit(s,t)?.uid||t.uid)&&!t.selected.includes(x.uid));if(t.selected.length===2||!list.length){put(s,...t.selected.map(uid=>task('g7ValMode',t.p,t.source,{target:uid})));break;}choice(s,t,'タップまたはアンタップする他のクリーチャーを2体まで選ぶ',[...targetOptions(s,t.p,list),opt('ここまでで確定',null,0)]);break;}
   case'g7ValMode':{const owner=s.players.findIndex(p=>p.battle.some(x=>x.uid===t.target)),x=owner>=0?s.players[owner].battle.find(x=>x.uid===t.target):null;if(x)choice(s,t,card(x).name+'をどうする？',[opt('タップする',true,owner===t.p?-1:10,x.cardId),opt('アンタップする',false,owner===t.p?10:-1,x.cardId)]);break;}
@@ -49,7 +49,7 @@ export function createArmoredRules(api){
   case'g7VolDeath':if(value)put(s,task('putCreature',t.p,t.source,{origin:'hand',uid:value}));break;
   case'g7Terminal':if(value&&!s.g7TerminalUsed?.[t.p]){(s.g7TerminalUsed??=[false,false])[t.p]=true;const follow=task('g7TerminalProtect',t.p,t.source);if(own.shields.length)api.interruptBreak(s,t.p,own.shields.map(x=>x.uid),follow);else put(s,follow);}break;
   case'g7ValSelect':if(value)put(s,{...t,selected:[...t.selected,value]});else put(s,...t.selected.map(uid=>task('g7ValMode',t.p,t.source,{target:uid})));break;
-  case'g7ValMode':{const p=s.players.findIndex(p=>p.battle.some(x=>x.uid===t.target)),x=p>=0?s.players[p].battle.find(x=>x.uid===t.target):null;if(x){if(value)api.tap(s,p,x);else if(api.canUntap(x))x.tapped=false;}break;}
+  case'g7ValMode':{const p=s.players.findIndex(p=>p.battle.some(x=>x.uid===t.target)),x=p>=0?s.players[p].battle.find(x=>x.uid===t.target):null;if(x){if(value)api.tap(s,p,x);else api.untap(s,p,x);}break;}
   case'g7EnemyTap':put(s,{...t,selected:[...t.selected,value]});break;
   case'g7Energy':if(value)put(s,{...t,selected:[...t.selected,value]});else if(value===false){const x=own.hand.find(x=>x.uid===t.uid),payment={...t.payment,energy:t.selected};if(x&&canPayEnergy(s,t.p,card(x),payment))cast(s,t.p,x.uid,false,null,0,null,'hand','ハイパーエナジー',false,null,null,null,null,payment);}break;
   default:throw Error('未実装のアーマード選択：'+t.op);

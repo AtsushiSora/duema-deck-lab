@@ -1,0 +1,173 @@
+{
+  "phase": 309,
+  "checkedAt": "2026-11-01",
+  "description": "ディープ・マリーンとグランド・デビルの登場・破壊に反応する能力と、登場時・破壊時の墓地肥やし。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37476/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37477/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37475/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36772/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35535/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31410/"
+  ],
+  "cards": [
+    {
+      "id": "dm19-057",
+      "name": "スナイプ・アルフェラス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-057",
+      "faces": [
+        {
+          "name": "スナイプ・アルフェラス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のグランド・デビルをバトルゾーンに出した時、カードを１枚引いてもよい。\n自分のグランド・デビルが破壊された時、自分の手札を１枚捨てる。",
+          "race": "ディープ・マリーン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "race": "グランド・デビル"
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        },
+        "g303DeathWatch": {
+          "race": "グランド・デビル",
+          "self": true,
+          "selfFilter": true,
+          "defs": [
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-057.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "dfcb47bd7062dafca52d8ad14f521dafafa7d3845311daabaf5835b11f410fde",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm21-028",
+      "name": "封魔ザレオス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-028",
+      "faces": [
+        {
+          "name": "封魔ザレオス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のディープ・マリーンが破壊された時、相手は自分自身のクリーチャーを１体選び、破壊する。",
+          "race": "グランド・デビル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g303DeathWatch": {
+          "race": "ディープ・マリーン",
+          "self": true,
+          "selfFilter": true,
+          "defs": [
+            {
+              "op": "OpponentSelect",
+              "n": 1,
+              "to": "grave"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "96e00c297b016b3fd59f89e22f6170c85997c1c66377afadae19c9d1d76affcb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp11-046",
+      "name": "魔鳴猫 ギリネッコ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-046",
+      "faces": [
+        {
+          "name": "魔鳴猫 ギリネッコ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時または破壊された時、自分の山札の上から３枚を墓地に置く。",
+          "race": "マフィ・ギャング",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 3
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "Mill",
+            "n": 3
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "77ededbfe34ad7ceac2ab02c3cfa58a8ba811e93dded836580d46b2badec2aeb",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm19-057": 4,
+      "dm21-028": 4,
+      "dmrp11-046": 4
+    }
+  }
+}

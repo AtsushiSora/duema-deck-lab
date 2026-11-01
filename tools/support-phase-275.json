@@ -1,0 +1,226 @@
+{
+  "phase": 275,
+  "checkedAt": "2026-11-01",
+  "description": "2文明と注釈省略版のスター進化、種族条件の軽減、墓地から最大3体の展開とバトル関連能力。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp19-s04",
+      "name": "BAKUOOON",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-s04",
+      "faces": [
+        {
+          "name": "BAKUOOON",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "バトルゾーンに自分のビートジョッキーまたはレクスターズが３体以上あれば、このクリーチャーの召喚コストを５少なくする。\nスター進化：レクスターズまたは火のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\nこのクリーチャーがバトルに勝った時、カードを２枚引いてもよい。",
+          "race": "ビートジョッキー/アウトレイジ/レクスターズ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g261Discount": {
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "ビートジョッキー",
+              "レクスターズ"
+            ],
+            "g258Civil": 3
+          },
+          "amount": 5
+        },
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "breaker": 2,
+        "effect": "fightOptional",
+        "g189BattleWin": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "362615ecb8b786be3abcd1ef617918e9ab91ab77a3d9694f2bac7b0fa0227aa4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-s05",
+      "name": "テラ・スザーク ＜ナーガ.Star＞",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-s05",
+      "faces": [
+        {
+          "name": "テラ・スザーク ＜ナーガ.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スター進化：レクスターズ、水のクリーチャー、または闇のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー\nこのクリーチャーはブロックされない。\nこのクリーチャーが出た時、カードを２枚引き、その後、自分の手札を２枚捨てる。\nこのクリーチャーが攻撃する時、コスト３以下のクリーチャーを３体まで、自分の墓地から出す。",
+          "race": "ドルスザク/ナーガ/レクスターズ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "breaker": 2,
+        "unblockable": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 2
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 3,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            },
+            "optional": true,
+            "title": "墓地から出すクリーチャーを3体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-s05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "9fde17399433edc3052b4499bd3737ca157058fcaa2bd09828fa8417704187b8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy20-cp09",
+      "name": "モモスター -熱丸-",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy20-cp09",
+      "faces": [
+        {
+          "name": "モモスター -熱丸-",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スター進化：レクスターズ、火のクリーチャー、または自然のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nバトル中、このクリーチャーのパワーを+3000する。\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。このクリーチャーとその選んだクリーチャーをバトルさせる。\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+          "race": "ジョーカーズ/レクスターズ",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "breaker": 3,
+        "g38BattleBonus": 3000,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy20-cp09.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "0030f7fcff2d49e7d6a45936fc786ba74934b85217566df2388cced2d65f1217",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp19-s04": 4,
+      "dmrp18-s05": 4,
+      "promoy20-cp09": 4
+    }
+  }
+}

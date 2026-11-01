@@ -1,0 +1,168 @@
+{
+  "phase": 311,
+  "checkedAt": "2026-11-01",
+  "description": "破壊時に種族・コスト・文明・進化条件を満たすクリーチャーを手札から出す。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/qa_old/37133/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37476/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37477/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37475/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36772/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35535/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31410/"
+  ],
+  "cards": [
+    {
+      "id": "dm37-004",
+      "name": "剛撃無双グリーン・バルト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-004",
+      "faces": [
+        {
+          "name": "剛撃無双グリーン・バルト",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが破壊された時、進化ではない自然のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "ジャイアント/アース・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "color": "自然",
+              "nonEvolution": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "977b411a26bfe69301c2a034714874b226662f355ae98126415b3acf56fb552b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-054",
+      "name": "死神獣ヤミノストライク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-054",
+      "faces": [
+        {
+          "name": "死神獣ヤミノストライク",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが破壊された時、コスト７以下のデーモン・コマンドを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "ダーク・モンスター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "max": 7,
+              "race": "デーモン・コマンド"
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "37932fb9c14d65a0dba8bcba7f3e64122ad76be8d883daa606da6693f0b9b0ac",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr07-019",
+      "name": "裏切りのペッパーシウバ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-019",
+      "faces": [
+        {
+          "name": "裏切りのペッパーシウバ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが破壊された時、進化ではないアンノウンを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "ジャイアント/サイバー・コマンド",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "race": "アンノウン",
+              "nonEvolution": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "71d3ac288be282a8166d9b307f080cf3b1b651023530a825dc90ddc9b473ce4a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm37-004": 4,
+      "dm36-054": 4,
+      "dmr07-019": 4
+    }
+  }
+}

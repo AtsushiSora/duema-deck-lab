@@ -1,0 +1,158 @@
+{
+  "phase": 304,
+  "checkedAt": "2026-11-01",
+  "description": "味方の破壊を手札破壊・名前指定のドロー・タップとアンタップ制限につなげるカード。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37476/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37477/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37475/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36772/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35535/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31410/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp20-027",
+      "name": "Disアサイラム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-027",
+      "faces": [
+        {
+          "name": "Disアサイラム",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇/火",
+          "civilizations": [
+            "光",
+            "闇",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\n自分のクリーチャーが破壊された時、相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。",
+          "race": "エンジェル・コマンド/アーマード・ドラゴン/ディスタス",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g303DeathWatch": {
+          "self": true,
+          "defs": [
+            {
+              "op": "Target",
+              "tap": true,
+              "lock": true,
+              "g210TapLock": true,
+              "title": "タップして次のターンまで止めるクリーチャーを1体選ぶ"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "22c97c4f4e9e2e7d046535387dcd3444d048c04f683a7e13e83dfcf660c11b3d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-072",
+      "name": "禁断C ステーロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-072",
+      "faces": [
+        {
+          "name": "禁断C ステーロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーまたは自分の他のクリーチャーが破壊された時、相手は自身の手札を１枚選び、捨てる。",
+          "race": "イニシャルズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g303DeathWatch": {
+          "self": true,
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-072.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "4373dc752de9ffc71b3f30cb76eae5009f71ce8a0e5b8538565353574e08c743",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm33-028",
+      "name": "死神盗掘男",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm33-028",
+      "faces": [
+        {
+          "name": "死神盗掘男",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の他の、名前に《死神》とあるクリーチャーが破壊された時、カードを１枚引いてもよい。",
+          "race": "ヘドリアン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g303DeathWatch": {
+          "self": false,
+          "name": "死神",
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm33-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "490dc5d6c2ce567daa7d551c7aea77b4b7e1ec811e51d35eb3b304e4dc4b5f12",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp20-027": 4,
+      "dmr21-072": 4,
+      "dm33-028": 4
+    }
+  }
+}

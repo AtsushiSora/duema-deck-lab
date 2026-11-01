@@ -1,0 +1,208 @@
+{
+  "phase": 299,
+  "checkedAt": "2026-11-01",
+  "description": "登場時とアンタップ時の任意能力、シールドの非トリガー回収と終了時の自己手札移動。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37476/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37477/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37475/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36772/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35535/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31410/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp2-058",
+      "name": "アクア・スティール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-058",
+      "faces": [
+        {
+          "name": "アクア・スティール",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\nこのクリーチャーが出た時、またはアンタップした時、カードを１枚引いてもよい。",
+          "race": "リキッド・ピープル",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "justDiver": true,
+        "g299Untapped": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-058.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "bd9bb327691ba884e9a0f273c9fa0dff492e1fd742d4c87c597dd7760bff9eb4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-095",
+      "name": "アッシュグレンオー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-095",
+      "faces": [
+        {
+          "name": "アッシュグレンオー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない )\n自分のターンの終わりに、このクリーチャーを自分の手札に戻す。",
+          "race": "フレイム・モンスター",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g174End": [
+          {
+            "op": "SelfHand299"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-095.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "62320f00af8cfb4541379962c55856fed47179d96f1584bcff3cd9d459b0521c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp3-054",
+      "name": "トゥアタエロ-M1",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-054",
+      "faces": [
+        {
+          "name": "トゥアタエロ-M1",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nこのクリーチャーが出た時またはアンタップした時、相手のクリーチャーを１体選び、タップしてもよい。",
+          "race": "メカ・デル・ディネロ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g299Untapped": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "0b6e870db8767c79ff613d48168106882569043d0d748918496fbaefa759a826",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-044",
+      "name": "ブランドのギア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-044",
+      "faces": [
+        {
+          "name": "ブランドのギア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーがアンタップした時、自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない。",
+          "race": "ゼノパーツ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g299Untapped": [
+          {
+            "op": "Offer",
+            "g299ShieldHand": true,
+            "title": "シールド1つを手札に加える？（S・トリガーは使えない）",
+            "defs": [
+              {
+                "op": "ShieldHand",
+                "g238ShieldHand": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "d8885ca80da309c450526070fa796f40fd8c067d33a73fb73205d99772f256ad",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp2-058": 4,
+      "dm28-095": 4,
+      "dm25rp3-054": 4,
+      "dm24rp1-044": 4
+    }
+  }
+}

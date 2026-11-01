@@ -1,11 +1,11 @@
 import {battleZoomControlsHTML} from './battle-zoom.js?v=0.227.0';
 import {displayTurn} from './turn-count.js';
-import {challengeKind} from './character-roster.js?v=0.346.0';
-import {paymentReviewHTML} from './battle-insights.js?v=0.346.0';
+import {challengeKind} from './character-roster.js?v=0.385.0';
+import {paymentReviewHTML} from './battle-insights.js?v=0.385.0';
 import {sourceCardBadge,sourceCardLabel} from './card-info.js';
 import {shieldCards} from './shield-state.js';
-import {aiPlaybackHTML,aiSpeedLabel} from './ai-playback.js?v=0.346.0';
-import {handCardModel,handShelfHTML,handInspectorHTML,handEvolutionButtonHTML} from './hand-ui.js?v=0.346.0';
+import {aiPlaybackHTML,aiSpeedLabel} from './ai-playback.js?v=0.385.0';
+import {handCardModel,handShelfHTML,handInspectorHTML,handEvolutionButtonHTML} from './hand-ui.js?v=0.385.0';
 import {getLegalActions,manaSelectionStatus,manaColors,card,power,effectiveCard,isEvolution,canUntap,abilitiesIgnored,genmuActive,momoActive,selfTriggersStopped,manaValue,manaValueAt,exLifeShieldInfo,exLifeShields,shieldGuardSources,playFaces,attackLocked,evolutionBases,canCastSpell,canEnterCreature,summonCost,paymentPool,manaPayment} from './engine.js';
 import {attackRoute,previewAttackAction} from './battle-visuals.js?v=0.100.0';
 import {pageWindow} from './board-fit.js';
@@ -320,8 +320,8 @@ export function manaSummonModel(s,owner=0){
  if(owner!==0)return [];
  const actions=getLegalActions(s).filter(a=>a.player===0&&a.kind==='play'&&a.origin==='mana');
  return s.players[owner].mana.flatMap(x=>{
-  const c=card(x),plays=actions.filter(a=>a.uid===x.uid);if(!c.manaSummon&&!plays.length)return [];
-  const data={...c,summonOrigin:'mana'},cost=summonCost(s,owner,data);let reason='';
+  const c=card(x),plays=actions.filter(a=>a.uid===x.uid);if(!c.manaSummon&&!c.g296ManaBirth&&!plays.length)return [];
+  const data={...c,...(c.g296ManaBirth?{cost:c.g296ManaBirth,printedCost:c.cost}:{}),summonOrigin:'mana'},cost=plays.length?Math.min(...plays.map(a=>a.cost??summonCost(s,owner,data))):summonCost(s,owner,data);let reason='';
   if(!plays.length){
    if(s.winner!==null)reason='対戦は終了しています。';
    else if(s.active!==owner)reason='自分のターンのメインステップに召喚できます。';
@@ -337,7 +337,7 @@ export function manaSummonModel(s,owner=0){
 }
 export function manaSummonHTML(s,owner=0,{art=()=>''}={}){
  const rows=manaSummonModel(s,owner);if(!rows.length)return '';
- return `<section class="mana-summon-list" aria-label="マナからの召喚"><h3>マナから使う</h3>${rows.map(r=>`<article class="mana-summon-row">${art(r.cardId)}<div class="grow"><strong>${esc(r.name)}</strong>${r.reason?`<p class="small">${esc(r.reason)}</p>`:`<small>マナゾーンから使用可能</small>`}<div class="mana-summon-buttons">${r.actions.map(a=>`<button class="btn primary" data-action="manual-zone-choice" data-index="${a.id}">${playFaces(card(a.cardId))[a.face||0].type==='creature'?'ここから召喚':'ここから使う'} · ${a.cost??r.cost}マナ</button>`).join('')}<button class="btn sm" data-action="card-detail" data-id="${esc(r.cardId)}">能力を見る</button></div></div></article>`).join('')}</section>`;
+ return `<section class="mana-summon-list" aria-label="マナからの召喚"><h3>マナから使う</h3>${rows.map(r=>`<article class="mana-summon-row">${art(r.cardId)}<div class="grow"><strong>${esc(r.name)}</strong>${r.reason?`<p class="small">${esc(r.reason)}</p>`:`<small>マナゾーンから使用可能</small>`}<div class="mana-summon-buttons">${r.actions.map(a=>`<button class="btn primary" data-action="manual-zone-choice" data-index="${a.id}">${a.role==='manaBirth296'?'マナ爆誕で召喚':playFaces(card(a.cardId))[a.face||0].type==='creature'?'ここから召喚':'ここから使う'} · ${a.cost??r.cost}マナ</button>`).join('')}<button class="btn sm" data-action="card-detail" data-id="${esc(r.cardId)}">能力を見る</button></div></div></article>`).join('')}</section>`;
 }
 export function manaZoneHTML(rows,{art,actions=[],selected=[],owner=0,selecting=false,context='',state=null}={}){
  return '<div class="mana-card-track" tabindex="0" aria-label="マナのカード一覧・左右にスクロール">'+rows.map(x=>{

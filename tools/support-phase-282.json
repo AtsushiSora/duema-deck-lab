@@ -1,0 +1,419 @@
+{
+  "phase": 282,
+  "checkedAt": "2026-11-01",
+  "description": "マナゾーンのすべてのカードの文明に応じた常在強化。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dmx13-031",
+      "name": "０点男",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-031",
+      "faces": [
+        {
+          "name": "０点男",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のマナゾーンのカードがすべて闇または無色であれば、このクリーチャーのパワーは+3000される。\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を墓地に置いてもよい。",
+          "race": "ヘドリアン/アンノイズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g282AllMana": {
+              "color": "闇",
+              "colorless": true
+            }
+          },
+          "grants": {
+            "power": 3000
+          }
+        },
+        "g34Attack": [
+          {
+            "op": "Mill",
+            "n": 3,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx13-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "b862b22f8395c0e96136e66f4968f6453bd64d7781ad8c3b33ca8fc430f589e8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx16-058",
+      "name": "アクア監視員 リツイート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-058",
+      "faces": [
+        {
+          "name": "アクア監視員 リツイート",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のマナゾーンにあるカードがすべて水のカードであれば、このクリーチャーのパワーは+4000される。\nこのクリーチャーが攻撃する時、カードを１枚引いてもよい。",
+          "race": "リキッド・ピープル閃",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g282AllMana": {
+              "color": "水"
+            }
+          },
+          "grants": {
+            "power": 4000
+          }
+        },
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx16-058.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "3347ef93d58470a0b240b7fd02c7f90cd5c28400af8202c57a78dd85b9361628",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm03-041",
+      "name": "アングラー・クラスター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-041",
+      "faces": [
+        {
+          "name": "アングラー・クラスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃するとき、このクリーチャーをタップして、その攻撃を阻止してよい。そのあと、その相手クリーチャーとバトルする)\nこのクリーチャーは攻撃することができない。\n自分のマナゾーンにあるカードがすべて水のカードである間、このクリーチャーのパワーは+3000される。",
+          "race": "サイバー・クラスター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g260Self": {
+          "filter": {
+            "g282AllMana": {
+              "color": "水"
+            }
+          },
+          "grants": {
+            "power": 3000
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm03-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "8802367354880517458a82712dd6390eea5ea05fd671e0ced1297c35e9287ff3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-067",
+      "name": "クラウド・メイフライ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-067",
+      "faces": [
+        {
+          "name": "クラウド・メイフライ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のマナゾーンのカードがすべて自然のカードであれば、このクリーチャーのパワーは+4000され、｢W・ブレイカー｣を得、パワー5000以下のクリーチャーにブロックされない。",
+          "race": "ジャイアント・インセクト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g282AllMana": {
+              "color": "自然"
+            }
+          },
+          "grants": {
+            "power": 4000,
+            "breaker": 2,
+            "g206NoBlock": {
+              "maxPower": 5000
+            }
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-067.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "ec122704d0e337075d1884d91f3988ef23310b65f9e1900c30393a42e9c37c9c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-059",
+      "name": "タイラーのライター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-059",
+      "faces": [
+        {
+          "name": "タイラーのライター",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のマナゾーンのカードがすべて火のカードであれば、このクリーチャーのパワーは+1000され、｢スピードアタッカー｣を得る。(｢スピードアタッカー｣を得たクリーチャーは召喚酔いしない)",
+          "race": "ゼノパーツ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g282AllMana": {
+              "color": "火"
+            }
+          },
+          "grants": {
+            "power": 1000,
+            "speedAttacker": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-059.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "ace27a1927fe80fae0389d2c05576113993533d2f6723e179efdbcd04cc75227",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm03-049",
+      "name": "チッチ・ホッピー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-049",
+      "faces": [
+        {
+          "name": "チッチ・ホッピー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のマナゾーンにあるカードがすべて火のカードである間、このクリーチャーのパワーは+2000される。",
+          "race": "ファイアー・バード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g282AllMana": {
+              "color": "火"
+            }
+          },
+          "grants": {
+            "power": 2000
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm03-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "fba69fc24da951da4911764515e5ab94a3fbe3c0ea760314b0d8d2b9dd6fed91",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx13-029",
+      "name": "ツイート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-029",
+      "faces": [
+        {
+          "name": "ツイート",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のマナゾーンのカードがすべて水または無色であれば、このクリーチャーのパワーは+4000される。\nこのクリーチャーが攻撃する時、カードを１枚引いてもよい。",
+          "race": "サイバーロード/アンノイズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g282AllMana": {
+              "color": "水",
+              "colorless": true
+            }
+          },
+          "grants": {
+            "power": 4000
+          }
+        },
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx13-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "9ef250be94039622d70febe3d877f8a00c4890cc63e82b73f2d6a9cf522c686c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm03-044",
+      "name": "泥男",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-044",
+      "faces": [
+        {
+          "name": "泥男",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のマナゾーンにあるカードがすべて闇のカードである間、このクリーチャーのパワーは+2000される。",
+          "race": "ヘドリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g282AllMana": {
+              "color": "闇"
+            }
+          },
+          "grants": {
+            "power": 2000
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm03-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "29d8272f6fb27bc05727dcf1548262a1a0affb109438775dab1475592a125b9c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm03-037",
+      "name": "陽光の求道者ル・パーレ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-037",
+      "faces": [
+        {
+          "name": "陽光の求道者ル・パーレ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のマナゾーンにあるカードがすべて光のカードである間、このクリーチャーのパワーは+2000される。",
+          "race": "メカサンダー",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g282AllMana": {
+              "color": "光"
+            }
+          },
+          "grants": {
+            "power": 2000
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm03-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "47b9239766b02af3a4fe5b60c92b0b2220a83687f9526aa0ecdb574e2fc2faa3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx13-031": 4,
+      "dmx16-058": 4,
+      "dm03-041": 4,
+      "dm14-067": 4,
+      "dm14-059": 4,
+      "dm03-049": 4,
+      "dmx13-029": 4,
+      "dm03-044": 4,
+      "dm03-037": 4
+    }
+  }
+}

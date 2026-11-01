@@ -1,0 +1,472 @@
+{
+  "phase": 273,
+  "checkedAt": "2026-10-31",
+  "description": "スター進化、墓地からの召喚、墓地のカードや該当する面を持つカードの枚数による強化、攻撃耐性、種族追加、召喚コスト軽減。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp17-s03",
+      "name": "ゲンムエンペラー ＜デスザ.Star＞",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-s03",
+      "faces": [
+        {
+          "name": "ゲンムエンペラー ＜デスザ.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分の墓地に４枚以上カードがあれば、このクリーチャーの召喚コストを３少なくする。\nスター進化：レクスターズまたは闇のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nT・ブレイカー\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体破壊する。",
+          "race": "∞ドラゴン/デーモン・コマンド・ドラゴン/レクスターズ",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g261Discount": {
+          "filter": {
+            "g273Grave": {
+              "n": 4,
+              "filter": {}
+            }
+          },
+          "amount": 3
+        },
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "grave",
+            "title": "破壊する相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-s03.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "7bccbe20f9892b6b39f145aae3249ae8d18d26b3f45145e1be3adc3a152253d9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-016",
+      "name": "ジャバランガ ＜サイコ.Star＞",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-016",
+      "faces": [
+        {
+          "name": "ジャバランガ ＜サイコ.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スター進化：レクスターズまたは闇のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、相手は自身の手札を２枚選んで捨てる。その後、クリーチャーを１体、自分の墓地から手札に戻してもよい。",
+          "race": "マフィ・ギャング/デーモン・コマンド/レクスターズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "n": 2
+          },
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "optional": true,
+            "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-016.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "fda8d02cbdf0b0b5d47dd2f3e6dfddcd608019da3ded697abc46229cc57ced83",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-072",
+      "name": "ジョルジュ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-072",
+      "faces": [
+        {
+          "name": "ジョルジュ",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スター進化：レクスターズまたは闇のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nこのクリーチャーを自分の墓地から召喚してもよい。",
+          "race": "マフィ・ギャング/ドラゴン・ゾンビ/レクスターズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "graveSummon": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-072.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "27e4d53bdb7eed74de801d863990ac8f784799cd689800abbd5e282b7cdf0ccc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-074",
+      "name": "バッシュ ＜メルニア.Star＞",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-074",
+      "faces": [
+        {
+          "name": "バッシュ ＜メルニア.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スター進化：レクスターズまたは闇のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+          "race": "マフィ・ギャング/ゴースト/レクスターズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "slayer": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-074.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "1a958d1093e1440d775d33586c87bfc8f40d5cf72326a72ecc3633b1990b9437",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "sp-019",
+      "name": "ブレイブハート・ドラグーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=sp-019",
+      "faces": [
+        {
+          "name": "ブレイブハート・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\n自分の墓地に火のクリーチャーが５体以上あれば、このクリーチャーは攻撃されない。",
+          "race": "ティラノ・ドレイク",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g260Self": {
+          "filter": {
+            "g273Grave": {
+              "n": 5,
+              "filter": {
+                "g228Face": {
+                  "type": "creature",
+                  "color": "火"
+                }
+              }
+            }
+          },
+          "grants": {
+            "cannotBeAttacked": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/sp-019.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "6418f410c57351c1246d62688b0336fa67256e590e8788590843ad8f7adb3061",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-018",
+      "name": "阿修羅ムカデ ＜デスシラズ.Star＞",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-018",
+      "faces": [
+        {
+          "name": "阿修羅ムカデ ＜デスシラズ.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スター進化：レクスターズまたは闇のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、コスト４以下のクリーチャーを１体、自分の墓地から出してもよい。",
+          "race": "マフィ・ギャング/デーモン・コマンド・ドラゴン/レクスターズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "max": 4
+            },
+            "optional": true,
+            "title": "墓地から出すクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-018.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "1b2b482d14298676dbd6f7d3fa6b654e4b8d8cbec57262c900b1988a3bdecd81",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd11-011",
+      "name": "遺跡隠れ ダンゴウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd11-011",
+      "faces": [
+        {
+          "name": "遺跡隠れ ダンゴウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の墓地に呪文が３枚以上あれば、このクリーチャーのパワーを+4000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）",
+          "race": "ムートピア",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g273Grave": {
+              "n": 3,
+              "filter": {
+                "g228Face": {
+                  "type": "spell"
+                }
+              }
+            }
+          },
+          "grants": {
+            "power": 4000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd11-011.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "244bd288874bee982e35ffbae60434b57ce0cdde25968c27299dcf3c9de6844d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr17-043",
+      "name": "侵略者 フワシロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-043",
+      "faces": [
+        {
+          "name": "侵略者 フワシロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の墓地に闇のクリーチャーが２体以上あれば、このクリーチャーのパワーを+2000し、種族にデーモン・コマンドを追加する。",
+          "race": "ファンキー・ナイトメア/侵略者",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g273Grave": {
+              "n": 2,
+              "filter": {
+                "g228Face": {
+                  "type": "creature",
+                  "color": "闇"
+                }
+              }
+            }
+          },
+          "grants": {
+            "power": 2000,
+            "raceAdd": [
+              "デーモン・コマンド"
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-043.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "c2d5e1aecba0552d795dc3b4c16db3a555c465cb82180723775c589d49f610ed",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-073",
+      "name": "魔光 ルナンド-２",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-073",
+      "faces": [
+        {
+          "name": "魔光 ルナンド-２",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の墓地にカードが２枚以上あれば、このクリーチャーの召喚コストを２少なくする。\nササゲール２（ディスペクターを召喚する時、コストを２少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "デーモン・コマンド/ナイト/ディスタス",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g261Discount": {
+          "filter": {
+            "g273Grave": {
+              "n": 2,
+              "filter": {}
+            }
+          },
+          "amount": 2
+        },
+        "sasage": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-073.jpg",
+      "verification": {
+        "checkedAt": "2026-10-31",
+        "sha256": "efddefbe935d8d94e768d7293fb368bfcee4cd047931c6d3592cf78882d19c57",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-10-31",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp17-s03": 4,
+      "dmrp18-016": 4,
+      "dmrp19-072": 4,
+      "dmrp17-074": 4,
+      "sp-019": 4,
+      "dmrp17-018": 4,
+      "dmsd11-011": 4,
+      "dmr17-043": 4,
+      "dmrp19-073": 4
+    }
+  }
+}

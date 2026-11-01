@@ -1,0 +1,263 @@
+{
+  "phase": 301,
+  "checkedAt": "2026-11-01",
+  "description": "タップ時の除去・手札破壊・シールド追加と、スピードアタッカー付与・最初のタップでのアンタップ。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37476/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37477/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37475/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36772/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35535/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31410/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp04s-081",
+      "name": "MR. SBATER",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-081",
+      "faces": [
+        {
+          "name": "MR. SBATER",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがタップされた時、相手のパワー3000以下のクリーチャーを１体破壊してもよい。",
+          "race": "ジョーカーズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g188Tapped": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "optional": true,
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-081.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "94a4fd5997c8c87b9f05c1c4b5998fdd828b6f3dfc9430ce41f0d2ee17c1b643",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-070",
+      "name": "ボルシャック・疾・ピピッチ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-070",
+      "faces": [
+        {
+          "name": "ボルシャック・疾・ピピッチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがタップした時、このターン、自分の他のクリーチャー１体に「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "アーマード・ファイアー・バード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g188Tapped": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g179Other": true,
+            "g301Grant": true,
+            "grant": {
+              "speedAttacker": true
+            },
+            "title": "このターン、スピードアタッカーを与える他の自分のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "89b982d2a385e27177865c6d5e04b2b7f5f1cf98600c2fa32e4e485c085fec27",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-071",
+      "name": "ライラ・踊・ラッタ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-071",
+      "faces": [
+        {
+          "name": "ライラ・踊・ラッタ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがタップした時、相手のコスト２以下のエレメントを１つ選び、破壊してもよい。",
+          "race": "アーマード・ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g188Tapped": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "element": true,
+            "optional": true,
+            "filter": {
+              "max": 2
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-071.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "cb07a587b346990ece9021f7846158222d1bd671a79f17a4763cd54a6dfa530c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-061",
+      "name": "刺筒虫インジェクト・ワーム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-061",
+      "faces": [
+        {
+          "name": "刺筒虫インジェクト・ワーム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがタップした時、各相手は自身の手札を１枚選び、捨てる。",
+          "race": "パラサイトワーム",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g188Tapped": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-061.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "22729ce366fffb776b9f382e11d61f4c22961db299f21cf74e1e312ed5bc6250",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-053",
+      "name": "宣凶師マ・モーレ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-053",
+      "faces": [
+        {
+          "name": "宣凶師マ・モーレ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーをタップした時、自分の山札の上から１枚目をシールド化してもよい。",
+          "race": "グラディエーター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g188Tapped": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "3df39c8e3d06e0cc2220911d00f37feed85c9d16581a431af518b3c14a08af20",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-043",
+      "name": "双撃者エグゼツインズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-043",
+      "faces": [
+        {
+          "name": "双撃者エグゼツインズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\n各ターン、はじめてこのクリーチャーがタップした時、アンタップする。",
+          "race": "ドラゴノイド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "guardman": true,
+        "speedAttacker": true,
+        "g191FirstTapUntap": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "bb88ddd6a6a1bd5e5a6886cbd43712e229cd45f1bec26addd8bb921fab91e962",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp04s-081": 4,
+      "dm24rp1-070": 4,
+      "dm24rp1-071": 4,
+      "dm24rp2-061": 4,
+      "dm24rp1-053": 4,
+      "dm24rp1-043": 4
+    }
+  }
+}

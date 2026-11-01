@@ -1,0 +1,207 @@
+{
+  "phase": 308,
+  "checkedAt": "2026-11-01",
+  "description": "破壊時に除去・マナ加速・手札破壊・ドローから効果を選べる多色カード。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37476/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37477/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37475/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36772/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35535/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31410/"
+  ],
+  "cards": [
+    {
+      "id": "dm24-066",
+      "name": "奇面王機ボーンキラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-066",
+      "faces": [
+        {
+          "name": "奇面王機ボーンキラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが破壊された時、カードを１枚引くか、相手に手札を１枚捨てさせる。",
+          "race": "グレートメカオー/デビルマスク",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "カードを1枚引く",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "相手に手札を1枚捨てさせる",
+                "defs": [
+                  {
+                    "op": "Discard",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-066.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "b77293d556eefd8ad1899e3d74606bf7a45248f2921146ab1ba540e3e179da5c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-070",
+      "name": "闘竜妖精ティルニア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-070",
+      "faces": [
+        {
+          "name": "闘竜妖精ティルニア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが破壊された時、相手のパワー3000以下のクリーチャーを１体破壊するか、自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "ティラノ・ドレイク/スノーフェアリー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "パワー3000以下の相手クリーチャーを破壊",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 3000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "山札の上から1枚をマナに置く",
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "25cb4b78f0b2f4b52d449c15151412fbe614882699d450b3eca5b1ed144775f6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-068",
+      "name": "封魔魂具バジル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-068",
+      "faces": [
+        {
+          "name": "封魔魂具バジル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが破壊された時、相手に手札を１枚捨てさせるか、相手のパワー3000以下のクリーチャーを１体破壊する。",
+          "race": "グランド・デビル/ゼノパーツ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手に手札を1枚捨てさせる",
+                "defs": [
+                  {
+                    "op": "Discard",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "パワー3000以下の相手クリーチャーを破壊",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 3000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-068.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "1ac4c55bfdd017d56f292787a7c36807c412ac395d98f8a6f14f69d7895e4384",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24-066": 4,
+      "dm24-070": 4,
+      "dm24-068": 4
+    }
+  }
+}

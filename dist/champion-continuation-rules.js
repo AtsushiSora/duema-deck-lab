@@ -22,7 +22,7 @@ export function createChampionContinuationRules(api){
   opt('相手のシールドを1つブレイク',3,s.players[1-t.p].shields.length?18:-40)]);break;
  case'g40_SonkunTarget':{const rows=s.players[1-t.p].battle.filter(x=>t.mode===0?api.isCreature(s,x)&&effective(x,s).blocker:t.mode===1?api.isCreature(s,x)&&cost(effective(x,s))<=3:effective(x,s).type==='seed'&&cost(effective(x,s))<=3);choice(s,t,'破壊する相手のカードを選ぶ',targetOptions(s,t.p,rows));break;}
  case'g40_Break':choice(s,t,'ブレイクする相手のシールドを選ぶ',s.players[1-t.p].shields.map((x,i)=>opt('シールド'+(i+1),x.uid,0)));break;
- case'g40_UntapTeam':for(const x of creatures(s,t.p)){if(api.canUntap(x))x.tapped=false;x.gospelSpeed=s.turn;}break;
+ case'g40_UntapTeam':for(const x of creatures(s,t.p)){api.untap(s,t.p,x);x.gospelSpeed=s.turn;}break;
  case'g40_RecklessDeath':{const x=live(s,t.p,t.ids);if(x)move(s,[{player:t.p,uid:x.uid,to:'grave',destroy:true}]);break;}
  case'g40_BadDebt':choice(s,t,'マスターB・A・D：自分のクリーチャーを1体破壊する',creatures(s,t.p).map(x=>opt(card(x).name,x.uid,-cost(card(x)),x.cardId)));break;
  case'g40_Fiona':choice(s,t,'マナから出すフィールドを選ぶ？',[...own.mana.filter(x=>card(x).type==='field'&&api.canEnter(s,t.p,card(x),{origin:'mana',execution:false})).map(x=>opt(card(x).name,x.uid,40+cost(card(x)),x.cardId)),skip()]);break;

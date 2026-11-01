@@ -1,3 +1,42 @@
+import {STANDARD311_DECK} from './fixtures/standard311.mjs';
+import {STANDARD310_DECK} from './fixtures/standard310.mjs';
+import {STANDARD309_DECK} from './fixtures/standard309.mjs';
+import {STANDARD308_DECK} from './fixtures/standard308.mjs';
+import {STANDARD307_DECK} from './fixtures/standard307.mjs';
+import {STANDARD306_DECK} from './fixtures/standard306.mjs';
+import {STANDARD305_DECK} from './fixtures/standard305.mjs';
+import {STANDARD304_DECK} from './fixtures/standard304.mjs';
+import {STANDARD303_DECK} from './fixtures/standard303.mjs';
+import {STANDARD302_DECK} from './fixtures/standard302.mjs';
+import {STANDARD301_DECK} from './fixtures/standard301.mjs';
+import {STANDARD300_DECK} from './fixtures/standard300.mjs';
+import {STANDARD299_DECK} from './fixtures/standard299.mjs';
+import {STANDARD298_DECK} from './fixtures/standard298.mjs';
+import {STANDARD297_DECK} from './fixtures/standard297.mjs';
+import {STANDARD296_DECK} from './fixtures/standard296.mjs';
+import {STANDARD295_DECK} from './fixtures/standard295.mjs';
+import {STANDARD294_DECK} from './fixtures/standard294.mjs';
+import {STANDARD293_DECK} from './fixtures/standard293.mjs';
+import {STANDARD292_DECK} from './fixtures/standard292.mjs';
+import {STANDARD291_DECK} from './fixtures/standard291.mjs';
+import {STANDARD290_DECK} from './fixtures/standard290.mjs';
+import {STANDARD289_DECK} from './fixtures/standard289.mjs';
+import {STANDARD288_DECK} from './fixtures/standard288.mjs';
+import {STANDARD287_DECK} from './fixtures/standard287.mjs';
+import {STANDARD286_DECK} from './fixtures/standard286.mjs';
+import {STANDARD285_DECK} from './fixtures/standard285.mjs';
+import {STANDARD284_DECK} from './fixtures/standard284.mjs';
+import {STANDARD283_DECK} from './fixtures/standard283.mjs';
+import {STANDARD282_DECK} from './fixtures/standard282.mjs';
+import {STANDARD281_DECK} from './fixtures/standard281.mjs';
+import {STANDARD280_DECK} from './fixtures/standard280.mjs';
+import {STANDARD279_DECK} from './fixtures/standard279.mjs';
+import {STANDARD278_DECK} from './fixtures/standard278.mjs';
+import {STANDARD277_DECK} from './fixtures/standard277.mjs';
+import {STANDARD276_DECK} from './fixtures/standard276.mjs';
+import {STANDARD275_DECK} from './fixtures/standard275.mjs';
+import {STANDARD274_DECKS} from './fixtures/standard274.mjs';
+import {STANDARD273_DECK} from './fixtures/standard273.mjs';
 import {STANDARD272_DECK} from './fixtures/standard272.mjs';
 import {STANDARD271_DECK} from './fixtures/standard271.mjs';
 import {STANDARD270_DECK} from './fixtures/standard270.mjs';
@@ -565,3 +604,81 @@ if(validateDeck(STANDARD270_DECK).length||registry.coverage(STANDARD270_DECK).un
 if(validateDeck(STANDARD271_DECK).length||registry.coverage(STANDARD271_DECK).unsupported||STANDARD271_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第271段階の40枚を確認してください');console.log('Checked phase271 forty-card deck: conditional race additions, battle safety, stats and end untap supported.');
 
 if(validateDeck(STANDARD272_DECK).length||registry.coverage(STANDARD272_DECK).unsupported||STANDARD272_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第272段階の40枚を確認してください');console.log('Checked phase272 forty-card deck: Metamorph static grants, attack restriction override, death replacement and grave recovery supported.');
+
+if(validateDeck(STANDARD273_DECK).length||registry.coverage(STANDARD273_DECK).unsupported||STANDARD273_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第273段階の40枚を確認してください');console.log('Checked phase273 forty-card deck: Star Evolution, grave summoning, grave-count grants and discounts supported.');
+
+for(const d of STANDARD274_DECKS){if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第274段階の40枚を確認してください');}console.log('Checked phase274 forty-card decks: twenty Star Evolution cards supported.');
+
+if(validateDeck(STANDARD275_DECK).length||registry.coverage(STANDARD275_DECK).unsupported||STANDARD275_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第275段階の40枚を確認してください');console.log('Checked phase275 forty-card deck: dual-color Star Evolution, grave deployment and conditional discount supported.');
+
+if(validateDeck(STANDARD276_DECK).length||registry.coverage(STANDARD276_DECK).unsupported||STANDARD276_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第276段階の40枚を確認してください');console.log('Checked phase276 forty-card deck: Star Evolution shield additions and evolution target protection supported.');
+
+if(validateDeck(STANDARD277_DECK).length||registry.coverage(STANDARD277_DECK).unsupported||STANDARD277_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第277段階の40枚を確認してください');console.log('Checked phase277 forty-card deck: grave movement, own-turn summon and attacking-spell restrictions supported.');
+
+if(validateDeck(STANDARD278_DECK).length||registry.coverage(STANDARD278_DECK).unsupported||STANDARD278_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第278段階の40枚を確認してください');console.log('Checked phase278 forty-card deck: spell, death and battle-win shield breaking supported.');
+
+if(validateDeck(STANDARD279_DECK).length||registry.coverage(STANDARD279_DECK).unsupported||STANDARD279_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第279段階の40枚を確認してください');console.log('Checked phase279 forty-card deck: first-spell taxes and discounts supported.');
+
+if(validateDeck(STANDARD280_DECK).length||registry.coverage(STANDARD280_DECK).unsupported||STANDARD280_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第280段階の40枚を確認してください');console.log('Checked phase280 forty-card deck: spell-cast turn summon conditions supported.');
+
+if(validateDeck(STANDARD281_DECK).length||registry.coverage(STANDARD281_DECK).unsupported||STANDARD281_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第281段階の40枚を確認してください');console.log('Checked phase281 forty-card deck: effect battles and blocking power supported.');
+
+if(validateDeck(STANDARD282_DECK).length||registry.coverage(STANDARD282_DECK).unsupported||STANDARD282_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第282段階の40枚を確認してください');console.log('Checked phase282 forty-card deck: all-mana civilization conditional grants supported.');
+
+if(validateDeck(STANDARD283_DECK).length||registry.coverage(STANDARD283_DECK).unsupported||STANDARD283_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第283段階の40枚を確認してください');console.log('Checked phase283 forty-card deck: conditional blockers, speed attackers and double breakers supported.');
+
+if(validateDeck(STANDARD284_DECK).length||registry.coverage(STANDARD284_DECK).unsupported||STANDARD284_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第284段階の40枚を確認してください');console.log('Checked phase284 forty-card deck: summoned-only Radio Roses with optional draws and opponent discard supported.');
+
+if(validateDeck(STANDARD285_DECK).length||registry.coverage(STANDARD285_DECK).unsupported||STANDARD285_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第285段階の40枚を確認してください');console.log('Checked phase285 forty-card deck: mana-dependent bounce, first-spell discount and tapped-mana power supported.');
+
+if(validateDeck(STANDARD286_DECK).length||registry.coverage(STANDARD286_DECK).unsupported||STANDARD286_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第286段階の40枚を確認してください');console.log('Checked phase286 forty-card deck: crystal armament spell discount and blocker deployment supported.');
+
+if(validateDeck(STANDARD287_DECK).length||registry.coverage(STANDARD287_DECK).unsupported||STANDARD287_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第287段階の40枚を確認してください');console.log('Checked phase287 forty-card deck: creature crystal armament stats, blockers and draw support.');
+
+if(validateDeck(STANDARD288_DECK).length||registry.coverage(STANDARD288_DECK).unsupported||STANDARD288_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第288段階の40枚を確認してください');console.log('Checked phase288 forty-card deck: face-down mana ramp and replacement grave deployment supported.');
+
+if(validateDeck(STANDARD289_DECK).length||registry.coverage(STANDARD289_DECK).unsupported||STANDARD289_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第289段階の40枚を確認してください');console.log('Checked phase289 forty-card deck: conditional player attacks supported.');
+
+if(validateDeck(STANDARD290_DECK).length||registry.coverage(STANDARD290_DECK).unsupported||STANDARD290_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第290段階の40枚を確認してください');console.log('Checked phase290 forty-card deck: tribe and NEO summon discounts supported.');
+
+if(validateDeck(STANDARD291_DECK).length||registry.coverage(STANDARD291_DECK).unsupported||STANDARD291_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第291段階の40枚を確認してください');console.log('Checked phase291 forty-card deck: self-or-cost-six entry abilities supported.');
+
+if(validateDeck(STANDARD292_DECK).length||registry.coverage(STANDARD292_DECK).unsupported||STANDARD292_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第292段階の40枚を確認してください');console.log('Checked phase292 forty-card deck: low-hand haste, end-turn refill and GGG removal supported.');
+
+if(validateDeck(STANDARD293_DECK).length||registry.coverage(STANDARD293_DECK).unsupported||STANDARD293_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第293段階の40枚を確認してください');console.log('Checked phase293 forty-card deck: race-flexible evolution bases supported.');
+
+if(validateDeck(STANDARD294_DECK).length||registry.coverage(STANDARD294_DECK).unsupported||STANDARD294_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第294段階の40枚を確認してください');console.log('Checked phase294 forty-card deck: grave summons, shared permissions and optional mill-draw supported.');
+
+if(validateDeck(STANDARD295_DECK).length||registry.coverage(STANDARD295_DECK).unsupported||STANDARD295_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第295段階の40枚を確認してください');console.log('Checked phase295 forty-card deck: tapped entry, start untap restriction and tamaseed/spell untaps supported.');
+
+if(validateDeck(STANDARD296_DECK).length||registry.coverage(STANDARD296_DECK).unsupported||STANDARD296_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第296段階の40枚を確認してください');console.log('Checked phase296 forty-card deck: Mana Birth alternative mana-zone summons supported.');
+
+if(validateDeck(STANDARD297_DECK).length||registry.coverage(STANDARD297_DECK).unsupported||STANDARD297_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第297段階の40枚を確認してください');console.log('Checked phase297 forty-card deck: continuous and temporary mana-zone summons and Suzuran end movement supported.');
+
+if(validateDeck(STANDARD298_DECK).length||registry.coverage(STANDARD298_DECK).unsupported||STANDARD298_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第298段階の40枚を確認してください');console.log('Checked phase298 forty-card deck: hand-summon restriction and self mana transfers supported.');
+
+if(validateDeck(STANDARD299_DECK).length||registry.coverage(STANDARD299_DECK).unsupported||STANDARD299_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第299段階の40枚を確認してください');console.log('Checked phase299 forty-card deck: untap-triggered draw, tap, shield return and end-step self bounce supported.');
+
+if(validateDeck(STANDARD300_DECK).length||registry.coverage(STANDARD300_DECK).unsupported||STANDARD300_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第300段階の40枚を確認してください');console.log('Checked phase300 forty-card deck: mandatory tap and untap effects and end-step self bounce supported.');
+
+if(validateDeck(STANDARD301_DECK).length||registry.coverage(STANDARD301_DECK).unsupported||STANDARD301_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第301段階の40枚を確認してください');console.log('Checked phase301 forty-card deck: tap-trigger removal, discard, shield addition and speed grants supported.');
+
+if(validateDeck(STANDARD302_DECK).length||registry.coverage(STANDARD302_DECK).unsupported||STANDARD302_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第302段階の40枚を確認してください');console.log('Checked phase302 forty-card deck: entry and attack speed grants and JOE supported.');
+
+if(validateDeck(STANDARD303_DECK).length||registry.coverage(STANDARD303_DECK).unsupported||STANDARD303_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第303段階の40枚を確認してください');console.log('Checked phase303 forty-card deck: tribal death draw watchers supported.');
+
+if(validateDeck(STANDARD304_DECK).length||registry.coverage(STANDARD304_DECK).unsupported||STANDARD304_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第304段階の40枚を確認してください');console.log('Checked phase304 forty-card deck: death discard, name-conditioned draw and tap-lock supported.');
+
+if(validateDeck(STANDARD305_DECK).length||registry.coverage(STANDARD305_DECK).unsupported||STANDARD305_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第305段階の40枚を確認してください');console.log('Checked phase305 forty-card deck: blocker, tapped slayer and death-trigger draw/removal supported.');
+
+if(validateDeck(STANDARD306_DECK).length||registry.coverage(STANDARD306_DECK).unsupported||STANDARD306_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第306段階の40枚を確認してください');console.log('Checked phase306 forty-card deck: tribal death removal and optional draws supported.');
+
+if(validateDeck(STANDARD307_DECK).length||registry.coverage(STANDARD307_DECK).unsupported||STANDARD307_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第307段階の40枚を確認してください');console.log('Checked phase307 forty-card deck: death break, element destruction and milling supported.');
+
+if(validateDeck(STANDARD308_DECK).length||registry.coverage(STANDARD308_DECK).unsupported||STANDARD308_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第308段階の40枚を確認してください');console.log('Checked phase308 forty-card deck: modal death removal, ramp, discard and draw supported.');
+
+if(validateDeck(STANDARD309_DECK).length||registry.coverage(STANDARD309_DECK).unsupported||STANDARD309_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第309段階の40枚を確認してください');console.log('Checked phase309 forty-card deck: tribal entry/death and paired entry/death milling supported.');
+
+if(validateDeck(STANDARD310_DECK).length||registry.coverage(STANDARD310_DECK).unsupported||STANDARD310_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第310段階の40枚を確認してください');console.log('Checked phase310 forty-card deck: exact-name mana deployment and modal library search supported.');
+
+if(validateDeck(STANDARD311_DECK).length||registry.coverage(STANDARD311_DECK).unsupported||STANDARD311_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第311段階の40枚を確認してください');console.log('Checked phase311 forty-card deck: race, cost and civilization filtered death-trigger hand deployment supported.');
