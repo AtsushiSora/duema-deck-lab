@@ -1,0 +1,265 @@
+{
+  "phase": 326,
+  "checkedAt": "2026-11-01",
+  "description": "墓地・マナから条件に合うカードをすべて回収する共通文法と自動移動処理で5種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dm04-s02",
+      "name": "キング・アクアカムイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-s02",
+      "faces": [
+        {
+          "name": "キング・アクアカムイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、自分の墓地にあるすべてのエンジェル・コマンドとデーモン・コマンドを自分の手札に戻してもよい。\nこのクリーチャーがバトルゾーンにある間、バトルゾーンにあるすべてのエンジェル・コマンドとデーモン・コマンドのパワーはそれぞれ+2000される。",
+          "race": "リヴァイアサン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g205Aura": {
+          "power": 2000,
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "エンジェル・コマンド",
+              "デーモン・コマンド"
+            ]
+          },
+          "both": true
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "条件に合う墓地のカードをすべて手札に戻す？",
+            "defs": [
+              {
+                "op": "RecoverAll326",
+                "zones": [
+                  "grave"
+                ],
+                "filter": {
+                  "any": [
+                    {
+                      "anyFaceRace": "エンジェル・コマンド"
+                    },
+                    {
+                      "anyFaceRace": "デーモン・コマンド"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm04-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "1e53768ab80f29c764f6a6a1ba0f6c8db7d3c9c9502020b7e9bfbb2b2afd5b86",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx10-004",
+      "name": "サイバー・R・コンストラクション",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx10-004",
+      "faces": [
+        {
+          "name": "サイバー・R・コンストラクション",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の墓地にあるサイバーロードをすべて、手札に戻す。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "サイバー・コマンド",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RecoverAll326",
+            "zones": [
+              "grave"
+            ],
+            "filter": {
+              "anyFaceRace": "サイバーロード"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx10-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "d59f10b3ddb710c4d455401f9bc230898b2ecd2e33807421b98da05b8a0b239d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm11-003",
+      "name": "ダイヤモンド・ブリザード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-003",
+      "faces": [
+        {
+          "name": "ダイヤモンド・ブリザード",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "進化-自分のスノーフェアリー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、自分の墓地とマナゾーンからスノーフェアリーをすべて、自分の手札に戻す。",
+          "race": "スノーフェアリー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "スノーフェアリー"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RecoverAll326",
+            "zones": [
+              "grave",
+              "mana"
+            ],
+            "filter": {
+              "anyFaceRace": "スノーフェアリー"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "7a9ae97ff48345ab31797de70fc7e43c303ed7202c3745f0f74f294a3dcf4d52",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-032",
+      "name": "大勇者「鎖風車」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-032",
+      "faces": [
+        {
+          "name": "大勇者「鎖風車」",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化-自分のビーストフォーク１体の上に置く。\nW・ブレイカー\nこのクリーチャーをバトルゾーンに出した時、自分のマナゾーンでタップされているカードをすべて自分の手札に戻す。",
+          "race": "ビーストフォーク",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "ビーストフォーク"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RecoverAll326",
+            "zones": [
+              "mana"
+            ],
+            "filter": {
+              "tapped": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "62c3552007a969672d33c229a88b70c096ce3d1e104eeb3bbb67b152e0ad8c58",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm03-s05",
+      "name": "天空の超人",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-s05",
+      "faces": [
+        {
+          "name": "天空の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "W(ダブル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが攻撃するとき、自分のマナゾーンにあるクリーチャーをすべて、自分の手札に戻す。",
+          "race": "ジャイアント",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "RecoverAll326",
+            "zones": [
+              "mana"
+            ],
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm03-s05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "11b2d5bb2aaa585de2b9a9cfe5e0b28fdf4377f12b4667fa902933b2653ba6f7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm04-s02": 4,
+      "dmx10-004": 4,
+      "dm11-003": 4,
+      "dm10-032": 4,
+      "dm03-s05": 4
+    }
+  }
+}

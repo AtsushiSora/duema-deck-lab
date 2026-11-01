@@ -62,7 +62,8 @@ function aura205(text,phase=205){
  const filters={'クリーチャー':{},'進化クリーチャー':{evolution:true},'光のクリーチャー':{color:'光'},'闇のクリーチャー':{color:'闇'},'自然のクリーチャー':{color:'自然'},'光と闇のクリーチャー':{any:[{color:'光'},{color:'闇'}]},'光と火のクリーチャー':{any:[{color:'光'},{color:'火'}]},'ガーディアンとワイルド・ベジーズ':{raceAny:['ガーディアン','ワイルド・ベジーズ']},'スリヴァーとサバイバー':{raceAny:['スリヴァー','サバイバー']}};
  for(const race of['グランセクト','サイバーロード','エイリアン','ガーディアン','アーマード・ドラゴン','ティラノ・ドレイク','ダイナモ'])filters[race]={race};
  if(phase>=263){for(const race of['ドラゴン','オラクル','グレートメカオー'])filters[race]={race};filters['火または自然のドラゴン']={race:'ドラゴン',any:[{color:'火'},{color:'自然'}]};}
- const filter=filters[m[4]];if(!filter)return null;return{power:+m[5],filter:{creature:true,...filter},...(m[1]?{turn:m[1]==='自分'?'own':'opponent'}:{}),...(!m[2]?{both:true}:{}),...(m[3]?{other:true}:{})};
+ if(phase>=326)filters['エンジェル・コマンドとデーモン・コマンド']={raceAny:['エンジェル・コマンド','デーモン・コマンド']};
+ const filter=filters[phase>=326?m[4].replace(/^すべての/,''):m[4]];if(!filter)return null;return{power:+m[5],filter:{creature:true,...filter},...(m[1]?{turn:m[1]==='自分'?'own':'opponent'}:{}),...(!m[2]?{both:true}:{}),...(m[3]?{other:true}:{})};
 }
 function countPower207(text){
  let line=text,condition={};
@@ -92,9 +93,16 @@ function grantAura208(text,phase=208){
  for(const color of colors)filters[color+'のクリーチャー']={color};
  for(const r of ['リキッド・ピープル','コマンド・ドラゴン','デーモン・コマンド','エイリアン','アンノウン','ティラノ・ドレイク','ディスタス','サイバーロードとヘドリアン'])filters[r]=r.includes('と')?{raceAny:r.split('と')}:{race:r};
  if(phase>=227)filters['光と闇のクリーチャー']={colorsAny:['光','闇']};
- const filter=filters[m[3]];if(!filter)return null;const body=m[4];let grants;
+ if(phase>=325){
+  for(const color of['光と火','闇と自然'])filters[color+'のクリーチャー']={colorsAny:color.split('と')};
+  for(const race of['ヒューマノイド','ビートジョッキー','ジャイアント'])filters[race]={race};
+  for(const races of['ドリームメイトとビークル・ビー','ティラノ・ドレイクとブレイブ・スピリット'])filters[races]={raceAny:races.split('と')};
+  filters['ドラゴン以外のクリーチャー']={notRace:'ドラゴン'};
+ }
+ const filter=filters[m[3]];if(!filter)return null;let body=m[4],grants;const protectedAttack=phase>=325&&/^「パワーアタッカー\+[1-9]\d*」を得攻撃されない。$/.test(body);if(protectedAttack)body=body.replace('を得攻撃されない。','を得る。');
  if(body==='ブロックされない。')grants={unblockable:true};
- else{const grant=body.match(/^((?:「[^「」]+」)(?:と「[^「」]+」)*)(?:を得る|を与える)。(?:\(.*\))?$/);if(!grant)return null;grants={};for(const word of grant[1].matchAll(/「([^「」]+)」/g)){const key={'スピードアタッカー':'speedAttacker','スレイヤー':'slayer','ブロッカー':'blocker','W・ブレイカー':'breaker','W(ダブル)・ブレイカー':'breaker'}[word[1]],power=word[1].match(/^パワーアタッカー\+([1-9]\d*)$/);if(key)grants[key]=key==='breaker'?2:true;else if(power)grants.attackBonus=+power[1];else return null;}}
+ else{const grant=body.match(/^((?:「[^「」]+」)(?:と「[^「」]+」)*)(?:を得る|を与える)。(?:\(.*\))?$/);if(!grant)return null;grants={};for(const word of grant[1].matchAll(/「([^「」]+)」/g)){const key={'スピードアタッカー':'speedAttacker','スレイヤー':'slayer','ブロッカー':'blocker','W・ブレイカー':'breaker','W(ダブル)・ブレイカー':'breaker'}[word[1]],power=word[1].match(/^パワーアタッカー\+([1-9]\d*)$/);if(key)grants[key]=key==='breaker'?2:true;else if(phase>=325&&word[1]==='パワード・ブレイカー')grants.poweredBreaker=true;else if(power)grants.attackBonus=+power[1];else return null;}}
+ if(protectedAttack)grants.cannotBeAttacked=true;
  return{filter:{creature:true,...filter},...(!m[1]?{both:true}:{}),...(m[2]?{other:true}:{}),grants};
 }
 function recovery228(text){
@@ -155,6 +163,13 @@ function judge318(text,phase){
  const def=instruction(m[1],phase);return def?{op:'Judge318',defs:[def]}:null;
 }
 function instruction(text,phase){
+ if(phase>=326){
+  if(text==='自分のマナゾーンでタップされているカードをすべて自分の手札に戻す。')return{op:'RecoverAll326',zones:['mana'],filter:{tapped:true}};
+  const r=text.match(/^自分の(墓地|マナゾーン|墓地とマナゾーン)(?:にある|から)(すべての)?(.+?)を(すべて)?(?:自分の)?手札に戻(す|してもよい)。$/);
+  if(r&&!!r[2]!==!!r[4]){const filters={'カード':{},'クリーチャー':{g228Face:{type:'creature'}},'呪文':{g228Face:{type:'spell'}},'サイバーロード':{anyFaceRace:'サイバーロード'},'スノーフェアリー':{anyFaceRace:'スノーフェアリー'},'エンジェル・コマンドとデーモン・コマンド':{any:[{anyFaceRace:'エンジェル・コマンド'},{anyFaceRace:'デーモン・コマンド'}]}},filter=filters[r[3]];if(filter){const def={op:'RecoverAll326',zones:r[1].split('と').map(z=>z==='墓地'?'grave':'mana'),filter};return r[5]==='す'?def:{op:'Offer',title:'条件に合う墓地のカードをすべて手札に戻す？',defs:[def]};}}
+ }
+ if(phase>=324){const ramp=text.match(/^自分の山札の上から([1-9]\d*)枚(?:目)?を裏向きのまま(タップして)?マナゾーンに置く。\(マナゾーンにある裏向きのカードはマナの数字が1の無色カードとして扱う。その持ち主はそれをいつでも見てもよい\)$/);if(ramp)return{op:'Ramp',n:+ramp[1],...(ramp[2]?{tapped:true}:{}),faceDown:true};}
+ if(phase>=323&&/^自分の山札の上から1枚(?:目)?を見る。そのカードを(?:自分の)?山札の(?:一番)?下に置いてもよい。$/.test(text))return{op:'Look',g323Scry:true,n:1,rest:'top',stages:[{n:1,to:'deck',optional:true,title:'山札の一番下に置く？（見送ると上に残す）'}]};
  if(phase>=318){const judge=judge318(text,phase);if(judge)return judge;}
  if(phase>=317){
   const element=text.match(/^相手のコスト([1-9]\d*)以下のエレメントを1つ選(?:び|んで)破壊(する|してもよい)。$/);
@@ -496,6 +511,18 @@ export function standardCardSpec(d,{phase=165}={}){
  for(let i=0;i<lines.length;i++){
   const raw=lines[i],line=normalize(phase>=231?raw.replace(/^このクリーチャーがバトルゾーンに出たとき/,'このクリーチャーがバトルゾーンに出た時').replace(/^このクリーチャーが攻撃するとき/,'このクリーチャーが攻撃する時'):phase>=228?raw.replace(/^このクリーチャーが攻撃するとき/,'このクリーチャーが攻撃する時'):raw);let m,known=false;
   if(phase>=278&&creature&&line==='自分のクリーチャーがバトルに勝った時相手のシールドを1つブレイクしてもよい。'){if(spec.g252WinWatch)throw Error('重複するバトル勝利監視能力');spec.g252WinWatch={filter:{creature:true},defs:[{op:'Offer',defs:[{op:'Break278'}]}]};continue;}
+  if(phase>=323&&creature){
+   if(m=line.match(/^自分のクリーチャーがバトルゾーンに出た時(.+)$/)){
+    const def=instruction(m[1],phase);
+    if(def?.g323Scry){if(spec.g251EntryDraw)throw Error('重複する登場監視能力');spec.g251EntryDraw={filter:{creature:true},defs:[def]};continue;}
+   }
+   if(m=line.match(/^バトルゾーンに自分のクリーチャーが([1-9]\d*)体以上なければこのクリーチャーは攻撃できない。$/)){
+    if(spec.g260Self)throw Error('重複する味方条件');spec.noAttack=true;spec.g260Self={filter:{creature:true,g258Civil:+m[1]},grants:{noAttack:false}};continue;
+   }
+   if(m=line.match(/^自分の手札が(0|[1-9]\d*)枚以下でなければこのクリーチャーは攻撃できない。$/)){
+    if(spec.g225AttackRequires)throw Error('重複する攻撃条件');spec.g225AttackRequires={kind:'handCount',max:+m[1]};continue;
+   }
+  }
   if(phase>=277&&creature){
    const flag={
     '相手の墓地にあるカードは墓地を離れない。':'g277GraveLock',
@@ -807,6 +834,9 @@ export function standardCardSpec(d,{phase=165}={}){
   if(phase>=292){
    if(creature&&line==='自分の手札が1枚もない時このクリーチャーは「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)'){if(spec.g246LowHand)throw Error('重複する手札条件');spec.g246LowHand={max:0,grants:{speedAttacker:true}};continue;}
    if(seed&&line==='自分のターンの終わりに自分の手札が1枚もなければカードを1枚引く。'){if(turnEnd.length)throw Error('重複する終了時能力');turnEnd.push(instruction('自分の手札が1枚もなければカードを1枚引く。',phase));continue;}
+  }
+  if(phase>=322&&creature&&(m=line.match(/^マジボンバー([1-9]\d*)\(このクリーチャーが攻撃する時自分の山札の上から1枚(?:目)?を見る。その後コスト\1以下のクリーチャーを1体自分の手札または山札の上から(?:バトルゾーンに)?出してもよい\)$/))){
+   if(attack.length)throw Error('独立した誘発能力の順序対応が必要');attack.push({op:'Magibomber321',n:+m[1]});continue;
   }
   if(phase>=319&&creature){
    const tribe=line.match(/^自分の(ゴッド|ドラゴン|コマンド・ドラゴン|エイリアン|ドリームメイト|ジョーカーズ)(?:・クリーチャー)?の召喚コストを1少なく(?:する|してもよい)。ただしコストは(?:0以下(?:には|に)?ならない|1より(?:少なく|小さく)ならない)。$/);

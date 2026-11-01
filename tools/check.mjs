@@ -1,3 +1,8 @@
+import {STANDARD326_DECKS} from './fixtures/standard326.mjs';
+import {STANDARD325_DECKS} from './fixtures/standard325.mjs';
+import {STANDARD324_DECKS} from './fixtures/standard324.mjs';
+import {STANDARD323_DECKS} from './fixtures/standard323.mjs';
+import {STANDARD322_DECKS} from './fixtures/standard322.mjs';
 import {REQUESTED321_DECK} from './fixtures/requested321.mjs';
 import {REQUESTED320_DECK} from './fixtures/requested320.mjs';
 import {STANDARD319_DECK} from './fixtures/standard319.mjs';
@@ -708,3 +713,13 @@ if(validateDeck(STANDARD319_DECK).length||registry.coverage(STANDARD319_DECK).un
 if(validateDeck(REQUESTED320_DECK).length||registry.coverage(REQUESTED320_DECK).unsupported||REQUESTED320_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第320段階の40枚を確認してください');console.log('Checked phase320 requested cards: Golgy Next DDD and Jave both faces supported.');
 
 if(validateDeck(REQUESTED321_DECK).length||registry.coverage(REQUESTED321_DECK).unsupported||REQUESTED321_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第321段階の40枚を確認してください');console.log('Checked phase321 requested cards: Magibomber, costless-entry battles and conditional infinite power supported.');
+
+for(const deck of STANDARD322_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第322段階の40枚を確認してください');console.log('Checked phase322 forties: shared Magibomber grammar, Star evolution and tap/untap keywords supported.');
+
+for(const deck of STANDARD323_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第323段階の40枚を確認してください');console.log('Checked phase323 forties: top-one selection, entry watchers and conditional attacks supported.');
+
+for(const deck of STANDARD324_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第324段階の40枚を確認してください');console.log('Checked phase324 forties: parameterized face-down mana acceleration and both shield keywords supported.');
+
+for(const deck of STANDARD325_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第325段階の40枚を確認してください');console.log('Checked phase325 forties: shared tribal/color auras, granted power and breakers supported.');
+
+for(const deck of STANDARD326_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第326段階の40枚を確認してください');console.log('Checked phase326 forties: automatic filtered recovery from grave and mana, evolution and two-sided power aura supported.');
