@@ -97476,15 +97476,622 @@
       },
       "supportBatch": "phase-328",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr15-001",
+      "name": "共鳴の精霊龍 サザン・ルネッサンス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "ブロッカー ブロッカー\nシンパシー：光のコスト３以下のクリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分の光のコスト３以下のクリーチャー１体につき１少なくなる。ただしコストは１より少なくならない）\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分の光のコスト３以下のクリーチャー１体につき、カードを１枚引いてもよい。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-001",
+      "limit": 4,
+      "blocker": true,
+      "g211Sympathy": {
+        "amount": 1,
+        "filter": {
+          "creature": true,
+          "color": "光",
+          "max": 3
+        }
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "color": "光",
+            "max": 3
+          },
+          "optional": "each"
+        }
+      ],
+      "supportBatch": "phase-329",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-018",
+      "name": "空中南極 ペングィーナ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ムートピア",
+      "text": "このクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分の他のムートピア１体につき、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-018",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "race": "ムートピア"
+          },
+          "g329Other": true
+        }
+      ],
+      "supportBatch": "phase-329",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp1-031",
+      "name": "借魂",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分の進化クリーチャー１体につき、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-031",
+      "limit": 4,
+      "gStrike": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "evolution": true
+          }
+        }
+      ],
+      "supportBatch": "phase-329",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr07-024",
+      "name": "真実の名 ビスマルク",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "リヴァイアサン/アンノウン",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分の、コスト７以上のクリーチャー１体につき１枚、カードを引いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-024",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "min": 7
+          },
+          "optional": "each"
+        }
+      ],
+      "supportBatch": "phase-329",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex1-026",
+      "name": "絶対華麗！マーシャル歌劇団",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 8,
+      "power": 0,
+      "race": "スプラッシュ・クイーンの集い",
+      "text": "S・トリガー S・トリガー\n自分のスプラッシュ・クイーン・クリーチャー１体につき、カードを１枚引いてもよい。その後、スプラッシュ・クイーン・クリーチャーを１体、自分の手札から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-026",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "race": "スプラッシュ・クイーン"
+          },
+          "optional": "each"
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "g195HandDeploy": true,
+          "filter": {
+            "creature": true,
+            "race": "スプラッシュ・クイーン"
+          },
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-329",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm21-024",
+      "name": "装甲支援ガトリンガー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "グレートメカオー",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のキカイヒーロー１体につきカードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-024",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "race": "キカイヒーロー"
+          },
+          "optional": "each"
+        }
+      ],
+      "supportBatch": "phase-329",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-012",
+      "name": "連戦の精霊龍 デルザルバーラ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "エンジェル・コマンド・ドラゴン/革命軍",
+      "text": "ブロッカー ブロッカー\nこのクリーチャーが出た時、自分の光のクリーチャー１体につきカードを１枚引いてもよい。その後、光のコスト４以下のクリーチャーを１体、自分の手札から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-012",
+      "limit": 4,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "color": "光"
+          },
+          "optional": "each"
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "g195HandDeploy": true,
+          "filter": {
+            "creature": true,
+            "color": "光",
+            "max": 4
+          },
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-329",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23-030",
+      "name": "アンビシャス・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "アーマード・ドラゴン",
+      "text": "このクリーチャーのパワーは、バトルゾーンにある自分のファイアー・バード１体につき+2000される。\nバトルゾーンに自分のファイアー・バードが１体でもあれば、このクリーチャーは「W・ブレイカー」を得る。(「W・ブレイカー」を得たクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-030",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "filter": {
+          "creature": true,
+          "race": "ファイアー・バード"
+        },
+        "amount": 2000
+      },
+      "g260Self": {
+        "filter": {
+          "creature": true,
+          "race": "ファイアー・バード"
+        },
+        "grants": {
+          "breaker": 2
+        }
+      },
+      "supportBatch": "phase-330",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23sd1-009",
+      "name": "ボルシャック・バディ・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "アーマード・ドラゴン",
+      "text": "このクリーチャーが出た時、自分の山札の上から５枚を見る。その中からファイアー・バードを１枚相手に見せ、手札に加えてもよい。残りを好きな順序で山札の下に置く。\n攻撃中、このクリーチャーのパワーを、自分の墓地のファイアー・バード１枚につき+1000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd1-009",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "grave",
+        "filter": {
+          "race": "ファイアー・バード"
+        },
+        "amount": 1000,
+        "attackOnly": true
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g185Search": true,
+          "n": 5,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "race": "ファイアー・バード"
+              },
+              "reveal": true,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-330",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm02-030",
+      "name": "機神装甲ヴァルバロス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ヒューマノイド",
+      "text": "進化ー自分のヒューマノイド１体の上に置く。\n攻撃中、このクリーチャーのパワーは、バトルゾーンにある他のヒューマノイド１体につき+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-030",
+      "limit": 4,
+      "evolution": {
+        "race": "ヒューマノイド"
+      },
+      "g207CountPower": {
+        "zone": "battle",
+        "both": true,
+        "other": true,
+        "filter": {
+          "creature": true,
+          "race": "ヒューマノイド"
+        },
+        "amount": 2000,
+        "attackOnly": true
+      },
+      "supportBatch": "phase-330",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-108",
+      "name": "大群の桜",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ビーストフォーク/ハンター",
+      "text": "ガードマン(自分の他のクリーチャーが攻撃される時、このクリーチャーをタップしてもよい。そうした場合、攻撃クリーチャーはかわりにこのクリーチャーを攻撃する)\nこのクリーチャーのパワーは、バトルゾーンにある自分の他のビーストフォーク１体につき+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-108",
+      "limit": 4,
+      "guardman": true,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "creature": true,
+          "race": "ビーストフォーク"
+        },
+        "amount": 2000
+      },
+      "supportBatch": "phase-330",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmc45-016",
+      "name": "武装剣心シシオウ",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ビーストフォーク/サムライ",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーのパワーは、バトルゾーンにある自分の他のサムライ・クリーチャー１体につき+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc45-016",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "creature": true,
+          "race": "サムライ"
+        },
+        "amount": 1000
+      },
+      "supportBatch": "phase-330",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm21-033",
+      "name": "霊騎シュバイン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "アーク・セラフィム",
+      "text": "このクリーチャーのパワーは、バトルゾーンにある自分のセイント・ヘッド１体につき+2000される。\nこのクリーチャーは、パワーが6000以上の時、「W・ブレイカー」を得る。(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-033",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "filter": {
+          "creature": true,
+          "race": "セイント・ヘッド"
+        },
+        "amount": 2000
+      },
+      "g207Breakers": [
+        {
+          "power": 6000,
+          "breaker": 2
+        }
+      ],
+      "supportBatch": "phase-330",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-077",
+      "name": "霊騎マリクス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "アーク・セラフィム",
+      "text": "このクリーチャーのパワーは、バトルゾーンにある自分の他のアーク・セラフィム１体につき+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-077",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "creature": true,
+          "race": "アーク・セラフィム"
+        },
+        "amount": 1000
+      },
+      "supportBatch": "phase-330",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx12b-002",
+      "name": "DASH総帥 グレッグ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2500,
+      "race": "ヒューマノイド/ヒーロー",
+      "text": "バトルゾーンにある自分の他のクリーチャーすべてのパワーは+500され、種族に「ヒーロー」を追加する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12b-002",
+      "limit": 4,
+      "g205Aura": {
+        "power": 500,
+        "filter": {
+          "creature": true
+        },
+        "other": true
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "other": true,
+          "grants": {
+            "raceAdd": [
+              "ヒーロー"
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-331",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm34-053",
+      "name": "マッス・ルピア",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ファイアー・バード",
+      "text": "バトルゾーンにある自分の他の、名前に《NEX》または《ルピア》とあるクリーチャーすべてのパワーは+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-053",
+      "limit": 4,
+      "g205Aura": {
+        "power": 1000,
+        "filter": {
+          "creature": true,
+          "g220NameAny": [
+            "NEX",
+            "ルピア"
+          ]
+        },
+        "other": true
+      },
+      "supportBatch": "phase-331",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm02-s04",
+      "name": "機神装甲ヴァルディオス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "ヒューマノイド",
+      "text": "進化ー自分のヒューマノイド１体の上に置く。\nW(ダブル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする。)\nこのクリーチャーがバトルゾーンにある間、バトルゾーンにある自分の他のヒューマノイドすべてのパワーは、+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-s04",
+      "limit": 4,
+      "evolution": {
+        "race": "ヒューマノイド"
+      },
+      "breaker": 2,
+      "g205Aura": {
+        "power": 1000,
+        "filter": {
+          "creature": true,
+          "race": "ヒューマノイド"
+        },
+        "other": true
+      },
+      "supportBatch": "phase-331",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-044",
+      "name": "聖域の使徒ハンドベル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "イニシエート/ハンター",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nバトルゾーンにある、自分の他のハンター・クリーチャーはすべて、「ブロッカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-044",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "race": "ハンター"
+          },
+          "other": true,
+          "grants": {
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-331",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 328,
+    "phase": 331,
     "checkedAt": "2026-11-01",
-    "baseCount": 3722,
-    "newEffectCards": 10,
+    "baseCount": 3746,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 3732,
+    "totalCount": 3750,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/rule/"
@@ -103103,6 +103710,51 @@
         "newEffectCards": 6,
         "newVanillaCards": 0,
         "totalCount": 3722,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/"
+        ],
+        "next": [
+          "未対応能力の共通処理を追加し、カード別の公式照合と対戦検証を継続する"
+        ]
+      },
+      {
+        "phase": 328,
+        "checkedAt": "2026-11-01",
+        "baseCount": 3722,
+        "newEffectCards": 10,
+        "newVanillaCards": 0,
+        "totalCount": 3732,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/"
+        ],
+        "next": [
+          "未対応能力の共通処理を追加し、カード別の公式照合と対戦検証を継続する"
+        ]
+      },
+      {
+        "phase": 329,
+        "checkedAt": "2026-11-01",
+        "baseCount": 3732,
+        "newEffectCards": 7,
+        "newVanillaCards": 0,
+        "totalCount": 3739,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/"
+        ],
+        "next": [
+          "未対応能力の共通処理を追加し、カード別の公式照合と対戦検証を継続する"
+        ]
+      },
+      {
+        "phase": 330,
+        "checkedAt": "2026-11-01",
+        "baseCount": 3739,
+        "newEffectCards": 7,
+        "newVanillaCards": 0,
+        "totalCount": 3746,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/"

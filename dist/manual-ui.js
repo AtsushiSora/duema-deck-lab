@@ -1,12 +1,12 @@
 import {battleZoomControlsHTML} from './battle-zoom.js?v=0.227.0';
 import {displayTurn} from './turn-count.js';
-import {challengeKind} from './character-roster.js?v=0.404.0';
-import {paymentReviewHTML} from './battle-insights.js?v=0.404.0';
+import {challengeKind} from './character-roster.js?v=0.408.0';
+import {paymentReviewHTML} from './battle-insights.js?v=0.408.0';
 import {sourceCardBadge,sourceCardLabel} from './card-info.js';
 import {shieldCards} from './shield-state.js';
-import {aiPlaybackHTML,aiSpeedLabel} from './ai-playback.js?v=0.404.0';
-import {handCardModel,handShelfHTML,handInspectorHTML,handEvolutionButtonHTML} from './hand-ui.js?v=0.404.0';
-import {getLegalActions,manaSelectionStatus,manaColors,card,power,effectiveCard,isEvolution,canUntap,abilitiesIgnored,genmuActive,momoActive,selfTriggersStopped,manaValue,manaValueAt,exLifeShieldInfo,exLifeShields,shieldGuardSources,playFaces,attackLocked,evolutionBases,canCastSpell,canEnterCreature,summonCost,paymentPool,manaPayment} from './engine.js';
+import {aiPlaybackHTML,aiSpeedLabel} from './ai-playback.js?v=0.408.0';
+import {handCardModel,handShelfHTML,handInspectorHTML,handEvolutionButtonHTML} from './hand-ui.js?v=0.408.0';
+import {getLegalActions,graveSummonSources,manaSelectionStatus,manaColors,card,power,effectiveCard,isEvolution,canUntap,abilitiesIgnored,genmuActive,momoActive,selfTriggersStopped,manaValue,manaValueAt,exLifeShieldInfo,exLifeShields,shieldGuardSources,playFaces,attackLocked,evolutionBases,canCastSpell,canEnterCreature,summonCost,paymentPool,manaPayment} from './engine.js';
 import {attackRoute,previewAttackAction} from './battle-visuals.js?v=0.100.0';
 import {pageWindow} from './board-fit.js';
 import {battlePrimaryAction} from './battle-controls.js';
@@ -35,7 +35,7 @@ export function manualModel(s,ui={}){
  if(s.decision?.type==='mugen')title='タップする'+card(s.decision.source).mugenCrime+'体を選ぼう';
  if(s.decision?.type==='block'&&actions.some(a=>a.kind==='guardman'))title='ブロック・ガードマンを選ぼう';
  let help=s.winner!==null?s.reason:!human?'相手の手札や山札は非公開です。':s.decision?decisionHelp(s):s.phase==='charge'?'手札をタップしてから「マナに置く」。1ターンに1枚です。':s.phase==='main'?'選んだカードの能力を確認して、召喚・呪文を使えます。':attacker?'光っている相手のカードか、プレイヤーへの攻撃をタップ。':'「攻撃可」のカードをタップ。対象を選んでから攻撃します。';
- if(human&&!s.decision&&s.phase==='main'&&actions.some(a=>a.kind==='play'&&a.origin==='mana')){if(!hand)title='使うカードを選ぼう';help='手札のカード、または「マナから使う」から選べます。';}
+ if(human&&!s.decision&&s.phase==='main'){const zones=[...new Set(actions.filter(a=>a.kind==='play'&&['mana','grave'].includes(a.origin)).map(a=>a.origin==='mana'?'マナ':'墓地'))];if(zones.length){if(!hand)title='使うカードを選ぼう';help='手札のカード、または「'+zones.join('・')+'から使う」から選べます。';}}
  const attackChoice=previewAttackAction(s,ui);if(attackChoice){title='攻撃内容を確認しよう';help='矢印で攻撃先を確認して「攻撃を確定」。選び直すこともできます。';}
  return {actions,human,hand,attacker,attackChoice,source,progress,title,help,context:`${s.actions}:${s.turn}:${s.active}:${s.decision?.type||s.phase}${s.decision?.type==='manaPayment'?':'+s.decision.selected.join(','): ''}`};
 }
@@ -215,7 +215,8 @@ function attackOverlayHTML(route){if(!route)return '';return `<svg class="attack
 function pagingHTML(pane,action){return pane.pages>1?`<div class="manual-paging"><button data-action="${action}" data-page="${pane.index-1}" ${pane.index===0?'disabled':''}>前へ</button><span>${pane.index+1} / ${pane.pages}</span><button data-action="${action}" data-page="${pane.index+1}" ${pane.index+1>=pane.pages?'disabled':''}>次へ</button></div>`:'';}
 function mobileDockHTML(s,ui,m){
  const primary=manualPrimaryAction(s,ui,m),secondary=m.attackChoice?['manual-cancel-attack','選び直す']:m.attacker?['manual-clear-attacker','選択を解除']:m.hand?['manual-clear-hand','選択を解除']:null;
- return `<div class="manual-mobile-dock"><div>${secondary?`<button class="dock-secondary" data-action="${secondary[0]}">${secondary[1]}</button>`:''}<button class="dock-primary" data-action="manual-primary" data-context="${esc(m.context)}" ${primary.disabled?'disabled':''}>${esc(primary.label)}</button></div></div>`;
+ const grave=!s.decision&&s.winner===null&&s.active===0&&s.phase==='main'?graveSummonModel(s,0,m.actions):null;
+ return `<div class="manual-mobile-dock"><div>${grave?`<button class="dock-secondary" data-action="zone-detail" data-player="0" data-zone="grave">墓地から使う${grave.ready?' ('+grave.ready+')':''}</button>`:''}${secondary?`<button class="dock-secondary" data-action="${secondary[0]}">${secondary[1]}</button>`:''}<button class="dock-primary" data-action="manual-primary" data-context="${esc(m.context)}" ${primary.disabled?'disabled':''}>${esc(primary.label)}</button></div></div>`;
 }
 
 export function manualBoardHTML(s,ui,{art,icon}){
@@ -293,8 +294,8 @@ function mainActions(s,ui,m,h){
  }
  if(s.phase==='main'){
   const plays=m.actions.filter(a=>a.uid===ui.hand&&(a.kind==='play'||a.kind==='mugenStart'||a.kind==='galaxyShield'||a.kind==='pandora')),extra=m.actions.filter(a=>(a.kind==='play'&&['mana','grave','deck','extra','battle'].includes(a.origin))||(a.kind==='mugenStart'&&a.uid!==ui.hand)||a.kind==='pandora'&&a.origin!=='hand'||a.kind==='crossGear'),hypers=m.actions.filter(a=>a.kind==='hyper'),next=m.actions.find(a=>a.kind==='toAttack');
-  const manaRows=manaSummonModel(s),manaReady=manaRows.filter(r=>r.actions.length).length;
-  return `${manaRows.length?`<button class="btn full manual-mana-summon-entry" data-action="zone-detail" data-player="0" data-zone="mana">${manaReady?'マナから使う（'+manaReady+'枚使用可能）':'マナからの召喚条件を確認'}</button>`:''}${selectedHandHTML(s,m,h)}${hypers.length?`<div class="manual-hyper-actions" aria-label="ハイパー化">${hypers.map(a=>button(a,{label:a.label})).join('')}</div>`:''}<div class="manual-primary">${plays.map(a=>{const label=a.kind==='galaxyShield'?a.label:a.alternative==='g167Craft'?a.label:a.alternative==='sasage'?a.label+' · '+a.cost+'マナ':a.kind==='pandora'?'パンドラ・シフトで超次元へ · 2マナ':a.freeSummon?a.freeSummon+'で召喚':a.alternative==='gio'?'手札を公開して軽減する':a.alternative==='snow'?'スノーフェアリー5体を捨てて使う':a.kind==='mugenStart'?'ムゲンクライム'+card(a.cardId).mugenCrime+'で召喚':`${playFaces(card(a.cardId))[a.face||0].type==='spell'?'呪文を使う':playFaces(card(a.cardId))[a.face||0].type==='gear'?'ジェネレートする':playFaces(card(a.cardId))[a.face||0].type==='seed'?'タマシードを使う':'召喚する'} · ${a.cost??4}マナ${card(a.cardId).spellFace?`（${a.face===1?'呪文側':'クリーチャー側'}）`:''}`;return handEvolutionButtonHTML(s,a,h,label,`action-${a.kind}-${a.id}`)||button(a,{primary:true,label});}).join('')}${button(next,{quiet:true,label:'攻撃へ進む →'})}</div>${extra.length&&ui.mobile?`<button class="btn full manual-extra-button" data-action="manual-extra-methods">場・山札・マナ・墓地などから使う (${extra.length})</button>`:extra.length?`<details class="manual-extra"><summary>場・山札・マナ・墓地などから使う <b>${extra.length}</b></summary><div class="manual-secondary">${extra.map(a=>button(a)).join('')}</div></details>`:''}`;
+  const manaRows=manaSummonModel(s),manaReady=manaRows.filter(r=>r.actions.length).length,grave=graveSummonModel(s,0,m.actions);
+  return `${grave?`<button class="btn full manual-mana-summon-entry" data-action="zone-detail" data-player="0" data-zone="grave">${grave.ready?'墓地から使う（'+grave.ready+'枚使用可能）':'墓地からの召喚条件を確認'}</button>`:''}${manaRows.length?`<button class="btn full manual-mana-summon-entry" data-action="zone-detail" data-player="0" data-zone="mana">${manaReady?'マナから使う（'+manaReady+'枚使用可能）':'マナからの召喚条件を確認'}</button>`:''}${selectedHandHTML(s,m,h)}${hypers.length?`<div class="manual-hyper-actions" aria-label="ハイパー化">${hypers.map(a=>button(a,{label:a.label})).join('')}</div>`:''}<div class="manual-primary">${plays.map(a=>{const label=a.kind==='galaxyShield'?a.label:a.alternative==='g167Craft'?a.label:a.alternative==='sasage'?a.label+' · '+a.cost+'マナ':a.kind==='pandora'?'パンドラ・シフトで超次元へ · 2マナ':a.freeSummon?a.freeSummon+'で召喚':a.alternative==='gio'?'手札を公開して軽減する':a.alternative==='snow'?'スノーフェアリー5体を捨てて使う':a.kind==='mugenStart'?'ムゲンクライム'+card(a.cardId).mugenCrime+'で召喚':`${playFaces(card(a.cardId))[a.face||0].type==='spell'?'呪文を使う':playFaces(card(a.cardId))[a.face||0].type==='gear'?'ジェネレートする':playFaces(card(a.cardId))[a.face||0].type==='seed'?'タマシードを使う':'召喚する'} · ${a.cost??4}マナ${card(a.cardId).spellFace?`（${a.face===1?'呪文側':'クリーチャー側'}）`:''}`;return handEvolutionButtonHTML(s,a,h,label,`action-${a.kind}-${a.id}`)||button(a,{primary:true,label});}).join('')}${button(next,{quiet:true,label:'攻撃へ進む →'})}</div>${extra.length&&ui.mobile?`<button class="btn full manual-extra-button" data-action="manual-extra-methods">場・山札・マナ・墓地などから使う (${extra.length})</button>`:extra.length?`<details class="manual-extra"><summary>場・山札・マナ・墓地などから使う <b>${extra.length}</b></summary><div class="manual-secondary">${extra.map(a=>button(a)).join('')}</div></details>`:''}`;
  }
  const attacks=m.actions.filter(a=>a.kind==='attack'&&a.uid===m.attacker),end=m.actions.find(a=>a.kind==='endTurn');
  return `${m.attacker?`<div class="selected-attacker"><span>${h.icon('battle',20)}</span><div><small>攻撃するクリーチャー</small><strong>${esc(card(s.players[0].battle.find(x=>x.uid===m.attacker)).name)}</strong></div><button class="btn ghost" data-action="manual-clear-attacker">選び直す</button></div><div class="manual-attack-targets">${ui.mobile?`<button class="btn" data-action="manual-target-list">攻撃先を一覧から選ぶ (${attacks.length})</button>`:attacks.map(a=>button(a,{primary:a.target==='player'})).join('')}</div>`:`<p class="manual-instruction">${m.actions.some(a=>a.kind==='attack')?'盤面の「攻撃可」のカードをタップしてください。':'このターンに攻撃できるクリーチャーはいません。'}</p>`}<div class="manual-secondary">${end?button(end,{quiet:true,label:'ターンを終える →'}):'<small>攻撃が必要なクリーチャーが残っています。</small>'}</div>`;
@@ -315,6 +316,42 @@ export function manualShieldModel(s,ui,player){
  return {player,groups,actions};
 }
 
+// Grave permissions and their usage are read from the engine, never consumed by inspection.
+export function graveSummonModel(s,owner=0,legalActions=null){
+ if(owner!==0)return null;
+ const sources=graveSummonSources(s,owner),actions=(legalActions||getLegalActions(s)).filter(a=>a.player===owner&&a.kind==='play'&&a.origin==='grave');
+ if(!sources.length&&!actions.length)return null;
+ let reason='';
+ if(s.winner!==null)reason='対戦は終了しています。';
+ else if(s.active!==owner)reason='自分のターンに使えます。';
+ else if(s.decision)reason='今の能力や選択を解決してから使えます。';
+ else if(s.phase!=='main')reason='召喚・呪文のステップで使えます。';
+ else if(sources.length&&sources.every(x=>x.ignored))reason='能力が無視されているか、封印されているため使えません。';
+ else if(sources.length&&!sources.some(x=>x.remaining))reason='墓地から召喚する能力は、このターン使用済みです。';
+ const rows=s.players[owner].grave.map(x=>{
+  const c=card(x),plays=actions.filter(a=>a.uid===x.uid),faces=playFaces(c).filter(f=>f.type==='creature'),costs=faces.map(f=>summonCost(s,owner,{...f,summonOrigin:'grave'})),cost=plays.length?Math.min(...plays.map(a=>a.cost??0)):costs.length?Math.min(...costs):null;
+  let why=plays.length?'':reason;
+  if(!plays.length&&!why){
+   if(!faces.length)why='この能力ではクリーチャーだけを召喚できます。';
+   else if(faces.every(f=>f.evolution&&!evolutionBases(s,owner,f).length))why='条件に合う進化元が必要です。';
+   else if(faces.every(f=>!canCastSpell(s,owner,f,'grave')||!canEnterCreature(s,owner,f,{origin:'grave',execution:true})))why='現在の召喚制限により、墓地から召喚できません。';
+   else if(faces.every((f,i)=>!manaPayment(paymentPool(s,owner,[],{...f,summonOrigin:'grave'}),{...f,cost:costs[i]})))why='未使用のマナか、必要な文明が足りません（必要 '+cost+'マナ）。';
+   else why='現在は墓地から使える条件を満たしていません。';
+  }
+  return {uid:x.uid,cardId:x.cardId,name:c.name,actions:plays,cost,reason:why};
+ });
+ return {sources,rows,reason,ready:rows.filter(r=>r.actions.length).length};
+}
+export function graveSummonStatusHTML(s,owner=0,uid=null){
+ const model=graveSummonModel(s,owner);if(!model)return '';
+ const sources=uid?model.sources.filter(x=>x.uid===uid):model.sources;
+ if(uid&&!sources.length)return '';
+ return `<section class="mana-summon-list" aria-label="墓地からの召喚能力"><h3>墓地から使う</h3>${sources.map(x=>`<p class="small"><strong>${esc(card(x.cardId).name)}</strong>${x.inherited?' · 超魂Xで得た能力'+(x.total>x.inherited?'を含む':''):''}<br>${x.ignored?'能力が無効です':'このターンの残り '+x.remaining+' / '+x.total+'回'}</p>`).join('')}<p class="small">墓地のクリーチャーを選び、召喚コストを支払います。出したばかり・タップ中でも使えます。</p>${model.reason?`<p class="small">${esc(model.reason)}</p>`:''}${uid?'<button class="btn primary" data-action="zone-detail" data-player="0" data-zone="grave">墓地を選んで召喚</button>':''}</section>`;
+}
+export function graveZoneHTML(s,owner=0,{art=()=>''}={}){
+ const model=graveSummonModel(s,owner),rows=model?.rows||s.players[owner].grave.map(x=>({uid:x.uid,cardId:x.cardId,name:card(x).name,actions:[]}));
+ return `${graveSummonStatusHTML(s,owner)}${rows.length?rows.map(r=>`<article class="mana-summon-row">${art(r.cardId)}<div class="grow"><strong>${esc(r.name)}</strong>${r.reason?`<p class="small">${esc(r.reason)}</p>`:''}<div class="mana-summon-buttons">${r.actions.map(a=>`<button class="btn primary" data-action="manual-zone-choice" data-context="${esc(manualModel(s).context)}" data-index="${a.id}">${playFaces(card(a.cardId))[a.face||0].type==='creature'?'ここから召喚':'ここから使う'} · ${a.cost??r.cost}マナ</button>`).join('')}<button class="btn sm" data-action="card-detail" data-id="${esc(r.cardId)}">能力を見る</button></div></div></article>`).join(''):'<p class="small">墓地にカードがありません。</p>'}`;
+}
 // The same card layout is used for inspecting a zone and selecting payment.
 export function manaSummonModel(s,owner=0){
  if(owner!==0)return [];

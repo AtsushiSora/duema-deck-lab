@@ -238,7 +238,8 @@ export function createFifteenPhotoRules(api){
   // Pre-fix saves recorded only one shared use: retain it for the first inherited ability.
   return layers.flatMap((y,i)=>{const permit=y.uid===x.uid?base:base+':soul:'+key(y);return s.g35Permits?.[permit]===s.turn||legacy&&i===0?[]:[permit];});
  }
+ function graveSummonSources(s,p){return s.players[p].battle.flatMap(x=>{const layers=api.allLayers(x).filter(y=>card(y.cardId).g35Role==='tebulk');return layers.length?[{uid:x.uid,cardId:x.cardId,total:layers.length,inherited:layers.filter(y=>y.uid!==x.uid).length,remaining:graveSoulPermits(s,x).length,ignored:api.ignored(s,x)}]:[];});}
  function usedPermit(s,x,r){return s.g35Permits?.['g35:'+r+':'+key(x)]===s.turn;}
  function execution(s,p){for(const x of active(s,1-p,'stella'))on(s,1-p,x,'stellaUse');}
- return{...hooks,run,chosen,alternative:(s,p,a)=>pending(s,{p,source:a.cardId,uid:a.uid,role:a.role,selected:[],rows:[]},'alternative')};
+ return{...hooks,run,chosen,graveSummonSources,alternative:(s,p,a)=>pending(s,{p,source:a.cardId,uid:a.uid,role:a.role,selected:[],rows:[]},'alternative')};
 }

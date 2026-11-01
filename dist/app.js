@@ -1,32 +1,32 @@
-import {createPlayTimeSync} from './play-time-sync.js?v=0.404.0';
+import {createPlayTimeSync} from './play-time-sync.js?v=0.408.0';
 import {manualLayout,PHONE_LANDSCAPE_QUERY} from './battle-layout.js?v=0.227.0';
 import {bindBattleZoom} from './battle-zoom.js?v=0.227.0';
 import {displayTurn} from './turn-count.js';
-import {TOURNAMENT_SIZES,selectTournamentParticipants,createLocalTournament,validLocalTournament,currentTournamentRound,humanTournamentMatch,recordTournamentMatch,localTournamentHTML} from './local-tournament.js?v=0.404.0';
+import {TOURNAMENT_SIZES,selectTournamentParticipants,createLocalTournament,validLocalTournament,currentTournamentRound,humanTournamentMatch,recordTournamentMatch,localTournamentHTML} from './local-tournament.js?v=0.408.0';
 import {PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS} from './photo-october-decks.js?v=0.148.0';
-import {createPlayTimeTracker,formatPlayTime,playTimeStorageNote} from './play-time.js?v=0.404.0';
+import {createPlayTimeTracker,formatPlayTime,playTimeStorageNote} from './play-time.js?v=0.408.0';
 import {historicalProfile,historicalMetadata} from './historical-regulations.js';
-import {creatureStatusModel,creatureStatusHTML,recordBattleAction,createBattleReport,encodeBattleData,decodeBattleData} from './battle-insights.js?v=0.404.0';
-import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.404.0';
-import {createCardArt} from './card-art.js?v=0.404.0';
+import {creatureStatusModel,creatureStatusHTML,recordBattleAction,createBattleReport,encodeBattleData,decodeBattleData} from './battle-insights.js?v=0.408.0';
+import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.408.0';
+import {createCardArt} from './card-art.js?v=0.408.0';
 import {CHARACTER_ERAS,CHARACTER_NAMES,characterEra,characterUnlockState,recordCharacterUnlocks} from './character-roster.js';
 import {resolveCharacterDecks,characterChallengeHTML} from './character-challenge.js';
 import {resolveHeroDecks,resolveRivalDecks,challengeOptions,recordHeroResult} from './hero-challenge.js';
 import {recordManualVictory,recordManualResult,manualResultSummary,isOpponentDefeated,defeatedBadgeHTML} from './opponent-progress.js';
 import {resolveChampions,championsHTML,isOriginalChampion} from './champions.js?v=0.227.0';
 import {shieldCards} from './shield-state.js';
-import {createAIPlayback,aiSpeedLabel,applyAIHighlights,AI_SPEEDS} from './ai-playback.js?v=0.404.0';
+import {createAIPlayback,aiSpeedLabel,applyAIHighlights,AI_SPEEDS} from './ai-playback.js?v=0.408.0';
 import {createOnlineClient} from './online.js';
 import {onlineScreenHTML,onlinePrimaryAction,onlinePendingMove} from './online-ui.js';
 import {createAccountClient} from './account.js';
 import {accountScreenHTML} from './account-ui.js';
 import {mergeAccountSnapshot} from './account-data.js';
-import {preferredHandFace} from './hand-ui.js?v=0.404.0';
+import {preferredHandFace} from './hand-ui.js?v=0.408.0';
 import {bindFittedBoard,pageWindow} from './board-fit.js';
 import {attackRoute,previewAttackAction,updateBoardFeedback,bindAttackArrow} from './battle-visuals.js?v=0.227.0';
 import {setCards,card as battleCard,validateDeck,createGame,getLegalActions,attackLocked,chooseAI,step,runGame,runSummary,aggregate,power,manaValue,manaValueAt,playFaces,canCastSpell,effectiveCard,canUntap,shieldGuardSources,exLifeShields,exLifeShieldInfo,evolutionBases,isEvolution,selfTriggersStopped,abilitiesIgnored,genmuActive,peekDeckTop,RULE_VERSION,ENGINE_VERSION,AI_VERSION} from './engine.js';
 import {PRESETS} from './decks.js';
-import {newManualUI,hyperModeModel,manualModel,manualScreenHTML,manualLogHTML,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,choiceSelectionModel,choiceDetailCard} from './manual-ui.js?v=0.404.0';
+import {newManualUI,hyperModeModel,manualModel,manualScreenHTML,manualLogHTML,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,graveZoneHTML,graveSummonStatusHTML,choiceSelectionModel,choiceDetailCard} from './manual-ui.js?v=0.408.0';
 import {resolveEnvironmentDecks,environmentSupport,groupEnvironmentDecks,ENVIRONMENT_TARGET} from './environment.js';
 import {resolveStarter25Decks,starter25Matches} from './starter25.js';
 import {prepareDeckCopy} from './deck-copy.js';
@@ -306,7 +306,7 @@ function advanceLocalTournament(){
  const t=activeTournament();if(!t||t.champion||tournamentWorker)return;if(tournamentCheckpoint()){startTournamentHumanMatch();return;}
  const round=currentTournamentRound(t),jobs=round.filter(m=>m.winner===null&&!m.players.includes('human')).map(m=>({...m,decks:m.players.map(id=>t.players.find(p=>p.id===id).deck)}));
  if(!jobs.length){startTournamentHumanMatch();return;}
- const owner=t.id,instance=new Worker(new URL('./tournament-worker.js?v=0.404.0',import.meta.url),{type:'module'});tournamentWorker=instance;view='tournament';render();
+ const owner=t.id,instance=new Worker(new URL('./tournament-worker.js?v=0.408.0',import.meta.url),{type:'module'});tournamentWorker=instance;view='tournament';render();
  const fail=message=>{if(tournamentWorker!==instance)return;stopTournamentWorker();toast('CPU対戦を進められませんでした：'+message);};
  instance.onmessage=({data})=>{if(tournamentWorker!==instance||activeTournament()?.id!==owner)return;
   if(data.type==='result'){try{const current=activeTournament(),m=current.rounds.flat().find(m=>m.id===data.matchId);if(!m||![0,1].includes(data.winner))throw Error('対戦結果を確認してください');saved.localTournament=recordTournamentMatch(current,m.id,m.players[data.winner],data.reason);persist();if(view==='tournament')render();}catch(e){fail(e.message);}}
@@ -341,7 +341,7 @@ function startSimulation(deck,options={}){
  const opponentErrors=opponents.flatMap(d=>validateDeck(d));if(opponentErrors.length){toast('相手デッキ：'+opponentErrors[0]);return;}
  const n=options.count||base?.count||count,seed=options.seed??base?.seed??crypto.getRandomValues(new Uint32Array(1))[0],f=options.first||base?.first||first;
  running={completed:0,total:n*opponents.length,current:opponents[0].name,deck:clone(deck),count:n,seed,first:f,opponents:clone(opponents),baseline:base?.id||null};view='analysis';render();
- worker=new Worker(new URL('./worker.js?v=0.404.0',import.meta.url),{type:'module'});
+ worker=new Worker(new URL('./worker.js?v=0.408.0',import.meta.url),{type:'module'});
  worker.onmessage=({data})=>{
   if(data.type==='progress'){if(!running)return;Object.assign(running,data);renderProgress();}
   if(data.type==='done'){
@@ -364,7 +364,7 @@ function showManualStatus(player,uid){
  if(!battle)return;const s=battle.state,m=creatureStatusModel(s,player,uid);if(!m)return;
  const hyper=hyperModeModel(s,player,uid);
  const choice=boardChoice(s,manualUI,player,'battle',uid),attack=!player&&getLegalActions(s).some(a=>a.player===0&&a.kind==='attack'&&a.uid===uid);
- showDialog('カードの状態',creatureStatusHTML(s,player,uid,{art})+(hyper?`<p class="small mt16">${esc(hyper.reason)}</p>`:''),`${player===0&&hyper?.action?`<button class="btn primary" data-action="battle-step" data-index="${hyper.action.id}">${hyper.need===2?'OVERハイパー化する':'ハイパー化する'}</button>`:''}${choice||attack?`<button class="btn primary" data-action="manual-creature" data-player="${player}" data-uid="${esc(uid)}">${choice?'このカードを選ぶ':'攻撃先を選ぶ'}</button>`:''}${m.id?`<button class="btn" data-action="card-detail" data-id="${esc(m.id)}">能力を見る</button>`:''}<button class="btn" data-action="close-dialog">盤面に戻る</button>`);
+ showDialog('カードの状態',creatureStatusHTML(s,player,uid,{art})+graveSummonStatusHTML(s,player,uid)+(hyper?`<p class="small mt16">${esc(hyper.reason)}</p>`:''),`${player===0&&hyper?.action?`<button class="btn primary" data-action="battle-step" data-index="${hyper.action.id}">${hyper.need===2?'OVERハイパー化する':'ハイパー化する'}</button>`:''}${choice||attack?`<button class="btn primary" data-action="manual-creature" data-player="${player}" data-uid="${esc(uid)}">${choice?'このカードを選ぶ':'攻撃先を選ぶ'}</button>`:''}${m.id?`<button class="btn" data-action="card-detail" data-id="${esc(m.id)}">能力を見る</button>`:''}<button class="btn" data-action="close-dialog">盤面に戻る</button>`);
 }
 function showBattleReport(){
  if(!battle)return;const s=battle.state,last=battle.recentActions?.at(-1);
@@ -813,8 +813,8 @@ document.addEventListener('click',async event=>{
  else if(action==='undo-battle'){clearTimeout(battleTimer);if(battleUndo.length){aiPlayback?.reset();battle.state=battleUndo.pop();battle.visual=null;selectedHand=null;manualUI={...newManualUI(),zoom:manualUI.zoom,zoomOpen:manualUI.zoomOpen,zoomScroll:manualUI.zoomScroll,aiSpeed:manualUI.aiSpeed,fast:manualUI.fast,logOpen:manualUI.logOpen};closeDialog();render();scheduleAI();}}
  else if(action==='evolution-stack'){const c=battle.state.players[Number(el.dataset.player)].battle.find(x=>x.uid===el.dataset.uid);if(c)showDialog(c.godLinks?.length?'リンクしているゴッド':'重ねているカード',`<p class="small mb16">${c.godLinks?.length?'リンクして1体になっているゴッドを表示しています。':'下にあるカードを上から順に表示しています。'}</p>${[c,...evolutionLayers(c)].map((x,i)=>`<div class="deck-detail-row">${x.faceDown?'<span class="shield-card">？</span>':art(x.cardId)}<div><strong>${esc(x.faceDown?'裏向きのカード':card(x).name)}</strong><p class="small">${c.godLinks?.length?'ゴッド '+(i+1):i?(isEvolution(c)?'進化元 ':'下のカード ')+i:'一番上のカード'}</p></div></div>`).join('')}`);}
  else if(action==='manual-faceup-shields'){const owner=Number(el.dataset.player),p=battle?.state.players[owner];if(p)showDialog('表向きのシールドカード',p.shields.flatMap((root,i)=>shieldCards(root).filter(x=>x.faceUp).map(x=>`<div class="deck-detail-row">${art(x.cardId)}<div class="grow"><strong>${esc(card(x).name)}</strong><p class="small">シールド${i+1} · ${shieldCards(root).length}枚の束</p></div><button class="btn sm" data-action="card-detail" data-id="${esc(x.cardId)}">能力</button></div>`)).join('')||'<p>表向きのカードはありません。</p>');}
- else if(action==='manual-zone-choice'){const a=getLegalActions(battle.state).find(a=>a.id===Number(el.dataset.index));if(a&&a.player===0){closeDialog();humanAction(a.id);}}
- else if(action==='zone-detail'){const owner=Number(el.dataset.player),p=battle.state.players[owner],zone=el.dataset.zone;if(!['mana','grave','extra','seals'].includes(zone)&&!(zone==='hand'&&owner===1&&battle.state.decision?.player===0&&['g13_Murder','g37DarkMasters'].includes(battle.state.decision.task?.op)))return;const labels={hand:'確認中の相手の手札',mana:'マナゾーン',grave:'墓地',extra:'超次元ゾーン',seals:'封印'};if(zone==='mana'&&!p.mana.some(c=>boardChoice(battle.state,manualUI,owner,zone,c.uid))){const rows=p.mana,ready=rows.filter(x=>!x.tapped).reduce((n,x)=>n+manaValueAt(battle.state,owner,x),0),total=rows.reduce((n,x)=>n+manaValue(battleCard(x)),0);showDialog((owner?'相手':'自分')+'のマナゾーン',`<p class="mana-zone-summary">使用可能 <strong>${ready}</strong> / 合計 ${total}マナ · ${rows.length}枚</p><p class="small">未使用は縦向き、使用済みは横向きで表示します。</p>${manaSummonHTML(battle.state,owner,{art})}${rows.length?manaZoneHTML(rows,{art,owner,state:battle.state}):'<p>カードはありません。</p>'}`);return;}showDialog(labels[zone],(p[zone]||[]).map(c=>{const a=boardChoice(battle.state,manualUI,owner,zone,c.uid),hidden=zone==='seals'||c.faceDown&&owner===1;return `<div class="deck-detail-row">${hidden?'':art(c.cardId)}<div class="grow"><strong>${esc(hidden?(zone==='seals'?'裏向きの封印':'裏向きのマナ'):c.faceDown?'裏向き：'+battleCard(c.cardId).name:card(c).name)}</strong><div class="small">${hidden?'中身は非公開です':card(c).civ}${zone==='mana'?' / '+(c.tapped?'使用済み':'使用可能'):''}</div></div>${a?`<button class="btn primary sm" data-action="manual-zone-choice" data-index="${a.id}">選ぶ</button>`:''}</div>`;}).join('')||'<p class="small">カードはありません。</p>');}
+ else if(action==='manual-zone-choice'){if(el.dataset.context&&el.dataset.context!==manualModel(battle.state,manualUI).context)return;const a=getLegalActions(battle.state).find(a=>a.id===Number(el.dataset.index));if(a&&a.player===0){closeDialog();humanAction(a.id);}}
+ else if(action==='zone-detail'){const owner=Number(el.dataset.player),p=battle.state.players[owner],zone=el.dataset.zone;if(!['mana','grave','extra','seals'].includes(zone)&&!(zone==='hand'&&owner===1&&battle.state.decision?.player===0&&['g13_Murder','g37DarkMasters'].includes(battle.state.decision.task?.op)))return;const labels={hand:'確認中の相手の手札',mana:'マナゾーン',grave:'墓地',extra:'超次元ゾーン',seals:'封印'};if(zone==='grave'&&!battle.state.decision){showDialog((owner?'相手':'自分')+'の墓地',graveZoneHTML(battle.state,owner,{art}));return;}if(zone==='mana'&&!p.mana.some(c=>boardChoice(battle.state,manualUI,owner,zone,c.uid))){const rows=p.mana,ready=rows.filter(x=>!x.tapped).reduce((n,x)=>n+manaValueAt(battle.state,owner,x),0),total=rows.reduce((n,x)=>n+manaValue(battleCard(x)),0);showDialog((owner?'相手':'自分')+'のマナゾーン',`<p class="mana-zone-summary">使用可能 <strong>${ready}</strong> / 合計 ${total}マナ · ${rows.length}枚</p><p class="small">未使用は縦向き、使用済みは横向きで表示します。</p>${manaSummonHTML(battle.state,owner,{art})}${rows.length?manaZoneHTML(rows,{art,owner,state:battle.state}):'<p>カードはありません。</p>'}`);return;}showDialog(labels[zone],(p[zone]||[]).map(c=>{const a=boardChoice(battle.state,manualUI,owner,zone,c.uid),hidden=zone==='seals'||c.faceDown&&owner===1;return `<div class="deck-detail-row">${hidden?'':art(c.cardId)}<div class="grow"><strong>${esc(hidden?(zone==='seals'?'裏向きの封印':'裏向きのマナ'):c.faceDown?'裏向き：'+battleCard(c.cardId).name:card(c).name)}</strong><div class="small">${hidden?'中身は非公開です':card(c).civ}${zone==='mana'?' / '+(c.tapped?'使用済み':'使用可能'):''}</div></div>${a?`<button class="btn primary sm" data-action="manual-zone-choice" data-index="${a.id}">選ぶ</button>`:''}</div>`;}).join('')||'<p class="small">カードはありません。</p>');}
  else if(action==='leave-battle')showDialog('対戦を終了しますか？',battle?.tournamentId?'<p class="small">途中経過を保存してトーナメント表へ戻ります。</p>':'<p class="small">現在の対戦は保存されません。</p>',`<button class="btn" data-action="close-dialog">対戦を続ける</button><button class="btn primary" data-action="end-battle">終了する</button>`);
  else if(action==='end-battle'){const returnView=battle?.tournamentId?'tournament':battle?.challengeId?'challenge':'battle';clearTimeout(battleTimer);aiPlayback?.dispose();aiPlayback=null;aiPlaybackBattle=null;battle=null;closeDialog();view=returnView;render();}
  else if(action==='battle-again')retryManualBattle(battle?.decks[0]);

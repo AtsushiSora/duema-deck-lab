@@ -1,0 +1,354 @@
+{
+  "phase": 329,
+  "checkedAt": "2026-11-01",
+  "description": "場の条件付きクリーチャー数に応じて引く共通文法を拡張し、種族・文明・コスト・進化・他のクリーチャーの条件と任意の引き止めを扱う。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmr15-001",
+      "name": "共鳴の精霊龍 サザン・ルネッサンス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-001",
+      "faces": [
+        {
+          "name": "共鳴の精霊龍 サザン・ルネッサンス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー ブロッカー\nシンパシー：光のコスト３以下のクリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分の光のコスト３以下のクリーチャー１体につき１少なくなる。ただしコストは１より少なくならない）\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分の光のコスト３以下のクリーチャー１体につき、カードを１枚引いてもよい。\nW・ブレイカー",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g211Sympathy": {
+          "amount": 1,
+          "filter": {
+            "creature": true,
+            "color": "光",
+            "max": 3
+          }
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "color": "光",
+              "max": 3
+            },
+            "optional": "each"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "5cefe368e87ba178fa7738996d04e140c05dc0d8a0f154841d3df6d7242eb0c3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp08-018",
+      "name": "空中南極 ペングィーナ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-018",
+      "faces": [
+        {
+          "name": "空中南極 ペングィーナ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分の他のムートピア１体につき、カードを１枚引く。",
+          "race": "ムートピア",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "race": "ムートピア"
+            },
+            "g329Other": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "8dfc5e601618b1708dffc5c62bcf3c295524eacb1490b46a006eb5c2b4236bce",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-031",
+      "name": "借魂",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-031",
+      "faces": [
+        {
+          "name": "借魂",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分の進化クリーチャー１体につき、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "evolution": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "c427f8f298536c638028cdaa8467fab8f14d8c1c9eac8dec0528f9bf410f3bd4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr07-024",
+      "name": "真実の名 ビスマルク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-024",
+      "faces": [
+        {
+          "name": "真実の名 ビスマルク",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分の、コスト７以上のクリーチャー１体につき１枚、カードを引いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "リヴァイアサン/アンノウン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "min": 7
+            },
+            "optional": "each"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "693e0589be7f63a33e5ef675774ce985ca004627a55b383dcf1a0a06310c2f72",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex1-026",
+      "name": "絶対華麗！マーシャル歌劇団",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-026",
+      "faces": [
+        {
+          "name": "絶対華麗！マーシャル歌劇団",
+          "typeText": "呪文",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー\n自分のスプラッシュ・クイーン・クリーチャー１体につき、カードを１枚引いてもよい。その後、スプラッシュ・クイーン・クリーチャーを１体、自分の手札から出してもよい。",
+          "race": "スプラッシュ・クイーンの集い",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "race": "スプラッシュ・クイーン"
+            },
+            "optional": "each"
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "race": "スプラッシュ・クイーン"
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex1-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "f218ab8356b838c700efcca7d57b8f4b15b01fbaefe03ffe802c49450654ae48",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm21-024",
+      "name": "装甲支援ガトリンガー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-024",
+      "faces": [
+        {
+          "name": "装甲支援ガトリンガー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のキカイヒーロー１体につきカードを１枚引いてもよい。",
+          "race": "グレートメカオー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "race": "キカイヒーロー"
+            },
+            "optional": "each"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "be6628d8c49b3cf1f1b54b2eebd31c183e7741d516c211b80f3ccd58727c59e4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp2-012",
+      "name": "連戦の精霊龍 デルザルバーラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-012",
+      "faces": [
+        {
+          "name": "連戦の精霊龍 デルザルバーラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー ブロッカー\nこのクリーチャーが出た時、自分の光のクリーチャー１体につきカードを１枚引いてもよい。その後、光のコスト４以下のクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "エンジェル・コマンド・ドラゴン/革命軍",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "color": "光"
+            },
+            "optional": "each"
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "color": "光",
+              "max": 4
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "9392d110a22d62550f15799500e002473bbdd23e3e1bd49c00dd660f9896fcd4",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr15-001": 4,
+      "dmrp08-018": 4,
+      "dm25rp1-031": 4,
+      "dmr07-024": 4,
+      "dm24ex1-026": 4,
+      "dm21-024": 4,
+      "dm26rp2-012": 4
+    }
+  }
+}

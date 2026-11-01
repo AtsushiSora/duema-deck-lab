@@ -1,3 +1,6 @@
+import {STANDARD331_DECKS} from './fixtures/standard331.mjs';
+import {STANDARD330_DECKS} from './fixtures/standard330.mjs';
+import {STANDARD329_DECKS} from './fixtures/standard329.mjs';
 import {STANDARD328_DECKS} from './fixtures/standard328.mjs';
 import {STANDARD327_DECKS} from './fixtures/standard327.mjs';
 import {STANDARD326_DECKS} from './fixtures/standard326.mjs';
@@ -729,3 +732,9 @@ for(const deck of STANDARD326_DECKS)if(validateDeck(deck).length||registry.cover
 for(const deck of STANDARD327_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第327段階の40枚を確認してください');console.log('Checked phase327 forties: same-face race/color conjunctions, name and D2 field searches supported.');
 
 for(const deck of STANDARD328_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第328段階の40枚を確認してください');console.log('Checked phase328 forties: own entry, other entry and own-turn entry effects supported.');
+
+for(const deck of STANDARD329_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第329段階の40枚を確認してください');console.log('Checked phase329 forties: conditional creature-count draws, sympathy, blockers and optional deployments supported.');
+
+for(const deck of STANDARD330_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第330段階の40枚を確認してください');console.log('Checked phase330 forties: tribal power counts, conditional breakers, evolution and guardman supported.');
+
+for(const deck of STANDARD331_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第331段階の40枚を確認してください');console.log('Checked phase331 forties: name and tribe power auras, blockers and race additions supported.');

@@ -1,0 +1,332 @@
+{
+  "phase": 330,
+  "checkedAt": "2026-11-01",
+  "description": "種族の枚数に応じた常在・攻撃中パワーの共通文法を拡張し、既存の検索・条件付きWブレイカー・ガードマン・進化を再利用する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dm23-030",
+      "name": "アンビシャス・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-030",
+      "faces": [
+        {
+          "name": "アンビシャス・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーのパワーは、バトルゾーンにある自分のファイアー・バード１体につき+2000される。\nバトルゾーンに自分のファイアー・バードが１体でもあれば、このクリーチャーは「W・ブレイカー」を得る。(「W・ブレイカー」を得たクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g207CountPower": {
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "race": "ファイアー・バード"
+          },
+          "amount": 2000
+        },
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "race": "ファイアー・バード"
+          },
+          "grants": {
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "ffc7f8fe3dc74265dc0038707c4130f092ce431f2434cbf8e0c093335639143f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23sd1-009",
+      "name": "ボルシャック・バディ・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd1-009",
+      "faces": [
+        {
+          "name": "ボルシャック・バディ・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から５枚を見る。その中からファイアー・バードを１枚相手に見せ、手札に加えてもよい。残りを好きな順序で山札の下に置く。\n攻撃中、このクリーチャーのパワーを、自分の墓地のファイアー・バード１枚につき+1000する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g207CountPower": {
+          "zone": "grave",
+          "filter": {
+            "race": "ファイアー・バード"
+          },
+          "amount": 1000,
+          "attackOnly": true
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 5,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "race": "ファイアー・バード"
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23sd1-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "474aaf47fa79e9ccf004214746e430933ffeb650288288c69e90935f09f2841f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm02-030",
+      "name": "機神装甲ヴァルバロス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-030",
+      "faces": [
+        {
+          "name": "機神装甲ヴァルバロス",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "進化ー自分のヒューマノイド１体の上に置く。\n攻撃中、このクリーチャーのパワーは、バトルゾーンにある他のヒューマノイド１体につき+2000される。",
+          "race": "ヒューマノイド",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "ヒューマノイド"
+        },
+        "g207CountPower": {
+          "zone": "battle",
+          "both": true,
+          "other": true,
+          "filter": {
+            "creature": true,
+            "race": "ヒューマノイド"
+          },
+          "amount": 2000,
+          "attackOnly": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm02-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "fa5822cf77abbef4a8863401b260202c6de0a90374f3d8d86f23ac4880120d5d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-108",
+      "name": "大群の桜",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-108",
+      "faces": [
+        {
+          "name": "大群の桜",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ガードマン(自分の他のクリーチャーが攻撃される時、このクリーチャーをタップしてもよい。そうした場合、攻撃クリーチャーはかわりにこのクリーチャーを攻撃する)\nこのクリーチャーのパワーは、バトルゾーンにある自分の他のビーストフォーク１体につき+2000される。",
+          "race": "ビーストフォーク/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "guardman": true,
+        "g207CountPower": {
+          "zone": "battle",
+          "other": true,
+          "filter": {
+            "creature": true,
+            "race": "ビーストフォーク"
+          },
+          "amount": 2000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-108.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "5405c0bc0ccc6d3889bd89f4bbaf69b20114dac81005dd7cebc598a24a957668",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc45-016",
+      "name": "武装剣心シシオウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc45-016",
+      "faces": [
+        {
+          "name": "武装剣心シシオウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーのパワーは、バトルゾーンにある自分の他のサムライ・クリーチャー１体につき+1000される。",
+          "race": "ビーストフォーク/サムライ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g207CountPower": {
+          "zone": "battle",
+          "other": true,
+          "filter": {
+            "creature": true,
+            "race": "サムライ"
+          },
+          "amount": 1000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc45-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "6a68086987b7cf59117b46ccc7434afe7a60f65e9662caec1d725534f78b79e7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm21-033",
+      "name": "霊騎シュバイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-033",
+      "faces": [
+        {
+          "name": "霊騎シュバイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーのパワーは、バトルゾーンにある自分のセイント・ヘッド１体につき+2000される。\nこのクリーチャーは、パワーが6000以上の時、「W・ブレイカー」を得る。(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーク・セラフィム",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g207CountPower": {
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "race": "セイント・ヘッド"
+          },
+          "amount": 2000
+        },
+        "g207Breakers": [
+          {
+            "power": 6000,
+            "breaker": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "72964b11e67b20230f18ea19545f99f5ff2c1c6aff3edf201b0983036de0f3f6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-077",
+      "name": "霊騎マリクス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-077",
+      "faces": [
+        {
+          "name": "霊騎マリクス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーのパワーは、バトルゾーンにある自分の他のアーク・セラフィム１体につき+1000される。",
+          "race": "アーク・セラフィム",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g207CountPower": {
+          "zone": "battle",
+          "other": true,
+          "filter": {
+            "creature": true,
+            "race": "アーク・セラフィム"
+          },
+          "amount": 1000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-077.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "ea8778f4f91a400222813a9733c5d62fc24e7938575942c5cd37ac87a356a1ea",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23-030": 4,
+      "dm23sd1-009": 4,
+      "dm02-030": 4,
+      "dmr05-108": 4,
+      "dmc45-016": 4,
+      "dm21-033": 4,
+      "dm19-077": 4
+    }
+  }
+}
