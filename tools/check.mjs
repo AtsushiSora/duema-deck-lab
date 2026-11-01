@@ -1,3 +1,4 @@
+import {REQUESTED338_DECK} from './fixtures/requested338.mjs';
 import {STANDARD337_DECKS} from './fixtures/standard337.mjs';
 import {STANDARD336_DECKS} from './fixtures/standard336.mjs';
 import {STANDARD335_DECKS} from './fixtures/standard335.mjs';
@@ -756,3 +757,5 @@ for(const deck of STANDARD335_DECKS)if(validateDeck(deck).length||registry.cover
 for(const deck of STANDARD336_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第336段階の40枚を確認してください');console.log('Checked phase336 forties: temporary speed, powered breaker, slayer, untapped attack and target protection grants supported.');
 
 for(const deck of STANDARD337_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第337段階の40枚を確認してください');console.log('Checked phase337 forties: temporary power attackers and public ally conditions for attack power, breakers and untapped attacks supported.');
+
+if(validateDeck(REQUESTED338_DECK).length||registry.coverage(REQUESTED338_DECK).unsupported||REQUESTED338_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第338段階の40枚を確認してください');console.log('Checked phase338 requested Noradi: Abyss Rush, entry and opponent-choice discard, ordered grave return and Mekraid8 or optional mill supported.');

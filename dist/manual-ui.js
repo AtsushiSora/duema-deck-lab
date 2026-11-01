@@ -1,11 +1,11 @@
 import {battleZoomControlsHTML} from './battle-zoom.js?v=0.227.0';
 import {displayTurn} from './turn-count.js';
-import {challengeKind} from './character-roster.js?v=0.414.0';
-import {paymentReviewHTML} from './battle-insights.js?v=0.414.0';
+import {challengeKind} from './character-roster.js?v=0.415.0';
+import {paymentReviewHTML} from './battle-insights.js?v=0.415.0';
 import {sourceCardBadge,sourceCardLabel} from './card-info.js';
 import {shieldCards} from './shield-state.js';
-import {aiPlaybackHTML,aiSpeedLabel} from './ai-playback.js?v=0.414.0';
-import {handCardModel,handShelfHTML,handInspectorHTML,handEvolutionButtonHTML} from './hand-ui.js?v=0.414.0';
+import {aiPlaybackHTML,aiSpeedLabel} from './ai-playback.js?v=0.415.0';
+import {handCardModel,handShelfHTML,handInspectorHTML,handEvolutionButtonHTML} from './hand-ui.js?v=0.415.0';
 import {getLegalActions,graveSummonSources,manaSelectionStatus,manaColors,card,power,effectiveCard,isEvolution,canUntap,abilitiesIgnored,genmuActive,momoActive,selfTriggersStopped,manaValue,manaValueAt,exLifeShieldInfo,exLifeShields,shieldGuardSources,playFaces,attackLocked,evolutionBases,canCastSpell,canEnterCreature,summonCost,paymentPool,manaPayment} from './engine.js';
 import {attackRoute,previewAttackAction} from './battle-visuals.js?v=0.100.0';
 import {pageWindow} from './board-fit.js';
@@ -69,6 +69,7 @@ function decisionHelp(s){
  if(d.task?.op==='g26_Zaze')return 'シールドにカードが置かれ、ザゼ・ゼーンをアンタップしました。続けて効果を1つ選びます。';
  if(d.task?.op==='g26_DrawDeploy')return '引くかどうかを選び、その後、最初の相手のエレメント・呪文以下のコストのクリーチャーを出せます。';
  if(d.task?.op==='g13_Murder')return d.task.anyCard?'相手の手札を確認して、カード1枚を選んで捨てさせます。「相手の手札を見る」で全体を確認できます。':d.task.nonCreature?'相手の手札を確認して、クリーチャー以外のカード1枚を捨てさせます。該当するカードがなくても「相手の手札を見る」で確認できます。':'相手の手札を確認して、クリーチャー1体を捨てさせます。「相手の手札を見る」で呪文も含めて確認できます。';
+ if(d.task?.op?.startsWith('g13_Noradi'))return '墓地4枚を選んだ順に山札の下へ戻してメクレイド8するか、戻さずに山札から0〜4枚を墓地に置きます。墓地4枚はすべて選び終えてから移動します。';
  if(d.task?.op?.startsWith('g13_Mek'))return '見ているカードから条件に合う面を選びます。W・メクレイドは使う2枚と順序を先に決めます。';
  if(d.task?.op==='g13_SB')return '今回加わる闇のシールドを1枚捨て、手札の秩序の意志を無料で唱えます。';
  if(d.task?.op==='g13_BorrowAbility')return '相手のカードの登場時能力を1つだけ使います。「このクリーチャー」はマーダン自身を参照します。';
@@ -138,7 +139,7 @@ function boardChoiceModel(s,ui,player,zone,uid,m){
  if(s.decision?.type==='extended'&&s.decision.task.op.startsWith('g26_')){const op=s.decision.task.op,owner=s.decision.player;
   const allowed=op==='g26_Ever'&&zone==='battle'||op==='g26_Tap'&&player!==owner&&zone==='battle'||op==='g26_Deploy'&&player===owner&&zone==='hand'||op==='g26_Select'&&player===owner&&['hand','mana'].includes(zone)||op==='g26_Saint'&&player===owner&&zone==='shields';
   if(allowed){const a=m.actions.find(a=>{const v=s.decision.choices[a.choice]?.value;return op==='g26_Select'?v?.uid===uid&&v.origin===zone:v===uid;});if(a)return a;}}
- if(s.decision?.type==='extended'&&s.decision.task.op.startsWith('g13_')){const op=s.decision.task.op,own={g13_JagaRevive:'grave',g13_FootRecover:'grave',g13_ManaHand:'mana'},enemy={g13_Murder:'hand',g13_Borrow:'grave',g13_Seal:'battle',g13_Sis:'battle'};if(zone===(player===s.decision.player?own[op]:enemy[op])||op==='g13_Lord'&&player===s.decision.player){const matches=m.actions.filter(a=>{const v=s.decision.choices[a.choice]?.value;return v&&((op==='g13_Lord'&&v.origin===zone&&v.uid===uid)||v===uid);});if(matches.length===1)return matches[0];}}
+ if(s.decision?.type==='extended'&&s.decision.task.op.startsWith('g13_')){const op=s.decision.task.op,own={g13_NoradiReturn:'grave',g13_JagaRevive:'grave',g13_FootRecover:'grave',g13_ManaHand:'mana'},enemy={g13_Murder:'hand',g13_Borrow:'grave',g13_Seal:'battle',g13_Sis:'battle'};if(zone===(player===s.decision.player?own[op]:enemy[op])||op==='g13_Lord'&&player===s.decision.player){const matches=m.actions.filter(a=>{const v=s.decision.choices[a.choice]?.value;return v&&((op==='g13_Lord'&&v.origin===zone&&v.uid===uid)||v===uid);});if(matches.length===1)return matches[0];}}
  if(zone==='hand'&&player===0&&s.decision?.type==='leaveHand')return m.actions.find(a=>a.kind==='leaveHand'&&a.uid===uid)||null;
  if(s.decision?.type==='extended'&&s.decision.player===player&&s.decision.task.op==='g23_Unseal'){const a=m.actions.find(a=>a.kind==='extended'&&s.decision.choices[a.choice]?.value===uid);if(zone==='seals')return a||null;if(zone==='battle'){const seals=s.players[player].seals||[];return m.actions.find(a=>seals.some(x=>x.uid===s.decision.choices[a.choice]?.value&&x.sealOf===uid))||null;}}
  if(zone==='extra'&&player===0&&!s.decision){const list=m.actions.filter(a=>a.kind==='play'&&a.origin==='extra'&&a.uid===uid);if(list.length===1)return list[0];}
