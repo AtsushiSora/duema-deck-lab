@@ -4,7 +4,7 @@ const colors=['光','水','闇','火','自然'];
 const aliasNames=new Set(['炎のたてがみ(バーニング・ヘアー)','青銅の鎧(ブロンズ・アーム・トライブ)','無敵の咆哮(マイティ・シャウター)','紅玉草(ルビー・グラス)','ワ・タンポ－ポ・タンク','【問２】ノロン&#x2934','怪力の化身(マイティ・トーテム)']);
 const normalize=s=>s.normalize('NFKC').replace(/\s|■/g,'').replaceAll('、','');
 const keyword=(line,name)=>new RegExp('^(?:'+name+'){1,2}(?:\\([^()]*\\))?$').test(line);
-const clauses=(body,phase)=>phase>=318&&judge318(body,phase)||phase>=310&&modal310(body)||phase>=270&&presence270(body,phase)||phase>=255&&look255(body)||phase>=254&&/^カードを[1-9]\d*枚引いてもよい。そうした(?:ら|場合)自分の手札を[1-9]\d*枚捨てる。$/.test(body)||phase>=248&&discardForEffect248(body,phase)||phase>=244&&discardAll244(body,phase)||phase>=241&&fightBuff241(body)||phase>=216&&/^自分の手札を1枚捨ててもよい。そうした(?:ら|場合)カードを[1-9]\d*枚引く。$/.test(body)||phase>=201&&search201(body)||phase>=200&&look200(body)||phase>=197&&mana197(body,phase)||phase>=185&&lookSpec(body)?[body]:(phase>=181?(phase>=184?body.replace(/^自分の手札を([1-9]\d*)枚捨て(?!る)(?:その後)?/,'自分の手札を$1枚捨てる。その後'):body).replace(/^カードを([1-9]\d*)枚引き(?:その後)?/,'カードを$1枚引く。その後'):body).split('その後').filter(Boolean);
+const clauses=(body,phase)=>phase>=318&&judge318(body,phase)||phase>=310&&modal310(body)||phase>=270&&presence270(body,phase)||phase>=255&&look255(body)||phase>=254&&/^カードを[1-9]\d*枚引いてもよい。そうした(?:ら|場合)自分の手札を[1-9]\d*枚捨てる。$/.test(body)||phase>=248&&discardForEffect248(body,phase)||phase>=244&&discardAll244(body,phase)||phase>=241&&fightBuff241(body)||phase>=216&&/^自分の手札を1枚捨ててもよい。そうした(?:ら|場合)カードを[1-9]\d*枚引く。$/.test(body)||phase>=201&&search201(body)||phase>=200&&look200(body)||phase>=197&&mana197(body,phase)||phase>=185&&lookSpec(body,phase)?[body]:(phase>=181?(phase>=184?body.replace(/^自分の手札を([1-9]\d*)枚捨て(?!る)(?:その後)?/,'自分の手札を$1枚捨てる。その後'):body).replace(/^カードを([1-9]\d*)枚引き(?:その後)?/,'カードを$1枚引く。その後'):body).split('その後').filter(Boolean);
 const flags={
  'ブロッカー':'blocker','スピードアタッカー':'speedAttacker','スレイヤー':'slayer',
  'マッハファイター':'machFighter','ガードマン':'guardman','エスケープ':'escape',
@@ -23,9 +23,17 @@ function sympathy211(line){
  const title=m[2].replace(/と|および/g,"または");if(title!==m[3]||!filters[m[3]])return null;
  return{amount:Number(m[4]),filter:filters[m[3]]};
 }
-function lookSpec(text){
+function lookSpec(text,phase=185){
  const m=text.match(/^自分の山札の上から([1-9]\d*)枚を見る。(?:その中から|そのうちの)(?:(.+?)を)?1(枚|体)(?:を)?(?:選び)?(?:(?:相手に)?(?:見せてから|見せ)|表向きにし)?(?:自分の)?手札に加え(てもよい。|る。|)(?:その後)?残りを好きな順序で(?:自分の)?山札の(?:一番)?下に置く。$/);if(!m)return null;
  const filters={'呪文':{spell:true},'呪文またはオーラ':{any:[{spell:true},{aura:true}]},'クリーチャー':{creature:true},'自然のクリーチャー':{creature:true,color:'自然'},'多色クリーチャー':{creature:true,multi:true},'進化クリーチャー':{creature:true,evolution:true},'タマシード':{seed:true},'コスト1のカード':{exactCost:1},'ジョーカーズ':{race:'ジョーカーズ'},'レクスターズ':{race:'レクスターズ'},'ファイアー・バード':{race:'ファイアー・バード'}};
+ if(phase>=327){
+  filters['メカまたはシノビ']={any:[{anyFaceRace:'メカ'},{anyFaceRace:'シノビ'}]};
+  filters['名前に《ヘブンズ》とあるカード']={g220NameAny:['ヘブンズ']};
+  filters['光と自然を文明に持つクリーチャー']={g228Face:{type:'creature',colorsAll:['光','自然']}};
+  filters['ハンターとエイリアンを種族に持つクリーチャー']={g228Face:{type:'creature',raceAll:['ハンター','エイリアン']}};
+  filters['D2フィールド']={g228Face:{type:'field',d2:true}};
+  filters['コマンドを1体またはD2フィールド']={any:[{g228Face:{type:'creature',raceAll:['コマンド']}},{g228Face:{type:'field',d2:true}}]};
+ }
  if(m[2]&&!filters[m[2]])return null;const filter=structuredClone(filters[m[2]]||{});if(m[3]==='体')filter.creature=true;
  return{op:'Look',g185Search:true,n:+m[1],rest:'bottom',stages:[{n:1,to:'hand',...(Object.keys(filter).length?{filter,reveal:true}:{}),...(m[4]==='てもよい。'?{optional:true}:{})}]};
 }
@@ -167,6 +175,11 @@ function instruction(text,phase){
   if(text==='自分のマナゾーンでタップされているカードをすべて自分の手札に戻す。')return{op:'RecoverAll326',zones:['mana'],filter:{tapped:true}};
   const r=text.match(/^自分の(墓地|マナゾーン|墓地とマナゾーン)(?:にある|から)(すべての)?(.+?)を(すべて)?(?:自分の)?手札に戻(す|してもよい)。$/);
   if(r&&!!r[2]!==!!r[4]){const filters={'カード':{},'クリーチャー':{g228Face:{type:'creature'}},'呪文':{g228Face:{type:'spell'}},'サイバーロード':{anyFaceRace:'サイバーロード'},'スノーフェアリー':{anyFaceRace:'スノーフェアリー'},'エンジェル・コマンドとデーモン・コマンド':{any:[{anyFaceRace:'エンジェル・コマンド'},{anyFaceRace:'デーモン・コマンド'}]}},filter=filters[r[3]];if(filter){const def={op:'RecoverAll326',zones:r[1].split('と').map(z=>z==='墓地'?'grave':'mana'),filter};return r[5]==='す'?def:{op:'Offer',title:'条件に合う墓地のカードをすべて手札に戻す？',defs:[def]};}}
+ }
+ if(phase>=328){
+  if(text==='相手のクリーチャーを1体選びタップする。')return{op:'Target',tap:true};
+  if(text==='自分の山札の上から2枚を見てそのうちの1枚を山札の下に置く。')return{op:'Look',g200Search:true,n:2,rest:'top',stages:[{n:1,to:'deck'}]};
+  if(text==='自分のシールドを1つ手札に戻してもよい。ただしその「S・トリガー」は使えない。')return{op:'Offer',g299ShieldHand:true,title:'シールド1つを手札に加える？（S・トリガーは使えない）',defs:[{op:'ShieldHand',g238ShieldHand:true}]};
  }
  if(phase>=324){const ramp=text.match(/^自分の山札の上から([1-9]\d*)枚(?:目)?を裏向きのまま(タップして)?マナゾーンに置く。\(マナゾーンにある裏向きのカードはマナの数字が1の無色カードとして扱う。その持ち主はそれをいつでも見てもよい\)$/);if(ramp)return{op:'Ramp',n:+ramp[1],...(ramp[2]?{tapped:true}:{}),faceDown:true};}
  if(phase>=323&&/^自分の山札の上から1枚(?:目)?を見る。そのカードを(?:自分の)?山札の(?:一番)?下に置いてもよい。$/.test(text))return{op:'Look',g323Scry:true,n:1,rest:'top',stages:[{n:1,to:'deck',optional:true,title:'山札の一番下に置く？（見送ると上に残す）'}]};
@@ -407,7 +420,7 @@ function instruction(text,phase){
   if(m=text.match(/^闇と火を両方持つクリーチャーをすべて自分の墓地から手札に戻す。$/))return{op:'Select',origin:'grave',to:'hand',n:'all',filter:{creature:true,colorsAll:['闇','火']},title:'闇と火を両方持つ墓地のクリーチャーをすべて選ぶ'};
   if(m=text.match(/^相手のコスト([1-9]\d*)以下のクリーチャーを1体(?:選び)?持ち主のマナゾーンに置いてもよい。$/))return{op:'Target',to:'mana',optional:true,filter:{max:+m[1]}};
  }
- if(phase>=185){const look=lookSpec(text);if(look)return look;}
+ if(phase>=185){const look=lookSpec(text,phase);if(look)return look;}
  if(phase>=184){
   if(m=text.match(/^(?:カードを([1-9]\d*)枚自分の|自分の)マナゾーン(?:から|のカードを([1-9]\d*)枚)?(?:選び)?墓地に置く。$/)){const n=m[1]||m[2];if(n)return{op:'Select',origin:'mana',to:'grave',n:+n,g184ManaLoss:true};}
   if(m=text.match(/^クリーチャーを1体自分の墓地からマナゾーンにタップして置く。$/))return{op:'Select',origin:'grave',to:'mana',n:1,tapped:true,filter:{creature:true}};
@@ -511,6 +524,13 @@ export function standardCardSpec(d,{phase=165}={}){
  for(let i=0;i<lines.length;i++){
   const raw=lines[i],line=normalize(phase>=231?raw.replace(/^このクリーチャーがバトルゾーンに出たとき/,'このクリーチャーがバトルゾーンに出た時').replace(/^このクリーチャーが攻撃するとき/,'このクリーチャーが攻撃する時'):phase>=228?raw.replace(/^このクリーチャーが攻撃するとき/,'このクリーチャーが攻撃する時'):raw);let m,known=false;
   if(phase>=278&&creature&&line==='自分のクリーチャーがバトルに勝った時相手のシールドを1つブレイクしてもよい。'){if(spec.g252WinWatch)throw Error('重複するバトル勝利監視能力');spec.g252WinWatch={filter:{creature:true},defs:[{op:'Offer',defs:[{op:'Break278'}]}]};continue;}
+  if(phase>=328&&creature){
+   if(line==='このクリーチャーはプレイヤーを攻撃できない。'){spec.noPlayerAttack=true;continue;}
+   if(m=line.match(/^(自分のターン中)?自分の(他の)?クリーチャー(?:が(?:バトルゾーンに)?出た時|をバトルゾーンに出した時)(.+)$/)){
+    const def=instruction(m[3],phase),allowed=def&&(def.op==='SelfBoost313'||def.op==='DiscardDraw'||def.op==='Look'&&def.g200Search&&def.n===2&&def.rest==='top'||def.op==='Target'&&def.tap&&!def.optional||def.op==='Offer'&&def.g299ShieldHand);
+    if(allowed){const key=m[1]?'g249OtherEntry':m[2]?'g250EntryDraw':'g251EntryDraw';if(m[1]&&!m[2])throw Error('未対応の自分自身を含む自ターン登場監視');if(spec[key])throw Error('重複する登場監視能力');spec[key]={filter:{creature:true},...(key==='g250EntryDraw'?{self:false}:{}),defs:[def]};continue;}
+   }
+  }
   if(phase>=323&&creature){
    if(m=line.match(/^自分のクリーチャーがバトルゾーンに出た時(.+)$/)){
     const def=instruction(m[1],phase);

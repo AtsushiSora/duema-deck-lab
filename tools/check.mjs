@@ -1,3 +1,5 @@
+import {STANDARD328_DECKS} from './fixtures/standard328.mjs';
+import {STANDARD327_DECKS} from './fixtures/standard327.mjs';
 import {STANDARD326_DECKS} from './fixtures/standard326.mjs';
 import {STANDARD325_DECKS} from './fixtures/standard325.mjs';
 import {STANDARD324_DECKS} from './fixtures/standard324.mjs';
@@ -723,3 +725,7 @@ for(const deck of STANDARD324_DECKS)if(validateDeck(deck).length||registry.cover
 for(const deck of STANDARD325_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第325段階の40枚を確認してください');console.log('Checked phase325 forties: shared tribal/color auras, granted power and breakers supported.');
 
 for(const deck of STANDARD326_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第326段階の40枚を確認してください');console.log('Checked phase326 forties: automatic filtered recovery from grave and mana, evolution and two-sided power aura supported.');
+
+for(const deck of STANDARD327_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第327段階の40枚を確認してください');console.log('Checked phase327 forties: same-face race/color conjunctions, name and D2 field searches supported.');
+
+for(const deck of STANDARD328_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第328段階の40枚を確認してください');console.log('Checked phase328 forties: own entry, other entry and own-turn entry effects supported.');

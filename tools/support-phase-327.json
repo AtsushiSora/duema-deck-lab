@@ -1,0 +1,363 @@
+{
+  "phase": 327,
+  "checkedAt": "2026-11-01",
+  "description": "山札の上から1枚を手札に加える共通文法を、種族・名前・複数文明とD2フィールドの条件へ拡張して6種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmr22-032",
+      "name": "改速 スパナードW",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-032",
+      "faces": [
+        {
+          "name": "改速 スパナードW",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から５枚を見る。その中から、コマンドを１体またはD２フィールドを１枚選び、相手に見せてから自分の手札に加えてもよい。その後、残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "ソニック・コマンド/イニシャルズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 5,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "any": [
+                    {
+                      "g228Face": {
+                        "type": "creature",
+                        "raceAll": [
+                          "コマンド"
+                        ]
+                      }
+                    },
+                    {
+                      "g228Face": {
+                        "type": "field",
+                        "d2": true
+                      }
+                    }
+                  ]
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "b1b0723daa07859cb72f86631b0b8aa2ad4528486a46b09b2870c67c978e920d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx11-032",
+      "name": "鬼ライダー モエル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-032",
+      "faces": [
+        {
+          "name": "鬼ライダー モエル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から４枚を見る。その中からハンターとエイリアンを種族に持つクリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "ヒューマノイド/ハンター/エイリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 4,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "g228Face": {
+                    "type": "creature",
+                    "raceAll": [
+                      "ハンター",
+                      "エイリアン"
+                    ]
+                  },
+                  "creature": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx11-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "774f33069a0bb963bb95fc62f9fcdc3e2c447527b2dc8a8fcd39bcea1a286723",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-042",
+      "name": "禁断U ミテトル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-042",
+      "faces": [
+        {
+          "name": "禁断U ミテトル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から５枚を見る。その中からD２フィールドを１枚相手に見せ、自分の手札に加えてもよい。その後、残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "イニシャルズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 5,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "g228Face": {
+                    "type": "field",
+                    "d2": true
+                  }
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "e040e79ee10c140a34522c4d3b48576851b43ca2f8f552ff5ea3deaa1a5f574f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23sd2-005",
+      "name": "警鐘の聖沌 n4rc0",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd2-005",
+      "faces": [
+        {
+          "name": "警鐘の聖沌 n4rc0",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から５枚を見る。その中から、メカまたはシノビを１枚、相手に見せてから手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+          "race": "メカ・デル・ステラ/シノビ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 5,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "any": [
+                    {
+                      "anyFaceRace": "メカ"
+                    },
+                    {
+                      "anyFaceRace": "シノビ"
+                    }
+                  ]
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23sd2-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "e6138c9cb3543577b594cda6e134dc731949bd21d090149ad0a59848a45069bd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx11-038",
+      "name": "天門の精霊キバッテ・キャット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-038",
+      "faces": [
+        {
+          "name": "天門の精霊キバッテ・キャット",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から４枚を見る。その中から、名前に《ヘブンズ》とあるカードを１枚、相手に見せ、自分の手札に加えてもよい。その後、残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "エンジェル・コマンド/アンノイズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 4,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "g220NameAny": [
+                    "ヘブンズ"
+                  ]
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx11-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "9a61cd588e8612bf4ac1955a96a49decaa4844f862c0c8b1220877ab7fb9ab89",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-082",
+      "name": "白緑の面 トライオン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-082",
+      "faces": [
+        {
+          "name": "白緑の面 トライオン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を見る。その中から、光と自然を文明に持つクリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "ビーストフォーク號/革命軍",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 3,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "g228Face": {
+                    "type": "creature",
+                    "colorsAll": [
+                      "光",
+                      "自然"
+                    ]
+                  },
+                  "creature": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-082.jpg",
+      "verification": {
+        "checkedAt": "2026-11-01",
+        "sha256": "ab6ba33c05eee61a644a21903700f94cdad1d2b6b051f0056d6f118123d8f90c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-01",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr22-032": 4,
+      "dmx11-032": 4,
+      "dmr21-042": 4,
+      "dm23sd2-005": 4,
+      "dmx11-038": 4,
+      "dmr21-082": 4
+    }
+  }
+}
