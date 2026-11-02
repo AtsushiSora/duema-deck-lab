@@ -1,0 +1,124 @@
+{
+  "phase": 377,
+  "checkedAt": "2026-11-02",
+  "description": "既存の文明条件による攻撃時ドロー、相手選択と自分選択の順序付き破壊を組み合わせて2種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dm24-079",
+      "name": "ファジ・フィーズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-079",
+      "faces": [
+        {
+          "name": "ファジ・フィーズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、バトルゾーンに自分の光、闇、火、または自然のクリーチャーが１体でもあれば、カードを１枚引いてもよい。",
+          "race": "スプラッシュ・クイーン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "any": [
+                {
+                  "color": "光"
+                },
+                {
+                  "color": "闇"
+                },
+                {
+                  "color": "火"
+                },
+                {
+                  "color": "自然"
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-079.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "dae5700e67af1471282b036d2a6d92935bf047aeea6f6eae18499e5a9b629e63",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr10-014",
+      "name": "ブータン両成敗",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-014",
+      "faces": [
+        {
+          "name": "ブータン両成敗",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手は自身のクリーチャーを１体選んで破壊し、その後、自分のクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          },
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "grave",
+            "g177SelfMana": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "19f10abfe1e47a0da32025d8fdb7a69f011e2e81ab263e1eaa0a9f8324148207",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24-079": 4,
+      "dmr10-014": 4
+    }
+  }
+}

@@ -1,0 +1,315 @@
+{
+  "phase": 339,
+  "checkedAt": "2026-11-02",
+  "description": "墓地・マナから条件に合うクリーチャーを出す効果を既存の選択・配置処理で扱う。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp16-025",
+      "name": "虚数転生",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-025",
+      "faces": [
+        {
+          "name": "虚数転生",
+          "typeText": "呪文",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "カードを３枚引き、その後、自分の手札を３枚捨てる。\nコスト３以下のクリーチャーを３体まで、自分の墓地からバトルゾーンに出す。",
+          "race": "チーム零",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 3
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 3,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            },
+            "optional": true,
+            "title": "墓地から出すクリーチャーを3体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "2fa9c71b0e43ba1e240df5c96330101375decc34e84e98df8a00f70f2833e2f0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-022",
+      "name": "狂気と凶器の墓場",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-022",
+      "faces": [
+        {
+          "name": "狂気と凶器の墓場",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の山札の上から２枚を墓地に置く。その後、コスト６以下の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 2
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "max": 6
+            },
+            "optional": false,
+            "title": "墓地から出す進化ではないクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "f62b928c9e1914988a410242429b2670bb27639893f5919ece318c0c373ccbed",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16s-001",
+      "name": "慈悲の精霊龍 イヴローラン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-001",
+      "faces": [
+        {
+          "name": "慈悲の精霊龍 イヴローラン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー ブロッカー\nこのクリーチャーが攻撃する時、進化ではない光の「ブロッカー」を持つクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。\nW・ブレイカー",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "color": "光",
+              "blocker": true
+            },
+            "optional": true,
+            "title": "墓地から出す進化ではないクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "f9e4938925d5d8d4bf312a5d9bd6cc56737b4ee99309c248ffe87e8ca2f23428",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx23-055",
+      "name": "復活の審判者 シヴァラーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx23-055",
+      "faces": [
+        {
+          "name": "復活の審判者 シヴァラーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが攻撃する時、闇の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。",
+          "race": "デーモン・コマンド",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "color": "闇"
+            },
+            "optional": true,
+            "title": "墓地から出す闇の進化ではないクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx23-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "9fdd3d9c10aca9ef2cd9bfc40a8622a6d8c8633d5838d5cbf94f83609d726cad",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23-033",
+      "name": "霊騎ラビリオニクス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-033",
+      "faces": [
+        {
+          "name": "霊騎ラビリオニクス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、コスト３以下のセイント・ヘッドを１体、自分のマナゾーンからバトルゾーンに出してもよい。",
+          "race": "アーク・セラフィム",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "max": 3,
+              "race": "セイント・ヘッド"
+            },
+            "optional": true,
+            "title": "マナから出すクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "f4570d69739f5a8c5c1f8fbaedc28173cffa754f7852c04b67f948573ef0a79c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-105",
+      "name": "連鎖の面 ブルザッソ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-105",
+      "faces": [
+        {
+          "name": "連鎖の面 ブルザッソ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが攻撃する時、コスト２以下の進化ではない自然のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。",
+          "race": "ビーストフォーク號",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "max": 2,
+              "nonEvolution": true,
+              "color": "自然"
+            },
+            "optional": true,
+            "title": "マナから出すクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-105.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "f122bd12dff95b91f1dc6c09f56562348a62b6b5b1c63d110c09bbc1d0a71352",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp16-025": 4,
+      "dmrp02-022": 4,
+      "dmr16s-001": 4,
+      "dmx23-055": 4,
+      "dm23-033": 4,
+      "dmr13-105": 4
+    }
+  }
+}

@@ -1,0 +1,207 @@
+{
+  "phase": 372,
+  "checkedAt": "2026-11-02",
+  "description": "既存のマナ武装、墓地回収・蘇生、スピードアタッカー付与、シールド数比較を組み合わせて3種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmr22-009",
+      "name": "Mの悪魔龍 リンネビーナス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-009",
+      "faces": [
+        {
+          "name": "Mの悪魔龍 リンネビーナス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nスレイヤー\nW・ブレイカー\nマナ武装 ４：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンに多色カードが４枚以上あれば、コスト５以下のクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。その後、このターン、自分のクリーチャーすべてに「スピードアタッカー」を与える。",
+          "race": "デーモン・コマンド・ドラゴン/イニシャルズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "slayer": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfMana",
+            "n": 4,
+            "multi": true,
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "n": 1,
+                "deploy": true,
+                "g236GraveDeploy": true,
+                "filter": {
+                  "creature": true,
+                  "max": 5
+                },
+                "optional": true,
+                "title": "墓地から出すクリーチャーを1体選ぶ"
+              },
+              {
+                "op": "GroupGrant364",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                },
+                "grant": {
+                  "speedAttacker": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "418575b9eb0530ce9294fff50d68d4a043114dffa216f9f2a7f0144ab2b06325",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16s-045",
+      "name": "闇からの復権",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-045",
+      "faces": [
+        {
+          "name": "闇からの復権",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "クリーチャーを１体、自分の墓地から手札に戻す。\n自分のシールドの数が相手のより多ければ、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "moreThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "042ea48ec7c9768b743fe472b231f1bf6a889c845d85c45bf158e8ef75b68816",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16s-049",
+      "name": "爆流剣術 神速の技",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-049",
+      "faces": [
+        {
+          "name": "爆流剣術 神速の技",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このターン、バトルゾーンにある自分のクリーチャー１体は「スピードアタッカー」を得る。（「スピードアタッカー」を得たクリーチャーは召喚酔いしない）\n自分のシールドの数が相手のより多ければ、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g301Grant": true,
+            "grant": {
+              "speedAttacker": true
+            },
+            "title": "このターン、スピードアタッカーを与える自分のクリーチャーを1体選ぶ",
+            "spell": true
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "moreThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "b3f8f7f7dba1d73aed0b0d90d9be3121ce1f1781414694cf7efda65578506ce1",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr22-009": 4,
+      "dmr16s-045": 4,
+      "dmr16s-049": 4
+    }
+  }
+}

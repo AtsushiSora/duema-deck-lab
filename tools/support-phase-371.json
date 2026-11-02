@@ -1,0 +1,157 @@
+{
+  "phase": 371,
+  "checkedAt": "2026-11-02",
+  "description": "既存の任意捨札後の相手選択、登場・離脱誘発、種族数条件を再利用して闇のクリーチャー3種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dm19-088",
+      "name": "封魔グラーボス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-088",
+      "faces": [
+        {
+          "name": "封魔グラーボス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンに自分のディープ・マリーンが１体もなければ、自分の手札を１枚捨てる。",
+          "race": "グランド・デビル",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "filter": {
+                  "race": "ディープ・マリーン"
+                },
+                "max": 0
+              }
+            },
+            "defs": [
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-088.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "f085146422122324d8708478bdfebf83843831d39b9242c4a4183673b2661629",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-057",
+      "name": "無常の破壊者ボネー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-057",
+      "faces": [
+        {
+          "name": "無常の破壊者ボネー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の手札を１枚捨ててもよい。そうしたら、相手は自身のクリーチャーを１体選んで破壊する。",
+          "race": "デーモン・コマンド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DiscardFor248",
+            "defs": [
+              {
+                "op": "OpponentSelect",
+                "n": 1,
+                "to": "grave"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-057.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "8cf7cc94d5491bb03a8b87976c23b861a225050e3c912df7fefd794f20fee7e3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp03-072",
+      "name": "龍装者 ダクマ65号",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-072",
+      "faces": [
+        {
+          "name": "龍装者 ダクマ65号",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、またはバトルゾーンを離れた時、相手は自身の手札を１枚選び、捨てる。",
+          "race": "ドラゴンギルド/マフィ・ギャング",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-072.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "dcc65a6aff58b3aff67c798cb99ce740bf2bcc980d1315324e379886e82b364f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm19-088": 4,
+      "dmr18-057": 4,
+      "dmrp03-072": 4
+    }
+  }
+}

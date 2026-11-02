@@ -1,0 +1,161 @@
+{
+  "phase": 392,
+  "checkedAt": "2026-11-02",
+  "description": "既存の鬼タイム、スレイヤー、ターン開始時のシールド回収、登場時と離脱時のシールド化を再利用して3種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp15-010",
+      "name": "「魂狩」の鬼 ガシャド髑髏",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-010",
+      "faces": [
+        {
+          "name": "「魂狩」の鬼 ガシャド髑髏",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "Q・ブレイカー\nこのクリーチャーは攻撃できない。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、真上の▪️能力を無視する。\n自分のターンのはじめに、自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "21000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 4,
+        "noAttack": true,
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "grants": {
+            "noAttack": false
+          }
+        },
+        "g174Start": [
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "a4eeac38b1a82566376bdf05687fbd0656c104f4ec31b4d4a958c9fba22f20db",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp3-030",
+      "name": "～光の夜明け～",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-030",
+      "faces": [
+        {
+          "name": "～光の夜明け～",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、自分の山札の上から１枚をシールド化する。\nこのクリーチャーが離れた時、相手のクリーチャーを１体選び、シールド化してもよい。",
+          "race": "エンジェル・コマンド/スチーム・ナイト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Target",
+            "to": "shields",
+            "optional": true,
+            "title": "シールド化する相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "d1c9d489fdb6d4387e1a6b5bf4ffa36a4b9bb0cb25c447482752dfce9420125a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-074",
+      "name": "ヤモリ変怪",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-074",
+      "faces": [
+        {
+          "name": "ヤモリ変怪",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーは攻撃できない。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、真上の▪️能力を無視する。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "slayer": true,
+        "noAttack": true,
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "grants": {
+            "noAttack": false
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-074.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "fba0a053aa451485be6213e72a2fe62ec74cef027164bf7b5a40c683cc085996",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp15-010": 4,
+      "dm25rp3-030": 4,
+      "dmrp16-074": 4
+    }
+  }
+}

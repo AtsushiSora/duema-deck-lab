@@ -1,0 +1,180 @@
+{
+  "phase": 366,
+  "checkedAt": "2026-11-02",
+  "description": "既存の山札選択と公開・種族/コスト条件・シャッフル・任意回収・マナ配置を組み合わせて追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/qa/31742/"
+  ],
+  "cards": [
+    {
+      "id": "dm05-052",
+      "name": "シザーズ・ビートル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-052",
+      "faces": [
+        {
+          "name": "シザーズ・ビートル",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、自分の山札を見る。その中からジャイアント・インセクトを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "ジャイアント・インセクト",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "race": "ジャイアント・インセクト"
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ],
+            "rest": "shuffle"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm05-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "dc158e8c91192f8e633209b7687eff760a263d754ca2dbc72b5d9ae741efabb0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-046",
+      "name": "ジャスティス・プラン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-046",
+      "faces": [
+        {
+          "name": "ジャスティス・プラン",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の山札の上から３枚を、すべてのプレイヤーに見せる。その中からエンジェル・コマンドとジャスティス・ウイングをすべて自分の手札に加え、その後、残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 3,
+            "public": true,
+            "stages": [
+              {
+                "n": "all",
+                "to": "hand",
+                "filter": {
+                  "any": [
+                    {
+                      "anyFaceRace": "エンジェル・コマンド"
+                    },
+                    {
+                      "anyFaceRace": "ジャスティス・ウイング"
+                    }
+                  ]
+                }
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "03fae70f79f99f22c6af767101f1359231c2f797a0a38263a4a1db2ababdc3c2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-109",
+      "name": "天頂計画",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-109",
+      "faces": [
+        {
+          "name": "天頂計画",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の山札の上から２枚をすべてのプレイヤーに見せる。その中から、コスト７以上のカードを好きな数、手札に加えてもよい。残りを自分のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 2,
+            "public": true,
+            "stages": [
+              {
+                "n": "all",
+                "to": "hand",
+                "filter": {
+                  "anyFaceMinCost": 7
+                },
+                "optional": true
+              }
+            ],
+            "rest": "mana"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-109.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "0a61a20e7ff2cf4b428590d2d44c29bf4c17656ef630120261dcf8ac2939befe",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm05-052": 4,
+      "dmr13-046": 4,
+      "dmr05-109": 4
+    }
+  }
+}

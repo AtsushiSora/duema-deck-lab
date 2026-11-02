@@ -1,0 +1,203 @@
+{
+  "phase": 345,
+  "checkedAt": "2026-11-02",
+  "description": "ドロー後の無作為な手札破棄と進化の有無による手札破棄を共通処理で扱う。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp3-065",
+      "name": "レッツ・烈・ノルッピ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-065",
+      "faces": [
+        {
+          "name": "レッツ・烈・ノルッピ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、カードを２枚引く。その後、自分の手札を１枚、相手に見ないで選ばせ、捨てる。",
+          "race": "アーマード・ファイアー・バード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1,
+            "random": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-065.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "4390c65d9e3c93359a1a69c47378f811bf0123323b170e53f6f114dcc667618b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-062",
+      "name": "蒸熱のタイフーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-062",
+      "faces": [
+        {
+          "name": "蒸熱のタイフーン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "カードを２枚引く。自分の進化クリーチャーがなければ、自分の手札を１枚捨てる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "evolution": true
+            },
+            "defs": [],
+            "elseDefs": [
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-062.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "8f3c2ec1aa86edc85ed5b0cc292cd4b4733da02745b8a79dbdd1d1b8c2574e00",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-072",
+      "name": "蓄海呪文「ザブンアッチ・チャージャー」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-072",
+      "faces": [
+        {
+          "name": "蓄海呪文「ザブンアッチ・チャージャー」",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "カードを２枚引く。その後、自分の手札を１枚、相手に見ないで選ばせ、捨てる。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1,
+            "random": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-072.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "c3c8b98213638fd75c9f4b69ac1d7bf9675b9f43ba32929f11a625095187f9d0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-019",
+      "name": "覇王への道",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-019",
+      "faces": [
+        {
+          "name": "覇王への道",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "カードを３枚引く。その後、自分の手札を１枚、相手に見ないで選ばせ、捨てる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1,
+            "random": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "89f81248c1cc7bbb03674b56f5c32d70f15f2666f2b58ed3d04d9e537eae5581",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp3-065": 4,
+      "dm25rp1-062": 4,
+      "dm23rp4-072": 4,
+      "dmrp20-019": 4
+    }
+  }
+}

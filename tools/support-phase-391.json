@@ -1,0 +1,112 @@
+{
+  "phase": 391,
+  "checkedAt": "2026-11-02",
+  "description": "既存の味方数に応じた自己強化と登場監視、任意のマナからシールドへの移動を再利用して2種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmr06-053",
+      "name": "カッチカチ・イッチカッチーズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-053",
+      "faces": [
+        {
+          "name": "カッチカチ・イッチカッチーズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のアンノウンをバトルゾーンに出した時、自分のマナゾーンのクリーチャーを１体、新しいシールドとして、シールドゾーンに裏向きにして加えてもよい。",
+          "race": "ワイルド・ベジーズ/アンノイズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "race": "アンノウン"
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "to": "shields",
+              "n": 1,
+              "filter": {
+                "creature": true
+              },
+              "optional": true,
+              "title": "シールドに置く自分のマナのクリーチャーを1体まで選ぶ"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "d653eb25924b0e9441c0efad79e81544a0748ba4e7542bcd9a79bb2db81acb37",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm02-048",
+      "name": "ガルザウルス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-048",
+      "faces": [
+        {
+          "name": "ガルザウルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンに他に自分のクリーチャーがなければ、このクリーチャーは「パワーアタッカー+4000」と「W・ブレイカー」を得る。 (攻撃中、そのクリーチャーのパワーは+4000され、シールドを攻撃したとき、シールドを２枚ブレイクする。)",
+          "race": "ロック・ビースト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true
+              },
+              "max": 1
+            }
+          },
+          "grants": {
+            "attackBonus": 4000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm02-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "972c3ea18d6d2a05a2aff93fb9c8a3aab5a9ad08be0bd6eb5beb969bbcb48489",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr06-053": 4,
+      "dm02-048": 4
+    }
+  }
+}

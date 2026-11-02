@@ -1,0 +1,167 @@
+{
+  "phase": 357,
+  "checkedAt": "2026-11-02",
+  "description": "既存の山札の振り分け・登場監視・マナ回収を再利用し、3種類を全能力対応で追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmex13-050",
+      "name": "手甲者 ロッポウツラネ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-050",
+      "faces": [
+        {
+          "name": "手甲者 ロッポウツラネ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、カードを１枚、自分のマナゾーンから山札の上に置く。",
+          "race": "ムートピア/美孔麗王国",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "deckTop",
+            "n": 1,
+            "g183Return": true,
+            "title": "山札の上に戻すマナを1枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "96cb974b6a895aacdda0d4b5476cc92adc99574bd64f927681c91d4801801bd0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp07-053",
+      "name": "天体かんそ君",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-053",
+      "faces": [
+        {
+          "name": "天体かんそ君",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を見る。そのうちの１枚を自分のマナゾーンに、１枚を山札の一番下に、１枚を山札の一番上に置く。",
+          "race": "ジョーカーズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 3,
+            "stages": [
+              {
+                "n": 1,
+                "to": "mana",
+                "title": "マナゾーンに置く1枚を選ぶ"
+              },
+              {
+                "n": 1,
+                "to": "deck",
+                "title": "山札の一番下に置く1枚を選ぶ"
+              }
+            ],
+            "rest": "top"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "b3a3cc42deec2d14e368acb7854744559a26c3c2c8a62e9046c54440cdb50e72",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-038",
+      "name": "霊騎サンダール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-038",
+      "faces": [
+        {
+          "name": "霊騎サンダール",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のクリーチャーをバトルゾーンに出した時、アーク・セラフィムまたはワイルド・ベジーズを１体、自分のマナゾーンから手札に戻してもよい。",
+          "race": "アーク・セラフィム",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "raceAny": [
+                  "アーク・セラフィム",
+                  "ワイルド・ベジーズ"
+                ]
+              },
+              "g232ManaReturn": true,
+              "title": "手札に戻すアーク・セラフィムかワイルド・ベジーズを選ぶ"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "fc3c230fcdc2e3c2aedf2f442c0885b5fadc726e7677233680d1eb2329d3bd49",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex13-050": 4,
+      "dmrp07-053": 4,
+      "dm19-038": 4
+    }
+  }
+}

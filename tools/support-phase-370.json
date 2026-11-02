@@ -1,0 +1,146 @@
+{
+  "phase": 370,
+  "checkedAt": "2026-11-02",
+  "description": "場のクリーチャー数と手札枚数の条件を既存の召喚軽減に組み合わせ、条件付き自身の軽減とビートジョッキーへの軽減を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp07-047",
+      "name": "“Ｒｰ夢”ララッタ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-047",
+      "faces": [
+        {
+          "name": "“Ｒｰ夢”ララッタ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "G・G・G：自分の手札が１枚以下なら、自分のビートジョッキーの召喚コストは２少なくなる。ただし、コストは０以下にならない。",
+          "race": "ビートジョッキー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "race": "ビートジョッキー"
+            },
+            "condition": {
+              "g334ZoneCount": {
+                "zone": "hand",
+                "max": 1
+              }
+            },
+            "amount": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "a3b18cb958a5a4d9728d3d05931e7b77738b628de699b199e1378e5ed784a125",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-040",
+      "name": "オオガマ童子",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-040",
+      "faces": [
+        {
+          "name": "オオガマ童子",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンに自分のクリーチャーが１体もなければ、このクリーチャーの召喚コストを２少なくする。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g261Discount": {
+          "filter": {
+            "g370BattleCount": {
+              "max": 0
+            }
+          },
+          "amount": 2
+        },
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "e48ca804a567ca0ebd6db80725381a9950c70b0897275fbb5ec2e63e2e49c887",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd03-002",
+      "name": "ボール“BOMB”ボマー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd03-002",
+      "faces": [
+        {
+          "name": "ボール“BOMB”ボマー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "バトルゾーンに自分のビートジョッキーが３体以上あれば、このクリーチャーの召喚コストを最大５少なくしてもよい。ただし、コストは０以下にならない。\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "ビートジョッキー",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g261Discount": {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "race": "ビートジョッキー"
+              },
+              "min": 3
+            }
+          },
+          "amount": 5
+        },
+        "speedAttacker": true,
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd03-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "eec45bb2a90cc6b9a39c1069b5e67291954787ca346555706e8222628e7c925f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp07-047": 4,
+      "dmrp16-040": 4,
+      "dmsd03-002": 4
+    }
+  }
+}

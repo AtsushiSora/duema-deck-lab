@@ -1,0 +1,386 @@
+{
+  "phase": 348,
+  "checkedAt": "2026-11-02",
+  "description": "既存の共通処理で全文をコンパイルできるカードを、公式照合と効果検証を経てまとめて追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp3-043",
+      "name": "オンサ＝マンサー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-043",
+      "faces": [
+        {
+          "name": "オンサ＝マンサー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーが出た時、自分の山札の上から１枚目を見る。それを墓地に置いてもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 1,
+            "stages": [
+              {
+                "n": 1,
+                "to": "grave",
+                "optional": true
+              }
+            ],
+            "rest": "top"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "077d595a55fae22a3a1694189f968667f0ccc134e154327787a0d91713a0eb45",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-015",
+      "name": "サイバー・P・ゴービー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-015",
+      "faces": [
+        {
+          "name": "サイバー・P・ゴービー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から５枚を見る。その後、それらを好きな順序で戻す。",
+          "race": "サイバー・コマンド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 5,
+            "stages": [],
+            "rest": "top",
+            "g259OrderTop": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "39d7666ee59efba4bcd65337542e928e80ea18bccc5259a664d7cd5de1db72b7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-086",
+      "name": "ボイル・チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-086",
+      "faces": [
+        {
+          "name": "ボイル・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "バトルゾーンにある相手の、コスト２以下のカードを１枚選び、持ち主の墓地に置く。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "element": true,
+            "filter": {
+              "max": 2
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-086.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "e9b5963c6084a8a6d6344d2405ec3747bc91c16d4b693037ea24f5e94c26d099",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-092",
+      "name": "モッテケ・チュリス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-092",
+      "faces": [
+        {
+          "name": "モッテケ・チュリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある相手の、コスト３以下のカードを１枚選び、持ち主の墓地に置く。",
+          "race": "ビートジョッキー/チームボンバー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "element": true,
+            "filter": {
+              "max": 3
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-092.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "2a6d94efb8f6b21bfdbdb8c79608bf6ce47cfd504e845262a907acd42530b7f4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd20-007",
+      "name": "英雄奥義 バーニング銀河",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd20-007",
+      "faces": [
+        {
+          "name": "英雄奥義 バーニング銀河",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにある相手のコスト５以下のカードを１枚選び、持ち主の墓地に置く。\nマナ武装 ７：自分のマナゾーンに火のカードが７枚以上あれば、バトルゾーンにある相手のコスト12以下のカードを１枚選び、持ち主の墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "element": true,
+            "filter": {
+              "max": 5
+            }
+          },
+          {
+            "op": "IfMana",
+            "n": 7,
+            "color": "火",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "element": true,
+                "filter": {
+                  "max": 12
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd20-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "41b24998a178e4315a5fb68e005d64491d7be0b83b8a4b5711217df79c15aaf4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-055",
+      "name": "電勇 マグナス-２",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-055",
+      "faces": [
+        {
+          "name": "電勇 マグナス-２",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーはブロックされない。\nこのクリーチャーが破壊された時、バトルゾーンにある相手のコスト４以下のカードを１枚選び、持ち主の墓地に置く。\nササゲール２（ディスペクターを召喚する時、コストを２少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "リキッド・ピープル/ヒューマノイド/ディスタス",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "unblockable": true,
+        "sasage": 2,
+        "g172Death": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "element": true,
+            "filter": {
+              "max": 4
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "8054444db4c7eb6caedd09023b1a3adc47ebc0ac79bc9cc07f6dd816c4911fe1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-032",
+      "name": "爆鏡 ヒビキ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-032",
+      "faces": [
+        {
+          "name": "爆鏡 ヒビキ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のターン中に、相手が呪文を唱えた時、相手のマナゾーンからカードを１枚選び、持ち主の墓地に置く。",
+          "race": "ヒューマノイド爆",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g204SpellWatch": {
+          "who": "opponent",
+          "opponentTurn": true,
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "owner": "opponent",
+              "to": "grave",
+              "n": 1,
+              "title": "墓地に置く相手のマナを1枚選ぶ"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "f195e7a78ad2b29f337ab9c23e35a3dfa882ea2bd92640f55f100e4ffbfbdefe",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-011",
+      "name": "明王の精霊 オンソワカJ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-011",
+      "faces": [
+        {
+          "name": "明王の精霊 オンソワカJ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが攻撃する時、コスト５以下のD２フィールドを１枚、自分の手札からバトルゾーンに出してもよい。",
+          "race": "エンジェル・コマンド/イニシャルズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "g228Face": {
+                "type": "field",
+                "d2": true,
+                "max": 5
+              }
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "d5e7a65812035d2552f2bb54b53ddda9206cecab4310f1c6ab1086f92f04c029",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp3-043": 4,
+      "dmr19-015": 4,
+      "dmrp19-086": 4,
+      "dmex14-092": 4,
+      "dmd20-007": 4,
+      "dmrp18-055": 4,
+      "dmr13-032": 4,
+      "dmr23-011": 4
+    }
+  }
+}

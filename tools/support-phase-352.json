@@ -1,0 +1,269 @@
+{
+  "phase": 352,
+  "checkedAt": "2026-11-02",
+  "description": "味方の攻撃を契機とするブロッカー破壊と最初の攻撃の除去を既存処理で扱う。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmx04-007",
+      "name": "GENJI・ボーイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx04-007",
+      "faces": [
+        {
+          "name": "GENJI・ボーイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nこのクリーチャーは、可能であれば毎ターン攻撃する。\n自分のハンターが攻撃する時、相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+          "race": "ヒューマノイド/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "mustAttack": true,
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "filter": {
+              "creature": true,
+              "race": "ハンター"
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "blocker": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx04-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "b87f929fb1b5e8a623d5148a33bbe6937a056370e646def6a128ee9451647238",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc51-002",
+      "name": "ガトリング・フォース・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc51-002",
+      "faces": [
+        {
+          "name": "ガトリング・フォース・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "自分のドラゴンが攻撃する時、相手の「ブロッカー」を持つクリーチャーを１体破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "blocker": true
+                }
+              }
+            ]
+          }
+        ],
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc51-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "b295240464bd96fded92f41d8680f6b14017c680dc6e1dc5d6dbf59da95c66d4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr20-037",
+      "name": "音速 メテオ０８",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-037",
+      "faces": [
+        {
+          "name": "音速 メテオ０８",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のクリーチャーが攻撃する時、それがそのターンはじめての攻撃であれば、相手の「ブロッカー」を持つクリーチャーを１体、破壊する。",
+          "race": "ヒューマノイド爆/侵略者",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "first": true,
+            "filter": {
+              "creature": true
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "blocker": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr20-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "c4061711fa5ecf0d84024a972ca22eeaaef955949e23203c572faa7fe06df532",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm20-017",
+      "name": "衝撃のロウバンレイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-017",
+      "faces": [
+        {
+          "name": "衝撃のロウバンレイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nこのクリーチャーは、可能であれば毎ターン攻撃する。\n自分のティラノ・ドレイクまたはブレイブ・スピリットが攻撃する時、相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+          "race": "ブレイブ・スピリット",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "mustAttack": true,
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "filter": {
+              "creature": true,
+              "raceAny": [
+                "ティラノ・ドレイク",
+                "ブレイブ・スピリット"
+              ]
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "blocker": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "c20c8fb57ec70bab308211826976e6f841094ff5ee8a4ec1a76bcb1bda14c3f8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-042",
+      "name": "爆煽動 バラン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-042",
+      "faces": [
+        {
+          "name": "爆煽動 バラン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のクリーチャーが攻撃する時、それがそのターンはじめての攻撃であれば、相手のパワー3000以下のクリーチャーを１体破壊する。",
+          "race": "ヒューマノイド爆",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "first": true,
+            "filter": {
+              "creature": true
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 3000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "1a35d21d0517ec5ea80e2340c9ab68092a3a2ebd992a2e8567a689addc3961fa",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx04-007": 4,
+      "dmc51-002": 4,
+      "dmr20-037": 4,
+      "dm20-017": 4,
+      "dmr19-042": 4
+    }
+  }
+}

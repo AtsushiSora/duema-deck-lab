@@ -1,0 +1,103 @@
+{
+  "phase": 380,
+  "checkedAt": "2026-11-02",
+  "description": "既存の自他の対象選択、他のクリーチャー判定、シールド化、コスト一致の一斉破壊を再利用して2種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp4-053",
+      "name": "レディゴ・カリ・ゲルス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-053",
+      "faces": [
+        {
+          "name": "レディゴ・カリ・ゲルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、他のクリーチャーを１体選び、シールド化してもよい。",
+          "race": "メカ・エンジェル・コマンド",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "g179Other": true,
+            "to": "shields",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "55bb7e899dd65b220752e2e390870c7e3489e2221d9be433af025f098f6a7ba5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-049",
+      "name": "開眼爆剣 アイラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-049",
+      "faces": [
+        {
+          "name": "開眼爆剣 アイラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、コスト１のクリーチャーをすべて破壊する。",
+          "race": "ヒューマノイド爆",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "g215Sweep": true,
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "exactCost": 1
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "b8e3e2533c35b9c12105c9aa0284d6472e38fc45a9a6ea587cbdbc7ff0ecf2fe",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp4-053": 4,
+      "dmr14-049": 4
+    }
+  }
+}

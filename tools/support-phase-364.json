@@ -1,0 +1,168 @@
+{
+  "phase": 364,
+  "checkedAt": "2026-11-02",
+  "description": "味方全体にこのターン中の能力を与える共通処理を追加し、既存のパワー強化・チャージャー・シールド回収と組み合わせる。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmr06-051",
+      "name": "ダッシュ・チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-051",
+      "faces": [
+        {
+          "name": "ダッシュ・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このターン、バトルゾーンにある自分のクリーチャーはすべて「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)\nチャージャー(この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "grant": {
+              "speedAttacker": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "f402624ee0091579650c818b91d1749ec8df0b578f15d83a3fb569a87864bca9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-053",
+      "name": "奇怪な鬼祭",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-053",
+      "faces": [
+        {
+          "name": "奇怪な鬼祭",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このターン、自分のクリーチャーすべてに「スレイヤー」を与える。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n自分のシールドを１つ、手札に加える。ただし、その「S・トリガー」は使えない。",
+          "race": "鬼札王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "grant": {
+              "slayer": true
+            },
+            "spell": true
+          },
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "a838cf5c92ffb306da6718c1c719f36e8860f603ad3790b750c89ffac5f9ddd4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr10-033",
+      "name": "猛攻と進撃のアシスト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-033",
+      "faces": [
+        {
+          "name": "猛攻と進撃のアシスト",
+          "typeText": "呪文",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのターン、バトルゾーンにある自分のクリーチャーすべてのパワーは+2000され、「スピードアタッカー」を得る。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "g214GroupPower": true,
+            "owner": "self",
+            "power": 2000,
+            "filter": {
+              "creature": true
+            },
+            "spell": true
+          },
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "grant": {
+              "speedAttacker": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "3e0ae6efd8fb84c85b4191907a30c9dde4421b4ab31758427408bb9686d10689",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr06-051": 4,
+      "dmex14-053": 4,
+      "dmr10-033": 4
+    }
+  }
+}

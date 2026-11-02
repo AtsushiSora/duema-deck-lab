@@ -1,0 +1,183 @@
+{
+  "phase": 384,
+  "checkedAt": "2026-11-02",
+  "description": "既存の文明と進化条件による召喚軽減、墓地からのタップマナ追加、相手のマナを墓地に置く任意選択を再利用して4種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/",
+    "https://dm.takaratomy.co.jp/rule/qa/41070/"
+  ],
+  "cards": [
+    {
+      "id": "dm32-057",
+      "name": "死神封魔ラヴァール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-057",
+      "faces": [
+        {
+          "name": "死神封魔ラヴァール",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の闇の進化クリーチャーを召喚するコストを１少なくしてもよい。ただし、コストは１より少なくならない。",
+          "race": "グランド・デビル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "color": "闇",
+              "evolution": true
+            },
+            "amount": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-057.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "6f4372b10bc3b86cea7a6180e260dc48e24146156a4afdaa22bb2487771c23ac",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd33-009",
+      "name": "社の死神 再誕の祈",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd33-009",
+      "faces": [
+        {
+          "name": "社の死神 再誕の祈",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、カードを２枚まで、自分の墓地からマナゾーンにタップして置く。",
+          "race": "ビーストフォーク",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "mana",
+            "n": 2,
+            "tapped": true,
+            "optional": true,
+            "title": "マナに置く自分の墓地のカードを2枚まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd33-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "2d9ed9113664bc61de2abcaab4788da724ff4fcae4a97d73c97c629d83f84475",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm32-063",
+      "name": "爆裂B-BOY",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-063",
+      "faces": [
+        {
+          "name": "爆裂B-BOY",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の火の進化クリーチャーを召喚するコストを１少なくしてもよい。ただし、コストは１より少なくならない。",
+          "race": "ヒューマノイド",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "color": "火",
+              "evolution": true
+            },
+            "amount": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-063.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "05e2c3c01ac723d5ea4756b0ab16c465df842c927bbbf9072435da1d7825337d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "sp-034",
+      "name": "緑神龍ザールベルグ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=sp-034",
+      "faces": [
+        {
+          "name": "緑神龍ザールベルグ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、相手のマナゾーンからカードを２枚まで選び、持ち主の墓地に置く。",
+          "race": "アース・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "owner": "opponent",
+            "to": "grave",
+            "n": 2,
+            "optional": true,
+            "title": "墓地に置く相手のマナを2枚まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/sp-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "a4ee5adc966b7d9370e958e718acfcdf7304c8c8613fdcac321eafafa5a7fb82",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm32-057": 4,
+      "dmd33-009": 4,
+      "dm32-063": 4,
+      "sp-034": 4
+    }
+  }
+}

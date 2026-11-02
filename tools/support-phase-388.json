@@ -1,0 +1,165 @@
+{
+  "phase": 388,
+  "checkedAt": "2026-11-02",
+  "description": "既存の山札の振り分け、登場・離脱時タップ、登場・攻撃時の行動制限を再利用して3種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "promoy15-030",
+      "name": "タイム１ ドレミ・レード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy15-030",
+      "faces": [
+        {
+          "name": "タイム１ ドレミ・レード",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーがバトルゾーンに出た時またはバトルゾーンを離れた時、相手のクリーチャーを１体選び、タップする。",
+          "race": "革命軍/ドレミ団",
+          "powerText": "500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy15-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "9a1fc7e0eba2b843dd0106684cccc4a2f6b568c147e77a985b00faece76e469b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex10-025",
+      "name": "無敵死神 ヘックスペイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex10-025",
+      "faces": [
+        {
+          "name": "無敵死神 ヘックスペイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を見る。そのうちの１枚を墓地に、１枚をマナゾーンに置き、残りの１枚を手札に加える。",
+          "race": "デーモン・コマンド/ジャイアント",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 3,
+            "stages": [
+              {
+                "n": 1,
+                "to": "grave"
+              },
+              {
+                "n": 1,
+                "to": "mana"
+              },
+              {
+                "n": 1,
+                "to": "hand"
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex10-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "d8c6b3f49a8dde8b340ffc5716b15a745e8a4c24c9c702b0dedda5ce2d4a11d0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr12-018",
+      "name": "涙の卒業プリン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-018",
+      "faces": [
+        {
+          "name": "涙の卒業プリン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、バトルゾーンにある相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "ハンター/エイリアン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "次の自分のターンまで攻撃とブロックを止める相手のクリーチャーを選ぶ"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "次の自分のターンまで攻撃とブロックを止める相手のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr12-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "fdd212380384841c3ca3a14506833da7af7ea7ed093e539dd502e68e8e5c37fc",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy15-030": 4,
+      "dmex10-025": 4,
+      "dmr12-018": 4
+    }
+  }
+}

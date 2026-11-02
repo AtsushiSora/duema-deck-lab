@@ -1,0 +1,198 @@
+{
+  "phase": 351,
+  "checkedAt": "2026-11-02",
+  "description": "多色・種族・名前による味方への常在能力付与を共通処理で扱う。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmex08-255",
+      "name": "The カレーラー漢",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-255",
+      "faces": [
+        {
+          "name": "The カレーラー漢",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の《漢》と名前にあるクリーチャーすべてに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "ジョーカーズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "g227NameIncludes": "漢"
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-255.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "fe6f77deef5f35aeaf49ab420995c7cdcc8983751071eb4decaa0834af99bf8e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-sec01",
+      "name": "オフコース・カイザー「龍」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-sec01",
+      "faces": [
+        {
+          "name": "オフコース・カイザー「龍」",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "バトルゾーンにある自分のエイリアンはすべて、「スピードアタッカー」を得る。\n自分の他のハンターは攻撃されない。",
+          "race": "レッド・コマンド・ドラゴン/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "race": "エイリアン"
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          },
+          {
+            "filter": {
+              "creature": true,
+              "race": "ハンター"
+            },
+            "other": true,
+            "grants": {
+              "cannotBeAttacked": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-sec01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "1e8e92df0636c24d86f052864e80bb4ede79eb37f89c411144f3347f5bc2526c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-041",
+      "name": "金色の精霊クロスヘイム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-041",
+      "faces": [
+        {
+          "name": "金色の精霊クロスヘイム",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nバトルゾーンにある自分の多色クリーチャーはすべて「ブロッカー」を得る。",
+          "race": "エンジェル・コマンド",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "multi": true
+            },
+            "grants": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "670165076c7700657299b31952b6621a0c7c1648e7a583a6a6f8f69d1cb307af",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm38-036",
+      "name": "巡礼者アムド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-036",
+      "faces": [
+        {
+          "name": "巡礼者アムド",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトルゾーンにある自分のエンジェル・コマンドとデーモン・コマンドはすべて「ブロッカー」を得る。",
+          "race": "コスモ・ウォーカー",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "raceAny": [
+                "エンジェル・コマンド",
+                "デーモン・コマンド"
+              ]
+            },
+            "grants": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "79307c65491f2d07a8784cb0353e962821d7accaa0bf6769cddf9ad2fe010733",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex08-255": 4,
+      "dmr05-sec01": 4,
+      "dm24-041": 4,
+      "dm38-036": 4
+    }
+  }
+}

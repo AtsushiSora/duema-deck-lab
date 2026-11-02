@@ -1,0 +1,322 @@
+{
+  "phase": 344,
+  "checkedAt": "2026-11-02",
+  "description": "文明・種族・名前・D2フィールドの条件に合う手札展開を共通処理で扱う。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmr18-023",
+      "name": "ドギラゴン・エントリー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-023",
+      "faces": [
+        {
+          "name": "ドギラゴン・エントリー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のシールドをひとつ、手札に戻す。ただし、その「S・トリガー」は使えない。\n火のコスト７以下のコマンド・ドラゴンを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "color": "火",
+              "max": 7,
+              "race": "コマンド・ドラゴン"
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "41dde3b02214dd70540f7785843fe79685ec0990867162acd97e4e3348afb5eb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-031",
+      "name": "奇天烈X ネオベガス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-031",
+      "faces": [
+        {
+          "name": "奇天烈X ネオベガス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーはブロックされない。\nこのクリーチャーが攻撃する時、コスト５以下のD２フィールドを１枚、自分の手札からバトルゾーンに出してもよい。",
+          "race": "マジック・コマンド/イニシャルズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "unblockable": true,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "g228Face": {
+                "type": "field",
+                "d2": true,
+                "max": 5
+              }
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "da86cec3a01f54b462bc4b57a431de2607502d746114d61f4df18d2e1471a3b0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx25-003",
+      "name": "自由の拳 カツドン・ヤング",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx25-003",
+      "faces": [
+        {
+          "name": "自由の拳 カツドン・ヤング",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スピードアタッカー\nこのクリーチャーが破壊された時、火のコスト８以下のドラゴンまたはアウトレイジを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "アウトレイジMAX",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "color": "火",
+              "max": 8,
+              "raceAny": [
+                "ドラゴン",
+                "アウトレイジ"
+              ]
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx25-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "429ef9216225fcdb0a7d4cecda9c08bcdacf43383ea91c8e1f33f7fb0a7d1f45",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex2-074",
+      "name": "失われた世界",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-074",
+      "faces": [
+        {
+          "name": "失われた世界",
+          "typeText": "呪文",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "カードを２枚引く。その後、名前に《ジャシン》とあるクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "g220NameAny": [
+                "ジャシン"
+              ]
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex2-074.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "6f1db82f51534d9baa3a3878de7d44e1db1709acb83529ecf2673b4530e1d402",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-035",
+      "name": "爆裂G ダスカポネ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-035",
+      "faces": [
+        {
+          "name": "爆裂G ダスカポネ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが攻撃する時、コスト５以下のD２フィールドを１枚、自分の手札からバトルゾーンに出してもよい。",
+          "race": "フレイム・コマンド/イニシャルズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "g228Face": {
+                "type": "field",
+                "d2": true,
+                "max": 5
+              }
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "7d0aaee59618a2b9d1fb624f9b4585cfa1e7b42a1ef2fc3f81f28eb98530bdb6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-058",
+      "name": "友愛の精霊龍 ニコラス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-058",
+      "faces": [
+        {
+          "name": "友愛の精霊龍 ニコラス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、光または水のコスト３以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "エンジェル・ドラゴン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "max": 3,
+              "any": [
+                {
+                  "color": "光"
+                },
+                {
+                  "color": "水"
+                }
+              ]
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-058.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "19e52ea90910d5940082bfd334d828e7f71a2a4e252ccf3bc3bb3ba69bbdae52",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr18-023": 4,
+      "dmr23-031": 4,
+      "dmx25-003": 4,
+      "dm24ex2-074": 4,
+      "dmr23-035": 4,
+      "dmr21-058": 4
+    }
+  }
+}

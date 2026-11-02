@@ -1,0 +1,159 @@
+{
+  "phase": 374,
+  "checkedAt": "2026-11-02",
+  "description": "既存の登場・離脱ドロー、墓地肥やし後の他のアビス条件、エレメントの手札戻しを組み合わせて3種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp3-059",
+      "name": "キング・オルカディズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-059",
+      "faces": [
+        {
+          "name": "キング・オルカディズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、相手のコスト３以下のエレメントを１つ選び、持ち主の手札に戻してもよい。",
+          "race": "リヴァイアサン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "filter": {
+              "max": 3
+            },
+            "to": "hand",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-059.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "34099c9ee0e0bbe51344c3dc61cf5b8f8a85ed067d8a26369613936d702d66eb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr08-026",
+      "name": "キング・ラングレー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-026",
+      "faces": [
+        {
+          "name": "キング・ラングレー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーがバトルゾーンを離れた時、カードを１枚引いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "リヴァイアサン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "d439c4062cadd0884ba838116c23814b743032c90988cd34de613b36d1dbe584",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-061",
+      "name": "グ:タプコリヘ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-061",
+      "faces": [
+        {
+          "name": "グ:タプコリヘ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から３枚を墓地に置く。その後、自分の他のアビスがあれば、カードを１枚引く。",
+          "race": "ノワールアビス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 3
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "race": "アビス",
+              "g334Other": true
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-061.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "cb17e97a820927295603b91dd27e0f42b224eeaf2087bd0028bc5f0f98a95d49",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp3-059": 4,
+      "dmr08-026": 4,
+      "dm23rp1-061": 4
+    }
+  }
+}

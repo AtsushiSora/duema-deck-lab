@@ -1,0 +1,169 @@
+{
+  "phase": 368,
+  "checkedAt": "2026-11-02",
+  "description": "既存のドロー・手札から山札への移動・手札破棄・自分の他のクリーチャーの破壊・シールド枚数の比較を組み合わせる。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp17-042",
+      "name": "オモデオ・タシス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-042",
+      "faces": [
+        {
+          "name": "オモデオ・タシス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、自分の他のクリーチャーを１体破壊し、カードを２枚引く。",
+          "race": "マフィ・ギャング",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "grave",
+            "g179Other": true,
+            "title": "破壊する自分の他のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "c4ea3cecc89e1ce15adccd64b64f23796270023f424b350ac195f6ab634cbfda",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex15-b035",
+      "name": "オンセン・ボイラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b035",
+      "faces": [
+        {
+          "name": "オンセン・ボイラー",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "カードを３枚引く。その後、自分の手札を、１枚山札の上に置き、１枚捨てる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "deckTop",
+            "n": 1,
+            "g183Return": true,
+            "title": "山札の上に戻す手札を選ぶ（先に選んだカードが一番上）"
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-b035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "60dcf123756cb917aa875cba22848642caef2d400d468fa38a2b5974f5af85a8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16s-041",
+      "name": "スクリュー・スパイラル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-041",
+      "faces": [
+        {
+          "name": "スクリュー・スパイラル",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻す。\n自分のシールドの数が相手のより多ければ、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "hand"
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "moreThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "28d8437c70d8415d68ac0f019805dd2f4bac24b35b5b0036e9eda25047432f78",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp17-042": 4,
+      "dmex15-b035": 4,
+      "dmr16s-041": 4
+    }
+  }
+}

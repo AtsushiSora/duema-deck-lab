@@ -1,0 +1,147 @@
+{
+  "phase": 367,
+  "checkedAt": "2026-11-02",
+  "description": "既存のマナ加速・離脱時の順序付きマナ回収・相手ブロッカーとのバトル強化・多色全体への期限付きブロック回避を再利用する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dm20-049",
+      "name": "スマッシュブロウ・ドラグーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-049",
+      "faces": [
+        {
+          "name": "スマッシュブロウ・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが「ブロッカー」を持つクリーチャーとバトルする時、このクリーチャーのパワーは+4000される。",
+          "race": "ティラノ・ドレイク",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g209BattlePower": {
+          "amount": 4000,
+          "vsBlocker": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "2559850d42e1c221df43c8db02d23473340326f03ae43d40453df847c6bc564f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm13-033",
+      "name": "霊鳥と水晶の楽園",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-033",
+      "faces": [
+        {
+          "name": "霊鳥と水晶の楽園",
+          "typeText": "呪文",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのターン、自分の多色クリーチャーはブロックされない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "multi": true
+            },
+            "grant": {
+              "unblockable": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "fd8cbef87928f79fcd013ff4fd50550512e7acec8fc25a4131a816dbf0c3d0b7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm32-035",
+      "name": "薔薇の使者",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-035",
+      "faces": [
+        {
+          "name": "薔薇の使者",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から２枚をマナゾーンに置く。\nこのクリーチャーがバトルゾーンを離れた時、カードを２枚、自分のマナゾーンから好きな順序で山札の上に置く。",
+          "race": "ビーストフォーク/オリジン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 2
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "deckTop",
+            "n": 2,
+            "g183Return": true,
+            "title": "山札の上に戻すマナを2枚選ぶ（先に選んだカードが一番上）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "94aacb1f6a17d89e8e1119a402868869014a2033477fab25b284d1d310130639",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm20-049": 4,
+      "dm13-033": 4,
+      "dm32-035": 4
+    }
+  }
+}

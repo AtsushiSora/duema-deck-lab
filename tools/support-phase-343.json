@@ -1,0 +1,309 @@
+{
+  "phase": 343,
+  "checkedAt": "2026-11-02",
+  "description": "墓地・マナからの種族別・呪文回収とバトル勝利時の回収を共通処理で扱う。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmr13-023",
+      "name": "強欲の悪魔龍 アワルティア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-023",
+      "faces": [
+        {
+          "name": "強欲の悪魔龍 アワルティア",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、ファンキー・ナイトメアをすべて、自分の墓地から手札に戻す。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "デーモン・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RecoverAll326",
+            "zones": [
+              "grave"
+            ],
+            "filter": {
+              "anyFaceRace": "ファンキー・ナイトメア"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "1a785e414e8ba926458459b5b1f3afe446ea50d806fe225ac0bf612d72bb2d12",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm11-008",
+      "name": "宣凶師ベリックス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-008",
+      "faces": [
+        {
+          "name": "宣凶師ベリックス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー\nこのクリーチャーをバトルゾーンに出した時、自分のマナゾーンから呪文カードを１枚、自分の手札に戻す。\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+          "race": "グラディエーター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "spell": true
+            },
+            "optional": false,
+            "title": "手札に戻すマナの呪文を1枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "0d0b164d556472c464c5482a40a476efc626d8e44d28e2f81ede87e34faa2012",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm03-038",
+      "name": "閃光の使徒レーナ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-038",
+      "faces": [
+        {
+          "name": "閃光の使徒レーナ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、自分のマナゾーンから呪文を１枚選び、自分の手札に戻してよい。",
+          "race": "イニシエート",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "spell": true
+            },
+            "optional": true,
+            "title": "手札に戻すマナの呪文を1枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm03-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "575f29a83c822697f0bcee82b361f805f665cb44aebcbd0f01a874f65a282084",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm20-046",
+      "name": "毒霧のケンプラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-046",
+      "faces": [
+        {
+          "name": "毒霧のケンプラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のティラノ・ドレイクがバトルに勝った時、クリーチャーを１体、自分の墓地から手札に戻してもよい。",
+          "race": "ブレイブ・スピリット",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g252WinWatch": {
+          "filter": {
+            "creature": true,
+            "race": "ティラノ・ドレイク"
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "g228Recovery": true,
+              "origin": "grave",
+              "to": "hand",
+              "n": 1,
+              "filter": {
+                "g228Face": {
+                  "type": "creature"
+                }
+              },
+              "optional": true,
+              "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "a8c5852d13efca8684c90b02b185db36cc9b11123da69a064bcac8dde4d52ace",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc45-013",
+      "name": "武装竜鬼ボルグゲンパク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc45-013",
+      "faces": [
+        {
+          "name": "武装竜鬼ボルグゲンパク",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、自分のマナゾーンにあるサムライを好きな数選び、自分の手札に戻してもよい。\nW・ブレイカー",
+          "race": "アーマード・ドラゴン/アース・ドラゴン/サムライ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": "all",
+            "optional": true,
+            "g343ManaReturn": true,
+            "filter": {
+              "anyFaceRace": "サムライ"
+            },
+            "title": "手札に戻すマナのサムライを好きな枚数選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc45-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "4d7223871fefb04c3d1525720401791747be8ebb1fd70018fb2fefb3109fe5ad",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr08-022",
+      "name": "墓地の守護者メガギョロン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-022",
+      "faces": [
+        {
+          "name": "墓地の守護者メガギョロン",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー\nこのクリーチャーをバトルゾーンに出した時、ガーディアンを１体、または呪文を１枚、自分の墓地から手札に戻してもよい。",
+          "race": "ガーディアン",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "any": [
+                {
+                  "g228Face": {
+                    "type": "creature",
+                    "raceAll": [
+                      "ガーディアン"
+                    ]
+                  }
+                },
+                {
+                  "spell": true
+                }
+              ]
+            },
+            "title": "墓地のガーディアンか呪文を1枚まで手札に戻す"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "1d8a807c5e4a6266c318d5595b449de47b11c03de910aa9676247a0673d8127f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr13-023": 4,
+      "dm11-008": 4,
+      "dm03-038": 4,
+      "dm20-046": 4,
+      "dmc45-013": 4,
+      "dmr08-022": 4
+    }
+  }
+}

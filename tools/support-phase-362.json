@@ -1,0 +1,171 @@
+{
+  "phase": 362,
+  "checkedAt": "2026-11-02",
+  "description": "既存の山札確認・シールド追加・ドラゴンの選別と並べ替えを再利用して3種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmr18-037",
+      "name": "ボッカン・ポルカ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-037",
+      "faces": [
+        {
+          "name": "ボッカン・ポルカ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から６枚を表向きにする。その中のドラゴンではないカードをすべて、好きな順序で山札の一番下に置く。その後、残りを好きな順序で山札の一番上に置く。",
+          "race": "ファイアー・バード炎/革命軍",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 6,
+            "public": true,
+            "stages": [
+              {
+                "n": "all",
+                "to": "deck",
+                "filter": {
+                  "notRace": "ドラゴン"
+                },
+                "title": "山札の下に置く非ドラゴンを順に選ぶ"
+              }
+            ],
+            "rest": "top",
+            "g259OrderTop": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "bfcb2ee7374d944e73d414b45d88ec3a411dd808cf6f9c292884eadbbbbfba62",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp3-075",
+      "name": "哀樹 コシン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-075",
+      "faces": [
+        {
+          "name": "哀樹 コシン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーは攻撃できない。\nこのクリーチャーが出た時、自分の山札の上から１枚目を表向きにする。それがクリーチャーなら、手札に加える。それ以外なら、山札の下に置く。",
+          "race": "デモンズ・レガシー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 1,
+            "public": true,
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true
+                }
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-075.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "38ad902e3f01bd5a931e54bd24444e52ed8493ea051890627deab43f149e58d1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr08-008",
+      "name": "絆の戦士ラプソディ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-008",
+      "faces": [
+        {
+          "name": "絆の戦士ラプソディ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーが攻撃する時、自分の山札の上から１枚目を見る。そのカードが呪文であれば、相手に見せてから裏向きにして、新しいシールドとして自分のシールドゾーンに加えてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "エンジェル・コマンド/ハンター/エイリアン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 1,
+            "stages": [
+              {
+                "n": 1,
+                "to": "shields",
+                "filter": {
+                  "spell": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ],
+            "rest": "top"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "ac66dbc27a0f6eb4b70fffa5262a5c405c639ba92e8fd3b212b9516435483474",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr18-037": 4,
+      "dm24rp3-075": 4,
+      "dmr08-008": 4
+    }
+  }
+}

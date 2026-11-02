@@ -1,0 +1,152 @@
+{
+  "phase": 379,
+  "checkedAt": "2026-11-02",
+  "description": "既存のパワー低下、鬼タイム、タップとアンタップ、攻撃保護を再利用して3種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmsd15-002",
+      "name": "「辻斬」の鬼 サコン丸",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd15-002",
+      "faces": [
+        {
+          "name": "「辻斬」の鬼 サコン丸",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\nブロッカーブロッカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－3000する。（パワー０以下のクリーチャーは破壊される）\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーのパワーを+3000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "grants": {
+            "power": 3000,
+            "breaker": 2
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -3000,
+            "g242PowerMinus": true,
+            "title": "パワーを-3000する相手のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd15-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "d32e6b1a6d41ce03e69c9d25008d42079800f1466b149541fab6b1a219bc9adc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd04-004",
+      "name": "ジョバート・デ・ルーノ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd04-004",
+      "faces": [
+        {
+          "name": "ジョバート・デ・ルーノ",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、クリーチャーを１体選び、タップする。その後、クリーチャーを１体選び、アンタップする。",
+          "race": "ジョーカーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "tap": true
+          },
+          {
+            "op": "Target",
+            "untap": true,
+            "anyOwner": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd04-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "d7620fd432e9d05b64cc8d5a368ccce3fb839525477dcb227daab8c5b67bd7ef",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-098",
+      "name": "ヨケッピ・チョーナン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-098",
+      "faces": [
+        {
+          "name": "ヨケッピ・チョーナン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nこのクリーチャーはコスト６以下のクリーチャーに攻撃されない。",
+          "race": "ファイアー・バード/ハンター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g206AttackProtection": {
+          "maxCost": 6
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-098.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "404cd03d7d5f374557f615994fd55b8d0ce1f93c2735055f410dbed0d661b7e5",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmsd15-002": 4,
+      "dmsd04-004": 4,
+      "dmr05-098": 4
+    }
+  }
+}

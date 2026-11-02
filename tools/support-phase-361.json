@@ -1,0 +1,175 @@
+{
+  "phase": 361,
+  "checkedAt": "2026-11-02",
+  "description": "既存の山札確認・任意の公開・種族や文明による手札選択を再利用して3種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmr14-041",
+      "name": "アクア少年 ジャバ・キッド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-041",
+      "faces": [
+        {
+          "name": "アクア少年 ジャバ・キッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目をすべてのプレイヤーに見せてもよい。それがリキッド・ピープルであれば、自分の手札に加える。",
+          "race": "リキッド・ピープル閃",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g359RevealAll": true,
+            "title": "山札の上1枚を公開する？（リキッド・ピープルなら手札へ）",
+            "defs": [
+              {
+                "op": "Look",
+                "g255Search": true,
+                "n": 1,
+                "public": true,
+                "stages": [
+                  {
+                    "n": 1,
+                    "to": "hand",
+                    "filter": {
+                      "anyFaceRace": "リキッド・ピープル"
+                    }
+                  }
+                ],
+                "rest": "top"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "3d203a7808f5325b0aef6337917ac72eb020b2eb46a89dcae8ed6621f22d7ef9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy3-017",
+      "name": "サイキック・ビジョン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy3-017",
+      "faces": [
+        {
+          "name": "サイキック・ビジョン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "*自分の山札の上から４枚を表向きにする。その中の水のカードをすべて自分の手札に加え、それ以外のカードを自分の墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 4,
+            "public": true,
+            "stages": [
+              {
+                "n": "all",
+                "to": "hand",
+                "filter": {
+                  "anyFaceColor": "水"
+                }
+              }
+            ],
+            "rest": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy3-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "90c6e5d3d512f18e7fbd071c0e6a2a75ec8bec581f33dd9eddec50e040f2fa5e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex08-061",
+      "name": "ジェリー・ローニン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-061",
+      "faces": [
+        {
+          "name": "ジェリー・ローニン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を見る。それがサイバーなら、相手に見せてから自分の手札に加えてもよい。",
+          "race": "サイバー・ウイルス",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 1,
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "anyFaceRace": "サイバー"
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ],
+            "rest": "top"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-061.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "4ad690b641a4f5b711fa3e8d98eedbe097ec495b266b41751d4433dd57f20a9a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr14-041": 4,
+      "promoy3-017": 4,
+      "dmex08-061": 4
+    }
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "phase": 356,
+  "checkedAt": "2026-11-02",
+  "description": "既存のマナ追加とゾーン移動を再利用し、マナを増やした後に手札や山札へ戻す効果に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp1-025",
+      "name": "201式-銅鑼GOON",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-025",
+      "faces": [
+        {
+          "name": "201式-銅鑼GOON",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火/自然",
+          "civilizations": [
+            "光",
+            "火",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー ブロッカー\nこのクリーチャーが出た時、自分の山札の上から２枚をタップしてマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから山札の上に置く。",
+          "race": "ティラノ・ドレイク/テクノ・サムライ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 2,
+            "tapped": true
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "deckTop",
+            "n": 1,
+            "g183Return": true,
+            "title": "山札の上に戻すマナを1枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "bb5e19374fca93da046a9c84e4d248687000a3e6d0f54fc232b5dbd178186967",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp2-052",
+      "name": "V闘龍 カツドン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-052",
+      "faces": [
+        {
+          "name": "V闘龍 カツドン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、自分の山札の上から２枚をマナゾーンに置いてもよい。そうしたら、カードを１枚、自分のマナゾーンから手札に戻す。",
+          "race": "アウトレイジ・コマンドMAX/革命軍/ハムカツ団",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "山札の上2枚をマナに置き、マナ1枚を手札に戻す？",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 2
+              },
+              {
+                "op": "Select",
+                "origin": "mana",
+                "to": "hand",
+                "n": 1,
+                "g232ManaReturn": true,
+                "title": "手札に戻すマナを1枚選ぶ"
+              }
+            ],
+            "g356RampReturn": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "571d66b7cda0f26fc269639a017b41ce08717148d488680af1e5cd4de38e7fbb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2-074",
+      "name": "ファンタジスタ・ライフ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-074",
+      "faces": [
+        {
+          "name": "ファンタジスタ・ライフ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の山札の上から２枚をタップしてマナゾーンに置き、その後、カードを１枚、自分のマナゾーンから手札に戻す。",
+          "race": "ジャイアント・スキル",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 2,
+            "tapped": true
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "g232ManaReturn": true,
+            "title": "手札に戻すマナを1枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-074.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "ceb2ab451a67349d2a2460fd59db8408c1727a706706204326cf82d2baf69837",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp1-025": 4,
+      "dm26rp2-052": 4,
+      "dm23rp2-074": 4
+    }
+  }
+}

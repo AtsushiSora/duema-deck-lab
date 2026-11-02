@@ -1,0 +1,161 @@
+{
+  "phase": 358,
+  "checkedAt": "2026-11-02",
+  "description": "既存の墓地からの複数登場と常在能力の付与を再利用して3種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dm04-005",
+      "name": "応援チューリップ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-005",
+      "faces": [
+        {
+          "name": "応援チューリップ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンにある間、バトルゾーンにあるすべてのエンジェル・コマンドは「パワーアタッカー+4000」を得る。(攻撃中、これらのクリーチャーのパワーは+4000される)",
+          "race": "ツリーフォーク",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "race": "エンジェル・コマンド"
+            },
+            "both": true,
+            "grants": {
+              "attackBonus": 4000
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm04-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "e552b2a2a82ebaea40abafaf2e618f8dadcee6cadea635136633502dcbb73be8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-s07",
+      "name": "凶鬼03号 ガシャゴズラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-s07",
+      "faces": [
+        {
+          "name": "凶鬼03号 ガシャゴズラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、コスト３以下の進化ではないクリーチャーを３体まで、自分の墓地からバトルゾーンに出す。\n自分のクリーチャーすべてに「スレイヤー」を与える。",
+          "race": "マフィ・ギャング",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "slayer": true
+            }
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 3,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "max": 3,
+              "nonEvolution": true
+            },
+            "optional": true,
+            "title": "墓地から出すコスト3以下の進化ではないクリーチャーを3体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-s07.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "d29303e78465352e47904bc5d0388bb129243b0a057c82518f625b6cf38e2c5e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-009",
+      "name": "幻影 ドン・サボテ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-009",
+      "faces": [
+        {
+          "name": "幻影 ドン・サボテ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 11,
+          "costText": "11",
+          "abilityText": "自分の自然のクリーチャーすべてに「ワールド・ブレイカー」を与える。",
+          "race": "ミステリー・トーテム/侵略者",
+          "powerText": "25000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "color": "自然"
+            },
+            "grants": {
+              "breaker": "∞",
+              "worldBreaker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "f62378b170d40c5a063a5a5f073cd1f2931028a00ec34faf3bfd0fe30cdea3b1",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm04-005": 4,
+      "dmrp02-s07": 4,
+      "dmr18-009": 4
+    }
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "phase": 346,
+  "checkedAt": "2026-11-02",
+  "description": "バトル勝利時の条件付きアンタップ、種族別マナ加速と相手マナの墓地送りを共通処理で扱う。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmr21-s04",
+      "name": "D2G ゴッドファーザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-s04",
+      "faces": [
+        {
+          "name": "D2G ゴッドファーザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーがバトルに勝った時、自分のD２フィールドがバトルゾーンにあれば、このクリーチャーをアンタップする。",
+          "race": "フレイム・コマンド/マスター・イニシャルズ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g189BattleWin": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g228Face": {
+                "type": "field",
+                "d2": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Untap"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "13764276a15780191bd13ea8efbfeeaca10a47946c39cf0939d2459e8fb76b10",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-095",
+      "name": "クラッシュ・リザード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-095",
+      "faces": [
+        {
+          "name": "クラッシュ・リザード",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルに勝った時、相手のマナゾーンからカードを１枚選び、持ち主の墓地に置く。",
+          "race": "メルト・ウォリアー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g189BattleWin": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "owner": "opponent",
+            "to": "grave",
+            "n": 1,
+            "title": "墓地に置く相手のマナを1枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-095.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "b5b7fbfe68af3dbb91ecb087757ffa8651a12420590887f1c649a34d29bbf7cb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr07-054",
+      "name": "フエッピ・サンナン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-054",
+      "faces": [
+        {
+          "name": "フエッピ・サンナン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のハンターがバトルに勝った時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+          "race": "ファイアー・バード/ハンター",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g252WinWatch": {
+          "filter": {
+            "creature": true,
+            "race": "ハンター"
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "b0d7e55e1f47860ce6656862188d06aea67e4823fc0ff91742a7cf318bca66f9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-s07",
+      "name": "機動聖霊ムゲン・イングマール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-s07",
+      "faces": [
+        {
+          "name": "機動聖霊ムゲン・イングマール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 11,
+          "costText": "11",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nスピードアタッカー(このクリーチャーは召喚酔いしない)\nこのクリーチャーがバトルに勝った時、アンタップしてもよい。",
+          "race": "エンジェル・コマンド/アーマロイド",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "speedAttacker": true,
+        "g189BattleWin": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Untap"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-s07.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "653efe41e3edc0ddbc0c0ca72567ae7056158540595c239fe7dbf06893a39175",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr21-s04": 4,
+      "dm14-095": 4,
+      "dmr07-054": 4,
+      "dm24-s07": 4
+    }
+  }
+}

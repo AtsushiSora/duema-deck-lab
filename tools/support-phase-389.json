@@ -1,0 +1,133 @@
+{
+  "phase": 389,
+  "checkedAt": "2026-11-02",
+  "description": "既存の手札枚数・タップ中クリーチャー数の条件、鬼タイムとパワー低下を再利用して2種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp15-056",
+      "name": "アンダケ童子",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-056",
+      "faces": [
+        {
+          "name": "アンダケ童子",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\n鬼タイム ：このクリーチャーが攻撃する時、自分と相手のシールドの数が合計６つ以下なら、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－4000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "sumBoth": true,
+                "max": 6
+              }
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "power": -4000,
+                "g242PowerMinus": true,
+                "title": "パワーを-4000する相手のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-056.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "21c9d3ab488accbafb678bb7af7f6d7a3464664247b1132b0f04c14ad6898d68",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-034",
+      "name": "ガルフ・ストリーム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-034",
+      "faces": [
+        {
+          "name": "ガルフ・ストリーム",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の手札が３枚以上あれば、このクリーチャーのパワーを+3000する。\n自分のターンの終わりに、自分のタップしているクリーチャーが３体以上あれば、カードを２枚引く。",
+          "race": "スプラッシュ・クイーン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "hand",
+              "min": 3
+            }
+          },
+          "grants": {
+            "power": 3000
+          }
+        },
+        "g174End": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "filter": {
+                  "creature": true,
+                  "tapped": true
+                },
+                "min": 3
+              }
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "cc7fe90a2de262dc072cfca02dc752397e090e07d83941eaccd0321413dff309",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp15-056": 4,
+      "dm24rp2-034": 4
+    }
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "phase": 347,
+  "checkedAt": "2026-11-02",
+  "description": "他のクリーチャーの登場と進化クリーチャーの攻撃によるアンタップを共通処理で扱う。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmr04-009",
+      "name": "カイザー・ヤラレン・ファイアー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-009",
+      "faces": [
+        {
+          "name": "カイザー・ヤラレン・ファイアー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n相手がバトルゾーンにクリーチャーを出した時、このクリーチャーをアンタップする。",
+          "race": "レッド・コマンド・ドラゴン/ハンター",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g314OtherEntry": {
+          "who": "opponent",
+          "defs": [
+            {
+              "op": "Untap"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr04-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "18d29e2a2f2ab148fa5843e0725b6cfd888f813b2c979feda1fececdeae9bace",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-029",
+      "name": "ジェット・ポルカ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-029",
+      "faces": [
+        {
+          "name": "ジェット・ポルカ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の進化クリーチャーが攻撃する時、このクリーチャーをアンタップする。",
+          "race": "ファイアー・バード炎",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g252AttackWatch": {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "evolution": true
+          },
+          "defs": [
+            {
+              "op": "Untap"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "e264488134ed1444ccbbe140d2aa9058a63d96659b539f8a9d4fd199ae90e676",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex1-052",
+      "name": "ソムリエ猫のアペリチフ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-052",
+      "faces": [
+        {
+          "name": "ソムリエ猫のアペリチフ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーは、タップして出る。\n自分のターンのはじめに、このクリーチャーはアンタップしない。\n自分の他のクリーチャーが出た時、このクリーチャーをアンタップする。",
+          "race": "ドリームメイト",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g295EnterTapped": true,
+        "g40StartNoUntap": true,
+        "g314OtherEntry": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Untap"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex1-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "aa569db7b20c62ce5cd9e2e1541a47fa5274e9b8b5d09b6abcd9ef0a0684a80b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm17-025",
+      "name": "ルナ・リボルバーホイール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-025",
+      "faces": [
+        {
+          "name": "ルナ・リボルバーホイール",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のターンのはじめにアンタップする時、このクリーチャーはアンタップされない。\n他のクリーチャーがバトルゾーンに出た時、このクリーチャーをアンタップする。",
+          "race": "サイバー・ムーン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g40StartNoUntap": true,
+        "g314OtherEntry": {
+          "who": "both",
+          "defs": [
+            {
+              "op": "Untap"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm17-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "2f521d3d99d9bebd95af03cb0a581c24e7dca28244d7fefd0815dfd539bddbe7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr04-009": 4,
+      "dmr16g-029": 4,
+      "dm24ex1-052": 4,
+      "dm17-025": 4
+    }
+  }
+}

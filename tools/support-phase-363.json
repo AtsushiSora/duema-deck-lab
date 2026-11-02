@@ -1,0 +1,254 @@
+{
+  "phase": 363,
+  "checkedAt": "2026-11-02",
+  "description": "既存の選択効果・対象除去・登場監視を再利用して3種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/"
+  ],
+  "cards": [
+    {
+      "id": "dmr23-032",
+      "name": "S・ザーエ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-032",
+      "faces": [
+        {
+          "name": "S・ザーエ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の水と闇を両方持つクリーチャーがバトルゾーンに出た時、次のうちいずれか１つを選ぶ。 ▼カードを１枚引く。 ▼相手は自身の手札を１枚選び、捨てる。",
+          "race": "サイバー・ウイルス海",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "colorsAll": [
+              "水",
+              "闇"
+            ]
+          },
+          "defs": [
+            {
+              "op": "Choose",
+              "g184Modes": true,
+              "modes": [
+                {
+                  "label": "カードを1枚引く",
+                  "defs": [
+                    {
+                      "op": "Draw",
+                      "n": 1
+                    }
+                  ]
+                },
+                {
+                  "label": "相手が自身の手札1枚を選んで捨てる",
+                  "defs": [
+                    {
+                      "op": "Discard",
+                      "n": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "684122fdfbda993b9d44acb651a3be6f51258a589e797f15c8790a85c703673e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-100",
+      "name": "オメガ・スイーパー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-100",
+      "faces": [
+        {
+          "name": "オメガ・スイーパー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "相手のパワー5000以下のクリーチャー１体か、相手のパワー2000以下のクリーチャー２体を破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "パワー5000以下の相手クリーチャー1体を破壊",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 5000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "パワー2000以下の相手クリーチャー2体を破壊",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "owner": "opponent",
+                    "origin": "battle",
+                    "to": "grave",
+                    "n": 2,
+                    "filter": {
+                      "creature": true,
+                      "maxPower": 2000,
+                      "g199Power": true
+                    },
+                    "g173Targets": true,
+                    "g193Select": true,
+                    "title": "破壊する相手のクリーチャーを2体選ぶ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-100.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "9e7e0c124d9fa92661c1419f1a7a6e4b77cba7d50f48a1c1b4868317b76586a8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-021",
+      "name": "ドギラゴン一刀双斬",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-021",
+      "faces": [
+        {
+          "name": "ドギラゴン一刀双斬",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "次のうちいずれかひとつを選ぶ。▼相手の「ブロッカー」を持つクリーチャーを２体破壊する。▼相手のパワー5000以下のクリーチャーを２体破壊する。▼相手の侵略者を２体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のブロッカー2体を破壊",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "owner": "opponent",
+                    "origin": "battle",
+                    "to": "grave",
+                    "n": 2,
+                    "filter": {
+                      "creature": true,
+                      "blocker": true
+                    },
+                    "g173Targets": true,
+                    "g193Select": true,
+                    "title": "破壊する相手のクリーチャーを2体選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "パワー5000以下の相手クリーチャー2体を破壊",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "owner": "opponent",
+                    "origin": "battle",
+                    "to": "grave",
+                    "n": 2,
+                    "filter": {
+                      "creature": true,
+                      "maxPower": 5000,
+                      "g199Power": true
+                    },
+                    "g173Targets": true,
+                    "g193Select": true,
+                    "title": "破壊する相手のクリーチャーを2体選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "相手の侵略者2体を破壊",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "owner": "opponent",
+                    "origin": "battle",
+                    "to": "grave",
+                    "n": 2,
+                    "filter": {
+                      "creature": true,
+                      "race": "侵略者"
+                    },
+                    "g173Targets": true,
+                    "g193Select": true,
+                    "title": "破壊する相手のクリーチャーを2体選ぶ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-02",
+        "sha256": "8f80c1a56b9eee4257ab096c183bfc2258b4d618d27677b987e2450dc23c6ea9",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-02",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr23-032": 4,
+      "dm24-100": 4,
+      "dmr19-021": 4
+    }
+  }
+}
