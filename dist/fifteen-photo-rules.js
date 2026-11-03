@@ -1,4 +1,4 @@
-import {hasCopiedRole393,copiedRoles393} from './requested393-joker-rules.js?v=0.473.1';
+import {hasCopiedRole393,copiedRoles393} from './requested393-joker-rules.js?v=0.473.2';
 import {policyRemove,policyLook} from './champion-zone-policy.js';
 // Fifteen screenshot decks. Continuations store physical UIDs, never copies of game cards.
 export function createFifteenPhotoRules(api){
