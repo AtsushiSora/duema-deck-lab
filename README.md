@@ -6,6 +6,23 @@
 
 紙のデュエマのデッキ作成、AI対戦、対戦結果の分析を行う、スマホを優先したWebアプリです。
 
+## v0.471.0：指定22種類と能力コピー・ジョーカーズの交換処理を追加
+
+ユーザー指定の22種類を対戦で使えるように追加しました。公式の全能力文・各面・画像・マナ数字・現行制限を tools/support-phase-393.json に照合・記録しています（2026-11-03）。全22種類とも各4枚まで使用できます。対応カードは4,011種類、残り7,822種類です。ユーザー入力の表記は公式名に合わせています。
+
+- [禁断竜王 Vol-Val-8](https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-km2)、[鉄禍逆夢 アイングダン・オウマ武斗ン](https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-010)、[竜界電融 N・EXT](https://dm.takaratomy.co.jp/card/detail/?id=dmsd19-001)、[禁断竜秘伝エターナルプレミアムズ](https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-011)、[爆衆 マキシ-2](https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-044)、[銃蝸逆夢 ザ・デンニー / ジョリー・ザ・トラップ](https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-046)
+- [欲望の邪道 ニガ=アブシューム / 支配の邪道 獄鬼夜城](https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-045)、[ヒミッツキッチ・グローブ](https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-052)、[アイシャセー神](https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-S004)、[MAX-Gジョラゴン](https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-1B)、[メモッタルド・デカスギオ / メモメモ・ジョーカーズ](https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-045)、[武闘英雄 カツ・モモキング](https://dm.takaratomy.co.jp/card/detail/?id=dm24bd3-010)
+- [∑龍](https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-OR001)、[ドンジャングルS７](https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-s10)、[闘帝合体 サンダイテイオー](https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-S006)、[逆転王女プリン](https://dm.takaratomy.co.jp/card/detail/?id=dmr08-021)、[神聖麒 シューゲイザー](https://dm.takaratomy.co.jp/card/detail/?id=dmr10-s01)、[爆龍羅王 ゴリナボルト](https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-S009)
+- [弾手人形ジェニムーン / 月のダンスを見においで](https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-089)、[人形の裏技ペット・パペット](https://dm.takaratomy.co.jp/card/detail/?id=dmr10-042)、[ナーガの海黒環](https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-007)、[メアリー・ジェニーのお茶会](https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-029)
+
+追加ターンと破壊数、相手クリーチャーの登場時能力の使用、次ターンの実行数制限、両面フィールドの各面の直接展開・裏返し・破壊置換、Jチェンジ／Jクライム、スマッシュ・バースト、侵略、条件付きS・トリガー、ガチンコ・ジャッジでめくれた時の能力、手札とマナからの踏み倒し、墓地からカードが初めて離れた時の能力を処理します。月のダンスは呪文側を唱え終えた後、物理カードを超次元ゾーンへ移します。メアリー・ジェニーのお茶会はドロー・捨てる処理の後、墓地から対象を選べます。
+
+MAX-Gジョラゴンは印刷された特性を変えずに対象の能力を加算し、次の相手のターンの終わりまで保持します。同じ能力の複数取得、以前のジョーカーズの固有能力、進化時の引き継ぎも確認しています。∑龍のパワー0固定と自身の離れない能力、ドンジャングルの攻撃先制限を処理します。Jチェンジ／Jクライムで交換が成立しない場合、置換コストを消費せずに中止します。[交換の裁定](https://dm.takaratomy.co.jp/rule/rulechange/316675/)と[Jクライムの裁定](https://dm.takaratomy.co.jp/rule/qa/49409/)を参照しています。
+
+スーパー・ガードマンは攻撃先の変更から実際のバトルの置換へ修正しました。攻撃・防御・効果によるバトルで選べます。プレイヤーへの攻撃を直接防ぐ効果としては扱いません。ギャラクティック・テストとの競合ではターンプレイヤーを優先し、バトル置換は連鎖させません。置換後のバトル結果にはEXライフなどを適用できます。[公式Q&A 40676](https://dm.takaratomy.co.jp/rule/qa/40676/)、[公式Q&A 48919](https://dm.takaratomy.co.jp/rule/qa/48919/)に従っています。
+
+新規167件と関連168件の計335件の対象テスト・全体チェック、既存3,989定義の不変性を確認しました。3組の40枚デッキによるCPU対戦では、合法な選択・JSON保存再開・80枚の物理カード識別子の保存を確認しています。375px・1280pxの実ブラウザで全22枚の検索・対応表示・公式画像・詳細、両面フィールドの各面の展開ボタンと3／5マナの支払いを確認しました。ENGINE 0.358.0 / AI 2.3.187。
+
 ## v0.470.0：ササゲール使用時のNEO進化元選択を修正
 
 切札縫合 メイドヴァロムをササゲールで召喚する経路に、NEO進化元の候補がなく、進化させずに出す選択しかない不具合を修正しました。例えば、覇王 ヘイヴン-4のササゲール4で軽減し、場に残る覇王 トリトナス-4の上に4マナで進化できます。召喚ボタンには実際の進化元とタップ状態が表示され、進化させずに出す選択も維持します。進化時だけ働く軽減は、その進化元を選んだ場合の見積もりと実際の支払いに反映します。

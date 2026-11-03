@@ -27,11 +27,11 @@ test('CPU avoids Stones forced library loss and MomoDMs forced mana-ramp loss',(
 
 test('CPU avoids a fatal Pucho attack-end reveal but takes an unobstructed direct win',()=>{for(const direct of[false,true]){const s=setup();give(s,0,'battle',['dm26rp2-S008']);give(s,0,'deck',[N,W,F]);give(s,1,'battle',[]);if(direct)give(s,1,'shields',[]);s.phase='attack';assert.equal(e.chooseAI(s).kind,direct?'attack':'endTurn');}});
 
-test('CPU does not mistake a Super Guardman redirect for a safe direct win with Puchos last three cards',()=>{
+test('CPU recognizes a direct win because Super Guardman only replaces actual creature battles',()=>{
  const s=setup();give(s,0,'battle',['dm26rp2-S008']);give(s,1,'battle',['dm26rp2-S008']);give(s,0,'deck',[N,W,F]);give(s,1,'shields',[]);s.phase='attack';s.players[0].battle[0].powerModifiers=[{amount:1000}];
  const attack=e.getLegalActions(s).find(a=>a.kind==='attack'&&a.target==='player');assert.ok(attack);
- const losing=JSON.parse(JSON.stringify(s));e.step(losing,attack);assert.equal(e.chooseAI(losing).kind,'guardman');e.step(losing,e.chooseAI(losing));drain(losing);assert.equal(losing.winner,1,'redirected combat survives but the mandatory attack-end reveal empties the deck');
- assert.equal(e.chooseAI(s).kind,'endTurn');
+ const winning=JSON.parse(JSON.stringify(s));e.step(winning,attack);assert.equal(e.chooseAI(winning).kind,'noBlock');e.step(winning,e.chooseAI(winning));drain(winning);assert.equal(winning.winner,0,'direct attack wins before the mandatory attack-end reveal');
+ assert.equal(e.chooseAI(s).kind,'attack');
 });
 
 test('CPU avoids fatal EXlife even when an opposing entry-silencer stops its triggered entry ability',()=>{
