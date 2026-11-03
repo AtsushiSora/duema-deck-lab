@@ -1,9 +1,9 @@
 import {displayTurn} from './turn-count.js';
 import {shieldCards} from './shield-state.js';
 import {card,getLegalActions,chooseAI,step} from './engine.js';
-import {createAIDecision} from './ai-decision.js?v=0.474.0';
+import {createAIDecision} from './ai-decision.js?v=0.474.1';
 
-export const AI_SPEEDS={slow:{label:'ゆっくり',delay:3000},normal:{label:'標準',delay:2000},fast:{label:'速い',delay:700}};
+export const AI_SPEEDS={slow:{label:'ゆっくり',delay:3000},normal:{label:'標準',delay:2000},fast:{label:'速い',delay:700},fastest:{label:'最速',delay:200}};
 export const aiSpeedLabel=speed=>(AI_SPEEDS[speed]||AI_SPEEDS.normal).label;
 const visible=x=>!x.faceDown&&!x.hidden;
 const rows=(p,player)=>['battle','mana','grave','extra'].flatMap(zone=>(p[zone]||[]).filter(visible).map(x=>({player,zone,uid:x.uid,cardId:x.cardId}))).concat((p.shields||[]).flatMap(shieldCards).filter(x=>x.faceUp).map(x=>({player,zone:'shields',uid:x.uid,cardId:x.cardId})));

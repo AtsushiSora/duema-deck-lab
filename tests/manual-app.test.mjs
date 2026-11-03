@@ -420,3 +420,11 @@ test('OVER Hyper uses the same visible entry and requires both distinct allies b
  action=e.getLegalActions(s).find(x=>s.decision.choices[x.choice].value===a.uid);await h.click('battle-step',{index:String(action.id)});assert.equal(a.tapped,false);assert.equal(b.tapped,false);assert.ok(!source.hyperActive);
  action=e.getLegalActions(s).find(x=>s.decision.choices[x.choice].value===b.uid);await h.click('battle-step',{index:String(action.id)});assert.ok(source.hyperActive);assert.ok(a.tapped&&b.tapped);assert.equal(source.tapped,false);
 });
+
+
+test('fastest playback speed is selectable, cycles back to normal and remains paused without changing game state',async()=>{
+ const s=e.createGame([target,target],{seed:42,first:1}),h=harness(s,{mobile:true});h.read('scheduleAI()');await h.click('manual-ai-pause');await h.click('manual-options');assert.match(h.read('dialog.innerHTML'),/data-speed="fastest"/);assert.match(h.read('dialog.innerHTML'),/最速/);
+ await h.click('manual-ai-speed',{speed:'fastest'});assert.equal(h.read('manualUI.aiSpeed'),'fastest');assert.equal(h.read('aiPlayback.snapshot().paused'),true);assert.equal(h.timers.size,0);assert.equal(s.actions,0);assert.match(h.root.innerHTML,/最速/);
+ for(const speed of['normal','slow','fast','fastest']){await h.click('manual-speed');assert.equal(h.read('manualUI.aiSpeed'),speed);assert.equal(h.timers.size,0);assert.equal(s.actions,0);}
+ await h.click('manual-ai-pause');assert.equal(h.timers.size,1);assert.equal(s.actions,0);h.read('aiPlayback.dispose()');
+});
