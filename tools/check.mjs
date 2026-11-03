@@ -1,3 +1,4 @@
+import {REQUESTED394_DECK} from './fixtures/requested394.mjs';
 import {REQUESTED393_DECKS} from './fixtures/requested393.mjs';
 import {STANDARD392_DECK} from './fixtures/standard392.mjs';
 import {STANDARD391_DECK} from './fixtures/standard391.mjs';
@@ -916,3 +917,5 @@ if(validateDeck(STANDARD391_DECK).length||registry.coverage(STANDARD391_DECK).un
 if(validateDeck(STANDARD392_DECK).length||registry.coverage(STANDARD392_DECK).unsupported||STANDARD392_DECK.cards.reduce((n,r)=>n+r.count,0)!==40)throw Error('第392段階の40枚を確認してください');console.log('Checked phase392 forty: Oni-time attacks, own-start shield recovery, slayer and entry/leave shield movement supported.');
 
 for(const d of REQUESTED393_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,x)=>n+x.count,0)!==40)throw Error('指定22枚の検証デッキが不正');console.log('Checked requested393: all 22 requested types in supported legal forty-card fixtures.');
+
+if(validateDeck(REQUESTED394_DECK).length||registry.coverage(REQUESTED394_DECK).unsupported||REQUESTED394_DECK.cards.reduce((n,x)=>n+x.count,0)!==40)throw Error('指定2枚の検証デッキが不正');console.log('Checked requested394 forty: Baigya EX-Life triggers and Jao simultaneous three-zone removal supported.');

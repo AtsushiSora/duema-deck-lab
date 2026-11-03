@@ -1,4 +1,4 @@
-import {hasCopiedRole393,copiedRoles393} from './requested393-joker-rules.js?v=0.471.0';
+import {hasCopiedRole393,copiedRoles393} from './requested393-joker-rules.js?v=0.472.0';
 // Verified photo cards: G-NEO battles, Joker entry copies, mana summons and Master G breaks.
 export function createPhoto159CombatRules(api){
  const hasRole=(c,r)=>hasCopiedRole393(c,'g159CRole',r),roleCount=(c,r)=>copiedRoles393(c,'g159CRole').filter(v=>v===r).length;

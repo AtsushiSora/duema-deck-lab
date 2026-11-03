@@ -1,0 +1,1 @@
+export const REQUESTED394_DECK={id:'requested394',name:'指定2枚の検証',format:'original',cards:['dm26rp3-007','dm24rp4-DM1','dm01-075','dm01-083','dm01-090','dm01-097','dm01-108','dm24ex4-089','dmr10-042','dm24ex1-029'].map(id=>({id,count:4}))};
