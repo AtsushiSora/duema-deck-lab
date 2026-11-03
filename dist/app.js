@@ -1,32 +1,32 @@
-import {createPlayTimeSync} from './play-time-sync.js?v=0.473.2';
+import {createPlayTimeSync} from './play-time-sync.js?v=0.474.0';
 import {manualLayout,PHONE_LANDSCAPE_QUERY} from './battle-layout.js?v=0.227.0';
 import {bindBattleZoom} from './battle-zoom.js?v=0.227.0';
 import {displayTurn} from './turn-count.js';
-import {TOURNAMENT_SIZES,selectTournamentParticipants,createLocalTournament,validLocalTournament,currentTournamentRound,humanTournamentMatch,recordTournamentMatch,localTournamentHTML} from './local-tournament.js?v=0.473.2';
+import {TOURNAMENT_SIZES,selectTournamentParticipants,createLocalTournament,validLocalTournament,currentTournamentRound,humanTournamentMatch,recordTournamentMatch,localTournamentHTML} from './local-tournament.js?v=0.474.0';
 import {PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS} from './photo-october-decks.js?v=0.148.0';
-import {createPlayTimeTracker,formatPlayTime,playTimeStorageNote} from './play-time.js?v=0.473.2';
+import {createPlayTimeTracker,formatPlayTime,playTimeStorageNote} from './play-time.js?v=0.474.0';
 import {historicalProfile,historicalMetadata} from './historical-regulations.js';
-import {creatureStatusModel,creatureStatusHTML,recordBattleAction,createBattleReport,encodeBattleData,decodeBattleData} from './battle-insights.js?v=0.473.2';
-import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.473.2';
-import {createCardArt} from './card-art.js?v=0.473.2';
+import {creatureStatusModel,creatureStatusHTML,recordBattleAction,createBattleReport,encodeBattleData,decodeBattleData} from './battle-insights.js?v=0.474.0';
+import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.474.0';
+import {createCardArt} from './card-art.js?v=0.474.0';
 import {CHARACTER_ERAS,CHARACTER_NAMES,characterEra,characterUnlockState,recordCharacterUnlocks} from './character-roster.js';
 import {resolveCharacterDecks,characterChallengeHTML} from './character-challenge.js';
 import {resolveHeroDecks,resolveRivalDecks,challengeOptions,recordHeroResult} from './hero-challenge.js';
 import {recordManualVictory,recordManualResult,manualResultSummary,isOpponentDefeated,defeatedBadgeHTML} from './opponent-progress.js';
 import {resolveChampions,championsHTML,isOriginalChampion} from './champions.js?v=0.227.0';
 import {shieldCards} from './shield-state.js';
-import {createAIPlayback,aiSpeedLabel,applyAIHighlights,AI_SPEEDS,aiPublicSnapshot,aiResultCues} from './ai-playback.js?v=0.473.2';
+import {createAIPlayback,aiSpeedLabel,applyAIHighlights,AI_SPEEDS,aiPublicSnapshot,aiResultCues} from './ai-playback.js?v=0.474.0';
 import {createOnlineClient} from './online.js';
 import {onlineScreenHTML,onlinePrimaryAction,onlinePendingMove} from './online-ui.js';
 import {createAccountClient} from './account.js';
 import {accountScreenHTML} from './account-ui.js';
 import {mergeAccountSnapshot} from './account-data.js';
-import {preferredHandFace} from './hand-ui.js?v=0.473.2';
+import {preferredHandFace} from './hand-ui.js?v=0.474.0';
 import {bindFittedBoard,pageWindow} from './board-fit.js';
 import {attackRoute,previewAttackAction,updateBoardFeedback,bindAttackArrow} from './battle-visuals.js?v=0.227.0';
 import {setCards,card as battleCard,validateDeck,createGame,getLegalActions,attackLocked,chooseAI,step,runGame,runSummary,aggregate,power,manaValue,manaValueAt,playFaces,canCastSpell,effectiveCard,canUntap,shieldGuardSources,exLifeShields,exLifeShieldInfo,evolutionBases,isEvolution,selfTriggersStopped,abilitiesIgnored,genmuActive,peekDeckTop,RULE_VERSION,ENGINE_VERSION,AI_VERSION} from './engine.js';
 import {PRESETS} from './decks.js';
-import {newManualUI,hyperModeModel,manualModel,manualScreenHTML,manualLogHTML,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,graveZoneHTML,graveSummonStatusHTML,choiceSelectionModel,choiceDetailCard} from './manual-ui.js?v=0.473.2';
+import {newManualUI,hyperModeModel,manualModel,manualScreenHTML,manualLogHTML,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,graveZoneHTML,graveSummonStatusHTML,choiceSelectionModel,choiceDetailCard} from './manual-ui.js?v=0.474.0';
 import {resolveEnvironmentDecks,environmentSupport,groupEnvironmentDecks,ENVIRONMENT_TARGET} from './environment.js';
 import {resolveStarter25Decks,starter25Matches} from './starter25.js';
 import {prepareDeckCopy} from './deck-copy.js';
@@ -211,10 +211,11 @@ async function randomBattleAfterResult(){
 }
 function activeTournament(){return saved.localTournament&&validLocalTournament(saved.localTournament)?saved.localTournament:null;}
 function tournamentCheckpoint(){const t=activeTournament();return t&&saved.tournamentBattle?.tournamentId===t.id&&humanTournamentMatch(t)?.id===saved.tournamentBattle?.matchId?saved.tournamentBattle:null;}
+function tournamentSpectatorCheckpoint(matchId=null){const t=activeTournament(),c=saved.tournamentSpectatorBattle,m=t?.rounds.flat().find(m=>m.id===c?.matchId);return t&&c?.tournamentId===t.id&&m?.winner===null&&!m.players.includes('human')&&(!matchId||m.id===matchId)?c:null;}
 function checkpointTournamentBattle(){
- if(!battle?.tournamentId||battle.state.winner!==null||activeTournament()?.id!==battle.tournamentId)return;
+ if(!battle?.tournamentId||battle.tournamentExhibition||battle.state.winner!==null||activeTournament()?.id!==battle.tournamentId)return;
  const token=battle.manualGame+':'+battle.state.actions;if(token===tournamentCheckpointToken)return;
- saved.tournamentBattle={tournamentId:battle.tournamentId,matchId:battle.tournamentMatchId,engineVersion:ENGINE_VERSION,data:encodeBattleData(battle)};tournamentCheckpointToken=token;persist();
+ saved[battle.spectator?'tournamentSpectatorBattle':'tournamentBattle']={tournamentId:battle.tournamentId,matchId:battle.tournamentMatchId,engineVersion:ENGINE_VERSION,data:encodeBattleData(battle)};tournamentCheckpointToken=token;persist();
 }
 async function openLocalTournament(){if(activeTournament()){view='tournament';render();window.scrollTo(0,0);}else await showTournamentSetup();}
 function showTournamentDelete(id){
@@ -223,7 +224,7 @@ function showTournamentDelete(id){
 }
 function deleteLocalTournament(id){
  const t=activeTournament();if(!t||t.id!==id)return false;
- const next={...saved,localTournament:null};if(next.tournamentBattle?.tournamentId===id)next.tournamentBattle=null;
+ const next={...saved,localTournament:null};if(next.tournamentBattle?.tournamentId===id)next.tournamentBattle=null;if(next.tournamentSpectatorBattle?.tournamentId===id)next.tournamentSpectatorBattle=null;
  // A failed storage write must leave the bracket, worker and paused game intact.
  try{localStorage.setItem(key,JSON.stringify(next));}catch{storageOK=false;toast('削除を保存できませんでした。トーナメントは残っています。');return false;}
  storageOK=true;saved=next;stopTournamentWorker();
@@ -286,9 +287,9 @@ function resetTournamentSlots(){if(!tournamentDraft)return;for(let i=tournamentD
 function createTournamentFromForm(){
  if(tournamentWorker||!tournamentDraft)return;const d=tournamentDraft,seed=randomSeed(),participants=selectTournamentParticipants({candidates:d.candidates,selected:d.selected.slice(0,d.size),size:d.size,seed,randomKeys:tournamentDraftPool().map(c=>c.key),fallbackKeys:['mine','saved'].includes(d.source)?d.candidates.map(c=>c.key):null});
  for(const deck of participants){const reason=matchBlockReason(deck,[deck]);if(reason)throw Error(reason);}
- saved.localTournament=createLocalTournament({id:uid(),participants,size:d.size,seed,first:d.first,mode:d.mode});saved.tournamentBattle=null;tournamentCheckpointToken=null;persist();tournamentDraft=null;tournamentPickerSlot=null;closeDialog();view='tournament';render();window.scrollTo(0,0);
+ saved.localTournament=createLocalTournament({id:uid(),participants,size:d.size,seed,first:d.first,mode:d.mode});saved.tournamentBattle=null;saved.tournamentSpectatorBattle=null;tournamentCheckpointToken=null;persist();tournamentDraft=null;tournamentPickerSlot=null;closeDialog();view='tournament';render();window.scrollTo(0,0);
 }
-function renderLocalTournament(){const t=activeTournament();shell(`${pageHead('アプリ内<span class="route-nowrap">トーナメント</span>',t?.mode==='cpu'?'好きなデッキの勝ち上がりを見届けよう。':'自分のデッキで優勝を目指そう。',`<button class="btn" data-action="nav" data-view="duel">遊び方を選ぶ</button>`,'LOCAL TOURNAMENT')}${t?localTournamentHTML(t,{busy:!!tournamentWorker,checkpoint:!!tournamentCheckpoint()}):'<section class="panel"><p>トーナメントを作成できます。</p><button class="btn primary mt16" data-action="tournament-new">トーナメントを作る</button></section>'}`);}
+function renderLocalTournament(){const t=activeTournament();shell(`${pageHead('アプリ内<span class="route-nowrap">トーナメント</span>',t?.mode==='cpu'?'好きなデッキの勝ち上がりを見届けよう。':'自分のデッキで優勝を目指そう。',`<button class="btn" data-action="nav" data-view="duel">遊び方を選ぶ</button>`,'LOCAL TOURNAMENT')}${t?localTournamentHTML(t,{busy:!!tournamentWorker,checkpoint:!!tournamentCheckpoint(),spectatorMatchId:tournamentSpectatorCheckpoint()?.matchId||null}):'<section class="panel"><p>トーナメントを作成できます。</p><button class="btn primary mt16" data-action="tournament-new">トーナメントを作る</button></section>'}`);}
 function returnToTournament(){aiPlayback?.suspend();closeDialog();view='tournament';render();window.scrollTo(0,0);}
 function resumeTournamentBattle(){
  const checkpoint=tournamentCheckpoint(),t=activeTournament();if(!checkpoint||!t)return false;
@@ -301,12 +302,24 @@ function startTournamentHumanMatch(){const t=activeTournament(),match=humanTourn
  const human=t.players.find(p=>p.id==='human').deck,o=t.players.find(p=>p.id===match.players.find(id=>id!=='human')).deck,reason=matchBlockReason(human,[o]);if(reason){toast(reason);return;}
  beginManualBattle(human,o,{tournamentId:t.id,tournamentMatchId:match.id,firstPlayer:t.first==='first'?0:t.first==='second'?1:match.players.indexOf('human')===0?match.first:1-match.first,seed:match.seed});
 }
+function startTournamentSpectatorMatch(id,matchId){
+ const t=activeTournament(),m=t?.rounds.flat().find(m=>m.id===matchId);if(!t||t.id!==id||!m||m.players.includes('human')||tournamentWorker)return;
+ const decks=m.players.map(id=>t.players.find(p=>p.id===id).deck),reason=matchBlockReason(decks[0],[decks[1]]);if(reason){toast(reason);return;}
+ const checkpoint=tournamentSpectatorCheckpoint(m.id);
+ if(checkpoint){try{
+  if(checkpoint.engineVersion!==ENGINE_VERSION)throw Error('対戦ルールが更新されたため、この観戦を最初から始めます');
+  const next=decodeBattleData(checkpoint.data);validateBattleResume(next,ENGINE_VERSION,getLegalActions);
+  if(!next.spectator||next.tournamentExhibition||next.tournamentId!==t.id||next.tournamentMatchId!==m.id||next.state.winner!==null||next.decks.some((d,i)=>deckSignature(d)!==deckSignature(decks[i])))throw Error('観戦の保存データを確認できないため、最初から始めます');
+  aiPlayback?.dispose();aiPlayback=null;aiPlaybackBattle=null;battle=next;battleUndo=[];selectedHand=null;manualUI=newManualUI();closeDialog();view='manual';render();window.scrollTo(0,0);scheduleAI();return;
+ }catch(e){saved.tournamentSpectatorBattle=null;tournamentCheckpointToken=null;persist();toast(e.message);}}
+ closeDialog();beginManualBattle(decks[0],decks[1],{spectator:true,tournamentId:t.id,tournamentMatchId:m.id,tournamentExhibition:m.winner!==null,firstPlayer:m.first,seed:m.seed});
+}
 function stopTournamentWorker(){tournamentWorker?.terminate();tournamentWorker=null;if(view==='tournament')render();}
 function advanceLocalTournament(){
- const t=activeTournament();if(!t||t.champion||tournamentWorker)return;if(tournamentCheckpoint()){startTournamentHumanMatch();return;}
+ const t=activeTournament();if(!t||t.champion||tournamentWorker)return;const observed=tournamentSpectatorCheckpoint();if(observed){startTournamentSpectatorMatch(t.id,observed.matchId);return;}if(tournamentCheckpoint()){startTournamentHumanMatch();return;}
  const round=currentTournamentRound(t),jobs=round.filter(m=>m.winner===null&&!m.players.includes('human')).map(m=>({...m,decks:m.players.map(id=>t.players.find(p=>p.id===id).deck)}));
  if(!jobs.length){startTournamentHumanMatch();return;}
- const owner=t.id,instance=new Worker(new URL('./tournament-worker.js?v=0.473.2',import.meta.url),{type:'module'});tournamentWorker=instance;view='tournament';render();
+ const owner=t.id,instance=new Worker(new URL('./tournament-worker.js?v=0.474.0',import.meta.url),{type:'module'});tournamentWorker=instance;view='tournament';render();
  const fail=message=>{if(tournamentWorker!==instance)return;stopTournamentWorker();toast('CPU対戦を進められませんでした：'+message);};
  instance.onmessage=({data})=>{if(tournamentWorker!==instance||activeTournament()?.id!==owner)return;
   if(data.type==='result'){try{const current=activeTournament(),m=current.rounds.flat().find(m=>m.id===data.matchId);if(!m||![0,1].includes(data.winner))throw Error('対戦結果を確認してください');saved.localTournament=recordTournamentMatch(current,m.id,m.players[data.winner],data.reason);persist();if(view==='tournament')render();}catch(e){fail(e.message);}}
@@ -316,8 +329,9 @@ function advanceLocalTournament(){
  instance.onerror=()=>fail('再度お試しください');instance.postMessage({cards:battleCards,jobs});
 }
 function recordTournamentOutcome(){const t=activeTournament();if(!battle?.tournamentId||t?.id!==battle.tournamentId||![0,1].includes(battle.state.winner))return false;
- const m=t.rounds.flat().find(m=>m.id===battle.tournamentMatchId);if(!m||m.winner!==null)return false;
- saved.localTournament=recordTournamentMatch(t,m.id,battle.state.winner===0?'human':m.players.find(id=>id!=='human'),battle.state.reason);saved.tournamentBattle=null;tournamentCheckpointToken=null;return true;
+ const m=t.rounds.flat().find(m=>m.id===battle.tournamentMatchId);if(!m||m.winner!==null||battle.tournamentExhibition||battle.spectator&&m.players.includes('human'))return false;
+ const winner=battle.spectator?m.players[battle.state.winner]:battle.state.winner===0?'human':m.players.find(id=>id!=='human');
+ saved.localTournament=recordTournamentMatch(t,m.id,winner,battle.state.reason);if(battle.spectator)saved.tournamentSpectatorBattle=null;else saved.tournamentBattle=null;tournamentCheckpointToken=null;return true;
 }
 
 function matchBlockReason(d,targets){
@@ -341,7 +355,7 @@ function startSimulation(deck,options={}){
  const opponentErrors=opponents.flatMap(d=>validateDeck(d));if(opponentErrors.length){toast('相手デッキ：'+opponentErrors[0]);return;}
  const n=options.count||base?.count||count,seed=options.seed??base?.seed??crypto.getRandomValues(new Uint32Array(1))[0],f=options.first||base?.first||first;
  running={completed:0,total:n*opponents.length,current:opponents[0].name,deck:clone(deck),count:n,seed,first:f,opponents:clone(opponents),baseline:base?.id||null};view='analysis';render();
- worker=new Worker(new URL('./worker.js?v=0.473.2',import.meta.url),{type:'module'});
+ worker=new Worker(new URL('./worker.js?v=0.474.0',import.meta.url),{type:'module'});
  worker.onmessage=({data})=>{
   if(data.type==='progress'){if(!running)return;Object.assign(running,data);renderProgress();}
   if(data.type==='done'){
@@ -411,10 +425,10 @@ function showUpdateRecovery(){if(!updateResumeRecovery)return;showDialog('更新
 
 function characterAvailable(d){return !d?.hero||characterUnlockState(d.hero.id,{progress:saved.heroProgress,manualResults:saved.manualResults,unlocks:saved.characterUnlocks}).unlocked;}
 function syncCharacterUnlocks(){const next=recordCharacterUnlocks(saved.characterUnlocks,saved.heroProgress,saved.manualResults);if(next!==saved.characterUnlocks){saved.characterUnlocks=next;persist();}}
-function beginManualBattle(d,o,{practice=false,challengeId=null,select=false,tournamentId=null,tournamentMatchId=null,firstPlayer=null,seed=randomSeed(),spectator=false}={}){
+function beginManualBattle(d,o,{practice=false,challengeId=null,select=false,tournamentId=null,tournamentMatchId=null,firstPlayer=null,seed=randomSeed(),spectator=false,tournamentExhibition=false}={}){
  if(!characterAvailable(o)){toast('このボスはまだ解放されていません。世代内の通常キャラ全員に勝利してください');return;}
  const game=uid(),state=createGame([d,o],{seed,first:firstPlayer??(first==='random'?seed%2:first==='second'?1:0),...(challengeId?{challenge:challengeOptions(o)}:{})});
- battle={state,decks:clone([d,o]),practice:spectator?false:practice,spectator,manualGame:game,...(tournamentId?{tournamentId,tournamentMatchId}:{}),...(challengeId?{challengeId,challengeGame:game}:{})};
+ battle={state,decks:clone([d,o]),practice:spectator?false:practice,spectator,manualGame:game,...(tournamentId?{tournamentId,tournamentMatchId,tournamentExhibition}:{}),...(challengeId?{challengeId,challengeGame:game}:{})};
  if(select){saved.selected=d.id;persist();}
  aiPlayback?.dispose();aiPlayback=null;aiPlaybackBattle=null;battleUndo=[];selectedHand=null;manualUI=newManualUI();view='manual';render();window.scrollTo(0,0);scheduleAI();
 }
@@ -440,8 +454,8 @@ function renderHeroChallenge(){
 }
 function startHeroChallenge(id){const d=myDeck(),o=[...heroDecks,...rivalDecks,...characterDecks].find(x=>x.id===id);if(!d||!o)return;if(!characterAvailable(o)){toast('このボスはまだ解放されていません');return;}const errors=[...validateDeck(d),...validateDeck(o)];if(errors.length){toast(errors[0]);return;}challengeGroup=characterEra(o.hero.id).id;beginManualBattle(d,o,{challengeId:o.hero.id});}
 function recordManualOutcome(){
- if(!battle||battle.spectator||![0,1].includes(battle.state.winner))return;
- let changed=recordTournamentOutcome();
+ if(!battle||![0,1].includes(battle.state.winner))return;
+ let changed=recordTournamentOutcome();if(battle.spectator){if(changed)persist();return;}
  battle.manualGame||=battle.challengeGame||uid();
  if(!battle.manualResultRecorded){const next=recordManualResult(saved.manualResults,battle,registry);if(next!==saved.manualResults){saved.manualResults=next;changed=true;}battle.manualResultRecorded=true;}
  if(battle.challengeId&&!battle.challengeRecorded){saved.heroProgress=recordHeroResult(saved.heroProgress,battle.challengeId,battle.challengeGame,battle.state.winner);battle.challengeRecorded=true;changed=true;}
@@ -453,7 +467,7 @@ function recordManualOutcome(){
 function renderManual(){
  if(manualZoomDragging){manualZoomRenderQueued=true;return;}
  if(!battle){view='battle';render();return;}
- const s=battle.state;recordManualOutcome();checkpointTournamentBattle();manualUI.tournament=!!battle.tournamentId;manualUI.spectator=!!battle.spectator;const playback=ensureAIPlayback();manualUI.aiPlayback=playback.snapshot();manualUI.aiSpeed=manualUI.aiPlayback.speed;manualUI.fast=manualUI.aiSpeed==='fast';manualUI.hand=selectedHand;const wasMobile=manualUI.mobile,wasLandscape=manualUI.landscape;Object.assign(manualUI,manualLayout(window));const layoutChanged=wasMobile!==undefined&&(wasMobile!==manualUI.mobile||wasLandscape!==manualUI.landscape);if(wasMobile===false&&manualUI.mobile&&selectedHand&&!s.decision)manualUI.mobilePanel='card';
+ const s=battle.state;recordManualOutcome();checkpointTournamentBattle();manualUI.tournament=!!battle.tournamentId;manualUI.tournamentExhibition=!!battle.tournamentExhibition;manualUI.spectator=!!battle.spectator;const playback=ensureAIPlayback();manualUI.aiPlayback=playback.snapshot();manualUI.aiSpeed=manualUI.aiPlayback.speed;manualUI.fast=manualUI.aiSpeed==='fast';manualUI.hand=selectedHand;const wasMobile=manualUI.mobile,wasLandscape=manualUI.landscape;Object.assign(manualUI,manualLayout(window));const layoutChanged=wasMobile!==undefined&&(wasMobile!==manualUI.mobile||wasLandscape!==manualUI.landscape);if(wasMobile===false&&manualUI.mobile&&selectedHand&&!s.decision)manualUI.mobilePanel='card';
  const short=(window.visualViewport?.height||window.innerHeight)<620;manualUI.handPageSize=short?4:6;manualUI.choicePageSize=short?2:4;
  battle.visual=updateBoardFeedback(battle.visual,s);manualUI.feedback=battle.visual.feedback;manualUI.feedbackAge=manualUI.feedback?Date.now()-manualUI.feedback.at:0;
  manualUI.resultStats=s.winner!==null&&!battle.spectator?{...manualResultSummary(saved.manualResults,battle,registry,saved.heroProgress),opponentName:battle.decks[1].name,deckName:battle.decks[0].name}:null;
@@ -494,7 +508,7 @@ function showManualShields(player,page=0){if(!battle)return;const model=manualSh
 function showManualField(player,page=0){if(!battle||![0,1].includes(player))return;const s=battle.state,m=manualModel(s,manualUI),pane=pageWindow(s.players[player].battle,page,manualUI.choicePageSize||4);showDialog(`${player?'相手':'自分'}の場 · ${s.players[player].battle.length}体`,`<div class="manual-field-list">${pane.items.map(x=>{const c=card(x),selectable=boardChoice(s,manualUI,player,'battle',x.uid)||(m.human&&!player&&m.actions.some(a=>a.kind==='attack'&&a.uid===x.uid));return `<article>${art(c.id)}<div class="grow"><strong>${esc(c.name)}</strong><small>${x.sealed?'封印 '+(s.players[player].seals||[]).filter(y=>y.sealOf===x.uid).length+'枚':c.type==='gear'?'クロスギア · '+(x.crossedTo?'装備：'+esc(card(s.players[player].battle.find(y=>y.uid===x.crossedTo.uid))?.name||''):'未クロス'):c.type==='seed'?'タマシード':c.type==='field'?'フィールド':'パワー '+esc(power(x,false,s))} · ${x.tapped?'タップ中':'アンタップ'}${attackLocked(s,player,x)?' · 攻撃不可':''}</small></div><button class="btn sm" data-action="${selectable?'manual-creature':'manual-status'}" data-player="${player}" data-uid="${esc(x.uid)}">${selectable?'選ぶ':'状態'}</button>${selectable?`<button class="btn sm" data-action="manual-status" data-player="${player}" data-uid="${esc(x.uid)}">状態</button>`:''}<button class="btn sm" data-action="card-detail" data-id="${esc(c.id)}">能力</button>${x.under?.length?`<button class="btn sm" data-action="evolution-stack" data-player="${player}" data-uid="${esc(x.uid)}">${sourceCardLabel(x,isEvolution(x))}</button>`:''}</article>`;}).join('')||'<p class="small">クリーチャーはいません。</p>'}</div>`,`<button class="btn" data-action="manual-field" data-player="${player}" data-page="${pane.index-1}" ${pane.index===0?'disabled':''}>前へ</button><span>${pane.index+1} / ${pane.pages}</span><button class="btn" data-action="manual-field" data-player="${player}" data-page="${pane.index+1}" ${pane.index+1>=pane.pages?'disabled':''}>次へ</button><button class="btn primary" data-action="close-dialog">盤面に戻る</button>`);}
 function showManualMethods(kind,page=0){if(!battle)return;const m=manualModel(battle.state,manualUI),actions=m.actions.filter(a=>a.player===0&&(kind==='attack'?a.kind==='attack'&&a.uid===m.attacker:kind==='hyper'?a.kind==='hyper':(a.kind==='play'&&['mana','grave','deck','extra','battle'].includes(a.origin))||(a.kind==='mugenStart'&&a.uid!==manualUI.hand)||a.kind==='pandora'&&a.origin!=='hand'||a.kind==='hyper'||a.kind==='crossGear')),pane=pageWindow(actions,page,manualUI.choicePageSize||4),action=kind==='attack'?'manual-target-list':kind==='hyper'?'manual-hyper-methods':'manual-extra-methods';showDialog(kind==='attack'?'攻撃先を選ぶ':kind==='hyper'?'ハイパー化するクリーチャーを選ぶ':'場・山札・マナ・墓地などから使う',`<div class="stack">${pane.items.map(a=>`<button class="btn" data-action="battle-step" data-index="${a.id}">${esc(a.label)}</button>`).join('')||'<p class="small">選べる行動はありません。</p>'}</div>`,`<button class="btn" data-action="${action}" data-page="${pane.index-1}" ${pane.index===0?'disabled':''}>前へ</button><span>${pane.index+1} / ${pane.pages}</span><button class="btn" data-action="${action}" data-page="${pane.index+1}" ${pane.index+1>=pane.pages?'disabled':''}>次へ</button><button class="btn primary" data-action="close-dialog">盤面に戻る</button>`);}
 function showManualTop(){const x=battle&&peekDeckTop(battle.state,0);if(x)showCard(x.cardId);}
-function showManualOptions(){if(!battle)return;if(battle.spectator){showDialog('観戦メニュー',`<p class="small">CPU 1：${esc(battle.decks[0].name)}<br>CPU 2：${esc(battle.decks[1].name)}</p><div class="ai-speed-options mt16">${Object.entries(AI_SPEEDS).map(([key,v])=>`<button class="btn" data-action="manual-ai-speed" data-speed="${key}" aria-pressed="${manualUI.aiSpeed===key}">${v.label}</button>`).join('')}</div><button class="btn full mt16" data-action="manual-ai-pause">${ensureAIPlayback().snapshot().paused?'観戦を再開':'観戦を一時停止'}</button><button class="btn full mt16" data-action="manual-log">対戦ログ</button>`);return;}const m=manualModel(battle.state,manualUI);showDialog('対戦メニュー',`<div class="stack">${peekDeckTop(battle.state,0)?'<button class="btn" data-action="manual-peek-top">山札の上を見る</button>':''}<button class="btn" data-action="manual-help">${icon('help',17)}今の操作を確認</button><button class="btn" data-action="manual-speed">${icon('bolt',17)}AIの速さ：${aiSpeedLabel(manualUI.aiSpeed)}</button><div class="ai-speed-options" aria-label="AIの速さ">${Object.entries(AI_SPEEDS).map(([key,value])=>`<button class="btn" data-action="manual-ai-speed" data-speed="${key}" aria-pressed="${manualUI.aiSpeed===key}">${value.label}</button>`).join('')}</div><div class="row"><button class="btn" data-action="manual-ai-pause">${ensureAIPlayback().snapshot().paused?'AIを再開':'AIを一時停止'}</button><button class="btn" data-action="manual-ai-next" ${ensureAIPlayback().snapshot().hasNext?'':'disabled'}>次へ</button></div>${m.human&&!battle.state.decision&&battle.state.phase==='main'?'<button class="btn" data-action="manual-extra-methods">場・山札・マナ・墓地などから使う</button>':''}${battle.practice&&battle.state.winner===null?`<button class="btn" data-action="battle-hint" ${m.human?'':'disabled'}>${icon('spark',17)}次の一手のヒント</button><button class="btn" data-action="undo-battle" ${battleUndo.length?'':'disabled'}>${icon('history',17)}待った（1つ戻す）</button>`:''}<button class="btn" data-action="manual-field" data-player="0">自分の場を拡大</button><button class="btn" data-action="manual-field" data-player="1">相手の場を拡大</button><button class="btn" data-action="battle-report">${icon('download',17)}不具合報告用に保存</button><button class="btn" data-action="check-update">更新を確認</button><button class="btn" data-action="manual-log">${icon('history',17)}対戦ログを見る</button></div>`,`<button class="btn primary" data-action="close-dialog">対戦に戻る</button>`);}
+function showManualOptions(){if(!battle)return;if(battle.spectator){showDialog('観戦メニュー',`<p class="small">CPU 1：${esc(battle.decks[0].name)}<br>CPU 2：${esc(battle.decks[1].name)}</p><div class="ai-speed-options mt16">${Object.entries(AI_SPEEDS).map(([key,v])=>`<button class="btn" data-action="manual-ai-speed" data-speed="${key}" aria-pressed="${manualUI.aiSpeed===key}">${v.label}</button>`).join('')}</div><button class="btn full mt16" data-action="manual-ai-pause">${ensureAIPlayback().snapshot().paused?'観戦を再開':'観戦を一時停止'}</button><button class="btn full mt16" data-action="manual-log">対戦ログ</button>${battle.tournamentId?'<button class="btn full mt16" data-action="tournament-return">途中経過を保存してトーナメント表へ</button>':''}`);return;}const m=manualModel(battle.state,manualUI);showDialog('対戦メニュー',`<div class="stack">${peekDeckTop(battle.state,0)?'<button class="btn" data-action="manual-peek-top">山札の上を見る</button>':''}<button class="btn" data-action="manual-help">${icon('help',17)}今の操作を確認</button><button class="btn" data-action="manual-speed">${icon('bolt',17)}AIの速さ：${aiSpeedLabel(manualUI.aiSpeed)}</button><div class="ai-speed-options" aria-label="AIの速さ">${Object.entries(AI_SPEEDS).map(([key,value])=>`<button class="btn" data-action="manual-ai-speed" data-speed="${key}" aria-pressed="${manualUI.aiSpeed===key}">${value.label}</button>`).join('')}</div><div class="row"><button class="btn" data-action="manual-ai-pause">${ensureAIPlayback().snapshot().paused?'AIを再開':'AIを一時停止'}</button><button class="btn" data-action="manual-ai-next" ${ensureAIPlayback().snapshot().hasNext?'':'disabled'}>次へ</button></div>${m.human&&!battle.state.decision&&battle.state.phase==='main'?'<button class="btn" data-action="manual-extra-methods">場・山札・マナ・墓地などから使う</button>':''}${battle.practice&&battle.state.winner===null?`<button class="btn" data-action="battle-hint" ${m.human?'':'disabled'}>${icon('spark',17)}次の一手のヒント</button><button class="btn" data-action="undo-battle" ${battleUndo.length?'':'disabled'}>${icon('history',17)}待った（1つ戻す）</button>`:''}<button class="btn" data-action="manual-field" data-player="0">自分の場を拡大</button><button class="btn" data-action="manual-field" data-player="1">相手の場を拡大</button><button class="btn" data-action="battle-report">${icon('download',17)}不具合報告用に保存</button><button class="btn" data-action="check-update">更新を確認</button><button class="btn" data-action="manual-log">${icon('history',17)}対戦ログを見る</button></div>`,`<button class="btn primary" data-action="close-dialog">対戦に戻る</button>`);}
 function ensureAIPlayback(){
  if(!battle)return null;
  if(aiPlayback&&aiPlaybackBattle===battle)return aiPlayback;
@@ -612,6 +626,7 @@ document.addEventListener('click',async event=>{
  else if(action==='tournament-random-slots')resetTournamentSlots();
  else if(action==='tournament-next')advanceLocalTournament();
  else if(action==='tournament-stop')stopTournamentWorker();
+ else if(action==='tournament-watch')startTournamentSpectatorMatch(el.dataset.id,el.dataset.match);
  else if(action==='tournament-return')returnToTournament();
  else if(action==='manual-random-opponent')await randomBattleAfterResult();
  else if(action==='hero-start')startHeroChallenge(id);

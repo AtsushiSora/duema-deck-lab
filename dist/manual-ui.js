@@ -1,11 +1,11 @@
 import {battleZoomControlsHTML} from './battle-zoom.js?v=0.227.0';
 import {displayTurn} from './turn-count.js';
-import {challengeKind} from './character-roster.js?v=0.473.2';
-import {paymentReviewHTML} from './battle-insights.js?v=0.473.2';
+import {challengeKind} from './character-roster.js?v=0.474.0';
+import {paymentReviewHTML} from './battle-insights.js?v=0.474.0';
 import {sourceCardBadge,sourceCardLabel} from './card-info.js';
 import {shieldCards} from './shield-state.js';
-import {aiPlaybackHTML,aiSpeedLabel,aiPublicSnapshot,aiResultCues} from './ai-playback.js?v=0.473.2';
-import {handCardModel,handShelfHTML,handInspectorHTML,handEvolutionButtonHTML} from './hand-ui.js?v=0.473.2';
+import {aiPlaybackHTML,aiSpeedLabel,aiPublicSnapshot,aiResultCues} from './ai-playback.js?v=0.474.0';
+import {handCardModel,handShelfHTML,handInspectorHTML,handEvolutionButtonHTML} from './hand-ui.js?v=0.474.0';
 import {getLegalActions,graveSummonSources,manaSelectionStatus,manaColors,card,power,effectiveCard,isEvolution,canUntap,abilitiesIgnored,genmuActive,momoActive,selfTriggersStopped,manaValue,manaValueAt,exLifeShieldInfo,exLifeShields,shieldGuardSources,playFaces,attackLocked,evolutionBases,canCastSpell,canEnterCreature,summonCost,paymentPool,manaPayment} from './engine.js';
 import {attackRoute,previewAttackAction} from './battle-visuals.js?v=0.100.0';
 import {pageWindow} from './board-fit.js';
@@ -291,7 +291,7 @@ function resultStatsHTML(r){
  return `<section class="manual-result-record" aria-label="この相手との戦績"><small class="result-opponent">対 ${esc(r.opponentName)}</small><div class="result-score"><span>この相手との通算</span><strong>${r.wins}勝 ${r.losses}敗</strong><small>${r.games}戦 · 勝率 ${r.winRate===null?'—':r.winRate+'%'}</small></div><div class="result-deck"><span>このデッキで ${r.deckWins}勝 ${r.deckLosses}敗</span><small>${esc(r.deckName)}</small></div></section>`;
 }
 function mainActions(s,ui,m,h){
- if(ui.spectator)return s.winner!==null?`<div class="manual-result"><strong>CPU ${s.winner+1}の勝利！</strong><p>${esc(s.players[s.winner].name)}</p><p>${esc(s.reason)}</p><div class="manual-secondary"><button class="btn primary" data-action="battle-again">もう一度観戦</button><button class="btn" data-action="spectator-setup">デッキを選び直す</button><button class="btn" data-action="manual-replay">記録を見返す</button></div></div>`:`<div class="manual-wait"><span class="running-dot"></span><div><strong>CPU ${((s.decision?.player??s.active)+1)}の対戦を観戦中</strong><small>手札を切り替えたり、ログで行動を確認できます。</small></div></div>`;
+ if(ui.spectator)return s.winner!==null?`<div class="manual-result"><strong>CPU ${s.winner+1}の勝利！</strong><p>${esc(s.players[s.winner].name)}</p><p>${esc(s.reason)}</p>${ui.tournamentExhibition?'<p>再対戦のため、大会の結果は変更しません。</p>':''}<div class="manual-secondary">${ui.tournament?'<button class="btn primary" data-action="tournament-return">トーナメント表へ</button>':'<button class="btn primary" data-action="battle-again">もう一度観戦</button><button class="btn" data-action="spectator-setup">デッキを選び直す</button>'}<button class="btn" data-action="manual-replay">記録を見返す</button></div></div>`:`<div class="manual-wait"><span class="running-dot"></span><div><strong>CPU ${((s.decision?.player??s.active)+1)}の対戦を観戦中</strong><small>手札を切り替えたり、ログで行動を確認できます。</small></div></div>`;
  if(s.winner!==null)return `<div class="manual-result"><strong>${s.winner===0?s.challenge?challengeKind(s.challenge.heroId)+'撃破！':'勝利！':'対戦終了'}</strong><p>${esc(s.reason)}</p>${resultStatsHTML(ui.resultStats)}<div class="manual-secondary">${ui.tournament?'<button class="btn primary" data-action="tournament-return">トーナメント表へ</button>':'<button class="btn primary" data-action="battle-again">もう一度対戦</button><button class="btn" data-action="manual-change-deck">デッキを変えて挑戦</button><button class="btn" data-action="manual-random-opponent">ランダムな相手と対戦</button>'}<button class="btn" data-action="manual-replay">記録を見返す</button>${s.challenge?'<button class="btn" data-action="end-battle">'+challengeKind(s.challenge.heroId)+'を選ぶ</button>':''}</div></div>`;
  if(!m.human)return `<div class="manual-wait"><span class="running-dot"></span><div><strong>相手AIが考えています</strong><small>盤面を見ながら待ちましょう。</small></div></div>`;
  if(ui.confirm!==null){const a=m.actions.find(a=>a.id===ui.confirm&&a.kind==='endTurn');if(a)return `<div class="end-turn-review"><strong>まだ攻撃できるクリーチャーがいます</strong><p>攻撃せずにターンを終了しますか？</p><div class="manual-secondary"><button class="btn" data-action="manual-cancel-end">対戦に戻る</button><button class="btn primary" data-action="manual-confirm-end" data-index="${a.id}">ターンを終える</button></div></div>`;}
