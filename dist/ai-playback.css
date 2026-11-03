@@ -15,3 +15,21 @@
 @media(prefers-reduced-motion:reduce){.ai-highlight{animation:none}}
 
 .has-ai-playback .attack-overlay.is-active+.attack-route-strip{display:none}
+
+.spectator-hands .hand-shelf-head{flex-wrap:wrap;gap:4px 8px}.spectator-hand-tabs{display:flex;gap:4px}.spectator-hand-tabs button{min-height:32px;border:1px solid #b7d3c8;border-radius:7px;padding:4px 10px;background:#fff;color:#276957;font-size:11px;font-weight:700}.spectator-hand-tabs button[aria-pressed=true]{background:#0a8167;border-color:#0a8167;color:#fff}.spectator-hands .hand-shelf-card{cursor:pointer}.spectator-hands .hand-shelf-row{min-width:0}.spectator-hands.manual-hand .hand-shelf-card{flex:0 0 115px}.spectator-hands.manual-hand .hand-shelf-cards{display:flex;overflow-x:auto;padding:8px 2px;gap:8px;max-width:100%}
+
+/* Observation has no bottom action dock, so keep its hands and both CPU names
+   within the visible phone viewport instead of extending under browser chrome. */
+@media(max-width:850px), (min-width:480px) and (max-width:1100px) and (max-height:600px) and (orientation:landscape){
+ body.manual-playing.manual-spectating{--manual-edge-height:100vh;--manual-browser-overlap:0px;overflow:hidden}
+ @supports(height:100dvh){body.manual-playing.manual-spectating{--manual-edge-height:100dvh}}
+ .spectator-hands.hand-shelf .hand-shelf-head{height:34px;min-height:34px;flex-wrap:nowrap}
+ .spectator-hands.hand-shelf .hand-shelf-head>small{display:none}
+}
+.spectator-hands.manual-hand .hand-shelf-head{display:flex;align-items:center;padding:6px 2px}
+.spectator-hands.manual-hand .hand-shelf-head>small{font-size:10px;width:100%}
+.spectator-hands.manual-hand .hand-shelf-card{position:relative;display:block;width:115px;max-width:115px;height:164px;padding:0;overflow:hidden;border:1px solid #769b91;border-radius:7px;background:#15352f;color:#fff}
+.spectator-hands.manual-hand .hand-shelf-art{position:absolute;inset:0;pointer-events:none}
+.spectator-hands.manual-hand .hand-shelf-art .art-card{width:100%;height:100%;border:0;border-radius:0}
+.spectator-hands.manual-hand .hand-shelf-cost{display:none}
+.spectator-hands.manual-hand .hand-shelf-card>strong{position:absolute;bottom:0;left:0;right:0;padding:4px;background:#08251ee6;font-size:10px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}

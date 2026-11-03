@@ -1,7 +1,7 @@
 import {displayTurn} from './turn-count.js';
 import {shieldCards} from './shield-state.js';
 import {card,getLegalActions,chooseAI,step} from './engine.js';
-import {createAIDecision} from './ai-decision.js?v=0.472.0';
+import {createAIDecision} from './ai-decision.js?v=0.473.0';
 
 export const AI_SPEEDS={slow:{label:'ゆっくり',delay:3000},normal:{label:'標準',delay:2000},fast:{label:'速い',delay:700}};
 export const aiSpeedLabel=speed=>(AI_SPEEDS[speed]||AI_SPEEDS.normal).label;
@@ -10,76 +10,76 @@ const rows=(p,player)=>['battle','mana','grave','extra'].flatMap(zone=>(p[zone]|
 // Only public identities and counts enter presentation snapshots. Draws stay anonymous.
 export function aiPublicSnapshot(s){return {actions:s.actions,turn:s.turn,round:displayTurn(s),logIndex:s.log.length,players:s.players.map((p,player)=>({cards:rows(p,player),deck:p.deck.length,hand:p.hand.length,mana:p.mana.length,grave:p.grave.length,shields:p.shields.length,battle:p.battle.length}))};}
 const cueKeys=(snapshot,id)=>snapshot.players.flatMap(p=>p.cards.filter(x=>x.cardId===id&&x.zone==='battle').map(x=>`creature:${x.player}:${x.uid}`));
-export function aiActionCue(s,a){
- const snapshot=aiPublicSnapshot(s),source=snapshot.players.flatMap(p=>p.cards).find(x=>x.uid===a.uid),cardId=source?.cardId||null,keys=cardId?cueKeys(snapshot,cardId):[];
- let text='相手が能力の選択を行います',zones=[];
- if(a.kind==='charge'){text='相手がカードをマナに置きます';zones=['1:mana'];}
- else if(a.kind==='galaxyShield'){text='相手がギャラクシールドで表向きのシールドに置きます';zones=['1:shields'];}
- else if(a.kind==='pandora'){text='相手がパンドラ・シフトで超次元ゾーンへ置きます';zones=['1:extra'];}
- else if(a.kind==='play')text=source?`相手が「${card(cardId).name}」を使います`:'相手がカードを使います';
+export function aiActionCue(s,a,{spectator=false}={}){
+ const actor=a.player??1,other=1-actor,subject=spectator?'CPU '+(actor+1):'相手',snapshot=aiPublicSnapshot(s),source=snapshot.players.flatMap(p=>p.cards).find(x=>x.uid===a.uid),cardId=source?.cardId||null,keys=cardId?cueKeys(snapshot,cardId):[];
+ let text=subject+'が能力の選択を行います',zones=[];
+ if(a.kind==='charge'){text=subject+'がカードをマナに置きます';zones=[actor+':mana'];}
+ else if(a.kind==='galaxyShield'){text=subject+'がギャラクシールドで表向きのシールドに置きます';zones=[actor+':shields'];}
+ else if(a.kind==='pandora'){text=subject+'がパンドラ・シフトで超次元ゾーンへ置きます';zones=[actor+':extra'];}
+ else if(a.kind==='play')text=source?`${subject}が「${card(cardId).name}」を使います`:subject+'がカードを使います';
  else if(a.kind==='attack'){
-  text=`相手の「${source?card(cardId).name:'クリーチャー'}」が攻撃します`;
-  if(a.target==='player'){if(a.shield)keys.push(`shield:0:${a.shield}`);else keys.push('player:0');text+=' → あなた'+(s.players[0].shields.length?'のシールド':'へダイレクトアタック');}
-  else {const target=s.players[0].battle.find(x=>x.uid===a.target);if(target){keys.push(`creature:0:${target.uid}`);text+=` → 「${card(target).name}」`;}}
+  text=`${subject}の「${source?card(cardId).name:'クリーチャー'}」が攻撃します`;
+  if(a.target==='player'){if(a.shield)keys.push(`shield:${other}:${a.shield}`);else keys.push('player:'+other);text+=' → '+(spectator?'CPU '+(other+1):'あなた')+(s.players[other].shields.length?'のシールド':'へダイレクトアタック');}
+  else {const target=s.players[other].battle.find(x=>x.uid===a.target);if(target){keys.push(`creature:${other}:${target.uid}`);text+=` → 「${card(target).name}」`;}}
  }
- else if(a.kind==='skipCharge')text='相手がマナに置かずに進みます';
- else if(a.kind==='toAttack')text='相手が攻撃のステップに進みます';
- else if(a.kind==='endTurn')text='相手がターンを終えます';
- else if(a.kind==='noBlock')text='相手はブロックせずに攻撃を受けます';
- return {label:'相手の行動',text,cardId,keys,zones,turn:s.turn,round:displayTurn(s),stage:'before'};
+ else if(a.kind==='skipCharge')text=subject+'がマナに置かずに進みます';
+ else if(a.kind==='toAttack')text=subject+'が攻撃のステップに進みます';
+ else if(a.kind==='endTurn')text=subject+'がターンを終えます';
+ else if(a.kind==='noBlock')text=subject+'はブロックせずに攻撃を受けます';
+ return {label:subject+'の行動',text,cardId,keys,zones,turn:s.turn,round:displayTurn(s),stage:'before'};
 }
-export function aiResultCues(before,s,{opponentOnly=false}={}){
+export function aiResultCues(before,s,{opponentOnly=false,spectator=false}={}){
  const after=aiPublicSnapshot(s),publicIds=new Set([...before.players,...after.players].flatMap(p=>p.cards.map(x=>x.cardId)));
- const hidden=s.players[1],privateNames=[...hidden.hand,...hidden.deck,...hidden.shields.filter(x=>!x.faceUp),...hidden.mana.filter(x=>!visible(x)),...hidden.battle.filter(x=>!visible(x))].filter(x=>!publicIds.has(x.cardId)).map(x=>card(x)?.name).filter(Boolean).sort((a,b)=>b.length-a.length);
+ const privateNames=(spectator?s.players:[s.players[1]]).flatMap(hidden=>[...hidden.hand,...hidden.deck,...hidden.shields.filter(x=>!x.faceUp),...hidden.mana.filter(x=>!visible(x)),...hidden.battle.filter(x=>!visible(x))]).filter(x=>!publicIds.has(x.cardId)).map(x=>card(x)?.name).filter(Boolean).sort((a,b)=>b.length-a.length);
  const changes=after.players.flatMap((p,who)=>['deck','hand','mana','grave','shields','battle'].filter(z=>p[z]!==before.players[who][z]).map(z=>`${who}:${z}`));
  const events=s.log.slice(before.logIndex).filter(e=>!opponentOnly||e.player===1);
  return events.map(e=>{
-  const privateEvent=e.player===1&&['draw','peek','look','scry','reorder','search'].includes(e.type),cardId=!privateEvent&&publicIds.has(e.cardId)?e.cardId:null;let text=e.text||'能力を処理しました';
+  const privateEvent=(spectator||e.player===1)&&['draw','peek','look','scry','reorder','search'].includes(e.type),cardId=!privateEvent&&publicIds.has(e.cardId)?e.cardId:null;let text=e.text||'能力を処理しました';
   if(privateEvent){if(e.type==='draw'){const n=String(e.text).match(/(\d+)枚/);text=n?`カードを${n[1]}枚引いた`:'カードを引きました';}else if(e.type==='search')text='山札からカードを探して手札に加えました';else text='非公開のカードを確認しました';}
   for(const name of privateNames)text=text.split(name).join('非公開のカード');
   // Never attach a private card thumbnail, even if a log contains its internal ID.
   const zoneMap={draw:['deck','hand'],charge:['mana'],ramp:['mana'],break:['shields'],shieldAdd:['shields'],exLifeAdd:['shields'],leave:['battle','grave'],play:['battle'],search:['hand']};
   const zones=zoneMap[e.type]?.map(z=>`${e.player}:${z}`)||changes;
-  return {label:e.player===1?'相手の行動の結果':'あなたの場の変化',text,cardId,keys:cardId?cueKeys(after,cardId):[],zones,turn:e.turn,round:displayTurn(e),stage:'result'};
+  return {label:spectator?'CPU '+(e.player+1)+'の行動の結果':e.player===1?'相手の行動の結果':'あなたの場の変化',text,cardId,keys:cardId?cueKeys(after,cardId):[],zones,turn:e.turn,round:displayTurn(e),stage:'result'};
  });
 }
 
 // This clock advances the existing engine only at a validated AI action boundary.
 // Reading cues, changing speed, pausing and opening a dialog never execute a move.
-export function createAIPlayback({getState,isActive=()=>true,isBlocked=()=>false,onChange=()=>{},timer=setTimeout,cancelTimer=clearTimeout,legal=getLegalActions,choose=null,cancelChoose=()=>{},disposeChoose=()=>{},cards=null,execute=step,speed='normal'}={}){
+export function createAIPlayback({getState,isActive=()=>true,isBlocked=()=>false,onChange=()=>{},timer=setTimeout,cancelTimer=clearTimeout,legal=getLegalActions,choose=null,cancelChoose=()=>{},disposeChoose=()=>{},cards=null,execute=step,speed='normal',spectator=false}={}){
  const chooser=!choose&&cards&&typeof Worker!=='undefined'?createAIDecision({cards}):null,pick=choose||(chooser?s=>chooser.choose(s):chooseAI);
  let currentSpeed=AI_SPEEDS[speed]?speed:'normal',paused=false,cue=null,queue=[],plan=null,handle=null,generation=0,disposed=false,position=0,total=0,thinking=false,thinkingGeneration=0;
- const active=()=>!disposed&&isActive(),aiTurn=()=>{const s=getState();return s&&s.winner===null&&(s.decision?.player??s.active)===1;};
+ const active=()=>!disposed&&isActive(),aiTurn=()=>{const s=getState();return s&&s.winner===null&&(spectator||(s.decision?.player??s.active)===1);};
  const clear=()=>{generation++;if(handle!==null)cancelTimer(handle);handle=null;};
- const snapshot=()=>({speed:currentSpeed,paused,cue,position,total,thinking,hasNext:thinking||!!plan||queue.length>0||!!aiTurn(),pending:queue.length+(plan?1:0)});
+ const snapshot=()=>({spectator,speed:currentSpeed,paused,cue,position,total,thinking,hasNext:thinking||!!plan||queue.length>0||!!aiTurn(),pending:queue.length+(plan?1:0)});
  const notify=()=>onChange(snapshot());
  const cancelThinking=()=>{thinkingGeneration++;if(!thinking)return;thinking=false;cue=null;chooser?.cancel();cancelChoose();};
  const schedule=()=>{clear();if(!active()||isBlocked()||paused||thinking||!snapshot().hasNext)return;const token=generation;handle=timer(()=>{handle=null;if(token!==generation||!active()||isBlocked()||paused)return;advance();},AI_SPEEDS[currentSpeed].delay);};
- const announce=(s,a)=>{if(!a||a.player!==1)return false;plan={signature:JSON.stringify(a),actions:s.actions};cue=aiActionCue(s,a);position=0;total=0;return true;};
+ const announce=(s,a)=>{if(!a||!spectator&&a.player!==1)return false;plan={signature:JSON.stringify(a),actions:s.actions};cue=aiActionCue(s,a,{spectator});position=0;total=0;return true;};
  function advance(){
   clear();if(!active()||isBlocked()||thinking)return false;
   const s=getState();
   if(plan){
    const pending=plan;plan=null;
-   const a=s.actions===pending.actions?legal(s).find(a=>a.player===1&&JSON.stringify(a)===pending.signature):null;
+   const a=s.actions===pending.actions?legal(s).find(a=>(spectator||a.player===1)&&JSON.stringify(a)===pending.signature):null;
    if(!a){queue=[];cue=null;notify();schedule();return false;}
-   const before=aiPublicSnapshot(s);execute(s,a);queue=aiResultCues(before,s);total=queue.length;position=queue.length?1:0;
-   cue=queue.shift()||{label:'相手の行動の結果',text:'相手の選択を処理しました',keys:[],zones:[],turn:s.turn,round:displayTurn(s),stage:'result'};
+   const before=aiPublicSnapshot(s);execute(s,a);queue=aiResultCues(before,s,{spectator});total=queue.length;position=queue.length?1:0;
+   cue=queue.shift()||{label:spectator?'CPU '+(a.player+1)+'の行動の結果':'相手の行動の結果',text:spectator?'CPUの選択を処理しました':'相手の選択を処理しました',keys:[],zones:[],turn:s.turn,round:displayTurn(s),stage:'result'};
   }else if(queue.length){cue=queue.shift();position++;}
   else if(aiTurn()){
    const result=pick(s);
    if(result&&typeof result.then==='function'){
-    const token=++thinkingGeneration,actions=s.actions;thinking=true;cue={label:'相手の行動',text:'相手が考えています…',keys:[],zones:[],turn:s.turn,round:displayTurn(s),stage:'thinking'};position=0;total=0;notify();
+    const token=++thinkingGeneration,actions=s.actions;thinking=true;cue={label:spectator?'CPU '+((s.decision?.player??s.active)+1)+'の行動':'相手の行動',text:spectator?'CPUが考えています…':'相手が考えています…',keys:[],zones:[],turn:s.turn,round:displayTurn(s),stage:'thinking'};position=0;total=0;notify();
     Promise.resolve(result).then(a=>{
      if(token!==thinkingGeneration)return;
      thinking=false;cue=null;
      if(!active()||isBlocked()||getState()!==s||s.actions!==actions||!aiTurn())return;
-     if(a&&legal(s).some(x=>x.player===1&&JSON.stringify(x)===JSON.stringify(a)))announce(s,a);
+     if(a&&legal(s).some(x=>(spectator||x.player===1)&&JSON.stringify(x)===JSON.stringify(a)))announce(s,a);
      notify();schedule();
     }).catch(()=>{
      if(token!==thinkingGeneration)return;
      thinking=false;if(!active())return;
-     paused=true;cue={label:'相手の行動',text:'相手の思考を再開してください',keys:[],zones:[],turn:s.turn,round:displayTurn(s),stage:'error'};notify();
+     paused=true;cue={label:spectator?'CPUの行動':'相手の行動',text:spectator?'CPUの思考を再開してください':'相手の思考を再開してください',keys:[],zones:[],turn:s.turn,round:displayTurn(s),stage:'error'};notify();
     });return true;
    }
    if(!announce(s,result))return false;
@@ -101,7 +101,7 @@ export function createAIPlayback({getState,isActive=()=>true,isBlocked=()=>false
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function aiPlaybackHTML(playback){
  if(!playback)return '';
- const {paused,hasNext,position,total,speed}=playback,idle=!playback.cue&&!hasNext,cue=playback.cue||(idle?{label:'対戦ログ',text:'これまでの行動を確認'}:{label:'相手の行動',text:paused?'相手AIを一時停止しています':'相手の行動を確認します'});
+ const {paused,hasNext,position,total,speed,spectator}=playback,idle=!playback.cue&&!hasNext,cue=playback.cue||(idle?{label:'対戦ログ',text:'これまでの行動を確認'}:{label:spectator?'CPUの行動':'相手の行動',text:paused?(spectator?'CPUの対戦を一時停止しています':'相手AIを一時停止しています'):(spectator?'CPUの行動を確認します':'相手の行動を確認します')});
  return `<section class="ai-playback ${paused&&!idle?'is-paused':''}" aria-label="対戦の操作とログ"><button class="ai-cue" data-action="${idle?'manual-log':'manual-ai-detail'}" aria-label="${idle?'対戦ログを開く':'行動の説明を詳しく見る'}"><small>${paused&&!idle?'一時停止中 · ':''}${esc(cue.label)}${total>1?` · ${position}/${total}`:''}</small><strong role="status" aria-live="polite" aria-atomic="true">${esc(cue.text)}</strong></button><div class="ai-playback-buttons"><button data-action="manual-speed" aria-label="AIの速さを変更"><span class="ai-speed-prefix">速さ：</span>${aiSpeedLabel(speed)}</button><button data-action="manual-ai-pause" aria-pressed="${paused}" ${!hasNext&&!paused?'disabled':''}>${paused?'▶ 再開':'Ⅱ 一時停止'}</button><button data-action="manual-ai-next" ${hasNext&&!playback.thinking?'':'disabled'}>次へ ›</button><button type="button" data-action="manual-log" aria-label="対戦ログを開く">ログ</button></div></section>`;
 }
 export function applyAIHighlights(area,cue){
