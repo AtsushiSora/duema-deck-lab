@@ -101,17 +101,39 @@ test('strongest CPU games keep ordinary results and unlocks intact and record th
  const h=harness();await h.click('nav',{view:'duel'});await h.click('nav',{view:'strongest'});h.read("renderManual=()=>{};const ordinaryBefore=JSON.stringify([saved.manualResults,saved.heroProgress,saved.defeatedDecks,saved.characterUnlocks])");await h.click('strongest-start');assert.equal(h.read('!!battle.strongestCPU'),true);assert.equal(h.read('battle.practice'),false);assert.equal(h.read('battle.state.strongestCPU.orderAdjusted'),true);h.read('battle.state.winner=0;recordManualOutcome();recordManualOutcome()');assert.equal(h.read('saved.strongestCPUResults[battle.strongestCPU.key].wins'),1);assert.equal(h.read('JSON.stringify([saved.manualResults,saved.heroProgress,saved.defeatedDecks,saved.characterUnlocks])===ordinaryBefore'),true);
 });
 
-for(const [label,choose,pick,id] of [
- ['environment','choose-environment','pick-environment','env-gp2026-grimoire'],
- ['champion','choose-champions','pick-champion','champion-dmgp2026b-0-original'],
- ['starter','choose-starter25','pick-starter25','starter25-01']
-])test(`strongest CPU keeps its mode after choosing a new or already saved ${label} deck and starts the counterbattle`,async()=>{
+for(const [label,id] of [
+ ['environment','env-gp2026-grimoire'],
+ ['champion','champion-dmgp2026b-0-original'],
+ ['starter','starter25-01']
+])test(`strongest CPU selects a saved ${label} deck without preset source choices and starts the counterbattle`,async()=>{
  const h=harness();h.read('starterDecks=resolveStarter25Decks(registry);const originalDeck=JSON.stringify(saved.decks[0])');
- await h.click('nav',{view:'duel'});await h.click('nav',{view:'strongest'});const oldKey=h.read('strongestDeckKey(myDeck())');
- await h.click('select-my-deck');await h.click(choose,{role:'mine'});await h.click(pick,{id,role:'mine'});
+ const expression=label==='environment'?`environmentDecks.find(d=>d.id==='${id}')`:label==='starter'?`starterDecks.find(d=>d.id==='${id}')`:`resolveChampions(${JSON.stringify(championData)},registry).records.find(r=>r.id==='${id}').deck`;
+ h.read(`saveCopiedDeck(${expression},'mine');const importedId=saved.selected;saved.selected='own';view='duel';render()`);await h.click('nav',{view:'strongest'});const oldKey=h.read('strongestDeckKey(myDeck())');
+ await h.click('select-my-deck');assert.doesNotMatch(h.dialog.innerHTML,/data-action="choose-(?:environment|champions|starter25)"/);await h.click('pick-my-deck',{id:h.read('importedId')});
  assert.equal(h.read('view'),'strongest');assert.equal(h.dialog.open,false);assert.equal(h.read('myDeck().templateId||myDeck().historicalId'),id);assert.notEqual(h.read('strongestDeckKey(myDeck())'),oldKey);assert.equal(h.read('!!strongestBuildFor(myDeck())'),true);assert.equal(h.read('JSON.stringify(saved.decks[0])===originalDeck'),true);assert.doesNotMatch(h.root.innerHTML,/data-action="start-match"/);
  const selected=h.read('saved.selected'),length=h.read('saved.decks.length');
- await h.click('select-my-deck');await h.click(choose,{role:'mine'});await h.click(pick,{id,role:'mine'});
- assert.equal(h.read('view'),'strongest');assert.equal(h.read('saved.selected'),selected);assert.equal(h.read('saved.decks.length'),length);
+ await h.click('select-my-deck');await h.click('pick-my-deck',{id:selected});assert.equal(h.read('view'),'strongest');assert.equal(h.read('saved.selected'),selected);assert.equal(h.read('saved.decks.length'),length);
  h.read('renderManual=()=>{}');await h.click('strongest-start');assert.equal(h.read('!!battle.strongestCPU'),true);assert.equal(h.read('battle.state.strongestCPU.orderAdjusted'),true);assert.equal(h.read('battle.decks[0].id'),selected);assert.equal(h.read('battle.practice'),false);
+});
+
+test('a CPU defeat is learned once, rebuilds on the result screen and rematches with the improved persisted forty',async()=>{
+ const h=harness();await h.click('nav',{view:'duel'});await h.click('nav',{view:'strongest'});h.read('renderManual=()=>{};const normalBefore=JSON.stringify([saved.manualResults,saved.heroProgress,saved.defeatedDecks]);const initialCPU=JSON.stringify(strongestBuildFor(myDeck()).deck.cards)');await h.click('strongest-start');
+ h.read("battle.state.winner=0;battle.state.metrics[0].played[myDeck().cards[0].id]=3;battle.state.metrics[0].turns=3;recordManualOutcome();recordManualOutcome()");await Promise.resolve();await Promise.resolve();
+ assert.equal(h.read('strongestLearningFor(myDeck()).revision'),1);assert.equal(h.read('strongestLearningFor(myDeck()).losses'),1);assert.equal(h.read('strongestBuildFor(myDeck()).learningRevision'),1);assert.notEqual(h.read('JSON.stringify(strongestBuildFor(myDeck()).deck.cards)'),h.read('initialCPU'));assert.equal(h.read('saved.strongestCPUResults[strongestDeckKey(myDeck())].wins'),1);assert.equal(h.read('JSON.stringify([saved.manualResults,saved.heroProgress,saved.defeatedDecks])===normalBefore'),true);
+ h.read('rematchStrongestBattle()');assert.equal(h.read('battle.strongestCPU.learningRevision'),1);assert.equal(h.read('battle.state.strongestCPU.orderAdjusted'),true);assert.equal(h.read('battle.state.winner'),null);
+ h.read('battle.state.winner=1;recordManualOutcome()');assert.equal(h.read('strongestLearningFor(myDeck()).revision'),1);
+ h.read("battle=null;strongestJob=null;view='strongest';render()");assert.equal(h.read('strongestBuildFor(myDeck()).learningRevision'),1);assert.match(h.root.innerHTML,/data-action="strongest-start"/);assert.ok(h.writes.some(saved=>Object.values(saved.strongestCPULearning||{}).some(x=>x.revision===1)));
+ h.read('saved.decks[0].cards=structuredClone(PRESETS[1].cards);render()');await Promise.resolve();await Promise.resolve();assert.equal(h.read('strongestLearningFor(myDeck()).revision'),0);assert.equal(h.read('strongestBuildFor(myDeck()).learningRevision'),0);
+});
+test('leaving a pending improvement cancels the job, keeps its feedback and rebuilds when returning instead of using a stale deck',async()=>{
+ const h=harness();await h.click('nav',{view:'duel'});await h.click('nav',{view:'strongest'});h.read('renderManual=()=>{}');await h.click('strongest-start');h.read("battle.state.winner=0;recordManualOutcome();view='home';render()");await Promise.resolve();assert.equal(h.read('strongestJob.status'),'cancelled');assert.equal(h.read('strongestBuildFor(myDeck())'),null);assert.equal(h.read('strongestLearningFor(myDeck()).revision'),1);
+ await h.click('nav',{view:'duel'});await h.click('nav',{view:'strongest'});assert.equal(h.read('strongestBuildFor(myDeck()).learningRevision'),1);
+});
+
+test('an unfinished or failed improvement cannot rematch with the old cache and stale worker replies cannot overwrite a retry',async()=>{
+ const h=harness();await h.click('nav',{view:'duel'});await h.click('nav',{view:'strongest'});h.read('renderManual=()=>{}');await h.click('strongest-start');h.read("let workerHandle;globalThis.Worker=class{constructor(){workerHandle=this;}postMessage(){}terminate(){this.stopped=true;}};battle.state.winner=0;recordManualOutcome()");await Promise.resolve();
+ assert.equal(h.read('strongestPreparing(battle.decks[0])'),true);assert.equal(h.read('strongestBuildFor(battle.decks[0])'),null);h.read('rematchStrongestBattle()');assert.equal(h.read('battle.state.winner'),0);
+ h.read('const firstHandle=workerHandle;workerHandle.onerror()');assert.equal(h.read('strongestJob.status'),'error');h.read('rematchStrongestBattle()');assert.equal(h.read('view'),'strongest');assert.match(h.root.innerHTML,/読み込めませんでした/);assert.doesNotMatch(h.root.innerHTML,/data-action="strongest-start"/);
+ await h.click('strongest-build');assert.equal(h.read('strongestJob.status'),'building');h.read("firstHandle.onmessage({data:{type:'done',build:battle.strongestCPU}})");assert.equal(h.read('strongestJob.status'),'building');assert.equal(h.read('strongestBuildFor(myDeck())'),null);
+ h.read("const improved=buildStrongestCPU(strongestJob.target,PRESETS,battleCards,{learning:strongestJob.learning,previousBuild:strongestJob.previousBuild});workerHandle.onmessage({data:{type:'done',build:improved}})");assert.equal(h.read('strongestBuildFor(myDeck()).learningRevision'),1);assert.match(h.root.innerHTML,/data-action="strongest-start"/);
 });
