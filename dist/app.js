@@ -1,7 +1,7 @@
 import {STRONGEST_BUILD_VERSION,strongestDeckKey,buildStrongestCPU,validStrongestBuild,arrangeStrongestCPU,normalizeStrongestLearning,learnStrongestDefeat} from './strongest-cpu.js?v=0.482.0';
 import {normalizeDeckTags,deckHasTag} from './deck-tags.js?v=0.481.0';
 import {lastMatchSetup,resolveLastMatch} from './recent-match.js?v=0.481.0';
-import {RELEASE_NOTES} from './release-notes.js?v=0.482.0';
+import {RELEASE_NOTES} from './release-notes.js?v=0.482.1';
 import {logCardReferences} from './log-card-links.js?v=0.481.0';
 import {captureScreenshotReport,screenshotReportFields,screenshotReportFormHTML,screenshotReportPreviewHTML} from './screenshot-report.js?v=0.481.0';
 import {createCardDetailsLoader} from './card-details-loader.js?v=0.481.0';
@@ -19,7 +19,7 @@ import {PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS} from './p
 import {createPlayTimeTracker,formatPlayTime,playTimeStorageNote} from './play-time.js?v=0.481.0';
 import {historicalProfile,historicalMetadata} from './historical-regulations.js';
 import {creatureStatusModel,creatureStatusHTML,recordBattleAction,createBattleReport,encodeBattleData,decodeBattleData} from './battle-insights.js?v=0.481.0';
-import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.482.0';
+import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.482.1';
 import {createCardArt} from './card-art.js?v=0.481.0';
 import {CHARACTER_ERAS,CHARACTER_NAMES,characterEra,characterUnlockState,recordCharacterUnlocks} from './character-roster.js';
 import {resolveCharacterDecks,characterChallengeHTML} from './character-challenge.js';
@@ -38,7 +38,7 @@ import {bindFittedBoard,pageWindow} from './board-fit.js';
 import {attackRoute,previewAttackAction,updateBoardFeedback,bindAttackArrow} from './battle-visuals.js?v=0.227.0';
 import {setCards,card as battleCard,validateDeck,createGame,getLegalActions,attackLocked,chooseAI,step,runGame,runSummary,aggregate,power,manaValue,manaValueAt,playFaces,canCastSpell,effectiveCard,canUntap,shieldGuardSources,exLifeShields,exLifeShieldInfo,evolutionBases,isEvolution,selfTriggersStopped,abilitiesIgnored,genmuActive,peekDeckTop,RULE_VERSION,ENGINE_VERSION,AI_VERSION} from './engine.js';
 import {PRESETS} from './decks.js';
-import {newManualUI,hyperModeModel,manualModel,manualScreenHTML,manualLogHTML,MANUAL_LOG_FILTERS,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,graveZoneHTML,graveSummonStatusHTML,choiceSelectionModel,choiceDetailCard} from './manual-ui.js?v=0.482.0';
+import {newManualUI,hyperModeModel,manualModel,manualScreenHTML,manualLogHTML,MANUAL_LOG_FILTERS,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,graveZoneHTML,graveSummonStatusHTML,choiceSelectionModel,choiceDetailCard} from './manual-ui.js?v=0.482.1';
 import {resolveEnvironmentDecks,environmentSupport,groupEnvironmentDecks,ENVIRONMENT_TARGET} from './environment.js';
 import {resolveStarter25Decks,starter25Matches} from './starter25.js';
 import {prepareDeckCopy} from './deck-copy.js';
