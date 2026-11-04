@@ -1,0 +1,11 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';import {championDefinition} from './champion-definition.mjs';import {REQUESTED395_SPECS as specs} from './requested395-specs.mjs';
+const read=f=>JSON.parse(fs.readFileSync(f)),write=(f,v)=>fs.writeFileSync(f,JSON.stringify(v,null,2)+'\n'),file='tools/support-phase-395.json',data=read('dist/cards.json'),details=read('dist/details.json');
+if(process.argv.includes('--prepare')){
+ const cards=Object.keys(specs).map(id=>{const r=details.cards.find(x=>x.id===id);assert.ok(r);return {id,name:r.name,source:r.source,faces:r.faces,spec:specs[id]};});
+ write(file,{phase:395,checkedAt:'2026-11-04',description:'ユニバース・ラピアの継続的なフェニックス種族追加と、進化・メテオバーン・山札公開・マナと墓地の種族参照に対応する。',rules:['https://dm.takaratomy.co.jp/rule/regulation/','https://dm.takaratomy.co.jp/rule/qa/41122/','https://dm.takaratomy.co.jp/rule/qa/41263/','https://dm.takaratomy.co.jp/rule/qa/32495/'],cards});
+}else{
+ const m=read(file),refs=read('tools/image-reference-prints.json');assert.equal(m.cards.length,1);
+ for(const r of m.cards){assert.deepEqual(r.spec,specs[r.id]);assert.ok(r.verification?.facesMatched);assert.match(r.verification.sha256,/^[a-f0-9]{64}$/);assert.deepEqual(r.faces,details.cards.find(x=>x.id===r.id).faces);assert.ok(Number.isInteger(m.regulationVerification?.limits[r.id]));const old=data.cards.find(c=>c.id===r.id||c.name===r.name);assert.ok(!old||old.supportBatch==='phase-395');const c={...championDefinition(r,'phase-395'),limit:m.regulationVerification.limits[r.id]};if(old)data.cards[data.cards.indexOf(old)]=c;else data.cards.push(c);const image={id:r.id,canonicalId:r.id,name:r.name,image:r.image,source:r.source},i=refs.prints.findIndex(x=>x.id===r.id);if(i<0)refs.prints.push(image);else refs.prints[i]=image;}
+ const old=data.supportExpansion;data.supportExpansion={phase:395,checkedAt:m.checkedAt,baseCount:4013,newEffectCards:1,newVanillaCards:0,totalCount:data.cards.length,ruleSource:m.rules,next:['公式照合と共通処理を用いて未対応カードを追加する'],history:[...(old.history||[]),Object.fromEntries(Object.entries(old).filter(([k])=>k!=='history'))].filter(x=>x.phase<395)};assert.equal(data.cards.length,4014);write('dist/cards.json',data);write('tools/image-reference-prints.json',refs);
+ console.log('Added Universe Rapia; 4014 supported');
+}

@@ -1,5 +1,5 @@
 import {card,effectiveCard,power,isEvolution,canUntap,skipsStartUntap,abilitiesIgnored,attackLocked,canCreatureAttack,exLifeShields,getLegalActions,manaSelectionStatus,playFaces,spellIgnored} from './engine.js';
-import {sourceCardCount} from './card-info.js?v=0.481.0';
+import {sourceCardCount} from './card-info.js?v=0.483.0';
 
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const layers=x=>[x,...(x.under||[]).flatMap(layers),...(x.godLinks||[]).flatMap(layers)];

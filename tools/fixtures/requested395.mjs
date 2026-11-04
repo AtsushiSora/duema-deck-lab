@@ -1,0 +1,1 @@
+export const REQUESTED395_DECK={id:'requested395',name:'ユニバース・ラピア検証',format:'original',cards:['dmx21-058','dm22-s01','dm22-017','dmx21-027','dm22-054','dm01-075','dm01-083','dm01-090','dm01-097','dm01-108'].map(id=>({id,count:4}))};

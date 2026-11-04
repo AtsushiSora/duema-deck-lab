@@ -1,3 +1,4 @@
+import {REQUESTED395_DECK} from './fixtures/requested395.mjs';
 import {REQUESTED394_DECK} from './fixtures/requested394.mjs';
 import {REQUESTED393_DECKS} from './fixtures/requested393.mjs';
 import {STANDARD392_DECK} from './fixtures/standard392.mjs';
@@ -921,3 +922,5 @@ for(const d of REQUESTED393_DECKS)if(validateDeck(d).length||registry.coverage(d
 if(validateDeck(REQUESTED394_DECK).length||registry.coverage(REQUESTED394_DECK).unsupported||REQUESTED394_DECK.cards.reduce((n,x)=>n+x.count,0)!==40)throw Error('指定2枚の検証デッキが不正');console.log('Checked requested394 forty: Baigya EX-Life triggers and Jao simultaneous three-zone removal supported.');
 
 await import('./check-online-compatibility.mjs');
+
+if(validateDeck(REQUESTED395_DECK).length||registry.coverage(REQUESTED395_DECK).unsupported||REQUESTED395_DECK.cards.reduce((n,x)=>n+x.count,0)!==40)throw Error('ユニバース・ラピアの検証デッキが不正');console.log('Checked requested395 forty: continuous Phoenix races, evolution, meteor burn, deck, grave and mana interactions.');

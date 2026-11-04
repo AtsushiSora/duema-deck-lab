@@ -1,4 +1,4 @@
-import {hasCopiedRole393,copiedRoles393} from './requested393-joker-rules.js?v=0.481.0';
+import {hasCopiedRole393,copiedRoles393} from './requested393-joker-rules.js?v=0.483.0';
 import {policyRemove,policyLook} from './champion-zone-policy.js';
 // Fifteen screenshot decks. Continuations store physical UIDs, never copies of game cards.
 export function createFifteenPhotoRules(api){
@@ -159,7 +159,7 @@ export function createFifteenPhotoRules(api){
  case'containerRevive':if(v)deploy(s,t,'grave',t.target);break;
  case'mobiusWin':if(v&&opp.shields.length)api.breakShields(s,1-t.p,opp.shields.slice(0,1).map(y=>y.uid));break;
  case'mobiusChosen':if(v&&opp.shields.length)api.breakShields(s,1-t.p,opp.shields.slice(0,3).map(y=>y.uid));break;
- case'barugaBurn':case'universeBurn':if(v&&x){const y=api.allLayers(x).slice(1).find(y=>y.uid===v),last=api.allLayers(x).length===2;api.moveBattleCard(s,t.p,v,'grave');if(t.name==='universeBurn'&&last&&y&&race(card(y),'フェニックス'))api.finish(s,t.p,'究極銀河ユニバースの最後のフェニックスをメテオバーン');else if(t.name==='barugaBurn')give(s,t,[S('mana',null,1,{creature:true,max:own.mana.length-1},{deploy:true})]);}break;
+ case'barugaBurn':case'universeBurn':if(v&&x){const y=api.allLayers(x).slice(1).find(y=>y.uid===v),last=api.allLayers(x).length===2;api.moveBattleCard(s,t.p,v,'grave');if(t.name==='universeBurn'&&last&&y&&own.grave.some(z=>z.uid===y.uid)&&race(api.zoneCard(s,t.p,y,'grave'),'フェニックス'))api.finish(s,t.p,'究極銀河ユニバースの最後のフェニックスをメテオバーン');else if(t.name==='barugaBurn')give(s,t,[S('mana',null,1,{creature:true,max:own.mana.length-1},{deploy:true})]);}break;
  case'vvPick':pending(s,t,'vvPick',{selected:[...t.selected,v]});break;
  case'limone':move(s,[0,1].flatMap(p=>creatures(s,p).filter(y=>api.isEvolution(y)===v).map(y=>({player:p,uid:y.uid,to:'grave'}))));break;
  case'sinberosRecover':if(v)zoneMove(s,t.p,'grave',t.target,'hand',t);break;
