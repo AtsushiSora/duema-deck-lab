@@ -6,7 +6,7 @@ export function readBattleZoom(storage,profile){
  return {kind:'cards',profile,percent:100,mode:'manual'};
 }
 export function saveBattleZoom(storage,setting){
- try{let all;try{all=JSON.parse(storage.getItem(BATTLE_ZOOM_KEY)||'{}');}catch{}if(!all||typeof all!=='object'||Array.isArray(all))all={};all[setting.profile]={percent:clampBattleZoom(setting.percent),mode:setting.mode==='fit'?'fit':'manual'};storage.setItem(BATTLE_ZOOM_KEY,JSON.stringify(all));}catch{}
+ try{let all;try{all=JSON.parse(storage.getItem(BATTLE_ZOOM_KEY)||'{}');}catch{}if(!all||typeof all!=='object'||Array.isArray(all))all={};all[setting.profile]={percent:clampBattleZoom(setting.percent),mode:setting.mode==='fit'?'fit':'manual'};storage.setItem(BATTLE_ZOOM_KEY,JSON.stringify(all));return true;}catch{return false;}
 }
 export function fitBattleZoom(regions){
  const ratios=regions.flatMap(({width,height,contentWidth,contentHeight})=>width>0&&height>0&&contentWidth>0&&contentHeight>0?[width/contentWidth,height/contentHeight]:[]);

@@ -6,6 +6,7 @@ export const civilizationLabel=f=>f.civilizations.length?f.civilizations.join(' 
 export const costLabel=c=>cardFaces(c).map(f=>f.costText||'未掲載').join(' / ')||'—';
 export const typeLabel=c=>[...new Set(cardFaces(c).map(f=>f.typeText||'未掲載'))].join(' / ')||'未掲載';
 const index=new WeakMap();
+export const invalidateCardSearch=c=>index.delete(c);
 export function searchText(c){if(!index.has(c))index.set(c,normalizeSearch([c.name,...cardFaces(c).flatMap(f=>[f.name,f.typeText,f.civilizationText,f.race,f.abilityText])].join(' ')));return index.get(c);}
 export function matchesCard(c,{query='',civ='',cost='',type=''}={}){
  if(query&&!searchText(c).includes(normalizeSearch(query)))return false;

@@ -1,3 +1,4 @@
+import {normalizeDeckTags} from './deck-tags.js?v=0.481.0';
 import {historicalMetadata} from './historical-regulations.js';
 // Account backups contain deck lists only. Local match history stays on this device.
 export const ACCOUNT_SCHEMA=1,MAX_ACCOUNT_DECKS=1000,MAX_ACCOUNT_CHARS=200000,MAX_ACCOUNT_BYTES=700000;
@@ -7,7 +8,7 @@ function cleanDeck(input,registry,category){
  if(!input||!validId(input.id)||typeof input.name!=='string'||!Array.isArray(input.cards)||input.cards.length>40)throw Error('保存デッキの形式が正しくありません');
  const errors=registry.validate(input);if(errors.length)throw Error(text(input.name,80)+'：'+errors[0]);
  const deck={id:input.id,name:text(input.name,120),format:input.format||'original',cards:registry.resolveRows(input.cards).map(r=>({id:r.id,count:r.count})),...historicalMetadata(input,registry.resolveRows(input.cards)),category};
- if(typeof input.favorite==='boolean')deck.favorite=input.favorite;
+ if(typeof input.favorite==='boolean')deck.favorite=input.favorite;if(input.tags!==undefined)deck.tags=normalizeDeckTags(input.tags);
  for(const k of['created','updated'])if(typeof input[k]==='string'&&Number.isFinite(Date.parse(input[k])))deck[k]=input[k];
  for(const k of['description','templateId','sourceTitle'])if(typeof input[k]==='string')deck[k]=text(input[k],k==='description'?2000:200);
  if(typeof input.source==='string'){try{const url=new URL(input.source);if(url.protocol==='https:')deck.source=url.href.slice(0,1000);}catch{}}
@@ -28,7 +29,7 @@ export function mergeAccountSnapshot(local,remote,registry,{newId=()=>crypto.ran
  const snapshot=validateAccountSnapshot(remote,registry),saved=structuredClone(local),used=new Set([...(saved.decks||[]),...(saved.friends||[])].map(d=>d.id)),report={decks:0,friends:0,duplicates:0,renamed:0};saved.decks??=[];saved.friends??=[];const selectedMap=new Map();
  for(const zone of['decks','friends'])for(const d of snapshot[zone]){
   const same=saved[zone].find(old=>{try{return signature(cleanDeck(old,registry,zone==='decks'?'自分':'相手'))===signature(d);}catch{return false;}});
-  if(same){if(d.favorite===true)same.favorite=true;report.duplicates++;if(zone==='decks')selectedMap.set(d.id,same.id);continue;}
+  if(same){if(d.favorite===true)same.favorite=true;if(d.tags?.length)same.tags=normalizeDeckTags([...(same.tags||[]),...d.tags]);report.duplicates++;if(zone==='decks')selectedMap.set(d.id,same.id);continue;}
   const copy=structuredClone(d);if(used.has(copy.id)){let id;for(let i=0;i<20;i++){id=newId();if(validId(id)&&!used.has(id))break;id=null;}if(!id)throw Error('新しいデッキIDを作成できません');copy.id=id;report.renamed++;}used.add(copy.id);saved[zone].push(copy);report[zone]++;if(zone==='decks')selectedMap.set(d.id,copy.id);
  }
  if(!saved.decks.some(d=>d.id===saved.selected))saved.selected=selectedMap.get(snapshot.selected)||saved.decks[0]?.id||null;

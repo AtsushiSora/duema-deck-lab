@@ -1,0 +1,38 @@
+name: Publish friend battles to Netlify
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: netlify-production
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: netlify-production
+      url: https://duema-deck-lab.netlify.app
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Check deployment credential
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          if [ -z "$NETLIFY_AUTH_TOKEN" ]; then
+            echo '::error::Add NETLIFY_AUTH_TOKEN to the repository Actions secrets to publish the same commit as GitHub Pages.'
+            exit 1
+          fi
+      - run: npm ci
+      - name: Check app and shared online rules
+        run: node tools/check.mjs
+      - name: Deploy frontend and functions together
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: bd2b701e-0687-4ded-bdf6-f8c18e04d3f9
+        run: npx --yes netlify-cli@27.16.2 deploy --prod --dir=dist --functions=netlify/functions --no-build --site="$NETLIFY_SITE_ID" --message="GitHub $GITHUB_SHA"

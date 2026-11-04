@@ -919,3 +919,5 @@ if(validateDeck(STANDARD392_DECK).length||registry.coverage(STANDARD392_DECK).un
 for(const d of REQUESTED393_DECKS)if(validateDeck(d).length||registry.coverage(d).unsupported||d.cards.reduce((n,x)=>n+x.count,0)!==40)throw Error('指定22枚の検証デッキが不正');console.log('Checked requested393: all 22 requested types in supported legal forty-card fixtures.');
 
 if(validateDeck(REQUESTED394_DECK).length||registry.coverage(REQUESTED394_DECK).unsupported||REQUESTED394_DECK.cards.reduce((n,x)=>n+x.count,0)!==40)throw Error('指定2枚の検証デッキが不正');console.log('Checked requested394 forty: Baigya EX-Life triggers and Jao simultaneous three-zone removal supported.');
+
+await import('./check-online-compatibility.mjs');
