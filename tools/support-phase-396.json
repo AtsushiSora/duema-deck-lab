@@ -1,0 +1,1116 @@
+{
+  "phase": 396,
+  "checkedAt": "2026-11-04",
+  "baseCount": 4014,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35713/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36084/",
+    "https://dm.takaratomy.co.jp/rule/qa/49535/"
+  ],
+  "cards": [
+    {
+      "id": "dm19-027",
+      "name": "インフェルノ・ゲート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-027",
+      "faces": [
+        {
+          "name": "インフェルノ・ゲート",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true
+            },
+            "optional": false,
+            "title": "墓地から出す進化ではないクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "2877ed94184ffab13d1763db3f4d68b1d6ccca5335b83ff1ce22186bd65c271c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp21-012",
+      "name": "ドリル変怪 ＜サイバー.鬼＞",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-012",
+      "faces": [
+        {
+          "name": "ドリル変怪 ＜サイバー.鬼＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "G・ゼロ：自分のタマシードが６枚以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\nスター進化：レクスターズまたは水のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nこのクリーチャーはブロックされない。\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）",
+          "race": "サイバー・コマンド/鬼レクスターズ",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "seed": true,
+              "g258Civil": 6
+            }
+          ]
+        },
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "unblockable": true,
+        "breaker": 3
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "d070b2c6d49e40d0d5d176f91e0b996d86e9e30f7c256eba892c4dfe6b8235b5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex17-138",
+      "name": "ネイチャー・グレンニャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-138",
+      "faces": [
+        {
+          "name": "ネイチャー・グレンニャー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火/自然",
+          "civilizations": [
+            "水",
+            "火",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "G・ゼロ：バトルゾーンに自分のフェニックスがあれば、このクリーチャーをコストを支払わずに召喚してもよい。\nこのクリーチャーが出た時、カードを１枚引く。その後、自分の手札を１枚、タップしてマナゾーンに置いてもよい。",
+          "race": "フレイム・モンスター/ブルー・モンスター/エメラルド・モンスター",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "race": "フェニックス",
+              "g258Civil": 1
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "mana",
+            "n": 1,
+            "g182HandMana": true,
+            "optional": true,
+            "tapped": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-138.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "f48ade928c8a22fba37fa58fb8403ad315ee8dd72f4a1e6d652fc86bf56635fa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-042",
+      "name": "パラダイス・アロマ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-042",
+      "faces": [
+        {
+          "name": "パラダイス・アロマ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "G・ゼロ-バトルゾーンにサイバーロードが１体でもあれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+          "race": "サイバー・ウイルス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "race": "サイバーロード",
+              "g258Civil": 1,
+              "g334Both": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "79ebb1c65bda46f4db1b3e1d6321395a054bc8b5a165f2900e918b3bd650973e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx16-043",
+      "name": "バルケリオス・Gカイザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-043",
+      "faces": [
+        {
+          "name": "バルケリオス・Gカイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "G・ゼロ - バトルゾーンに自分の火のドラゴンが３体以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "レッド・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "color": "火",
+              "race": "ドラゴン",
+              "g258Civil": 3
+            }
+          ]
+        },
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx16-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "cb5daba7f6f8fd8b581b1101b46daf296c974ebd33b639032172068c29e782fd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-004",
+      "name": "バルケリオス・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-004",
+      "faces": [
+        {
+          "name": "バルケリオス・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "G・ゼロ-バトルゾーンにアーマード・ドラゴンが２体以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\nW・ブレイカー",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "race": "アーマード・ドラゴン",
+              "g258Civil": 2,
+              "g334Both": true
+            }
+          ]
+        },
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "adab0fba0a6002ffbb812de85820d6f978e507d90d2e8f6945c3b80246cd80fd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp11-042",
+      "name": "ビーチボーイズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-042",
+      "faces": [
+        {
+          "name": "ビーチボーイズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "G・ゼロ：自分の手札が６枚以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "ジョーカーズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "g334ZoneCount": {
+                "zone": "hand",
+                "min": 6
+              }
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "eb35bc2ab259b8cfa61e7e6b3bf8ddb5963cab8a7a4d27dae980ae550d716d82",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-046",
+      "name": "マッド・ギター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-046",
+      "faces": [
+        {
+          "name": "マッド・ギター",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "G・ゼロ-バトルゾーンにデーモン・コマンドが１体でもあれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+          "race": "ガーゴイル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "race": "デーモン・コマンド",
+              "g258Civil": 1,
+              "g334Both": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "2dc1741a226446c79de15150571e3c04e514daa2d417f200f0a7434243a8197e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm39-050",
+      "name": "レクタ・アイニー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-050",
+      "faces": [
+        {
+          "name": "レクタ・アイニー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "G・ゼロ - バトルゾーンに自分のドラゴンがあれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+          "race": "ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "race": "ドラゴン",
+              "g258Civil": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "772018bfce111bd334e9685c117738d2397dcabd026c39976de6ac4891084710",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-035",
+      "name": "ワルスラS",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-035",
+      "faces": [
+        {
+          "name": "ワルスラS",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "G・ゼロ-バトルゾーンに自分の水のD２ フィールドがあれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+          "race": "リキッド・ピープル閃/イニシャルズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "g228Face": {
+                "type": "field",
+                "color": "水",
+                "d2": true
+              },
+              "g258Civil": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "44512301e1bf386360430015cacf11b9e067be4f1f76351a7c71c8a6c7374c32",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx13-019",
+      "name": "虚言の凶気サイコホラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-019",
+      "faces": [
+        {
+          "name": "虚言の凶気サイコホラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nG・ゼロ - バトルゾーンにゼニスがあれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+          "race": "デーモン・コマンド/アンノイズ",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g396Zero": {
+          "all": [
+            {
+              "race": "ゼニス",
+              "g258Civil": 1,
+              "g334Both": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx13-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "e410d86d3277172a4ec3b02c65bf5ebb68db74ba08a285be20cdc6606bcc3790",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp3-029",
+      "name": "金天使 ドル・ゴルギーニ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-029",
+      "faces": [
+        {
+          "name": "金天使 ドル・ゴルギーニ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nハイパーエナジー（このクリーチャーを召喚する時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない）\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、シールド化してもよい。",
+          "race": "メカ・エンジェル・コマンド",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "hyperEnergy": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "shields",
+            "optional": true,
+            "title": "シールド化する相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "b3c9e6d14e6319184bafa537a6bf3fc314f4be307b18ddfcb3bc69d41a3f6c26",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp3-046",
+      "name": "空奏力 ナイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-046",
+      "faces": [
+        {
+          "name": "空奏力 ナイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "G・ゼロ：自分のマナゾーンにカードが４枚以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+          "race": "マジック・アウトレイジ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "g272ManaCount": 4
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "1bf39400d8f32c52be4cc00fc941d8a95168925fedb5e7a32f712b9ad4300f99",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-055",
+      "name": "式神ブウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-055",
+      "faces": [
+        {
+          "name": "式神ブウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "G・ゼロ-バトルゾーンにホーン・ビーストが１体でもあれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+          "race": "ワンダー・トリック",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "race": "ホーン・ビースト",
+              "g258Civil": 1,
+              "g334Both": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "6920f3e8d9a0dddc935fff5f6e61487dd0d6ed2561ebcf46f76fcc048835cea1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-003",
+      "name": "漆黒戦鬼デュランザメス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-003",
+      "faces": [
+        {
+          "name": "漆黒戦鬼デュランザメス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 12,
+          "costText": "12",
+          "abilityText": "G・ゼロ-バトルゾーンにデーモン・コマンドが３体以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\nこのクリーチャーをバトルゾーンに出した時、自分の墓地にあるクリーチャーをすべて自分の手札に戻す。\nT・ブレイカー",
+          "race": "デーモン・コマンド",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "race": "デーモン・コマンド",
+              "g258Civil": 3,
+              "g334Both": true
+            }
+          ]
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RecoverAll326",
+            "zones": [
+              "grave"
+            ],
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "cbdc826124e0ce5f66ebc5a3703baa2668cb1bd7165bab24b1880332660c1947",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-054",
+      "name": "星姫械 ウェビペテル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-054",
+      "faces": [
+        {
+          "name": "星姫械 ウェビペテル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "G・ゼロ：自分のメカがあれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+          "race": "メカ・デル・ステラ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "race": "メカ",
+              "g258Civil": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "96ac75259efee078e2978757aa08517fc508f21c178707fe81019d6d419e95fb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex13-025",
+      "name": "天幕船 ドンデンブタイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-025",
+      "faces": [
+        {
+          "name": "天幕船 ドンデンブタイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "G・ゼロ：自分の手札が７枚以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分のターンのはじめに、カードを１枚引いてもよい。",
+          "race": "ムートピア/美孔麗王国",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "g334ZoneCount": {
+                "zone": "hand",
+                "min": 7
+              }
+            }
+          ]
+        },
+        "blocker": true,
+        "noAttack": true,
+        "g174Start": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "2350ff860069b42b8ca617003d73ea2f20bcddf650223cc34524fab431ef699c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23sd2-010",
+      "name": "忍瞬の聖沌 53nju",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd2-010",
+      "faces": [
+        {
+          "name": "忍瞬の聖沌 53nju",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "G・ゼロ：自分のマナゾーンに光のカードが２枚以上あり、バトルゾーンに自分のシノビがあれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+          "race": "メカ・デル・ステラ/シノビ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "g267Mana": {
+                "n": 2,
+                "color": "光"
+              }
+            },
+            {
+              "race": "シノビ",
+              "g258Civil": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23sd2-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "5696ecdf48bd1fdcb77bb614837cedfa85854edeacc3ffd39ed7316cd219a37e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr12-030",
+      "name": "秘密結社アウトレイジ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-030",
+      "faces": [
+        {
+          "name": "秘密結社アウトレイジ",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "G・ゼロ - バトルゾーンに自分のアウトレイジがあれば、この呪文をコストを支払わずに唱えてもよい。\nバトルゾーンにある自分のクリーチャー１体は、このターン「パワーアタッカー +1000000」を得る。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "race": "アウトレイジ",
+              "g258Civil": 1
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 1000000,
+            "g337PowerAttacker": true,
+            "title": "このターン、パワーアタッカー+1000000を与える自分のクリーチャーを1体選ぶ",
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr12-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "aa9b9e504415446a0185188ac515e761440d14613b3aaf0712823ac0bcf153c1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-049",
+      "name": "北風の騎手フォッカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-049",
+      "faces": [
+        {
+          "name": "北風の騎手フォッカー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "G・ゼロ-バトルゾーンにアーマード・ワイバーンが１体でもあれば、このクリーチャーをコストを支払わずに召喚してもよい。\nスピードアタッカー(このクリーチャーは召喚酔いしない)",
+          "race": "フェザーノイド",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "race": "アーマード・ワイバーン",
+              "g258Civil": 1,
+              "g334Both": true
+            }
+          ]
+        },
+        "speedAttacker": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "a55f82801524967ed45ecbcd4b40f58b6ea01faf964626047ba47dfbbe22becb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-052",
+      "name": "魔誕光喜エルバーロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-052",
+      "faces": [
+        {
+          "name": "魔誕光喜エルバーロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "G・ゼロ：自分のコスト６以上のクリーチャーがあれば、このクリーチャーをコストを支払わずに召喚してもよい。\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nエスケープ（このクリーチャーが破壊される時、墓地に置くかわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない）",
+          "race": "デーモン・コマンド/デモンズ・レガシー",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "creature": true,
+              "min": 6,
+              "g258Civil": 1
+            }
+          ]
+        },
+        "blocker": true,
+        "escape": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "420a702e5d16b385870d89731ea7d7ab75f9e562fff4e125f3cd7d5c1e5c9fc8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-068",
+      "name": "魔誕獣ヤミノストライク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-068",
+      "faces": [
+        {
+          "name": "魔誕獣ヤミノストライク",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "G・ゼロ：自分の火のクリーチャーが２体以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\nNEO進化：闇、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）",
+          "race": "ダーク・モンスター",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "creature": true,
+              "color": "火",
+              "g258Civil": 2
+            }
+          ]
+        },
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-068.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "d141f37d92ea627f61184d665ff1ac8d7b7f4c0816405fce4782101f354f0d29",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr06-005",
+      "name": "味頭領ドン・グリル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-005",
+      "faces": [
+        {
+          "name": "味頭領ドン・グリル",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "G・ゼロ - バトルゾーンに自分のワイルド・ベジーズが４体以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\n進化-自分のワイルド・ベジーズ１体の上に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "race": "ワイルド・ベジーズ",
+              "g258Civil": 4
+            }
+          ]
+        },
+        "evolution": {
+          "race": "ワイルド・ベジーズ"
+        },
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "158a0a3af40bcf8884da7211de7e852171de24cb67583ccd364fcd3fdf80560d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr09-098",
+      "name": "無重力 ナイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-098",
+      "faces": [
+        {
+          "name": "無重力 ナイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "G・ゼロ - バトルゾーンに自分のアウトレイジがあれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+          "race": "アウトレイジMAX",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "race": "アウトレイジ",
+              "g258Civil": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-098.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "a7f2eb3a2b82241f9edcb50bfacc6e1c7edf71a61880e77947a8b2973e08a1ab",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr10-050",
+      "name": "妖精の裏技 ラララ・ライフ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-050",
+      "faces": [
+        {
+          "name": "妖精の裏技 ラララ・ライフ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "G・ゼロ - バトルゾーンに自分のスノーフェアリーがあれば、この呪文をコストを支払わずに唱えてもよい。\n自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "race": "スノーフェアリー",
+              "g258Civil": 1
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "ac7418c8bd418779bc424397469c564aef3556414fc2e8bff65081192943f8bf",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-04",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm19-027": 0,
+      "dmrp21-012": 4,
+      "dmex17-138": 4,
+      "dm16-042": 4,
+      "dmx16-043": 4,
+      "dm16-004": 4,
+      "dmrp11-042": 4,
+      "dm16-046": 4,
+      "dm39-050": 4,
+      "dmr21-035": 4,
+      "dmx13-019": 4,
+      "dm24rp3-029": 4,
+      "dm24rp3-046": 4,
+      "dm16-055": 4,
+      "dm16-003": 4,
+      "dm23rp1-054": 4,
+      "dmex13-025": 4,
+      "dm23sd2-010": 4,
+      "dmr12-030": 4,
+      "dm16-049": 4,
+      "dm24rp4-052": 4,
+      "dm25rp2-068": 4,
+      "dmr06-005": 4,
+      "dmr09-098": 4,
+      "dmr10-050": 4
+    }
+  }
+}

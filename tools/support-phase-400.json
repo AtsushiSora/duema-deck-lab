@@ -1,0 +1,1109 @@
+{
+  "phase": 400,
+  "checkedAt": "2026-11-04",
+  "baseCount": 4098,
+  "description": "ウェーブストライカー17種類と、登場時・攻撃時の複合誘発、任意タップと次のアンタップ制限、公開検索を共通化して23種類を対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37609/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35191/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm11-024",
+      "name": "アクア・トリックスター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-024",
+      "faces": [
+        {
+          "name": "アクア・トリックスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、タップする。",
+          "race": "リキッド・ピープル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "effect": "sixPhoto",
+            "g34Tasks": [
+              {
+                "op": "Select",
+                "owner": "opponent",
+                "origin": "battle",
+                "n": 1,
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true,
+                "g193Tap": true,
+                "title": "タップする相手のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "1ddf524519e32436dd58bf54eab995b07a996c74e38d16a9ed8d2feb1555898c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm12-055",
+      "name": "アラーム・ラディッシュ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-055",
+      "faces": [
+        {
+          "name": "アラーム・ラディッシュ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を自分のマナゾーンに置く。その後、クリーチャーを１体、自分のマナゾーンから自分の手札に戻す。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "effect": "sixPhoto",
+            "g34Tasks": [
+              {
+                "op": "Ramp",
+                "n": 1
+              },
+              {
+                "op": "Select",
+                "g220ManaReturn": true,
+                "origin": "mana",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "creature": true
+                },
+                "title": "手札に戻すマナのクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "96fe308e725fce9cefadb801f2a45cc9dc7bb6b44d1c4bccbbe91feb02f7e9ac",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm11-020",
+      "name": "シェル・チャーチ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-020",
+      "faces": [
+        {
+          "name": "シェル・チャーチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、相手はバトルゾーンにある自分自身のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "コロニー・ビートル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "effect": "sixPhoto",
+            "g34Tasks": [
+              {
+                "op": "OpponentSelect",
+                "n": 1,
+                "to": "mana"
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "0c143ad168bf2883a8ac2426a5b120f11f6d12a1f40daf588a0470802468db8d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm11-027",
+      "name": "スカイフレーム・リザード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-027",
+      "faces": [
+        {
+          "name": "スカイフレーム・リザード",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、「ブロッカー」を持つ相手のクリーチャーを２体まで破壊する。",
+          "race": "メルト・ウォリアー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "effect": "sixPhoto",
+            "g34Tasks": [
+              {
+                "op": "Select",
+                "owner": "opponent",
+                "origin": "battle",
+                "to": "grave",
+                "n": 2,
+                "optional": true,
+                "filter": {
+                  "creature": true,
+                  "blocker": true
+                },
+                "g173Targets": true,
+                "g193Select": true,
+                "title": "破壊する相手のブロッカーを2体まで選ぶ"
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "990deececc12f55e19661dc67613e6c4b57568a0fec3b9703b17473bef6a2ae5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm11-053",
+      "name": "ニンジャ・パンプキン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-053",
+      "faces": [
+        {
+          "name": "ニンジャ・パンプキン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーのパワーは+4000され、パワー5000以下のクリーチャーにブロックされない。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "power": 4000,
+            "g206NoBlock": {
+              "maxPower": 5000
+            }
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "fd0aa7601197e0c288479d66f3c3f61ac132f297cce2a8f132a5c2903d2c4b63",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm11-030",
+      "name": "マッチョ・メロン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-030",
+      "faces": [
+        {
+          "name": "マッチョ・メロン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nパワーアタッカー +3000(攻撃中、このクリーチャーのパワーは+3000される)",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "attackBonus": 3000
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "fe5c9da2fb49a4782e30aa060330090044a75ef1e662f4d64347421e350d1a8a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm11-041",
+      "name": "リバイバル・ソルジャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-041",
+      "faces": [
+        {
+          "name": "リバイバル・ソルジャー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーのパワーは、+4000される。このクリーチャーが破壊される時、墓地に置くかわりに自分の手札に戻す。",
+          "race": "マーフォーク",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "power": 4000,
+            "destroyToHand": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "9933b116370b9c5e92efefa9cd56ffc432205c257b98241a6c82fd2d8fa16b5f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm12-048",
+      "name": "炎神兵ゴリアック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-048",
+      "faces": [
+        {
+          "name": "炎神兵ゴリアック",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、相手のパワー5000以下のクリーチャーを１体破壊する。",
+          "race": "アーマロイド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "effect": "sixPhoto",
+            "g34Tasks": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 5000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "4cfea25ad20251b62dbf6e18871b19767a35103095638770139b9a35ae957b39",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm11-049",
+      "name": "炎舞闘士サピエント・アーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-049",
+      "faces": [
+        {
+          "name": "炎舞闘士サピエント・アーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーのパワーは+4000され、タップされていないクリーチャーを攻撃できる。",
+          "race": "ドラゴノイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "power": 4000,
+            "attackUntapped": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "e0ba26c86d7086f59b1109bdf382af58f9c7bbc23e4d643011d611a1519df448",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm11-038",
+      "name": "堅防の使徒アースラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-038",
+      "faces": [
+        {
+          "name": "堅防の使徒アースラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーのパワーは+4000され、「ブロッカー」を得る。",
+          "race": "イニシエート",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "power": 4000,
+            "blocker": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "d721f59f0de4da72e20eefcb5789762ad8ffb4d05cae41ad8a49fcf6b4f272be",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm13-011",
+      "name": "骨折人形トロンボ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-011",
+      "faces": [
+        {
+          "name": "骨折人形トロンボ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ウェーブストライカー(バトルゾーンに｢ウェーブストライカー｣を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、クリーチャーを１体、自分の墓地から自分の手札に戻してもよい。",
+          "race": "デスパペット",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "effect": "sixPhoto",
+            "g34Tasks": [
+              {
+                "op": "Select",
+                "g228Recovery": true,
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "g228Face": {
+                    "type": "creature"
+                  }
+                },
+                "optional": true,
+                "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "0fc7eb7b4eb7792bfbd121810df4c9cbad41fec9b461d01924fbb8d7b8f1e41e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm11-016",
+      "name": "斬神兵グランドルメス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-016",
+      "faces": [
+        {
+          "name": "斬神兵グランドルメス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、パワー2000以下のクリーチャーをすべて破壊する。",
+          "race": "アーマロイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "effect": "sixPhoto",
+            "g34Tasks": [
+              {
+                "op": "Sweep",
+                "both": true,
+                "to": "grave",
+                "filter": {
+                  "creature": true,
+                  "maxPower": 2000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "45812d3a57637d55b66b3a69a40600833cc4849fea67ab4a3468db63eb113933",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx17-009",
+      "name": "四牙類 クアトロドン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx17-009",
+      "faces": [
+        {
+          "name": "四牙類 クアトロドン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "進化-自分の自然のドラゴン１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、自分の山札の上から２枚をマナゾーンに置いてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "ジュラシック・コマンド・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "category": "ドラゴン",
+          "civilization": "自然"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 2
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx17-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "cc59c6a53b270bcac39519a485a585c977b19b4d74124b0b8f7f528fae506f80",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm11-046",
+      "name": "邪口虫ラフレシア・ワーム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-046",
+      "faces": [
+        {
+          "name": "邪口虫ラフレシア・ワーム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーのパワーは+4000され、「闇ステルス」を得る。(相手のマナゾーンに闇のカードが１枚でもあれば、「闇ステルス」を持つクリーチャーはブロックされない)",
+          "race": "パラサイトワーム",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "power": 4000,
+            "g226Stealth": "闇"
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "2ef73ca91fef8bdf558df04669ddd07b4295be1c7b2cd7c65eb3060f5d2c220c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-105",
+      "name": "駿足の政",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-105",
+      "faces": [
+        {
+          "name": "駿足の政",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から５枚を見る。その中からクリーチャーを１体選び、すべてのプレイヤーに見せてから手札に加えてもよい。その後、残りを好きな順序で山札の一番下に置く。",
+          "race": "ビーストフォーク/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 5,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-105.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "c79882064ca3925c0a157887abbeeaf14cab6bf69cdd85bf43a142f571a147ad",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-074",
+      "name": "聖歌の翼 アンドロム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-074",
+      "faces": [
+        {
+          "name": "聖歌の翼 アンドロム",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nマナ武装 ３：このクリーチャーをバトルゾーンに出した時、自分のマナゾーンに光のカードが３枚以上あれば、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。そのクリーチャーは、次の相手のターンのはじめにアンタップされない。",
+          "race": "ジャスティス・ウイング",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfMana",
+            "n": 3,
+            "color": "光",
+            "defs": [
+              {
+                "op": "Target",
+                "tap": true,
+                "optional": true,
+                "lock": true,
+                "g210TapLock": true,
+                "title": "次のターンまでタップする相手のクリーチャーを1体まで選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-074.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "0fecfb53d7cc845e9764ba414d73f51a8dec90b308cc045a8c7be3d25915de78",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd06-003",
+      "name": "束縛の守護者ユッパール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd06-003",
+      "faces": [
+        {
+          "name": "束縛の守護者ユッパール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。そのクリーチャーは、次の相手のターンのはじめにアンタップされない。",
+          "race": "ガーディアン/アンノイズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true,
+            "lock": true,
+            "g210TapLock": true,
+            "title": "次のターンまでタップする相手のクリーチャーを1体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd06-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "37d8cc50d4a8b80d7eca8d1793c30f2ed131a9be7aacc3b9a89a96b0db19625f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx11-017",
+      "name": "凍結の魔天 ダイイング・メッセージ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-017",
+      "faces": [
+        {
+          "name": "凍結の魔天 ダイイング・メッセージ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。そのクリーチャーは、次の相手のターンのはじめにアンタップされない。(まず何を攻撃するか選んでから、タップするクリーチャーを選ぶ)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "デーモン・コマンド",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true,
+            "lock": true,
+            "g210TapLock": true,
+            "title": "次のターンまでタップする相手のクリーチャーを1体まで選ぶ"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true,
+            "lock": true,
+            "g210TapLock": true,
+            "title": "次のターンまでタップする相手のクリーチャーを1体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx11-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "d638915fd25be9586af6e1543c0b07d02fbbf8580e12c54c648a7755876d61ad",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm12-011",
+      "name": "爆輪男",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-011",
+      "faces": [
+        {
+          "name": "爆輪男",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、クリーチャーをすべて破壊する。",
+          "race": "ヘドリアン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "effect": "sixPhoto",
+            "g34Tasks": [
+              {
+                "op": "Sweep",
+                "both": true,
+                "to": "grave",
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "caadb800bb1aac249e484fef2d999f0c41877429afbf6e74694267634e9f16da",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr03-022",
+      "name": "氷結カッチ・コチーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-022",
+      "faces": [
+        {
+          "name": "氷結カッチ・コチーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。そのクリーチャーは、次の相手のターンのはじめにアンタップされない。",
+          "race": "グレートメカオー/ハンター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true,
+            "lock": true,
+            "g210TapLock": true,
+            "title": "次のターンまでタップする相手のクリーチャーを1体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "45020ed8dccc33bd7ce20ced13bfc7e9055936a89339e92f4f3a76786da496dd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm11-022",
+      "name": "予言者ラメール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-022",
+      "faces": [
+        {
+          "name": "予言者ラメール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nバトルゾーンにある自分のクリーチャーすべてのパワーは+1000される。",
+          "race": "ライトブリンガー",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "g205Aura": {
+              "power": 1000,
+              "filter": {
+                "creature": true
+              }
+            }
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "305fc046233ac6f2126c910976355483860e0fb06db1032f3e93274b9d3b451e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm11-025",
+      "name": "略奪秘宝ジャギラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-025",
+      "faces": [
+        {
+          "name": "略奪秘宝ジャギラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、相手の手札を３枚見ないで選び、捨てさせる。",
+          "race": "パンドラボックス",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "effect": "sixPhoto",
+            "g34Tasks": [
+              {
+                "op": "Discard",
+                "n": 3,
+                "random": true
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "31343c66a63952667e21a1ce83b2be761fad4e72134dd8ef7e91fc7b0f309112",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm11-013",
+      "name": "薔薇公爵ハザリア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-013",
+      "faces": [
+        {
+          "name": "薔薇公爵ハザリア",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、相手は自分自身のクリーチャーを１体破壊する。",
+          "race": "ダークロード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "effect": "sixPhoto",
+            "g34Tasks": [
+              {
+                "op": "OpponentSelect",
+                "n": 1,
+                "to": "grave"
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-04",
+        "sha256": "2f33e61e00c066d7a0bf299db202dc702088128dd2f59f995b0ef8c211f69c7f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-04",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm11-024": 4,
+      "dm12-055": 4,
+      "dm11-020": 4,
+      "dm11-027": 4,
+      "dm11-053": 4,
+      "dm11-030": 4,
+      "dm11-041": 4,
+      "dm12-048": 4,
+      "dm11-049": 4,
+      "dm11-038": 4,
+      "dm13-011": 4,
+      "dm11-016": 4,
+      "dmx17-009": 4,
+      "dm11-046": 4,
+      "dmr01-105": 4,
+      "dmr13-074": 4,
+      "dmd06-003": 4,
+      "dmx11-017": 4,
+      "dm12-011": 4,
+      "dmr03-022": 4,
+      "dm11-022": 4,
+      "dm11-025": 4,
+      "dm11-013": 4
+    }
+  }
+}

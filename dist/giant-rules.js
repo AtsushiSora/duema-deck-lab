@@ -68,7 +68,7 @@ export function createGiantRules(api){
  default:throw Error('未実装のジャイアント選択：'+t.op);
  }return true;}
  function manaPermissions(s,p,x){const own=s.players[p],out=[];if(card(x).manaSummon||x.g22ManaAllowed===s.turn)out.push(null);for(const y of creatures(s,p)){const c=effective(y,s),k=key(y);if(c.scarletMana&&giant(card(x))&&s.g17ManaUsed?.[k]!==s.turn)out.push('g17:'+k);if(c.manaOnce&&s.g22UsedMana?.[k]!==s.turn)out.push(k);if(c.hercules&&s.g16UsedMana?.[k]!==s.turn)out.push('g16:'+k);}return out;}
- return {run,chosen,
+ return {run,chosen,manaPermissions396:manaPermissions,
  effect(s,p,c,uid){const op={giantHeavy:'g17_Heavy',giantLake:'g17_Lake',giantTouch:'g17_Touch',giantYuki:'g17_YukiReturn',giantSpace:'g17_Space',giantSineraria:'g17_Sineraria',giantFirefly:'g17_Firefly'}[c.effect];if(!op)return false;put(s,task(op,p,c.id,{uid,...(c.effect==='giantYuki'?{selected:[]}:{} )}));return true;},
  discount(s,p,c){return giant(c)?creatures(s,p).filter(x=>effective(x,s).ultraGiant).length:0;},
  allowedCard(s,p,c){return c.type==='creature'||cost(c)>5||!creatures(s,1-p).some(x=>effective(x,s).giantOrb);},

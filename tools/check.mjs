@@ -1,3 +1,11 @@
+import {REQUESTED403_DECK} from './fixtures/requested403.mjs';
+import {STANDARD402_DECKS} from "./fixtures/standard402.mjs";
+import {STANDARD401_DECKS} from "./fixtures/standard401.mjs";
+import {STANDARD400_DECKS} from "./fixtures/standard400.mjs";
+import {STANDARD399_DECKS} from "./fixtures/standard399.mjs";
+import {STANDARD398_DECKS} from './fixtures/standard398.mjs';
+import {STANDARD397_DECKS} from './fixtures/standard397.mjs';
+import {STANDARD396_DECKS} from './fixtures/standard396.mjs';
 import {REQUESTED395_DECK} from './fixtures/requested395.mjs';
 import {REQUESTED394_DECK} from './fixtures/requested394.mjs';
 import {REQUESTED393_DECKS} from './fixtures/requested393.mjs';
@@ -924,3 +932,19 @@ if(validateDeck(REQUESTED394_DECK).length||registry.coverage(REQUESTED394_DECK).
 await import('./check-online-compatibility.mjs');
 
 if(validateDeck(REQUESTED395_DECK).length||registry.coverage(REQUESTED395_DECK).unsupported||REQUESTED395_DECK.cards.reduce((n,x)=>n+x.count,0)!==40)throw Error('ユニバース・ラピアの検証デッキが不正');console.log('Checked requested395 forty: continuous Phoenix races, evolution, meteor burn, deck, grave and mana interactions.');
+
+for(const deck of STANDARD396_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('G・ゼロの検証デッキが不正');console.log('Checked standard396 three legal forties: G-Zero conditions, normal payment, zones and evolution.');
+
+for(const deck of STANDARD397_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('シンカパワーの検証デッキが不正');console.log('Checked standard397 two legal forties: Shinka triggers, evolution, under-card attachments and temporary grants.');
+
+for(const deck of STANDARD398_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('ヨビニオンとシノビの検証デッキが不正');console.log('Checked standard398 three legal forties: summoned-only Yobinion, spell deployment and Ninja Strike timing.');
+
+for(const deck of STANDARD399_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error("Jチェンジとアバレチェーンの検証デッキが不正");console.log("Checked standard399 three legal forties: J-change and first-attack Abare Chain.");
+
+for(const deck of STANDARD400_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error("ウェーブストライカーの検証デッキが不正");console.log("Checked standard400 three legal forties: Wave Striker threshold, conditional entry effects and continuous grants.");
+
+for(const deck of STANDARD401_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error("シールド・セイバーの検証デッキが不正");console.log("Checked standard401 three legal forties: Shield Saver reservations, replacement payment and trigger priority.");
+
+for(const deck of STANDARD402_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error("キリフダッシュとフシギバースの検証デッキが不正");console.log("Checked standard402 four legal forties: Kirifuda timing, colored alternate costs and Fushigibirth origin locks.");
+
+if(validateDeck(REQUESTED403_DECK).length||registry.coverage(REQUESTED403_DECK).unsupported||REQUESTED403_DECK.cards.reduce((n,x)=>n+x.count,0)!==40)throw Error('ブルームとオ:ドユニワの検証デッキが不正');console.log('Checked requested403 forty: opponent-turn non-summon entry, twinpact mana sequence and Mega Last Burst.');

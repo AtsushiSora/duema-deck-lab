@@ -1,0 +1,1 @@
+export const REQUESTED403_DECK={id:'requested403',name:'ブルームとオ:ドユニワ検証',format:'original',cards:['dm22rp2-016','dm23rp3-039','dm01-108','dm01-090','dm01-082','dm01-075','dm01-083','dm01-097','dm01-101','dm01-071'].map(id=>({id,count:4}))};

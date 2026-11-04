@@ -23,7 +23,7 @@ export function createKiyonagaRules(api){
   case'g21CobaltLock':api.lock(s,t.p,{kind:'attack',player:1-t.p,expires:'end',who:s.active});break;
   case'g21Shutter':{const list=creatures(s,1-t.p).filter(x=>!t.selected.includes(x.uid));if(t.selected.length===2||!list.length){finishShutter(s,t);break;}choice(s,t,'タップして次のターン起こさない相手を2体まで選ぶ',[...targetOptions(s,t.p,list),opt('ここまでで確定',null,0)]);break;}
   case'g21DokiBounce':put(s,task('s6Bounce',t.p,t.source),task('draw',t.p,t.source,{n:1}));break;
-  case'g21Mega':{const x=own[t.origin].find(x=>x.uid===t.uid&&x.cardId===t.source&&(x.zoneSerial||0)===t.zoneSerial);if(x&&api.canCast(s,t.p,faces(card(x))[1]))choice(s,t,'メガ・ラスト・バーストで呪文側を唱える？',[opt(faces(card(x))[1].name+'を唱える',true,10,x.cardId),skip()]);break;}
+  case'g21Mega':{const x=own[t.origin].find(x=>x.uid===t.uid&&x.cardId===t.source&&(x.zoneSerial||0)===t.zoneSerial);if(x&&api.canCast(s,t.p,faces(card(x))[1],t.origin))choice(s,t,'メガ・ラスト・バーストで呪文側を唱える？',[opt(faces(card(x))[1].name+'を唱える',true,10,x.cardId),skip()]);break;}
   case'g21MinoRecover':choice(s,t,'墓地からマナに置くツインパクトカードを選ぶ',own.grave.filter(twin).map(x=>opt(card(x).name,x.uid,10,x.cardId)));break;
   case'g21MinoAttack':{const n=own.mana.filter(twin).length,list=own.mana.filter(x=>card(x).type==='creature'&&cost(card(x))<n&&canPut(s,t.p,x,'mana'));choice(s,t,'マナのツインパクト'+n+'枚よりコストが小さい1体を出す',[...list.map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId)),skip()]);break;}
   case'g21Hazard':{const x=ramp(s,t.p,1)[0];if(x&&twin(x)&&s.winner===null)draw(s,t.p,1);break;}
@@ -44,7 +44,7 @@ export function createKiyonagaRules(api){
   case'g21Zenon':if(value&&(s.g21ZenonUsed||{})[t.key]!==s.turn){(s.g21ZenonUsed??={})[t.key]=s.turn;api.castBattleSpell(s,t.p,t.attacker,t.incarnation,t.attackerSource,'アカシック・ゼノン');}break;
   case'g21CobaltDraw':if(value)draw(s,t.p,2);break;
   case'g21Shutter':if(value)put(s,{...t,selected:[...t.selected,value]});else finishShutter(s,t);break;
-  case'g21Mega':if(value){const x=own[t.origin].find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.zoneSerial);if(x){if(t.origin==='grave')api.castBattleSpell(s,t.p,x.uid,0,t.source,'メガ・ラスト・バースト');else cast(s,t.p,x.uid,true,null,1,null,t.origin,'メガ・ラスト・バースト');}}break;
+  case'g21Mega':if(value){const x=own[t.origin].find(x=>x.uid===t.uid&&x.cardId===t.source&&(x.zoneSerial||0)===t.zoneSerial);if(x&&api.canCast(s,t.p,faces(card(x))[1],t.origin)){if(t.origin==='grave')api.castBattleSpell(s,t.p,x.uid,0,t.source,'メガ・ラスト・バースト');else cast(s,t.p,x.uid,true,null,1,null,t.origin,'メガ・ラスト・バースト');}}break;
   case'g21MinoRecover':{const x=policyRemove(s,t.p,'grave',value,api);if(x){const to=api.manaRedirect(s,t.p)?'grave':'mana';clear(x,to);api.addZone(s,own,to,x);}break;}
   case'g21MinoAttack':if(value)put(s,task('putCreature',t.p,t.source,{uid:value,origin:'mana'}));break;
   case'g21Fortress':if(value)put(s,{...t,selected:[...t.selected,value]});else finishFortress(s,t);break;

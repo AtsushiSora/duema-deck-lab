@@ -107017,23 +107017,5105 @@
       "g395Rapia": true,
       "supportBatch": "phase-395",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm19-027",
+      "name": "インフェルノ・ゲート",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-027",
+      "limit": 0,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "g236GraveDeploy": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          },
+          "optional": false,
+          "title": "墓地から出す進化ではないクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp21-012",
+      "name": "ドリル変怪 ＜サイバー.鬼＞",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 13000,
+      "race": "サイバー・コマンド/鬼レクスターズ",
+      "text": "G・ゼロ：自分のタマシードが６枚以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\nスター進化：レクスターズまたは水のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nこのクリーチャーはブロックされない。\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-012",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "seed": true,
+            "g258Civil": 6
+          }
+        ]
+      },
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "水"
+          }
+        ]
+      },
+      "starEvolution": true,
+      "unblockable": true,
+      "breaker": 3,
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex17-138",
+      "name": "ネイチャー・グレンニャー",
+      "civ": "水/火/自然",
+      "civilizations": [
+        "水",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "フレイム・モンスター/ブルー・モンスター/エメラルド・モンスター",
+      "text": "G・ゼロ：バトルゾーンに自分のフェニックスがあれば、このクリーチャーをコストを支払わずに召喚してもよい。\nこのクリーチャーが出た時、カードを１枚引く。その後、自分の手札を１枚、タップしてマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-138",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "race": "フェニックス",
+            "g258Civil": 1
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "mana",
+          "n": 1,
+          "g182HandMana": true,
+          "optional": true,
+          "tapped": true
+        }
+      ],
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm16-042",
+      "name": "パラダイス・アロマ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "サイバー・ウイルス",
+      "text": "G・ゼロ-バトルゾーンにサイバーロードが１体でもあれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-042",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "race": "サイバーロード",
+            "g258Civil": 1,
+            "g334Both": true
+          }
+        ]
+      },
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx16-043",
+      "name": "バルケリオス・Gカイザー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "レッド・コマンド・ドラゴン",
+      "text": "G・ゼロ - バトルゾーンに自分の火のドラゴンが３体以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-043",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "color": "火",
+            "race": "ドラゴン",
+            "g258Civil": 3
+          }
+        ]
+      },
+      "breaker": 2,
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm16-004",
+      "name": "バルケリオス・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "アーマード・ドラゴン",
+      "text": "G・ゼロ-バトルゾーンにアーマード・ドラゴンが２体以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-004",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "race": "アーマード・ドラゴン",
+            "g258Civil": 2,
+            "g334Both": true
+          }
+        ]
+      },
+      "breaker": 2,
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-042",
+      "name": "ビーチボーイズ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ジョーカーズ",
+      "text": "G・ゼロ：自分の手札が６枚以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-042",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "g334ZoneCount": {
+              "zone": "hand",
+              "min": 6
+            }
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "g190Freeze": "self",
+          "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm16-046",
+      "name": "マッド・ギター",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ガーゴイル",
+      "text": "G・ゼロ-バトルゾーンにデーモン・コマンドが１体でもあれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-046",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "race": "デーモン・コマンド",
+            "g258Civil": 1,
+            "g334Both": true
+          }
+        ]
+      },
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm39-050",
+      "name": "レクタ・アイニー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ファイアー・バード",
+      "text": "G・ゼロ - バトルゾーンに自分のドラゴンがあれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-050",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "race": "ドラゴン",
+            "g258Civil": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-035",
+      "name": "ワルスラS",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "リキッド・ピープル閃/イニシャルズ",
+      "text": "G・ゼロ-バトルゾーンに自分の水のD２ フィールドがあれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-035",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "g228Face": {
+              "type": "field",
+              "color": "水",
+              "d2": true
+            },
+            "g258Civil": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx13-019",
+      "name": "虚言の凶気サイコホラー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 13000,
+      "race": "デーモン・コマンド/アンノイズ",
+      "text": "ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nG・ゼロ - バトルゾーンにゼニスがあれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-019",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g396Zero": {
+        "all": [
+          {
+            "race": "ゼニス",
+            "g258Civil": 1,
+            "g334Both": true
+          }
+        ]
+      },
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp3-029",
+      "name": "金天使 ドル・ゴルギーニ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4500,
+      "race": "メカ・エンジェル・コマンド",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nハイパーエナジー（このクリーチャーを召喚する時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない）\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、シールド化してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-029",
+      "limit": 4,
+      "trigger": true,
+      "hyperEnergy": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "shields",
+          "optional": true,
+          "title": "シールド化する相手のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp3-046",
+      "name": "空奏力 ナイン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "マジック・アウトレイジ",
+      "text": "G・ゼロ：自分のマナゾーンにカードが４枚以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-046",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "g272ManaCount": 4
+          }
+        ]
+      },
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm16-055",
+      "name": "式神ブウ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ワンダー・トリック",
+      "text": "G・ゼロ-バトルゾーンにホーン・ビーストが１体でもあれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-055",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "race": "ホーン・ビースト",
+            "g258Civil": 1,
+            "g334Both": true
+          }
+        ]
+      },
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm16-003",
+      "name": "漆黒戦鬼デュランザメス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 12,
+      "power": 12000,
+      "race": "デーモン・コマンド",
+      "text": "G・ゼロ-バトルゾーンにデーモン・コマンドが３体以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\nこのクリーチャーをバトルゾーンに出した時、自分の墓地にあるクリーチャーをすべて自分の手札に戻す。\nT・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-003",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "race": "デーモン・コマンド",
+            "g258Civil": 3,
+            "g334Both": true
+          }
+        ]
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "RecoverAll326",
+          "zones": [
+            "grave"
+          ],
+          "filter": {
+            "g228Face": {
+              "type": "creature"
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-054",
+      "name": "星姫械 ウェビペテル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "メカ・デル・ステラ",
+      "text": "G・ゼロ：自分のメカがあれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-054",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "race": "メカ",
+            "g258Civil": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex13-025",
+      "name": "天幕船 ドンデンブタイ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 2000,
+      "race": "ムートピア/美孔麗王国",
+      "text": "G・ゼロ：自分の手札が７枚以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分のターンのはじめに、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-025",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "g334ZoneCount": {
+              "zone": "hand",
+              "min": 7
+            }
+          }
+        ]
+      },
+      "blocker": true,
+      "noAttack": true,
+      "g174Start": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23sd2-010",
+      "name": "忍瞬の聖沌 53nju",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "メカ・デル・ステラ/シノビ",
+      "text": "G・ゼロ：自分のマナゾーンに光のカードが２枚以上あり、バトルゾーンに自分のシノビがあれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd2-010",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "g267Mana": {
+              "n": 2,
+              "color": "光"
+            }
+          },
+          {
+            "race": "シノビ",
+            "g258Civil": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-030",
+      "name": "秘密結社アウトレイジ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "G・ゼロ - バトルゾーンに自分のアウトレイジがあれば、この呪文をコストを支払わずに唱えてもよい。\nバトルゾーンにある自分のクリーチャー１体は、このターン「パワーアタッカー +1000000」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-030",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "race": "アウトレイジ",
+            "g258Civil": 1
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "power": 1000000,
+          "g337PowerAttacker": true,
+          "title": "このターン、パワーアタッカー+1000000を与える自分のクリーチャーを1体選ぶ",
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm16-049",
+      "name": "北風の騎手フォッカー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "フェザーノイド",
+      "text": "G・ゼロ-バトルゾーンにアーマード・ワイバーンが１体でもあれば、このクリーチャーをコストを支払わずに召喚してもよい。\nスピードアタッカー(このクリーチャーは召喚酔いしない)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-049",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "race": "アーマード・ワイバーン",
+            "g258Civil": 1,
+            "g334Both": true
+          }
+        ]
+      },
+      "speedAttacker": true,
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-052",
+      "name": "魔誕光喜エルバーロ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4500,
+      "race": "デーモン・コマンド/デモンズ・レガシー",
+      "text": "G・ゼロ：自分のコスト６以上のクリーチャーがあれば、このクリーチャーをコストを支払わずに召喚してもよい。\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nエスケープ（このクリーチャーが破壊される時、墓地に置くかわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-052",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "creature": true,
+            "min": 6,
+            "g258Civil": 1
+          }
+        ]
+      },
+      "blocker": true,
+      "escape": true,
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-068",
+      "name": "魔誕獣ヤミノストライク",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ダーク・モンスター",
+      "text": "G・ゼロ：自分の火のクリーチャーが２体以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\nNEO進化：闇、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-068",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "creature": true,
+            "color": "火",
+            "g258Civil": 2
+          }
+        ]
+      },
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr06-005",
+      "name": "味頭領ドン・グリル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 9000,
+      "race": "ワイルド・ベジーズ",
+      "text": "G・ゼロ - バトルゾーンに自分のワイルド・ベジーズが４体以上あれば、このクリーチャーをコストを支払わずに召喚してもよい。\n進化-自分のワイルド・ベジーズ１体の上に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-005",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "race": "ワイルド・ベジーズ",
+            "g258Civil": 4
+          }
+        ]
+      },
+      "evolution": {
+        "race": "ワイルド・ベジーズ"
+      },
+      "breaker": 2,
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-098",
+      "name": "無重力 ナイン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "アウトレイジMAX",
+      "text": "G・ゼロ - バトルゾーンに自分のアウトレイジがあれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-098",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "race": "アウトレイジ",
+            "g258Civil": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-050",
+      "name": "妖精の裏技 ラララ・ライフ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "G・ゼロ - バトルゾーンに自分のスノーフェアリーがあれば、この呪文をコストを支払わずに唱えてもよい。\n自分の山札の上から１枚目をマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-050",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "race": "スノーフェアリー",
+            "g258Civil": 1
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-396",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp18-003",
+      "name": "R.S.S. アアルカイト",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "トリックス/レクスターズ",
+      "text": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\nシンカパワー：このクリーチャーが進化する時、相手のクリーチャーを１体選び、手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-003",
+      "limit": 4,
+      "gStrike": true,
+      "justDiver": true,
+      "g397Shinka": [
+        {
+          "op": "Target",
+          "to": "hand",
+          "optional": true,
+          "title": "手札に戻す相手のクリーチャーを1体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-397",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-056",
+      "name": "アロマの海幻",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 1,
+      "power": 0,
+      "race": "サイバー・ウイルス/レクスターズ",
+      "text": "シンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nシンカパワー：このタマシードが進化する時、このターン、この進化したクリーチャーはブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-056",
+      "limit": 4,
+      "shinkalize": true,
+      "g397Shinka": [
+        {
+          "op": "ShinkaGrant397",
+          "grant": {
+            "unblockable": true
+          }
+        }
+      ],
+      "supportBatch": "phase-397",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-064",
+      "name": "ジルヴェ鬼硫の巻",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 1,
+      "power": 0,
+      "race": "デモニオ/鬼レクスターズ",
+      "text": "シンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nシンカパワー：このタマシードが進化する時、このターン、この進化したクリーチャーに「スレイヤー」を与える。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-064",
+      "limit": 4,
+      "shinkalize": true,
+      "g397Shinka": [
+        {
+          "op": "ShinkaGrant397",
+          "grant": {
+            "slayer": true
+          }
+        }
+      ],
+      "supportBatch": "phase-397",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-010",
+      "name": "ストップンの心絵",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 3,
+      "power": 0,
+      "race": "ジョーカーズ/レクスターズ",
+      "text": "S・トリガー S・トリガー（このタマシードをシールドゾーンから手札に加える時、コストを支払わずにすぐ使ってもよい）\nシンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、相手のクリーチャーを２体まで選び、タップする。\nシンカパワー：このタマシードが進化する時、相手のコスト５以下のクリーチャーを１体選んでもよい。相手はそれをシールド化する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-010",
+      "limit": 4,
+      "trigger": true,
+      "shinkalize": true,
+      "g397Shinka": [
+        {
+          "op": "Target",
+          "to": "shields",
+          "filter": {
+            "max": 5
+          },
+          "optional": true,
+          "title": "シールド化する相手のコスト5以下のクリーチャーを1体まで選ぶ"
+        }
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g193Tap": true,
+          "title": "タップする相手のクリーチャーを2体まで選ぶ",
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-397",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp18-046",
+      "name": "ダチッコ・チュリスター",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ビートジョッキー/レクスターズ",
+      "text": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nシンカパワー：このクリーチャーが進化する時、相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-046",
+      "limit": 4,
+      "gStrike": true,
+      "g397Shinka": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-397",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd17-013",
+      "name": "パーリギリス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "ジョーカーズ/レクスターズ",
+      "text": "シンカパワー：このクリーチャーが進化する時、自分の山札の上から１枚目をマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd17-013",
+      "limit": 4,
+      "g397Shinka": [
+        {
+          "op": "Ramp",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-397",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-063",
+      "name": "フェルナンドの黒像",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 2,
+      "power": 0,
+      "race": "デーモン・コマンド/ナイト/レクスターズ",
+      "text": "シンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nシンカパワー：このタマシードが進化する時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－4000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-063",
+      "limit": 4,
+      "shinkalize": true,
+      "g397Shinka": [
+        {
+          "op": "Target",
+          "power": -4000,
+          "g242PowerMinus": true,
+          "title": "パワーを-4000する相手のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-397",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd17-007",
+      "name": "ブッパ・ハート",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ファイアー・バード/レクスターズ",
+      "text": "シンカパワー：このクリーチャーが進化する時、相手のパワー3000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd17-007",
+      "limit": 4,
+      "g397Shinka": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 3000,
+            "g199Power": true
+          }
+        }
+      ],
+      "supportBatch": "phase-397",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp18-006",
+      "name": "モモスター モンキッド",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ジョーカーズ/レクスターズ",
+      "text": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nマッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置く。\nシンカパワー：このクリーチャーが進化する時、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-006",
+      "limit": 4,
+      "gStrike": true,
+      "machFighter": true,
+      "g397Shinka": [
+        {
+          "op": "Select",
+          "g220ManaReturn": true,
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "filter": {},
+          "optional": true,
+          "title": "手札に戻すマナのカードを1枚選ぶ"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Ramp",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-397",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp17-070",
+      "name": "鋭鱗の剣兵 マンマサ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ムートピア/レクスターズ",
+      "text": "シンカパワー：このクリーチャーが進化する時、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-070",
+      "limit": 4,
+      "g397Shinka": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-397",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-076",
+      "name": "鬼流院の地版",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 2,
+      "power": 0,
+      "race": "ビースト・コマンド/ハンター/レクスターズ",
+      "text": "シンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nシンカパワー：このタマシードが進化する時、このターン、この進化したクリーチャーに「マッハファイター」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-076",
+      "limit": 4,
+      "shinkalize": true,
+      "g397Shinka": [
+        {
+          "op": "ShinkaGrant397",
+          "grant": {
+            "machFighter": true
+          }
+        }
+      ],
+      "supportBatch": "phase-397",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp17-077",
+      "name": "凶鬼49号 バダバーダ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "マフィ・ギャング/レクスターズ",
+      "text": "シンカパワー：このクリーチャーが進化する時、相手は自身の手札を１枚選んで捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-077",
+      "limit": 4,
+      "g397Shinka": [
+        {
+          "op": "Discard",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-397",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy20-cp02",
+      "name": "進化王来 モモキング",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ジョーカーズ/レクスターズ",
+      "text": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nシンカパワー：このクリーチャーが進化する時、自分の手札を１枚捨ててもよい。そうしたら、カードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy20-cp02",
+      "limit": 4,
+      "machFighter": true,
+      "g397Shinka": [
+        {
+          "op": "DiscardDraw",
+          "g216DiscardDraw": true,
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-397",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp17-062",
+      "name": "青守銀 ピアチェレ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "メタリカ/レクスターズ",
+      "text": "シンカパワー：このクリーチャーが進化する時、相手のクリーチャーを１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-062",
+      "limit": 4,
+      "g397Shinka": [
+        {
+          "op": "Target",
+          "tap": true
+        }
+      ],
+      "supportBatch": "phase-397",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp19-004",
+      "name": "無龍",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "マスター・ドラゴンZ/レクスターズ",
+      "text": "このクリーチャーを自分の墓地から召喚してもよい。\n自分の墓地にカードが２枚以上あれば、このクリーチャーの召喚コストを３少なくする。\nシンカパワー：このクリーチャーが進化する時、自分の山札の上から５枚を墓地に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-004",
+      "limit": 4,
+      "graveSummon": true,
+      "g261Discount": {
+        "filter": {
+          "g273Grave": {
+            "n": 2,
+            "filter": {}
+          }
+        },
+        "amount": 3
+      },
+      "g397Shinka": [
+        {
+          "op": "Mill",
+          "n": 5,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-397",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp3-031",
+      "name": "ゴールド・ウィリデ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "メカ・デル・ディネロ/メカ・エンジェル・コマンド",
+      "text": "ヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\nこのクリーチャーが出た時、相手のクリーチャーを２体選び、タップする。次の相手のターンのはじめに、それらはアンタップしない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-031",
+      "limit": 4,
+      "yobinion": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "opponent",
+          "n": 2,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g193Tap": true,
+          "g210TapLock": true,
+          "title": "タップして次のターンまで止めるクリーチャーを2体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-398",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex2-061",
+      "name": "スゴ腕プロミキサー",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 1000,
+      "race": "ジョーカーズ/ワンダフォース",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-061",
+      "limit": 4,
+      "trigger": true,
+      "yobinion": true,
+      "supportBatch": "phase-398",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp3-028",
+      "name": "ドリーム・ザ・シルバー",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ジョーカーズ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-028",
+      "limit": 4,
+      "trigger": true,
+      "yobinion": true,
+      "supportBatch": "phase-398",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp3-040",
+      "name": "ホルン＝ストロン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "アビスロイヤル",
+      "text": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\nこのクリーチャーが出た時、相手の手札を１枚見ないで選び、捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-040",
+      "limit": 4,
+      "slayer": true,
+      "yobinion": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "n": 1,
+          "random": true
+        }
+      ],
+      "supportBatch": "phase-398",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp3-045",
+      "name": "ヨビニオン・ガッツンダー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "アーマロイド",
+      "text": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\nバトル中、このクリーチャーのパワーを+6000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-045",
+      "limit": 4,
+      "guardman": true,
+      "breaker": 2,
+      "yobinion": true,
+      "g38BattleBonus": 6000,
+      "supportBatch": "phase-398",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp3-034",
+      "name": "ヨビニオン・スナイパー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "リキッド・ピープル",
+      "text": "ブロッカー ブロッカー\nパワード・ブロッカー +4000（ブロック中、このクリーチャーのパワーを+4000する）\nヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\nこのクリーチャーが出た時、相手のクリーチャーを２体まで選ぶ。次の自分のターンのはじめまで、それらは攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-034",
+      "limit": 4,
+      "blocker": true,
+      "g209PoweredBlocker": 4000,
+      "yobinion": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g190Freeze": "self",
+          "title": "攻撃とブロックを止めるクリーチャーを2体まで選ぶ",
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-398",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp3-048",
+      "name": "ヨビニオン・トーテム",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "ミステリー・トーテム",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-048",
+      "limit": 4,
+      "breaker": 2,
+      "yobinion": true,
+      "supportBatch": "phase-398",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm29-004",
+      "name": "轟火シシガミグレンオー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 5000,
+      "race": "フレイム・モンスター/シノビ",
+      "text": "ニンジャ・ストライク ８(相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが８枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかった場合、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを自分の山札の一番下に置く)\nこのクリーチャーをバトルゾーンに出した時、パワー3000以下のクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-004",
+      "limit": 4,
+      "ninjaStrike": true,
+      "ninjaMin": 8,
+      "ninjaColors": [],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "maxPower": 3000,
+            "g199Power": true
+          }
+        }
+      ],
+      "supportBatch": "phase-398",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex06-014",
+      "name": "轟牙忍 ハヤブサリュウ",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5500,
+      "race": "ガイアール・コマンド・ドラゴン/ガーディアン/シノビ",
+      "text": "ブロッカーブロッカー\nスピードアタッカー\nニンジャ・ストライク ７（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが７枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを自分の山札の一番下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex06-014",
+      "limit": 4,
+      "blocker": true,
+      "speedAttacker": true,
+      "ninjaStrike": true,
+      "ninjaMin": 7,
+      "ninjaColors": [],
+      "supportBatch": "phase-398",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy23-083",
+      "name": "邪道の王道 ジャシン帝",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 10000,
+      "race": "アビスロイヤル",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy23-083",
+      "limit": 4,
+      "breaker": 2,
+      "yobinion": true,
+      "supportBatch": "phase-398",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-018",
+      "name": "邪魔変",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 8,
+      "power": 0,
+      "race": "",
+      "text": "ヨビニオン（自分の山札の上から、この呪文よりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\n相手は自身のクリーチャーを３体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-018",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Yobi398"
+        },
+        {
+          "op": "OpponentSelect",
+          "n": 3,
+          "to": "grave"
+        }
+      ],
+      "supportBatch": "phase-398",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd21-015",
+      "name": "終断χ ベガスランチャー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "マジック・コマンド/ゲリラ・コマンド/イニシャルズX/シノビ",
+      "text": "ニンジャ・ストライク ４（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが４枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかったら、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\nこのクリーチャーが出た時、相手のパワー3000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd21-015",
+      "limit": 4,
+      "ninjaStrike": true,
+      "ninjaMin": 4,
+      "ninjaColors": [],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 3000,
+            "g199Power": true
+          }
+        }
+      ],
+      "supportBatch": "phase-398",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm30-052",
+      "name": "土隠の式神センプーン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ワンダー・トリック/シノビ",
+      "text": "ニンジャ・ストライク ５(相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが５枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかった場合、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを自分の山札の一番下に置く)\nこのクリーチャーをバトルゾーンに出した時、そのターン、自分のクリーチャー１体のパワーは+5000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-052",
+      "limit": 4,
+      "ninjaStrike": true,
+      "ninjaMin": 5,
+      "ninjaColors": [],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "power": 5000,
+          "title": "パワーを+5000する自分のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-398",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm29-020",
+      "name": "土隠風の化身",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ミステリー・トーテム/シノビ",
+      "text": "ニンジャ・ストライク ３(相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが３枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかった場合、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを自分の山札の一番下に置く)\nこのクリーチャーをバトルゾーンに出した時、そのターン、バトルゾーンにある自分のクリーチャー１体のパワーは+3000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-020",
+      "limit": 4,
+      "ninjaStrike": true,
+      "ninjaMin": 3,
+      "ninjaColors": [],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "power": 3000,
+          "title": "パワーを+3000する自分のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-398",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-122",
+      "name": "怒流牙 根津の超人",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 14000,
+      "race": "ジャイアント/シノビ",
+      "text": "ニンジャ・ストライク ４（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが４枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかったら、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の下に置く）\nガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-122",
+      "limit": 4,
+      "ninjaStrike": true,
+      "ninjaMin": 4,
+      "ninjaColors": [],
+      "guardman": true,
+      "breaker": 3,
+      "supportBatch": "phase-398",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex12-103",
+      "name": "忍者妖精ユリカマ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "スノーフェアリー/シノビ",
+      "text": "ニンジャ・ストライク ４（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが４枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の一番下に置く）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から４枚を見る。その中からクリーチャーを１体選び、相手に見せてから手札に加えてもよい。その後、残りを好きな順序で山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-103",
+      "limit": 4,
+      "ninjaStrike": true,
+      "ninjaMin": 4,
+      "ninjaColors": [],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g185Search": true,
+          "n": 4,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "creature": true
+              },
+              "reveal": true,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-398",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp3-023",
+      "name": "爆紅月 ボルカノドン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 10000,
+      "race": "ドラゴノイド",
+      "text": "ハイパーエナジー（このクリーチャーを召喚する時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない）\nW・ブレイカー\nヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-023",
+      "limit": 4,
+      "hyperEnergy": true,
+      "breaker": 2,
+      "yobinion": true,
+      "supportBatch": "phase-398",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24bd2-012",
+      "name": "八卦ヨーイ",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ジョーカーズ",
+      "text": "ヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd2-012",
+      "limit": 4,
+      "yobinion": true,
+      "supportBatch": "phase-398",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex12-087",
+      "name": "裏斬隠 カクシ・レシピ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "スプラッシュ・クイーン/シノビ",
+      "text": "ニンジャ・ストライク ２（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが２枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の一番下に置く）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-087",
+      "limit": 4,
+      "ninjaStrike": true,
+      "ninjaMin": 2,
+      "ninjaColors": [],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "g190Freeze": "self",
+          "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-398",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex12-093",
+      "name": "裏斬隠 ハットリトリ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "ファンキー・ナイトメア/シノビ",
+      "text": "ニンジャ・ストライク ５（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが５枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の一番下に置く）\nこのクリーチャーがバトルゾーンに出た時、相手は自身のクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-093",
+      "limit": 4,
+      "ninjaStrike": true,
+      "ninjaMin": 5,
+      "ninjaColors": [],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "to": "grave"
+        }
+      ],
+      "supportBatch": "phase-398",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex12-095",
+      "name": "裏斬隠 フォクシット",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ドリームメイト/シノビ",
+      "text": "ニンジャ・ストライク ４（相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが４枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなければ、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを山札の一番下に置く）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーがバトルゾーンに出た時、相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-095",
+      "limit": 4,
+      "ninjaStrike": true,
+      "ninjaMin": 4,
+      "ninjaColors": [],
+      "speedAttacker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-398",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-091",
+      "name": "アツギダルマ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ジョーカーズ",
+      "text": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nJチェンジ４（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト４以下のジョーカーズ１体を入れ替えてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-091",
+      "limit": 4,
+      "machFighter": true,
+      "g393Change": {
+        "mana": 4
+      },
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-087",
+      "name": "おいも三兄弟",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ジョーカーズ",
+      "text": "Jチェンジ６（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト６以下のジョーカーズ１体を入れ替えてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-087",
+      "limit": 4,
+      "g393Change": {
+        "mana": 6
+      },
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-027",
+      "name": "おテントさん",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ジョーカーズ",
+      "text": "Jチェンジ６（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト６以下のジョーカーズ１体を入れ替えてもよい）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-027",
+      "limit": 4,
+      "g393Change": {
+        "mana": 6
+      },
+      "effect": "fightOptional",
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-054",
+      "name": "シューズッキュン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ジョーカーズ",
+      "text": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nJチェンジ４（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト４以下のジョーカーズ１体を入れ替えてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-054",
+      "limit": 4,
+      "machFighter": true,
+      "g393Change": {
+        "mana": 4
+      },
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-026",
+      "name": "スコプンプン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "ジョーカーズ",
+      "text": "Jチェンジ10（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト10以下のジョーカーズ１体を入れ替えてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-026",
+      "limit": 4,
+      "g393Change": {
+        "mana": 10
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 1,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "to": "mana",
+          "title": "マナに置く相手のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-055",
+      "name": "タイク・タイソンズ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ジョーカーズ",
+      "text": "Jチェンジ４（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト４以下のジョーカーズ１体を入れ替えてもよい）\nこのクリーチャーがバトルゾーンを離れた時、自分の山札の上から１枚目をマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-055",
+      "limit": 4,
+      "g393Change": {
+        "mana": 4
+      },
+      "g172Leave": [
+        {
+          "op": "Ramp",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-101",
+      "name": "ドゥーユーノーミー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ジョーカーズ",
+      "text": "Jチェンジ６（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト６以下のジョーカーズ１体を入れ替えてもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-101",
+      "limit": 4,
+      "g393Change": {
+        "mana": 6
+      },
+      "noPlayerAttack": true,
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-092",
+      "name": "ボーボボ・ボーボ坊",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "ジョーカーズ",
+      "text": "Jチェンジ４（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト４以下のジョーカーズ１体を入れ替えてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-092",
+      "limit": 4,
+      "g393Change": {
+        "mana": 4
+      },
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp07-088",
+      "name": "ホッチKISS",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ジョーカーズ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nJチェンジ４（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト４以下のジョーカーズ１体を入れ替えてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-088",
+      "limit": 4,
+      "trigger": true,
+      "g393Change": {
+        "mana": 4
+      },
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-088",
+      "name": "圧破の鎖 ナグルキツネ",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2500,
+      "race": "ビーストフォーク/暴拳王国",
+      "text": "このクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選び、タップする。\nアバレチェーン：自分のクリーチャーが攻撃する時、それがこのターン最初の攻撃なら、このターン、そのクリーチャーのパワーを+3000 する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-088",
+      "limit": 4,
+      "g252AttackWatch": {
+        "who": "self",
+        "first": true,
+        "filter": {
+          "creature": true
+        },
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "AttackGrant399",
+            "power": 3000
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true
+        }
+      ],
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-081",
+      "name": "呼織の鎖 マチョシビロ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ビーストフォーク/暴拳王国",
+      "text": "アバレチェーン：自分のクリーチャーが攻撃する時、それがこのターン最初の攻撃なら、自分の山札の上から２枚を見る。その中からクリーチャーを１体相手に見せ、手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-081",
+      "limit": 4,
+      "g252AttackWatch": {
+        "who": "self",
+        "first": true,
+        "filter": {
+          "creature": true
+        },
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 2,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-061",
+      "name": "衝突の鎖 ワンパン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ビーストフォーク/暴拳王国",
+      "text": "アバレチェーン：自分のクリーチャーが攻撃する時、それがこのターン最初の攻撃なら、相手は自身のアンタップしているクリーチャーを１体選び、タップする。（まず自分のクリーチャーが何を攻撃するか選ぶ。その後、相手はタップするクリーチャーを選ぶ）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-061",
+      "limit": 4,
+      "g252AttackWatch": {
+        "who": "self",
+        "first": true,
+        "filter": {
+          "creature": true
+        },
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "tap": true,
+            "filter": {
+              "untapped": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy19-061",
+      "name": "振手の鎖 ヤワラヘッジ",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ビーストフォーク/暴拳王国",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nアバレチェーン：自分のクリーチャーが攻撃する時、それがこのターン最初の攻撃なら、相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy19-061",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "self",
+        "first": true,
+        "filter": {
+          "creature": true
+        },
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true,
+            "lock": true,
+            "g210TapLock": true,
+            "title": "タップして次のターンまで止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp3-048",
+      "name": "凄虫逆夢 ボイノ・ブサント",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6500,
+      "race": "ディスペクター/ビーストフォーク/グランセクト/暴拳王国",
+      "text": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー\nアバレチェーン：自分のクリーチャーが攻撃する時、それがこのターン最初の攻撃なら、自分の山札の上から２枚をマナゾーンに置いてもよい。その後、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-048",
+      "limit": 4,
+      "exLife": true,
+      "blocker": true,
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "self",
+        "first": true,
+        "filter": {
+          "creature": true
+        },
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 2
+              }
+            ]
+          },
+          {
+            "op": "Select",
+            "g220ManaReturn": true,
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "filter": {},
+            "optional": true,
+            "title": "手札に戻すマナのカードを1枚選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-082",
+      "name": "増刀の鎖 シノブ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "スノーフェアリー/暴拳王国",
+      "text": "アバレチェーン：自分のクリーチャーが攻撃する時、それがこのターン最初の攻撃なら、自分の山札の上から１枚目をマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-082",
+      "limit": 4,
+      "g252AttackWatch": {
+        "who": "self",
+        "first": true,
+        "filter": {
+          "creature": true
+        },
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-089",
+      "name": "宅配ビンちゃん",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ジョーカーズ",
+      "text": "Jチェンジ８（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト８以下のジョーカーズ１体を入れ替えてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-089",
+      "limit": 4,
+      "g393Change": {
+        "mana": 8
+      },
+      "breaker": 2,
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-054",
+      "name": "忠温コタツ丸",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ジョーカーズ",
+      "text": "このクリーチャーを自分のマナゾーンから召喚してもよい。\nJチェンジ４（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト４以下のジョーカーズ１体を入れ替えてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-054",
+      "limit": 4,
+      "manaSummon": true,
+      "g393Change": {
+        "mana": 4
+      },
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-089",
+      "name": "天渚の鎖 イキリワニ",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ビーストフォーク/暴拳王国",
+      "text": "アバレチェーン：自分のクリーチャーが攻撃する時、それがこのターン最初の攻撃なら、このターン、そのクリーチャーのパワーを+4000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-089",
+      "limit": 4,
+      "g252AttackWatch": {
+        "who": "self",
+        "first": true,
+        "filter": {
+          "creature": true
+        },
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "AttackGrant399",
+            "power": 4000
+          }
+        ]
+      },
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-059",
+      "name": "倒伏の鎖 キックボック",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4500,
+      "race": "スターライト・ツリー/暴拳王国",
+      "text": "アバレチェーン：自分のクリーチャーが攻撃する時、それがこのターン最初の攻撃なら、相手のクリーチャーを１体選び、タップする。（まず何を攻撃するか選んでから、タップするクリーチャーを選ぶ）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-059",
+      "limit": 4,
+      "g252AttackWatch": {
+        "who": "self",
+        "first": true,
+        "filter": {
+          "creature": true
+        },
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ]
+      },
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy19-055",
+      "name": "破泡の鎖 スモウトード",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ビーストフォーク/暴拳王国",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nアバレチェーン：自分のクリーチャーが攻撃する時、それがこのターン最初の攻撃なら、このターン、そのクリーチャーのパワーを +6000し、「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy19-055",
+      "limit": 4,
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "self",
+        "first": true,
+        "filter": {
+          "creature": true
+        },
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "AttackGrant399",
+            "power": 6000,
+            "grant": {
+              "poweredBreaker": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex13-s04",
+      "name": "捕封の鎖 テラエイプ",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 15000,
+      "race": "ビーストフォーク/暴拳王国",
+      "text": "シンパシー：クリーチャー（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にならない）\nマッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nT・ブレイカー\nアバレチェーン：自分のクリーチャーが攻撃する時、それがこのターン最初の攻撃なら、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-s04",
+      "limit": 4,
+      "g211Sympathy": {
+        "amount": 1,
+        "filter": {
+          "creature": true
+        }
+      },
+      "machFighter": true,
+      "breaker": 3,
+      "g252AttackWatch": {
+        "who": "self",
+        "first": true,
+        "filter": {
+          "creature": true
+        },
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "mana",
+            "title": "マナに置く相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex13-018",
+      "name": "裏鍛の鎖 ポコアイアイ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ビーストフォーク/暴拳王国",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から２枚をタップしてマナゾーンに置く。\nアバレチェーン：自分のクリーチャーが攻撃する時、それがこのターン最初の攻撃なら、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-018",
+      "limit": 4,
+      "g252AttackWatch": {
+        "who": "self",
+        "first": true,
+        "filter": {
+          "creature": true
+        },
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "Select",
+            "g220ManaReturn": true,
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "filter": {},
+            "optional": true,
+            "title": "手札に戻すマナのカードを1枚選ぶ"
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 2,
+          "tapped": true
+        }
+      ],
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex13-067",
+      "name": "拿繰の鎖 パンチフォックス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "ビーストフォーク/暴拳王国",
+      "text": "自分のターンの終わりに、バトルゾーンに自分のパワー6000以上のクリーチャーがあれば、カードを１枚引く。\nアバレチェーン：自分のクリーチャーが攻撃する時、それがこのターン最初の攻撃なら、このターン、そのクリーチャーのパワーを+2000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-067",
+      "limit": 4,
+      "g252AttackWatch": {
+        "who": "self",
+        "first": true,
+        "filter": {
+          "creature": true
+        },
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "AttackGrant399",
+            "power": 2000
+          }
+        ]
+      },
+      "g174End": [
+        {
+          "op": "IfOwnPower",
+          "minPower": 6000,
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-399",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm11-024",
+      "name": "アクア・トリックスター",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "リキッド・ピープル",
+      "text": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-024",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "owner": "opponent",
+              "origin": "battle",
+              "n": 1,
+              "filter": {
+                "creature": true
+              },
+              "g173Targets": true,
+              "g193Select": true,
+              "g193Tap": true,
+              "title": "タップする相手のクリーチャーを1体選ぶ"
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm12-055",
+      "name": "アラーム・ラディッシュ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ワイルド・ベジーズ",
+      "text": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を自分のマナゾーンに置く。その後、クリーチャーを１体、自分のマナゾーンから自分の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-055",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Ramp",
+              "n": 1
+            },
+            {
+              "op": "Select",
+              "g220ManaReturn": true,
+              "origin": "mana",
+              "to": "hand",
+              "n": 1,
+              "filter": {
+                "creature": true
+              },
+              "title": "手札に戻すマナのクリーチャーを1体選ぶ"
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm11-020",
+      "name": "シェル・チャーチ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "コロニー・ビートル",
+      "text": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、相手はバトルゾーンにある自分自身のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-020",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "OpponentSelect",
+              "n": 1,
+              "to": "mana"
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm11-027",
+      "name": "スカイフレーム・リザード",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "メルト・ウォリアー",
+      "text": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、「ブロッカー」を持つ相手のクリーチャーを２体まで破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-027",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "owner": "opponent",
+              "origin": "battle",
+              "to": "grave",
+              "n": 2,
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "blocker": true
+              },
+              "g173Targets": true,
+              "g193Select": true,
+              "title": "破壊する相手のブロッカーを2体まで選ぶ"
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm11-053",
+      "name": "ニンジャ・パンプキン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ワイルド・ベジーズ",
+      "text": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーのパワーは+4000され、パワー5000以下のクリーチャーにブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-053",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "power": 4000,
+          "g206NoBlock": {
+            "maxPower": 5000
+          }
+        }
+      },
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm11-030",
+      "name": "マッチョ・メロン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ワイルド・ベジーズ",
+      "text": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nパワーアタッカー +3000(攻撃中、このクリーチャーのパワーは+3000される)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-030",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "attackBonus": 3000
+        }
+      },
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm11-041",
+      "name": "リバイバル・ソルジャー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "マーフォーク",
+      "text": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーのパワーは、+4000される。このクリーチャーが破壊される時、墓地に置くかわりに自分の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-041",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "power": 4000,
+          "destroyToHand": true
+        }
+      },
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm12-048",
+      "name": "炎神兵ゴリアック",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "アーマロイド",
+      "text": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、相手のパワー5000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-048",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 5000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm11-049",
+      "name": "炎舞闘士サピエント・アーク",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ドラゴノイド",
+      "text": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーのパワーは+4000され、タップされていないクリーチャーを攻撃できる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-049",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "power": 4000,
+          "attackUntapped": true
+        }
+      },
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm11-038",
+      "name": "堅防の使徒アースラ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "イニシエート",
+      "text": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーのパワーは+4000され、「ブロッカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-038",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "power": 4000,
+          "blocker": true
+        }
+      },
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm13-011",
+      "name": "骨折人形トロンボ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "デスパペット",
+      "text": "ウェーブストライカー(バトルゾーンに｢ウェーブストライカー｣を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、クリーチャーを１体、自分の墓地から自分の手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-011",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "g228Recovery": true,
+              "origin": "grave",
+              "to": "hand",
+              "n": 1,
+              "filter": {
+                "g228Face": {
+                  "type": "creature"
+                }
+              },
+              "optional": true,
+              "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm11-016",
+      "name": "斬神兵グランドルメス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "アーマロイド",
+      "text": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、パワー2000以下のクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-016",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Sweep",
+              "both": true,
+              "to": "grave",
+              "filter": {
+                "creature": true,
+                "maxPower": 2000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx17-009",
+      "name": "四牙類 クアトロドン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "ジュラシック・コマンド・ドラゴン",
+      "text": "進化-自分の自然のドラゴン１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、自分の山札の上から２枚をマナゾーンに置いてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx17-009",
+      "limit": 4,
+      "evolution": {
+        "category": "ドラゴン",
+        "civilization": "自然"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 2
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 2
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm11-046",
+      "name": "邪口虫ラフレシア・ワーム",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "パラサイトワーム",
+      "text": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーのパワーは+4000され、「闇ステルス」を得る。(相手のマナゾーンに闇のカードが１枚でもあれば、「闇ステルス」を持つクリーチャーはブロックされない)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-046",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "power": 4000,
+          "g226Stealth": "闇"
+        }
+      },
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-105",
+      "name": "駿足の政",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 1000,
+      "race": "ビーストフォーク/ハンター",
+      "text": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から５枚を見る。その中からクリーチャーを１体選び、すべてのプレイヤーに見せてから手札に加えてもよい。その後、残りを好きな順序で山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-105",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g185Search": true,
+          "n": 5,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "creature": true
+              },
+              "reveal": true,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-074",
+      "name": "聖歌の翼 アンドロム",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3500,
+      "race": "ジャスティス・ウイング",
+      "text": "ブロッカー ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nマナ武装 ３：このクリーチャーをバトルゾーンに出した時、自分のマナゾーンに光のカードが３枚以上あれば、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。そのクリーチャーは、次の相手のターンのはじめにアンタップされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-074",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfMana",
+          "n": 3,
+          "color": "光",
+          "defs": [
+            {
+              "op": "Target",
+              "tap": true,
+              "optional": true,
+              "lock": true,
+              "g210TapLock": true,
+              "title": "次のターンまでタップする相手のクリーチャーを1体まで選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd06-003",
+      "name": "束縛の守護者ユッパール",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "ガーディアン/アンノイズ",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。そのクリーチャーは、次の相手のターンのはじめにアンタップされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd06-003",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "optional": true,
+          "lock": true,
+          "g210TapLock": true,
+          "title": "次のターンまでタップする相手のクリーチャーを1体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx11-017",
+      "name": "凍結の魔天 ダイイング・メッセージ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "デーモン・コマンド",
+      "text": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。そのクリーチャーは、次の相手のターンのはじめにアンタップされない。(まず何を攻撃するか選んでから、タップするクリーチャーを選ぶ)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-017",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "optional": true,
+          "lock": true,
+          "g210TapLock": true,
+          "title": "次のターンまでタップする相手のクリーチャーを1体まで選ぶ"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "tap": true,
+          "optional": true,
+          "lock": true,
+          "g210TapLock": true,
+          "title": "次のターンまでタップする相手のクリーチャーを1体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm12-011",
+      "name": "爆輪男",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ヘドリアン",
+      "text": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、クリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-011",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Sweep",
+              "both": true,
+              "to": "grave",
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr03-022",
+      "name": "氷結カッチ・コチーン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "グレートメカオー/ハンター",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。そのクリーチャーは、次の相手のターンのはじめにアンタップされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-022",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "optional": true,
+          "lock": true,
+          "g210TapLock": true,
+          "title": "次のターンまでタップする相手のクリーチャーを1体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm11-022",
+      "name": "予言者ラメール",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1500,
+      "race": "ライトブリンガー",
+      "text": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nバトルゾーンにある自分のクリーチャーすべてのパワーは+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-022",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "g205Aura": {
+            "power": 1000,
+            "filter": {
+              "creature": true
+            }
+          }
+        }
+      },
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm11-025",
+      "name": "略奪秘宝ジャギラ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "パンドラボックス",
+      "text": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、相手の手札を３枚見ないで選び、捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-025",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Discard",
+              "n": 3,
+              "random": true
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm11-013",
+      "name": "薔薇公爵ハザリア",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ダークロード",
+      "text": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、相手は自分自身のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-013",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "OpponentSelect",
+              "n": 1,
+              "to": "grave"
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-400",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-062",
+      "name": "「放浪の機兵」",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "グレートメカオー/チーム銀河",
+      "text": "シールド・セイバー（自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-062",
+      "limit": 4,
+      "g401ShieldSaver": true,
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex14-101",
+      "name": "「夜明けの補給兵」",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3500,
+      "race": "メタリカ/チーム銀河",
+      "text": "シールド・セイバー（自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-101",
+      "limit": 4,
+      "g401ShieldSaver": true,
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp17-089",
+      "name": "Disエリカ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "スノーフェアリー/ディスタス",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nシールド・セイバー（自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-089",
+      "limit": 4,
+      "trigger": true,
+      "g401ShieldSaver": true,
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp17-031",
+      "name": "Disタルー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ジャスティス・オーブ/ディスタス",
+      "text": "このクリーチャーが出た時、カードを１枚引く。\nシールド・セイバー（自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-031",
+      "limit": 4,
+      "g401ShieldSaver": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp17-047",
+      "name": "Disライター",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ゼノパーツ/ディスタス",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが出た時、自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。\nシールド・セイバー（自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-047",
+      "limit": 4,
+      "speedAttacker": true,
+      "g401ShieldSaver": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldHand",
+          "g238ShieldHand": true
+        }
+      ],
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-019",
+      "name": "H・コフーグ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "サイバー・ウイルス海/革命軍",
+      "text": "シールド・セイバー（自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい）\nこのクリーチャーがバトルゾーンを離れた時、クリーチャーを１体選び、持ち主の手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-019",
+      "limit": 4,
+      "g401ShieldSaver": true,
+      "g172Leave": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "to": "hand",
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-050",
+      "name": "シルド・ポルカ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ファイアー・バード炎/革命軍",
+      "text": "シールド・セイバー（自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい）\nこのクリーチャーがバトルゾーンを離れた時、相手のパワー3000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-050",
+      "limit": 4,
+      "g401ShieldSaver": true,
+      "g172Leave": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 3000,
+            "g199Power": true
+          }
+        }
+      ],
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp1-040",
+      "name": "マッハ・ガルピア",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ファイアー・バード",
+      "text": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nシールド・セイバー（自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-040",
+      "limit": 4,
+      "trigger": true,
+      "speedAttacker": true,
+      "g401ShieldSaver": true,
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-049",
+      "name": "ミルザムの天宝",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 2,
+      "power": 0,
+      "race": "エンジェル・コマンド/レクスターズ",
+      "text": "S・トリガー S・トリガー（このタマシードをシールドゾーンから手札に加える時、コストを支払わずにすぐ使ってもよい）\nシンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nシールド・セイバー（自分のシールドがブレイクされる時、かわりにこのタマシードを破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-049",
+      "limit": 4,
+      "trigger": true,
+      "shinkalize": true,
+      "g401ShieldSaver": true,
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr19-041",
+      "name": "メガ・ショック・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "メガ・コマンド・ドラゴン/革命軍",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nシールド・セイバー（自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分のシールドをひとつ墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-041",
+      "limit": 4,
+      "breaker": 2,
+      "g401ShieldSaver": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldGrave",
+          "g239ShieldGrave": true
+        }
+      ],
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-028",
+      "name": "禁足の守護者ガド・ワーカ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "ガーディアン",
+      "text": "シールド・セイバー（自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい）\nこのクリーチャーが破壊された時、相手のクリーチャーを２体まで選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-028",
+      "limit": 4,
+      "g401ShieldSaver": true,
+      "g172Death": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g193Tap": true,
+          "title": "タップする相手のクリーチャーを2体まで選ぶ",
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-031",
+      "name": "光器 モンロー・ウォーク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2500,
+      "race": "メカ・デル・ソル",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nシールド・セイバー（自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-031",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "g401ShieldSaver": true,
+      "noPlayerAttack": true,
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-054",
+      "name": "轟龍のギフト",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "このタマシードが出た時、相手のクリーチャーを１体選び、タップする。そのクリーチャーは、次の相手のターンのはじめにアンタップしない。\nシールド・セイバー（自分のシールドがブレイクされる時、かわりにこのタマシードを破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-054",
+      "limit": 4,
+      "g401ShieldSaver": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "lock": true,
+          "g210TapLock": true,
+          "title": "タップして次のターンまで止めるクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm30-042",
+      "name": "斬隠カイドウ・クロウラー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "アースイーター/シノビ",
+      "text": "ブロッカー\nこのクリーチャーは攻撃することができない。\nシールド・セイバー(自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-042",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g401ShieldSaver": true,
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm30-053",
+      "name": "斬雪妖精バケット・バケット",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 1000,
+      "race": "スノーフェアリー/サムライ",
+      "text": "シールド・セイバー(自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい)\nこのクリーチャーが破壊された時、バトルゾーンにある相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-053",
+      "limit": 4,
+      "g401ShieldSaver": true,
+      "g172Death": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 1,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "to": "mana",
+          "title": "マナに置く相手のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr19-026",
+      "name": "七極 Di",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 15000,
+      "race": "エンジェル・コマンド/侵略者",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nシールド・セイバー（自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-026",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g401ShieldSaver": true,
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm30-045",
+      "name": "邪眼ローズ・アヴァクーム公",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ダークロード/ナイト",
+      "text": "シールド・セイバー(自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-045",
+      "limit": 4,
+      "g401ShieldSaver": true,
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-033",
+      "name": "守護の玉 ナイトル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ジャスティス・オーブ/革命軍",
+      "text": "シールド・セイバー（自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい）\nこのクリーチャーがバトルゾーンを離れた時、相手のクリーチャーを１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-033",
+      "limit": 4,
+      "g401ShieldSaver": true,
+      "g172Leave": [
+        {
+          "op": "Target",
+          "tap": true
+        }
+      ],
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-073",
+      "name": "首領のギフト",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "このタマシードが出た時、自分の手札を１枚、マナゾーンに置いてもよい。\nシールド・セイバー（自分のシールドがブレイクされる時、かわりにこのタマシードを破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-073",
+      "limit": 4,
+      "g401ShieldSaver": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "mana",
+          "n": 1,
+          "g182HandMana": true,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-058",
+      "name": "粋歌のギフト",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "このタマシードが出た時、相手のコスト６以下のクリーチャーを１体選び、持ち主の手札に戻す。\nシールド・セイバー（自分のシールドがブレイクされる時、かわりにこのタマシードを破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-058",
+      "limit": 4,
+      "g401ShieldSaver": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "hand",
+          "filter": {
+            "max": 6
+          }
+        }
+      ],
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-035",
+      "name": "青守銀 バレン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "メタリカ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nシールド・セイバー（自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-035",
+      "limit": 4,
+      "trigger": true,
+      "g401ShieldSaver": true,
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-028",
+      "name": "雪精 チャケ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "スノーフェアリー風/革命軍",
+      "text": "シールド・セイバー（自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい）\nこのクリーチャーがバトルゾーンを離れた時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-028",
+      "limit": 4,
+      "g401ShieldSaver": true,
+      "g172Leave": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 1,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "to": "mana",
+          "title": "マナに置く相手のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm38-039",
+      "name": "戦空の守護者カイ・ジュワース",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2500,
+      "race": "ガーディアン",
+      "text": "シールド・セイバー(自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-039",
+      "limit": 4,
+      "g401ShieldSaver": true,
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm30-038",
+      "name": "天雷王機シルバー卿",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1500,
+      "race": "グレートメカオー/ナイト",
+      "text": "シールド・セイバー(自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-038",
+      "limit": 4,
+      "g401ShieldSaver": true,
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-074",
+      "name": "電撃戦士ガード・ゲイナー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2500,
+      "race": "グレートメカオー",
+      "text": "シールド・セイバー（自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-074",
+      "limit": 4,
+      "g401ShieldSaver": true,
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-063",
+      "name": "覇王のギフト",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "このタマシードが出た時、自分の山札の上から３枚を墓地に置いてもよい。そうしたら、闇のカードを１枚、自分の墓地から手札に戻す。\nシールド・セイバー（自分のシールドがブレイクされる時、かわりにこのタマシードを破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-063",
+      "limit": 4,
+      "g401ShieldSaver": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "g186GraveMill": true,
+          "defs": [
+            {
+              "op": "Mill",
+              "n": 3
+            },
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "hand",
+              "n": 1,
+              "filter": {
+                "anyFaceColor": "闇"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-068",
+      "name": "暴竜のギフト",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "このタマシードが出た時、相手の「ブロッカー」を持つクリーチャーを１体破壊する。\nシールド・セイバー（自分のシールドがブレイクされる時、かわりにこのタマシードを破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-068",
+      "limit": 4,
+      "g401ShieldSaver": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-401",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-083",
+      "name": "The ブレー漢ズ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [nn01]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを[nn01]支払って召喚してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-083",
+      "limit": 4,
+      "kirifudaDash": 1,
+      "g402DashColors": [
+        "自然"
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-081",
+      "name": "ZIZOタウン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [nn01]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを [nn01]支払って召喚してもよい）\nガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-081",
+      "limit": 4,
+      "kirifudaDash": 1,
+      "g402DashColors": [
+        "自然"
+      ],
+      "guardman": true,
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-077",
+      "name": "おむすびガトリン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [ff02]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを[ff02]支払って召喚してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-077",
+      "limit": 4,
+      "kirifudaDash": 2,
+      "g402DashColors": [
+        "火"
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex09-033",
+      "name": "カーメルイス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [ff02]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを [ff02]支払って召喚してもよい）\nスピードアタッカー（このクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex09-033",
+      "limit": 4,
+      "kirifudaDash": 2,
+      "g402DashColors": [
+        "火"
+      ],
+      "speedAttacker": true,
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd14-002",
+      "name": "ゴールド・キンタックス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [ff04]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを [ff04]支払って召喚してもよい）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd14-002",
+      "limit": 4,
+      "kirifudaDash": 4,
+      "g402DashColors": [
+        "火"
+      ],
+      "speedAttacker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-019",
+      "name": "ツルーマン将軍",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nキリフダッシュ [ff03]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを[ff03]支払って召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-019",
+      "limit": 4,
+      "trigger": true,
+      "kirifudaDash": 3,
+      "g402DashColors": [
+        "火"
+      ],
+      "effect": "fightOptional",
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy19-020",
+      "name": "ドキドキ・ホーテ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 14000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [ff06]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを [ff06]支払って召喚してもよい）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy19-020",
+      "limit": 4,
+      "kirifudaDash": 6,
+      "g402DashColors": [
+        "火"
+      ],
+      "speedAttacker": true,
+      "breaker": 3,
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-080",
+      "name": "にゃがぐつを履いたニャガ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [nn02]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを[nn02]支払って召喚してもよい）\nこのクリーチャーを自分のマナゾーンから召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-080",
+      "limit": 4,
+      "kirifudaDash": 2,
+      "g402DashColors": [
+        "自然"
+      ],
+      "manaSummon": true,
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy19-spd711",
+      "name": "はなさかジェントル",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [fn03]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを [fn03]支払って召喚してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy19-spd711",
+      "limit": 4,
+      "kirifudaDash": 3,
+      "g402DashColors": [
+        "火",
+        "自然"
+      ],
+      "breaker": 2,
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex09-005",
+      "name": "パンヌダルク",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [ff06]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを [ff06] 支払って召喚してもよい）\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分のクリーチャーをすべてアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex09-005",
+      "limit": 4,
+      "kirifudaDash": 6,
+      "g402DashColors": [
+        "火"
+      ],
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupUntap",
+          "g219Untap": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-003",
+      "name": "ビバラ龍樹",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "ドラゴン・ゾンビ/デーモン・コマンド/不死樹王国",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、そのターン、相手のクリーチャーすべてのパワーを－4000する。\nフシギバース [dd10]（自分のクリーチャーを１体タップしてマナゾーンに置き、 [dd10] からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは [dd01]より少なくならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-003",
+      "limit": 4,
+      "breaker": 2,
+      "fushigibirth": 10,
+      "fushiMin": 1,
+      "g402FushiColors": [
+        "闇"
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupPower",
+          "g214GroupPower": true,
+          "owner": "opponent",
+          "power": -4000,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd14-011",
+      "name": "ホスピヨゲール",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [nn05]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを [nn05]支払って召喚してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd14-011",
+      "limit": 4,
+      "kirifudaDash": 5,
+      "g402DashColors": [
+        "自然"
+      ],
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 1,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "to": "mana",
+          "title": "マナに置く相手のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-042",
+      "name": "モモダチ キャンベロ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [ff01]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを [ff01]支払って召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、そのターン、自分の他のクリーチャー１体に「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-042",
+      "limit": 4,
+      "kirifudaDash": 1,
+      "g402DashColors": [
+        "火"
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g179Other": true,
+          "g301Grant": true,
+          "grant": {
+            "speedAttacker": true
+          },
+          "title": "このターン、スピードアタッカーを与える自分の他のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd14-009",
+      "name": "モモダチパワー!!!",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nキリフダッシュ [ff01]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、この呪文を [ff01]支払って唱えてもよい）\n相手のパワー6000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd14-009",
+      "limit": 4,
+      "trigger": true,
+      "kirifudaDash": 1,
+      "g402DashColors": [
+        "火"
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 6000,
+            "g199Power": true
+          }
+        }
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-078",
+      "name": "ライマー・イモックル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "グランセクト/不死樹王国",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nフシギバース [nn06]（自分のクリーチャーを１体タップしてマナゾーンに置き、[nn06] からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは [nn01]より少なくならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-078",
+      "limit": 4,
+      "breaker": 2,
+      "fushigibirth": 6,
+      "fushiMin": 1,
+      "g402FushiColors": [
+        "自然"
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-056",
+      "name": "ライマー・ダー",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "グランセクト/不死樹王国",
+      "text": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nフシギバース [dn07]（自分のクリーチャーを１体タップしてマナゾーンに置き、[dn07]からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは[dn02]より少なくならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-056",
+      "limit": 4,
+      "machFighter": true,
+      "slayer": true,
+      "fushigibirth": 7,
+      "fushiMin": 2,
+      "g402FushiColors": [
+        "闇",
+        "自然"
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex10-029",
+      "name": "ライマー・トール",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 12000,
+      "race": "グランセクト/不死樹王国",
+      "text": "T・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーが攻撃する時、攻撃の後、このクリーチャーを破壊する。\nフシギバース [dd09]（自分のクリーチャーを１体タップしてマナゾーンに置き、 [dd09]からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは[dd01]より少なくはならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex10-029",
+      "limit": 4,
+      "breaker": 3,
+      "fushigibirth": 9,
+      "fushiMin": 1,
+      "g402FushiColors": [
+        "闇"
+      ],
+      "g34Attack": [
+        {
+          "op": "AfterAttackDestroy"
+        }
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-093",
+      "name": "ライマー・ナイト",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "グランセクト/不死樹王国",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nパワーアタッカー+2000（攻撃中、このクリーチャーのパワーを+2000する）\nフシギバース [dn04]（自分のクリーチャーを１体タップしてマナゾーンに置き、 [dn04] からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは [dn02]より少なくならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-093",
+      "limit": 4,
+      "blocker": true,
+      "attackBonus": 2000,
+      "fushigibirth": 4,
+      "fushiMin": 2,
+      "g402FushiColors": [
+        "闇",
+        "自然"
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex14-037",
+      "name": "ライマー・ランサー",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 14000,
+      "race": "グランセクト/不死樹王国",
+      "text": "T・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーがバトルする時、バトルの後、このクリーチャーを破壊する。\nフシギバース [dn05]（自分のクリーチャーを１体タップしてマナゾーンに置き、 [dn05] からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは[dn02]より少なくならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-037",
+      "limit": 4,
+      "breaker": 3,
+      "afterBattleDie": true,
+      "fushigibirth": 5,
+      "fushiMin": 2,
+      "g402FushiColors": [
+        "闇",
+        "自然"
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd14-003",
+      "name": "熊四駆 ベアシガラ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [nn04] (自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを [nn04] 支払って召喚してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から２枚をマナゾーンに置く。その後、クリーチャーを１体、自分のマナゾーンから手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd14-003",
+      "limit": 4,
+      "kirifudaDash": 4,
+      "g402DashColors": [
+        "自然"
+      ],
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 2
+        },
+        {
+          "op": "Select",
+          "g220ManaReturn": true,
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "filter": {
+            "creature": true
+          },
+          "optional": true,
+          "title": "手札に戻すマナのクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-069",
+      "name": "罪樹の影デッド・ウォール",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5000,
+      "race": "ゴースト/不死樹王国",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nフシギバース [dd06]（自分のクリーチャーを１体タップしてマナゾーンに置き、[dd06] からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは [dd01]より少なくならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-069",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "fushigibirth": 6,
+      "fushiMin": 1,
+      "g402FushiColors": [
+        "闇"
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-073",
+      "name": "死積人形ブラッディ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "デスパペット/不死樹王国",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から２枚を墓地に置く。\nフシギバース [dd08]（自分のクリーチャーを１体タップしてマナゾーンに置き、[dd08]からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは[dd01]より少なくならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-073",
+      "limit": 4,
+      "fushigibirth": 8,
+      "fushiMin": 1,
+      "g402FushiColors": [
+        "闇"
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex09-011",
+      "name": "私立探偵 檜 大木人",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [nn04]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを [nn04]支払って召喚してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、相手のパワー3000以下のクリーチャーをすべて、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex09-011",
+      "limit": 4,
+      "kirifudaDash": 4,
+      "g402DashColors": [
+        "自然"
+      ],
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "to": "mana",
+          "filter": {
+            "creature": true,
+            "maxPower": 3000
+          }
+        }
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-044",
+      "name": "樹占の風",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ビーストフォーク/不死樹王国",
+      "text": "このクリーチャーがバトルゾーンに出た時、カードを１枚、自分のマナゾーンから手札に戻してもよい。\nフシギバース [nn05]（自分のクリーチャーを１体タップしてマナゾーンに置き、[nn05]からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは [nn01]より少なくならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-044",
+      "limit": 4,
+      "fushigibirth": 5,
+      "fushiMin": 1,
+      "g402FushiColors": [
+        "自然"
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "g220ManaReturn": true,
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "filter": {},
+          "optional": true,
+          "title": "手札に戻すマナのカードを1枚選ぶ"
+        }
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-080",
+      "name": "樹蟲トレオーム",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 14000,
+      "race": "グランセクト/不死樹王国",
+      "text": "T・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nフシギバース [nn09]（自分のクリーチャーを１体タップしてマナゾーンに置き、[nn09]からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは[nn01]より少なくならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-080",
+      "limit": 4,
+      "breaker": 3,
+      "fushigibirth": 9,
+      "fushiMin": 1,
+      "g402FushiColors": [
+        "自然"
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd14-004",
+      "name": "新導バット",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [ff02]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを [ff02] 支払って召喚してもよい）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが攻撃する時、自分の手札を１枚捨て、その後カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd14-004",
+      "limit": 4,
+      "kirifudaDash": 2,
+      "g402DashColors": [
+        "火"
+      ],
+      "speedAttacker": true,
+      "g34Attack": [
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1
+        },
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy19-spd701",
+      "name": "切札ジョー＆モモキング",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [fn04]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを [fn04]支払って召喚してもよい）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy19-spd701",
+      "limit": 4,
+      "kirifudaDash": 4,
+      "g402DashColors": [
+        "火",
+        "自然"
+      ],
+      "speedAttacker": true,
+      "breaker": 2,
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex10-026",
+      "name": "爆死男",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ヘドリアン/不死樹王国",
+      "text": "パワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から２枚を墓地に置く。\n自分の墓地にあるカード１枚につき、このクリーチャーのパワーを+1000する。\nフシギバース [dn06]（自分のクリーチャーを１体タップしてマナゾーンに置き、 [dn06] からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは[dn02]より少なくならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex10-026",
+      "limit": 4,
+      "poweredBreaker": true,
+      "g207CountPower": {
+        "zone": "grave",
+        "amount": 1000
+      },
+      "fushigibirth": 6,
+      "fushiMin": 2,
+      "g402FushiColors": [
+        "闇",
+        "自然"
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp3-027",
+      "name": "罰空逆夢 ブラゴチャーンド",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 10000,
+      "race": "ディスペクター/ビートジョッキー/ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [fn04]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを[fn04]支払って召喚してもよい）\nEXライフ（このクリーチャーを出す時、自分の山札の上から１枚をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nスピードアタッカー\nマッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-027",
+      "limit": 4,
+      "kirifudaDash": 4,
+      "g402DashColors": [
+        "火",
+        "自然"
+      ],
+      "exLife": true,
+      "speedAttacker": true,
+      "machFighter": true,
+      "breaker": 2,
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-021",
+      "name": "不遜の化身",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 5000,
+      "race": "ミステリー・トーテム/不死樹王国",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\nフシギバース [nn11]（自分のクリーチャーを１体タップしてマナゾーンに置き、[nn11]からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは[nn01]より少なくならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-021",
+      "limit": 4,
+      "trigger": true,
+      "fushigibirth": 11,
+      "fushiMin": 1,
+      "g402FushiColors": [
+        "自然"
+      ],
+      "effect": "fightOptional",
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy19-017",
+      "name": "不敵怪人アンダケイン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "デビルマスク/不死樹王国",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、コスト４以下のクリーチャーを１体、自分の墓地からバトルゾーンに出す。\nフシギバース [dd08]（自分のクリーチャーを１体タップしてマナゾーンに置き、 [dd08] からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは [dd01]より少なくならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy19-017",
+      "limit": 1,
+      "breaker": 2,
+      "fushigibirth": 8,
+      "fushiMin": 1,
+      "g402FushiColors": [
+        "闇"
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "g236GraveDeploy": true,
+          "filter": {
+            "creature": true,
+            "max": 4
+          },
+          "optional": false,
+          "title": "墓地から出すクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-044",
+      "name": "抹茶ップリン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [nn04]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを[nn04]支払って召喚してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分の山札の上から２枚をマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-044",
+      "limit": 4,
+      "kirifudaDash": 4,
+      "g402DashColors": [
+        "自然"
+      ],
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 2
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-038",
+      "name": "連死秘宝マトラ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "パンドラボックス/不死樹王国",
+      "text": "このクリーチャーがバトルゾーンを離れた時、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－3000 する。（パワー０以下のクリーチャーは破壊される）\nフシギバース [dd06]（自分のクリーチャーを１体タップしてマナゾーンに置き、[dd06]からそのクリーチャーのコストを引いた数のコストを支払って、このクリーチャーを自分の墓地から召喚してもよい。ただし、コストは[dd01]より少なくならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-038",
+      "limit": 4,
+      "fushigibirth": 6,
+      "fushiMin": 1,
+      "g402FushiColors": [
+        "闇"
+      ],
+      "g172Leave": [
+        {
+          "op": "Target",
+          "power": -3000,
+          "g242PowerMinus": true,
+          "title": "パワーを-3000する相手のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-402",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-016",
+      "name": "ブルーム＝プルーフ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "アビスロイヤル",
+      "text": "このクリーチャーが出た時、自分の山札の上から１枚目を墓地に置く。\n相手のターン中に、相手が召喚以外の方法でクリーチャーを出した時、そのクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-016",
+      "limit": 4,
+      "g403Bloom": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-403",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp3-039",
+      "name": "オ:ドユニワ / 喰土邪覇",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "ヴェールアビス",
+      "text": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nメガ・ラスト・バースト（このクリーチャーが離れて、手札、マナゾーン、または墓地に置かれた時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\nカードを１枚、自分のマナゾーンから墓地に置く。その後、自分の山札の上から２枚をタップしてマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-039",
+      "limit": 4,
+      "gStrike": true,
+      "breaker": 2,
+      "megaLastBurst": true,
+      "spellFace": {
+        "name": "喰土邪覇",
+        "type": "spell",
+        "cost": 3,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "アビスへの誘い",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "grave",
+            "n": 1,
+            "title": "墓地に置く自分のマナを1枚選ぶ"
+          },
+          {
+            "op": "Ramp",
+            "n": 2,
+            "tapped": true
+          }
+        ]
+      },
+      "supportBatch": "phase-403",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 395,
-    "checkedAt": "2026-11-04",
-    "baseCount": 4013,
-    "newEffectCards": 1,
+    "phase": 403,
+    "checkedAt": "2026-11-05",
+    "baseCount": 4181,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 4014,
+    "totalCount": 4183,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/41122/",
-      "https://dm.takaratomy.co.jp/rule/qa/41263/",
-      "https://dm.takaratomy.co.jp/rule/qa/32495/"
+      "https://dm.takaratomy.co.jp/rule/qa/43748/"
     ],
     "next": [
-      "公式照合と共通処理を用いて未対応カードを追加する"
+      "公式照合と効果検証を済ませたカードを追加する"
     ],
     "history": [
       {
@@ -113670,6 +118752,150 @@
         ],
         "next": [
           "公式照合と共通処理を用いて未対応カードを追加する"
+        ]
+      },
+      {
+        "phase": 395,
+        "checkedAt": "2026-11-04",
+        "baseCount": 4013,
+        "newEffectCards": 1,
+        "newVanillaCards": 0,
+        "totalCount": 4014,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/41122/",
+          "https://dm.takaratomy.co.jp/rule/qa/41263/",
+          "https://dm.takaratomy.co.jp/rule/qa/32495/"
+        ],
+        "next": [
+          "公式照合と共通処理を用いて未対応カードを追加する"
+        ]
+      },
+      {
+        "phase": 396,
+        "checkedAt": "2026-11-04",
+        "baseCount": 4014,
+        "newEffectCards": 25,
+        "newVanillaCards": 0,
+        "totalCount": 4039,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35713/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36084/",
+          "https://dm.takaratomy.co.jp/rule/qa/49535/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 397,
+        "checkedAt": "2026-11-04",
+        "baseCount": 4039,
+        "newEffectCards": 15,
+        "newVanillaCards": 0,
+        "totalCount": 4054,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39563/",
+          "https://dm.takaratomy.co.jp/rule/qa/48036/",
+          "https://dm.takaratomy.co.jp/rule/qa/48122/",
+          "https://dm.takaratomy.co.jp/rule/qa/40272/",
+          "https://dm.takaratomy.co.jp/rule/qa/40199/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 398,
+        "checkedAt": "2026-11-04",
+        "baseCount": 4054,
+        "newEffectCards": 21,
+        "newVanillaCards": 0,
+        "totalCount": 4075,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/45265/",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-018",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37545/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37550/",
+          "https://dm.takaratomy.co.jp/rule/qa/38675/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 399,
+        "checkedAt": "2026-11-04",
+        "baseCount": 4075,
+        "newEffectCards": 23,
+        "newVanillaCards": 0,
+        "totalCount": 4098,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/38757/",
+          "https://dm.takaratomy.co.jp/rule/qa/39071/",
+          "https://dm.takaratomy.co.jp/rule/qa/39072/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37938/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 400,
+        "checkedAt": "2026-11-04",
+        "baseCount": 4098,
+        "newEffectCards": 23,
+        "newVanillaCards": 0,
+        "totalCount": 4121,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37609/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35191/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 401,
+        "checkedAt": "2026-11-04",
+        "baseCount": 4121,
+        "newEffectCards": 27,
+        "newVanillaCards": 0,
+        "totalCount": 4148,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/48479/",
+          "https://dm.takaratomy.co.jp/rule/qa/39682/",
+          "https://dm.takaratomy.co.jp/rule/qa/40248/",
+          "https://dm.takaratomy.co.jp/rule/qa/45557/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 402,
+        "checkedAt": "2026-11-04",
+        "baseCount": 4148,
+        "newEffectCards": 33,
+        "newVanillaCards": 0,
+        "totalCount": 4181,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/33336/",
+          "https://dm.takaratomy.co.jp/rule/qa/39745/",
+          "https://dm.takaratomy.co.jp/rule/qa/40178/",
+          "https://dm.takaratomy.co.jp/rule/qa/40182/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316682/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
         ]
       }
     ]

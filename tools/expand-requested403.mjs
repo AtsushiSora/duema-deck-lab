@@ -1,0 +1,11 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';import {championDefinition} from './champion-definition.mjs';import {REQUESTED403_SPECS as specs} from './requested403-specs.mjs';
+const read=f=>JSON.parse(fs.readFileSync(f)),write=(f,v)=>fs.writeFileSync(f,JSON.stringify(v,null,2)+'\n'),file='tools/support-phase-403.json',data=read('dist/cards.json'),details=read('dist/details.json');
+if(process.argv.includes('--prepare')){
+ assert.equal(data.supportExpansion.phase,402);assert.ok(!fs.existsSync(file));
+ const cards=Object.keys(specs).map(id=>{const r=details.cards.find(x=>x.id===id);assert.ok(r);return{id,name:r.name,source:r.source,faces:r.faces,spec:specs[id]};});
+ write(file,{phase:403,checkedAt:'2026-11-05',baseCount:4181,description:'ブルーム＝プルーフの相手ターン限定の非召喚登場への破壊と、オ:ドユニワ / 喰土邪覇のマナ墓地送り・タップ加速・メガラストバーストに対応する。',rules:['https://dm.takaratomy.co.jp/rule/regulation/','https://dm.takaratomy.co.jp/rule/qa/43748/'],cards});
+}else{
+ const m=read(file),refs=read('tools/image-reference-prints.json');assert.equal(m.cards.length,2);assert.ok([402,403].includes(data.supportExpansion.phase));
+ for(const r of m.cards){assert.deepEqual(r.spec,specs[r.id]);assert.ok(r.verification?.facesMatched);assert.match(r.verification.sha256,/^[a-f0-9]{64}$/);assert.deepEqual(r.faces,details.cards.find(x=>x.id===r.id).faces);assert.ok(Number.isInteger(m.regulationVerification?.limits[r.id]));const old=data.cards.find(c=>c.id===r.id||c.name===r.name);assert.ok(!old||old.supportBatch==='phase-403');const c={...championDefinition(r,'phase-403'),limit:m.regulationVerification.limits[r.id]};if(old)data.cards[data.cards.indexOf(old)]=c;else data.cards.push(c);const ref={id:r.id,canonicalId:r.id,name:r.name,image:r.image,source:r.source},i=refs.prints.findIndex(x=>x.id===r.id);if(i<0)refs.prints.push(ref);else refs.prints[i]=ref;}
+ const old=data.supportExpansion;data.supportExpansion={phase:403,checkedAt:m.checkedAt,baseCount:4181,newEffectCards:2,newVanillaCards:0,totalCount:data.cards.length,ruleSource:m.rules,next:['公式照合と効果検証を済ませたカードを追加する'],history:[...(old.history||[]),Object.fromEntries(Object.entries(old).filter(([k])=>k!=='history'))].filter(x=>x.phase<403)};assert.equal(data.cards.length,4183);write('dist/cards.json',data);write('tools/image-reference-prints.json',refs);console.log('Added 2 types; 4183 supported.');
+}
