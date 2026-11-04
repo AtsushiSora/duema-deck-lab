@@ -1,3 +1,5 @@
+import * as championLibrary from '../dist/champions.js';
+import * as starterLibrary from '../dist/starter25.js';
 import * as appFeatures from './app-features-fixture.mjs';
 import * as characterRoster from '../dist/character-roster.js';
 import * as extraCharacters from '../dist/character-challenge.js';
@@ -19,10 +21,11 @@ import * as accountUI from '../dist/account-ui.js';
 import {createCatalogue} from '../dist/catalogue.js';
 import {createCardArt} from '../dist/card-art.js';
 import {prepareDeckCopy} from '../dist/deck-copy.js';
+const championData=JSON.parse(await readFile(new URL('../dist/champion-decks.json',import.meta.url),'utf8'));
 const app=(await readFile(new URL('../dist/app.js',import.meta.url),'utf8')).replace(/^import .*;\n/gm,'').replace(/\bboot\(\);\s*$/,'').replaceAll('import.meta.url',JSON.stringify(new URL('../dist/app.js',import.meta.url).href));
 function harness({empty=false}={}){
  const root={innerHTML:''},dialog={open:false,innerHTML:'',addEventListener(){},showModal(){this.open=true;},close(){this.open=false;}},toast={textContent:'',classList:{add(){},remove(){}}},listeners={},writes=[],errors=[],fields={};
- const ctx=vm.createContext({...appFeatures,...characterRoster,...extraCharacters,...e,...tournament,...progress,...info,...manual,...environment,...updates,...accountUI,...playback,...insights,...deckHistory,battleCard:e.card,PRESETS,createCatalogue,createCardArt,prepareDeckCopy,PHOTO_RECENT_DECKS:[],PHOTO_OCTOBER_DECKS:[],PHOTO_OCTOBER_28_DECKS:[],fixtureRegistry:createCatalogue(snapshot,data.cards,details),fixtureData:data,empty,structuredClone,crypto:globalThis.crypto,Date,Intl,URL,TextEncoder,TextDecoder,console:{error:e=>errors.push(e)},setTimeout:()=>1,clearTimeout(){},setInterval:()=>1,clearInterval(){},localStorage:{getItem:()=>null,setItem:(_k,v)=>writes.push(JSON.parse(v))},document:{querySelector:s=>s==='#app'?root:s==='#dialog'?dialog:s==='#toast'?toast:fields[s]||null,querySelectorAll:()=>[],body:{classList:{toggle(){}}},addEventListener:(name,fn)=>listeners[name]=fn},window:{addEventListener(){},scrollTo(){}},location:{origin:'https://atsushisora.github.io',pathname:'/',hash:''},history:{replaceState(){}}});
+ const ctx=vm.createContext({...championLibrary,...starterLibrary,...appFeatures,...characterRoster,...extraCharacters,...e,...tournament,...progress,...info,...manual,...environment,...updates,...accountUI,...playback,...insights,...deckHistory,battleCard:e.card,PRESETS,createCatalogue,createCardArt,prepareDeckCopy,PHOTO_RECENT_DECKS:[],PHOTO_OCTOBER_DECKS:[],PHOTO_OCTOBER_28_DECKS:[],fixtureRegistry:createCatalogue(snapshot,data.cards,details),fixtureData:data,fetch:async url=>{assert.match(url,/champion-decks\.json/);return {ok:true,json:async()=>structuredClone(championData)};},empty,structuredClone,crypto:globalThis.crypto,Date,Intl,URL,TextEncoder,TextDecoder,console:{error:e=>errors.push(e)},setTimeout:()=>1,clearTimeout(){},setInterval:()=>1,clearInterval(){},localStorage:{getItem:()=>null,setItem:(_k,v)=>writes.push(JSON.parse(v))},document:{querySelector:s=>s==='#app'?root:s==='#dialog'?dialog:s==='#toast'?toast:fields[s]||null,querySelectorAll:()=>[],body:{classList:{toggle(){}}},addEventListener:(name,fn)=>listeners[name]=fn},window:{addEventListener(){},scrollTo(){}},location:{origin:'https://atsushisora.github.io',pathname:'/',hash:''},history:{replaceState(){}}});
  vm.runInContext(app,ctx);const read=s=>vm.runInContext(s,ctx);read("registry=fixtureRegistry;cards=registry.cards;battleCards=fixtureData.cards;metadata=fixtureData;environmentDecks=resolveEnvironmentDecks(registry);saved={decks:empty?[]:[{...structuredClone(PRESETS[0]),id:'own',name:'自分の40枚'}],friends:[],history:[],selected:'own'};initAccount=async()=>{};initOnline=async()=>{};scheduleAI=()=>{};render()");
  return {read,root,dialog,fields,writes,errors,async change(id,value){await listeners.change({target:{id,value,checked:!!value,matches:()=>false}});assert.deepEqual(errors,[]);},async click(action,extra={}){const html=dialog.open?dialog.innerHTML:root.innerHTML;assert.ok([...html.matchAll(/<button\b([^>]*)>/g)].some(([,a])=>a.includes(`data-action="${action}"`)&&Object.entries(extra).every(([k,v])=>a.includes(`data-${k}="${v}"`))&&!/\bdisabled\b/.test(a)),`available ${action} ${JSON.stringify(extra)}`);await listeners.click({target:{closest:()=>({dataset:{action,...extra},closest:()=>null})}});assert.deepEqual(errors,[]);}};
 }
@@ -96,4 +99,19 @@ test('strongest CPU mode builds against selected contents, reuses only matching 
 });
 test('strongest CPU games keep ordinary results and unlocks intact and record the special result only once',async()=>{
  const h=harness();await h.click('nav',{view:'duel'});await h.click('nav',{view:'strongest'});h.read("renderManual=()=>{};const ordinaryBefore=JSON.stringify([saved.manualResults,saved.heroProgress,saved.defeatedDecks,saved.characterUnlocks])");await h.click('strongest-start');assert.equal(h.read('!!battle.strongestCPU'),true);assert.equal(h.read('battle.practice'),false);assert.equal(h.read('battle.state.strongestCPU.orderAdjusted'),true);h.read('battle.state.winner=0;recordManualOutcome();recordManualOutcome()');assert.equal(h.read('saved.strongestCPUResults[battle.strongestCPU.key].wins'),1);assert.equal(h.read('JSON.stringify([saved.manualResults,saved.heroProgress,saved.defeatedDecks,saved.characterUnlocks])===ordinaryBefore'),true);
+});
+
+for(const [label,choose,pick,id] of [
+ ['environment','choose-environment','pick-environment','env-gp2026-grimoire'],
+ ['champion','choose-champions','pick-champion','champion-dmgp2026b-0-original'],
+ ['starter','choose-starter25','pick-starter25','starter25-01']
+])test(`strongest CPU keeps its mode after choosing a new or already saved ${label} deck and starts the counterbattle`,async()=>{
+ const h=harness();h.read('starterDecks=resolveStarter25Decks(registry);const originalDeck=JSON.stringify(saved.decks[0])');
+ await h.click('nav',{view:'duel'});await h.click('nav',{view:'strongest'});const oldKey=h.read('strongestDeckKey(myDeck())');
+ await h.click('select-my-deck');await h.click(choose,{role:'mine'});await h.click(pick,{id,role:'mine'});
+ assert.equal(h.read('view'),'strongest');assert.equal(h.dialog.open,false);assert.equal(h.read('myDeck().templateId||myDeck().historicalId'),id);assert.notEqual(h.read('strongestDeckKey(myDeck())'),oldKey);assert.equal(h.read('!!strongestBuildFor(myDeck())'),true);assert.equal(h.read('JSON.stringify(saved.decks[0])===originalDeck'),true);assert.doesNotMatch(h.root.innerHTML,/data-action="start-match"/);
+ const selected=h.read('saved.selected'),length=h.read('saved.decks.length');
+ await h.click('select-my-deck');await h.click(choose,{role:'mine'});await h.click(pick,{id,role:'mine'});
+ assert.equal(h.read('view'),'strongest');assert.equal(h.read('saved.selected'),selected);assert.equal(h.read('saved.decks.length'),length);
+ h.read('renderManual=()=>{}');await h.click('strongest-start');assert.equal(h.read('!!battle.strongestCPU'),true);assert.equal(h.read('battle.state.strongestCPU.orderAdjusted'),true);assert.equal(h.read('battle.decks[0].id'),selected);assert.equal(h.read('battle.practice'),false);
 });

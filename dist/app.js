@@ -1,7 +1,7 @@
 import {STRONGEST_BUILD_VERSION,strongestDeckKey,buildStrongestCPU,validStrongestBuild,arrangeStrongestCPU} from './strongest-cpu.js?v=0.481.0';
 import {normalizeDeckTags,deckHasTag} from './deck-tags.js?v=0.481.0';
 import {lastMatchSetup,resolveLastMatch} from './recent-match.js?v=0.481.0';
-import {RELEASE_NOTES} from './release-notes.js?v=0.481.2';
+import {RELEASE_NOTES} from './release-notes.js?v=0.481.3';
 import {logCardReferences} from './log-card-links.js?v=0.481.0';
 import {captureScreenshotReport,screenshotReportFields,screenshotReportFormHTML,screenshotReportPreviewHTML} from './screenshot-report.js?v=0.481.0';
 import {createCardDetailsLoader} from './card-details-loader.js?v=0.481.0';
@@ -19,7 +19,7 @@ import {PHOTO_OCTOBER_DECKS,PHOTO_OCTOBER_28_DECKS,PHOTO_RECENT_DECKS} from './p
 import {createPlayTimeTracker,formatPlayTime,playTimeStorageNote} from './play-time.js?v=0.481.0';
 import {historicalProfile,historicalMetadata} from './historical-regulations.js';
 import {creatureStatusModel,creatureStatusHTML,recordBattleAction,createBattleReport,encodeBattleData,decodeBattleData} from './battle-insights.js?v=0.481.0';
-import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.481.2';
+import {APP_VERSION,UPDATE_RESUME_KEY,createUpdateController,updateNoticeHTML,saveUpdateResume,readUpdateResume,validateBattleResume} from './app-updates.js?v=0.481.3';
 import {createCardArt} from './card-art.js?v=0.481.0';
 import {CHARACTER_ERAS,CHARACTER_NAMES,characterEra,characterUnlockState,recordCharacterUnlocks} from './character-roster.js';
 import {resolveCharacterDecks,characterChallengeHTML} from './character-challenge.js';
@@ -262,7 +262,7 @@ function starter25HTML({role=editRole,direct=false}={}){
 function showStarter25Picker(role){if(!['mine','opponent'].includes(role))throw Error('デッキの保存先を選択してください');starterQuery='';starterPlayableOnly=false;showDialog(`${role==='opponent'?'相手':'自分'}の25の王道デッキを選ぶ`,starter25HTML({role,direct:true}),`<button class="btn" data-action="${role==='opponent'?'choose-opponent':'select-my-deck'}">${icon('back',14)}保存したデッキから選ぶ</button>`);starterPickerRole=role;}
 function refreshStarter25(){const role=starterPickerRole;if(dialog.open&&role){showDialog(`${role==='opponent'?'相手':'自分'}の25の王道デッキを選ぶ`,starter25HTML({role,direct:true}),`<button class="btn" data-action="${role==='opponent'?'choose-opponent':'select-my-deck'}">保存したデッキから選ぶ</button>`);starterPickerRole=role;}else render();}
 function createStarter25Deck(template){if(!starterDecks.some(d=>d.id===template?.id))throw Error('25の王道デッキを選択してください');saveCopiedDeck(template,editRole);}
-function saveCopiedDeck(source,target,{nextView=null}={}){const opponent=target==='opponent',collection=opponent?saved.friends:saved.decks,result=prepareDeckCopy(collection,source,registry,{id:uid(),created:new Date().toISOString(),category:opponent?'相手':'自分'});if(!result.alreadyExists)collection.push(result.deck);if(opponent){selectedOpp=result.deck.id;opponentQuery='';allOpp=false;}else saved.selected=result.deck.id;comparisonId=null;edit=null;editRole='mine';clearPhoto();persist();closeDialog();view=nextView||(opponent?'battle':'decks');render();window.scrollTo(0,0);if(storageOK)toast(result.alreadyExists?'同じ40枚のデッキを選択しました':opponent?'相手デッキに登録しました':'40枚の構成でマイデッキを作成しました');}
+function saveCopiedDeck(source,target,{nextView=null}={}){const opponent=target==='opponent',destination=!opponent&&view==='strongest'?'strongest':nextView||(opponent?'battle':'decks'),collection=opponent?saved.friends:saved.decks,result=prepareDeckCopy(collection,source,registry,{id:uid(),created:new Date().toISOString(),category:opponent?'相手':'自分'});if(!result.alreadyExists)collection.push(result.deck);if(opponent){selectedOpp=result.deck.id;opponentQuery='';allOpp=false;}else saved.selected=result.deck.id;comparisonId=null;edit=null;editRole='mine';clearPhoto();persist();closeDialog();view=destination;render();window.scrollTo(0,0);if(storageOK)toast(result.alreadyExists?'同じ40枚のデッキを選択しました':opponent?'相手デッキに登録しました':'40枚の構成でマイデッキを作成しました');}
 function openSavedDeck(d){if(!d)return;deckReturnView=view==='deck'?deckReturnView:view;deckViewId=d.id;deckQuery='';closeDialog();view='deck';render();window.scrollTo(0,0);}
 function deckContentsHTML(d,{editable=false}={}){
  const showSupport=registry?.cards.some(c=>!c.supported),total=sum(d),rows=d.cards.filter(r=>r.count&&card(r.id)&&matchesCard(card(r.id),{query:deckQuery})).sort((a,b)=>deckSort==='name'?card(a.id).name.localeCompare(card(b.id).name,'ja'):deckSort==='count'?b.count-a.count||(primaryCost(card(a.id))??Infinity)-(primaryCost(card(b.id))??Infinity):(primaryCost(card(a.id))??Infinity)-(primaryCost(card(b.id))??Infinity)||card(a.id).name.localeCompare(card(b.id).name,'ja'));
