@@ -24,16 +24,18 @@ body.lab-screen{background:linear-gradient(180deg,var(--tint),#040609 460px);bac
 .lab-screen h1,.lab-app #dialog h2{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;font-weight:900;letter-spacing:-.035em}
 .lab-screen .eyebrow{color:var(--accent);letter-spacing:.15em}
 .lab-screen .page-head:not(.creature-head){border-bottom:1px solid var(--line);padding-bottom:20px}
-.lab-screen .creature-head{position:relative;isolation:isolate;overflow:hidden;min-height:164px;padding:24px;border:1px solid var(--metal);border-radius:3px 19px 3px 19px;background:linear-gradient(115deg,var(--raised),var(--surface) 74%);box-shadow:var(--shadow);gap:14px}
+.lab-screen .creature-head{--page-art-width:42%;position:relative;isolation:isolate;overflow:hidden;display:grid;align-content:center;justify-content:stretch;min-height:164px;padding:24px calc(var(--page-art-width) + 16px) 24px 24px;border:1px solid var(--metal);border-radius:3px 19px 3px 19px;background:linear-gradient(115deg,var(--raised),var(--surface) 74%);box-shadow:var(--shadow);gap:14px}
 .creature-head:after{content:"";position:absolute;left:0;bottom:0;width:62%;height:2px;background:linear-gradient(90deg,var(--accent),transparent);z-index:2;pointer-events:none}
 .creature-head .page-title,.creature-head>.toolbar-actions,.creature-head>.btn{position:relative;z-index:1}
-.creature-head .page-title{max-width:63%;min-width:0}
-.creature-head .page-title h1{font-size:clamp(23px,3.5vw,33px);color:#fff1d4;text-shadow:0 2px 8px #0009}
+.creature-head .page-title{max-width:100%;min-width:0;overflow-wrap:anywhere}
+.creature-head .route-nowrap{white-space:normal}
+.creature-head>.btn,.creature-head>.toolbar-actions .btn{max-width:100%;min-width:0;white-space:normal;overflow-wrap:anywhere}
+.creature-head .page-title h1{font-size:clamp(23px,3.5vw,33px);color:#fff1d4;text-shadow:0 2px 8px #0009;text-wrap:balance}
 .creature-head .page-title p{color:#d0d9df;max-width:440px}
-.creature-head>.toolbar-actions{display:flex;flex-wrap:wrap;align-self:flex-end;max-width:40%;gap:8px}
-.page-creature-art{position:absolute;right:0;top:0;height:100%;width:42%;z-index:0;pointer-events:none;opacity:.9;mask-image:linear-gradient(90deg,transparent,#000 20%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 20%)}
+.creature-head>.toolbar-actions{display:flex;flex-wrap:wrap;align-self:auto;max-width:100%;gap:8px}
+.page-creature-art{position:absolute;right:0;top:0;height:100%;width:var(--page-art-width,42%);z-index:0;pointer-events:none;opacity:.9;mask-image:linear-gradient(90deg,transparent,#000 20%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 20%)}
 .creature-head.art-left .page-creature-art{right:auto;left:0;mask-image:linear-gradient(270deg,transparent,#000 20%);-webkit-mask-image:linear-gradient(270deg,transparent,#000 20%)}
-.creature-head.art-left{padding-left:40%}
+.lab-screen .creature-head.art-left{padding-left:calc(var(--page-art-width) + 16px);padding-right:24px}
 .creature-head.art-left .page-title{max-width:100%}
 .lab-screen :is(.panel,.deck-card,.history-item,.catalog-card,.match-deck,.draw-table,.stat-tile,.opponent,.chosen-deck,.tournament-entry,.tournament-pair,.tournament-slot,.deck-content-card,.home-empty,.opponent-choice,.source-choice,.resume-entry){background:var(--surface);color:var(--ink);border-color:var(--line);box-shadow:var(--shadow)}
 .lab-screen :is(.home-deck-card.selected,.match-deck.opponent-selected,.opponent.active,.catalog-card.included){background:linear-gradient(115deg,var(--raised),var(--surface));border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
@@ -125,13 +127,13 @@ body.lab-screen{background:linear-gradient(180deg,var(--tint),#040609 460px);bac
 @media(max-width:620px){
  .lab-app:not(.home-screen) .site-title{font-size:13px}.lab-app:not(.home-screen) .site-header-inner{min-height:56px}
  .lab-screen .site-shell>.main{padding-top:20px}
- .lab-screen .creature-head{display:block;min-height:145px;padding:18px 15px;margin-bottom:20px}
- .creature-head .page-title{max-width:66%}.creature-head .page-title h1{font-size:23px;line-height:1.45;overflow-wrap:anywhere}
+ .lab-screen .creature-head{--page-art-width:38%;min-height:145px;padding:18px calc(var(--page-art-width) + 12px) 18px 15px;margin-bottom:20px}
+ .creature-head .page-title{max-width:100%}.creature-head .page-title h1{font-size:23px;line-height:1.45;overflow-wrap:anywhere}
  .creature-head .page-title p{font-size:10px;line-height:1.8}
  .creature-head .page-title .eyebrow{font-size:9px}
- .creature-head>.btn,.creature-head>.toolbar-actions{margin-top:12px;max-width:68%;align-self:auto;display:inline-flex;flex-direction:row;flex-wrap:wrap;gap:6px}
- .lab-screen .creature-head.art-left{padding-left:40%}.creature-head.art-left .page-title{max-width:100%}
- .page-creature-art{width:46%;opacity:.8}
+ .creature-head>.btn,.creature-head>.toolbar-actions{margin-top:0;max-width:100%;align-self:auto;display:inline-flex;flex-direction:row;flex-wrap:wrap;gap:6px}
+ .lab-screen .creature-head.art-left{padding-left:calc(var(--page-art-width) + 12px);padding-right:15px}.creature-head.art-left .page-title{max-width:100%}
+ .page-creature-art{opacity:.8}
  .lab-screen .duel-mode-grid{gap:12px}
  .lab-screen .duel-mode-grid>.has-creature:not(.route-primary){min-height:150px;padding:15px 12px;justify-content:flex-end}
  .lab-screen .duel-mode-grid>.has-creature.route-primary{min-height:145px;padding:20px}
@@ -144,7 +146,7 @@ body.lab-screen{background:linear-gradient(180deg,var(--tint),#040609 460px);bac
  .lab-screen .records-links .has-creature .route-copy>strong{font-size:18px}
 }
 @media(prefers-contrast:more){.lab-screen .route-card,.lab-screen .creature-head{border-width:2px}.page-creature-art,.route-creature-art{opacity:.5}}
-@media(forced-colors:active){.page-creature-art,.route-creature-art{display:none}.creature-head .page-title{max-width:100%}.lab-screen .creature-head.art-left{padding-left:18px}.lab-screen .creature-head,.lab-screen .route-card{background:Canvas;border:2px solid CanvasText;color:CanvasText}}
+@media(forced-colors:active){.page-creature-art,.route-creature-art{display:none}.creature-head .page-title{max-width:100%}.lab-screen .creature-head,.lab-screen .creature-head.art-left{padding-left:18px;padding-right:18px}.lab-screen .creature-head,.lab-screen .route-card{background:Canvas;border:2px solid CanvasText;color:CanvasText}}
 
 /* Keep mana-summon actions legible inside the dark zone dialog. */
 .lab-app #dialog .mana-summon-list{background:#102a28;color:#f3efdc;border-color:#497b69}
