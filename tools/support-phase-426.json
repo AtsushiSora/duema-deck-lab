@@ -1,0 +1,465 @@
+{
+  "phase": 426,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4387,
+  "description": "既にある自分のマナを裏向きにする共通処理を追加し、タップ状態・同じ物理カード・文明の変化・任意選択と公開範囲を維持する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-057",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-061",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-065",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-069",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-062",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-060",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-055",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-067",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-053",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-064",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
+    "https://dm.takaratomy.co.jp/rule/qa/44600/",
+    "https://dm.takaratomy.co.jp/rule/qa/44603/"
+  ],
+  "cards": [
+    {
+      "id": "dm23ex3-057",
+      "name": "「水晶の力に選ばれし者、それが私だ！」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-057",
+      "faces": [
+        {
+          "name": "「水晶の力に選ばれし者、それが私だ！」",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の山札の上から１枚目をシールド化する。\nカードを１枚引く。\n自分のマナゾーンのカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "ManaDown426"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-057.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "802ae1452353215749f809c6046d5eed41f342532cce96fde931b97dea29c2e2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-061",
+      "name": "セレスティアル・スパイラル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-061",
+      "faces": [
+        {
+          "name": "セレスティアル・スパイラル",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のコスト６以下のクリーチャーを１体選び、持ち主の手札に戻す。\n自分のマナゾーンのカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "hand",
+            "filter": {
+              "max": 6
+            }
+          },
+          {
+            "op": "ManaDown426"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-061.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "97b2a461b6c3d0705ac585c143e423d41b9739216592b0c39d2dffbe97b0d1a7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-065",
+      "name": "セレスティアル・ハンド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-065",
+      "faces": [
+        {
+          "name": "セレスティアル・ハンド",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、破壊する。\n自分のマナゾーンのカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "grave",
+            "title": "破壊する相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "ManaDown426"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-065.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "f99ccb5dc505ec6bc63a6128a875a04b38077e6d24dc912a68c9e1f2740d6cc9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-069",
+      "name": "セレスティアル・フレーム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-069",
+      "faces": [
+        {
+          "name": "セレスティアル・フレーム",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のコスト４以下のエレメントを１つ選び、破壊する。\n自分のマナゾーンのカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "element": true,
+            "filter": {
+              "max": 4
+            }
+          },
+          {
+            "op": "ManaDown426"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-069.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "ee7269d5c41684594a0ef9d655b0169cc966ebdf2a7218a49f52662e737b7138",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-062",
+      "name": "血塗りのシダン チリ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-062",
+      "faces": [
+        {
+          "name": "血塗りのシダン チリ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－4000する。その後、自分のマナゾーンのカードを１枚、裏向きにしてもよい。（パワー０以下のクリーチャーは破壊される。マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+          "race": "オラクル・セレス/ヒューマノイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -4000,
+            "g242PowerMinus": true,
+            "title": "パワーを-4000する相手のクリーチャーを選ぶ"
+          },
+          {
+            "op": "ManaDown426"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-062.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "ab9309e7ba3bcbeefb2a0be76e7de3472c06f2024aea6ce68a29705afa36ba6b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-060",
+      "name": "終斗の閃き リローデッド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-060",
+      "faces": [
+        {
+          "name": "終斗の閃き リローデッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から４枚を見る。そのうちの１枚を手札に加え、残りを好きな順序で山札の下に置く。その後、自分のマナゾーンのカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+          "race": "オラクル・セレス",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 4,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand"
+              }
+            ]
+          },
+          {
+            "op": "ManaDown426"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-060.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "962020ae0ae6258fd222fe3aa8776914b8f52d3acc3235822109e3bcfb32dbd1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-055",
+      "name": "転々のシダン ラシャ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-055",
+      "faces": [
+        {
+          "name": "転々のシダン ラシャ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。その後、自分のマナゾーンのカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+          "race": "オラクル・セレス",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "lock": true,
+            "g210TapLock": true,
+            "title": "タップして次のターンまで止めるクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "ManaDown426"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "732c19db76a6abcd23d94e0cd321328e0162a07eccd55766c4d184ca597e8af8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-067",
+      "name": "突撃終斗 ファルコン・ボンバー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-067",
+      "faces": [
+        {
+          "name": "突撃終斗 ファルコン・ボンバー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。その後、自分のマナゾーンのカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+          "race": "オラクル・セレス/フェザーノイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true
+          },
+          {
+            "op": "ManaDown426"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-067.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "56ff5dabd74f1ee87c05afc5ebf0bf812337be638adbca9480786f48503b7b53",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-053",
+      "name": "布教のクリス ケンギョウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-053",
+      "faces": [
+        {
+          "name": "布教のクリス ケンギョウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃する時、自分のマナゾーンのカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+          "race": "オラクル・セレス",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "ManaDown426"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "a7c4d4c662a7749124a20de9319b7f692db0d225a72a283c86e66a1544db2295",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-064",
+      "name": "無防備のシダン キナコ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-064",
+      "faces": [
+        {
+          "name": "無防備のシダン キナコ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から２枚を墓地に置く。その後、自分のマナゾーンのカードを１枚、裏向きにしてもよい。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+          "race": "オラクル・セレス/デスパペット",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 2
+          },
+          {
+            "op": "ManaDown426"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-064.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "e0049b9c5b296ec90848b9fc393831e75c212c39452b4a975ff32233eda510c6",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23ex3-057": 4,
+      "dm23ex3-061": 4,
+      "dm23ex3-065": 4,
+      "dm23ex3-069": 4,
+      "dm23ex3-062": 4,
+      "dm23ex3-060": 4,
+      "dm23ex3-055": 4,
+      "dm23ex3-067": 4,
+      "dm23ex3-053": 4,
+      "dm23ex3-064": 4
+    }
+  }
+}

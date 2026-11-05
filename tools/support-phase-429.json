@@ -1,0 +1,186 @@
+{
+  "phase": 429,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4406,
+  "description": "公開した山札からの任意枚数のクリーチャー回収と残りのタップマナ化、進化クリーチャーの任意回収、文明と種族を組み合わせた必須回収を共通Look処理に接続する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-s04",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-022",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-016"
+  ],
+  "cards": [
+    {
+      "id": "dmr23-s04",
+      "name": "剛撃古龍テラネスク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-s04",
+      "faces": [
+        {
+          "name": "剛撃古龍テラネスク",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を表向きにする。その中から好きな数のクリーチャーを選んで手札に加え、残りをタップしてマナゾーンに置く。",
+          "race": "ジュラシック・コマンド・ドラゴン/ジャイアント",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "public": true,
+            "n": 3,
+            "stages": [
+              {
+                "n": "all",
+                "to": "hand",
+                "filter": {
+                  "creature": true
+                },
+                "optional": true
+              }
+            ],
+            "rest": "mana",
+            "restTapped": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "d471425864ed7e9ab3119415ffd077d50fcbd1ce50d62d3d9979ab1a321deb81",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-022",
+      "name": "轟速 ザ・マッハ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-022",
+      "faces": [
+        {
+          "name": "轟速 ザ・マッハ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から４枚を表向きにする。その中から進化クリーチャーを１体、自分の手札に加えてもよい。残りを好きな順序で山札の一番下に置く。",
+          "race": "ソニック・コマンド/侵略者",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "public": true,
+            "n": 4,
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "evolution": true
+                },
+                "optional": true
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "5c5903da930cfb2886332dcdd2470c4e2e50d74f75c87485772d40859f0397d8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-016",
+      "name": "武闘親父 カツドン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-016",
+      "faces": [
+        {
+          "name": "武闘親父 カツドン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から２枚を表向きにする。その中から光または火のコマンド・ドラゴンを１体選び、自分の手札に加える。残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "アウトレイジMAX/レッド・コマンド・ドラゴン/ハムカツ団",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "public": true,
+            "n": 2,
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "race": "コマンド・ドラゴン",
+                  "any": [
+                    {
+                      "color": "光"
+                    },
+                    {
+                      "color": "火"
+                    }
+                  ]
+                }
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "eece2bcce1bfdddb797a82285f4235028576ac00fc78e8067941873578cfb316",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr23-s04": 4,
+      "dmr18-022": 4,
+      "dmr23-016": 4
+    }
+  }
+}

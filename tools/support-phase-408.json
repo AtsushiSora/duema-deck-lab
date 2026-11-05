@@ -1,0 +1,211 @@
+{
+  "phase": 408,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4224,
+  "description": "アバレチェーンの最初の攻撃を共通参照し、無料呪文と不使用時のドロー、攻撃中の効果バトル、低パワーのブロック制限、ターン終了時の遅延アンタップに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-001",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-046",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-058",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-050"
+  ],
+  "cards": [
+    {
+      "id": "dmrp15-058",
+      "name": "貴不の鎖 マガタイル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-058",
+      "faces": [
+        {
+          "name": "貴不の鎖 マガタイル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "アバレチェーン：自分のクリーチャーが攻撃する時、それがこのターン最初の攻撃なら、このターンの終わりにそのクリーチャーをアンタップする。",
+          "race": "イニシエート/暴拳王国",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g252AttackWatch": {
+          "who": "self",
+          "first": true,
+          "filter": {
+            "creature": true
+          },
+          "g399Attacker": true,
+          "defs": [
+            {
+              "op": "AttackEndUntap408"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-058.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "bc4e4aaca219a510c34dcbb7e496ece3a60adf7f4063dcf7269993b7b93662d6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-050",
+      "name": "降壱の鎖 テキサスパンダ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-050",
+      "faces": [
+        {
+          "name": "降壱の鎖 テキサスパンダ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nアバレチェーン：自分のクリーチャーが攻撃する時、それがこのターン最初の攻撃なら、このターン、そのクリーチャーはそれよりパワーが小さいクリーチャーにブロックされない。",
+          "race": "ビーストフォーク/暴拳王国",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g252AttackWatch": {
+          "who": "self",
+          "first": true,
+          "filter": {
+            "creature": true
+          },
+          "g399Attacker": true,
+          "defs": [
+            {
+              "op": "AttackGrant399",
+              "grant": {
+                "g408LessPowerBlock": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "b0a8b858b220eaf4d6baf7cb174134047e51f61af68bd8098467353cf9bdd4c3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp15-046",
+      "name": "爆鳥の鎖 ナゲバード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-046",
+      "faces": [
+        {
+          "name": "爆鳥の鎖 ナゲバード",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nアバレチェーン：自分のクリーチャーが攻撃する時、それがこのターン最初の攻撃なら、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーと、攻撃しているクリーチャーをバトルさせる。",
+          "race": "ドリームメイト/暴拳王国",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "g252AttackWatch": {
+          "who": "self",
+          "first": true,
+          "filter": {
+            "creature": true
+          },
+          "g399Attacker": true,
+          "defs": [
+            {
+              "op": "AttackFight408"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "93665e1f24c3d99c5d906b16c7042209d181d57fe8791c5bb66032848ffe1175",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp15-001",
+      "name": "魔軸の鎖 カメカメン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-001",
+      "faces": [
+        {
+          "name": "魔軸の鎖 カメカメン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "アバレチェーン：自分のクリーチャーが攻撃する時、それがこのターン最初の攻撃なら、コスト４以下の呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。そうしなければ、カードを１枚引く。",
+          "race": "ビーストフォーク/暴拳王国",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g252AttackWatch": {
+          "who": "self",
+          "first": true,
+          "filter": {
+            "creature": true
+          },
+          "g399Attacker": true,
+          "defs": [
+            {
+              "op": "Execute",
+              "origin": "hand",
+              "spellOnly": true,
+              "max": 4,
+              "g408Decline": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "80b984184e38ffe81a2508434525f33682e13f0163546d82015ca98e016238c1",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp15-058": 4,
+      "dmrp16-050": 4,
+      "dmrp15-046": 4,
+      "dmrp15-001": 4
+    }
+  }
+}

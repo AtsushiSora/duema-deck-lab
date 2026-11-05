@@ -1,3 +1,4 @@
+import {forceAttackTargets} from './forced-attack-targets.js?v=0.521.0';
 import {policyRemove,policyLook} from './champion-zone-policy.js';
 // Physical multi-base evolution and Phoenix effects. All choices survive JSON round-trips.
 export function createPhoenixRules(api){
@@ -96,7 +97,7 @@ export function createPhoenixRules(api){
  selected(s,p,a,d){const value=a.kind==='extended'?d?.choices?.[a.choice]?.value:null,ids=new Set([...(a.targets||[]).map(t=>t.uid),...(['effect','fight','dragonTap'].includes(a.kind)?[a.target||a.uid]:[]),...(typeof value==='string'?[value]:value?.uid?[value.uid]:[])]);for(const x of s.players[1-p].battle)if(ids.has(x.uid)&&effective(x,s).g31Apollo)on(s,1-p,x,'ApolloShields');},
  discount(s,p,c){return c.type==='creature'&&colors(c).some(x=>['闇','火'].includes(x))?(c.g31Reduction??(s.g31Discounts||[]).filter(x=>x.p===p&&x.turn===s.turn).length*4):0;},
  summoned(s,p,x){if(colors(card(x)).some(c=>['闇','火'].includes(c)))s.g31Discounts=(s.g31Discounts||[]).filter(d=>d.p!==p||d.turn!==s.turn);},
- forceActions(s,p,out){const linked=creatures(s,1-p).filter(x=>x.godLinks?.length&&effective(x,s).g31GodHeavy);const forced=new Set(out.filter(a=>a.kind==='attack'&&linked.some(x=>a.target===x.uid)).map(a=>a.uid));return forced.size?out.filter(a=>a.kind!=='endTurn'&&(a.kind!=='attack'||!forced.has(a.uid)||linked.some(x=>a.target===x.uid))):out;},
+ forceActions(s,p,out){const linked=creatures(s,1-p).filter(x=>x.godLinks?.length&&effective(x,s).g31GodHeavy);const forced=new Set(out.filter(a=>a.kind==='attack'&&linked.some(x=>a.target===x.uid)).map(a=>a.uid));return forced.size?forceAttackTargets(s,p,out,api).filter(a=>a.kind!=='endTurn'):out;},
  mainActions(s,p){const own=s.players[p],n=[...own.mana,...own.battle].filter(x=>/シノビ|フェニックス/.test(String(api.zoneCard(s,p,x).race))).length;const mars=marsActions(s,p);if(n<5)return mars;return [...mars,...own.hand.filter(x=>card(x).g31Pluto&&bases(s,p,card(x)).length&&api.canCast(s,p,card(x))&&api.canEnter(s,p,card(x))&&api.canPay(s,p,{...card(x),cost:2,fixedPayment:true,civilizations:['闇','闇'],printedCost:4})).map(x=>({kind:'play',uid:x.uid,cardId:x.cardId,cost:2,alternative:'phoenixPluto',label:card(x).name+'を闇2マナで召喚'}))];},
  alternative(s,p,a){if(a.alternative==='phoenixMars'){cast(s,p,a.uid,false,null,0,{cost:3,printedCost:5,civilizations:['火']},'hand','代替コスト');return;}cast(s,p,a.uid,false,null,0,{cost:2,civilizations:['闇','闇'],fixedPayment:true},'hand','代替コスト');},
  };

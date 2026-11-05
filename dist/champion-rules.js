@@ -1,3 +1,4 @@
+import {afterEntry} from './entry-followup.js?v=0.521.0';
 import {policyRemove,policyTake} from './champion-zone-policy.js';
 // Exact champion-list additions. All choices refer to physical UIDs and survive JSON replay.
 export function createChampionRules(api){
@@ -50,7 +51,7 @@ export function createChampionRules(api){
  case'g38_MelaBreak':queue(s,t,'MelaBreak',{selected:[...t.selected,v]});break;
  case'g38_Sycrill':if(v){const x=policyRemove(s,t.p,'grave',v,api);if(x){clear(x,'hand');own.hand.push(x);}}break;
  case'g38_Mantis':queue(s,{...t,p:t.controller},'Mantis',{selected:[...t.selected,v]});break;
- case'g38_Land':{const x=policyRemove(s,t.p,'mana',v,api);if(x){clear(x,'battle');api.enter(s,t.p,x,null,{origin:'mana',execution:false});queue(s,t,'LandFight',{uid:x.uid,incarnation:x.incarnation||0});}break;}
+ case'g38_Land':{const x=policyRemove(s,t.p,'mana',v,api);if(x){clear(x,'battle');api.enter(s,t.p,x,null,{origin:'mana',execution:false});afterEntry(s,t.p,x,task('g38_LandFight',t.p,t.source,{uid:x.uid,incarnation:x.incarnation||0}),put);}break;}
  case'g38_LandFight':if(v){const x=live(s,t),y=s.players[1-t.p].battle.find(x=>x.uid===v);if(x&&y)api.battle(s,t.p,x,1-t.p,y);}break;
  default:throw Error('未実装の優勝デッキ選択：'+t.op);
  }return true;}

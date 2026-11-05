@@ -1,0 +1,480 @@
+{
+  "phase": 421,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4357,
+  "description": "シールド総数に応じた鬼タイムの能力付与と、自分自身または高コストの味方の登場を条件とする能力を共通化する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmsd15-013",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-035",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmsd15-004",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-079",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmex10-039",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-029",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-021",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-026",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-031",
+    "https://dm.takaratomy.co.jp/rule/qa/33429/",
+    "https://dm.takaratomy.co.jp/rule/qa/33334/",
+    "https://dm.takaratomy.co.jp/rule/qa/33470/",
+    "https://dm.takaratomy.co.jp/rule/qa/33437/"
+  ],
+  "cards": [
+    {
+      "id": "dmsd15-013",
+      "name": "ソッコウ童子",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd15-013",
+      "faces": [
+        {
+          "name": "ソッコウ童子",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd15-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "252f740d91beb129032f4f1a4c7710f3154eb075e509fb84ac65ce1e7ef45935",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-035",
+      "name": "タイホウ入道",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-035",
+      "faces": [
+        {
+          "name": "タイホウ入道",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "鬼タイム：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）\nこのクリーチャーが攻撃する時、コスト２以下のクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        },
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "max": 2
+            },
+            "optional": false,
+            "title": "墓地から出すクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "7d7ccc5c9f257098faeba519e8760f91df5f190d791e9a65a4351ed7b77f0aab",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd15-004",
+      "name": "ツルハシ童子",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd15-004",
+      "faces": [
+        {
+          "name": "ツルハシ童子",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を墓地に置く。その後、クリーチャーを１体、自分の墓地から手札に戻してもよい。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "slayer": true,
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "grants": {
+            "blocker": true
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 3
+          },
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "optional": true,
+            "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd15-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "64d50e123af402bf6b2c44b32362e156d94bb921d821c547f23f345307fa9687",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-079",
+      "name": "ネブダシ入道",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-079",
+      "faces": [
+        {
+          "name": "ネブダシ入道",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーに「パワーアタッカー+5000」と「W・ブレイカー」を与える。（「パワーアタッカー+5000」と「W・ブレイカー」を持つクリーチャーは、攻撃中、パワーを+5000され、シールドを２つブレイクする）",
+          "race": "アーマロイド/鬼札王国",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "grants": {
+            "attackBonus": 5000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-079.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c870073176c0274cb3743d498f46acbc65230432d3a3fd1eded7152f17ce6153",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex10-039",
+      "name": "ミチズレ入道",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex10-039",
+      "faces": [
+        {
+          "name": "ミチズレ入道",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。このクリーチャーとその選んだクリーチャーをバトルさせる。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーに「スレイヤー」を与える。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+          "race": "アーマロイド/鬼札王国",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "grants": {
+            "slayer": true
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex10-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "fdfc70c07d1c3a9efeff27a17f83f7a49055c3a773bc1a9d22855833a692a0f1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr06-029",
+      "name": "モエル 鬼スナイパー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-029",
+      "faces": [
+        {
+          "name": "モエル 鬼スナイパー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャー、または自分の他のコスト７以上のクリーチャーをバトルゾーンに出した時、相手のパワー4000以下のクリーチャーを１体破壊する。",
+          "race": "ヒューマノイド/ハンター/エイリアン",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "min": 7
+          },
+          "selfAlways": true,
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 4000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "8f164a97b233aacdcb7558a29f1d135a7c129481b040ef47fdfc74e42da576c0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr06-021",
+      "name": "迎撃の守護者エビンビー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-021",
+      "faces": [
+        {
+          "name": "迎撃の守護者エビンビー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャー、または自分の他のコスト７以上のクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。",
+          "race": "ガーディアン/エイリアン",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "min": 7
+          },
+          "selfAlways": true,
+          "defs": [
+            {
+              "op": "Target",
+              "tap": true,
+              "optional": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "9725c73d96fbf06e4ec96051531e0ea3e56425cc824519921b01e5772b16e5c2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr06-026",
+      "name": "待ち伏せオニゾウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-026",
+      "faces": [
+        {
+          "name": "待ち伏せオニゾウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャー、または自分の他のコスト７以上のクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-2000される。(パワー０以下のクリーチャーは破壊される)",
+          "race": "ヒューマノイド/ハンター/エイリアン",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "min": 7
+          },
+          "selfAlways": true,
+          "defs": [
+            {
+              "op": "Target",
+              "power": -2000,
+              "g242PowerMinus": true,
+              "title": "パワーを-2000する相手のクリーチャーを選ぶ"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "0dcf60e4c997b02c445a7282e7b50ad20c9f280c571418582626a463d0158643",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr06-031",
+      "name": "躍喰の超人",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-031",
+      "faces": [
+        {
+          "name": "躍喰の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャー、または自分の他のコスト７以上のクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+          "race": "ジャイアント/ハンター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "min": 7
+          },
+          "selfAlways": true,
+          "defs": [
+            {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "901ecaeec71f58bbcf5c3a8b05e06c77c2dfeb4490003487940e19666a140d2b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmsd15-013": 4,
+      "dmex14-035": 4,
+      "dmsd15-004": 4,
+      "dmrp16-079": 4,
+      "dmex10-039": 4,
+      "dmr06-029": 4,
+      "dmr06-021": 4,
+      "dmr06-026": 4,
+      "dmr06-031": 4
+    }
+  }
+}

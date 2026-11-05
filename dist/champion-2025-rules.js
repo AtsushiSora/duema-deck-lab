@@ -1,3 +1,4 @@
+import {forceAttackTargets} from './forced-attack-targets.js?v=0.521.0';
 import {policyRemove} from './champion-zone-policy.js';
 // Exact 2025 champion lists: zone choices and delayed targets retain physical identities.
 export function createChampion2025Rules(api){
@@ -31,7 +32,7 @@ export function createChampion2025Rules(api){
  spellCast(s,p,c,x){if(x&&c.g42Bottom&&!api.spellIgnored(s,c))x.finishTo='deck';},
  attack(s,p,x){if(card(x).g42Mino&&!api.ignored(s,x)&&!api.selfStopped(s,p))on(s,p,x,'MinoAttack');},
  start(s,p){if(!big(s,p))return[];return s.players[p].grave.filter(x=>card(x).g42Mino).map(x=>({player:p,source:x.cardId,uid:x.uid,effect:'extended',task:task('g42_MinoReturn',p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0})}));},
- forceActions(s,p,actions){const lures=(s.g42Lures||[]).filter(l=>l.p!==p&&!api.spellIgnored(s,{type:'spell',cost:l.cost,spellSource:l.source}));if(!lures.length)return actions;const possible=new Set(actions.filter(a=>a.kind==='attack'&&s.players[1-p].battle.some(x=>x.uid===a.target&&api.layers(x).some(y=>lures.some(l=>l.uid===y.uid&&l.incarnation===(y.incarnation||0))))).map(a=>a.uid));return actions.filter(a=>a.kind!=='attack'||!possible.has(a.uid)||s.players[1-p].battle.some(x=>x.uid===a.target&&api.layers(x).some(y=>lures.some(l=>l.uid===y.uid&&l.incarnation===(y.incarnation||0)))));},
+ forceActions(s,p,actions){return forceAttackTargets(s,p,actions,api);},
  stateCheck(s){if(s.winner!==null||s.lossEvent)return;for(const p of[s.active,1-s.active]){const sources=s.players[p].battle.filter(x=>card(x).g42Eleven&&!api.ignored(s,x)&&api.isCreature(s,x));if(sources.length&&creatures(s,p).filter(x=>colors(effective(x,s)).includes('水')).length>=11){api.finish(s,p,'サイバー・J・イレブン：水のクリーチャー11体以上で勝利');return;}}},
  expire(s,when,p){if(when==='start')s.g42Lures=(s.g42Lures||[]).filter(l=>l.p!==p);},
  };

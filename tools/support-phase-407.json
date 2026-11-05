@@ -1,0 +1,411 @@
+{
+  "phase": 407,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4216,
+  "description": "任意の自壊と後続効果を共通化し、ドロー・除去・手札破壊・マナ加速・モード選択に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37470/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+  ],
+  "cards": [
+    {
+      "id": "dm23bd5-009",
+      "name": "Disゴリアス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd5-009",
+      "faces": [
+        {
+          "name": "Disゴリアス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、このクリーチャーを破壊してもよい。そうしたら、次のうちいずれか１つを選ぶ。\n▶相手のクリーチャーを１体選び、タップする。そのクリーチャーは次の相手のターンのはじめにアンタップしない。\n▶自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "ナイト/ディスタス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SelfSacrifice407",
+            "defs": [
+              {
+                "op": "Choose",
+                "g184Modes": true,
+                "modes": [
+                  {
+                    "label": "相手のクリーチャーを１体選び、タップする。そのクリーチャーは次の相手のターンのはじめにアンタップしない。",
+                    "defs": [
+                      {
+                        "op": "Target",
+                        "tap": true,
+                        "lock": true,
+                        "g210TapLock": true,
+                        "title": "タップして次のターンまで止めるクリーチャーを1体選ぶ"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "自分の山札の上から１枚目をマナゾーンに置く。",
+                    "defs": [
+                      {
+                        "op": "Ramp",
+                        "n": 1
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd5-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "fa08acb9502a5399ca6b3021023f8c0c316b96e1d280b1b2e2b7bd7edd582763",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-062",
+      "name": "ノイジー・ウクレレ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-062",
+      "faces": [
+        {
+          "name": "ノイジー・ウクレレ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがタップした時、このクリーチャーを破壊してもよい。そうしたら、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "ガーゴイル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g188Tapped": [
+          {
+            "op": "SelfSacrifice407",
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 1,
+                "random": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-062.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c743f75aca557e10ae42afe630ab23b3c7041db055ef28fe96f1d36cb8463793",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-085",
+      "name": "ムゥリャン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-085",
+      "faces": [
+        {
+          "name": "ムゥリャン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、このクリーチャーを破壊してもよい。そうした場合、カードを１枚引く。",
+          "race": "サイバーロード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SelfSacrifice407",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-085.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "568d56832c5cb84b56dad661db551d230e59b5ea871a9c54f904f0da31f8928c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr10-040",
+      "name": "骨面人形ホネタン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-040",
+      "faces": [
+        {
+          "name": "骨面人形ホネタン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、このクリーチャーを破壊してもよい。\nこのクリーチャーが破壊された時、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-3000される。（パワー０以下のクリーチャーは破壊される）",
+          "race": "デスパペット",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SelfSacrifice407",
+            "defs": []
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "Target",
+            "power": -3000,
+            "g242PowerMinus": true,
+            "title": "パワーを-3000する相手のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "20af06ed67f7af979bb09ef4925907c60f302e0f891bb3ea7ff80485e5379577",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd04-006",
+      "name": "自爆屋ギル・メイワク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd04-006",
+      "faces": [
+        {
+          "name": "自爆屋ギル・メイワク",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、このクリーチャーを破壊してもよい。そうした場合、相手のパワー2000以下のクリーチャーを１体破壊する。",
+          "race": "マシン・イーター/エイリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SelfSacrifice407",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 2000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd04-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "8a9f8b1c7638913e658627566715cf8a9aa304ddd318ba9a528305dfcacf9cf5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm34-045",
+      "name": "炸裂の影デス・サークル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-045",
+      "faces": [
+        {
+          "name": "炸裂の影デス・サークル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、このクリーチャーを破壊してもよい。そうした場合、相手は自身のタップされていないクリーチャーを１体選び、破壊する。",
+          "race": "ゴースト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SelfSacrifice407",
+            "defs": [
+              {
+                "op": "OpponentSelect",
+                "n": 1,
+                "to": "grave",
+                "filter": {
+                  "untapped": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm34-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "a78ee787b14e4fb89e2306a831235d2f4e10d186c1122b7160059a8a80da77ed",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm34-035",
+      "name": "炸裂の化身",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-035",
+      "faces": [
+        {
+          "name": "炸裂の化身",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、このクリーチャーを破壊してもよい。そうした場合、バトルゾーンにある相手の、タップされていないパワー3000以下のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "ミステリー・トーテム/オリジン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SelfSacrifice407",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "mana",
+                "filter": {
+                  "untapped": true,
+                  "maxPower": 3000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm34-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "855e6742660785c9a904fba8fc82d2505d8d5e7950fafd8b4800842c9754c63b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm34-036",
+      "name": "炸裂の伝道師セレスト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-036",
+      "faces": [
+        {
+          "name": "炸裂の伝道師セレスト",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、このクリーチャーを破壊してもよい。そうした場合、バトルゾーンにある相手のクリーチャーを２体まで選び、タップする。",
+          "race": "バーサーカー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SelfSacrifice407",
+            "defs": [
+              {
+                "op": "Select",
+                "owner": "opponent",
+                "origin": "battle",
+                "n": 2,
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true,
+                "g193Tap": true,
+                "title": "タップする相手のクリーチャーを2体まで選ぶ",
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm34-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "284f830cad566364df4087499f300a7d120efe6e77e5d8d82c5baae29144df08",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23bd5-009": 4,
+      "dm24rp2-062": 4,
+      "dmr01-085": 4,
+      "dmr10-040": 4,
+      "dmd04-006": 4,
+      "dm34-045": 4,
+      "dm34-035": 4,
+      "dm34-036": 4
+    }
+  }
+}

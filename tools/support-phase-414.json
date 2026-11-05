@@ -1,0 +1,696 @@
+{
+  "phase": 414,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4281,
+  "description": "山札の条件付き探索・公開回収とシールド・プラスを共通化し、独立した登場時能力の順序選択も維持する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-021",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm28-055",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm28-061",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm28-074",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmc65-004",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm28-104",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmbd04-006",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm28-062",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-001",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-012",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmc56-005",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm33-036",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm28-087",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35701/",
+    "https://dm.takaratomy.co.jp/rule/qa/39549/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-035",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31412/"
+  ],
+  "cards": [
+    {
+      "id": "promoy16-021",
+      "name": "\"罰怒\"ブランド 1st",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-021",
+      "faces": [
+        {
+          "name": "\"罰怒\"ブランド 1st",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "B・A・D２（このクリーチャーを、コストを２少なくして召喚してもよい。そうしたら、このターンの終わりにこのクリーチャーを破壊する）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を表向きにする。それがビートジョッキーなら、自分の手札に加える。それ以外なら、自分の山札の一番下に置く。",
+          "race": "ビートジョッキー",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "bad": 2,
+        "g175Bad": true,
+        "speedAttacker": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 1,
+            "public": true,
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "anyFaceRace": "ビートジョッキー"
+                }
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "6e4d1ef1fcdcb96988c46d3077b490296894a78d317280c1bd83d3351e7d6934",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-055",
+      "name": "ガルデス・ドラグーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-055",
+      "faces": [
+        {
+          "name": "ガルデス・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分のシールドを１枚墓地に置く。\nシールド・プラス-このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を裏向きのまま、自分のシールドいずれかの下に置いてもよい。(こうして重ねたカードの束を１枚のシールドとみなす)",
+          "race": "ティラノ・ドレイク",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g414ShieldPlus": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldGrave",
+            "g239ShieldGrave": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "cfc3f449f29df26372e3e06a55420f3fa63054a5652d1016eb4514d597ec0ca4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-061",
+      "name": "トランス・ドラグーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-061",
+      "faces": [
+        {
+          "name": "トランス・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、カードを１枚、自分のマナゾーンから墓地に置く。\nシールド・プラス-このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を裏向きのまま、自分のシールドいずれかの下に置いてもよい。(こうして重ねたカードの束を１枚のシールドとみなす)",
+          "race": "ティラノ・ドレイク",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g414ShieldPlus": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "grave",
+            "n": 1,
+            "g184ManaLoss": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-061.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "7159562d70b174a21c126522b86fddd8949299673185571bd9cdea6a439643a1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-074",
+      "name": "ピュアランダース",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-074",
+      "faces": [
+        {
+          "name": "ピュアランダース",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "シールド・プラス-このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を裏向きのまま、自分のシールドいずれかの下に置いてもよい。(こうして重ねたカードの束を１枚のシールドとみなす)",
+          "race": "シャイン・モンスター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g414ShieldPlus": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-074.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "6252aee04f3d4130702d6f29ada45273e7f502581701a85cc5de10c1c409955f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc65-004",
+      "name": "レッピ・アイニー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc65-004",
+      "faces": [
+        {
+          "name": "レッピ・アイニー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から２枚をすべてのプレイヤーに見せてもよい。その中から名前に《超次元》とある呪文を１枚選んで自分の手札に加え、残りを墓地に置く。",
+          "race": "ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g359RevealAll": true,
+            "title": "山札の上2枚を公開して効果を使う？",
+            "defs": [
+              {
+                "op": "Look",
+                "g255Search": true,
+                "n": 2,
+                "public": true,
+                "stages": [
+                  {
+                    "n": 1,
+                    "to": "hand",
+                    "filter": {
+                      "spell": true,
+                      "g220NameAny": [
+                        "超次元"
+                      ]
+                    }
+                  }
+                ],
+                "rest": "grave"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc65-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "a8890ef4eae3dad58a502eea0d0f44192f6d8f3ae26178be6ed7422c89e9d6c6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-104",
+      "name": "鋭翼の化身",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-104",
+      "faces": [
+        {
+          "name": "鋭翼の化身",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "シールド・プラス-このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を裏向きのまま、自分のシールドいずれかの下に置いてもよい。(こうして重ねたカードの束を１枚のシールドとみなす)",
+          "race": "ミステリー・トーテム",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g414ShieldPlus": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-104.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "ff0eeaac52066a8f23e622709ac19fe397737df9bb9dc97b0e7f18c5aaaaa52d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmbd04-006",
+      "name": "奇石マクーロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd04-006",
+      "faces": [
+        {
+          "name": "奇石マクーロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を見る。その中からメタリカを１体または呪文を１枚、相手に見せてから手札に加えてもよい。残りを好きな順序で山札の一番下に置く。",
+          "race": "メタリカ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 3,
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "any": [
+                    {
+                      "creature": true,
+                      "race": "メタリカ"
+                    },
+                    {
+                      "spell": true
+                    }
+                  ]
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd04-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "fc13d0df0b896ab00874d1c64608c632562fced4439544e0f8ca7c446e02ef64",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-062",
+      "name": "牛若剣士トドロキ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-062",
+      "faces": [
+        {
+          "name": "牛若剣士トドロキ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を表向きにしてもよい。その中からクロスギアをすべて自分の手札に加え、その後、残りを好きな順序で山札の一番下に置く。",
+          "race": "ヒューマノイド/サムライ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g359RevealAll": true,
+            "title": "山札の上3枚を公開して効果を使う？",
+            "defs": [
+              {
+                "op": "Look",
+                "g255Search": true,
+                "n": 3,
+                "public": true,
+                "stages": [
+                  {
+                    "n": "all",
+                    "to": "hand",
+                    "filter": {
+                      "g201Gear": true
+                    }
+                  }
+                ],
+                "rest": "bottom"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-062.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "a33c6c85a6e83ae9fe950061ec1846a007b13eae8c669beeb2364144280a9e31",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-001",
+      "name": "五極 ギャツビー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-001",
+      "faces": [
+        {
+          "name": "五極 ギャツビー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から２枚を見る。そのうちの１枚を裏向きにして、新しいシールドとして自分のシールドゾーンに置き、もう１枚を手札に加える。",
+          "race": "エンジェル・コマンド/侵略者",
+          "powerText": "11500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 2,
+            "stages": [
+              {
+                "n": 1,
+                "to": "shields"
+              },
+              {
+                "n": 1,
+                "to": "hand"
+              }
+            ],
+            "rest": "top"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "5e8a237863dd64a17668d95df509bb0eb97281749ab7737bf3bbb45658d4c6f1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr11-012",
+      "name": "提督のマントラ ヴォスラディッシュ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-012",
+      "faces": [
+        {
+          "name": "提督のマントラ ヴォスラディッシュ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚をすべてのプレイヤーに見せる。このようにして見せたオラクルをすべて、自分の手札に加えてもよい。残りを好きな順序で山札の一番下に戻す。",
+          "race": "オラクル/ドラゴン・ゾンビ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 3,
+            "public": true,
+            "stages": [
+              {
+                "n": "all",
+                "to": "hand",
+                "filter": {
+                  "anyFaceRace": "オラクル"
+                },
+                "optional": true
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr11-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "a3f6be45a9034fd0ad7f21235d39652fd3f282ef4d77a9b3cf29cfa6fd827af1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc56-005",
+      "name": "電磁翔天ピピッピ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-035",
+      "faces": [
+        {
+          "name": "電磁翔天ピピッピ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目をすべてのプレイヤーに見せる。それが進化クリーチャーであれば、手札に加える。進化クリーチャー以外のカードであれば、山札の一番下に戻す。",
+          "race": "ファイアー・バード/サイバーロード",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 1,
+            "public": true,
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "evolution": true
+                }
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx14-035.jpg",
+      "currentTextSource": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-035",
+      "currentTextCheckedAt": "2026-11-05",
+      "currentTextNote": "後発のDMX14-035では、公開したカードが進化クリーチャーなら手札へ加える処理が強制。旧DMC56-005の任意表記は適用しない。",
+      "currentPrint": {
+        "id": "dmx14-035",
+        "name": "電磁翔天ピピッピ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-035",
+        "faces": [
+          {
+            "name": "電磁翔天ピピッピ",
+            "typeText": "クリーチャー",
+            "civilizationText": "水/火",
+            "civilizations": [
+              "水",
+              "火"
+            ],
+            "cost": 2,
+            "costText": "2",
+            "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目をすべてのプレイヤーに見せる。それが進化クリーチャーであれば、手札に加える。進化クリーチャー以外のカードであれば、山札の一番下に戻す。",
+            "race": "ファイアー・バード/サイバーロード",
+            "powerText": "3000",
+            "missingFields": []
+          }
+        ],
+        "verification": {
+          "checkedAt": "2026-11-05",
+          "sha256": "2bd3a71752d609d0c20d318ce94ce70583e0fb3e5c69622eb2207a6b1f7502f7",
+          "facesMatched": true
+        },
+        "status": "complete"
+      },
+      "originalPrint": {
+        "id": "dmc56-005",
+        "name": "電磁翔天ピピッピ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc56-005",
+        "faces": [
+          {
+            "name": "電磁翔天ピピッピ",
+            "typeText": "クリーチャー",
+            "civilizationText": "水/火",
+            "civilizations": [
+              "水",
+              "火"
+            ],
+            "cost": 2,
+            "costText": "2",
+            "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を表向きにする。それが進化クリーチャーであれば、手札に加えてもよい。進化クリーチャー以外のカードであれば、山札の一番下に戻す。",
+            "race": "ファイアー・バード/サイバーロード",
+            "powerText": "3000",
+            "missingFields": []
+          }
+        ],
+        "verification": {
+          "checkedAt": "2026-11-05",
+          "sha256": "08bc057c3dd2098753c643691dba07a409fc0e9d29021ce6d617697a51ca8c6a",
+          "facesMatched": true
+        }
+      },
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "2bd3a71752d609d0c20d318ce94ce70583e0fb3e5c69622eb2207a6b1f7502f7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm33-036",
+      "name": "白騎士の精霊アスティノス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm33-036",
+      "faces": [
+        {
+          "name": "白騎士の精霊アスティノス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から４枚を表向きにする。その中から名前に《白騎士》とあるカードを１枚、手札に加える。その後、残りのカードを好きな順序で山札の一番下に戻す。\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+          "race": "エンジェル・コマンド",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 4,
+            "public": true,
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "g220NameAny": [
+                    "白騎士"
+                  ]
+                }
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm33-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "13ab6118bc000604890d17cd7aa8a0396a70e0d370ab48ecb7dfda5ddaada97e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-087",
+      "name": "封魔ズルメル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-087",
+      "faces": [
+        {
+          "name": "封魔ズルメル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "シールド・プラス-このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を裏向きのまま、自分のシールドいずれかの下に置いてもよい。(こうして重ねたカードの束を１枚のシールドとみなす)",
+          "race": "グランド・デビル",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g414ShieldPlus": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-087.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c6056c48e4e88b9030855d7036ba1df4c4f5b8798e29d78a2f5b4801ca5adb35",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy16-021": 4,
+      "dm28-055": 4,
+      "dm28-061": 4,
+      "dm28-074": 4,
+      "dmc65-004": 4,
+      "dm28-104": 4,
+      "dmbd04-006": 4,
+      "dm28-062": 4,
+      "dmr18-001": 4,
+      "dmr11-012": 4,
+      "dmc56-005": 4,
+      "dm33-036": 4,
+      "dm28-087": 4
+    }
+  }
+}

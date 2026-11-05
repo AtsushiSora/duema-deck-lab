@@ -1,3 +1,33 @@
+import {STANDARD433_DECKS} from './fixtures/standard433.mjs';
+import {STANDARD432_DECKS} from './fixtures/standard432.mjs';
+import {STANDARD431_DECKS} from './fixtures/standard431.mjs';
+import {STANDARD430_DECKS} from './fixtures/standard430.mjs';
+import {STANDARD429_DECKS} from './fixtures/standard429.mjs';
+import {STANDARD428_DECKS} from './fixtures/standard428.mjs';
+import {STANDARD427_DECKS} from './fixtures/standard427.mjs';
+import {STANDARD426_DECKS} from './fixtures/standard426.mjs';
+import {STANDARD425_DECKS} from './fixtures/standard425.mjs';
+import {STANDARD424_DECKS} from './fixtures/standard424.mjs';
+import {STANDARD423_DECKS} from './fixtures/standard423.mjs';
+import {STANDARD422_DECKS} from './fixtures/standard422.mjs';
+import {STANDARD421_DECKS} from './fixtures/standard421.mjs';
+import {STANDARD420_DECKS} from './fixtures/standard420.mjs';
+import {STANDARD419_DECKS} from './fixtures/standard419.mjs';
+import {STANDARD418_DECKS} from './fixtures/standard418.mjs';
+import {STANDARD417_DECKS} from './fixtures/standard417.mjs';
+import {STANDARD416_DECKS} from './fixtures/standard416.mjs';
+import {STANDARD415_DECKS} from './fixtures/standard415.mjs';
+import {STANDARD414_DECKS} from './fixtures/standard414.mjs';
+import {STANDARD413_DECKS} from './fixtures/standard413.mjs';
+import {STANDARD412_DECKS} from './fixtures/standard412.mjs';
+import {STANDARD411_DECKS} from './fixtures/standard411.mjs';
+import {STANDARD410_DECKS} from './fixtures/standard410.mjs';
+import {STANDARD409_DECKS} from './fixtures/standard409.mjs';
+import {STANDARD408_DECKS} from './fixtures/standard408.mjs';
+import {STANDARD407_DECKS} from './fixtures/standard407.mjs';
+import {STANDARD406_DECKS} from './fixtures/standard406.mjs';
+import {STANDARD405_DECKS} from './fixtures/standard405.mjs';
+import {STANDARD404_DECKS} from './fixtures/standard404.mjs';
 import {REQUESTED403_DECK} from './fixtures/requested403.mjs';
 import {STANDARD402_DECKS} from "./fixtures/standard402.mjs";
 import {STANDARD401_DECKS} from "./fixtures/standard401.mjs";
@@ -948,3 +978,58 @@ for(const deck of STANDARD401_DECKS)if(validateDeck(deck).length||registry.cover
 for(const deck of STANDARD402_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error("キリフダッシュとフシギバースの検証デッキが不正");console.log("Checked standard402 four legal forties: Kirifuda timing, colored alternate costs and Fushigibirth origin locks.");
 
 if(validateDeck(REQUESTED403_DECK).length||registry.coverage(REQUESTED403_DECK).unsupported||REQUESTED403_DECK.cards.reduce((n,x)=>n+x.count,0)!==40)throw Error('ブルームとオ:ドユニワの検証デッキが不正');console.log('Checked requested403 forty: opponent-turn non-summon entry, twinpact mana sequence and Mega Last Burst.');
+
+for(const deck of STANDARD404_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('超魂Xの検証デッキが不正');console.log('Checked standard404 three legal forties: marked Soul X grants, nested bases, independent attack/end triggers.');
+
+for(const deck of STANDARD405_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('光臨の検証デッキが不正');console.log('Checked standard405 three legal forties: tapped own-turn Kourin, search and shuffle, mana/grave movement and evolution.');
+
+for(const deck of STANDARD406_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('サバイバーの検証デッキが不正');console.log('Checked standard406 three legal forties: live marked Survivor grants, independent triggers and stacked Slayers.');
+
+for(const deck of STANDARD407_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('任意の自壊の検証デッキが不正');console.log('Checked standard407 two legal forties: optional self destruction, conditional effects, modal choice and source identity.');
+
+for(const deck of STANDARD408_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('アバレチェーン連携の検証デッキが不正');console.log('Checked standard408 legal forty: first attacker, delayed untap, effect battle, spell fallback and current blocking power.');
+
+for(const deck of STANDARD409_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('アバレチェーン展開と防御の検証デッキが不正');console.log('Checked standard409 legal forty: persistent effects, strict total mana costs, original attacker identity and private shield/mana split.');
+
+for(const deck of STANDARD410_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('登場時の選択と振り分けの検証デッキが不正');console.log('Checked standard410 two legal forties: private look allocation, typed grave recovery, entry fights and attack/block freeze.');
+
+for(const deck of STANDARD411_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('条件付きランプの検証デッキが不正');console.log('Checked standard411 two legal forties: first ramped card, conditional follow-ups, twinpact costs, mana counts and reciprocal movement.');
+
+for(const deck of STANDARD412_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('マナ武装と攻撃時能力の検証デッキが不正');console.log('Checked standard412 three legal forties: Mana Armament thresholds, group effects, excluded names, delayed return, battle and hand spells.');
+
+for(const deck of STANDARD413_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('味方破壊と盤面比較の検証デッキが不正');console.log('Checked standard413 three legal forties: optional allied destruction, conditional payoff, creature-count comparison and scaled tap.');
+
+for(const deck of STANDARD414_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('山札探索とシールド・プラスの検証デッキが不正');console.log('Checked standard414 two legal forties: typed private/public look, shield allocation, independent Shield Plus triggers and latest Pipippi text.');
+
+for(const deck of STANDARD415_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('ムゲンクライムの検証デッキが不正');console.log('Checked standard415 three legal forties: Crime1-4 payments, committed tap triggers, private typed mill and native battle/entry effects.');
+
+for(const deck of STANDARD421_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('鬼タイムと登場の連携の検証デッキが不正');console.log('Checked standard421 two legal forties: live Oni Time grants and own-entry / cost-seven entry abilities.');
+for(const deck of STANDARD420_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('サイクロンの検証デッキが不正');console.log('Checked standard420 two legal forties: previous own card use, Cyclone self-return and small spell effects.');
+for(const deck of STANDARD419_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('連携する秘伝の検証デッキが不正');console.log('Checked standard419 two legal forties: named attacks, race-specific fights, typed deployment and mutually referring cards.');
+for(const deck of STANDARD418_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('攻撃時の秘伝の検証デッキが不正');console.log('Checked standard418 two legal forties: race, civilization and active Hyper Mode Attack Chance.');
+for(const deck of STANDARD417_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('極秘伝の検証デッキが不正');console.log('Checked standard417 legal forty: colored-power Attack Chance and modern Recycle.');
+for(const deck of STANDARD416_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('呪文の再利用の検証デッキが不正');console.log('Checked standard416 two legal forties: Recycle payments, printed spell costs, self-replacement priority and judge-win finish zones.');
+
+for(const deck of STANDARD422_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('ホーリー・フィールドの検証デッキが不正');console.log('Checked standard422 two legal forties: Holy Field continuous grants and triggered abilities.');
+
+for(const deck of STANDARD423_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('オリジンのマナ活用の検証デッキが不正');console.log('Checked standard423 two legal forties: summon-scoped Origin mana values and exact payments.');
+
+for(const deck of STANDARD424_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('公開したカードの振り分けの検証デッキが不正');console.log('Checked standard424 two legal forties: all-or-none recovery, optional Hunter recovery and separate color assignments.');
+
+for(const deck of STANDARD425_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('初期カードの除去と移動の検証デッキが不正');console.log('Checked standard425 two legal forties: legacy destruction wording and grave-move replacements.');
+
+for(const deck of STANDARD426_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('マナの水晶化の検証デッキが不正');console.log('Checked standard426 two legal forties: in-place mana crystallization and typed preceding effects.');
+
+for(const deck of STANDARD427_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('水晶化と種族軽減の検証デッキが不正');console.log('Checked standard427 two legal forties: either-side removal, union race discounts and standalone Charger.');
+
+for(const deck of STANDARD428_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('登場時パワー低下の検証デッキが不正');console.log('Checked standard428 two legal forties: temporary power loss, S Trigger, speed attacker and NEO evolution with Slayer.');
+
+for(const deck of STANDARD429_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('公開サーチとタップマナの検証デッキが不正');console.log('Checked standard429 two legal forties: public filtered recovery, optional evolution search and tapped mana remainder.');
+
+for(const deck of STANDARD430_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('攻撃への相互破壊の検証デッキが不正');console.log('Checked standard430 two legal forties: opponent attack mutual destruction, S Trigger and Fushigibirth.');
+
+for(const deck of STANDARD431_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('攻撃先指定の検証デッキが不正');console.log('Checked standard431 two legal forties: compulsory legal targets, tapped entry, Slayer, S Trigger and EX Life.');
+
+for(const deck of STANDARD432_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('任意のタップ登場の検証デッキが不正');console.log('Checked standard432 two legal forties: entry-state choices, physical holding, S Trigger, Kirifuda Dash and attack targets.');
+
+for(const deck of STANDARD433_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('タマシード条件のS・トリガー検証デッキが不正');console.log('Checked standard433 two legal forties: tamaseed-conditioned shield triggers, Star evolution and counter effects.');

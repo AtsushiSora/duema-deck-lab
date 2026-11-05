@@ -1,0 +1,605 @@
+{
+  "phase": 404,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4183,
+  "description": "超魂X12種類を全文照合し、単体の能力と進化元からの能力付与、複数の攻撃時・終了時能力を処理する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/46533/",
+    "https://dm.takaratomy.co.jp/rule/qa/46530/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316672/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp1-061",
+      "name": "～浸透する狩人～",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-061",
+      "faces": [
+        {
+          "name": "～浸透する狩人～",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーはブロックされない。",
+          "race": "グレートメカオー/スチーム・ナイト/フュージョナー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "unblockable": true,
+        "g404Soul": {
+          "unblockable": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-061.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "d0f91be4cc206eac333687f4b5bc55e0a1ee8184516d6b52f7785d6a7bd7b70f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp3-002",
+      "name": "～創造、破壊、そして絶望～",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-002",
+      "faces": [
+        {
+          "name": "～創造、破壊、そして絶望～",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\nこのクリーチャーが出た時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\n自分のターンの終わりに、カードを１枚引いてもよい。そうしたら、自分の手札を１枚捨てる。",
+          "race": "クリエイター/スチーム・ナイト/フュージョナー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "justDiver": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ],
+        "g174End": [
+          {
+            "op": "Offer",
+            "title": "カードを1枚引き、手札を1枚捨てる？",
+            "g204DrawDiscard": true,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              },
+              {
+                "op": "Discard",
+                "owner": "self",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "g404Soul": {
+          "g174End": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引き、手札を1枚捨てる？",
+              "g204DrawDiscard": true,
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                },
+                {
+                  "op": "Discard",
+                  "owner": "self",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "e200523acd84ee93e24e49505f958597d20182406830443507e0f2c2018c00b1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-033",
+      "name": "イズミ・スパイラルハイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-033",
+      "faces": [
+        {
+          "name": "イズミ・スパイラルハイカー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "マジック・マーフォーク/フュージョナー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "justDiver": true,
+        "g34Attack": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ],
+        "g404Soul": {
+          "g34Attack": [
+            {
+              "op": "Target",
+              "g190Freeze": "self",
+              "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "d31432635f7949185e9abb5acbc3b451a51a5d5d1b3c11bd6a362f061192232d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-020",
+      "name": "ヴォルカ＝グルーカ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-020",
+      "faces": [
+        {
+          "name": "ヴォルカ＝グルーカ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nバトル中、このクリーチャーのパワーを+5000する。",
+          "race": "ルージュアビス/フュージョナー",
+          "powerText": "3000+",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g38BattleBonus": 5000,
+        "effect": "fightOptional",
+        "g404Soul": {
+          "g38BattleBonus": 5000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "4bf1dc9f44a3ca71c9137b50b15fe017789dcfc6bf246db912595e622e81502e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-055",
+      "name": "ガヤルドスカイ-A3",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-055",
+      "faces": [
+        {
+          "name": "ガヤルドスカイ-A3",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）",
+          "race": "メカ・デル・ディネロ/フュージョナー",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g404Soul": {
+          "blocker": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "f5fa32f0c75bed778544d03145949bc01dc5b7b45d945d4be4eaa8edf8b1c4f9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp3-061",
+      "name": "ソウルコバルト アサギ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-061",
+      "faces": [
+        {
+          "name": "ソウルコバルト アサギ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーは攻撃できない。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）",
+          "race": "ジャイアント・スノーフェアリー/フュージョナー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "noAttack": true,
+        "blocker": true,
+        "g404Soul": {
+          "blocker": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-061.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "db75b414bbdbc3a045bd32f314963f67044020b352684d1cce5727ccee0f5614",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy24-002",
+      "name": "チェア＝イーイッス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-002",
+      "faces": [
+        {
+          "name": "チェア＝イーイッス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から２枚を墓地に置く。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+          "race": "アビスロイヤル/フュージョナー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "slayer": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 2
+          }
+        ],
+        "g404Soul": {
+          "slayer": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy24-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "d1ab5eba7bd90e3561c809a44efe6c3ad482e7c71d10999562220dec06613387",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-047",
+      "name": "哀像シン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-047",
+      "faces": [
+        {
+          "name": "哀像シン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、自分の山札の上から２枚をマナゾーンに置いてもよい。",
+          "race": "デーモン・コマンド/デモンズ・レガシー/フュージョナー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 2
+              }
+            ]
+          }
+        ],
+        "g404Soul": {
+          "g34Attack": [
+            {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 2
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "cd1c95a4702b4002acc9b0d7c36b2ece2ab61122a09241e4a3c0dcc093578aa0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-077",
+      "name": "虎我PACO-85",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-077",
+      "faces": [
+        {
+          "name": "虎我PACO-85",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\n相手のターン中、このクリーチャーのパワーを+5000する。",
+          "race": "ドリームメイト/テクノ・サムライ/フュージョナー",
+          "powerText": "3000+",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "guardman": true,
+        "noAttack": true,
+        "g38EnemyTurnBonus": 5000,
+        "g404Soul": {
+          "g38EnemyTurnBonus": 5000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-077.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c61d48716b90156cfc21362685ad8ff562828fd11e7649aa0e2e7ccffc316b27",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-013",
+      "name": "純粋ZARU-36",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-013",
+      "faces": [
+        {
+          "name": "純粋ZARU-36",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のクリーチャーを２体まで選び、タップする。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。",
+          "race": "シャイン・モンスター/テクノ・サムライ/フュージョナー",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを2体まで選ぶ",
+            "optional": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "tap": true,
+            "lock": true,
+            "g210TapLock": true,
+            "title": "タップして次のターンまで止めるクリーチャーを1体選ぶ"
+          }
+        ],
+        "g404Soul": {
+          "g34Attack": [
+            {
+              "op": "Target",
+              "tap": true,
+              "lock": true,
+              "g210TapLock": true,
+              "title": "タップして次のターンまで止めるクリーチャーを1体選ぶ"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "34347d709a88affe3c6d50240308eb7e92ad1f978f214f50b166dad995eee0aa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-030",
+      "name": "忍蛇の聖光 c0br4",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-030",
+      "faces": [
+        {
+          "name": "忍蛇の聖光 c0br4",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nこのクリーチャーが出た時、相手のクリーチャーを３体まで選び、タップする。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分のターンの終わりに、このクリーチャーをアンタップする。",
+          "race": "メカ・デル・ステラ/シノビ/フュージョナー",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "g166EndUntap": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 3,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを3体まで選ぶ",
+            "optional": true
+          }
+        ],
+        "g404Soul": {
+          "blocker": true,
+          "g166EndUntap": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "7b7cd87e23c613b8777f81bc51888d279ac443aa1fe04c3a92387612a640f07c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-045",
+      "name": "魔誕怪人モステリオ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-045",
+      "faces": [
+        {
+          "name": "魔誕怪人モステリオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から１枚をマナゾーンに置く。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+          "race": "デビルマスク/フュージョナー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "g220ManaReturn": true,
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "filter": {},
+            "optional": true,
+            "title": "手札に戻すマナのカードを1枚選ぶ"
+          }
+        ],
+        "g404Soul": {
+          "g34Attack": [
+            {
+              "op": "Select",
+              "g220ManaReturn": true,
+              "origin": "mana",
+              "to": "hand",
+              "n": 1,
+              "filter": {},
+              "optional": true,
+              "title": "手札に戻すマナのカードを1枚選ぶ"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "b23ba06ab0560835316ffe8fc015640555c57a4f0b0b2dc7c89467025364a122",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp1-061": 4,
+      "dm25rp3-002": 4,
+      "dm25rp1-033": 4,
+      "dm25rp1-020": 4,
+      "dm25rp1-055": 4,
+      "dm25rp3-061": 4,
+      "promoy24-002": 4,
+      "dm25rp2-047": 4,
+      "dm25rp1-077": 4,
+      "dm25rp1-013": 4,
+      "dm25rp2-030": 4,
+      "dm25rp1-045": 4
+    }
+  }
+}

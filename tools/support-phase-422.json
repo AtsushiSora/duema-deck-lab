@@ -1,0 +1,223 @@
+{
+  "phase": 422,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4366,
+  "description": "シールド数を比較するホーリー・フィールドを共通化し、常在型能力と登場時・破壊時の誘発条件を区別する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm36-074",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm36-045",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm36-071",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm36-072",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37462/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37463/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37464/"
+  ],
+  "cards": [
+    {
+      "id": "dm36-074",
+      "name": "神座の伝道師バーニアン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-074",
+      "faces": [
+        {
+          "name": "神座の伝道師バーニアン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "シールド・セイバー(自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい)\nホーリー・フィールド(自分のシールドの数が相手以上であれば、このクリーチャーは次の能力を得る) このクリーチャーが破壊された時、カードを１枚引いてもよい。",
+          "race": "バーサーカー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g401ShieldSaver": true,
+        "g422Holy": true,
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "atLeastOpponent": true
+            }
+          },
+          "grants": {
+            "g172Death": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-074.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "714609abbfd101ff1546021d27a8eb975260d8d983efe981b4310025567991e8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-045",
+      "name": "宣凶師バンガ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-045",
+      "faces": [
+        {
+          "name": "宣凶師バンガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ホーリー・フィールド(自分のシールドの数が相手以上であれば、このクリーチャーは次の能力を得る) このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを２体まで選び、タップする。",
+          "race": "グラディエーター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g422Holy": true,
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "atLeastOpponent": true
+            }
+          },
+          "grants": {
+            "effect": "sixPhoto",
+            "g34Tasks": [
+              {
+                "op": "Select",
+                "owner": "opponent",
+                "origin": "battle",
+                "n": 2,
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true,
+                "g193Tap": true,
+                "title": "タップする相手のクリーチャーを2体まで選ぶ",
+                "optional": true
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "f4943c079bf821e29c812126a1770b7dc02f92831ce1d4ed472d2b015f341ded",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-071",
+      "name": "宣凶師ロッカナタ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-071",
+      "faces": [
+        {
+          "name": "宣凶師ロッカナタ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ホーリー・フィールド(自分のシールドの数が相手以上であれば、このクリーチャーは次の能力を得る) このクリーチャーのパワーは+3000され、「W・ブレイカー」を得る。(「W・ブレイカー」を得たクリーチャーはシールドを２枚ブレイクする)",
+          "race": "グラディエーター",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g422Holy": true,
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "atLeastOpponent": true
+            }
+          },
+          "grants": {
+            "power": 3000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-071.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "15d987bacd147757bd4b2b2e3b1977c081f15d705fd0e54bb68ea0b627641d7c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-072",
+      "name": "予言者カーラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-072",
+      "faces": [
+        {
+          "name": "予言者カーラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ホーリー・フィールド(自分のシールドの数が相手以上であれば、このクリーチャーは次の能力を得る) このクリーチャーは「ブロッカー」を得る。(相手クリーチャーが攻撃する時、「ブロッカー」を得たクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)",
+          "race": "ライトブリンガー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g422Holy": true,
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "atLeastOpponent": true
+            }
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-072.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "922a2bc036385113affb3135ba6e0a3db8bf35a0d01f85efe2fa28fafc497d48",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm36-074": 4,
+      "dm36-045": 4,
+      "dm36-071": 4,
+      "dm36-072": 4
+    }
+  }
+}

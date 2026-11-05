@@ -1,0 +1,381 @@
+{
+  "phase": 411,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4243,
+  "description": "最初にマナへ置くカードを参照する条件付きランプ、ツインパクトの参照コスト選択、盤面とマナの条件、任意・強制の相互マナ送りを共通化して8種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-052",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-s10",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-053",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-070",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-044",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmex06-016",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-040",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmx17-026"
+  ],
+  "cards": [
+    {
+      "id": "dmrp01-052",
+      "name": "くまくまわり",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-052",
+      "faces": [
+        {
+          "name": "くまくまわり",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "T・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。その後、それがクリーチャーでなければ、このクリーチャーをマナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RampCheck411",
+            "kind": "selfUnlessCreature"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c439764896be8031c63dbbf067e5eaf86f62b8e6d2d8d2f7a6e447a568aa100a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-s10",
+      "name": "パンプパンプ・パンツァー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-s10",
+      "faces": [
+        {
+          "name": "パンプパンプ・パンツァー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "T・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。その後、それ以下のコストを持つクリーチャーをすべて、持ち主のマナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RampCheck411",
+            "kind": "costSweep"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-s10.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "aa75fce3efafb7d3dbfd2196b06139c9bdf78fcd71170aab21e9e40a5ae4e8a2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-053",
+      "name": "ボントボ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-053",
+      "faces": [
+        {
+          "name": "ボントボ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。それがパワー12000以上のクリーチャーなら、自分の山札の上からもう１枚、マナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RampCheck411",
+            "kind": "match",
+            "filter": {
+              "creature": true,
+              "minPower": 12000
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "f94f4d66acc735cea7c1571e148f9710ccd526fab7e8ec191a09553379e9bba6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-070",
+      "name": "将友の面 トリブランカ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-070",
+      "faces": [
+        {
+          "name": "将友の面 トリブランカ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。そのカードがコマンドなら、自分の山札の上からもう１枚、マナゾーンに置く。",
+          "race": "ビーストフォーク號",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RampCheck411",
+            "kind": "match",
+            "filter": {
+              "anyFaceRace": "コマンド"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "f318cb124194e476c7030c73f701ac98409830f1c84581e1ad8eb495a4acb169",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-044",
+      "name": "青銅類 アリゲー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-044",
+      "faces": [
+        {
+          "name": "青銅類 アリゲー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。その後、バトルゾーンに自分の光のクリーチャーがあれば、自分の山札の上からもう１枚、マナゾーンに置く。",
+          "race": "ジュラシック・ドラゴン/革命軍",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "color": "光"
+            },
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "64f9e6841d4cc1c66deea130a6f66ecc91e6cad8ac624ff0fc71c0346e508d25",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex06-016",
+      "name": "爆裂遺跡シシオー・カイザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex06-016",
+      "faces": [
+        {
+          "name": "爆裂遺跡シシオー・カイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。その後、自分のマナゾーンに火のドラゴンが３体以上あれば、相手のパワー3000以下のクリーチャーを１体破壊する。",
+          "race": "レッド・コマンド・ドラゴン/ハンター",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g411ManaRace": {
+                "color": "火",
+                "race": "ドラゴン",
+                "n": 3
+              }
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 3000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex06-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "dec49b083d16bc713ee20ca77b4998d72d762463e9dd279d66aeaa8f5501e5b8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex13-040",
+      "name": "暴刀の侍猫",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-040",
+      "faces": [
+        {
+          "name": "暴刀の侍猫",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。その後、自分のクリーチャーを１体マナゾーンに置いてもよい。そうしたら、相手は自身のクリーチャーを１体選び、マナゾーンに置く。",
+          "race": "ビーストフォーク/暴拳王国",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "AttackOtherMana409"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "27a9c5a4e9fc4590e60b89eb81ff234a595be12f7d9b94de023fbf66b64fd927",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx17-026",
+      "name": "有毒類 ラグマトックス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx17-026",
+      "faces": [
+        {
+          "name": "有毒類 ラグマトックス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のクリーチャーを１体選び、マナゾーンに置く。その後、相手はバトルゾーンにある自身のクリーチャーを１体選び、マナゾーンに置く。",
+          "race": "ジュラシック・コマンド・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "mana",
+            "g177SelfMana": true
+          },
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "mana"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx17-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "47dbb8009a4b0aec7aa67c22d95b033da01102c8c44cf594b02108c17b15aae8",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp01-052": 4,
+      "dmrp01-s10": 4,
+      "dmrp01-053": 4,
+      "dmr18-070": 4,
+      "dmr21-044": 4,
+      "dmex06-016": 4,
+      "dmex13-040": 4,
+      "dmx17-026": 4
+    }
+  }
+}

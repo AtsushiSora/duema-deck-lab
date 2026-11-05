@@ -1,0 +1,1016 @@
+{
+  "phase": 413,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4260,
+  "description": "任意の味方破壊と条件付き後続効果を共通化し、場のクリーチャー数比較・枚数に応じたタップと組み合わせて21種類を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37470/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-014",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-020",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-046",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmsd02-002",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-027",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-032",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmx10-010",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-054",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-012",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-041",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmx18-012",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmsd06-004",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmx17-032",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-052",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmx23-056",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm21-032",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-054",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-063",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm28-023",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-042",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-063"
+  ],
+  "cards": [
+    {
+      "id": "dmx15-014",
+      "name": "ブータン転生",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-014",
+      "faces": [
+        {
+          "name": "ブータン転生",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のクリーチャーを１体破壊してもよい。そうした場合、自分の山札を見る。その中からクリーチャーを１体選び、相手に見せてから手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "Look",
+                "g201Search": true,
+                "g200Search": true,
+                "n": "all",
+                "rest": "shuffle",
+                "stages": [
+                  {
+                    "n": 1,
+                    "to": "hand",
+                    "filter": {
+                      "creature": true
+                    },
+                    "reveal": true,
+                    "optional": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx15-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "e6ad7cc11442e6ad75255a4f168d86aaa89541f683416d4b21858823e9631941",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-020",
+      "name": "ルドルフ・カルナック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-020",
+      "faces": [
+        {
+          "name": "ルドルフ・カルナック",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体破壊してもよい。そうしたら、カードを２枚引く。",
+          "race": "マフィ・ギャング",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "0ca408e8ec32a96dee48ab13d8e327cd4206ef09467963572b905a240feef21e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr11-046",
+      "name": "火焔特攻弾",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-046",
+      "faces": [
+        {
+          "name": "火焔特攻弾",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを１体破壊してもよい。そうした場合、相手のパワー6000以下のクリーチャーを１体、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 6000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr11-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "80aadece5f901d96dfcd4a730e0d081190104494a71f134fb7b71665f4785426",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd02-002",
+      "name": "奇石 ルドルゴ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd02-002",
+      "faces": [
+        {
+          "name": "奇石 ルドルゴ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分のクリーチャー１体につき相手のクリーチャーを１体選び、タップする。",
+          "race": "メタリカ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountTap413"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd02-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "bf2e780a8b42e591557d3574c9502dc5f174f3bb393324d6576fd953585bf43e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-027",
+      "name": "禁断R タガイニ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-027",
+      "faces": [
+        {
+          "name": "禁断R タガイニ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体、破壊してもよい。そうしたら、相手は自身のアンタップしているクリーチャーを１体選び、破壊する。",
+          "race": "イニシャルズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "OpponentSelect",
+                "n": 1,
+                "to": "grave",
+                "filter": {
+                  "untapped": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "260afccbe9c2775631d94cd1191fa5cc51659967fe7bd2add84986a22c68d5da",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp06-032",
+      "name": "五導の並び 蓮多",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-032",
+      "faces": [
+        {
+          "name": "五導の並び 蓮多",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分のクリーチャーの数が相手より多ければ、カードを１枚引く。その後、光のコスト５以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "メタリカ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g413MoreCreatures": true
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "color": "光",
+              "max": 5,
+              "nonEvolution": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "1e3843f4d1c3c1fc4aab32b779799ed221a03f6a964e93ea096767cfa967157c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx10-010",
+      "name": "黒神龍アバヨ・シャバヨ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx10-010",
+      "faces": [
+        {
+          "name": "黒神龍アバヨ・シャバヨ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分のクリーチャーを１体破壊してもよい。そうした場合、相手は自身のクリーチャーを１体選び、破壊する。",
+          "race": "ドラゴン・ゾンビ/アンノイズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "OpponentSelect",
+                "n": 1,
+                "to": "grave"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx10-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "9e694befe82b35ac44e2bdbc69cdd4f0bbbd95e79e2c15c287d09c7b7d5d49be",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-054",
+      "name": "骨断の悪魔龍 ブッタギラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-054",
+      "faces": [
+        {
+          "name": "骨断の悪魔龍 ブッタギラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、自分の他のクリーチャーを１体破壊してもよい。そうした場合、相手のタップされていないクリーチャーを１体破壊する。",
+          "race": "デーモン・コマンド・ドラゴン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "untapped": true
+                }
+              }
+            ],
+            "other": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "bd481ff556ec18d23a9a7e29e4d2db16c2e122445f005f8aae781ca7200d4305",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr03-012",
+      "name": "最強横綱ツッパリキシ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-012",
+      "faces": [
+        {
+          "name": "最強横綱ツッパリキシ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、自分のクリーチャーを１体破壊してもよい。そうした場合、相手は自身のクリーチャーを１体選び、破壊する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "フレイム・コマンド/エイリアン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "OpponentSelect",
+                "n": 1,
+                "to": "grave"
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "OpponentSelect",
+                "n": 1,
+                "to": "grave"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "83e8f7f9ed1b962026de51c2da13e6cee035b3e0d185964617d5fa74f59c88ea",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr11-041",
+      "name": "自壊のファミリア トリカブト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-041",
+      "faces": [
+        {
+          "name": "自壊のファミリア トリカブト",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分のクリーチャーを１体破壊してもよい。そうした場合、相手は自身のクリーチャーを１体選び、破壊する。",
+          "race": "オラクル/デスパペット",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "OpponentSelect",
+                "n": 1,
+                "to": "grave"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr11-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "47333e6d404fc9bf6f4b6b31658660c770c0fd0f998a9c5f9004ebf4e906c808",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx18-012",
+      "name": "深淵の悪魔龍 バセオアビス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx18-012",
+      "faces": [
+        {
+          "name": "深淵の悪魔龍 バセオアビス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分のクリーチャーを１体破壊してもよい。そうした場合、そのターン、バトルゾーンにある相手のクリーチャーすべてのパワーは-3000される。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "デーモン・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "GroupPower",
+                "g214GroupPower": true,
+                "owner": "opponent",
+                "power": -3000,
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx18-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "2489caba9b15c6722abc039114087e3d11b6656a0290448eb425354d6a6c670b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd06-004",
+      "name": "堕魔 ヴォシンバ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd06-004",
+      "faces": [
+        {
+          "name": "堕魔 ヴォシンバ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体破壊してもよい。そうしたら、相手は自身のクリーチャーを１体選び、破壊する。",
+          "race": "マフィ・ギャング/魔導具",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "OpponentSelect",
+                "n": 1,
+                "to": "grave"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd06-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "9138ba925fa4a99ec6892a13ed0a5393af033599fb93456f4699e0db864709c9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx17-032",
+      "name": "怠惰の悪魔龍 コシガヘヴィ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx17-032",
+      "faces": [
+        {
+          "name": "怠惰の悪魔龍 コシガヘヴィ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分のクリーチャーを１体破壊してもよい。そうした場合、カードを１枚引く。\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+          "race": "デーモン・コマンド・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "slayer": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx17-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "43612dd1392dca6ab2bb609ebb23ffa278c6dcf79d83f90e723487c38a3eb2dc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr12-052",
+      "name": "瀧のマジックマ・ショー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-052",
+      "faces": [
+        {
+          "name": "瀧のマジックマ・ショー",
+          "typeText": "呪文",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分のクリーチャーを１体破壊してもよい。そうした場合、カードを４枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 4
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr12-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "85d93723e93512e06bd1261f046bc58c3c6e867f52167995ac6a1caa5c7d7b6b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx23-056",
+      "name": "地獄の門番 デスモーリー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx23-056",
+      "faces": [
+        {
+          "name": "地獄の門番 デスモーリー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体、破壊してもよい。そうしたら、相手は自身のクリーチャーを１体選び、破壊する。",
+          "race": "デーモン・コマンド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "OpponentSelect",
+                "n": 1,
+                "to": "grave"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx23-056.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "9d451866f85e77aa75389385674598434729f89f9368469fba646dfd45025d9f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm21-032",
+      "name": "超獣大砲",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-032",
+      "faces": [
+        {
+          "name": "超獣大砲",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n自分のクリーチャーを１体破壊してもよい。そうした場合、相手のパワー7000以下のクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 7000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c1b1c2a45ac3ce906c1f71fc487518cba53d798aa261c42f2c185967f5905f3e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr20-054",
+      "name": "不死 カワメタル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-054",
+      "faces": [
+        {
+          "name": "不死 カワメタル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体破壊してもよい。そうしたら、カードを２枚引く。",
+          "race": "デーモン・コマンド/侵略者",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr20-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "1ca0c68e556ca2296c371752583ee259a064baf2a793f4e253acf3e1ad66b9e3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp3-063",
+      "name": "魔誕の翼ダークモルダー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-063",
+      "faces": [
+        {
+          "name": "魔誕の翼ダークモルダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nこのクリーチャーが出た時、自分のクリーチャーを１体破壊してもよい。そうしたら、相手は自身のクリーチャーを１体選び、破壊する。",
+          "race": "デーモン・コマンド",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "OpponentSelect",
+                "n": 1,
+                "to": "grave"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-063.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "8010292285b8f67e0cda09f7bee38b767fc4e39cb5a5d163e330b83c06accb17",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-023",
+      "name": "滅城の獣王ベルヘル・デ・ディオス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-023",
+      "faces": [
+        {
+          "name": "滅城の獣王ベルヘル・デ・ディオス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃する時、自分のクリーチャーを１体破壊してもよい。そうした場合、カードを２枚まで引く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "DrawUpTo",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "660585176a400c41d62eb86045bef27b68d62c2f7b90e420f21811d20465494c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-042",
+      "name": "龍装者 グルド54号",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-042",
+      "faces": [
+        {
+          "name": "龍装者 グルド54号",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体破壊してもよい。そうしたら、相手のクリーチャーを１体破壊する。",
+          "race": "ドラゴンギルド/マフィ・ギャング",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "defs": [
+              {
+                "op": "Select",
+                "owner": "opponent",
+                "origin": "battle",
+                "n": 1,
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true,
+                "to": "grave",
+                "title": "破壊する相手のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "3159c6511f2c7544497567b534b4f9c33cfefb3cff68fd295cc23381c9d37d02",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp06-063",
+      "name": "緑知銀 ターシェ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-063",
+      "faces": [
+        {
+          "name": "緑知銀 ターシェ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、バトルゾーンにある自分のクリーチャーの数が相手より多ければ、呪文を１枚、自分の墓地から手札に戻す。",
+          "race": "メタリカ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g413MoreCreatures": true
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "spell": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-063.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "4c6af128a14e9c9076db57591971c8e0f0f7d63fdd2f3100f91776478e2cf9f1",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx15-014": 4,
+      "dmrp01-020": 4,
+      "dmr11-046": 4,
+      "dmsd02-002": 4,
+      "dmr21-027": 4,
+      "dmrp06-032": 4,
+      "dmx10-010": 4,
+      "dmr13-054": 4,
+      "dmr03-012": 4,
+      "dmr11-041": 4,
+      "dmx18-012": 4,
+      "dmsd06-004": 4,
+      "dmx17-032": 4,
+      "dmr12-052": 4,
+      "dmx23-056": 4,
+      "dm21-032": 4,
+      "dmr20-054": 4,
+      "dm25rp3-063": 4,
+      "dm28-023": 4,
+      "dmrp01-042": 4,
+      "dmrp06-063": 4
+    }
+  }
+}

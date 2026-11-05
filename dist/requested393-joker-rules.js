@@ -1,3 +1,4 @@
+import {forceAttackTargets} from './forced-attack-targets.js?v=0.521.0';
 // Requested Joker abilities; physical identities remain stable across choices and WD transformations.
 const characterKeys=new Set(['id','name','type','cost','printedCost','power','manaValue','civ','civilizations','race','text','source','limit','supportBatch','supportKind','spellFace','g393JWDFaces']);
 export function wdDefinition393(x,base){return base?.g393JWDFaces&&typeof x!=='string'?{...base,...base.g393JWDFaces[x.g393JWDBack?1:0],id:base.id,g393JWDFaces:base.g393JWDFaces}:base;}
@@ -54,7 +55,7 @@ export function createRequested393JokerRules(api){
   attack(s,p,x){const c=effective(x,s);if(!x.sealed&&!api.selfStopped(s,p)&&c.g393JSigma)for(let n=0;n<(c.g393JSigmaCount||1);n++)enqueue(s,p,x,'ZeroTarget');},
   attackStart(s,p,x){if(s.g23Attacks?.[p]?.turn!==s.turn||s.g23Attacks[p].count!==1)return;for(const y of creatures(s,1-p))if(!y.sealed&&effective(y,s).g393JSigma)for(let n=0;n<(effective(y,s).g393JSigmaCount||1);n++)enqueue(s,1-p,y,'ZeroExact',{owner:p,target:identity(x)});},
   canLeave(s,p,x){return !(effective(x,s).g393JSigma&&api.power(x,false,s)<=0);},
-  forceActions(s,p,actions){const out=[];for(const a of actions){if(a.kind!=='attack'){out.push(a);continue;}const targets=actions.filter(b=>b.kind==='attack'&&b.uid===a.uid&&b.target!=='player'&&s.players[1-p].battle.some(x=>x.uid===b.target&&effective(x,s).g393JDonJungle));if(!targets.length||targets.some(b=>b.target===a.target))out.push(a);}return out;},
+  forceActions(s,p,actions){return forceAttackTargets(s,p,actions,api);},
   shieldTrigger(s,p,x,c=card(x)){return !!c.g393JThunder&&s.players[p].battle.filter(y=>!y.sealed&&race(effective(y,s),'ジョーカーズ')).length+s.players[p].mana.filter(y=>!y.faceDown&&api.faces(card(y)).some(c=>race(c,'ジョーカーズ'))).length>=7;},
   judgeRevealed(s,p,x){if(card(x).g393JPurin)api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Target',p,x.cardId,{anyOwner:true,g235TapOrUntap:true,title:'プリン：タップまたはアンタップするクリーチャーを選ぶ'})});},
   shieldLeft(s,p,card,group){if(!group)return;for(const x of fieldSources(s,p,'g393JWDBack'))enqueue(s,p,x,'WDFlip');},

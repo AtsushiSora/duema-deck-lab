@@ -1,0 +1,493 @@
+{
+  "phase": 412,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4251,
+  "description": "マナ武装による全体強化・破壊耐性・盾化・手札と墓地からの展開を共通化し、登場時・攻撃時のバトルや呪文にも対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37856/",
+    "https://dm.takaratomy.co.jp/rule/qa/34228/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-007",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-002",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmd19-006",
+    "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-019",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmd18-006",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-027",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-099",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-014",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-016"
+  ],
+  "cards": [
+    {
+      "id": "dmr13-007",
+      "name": "撃英雄 ガイゲンスイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-007",
+      "faces": [
+        {
+          "name": "撃英雄 ガイゲンスイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナ武装 ７：このクリーチャーをバトルゾーンに出した時、自分のマナゾーンに火のカードが７枚以上あれば、そのターン、バトルゾーンにある自分のクリーチャーすべてのパワーは+7000され、シールドをさらに１枚ブレイクする。\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfMana",
+            "n": 7,
+            "color": "火",
+            "defs": [
+              {
+                "op": "Sequence",
+                "defs": [
+                  {
+                    "op": "GroupPower",
+                    "owner": "self",
+                    "filter": {
+                      "creature": true
+                    },
+                    "power": 7000
+                  },
+                  {
+                    "op": "GroupLasting412",
+                    "owner": "self",
+                    "filter": {
+                      "creature": true
+                    },
+                    "extraBreak": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "cd06b0b68e02235d42f785a82d72fed24280d4dfe3b91e44911ab3fec57c78aa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-002",
+      "name": "護英雄 シール・ド・レイユ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-002",
+      "faces": [
+        {
+          "name": "護英雄 シール・ド・レイユ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー ブロッカー\nマナ武装 ７：このクリーチャーをバトルゾーンに出した時、自分のマナゾーンに光のカードが７枚以上あれば、バトルゾーンにある相手の進化ではないクリーチャーを２体まで選び、新しいシールドとして持ち主のシールドゾーンに裏向きにして加えてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "7500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfMana",
+            "n": 7,
+            "color": "光",
+            "defs": [
+              {
+                "op": "Select",
+                "owner": "opponent",
+                "origin": "battle",
+                "to": "shields",
+                "n": 2,
+                "optional": true,
+                "filter": {
+                  "creature": true,
+                  "nonEvolution": true
+                },
+                "g173Targets": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "754f5091236ab0f2f49c6ac57d50f5d0cc621d6143ef3dc636634f1d02823276",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd19-006",
+      "name": "呪英雄 ウラミハデス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd19-006",
+      "faces": [
+        {
+          "name": "呪英雄 ウラミハデス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナ武装 ７：このクリーチャーをバトルゾーンに出した時、自分のマナゾーンに闇のカードが７枚以上あれば、《呪英雄 ウラミハデス》以外の進化ではない闇のクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "デーモン・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfMana",
+            "n": 7,
+            "color": "闇",
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "deploy": true,
+                "n": 1,
+                "optional": true,
+                "filter": {
+                  "creature": true,
+                  "nonEvolution": true,
+                  "color": "闇",
+                  "g412ExceptName": "呪英雄 ウラミハデス"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd19-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "ceaa30a80bcb0be3ca5c9166b3224b66fd510f917d007e501f50236ffb03a593",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy13-019",
+      "name": "天英雄 ヴァルハラ・デューク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-019",
+      "faces": [
+        {
+          "name": "天英雄 ヴァルハラ・デューク",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナ武装 ７：このクリーチャーをバトルゾーンに出した時、自分のマナゾーンに光のカードが７枚以上あれば、次の自分のターンのはじめまで自分のクリーチャーは破壊されない。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfMana",
+            "n": 7,
+            "color": "光",
+            "defs": [
+              {
+                "op": "GroupLasting412",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                },
+                "destroySafe": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy13-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "f82606575a1118846615f0cda8b3ae15b2cdb06e1f0735a934d0737ef8bdd695",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd18-006",
+      "name": "怒英雄 ガイムソウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd18-006",
+      "faces": [
+        {
+          "name": "怒英雄 ガイムソウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナ武装 ７：このクリーチャーをバトルゾーンに出した時、自分のマナゾーンに火のカードが７枚以上あれば、《怒英雄 ガイムソウ》以外の進化ではない火のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。そのクリーチャーは「スピードアタッカー」を得、ターンの終わりにバトルゾーンから自分の手札に戻す。\nW・ブレイカー",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfMana",
+            "n": 7,
+            "color": "火",
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "deploy": true,
+                "n": 1,
+                "optional": true,
+                "delayed": "hand",
+                "grant": {
+                  "speedAttacker": true
+                },
+                "filter": {
+                  "creature": true,
+                  "nonEvolution": true,
+                  "color": "火",
+                  "g412ExceptName": "怒英雄 ガイムソウ"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd18-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "033839cf860a38f9568210ef883ed5f3d58403a3116cd3e26aab0c998d50b82d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-027",
+      "name": "熱血龍 ガツント・ダイパンチ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-027",
+      "faces": [
+        {
+          "name": "熱血龍 ガツント・ダイパンチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、バトルゾーンにある相手のクリーチャーを１体選ぶ。選んだクリーチャーとこのクリーチャーはバトルする。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": false
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": false
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "bb2dc2b232ec0a0ce38c04711e23224dc27b843e186b9fa01947ea2a2293f8a3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-099",
+      "name": "爆炎シューター マッカラン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-099",
+      "faces": [
+        {
+          "name": "爆炎シューター マッカラン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナ武装 ３：このクリーチャーをバトルゾーンに出した時、自分のマナゾーンに火のカードが３枚以上あれば、バトルゾーンにある相手のクリーチャーを１体選んでもよい。そうした場合、その選んだクリーチャーとこのクリーチャーをバトルさせる。\nバトル中、このクリーチャーのパワーは+1000される。",
+          "race": "ヒューマノイド爆",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g38BattleBonus": 1000,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfMana",
+            "n": 3,
+            "color": "火",
+            "defs": [
+              {
+                "op": "Fight240",
+                "self": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-099.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "67cd9b398e3e0b2e2b957374172f37959e724ef88eee6ab38a41dcf80486d814",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr12-014",
+      "name": "爆闘剣士 グレンモルト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-014",
+      "faces": [
+        {
+          "name": "爆闘剣士 グレンモルト",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\nこのクリーチャーがバトルに勝った時、相手のシールドを１枚ブレイクする。",
+          "race": "ヒューマノイド爆",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": true
+          }
+        ],
+        "g189BattleWin": [
+          {
+            "op": "Break278"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr12-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "a06f4ad1a261110941738582b00c0e7944377a957fe0c942f3d149955aee09ab",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr09-016",
+      "name": "霊騎スフィーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-016",
+      "faces": [
+        {
+          "name": "霊騎スフィーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、コスト３以下の呪文を１枚、コストを支払わずに自分の手札から唱えてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アーク・セラフィム",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "spellOnly": true,
+            "max": 3
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "spellOnly": true,
+            "max": 3
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "f77b18cf8acd56acbb8894bbbcba75712ba26e19ef9562a9094fa04e3917594b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr13-007": 4,
+      "dmr13-002": 4,
+      "dmd19-006": 4,
+      "promoy13-019": 4,
+      "dmd18-006": 4,
+      "dmr16g-027": 4,
+      "dmr13-099": 4,
+      "dmr12-014": 4,
+      "dmr09-016": 4
+    }
+  }
+}

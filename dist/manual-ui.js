@@ -1,13 +1,13 @@
-import {choiceEffectSummary} from './choice-summary.js?v=0.491.0';
-import {publicLogCards,linkedLogText} from './log-card-links.js?v=0.491.0';
-import {battleZoomControlsHTML} from './battle-zoom.js?v=0.491.0';
+import {choiceEffectSummary} from './choice-summary.js?v=0.521.0';
+import {publicLogCards,linkedLogText} from './log-card-links.js?v=0.521.0';
+import {battleZoomControlsHTML} from './battle-zoom.js?v=0.521.0';
 import {displayTurn} from './turn-count.js';
-import {challengeKind} from './character-roster.js?v=0.491.0';
-import {paymentReviewHTML} from './battle-insights.js?v=0.491.0';
-import {sourceCardBadge,sourceCardLabel} from './card-info.js?v=0.491.0';
+import {challengeKind} from './character-roster.js?v=0.521.0';
+import {paymentReviewHTML} from './battle-insights.js?v=0.521.0';
+import {sourceCardBadge,sourceCardLabel} from './card-info.js?v=0.521.0';
 import {shieldCards} from './shield-state.js';
-import {aiPlaybackHTML,aiSpeedLabel,AI_SPEEDS,aiPublicSnapshot,aiResultCues} from './ai-playback.js?v=0.491.0';
-import {handCardModel,preferredHandFace,handShelfHTML,handInspectorHTML,handEvolutionButtonHTML} from './hand-ui.js?v=0.491.0';
+import {aiPlaybackHTML,aiSpeedLabel,AI_SPEEDS,aiPublicSnapshot,aiResultCues} from './ai-playback.js?v=0.521.0';
+import {handCardModel,preferredHandFace,handShelfHTML,handInspectorHTML,handEvolutionButtonHTML} from './hand-ui.js?v=0.521.0';
 import {getLegalActions,graveSummonSources,manaSelectionStatus,manaColors,card,power,effectiveCard,isEvolution,canUntap,abilitiesIgnored,genmuActive,momoActive,selfTriggersStopped,manaValue,manaValueAt,exLifeShieldInfo,exLifeShields,shieldGuardSources,shieldSaverSources,playFaces,attackLocked,evolutionBases,canCastSpell,canEnterCreature,summonCost,paymentPool,manaPayment} from './engine.js';
 import {attackRoute,previewAttackAction} from './battle-visuals.js?v=0.100.0';
 import {pageWindow} from './board-fit.js';
@@ -403,5 +403,5 @@ export function manaZoneHTML(rows,{art,actions=[],selected=[],owner=0,selecting=
 }
 export function manaPaymentHTML(s,actions,h){
  const d=s.decision,status=manaSelectionStatus(d),context=manualModel(s).context,confirm=actions.find(a=>a.kind==='confirmMana'),cancel=actions.find(a=>a.kind==='cancelMana');
- return '<section class="mana-payment" aria-label="マナの支払い">'+paymentReviewHTML(s)+'<div class="mana-payment-summary" role="status"><strong>選択 '+status.amount+' / 必要 '+status.cost+'マナ</strong><span>'+d.selected.length+'枚選択</span></div>'+(d.source?'<p class="mana-payment-source">'+esc(card(d.source).name)+'</p>':'')+'<div class="mana-color-status" aria-label="必要な文明">'+status.colors.map(c=>'<span class="'+(c.paid?'is-paid':'')+'">'+(c.paid?'✓ ':'○ ')+esc(c.name)+'</span>').join('')+'</div>'+manaZoneHTML(d.pool,{art:h.art,actions,selected:d.selected,selecting:true,context})+'<p class="mana-payment-help">'+(status.valid?'この組み合わせで支払えます。':status.amount<status.cost?'必要なマナ数と文明を満たすように選んでください。':'必要な文明ごとに別のカードを選んでください。')+'</p><div class="mana-payment-footer"><button class="btn primary" data-action="manual-mana" data-context="'+esc(context)+'" data-index="'+(confirm?.id??'')+'" '+(!confirm?'disabled':'')+'>このマナで使う</button>'+(cancel?'<button class="btn" data-action="manual-mana" data-context="'+esc(context)+'" data-index="'+cancel.id+'">キャンセル</button>':'')+'</div></section>';
+ return '<section class="mana-payment" aria-label="マナの支払い">'+paymentReviewHTML(s)+'<div class="mana-payment-summary" role="status"><strong>選択 '+status.amount+' / 必要 '+status.cost+'マナ</strong><span>'+d.selected.length+'枚選択</span></div>'+(d.source?'<p class="mana-payment-source">'+esc(card(d.source).name)+'</p>':'')+'<div class="mana-color-status" aria-label="必要な文明">'+status.colors.map(c=>'<span class="'+(c.paid?'is-paid':'')+'">'+(c.paid?'✓ ':'○ ')+esc(c.name)+'</span>').join('')+'</div>'+manaZoneHTML(d.pool,{art:h.art,actions,selected:d.selected,selecting:true,context})+'<p class="mana-payment-help">'+(status.valid?'この組み合わせで支払えます。':d.pool.some(x=>x.paymentExact423)&&status.amount>status.cost?'必要なマナ数と同じになるように選び直してください。':status.amount<status.cost?'必要なマナ数と文明を満たすように選んでください。':'必要な文明ごとに別のカードを選んでください。')+'</p><div class="mana-payment-footer"><button class="btn primary" data-action="manual-mana" data-context="'+esc(context)+'" data-index="'+(confirm?.id??'')+'" '+(!confirm?'disabled':'')+'>このマナで使う</button>'+(cancel?'<button class="btn" data-action="manual-mana" data-context="'+esc(context)+'" data-index="'+cancel.id+'">キャンセル</button>':'')+'</div></section>';
 }

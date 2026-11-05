@@ -1,0 +1,871 @@
+{
+  "phase": 415,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4294,
+  "description": "ムゲンクライム1〜4の支払いと専用のタップ時誘発、ムゲンクライムを持つカードの選別を共通化する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/39106/",
+    "https://dm.takaratomy.co.jp/rule/qa/49236/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-090",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmsd16-012",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-091",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-073",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmsd16-001",
+    "https://dm.takaratomy.co.jp/card/detail/?id=promoy19-060",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-029",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-090",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-037",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-064",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmsd16-003",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-069",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-060",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmsd16-008",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmsd16-004",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-065",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmsd16-005",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmsd16-002",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-034"
+  ],
+  "cards": [
+    {
+      "id": "dmrp16-090",
+      "name": "戯具 グリダルマ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-090",
+      "faces": [
+        {
+          "name": "戯具 グリダルマ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から５枚を見る。その中から「ムゲンクライム」能力を持つカードを好きな枚数墓地に置く。残りを好きな順序で山札の下に置く。",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 5,
+            "stages": [
+              {
+                "n": "all",
+                "to": "grave",
+                "filter": {
+                  "g415Mugen": true
+                },
+                "optional": true
+              }
+            ],
+            "rest": "bottom"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-090.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "7f08175d05b5ab599da66d719919b7e312dff3304636e5b364e9f72a180fb036",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd16-012",
+      "name": "戯具 ザンボロン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd16-012",
+      "faces": [
+        {
+          "name": "戯具 ザンボロン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーは攻撃できない。\n「ムゲンクライム」能力を使ってこのクリーチャーをタップした時、カードを１枚引く。",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "noAttack": true,
+        "g415MugenTapped": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd16-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "da6f516fc4283a05a6791b3e0b8f739a880164f9f790d3ce60f3171473cd005a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-091",
+      "name": "戯具 ドゥパーボ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-091",
+      "faces": [
+        {
+          "name": "戯具 ドゥパーボ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "「ムゲンクライム」能力を使ってこのクリーチャーをタップした時、自分の山札の上から１枚目を墓地に置く。その後、カードを１枚、自分の墓地から手札に戻す。",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g415MugenTapped": [
+          {
+            "op": "Mill",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {},
+            "title": "手札に戻す墓地のカードを1枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-091.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "9c1da9c2245ba07084c4dffd5e0e8ba36afc89b725011fb1aa8f2e0021eb6041",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-073",
+      "name": "戯具 ドゥメンゴ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-073",
+      "faces": [
+        {
+          "name": "戯具 ドゥメンゴ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "「ムゲンクライム」能力を使ってこのクリーチャーをタップした時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－2000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "キマイラ/チーム零",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g415MugenTapped": [
+          {
+            "op": "Target",
+            "power": -2000,
+            "g242PowerMinus": true,
+            "title": "パワーを-2000する相手のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-073.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "bca1873b36c82c38ae5eb06ac59a5041612278cf148acb737110234390e4ce51",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd16-001",
+      "name": "幻龍 ゲンムエンペラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd16-001",
+      "faces": [
+        {
+          "name": "幻龍 ゲンムエンペラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ムゲンクライム ４（自分のクリーチャーを４体タップし、 [wd04]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを３体まで選び、持ち主の手札に戻す。\nこのクリーチャーが攻撃する時、相手の手札を３枚見ないで選び、捨てさせる。",
+          "race": "∞ドラゴン/チーム零",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 4,
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 3,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "hand",
+            "title": "手札に戻す相手のクリーチャーを3体まで選ぶ",
+            "optional": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "n": 3,
+            "random": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd16-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "1491e7d6b5c943acb49ed5eb9e7d2a435af0a7c03bf518411c6f22fa8f4ac04e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy19-060",
+      "name": "罪無 ウォダラ垓",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy19-060",
+      "faces": [
+        {
+          "name": "罪無 ウォダラ垓",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ムゲンクライム ２（自分のクリーチャーを２体タップし、 [ww02]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、カードを２枚引く。",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy19-060.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "f63bde4410097d5e943096d7df6bccc91f9b7d5346b1937969a9ae7a974ac5f8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-029",
+      "name": "罪無 オリガ極",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-029",
+      "faces": [
+        {
+          "name": "罪無 オリガ極",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ムゲンクライム ３（自分のクリーチャーを３体タップし、 [wd03]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、相手のコスト３以下のクリーチャーを１体選び、持ち主の手札に戻す。その後、クリーチャーを１体、自分の墓地から手札に戻してもよい。",
+          "race": "デーモン・コマンド/チーム零",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 3,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "hand",
+            "filter": {
+              "max": 3
+            }
+          },
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "optional": true,
+            "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "to": "hand",
+            "filter": {
+              "max": 3
+            }
+          },
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "optional": true,
+            "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "a316593f914004937f4cf30012dd566c5a011d18f9fe224ac187609974504be2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp15-090",
+      "name": "罪無 グルブル垓",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-090",
+      "faces": [
+        {
+          "name": "罪無 グルブル垓",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ムゲンクライム ２（自分のクリーチャーを２体タップし、 [wd02]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 2,
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-090.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "76c5a5f9b2f03a59356435d42e26708ec5d24cdb69e030bcd7daf3fa9db0fb0d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp15-037",
+      "name": "罪無 ゴグマ垓",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-037",
+      "faces": [
+        {
+          "name": "罪無 ゴグマ垓",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ムゲンクライム ３（自分のクリーチャーを３体タップし、 [dd03]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－6000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 3,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Target",
+            "power": -6000,
+            "g242PowerMinus": true,
+            "title": "パワーを-6000する相手のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "6b82deda0119eec5593f3fff7790551ea3ebb6a02af3c92faf90f81f21338a81",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-064",
+      "name": "罪無 スネイグ垓",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-064",
+      "faces": [
+        {
+          "name": "罪無 スネイグ垓",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ムゲンクライム ２（自分のクリーチャーを２体タップし、 [ww02]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 2,
+        "blocker": true,
+        "noAttack": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-064.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "b486d5ce775b9be0974eccd8f390b4845916864c592e55905340dd8ce9a6bcc4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd16-003",
+      "name": "罪無 スピンナ極",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd16-003",
+      "faces": [
+        {
+          "name": "罪無 スピンナ極",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ムゲンクライム ３（自分のクリーチャーを３体タップし、 [dd03]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、そのターン、相手のクリーチャーすべてのパワーを－3000 する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "デーモン・コマンド/チーム零",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 3,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "g214GroupPower": true,
+            "owner": "opponent",
+            "power": -3000,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd16-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "f5d0e2c7d471b984dff1322fc44dc9da9e73ce691fd12ccb4fed48dfe74c652e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-069",
+      "name": "罪無 ソフビ垓",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-069",
+      "faces": [
+        {
+          "name": "罪無 ソフビ垓",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ムゲンクライム ２（自分のクリーチャーを２体タップし、[dd02]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－3000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "ゴースト/チーム零",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -3000,
+            "g242PowerMinus": true,
+            "title": "パワーを-3000する相手のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-069.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "5f34596ca2ad7a2093af80f002ab66b9ebecde59ed0b9036cfa6b55396e2808a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex13-060",
+      "name": "罪無 ターボ兆",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-060",
+      "faces": [
+        {
+          "name": "罪無 ターボ兆",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ムゲンクライム １（自分のクリーチャーを１体タップし、 [dd01]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーがバトルに勝った時、このクリーチャーを破壊する。",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 1,
+        "blocker": true,
+        "noAttack": true,
+        "g189BattleWin": [
+          {
+            "op": "SelfDestroy"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-060.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "196336b1718662f8187af5750dbf445c7d41d86178b8b20a86b04422b5a0438f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd16-008",
+      "name": "罪無 ドロキオ垓",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd16-008",
+      "faces": [
+        {
+          "name": "罪無 ドロキオ垓",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ムゲンクライム ２（自分のクリーチャーを２体タップし、 [ww02]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nS・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがタップした時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 2,
+        "trigger": true,
+        "blocker": true,
+        "g188Tapped": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd16-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "837a5449b0a2c1e147f662369d188f988e392bad846f6ddf637c55b38f206157",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd16-004",
+      "name": "罪無 バドミン垓",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd16-004",
+      "faces": [
+        {
+          "name": "罪無 バドミン垓",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ムゲンクライム ２（自分のクリーチャーを２体タップし、 [dd02]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーがバトルゾーンに出た時、相手は自身の手札を１枚選び、捨てる。",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 2,
+        "slayer": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd16-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "21b4df51381fb822c533c5bdee6ec2636c948df0a6e40c32490b19a6b6b2c662",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp15-065",
+      "name": "罪無 ビカビカ兆",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-065",
+      "faces": [
+        {
+          "name": "罪無 ビカビカ兆",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ムゲンクライム １（自分のクリーチャーを１体タップし、 [ww01]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 1
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-065.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "9909ad2551c632a8dbf7db8900ee73f684a77369b0c482f1799b6bf349e78b53",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd16-005",
+      "name": "罪無 ビコハン極",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd16-005",
+      "faces": [
+        {
+          "name": "罪無 ビコハン極",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ムゲンクライム ３（自分のクリーチャーを３体タップし、 [wd03]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nS・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選び、持ち主の手札に戻す。その後、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 3,
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "hand",
+            "title": "手札に戻す相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "Discard",
+            "n": 1,
+            "random": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd16-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "5a707b0c6ed47a2453a61ce636d6303a4ec0121c4ac7d1a64e0410ab731afcbc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd16-002",
+      "name": "罪無 ミズゲム垓",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd16-002",
+      "faces": [
+        {
+          "name": "罪無 ミズゲム垓",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ムゲンクライム ２（自分のクリーチャーを２体タップし、 [ww02]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、カードを１枚引き、その後、自分の手札を１枚捨てる。",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 2,
+        "blocker": true,
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd16-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "be508756b61f9ee7a0a1f66e19b28e472a36e835b448a707341189c79bf31da9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-034",
+      "name": "罪無 ユニゴー極",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-034",
+      "faces": [
+        {
+          "name": "罪無 ユニゴー極",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ムゲンクライム３（自分のクリーチャーを３体タップし、 [ww03]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mugenCrime": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "hand",
+            "title": "手札に戻す相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "97368fee7466fc707d5bae0095bfa3107caa832156b8982f50bce65177ad71fe",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp16-090": 4,
+      "dmsd16-012": 4,
+      "dmrp16-091": 4,
+      "dmrp16-073": 4,
+      "dmsd16-001": 4,
+      "promoy19-060": 4,
+      "dmex14-029": 4,
+      "dmrp15-090": 4,
+      "dmrp15-037": 4,
+      "dmrp16-064": 4,
+      "dmsd16-003": 4,
+      "dmrp16-069": 4,
+      "dmex13-060": 4,
+      "dmsd16-008": 4,
+      "dmsd16-004": 4,
+      "dmrp15-065": 4,
+      "dmsd16-005": 4,
+      "dmsd16-002": 4,
+      "dmrp16-034": 4
+    }
+  }
+}

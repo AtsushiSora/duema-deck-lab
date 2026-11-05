@@ -1,0 +1,428 @@
+{
+  "phase": 425,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4377,
+  "description": "初期の「墓地に置く」能力文を、現在のパワーに基づく除去とバトルゾーンから墓地への移動を置換する共通処理で対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm04-s04",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm01-060",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm01-037",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm06-030",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm09-052",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm06-102",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm03-030",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm04-004",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm02-013",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm01-014",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37943/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37358/"
+  ],
+  "cards": [
+    {
+      "id": "dm04-s04",
+      "name": "ガルクライフ・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-s04",
+      "faces": [
+        {
+          "name": "ガルクライフ・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、バトルゾーンにあるパワー4000以下の光のクリーチャーすべてを、持ち主の墓地に置く。\nW(ダブル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 4000,
+              "g199Power": true,
+              "color": "光"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm04-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "8e916f0258d21b3f09dcf7c0f259721f79175cbe5381448e4230fa3751e8d8bc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm01-060",
+      "name": "メテオザウルス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm01-060",
+      "faces": [
+        {
+          "name": "メテオザウルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、バトルゾーンにあるパワー2000以下の相手のクリーチャーを１体選び、持ち主の墓地に置いてよい。",
+          "race": "ロック・ビースト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 2000,
+              "g199Power": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm01-060.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "254a58c50419e2d154c69be43ec16aa4d9e30aba5773a1cc9df775dcdd5bb741",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm01-037",
+      "name": "レッドアイ・スコーピオン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm01-037",
+      "faces": [
+        {
+          "name": "レッドアイ・スコーピオン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンから自分の墓地に置かれるとき、墓地に置くかわりに自分のマナゾーンに置く。",
+          "race": "ジャイアント・インセクト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "graveToMana": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm01-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "f17936ed785a53e878d846cdba47ffedd029f3e6599184cc7699a8437bfa86e2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-030",
+      "name": "機神装甲ヴァルカイザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-030",
+      "faces": [
+        {
+          "name": "機神装甲ヴァルカイザー",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化ー自分のヒューマノイド１体の上に置く。\nこのクリーチャーがバトルゾーンに出たとき、バトルゾーンにある、パワー4000以下の相手のクリーチャーを１体選び、持ち主の墓地に置いてもよい。",
+          "race": "ヒューマノイド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "ヒューマノイド"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 4000,
+              "g199Power": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "04b28d59ef207900a77a1e2237faa7ec140fb484cde35410bff7f19a74992890",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-052",
+      "name": "警護するソリッド・ホーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-052",
+      "faces": [
+        {
+          "name": "警護するソリッド・ホーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーがバトルゾーンから自分の墓地に置かれるとき、墓地に置くかわりに自分のマナゾーンに置く。",
+          "race": "ホーン・ビースト",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "graveToMana": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "085d77f96c6d314b8af44209f4d77b0d8ed4de89df97f1b23f8f0cc52a6bbf3f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-102",
+      "name": "幻竜砲",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-102",
+      "faces": [
+        {
+          "name": "幻竜砲",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S(シールド)・トリガー(この呪文をシールドゾーンから手札に加えるとき、コストを支払わずにすぐ唱えてよい)\nバトルゾーンにある、パワー2000以下の相手のクリーチャーを１体選び、持ち主の墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 2000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-102.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "5c6af9d850f10f5d29e611669ca8276dba50616cf7bee55acfb70538c7ea8893",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm03-030",
+      "name": "切断伯爵ムラマサ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-030",
+      "faces": [
+        {
+          "name": "切断伯爵ムラマサ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃するとき、バトルゾーンにあるパワー2000以下の相手のクリーチャーを１体選び、持ち主の墓地に置いてよい。",
+          "race": "ヒューマノイド",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 2000,
+              "g199Power": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm03-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "96acc3e49cb5ceda7df55099ccc2f46acfe4d7215bfef186902d0efcfe873d20",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm04-004",
+      "name": "超巨岩獣ドボルガイザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-004",
+      "faces": [
+        {
+          "name": "超巨岩獣ドボルガイザー",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化-自分のロック・ビースト１体の上に置く。\nW(ダブル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーがバトルゾーンに出たとき、バトルゾーンにあるパワー3000以下の相手のクリーチャーを１体選び、持ち主の墓地に置いてもよい。",
+          "race": "ロック・ビースト",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "ロック・ビースト"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm04-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "859cf81c3be3f71aac2b26dfe68978b85e7cf10bd09dca210b46510a6b6f5de6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm02-013",
+      "name": "毒煙虫ポイズン・ワーム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-013",
+      "faces": [
+        {
+          "name": "毒煙虫ポイズン・ワーム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、バトルゾーンにあるパワー3000以下の自分のクリーチャーを１体選び、自分の墓地に置く。",
+          "race": "パラサイトワーム",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "owner": "self",
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm02-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "8e021746b2b5f5cc5ffbf5c33f6f265f4f2be5229c2e55418bbf4b30af101268",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm01-014",
+      "name": "予言者キリアス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm01-014",
+      "faces": [
+        {
+          "name": "予言者キリアス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンから自分の墓地に置かれるとき、墓地に置くかわりに自分の手札に戻す。",
+          "race": "ライトブリンガー",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "graveToHand": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm01-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "90e7b8bfa57da5be8a5c21cecfc85264a4d00a258533c168059cb3d5146bfb5d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm04-s04": 4,
+      "dm01-060": 4,
+      "dm01-037": 4,
+      "dm06-030": 4,
+      "dm09-052": 4,
+      "dm06-102": 4,
+      "dm03-030": 4,
+      "dm04-004": 4,
+      "dm02-013": 4,
+      "dm01-014": 4
+    }
+  }
+}

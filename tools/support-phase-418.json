@@ -1,0 +1,507 @@
+{
+  "phase": 418,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4328,
+  "description": "種族、文明と種族、解放中のハイパーモードを条件とするアタック・チャンスを共通化する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/48945/",
+    "https://dm.takaratomy.co.jp/rule/qa/49021/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-081",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-046",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-029",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-013",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-041",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-036",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-045",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-050",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-015",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-017",
+    "https://dm.takaratomy.co.jp/rule/qa/44820/",
+    "https://dm.takaratomy.co.jp/rule/qa/48760/"
+  ],
+  "cards": [
+    {
+      "id": "dm25ex1-081",
+      "name": "「こ、これは忍者秘伝、火遁の術よ!!」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-081",
+      "faces": [
+        {
+          "name": "「こ、これは忍者秘伝、火遁の術よ!!」",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "アタック・チャンス：シノビ（自分のシノビが攻撃する時、このカードをコストを支払わずに実行してもよい）\n相手は自身の手札を１枚選び、捨てる。\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを−3000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "シノビ・ワード",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g417Chance": {
+          "race": "シノビ"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1
+          },
+          {
+            "op": "Target",
+            "power": -3000,
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex1-081.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c4096585bf3aaaa86f3b2aaba57a3536671d1a0d812f87039ede7c10b797e36c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-046",
+      "name": "「我こそが真のZEROだ!!」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-046",
+      "faces": [
+        {
+          "name": "「我こそが真のZEROだ!!」",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "アタック・チャンス：ゼニス、アンノウンまたはオラクル（自分のゼニス、アンノウン、またはオラクルが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n相手のパワー6000以下のクリーチャーを１体選び、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g417Chance": {
+          "raceAny": [
+            "ゼニス",
+            "アンノウン",
+            "オラクル"
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 6000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "2b4ce79108e04193b4c0a4bdeee6752e1df27a1dac451bafcb8e7de36e347eb8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr07-029",
+      "name": "異星秘伝エイリアン・ストーム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-029",
+      "faces": [
+        {
+          "name": "異星秘伝エイリアン・ストーム",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "アタック・チャンス-エイリアン(自分のエイリアンが攻撃する時、この呪文をコストを支払わずに唱えてもよい)\nバトルゾーンにある相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーは-3000される。(パワー０以下のクリーチャーは破壊される)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g417Chance": {
+          "race": "エイリアン"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -3000,
+            "g242PowerMinus": true,
+            "title": "パワーを-3000する相手のクリーチャーを選ぶ",
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c40d3410936b576b7087b965e2d1151b7daa86afd970ebf3f61fc809e1108572",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-013",
+      "name": "混成秘伝デュアルスタック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-013",
+      "faces": [
+        {
+          "name": "混成秘伝デュアルスタック",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "{GS} G・ストライク（この呪文を自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nアタック・チャンス：光のディスペクター（自分の光のディスペクターが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n相手のクリーチャーを３体まで選び、タップする。 次の相手のターンのはじめに、それらはアンタップしない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "g417Chance": {
+          "color": "光",
+          "race": "ディスペクター"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 3,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "g210TapLock": true,
+            "title": "タップして次のターンまで止めるクリーチャーを3体まで選ぶ",
+            "optional": true,
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "d7918c1b8a200d8e0ecf2def111289ea8c23966cec4c3e8815c06c1cf8f5f965",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-041",
+      "name": "超化秘伝アビスアサルト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-041",
+      "faces": [
+        {
+          "name": "超化秘伝アビスアサルト",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "アタック・チャンス：ハイパーモード状態のクリーチャー（自分のハイパーモードを解放しているクリーチャーが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n自分の山札の上から３枚を墓地に置く。その後、コスト４以下のクリーチャーを１体、自分の墓地から出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g417Chance": {
+          "hyper": true
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 3
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "max": 4
+            },
+            "optional": false,
+            "title": "墓地から出すクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "ff8b43067626395ff8c16bf1a4d2f577e503db8e29e72eb91111fe0d47bb3b60",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-036",
+      "name": "超化秘伝タノシキチシキ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-036",
+      "faces": [
+        {
+          "name": "超化秘伝タノシキチシキ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "アタック・チャンス：ハイパーモード状態のクリーチャー（自分のハイパーモードを解放しているクリーチャーが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n相手のコスト６以下のクリーチャーを１体選び、持ち主の手札に戻す。\nカードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g417Chance": {
+          "hyper": true
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "hand",
+            "filter": {
+              "max": 6
+            }
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "ab29960a9f46467533c6800197e05234a047e829a0dc25285036432d25855139",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-045",
+      "name": "超化秘伝フンヌノフンカ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-045",
+      "faces": [
+        {
+          "name": "超化秘伝フンヌノフンカ",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "アタック・チャンス：ハイパーモード状態のクリーチャー（自分のハイパーモードを解放しているクリーチャーが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n自分と相手のクリーチャーを１体ずつ選ぶ。その選んだクリーチャーをバトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g417Chance": {
+          "hyper": true
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "optional": false
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "15559ad7df94b7d98ae6d615cb6e7d8bf33a219110dcf61353e9ede02a0bfeec",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-050",
+      "name": "超化秘伝モリノカナシミ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-050",
+      "faces": [
+        {
+          "name": "超化秘伝モリノカナシミ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "アタック・チャンス：ハイパーモード状態のクリーチャー（自分のハイパーモードを解放しているクリーチャーが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n相手のパワー6000以下のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g417Chance": {
+          "hyper": true
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "filter": {
+              "maxPower": 6000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "855ccf6a4fad90c57af129127304ad34993e54eb1f241bb61f34a31129be58b9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-015",
+      "name": "縫合秘伝マリススティッチ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-015",
+      "faces": [
+        {
+          "name": "縫合秘伝マリススティッチ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "{GS} G・ストライク（この呪文を自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nアタック・チャンス：水のディスペクター（自分の水のディスペクターが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\nこのターン、自分のクリーチャー１体はブロックされない。\nカードを２枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "g417Chance": {
+          "color": "水",
+          "race": "ディスペクター"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "unblockable": true
+            },
+            "title": "このターン、ブロックされなくする自分のクリーチャーを1体選ぶ",
+            "spell": true
+          },
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "4922327c1c69d1ecaf90cf72971b25d6b65b6365f1d780b9469ddbc8e99f54aa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-017",
+      "name": "連結秘伝アンビバレンツリンク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-017",
+      "faces": [
+        {
+          "name": "連結秘伝アンビバレンツリンク",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "{GS} G・ストライク（この呪文を自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nアタック・チャンス：闇のディスペクター（自分の闇のディスペクターが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\nこのターン、相手のクリーチャーすべてのパワーを－3000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "g417Chance": {
+          "color": "闇",
+          "race": "ディスペクター"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "g214GroupPower": true,
+            "owner": "opponent",
+            "power": -3000,
+            "filter": {
+              "creature": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "3d28d392fc91d4c92b65cb9cdc5efcd96be6fb5112fe8d83a1f55e09acd9d4c1",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25ex1-081": 4,
+      "dm23ex3-046": 4,
+      "dmr07-029": 4,
+      "dmrp18-013": 4,
+      "dm24rp1-041": 4,
+      "dm24rp1-036": 4,
+      "dm24rp1-045": 4,
+      "dm24rp1-050": 4,
+      "dmrp18-015": 4,
+      "dmrp18-017": 4
+    }
+  }
+}

@@ -1,0 +1,477 @@
+{
+  "phase": 416,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4313,
+  "description": "リサイクルの墓地詠唱コストと終了時の山札帰還、ガチンコ・ジャッジ勝利時の手札帰還を共通化する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/41281/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-028",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-026",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-023",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-031",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-035",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-049",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-034",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-040",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-026",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-053",
+    "https://dm.takaratomy.co.jp/rule/qa/49021/"
+  ],
+  "cards": [
+    {
+      "id": "dmr07-028",
+      "name": "ガチンコ・ジョーカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-028",
+      "faces": [
+        {
+          "name": "ガチンコ・ジョーカー",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "相手の手札を見ないで２枚選び、捨てさせる。\n相手とガチンコ・ジャッジする。自分が勝ったら、この呪文を唱えた後、墓地に置くかわりに手札に戻す。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 2,
+            "random": true
+          },
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "SpellFinish416",
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "63311161645c941999c2a1de2fbb4cc98bcf9772ac33ec6c20b3d1641f8e35c8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr07-026",
+      "name": "ガチンコ・スロット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-026",
+      "faces": [
+        {
+          "name": "ガチンコ・スロット",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "カードを３枚まで引く。\n相手とガチンコ・ジャッジする。自分が勝ったら、この呪文を唱えた後、墓地に置くかわりに手札に戻す。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DrawUpTo",
+            "n": 3
+          },
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "SpellFinish416",
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "cf92f6ac5ba419a3e5265e586d10c035c7191b60e4c4be029b6e567b9126c6d8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr07-023",
+      "name": "ガチンコ・ダーツ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-023",
+      "faces": [
+        {
+          "name": "ガチンコ・ダーツ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンにある相手のクリーチャーをすべてタップする。\n相手とガチンコ・ジャッジする。自分が勝ったら、この呪文を唱えた後、墓地に置くかわりに手札に戻す。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          },
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "SpellFinish416",
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "dfbfe48ff382c2208274c0576a0cf8f638eb07671848efff0460ff75917a61be",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr07-031",
+      "name": "ガチンコ・ダイス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-031",
+      "faces": [
+        {
+          "name": "ガチンコ・ダイス",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "相手のコスト６以下のクリーチャーを１体破壊する。\n相手とガチンコ・ジャッジする。自分が勝ったら、この呪文を唱えた後、墓地に置くかわりに手札に戻す。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする))",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "max": 6
+            }
+          },
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "SpellFinish416",
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "35d08bb937a207d9e174d9bf3ec58ebbad03202394fff7f1dcd5b31e20615404",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr07-035",
+      "name": "ガチンコ・ル－レット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-035",
+      "faces": [
+        {
+          "name": "ガチンコ・ル－レット",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の山札の上から１枚目をマナゾーンに置く。\n相手とガチンコ・ジャッジする。自分が勝ったら、この呪文を唱えた後、墓地に置くかわりに手札に戻す。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "SpellFinish416",
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c52fe33d7a693d82bb487fa4edfec6f173e319fcb58a3e346407460fbfc93ad2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-049",
+      "name": "連唱 GENJI・ファイアー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-049",
+      "faces": [
+        {
+          "name": "連唱 GENJI・ファイアー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手の「ブロッカー」を持つクリーチャーを１体破壊する。\nリサイクル：（この呪文を墓地からコスト２を支払って唱えてもよい。そうして唱えた後、墓地に置くかわりに自分の山札の一番下に置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "graveCast": true,
+        "g416RecycleCost": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "8829d0c348233e8d2ccd5aaa901214af04cacae06d12b877b20ba85c03b5342f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-034",
+      "name": "連唱 ジャンヌ・スパーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-034",
+      "faces": [
+        {
+          "name": "連唱 ジャンヌ・スパーク",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトルゾーンにある相手のクリーチャーを２体まで選び、タップする。\nリサイクル：（この呪文を墓地からコスト３を支払って唱えてもよい。そうして唱えた後、墓地に置くかわりに自分の山札の一番下に置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "graveCast": true,
+        "g416RecycleCost": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを2体まで選ぶ",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "dd674864598d942a7c5549fdbe2bb4b290800402d9bbadfe826b2d35daaaf2ea",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-040",
+      "name": "連唱 ハルカス・ドロー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-040",
+      "faces": [
+        {
+          "name": "連唱 ハルカス・ドロー",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "カードを１枚引く。\nリサイクル：（この呪文を墓地からコスト３を支払って唱えてもよい。そうして唱えた後、墓地に置くかわりに自分の山札の一番下に置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "graveCast": true,
+        "g416RecycleCost": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "9e5df9383081ae2f625576f078f28ccedbd09ed001728693e2a585e44efe0e6d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-026",
+      "name": "連唱 ハンゾウ・ニンポウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-026",
+      "faces": [
+        {
+          "name": "連唱 ハンゾウ・ニンポウ",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-6000される。（パワー０以下のクリーチャーは破壊される）\nリサイクル：（この呪文を墓地からコスト６を支払って唱えてもよい。そうして唱えた後、墓地に置くかわりに自分の山札の一番下に置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "graveCast": true,
+        "g416RecycleCost": 6,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -6000,
+            "g242PowerMinus": true,
+            "title": "パワーを-6000する相手のクリーチャーを選ぶ",
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "a63529ed78c925376235a9bdaa4b83ad20992fa4f24e361b67e2226dfbe013a7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-053",
+      "name": "連唱 フェアリー・ダブルライフ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-053",
+      "faces": [
+        {
+          "name": "連唱 フェアリー・ダブルライフ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の山札の上から２枚をマナゾーンに置く。\nリサイクル：（この呪文を墓地からコスト８を支払って唱えてもよい。そうして唱えた後、墓地に置くかわりに自分の山札の一番下に置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "graveCast": true,
+        "g416RecycleCost": 8,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "748c67a966abb6960d17e2eb8c60d7a58b9c03ca6c6fa21882eea3ad77b5a3d3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr07-028": 4,
+      "dmr07-026": 4,
+      "dmr07-023": 4,
+      "dmr07-031": 4,
+      "dmr07-035": 4,
+      "dmr16g-049": 4,
+      "dmr16g-034": 4,
+      "dmr16g-040": 4,
+      "dmr16g-026": 4,
+      "dmr16g-053": 4
+    }
+  }
+}

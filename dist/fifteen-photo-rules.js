@@ -1,4 +1,5 @@
-import {hasCopiedRole393,copiedRoles393} from './requested393-joker-rules.js?v=0.491.0';
+import {afterEntry} from './entry-followup.js?v=0.521.0';
+import {hasCopiedRole393,copiedRoles393} from './requested393-joker-rules.js?v=0.521.0';
 import {policyRemove,policyLook} from './champion-zone-policy.js';
 // Fifteen screenshot decks. Continuations store physical UIDs, never copies of game cards.
 export function createFifteenPhotoRules(api){
@@ -111,7 +112,8 @@ export function createFifteenPhotoRules(api){
  case'noop':break;
  case'executeCard':{const y=own[t.origin]?.find(y=>y.uid===t.target),c=y&&faces(card(y))[t.face||0];if(!c||!api.canCast(s,t.p,c,t.origin))break;if(c.type==='spell'){own.g35Protected=(own.g35Protected||[]).filter(uid=>uid!==y.uid);cast(s,t.p,y.uid,true,null,t.face||0,null,t.origin);}else give(s,t,[E('Put',{origin:t.origin,target:y.uid,face:t.face||0,execution:true})]);break;}
  case'finishAlt':{const y=own.hand.find(y=>y.uid===t.target);if(y){if(t.role==='fuji')deploy(s,t,'hand',y.uid);else if(api.canPay(s,t.p,{...card(y),cost:t.payment,printedCost:card(y).cost}))cast(s,t.p,y.uid,false,null,0,{cost:t.payment,printedCost:card(y).cost},'hand');}break;}
- case'gerachoFinish':{if(!own.grave.some(y=>y.uid===t.oldUid))break;const y=policyRemove(s,t.p,'grave',t.target,api);if(y){enter(s,t.p,y,null,{origin:'grave',execution:false});if(own.battle.includes(y)&&t.attack){s.attack={...t.attack,attacker:y.uid};}}break;}
+ case'gerachoFinish':{if(!own.grave.some(y=>y.uid===t.oldUid))break;const y=policyRemove(s,t.p,'grave',t.target,api);if(y){enter(s,t.p,y,null,{origin:'grave',execution:false});if(t.attack)afterEntry(s,t.p,y,task('g35_Custom',t.p,t.source,{name:'gerachoResume432',uid:y.uid,incarnation:y.incarnation||0,attack:t.attack}),put);}break;}
+ case'gerachoResume432':{const y=unit(s,t);if(y)s.attack={...t.attack,attacker:y.uid};break;}
  case'nefer':{const y=peek(s,t.p);if(y){api.log(s,t.p,'reveal',card(y).name,{cardId:y.cardId});if(j(card(y)))choice(s,{...t,target:y.uid},'ジョーカーズを手札に加える？',[opt('加える',true,10,y.cardId),skip()]);}break;}
  case'hyperBolshackTop':{const y=peek(s,t.p);if(!y)break;const c=card(y),publicLook=api.lookPublic(s,t.p),allowed=c.type==='creature'&&cost(c)<=5&&canPut(s,t.p,y,'deck');(own.g34Protected??=[]).push(y.uid);api.log(s,t.p,publicLook?'reveal':'look',card(t.source).name+'：山札の一番上を確認'+(publicLook?'：'+c.name:''),{cardId:t.source});choice(s,{...t,name:'hyperBolshackPut',top:y.uid},'山札の一番上を確認：コスト5以下のクリーチャーを出す？',[...(allowed?[opt(c.name+'を出す',true,25+cost(c),c.id)]:[]),opt(allowed?'出さずに山札の上に戻す':c.name+'：出せないため山札の上に戻す',false,0,c.id)]);break;}
  case'hyperBolshackUntap':if(creatures(s,t.p).filter(y=>y.tapped).length>=5){const xs=creatures(s,t.p).filter(y=>y.tapped&&api.canUntap(y));for(const y of xs)y.tapped=false;for(const y of xs)api.notifyUntapped(s,t.p,y);api.log(s,t.p,'untap',card(t.source).name+'：自分のクリーチャーをすべてアンタップ',{cardId:t.source});}break;

@@ -1,3 +1,4 @@
+import {forceAttackTargets} from './forced-attack-targets.js?v=0.521.0';
 // Photographed nature cards: mana thresholds, first-attack targeting and Zolge battles.
 export function createPhoto160NatureRules(api){
  const{card,cost,effective,put,task,choice,opt}=api;
@@ -26,6 +27,6 @@ export function createPhoto160NatureRules(api){
  entry(s,p,x,options={}){if(!api.isCreature(s,x))return;for(const w of living(s,p))if(w.uid!==x.uid&&effective(w,s).g160NRole==='zolge')on(s,p,w,'Zolge',{target:x.uid,targetIncarnation:x.incarnation||0});},
  attack(s,p,x){(s.g160NAttacks??=[null,null])[p]={turn:s.turn,n:attacks(s,p)+1};for(const w of living(s,1-p))if(effective(w,s).g160NRole==='guard')on(s,1-p,w,'GuardAttack');},
  battleWins(s,p,w){const x=w&&find(s,p,w.uid);return x&&effective(x,s).g160NRole==='enoki'?[{player:p,uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g34_Ramp',p,x.cardId,{n:5,optional:true})}]:[];},
- forceActions(s,p,actions){if(attacks(s,p))return actions;const ids=new Set(living(s,1-p).filter(x=>effective(x,s).g160NRole==='enoki').map(x=>x.uid)),forced=new Set(actions.filter(a=>a.kind==='attack'&&ids.has(a.target)).map(a=>a.uid));return actions.filter(a=>a.kind!=='attack'||!forced.has(a.uid)||ids.has(a.target));}
+ forceActions(s,p,actions){return forceAttackTargets(s,p,actions,api);}
  };
 }

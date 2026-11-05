@@ -11,13 +11,21 @@ function exactNames(value,out=new Set()){
 }
 export function scanStandardCandidates(details,implemented,{phase}={}){
  if(!Number.isSafeInteger(phase)||phase<165)throw Error('有効な対応段階を指定してください');
- const known=new Set(implemented.map(c=>nameKey(c.name))),candidates=[],blocked=[],reasons={};
+ const known=new Set(implemented.map(c=>nameKey(c.name))),candidates=[],blocked=[],reasons={},compiled=[];
  for(const row of details){
   if(known.has(nameKey(row.name)))continue;
   let spec;try{spec=standardCardSpec(row,{phase});}catch(e){const reason=e.message.split(':')[0];reasons[reason]=(reasons[reason]||0)+1;continue;}
+  if(phase>=419){compiled.push({id:row.id,name:row.name,source:row.detailSource||row.source,faces:row.faces,spec});continue;}
   const missing=[...exactNames(spec)].filter(n=>!known.has(nameKey(n))&&nameKey(n)!==nameKey(row.name));
   if(missing.length){blocked.push({id:row.id,name:row.name,missingExactNames:missing});continue;}
   candidates.push({id:row.id,name:row.name,source:row.detailSource||row.source,faces:row.faces,spec});
+ }
+ if(phase>=419){
+  // Mutually referring cards can ship together only when every external dependency is complete.
+  let ready=compiled,available,changed;
+  do{available=new Set([...known,...ready.map(c=>nameKey(c.name))]);const next=ready.filter(c=>[...exactNames(c.spec)].every(n=>available.has(nameKey(n))));changed=next.length!==ready.length;ready=next;}while(changed);
+  available=new Set([...known,...ready.map(c=>nameKey(c.name))]);const ids=new Set(ready.map(c=>c.id));
+  for(const c of compiled)if(ids.has(c.id))candidates.push(c);else blocked.push({id:c.id,name:c.name,missingExactNames:[...exactNames(c.spec)].filter(n=>!available.has(nameKey(n)))});
  }
  return{phase,candidates,blocked,reasons};
 }

@@ -1,0 +1,425 @@
+{
+  "phase": 419,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4338,
+  "description": "種族限定の効果バトル、種族蘇生、多色のマナ展開、名前条件のアタック・チャンスを追加し、相互参照カードを一緒に検証できるようにする。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/48945/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b038",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-013",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-009",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-032",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-001",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-021",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-038",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-057",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36713/"
+  ],
+  "cards": [
+    {
+      "id": "dmex15-b038",
+      "name": "ジョギラスタ・ガンランス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b038",
+      "faces": [
+        {
+          "name": "ジョギラスタ・ガンランス",
+          "typeText": "呪文",
+          "civilizationText": "水/火/自然",
+          "civilizations": [
+            "水",
+            "火",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "アタック・チャンス：名前に《ジョニー》とあるクリーチャー（名前に《ジョニー》とある自分のクリーチャーが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\nクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを+7000する。\n自分のクリーチャーと、相手のクリーチャーを１体ずつ選ぶ。その２体をバトルさせる。\nカードを２枚引く。",
+          "race": "ジョーカーズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g417Chance": {
+          "name": "ジョニー"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "power": 7000,
+            "g419Boost": true,
+            "spell": true
+          },
+          {
+            "op": "Fight240",
+            "optional": false
+          },
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-b038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c9105f6e0353526f9d4e59806f981385d21680622108c8ef3f68a5a3e9eb0d38",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr06-013",
+      "name": "邪龍秘伝ドラゴン・ボーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-013",
+      "faces": [
+        {
+          "name": "邪龍秘伝ドラゴン・ボーン",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "アタック・チャンス-ドラゴン・ゾンビ(自分のドラゴン・ゾンビが攻撃する時、この呪文をコストを支払わずに唱えてもよい)\n進化ではないドラゴン・ゾンビを１体、自分の墓地からバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g417Chance": {
+          "race": "ドラゴン・ゾンビ"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "ドラゴン・ゾンビ"
+            },
+            "optional": false
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "bda49e03cebb95d6bd66be15dc5cd1c6b43a306c7cdbc3d29c6b17f068c99c4f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr07-009",
+      "name": "守護秘伝ウィング・スパーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-009",
+      "faces": [
+        {
+          "name": "守護秘伝ウィング・スパーク",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "アタック・チャンス-《真実の名ワクワク・チャップルン》(自分の《真実の名ワクワク・チャップルン》が攻撃する時、この呪文をコストを支払わずに唱えてもよい)\nバトルゾーンにある相手のクリーチャーをすべてタップする。その後、バトルゾーンにある相手のタップしているクリーチャー１体につき１枚、カードを引く。\nバトルゾーンにある自分の《真実の名ワクワク・チャップルン》を１体、アンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g417Chance": {
+          "g201ExactName": "真実の名ワクワク・チャップルン"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          },
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "owner": "opponent",
+            "filter": {
+              "creature": true,
+              "tapped": true
+            }
+          },
+          {
+            "op": "Target",
+            "owner": "self",
+            "untap": true,
+            "filter": {
+              "g201ExactName": "真実の名ワクワク・チャップルン"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "24555c3baf265d7088855ab5bc3ee7aa338af389112e74ead82c6b1b4ba018da",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr07-032",
+      "name": "狩人秘伝ハンター・ファイア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-032",
+      "faces": [
+        {
+          "name": "狩人秘伝ハンター・ファイア",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "アタック・チャンス-ハンター(自分のハンターが攻撃する時、この呪文をコストを支払わずに唱えてもよい)\nバトルゾーンにある自分のハンター１体と、相手のクリーチャー１体を選び、その２体をバトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g417Chance": {
+          "race": "ハンター"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "optional": false,
+            "g419FightFilter": {
+              "race": "ハンター"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "ad7a66b0aa46321d25f8706a96426b6175947837c7cf5b65ab45455eec6ba7f9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr07-001",
+      "name": "真実の名 ワクワク・チャップルン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-001",
+      "faces": [
+        {
+          "name": "真実の名 ワクワク・チャップルン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中から《守護秘伝ウィング・スパーク》を１枚選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ガーディアン/アンノウン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "g201ExactName": "守護秘伝ウィング・スパーク"
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "160736998812083529f19645bb0cb6bc2d4b9d6c34829447a7767a696dcb112c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-021",
+      "name": "接続秘伝ドミニオンスパイク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-021",
+      "faces": [
+        {
+          "name": "接続秘伝ドミニオンスパイク",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "{GS} G・ストライク（この呪文を自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nアタック・チャンス：自然のディスペクター（自分の自然のディスペクターが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n自分のクリーチャー１体と相手のクリーチャーを１体選ぶ。その２体をバトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "g417Chance": {
+          "color": "自然",
+          "race": "ディスペクター"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "optional": false
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "a0c150200794c6b2a497055a3bf005979ed3acf06723f40c6dbe2bb00d63351d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex2-038",
+      "name": "蒼龍秘伝ファイナル・レボリューション",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-038",
+      "faces": [
+        {
+          "name": "蒼龍秘伝ファイナル・レボリューション",
+          "typeText": "呪文",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "アタック・チャンス：名前に《ドギラゴン》とあるクリーチャー（名前に《ドギラゴン》とある自分のクリーチャーが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\nコスト６以下の多色クリーチャーを１体、自分のマナゾーンから出す。",
+          "race": "ドラゴン",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g417Chance": {
+          "name": "ドギラゴン"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "max": 6,
+              "multi": true
+            },
+            "optional": false
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex2-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "0f43b59b751a10befd679e8aacfdcd2a4279dffabaf6aed38d8fb301bdb6863c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-057",
+      "name": "超化秘伝ヨロコビノウタ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-057",
+      "faces": [
+        {
+          "name": "超化秘伝ヨロコビノウタ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "アタック・チャンス：ハイパーモード状態のクリーチャー（自分のハイパーモードを解放しているクリーチャーが攻撃する時、この呪文をコストを支払わずに唱えてもよい）\n相手のクリーチャーを２体まで選び、タップする。次の相手ターンのはじめに、それらはアンタップされない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g417Chance": {
+          "hyper": true
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "g210TapLock": true,
+            "optional": true,
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-057.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "dc0533e49a1f427da58013a60d018a0ff114cf2819957cc42fe2b4a250c32ba2",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex15-b038": 4,
+      "dmr06-013": 4,
+      "dmr07-009": 4,
+      "dmr07-032": 4,
+      "dmr07-001": 4,
+      "dmrp18-021": 4,
+      "dm24ex2-038": 4,
+      "dm24rp1-057": 4
+    }
+  }
+}

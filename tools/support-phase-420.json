@@ -1,0 +1,488 @@
+{
+  "phase": 420,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4346,
+  "description": "プレイヤーごとの直前のカード使用を記録し、サイクロンの条件付き手札帰還と小型呪文の共通処理を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37513/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37514/",
+    "https://dm.takaratomy.co.jp/rule/qa/41281/",
+    "https://dm.takaratomy.co.jp/rule/qa/49021/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm19-102",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm19-034",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm21-029",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm19-058",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm16-028",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm19-078",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm19-110",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm19-094",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm19-086",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm19-046",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm30-012"
+  ],
+  "cards": [
+    {
+      "id": "dm19-102",
+      "name": "ガトリング・サイクロン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-102",
+      "faces": [
+        {
+          "name": "ガトリング・サイクロン",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "サイクロン(このターン、この呪文を唱える直前にクリーチャーを召喚していれば、この呪文を唱えた後、墓地に置くかわりに自分の手札に戻す)\nパワー2000以下の相手のクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g420Cyclone": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 2000
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-102.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "397427163b7034c8c2468849100d375bfd9e9e2bf5602a33256728bd1f0d0373",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-034",
+      "name": "ジェット・サイクロン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-034",
+      "faces": [
+        {
+          "name": "ジェット・サイクロン",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "サイクロン(このターン、この呪文を唱える直前にクリーチャーを召喚していれば、この呪文を唱えた後、墓地に置くかわりに自分の手札に戻す)\nバトルゾーンにある自分のクリーチャー１体は、このターンの終わりまで「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g420Cyclone": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g301Grant": true,
+            "grant": {
+              "speedAttacker": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "cf6b908052811dd0ddc345bae24c687fb654efbe9a5e50af2930363850d4f365",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm21-029",
+      "name": "ゾンビ・サイクロン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-029",
+      "faces": [
+        {
+          "name": "ゾンビ・サイクロン",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "サイクロン(このターン、この呪文を唱える直前にクリーチャーを召喚していれば、この呪文を唱えた後、墓地に置くかわりに自分の手札に戻す)\nクリーチャーを１体、自分の墓地から手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g420Cyclone": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "9a2f4569562f1b3b918b0866945bbe9061b977f9eb9903c5b0ee20f075590709",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-058",
+      "name": "バイス・サイクロン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-058",
+      "faces": [
+        {
+          "name": "バイス・サイクロン",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "サイクロン(このターン、この呪文を唱える直前にクリーチャーを召喚していれば、この呪文を唱えた後、墓地に置くかわりに自分の手札に戻す)\n相手は自分自身の手札を１枚選び、捨てる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g420Cyclone": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-058.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "e11529c643aea300279430f4a06f43901818497e1522adfb3343e53df2bdafdd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-028",
+      "name": "バッド・タンバリン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-028",
+      "faces": [
+        {
+          "name": "バッド・タンバリン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは攻撃することができない。\nこのクリーチャーが破壊された時、相手は自分自身の手札を１枚選び、捨てる。",
+          "race": "ガーゴイル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g172Death": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "5a0841913a0954c62336c70f2967f35b8cc7818f3f1b38e1d6dec3a659b6dfa2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-078",
+      "name": "バリアー・サイクロン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-078",
+      "faces": [
+        {
+          "name": "バリアー・サイクロン",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "サイクロン(このターン、この呪文を唱える前にクリーチャーを召喚していれば、この呪文を唱えた後、墓地に置くかわりに自分の手札に戻す)\n自分の手札を１枚、裏向きのまま自分のシールドに加える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g420Cyclone": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "shields",
+            "n": 1,
+            "optional": false
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-078.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "78cd1782f1a761565c7e56808ac946feb4979d2440965f6d627ffbbb0b25c73f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-110",
+      "name": "フェアリー・サイクロン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-110",
+      "faces": [
+        {
+          "name": "フェアリー・サイクロン",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "サイクロン(このターン、この呪文を唱える直前にクリーチャーを召喚していれば、この呪文を唱えた後、墓地に置くかわりに自分の手札に戻す)\n自分の山札の上から１枚目を、自分のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g420Cyclone": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-110.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "a4f92b00612af4d2e819ba5facc9dca4ea6b44f35eff9d03a4381f2890f9062b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-094",
+      "name": "ブラッディ・サイクロン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-094",
+      "faces": [
+        {
+          "name": "ブラッディ・サイクロン",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "サイクロン(このターン、この呪文を唱える直前にクリーチャーを召喚していれば、この呪文を唱えた後、墓地に置くかわりに自分の手札に戻す)\nバトルゾーンにある自分のクリーチャー１体は、このターンの終わりまで「スレイヤー」を得る。(「スレイヤー」を得たクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g420Cyclone": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "slayer": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-094.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "4a9471cfba15a593157ac02a0a8037d8ed4c5a02f49f871e25bffe7ecc806789",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-086",
+      "name": "ブレイン・サイクロン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-086",
+      "faces": [
+        {
+          "name": "ブレイン・サイクロン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "サイクロン(このターン、この呪文を唱える直前にクリーチャーを召喚していれば、この呪文を唱えた後、墓地に置くかわりに自分の手札に戻す)\nカードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g420Cyclone": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-086.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "00a3f8a4700686a76c7d880de6c3a699b8a244ca20b762e7f6d22ba3b1581060",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-046",
+      "name": "リバース・サイクロン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-046",
+      "faces": [
+        {
+          "name": "リバース・サイクロン",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "サイクロン(このターン、この呪文を唱える直前にクリーチャーを召喚していれば、この呪文を唱えた後、墓地に置くかわりに自分の手札に戻す)\nバトルゾーンにある相手のクリーチャーを１体選び、タップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g420Cyclone": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "96f2ebe364a28194e3b6888e79144de1afd3638441791a9d156808411ee947fd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm30-012",
+      "name": "威牙忍クロカゲ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-012",
+      "faces": [
+        {
+          "name": "威牙忍クロカゲ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ニンジャ・ストライク ４(相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが４枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかった場合、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを自分の山札の一番下に置く)\nこのクリーチャーをバトルゾーンに出した時、相手は自分自身の手札を１枚選び捨てる。",
+          "race": "ゴースト/シノビ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 4,
+        "ninjaColors": [],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm30-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "8ecefa14a13c0e3a13f07e8b85e18cda9f3f3139b15fb589c22bd95940649a77",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm19-102": 4,
+      "dm19-034": 4,
+      "dm21-029": 4,
+      "dm19-058": 4,
+      "dm16-028": 4,
+      "dm19-078": 4,
+      "dm19-110": 4,
+      "dm19-094": 4,
+      "dm19-086": 4,
+      "dm19-046": 4,
+      "dm30-012": 4
+    }
+  }
+}

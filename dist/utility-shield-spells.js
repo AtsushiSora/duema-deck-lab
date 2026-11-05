@@ -6,7 +6,7 @@ export function createUtilityShieldSpells(api){
  const follow=(t,op,more={})=>({...t,op:'g71_'+op,...more});
  function run(s,t){if(!t.op.startsWith('g71_'))return false;const own=s.players[t.p];switch(t.op){
  case'g71_Critical':choice(s,t,'破壊する相手のブロッカーを1体選ぶ',targetOptions(s,t.p,living(s,1-t.p).filter(x=>effective(x,s).blocker)));break;
- case'g71_Plus':if(api.canAddShield(s,t.p)&&own.deck.length)choice(s,t,'山札の上1枚を裏向きに重ねるシールドを選ぶ',own.shields.map((x,i)=>opt('シールド '+(i+1)+'（カード'+api.shieldCards(x).length+'枚）',api.shieldGroup(x),-api.shieldCards(x).length)));break;
+ case'g71_Plus':if(api.canAddShield(s,t.p)&&own.deck.length)choice(s,t,'山札の上1枚を裏向きに重ねるシールドを選ぶ',[...own.shields.map((x,i)=>opt('シールド '+(i+1)+'（カード'+api.shieldCards(x).length+'枚）',api.shieldGroup(x),t.optional?(own.deck.length<=1?-1000:10-api.shieldCards(x).length):-api.shieldCards(x).length)),...(t.optional?[opt('使わない',null,0)]:[])]);break;
  case'g71_Surf':put(s,task('g69_Bounce',t.p,t.source),task('g34_Draw',t.p,t.source,{n:1}));break;
  case'g71_Strong':put(s,task('g69_Bounce',t.p,t.source),follow(t,'StrongDraw'));break;
  case'g71_StrongDraw':if(living(s,t.p).some(x=>currentPower(s,x)>=6000)){const win=living(s,t.p).some(x=>effective(x,s).shako);choice(s,t,'カードを1枚引く？',[opt('1枚引く',true,own.deck.length>1?10:win?100:-100),opt('引かない',false,0)]);}break;

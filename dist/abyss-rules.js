@@ -1,3 +1,4 @@
+import {forceAttackTargets} from './forced-attack-targets.js?v=0.521.0';
 import {policyRemove,policyTake,policyLook} from './champion-zone-policy.js';
 // No.13: grave summons, delayed returns, private Mekraid and borrowed entry abilities.
 export function createAbyssRules(api){
@@ -82,7 +83,7 @@ export function createAbyssRules(api){
  mainActions(s,p){const granted=creatures(s,p).some(x=>effective(x,s).abyssLordGrave);return s.players[p].grave.filter(x=>card(x).type==='creature'&&(card(x).abyssRush||granted&&abyss(card(x)))&&api.canCast(s,p,card(x))&&api.canEnter(s,p,card(x),{origin:'grave',execution:true})&&api.canPay(s,p,{...card(x),summonOrigin:'grave'})&&(!card(x).evolution||api.evolutionBases(s,p,card(x)).length)).map(x=>({kind:'play',uid:x.uid,cardId:x.cardId,origin:'grave',manaPermit:'abyssRush',cost:api.summonCost(s,p,{...card(x),summonOrigin:'grave'}),label:'墓地の'+card(x).name+'をアビスラッシュで召喚'}));},
  playerPermission(s,x){return !x.sealed&&api.allLayers(x).some(y=>y.g13Rush?.some(r=>r.turn===s.turn));},
  attack(s,p,x){for(const y of api.allLayers(x))for(const r of y.g13Rush||[])if(r.turn===s.turn)r.attacked=true;if(api.selfStopped(s,p))return;const c=effective(x,s);if(c.g338Noradi)on(s,p,x,'g13_Noradi');if(c.abyssWMek)on(s,p,x,'g13_WMek');if(c.abyssMurder&&darkCount(s,p)>=3)on(s,p,x,'g13_Borrow',{lastKnownPower:api.power(x,false,s)});},
- attackFilter(s,p,actions){const first=s.g23Attacks?.[p]?.turn!==s.turn||!s.g23Attacks[p].count;const forced=creatures(s,1-p).filter(x=>effective(x,s).bairas||first&&effective(x,s).abyssLord).map(x=>x.uid);if(!forced.length)return actions;return actions.filter(a=>a.kind!=='attack'||!actions.some(b=>b.kind==='attack'&&b.uid===a.uid&&forced.includes(b.target))||forced.includes(a.target));},
+ attackFilter(s,p,actions){return forceAttackTargets(s,p,actions,api);},
  discarded(s,p){for(const y of creatures(s,1-p))if(effective(y,s).abyssTeresco)on(s,1-p,y,'optionalDrawOne');},
  start(s,p){return creatures(s,1-p).filter(x=>effective(x,s).abyssTeresco).map(x=>({player:1-p,uid:x.uid,source:x.cardId,effect:'extended',task:task('discard',p,x.cardId,{n:1,causedBy:1-p,random:true})}));},
  end(s){const out=[];for(const p of[0,1])for(const x of s.players[p].battle){for(const y of api.allLayers(x))if(y.g13Rush?.some(r=>r.turn===s.turn&&(!r.conditional||r.attacked)))out.push({player:p,uid:y.uid,source:y.cardId,effect:'extended',task:task('g13_Return',p,y.cardId,{uid:y.uid,incarnation:y.incarnation||0})});if(p===s.active&&!x.sealed){if(effective(x,s).abyssLord)out.push({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g13_Lord',p,x.cardId)});if(effective(x,s).abyssFoot)out.push({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g13_Foot',p,x.cardId)});}}return out;},
