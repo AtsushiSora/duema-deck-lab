@@ -1,0 +1,467 @@
+{
+  "phase": 447,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4526,
+  "description": "攻撃先に指定された時と相手の呪文・能力で選ばれた時の誘発を共通化する。攻撃宣言とブロックを区別し、待機効果は元のクリーチャーが離れても解決する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/40643/",
+    "https://dm.takaratomy.co.jp/rule/qa/38596/",
+    "https://dm.takaratomy.co.jp/rule/qa/45069/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35723/",
+    "https://dm.takaratomy.co.jp/rule/qa/39563/"
+  ],
+  "cards": [
+    {
+      "id": "dm13-047",
+      "name": "ジョーのツールキット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-047",
+      "faces": [
+        {
+          "name": "ジョーのツールキット",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃された時、相手のパワー2000以下のクリーチャーを１体破壊してもよい。",
+          "race": "ゼノパーツ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g447Attacked": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "optional": true,
+            "filter": {
+              "maxPower": 2000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "37ed7957d74f05417ec6aec0e11ce276e4281f48093366ce77ddf998065268d6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-087",
+      "name": "ハッチッチ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-087",
+      "faces": [
+        {
+          "name": "ハッチッチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃された時または相手に選ばれた時、自分の山札の上から１枚目をマナゾーンに置く。\nシンカパワー：このクリーチャーが進化する時、自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "グランセクト/レクスターズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g447Attacked": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ],
+        "g447Selected": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ],
+        "g397Shinka": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-087.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c0e52d5f0d792d915d1cba112f6f690efd97bfe3e87c234587cf6c44fe6ab40a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-060",
+      "name": "奇石 プンギ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-060",
+      "faces": [
+        {
+          "name": "奇石 プンギ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃された時または相手に選ばれた時、相手のクリーチャーを１体選び、タップする。\nシンカパワー：このクリーチャーが進化する時、相手のクリーチャーを１体選び、タップする。",
+          "race": "メタリカ/レクスターズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g447Attacked": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ],
+        "g447Selected": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ],
+        "g397Shinka": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-060.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "83b02d55276ebab9b45d2133be53bdd810263020fdd660e1bbaf13e7982e3b24",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-073",
+      "name": "凶鬼星号 ヴォルガル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-073",
+      "faces": [
+        {
+          "name": "凶鬼星号 ヴォルガル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃された時または相手に選ばれた時、相手は自身の手札を１枚選び、捨てる。\nシンカパワー：このクリーチャーが進化する時、相手は自身の手札を１枚選び、捨てる。",
+          "race": "マフィ・ギャング/レクスターズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g447Attacked": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ],
+        "g447Selected": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ],
+        "g397Shinka": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-073.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "2b2c74f6f7ed723a39f383a0a515161613825929e49fe6ccc9e69bc797a1f783",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-079",
+      "name": "星舞神 G・W・D",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-079",
+      "faces": [
+        {
+          "name": "星舞神 G・W・D",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃された時または相手に選ばれた時、相手のパワー3000以下のクリーチャーを１体破壊する。\nシンカパワー：このクリーチャーが進化する時、相手のパワー3000以下のクリーチャーを１体破壊する。",
+          "race": "ビートジョッキー/レクスターズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g447Attacked": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ],
+        "g447Selected": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ],
+        "g397Shinka": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-079.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "5a6642ba09360d77c0e69ccea736a3806d308f07f1712e86fc7581008a45d48f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm13-043",
+      "name": "爆弾人形ニヤーリ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-043",
+      "faces": [
+        {
+          "name": "爆弾人形ニヤーリ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃された時、そのターンの終わりまで、このクリーチャーは｢スレイヤー｣を得る。(｢スレイヤー｣を得たクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)",
+          "race": "デスパペット",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g447Attacked": [
+          {
+            "op": "ShinkaGrant397",
+            "grant": {
+              "slayer": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "3df3d02a1ce736c5f5f355976493ded42dabc5b877ea2145945493b15e0cfb34",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm17-045",
+      "name": "反撃人形デビルモモ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-045",
+      "faces": [
+        {
+          "name": "反撃人形デビルモモ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃された時、そのターンの終わりまで、このクリーチャーのパワーは+5000される。",
+          "race": "デスパペット",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g447Attacked": [
+          {
+            "op": "ShinkaGrant397",
+            "power": 5000
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm17-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "cbf309c28d5ae6ab47c8887be846a9fff13f1f7d28ce5920f514b3c481c363a6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-066",
+      "name": "復元されし者 モンハタ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-066",
+      "faces": [
+        {
+          "name": "復元されし者 モンハタ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃された時または相手に選ばれた時、カードを１枚引く。\nシンカパワー：このクリーチャーが進化する時、カードを１枚引く。",
+          "race": "ムートピア/レクスターズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g447Attacked": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ],
+        "g447Selected": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ],
+        "g397Shinka": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-066.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "df3957a7a935f4567916c69ee788cf16b62c575511bfd455463f3d3f1e2072c2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm13-038",
+      "name": "予言者リエーレ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-038",
+      "faces": [
+        {
+          "name": "予言者リエーレ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃された時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。",
+          "race": "ライトブリンガー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g447Attacked": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "b45db648919f16845fd18fe355fc84e7e08b4aec3c60026c4a2d3e1f62507762",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-090",
+      "name": "罠々男",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-090",
+      "faces": [
+        {
+          "name": "罠々男",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃された時、そのターン、このクリーチャーは「スレイヤー」を得る。(「スレイヤー」を得たクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)",
+          "race": "ヘドリアン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g447Attacked": [
+          {
+            "op": "ShinkaGrant397",
+            "grant": {
+              "slayer": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-090.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "24b7b145070f1e6cd5c0f5523d9d5a5e283b7a574e725aa155689969000df79e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm13-047": 4,
+      "dmrp20-087": 4,
+      "dmrp20-060": 4,
+      "dmrp20-073": 4,
+      "dmrp20-079": 4,
+      "dm13-043": 4,
+      "dm17-045": 4,
+      "dmrp20-066": 4,
+      "dm13-038": 4,
+      "dm28-090": 4
+    }
+  }
+}

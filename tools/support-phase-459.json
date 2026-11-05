@@ -1,0 +1,415 @@
+{
+  "phase": 459,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4625,
+  "description": "各プレイヤー自身による手札・クリーチャーの選択と、両側の選択後の移動を共通化して10種類に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmr02-039",
+      "name": "アクア・スラッシュ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-039",
+      "faces": [
+        {
+          "name": "アクア・スラッシュ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、各プレイヤーは自身の手札を１枚選び、持ち主の山札の上に置く。",
+          "race": "リキッド・ピープル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EachPlayer459",
+            "origin": "hand",
+            "to": "deckTop"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr02-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "9004e7a36c4c7d21a76ac000cb6de8726be3c07b26bc16103f18e40f4046f570",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex09-019",
+      "name": "ジャック・豆ルソン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex09-019",
+      "faces": [
+        {
+          "name": "ジャック・豆ルソン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "キリフダッシュ [nn03]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを [nn03]支払って召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、各プレイヤーは自身のクリーチャーを１体ずつ選び、マナゾーンに置く。",
+          "race": "ジョーカーズ/チーム切札",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "kirifudaDash": 3,
+        "g402DashColors": [
+          "自然"
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EachPlayer459",
+            "origin": "battle",
+            "to": "mana"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex09-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "dc88d5b0cbfe213e0372802666708f9e19eb938efd388e71d320b3af44ba48dc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23bd4-007",
+      "name": "ハナサキ・ゲルグラノス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-007",
+      "faces": [
+        {
+          "name": "ハナサキ・ゲルグラノス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nこのクリーチャーが出た時、各プレイヤーは自身のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "バルーン・マッシュルーム・ドラゴン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EachPlayer459",
+            "origin": "battle",
+            "to": "mana"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd4-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "d868ac63fed46aac07aca7627cfaad107520eb84a60747258f5fd348b84d4a8b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp15-053",
+      "name": "戯具 ドゥラッパ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-053",
+      "faces": [
+        {
+          "name": "戯具 ドゥラッパ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、各プレイヤーは自身の手札を１枚選び、捨てる。\nこのクリーチャーが破壊される時、墓地に置くかわりに手札に戻す。",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "destroyToHand": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EachPlayer459",
+            "origin": "hand",
+            "to": "grave",
+            "discard": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "77ed66ad9f5d5c34dcb1e4764019d78577d7c2e84267082a1a603a68a1f75abb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-067",
+      "name": "死神ゼノミックナウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-067",
+      "faces": [
+        {
+          "name": "死神ゼノミックナウ",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n各プレイヤーは自身のクリーチャーを１体選び、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EachPlayer459",
+            "origin": "battle",
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-067.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "3105fa936957f9d5fab398761f0343f9add743da4d818bfca8dc588f39884e1b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr12-055",
+      "name": "双月怪鳥 パルプ・フィクション",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-055",
+      "faces": [
+        {
+          "name": "双月怪鳥 パルプ・フィクション",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、各プレイヤーは自身の手札を１枚選び、マナゾーンに置く。",
+          "race": "アウトレイジ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EachPlayer459",
+            "origin": "hand",
+            "to": "mana"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr12-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "407210bac40a468fb6da52c033c4a58bb33535b850167d976a0e840fc83261ee",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp06-074",
+      "name": "堕魔 ヴォビンゴ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-074",
+      "faces": [
+        {
+          "name": "堕魔 ヴォビンゴ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、各プレイヤーは、それぞれ１枚ずつ自身の手札を選び、捨てる。",
+          "race": "マフィ・ギャング/魔導具",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EachPlayer459",
+            "origin": "hand",
+            "to": "grave",
+            "discard": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-074.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "3fe51e378c0e03bbfc695e28bd880f3292c2ba4a0d48e0f47aa4c6f5c985c513",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2-063",
+      "name": "噴霧怪人ドポイズン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-063",
+      "faces": [
+        {
+          "name": "噴霧怪人ドポイズン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、各プレイヤーは自身のクリーチャーを１体選び、破壊する。",
+          "race": "デビルマスク",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EachPlayer459",
+            "origin": "battle",
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-063.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "cae2280e6afeecf288a0c5235f13458431ec25b94c68ae915b1f4aa600c453fb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp07-077",
+      "name": "夜更人形ジェニコ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-077",
+      "faces": [
+        {
+          "name": "夜更人形ジェニコ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、各プレイヤーは自身の手札を１枚選び、捨てる。",
+          "race": "デスパペット",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EachPlayer459",
+            "origin": "hand",
+            "to": "grave",
+            "discard": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-077.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "7e014791cf2357bde1c20e22c16ebbdd5126633e1fc0718bc302a0f27479535c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp3-063",
+      "name": "龍装医 スティーツ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-063",
+      "faces": [
+        {
+          "name": "龍装医 スティーツ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、各プレイヤーは自身の手札を１枚選び、捨てる。",
+          "race": "ドラゴンギルド/マフィ・ギャング",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EachPlayer459",
+            "origin": "hand",
+            "to": "grave",
+            "discard": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-063.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "8611e09ecb988bb2bfa8aa1d3d56898168e55dce5a4037b8dbb7c6d517052733",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr02-039": 4,
+      "dmex09-019": 4,
+      "dm23bd4-007": 4,
+      "dmrp15-053": 4,
+      "dm25rp2-067": 4,
+      "dmr12-055": 4,
+      "dmrp06-074": 4,
+      "dm23rp2-063": 4,
+      "dmrp07-077": 4,
+      "dm26rp3-063": 4
+    }
+  }
+}

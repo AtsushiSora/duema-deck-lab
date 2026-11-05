@@ -1,0 +1,227 @@
+{
+  "phase": 438,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4458,
+  "description": "超魂Xの呪文選択耐性と攻撃時の手札交換・全体強化を共通処理で対応。進化元からは超魂X以降の能力だけを与える。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-015",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-008",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-010"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp1-015",
+      "name": "トルネド＝ネード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-015",
+      "faces": [
+        {
+          "name": "トルネド＝ネード",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、カードを１枚引き、自分の手札を１枚捨てる。その後、相手のクリーチャーを１体選び、持ち主の手札に戻してもよい。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\n相手は呪文によってこのクリーチャーを選べない。",
+          "race": "アズールアビス/フュージョナー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "spellUntargetable": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          },
+          {
+            "op": "Target",
+            "to": "hand",
+            "optional": true
+          }
+        ],
+        "g404Soul": {
+          "spellUntargetable": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "139ed9657f6c82f6624de4837cf0b3b7982e57fd1d571cbd1a1b21cbafc9975f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-008",
+      "name": "深淵の洪怖 ソクトー＝ソレクトー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-008",
+      "faces": [
+        {
+          "name": "深淵の洪怖 ソクトー＝ソレクトー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク\nジャストダイバー\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、自分はカードを２枚引き、各プレイヤーは自身の手札を１枚選び、捨てる。",
+          "race": "アビスロイヤル/フュージョナー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "justDiver": true,
+        "g34Attack": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          },
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ],
+        "g404Soul": {
+          "g34Attack": [
+            {
+              "op": "Draw",
+              "n": 2
+            },
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 1
+            },
+            {
+              "op": "Discard",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "257c1c2af445f746fa6d4ec50262b74586d9f2a906561005dd6280d746857bc9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-010",
+      "name": "咎十字YUNAGI-10",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-010",
+      "faces": [
+        {
+          "name": "咎十字YUNAGI-10",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マッハファイター\nこのクリーチャーが出た時、自分の山札の上から１枚をマナゾーンに置いてもよい。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、このターン、自分のクリーチャーすべてのパワーを+4000し、「パワード・ブレイカー」を与える。",
+          "race": "スノーフェアリー/テクノ・サムライ/フュージョナー",
+          "powerText": "4000+",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "GroupPower",
+            "g214GroupPower": true,
+            "owner": "self",
+            "power": 4000,
+            "filter": {
+              "creature": true
+            }
+          },
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "grant": {
+              "poweredBreaker": true
+            }
+          }
+        ],
+        "g404Soul": {
+          "g34Attack": [
+            {
+              "op": "GroupPower",
+              "g214GroupPower": true,
+              "owner": "self",
+              "power": 4000,
+              "filter": {
+                "creature": true
+              }
+            },
+            {
+              "op": "GroupGrant364",
+              "owner": "self",
+              "filter": {
+                "creature": true
+              },
+              "grant": {
+                "poweredBreaker": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "14472bc2bc1e34344787710c32b4c099e0a32ec515d932e6abbb56ce6fc63618",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp1-015": 4,
+      "dm25rp2-008": 4,
+      "dm25rp1-010": 4
+    }
+  }
+}

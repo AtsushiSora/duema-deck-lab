@@ -1,0 +1,618 @@
+{
+  "phase": 455,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4591,
+  "description": "スペース・チャージの追加効果と通常の誘発能力に共通の対象選択・追加ブレイク・タップ維持・手札の引き直しを接続する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37588/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37684/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36336/"
+  ],
+  "cards": [
+    {
+      "id": "dmr01-082",
+      "name": "セブ・サルガス・ボウズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-082",
+      "faces": [
+        {
+          "name": "セブ・サルガス・ボウズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スペース・チャージ：闇（自分のマナゾーンに闇のカードが置かれた時、このクリーチャーの q 能力を使ってもよい）\nq このターン、バトルゾーンにある自分のクリーチャー１体は「スレイヤー」を得る。（「スレイヤー」を得たクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+          "race": "マーフォーク/エイリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g454Space": [
+          {
+            "color": "闇",
+            "defs": [
+              {
+                "op": "Target",
+                "owner": "self",
+                "grant": {
+                  "slayer": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-082.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "cda149db3aa124d2a20b150b69d4c2927e1d878152cad846933c8adcc4190818",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr02-019",
+      "name": "ディス・カマキラス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-019",
+      "faces": [
+        {
+          "name": "ディス・カマキラス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nスペース・チャージ：火/自然（自分のマナゾーンに火、自然のいずれかまたは両方を持つカードが置かれた時、このクリーチャーの q 能力を使ってもよい）\nq 火：このターン、バトルゾーンにある自分のクリーチャー１体は「パワーアタッカー+3000」を得る。\nq 自然：このターン、バトルゾーンにある自分のクリーチャー１体はシールドをさらに１枚ブレイクする。",
+          "race": "ビークル・ビー/エイリアン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g454Space": [
+          {
+            "color": "火",
+            "defs": [
+              {
+                "op": "Target",
+                "owner": "self",
+                "power": 3000,
+                "g337PowerAttacker": true,
+                "title": "このターン、パワーアタッカー+3000を与える自分のクリーチャーを1体選ぶ"
+              }
+            ]
+          },
+          {
+            "color": "自然",
+            "defs": [
+              {
+                "op": "Target",
+                "owner": "self",
+                "g455ExtraBreak": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr02-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "644352b0fb8a4ed02d391e682f9df8e34a4543cb91abff8fd47db7754d7040e6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-024",
+      "name": "ヤミノザビメガパー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-024",
+      "faces": [
+        {
+          "name": "ヤミノザビメガパー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー ブロッカー\nスペース・チャージ：火（自分のマナゾーンに火のカードが置かれた時、このクリーチャーの q 能力を使ってもよい）\nq このターン、このクリーチャーは「パワーアタッカー+5000」を得、シールドをさらにもう１枚ブレイクする。",
+          "race": "ダーク・モンスター/エイリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g454Space": [
+          {
+            "color": "火",
+            "defs": [
+              {
+                "op": "Sequence",
+                "defs": [
+                  {
+                    "op": "SelfBoost313",
+                    "power": 5000,
+                    "g337PowerAttacker": true
+                  },
+                  {
+                    "op": "SelfExtraBreak444",
+                    "amount": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "b1076eda8ceca3312fa3a5b55db1a8ec42c12d11d82ad0c4431a12bcdecbfc50",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-089",
+      "name": "火銃秘宝ザビ・グリーゼ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-089",
+      "faces": [
+        {
+          "name": "火銃秘宝ザビ・グリーゼ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スペース・チャージ：火（自分のマナゾーンに火のカードが置かれた時、このクリーチャーの q 能力を使ってもよい）\nq パワー4000以下の、「ブロッカー」を持つ相手のクリーチャーを１体破壊する。",
+          "race": "パンドラボックス/エイリアン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g454Space": [
+          {
+            "color": "火",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 4000,
+                  "g199Power": true,
+                  "blocker": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-089.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "8fa6a2b594bc44936401498ea4300c6dafedde47808c521486edeea77c307e2a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp2-029",
+      "name": "鎧亜寄生パラス・キューピッド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-029",
+      "faces": [
+        {
+          "name": "鎧亜寄生パラス・キューピッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、相手のクリーチャーを１体選び、タップする。次の自分のターンのはじめまで、それはアンタップしない。\nスペース・チャージ（自分のマナゾーンにカードが置かれた時、そのカードの文明に合うq能力を使ってもよい）\nq 闇：相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを−2000する。（パワーが０以下のクリーチャーは破壊される）",
+          "race": "ロスト・クルセイダー/エイリアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "g291UntapUntilSelf": true
+          }
+        ],
+        "g454Space": [
+          {
+            "color": "闇",
+            "defs": [
+              {
+                "op": "Target",
+                "power": -2000,
+                "g242PowerMinus": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "348fda891d7a7ef29add59492a9f8136d0603e556b61d3cf5f3c337c98ea29c0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp2-041",
+      "name": "鎧亜寄生パラス・ミュージック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-041",
+      "faces": [
+        {
+          "name": "鎧亜寄生パラス・ミュージック",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "バトル中、このクリーチャーのパワーを+3000する。\nスペース・チャージ（自分のマナゾーンにカードが置かれた時、そのカードの文明に合うq能力を使ってもよい）\nq 光：相手のクリーチャーを１体選び、タップする。次の自分のターンのはじめまで、そのクリーチャーはアンタップしない。",
+          "race": "ロスト・クルセイダー/エイリアン",
+          "powerText": "2000+",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g38BattleBonus": 3000,
+        "g454Space": [
+          {
+            "color": "光",
+            "defs": [
+              {
+                "op": "Target",
+                "tap": true,
+                "g291UntapUntilSelf": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "a9a4621d1106391167461a78986347e9fbe10f7add2770fb6d19a32629ee4560",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr03-015",
+      "name": "鎧亜戦隊ディス・キューピッド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-015",
+      "faces": [
+        {
+          "name": "鎧亜戦隊ディス・キューピッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nスペース・チャージ：光/闇（自分のマナゾーンに光、闇のいずれかまたは両方を持つカードが置かれた時、このクリーチャーの q 能力を使ってもよい）\nq 光：バトルゾーンにある相手のクリーチャーを１体選び、タップする。\nq 闇：相手はバトルゾーンにある自身のタップされているクリーチャーを１体選び、破壊する。",
+          "race": "ロスト・クルセイダー/エイリアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g454Space": [
+          {
+            "color": "光",
+            "defs": [
+              {
+                "op": "Select",
+                "owner": "opponent",
+                "origin": "battle",
+                "n": 1,
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true,
+                "g193Tap": true,
+                "title": "タップする相手のクリーチャーを1体選ぶ"
+              }
+            ]
+          },
+          {
+            "color": "闇",
+            "defs": [
+              {
+                "op": "OpponentSelect",
+                "n": 1,
+                "to": "grave",
+                "filter": {
+                  "tapped": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "1e7ff28b88a99084d7e92ebcce8a611582a70f619844df7bec413d6ab3279558",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr03-017",
+      "name": "鎧亜戦隊ディス・ボクサー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-017",
+      "faces": [
+        {
+          "name": "鎧亜戦隊ディス・ボクサー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nスペース・チャージ：水/火（自分のマナゾーンに水、火のいずれかまたは両方を持つカードが置かれた時、このクリーチャーの q 能力を使ってもよい）\nq 水：このターン、バトルゾーンにある自分のクリーチャー１体はブロックされない。\nq 火：このターン、バトルゾーンにある自分のクリーチャー１体は「パワーアタッカー+4000」を得、シールドをさらに１枚ブレイクする。",
+          "race": "ロスト・クルセイダー/エイリアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g454Space": [
+          {
+            "color": "水",
+            "defs": [
+              {
+                "op": "Target",
+                "owner": "self",
+                "grant": {
+                  "unblockable": true
+                },
+                "title": "このターン、ブロックされなくする自分のクリーチャーを1体選ぶ"
+              }
+            ]
+          },
+          {
+            "color": "火",
+            "defs": [
+              {
+                "op": "Target",
+                "owner": "self",
+                "power": 4000,
+                "g337PowerAttacker": true,
+                "g455ExtraBreak": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "bca2da16e3cc147079d8dcd966fe6d30f6b0e5fd62c9fd7996364cee4d71fbaf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-s05",
+      "name": "黒神龍ザビ・カシオペヤ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-s05",
+      "faces": [
+        {
+          "name": "黒神龍ザビ・カシオペヤ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スペース・チャージ：水（自分のマナゾーンに水のカードが置かれた時、このクリーチャーの q 能力を使ってもよい）\nq 自分の手札をすべて捨て、その後、カードを５枚まで引く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "ドラゴン・ゾンビ/エイリアン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g454Space": [
+          {
+            "color": "水",
+            "defs": [
+              {
+                "op": "DiscardAll244",
+                "draw": 0
+              },
+              {
+                "op": "DrawUpTo",
+                "n": 5
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-s05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "6631dabf3eb80cec9f8dda2c91f97fcafdcd38e8cb04b5ae6311c29afffe087b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-073",
+      "name": "知力の求道者ガガ・シータ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-073",
+      "faces": [
+        {
+          "name": "知力の求道者ガガ・シータ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nスペース・チャージ：水（自分のマナゾーンに水のカードが置かれた時、このクリーチャーの q 能力を使ってもよい） q カードを１枚引く。",
+          "race": "メカサンダー/エイリアン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g454Space": [
+          {
+            "color": "水",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-073.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c42b15e0505c7d7c4bbaf1148a92c9e86206b4915386a8671143ff1b15b6b81a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp2-048",
+      "name": "熱血刃 ニケ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-048",
+      "faces": [
+        {
+          "name": "熱血刃 ニケ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\nこのクリーチャーが出た時または離れた時、相手のクリーチャーを１体選び、タップする。次の自分のターンのはじめまで、そのクリーチャーはアンタップしない。",
+          "race": "アウトレイジ・コマンドMAX/革命軍/ハムカツ団",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "justDiver": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "g291UntapUntilSelf": true
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Target",
+            "tap": true,
+            "g291UntapUntilSelf": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "77ffe1d48b9e777617b7547269a35ae4fa0fb5c5189697273a4fc7934c9a31d6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp2-067",
+      "name": "狼牙獣鎌拳",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-067",
+      "faces": [
+        {
+          "name": "狼牙獣鎌拳",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを−4000する。（パワーが０以下のクリーチャーは破壊される）\nこのターン、自分のクリーチャー１体のパワーを+4000する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -4000,
+            "g242PowerMinus": true,
+            "spell": true
+          },
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 4000,
+            "title": "パワーを+4000する自分のクリーチャーを1体選ぶ",
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-067.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "958ed14a37e3da35460831e5699f846c3947979045bfb36fcec2a10809b806ce",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr01-082": 4,
+      "dmr02-019": 4,
+      "dmr01-024": 4,
+      "dmr01-089": 4,
+      "dm26rp2-029": 4,
+      "dm26rp2-041": 4,
+      "dmr03-015": 4,
+      "dmr03-017": 4,
+      "dmr01-s05": 4,
+      "dmr01-073": 4,
+      "dm26rp2-048": 4,
+      "dm26rp2-067": 4
+    }
+  }
+}

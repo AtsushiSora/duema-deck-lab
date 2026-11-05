@@ -1,0 +1,330 @@
+{
+  "phase": 444,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4507,
+  "description": "クルー・ブレイカーの動的カウントとスリリング・スリーによる追加ブレイクを共通化する。多色進化と攻撃中の枚数パワーも扱う。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35314/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35733/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37655/"
+  ],
+  "cards": [
+    {
+      "id": "dm10-s06",
+      "name": "アルティメット・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-s06",
+      "faces": [
+        {
+          "name": "アルティメット・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーのパワーは、バトルゾーンにある自分の他のドラゴン１体につき+5000される。\nクルー・ブレイカー:ドラゴン(このクリーチャーは、バトルゾーンにある自分の他のドラゴン１体につき、シールドをさらにもう１枚ブレイクする)",
+          "race": "アーマード・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g207CountPower": {
+          "zone": "battle",
+          "other": true,
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "amount": 5000
+        },
+        "g444Crew": {
+          "filter": {
+            "race": "ドラゴン"
+          },
+          "other": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-s06.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "575e56422463ff0eda43be98286590040eb2c82afd19c39c2c510e16a61b1bd9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22-048",
+      "name": "フレミングジェット・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-048",
+      "faces": [
+        {
+          "name": "フレミングジェット・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nスリリング・スリー:ドラゴン(このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を表向きにする。表向きにしたドラゴン１体につき、次の能力を１回行ってもよい。その後、表向きにしたカードをすべて、好きな順序で山札の一番下に戻す)\nこのターン、このクリーチャーはシールドをもう１枚ブレイクする。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Thrill443",
+            "races": [
+              "ドラゴン"
+            ],
+            "defs": [
+              {
+                "op": "SelfExtraBreak444",
+                "amount": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "5eaa4c9f432dfc77f981e2c23824a3b8b7fd4c0f4639f9dd5c947b89a5cc54b3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx15-008",
+      "name": "規格外 T.G.V.",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-008",
+      "faces": [
+        {
+          "name": "規格外 T.G.V.",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nスリリング・スリー：アウトレイジ（このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚をすべてのプレイヤーに見せる。表向きにしたアウトレイジ１体につき、次の h 能力を１回行ってもよい。その後、表向きにしたカードをすべて、好きな順序で山札の一番下に戻す） h このターン、このクリーチャーはシールドをさらに１枚ブレイクする。",
+          "race": "アウトレイジMAX",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Thrill443",
+            "races": [
+              "アウトレイジ"
+            ],
+            "defs": [
+              {
+                "op": "SelfExtraBreak444",
+                "amount": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx15-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "b3df4e6c87abd7b0722a3d26f27e5a0b3086f740604193223238928121ca145f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr03-006",
+      "name": "光神龍オメガ・アルティメット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-006",
+      "faces": [
+        {
+          "name": "光神龍オメガ・アルティメット",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーのパワーは、バトルゾーンにある自分の他のハンター１体につき+5000される。\nクルー・ブレイカー:ハンター（このクリーチャーは、バトルゾーンにある自分の他のハンター１体につき、シールドをさらにもう１枚ブレイクする）",
+          "race": "アポロニア・ドラゴン/ハンター",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g207CountPower": {
+          "zone": "battle",
+          "other": true,
+          "filter": {
+            "creature": true,
+            "race": "ハンター"
+          },
+          "amount": 5000
+        },
+        "g444Crew": {
+          "filter": {
+            "race": "ハンター"
+          },
+          "other": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "cb33f3f1b5d567097fc51a2f39974f132bf540e879d93fd5ab25b027c5800c10",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-002",
+      "name": "雷神の求道者センジュ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-002",
+      "faces": [
+        {
+          "name": "雷神の求道者センジュ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nクルー・ブレイカー:ブロッカー(このクリーチャーは、バトルゾーンにある自分の他の「ブロッカー」を持つクリーチャー１体につき、シールドをさらにもう１枚ブレイクする)",
+          "race": "メカサンダー",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g444Crew": {
+          "filter": {
+            "blocker": true
+          },
+          "other": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "7331bb6a90fa87dcbf6c9bf029e61ae2f93da7a2c769056ffa636223605758ad",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-029",
+      "name": "シグマ・トゥレイト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-029",
+      "faces": [
+        {
+          "name": "シグマ・トゥレイト",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化ー自分のサバイバー１体の上に置く。\nクルー・ブレイカー:サバイバー(シールドを攻撃したとき、バトルゾーンにある自分の他のサバイバー１体につき、シールドをさらにもう１枚ブレイクする)",
+          "race": "サバイバー",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "サバイバー"
+        },
+        "g444Crew": {
+          "filter": {
+            "race": "サバイバー"
+          },
+          "other": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "7d32cc092e1f42d980ccebd12aa92b65ec2203f8610200a5be00c30b3bc24f9e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26-009",
+      "name": "星鎧亜イカロス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-009",
+      "faces": [
+        {
+          "name": "星鎧亜イカロス",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分の多色クリーチャー１体の上に置く。\nクルー・ブレイカー:多色クリーチャー(このクリーチャーは、バトルゾーンにある自分の多色クリーチャー１体につき、シールドをさらに１枚ブレイクする)\nこのクリーチャーは、バトルゾーンにある自分の多色クリーチャー１体につき「パワーアタッカー+5000」を得る。",
+          "race": "メカ・デル・ソル/ロスト・クルセイダー",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "multicolor": true
+        },
+        "g444Crew": {
+          "filter": {
+            "multi": true
+          }
+        },
+        "g207CountPower": {
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "multi": true
+          },
+          "amount": 5000,
+          "attackOnly": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "9675d7d220bbcfdf735a3b3635dcb8a8ff82f99cf430f8086eb29f5c894a8a92",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm10-s06": 4,
+      "dm22-048": 4,
+      "dmx15-008": 4,
+      "dmr03-006": 4,
+      "dmr01-002": 4,
+      "dm06-029": 4,
+      "dm26-009": 4
+    }
+  }
+}

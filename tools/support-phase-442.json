@@ -1,0 +1,332 @@
+{
+  "phase": 442,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4489,
+  "description": "装備中の攻撃時ドロー・検索を行うアクセル、味方の装備を参照するスーパー・アクセル、侍流ジェネレートを共通処理で対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37504/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37495/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37506/"
+  ],
+  "cards": [
+    {
+      "id": "dmpcd02-a10",
+      "name": "アクア・コテガエシ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd02-a10",
+      "faces": [
+        {
+          "name": "アクア・コテガエシ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "アクセル（このクリーチャーにクロスギアがクロスされている時、このクリーチャーに次の a能力を与える）\naこのクリーチャーが攻撃する時、カードを１枚引く。",
+          "race": "リキッド・ピープル/サムライ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g436Crossed": true
+          },
+          "grants": {
+            "g34Attack": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmpcd02-a10.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "b0b6f685bd72eb9e7357033276f0f36c00249efe27d9e74acf12940fcad0297b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-s08",
+      "name": "ボルバルザーク・紫電・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-s08",
+      "faces": [
+        {
+          "name": "ボルバルザーク・紫電・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "侍流ジェネレート(このクリーチャーをバトルゾーンに出した時、自分の手札にあるクロスギアを１枚、コストを支払わずにジェネレートしてもよい)\n各ターン、このクリーチャーがはじめてタップした時、アンタップする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン/サムライ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "samuraiGenerate": true,
+        "g191FirstTapUntap": true,
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-s08.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "2e76db5d54a644d7072ffb6e4e98449cf04505fe81963f471a9a6ae1d533a6ca",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-018",
+      "name": "戦技の化身",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-018",
+      "faces": [
+        {
+          "name": "戦技の化身",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "アクセル(このクリーチャーにクロスギアがクロスされている時、このクリーチャーは次の能力を得る)\nこのクリーチャーが攻撃する時、自分の山札を見る。その中からクリーチャー１体またはクロスギア１枚を選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "ミステリー・トーテム",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g436Crossed": true
+          },
+          "grants": {
+            "g34Attack": [
+              {
+                "op": "Look",
+                "g201Search": true,
+                "g200Search": true,
+                "n": "all",
+                "stages": [
+                  {
+                    "n": 1,
+                    "to": "hand",
+                    "optional": true,
+                    "reveal": true,
+                    "filter": {
+                      "any": [
+                        {
+                          "creature": true
+                        },
+                        {
+                          "g228Face": {
+                            "type": "gear"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "rest": "shuffle"
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "53d353d7813b348662e85e9f5aad49e9df964f410a5471ef335a6395b6e03bc7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-065",
+      "name": "天狗の化身",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-065",
+      "faces": [
+        {
+          "name": "天狗の化身",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "侍流ジェネレート(このクリーチャーをバトルゾーンに出した時、自分の手札にあるクロスギアを１枚、コストを支払わずにジェネレートしてもよい)\nアクセル(このクリーチャーにクロスギアがクロスされている時、このクリーチャーは次の能力を得る)\nこのクリーチャーのパワーは+4000され、「W・ブレイカー」を得る。",
+          "race": "ミステリー・トーテム/サムライ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "samuraiGenerate": true,
+        "g260Self": {
+          "filter": {
+            "g436Crossed": true
+          },
+          "grants": {
+            "power": 4000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-065.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "8d3884e3f462b2705c5e6d7db0169049ac0c9010cb169383730d0d5f52b905e3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm29-024",
+      "name": "封魔ラセツ・コロンゾン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-024",
+      "faces": [
+        {
+          "name": "封魔ラセツ・コロンゾン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スーパー・アクセル(バトルゾーンにある自分のクリーチャーにクロスギアがクロスされている時、このクリーチャーは次の能力を得る)\nこのクリーチャーのパワーは+3000され、「W・ブレイカー」を得る。",
+          "race": "グランド・デビル/サムライ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g442CrossedAlly": true
+          },
+          "grants": {
+            "power": 3000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm29-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c198166584dda0f3bd6d2e110aa795002605cc367a6ac3a2009fc77ef04eecc2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-058",
+      "name": "風来の雲ベンケイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-058",
+      "faces": [
+        {
+          "name": "風来の雲ベンケイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "侍流ジェネレート(このクリーチャーをバトルゾーンに出した時、自分の手札にあるクロスギアを１枚、コストを支払わずにジェネレートしてもよい)",
+          "race": "ドリームメイト/サムライ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "samuraiGenerate": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-058.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "94744f80d3571698b66816cb0d62d839bd6014d53b0e8d150d21ffe467cb7cbe",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-105",
+      "name": "風来の股旅ビワノシン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-105",
+      "faces": [
+        {
+          "name": "風来の股旅ビワノシン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "アクセル(このクリーチャーにクロスギアがクロスされている時、このクリーチャーは次の能力を得る)\nこのクリーチャーが攻撃する時、自分の山札を見る。その中からサムライを１枚選び、相手に見せてから手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "ワイルド・ベジーズ/サムライ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g436Crossed": true
+          },
+          "grants": {
+            "g34Attack": [
+              {
+                "op": "Look",
+                "g201Search": true,
+                "g200Search": true,
+                "n": "all",
+                "stages": [
+                  {
+                    "n": 1,
+                    "to": "hand",
+                    "optional": true,
+                    "reveal": true,
+                    "filter": {
+                      "race": "サムライ"
+                    }
+                  }
+                ],
+                "rest": "shuffle"
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-105.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "0f0885b54df0813bbbfca4aebbd14390ebf577053ea1473e68ee20f034c646fc",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmpcd02-a10": 4,
+      "dm28-s08": 4,
+      "dm16-018": 4,
+      "dm28-065": 4,
+      "dm29-024": 4,
+      "dm28-058": 4,
+      "dm28-105": 4
+    }
+  }
+}

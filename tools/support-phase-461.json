@@ -1,0 +1,362 @@
+{
+  "phase": 461,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4643,
+  "description": "各プレイヤーの任意ドローと手札入れ替え、ターン開始時にそのプレイヤーへ解決する効果を共通化する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/46060/"
+  ],
+  "cards": [
+    {
+      "id": "dmr15-039",
+      "name": "アクア工作員 シャミセン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-039",
+      "faces": [
+        {
+          "name": "アクア工作員 シャミセン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、各プレイヤーはそれぞれカードを３枚引いてもよい。そうしたプレイヤーは、自身の手札を３枚捨てる。",
+          "race": "リキッド・ピープル閃",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "PlayersDraw461",
+            "n": 3,
+            "optional": true,
+            "discard": 3
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "7bb7e2ac277295b4cc810c8e5abd4f8cfa03decaf4b4f7bc770f2dec261ddce6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22ex1-047",
+      "name": "キキの海幻",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-047",
+      "faces": [
+        {
+          "name": "キキの海幻",
+          "typeText": "タマシード",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "シンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\n各プレイヤーのターンのはじめに、そのプレイヤーはカードを１枚引いてもよい。",
+          "race": "ゴッド/レクスターズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "shinkalize": true,
+        "g461TurnPlayer": true,
+        "g174Start": [
+          {
+            "op": "PlayersDraw461",
+            "activeOnly": true,
+            "n": 1,
+            "optional": true
+          }
+        ],
+        "g179OpponentStart": [
+          {
+            "op": "PlayersDraw461",
+            "activeOnly": true,
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "d5ab7947b5b68802fac03f45a1ede6177670ae57ec2ea1c15a2c047ca8ecb969",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-026",
+      "name": "シャワ＝アガール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-026",
+      "faces": [
+        {
+          "name": "シャワ＝アガール",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇/火",
+          "civilizations": [
+            "水",
+            "闇",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\nこのクリーチャーが出た時、各プレイヤーは、自身の手札を１枚選び、捨てる。その後、自分はカードを２枚引く。",
+          "race": "アビスロイヤル",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "justDiver": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EachPlayer459",
+            "origin": "hand",
+            "to": "grave",
+            "discard": true
+          },
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "5adf994d482ec5caf99e7972990f847dac02de9b9f49351f877ccc677feb6b63",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm29-011",
+      "name": "パステル・ジェリー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-011",
+      "faces": [
+        {
+          "name": "パステル・ジェリー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "各プレイヤーは、自分自身のターンのはじめに、カードを１枚引いてもよい。そうした場合、そのプレイヤーは手札を１枚捨てる。",
+          "race": "サイバー・ウイルス",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g174Start": [
+          {
+            "op": "PlayersDraw461",
+            "activeOnly": true,
+            "n": 1,
+            "optional": true,
+            "discard": 1
+          }
+        ],
+        "g179OpponentStart": [
+          {
+            "op": "PlayersDraw461",
+            "activeOnly": true,
+            "n": 1,
+            "optional": true,
+            "discard": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm29-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "091c92fd7597f83001e6e42ee73c640e6813b9c18f22cef40456cc60c09c8dbd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm12-041",
+      "name": "ファンキー・ウィザード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-041",
+      "faces": [
+        {
+          "name": "ファンキー・ウィザード",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーをバトルゾーンに出した時、各プレイヤーはカードを１枚引いてもよい。",
+          "race": "マーフォーク",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "PlayersDraw461",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "8f4eeedf94234bf82b41d8cc06b332475090bea89de66fbb5f52c85627088aec",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr09-s08",
+      "name": "新世界 シューマッハ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-s08",
+      "faces": [
+        {
+          "name": "新世界 シューマッハ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、各プレイヤーは自身の手札をすべて捨てる。その後、それぞれカードを５枚まで引いてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アウトレイジMAX",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "PlayersDiscardDraw461",
+            "n": 5
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-s08.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "03b651d86c0c13b1ca7daada98ffa76796f04ae80f021629ecfd0482757e674f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex2-080",
+      "name": "新世代の旅立ち",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-080",
+      "faces": [
+        {
+          "name": "新世代の旅立ち",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "各プレイヤーは自身の手札をすべて捨てる。その後、各プレイヤーはカードを５枚まで引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "PlayersDiscardDraw461",
+            "n": 5
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex2-080.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "5818fd74436a3b7f2f1be0bc96582fff850a67a2fe3cf00e92f0cd29a4742944",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc34-010",
+      "name": "暴走機械オーバースキル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc34-010",
+      "faces": [
+        {
+          "name": "暴走機械オーバースキル",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "各プレイヤーは、自分自身のターンのはじめにカードを１枚引く。\n相手がバトルゾーンからクリーチャーを選ぶ時、このクリーチャーを選ぶことはできない。(ただし、このクリーチャーを攻撃またはブロックしてもよい)",
+          "race": "グレートメカオー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "untargetable": true,
+        "g174Start": [
+          {
+            "op": "PlayersDraw461",
+            "activeOnly": true,
+            "n": 1
+          }
+        ],
+        "g179OpponentStart": [
+          {
+            "op": "PlayersDraw461",
+            "activeOnly": true,
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc34-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "9397861858a29999c33db4f4c0d4dd5d13541d25bdbd37ff6fcb89b524350d81",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr15-039": 4,
+      "dm22ex1-047": 4,
+      "dm25rp1-026": 4,
+      "dm29-011": 4,
+      "dm12-041": 4,
+      "dmr09-s08": 4,
+      "dm23ex2-080": 4,
+      "dmc34-010": 4
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import {forceAttackTargets} from './forced-attack-targets.js?v=0.521.0';
+import {forceAttackTargets} from './forced-attack-targets.js?v=0.555.0';
 import {policyRemove,policyLook} from './champion-zone-policy.js';
 // Physical multi-base evolution and Phoenix effects. All choices survive JSON round-trips.
 export function createPhoenixRules(api){

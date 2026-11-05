@@ -1,3 +1,37 @@
+import {STANDARD467_DECKS} from './fixtures/standard467.mjs';
+import {STANDARD466_DECKS} from './fixtures/standard466.mjs';
+import {STANDARD465_DECKS} from './fixtures/standard465.mjs';
+import {STANDARD464_DECKS} from './fixtures/standard464.mjs';
+import {STANDARD463_DECKS} from './fixtures/standard463.mjs';
+import {STANDARD462_DECKS} from './fixtures/standard462.mjs';
+import {STANDARD461_DECKS} from './fixtures/standard461.mjs';
+import {STANDARD460_DECKS} from './fixtures/standard460.mjs';
+import {STANDARD459_DECKS} from './fixtures/standard459.mjs';
+import {STANDARD458_DECKS} from './fixtures/standard458.mjs';
+import {STANDARD457_DECKS} from './fixtures/standard457.mjs';
+import {STANDARD456_DECKS} from './fixtures/standard456.mjs';
+import {STANDARD455_DECKS} from './fixtures/standard455.mjs';
+import {STANDARD454_DECKS} from './fixtures/standard454.mjs';
+import {STANDARD453_DECKS} from './fixtures/standard453.mjs';
+import {STANDARD452_DECKS} from './fixtures/standard452.mjs';
+import {STANDARD451_DECKS} from './fixtures/standard451.mjs';
+import {STANDARD450_DECKS} from './fixtures/standard450.mjs';
+import {STANDARD449_DECKS} from './fixtures/standard449.mjs';
+import {STANDARD448_DECKS} from './fixtures/standard448.mjs';
+import {STANDARD447_DECKS} from './fixtures/standard447.mjs';
+import {STANDARD446_DECKS} from './fixtures/standard446.mjs';
+import {STANDARD445_DECKS} from './fixtures/standard445.mjs';
+import {STANDARD444_DECKS} from './fixtures/standard444.mjs';
+import {STANDARD443_DECKS} from './fixtures/standard443.mjs';
+import {STANDARD442_DECKS} from './fixtures/standard442.mjs';
+import {STANDARD441_DECKS} from './fixtures/standard441.mjs';
+import {STANDARD440_DECKS} from './fixtures/standard440.mjs';
+import {STANDARD439_DECKS} from './fixtures/standard439.mjs';
+import {STANDARD438_DECKS} from './fixtures/standard438.mjs';
+import {STANDARD437_DECKS} from './fixtures/standard437.mjs';
+import {STANDARD436_DECKS} from './fixtures/standard436.mjs';
+import {STANDARD435_DECKS} from './fixtures/standard435.mjs';
+import {STANDARD434_DECKS} from './fixtures/standard434.mjs';
 import {STANDARD433_DECKS} from './fixtures/standard433.mjs';
 import {STANDARD432_DECKS} from './fixtures/standard432.mjs';
 import {STANDARD431_DECKS} from './fixtures/standard431.mjs';
@@ -1033,3 +1067,63 @@ for(const deck of STANDARD431_DECKS)if(validateDeck(deck).length||registry.cover
 for(const deck of STANDARD432_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('任意のタップ登場の検証デッキが不正');console.log('Checked standard432 two legal forties: entry-state choices, physical holding, S Trigger, Kirifuda Dash and attack targets.');
 
 for(const deck of STANDARD433_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('タマシード条件のS・トリガー検証デッキが不正');console.log('Checked standard433 two legal forties: tamaseed-conditioned shield triggers, Star evolution and counter effects.');
+for(const deck of STANDARD434_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('水晶ソウル検証デッキが不正');console.log('Checked standard434 two legal forties: Crystal Soul summon payments, conditional mana values and shield counter effects.');
+for(const deck of STANDARD435_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('メタモーフ検証デッキが不正');console.log('Checked standard435 two legal forties: Metamorph entry timing, flexible evolution bases, attack recovery and attack protection.');
+for(const deck of STANDARD436_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('アクセル検証デッキが不正');console.log('Checked standard436 two legal forties: Accel crossing conditions, live race and power grants, speed attacks and death snapshots.');
+for(const deck of STANDARD437_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('スーパー・S・トリガー検証デッキが不正');console.log('Checked standard437 two legal forties: Super S Trigger spell execution, captured shield conditions and sequential counter effects.');
+
+for(const deck of STANDARD438_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('超魂X検証デッキが不正');console.log('Checked standard438 two legal forties: Soul X spell protection, attack hand exchange and group power grants.');
+
+for(const deck of STANDARD439_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('タップ能力検証デッキが不正');console.log('Checked standard439 two legal forties: activated tap abilities, summoning sickness and attack-step choices.');
+
+for(const deck of STANDARD440_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('タップ能力の回収・支援検証デッキが不正');console.log('Checked standard440 two legal forties: tap mana and grave recovery, private ordering, group bounce and temporary grants.');
+
+for(const deck of STANDARD441_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('タップ能力の除去・攻撃支援検証デッキが不正');console.log('Checked standard441 two legal forties: tap removal, blind discard, conditional ramp and temporary attack grants.');
+
+for(const deck of STANDARD442_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('アクセル・侍流ジェネレート検証デッキが不正');console.log('Checked standard442 two legal forties: dynamic crossed-gear conditions, attack searches and Samurai Generation.');
+
+for(const deck of STANDARD443_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('スリリング・スリー検証デッキが不正');console.log('Checked standard443 two legal forties: public Thrilling Three reveals, optional repeat effects and bottom ordering.');
+
+for(const deck of STANDARD444_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('追加ブレイク検証デッキが不正');console.log('Checked standard444 two legal forties: dynamic Crew Breaker and optional additional breaks.');
+
+for(const deck of STANDARD445_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('選択式シンカパワー検証デッキが不正');console.log('Checked standard445 two legal forties: modal Shinka Power, evolution and sequential zone effects.');
+
+for(const deck of STANDARD446_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('進化後の強化検証デッキが不正');console.log('Checked standard446 two legal forties: host buffs, battle wins and optional or mandatory shield exchange.');
+
+for(const deck of STANDARD447_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('被攻撃・被選択検証デッキが不正');console.log('Checked standard447 two legal forties: declared defenders, opponent selections and independent Shinka Power.');
+
+for(const deck of STANDARD448_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('追加G・ゼロ検証デッキが不正');console.log('Checked standard448 two legal forties: per-turn G-Zero counts, live battlefield conditions and optional NEO evolution.');
+
+for(const deck of STANDARD449_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('伝説の呪文検証デッキが不正');console.log('Checked standard449 two legal forties: mana entry reveal, optional untap and seven complete spells.');
+
+for(const deck of STANDARD450_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('制限つきゾーン召喚検証デッキが不正');console.log('Checked standard450 two legal forties: once-per-provider origin summons, evolution, Sasage and grave-to-mana entry effects.');
+
+for(const deck of STANDARD451_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('S・トリガー・プラス検証デッキが不正');console.log('Checked standard451 two legal forties: conditional trigger bonuses, printed spell order and independent creature entry effects.');
+
+for(const deck of STANDARD452_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('連鎖検証デッキが不正');console.log('Checked standard452 two legal forties: optional lower-cost chain deployment, Holy Field and ordinary trigger entry.');
+
+for(const deck of STANDARD453_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('ロスト・プリズム検証デッキが不正');console.log('Checked standard453 two legal forties: optional public top card, mandatory multicolor recovery and preserved top on a miss.');
+
+for(const deck of STANDARD454_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('スペース・チャージ検証デッキが不正');console.log('Checked standard454 two legal forties: mana event colors, optional grouped Space Charge and printed effect order.');
+
+for(const deck of STANDARD455_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('追加効果検証デッキが不正');console.log('Checked standard455 two legal forties: Space Charge buffs, live removal, shield breaks, lock duration and hand refill.');
+
+for(const deck of STANDARD456_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid next reduction fixture');console.log('Checked standard456 two legal forties: next matching use discounts, payment choices and free-use consumption.');
+
+for(const deck of STANDARD457_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid conditional creature fixture');console.log('Checked standard457 two legal forties: live race and shield conditions, blockers, breakers and shield-count payment.');
+
+for(const deck of STANDARD458_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid battle condition fixture');console.log('Checked standard458 two legal forties: post-battle destruction, opponent colors, attack targets and flexible evolution races.');
+
+for(const deck of STANDARD459_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid each-player fixture');
+console.log('Checked standard459 legal forties: each-player choices, simultaneous battle movement, self selection and discard attribution.');
+
+for(const deck of STANDARD460_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid hand cycle fixture');console.log('Checked standard460 legal forties: discard counts, ordered hand resets, shared shuffle and saved continuations.');
+
+for(const deck of STANDARD461_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid shared draw fixture');console.log('Checked standard461 legal forties: independent draw choices, discard ownership and active-player turn triggers.');
+
+for(const deck of STANDARD462_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid hand reveal fixture');console.log('Checked standard462 legal forties: revealed hand colors, unique card counts and conditional follow-up effects.');
+for(const deck of STANDARD463_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid first summon fixture');console.log('Checked standard463 legal forties: turn-wide summon history, color groups and optional first-summon payment.');
+for(const deck of STANDARD464_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid optional once-per-turn summon fixture');console.log('Checked standard464 legal forties: individually selected once-per-turn summon reducers, saved payments and later-use preservation.');
+for(const deck of STANDARD465_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid destruction protection fixture');console.log('Checked standard465 legal forties: live and lasting destruction prevention, zero-power immunity and battle-only safety.');
+for(const deck of STANDARD466_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid battle safety fixture');console.log('Checked standard466 legal forties: opponent-power boundaries, source-owned battle effects and distinct element costs.');
+for(const deck of STANDARD467_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid chosen destination fixture');console.log('Checked standard467 legal forties: ordered target and top-card destinations, blind choices and Knight spell triggers.');

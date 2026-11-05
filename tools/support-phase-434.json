@@ -1,0 +1,292 @@
+{
+  "phase": 434,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4430,
+  "description": "水晶ソウル2を召喚時だけの裏向きマナ数字変更として共通化し、既存の登場時能力と組み合わせる。任意のマナ送りと手札のシールド化も完全な能力文で認識する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/44611/",
+    "https://dm.takaratomy.co.jp/rule/qa/45912/",
+    "https://dm.takaratomy.co.jp/rule/qa/43061/"
+  ],
+  "cards": [
+    {
+      "id": "dm23ex3-039",
+      "name": "偽りの名 イハッカ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-039",
+      "faces": [
+        {
+          "name": "偽りの名 イハッカ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\n水晶ソウル２（このクリーチャーを召喚する時、自分のマナゾーンにある裏向きのカードのマナの数字は２になる）\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、破壊する。",
+          "race": "デーモン・コマンド/アンノウン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g434CrystalSoul": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "grave",
+            "title": "破壊する相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "63ac1d8ed1d0949a8f7b60e1ed4270166908680d6ab4c9b6ec8129cef48e73ff",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-036",
+      "name": "偽りの名 システイス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-036",
+      "faces": [
+        {
+          "name": "偽りの名 システイス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\n水晶ソウル２（このクリーチャーを召喚する時、自分のマナゾーンにある裏向きのカードのマナの数字は２になる）\nこのクリーチャーが出た時、相手のクリーチャーを３体まで選ぶ。次の自分のターンのはじめまで、それらのクリーチャーは攻撃もブロックもできない。",
+          "race": "マジック・コマンド/アンノウン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g434CrystalSoul": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 3,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを3体まで選ぶ",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "082cfc9168ce389193451747a726aa22aea2b89e8411774d1e9d66e7b4f2ec8e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-031",
+      "name": "偽りの名 ドルーシ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-031",
+      "faces": [
+        {
+          "name": "偽りの名 ドルーシ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\n水晶ソウル２（このクリーチャーを召喚する時、自分のマナゾーンにある裏向きのカードのマナの数字は２になる）\nこのクリーチャーが出た時、カードを１枚引き、自分の手札を１枚シールド化する。",
+          "race": "メカ・デル・ソル/アンノウン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g434CrystalSoul": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "shields",
+            "n": 1,
+            "optional": false
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "f290ea4fa09eebaee8ba60dca4435eab1df4882b881b253c1a90b49e05eb2cdf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-047",
+      "name": "偽りの名 プラット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-047",
+      "faces": [
+        {
+          "name": "偽りの名 プラット",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\n水晶ソウル２（このクリーチャーを召喚する時、自分のマナゾーンにある裏向きのカードのマナの数字は２になる）\nこのクリーチャーが出た時、クリーチャーを１体選び、持ち主のマナゾーンに置いてもよい。",
+          "race": "ジャイアント/アンノウン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g434CrystalSoul": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "mana",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "3749897652797c3112272a713c84e97cfc3f6e5eb2a58632e22c4f4dffee2f03",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-028",
+      "name": "聖斬のコード アシッド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-028",
+      "faces": [
+        {
+          "name": "聖斬のコード アシッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\n水晶ソウル２（このクリーチャーを召喚する時、自分のマナゾーンにある裏向きのカードのマナの数字は２になる）\nこのクリーチャーが出た時、相手のエレメントを１つ選び、持ち主の山札の下に置く。その後、相手はカードを１枚引く。",
+          "race": "アンノウン・セレス",
+          "powerText": "3333",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g434CrystalSoul": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "to": "deck"
+          },
+          {
+            "op": "Draw",
+            "owner": "opponent",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "b6cbcfba6ce25a8f35f4d622709cb8f713f62e50f52368573379d8177c1ba339",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp3-049",
+      "name": "爆翠月 ドリアン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-049",
+      "faces": [
+        {
+          "name": "爆翠月 ドリアン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nハイパーエナジー（このクリーチャーを召喚する時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない）\nこのクリーチャーが出た時、クリーチャーを１体選び、持ち主のマナゾーンに置いてもよい。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "hyperEnergy": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "mana",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "ebf73a8e667c36564cb80386f5bbf0e3e6d4ae756b8bf1593df6075595485b7b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23ex3-039": 4,
+      "dm23ex3-036": 4,
+      "dm23ex3-031": 4,
+      "dm23ex3-047": 4,
+      "dm23ex3-028": 4,
+      "dm24rp3-049": 4
+    }
+  }
+}

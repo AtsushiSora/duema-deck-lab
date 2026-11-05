@@ -1,0 +1,582 @@
+{
+  "phase": 443,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4496,
+  "description": "スリリング・スリーの公開・指定種族の枚数カウント・回数ごとの任意解決・山札の下への並べ替えを共通化する。公開カードは山札に残り、途中の検索・シャッフルやEXライフの影響を受ける。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37655/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36960/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31641/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31654/",
+    "https://dmwiki.net/《超神龍バタル・ネプタラス》"
+  ],
+  "cards": [
+    {
+      "id": "dm21-037",
+      "name": "キャプテン・メチャゴロン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-037",
+      "faces": [
+        {
+          "name": "キャプテン・メチャゴロン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スリリング・スリー：グレートメカオー(このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を表向きにする。表向きにしたグレートメカオー１体につき、次の能力を１回行ってもよい。その後、表向きにしたカードをすべて、好きな順序で山札の一番下に戻す)\nバトルゾーンにある相手のクリーチャーを１体選び、タップする。",
+          "race": "キカイヒーロー",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Thrill443",
+            "races": [
+              "グレートメカオー"
+            ],
+            "defs": [
+              {
+                "op": "Target",
+                "tap": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "2299a939f9967108d60171a61804304d0283d2fc02c10d9a8bf615e3f69e22ba",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm21-049",
+      "name": "サージェント・クワガタン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-049",
+      "faces": [
+        {
+          "name": "サージェント・クワガタン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スリリング・スリー：ドリームメイト(このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を表向きにする。表向きにしたドリームメイト１体につき、次の能力を１回行ってもよい。その後、表向きにしたカードをすべて、好きな順序で山札の一番下に戻す)\n相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+          "race": "ビークル・ビー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Thrill443",
+            "races": [
+              "ドリームメイト"
+            ],
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "blocker": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c87e34beb21dce1bdf0205ea47e4227ebc3c000e97634af917e022120d22c499",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm21-027",
+      "name": "ペインシュート・ドラグーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-027",
+      "faces": [
+        {
+          "name": "ペインシュート・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スリリング・スリー：ティラノ・ドレイクとブレイブ・スピリット(このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を表向きにする。表向きにしたティラノ・ドレイクまたはブレイブ・スピリット１体につき、次の能力を１回行ってもよい。その後、表向きにしたカードをすべて、好きな順序で山札の一番下に戻す)\nバトルゾーンにある相手のクリーチャーを１体選ぶ。このターンの終わりまで、そのクリーチャーのパワーは-3000される。(パワーが０以下のクリーチャーは破壊される)",
+          "race": "ティラノ・ドレイク",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Thrill443",
+            "races": [
+              "ティラノ・ドレイク",
+              "ブレイブ・スピリット"
+            ],
+            "defs": [
+              {
+                "op": "Target",
+                "power": -3000,
+                "g242PowerMinus": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "96c5a0b3ccf38e95e74469b80fe2803bbe55a4895d26b433921372a38732b9b8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm21-001",
+      "name": "仮面鉄人ブリキオン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-001",
+      "faces": [
+        {
+          "name": "仮面鉄人ブリキオン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スリリング・スリー：グレートメカオーとキカイヒーロー(このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を表向きにする。表向きにしたグレートメカオーまたはキカイヒーロー１体につき、次の能力を１回行ってもよい。その後、表向きにしたカードをすべて、好きな順序で山札の一番下に戻す)\n自分の手札またはマナゾーンのカードを１枚、裏向きにして自分のシールドゾーンに加える。",
+          "race": "グレートメカオー",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Thrill443",
+            "races": [
+              "グレートメカオー",
+              "キカイヒーロー"
+            ],
+            "defs": [
+              {
+                "op": "Select",
+                "zones": [
+                  "hand",
+                  "mana"
+                ],
+                "to": "shields",
+                "n": 1,
+                "optional": false
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "ec15da5b0f2f3d30a17bf89d91852bed000ff5778729cb385b7b30f850b49d30",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc34-037",
+      "name": "神託の守護者ミント・シュバール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc34-037",
+      "faces": [
+        {
+          "name": "神託の守護者ミント・シュバール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nスリリング・スリー：ガーディアン(このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を表向きにする。表向きにしたガーディアン１体につき、次の能力を１回行ってもよい。その後、表向きにしたカードをすべて、好きな順序で山札の一番下に戻す)\n呪文を１枚、自分の墓地から手札に戻す。",
+          "race": "ガーディアン",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Thrill443",
+            "races": [
+              "ガーディアン"
+            ],
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "spell": true
+                },
+                "optional": false
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc34-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "049930c392476714f40b82f459897783b94617c44ec5be11f98ddd303500dd9b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23-s04",
+      "name": "超神龍バタル・ネプタラス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-s04",
+      "faces": [
+        {
+          "name": "超神龍バタル・ネプタラス",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化-自分のドラゴン１体の上に置く。\nスリリング・スリー：ドラゴン(このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を表向きにする。表向きにしたドラゴン１体につき、次の能力を１回行ってもよい。その後、表向きにしたカードをすべて、好きな順序で山札の一番下に戻す)\n自分の山札を見る。その中から好きなカードを１枚、自分の手札に加えてもよい。その後、山札をシャッフルする。\nW・ブレイカー",
+          "race": "ポセイディア・ドラゴン",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "ドラゴン"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Thrill443",
+            "races": [
+              "ドラゴン"
+            ],
+            "defs": [
+              {
+                "op": "Look",
+                "g201Search": true,
+                "g200Search": true,
+                "n": "all",
+                "stages": [
+                  {
+                    "n": 1,
+                    "to": "hand",
+                    "optional": true
+                  }
+                ],
+                "rest": "shuffle"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "0967d0e42a14b5104e79cb9305be812b160e01c9a390ecaaf53903102641e511",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm21-055",
+      "name": "秘護精ボアーブス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-055",
+      "faces": [
+        {
+          "name": "秘護精ボアーブス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "スリリング・スリー：アーク・セラフィム(このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を表向きにする。表向きにしたアーク・セラフィム１体につき、次の能力を１回行ってもよい。その後、表向きにしたカードをすべて、好きな順序で山札の一番下に戻す)\nこのターンの終わりまで、バトルゾーンにある自分のクリーチャーすべてのパワーは+1000される。",
+          "race": "セイント・ヘッド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Thrill443",
+            "races": [
+              "アーク・セラフィム"
+            ],
+            "defs": [
+              {
+                "op": "GroupPower",
+                "owner": "self",
+                "power": 1000,
+                "filter": {
+                  "creature": true
+                },
+                "g214GroupPower": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "45ab7b4d8a0e877fa04fac001a9d32aab9fffa3943c2ad030bc2fc8a04e92310",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22-028",
+      "name": "封魔アウグルン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-028",
+      "faces": [
+        {
+          "name": "封魔アウグルン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー\nスリリング・スリー：フェニックス(このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を表向きにする。表向きにしたフェニックス１体につき、次の能力を１回行ってもよい。その後、表向きにしたカードをすべて、好きな順序で山札の一番下に戻す)\n相手のクリーチャーを１体破壊する。\nこのクリーチャーは攻撃することができない。",
+          "race": "グランド・デビル",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Thrill443",
+            "races": [
+              "フェニックス"
+            ],
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "70063d65b6e9b160732285fd4044b26f6cfd80bbe099d6040a86155be813de9b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm21-002",
+      "name": "封魔ヴィレ・アポストロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-002",
+      "faces": [
+        {
+          "name": "封魔ヴィレ・アポストロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "スリリング・スリー：グランド・デビルとディープ・マリーン(このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を表向きにする。表向きにしたグランド・デビルまたはディープ・マリーン１体につき、次の能力を１回行ってもよい。その後、表向きにしたカードをすべて、好きな順序で山札の一番下に戻す)\n他のクリーチャーを１体、バトルゾーンから持ち主の手札に戻す。",
+          "race": "グランド・デビル",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Thrill443",
+            "races": [
+              "グランド・デビル",
+              "ディープ・マリーン"
+            ],
+            "defs": [
+              {
+                "op": "Target",
+                "anyOwner": true,
+                "to": "hand",
+                "g179Other": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "218498d8f0764554ffca5e80319c8c7c7503b4f0e74091c430055262528d67c7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm21-044",
+      "name": "竜脈のダンジェン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-044",
+      "faces": [
+        {
+          "name": "竜脈のダンジェン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スリリング・スリー：ティラノ・ドレイク(このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を表向きにする。表向きにしたティラノ・ドレイク１体につき、次の能力を１回行ってもよい。その後、表向きにしたカードをすべて、好きな順序で山札の一番下に戻す)\nクリーチャーを１体、自分の墓地から手札に戻す。",
+          "race": "ブレイブ・スピリット",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Thrill443",
+            "races": [
+              "ティラノ・ドレイク"
+            ],
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "creature": true
+                },
+                "optional": false
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "55ffefbd5c7b55179dead1f07a602cd81d858081d772107d21b667a62470db6c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm21-005",
+      "name": "霊騎ラーゼ・ミケランジェ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-005",
+      "faces": [
+        {
+          "name": "霊騎ラーゼ・ミケランジェ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "スリリング・スリー：アーク・セラフィムとセイント・ヘッド(このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を表向きにする。表向きにしたアーク・セラフィムまたはセイント・ヘッド１体につき、次の能力を１回行ってもよい。その後、表向きにしたカードをすべて、好きな順序で山札の一番下に戻す)\n進化ではないアーク・セラフィムまたはセイント・ヘッドを１体、自分の手札からバトルゾーンに出す。",
+          "race": "アーク・セラフィム",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Thrill443",
+            "races": [
+              "アーク・セラフィム",
+              "セイント・ヘッド"
+            ],
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 1,
+                "deploy": true,
+                "optional": false,
+                "filter": {
+                  "creature": true,
+                  "nonEvolution": true,
+                  "raceAny": [
+                    "アーク・セラフィム",
+                    "セイント・ヘッド"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "41138dac8c9db8532444ff4c27c1cc47d7fe14cc9ab79767f6fddb7348a25bbb",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm21-037": 4,
+      "dm21-049": 4,
+      "dm21-027": 4,
+      "dm21-001": 4,
+      "dmc34-037": 4,
+      "dm23-s04": 4,
+      "dm21-055": 4,
+      "dm22-028": 4,
+      "dm21-002": 4,
+      "dm21-044": 4,
+      "dm21-005": 4
+    }
+  }
+}

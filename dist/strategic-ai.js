@@ -1,7 +1,7 @@
-import {legendProfile,legendKeepBonus} from './legend-strategy.js?v=0.521.0';
+import {legendProfile,legendKeepBonus} from './legend-strategy.js?v=0.555.0';
 // Bounded planning over public positions. Unknown cards stay unknown: no actual
 // deck order, shields, opponent hand, game seed or game RNG enters this module.
-import {heroCardRole} from './hero-draw.js?v=0.521.0';
+import {heroCardRole} from './hero-draw.js?v=0.555.0';
 import {visibleFinishRoutes} from './attack-plan.js?v=0.147.0';
 export function createStrategicAI(api){
  const {card,faces,effective,power,isCreature,legal,step,rank:baseRank,observe,mark}=api;
@@ -176,7 +176,7 @@ export function createStrategicAI(api){
   if(!own)return rows[0]?.a;
   const c=effective(own,s),loss=creatureValue(s,own);
   return rows.map(r=>{const uid=s.decision.choices[r.a.choice]?.value,target=s.players[1-p].battle.find(x=>x.uid===uid);if(!target)return {...r,value:0};
-   const d=effective(target,s),ap=api.matchupPower(own,target,s.attack?.attacker===own.uid,s),bp=api.matchupPower(target,own,s.attack?.attacker===target.uid,s),wins=ap>bp,loses=!c.g34BattleSafe&&ap<=bp||d.slayer,kills=!d.g34BattleSafe&&ap>=bp||c.slayer;
+   const d=effective(target,s),ap=api.matchupPower(own,target,s.attack?.attacker===own.uid,s),bp=api.matchupPower(target,own,s.attack?.attacker===target.uid,s),wins=ap>bp,loses=!api.battleSafe(s,own,target,bp)&&ap<=bp||d.slayer,kills=!api.battleSafe(s,target,own,ap)&&ap>=bp||c.slayer;
    return {...r,value:(kills?creatureValue(s,target):0)-(loses?loss+1:0)+(wins&&c.gachiWinDraw&&s.players[p].deck.length>1?8:0)};
   }).sort((a,b)=>b.value-a.value||a.a.id-b.a.id)[0]?.a;
  }

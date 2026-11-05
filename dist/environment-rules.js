@@ -1,4 +1,4 @@
-import {afterEntry} from './entry-followup.js?v=0.521.0';
+import {afterEntry} from './entry-followup.js?v=0.555.0';
 import {policyLook} from './champion-zone-policy.js';
 // Missing environment cards: continuations store physical IDs, never detached copies.
 export function createEnvironmentRules(api){

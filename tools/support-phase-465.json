@@ -1,0 +1,229 @@
+{
+  "phase": 465,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4686,
+  "description": "条件付き・期限付き・バトル中の破壊防止とバトル勝利を既存の対象・条件・移動へ接続し、パワー0以下の保護も公式ルールに合わせる。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/45559/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp18-059",
+      "name": "「収納の達人」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-059",
+      "faces": [
+        {
+          "name": "「収納の達人」",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーは破壊されない。",
+          "race": "メタリカ/レクスターズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g465DestroySafe": "end"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-059.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "f50d82c69614c30e035f0a95509f9f39be0b17e23c10dd43076c74bf736d7c87",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp14-064",
+      "name": "「不可視の密偵」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-064",
+      "faces": [
+        {
+          "name": "「不可視の密偵」",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーはブロックされない。\n自分の光のクリーチャーがバトルゾーンにあれば、このクリーチャーは破壊されない。",
+          "race": "リキッド・ピープル/チーム銀河",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "unblockable": true,
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "color": "光"
+          },
+          "grants": {
+            "g465DestroySafe": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-064.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "f839a81187c602713bf6b5e04b9828c2bd23ba733d7ddf8c11e2cb5c48d15a53",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp13-054",
+      "name": "コクヨウ童子",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-054",
+      "faces": [
+        {
+          "name": "コクヨウ童子",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "鬼タイム ：自分のターン中、自分と相手のシールドの数が合計６つ以下なら、このクリーチャーは破壊されない。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g465OwnTurn": true,
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "grants": {
+            "g465DestroySafe": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp13-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "8e604c7f57eaa507469cf81b9fab2e27274c4a8272198dd14c5a4b3fa486e572",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-s01",
+      "name": "太陽の精霊マルシアス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-s01",
+      "faces": [
+        {
+          "name": "太陽の精霊マルシアス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーはすべてのバトルに勝つ。(相手クリーチャーのパワーの方が大きくても、相手クリーチャーはバトルに負ける。バトルしているクリーチャー両方がこの能力を持っている場合は、どちらも破壊されない)",
+          "race": "エンジェル・コマンド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34AlwaysWin": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-s01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "24657f1a7bd7727f2dc7bc558847c1a82f2cf2e21d30fbc36973ad90d5931dda",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd27-007",
+      "name": "爆ぜる革命 ドラッケンA",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd27-007",
+      "faces": [
+        {
+          "name": "爆ぜる革命 ドラッケンA",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "進化―自分の火のクリーチャー１体の上に置く。\nT・ブレイカー\nバトル中、このクリーチャーは破壊されない。\n革命２―このクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、相手のパワー13000以下のクリーチャーをすべて破壊する。",
+          "race": "メガ・コマンド・ドラゴン/革命軍",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "civilization": "火"
+        },
+        "breaker": 3,
+        "g34BattleSafe": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g265ShieldsMax": 2
+            },
+            "defs": [
+              {
+                "op": "Sweep",
+                "to": "grave",
+                "filter": {
+                  "creature": true,
+                  "maxPower": 13000
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd27-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "8239f8af9fe0278138b24fa37e8142006726d12bc6d289c8a52443b1346b3ad6",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp18-059": 4,
+      "dmrp14-064": 4,
+      "dmrp13-054": 4,
+      "dm14-s01": 4,
+      "dmd27-007": 4
+    }
+  }
+}

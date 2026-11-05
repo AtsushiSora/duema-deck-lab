@@ -1,0 +1,379 @@
+{
+  "phase": 462,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4651,
+  "description": "手札の公開選択、文明の組み合わせ、公開枚数と条件による追加効果を共通化する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmr21-064",
+      "name": "U・ナーギ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-064",
+      "faces": [
+        {
+          "name": "U・ナーギ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の手札を２枚まで相手に見せてもよい。それらのカードの文明に水と闇があれば、クリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "サイバー・ウイルス海/革命軍",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandReveal462",
+            "max": 2,
+            "needColors": [
+              "水",
+              "闇"
+            ],
+            "defs": [
+              {
+                "op": "Target",
+                "anyOwner": true,
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-064.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "3e94c31e6b5573e5a2f56381efdb4b06e35c1d251532d0baf7793d9d6f8ad4a3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp03-092",
+      "name": "タルタホル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-092",
+      "faces": [
+        {
+          "name": "タルタホル",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の手札にあるパワー12000以上のクリーチャーを１体、見せてもよい。そうしたら、自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandReveal462",
+            "max": 1,
+            "filter": {
+              "creature": true,
+              "minPower": 12000
+            },
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-092.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "527ee82e4505ac0337d380d4db357ba31043447f1683381f4340d09f662e1b6d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-045",
+      "name": "ネイビー・ネゴシエイター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-045",
+      "faces": [
+        {
+          "name": "ネイビー・ネゴシエイター",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の手札にある光、闇、火、または自然のカードをどれでも好きな枚数見せる。その見せた枚数１枚につき、カードを１枚引く。",
+          "race": "マーフォーク",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandReveal462",
+            "filter": {
+              "any": [
+                {
+                  "anyFaceColor": "光"
+                },
+                {
+                  "anyFaceColor": "闇"
+                },
+                {
+                  "anyFaceColor": "火"
+                },
+                {
+                  "anyFaceColor": "自然"
+                }
+              ]
+            },
+            "drawEach": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "bab6ad3374eb6d032fd668a122075cc5e843f84a9308447aa0e867949eb1c7dc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-074",
+      "name": "メガ・ヒット・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-074",
+      "faces": [
+        {
+          "name": "メガ・ヒット・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の手札を２枚まで相手に見せてもよい。それらのカードの文明に火と自然があれば、相手のパワー4000以下のクリーチャーを１体、破壊する。",
+          "race": "メガ・ドラゴン/革命軍",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandReveal462",
+            "max": 2,
+            "needColors": [
+              "火",
+              "自然"
+            ],
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 4000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-074.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "ebc0d278966407fb5166245009eda7968c4cef6ec0e9bd73ea9c25e20c300490",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-077",
+      "name": "ラディカル・バインド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-077",
+      "faces": [
+        {
+          "name": "ラディカル・バインド",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "バトルゾーンにある相手のクリーチャーを１体選び、タップする。\nコスト７以上の手札を１枚、相手に見せてもよい。そうした場合、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "HandReveal462",
+            "max": 1,
+            "filter": {
+              "anyFaceMinCost": 7
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-077.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "0fc590ed10072ccb8af0b1a7f6b8485da354bc22c915e11e0f409945f368d5ff",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-070",
+      "name": "一夜のヒトヤミィ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-070",
+      "faces": [
+        {
+          "name": "一夜のヒトヤミィ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の手札を２枚まで相手に見せてもよい。それらのカードの文明に闇と火があれば、相手は自身の手札を２枚選び、捨てる。",
+          "race": "ファンキー・ナイトメア/革命軍",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandReveal462",
+            "max": 2,
+            "needColors": [
+              "闇",
+              "火"
+            ],
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "f95528967651c0d141e9cb45864c9f09e89b16e3fbba58d56ebf85125bc00ee9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-028",
+      "name": "黄金の三刃",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-028",
+      "faces": [
+        {
+          "name": "黄金の三刃",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の手札から好きな枚数の光、水、闇または火のカードを見せてもよい。このターン、自分のクリーチャーすべてのパワーは、その見せたカード１枚につき+1000される。",
+          "race": "ビーストフォーク",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandReveal462",
+            "filter": {
+              "any": [
+                {
+                  "anyFaceColor": "光"
+                },
+                {
+                  "anyFaceColor": "水"
+                },
+                {
+                  "anyFaceColor": "闇"
+                },
+                {
+                  "anyFaceColor": "火"
+                }
+              ]
+            },
+            "powerEach": 1000
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "35c14f6f0d970f07132fdcc82241edfc4d6d78564aa81cc4ae2b9e8bfef3876c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr21-064": 4,
+      "dmrp03-092": 4,
+      "dm24-045": 4,
+      "dmr21-074": 4,
+      "dmr05-077": 4,
+      "dmr21-070": 4,
+      "dm24-028": 4
+    }
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "phase": 435,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4436,
+  "description": "マナ7枚で得るメタモーフ能力を共通の動的条件で拡張する。登場時能力は登場時点で条件判定し、進化元の種族許可・攻撃時の回収・登場監視・攻撃保護を組み合わせる。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm14-073",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm14-037",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm14-041",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm14-012",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm14-098",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37467/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35286/"
+  ],
+  "cards": [
+    {
+      "id": "dm14-073",
+      "name": "快癒の使徒リアス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-073",
+      "faces": [
+        {
+          "name": "快癒の使徒リアス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "メタモーフ(自分のマナゾーンに７枚以上カードがあれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、カードを１枚引いてもよい。",
+          "race": "イニシエート",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g272ManaCount": 7
+          },
+          "grants": {
+            "g34Tasks": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-073.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "fd7cd900daffcda2ede6f6ca1bfbc8fa1eac527e220ab2aa5b4eebdbc297ff8a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-037",
+      "name": "式神イノセント",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-037",
+      "faces": [
+        {
+          "name": "式神イノセント",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "メタモーフ(自分のマナゾーンに７枚以上カードがあれば、このクリーチャーは次の能力を得る)\nどんな種族の進化クリーチャーを、このクリーチャーの上に置いてもよい。",
+          "race": "ワンダー・トリック",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g272ManaCount": 7
+          },
+          "grants": {
+            "g293AnyEvolutionRace": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "902336ec2b23a912fa6ea381775b09d7a23074570afb35a8550a695bce5ae52c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-041",
+      "name": "粛清者エルヴィーネ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-041",
+      "faces": [
+        {
+          "name": "粛清者エルヴィーネ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "メタモーフ(自分のマナゾーンに７枚以上カードがあれば、このクリーチャーは次の能力を得る)\nこのクリーチャーが攻撃する時、光の呪文をすべて、自分の墓地から自分の手札に戻してもよい。",
+          "race": "ソルトルーパー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g272ManaCount": 7
+          },
+          "grants": {
+            "g34Attack": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "RecoverAll326",
+                    "zones": [
+                      "grave"
+                    ],
+                    "filter": {
+                      "g228Face": {
+                        "type": "spell",
+                        "color": "光"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "292d45094d6e643a83a1511850cc181891cc50566569acfb82ad7b70576da44c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-012",
+      "name": "粛清者モーリッツ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-012",
+      "faces": [
+        {
+          "name": "粛清者モーリッツ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "メタモーフ(自分のマナゾーンに７枚以上カードがあれば、このクリーチャーは次の能力を得る)\nこのクリーチャーまたは自分の他のクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、タップする。",
+          "race": "ソルトルーパー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g272ManaCount": 7
+          },
+          "grants": {
+            "g251EntryDraw": {
+              "filter": {
+                "creature": true
+              },
+              "selfAlways": true,
+              "defs": [
+                {
+                  "op": "Target",
+                  "tap": true
+                }
+              ]
+            }
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "2f434c7eeb9ca48d34ace58acf2ce6f4e7db2d953f7b273a1ccaf16da7638a8d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-098",
+      "name": "突撃兵ルギーザ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-098",
+      "faces": [
+        {
+          "name": "突撃兵ルギーザ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "メタモーフ(自分のマナゾーンに７枚以上カードがあれば、このクリーチャーは次の能力を得る)\nこのクリーチャーは攻撃されない。\nこのクリーチャーは｢パワーアタッカー+3000｣を得る。",
+          "race": "ドラゴノイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g272ManaCount": 7
+          },
+          "grants": {
+            "cannotBeAttacked": true,
+            "attackBonus": 3000
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-098.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "0037c6c27551b6e6c196b330d205f522105b0806998e00a4f68cb61135e6b2be",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm14-073": 4,
+      "dm14-037": 4,
+      "dm14-041": 4,
+      "dm14-012": 4,
+      "dm14-098": 4
+    }
+  }
+}

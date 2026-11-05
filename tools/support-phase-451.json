@@ -1,0 +1,482 @@
+{
+  "phase": 451,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4556,
+  "description": "S・トリガー・プラスの完全な本文を解釈し、通常能力と条件つき追加能力を分離する。呪文は本文順、クリーチャーの独立した登場時能力は解決順を選べる。条件判定・通常使用への持ち越し防止と既存の誘発処理を検証する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/43058/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-019"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp3-024",
+      "name": "ア:グンテ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-024",
+      "faces": [
+        {
+          "name": "ア:グンテ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{STP} S・トリガー・プラス（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、このクリーチャーに{x+}能力を与える）\n{x+}このクリーチャーが出た時、相手のクリーチャーを２体まで選び、持ち主のマナゾーンに置く。\nこのクリーチャーが出た時、相手のコスト５以下のエレメントを１つ選び、持ち主のマナゾーンに置いてもよい。",
+          "race": "ヴェールアビス",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "to": "mana",
+            "optional": true,
+            "filter": {
+              "max": 5
+            }
+          }
+        ],
+        "triggerPlus": true,
+        "g34Plus": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "mana",
+            "title": "マナに置く相手のクリーチャーを2体まで選ぶ",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "64a0489ee868593ae394e624d766e2b705e036841bd9aa4400450b65e9a2131e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2-038",
+      "name": "ド:トヤッキ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-038",
+      "faces": [
+        {
+          "name": "ド:トヤッキ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{STP} S・トリガー・プラス（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、このクリーチャーに{x+}能力を与える）\n{x+}このクリーチャーが出た時、相手は自身のアンタップしているクリーチャーを２体選び、破壊する。\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+          "race": "ノワールアビス",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "slayer": true,
+        "triggerPlus": true,
+        "g34Plus": [
+          {
+            "op": "OpponentSelect",
+            "n": 2,
+            "to": "grave",
+            "filter": {
+              "untapped": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "d52a119d1c2a4ce158920ab3becfed8537be36994077c6ba02974b5e1859734c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-010",
+      "name": "ピース・盾・ルピア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-010",
+      "faces": [
+        {
+          "name": "ピース・盾・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{STP} S・トリガー・プラス（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、このクリーチャーに{x+}能力を与える）\n{x+}このクリーチャーが出た時、相手のクリーチャーをすべてタップする。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、自分の山札の上から３枚を見る。その中から、ドラゴンまたはファイアー・バードを１枚、相手に見せてから手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+          "race": "アーマード・ファイアー・バード",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "any": [
+                    {
+                      "anyFaceRace": "ドラゴン"
+                    },
+                    {
+                      "anyFaceRace": "ファイアー・バード"
+                    }
+                  ]
+                }
+              }
+            ],
+            "rest": "bottom"
+          }
+        ],
+        "triggerPlus": true,
+        "g34Plus": [
+          {
+            "op": "TapAll"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "885c8ded19725b02277fd96e049d8170f0bb1e1caabc5a59930d8431b2a528ee",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-050",
+      "name": "フェアリー・ファンタジア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-050",
+      "faces": [
+        {
+          "name": "フェアリー・ファンタジア",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{STP} S・トリガー・プラス（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、この呪文に{x+}能力を与える）\n自分の山札の上から１枚目をマナゾーンに置く。\n{x+}エレメントを１つ選び、持ち主のマナゾーンに置いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "triggerPlus": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ],
+        "g34Plus": [
+          {
+            "op": "Target",
+            "element": true,
+            "anyOwner": true,
+            "to": "mana",
+            "optional": true
+          }
+        ],
+        "g451PlusAfter": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "efc9d55db924cd8877f5aaee28b65919ee02bef4580fff710ff5dde204b588e0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2-041",
+      "name": "ボルシャック・コーヤ・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-041",
+      "faces": [
+        {
+          "name": "ボルシャック・コーヤ・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{STP} S・トリガー・プラス（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、このクリーチャーに{x+}能力を与える）\n{x+}このクリーチャーが出た時、相手のパワー3000以下のクリーチャーをすべて破壊する。\nスピードアタッカー（このクリーチャーは召喚酔いしない）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "triggerPlus": true,
+        "g34Plus": [
+          {
+            "op": "Sweep",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 3000
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "59070ed3cd46006fc371560a2f813408d04f683d0aecb5c26308a10049d48ce9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-019",
+      "name": "極印呪文「インフェギガ」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-019",
+      "faces": [
+        {
+          "name": "極印呪文「インフェギガ」",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{STP} S・トリガー・プラス（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、この呪文に{x+}能力を与える）\n自分の山札の上から３枚を墓地に置く。\n{x+}コスト５以下のクリーチャーを１体、自分の墓地から出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "triggerPlus": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 3
+          }
+        ],
+        "g34Plus": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "max": 5
+            },
+            "optional": false,
+            "title": "墓地から出すクリーチャーを1体選ぶ"
+          }
+        ],
+        "g451PlusAfter": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c00e334f12c3d620073b4e9cbae44336d7657e6a8dd918d7a33107ef6b62cd5c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-016",
+      "name": "極智呪文「ゼンブレイン」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-016",
+      "faces": [
+        {
+          "name": "極智呪文「ゼンブレイン」",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{STP} S・トリガー・プラス（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、この呪文に{x+}能力を与える）\nカードを２枚引く。\n{x+}水のコスト６以下の呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "triggerPlus": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ],
+        "g34Plus": [
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "spellOnly": true,
+            "max": 6,
+            "optional": true,
+            "filter": {
+              "g228Face": {
+                "type": "spell",
+                "color": "水",
+                "max": 6
+              }
+            }
+          }
+        ],
+        "g451PlusAfter": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "13fbe2a423888af94050f3906c2d99e2093461aaacf052edf836761b009ed70e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-041",
+      "name": "死神ゼノミック・バキューム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-041",
+      "faces": [
+        {
+          "name": "死神ゼノミック・バキューム",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{STP} S・トリガー・プラス（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、この呪文に{x+}能力を与える）\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－4000 する。（パワー０以下のクリーチャーは破壊される）\n{x+}相手は自身の手札を２枚選んで捨てる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "triggerPlus": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -4000,
+            "g242PowerMinus": true,
+            "title": "パワーを-4000する相手のクリーチャーを選ぶ",
+            "spell": true
+          }
+        ],
+        "g34Plus": [
+          {
+            "op": "Discard",
+            "n": 2
+          }
+        ],
+        "g451PlusAfter": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "49781e91018cc0eb0cb6b28e2b3d55ed4ccd2cc4f00e0bb7b8af200461f3b11e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23sd2-006",
+      "name": "忍縛の聖沌 3n9375u",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd2-006",
+      "faces": [
+        {
+          "name": "忍縛の聖沌 3n9375u",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "{STP} S・トリガー・プラス（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、このクリーチャーに{x+}能力を与える）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n{x+}このクリーチャーが出た時、相手のクリーチャーを２体まで選んでタップする。",
+          "race": "メカ・デル・ステラ/シノビ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "triggerPlus": true,
+        "g34Plus": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを2体まで選ぶ",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23sd2-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "fef126ad9d324e73868ba6989bd731f45b755c4e1781e1b5c90ac3d00cdc7efd",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp3-024": 4,
+      "dm23rp2-038": 4,
+      "dm23rp3-010": 4,
+      "dm23rp1-050": 4,
+      "dm23rp2-041": 4,
+      "dm23rp1-019": 4,
+      "dm23rp1-016": 4,
+      "dm23rp1-041": 4,
+      "dm23sd2-006": 4
+    }
+  }
+}

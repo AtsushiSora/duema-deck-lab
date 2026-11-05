@@ -1,0 +1,465 @@
+{
+  "phase": 440,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4469,
+  "description": "旧表記のタップ能力を全文一致で共通タスクへ変換。対象・選択するプレイヤー・ゾーン・文明・ターン中の強化を維持する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37678/",
+    "https://dm.takaratomy.co.jp/rule/qa/42373/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20240412.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm07-010",
+      "name": "アクア・フェンサー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-010",
+      "faces": [
+        {
+          "name": "アクア・フェンサー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n相手のマナゾーンからカードを１枚選ぶ。相手はそれを持ち主の手札に戻す。",
+          "race": "リキッド・ピープル",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "optional": false
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm07-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "4ab2112eb790ae78d5f7b683d4e04d1387255ea186769c0ae8f7630021f62ce9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-s04",
+      "name": "エメラルド・ミスト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-s04",
+      "faces": [
+        {
+          "name": "エメラルド・ミスト",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nクリーチャーをすべて、バトルゾーンから持ち主の手札に戻す。",
+          "race": "スプラッシュ・クイーン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "hand",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "2b7da5bd3a7af921e9c3591f9434b2e8e671ac90cccca074f4a619b44983acc0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm07-042",
+      "name": "ガラティアヌス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-042",
+      "faces": [
+        {
+          "name": "ガラティアヌス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n自分の山札のカードを上から３枚見る。その後、これを好きな順番で元に戻す。",
+          "race": "シー・ハッカー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Look",
+            "g255Search": true,
+            "n": 3,
+            "stages": [],
+            "rest": "top",
+            "g259OrderTop": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm07-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "824992526d4b5eedc41920c12f82e7e4880408275f80c242b761eed5ebe4a769",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm07-002",
+      "name": "キング・アクエリアス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-002",
+      "faces": [
+        {
+          "name": "キング・アクエリアス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "W(ダブル)・ブレイカー\nこのクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nこのターンが終わるまで、バトルゾーンにある自分の水のクリーチャーはすべて、次の能力を得る。「このクリーチャーはブロックされない」",
+          "race": "リヴァイアサン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g439Tap": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "color": "水"
+            },
+            "grant": {
+              "unblockable": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm07-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "4c7cbdf7101b1d4bda2fd2b24221020c44e193c7d721393267d079e9870b5009",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm07-033",
+      "name": "シェル・ブリーダー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-033",
+      "faces": [
+        {
+          "name": "シェル・ブリーダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n自分のマナゾーンからクリーチャーを１体選び、自分の手札に戻す。",
+          "race": "コロニー・ビートル",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "optional": false
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm07-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "cd25c23198c8081ceb320c48a22bde27c639aae62a6aa939fe1cadb4cbe691ab",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-079",
+      "name": "ソピアン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-079",
+      "faces": [
+        {
+          "name": "ソピアン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーで攻撃する代わりに、タップして次の能力を使ってもよい。\nバトルゾーンにある自分のクリーチャーを１体選ぶ。このターンが終わるまで、そのクリーチャーはブロックされない。",
+          "race": "サイバーロード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "unblockable": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-079.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c7bacbbd2ec7f30d9eca1974cf632eaf1229b6065c61abed87e92f696195e6c0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-071",
+      "name": "静電の守護者パルスマルス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-071",
+      "faces": [
+        {
+          "name": "静電の守護者パルスマルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにある相手の「ブロッカー」を持つクリーチャーを１体選び、タップする。",
+          "race": "ガーディアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Target",
+            "tap": true,
+            "filter": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-071.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "a42451d6f24b6a28eb2d1560cb9665ebbbf607c3ad440e038f19cbc0835d6efc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-005",
+      "name": "戦車男",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-005",
+      "faces": [
+        {
+          "name": "戦車男",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "このクリーチャーで攻撃する代わりに、タップして次の能力を使ってもよい。\n相手はバトルゾーンにある自分自身のクリーチャーを１体選び、持ち主の墓地に置く。",
+          "race": "ヘドリアン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "31557abb36fdb89c3c348b93f14bade090dd45e68f340fc49d2a9e2ac25853fe",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm07-020",
+      "name": "草原の種",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-020",
+      "faces": [
+        {
+          "name": "草原の種",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n自分の手札から３枚まで選び、自分のマナゾーンに置く。",
+          "race": "ビーストフォーク",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "mana",
+            "n": 3,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm07-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "d777c3033a909ac88a11a641955b03e5eb94e4eb3cbee32b1bae58653cd37f71",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-106",
+      "name": "盗賊の盾",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-106",
+      "faces": [
+        {
+          "name": "盗賊の盾",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーで攻撃する代わりに、タップして次の 能力を使ってもよい。\nバトルゾーンにある自分のクリーチャーを１体選ぶ。このターンが終わるまで、そのクリーチャーのパワーは+5000される。",
+          "race": "ビーストフォーク",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 5000
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-106.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "76b6d81f54059f71a9e11b053b49d95e3cce7daf842766cc2ea92de02a6cd577",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-088",
+      "name": "幽鬼の影リバース・ソウル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-088",
+      "faces": [
+        {
+          "name": "幽鬼の影リバース・ソウル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーで攻撃する代わりに、タップして次の能力を使ってもよい。\n自分の墓地から闇クリーチャーを１体選び、自分の手札に戻す。",
+          "race": "ゴースト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "color": "闇"
+              }
+            },
+            "optional": false
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-088.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "cbfa7e64008c9749fb7608816ace7f67a7f9f75005cb44a33a790e70946b6a37",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm07-010": 4,
+      "dm14-s04": 4,
+      "dm07-042": 4,
+      "dm07-002": 4,
+      "dm07-033": 4,
+      "dm06-079": 4,
+      "dm19-071": 4,
+      "dm06-005": 4,
+      "dm07-020": 4,
+      "dm06-106": 4,
+      "dm06-088": 4
+    }
+  }
+}

@@ -1,0 +1,258 @@
+{
+  "phase": 466,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4691,
+  "description": "対戦相手のパワー・味方の状態・コスト種類を条件とするバトル破壊防止と、味方のバトル中だけのパワー強化を共通化する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36290/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36291/",
+    "https://dm.takaratomy.co.jp/rule/qa/40644/"
+  ],
+  "cards": [
+    {
+      "id": "dmr01-049",
+      "name": "アクア・カスケード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-049",
+      "faces": [
+        {
+          "name": "アクア・カスケード",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは攻撃することができない。\nこのクリーチャーのバトル中、バトルしている相手クリーチャーは破壊されない。",
+          "race": "リキッド・ピープル/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g466ProtectOpponent": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "61242881a08d4dfd4341cefdcacac358e63fd492a71c63e7d2d0f6c6e45a430c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp05-048",
+      "name": "シンパンマン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-048",
+      "faces": [
+        {
+          "name": "シンパンマン",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "NEO進化：自分のジョーカーズ・クリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーがタップしていれば、自分の他のジョーカーズはバトルによって破壊されない。",
+          "race": "ジョーカーズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "race": "ジョーカーズ"
+            }
+          ]
+        },
+        "g466BattleAura": {
+          "filter": {
+            "creature": true,
+            "race": "ジョーカーズ"
+          },
+          "other": true,
+          "sourceTapped": true,
+          "protect": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "145e072257ed3180d2f7ba201878414c22232b03e8748bfc4d6d6667566950aa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp3-054",
+      "name": "光喜 コエル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-054",
+      "faces": [
+        {
+          "name": "光喜 コエル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nバラバラエティ３：バトル中、このクリーチャーは破壊されない。（コストが異なる自分のエレメントが３つ以上あれば、このクリーチャーにこの能力を与える）",
+          "race": "デモンズ・レガシー",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g260Self": {
+          "filter": {
+            "g466DistinctCosts": 3
+          },
+          "grants": {
+            "g34BattleSafe": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "5883d5b2b68088cc8c28b3e188864f51e30f4d27c4834272926f321bbb7e87e0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-058",
+      "name": "光器パーフェクト・マライア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-058",
+      "faces": [
+        {
+          "name": "光器パーフェクト・マライア",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーは、パワー5500以下のクリーチャーとのバトル中、破壊されない。",
+          "race": "メカ・デル・ソル",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g466BattleSafe": {
+          "maxOpponentPower": 5500
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-058.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "915b06705b62f6256ebb5f91a576eca1aacbb9d95c65c31019d0ae36d03cffb7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp15-040",
+      "name": "考古学者 ヤマドキタケル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-040",
+      "faces": [
+        {
+          "name": "考古学者 ヤマドキタケル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "キリフダッシュ [ff02]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを[ff02]支払って召喚してもよい）\n自分のクリーチャーすべての、バトル中のパワーを+2000する。",
+          "race": "ジョーカーズ/チーム切札",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "kirifudaDash": 2,
+        "g402DashColors": [
+          "火"
+        ],
+        "g466BattleAura": {
+          "filter": {
+            "creature": true
+          },
+          "power": 2000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "5e1d3bd3445c6d7f4c1dfb4247e91859b348860205ce89e95fe3b4aa71e538d7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr17-054",
+      "name": "侵略者 ジーブラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-054",
+      "faces": [
+        {
+          "name": "侵略者 ジーブラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手のシールドが２つ以下なら、自分の自然のクリーチャーすべてのパワーをバトル中+5000する。",
+          "race": "ゲリラ・コマンド/侵略者",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g466BattleAura": {
+          "filter": {
+            "creature": true,
+            "color": "自然"
+          },
+          "condition": {
+            "g465OpponentShieldsMax": 2
+          },
+          "power": 5000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "4b443f62416cd4bf6e04a0de0b71b09a11f5f6907927de7365d66fb83ed605c7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr01-049": 4,
+      "dmrp05-048": 4,
+      "dm24rp3-054": 4,
+      "dmrp20-058": 4,
+      "dmrp15-040": 4,
+      "dmr17-054": 4
+    }
+  }
+}

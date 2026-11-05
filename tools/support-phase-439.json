@@ -1,0 +1,352 @@
+{
+  "phase": 439,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4461,
+  "description": "通常のタップ能力を共通の起動操作へ変換。攻撃ステップで召喚酔い・タップ・攻撃不能・能力無視を確認し、起動後は捕捉した効果を解決する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37678/",
+    "https://dm.takaratomy.co.jp/rule/qa/42373/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20240412.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm06-003",
+      "name": "エウロピカ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-003",
+      "faces": [
+        {
+          "name": "エウロピカ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーで攻撃する代わりに、タップして次の能力を使ってもよい。\nバトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "シー・ハッカー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "hand"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "d3f96a33a39b50c4f5c8ebe0fc6d7da6086da065e018e579ce2ab0fe5fc198c5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-047",
+      "name": "シャインシェル・クラスター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-047",
+      "faces": [
+        {
+          "name": "シャインシェル・クラスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーで攻撃する代わりに、タップして次の能力を使ってもよい。\nカードを２枚引く。",
+          "race": "サイバー・クラスター",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "46411f2f93f2b92bef0955ffb7c4cb863e91ad9c127a2ddf225d76e12e793480",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-026",
+      "name": "暗殺人形ガマー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-026",
+      "faces": [
+        {
+          "name": "暗殺人形ガマー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n相手のタップされているクリーチャーを１体破壊する。",
+          "race": "デスパペット",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "tapped": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c8a4b6af79dce88bd33c604c217121d40dc9c6ac4f6aa25e6e16a5cb02c6b4b1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-071",
+      "name": "鋭刃の使徒グーレ・チェーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-071",
+      "faces": [
+        {
+          "name": "鋭刃の使徒グーレ・チェーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーで攻撃する代わりに、タップして次の能力を使ってもよい。\nバトルゾーンにある相手のクリーチャーを１体選び、タップする。",
+          "race": "イニシエート",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-071.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "df9759370950d2441a297b79a60ea0980a6064670e81989002331fdcb1f1de1c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-007",
+      "name": "巨大神ハウルスク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-007",
+      "faces": [
+        {
+          "name": "巨大神ハウルスク",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化-自分のメルト・ウォリアー１体の上に置く。\nこのクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n相手のパワー3000以下のクリーチャーをすべて破壊する。",
+          "race": "メルト・ウォリアー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "メルト・ウォリアー"
+        },
+        "g439Tap": [
+          {
+            "op": "Sweep",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 3000
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "b700f7ab201999bf0b5a527238e1bba849b995ec1922ef0b9dfe63518110117d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm07-053",
+      "name": "春風妖精ポップル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-053",
+      "faces": [
+        {
+          "name": "春風妖精ポップル",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n自分の山札の上から１枚目を、自分のマナゾーンに置く。",
+          "race": "スノーフェアリー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm07-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "5e542c48974128e3de0df62e3dd0469cd1c5d626e6c65d3904a9d7fb5e9cfcad",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-014",
+      "name": "聖騎士コスモグールド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-014",
+      "faces": [
+        {
+          "name": "聖騎士コスモグールド",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーで攻撃する代わりに、タップして次の 能力を使ってもよい。\n自分のマナゾーンから呪文を１枚選び、自分の手札に戻す。",
+          "race": "レインボー・ファントム",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "spell": true
+            },
+            "optional": false,
+            "title": "手札に戻すマナの呪文を1枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "09ce793b531cf624dc562dafcdeb773e8b6fbf862121c5e83091f0c56b28eed0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-039",
+      "name": "魅了妖精チャミリア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-039",
+      "faces": [
+        {
+          "name": "魅了妖精チャミリア",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーで攻撃する代わりに、タップして次の能力を使ってもよい。\n自分の山札を見る。その中からクリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "スノーフェアリー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "ccd4845f76b9ac149fcd2dce299ea991ef171df88f69c30a66b7c4e7191fefda",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm06-003": 4,
+      "dm06-047": 4,
+      "dm14-026": 4,
+      "dm06-071": 4,
+      "dm14-007": 4,
+      "dm07-053": 4,
+      "dm06-014": 4,
+      "dm06-039": 4
+    }
+  }
+}

@@ -1,0 +1,408 @@
+{
+  "phase": 445,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4514,
+  "description": "進化後の解決時に選ぶ2択のシンカパワーを共通化する。既存の誘発順序とゾーン操作を使い、全効果を検証して登録する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/39563/",
+    "https://dm.takaratomy.co.jp/rule/qa/48036/",
+    "https://dm.takaratomy.co.jp/rule/qa/39799/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36128/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp20-054",
+      "name": "魂の絆 クリスマ&ウツボイド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-054",
+      "faces": [
+        {
+          "name": "魂の絆 クリスマ&ウツボイド",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nシンカパワー：このクリーチャーが進化する時、次のうちいずれか１つを選ぶ。\n▶このターン、自分のクリーチャーはブロックされない。\n▶自分の山札の上から１枚目をマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+          "race": "ムートピア/グランセクト/レクスターズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "g397Shinka": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "このターン、自分のクリーチャーはブロックされない。",
+                "defs": [
+                  {
+                    "op": "GroupGrant364",
+                    "owner": "self",
+                    "filter": {
+                      "creature": true
+                    },
+                    "grant": {
+                      "unblockable": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "自分の山札の上から１枚目をマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 1
+                  },
+                  {
+                    "op": "Select",
+                    "origin": "mana",
+                    "to": "hand",
+                    "n": 1,
+                    "optional": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "8294100c228b5561ba64945ab1c749c2f9594f608dfee67ddb6c028cfb1dd04d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-049",
+      "name": "魂の絆 スパイナー＆ウーニ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-049",
+      "faces": [
+        {
+          "name": "魂の絆 スパイナー＆ウーニ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーを自分の墓地から召喚してもよい。\nシンカパワー：このクリーチャーが進化する時、次のうちいずれか１つを選ぶ。\n▶カードを２枚引き、その後、自分の手札を１枚捨てる。\n▶相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－5000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "ムートピア/マフィ・ギャング/レクスターズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "graveSummon": true,
+        "g397Shinka": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "カードを２枚引き、その後、自分の手札を１枚捨てる。",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 2
+                  },
+                  {
+                    "op": "Discard",
+                    "owner": "self",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－5000する。（パワー０以下のクリーチャーは破壊される）",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "power": -5000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "8c07fee8ffdcf1f911b671843bfe28c229c7e651bb3331eec89e57402a7a4e03",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-055",
+      "name": "魂の絆 パンプ&バクゲットー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-055",
+      "faces": [
+        {
+          "name": "魂の絆 パンプ&バクゲットー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーを自分のマナゾーンから召喚してもよい。\nシンカパワー：このクリーチャーが進化する時、次のうちいずれか１つを選ぶ。\n▶自分の手札を１枚捨て、その後、カードを２枚引く。\n▶相手のコスト６以下のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "ビートジョッキー/グランセクト/レクスターズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "manaSummon": true,
+        "g397Shinka": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "自分の手札を１枚捨て、その後、カードを２枚引く。",
+                "defs": [
+                  {
+                    "op": "Discard",
+                    "owner": "self",
+                    "n": 1
+                  },
+                  {
+                    "op": "Draw",
+                    "n": 2
+                  }
+                ]
+              },
+              {
+                "label": "相手のコスト６以下のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "mana",
+                    "filter": {
+                      "max": 6
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "90f747d2d4e08da8c8be5a55e003980a6c8cd738c8304764f4b097a5f444a1f9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-052",
+      "name": "魂の絆 ヘモグロ＆ハナコ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-052",
+      "faces": [
+        {
+          "name": "魂の絆 ヘモグロ＆ハナコ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nシンカパワー：このクリーチャーが進化する時、次のうちいずれか１つを選ぶ。\n▶コスト２以下のクリーチャーを１体、自分の墓地から出す。\n▶自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。",
+          "race": "ジョーカーズ/マフィ・ギャング/レクスターズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g397Shinka": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "コスト２以下のクリーチャーを１体、自分の墓地から出す。",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "grave",
+                    "n": 1,
+                    "deploy": true,
+                    "g236GraveDeploy": true,
+                    "filter": {
+                      "creature": true,
+                      "max": 2
+                    },
+                    "optional": false
+                  }
+                ]
+              },
+              {
+                "label": "自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。",
+                "defs": [
+                  {
+                    "op": "ShieldHand",
+                    "g238ShieldHand": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "7f32dc6a0792d21fc031b6301a7bf0ae34a457666a5de4319d36a5c0cb1cbba6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-048",
+      "name": "魂の絆 ボントボ＆アムベル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-048",
+      "faces": [
+        {
+          "name": "魂の絆 ボントボ＆アムベル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nシンカパワー：このクリーチャーが進化する時、次のうちいずれか１つを選ぶ。\n▶相手のクリーチャーを１体選びタップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。\n▶自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "メタリカ/グランセクト/レクスターズ",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "g397Shinka": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のクリーチャーを１体選びタップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "tap": true,
+                    "lock": true,
+                    "g210TapLock": true
+                  }
+                ]
+              },
+              {
+                "label": "自分の山札の上から１枚目をマナゾーンに置く。",
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "87e32791aa27e0311adbca1d35f6836f3457e916ced9ccf3251c85259045ff1f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-045",
+      "name": "魂の絆 ラッタ＆「火砲」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-045",
+      "faces": [
+        {
+          "name": "魂の絆 ラッタ＆「火砲」",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\nシンカパワー：このクリーチャーが進化する時、次のうちいずれか１つを選ぶ。\n▶自分の山札の上から１枚目をシールド化する。\n▶相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "メタリカ/トリックス/レクスターズ",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "justDiver": true,
+        "g397Shinka": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "自分の山札の上から１枚目をシールド化する。",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "hand"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "2224024a668ba650eb2aaf1b51b5377c102694848dea21b584dbe9a7c9b3e3be",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp20-054": 4,
+      "dmrp19-049": 4,
+      "dmrp19-055": 4,
+      "dmrp19-052": 4,
+      "dmrp19-048": 4,
+      "dmrp19-045": 4
+    }
+  }
+}

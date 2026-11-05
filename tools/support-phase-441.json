@@ -1,0 +1,405 @@
+{
+  "phase": 441,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4480,
+  "description": "除去・裏向きの手札選択・条件付きマナ加速・味方への能力付与を行うタップ能力を旧表記の全文一致で共通タスクへ変換する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37678/",
+    "https://dm.takaratomy.co.jp/rule/qa/42373/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20240412.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm07-011",
+      "name": "ビアンカス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-011",
+      "faces": [
+        {
+          "name": "ビアンカス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカー\nこのクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにある自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーはブロックされない。",
+          "race": "シー・ハッカー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g439Tap": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "unblockable": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm07-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "e4b1b78f63684c9d5d86de6ffacee488d22d0ef63da09df134d33dece60420f8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-033",
+      "name": "ピーカプのドライバー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-033",
+      "faces": [
+        {
+          "name": "ピーカプのドライバー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーで攻撃する代わりに、タップして次の能力を使ってもよい。\nバトルゾーンにある相手の「ブロッカー」を持つクリーチャーを１体選び、持ち主の墓地に置く。",
+          "race": "ゼノパーツ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "e3ab86e8734f0b9c285a8a71c23b8463d5a2e23e8977de574bf4d049ae88b249",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm07-016",
+      "name": "ピーポのバール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-016",
+      "faces": [
+        {
+          "name": "ピーポのバール",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにあるパワー2000以下の相手のクリーチャーを１体選ぶ。相手はそれを持ち主の墓地に置く。",
+          "race": "ゼノパーツ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 2000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm07-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "90db6e6fa2ed3defe50f28fad05ea8c72ca41d012214d21a1bc8781c3a1130f6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm07-s03",
+      "name": "残虐覇王デスカール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-s03",
+      "faces": [
+        {
+          "name": "残虐覇王デスカール",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n相手の手札から２枚見ないで選び、相手はそれを持ち主の墓地に置く。１枚しかない場合は、相手はその１枚を持ち主の墓地に置く。",
+          "race": "ダークロード",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Discard",
+            "n": 2,
+            "random": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm07-s03.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "06a8f3429ab965d9de520b29c4ecad0bb5526b797b7259033ad881f11887c975",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-056",
+      "name": "刃滅人形ポール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-056",
+      "faces": [
+        {
+          "name": "刃滅人形ポール",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーで攻撃する代わりに、タップして次の能力を使ってもよい。\nバトルゾーンにある自分のクリーチャーを１体選ぶ。このターンが終わるまで、そのクリーチャーは「スレイヤー」を得る。(このクリーチャーとバトルした相手クリーチャーは、勝っても持ち主の墓地に置かれる)",
+          "race": "デスパペット",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "slayer": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-056.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "28475927beca2abf81a0c9232ef489bfc314c04c2280fea17d0bed7fdce6b226",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-044",
+      "name": "聖騎士ミルキーウェイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-044",
+      "faces": [
+        {
+          "name": "聖騎士ミルキーウェイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n相手のマナゾーンのカードが自分のマナゾーンのカードより多ければ、自分の山札の上から１枚目を自分のマナゾーンに置く。",
+          "race": "レインボー・ファントム",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "mana",
+                "atLeastOpponent": true
+              }
+            },
+            "defs": [],
+            "elseDefs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "211216b60cdb7c802fa2b4dcc2357716557053aa35c694d91667562a0530d331",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-080",
+      "name": "戦攻王機スラグナス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-080",
+      "faces": [
+        {
+          "name": "戦攻王機スラグナス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにある自分の光、闇、火または自然のクリーチャーを１体選ぶ。このターン、そのクリーチャーはブロックされない。",
+          "race": "グレートメカオー/アースイーター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "any": [
+                {
+                  "color": "光"
+                },
+                {
+                  "color": "闇"
+                },
+                {
+                  "color": "火"
+                },
+                {
+                  "color": "自然"
+                }
+              ]
+            },
+            "grant": {
+              "unblockable": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-080.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "e6a896e03f2da3c889576d9db58ff2fe51d4a1a0ae79fde2c4505cf70cfae0d3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr02-053",
+      "name": "闘凶ディス・チキンレーサー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-053",
+      "faces": [
+        {
+          "name": "闘凶ディス・チキンレーサー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nこのクリーチャーを破壊する。相手は自身のクリーチャーを１体選び、破壊する。",
+          "race": "ブレイブ・スピリット/エイリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "SelfDestroy"
+          },
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr02-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "b99eaea6a2fb26e7ef79cfa6d2aa065f9bbc56d0f8a24a9fb933ae87c0d20af4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-090",
+      "name": "憔悴の影ブロークン・ヘッド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-090",
+      "faces": [
+        {
+          "name": "憔悴の影ブロークン・ヘッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n各プレイヤーは、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "ゴースト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1,
+            "random": true
+          },
+          {
+            "op": "Discard",
+            "n": 1,
+            "random": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-090.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "71d26d16da4be99ff9ee9bcab18538789900b1b6188413393bda175c16928b5b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm07-011": 4,
+      "dm06-033": 4,
+      "dm07-016": 4,
+      "dm07-s03": 4,
+      "dm06-056": 4,
+      "dm14-044": 4,
+      "dm24-080": 4,
+      "dmr02-053": 4,
+      "dm10-090": 4
+    }
+  }
+}

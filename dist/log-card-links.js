@@ -1,5 +1,5 @@
 import {card} from './engine.js';
-import {aiPublicSnapshot,aiResultCues} from './ai-playback.js?v=0.521.0';
+import {aiPublicSnapshot,aiResultCues} from './ai-playback.js?v=0.555.0';
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const publicLogCards=s=>[...new Set(aiPublicSnapshot(s).players.flatMap(p=>p.cards.map(x=>x.cardId)))].map(id=>({id,name:card(id)?.name})).filter(x=>x.name);
 export function logCardReferences(s,index,{spectator=false}={}){

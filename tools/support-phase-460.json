@@ -1,0 +1,356 @@
+{
+  "phase": 460,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4635,
+  "description": "手札の選択枚数を参照する引き直し、全手札のシャッフルと順序付き山札下への移動を共通化する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+    "https://dm.takaratomy.co.jp/rule/qa/46060/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm12-024",
+      "name": "エニグマ・カスケード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-024",
+      "faces": [
+        {
+          "name": "エニグマ・カスケード",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の手札を、好きな枚数捨てる。その後、同じ枚数のカードを引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandCycle460",
+            "to": "grave",
+            "mode": "any"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "24d403ad3180048c86861b907c1b0cb832704d14b70d78a7352542dfa41e1e1f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm05-032",
+      "name": "サイクロン・パニック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-032",
+      "faces": [
+        {
+          "name": "サイクロン・パニック",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S(シールド)・トリガー(この呪文をシールドゾーンから手札に加えるとき、コストを支払わずにすぐ唱えてよい)\n各プレイヤーは自分自身の手札をそれぞれの山札に戻してシャッフルし、その枚数と同じ枚数のカードを引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandCycle460",
+            "to": "deck",
+            "shuffle": true,
+            "both": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm05-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "eccd20155c454b65a062625450042a715c23f58b8e5ae8d427aa5a5dc2a533e1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr09-085",
+      "name": "ダブル・リセット・パンチ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-085",
+      "faces": [
+        {
+          "name": "ダブル・リセット・パンチ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の手札をすべて捨て、同じ枚数のカードを引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandCycle460",
+            "to": "grave",
+            "mode": "all"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-085.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "cd80666642888aafe19c013aaedd477b53eed5e0c7a9ddfc4783af6da8f9ab0b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-020",
+      "name": "ラプター・フィッシュ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-020",
+      "faces": [
+        {
+          "name": "ラプター・フィッシュ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、自分の手札を山札に戻してシャッフルし、その枚数と同じ枚数のカードを引く。",
+          "race": "ゲル・フィッシュ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandCycle460",
+            "to": "deck",
+            "shuffle": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "874d8a1a4e0948b06c876b92a06d28543bb3421d48455558cf17273ad22410c0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-053",
+      "name": "海龍神の魔風",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-053",
+      "faces": [
+        {
+          "name": "海龍神の魔風",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク（この呪文を自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分の手札をすべて、好きな順序で山札の下に置き、その後、それと同じ枚数のカードを引く。\nこの呪文を唱えた後、墓地に置くかわりに手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandCycle460",
+            "to": "deck",
+            "order": true
+          },
+          {
+            "op": "SpellFinish416",
+            "to": "hand"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "20ade648e2ed0855a0d3e7e4c31f5967c7ce21e0c350dc2a0c83fb9015216c66",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-036",
+      "name": "爆裂英雄 B・I・G",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-036",
+      "faces": [
+        {
+          "name": "爆裂英雄 B・I・G",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{GS} G・ストライク\nジャストダイバー\n自分のターンのはじめに、自分の手札を２枚まで捨て、その枚数より１枚多くカードを引く。",
+          "race": "マジック・フレイム・コマンド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "justDiver": true,
+        "g174Start": [
+          {
+            "op": "HandCycle460",
+            "to": "grave",
+            "mode": "any",
+            "max": 2,
+            "extra": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "7702e16096c56257b2470aa9097c0269a663ed8b36f89bca2fdb7372a070b061",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp4-041",
+      "name": "魔誕邪脚ディメンジョネーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-041",
+      "faces": [
+        {
+          "name": "魔誕邪脚ディメンジョネーク",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "NEO進化：闇、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが出た時、自分の手札をすべて捨ててもよい。そうしたら、その枚数より１枚多くカードを引く。",
+          "race": "ブレインジャッカー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "speedAttacker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandCycle460",
+            "to": "grave",
+            "mode": "all",
+            "optional": true,
+            "extra": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "66ead77620f6a66e3dec7d1f9351ffe2dcf2106ec13f83c9138b2c41a18cd919",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp15-055",
+      "name": "裏方者 クロココケラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-055",
+      "faces": [
+        {
+          "name": "裏方者 クロココケラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の手札をすべて、好きな順序で山札の一番下に置く。その後、同じ枚数のカードを引く。",
+          "race": "ムートピア/美孔麗王国",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandCycle460",
+            "to": "deck",
+            "order": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c7e3a4056a498da807fc844059c5e0800f3a90b1e231483ed2acb5e53c742afc",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm12-024": 4,
+      "dm05-032": 4,
+      "dmr09-085": 4,
+      "dm06-020": 4,
+      "dmrp20-053": 4,
+      "dm24ex4-036": 4,
+      "dm25rp4-041": 4,
+      "dmrp15-055": 4
+    }
+  }
+}

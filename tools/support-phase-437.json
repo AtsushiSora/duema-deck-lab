@@ -1,0 +1,599 @@
+{
+  "phase": 437,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4449,
+  "description": "スーパー・S・トリガー呪文の通常効果と追加効果を共通のタスクで分離し、既存エンジンが確定した追加能力の有無に従って順番に解決する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/31533/",
+    "https://dm.takaratomy.co.jp/rule/qa/31534/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp02-018",
+      "name": "「世界をつなぐ柱」の天罰",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-018",
+      "faces": [
+        {
+          "name": "「世界をつなぐ柱」の天罰",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にoB 能力を与える）\nタップしていない自分のクリーチャーを１体、手札に戻す。その後、相手は自身のタップしていないクリーチャーを１体選び、手札に戻す。\noB クリーチャーをすべて、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "hand",
+            "filter": {
+              "untapped": true
+            }
+          },
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "hand",
+            "filter": {
+              "untapped": true
+            }
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "hand",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c7d3969401d10dc24ea37a239bd44deb8dc98690b87fb2fa295a84a8b77d7192",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp05-028",
+      "name": "オーロラ・ピカンチ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-028",
+      "faces": [
+        {
+          "name": "オーロラ・ピカンチ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スーパー・S・トリガースーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB能力を与える）\n相手のアンタップしているクリーチャーを１体選び、持ち主のマナゾーンに置く。\nxB自分の山札の上から５枚を、マナゾーンに置いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "filter": {
+              "untapped": true
+            }
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 5
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "7ac280cc7e31bab9d451bcdee334df6cf7080f0db1124f47ea3e317a26d7018d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp03-028",
+      "name": "コクーン・シャナバガン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-028",
+      "faces": [
+        {
+          "name": "コクーン・シャナバガン",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB能力を与える）\n自分の山札の上から２枚をマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻す。\nxB自然の進化ではないクリーチャーを２体まで、自分のマナゾーンからバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 2
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "g232ManaReturn": true,
+            "title": "手札に戻すマナを1枚選ぶ"
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 2,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "color": "自然",
+              "nonEvolution": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "7e0ee1ae67b9e0b876e8112ad8c85d37dd4958278a314b5f62463f3d9b97e66f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-028",
+      "name": "コクーン・マニューバ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-028",
+      "faces": [
+        {
+          "name": "コクーン・マニューバ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スーパー・S・トリガースーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にoB 能力を与える）\n相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\noB 自然のパワー15000以下の進化ではないクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "mana",
+            "title": "マナに置く相手のクリーチャーを1体選ぶ"
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "color": "自然",
+              "maxPower": 15000,
+              "nonEvolution": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "23bbcff02ed2298d49d95af7831a100a36ee009b46a454fd95391ff95406037d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-015",
+      "name": "ノヴァルティ・アメイズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-015",
+      "faces": [
+        {
+          "name": "ノヴァルティ・アメイズ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スーパー・S・トリガースーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にoB 能力を与える）\n相手のクリーチャーをすべてタップする。\nカードを１枚引く。\noB 光のコスト８以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "color": "光",
+              "max": 8,
+              "nonEvolution": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "510083882fe54a1ec1099e5db81d43e93a8f98115263de3aae1e02fc83f52a99",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-028",
+      "name": "ハイエイタス・デパーチャ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-028",
+      "faces": [
+        {
+          "name": "ハイエイタス・デパーチャ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にoB 能力を与える）\n自分の山札の上から１枚目をマナゾーンに置く。\noB パワー5000以下のクリーチャーをすべて、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "mana",
+            "filter": {
+              "creature": true,
+              "maxPower": 5000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "8543641d1ea8d3792002910c4952d4945d440fc8712b019869af88924b6aac01",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-021",
+      "name": "闇夜の番人",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-021",
+      "faces": [
+        {
+          "name": "闇夜の番人",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にoB 能力を与える）\n相手のアンタップしているクリーチャーを１体破壊する。\noB クリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "untapped": true
+            }
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "f8f7e248e63314ef488b859e0bad995db48d319333c24af5c58ae1cf400d080a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp03-019",
+      "name": "戒王の封",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-019",
+      "faces": [
+        {
+          "name": "戒王の封",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にxB 能力を与える）\n闇のコスト８以下の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。\nxB 相手のクリーチャーを２体まで破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "optional": false,
+            "filter": {
+              "creature": true,
+              "color": "闇",
+              "max": 8,
+              "nonEvolution": true
+            }
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "grave",
+            "title": "破壊する相手のクリーチャーを2体まで選ぶ",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c35d8d99698d280fdf5f29eb4672f01b8c838d1c5d366c0dc0f465cb23908ef2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-022",
+      "name": "冥王の牙",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-022",
+      "faces": [
+        {
+          "name": "冥王の牙",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スーパー・S・トリガースーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にoB 能力を与える）\n相手のクリーチャーを１体破壊する。\noB 自分の山札の上から３枚を墓地に置く。その後、闇の進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "grave",
+            "title": "破壊する相手のクリーチャーを1体選ぶ"
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "Mill",
+            "n": 3
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "optional": false,
+            "filter": {
+              "creature": true,
+              "color": "闇",
+              "nonEvolution": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c52874a5ace29e238f65b1150084007bc8629c637abe35876b5675ef2fb536b9",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp02-018": 4,
+      "dmrp05-028": 4,
+      "dmrp03-028": 4,
+      "dmrp01-028": 4,
+      "dmrp01-025": 4,
+      "dmrp01-015": 4,
+      "dmrp02-028": 4,
+      "dmrp02-021": 4,
+      "dmrp03-019": 4,
+      "dmrp01-022": 4
+    }
+  },
+  "deferredCards": [
+    {
+      "id": "dmrp01-025",
+      "name": "ドドンガ轟キャノン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-025",
+      "faces": [
+        {
+          "name": "ドドンガ轟キャノン",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スーパー・S・トリガースーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にoB 能力を与える）\nバトルゾーンにある相手のコスト５以下のカードを１枚選び、持ち主の墓地に置く。\noB 相手のコスト７以下のクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "element": true,
+            "filter": {
+              "max": 5
+            }
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "Sweep",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "max": 7
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "8468fe1904db29301f708045eadfced87bf7d7973ae44d053c08d067b44fbe54",
+        "facesMatched": true
+      },
+      "reason": "通常効果は封印や進化元も選べるカード指定。既存のエレメント指定処理で代用しない。"
+    }
+  ]
+}

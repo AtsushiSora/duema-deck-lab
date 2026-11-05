@@ -1,0 +1,301 @@
+{
+  "phase": 456,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4603,
+  "description": "次に使う条件に合うクリーチャー・呪文の軽減を共通化する。重ねがけ、軽減量の選択、無料使用時の消費、召喚と直接展開の区別を検証する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36464/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36338/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36339/"
+  ],
+  "cards": [
+    {
+      "id": "dmr01-080",
+      "name": "スペル・セブ・パーロック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-080",
+      "faces": [
+        {
+          "name": "スペル・セブ・パーロック",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スペース・チャージ：光（自分のマナゾーンに光のカードが置かれた時、このクリーチャーの q 能力を使ってもよい）\nq このターン、次に自分が呪文を唱える時、その呪文を唱えるコストを最大２少なくしてもよい。ただし、コストは１より少なくならない。",
+          "race": "サイバーロード/エイリアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g454Space": [
+          {
+            "color": "光",
+            "defs": [
+              {
+                "op": "NextReduction456",
+                "type": "spell",
+                "amount": 2,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-080.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "b36dbdc884fd6c04925e1cccb39bd8d2d54dc20cfdef292c3a5bcfcb1aea5032",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04m-021",
+      "name": "ソイルピンプ・キャベッジ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-021",
+      "faces": [
+        {
+          "name": "ソイルピンプ・キャベッジ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このターン、次に召喚する自然のパワー12000以上のクリーチャーのコストを最大８少なくしてもよい。ただし、コストは０以下にはならない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "NextReduction456",
+            "type": "creature",
+            "amount": 8,
+            "optional": true,
+            "filter": {
+              "color": "自然",
+              "minPower": 12000
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04m-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "8765dd1bef9acdd2e357cd6a2afaf186d5f76a185bf961b62230d1e22aad1a52",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-057",
+      "name": "モモモスモモモ・ダッシュ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-057",
+      "faces": [
+        {
+          "name": "モモモスモモモ・ダッシュ",
+          "typeText": "呪文",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "キリフダッシュ [fn02]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、この呪文を[fn02]支払って唱えてもよい）\nこのターン、次に自分のチーム切札を召喚する時、その召喚コストを最大５少なくする。ただし、コストは０以下にはならない。",
+          "race": "ジョーカーズ/チーム切札",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "kirifudaDash": 2,
+        "g402DashColors": [
+          "火",
+          "自然"
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "NextReduction456",
+            "type": "creature",
+            "amount": 5,
+            "optional": true,
+            "filter": {
+              "race": "チーム切札"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-057.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "7f2f84a309a2c6a701324992f5b38feb08a0c6b8f31847b032c2cee588861588",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr03-019",
+      "name": "鎧亜戦隊ディス・マジシャン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-019",
+      "faces": [
+        {
+          "name": "鎧亜戦隊ディス・マジシャン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nスペース・チャージ：闇/自然（自分のマナゾーンに闇、自然のいずれかまたは両方を持つカードが置かれた時、このクリーチャーの q 能力を使ってもよい）\nq 闇：クリーチャーを１体、自分の墓地から手札に戻す。\nq 自然：このターン中、次に召喚するクリーチャーのコストを最大２少なくする。ただし、コストは１より少なくならない。",
+          "race": "ロスト・クルセイダー/エイリアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g454Space": [
+          {
+            "color": "闇",
+            "defs": [
+              {
+                "op": "Select",
+                "g228Recovery": true,
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "g228Face": {
+                    "type": "creature"
+                  }
+                },
+                "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+              }
+            ]
+          },
+          {
+            "color": "自然",
+            "defs": [
+              {
+                "op": "NextReduction456",
+                "type": "creature",
+                "amount": 2,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "f64b0a2c00026104511e0feeadd4376be437f03dd6d639149d5f2ffcb400e3b2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-043",
+      "name": "悟りの精霊ガガ・シャウラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-043",
+      "faces": [
+        {
+          "name": "悟りの精霊ガガ・シャウラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スペース・チャージ：自然（自分のマナゾーンに自然のカードが置かれた時、このクリーチャーの q 能力を使ってもよい）\nq このターン、次にクリーチャーを召喚する時、そのクリーチャーの召喚コストを１少なくしてもよい。ただし、コストは１より少なくならない。",
+          "race": "エンジェル・コマンド/エイリアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g454Space": [
+          {
+            "color": "自然",
+            "defs": [
+              {
+                "op": "NextReduction456",
+                "type": "creature",
+                "amount": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "e575a0098558e2b1d3db61a08d4f0b86ec62f1f08ac60cf0087ac14e4b2294ea",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm29-046",
+      "name": "魔光人形ドンキノフ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-046",
+      "faces": [
+        {
+          "name": "魔光人形ドンキノフ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、そのターン、次に唱える自分の呪文のコストを最大３少なくしてもよい。ただしコストは１より少なくならない。",
+          "race": "デスパペット/ナイト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "NextReduction456",
+            "type": "spell",
+            "amount": 3,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm29-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "3475fc52e8d081b6f5466a387ec4fbcf939c79bf55d8d49f84076b4934afb013",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr01-080": 4,
+      "dmrp04m-021": 4,
+      "dmrp16-057": 4,
+      "dmr03-019": 0,
+      "dmr01-043": 4,
+      "dm29-046": 4
+    }
+  }
+}

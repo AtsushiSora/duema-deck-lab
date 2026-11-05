@@ -1,0 +1,279 @@
+{
+  "phase": 450,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4550,
+  "description": "各発生源ごと・各自分ターン1体に制限されたマナ／墓地からの召喚を共通化し、種族・進化・シールド条件、支払い、G・ストライク、ササゲール、マナ登場時の公開、墓地からの一括マナ移動を検証する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/31718/",
+    "https://dm.takaratomy.co.jp/rule/qa/39404/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp17-026",
+      "name": "ヤッタレアリ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-026",
+      "faces": [
+        {
+          "name": "ヤッタレアリ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分のターン中、進化クリーチャーを１体、自分のマナゾーンから召喚してもよい。",
+          "race": "ジョーカーズ/レクスターズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "g450ZoneSummon": {
+          "origin": "mana",
+          "filter": {
+            "evolution": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "61e5f97585783ff7d6d03912e69759e16eb9a83949972ef48c6c60e1699c5cde",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-020",
+      "name": "凶鬼31号 ボーズー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-020",
+      "faces": [
+        {
+          "name": "凶鬼31号 ボーズー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分のターン中、進化クリーチャーを１体、自分の墓地から召喚してもよい。",
+          "race": "マフィ・ギャング/レクスターズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "g450ZoneSummon": {
+          "origin": "grave",
+          "filter": {
+            "evolution": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "954925deed547d1c06e896b185d47b57f623d383d8417a33889b825e4da66aa4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-022",
+      "name": "強振の超人",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-022",
+      "faces": [
+        {
+          "name": "強振の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "T・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーが出た時、自分の墓地のカードを好きな枚数、タップしてマナゾーンに置く。\n自分のターン中に一度、クリーチャーを１体、自分のマナゾーンから召喚してもよい。",
+          "race": "ジャイアント",
+          "powerText": "16000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "g450ZoneSummon": {
+          "origin": "mana",
+          "filter": {
+            "creature": true
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "mana",
+            "n": "all",
+            "optional": true,
+            "tapped": true,
+            "filter": {},
+            "title": "タップしてマナに置く墓地のカードを好きな枚数選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "3bfe807d15d0f69f466b82e474d06f461215d1e09460d704317af477d6d34f13",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr20-008",
+      "name": "侵革目 パラスラプト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-008",
+      "faces": [
+        {
+          "name": "侵革目 パラスラプト",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自然のクリーチャーをすべて、自分の墓地からマナゾーンに置く。\nいずれかのプレイヤーのシールドが２つ以下なら、自分のターン中にクリーチャーを１体、自分のマナゾーンから召喚してもよい。",
+          "race": "ジュラシック・コマンド・ドラゴン/革命軍/侵略者",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g450ZoneSummon": {
+          "origin": "mana",
+          "filter": {
+            "creature": true
+          },
+          "anyShieldsMax": 2
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "mana",
+            "n": "all",
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "color": "自然"
+              }
+            },
+            "title": "自然の墓地のクリーチャーをすべてマナに置く"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr20-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "195b980d5ebb073f7b0ccff7471b8a2be76083da214523b0d60ad95ac45e15cf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23bd1-011",
+      "name": "覇王 スカール-1",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd1-011",
+      "faces": [
+        {
+          "name": "覇王 スカール-1",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのカードを自分のマナゾーンに置いた時、自分の手札にある多色カードを１枚、相手に見せてもよい。そうしたら、このカードをアンタップする。\n自分のターン中、ディスペクターを１体、自分の墓地から召喚してもよい。\nササゲール１（ディスペクターを召喚する時、コストを１少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "ダークロード/ディスタス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "g449ManaReveal": true,
+        "g450ZoneSummon": {
+          "origin": "grave",
+          "filter": {
+            "race": "ディスペクター"
+          }
+        },
+        "sasage": 1
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd1-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "6a534643a3179f599c5e034ce0b33cefdb644d9799cc96fb60ee1b9c1c9ba29d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23bd1-012",
+      "name": "妖精 ミンメイ-1",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd1-012",
+      "faces": [
+        {
+          "name": "妖精 ミンメイ-1",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのカードを自分のマナゾーンに置いた時、自分の手札にある多色カードを１枚、相手に見せてもよい。そうしたら、このカードをアンタップする。\n自分のターン中、ディスペクターを１体、自分のマナゾーンから召喚してもよい。\nササゲール１（ディスペクターを召喚する時、コストを１少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "スノーフェアリー/ディスタス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "g449ManaReveal": true,
+        "g450ZoneSummon": {
+          "origin": "mana",
+          "filter": {
+            "race": "ディスペクター"
+          }
+        },
+        "sasage": 1
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd1-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "88f50a173c769d8ec0438bd019ade58424a5829af9290c2e60126b03584c16d7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp17-026": 4,
+      "dmrp17-020": 4,
+      "dm22rp1-022": 4,
+      "dmr20-008": 1,
+      "dm23bd1-011": 4,
+      "dm23bd1-012": 4
+    }
+  }
+}

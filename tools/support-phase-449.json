@@ -1,0 +1,370 @@
+{
+  "phase": 449,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4543,
+  "description": "マナに置いた時に手札の多色カードを任意公開して自身をアンタップする能力を共通化する。呪文の本来の効果、効果によるマナ追加、無視・移動後の参照を検証する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/39403/",
+    "https://dm.takaratomy.co.jp/rule/qa/39404/",
+    "https://dm.takaratomy.co.jp/rule/qa/39961/"
+  ],
+  "cards": [
+    {
+      "id": "dmex14-076",
+      "name": "鬼札の伝説",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-076",
+      "faces": [
+        {
+          "name": "鬼札の伝説",
+          "typeText": "呪文",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このカードを自分のマナゾーンに置いた時、自分の手札にある多色カードを１枚、相手に見せてもよい。そうしたら、このカードをアンタップする。\n自分のシールドを１つ墓地に置く。その後、クリーチャーを２体まで、自分の墓地から手札に戻す。",
+          "race": "鬼札王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g449ManaReveal": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldGrave",
+            "g239ShieldGrave": true
+          },
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 2,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "optional": true,
+            "title": "手札に戻す墓地のクリーチャーを2体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-076.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "a3495b6c1b25f8266f694be30b02e41a486424c4ef628d881b885a66e3184d09",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-062",
+      "name": "銀河の伝説",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-062",
+      "faces": [
+        {
+          "name": "銀河の伝説",
+          "typeText": "呪文",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このカードを自分のマナゾーンに置いた時、自分の手札にある多色カードを１枚、相手に見せてもよい。そうしたら、このカードをアンタップする。\nバトルゾーンにある相手のクリーチャー１体につき、カードを１枚引く。",
+          "race": "チーム銀河",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g449ManaReveal": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "owner": "opponent",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-062.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "3964a40cdc2c377e3dcb7e7bb06d637c8788650d6def9c8f39c42620bf9bef70",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-064",
+      "name": "月光の伝説",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-064",
+      "faces": [
+        {
+          "name": "月光の伝説",
+          "typeText": "呪文",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このカードを自分のマナゾーンに置いた時、自分の手札にある多色カードを１枚、相手に見せてもよい。そうしたら、このカードをアンタップする。\n相手のタップしているクリーチャーを１体破壊する。",
+          "race": "月光王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g449ManaReveal": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "tapped": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-064.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "a376f6212c129ec7739a5438df300ece457b5c28abde93d01f40ce7dbcd3cc70",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-080",
+      "name": "切札の伝説",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-080",
+      "faces": [
+        {
+          "name": "切札の伝説",
+          "typeText": "呪文",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このカードを自分のマナゾーンに置いた時、自分の手札にある多色カードを１枚、相手に見せてもよい。そうしたら、このカードをアンタップする。\n次のうちいずれか１つを選ぶ。\n▶相手の「ブロッカー」を持つクリーチャーを１体破壊する。\n▶バトルゾーンにある相手の、コスト２以下のカードを１枚選び、持ち主の墓地に置く。",
+          "race": "ジョーカーズ/チーム切札",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g449ManaReveal": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "blocker": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "バトルゾーンにある相手の、コスト２以下のカードを１枚選び、持ち主の墓地に置く。",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "element": true,
+                    "filter": {
+                      "max": 2
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-080.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "f0a41efc2e3a1f054846ee4a9b0eb382a5f61420ac01e30c92e547cffb810899",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-078",
+      "name": "不死樹の伝説",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-078",
+      "faces": [
+        {
+          "name": "不死樹の伝説",
+          "typeText": "呪文",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このカードを自分のマナゾーンに置いた時、自分の手札にある多色カードを１枚、相手に見せてもよい。そうしたら、このカードをアンタップする。\n自分の山札の上から２枚を墓地に置く。その後、カードを１枚、自分の墓地からマナゾーンに置く。",
+          "race": "不死樹王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g449ManaReveal": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 2
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "mana",
+            "n": 1,
+            "filter": {},
+            "title": "マナに置く墓地のカードを1枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-078.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "5c269b126b28a6e324629727c6cff6bbb7c05a2b6297411d1e5cfe331573a2db",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-068",
+      "name": "暴拳の伝説",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-068",
+      "faces": [
+        {
+          "name": "暴拳の伝説",
+          "typeText": "呪文",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このカードを自分のマナゾーンに置いた時、自分の手札にある多色カードを１枚、相手に見せてもよい。そうしたら、このカードをアンタップする。\n相手のクリーチャーをすべてタップする。\nこのターン、自分のクリーチャーすべてのパワーを+3000する。",
+          "race": "暴拳王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g449ManaReveal": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          },
+          {
+            "op": "GroupPower",
+            "g214GroupPower": true,
+            "owner": "self",
+            "power": 3000,
+            "filter": {
+              "creature": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-068.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "7ca8e7f2d5ae728e44846c40f5a658e302e6f99add6fcaa36690fdd1052ce3c1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-070",
+      "name": "零の伝説",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-070",
+      "faces": [
+        {
+          "name": "零の伝説",
+          "typeText": "呪文",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このカードを自分のマナゾーンに置いた時、自分の手札にある多色カードを１枚、相手に見せてもよい。そうしたら、このカードをアンタップする。\n自分の山札の上から４枚を見る。そのうちの１枚を山札の上に戻し、残りを墓地に置く。",
+          "race": "チーム零",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g449ManaReveal": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 4,
+            "g183Return": true,
+            "stages": [
+              {
+                "n": 1,
+                "to": "deckTop",
+                "filter": {}
+              }
+            ],
+            "rest": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "9d9384c67d4ede50c81f1c480e7edb1574f471317b4b3b887d0577a322579be1",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex14-076": 4,
+      "dmex14-062": 4,
+      "dmex14-064": 4,
+      "dmex14-080": 4,
+      "dmex14-078": 4,
+      "dmex14-068": 4,
+      "dmex14-070": 4
+    }
+  }
+}

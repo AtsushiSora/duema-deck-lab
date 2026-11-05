@@ -1,0 +1,309 @@
+{
+  "phase": 453,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4571,
+  "description": "ロスト・プリズムの全文を任意公開・多色なら必須回収・それ以外は山札の上を維持する既存処理へ接続する。マナのタップインと他の通常能力、トリガー、非ドローとしての手札追加も検証する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37581/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35521/",
+    "https://dm.takaratomy.co.jp/rule/qa/31824/",
+    "https://dm.takaratomy.co.jp/rule/qa/31825/"
+  ],
+  "cards": [
+    {
+      "id": "dm24-063",
+      "name": "鎧亜の光牙ジクトゥス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-063",
+      "faces": [
+        {
+          "name": "鎧亜の光牙ジクトゥス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nロスト・プリズム(このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を表向きにしてもよい。それが多色カードであれば、手札に加える)",
+          "race": "ロスト・クルセイダー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g359RevealAll": true,
+            "title": "山札の一番上を公開する？",
+            "defs": [
+              {
+                "op": "Look",
+                "n": 1,
+                "public": true,
+                "stages": [
+                  {
+                    "n": 1,
+                    "to": "hand",
+                    "filter": {
+                      "g223Multicolor": true
+                    }
+                  }
+                ],
+                "rest": "top"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-063.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "2b214ffffe1031ba4f53f484b31e6a3111fe1efdeaac81f13a9af51bfbb29f93",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-067",
+      "name": "鎧亜の紅滅コルンバ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-067",
+      "faces": [
+        {
+          "name": "鎧亜の紅滅コルンバ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nロスト・プリズム (このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を表向きにしてもよい。それが多色カードであれば、手札に加える)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ロスト・クルセイダー",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g359RevealAll": true,
+            "title": "山札の一番上を公開する？",
+            "defs": [
+              {
+                "op": "Look",
+                "n": 1,
+                "public": true,
+                "stages": [
+                  {
+                    "n": 1,
+                    "to": "hand",
+                    "filter": {
+                      "g223Multicolor": true
+                    }
+                  }
+                ],
+                "rest": "top"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-067.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "bfb89d01ec952834bc93bc2536b16280b1c8ecebc3790044a682216eeb18d02e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-065",
+      "name": "鎧亜の呪蒼タボマス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-065",
+      "faces": [
+        {
+          "name": "鎧亜の呪蒼タボマス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nロスト・プリズム (このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を表向きにしてもよい。それが多色カードであれば、手札に加える)\nこのクリーチャーが破壊される時、墓地に置くかわりに手札に戻す。",
+          "race": "ロスト・クルセイダー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "destroyToHand": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g359RevealAll": true,
+            "title": "山札の一番上を公開する？",
+            "defs": [
+              {
+                "op": "Look",
+                "n": 1,
+                "public": true,
+                "stages": [
+                  {
+                    "n": 1,
+                    "to": "hand",
+                    "filter": {
+                      "g223Multicolor": true
+                    }
+                  }
+                ],
+                "rest": "top"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-065.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "4a207cea07d92d615a04abfc7002180d6894bd7a2bb9f1d7398b8378efbb4693",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-069",
+      "name": "鎧亜の樹炎アルゴス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-069",
+      "faces": [
+        {
+          "name": "鎧亜の樹炎アルゴス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nロスト・プリズム (このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を表向きにしてもよい。それが多色カードであれば、手札に加える)",
+          "race": "ロスト・クルセイダー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g359RevealAll": true,
+            "title": "山札の一番上を公開する？",
+            "defs": [
+              {
+                "op": "Look",
+                "n": 1,
+                "public": true,
+                "stages": [
+                  {
+                    "n": 1,
+                    "to": "hand",
+                    "filter": {
+                      "g223Multicolor": true
+                    }
+                  }
+                ],
+                "rest": "top"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-069.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "2e5d6286754f5e76a658149b9eb1c1f11196e67f391ec315b19511a3b8308653",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-033",
+      "name": "鎧亜の戦輝リグド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-033",
+      "faces": [
+        {
+          "name": "鎧亜の戦輝リグド",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nロスト・プリズム(このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を表向きにしてもよい。それが多色カードであれば、手札に加える)\nスピードアタッカー(このクリーチャーは召喚酔いしない)\n自分のターンの終わりに、このクリーチャーをアンタップする。",
+          "race": "ロスト・クルセイダー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g166EndUntap": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g359RevealAll": true,
+            "title": "山札の一番上を公開する？",
+            "defs": [
+              {
+                "op": "Look",
+                "n": 1,
+                "public": true,
+                "stages": [
+                  {
+                    "n": 1,
+                    "to": "hand",
+                    "filter": {
+                      "g223Multicolor": true
+                    }
+                  }
+                ],
+                "rest": "top"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "9fc4395188ff02bef80bb9a82b6f245d1a172ab334bb613495dfe11ce5e3a2fc",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24-063": 4,
+      "dm24-067": 4,
+      "dm24-065": 4,
+      "dm24-069": 4,
+      "dm24-033": 4
+    }
+  }
+}
