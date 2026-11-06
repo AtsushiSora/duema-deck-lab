@@ -1,0 +1,306 @@
+{
+  "phase": 476,
+  "checkedAt": "2026-11-06",
+  "baseCount": 4748,
+  "description": "破壊された自身の墓地回収、墓地の全クリーチャー回収、最低コスト・種族・進化条件付き回収を共通処理する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmrp20-068",
+      "name": "Disデリンダー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-068",
+      "faces": [
+        {
+          "name": "Disデリンダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが破壊された時、自分の墓地から手札に戻す。\nマナ武装 ４：このクリーチャーが出た時、自分のマナゾーンに多色カードが４枚以上あれば、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "グレートメカオー/ディスタス",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfMana",
+            "n": 4,
+            "multi": true,
+            "defs": [
+              {
+                "op": "Select",
+                "owner": "opponent",
+                "origin": "battle",
+                "n": 1,
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true,
+                "to": "hand",
+                "title": "手札に戻す相手のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "SelfGraveHand476"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-068.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "43f8074d6f2c37edb6bbeae04169181c1249a5bd3548b9a402f399e225be9c77",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx11-029",
+      "name": "オニナグリ・ザ・レジェンド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-029",
+      "faces": [
+        {
+          "name": "オニナグリ・ザ・レジェンド",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分のヒューマノイド１体の上に置く。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)\nスレイヤー(このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)\nこのクリーチャーが破壊された時、クリーチャーをすべて、自分の墓地から手札に戻す。",
+          "race": "ヒューマノイド/ハンター/エイリアン",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "ヒューマノイド"
+        },
+        "breaker": 3,
+        "slayer": true,
+        "g172Death": [
+          {
+            "op": "RecoverAll326",
+            "zones": [
+              "grave"
+            ],
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx11-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "079f3ab4fe4d3540c154026c2bf15dd2d9b141ca4639bb5edd9e556fd8f5491a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp1-064",
+      "name": "解体人形ジェガル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-064",
+      "faces": [
+        {
+          "name": "解体人形ジェガル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "シールド・セイバー（自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい）\nこのクリーチャーが破壊された時、コスト３以上のクリーチャーを１体、自分の墓地から手札に戻してもよい。",
+          "race": "デスパペット",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g401ShieldSaver": true,
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "min": 3
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-064.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "da4cc2548f3e24d5ee2685036b6e9832560de43954f830fb6d72fc1301ae4ab5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm34+1s-002",
+      "name": "邪眼銃士ダーク・ルシファー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34+1s-002",
+      "faces": [
+        {
+          "name": "邪眼銃士ダーク・ルシファー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を墓地に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが破壊された時、好きな数の進化ダークロードを自分の墓地から手札に戻してもよい。",
+          "race": "ダークロード/ナイト",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 3
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": "all",
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "evolution": true,
+              "race": "ダークロード"
+            },
+            "title": "手札に戻す進化ダークロードを好きな数選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm34+1s-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "ce8e0515f46fe98c938beff51e668e15f1ca504607e46e3ea8412dd046e6d8de",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd08-010",
+      "name": "堕天の精霊デラスキヤン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd08-010",
+      "faces": [
+        {
+          "name": "堕天の精霊デラスキヤン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーが破壊された時、コスト７以上のエンジェル・コマンドを１体、自分の墓地から手札に戻してもよい。",
+          "race": "エンジェル・コマンド/アンノイズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "min": 7,
+              "race": "エンジェル・コマンド"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd08-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "5c29cbfdf435bc701499f64ee55a8b6ead38235d00c4e94374ce6307f42a8628",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-066",
+      "name": "電脳 ソルジャ-２",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-066",
+      "faces": [
+        {
+          "name": "電脳 ソルジャ-２",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが破壊された時、自分の墓地から手札に戻す。\nササゲール２（ディスペクターを召喚する時、コストを２少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "リキッド・ピープル/ディスタス",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "sasage": 2,
+        "g172Death": [
+          {
+            "op": "SelfGraveHand476"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-066.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "419036fb6653970d6f38565084692c9c5019c4f583419144e431b8753d0ffc5b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp20-068": 4,
+      "dmx11-029": 4,
+      "dm26rp1-064": 4,
+      "dm34+1s-002": 4,
+      "dmd08-010": 4,
+      "dmrp19-066": 4
+    }
+  }
+}

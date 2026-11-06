@@ -1,0 +1,479 @@
+{
+  "phase": 482,
+  "checkedAt": "2026-11-06",
+  "baseCount": 4786,
+  "description": "プレイヤーを攻撃してブロックされなかった時の誘発をシールドブレイク前に一度だけ解決し、フリーズと汎用効果を共通処理する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35564/"
+  ],
+  "cards": [
+    {
+      "id": "dmx04-011",
+      "name": "ケロディ二郎",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx04-011",
+      "faces": [
+        {
+          "name": "ケロディ二郎",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+          "race": "ゲル・フィッシュ/ハンター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g482Unblocked": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "hand",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx04-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "b4a6c7e253ba780fcc943bf590397a134949a2e7e24c9a42907b27c0476c4567",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm37-009",
+      "name": "サルティンイダム・クロウラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-009",
+      "faces": [
+        {
+          "name": "サルティンイダム・クロウラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nフリーズ(このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。そのクリーチャーは、次の相手のターンのはじめにアンタップされない)",
+          "race": "アースイーター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g482Unblocked": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true,
+            "lock": true,
+            "g210TapLock": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "cfa85c1aee7b0e6c59c47a583d3fa0ae46ce22253e90726209609915c28b3b8e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-040",
+      "name": "テンタクル・クラスター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-040",
+      "faces": [
+        {
+          "name": "テンタクル・クラスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかったとき、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+          "race": "サイバー・クラスター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g482Unblocked": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "hand",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "81b0104578a1e105c680e2238874f9035cb03357db019f50a42411484d6b1aa0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-048",
+      "name": "マウントザウルス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-048",
+      "faces": [
+        {
+          "name": "マウントザウルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかったとき、相手は自分自身のマナゾーンからカードを１枚選び、持ち主の墓地に置く。",
+          "race": "ロック・ビースト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g482Unblocked": [
+          {
+            "op": "OpponentManaLoss478"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "7f9e2624a6e4cda63011a45eeae2677fd719e403ff665b5e4c465535a35a54d8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm37-019",
+      "name": "海王聖霊ウナ・アラーナ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-019",
+      "faces": [
+        {
+          "name": "海王聖霊ウナ・アラーナ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nダブル・フリーズ(このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、バトルゾーンにある相手のクリーチャーを２体まで選び、タップしてもよい。そのクリーチャーは、次の相手のターンのはじめにアンタップされない)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ポセイディア・ドラゴン/エンジェル・コマンド",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g482Unblocked": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "g210TapLock": true,
+            "optional": true
+          }
+        ],
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "ae8f9a2566dd53d916c153eea06188f4cc06607022a6c652150e1b0ec9d566bb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm37-037",
+      "name": "仰天の守護者マモ・ミステール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-037",
+      "faces": [
+        {
+          "name": "仰天の守護者マモ・ミステール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "フリーズ(このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。そのクリーチャーは、次の相手のターンのはじめにアンタップされない)",
+          "race": "ガーディアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g482Unblocked": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true,
+            "lock": true,
+            "g210TapLock": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "ceb3b17d35ba17eb1770a7bf5776ac3c54f76f0451453a9a49be0594c68bddad",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-036",
+      "name": "聖騎士メビウスリンク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-036",
+      "faces": [
+        {
+          "name": "聖騎士メビウスリンク",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかったとき、自分の山札を見る。その中から呪文を１枚選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "レインボー・ファントム",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g482Unblocked": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "spell": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "17a67fac96412481f1b718d0d10733e251451971a350b3390e1e261ef2fa40f7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-054",
+      "name": "誕生の祈",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-054",
+      "faces": [
+        {
+          "name": "誕生の祈",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかったとき、自分の山札を見る。その中からクリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "ビーストフォーク",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g482Unblocked": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "cd10a172f183e6870cd6f8156b2bb8f1de4cacbe787e472a0dd4aaf25cfafe1e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm37-054",
+      "name": "電磁黙示マジェスティック・スター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-054",
+      "faces": [
+        {
+          "name": "電磁黙示マジェスティック・スター",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーはブロックされない。\nフリーズ(このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。そのクリーチャーは、次の相手のターンのはじめにアンタップされない)",
+          "race": "サイバーロード/ライトブリンガー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "unblockable": true,
+        "g482Unblocked": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true,
+            "lock": true,
+            "g210TapLock": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "54440c3f4b60ccee0fb41bcb4f9177fb783638350fc25b47d860e968faa840bc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-015",
+      "name": "特攻隊長マイキー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-015",
+      "faces": [
+        {
+          "name": "特攻隊長マイキー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかったとき、バトルゾーンにあるパワー3000以下の相手のクリーチャーを１体選び、持ち主の墓地に置いてもよい。",
+          "race": "ヒューマノイド",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g482Unblocked": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "ba30f3d1da969776020230105a23ee2dad511f3116bc7dbb45359d96877a992a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm13-026",
+      "name": "妖魔賢者メルカプ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-026",
+      "faces": [
+        {
+          "name": "妖魔賢者メルカプ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、バトルゾーンにある相手のクリーチャーをすべてタップする。",
+          "race": "グラディエーター/ヘドリアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g482Unblocked": [
+          {
+            "op": "TapAll"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "029d9a045c2733b37760a92a9d4d7f817b8378bd20e626051407641789c22c3e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx04-011": 4,
+      "dm37-009": 4,
+      "dm09-040": 4,
+      "dm09-048": 4,
+      "dm37-019": 4,
+      "dm37-037": 4,
+      "dm09-036": 4,
+      "dm09-054": 4,
+      "dm37-054": 4,
+      "dm09-015": 4,
+      "dm13-026": 4
+    }
+  }
+}

@@ -1,0 +1,341 @@
+{
+  "phase": 497,
+  "checkedAt": "2026-11-06",
+  "baseCount": 4928,
+  "description": "サイレントスキルの同時ブレイク、シールド交換、ハンデス、味方への能力付与、マナからのドラゴン展開を共通処理で対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35713/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36084/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35675/",
+    "https://dm.takaratomy.co.jp/rule/qa/31533/"
+  ],
+  "cards": [
+    {
+      "id": "dm10-020",
+      "name": "トリック・クラッカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-020",
+      "faces": [
+        {
+          "name": "トリック・クラッカー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "サイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\n自分の手札を１枚選び、裏向きにして自分のシールドに加えてもよい。そうした場合、自分のシールドを１枚選び、自分の手札に加える。(その「S・トリガー」能力は使えない)",
+          "race": "サイバー・ウイルス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g496Silent": [
+          {
+            "op": "ShieldExchange446",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "c6e35bf2ca885c83b0bfc111c498a8858cb30b0f15caa2e584159ade19bbc3a1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-092",
+      "name": "ベノム・カプセル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-092",
+      "faces": [
+        {
+          "name": "ベノム・カプセル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "サイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\nこのクリーチャーは、相手のシールドを１枚ブレイクする。",
+          "race": "ブレインジャッカー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g496Silent": [
+          {
+            "op": "Break497",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-092.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "40f4c39401f821338e102e58facac8abe6dd6053357c2948f4b6dc4b2a4d4e61",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-004",
+      "name": "災厄秘宝ゲジラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-004",
+      "faces": [
+        {
+          "name": "災厄秘宝ゲジラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nサイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\nこのクリーチャーは、相手のシールドを２枚ブレイクする。",
+          "race": "パンドラボックス",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g496Silent": [
+          {
+            "op": "Break497",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "cb833512a6e5e710831ce38cb653f1791dbd0fda4fa4fac5eb48ed50025fa257",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm11-048",
+      "name": "支援団長ガンクローク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-048",
+      "faces": [
+        {
+          "name": "支援団長ガンクローク",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "サイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\nこのターンの終わりまで、自分の火のクリーチャーはすべて「W・ブレイカー」を得る。",
+          "race": "ヒューマノイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g496Silent": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "color": "火"
+            },
+            "grant": {
+              "g313Breaker": 2
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "a62552c497e40e5c1b1c3ca9282fb3c09de881c31f362a0c9a1d1e00fc4548c9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm11-012",
+      "name": "邪凶の影ゲイザー・アイズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-012",
+      "faces": [
+        {
+          "name": "邪凶の影ゲイザー・アイズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "サイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\n相手の手札を見てその中から１枚選び、捨てさせる。",
+          "race": "ゴースト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g496Silent": [
+          {
+            "op": "InspectOne258"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "5d79ae99e37f65056f41636743ceccf3db445729d2b354c741344496afd13b99",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm13-024",
+      "name": "照準野郎ジルバ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-024",
+      "faces": [
+        {
+          "name": "照準野郎ジルバ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "サイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\nこのターン、バトルゾーンにある自分の他のクリーチャーは、タップされていないクリーチャーを攻撃できる。",
+          "race": "ヒューマノイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g496Silent": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "other": true,
+            "filter": {
+              "creature": true
+            },
+            "grant": {
+              "attackUntapped": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "262059e02ee23c8e16066ddebf287a12373c14b931e524f4e69fd042ee373128",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm11-021",
+      "name": "宣凶師バレイド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-021",
+      "faces": [
+        {
+          "name": "宣凶師バレイド",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "サイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\nこのターン、自分の光のクリーチャーはブロックされない。",
+          "race": "グラディエーター",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g496Silent": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "color": "光"
+            },
+            "grant": {
+              "unblockable": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "18218c76db744c8ebd3bece8716726ee3e1e75a103bcff4c25c4da6b0d1337d2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm11-018",
+      "name": "地龍の化身",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-018",
+      "faces": [
+        {
+          "name": "地龍の化身",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "サイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\n自分のマナゾーンからドラゴンを１体、バトルゾーンに出す。",
+          "race": "ミステリー・トーテム",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g496Silent": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "optional": false,
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "2d8a47d3f6990aa9b1d10bfbfdea924ef64411c88e5ebfdd8db1e12b3f70f59f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm10-020": 4,
+      "dm10-092": 4,
+      "dm10-004": 4,
+      "dm11-048": 4,
+      "dm11-012": 4,
+      "dm13-024": 4,
+      "dm11-021": 4,
+      "dm11-018": 4
+    }
+  }
+}

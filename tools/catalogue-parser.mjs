@@ -1,4 +1,5 @@
-export const canonicalName=s=>String(s).normalize('NFKC').replace(/[“”]/g,'"').replace(/[‘’]/g,"'").replace(/\s+/g,' ').trim();
+import {canonicalCardName} from '../dist/card-name-aliases.js';
+export const canonicalName=canonicalCardName;
 // Official query spelling is significant, including literal plus and dollar symbols.
 export const officialDetailURL=id=>'https://dm.takaratomy.co.jp/card/detail/?id='+id;
 const decode=s=>s.replace(/&#x([\da-f]+);/gi,(_,n)=>String.fromCodePoint(parseInt(n,16))).replace(/&#(\d+);/g,(_,n)=>String.fromCodePoint(Number(n))).replace(/&quot;/g,'"').replace(/&#039;|&apos;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&');

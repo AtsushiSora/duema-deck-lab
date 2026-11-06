@@ -1,0 +1,238 @@
+{
+  "phase": 477,
+  "checkedAt": "2026-11-06",
+  "baseCount": 4754,
+  "description": "攻撃時に選べる合法な対象だけから、タップ条件・シールド条件・種族指定の攻撃先誘導を共通処理する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmr05-008",
+      "name": "諸肌の桜吹雪",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-008",
+      "faces": [
+        {
+          "name": "諸肌の桜吹雪",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化-自分のビーストフォーク１体の上に置く。\nガードマン(自分の他のクリーチャーが攻撃される時、このクリーチャーをタップしてもよい。そうした場合、攻撃クリーチャーはかわりにこのクリーチャーを攻撃する)\nW・ブレイカー\nこのクリーチャーがタップされていて、相手のクリーチャーが攻撃する時、そのクリーチャーは可能であればこのクリーチャーを攻撃する。",
+          "race": "ビーストフォーク/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "ビーストフォーク"
+        },
+        "guardman": true,
+        "breaker": 2,
+        "g477AttackMeTapped": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "7e73e26791a378e106d3d235dda0c35d286ca68940479511ebbadee74f900f1d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx17-s03",
+      "name": "仁義類鬼流目 ブラキオヤイバ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx17-s03",
+      "faces": [
+        {
+          "name": "仁義類鬼流目 ブラキオヤイバ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーが攻撃する時、進化ではない自然のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\n相手のクリーチャーが攻撃する時、そのクリーチャーは可能であればこのクリーチャーを攻撃する。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+          "race": "ジュラシック・コマンド・ドラゴン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g431AttackMe": true,
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "color": "自然",
+              "nonEvolution": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx17-s03.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "68c9ceb8ea2ec7174e334f3fca50a79ea3dfb4d1b74fc00b368335703beb0c60",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-082",
+      "name": "雪精 ビッグビッグ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-082",
+      "faces": [
+        {
+          "name": "雪精 ビッグビッグ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\n革命２―相手のクリーチャーが攻撃する時、自分のシールドが２つ以下なら、そのクリーチャーは可能ならこのクリーチャーを攻撃する。",
+          "race": "スノーフェアリー風/革命軍",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "guardman": true,
+        "g260Self": {
+          "filter": {
+            "g265ShieldsMax": 2
+          },
+          "grants": {
+            "g431AttackMe": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-082.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "d7128afd87effed819a3744cf534e7de957009e991f60be5115dd427dc9c1669",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-038",
+      "name": "戦いの化身",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-038",
+      "faces": [
+        {
+          "name": "戦いの化身",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンにある間、相手の攻撃クリーチャーは、可能であればミステリー・トーテムを攻撃する。",
+          "race": "ミステリー・トーテム",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g477TotemLure": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "823bf73660649eb59cc63adb2000dcdea02ef3656b368c1ddc76a0df2097913c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr08-033",
+      "name": "土用の超人",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-033",
+      "faces": [
+        {
+          "name": "土用の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ガードマン(自分の他のクリーチャーが攻撃される時、このクリーチャーをタップしてもよい。そうした場合、攻撃クリーチャーはかわりにこのクリーチャーを攻撃する)\n相手のクリーチャーが攻撃する場合、可能であればこのクリーチャーを攻撃する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ジャイアント/アンノウン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "guardman": true,
+        "g431AttackMe": true,
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "e23dc52fab913cb62141b2d8f1c18f2711175eaf1cc51de740547e57ee8f6149",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-068",
+      "name": "陽動の面 ヒッヒー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-068",
+      "faces": [
+        {
+          "name": "陽動の面 ヒッヒー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手のクリーチャーが攻撃する場合、可能であればこのクリーチャーを攻撃する。",
+          "race": "ビーストフォーク號",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g431AttackMe": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-068.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "6ac6d028c2155850adc9d4f3d87b544b6d614d99c7eb2c0456361e02fbd03143",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr05-008": 4,
+      "dmx17-s03": 4,
+      "dmr19-082": 4,
+      "dm06-038": 4,
+      "dmr08-033": 4,
+      "dmr13-068": 4
+    }
+  }
+}

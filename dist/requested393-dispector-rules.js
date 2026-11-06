@@ -1,4 +1,4 @@
-import{hasCopiedRole393}from'./requested393-joker-rules.js?v=0.555.0';
+import{hasCopiedRole393}from'./requested393-joker-rules.js?v=0.585.0';
 // Requested Dispectors: serializable continuations, public targets and full-card identity.
 export function createRequested393DispectorRules(api){
  const{card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,move,targetOptions}=api;
@@ -20,7 +20,7 @@ export function createRequested393DispectorRules(api){
  case'g393D_NextDraw':api.draw(s,t.owner,5);break;
  case'g393D_VolvalTurn':if(dies(s)>=4)put(s,task('g5ExtraTurn',t.p,t.source));break;
  case'g393D_MaxiDestroy':{const x=s.players[t.owner].battle.find(x=>key(x)===key(t.enemy));if(x)move(s,[{player:t.owner,uid:x.uid,to:'grave',destroy:true,controller:t.p}]);break;}
- case'g393D_GorinaUntap':{const x=live(s,t);if(x&&api.canUntap(x)){x.tapped=false;api.log(s,t.p,'untap',card(t.source).name+'：最初の攻撃でアンタップ',{cardId:t.source});}break;}
+ case'g393D_GorinaUntap':{const x=live(s,t);if(x&&api.untap(s,t.p,x))api.log(s,t.p,'untap',card(t.source).name+'：最初の攻撃でアンタップ',{cardId:t.source});break;}
  case'g393D_GorinaWatch':put(s,task('g34_Draw',t.p,t.source,{n:1,optional:true}),{...t,op:'g393D_GorinaDeploy'});break;
  case'g393D_GorinaDeploy':{const attacker=s.attack&&s.players[t.p].battle.find(x=>x.uid===s.attack.attacker),attackCost=attacker?cost(effective(attacker,s)):t.attackCost,rows=own.hand.filter(x=>cost(card(x))<attackCost&&canPut(s,t.p,x,'hand'));if(rows.length)choice(s,t,'攻撃中のクリーチャーよりコストが小さいクリーチャーを手札から1体まで出す',[...rows.map(x=>opt(card(x).name,x.uid,25+cost(card(x)),x.cardId)),skip()]);break;}
  case'g393D_Premium':{const rows=[0,1].flatMap(owner=>s.players[owner].mana.filter(x=>cost(card(x))<=5&&canPut(s,owner,x,'mana')).map(x=>({owner,x})));if(!rows.length){next(s,t,'PremiumBattle');break;}choice(s,t,'マナから出すコスト5以下のクリーチャーを1体選ぶ',rows.map(({owner,x})=>opt((owner===t.p?'自分：':'相手：')+card(x).name,{owner,uid:x.uid},owner===t.p?30+cost(card(x)):-10-cost(card(x)),x.cardId)));break;}

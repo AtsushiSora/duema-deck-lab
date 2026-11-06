@@ -1,6 +1,6 @@
-import {legendOpeningBonus,legendDrawBonus} from './legend-strategy.js?v=0.555.0';
-import {EXTRA_CHARACTER_IDS} from './character-roster.js?v=0.555.0';
-import {CHARACTER_PLANS} from './character-plans.js?v=0.555.0';
+import {legendOpeningBonus,legendDrawBonus} from './legend-strategy.js?v=0.585.0';
+import {EXTRA_CHARACTER_IDS} from './character-roster.js?v=0.585.0';
+import {CHARACTER_PLANS} from './character-plans.js?v=0.585.0';
 // CPU challenge draw policy. Inputs contain only the CPU's own cards and public
 // battlefield information. No enemy hand identities, shields or deck order.
 export const HERO_IDS=Object.freeze(['shobu','katta','joe','win']);
@@ -64,7 +64,7 @@ export function chooseHeroDraw(candidates,position){
  const rampInHand=hand.filter(c=>c.faces.some(f=>ramps.has(f.effect))).length;
  const affordable=hand.some(c=>c.faces.some(f=>f.usable&&f.type==='creature'));
  const attackers=enemyBattle.filter(x=>!x.noPlayerAttack&&!x.attackLocked&&!x.sealed);
- const danger=attackers.length>0&&(shields<=2||attackers.reduce((n,x)=>n+(Number(x.breaker)||1),0)>=shields+1);
+ const danger=attackers.length>0&&(shields<=2||attackers.reduce((n,x)=>n+(x.breaker===0?0:Number(x.breaker)||1),0)>=shields+1);
  const hasRole=role=>hand.some(x=>heroCardRole(heroId,x.id)===role);
  const score=c=>Math.max(...c.faces.map(f=>{
   const n=cheap(f),body=f.type==='creature',near=n<=mana+2;

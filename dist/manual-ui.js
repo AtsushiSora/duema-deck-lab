@@ -1,13 +1,13 @@
-import {choiceEffectSummary} from './choice-summary.js?v=0.555.0';
-import {publicLogCards,linkedLogText} from './log-card-links.js?v=0.555.0';
-import {battleZoomControlsHTML} from './battle-zoom.js?v=0.555.0';
+import {choiceEffectSummary} from './choice-summary.js?v=0.585.0';
+import {publicLogCards,linkedLogText} from './log-card-links.js?v=0.585.0';
+import {battleZoomControlsHTML} from './battle-zoom.js?v=0.585.0';
 import {displayTurn} from './turn-count.js';
-import {challengeKind} from './character-roster.js?v=0.555.0';
-import {paymentReviewHTML} from './battle-insights.js?v=0.555.0';
-import {sourceCardBadge,sourceCardLabel} from './card-info.js?v=0.555.0';
+import {challengeKind} from './character-roster.js?v=0.585.0';
+import {paymentReviewHTML} from './battle-insights.js?v=0.585.0';
+import {sourceCardBadge,sourceCardLabel} from './card-info.js?v=0.585.0';
 import {shieldCards} from './shield-state.js';
-import {aiPlaybackHTML,aiSpeedLabel,AI_SPEEDS,aiPublicSnapshot,aiResultCues} from './ai-playback.js?v=0.555.0';
-import {handCardModel,preferredHandFace,handShelfHTML,handInspectorHTML,handEvolutionButtonHTML} from './hand-ui.js?v=0.555.0';
+import {aiPlaybackHTML,aiSpeedLabel,AI_SPEEDS,aiPublicSnapshot,aiResultCues} from './ai-playback.js?v=0.585.0';
+import {handCardModel,preferredHandFace,handShelfHTML,handInspectorHTML,handEvolutionButtonHTML} from './hand-ui.js?v=0.585.0';
 import {getLegalActions,graveSummonSources,manaSelectionStatus,manaColors,card,power,effectiveCard,isEvolution,canUntap,abilitiesIgnored,genmuActive,momoActive,selfTriggersStopped,manaValue,manaValueAt,exLifeShieldInfo,exLifeShields,shieldGuardSources,shieldSaverSources,playFaces,attackLocked,evolutionBases,canCastSpell,canEnterCreature,summonCost,paymentPool,manaPayment} from './engine.js';
 import {attackRoute,previewAttackAction} from './battle-visuals.js?v=0.100.0';
 import {pageWindow} from './board-fit.js';
@@ -44,6 +44,7 @@ export function manualModel(s,ui={}){
 }
 function decisionHelp(s){
  const d=s.decision;
+ if(d.type==='silent496')return '能力を使うと、このクリーチャーはタップしたままになります。効果はほかのカードのアンタップ後に解決します。';
  if(d.task?.g223Inspect)return d.task.discard?'「詳細」で能力を確認できます。確認を終えると、「捨てさせるカード」をすべて処理します。':'「詳細」で能力を確認できます。「確認を終える」を押すまで、手札はそのまま表示します。';
  if(d.task?.op==='hyperCost'&&d.task.n===1)return '自分の他のアンタップしているクリーチャーを1体選びます。選んだ仲間だけをタップし、ハイパーモードを解放します。出したばかりの仲間も選べます。';
  if(d.task?.op==='hyperCost'&&d.task.n===2)return '自分の他のアンタップしているクリーチャーを2体選びます。2体を選び終えるまではタップしません。「ハイパー化をやめる」で取り消せます。';
@@ -115,7 +116,7 @@ function decisionHelp(s){
  if(d.type==='gaiaSummon')return 'コストを支払わずに召喚できます。場に同名カードがあると召喚できません。';
  if(d.type==='shieldGuard')return shieldSaverSources(s,d.player).length?'シールド・セイバーでは選んだカードを破壊して、シールド1つを残します。'+(shieldGuardSources(s,d.player).length?'下のカードを墓地へ置く方法も選べます。':'使わずにブレイクを受けることもできます。'):'シールド1つにつき、選んだクリーチャーの下のカードすべてを墓地へ置きます。';
  if(d.type==='dddDeclare')return 'この攻撃で使うカードを先に宣言します。マナを支払うのは解決するときです。';
- if(d.type==='dddSummon')return card(d.source).ddd.cost===3?'光・火を含む3マナを支払って召喚します。':card(d.source).ddd.cost===2?'自然のマナ2枚を使います。進化させずに出すこともできます。':card(d.source).ddd.fromMana?'光・水・自然を含む5マナ。手札・マナから唱え、効果を2回か3回選べます。':card(d.source).ddd.attackDiscount?'光・火・自然がマナにあれば、攻撃中のコスト分だけ軽減。支払いは無色・最低1です。':'光・火・自然を含む7マナ。進化させずに出すこともできます。';
+ if(d.type==='dddSummon'){const c=card(d.source),r=c.ddd;if(r.attackDiscount)return '光・火・自然がマナにあれば、攻撃中のコスト分だけ軽減。支払いは無色・最低1です。';if(r.fromMana)return '光・水・自然を含む5マナ。手札・マナから唱え、効果を2回か3回選べます。';const colors=r.civilizations||c.civilizations||String(c.civ).split('/');return colors.join('・')+'の文明を使い、ボタンに表示されたマナを支払います。'+(c.type==='spell'?'呪文を唱えます。':c.neoEvolution?'進化元を選ぶか、進化させずに召喚できます。':'召喚します。');}
  if(['effectOrder','entryOrder','triggerOrder'].includes(d.type))return '解決する順番を選べます。先の効果で、次の選択肢が変わることがあります。';
  if(d.type==='leaveReplace')return '適用する保護を1つ選びます。複数体が離れる場合、選択後にまとめて移動します。';
  if(d.type==='infinityCount')return '0枚も選べます。数を決めた後、割るシールドを選びます。';

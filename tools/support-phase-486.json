@@ -1,0 +1,603 @@
+{
+  "phase": 486,
+  "checkedAt": "2026-11-06",
+  "baseCount": 4811,
+  "description": "種族とコストの条件を持つ革命チェンジを共通化し、宣言時と解決時に現在の特性を照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/44749/",
+    "https://dm.takaratomy.co.jp/rule/qa/40836/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp3-041",
+      "name": "アーク・スロップב",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-041",
+      "faces": [
+        {
+          "name": "アーク・スロップב",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "革命チェンジ：コスト５以上のメカ（自分のコスト５以上のメカが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手の手札を見ないで１枚選び、捨てさせる。",
+          "race": "メカ・デル・ディネロ",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "rev": {
+          "race": "メカ",
+          "min": 5,
+          "g486Current": true
+        },
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1,
+            "random": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "22dce8f48a0963572709594fbca658876c8360d9c955b5245bdc577b34aadfc1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-044",
+      "name": "スペースインワン・ヘラクレス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-044",
+      "faces": [
+        {
+          "name": "スペースインワン・ヘラクレス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "革命チェンジ：コスト５以上のジャイアント（自分のコスト５以上のジャイアントが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）",
+          "race": "ジャイアント・インセクト",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "rev": {
+          "race": "ジャイアント",
+          "min": 5,
+          "g486Current": true
+        },
+        "justDiver": true,
+        "breaker": 3
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "d21df64428df0d2b03ca5546dd58ca497278ef65af69a41dce4116214e83d08d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-074",
+      "name": "ダンマ＝ザ＝ダーティ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-074",
+      "faces": [
+        {
+          "name": "ダンマ＝ザ＝ダーティ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "革命チェンジ：アビス（自分のアビスが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nこのクリーチャーが出た時、クリーチャーを１体、自分の墓地から手札に戻してもよい。\nこのクリーチャーが破壊される時、墓地に置くかわりにマナゾーンに置く。",
+          "race": "アビスロイヤル",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "rev": {
+          "race": "アビス",
+          "g486Current": true
+        },
+        "destroyToMana": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "optional": true,
+            "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-074.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "0c99d9598f0d2f563a51f8dcf8884424e1a5f44d8d7fc859ad325409db4e46aa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-045",
+      "name": "トートロット＝ザ＝ダーティ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-045",
+      "faces": [
+        {
+          "name": "トートロット＝ザ＝ダーティ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "革命チェンジ：コスト５以上のアビス（自分のコスト５以上のアビスが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n自分の墓地のカード１枚につき、このクリーチャーのパワーを+1000する。\nこのクリーチャーが出た時、自分の山札の上から４枚を墓地に置いてもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "rev": {
+          "race": "アビス",
+          "min": 5,
+          "g486Current": true
+        },
+        "poweredBreaker": true,
+        "g207CountPower": {
+          "zone": "grave",
+          "amount": 1000
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 4,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "78a1ed2d0f27232c8a2752f43718b68a8a060c9ce29b1640ae163fa1f13a5361",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy22-054",
+      "name": "ラギルップ＝ザ＝ダーティ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy22-054",
+      "faces": [
+        {
+          "name": "ラギルップ＝ザ＝ダーティ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "革命チェンジ：アビス（自分のアビスが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "アビスロイヤル",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "rev": {
+          "race": "アビス",
+          "g486Current": true
+        },
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy22-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "47d24857da250fa9ef23294044e7ff414104f4b0c253691504d795d11690c1dd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-073",
+      "name": "宇宙の頑強者",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-073",
+      "faces": [
+        {
+          "name": "宇宙の頑強者",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "革命チェンジ：ジャイアント（自分のジャイアントが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n相手のターン中、このクリーチャーのパワーは+4000される。",
+          "race": "ジャイアント・ビーストフォーク",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "rev": {
+          "race": "ジャイアント",
+          "g486Current": true
+        },
+        "breaker": 2,
+        "g38EnemyTurnBonus": 4000
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-073.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "cffd3ea0497e3456cb6fb43e5f683811ea2ab34b74285055449b6d339b561508",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-071",
+      "name": "革命の炎 フレア・ハシッチ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-071",
+      "faces": [
+        {
+          "name": "革命の炎 フレア・ハシッチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "革命チェンジ：アーマード（自分のアーマードが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nこのクリーチャーが出た時、次のうちいずれか１つを選ぶ。\n▶︎相手のシールドを１つブレイクする。\n▶︎自分の山札の上から１枚目をシールド化する。",
+          "race": "アーマード・ファイアー・バード",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "rev": {
+          "race": "アーマード",
+          "g486Current": true
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のシールドを１つブレイクする。",
+                "defs": [
+                  {
+                    "op": "Break278"
+                  }
+                ]
+              },
+              {
+                "label": "自分の山札の上から１枚目をシールド化する。",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-071.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "deb6a5c0e597378937e9e9adee7a8cff710368bdb31ef36e20f8bb0f21930d59",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-042",
+      "name": "革命の刀 ブレード・ボルザード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-042",
+      "faces": [
+        {
+          "name": "革命の刀 ブレード・ボルザード",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "革命チェンジ：コスト５以上のアーマード（自分のコスト５以上のアーマードが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nエスケープ（このクリーチャーが破壊される時、墓地に置くかわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "9500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "rev": {
+          "race": "アーマード",
+          "min": 5,
+          "g486Current": true
+        },
+        "speedAttacker": true,
+        "breaker": 2,
+        "escape": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "d7e699fa83beb0fb84cf5fcd8f58848c810a6682c8025b982e8b1729eb3a4e05",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-042",
+      "name": "巻く革命 ボルシャック・テイラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-042",
+      "faces": [
+        {
+          "name": "巻く革命 ボルシャック・テイラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "革命チェンジ：コスト５以上のアーマード（自分のコスト５以上のアーマードが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手のクリーチャーをすべてタップする。\n自分のクリーチャーすべてに「パワーアタッカー+3000」を与える。（攻撃中、「パワーアタッカー+3000」を持つクリーチャーのパワーを+3000する）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "8500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "rev": {
+          "race": "アーマード",
+          "min": 5,
+          "g486Current": true
+        },
+        "breaker": 2,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "attackBonus": 3000
+            }
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "37897319792f3301b0eb7e8be54d4a26675ddfb76044b6fbdb0dc602173ef740",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23sd3-006",
+      "name": "芸魔悪狼 ヘルギャモン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd3-006",
+      "faces": [
+        {
+          "name": "芸魔悪狼 ヘルギャモン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "革命チェンジ：マジック（自分のマジックが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\nこのクリーチャーが出た時、相手の「ブロッカー」を持つクリーチャーを１体選び、破壊する。",
+          "race": "マジック・モンスター/ゲーム・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "rev": {
+          "race": "マジック",
+          "g486Current": true
+        },
+        "justDiver": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23sd3-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "c9c4cdc523415e4b1f52b95fafd24c0d3be0b516bd51d78e060389d905825e49",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23sd3-011",
+      "name": "芸魔山鷹 トリノドミノ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd3-011",
+      "faces": [
+        {
+          "name": "芸魔山鷹 トリノドミノ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "革命チェンジ：マジック（自分のマジックが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nこのクリーチャーが出た時、カードを３枚引き、自分の手札を２枚捨てる。",
+          "race": "マジック・モンスター/ゲーム・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "rev": {
+          "race": "マジック",
+          "g486Current": true
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 3
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23sd3-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "4759c6636a35befe411cb070054666f4d2cd448e65d98ad7176fbe6da8d499cc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23sd3-010",
+      "name": "芸魔土車 チャトランガ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd3-010",
+      "faces": [
+        {
+          "name": "芸魔土車 チャトランガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "革命チェンジ：コスト５以上のマジック（自分のコスト５以上のマジックが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーは攻撃もブロックもされない。",
+          "race": "マジック・ドラゴン/ゲーム・コマンド",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "rev": {
+          "race": "マジック",
+          "min": 5,
+          "g486Current": true
+        },
+        "breaker": 2,
+        "cannotBeAttacked": true,
+        "unblockable": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23sd3-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "55374c65f0d0fec97c22652e015a39c018074bdf44e5c6d23a4f91b0af1b9c74",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-070",
+      "name": "忍革の一翼 ソワカ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-070",
+      "faces": [
+        {
+          "name": "忍革の一翼 ソワカ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "革命チェンジ：メカ（自分のメカが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nエスケープ（このクリーチャーが破壊される時、墓地に置くかわりに自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない）",
+          "race": "メカ・デル・ステラ/シノビ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "rev": {
+          "race": "メカ",
+          "g486Current": true
+        },
+        "escape": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "9d9f6dd30ca44aee59a158480a02150205d414dfec57d0cc6b5e70ed993cea42",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp3-041": 4,
+      "dm23rp3-044": 4,
+      "dm23rp3-074": 4,
+      "dm23rp3-045": 4,
+      "promoy22-054": 4,
+      "dm23rp3-073": 4,
+      "dm23rp3-071": 4,
+      "dm23rp3-042": 4,
+      "dm23rp4-042": 4,
+      "dm23sd3-006": 4,
+      "dm23sd3-011": 4,
+      "dm23sd3-010": 4,
+      "dm23rp3-070": 4
+    }
+  }
+}

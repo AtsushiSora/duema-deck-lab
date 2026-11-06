@@ -1,0 +1,281 @@
+{
+  "phase": 478,
+  "checkedAt": "2026-11-06",
+  "baseCount": 4760,
+  "description": "自分のシールドを手札に加える表記と、攻撃された時に相手自身が選ぶマナの墓地送りを共通処理する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm07-013",
+      "name": "ギガバスター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-013",
+      "faces": [
+        {
+          "name": "ギガバスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー\nこのクリーチャーがバトルゾーンに出たとき、自分のシールドが１枚でもあれば、その中から１枚を裏向きのまま選び、自分の手札に加える。ただし、その「S(シールド)・トリガー」は使えない。\nこのクリーチャーは攻撃することができない。",
+          "race": "キマイラ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm07-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "09b82e97032f75815be0ce453f3fe717137a8a916d76c98e0a76db434398a673",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-087",
+      "name": "ヘキサリオ・ドラグーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-087",
+      "faces": [
+        {
+          "name": "ヘキサリオ・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーをバトルゾーンに出した時、自分のシールドを１枚選び、手札に加える。ただし、その「S・トリガー」は使えない。\nこのクリーチャーは攻撃することができない。",
+          "race": "ティラノ・ドレイク",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-087.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "cfa243fdcd39f055d10f1b73d06bcc5d3766c7f43e4d678e3d451be30146dd3d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-099",
+      "name": "ライラ・ラッタ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-099",
+      "faces": [
+        {
+          "name": "ライラ・ラッタ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃された時、自分のシールドを１枚、手札に加える。ただし、その「S・トリガー」は使えない。",
+          "race": "ファイアー・バード",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g447Attacked": [
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-099.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "6898c9cdde0d22c656f72229c0b5063c7772599f80673780660623ad796078de",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm20-012",
+      "name": "黒神龍ヴァイザス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-012",
+      "faces": [
+        {
+          "name": "黒神龍ヴァイザス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、自分のシールドを１枚選び、手札に加える。ただし、その「S・トリガー」は使えない。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ドラゴン・ゾンビ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "862b7c5106fe452ec53c62a349065c73446383cd511fa2f7f24f5018438c420e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm07-027",
+      "name": "三面怪人アシュラファング",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-027",
+      "faces": [
+        {
+          "name": "三面怪人アシュラファング",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、自分のシールドが１枚でもあれば、その中から１枚を裏向きのまま選び、自分の手札に加える。ただし、その「S(シールド)・トリガー」は使えない。",
+          "race": "デビルマスク",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm07-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "d5454c8b925ad7012f2731bd8246741874430304f57ccf02e8a63f7caabc36e4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm03-028",
+      "name": "邪剣バラガ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-028",
+      "faces": [
+        {
+          "name": "邪剣バラガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、自分のシールドが１枚でもあれば、その中から１枚を裏向きのまま選び、自分の手札に加える。ただし、その「S(シールド)・トリガー」は使えない。",
+          "race": "ダークロード",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm03-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "0c8635d112001996275cefdb7d4a061b1f0619ef97b3c7e6d77334b57a838d06",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm13-049",
+      "name": "反撃妖精ポコペン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-049",
+      "faces": [
+        {
+          "name": "反撃妖精ポコペン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃された時、相手は自分自身のマナゾーンからカードを１枚選び、持ち主の墓地に置く。",
+          "race": "スノーフェアリー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g447Attacked": [
+          {
+            "op": "OpponentManaLoss478"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "886bc31ccafd6df56e05549874329be5ec3609bc21e687a7536fd7de419c05fa",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm07-013": 4,
+      "dm19-087": 4,
+      "dm28-099": 4,
+      "dm20-012": 4,
+      "dm07-027": 4,
+      "dm03-028": 4,
+      "dm13-049": 4
+    }
+  }
+}

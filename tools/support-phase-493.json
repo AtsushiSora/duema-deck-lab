@@ -1,0 +1,267 @@
+{
+  "phase": 493,
+  "checkedAt": "2026-11-06",
+  "baseCount": 4893,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35713/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36084/",
+    "https://dm.takaratomy.co.jp/rule/qa/31724/",
+    "https://dm.takaratomy.co.jp/rule/qa/31533/",
+    "https://dm.takaratomy.co.jp/rule/qa/31534/",
+    "https://dm.takaratomy.co.jp/rule/qa/41164/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp04s-025",
+      "name": "ガツン戦輪 ゲドライド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-025",
+      "faces": [
+        {
+          "name": "ガツン戦輪 ゲドライド",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。その時自分のシールドが１つもなければ、このクリーチャーにxB能力を与える）xBこのクリーチャーがバトルゾーンに出た時、相手のパワー5000以下のクリーチャーをすべて破壊する。",
+          "race": "ビートジョッキー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "g493SuperEntry": [
+          {
+            "op": "Sweep",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 5000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "68f81209383bc616ccf82c6bec4def45287f31a3de63ff2f7bfb2a2ecac15803",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04m-020",
+      "name": "ぱくちーたー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-020",
+      "faces": [
+        {
+          "name": "ぱくちーたー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。その時自分のシールドが１つもなければ、このクリーチャーにxB能力を与える）\nこのクリーチャーがバトルゾーンに出た時、カードを１枚、自分のマナゾーンから手札に戻してもよい。\nxBこのクリーチャーがバトルゾーンに出た時、自然のクリーチャーを１体、自分の手札からバトルゾーンに出す。",
+          "race": "グランセクト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "g220ManaReturn": true,
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "filter": {},
+            "optional": true,
+            "title": "手札に戻すマナのカードを1枚選ぶ"
+          }
+        ],
+        "superTrigger": true,
+        "g493SuperEntry": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "color": "自然"
+            },
+            "optional": false
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04m-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "3a563db9408536b0f8aeb6bc69e08f10661bad2f75a8ff06bd2273f136c2dbcc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex08-018",
+      "name": "べんちゃん",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-018",
+      "faces": [
+        {
+          "name": "べんちゃん",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。その時自分のシールドが１つもなければ、このクリーチャーにxB能力を与える）\nスレイヤー\nxBこのクリーチャーがバトルゾーンに出た時、カードを10枚引いてもよい。",
+          "race": "",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "slayer": true,
+        "superTrigger": true,
+        "g493SuperEntry": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 10
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "013520e07264710377757a73c2c1f8adfbb49242fb70abc7353d28cd296c635c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-018",
+      "name": "奇跡の旋風 トゲガニル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-018",
+      "faces": [
+        {
+          "name": "奇跡の旋風 トゲガニル",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。その時自分のシールドが１つもなければ、このクリーチャーにxB能力を与える）ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）xBこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを３体まで選び、持ち主の手札に戻す。",
+          "race": "ムートピア",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "superTrigger": true,
+        "g493SuperEntry": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 3,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "hand",
+            "title": "手札に戻す相手のクリーチャーを3体まで選ぶ",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "874d1e017092e3149fa5db25a8fa7899532c0659d69de12d4c7e15da70252198",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-020",
+      "name": "凶鬼14号 ズス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-020",
+      "faces": [
+        {
+          "name": "凶鬼14号 ズス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。その時自分のシールドが１つもなければ、このクリーチャーにxB能力を与える）\nこのクリーチャーがバトルゾーンに出た時、相手の手札を見ないで１枚選び、捨てさせる。xBこのクリーチャーがバトルゾーンに出た時、相手は自身のアンタップしているクリーチャーを２体選び、破壊する。",
+          "race": "マフィ・ギャング",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1,
+            "random": true
+          }
+        ],
+        "superTrigger": true,
+        "g493SuperEntry": [
+          {
+            "op": "OpponentSelect",
+            "n": 2,
+            "to": "grave",
+            "filter": {
+              "untapped": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "098a9db7a22ef81b9077fbe1d7665dde7d989603721b500b283942b9a0ea2b0b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp04s-025": 4,
+      "dmrp04m-020": 4,
+      "dmex08-018": 4,
+      "dmrp04s-018": 4,
+      "dmrp04s-020": 4
+    }
+  }
+}

@@ -1,0 +1,316 @@
+{
+  "phase": 469,
+  "checkedAt": "2026-11-05",
+  "baseCount": 4706,
+  "description": "単体の進化元を文明・種族の選択肢やブロッカーで判定し、任意の固定数リアニメイトと複数種族への常在付与を共通化する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmr08s-006",
+      "name": "金属器の精獣 カーリ・ガネージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08s-006",
+      "faces": [
+        {
+          "name": "金属器の精獣 カーリ・ガネージャー",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分の水または火のクリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、カードを１枚引いてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "マジカル・モンスター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08s-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "814f5a0d30907bff5a8aa7d1ad8b2b8b590b3a18dec557b28155235df8ddd158",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm35-036",
+      "name": "聖天使グネス・パルキューラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-036",
+      "faces": [
+        {
+          "name": "聖天使グネス・パルキューラ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\n進化-自分の「ブロッカー」を持つクリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。",
+          "race": "イニシエート",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "evolution": {
+          "blocker": true
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm35-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "89b2e3f4db0a07afd673dd723c4b6c013b2828eb620da6cd5520e8f1657d19a5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm12-018",
+      "name": "超機動魔獣ギガランデス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-018",
+      "faces": [
+        {
+          "name": "超機動魔獣ギガランデス",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分のキマイラまたはアーマロイド１体の上に置く。\nバトルゾーンにある自分の他のキマイラとアーマロイドすべてのパワーは+2000される。\nバトルゾーンにある自分のキマイラとアーマロイドはすべて「W・ブレイカー」を得る。",
+          "race": "キマイラ/アーマロイド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "キマイラ"
+            },
+            {
+              "race": "アーマロイド"
+            }
+          ]
+        },
+        "g205Aura": {
+          "power": 2000,
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "キマイラ",
+              "アーマロイド"
+            ]
+          },
+          "other": true
+        },
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "raceAny": [
+                "キマイラ",
+                "アーマロイド"
+              ]
+            },
+            "grants": {
+              "breaker": 2
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "c00073795db52dc23bd84e0ab7605a607baedfa3e8e390e7f5e44db8e9c5194b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx03-002",
+      "name": "魔水晶スーパー・ディス・リバイバー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx03-002",
+      "faces": [
+        {
+          "name": "魔水晶スーパー・ディス・リバイバー",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分の水または闇のクリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、コスト３以下のクリーチャーを２体、自分の墓地から選び、バトルゾーンに出してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "リキッド・ピープル/ゴースト/エイリアン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "墓地からクリーチャーを2体出す？",
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "n": 2,
+                "deploy": true,
+                "g236GraveDeploy": true,
+                "filter": {
+                  "creature": true,
+                  "max": 3
+                },
+                "optional": false,
+                "title": "墓地から出すコスト3以下のクリーチャーを2体選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx03-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "becaea1d7774f1b9478c21b62b8c9a89cddd1ca39e8032d2582774fdcd0707cf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd02-001",
+      "name": "魔水晶スタートダッシュ・リバイバー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd02-001",
+      "faces": [
+        {
+          "name": "魔水晶スタートダッシュ・リバイバー",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分の水または闇のクリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、コスト３以下のクリーチャーを１体、自分の墓地から選び、バトルゾーンに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "リキッド・ピープル/ゴースト",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            },
+            "optional": true,
+            "title": "墓地から出すコスト3以下のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd02-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-05",
+        "sha256": "2c2ca043a6e47d901a2efd75fca33e997a31632ea67f617eef2bf302e3075d30",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-05",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr08s-006": 4,
+      "dm35-036": 4,
+      "dm12-018": 4,
+      "dmx03-002": 4,
+      "dmd02-001": 4
+    }
+  }
+}

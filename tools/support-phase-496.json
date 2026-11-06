@@ -1,0 +1,514 @@
+{
+  "phase": 496,
+  "checkedAt": "2026-11-06",
+  "baseCount": 4916,
+  "description": "サイレントスキルの選択を通常アンタップ前に固定し、アンタップ後の待機能力として解決する共通処理を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35713/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36084/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35248/"
+  ],
+  "cards": [
+    {
+      "id": "dm10-051",
+      "name": "ギガメンテ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-051",
+      "faces": [
+        {
+          "name": "ギガメンテ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "サイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\n自分の墓地からクリーチャーを１体、自分の手札に戻す。",
+          "race": "キマイラ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g496Silent": [
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "9ca02cbd9d64cbfe904de35d1aaf2bf5897dda1501b8507a7c086bd419613f9d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-107",
+      "name": "ハッスル・ベリー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-107",
+      "faces": [
+        {
+          "name": "ハッスル・ベリー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "サイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\n自分の山札の上から１枚目を、自分のマナゾーンに加える。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g496Silent": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-107.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "557d01b19a742a2b778ced7a0baea53722113d5c01deb88a2da713d36c3e7c3b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-059",
+      "name": "ハナサキエリンギ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-059",
+      "faces": [
+        {
+          "name": "ハナサキエリンギ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "サイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\n自分の山札を見る。その中からクリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "バルーン・マッシュルーム",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g496Silent": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-059.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "b2befe5af0af757f4b37ca90982f99244e99e7e30b0791d4a36696063cd393fc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-055",
+      "name": "ボーグのリボルバー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-055",
+      "faces": [
+        {
+          "name": "ボーグのリボルバー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "サイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\nパワー2000以下のクリーチャーをすべて破壊する。",
+          "race": "ゼノパーツ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g496Silent": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 2000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "826f9dd9d647eb5c984a25e770ccabaa3bebcb0b951b7285e1629b91dab4f3b1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-030",
+      "name": "マインロード・ワイバーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-030",
+      "faces": [
+        {
+          "name": "マインロード・ワイバーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "サイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\nパワー3000以下のクリーチャーをすべて破壊する。",
+          "race": "アーマード・ワイバーン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g496Silent": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "4eec32448709fd906450b5e750ce2e7b989fc6e58da5642ee16aceefe1c3ad99",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-080",
+      "name": "ミルポロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-080",
+      "faces": [
+        {
+          "name": "ミルポロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "サイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\nカードを１枚引く。",
+          "race": "サイバーロード",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g496Silent": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-080.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "fdc825fc3bf128ca9380a5080b00715168a50253748e43db8594589ad4c1e3fb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm11-011",
+      "name": "ルナ・レーザーコブラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-011",
+      "faces": [
+        {
+          "name": "ルナ・レーザーコブラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "サイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\n自分のマナゾーンからカードを３枚まで、自分の手札に戻す。",
+          "race": "サイバー・ムーン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g496Silent": [
+          {
+            "op": "Select",
+            "g220ManaReturn": true,
+            "origin": "mana",
+            "to": "hand",
+            "n": 3,
+            "filter": {},
+            "optional": true,
+            "title": "手札に戻すマナのカードを3枚まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "778e6f300e87bd096f8f644d72d9063ab967b236de52b5c4fda658bf2a45e58f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-043",
+      "name": "粛清者ブルグラフ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-043",
+      "faces": [
+        {
+          "name": "粛清者ブルグラフ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "サイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\n自分の山札の上から１枚目を、裏向きのまま自分のシールドに加える。",
+          "race": "ソルトルーパー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g496Silent": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "d712d379e91891f01eec8157ab640899581a7a1c3eaf18204a352b5da59d5b01",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-072",
+      "name": "粛清者リンダホフ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-072",
+      "faces": [
+        {
+          "name": "粛清者リンダホフ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "サイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\nバトルゾーンにある相手のクリーチャーを２体まで選び、タップする。",
+          "race": "ソルトルーパー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g496Silent": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを2体まで選ぶ",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-072.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "c34b5b1d9cf3da938bbd57c1e4e59a6a69a5f5ebfc3add974d24af2daff8d483",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-073",
+      "name": "予言者カエミラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-073",
+      "faces": [
+        {
+          "name": "予言者カエミラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "サイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\n自分の山札の上から１枚目を、裏向きのまま自分のシールドに加える。",
+          "race": "ライトブリンガー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g496Silent": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-073.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "321fff11769be7a1b3573aa44b6fceebf24e9037d6305a89e9072832d33889f0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-038",
+      "name": "冷徹のソーダライト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-038",
+      "faces": [
+        {
+          "name": "冷徹のソーダライト",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーはブロックされない。\nサイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\n相手は自分自身のクリーチャーを１体選び、破壊する。",
+          "race": "スピリット・クォーツ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "unblockable": true,
+        "g496Silent": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "52062fa06852c483da606730b547d0b5c00163b3d6ad36ee8393b37128151918",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-099",
+      "name": "烈脚戦士ブラッド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-099",
+      "faces": [
+        {
+          "name": "烈脚戦士ブラッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "サイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\n相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+          "race": "ヒューマノイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g496Silent": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "optional": false,
+            "filter": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-099.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "2b8adf9d779ec94c5b2b20ad01ea442296c44bc6b59f1b93fbf7ad21041d9428",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm10-051": 4,
+      "dm10-107": 4,
+      "dm10-059": 4,
+      "dm10-055": 4,
+      "dm10-030": 4,
+      "dm10-080": 4,
+      "dm11-011": 4,
+      "dm10-043": 4,
+      "dm10-072": 4,
+      "dm10-073": 4,
+      "dm10-038": 4,
+      "dm10-099": 4
+    }
+  }
+}
