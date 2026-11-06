@@ -1,0 +1,283 @@
+{
+  "phase": 501,
+  "checkedAt": "2026-11-06",
+  "baseCount": 4956,
+  "description": "終了時の任意アンタップ・条件付き全体アンタップとドロー、呪文からの遅延アンタップと進化ドロー、飛行を共通化する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35713/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36084/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34893/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34894/",
+    "https://dm.takaratomy.co.jp/rule/qa/45450/"
+  ],
+  "cards": [
+    {
+      "id": "dm32-078",
+      "name": "エボリュート・クロック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-078",
+      "faces": [
+        {
+          "name": "エボリュート・クロック",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分のターンの終わりに、バトルゾーンにある自分のクリーチャーを１体アンタップする。それが進化クリーチャーであれば、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ChooseEndUntap501",
+            "evolutionDraw": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-078.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "2e8be15385e4e989435ddbd8aede13c823193e910c0c5862c899a5034ebb29bf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex08-244",
+      "name": "セラの天使",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-244",
+      "faces": [
+        {
+          "name": "セラの天使",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "飛行（このクリーチャーは、飛行を持たないクリーチャーから攻撃もブロックもされない）\nブロッカーブロッカー\n自分のターンの終わりに、このクリーチャーをアンタップする。",
+          "race": "エンジェル・コマンド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "flying": true,
+        "blocker": true,
+        "g166EndUntap": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-244.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "7486f0a96f20cfd35581a0481e9a49ad8e73d680fd5b7f9f8ef9825f553d145f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-050",
+      "name": "原始 トゥリオ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-050",
+      "faces": [
+        {
+          "name": "原始 トゥリオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターンの終わりに、バトルゾーンにあるクリーチャーが３体以下なら、カードを１枚引いてもよい。",
+          "race": "ビーストフォーク號/侵略者",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g174End": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g501TotalCreaturesMax": 3
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "00dac6280c6adf446c59f96a32c2f39c33fdd498944a401d09a8ce5d3f61e5da",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr17-034",
+      "name": "侵略者 カバウス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-034",
+      "faces": [
+        {
+          "name": "侵略者 カバウス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のターンの終わりに、相手のシールドが２つ以下なら、自分の光のクリーチャーをすべてアンタップする。",
+          "race": "ジャスティス・ウイング/侵略者",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g174End": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g465OpponentShieldsMax": 2
+            },
+            "defs": [
+              {
+                "op": "GroupUntap",
+                "filter": {
+                  "creature": true,
+                  "color": "光"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "eb8b63f43a3e7155235f14bcf2eeee7addc2637b9c521d4f33dde9f783dc731b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-022",
+      "name": "宣凶師ベトラーレ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-022",
+      "faces": [
+        {
+          "name": "宣凶師ベトラーレ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー\nこのクリーチャーは相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルゾーンにある間、自分のターンの終わりに、このクリーチャーをアンタップしてもよい。",
+          "race": "グラディエーター",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "endUntap": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "8cf0618f853a328b2251f21ac5adfa532f155fa1ac12eb8ac05a65503526a4a1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-075",
+      "name": "霊都の守護者メリア・ネクス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-075",
+      "faces": [
+        {
+          "name": "霊都の守護者メリア・ネクス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターンの終わりに、バトルゾーンにある自分のガーディアンまたはアーク・セラフィムを１体、アンタップしてもよい。",
+          "race": "ガーディアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g174End": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "untap": true,
+            "optional": true,
+            "filter": {
+              "raceAny": [
+                "ガーディアン",
+                "アーク・セラフィム"
+              ]
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-075.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "418debd3fb49ba98e22968f18344c7adf892deba478fbd654a26ea57e48d76e6",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm32-078": 4,
+      "dmex08-244": 4,
+      "dmr19-050": 4,
+      "dmr17-034": 4,
+      "dm09-022": 4,
+      "dm19-075": 4
+    }
+  },
+  "rulingVerifications": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/34893/",
+      "checkedAt": "2026-11-06",
+      "sha256": "7f70456cf22318591219955417eced32357bff46b392e046214bf0bf7b073d4a",
+      "verifiedText": "を唱えた時に選びます。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/34894/",
+      "checkedAt": "2026-11-06",
+      "sha256": "a3ff068f7c014526010809a9822937dc7181d74e859eb49faa1289093bcbda15",
+      "verifiedText": "を唱えた時にドローします。"
+    }
+  ]
+}

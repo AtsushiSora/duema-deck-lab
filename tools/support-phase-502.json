@@ -1,0 +1,415 @@
+{
+  "phase": 502,
+  "checkedAt": "2026-11-06",
+  "baseCount": 4962,
+  "description": "登場・ドロー・呪文・非クリーチャーの実行履歴や盤面の種類数による攻撃条件、他のアンタップ中のクリーチャー、クロスと対クリーチャー攻撃義務を共通化する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35713/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36084/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp3-070",
+      "name": "ダック・アヒッチ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-070",
+      "faces": [
+        {
+          "name": "ダック・アヒッチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "コストが異なる自分のエレメントが３つ以上なければ、このクリーチャーは攻撃できない。",
+          "race": "ファイアー・バード",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g225AttackRequires": {
+          "kind": "distinctCosts",
+          "min": 3
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "2976a486b133a9e98443c63b7e1c010d8d8f039a6e1b746221eed9f2b52c45ca",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp11-095",
+      "name": "ハッタリ・チュリス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-095",
+      "faces": [
+        {
+          "name": "ハッタリ・チュリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このターン中に自分のクリーチャーが２体以上バトルゾーンに出ていなければ、このクリーチャーは攻撃できない。",
+          "race": "ビートジョッキー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g225AttackRequires": {
+          "kind": "entries",
+          "min": 2
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-095.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "48bd76648a14f769a8ce1df878475ed59e1af1a32d387a9eb5a11dbc4c78d9ef",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-054",
+      "name": "マファリッヒ・タンク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-054",
+      "faces": [
+        {
+          "name": "マファリッヒ・タンク",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "T・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nバトルゾーンに自分の他のパワー12000以上のクリーチャーがなければ、このクリーチャーは攻撃できない。",
+          "race": "グランセクト",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "g225AttackRequires": {
+          "kind": "ally",
+          "other": true,
+          "filter": {
+            "creature": true,
+            "minPower": 12000
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "0861c43d43e260df4f42a44b0d6f30f9b1722d942720f4e684909025c785715d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm13-045",
+      "name": "我狼兵ラングレン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-045",
+      "faces": [
+        {
+          "name": "我狼兵ラングレン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "バトルゾーンにタップされていないクリーチャーが他に１体でもあれば、このクリーチャーは攻撃することができない。",
+          "race": "ドラゴノイド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g225AttackRequires": {
+          "kind": "noOtherUntapped"
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "f7e5cc29b6270ea305c48f71e1903cd11151afa0d9b201a23f5e0bc46a5001de",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp08-069",
+      "name": "貝獣 ビアワン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-069",
+      "faces": [
+        {
+          "name": "貝獣 ビアワン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのターン、自分が呪文を唱えていなければ、このクリーチャーは攻撃できない。",
+          "race": "ムートピア",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g225AttackRequires": {
+          "kind": "spells",
+          "min": 1
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-069.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "b5a3c98b977c57abc3feeb13730257edbfe39576ad8b8402c3d4cff3b20cba40",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm35-050",
+      "name": "喧嘩伯爵ボーグ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-050",
+      "faces": [
+        {
+          "name": "喧嘩伯爵ボーグ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーは、可能であれば毎ターン、クリーチャーを攻撃する。\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+          "race": "ヒューマノイド",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "mustAttack": true,
+        "noPlayerAttack": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm35-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "6f3dde12ed33b22345b2acd1691e4e466469da3878e37ef147d36a68cfcd3a4a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp2-060",
+      "name": "熱血の親衛隊ペッパー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-060",
+      "faces": [
+        {
+          "name": "熱血の親衛隊ペッパー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\nこのターンに自分がカードを２枚以上引いていなければ、このクリーチャーは攻撃できない。",
+          "race": "サイバーロード/ハンター/エイリアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "justDiver": true,
+        "g225AttackRequires": {
+          "kind": "draws",
+          "min": 2
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-060.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "1bc2f1dfcf671133d4f834f6cc4373bde35d9240c76ce5f539b145e1aa9f1d48",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp2-056",
+      "name": "熱血の親衛隊ラプソディ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-056",
+      "faces": [
+        {
+          "name": "熱血の親衛隊ラプソディ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのターンに自分がクリーチャーではないカードを実行していなければ、このクリーチャーは攻撃できない。",
+          "race": "イニシエート/ハンター/エイリアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g225AttackRequires": {
+          "kind": "noncreatureUses",
+          "min": 1
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-056.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "973e9d3bebd93f45d3f62372387f4c6b985acf966f4d3b5fca93037a4bb23ce7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm31-037",
+      "name": "武力の使徒ウコン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-037",
+      "faces": [
+        {
+          "name": "武力の使徒ウコン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーにクロスギアが１枚もクロスされていなければ、このクリーチャーは相手プレイヤーを攻撃できない。",
+          "race": "イニシエート/サムライ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g260Self": {
+          "filter": {
+            "g436Crossed": true
+          },
+          "grants": {
+            "noPlayerAttack": false
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "be11854abfd84fcc27d02e834fe74a88f24db24ae41fcdef518948e1debf64d6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm30-054",
+      "name": "戊辰の超人",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-054",
+      "faces": [
+        {
+          "name": "戊辰の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーにクロスギアが１枚もクロスされていなければ、このクリーチャーは相手プレイヤーを攻撃できない。",
+          "race": "ジャイアント/サムライ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "noPlayerAttack": true,
+        "g260Self": {
+          "filter": {
+            "g436Crossed": true
+          },
+          "grants": {
+            "noPlayerAttack": false
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm30-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "0780c3ccfafec3ca3f778e5bd417a6f7c600a77238cefc8b320ae03ee0301c80",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-040",
+      "name": "無双竜機ゾルバラード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-040",
+      "faces": [
+        {
+          "name": "無双竜機ゾルバラード",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nバトルゾーンに相手のクリーチャーが１体もなければ、このクリーチャーは攻撃することができない。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "アーマード・ドラゴン/アース・ドラゴン",
+          "powerText": "14000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g225AttackRequires": {
+          "kind": "opponentCreatures",
+          "min": 1
+        },
+        "breaker": 3
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "96a8173590793ed7a0ccd2cb588f24079d76c57c8940b18474aa3f1e64d541f2",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp3-070": 4,
+      "dmrp11-095": 4,
+      "dmrp01-054": 4,
+      "dm13-045": 4,
+      "dmrp08-069": 4,
+      "dm35-050": 4,
+      "dm26rp2-060": 4,
+      "dm26rp2-056": 4,
+      "dm31-037": 4,
+      "dm30-054": 4,
+      "dm24-040": 4
+    }
+  }
+}

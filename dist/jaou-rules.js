@@ -1,4 +1,4 @@
-import {afterEntry} from './entry-followup.js?v=0.585.0';
+import {afterEntry} from './entry-followup.js?v=0.596.0';
 import {policyRemove,policyLook} from './champion-zone-policy.js';
 // No.03: declared attack spells, delayed mana obligations, and spell recasting.
 export function createJaouRules(api){

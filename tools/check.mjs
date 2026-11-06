@@ -1,3 +1,14 @@
+import {STANDARD508_DECKS} from './fixtures/standard508.mjs';
+import {STANDARD507_DECKS} from './fixtures/standard507.mjs';
+import {STANDARD506_DECKS} from './fixtures/standard506.mjs';
+import {STANDARD505_DECKS} from './fixtures/standard505.mjs';
+import {STANDARD504_DECKS} from './fixtures/standard504.mjs';
+import {STANDARD503_DECKS} from './fixtures/standard503.mjs';
+import {STANDARD502_DECKS} from './fixtures/standard502.mjs';
+import {STANDARD501_DECKS} from './fixtures/standard501.mjs';
+import {STANDARD500_DECKS} from './fixtures/standard500.mjs';
+import {STANDARD499_DECKS} from './fixtures/standard499.mjs';
+import {STANDARD498_DECKS} from './fixtures/standard498.mjs';
 import {STANDARD497_DECKS} from './fixtures/standard497.mjs';
 import {STANDARD496_DECKS} from './fixtures/standard496.mjs';
 import {STANDARD495_DECKS} from './fixtures/standard495.mjs';
@@ -1217,3 +1228,25 @@ for(const deck of STANDARD495_DECKS)if(validateDeck(deck).length||registry.cover
 for(const deck of STANDARD496_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid Silent Skill fixture');console.log('Checked standard496 legal forties: Silent Skill selection before untapping, queued effects, draws, search, ramp, shield, removal and recovery.');
 
 for(const deck of STANDARD497_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid extended Silent Skill fixture');console.log('Checked standard497 legal forties: simultaneous silent breaks, shield exchange, hand inspection, temporary ally abilities and Dragon deployment.');
+
+for(const deck of STANDARD498_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid filtered summon reduction fixture');console.log('Checked standard498 legal forties: alternative civilizations, printed-power requirements and both-player evolution reductions.');
+
+for(const deck of STANDARD499_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid count reduction fixture');console.log('Checked standard499 legal forties: draw counts, mana and grave filters, optional payment amounts and water spell reduction.');
+
+for(const deck of STANDARD500_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid two-mana-floor reduction fixture');console.log('Checked standard500 legal forties: two-mana floors, exact versus maximum aura reduction, mana summons and command attack watches.');
+
+for(const deck of STANDARD501_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid end untap fixture');console.log('Checked standard501 legal forties: delayed spell effects, end-of-turn conditions, evolution follow-ups and flying.');
+
+for(const deck of STANDARD502_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid conditional attack fixture');console.log('Checked standard502 legal forties: distinct element costs, entry and spell history, draws, noncreature use, cross requirements and forced creature attacks.');
+
+for(const deck of STANDARD503_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid ally enhancement fixture');console.log('Checked standard503 legal forties: own ally targets, Fire Hunter attacks, Shinobi boosts and stack-based draw and ramp.');
+
+for(const deck of STANDARD504_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid preblock and mana removal fixture');console.log('Checked standard504 legal forties: cost and evolution filters, simultaneous mana removal, power sweeps and attack-time preblock removal.');
+
+for(const deck of STANDARD505_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid shared execution tax fixture');console.log('Checked standard505 legal forties: both-player creature and spell costs, printed civilizations, stacking, reductions and ignored sources.');
+
+for(const deck of STANDARD506_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid total power removal fixture');console.log('Checked standard506 legal forties: total current power limits, simultaneous destruction, count limits, optional choices and trigger variants.');
+
+for(const deck of STANDARD507_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid legacy death trigger fixture');console.log('Checked standard507 legal forties: legacy death triggers, simultaneous sweeps, named mana deployment and own shield movement.');
+
+for(const deck of STANDARD508_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid evolution and tapped-count fixture');console.log('Checked standard508 legal forties: evolution or linked Gods, conditional self grants and three tapped allies at turn end.');

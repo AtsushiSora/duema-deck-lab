@@ -1,0 +1,278 @@
+{
+  "phase": 503,
+  "checkedAt": "2026-11-06",
+  "baseCount": 4973,
+  "description": "味方クリーチャーの一時強化、種族・文明別の対象選択、クリーチャーに含まれる物理カード数を参照する任意ドローとマナ追加を共通化する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35713/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36084/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34907/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmr01-063",
+      "name": "イケイケ・ピッピー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-063",
+      "faces": [
+        {
+          "name": "イケイケ・ピッピー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、そのターン、バトルゾーンにある自分の火のハンター・クリーチャー１体は、アンタップされているクリーチャーを攻撃できる。\nハンティング(バトル中、このクリーチャーのパワーは、バトルゾーンにある自分のハンター１体につき+1000される)",
+          "race": "ファイアー・バード/ハンター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g166Hunting": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "color": "火",
+              "race": "ハンター"
+            },
+            "grant": {
+              "attackUntapped": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-063.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "f581ce5e1d272568ab177aabd227bd08a813d9c68c9e1de7acbac67368fdc003",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm29-045",
+      "name": "威牙忍ヤミカゼ・ドラグーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-045",
+      "faces": [
+        {
+          "name": "威牙忍ヤミカゼ・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ニンジャ・ストライク ２(相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが２枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかった場合、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを自分の山札の一番下に置く)\nこのクリーチャーをバトルゾーンに出した時、そのターン、バトルゾーンにある自分のクリーチャー１体は「スレイヤー」を得る。",
+          "race": "ティラノ・ドレイク/シノビ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 2,
+        "ninjaColors": [],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "slayer": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm29-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "6b38f0a27203aca9e053cecc5d65e78c331e63da4d33b8707ed2ecc366f1d091",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm35-011",
+      "name": "吸熱銃機カタクロシン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-011",
+      "faces": [
+        {
+          "name": "吸熱銃機カタクロシン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のクリーチャーを１体選ぶ。そのクリーチャーに含まれるカード１枚につき、カードを１枚引いてもよい。",
+          "race": "グレートメカオー/オリジン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g503Stack": "draw",
+            "title": "枚数を参照する自分のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm35-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "7eafe7f8acbeee7d60ceb806fc15385ce3b8e9f9aa7658b27c2e2f99eba02633",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm31-054",
+      "name": "旋風カゼマルネイチャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-054",
+      "faces": [
+        {
+          "name": "旋風カゼマルネイチャー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ニンジャ・ストライク ２(相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが２枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかった場合、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを自分の山札の一番下に置く)\nこのクリーチャーをバトルゾーンに出した時、そのターンの終わりまで、バトルゾーンにある自分のクリーチャー１体のパワーは+2000される。",
+          "race": "エメラルド・モンスター/シノビ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 2,
+        "ninjaColors": [],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 2000
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "68f7c8a67263918bdb9e764011256ff10eefbaa95084f7e8bcc0506d3d2b9c6d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm31-017",
+      "name": "土隠龍ジライヤ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-017",
+      "faces": [
+        {
+          "name": "土隠龍ジライヤ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ニンジャ・ストライク ４(相手のクリーチャーが攻撃またはブロックした時、自分のマナゾーンにカードが４枚以上あり、その攻撃中に「ニンジャ・ストライク」能力を使っていなかった場合、このシノビをコストを支払わずに召喚してもよい。そのターンの終わりに、このシノビを自分の山札の一番下に置く)\nこのクリーチャーをバトルゾーンに出した時、そのターンの終わりまで、バトルゾーンにある自分の他のシノビすべてのパワーは+3000される。",
+          "race": "アース・ドラゴン/シノビ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ninjaStrike": true,
+        "ninjaMin": 4,
+        "ninjaColors": [],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "owner": "self",
+            "other": true,
+            "filter": {
+              "creature": true,
+              "race": "シノビ"
+            },
+            "power": 3000
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "b16ec8a8f3451bea3711dcabf4e72fd1144a3d8fd947f73985794e0bfc587ba2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm35-053",
+      "name": "豊穣の祈りマナーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-053",
+      "faces": [
+        {
+          "name": "豊穣の祈りマナーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のクリーチャーを１体選ぶ。そのクリーチャーに含まれるカード１枚につき、自分の山札の上から１枚、マナゾーンに置く。",
+          "race": "ドリームメイト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g503Stack": "ramp",
+            "title": "枚数を参照する自分のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm35-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "8a34324ac66791d0daf8cdadd96acad559018869bc257f3cea95dd7f3fba4008",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr01-063": 4,
+      "dm29-045": 4,
+      "dm35-011": 4,
+      "dm31-054": 4,
+      "dm31-017": 4,
+      "dm35-053": 4
+    }
+  }
+}

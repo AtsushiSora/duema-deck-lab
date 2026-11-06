@@ -1,0 +1,627 @@
+{
+  "phase": 506,
+  "checkedAt": "2026-11-06",
+  "baseCount": 4991,
+  "description": "合計パワーの上限と選択数の上限を守って対象を選び、選択後に同時破壊する処理を共通化する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35713/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36084/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmr23-026",
+      "name": "アクミ団の悪獄Go！",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-026",
+      "faces": [
+        {
+          "name": "アクミ団の悪獄Go！",
+          "typeText": "呪文",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれか１つを選ぶ。 ▼相手は自身の手札から２枚選び、捨てる。 ▼相手のクリーチャーをパワーの合計が5000以下になるよう好きな数選び、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手は自身の手札から２枚選び、捨てる。",
+                "defs": [
+                  {
+                    "op": "Discard",
+                    "n": 2
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーをパワーの合計が5000以下になるよう好きな数選び、破壊する。",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "owner": "opponent",
+                    "origin": "battle",
+                    "n": "all",
+                    "optional": true,
+                    "to": "grave",
+                    "filter": {
+                      "creature": true
+                    },
+                    "g173Targets": true,
+                    "g193Select": true,
+                    "g506PowerBudget": 5000,
+                    "title": "合計パワー5000以下になるよう好きな数選ぶ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "0eeba34be1e17251a89b22de8ddfb39dfee3cb853d98cc86aa8be96295abe5f9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-047",
+      "name": "ザ・ストロング・ボンバー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-047",
+      "faces": [
+        {
+          "name": "ザ・ストロング・ボンバー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを、パワーの合計が5000以下になるよう２体まで選び、破壊する。\nバトルゾーンに自分のパワー6000以上のクリーチャーがあれば、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 5000,
+            "title": "合計パワー5000以下になるよう2体まで選ぶ"
+          },
+          {
+            "op": "IfOwnPower",
+            "minPower": 6000,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "fa1586837e929700849d29f02f09ffa5bef4ea95987bd281ea0df9f87dea3215",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr06-016",
+      "name": "スクラッパー・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-016",
+      "faces": [
+        {
+          "name": "スクラッパー・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、相手とガチンコ・ジャッジする。自分が勝ったら、相手のクリーチャーをパワーの合計が5000以下になるように好きな数選び、破壊する。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Select",
+                "owner": "opponent",
+                "origin": "battle",
+                "n": "all",
+                "optional": true,
+                "to": "grave",
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true,
+                "g506PowerBudget": 5000,
+                "title": "合計パワー5000以下になるよう好きな数選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "7840f920ccf65b3a3d3330e599c6b874f1e874099440c04ec8f7873772474028",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm30-015",
+      "name": "バルザーク・熱風・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-015",
+      "faces": [
+        {
+          "name": "バルザーク・熱風・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "シールド・セイバー(自分のシールドがブレイクされる時、かわりにこのクリーチャーを破壊してもよい)\nパワーアタッカー+2000\nこのクリーチャーが破壊された時、相手のクリーチャーをパワーの合計が4000以下になるように好きな数選び、破壊する。",
+          "race": "アーマード・ドラゴン/サムライ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g401ShieldSaver": true,
+        "attackBonus": 2000,
+        "g172Death": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": "all",
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 4000,
+            "title": "合計パワー4000以下になるよう好きな数選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm30-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "d45692c55e97cdc440105fac842856d5bcf8803eb93eb66a99bd6bb110069de1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp1-070",
+      "name": "プラスワン・フレーム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-070",
+      "faces": [
+        {
+          "name": "プラスワン・フレーム",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n相手のクリーチャーを、パワーの合計が5000以下になるように好きな数選び、破壊する。\nカードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": "all",
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 5000,
+            "title": "合計パワー5000以下になるよう好きな数選ぶ"
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "ecdb29bd1f74dc718048090f1a88cebbfede6cc4268c6561c64ff50d8dd0a6bd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-036",
+      "name": "ボルシャック・マンリキ・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-036",
+      "faces": [
+        {
+          "name": "ボルシャック・マンリキ・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、相手のクリーチャーを、パワーの合計が7000以下になるように好きな数選び、破壊する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": "all",
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 7000,
+            "title": "合計パワー7000以下になるよう好きな数選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "dab928a33d38656ead86fba27eb7db3882f53441ebfaa6371d1ba2c817f924d3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp21-041",
+      "name": "天守閣 炎霊武陣",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-041",
+      "faces": [
+        {
+          "name": "天守閣 炎霊武陣",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを、パワーの合計が8000以下になるように２体まで選び、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 8000,
+            "title": "合計パワー8000以下になるよう2体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "13c5e6e46948f1297b2f2bee4411186ec032bb1e559a334f2a309dca27f14bdb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex2-096",
+      "name": "破壊の赤 スクラッパーレッド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-096",
+      "faces": [
+        {
+          "name": "破壊の赤 スクラッパーレッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nこのクリーチャーが出た時、相手のクリーチャーを、パワーの合計が4000以下になるように好きな数選ぶ。それらをすべて破壊する。",
+          "race": "ソニック・コマンド/シノビ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": "all",
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 4000,
+            "title": "合計パワー4000以下になるよう好きな数選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-096.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "5347f471284ca17d8b8e514af3904628583320d94d221905eb76ec303ed59b98",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr17-023",
+      "name": "破壊者 シュトルム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-023",
+      "faces": [
+        {
+          "name": "破壊者 シュトルム",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーをパワーの合計が6000以下になるように好きな数選び、破壊する。",
+          "race": "アウトレイジ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": "all",
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 6000,
+            "title": "合計パワー6000以下になるよう好きな数選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "0d17dfcdfa54b3cdcf43cc60d6cea7a7370b4814e30cc9b3aed53cf5a25d8249",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-021",
+      "name": "粉砕呪文「スクラッパー」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-021",
+      "faces": [
+        {
+          "name": "粉砕呪文「スクラッパー」",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nシビルカウント ４：自分の火のクリーチャーまたは火のタマシードが合計４つ以上あれば、この呪文をコストを支払わずに唱えてもよい。\n相手のクリーチャーを、パワーの合計が5000以下になるように好きな数選び、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g261Free": {
+          "filter": {
+            "creatureOrSeed": true,
+            "color": "火",
+            "g258Civil": 4
+          },
+          "label": "シビルカウント4"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": "all",
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 5000,
+            "title": "合計パワー5000以下になるよう好きな数選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "02c1b0dde75d8535724e4d29a2aadd710a12c549045329ad73cc04009d4d31af",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr08-016",
+      "name": "絆の戦士クラップ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-016",
+      "faces": [
+        {
+          "name": "絆の戦士クラップ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、相手のクリーチャーをパワーの合計が5000以下になるように好きな数選び、破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン/ハンター/エイリアン",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": "all",
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 5000,
+            "title": "合計パワー5000以下になるよう好きな数選ぶ"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": "all",
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 5000,
+            "title": "合計パワー5000以下になるよう好きな数選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "430d7464fd233f620d9da3dfe91bc4a994062c6c8b5f885f55b6de9d5b237f81",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr23-026": 4,
+      "dmrp18-047": 4,
+      "dmr06-016": 4,
+      "dm30-015": 4,
+      "dm26rp1-070": 4,
+      "dm23rp3-036": 4,
+      "dmrp21-041": 4,
+      "dm25ex2-096": 4,
+      "dmr17-023": 4,
+      "dm22rp2-021": 4,
+      "dmr08-016": 4
+    }
+  }
+}

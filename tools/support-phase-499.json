@@ -1,0 +1,284 @@
+{
+  "phase": 499,
+  "checkedAt": "2026-11-06",
+  "baseCount": 4944,
+  "description": "実際のドロー数、マナの呪文・クリーチャー、墓地の闇カードによる任意の召喚軽減と、水の呪文への任意軽減を共通化。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35713/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36084/",
+    "https://dm.takaratomy.co.jp/rule/qa/49527/"
+  ],
+  "cards": [
+    {
+      "id": "dm02-054",
+      "name": "ラブ・エルフィン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-054",
+      "faces": [
+        {
+          "name": "ラブ・エルフィン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンにある間、自分の呪文を唱えるとき、支払うコストは１少なくなる。 ただし、コストが１のときは少なくならない。",
+          "race": "ツリーフォーク",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g467SpellReduction": 1
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm02-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "24803ec7592663d72a7d901f1f3b4816a26957302b3281c7af3d8e16940466c3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-035",
+      "name": "後戦の悪魔龍 ライボッド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-035",
+      "faces": [
+        {
+          "name": "後戦の悪魔龍 ライボッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の墓地にある闇のカード１枚につき、このクリーチャーの召喚コストを１少なくしてもよい。ただし、コストは０以下にならない。",
+          "race": "デーモン・コマンド・ドラゴン/革命軍",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "grave",
+          "filter": {
+            "anyFaceColor": "闇"
+          },
+          "amount": 1,
+          "optional": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "e399ca3bf6d925c9339b4bd5c869f95bd94ccb0b7c0007dc953b2bed4e50082a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04m-s03",
+      "name": "絶海の虎将 ティガウォック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-s03",
+      "faces": [
+        {
+          "name": "絶海の虎将 ティガウォック",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーの召喚コストを、このターン自分が引いたカード１枚につき１少なくしてもよい。ただし、コストは０以下にならない。\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、カードを３枚まで引く。",
+          "race": "ムートピア",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "draws",
+          "amount": 1,
+          "optional": true
+        },
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DrawUpTo",
+            "n": 3
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04m-s03.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "120fb548c0f96da7562f8b3084b4ce0c2ad97d5b2d2adca34d6830fd42d7ecdf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm02-020",
+      "name": "念仏エルフィン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-020",
+      "faces": [
+        {
+          "name": "念仏エルフィン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンにある間、自分のクリーチャーを召喚するとき、支払うコストは１少なくなる。ただし、コストが１のときは少なくならない。",
+          "race": "ツリーフォーク",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g349SummonAuras": [
+          {
+            "filter": {},
+            "amount": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm02-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "c35c2709320664f0c4819361cc47d06dcabdbee89c41c1545b337a011cbbbe92",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm31-033",
+      "name": "爆獣パンダ・ブーリン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-033",
+      "faces": [
+        {
+          "name": "爆獣パンダ・ブーリン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "このクリーチャーの召喚コストを、自分のマナゾーンにある呪文１枚につき、１少なくしてもよい。ただし、コストは１より少なくならない。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ドリームメイト/ナイト",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "mana",
+          "filter": {
+            "spell": true
+          },
+          "amount": 1,
+          "optional": true
+        },
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "1fbba151a0d583817de2582a47d53a3eb19cd7153850fcb715b6e3c2e10bc0eb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-019",
+      "name": "龍素記号X2 アーマ・フランツ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-019",
+      "faces": [
+        {
+          "name": "龍素記号X2 アーマ・フランツ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の水の呪文を唱えるコストを最大２少なくしてもよい。ただし、コストは１より少なくならない。",
+          "race": "クリスタル・コマンド・ドラゴン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g485SpellReduction": {
+          "amount": 2,
+          "color": "水"
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "057e9455c9bc78c20d74e6e064af337990b485dfc80a4e5fdf23aa192be365cd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-026",
+      "name": "龍装者 ババルガ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-026",
+      "faces": [
+        {
+          "name": "龍装者 ババルガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "このクリーチャーの召喚コストを、自分のマナゾーンにあるクリーチャー１体につき１少なくしてもよい。ただし、コストは０以下にならない。\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）",
+          "race": "ドラゴンギルド/グランセクト",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "mana",
+          "filter": {
+            "creature": true
+          },
+          "amount": 1,
+          "optional": true
+        },
+        "breaker": 3
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "3b7b9e687dcd30a89473d7799cb320c631d7ddfb08b6068676adc3d57682774b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm02-054": 4,
+      "dmr19-035": 4,
+      "dmrp04m-s03": 4,
+      "dm02-020": 4,
+      "dm31-033": 4,
+      "dmr13-019": 4,
+      "dmrp01-026": 4
+    }
+  }
+}

@@ -1,0 +1,360 @@
+{
+  "phase": 507,
+  "checkedAt": "2026-11-06",
+  "baseCount": 5002,
+  "description": "旧表記の破壊時誘発を共通の死亡時処理へ接続し、全体破壊、同名カードのマナからの登場、シールドの手札・墓地移動を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35713/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36084/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261015.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/45909/"
+  ],
+  "cards": [
+    {
+      "id": "dm05-053",
+      "name": "アンブッシュ・スコーピオン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-053",
+      "faces": [
+        {
+          "name": "アンブッシュ・スコーピオン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "パワーアタッカー+3000(攻撃中、このクリーチャーのパワーは+3000される)\nこのクリーチャーがバトルゾーンから自分の墓地に置かれたとき、自分のマナゾーンからアンブッシュ・スコーピオンを１体選び、バトルゾーンに置いてもよい。",
+          "race": "ジャイアント・インセクト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackBonus": 3000,
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "g201ExactName": "アンブッシュ・スコーピオン"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm05-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "2b34a5fb8f5b606a4579ab0a681ee07071612c820ae326933ee16cc70a50a122",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm05-005",
+      "name": "オブシディアン・ビートル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-005",
+      "faces": [
+        {
+          "name": "オブシディアン・ビートル",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "パワーアタッカー+3000(攻撃中、このクリーチャーのパワーは+3000される)\nW(ダブル)・ブレイカー\nこのクリーチャーがバトルゾーンから自分の墓地に置かれたとき、自分のマナゾーンからオブシディアン・ビートルを１体選び、バトルゾーンに置いてもよい。",
+          "race": "ジャイアント・インセクト",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackBonus": 3000,
+        "breaker": 2,
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "g201ExactName": "オブシディアン・ビートル"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm05-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "a2346b6e0398034e33e44f4c71f3412511a439e1e491ae290a6a5108872f29ac",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm05-047",
+      "name": "スパイダー・ジュエル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-047",
+      "faces": [
+        {
+          "name": "スパイダー・ジュエル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンから自分の墓地に置かれたとき、自分のシールドを１枚裏向きのまま選び、自分の手札に加えてもよい。ただし、その「S(シールド)・トリガー」は使えない。",
+          "race": "ブレインジャッカー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Offer",
+            "g299ShieldHand": true,
+            "title": "シールド1つを手札に加える？（S・トリガーは使えない）",
+            "defs": [
+              {
+                "op": "ShieldHand",
+                "g238ShieldHand": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm05-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "0a5441e9a6e8852adda513aa58736a6b6f676f75e2dec2e217d276a7cf40d486",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm08-030",
+      "name": "ブルーザー・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-030",
+      "faces": [
+        {
+          "name": "ブルーザー・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンから自分の墓地に置かれたとき、自分のシールドが１枚でもあれば、裏向きのまま１枚選び、自分の墓地に置く。ただし、その「S(シールド)・トリガー」は使えない。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "ShieldGrave",
+            "g239ShieldGrave": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm08-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "946f1fcde8c5e9d4258cc7ed228a12fbb9103577b7e12ba4751f1130cfab4c77",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm08-012",
+      "name": "黒神龍ガルバジーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-012",
+      "faces": [
+        {
+          "name": "黒神龍ガルバジーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃するとき、自分のシールドが１枚でもあれば、裏向きのまま１枚選び、自分の墓地に置く。ただし、その「S(シールド)・トリガー」は使えない。\nW(ダブル)・ブレイカー",
+          "race": "ドラゴン・ゾンビ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "ShieldGrave",
+            "g239ShieldGrave": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm08-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "6b4e1e188e9917c25234d2c10e6b986a813b5b1fd821ebac6e13a3f68d9dc4f6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-037",
+      "name": "時空の守護者ジル・ワーカ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-037",
+      "faces": [
+        {
+          "name": "時空の守護者ジル・ワーカ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー\nこのクリーチャーは相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルゾーンから自分の墓地に置かれたとき、バトルゾーンにある相手のクリーチャーを２体まで選び、タップする。",
+          "race": "ガーディアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g172Death": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを2体まで選ぶ",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "01d60c1c49c8c0932416cf76ab36fee87137617f794c0622425f30f0038f7b32",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-s03",
+      "name": "呪縛の剣豪バロスト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-s03",
+      "faces": [
+        {
+          "name": "呪縛の剣豪バロスト",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "W・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーがバトルゾーンから自分の墓地に置かれたとき、バトルゾーンにあるクリーチャーをすべて持ち主の墓地に置く。",
+          "race": "デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g172Death": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-s03.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "360f20d0d320d76d7e44cedad025f5e2d44f7de96d815a8af504a15bd30f82c6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm05-003",
+      "name": "冥将ダムド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-003",
+      "faces": [
+        {
+          "name": "冥将ダムド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーがバトルゾーンから自分の墓地に置かれたとき、バトルゾーンにあるパワー3000以下のクリーチャーすべてを、持ち主の墓地に置く。",
+          "race": "ダークロード",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm05-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "e36847117a58b9a5cae588d0d8970e6a0f5ba21dd880f016cecb3990874f4293",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm05-053": 4,
+      "dm05-005": 4,
+      "dm05-047": 4,
+      "dm08-030": 4,
+      "dm08-012": 4,
+      "dm09-037": 4,
+      "dm09-s03": 4,
+      "dm05-003": 4
+    }
+  }
+}

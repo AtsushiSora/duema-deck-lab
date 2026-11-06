@@ -43,7 +43,16 @@ export function createUtilityControlRules(api){
  default:throw Error('未実装のコントロールユーティリティ選択：'+t.op);
  }return true;}
  return{run,chosen,mainActions(s,p){return (s.players[p].spellsThisTurn||0)>0?s.players[p].hand.filter(x=>card(x).g118SpellZero&&api.canCast(s,p,card(x),'hand')&&api.canEnter(s,p,card(x),{origin:'hand',execution:true})).map(x=>({kind:'play',uid:x.uid,cardId:x.cardId,origin:'hand',cost:0,freeSummon:'G・ゼロ',label:card(x).name+'をG・ゼロで召喚'})):[];},
-  spellTax(s,p,c){if(c.type!=='spell')return 0;const colors=api.colors(c);return s.players.reduce((n,_,owner)=>n+api.creatures(s,owner).filter(x=>!x.sealed).reduce((n,x)=>{const source=api.effective(x,s),tax=source.g222SpellTax;return n+(source.g56SpellTax||0)+(!tax||tax.opponent&&owner===p||tax.first&&(s.players[p].spellsThisTurn||0)>0||tax.exceptColor&&colors.includes(tax.exceptColor)||tax.colors&&!tax.colors.some(color=>colors.includes(color))?0:tax.graveSpells?s.players[p].grave.filter(x=>!x.faceDown&&!(c.summonOrigin==='grave'&&x.uid===c.executionUid)&&api.faces(card(x)).some(c=>c.type==='spell')).length:tax.amount);},0),0);},
+  spellTax(s,p,c){
+   if(c.crossing||!['creature','spell'].includes(c.type))return 0;
+   const colors=api.colors(c);
+   return s.players.reduce((n,_,owner)=>n+api.creatures(s,owner).filter(x=>!x.sealed).reduce((n,x)=>{
+    const source=api.effective(x,s),both=source.g505ExecutionTax,tax=source.g222SpellTax;
+    const shared=both&&colors.includes(both.color)?both.amount:0;
+    if(c.type!=='spell')return n+shared;
+    return n+shared+(source.g56SpellTax||0)+(!tax||tax.opponent&&owner===p||tax.first&&(s.players[p].spellsThisTurn||0)>0||tax.exceptColor&&colors.includes(tax.exceptColor)||tax.colors&&!tax.colors.some(color=>colors.includes(color))?0:tax.graveSpells?s.players[p].grave.filter(x=>!x.faceDown&&!(c.summonOrigin==='grave'&&x.uid===c.executionUid)&&api.faces(card(x)).some(c=>c.type==='spell')).length:tax.amount);
+   },0),0);
+  },
   firstSpellDiscount(s,p,c){return c.type==='spell'&&!(s.players[p].spellsThisTurn||0)?api.creatures(s,p).filter(x=>!x.sealed).reduce((n,x)=>{const source=api.effective(x,s),f=source.g285FirstSpellMana;return n+(!f||s.players[p].mana.filter(y=>api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,p).includes(f.color)).length>=f.n?source.g279FirstSpellDiscount||0:0);},0):0;},
   effect(s,p,c,uid,entry){if(!c.g56Effect)return false;put(s,task('g56_'+c.g56Effect,p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;}
  };

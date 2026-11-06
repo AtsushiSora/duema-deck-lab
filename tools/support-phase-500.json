@@ -1,0 +1,252 @@
+{
+  "phase": 500,
+  "checkedAt": "2026-11-06",
+  "baseCount": 4951,
+  "description": "最低2マナの常在軽減・墓地やドロー数による自己軽減・種族シンパシーを共通化し、最低1マナの軽減と区別する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35713/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36084/",
+    "https://dm.takaratomy.co.jp/rule/qa/38590/",
+    "https://dm.takaratomy.co.jp/rule/qa/49527/",
+    "https://dm.takaratomy.co.jp/rule/qa/40936/"
+  ],
+  "cards": [
+    {
+      "id": "dmx23-009",
+      "name": "コッコ・ドギラッチ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx23-009",
+      "faces": [
+        {
+          "name": "コッコ・ドギラッチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のドラゴンの召喚コストを２少なくしてもよい。ただし、コストは１以下にならない。",
+          "race": "メガ・コマンド・ドラゴン/ファイアー・バード/革命軍",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g500SummonAura": {
+          "filter": {
+            "race": "ドラゴン"
+          },
+          "amount": 2,
+          "exact": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx23-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "cab53447e902f3e680c45295cee6e98d5ac33a28c11941a4d823c2c8b0fff0a8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp14-093",
+      "name": "ライマー・エビーフ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-093",
+      "faces": [
+        {
+          "name": "ライマー・エビーフ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の墓地にあるクリーチャー１体につき、このクリーチャーの召喚コストを１少なくする。ただし、コストは１以下にはならない。\nこのクリーチャーを自分のマナゾーンから召喚してもよい。",
+          "race": "グランセクト/不死樹王国",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "grave",
+          "filter": {
+            "creature": true
+          },
+          "amount": 1,
+          "minimum": 2
+        },
+        "manaSummon": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-093.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "e5e081e644a2566a6bd0a5c3c29ab8dc544ff6f8a6906667c2e28d5a5d439544",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm13-s02",
+      "name": "悪魔聖霊アウゼス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-s02",
+      "faces": [
+        {
+          "name": "悪魔聖霊アウゼス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nシンパシー:エンジェル・コマンドおよびデーモン・コマンド(このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のエンジェル・コマンドまたはデーモン・コマンド１体につき１少なくなる。ただしコストは２より少なくならない)\n自分のエンジェル・コマンドまたはデーモン・コマンドが攻撃する時、相手のタップされているクリーチャーを１体破壊する。\nW・ブレイカー",
+          "race": "エンジェル・コマンド/デーモン・コマンド",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g211Sympathy": {
+          "amount": 1,
+          "minimum": 2,
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "エンジェル・コマンド",
+              "デーモン・コマンド"
+            ]
+          }
+        },
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "filter": {
+              "creature": true,
+              "raceAny": [
+                "エンジェル・コマンド",
+                "デーモン・コマンド"
+              ]
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "tapped": true
+                }
+              }
+            ]
+          }
+        ],
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "7bd1394e9ca4c0d7172989bc40fd860f9392355ea11cd34cd1819b1c9eea9d3a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex1-N024",
+      "name": "芸魔猛牛 オックスチェッカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-N024",
+      "faces": [
+        {
+          "name": "芸魔猛牛 オックスチェッカー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーの召喚コストを、このターン自分が引いたカード１枚につき１少なくする。ただしコストは１以下にならない。\nスピードアタッカー\nこのクリーチャーが攻撃する時、カードを２枚引き、自分の手札を１枚捨てる。",
+          "race": "マジック・モンスター/ゲーム・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "draws",
+          "amount": 1,
+          "minimum": 2
+        },
+        "speedAttacker": true,
+        "g34Attack": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex1-N024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "3c9ec648c2dc601f0505cba3eae028234e23a2d8c26d3fe0da908e4a8b677d63",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-063",
+      "name": "護聖賢樹ニジエルフィン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-063",
+      "faces": [
+        {
+          "name": "護聖賢樹ニジエルフィン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分の多色クリーチャーの召喚コストを最大２少なくする。ただし、コストは１以下にならない。",
+          "race": "ツリーフォーク/ガーディアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g500SummonAura": {
+          "filter": {
+            "multi": true
+          },
+          "amount": 2
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-063.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "5c368170719364b8339179905861c0306706bce5445ff01ca2a9251ab67a91c2",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "1e2a676e59b7f05445ed462e6d16ffff51c51857ce29b21e9d8f68dfc79ab4d8",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx23-009": 4,
+      "dmrp14-093": 4,
+      "dm13-s02": 4,
+      "dm26ex1-N024": 4,
+      "dmr23-063": 4
+    }
+  }
+}
