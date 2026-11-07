@@ -1,4 +1,4 @@
-import {forceAttackTargets} from './forced-attack-targets.js?v=0.682.0';
+import {forceAttackTargets} from './forced-attack-targets.js?v=0.693.0';
 import {policyRemove,policyLook} from './champion-zone-policy.js';
 // Physical multi-base evolution and Phoenix effects. All choices survive JSON round-trips.
 export function createPhoenixRules(api){
@@ -9,12 +9,23 @@ export function createPhoenixRules(api){
  const poppo=(s,p)=>creatures(s,p).some(x=>effective(x,s).g31Poppo);
  const complex=(s,p,c,options={})=>!!c.g31Evolution||!!c.evolution&&phoenix(c)&&options.execution!==false&&poppo(s,p);
  const definition=c=>c.g31Evolution||{zone:'battle',conditions:[c.evolution]};
- function candidates(s,p,c,options={}){const d=definition(c),zones=d.zone==='grave'?['grave']:d.zone==='deck'?[]:options.execution!==false&&phoenix(c)&&poppo(s,p)?['battle','grave']:['battle'];return zones.filter(zone=>api.canMoveZone(s,p,zone)).flatMap(zone=>s.players[p][zone].filter(x=>zone==='grave'?card(x).type==='creature':api.isCreature(s,x)).map(x=>({x,zone})));}
+ const baseCardCount=rows=>rows.reduce((n,{x,zone})=>n+(zone==='battle'?api.layers(x).length:1),0);
+ function cardCountPool(s,p,c,options){
+  return candidates(s,p,c,options).filter(r=>r.x.uid!==options.exclude);
+ }
+ function validCardCountBases(s,p,c,selected,options){
+  if(!selected.length||new Set(selected).size!==selected.length)return false;
+  const rows=cardCountPool(s,p,c,options).filter(r=>selected.includes(r.x.uid));
+  return rows.length===selected.length&&baseCardCount(rows)>=definition(c).minCards;
+ }
+ function candidates(s,p,c,options={}){const d=definition(c),zones=d.zone==='grave'?['grave']:d.zone==='deck'?[]:options.execution!==false&&phoenix(c)&&poppo(s,p)?['battle','grave']:['battle'];return zones.filter(zone=>api.canMoveZone(s,p,zone)).flatMap(zone=>s.players[p][zone].filter(x=>zone==='grave'?card(x).type==='creature':d.minCards?!x.sealed&&(api.isCreature(s,x)||effective(x,s).shinkalize):api.isCreature(s,x)).map(x=>({x,zone})));}
  const matches=(s,x,condition)=>condition.creature||api.matchesEvolution(x,condition,s);
- function completions(s,p,c,selected=[],options={}){const d=definition(c);if(d.zone==='deck')return s.players[p].deck.length>0;const pool=candidates(s,p,c,options).filter(r=>r.x.uid!==options.exclude).sort((a,b)=>Number(selected.includes(b.x.uid))-Number(selected.includes(a.x.uid)));if(d.variable)return selected.length>0&&new Set(selected).size===selected.length&&selected.every(uid=>pool.some(r=>r.x.uid===uid&&matches(s,r.x,d.conditions[0])));if(selected.length>d.conditions.length||new Set(selected).size!==selected.length||selected.some(uid=>!pool.some(r=>r.x.uid===uid)))return false;function visit(i,used){if(i===d.conditions.length)return selected.every(uid=>used.includes(uid));return pool.some(r=>!used.includes(r.x.uid)&&matches(s,r.x,d.conditions[i])&&visit(i+1,[...used,r.x.uid]));}return visit(0,[]);}
- function bases(s,p,c,options={}){if(!definition(c).variable&&!completions(s,p,c,[],options))return[];if(definition(c).zone==='deck')return s.players[p].deck.slice(0,3);return candidates(s,p,c,options).filter(r=>completions(s,p,c,[r.x.uid],options)).map(r=>r.x);}
+ function completions(s,p,c,selected=[],options={}){const d=definition(c);if(d.zone==='deck')return s.players[p].deck.length>0;const pool=candidates(s,p,c,options).filter(r=>r.x.uid!==options.exclude).sort((a,b)=>Number(selected.includes(b.x.uid))-Number(selected.includes(a.x.uid)));if(d.minCards)return validCardCountBases(s,p,c,selected,options);if(d.variable)return selected.length>0&&new Set(selected).size===selected.length&&selected.every(uid=>pool.some(r=>r.x.uid===uid&&matches(s,r.x,d.conditions[0])));if(selected.length>d.conditions.length||new Set(selected).size!==selected.length||selected.some(uid=>!pool.some(r=>r.x.uid===uid)))return false;function visit(i,used){if(i===d.conditions.length)return selected.every(uid=>used.includes(uid));return pool.some(r=>!used.includes(r.x.uid)&&matches(s,r.x,d.conditions[i])&&visit(i+1,[...used,r.x.uid]));}return visit(0,[]);}
+ function bases(s,p,c,options={}){const min=definition(c).minCards;if(min){const rows=cardCountPool(s,p,c,options);return baseCardCount(rows)>=min?rows.map(r=>r.x):[];}if(!definition(c).variable&&!completions(s,p,c,[],options))return[];if(definition(c).zone==='deck')return s.players[p].deck.slice(0,3);return candidates(s,p,c,options).filter(r=>completions(s,p,c,[r.x.uid],options)).map(r=>r.x);}
  function beginCast(s,p,args){const x=s.players[p][args[5]].find(x=>x.uid===args[0]);put(s,task('g31_Bases',p,x.cardId,{uid:x.uid,mode:'cast',args,selected:[]}));}
- function beginPut(s,p,x,base,options){(s.players[p].g31Holding??=[]).push(x);put(s,task('g31_Bases',p,x.cardId,{uid:x.uid,mode:'put',options,selected:[]}));}
+ function beginPut(s,p,x,base,options){const c=card(x);if(c.g31Evolution?.minCards&&!bases(s,p,c,{...options,exclude:x.uid}).length){
+  const origin=options.origin||'hand';clear(x,origin);api.addZone(s,s.players[p],origin,x);return;
+ }(s.players[p].g31Holding??=[]).push(x);put(s,task('g31_Bases',p,x.cardId,{uid:x.uid,mode:'put',options,selected:[]}));}
  function finishBases(s,t){const own=s.players[t.p];if(t.mode==='cast'){const a=[...t.args];a[2]=t.selected;cast(s,t.p,...a);}else{const x=remove(own.g31Holding,t.uid);if(x)enter(s,t.p,x,t.selected,t.options);}}
  function attach(s,p,x,ids,options={}){const c=card(x),d=definition(c),own=s.players[p];if(options.g31Force){const b=own.battle.find(y=>y.uid===ids);if(!b)throw Error('強制進化元がありません');ids=[ids];}
  if(d.zone==='deck'&&!options.g31Force){x.under=[];for(let i=0;i<d.count;i++){const y=api.takeTop(s,p);if(!y)break;y.faceDown=true;x.under.push(y);}api.deckCheck(s,p);return;}
@@ -25,12 +36,35 @@ export function createPhoenixRules(api){
  function detach(s,p,x,uid){const parent=api.layers(x).find(y=>y.under?.some(z=>z.uid===uid));if(!parent)return false;const y=remove(parent.under,uid);parent.under.push(...(y.under||[]));clear(y,'grave');api.addZone(s,s.players[p],'grave',y);return true;}
  function marsCount(s,p){const fits=c=>/ファイアー・バード|フェニックス/.test(String(c.race));return s.players[p].mana.filter(x=>!x.faceDown&&faces(api.zoneCard(s,p,x,'mana')).some(fits)).length+s.players[p].battle.filter(x=>!x.sealed&&['creature','seed','gear','field','aura'].includes(card(x).type)&&fits(effective(x,s))).length;}
  function marsActions(s,p){return marsCount(s,p)>=5?s.players[p].hand.filter(x=>card(x).g213Mars&&bases(s,p,card(x)).length&&api.canCast(s,p,card(x),'hand')&&api.canEnter(s,p,card(x),{origin:'hand',execution:true})&&api.canPay(s,p,{...card(x),cost:3,printedCost:5,civilizations:['火']})).map(x=>({kind:'play',uid:x.uid,cardId:x.cardId,cost:api.summonCost(s,p,{...card(x),cost:3,printedCost:5,civilizations:['火']}),alternative:'phoenixMars',label:card(x).name+'を代替コスト（火を含む3マナ・軽減可）で召喚'})):[];}
+ function zeroCanRise(s,p,x){
+  const own=s.players[p],c=card(x),options={origin:'grave',execution:false,exclude:x.uid};
+  const field=creatures(s,p).filter(y=>!y.sealed);
+  return own.mana.length>=5&&['闇','火'].every(color=>field.some(y=>colors(effective(y,s)).includes(color)))&&
+   api.canEnter(s,p,c,options)&&bases(s,p,c,options).length>0;
+ }
  function run(s,t){if(!t.op.startsWith('g31_'))return false;const own=s.players[t.p],opp=s.players[1-t.p];switch(t.op){
  case'g31_MarsOffer':{const x=live(s,t);if(x&&api.layers(x).length>1)choice(s,t,'メテオバーン：相手に進化元を1枚選ばせて墓地に置く？',[opt('使う（火のクリーチャーなら墓地から出す）',true,20),skip()]);break;}
  case'g31_MarsPick':{const x=live(s,{...t,p:t.owner}),rows=x?api.layers(x).slice(1):[];if(rows.length)choice(s,t,'相手の進化元を1枚選ぶ（裏向きの内容は非公開）',rows.map((y,i)=>opt(y.faceDown?'裏向きの進化元 '+(i+1):card(y).name,y.uid,y.faceDown?0:card(y).type==='creature'&&colors(card(y)).includes('火')?-10:10,y.faceDown?null:y.cardId)));break;}
  case'g31_MarsRevive':{const x=own.grave.find(x=>x.uid===t.target&&(x.zoneSerial||0)===t.serial);if(x&&card(x).type==='creature'&&colors(card(x)).includes('火'))put(s,task('g34_Put',t.p,t.source,{origin:'grave',owner:t.p,target:x.uid,execution:false,controller:t.p}));break;}
  case'g31_Reduce':{const x=own[t.args[5]].find(x=>x.uid===t.args[0]);if(x){const c=card(x),max=(s.g31Discounts||[]).filter(d=>d.p===t.p&&d.turn===s.turn).length*4;choice(s,t,'鬼寄せの術：召喚コストをいくつ少なくする？',Array.from({length:max+1},(_,n)=>n).filter(n=>api.canPay(s,t.p,{...c,g31Reduction:n})).map(n=>opt(n+'少なくする',n,n)));}break;}
- case'g31_Bases':{const c=card(t.source),d=definition(c),options={...(t.options||{}),exclude:t.uid},n=d.conditions?.length;if(d.zone==='deck'||!d.variable&&t.selected.length===n){finishBases(s,t);break;}const list=candidates(s,t.p,c,options).filter(r=>!t.selected.includes(r.x.uid)&&completions(s,t.p,c,[...t.selected,r.x.uid],options));if(!list.length&&d.variable&&t.selected.length){finishBases(s,t);break;}if(!list.length){if(t.mode==='put'){const x=remove(own.g31Holding,t.uid);if(x){clear(x,'grave');api.addZone(s,own,'grave',x);}}break;}choice(s,t,'進化元を順に選ぶ（'+t.selected.length+'/'+(d.variable?'好きな数':n)+'）',[...list.map(r=>opt(card(r.x).name+(r.zone==='grave'?'（墓地）':'（場）'),r.x.uid,30-cost(card(r.x)),r.x.cardId)),...(d.variable&&t.selected.length?[opt('確定する',null,0)]:[])]);break;}
+ case'g31_ZeroRise':{
+  const x=own.grave.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);
+  if(x&&zeroCanRise(s,t.p,x))choice(s,t,card(x).name+'を墓地から出す？',[opt('進化元を選んで出す',true,35,x.cardId),skip()]);
+  break;
+ }
+ case'g31_Bases':{const c=card(t.source),d=definition(c),options={...(t.options||{}),exclude:t.uid},n=d.conditions?.length;
+ if(d.minCards){
+  const rows=cardCountPool(s,t.p,c,options),selected=rows.filter(r=>t.selected.includes(r.x.uid)),total=baseCardCount(selected);
+  const available=rows.filter(r=>!t.selected.includes(r.x.uid)),valid=selected.length===t.selected.length&&total>=d.minCards;
+  choice(s,t,'超無限進化：進化元のカード '+total+'枚（'+d.minCards+'枚以上）',[
+   ...available.map(({x,zone})=>opt(card(x).name+(zone==='grave'?'（墓地）':'（場）'),x.uid,30-cost(card(x)),x.cardId)),
+   ...(valid?[opt('この進化元で出す',null,90)]:[]),
+   ...(t.selected.length?[opt('進化元を選び直す','reset',-100)]:[]),
+   ...(t.mode==='cast'&&!t.args[1]?[opt('召喚をやめる','cancel',-100)]:[])
+  ]);
+  break;
+ }
+ if(d.zone==='deck'||!d.variable&&t.selected.length===n){finishBases(s,t);break;}const list=candidates(s,t.p,c,options).filter(r=>!t.selected.includes(r.x.uid)&&completions(s,t.p,c,[...t.selected,r.x.uid],options));if(!list.length&&d.variable&&t.selected.length){finishBases(s,t);break;}if(!list.length){if(t.mode==='put'){const x=remove(own.g31Holding,t.uid);if(x){clear(x,'grave');api.addZone(s,own,'grave',x);}}break;}choice(s,t,'進化元を順に選ぶ（'+t.selected.length+'/'+(d.variable?'好きな数':n)+'）',[...list.map(r=>opt(card(r.x).name+(r.zone==='grave'?'（墓地）':'（場）'),r.x.uid,30-cost(card(r.x)),r.x.cardId)),...(d.variable&&t.selected.length?[opt('確定する',null,0)]:[])]);break;}
  case'g31_ZeroLeave':put(s,task('discard',1-t.p,t.source,{n:2,causedBy:t.p}),task('g31_ManaTrash',t.p,t.source,{max:2,optional:true}));break;
  case'g31_Fel':put(s,task('g31_Sacrifice',t.p,t.source,{n:2,selected:[],after:[task('discard',1-t.p,t.source,{n:2,causedBy:t.p})]}));break;
  case'g31_Sacrifice':{const list=creatures(s,t.p).filter(x=>!t.selected.includes(x.uid));if(t.selected.length<t.n&&list.length)choice(s,t,'破壊する自分のクリーチャーを選ぶ（'+t.selected.length+'/'+t.n+'）',list.map(x=>opt(card(x).name,x.uid,-cost(card(x))+(effective(x,s).exLife?20:0),x.cardId)));else{put(s,...(t.after||[]));if(t.selected.length)move(s,t.selected.map(uid=>({player:t.p,uid,to:'grave'})));}break;}
@@ -64,7 +98,18 @@ export function createPhoenixRules(api){
  case'g31_MarsPick':{const x=live(s,{...t,p:t.owner}),under=x&&api.layers(x).slice(1).find(y=>y.uid===v);if(under){const serial=(under.zoneSerial||0)+1;api.moveBattleCard(s,t.owner,under.uid,'grave',{controller:t.owner});put(s,task('g31_MarsRevive',t.owner,t.source,{target:under.uid,serial,controller:t.owner}));}break;}
 
  case'g31_Reduce':{const a=[...t.args];a[4]={...(a[4]||{}),g31Reduction:v};cast(s,t.p,...a);break;}
- case'g31_Bases':if(v)put(s,{...t,selected:[...t.selected,v]});else finishBases(s,t);break;
+ case'g31_Bases':
+  if(v==='reset')put(s,{...t,selected:[]});
+  else if(v&&v!=='cancel')put(s,{...t,selected:[...t.selected,v]});
+  else if(v!=='cancel')finishBases(s,t);
+  break;
+ case'g31_ZeroRise':if(v){
+  const x=own.grave.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);
+  if(x&&zeroCanRise(s,t.p,x)){
+   remove(own.grave,x.uid);clear(x,'battle');
+   enter(s,t.p,x,null,{origin:'grave',execution:false});
+  }
+ }break;
  case'g31_Sacrifice':put(s,{...t,selected:[...t.selected,v]});break;
  case'g31_Reverse':if(v)put(s,task('mill',t.p,t.source,{n:3}),task('g31_DestroySmall',t.p,t.source));break;
  case'g31_DestroySmall':case'g31_NonCreature':if(v)move(s,[{player:1-t.p,uid:v,to:'grave'}]);break;
@@ -92,7 +137,7 @@ export function createPhoenixRules(api){
  attack(s,p,x){if(api.selfStopped(s,p))return;const c=effective(x,s);if(c.g213Mars)on(s,p,x,'MarsOffer');if(c.g31Apollo)on(s,p,x,'Meteor',{kind:'apollo',count:0});if(c.g31Pluto)on(s,p,x,'Meteor',{kind:'pluto'});if(c.g31Destroy)on(s,p,x,'Meteor',{kind:'destroy'});},
  snapshot(s,rows){return rows.map(r=>{const x=s.players[r.player].battle.find(x=>x.uid===r.uid);return{p:r.player,uid:r.uid,c:x&&effective(x,s)};});},
  leaving(s,p,x,snapshot,to,destroy){const c=snapshot?.find(r=>r.p===p&&r.uid===x.uid)?.c||effective(x,s);if(c.g31King)api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('discard',1-p,x.cardId,{n:1,all:true,causedBy:p})});if(c.g31Zero)api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g31_ZeroLeave',p,x.cardId)});if(c.g31Fel&&to==='grave'&&destroy&&!s.g31ExtraTurn)api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g5ExtraTurn',p,x.cardId)});},
- start(s,p){return s.players[p].grave.filter(x=>card(x).g31Xeno).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('g31_XenoReturn',p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0})}));},
+ start(s,p){return s.players[p].grave.filter(x=>card(x).g31Xeno||card(x).g31ZeroRise).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task(card(x).g31ZeroRise?'g31_ZeroRise':'g31_XenoReturn',p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0})}));},
  end(s){return s.players.flatMap((own,p)=>own.battle.flatMap(x=>(x.g31EndDeath||[]).filter(e=>e.turn===s.turn).map(e=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g31_XenoEnd',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,turn:e.turn})}))));},
  selected(s,p,a,d){const value=a.kind==='extended'?d?.choices?.[a.choice]?.value:null,ids=new Set([...(a.targets||[]).map(t=>t.uid),...(['effect','fight','dragonTap'].includes(a.kind)?[a.target||a.uid]:[]),...(typeof value==='string'?[value]:value?.uid?[value.uid]:[])]);for(const x of s.players[1-p].battle)if(ids.has(x.uid)&&effective(x,s).g31Apollo)on(s,1-p,x,'ApolloShields');},
  discount(s,p,c){return c.type==='creature'&&colors(c).some(x=>['闇','火'].includes(x))?(c.g31Reduction??(s.g31Discounts||[]).filter(x=>x.p===p&&x.turn===s.turn).length*4):0;},

@@ -1,0 +1,328 @@
+{
+  "phase": 595,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5593,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm14-030",
+      "name": "スクリューヘッド・リザード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-030",
+      "faces": [
+        {
+          "name": "スクリューヘッド・リザード",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "相手が光または水の呪文を唱えた時、相手の光または水の、パワー5000以下のクリーチャーを１体破壊する。",
+          "race": "メルト・ウォリアー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g204SpellWatch": {
+          "who": "opponent",
+          "colorsAny": [
+            "光",
+            "水"
+          ],
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "any": [
+                  {
+                    "color": "光"
+                  },
+                  {
+                    "color": "水"
+                  }
+                ],
+                "maxPower": 5000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "4e35a3a87822d90c6fd4109d678e65b51471e6c6ba104ac8bf4bcd9fe00e7834",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-017",
+      "name": "タンラ・チューラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-017",
+      "faces": [
+        {
+          "name": "タンラ・チューラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n相手が自身のターン中に呪文を唱えた時、相手のクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+          "race": "トリックス/レクスターズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "g204SpellWatch": {
+          "who": "opponent",
+          "opponentTurn": true,
+          "defs": [
+            {
+              "op": "Target",
+              "to": "hand",
+              "optional": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "305c2c423d63a7565e46b6b625b17407f2e145ea37a5eed19b0e007e918ff1f0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-019",
+      "name": "ルナ・トライデントタワー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-019",
+      "faces": [
+        {
+          "name": "ルナ・トライデントタワー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー\nこのクリーチャーは攻撃することができない。\n相手が火または自然の呪文を唱えた時、相手のマナゾーンからカードを２枚まで選び、持ち主の手札に戻す。",
+          "race": "サイバー・ムーン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g204SpellWatch": {
+          "who": "opponent",
+          "colorsAny": [
+            "火",
+            "自然"
+          ],
+          "defs": [
+            {
+              "op": "Select",
+              "owner": "opponent",
+              "origin": "mana",
+              "to": "hand",
+              "n": 2,
+              "optional": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "e22448b66b1304c9868c5c4528f1b79fcca341969fc0c71b38b9beb20fd4a98e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex4-S01",
+      "name": "光夢龍フィオナ・フォレスト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-S01",
+      "faces": [
+        {
+          "name": "光夢龍フィオナ・フォレスト",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー ブロッカー\nこのクリーチャーが出た時、または自分のターンのはじめに、カードを１枚引いてもよい。その後、コスト３以下のクリーチャーを１体、自分の手札から出してもよい。\n自分の他のクリーチャー１体につき、相手の呪文を唱えるコストを１多くする。",
+          "race": "メカ・デル・ソル/ドリームメイト・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g222SpellTax": {
+          "opponent": true,
+          "perOtherCreature": true
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            },
+            "optional": true
+          }
+        ],
+        "g174Start": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-S01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "afdd67224a1a69694bca3a8bb01e1453f981a8b36b48b665ee0bdeefbf60d053",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-002",
+      "name": "時間龍 ロッキンスター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-002",
+      "faces": [
+        {
+          "name": "時間龍 ロッキンスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\n自分のターンの終わりに、このクリーチャーをアンタップする。\n革命２―自分のシールドが２つ以下なら、相手は光以外の呪文を唱えられない。",
+          "race": "エンジェル・コマンド・ドラゴン/革命軍",
+          "powerText": "7500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g166EndUntap": true,
+        "g260Self": {
+          "filter": {
+            "g265ShieldsMax": 2
+          },
+          "grants": {
+            "g595NonLightSpellLock": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "5783ea5322df2e6b65f36934ad0d794e72e0bf061f243df278c1d6367ab95da2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-039",
+      "name": "式神ヒズラシィ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-039",
+      "faces": [
+        {
+          "name": "式神ヒズラシィ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手が呪文を唱えた時、その呪文と同じコストを持つ、進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "ワンダー・トリック/アンノイズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g204SpellWatch": {
+          "who": "opponent",
+          "defs": [
+            {
+              "op": "CastCostDeploy595"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "5860531b84f0251887a1f4d1eedd39e56e3e93d3231c3e08c27ddf33b65270d5",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm14-030": 4,
+      "dmrp17-017": 4,
+      "dm14-019": 4,
+      "dm25ex4-S01": 4,
+      "dmr18-002": 4,
+      "dmr05-039": 4
+    }
+  }
+}

@@ -1,7 +1,7 @@
-import {legendProfile,legendKeepBonus} from './legend-strategy.js?v=0.682.0';
+import {legendProfile,legendKeepBonus} from './legend-strategy.js?v=0.693.0';
 // Bounded planning over public positions. Unknown cards stay unknown: no actual
 // deck order, shields, opponent hand, game seed or game RNG enters this module.
-import {heroCardRole} from './hero-draw.js?v=0.682.0';
+import {heroCardRole} from './hero-draw.js?v=0.693.0';
 import {visibleFinishRoutes} from './attack-plan.js?v=0.147.0';
 export function createStrategicAI(api){
  const {card,faces,effective,power,isCreature,legal,step,rank:baseRank,observe,mark}=api;
@@ -284,6 +284,7 @@ export function createStrategicAI(api){
    if(a.target==='player'){
     if(them.shields.length===0&&protectedPlayer)return {...r,value:-10};
     score=28+Math.min(them.shields.length,damage(c))*7+(c.unblockable?10:0);
+    if(them.shields.length&&damage(c)>0&&!c.noShieldBreak&&(c.g597TriggerLock?.tapped||c.g597TriggerLock?.ownBreak))score+=8;
     if(them.shields.length===0)score+=150;
     if(lethal)score+=120+damage(c)*3;
     if(routes.winning.size){score+=routes.winning.has(a.uid)?200:-200;}

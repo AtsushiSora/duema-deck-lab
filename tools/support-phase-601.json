@@ -1,0 +1,251 @@
+{
+  "phase": 601,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5624,
+  "description": "多色ではないクリーチャーへの除去と支払いや登場元を参照する対策を公式情報と照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/basic/basic08/"
+  ],
+  "cards": [
+    {
+      "id": "dmr21-025",
+      "name": "T・ビウオ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-025",
+      "faces": [
+        {
+          "name": "T・ビウオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーがバトルゾーンに出た時、相手の多色ではないクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "サイバー・ウイルス海",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "slayer": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "hand",
+            "filter": {
+              "creature": true,
+              "g510NonMulticolor": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "a9e3c3ab620bf2df67e96c26acd41dbbda3fa7751df17ee724d926108eefb17b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr04-023",
+      "name": "ヨロレヒ・ジェラシー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-023",
+      "faces": [
+        {
+          "name": "ヨロレヒ・ジェラシー",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n相手の、多色ではないクリーチャーを１体破壊する。\nバトルゾーンに自分の光のハンターがあれば、バトルゾーンにある相手のクリーチャーを１体選び、タップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "g510NonMulticolor": true
+            }
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "color": "光",
+              "race": "ハンター"
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "tap": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr04-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "363ef0915e38f12714ee30f7506a6db4bec8bd76e5497cea34fa8b9525147b3f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-020",
+      "name": "虹色の精霊龍 ホワイトクライ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-020",
+      "faces": [
+        {
+          "name": "虹色の精霊龍 ホワイトクライ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンを離れた時、多色ではないクリーチャーをすべて持ち主の手札に戻す。",
+          "race": "エンジェル・ドラゴン",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g172Leave": [
+          {
+            "op": "Sweep",
+            "to": "hand",
+            "both": true,
+            "filter": {
+              "creature": true,
+              "g510NonMulticolor": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "0762d60a4c9c884bca8d3c4254fa148b3a1c695939822ce89b3e6b97b9c47b7f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy11-070",
+      "name": "ウソと盗みのエンターテイナー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-070",
+      "faces": [
+        {
+          "name": "ウソと盗みのエンターテイナー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nバトルゾーンに自分の他のクリーチャーがあれば、このクリーチャーは攻撃されない。\n相手がコストを支払わずにクリーチャーをバトルゾーンに出した時、そのクリーチャーを破壊する。",
+          "race": "ヒューマノイド/ダークロード",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "g334Other": true
+          },
+          "grants": {
+            "cannotBeAttacked": true
+          }
+        },
+        "g601UnpaidDestroy": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy11-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "844e46f918c41473cf158d57192a8f29cf50f89b9f3cd375848dea1c96d1c7e5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp1-048",
+      "name": "バンカー・アントリオン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-048",
+      "faces": [
+        {
+          "name": "バンカー・アントリオン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のクリーチャーが手札以外から出た時、それを持ち主のマナゾーンに置く。\n相手のターン中に、このクリーチャーが離れた時、自分の山札の上から２枚をマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+          "race": "ジャイアント・インセクト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g601OffHandMana": true,
+        "g601OpponentLeave": true,
+        "g172Leave": [
+          {
+            "op": "Ramp",
+            "n": 2
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "g232ManaReturn": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "c29743228004d4222fc7eacf72a6d1ded83263574251f2a6780b909d79b4b510",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr21-025": 4,
+      "dmr04-023": 4,
+      "dmr21-020": 4,
+      "promoy11-070": 4,
+      "dm24rp1-048": 4
+    }
+  }
+}

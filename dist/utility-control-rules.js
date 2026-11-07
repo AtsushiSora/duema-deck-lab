@@ -50,7 +50,7 @@ export function createUtilityControlRules(api){
     const source=api.effective(x,s),both=source.g505ExecutionTax,tax=source.g222SpellTax;
     const shared=both&&colors.includes(both.color)?both.amount:0;
     if(c.type!=='spell')return n+shared;
-    return n+shared+(source.g56SpellTax||0)+(!tax||tax.opponent&&owner===p||tax.first&&(s.players[p].spellsThisTurn||0)>0||tax.exceptColor&&colors.includes(tax.exceptColor)||tax.colors&&!tax.colors.some(color=>colors.includes(color))?0:tax.graveSpells?s.players[p].grave.filter(x=>!x.faceDown&&!(c.summonOrigin==='grave'&&x.uid===c.executionUid)&&api.faces(card(x)).some(c=>c.type==='spell')).length:tax.amount);
+    return n+shared+(source.g56SpellTax||0)+(!tax||tax.opponent&&owner===p||tax.first&&(s.players[p].spellsThisTurn||0)>0||tax.exceptColor&&colors.includes(tax.exceptColor)||tax.colors&&!tax.colors.some(color=>colors.includes(color))?0:tax.graveSpells?s.players[p].grave.filter(x=>!x.faceDown&&!(c.summonOrigin==='grave'&&x.uid===c.executionUid)&&api.faces(card(x)).some(c=>c.type==='spell')).length:tax.perOtherCreature?api.creatures(s,owner).filter(y=>!y.sealed&&y.uid!==x.uid).length:tax.amount);
    },0),0);
   },
   firstSpellDiscount(s,p,c){return c.type==='spell'&&!(s.players[p].spellsThisTurn||0)?api.creatures(s,p).filter(x=>!x.sealed).reduce((n,x)=>{const source=api.effective(x,s),f=source.g285FirstSpellMana;return n+(!f||s.players[p].mana.filter(y=>api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,p).includes(f.color)).length>=f.n?source.g279FirstSpellDiscount||0:0);},0):0;},

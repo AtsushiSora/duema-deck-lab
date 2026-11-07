@@ -36,7 +36,7 @@ export function createLionelRules(api){
  case'g15_Shield':api.shieldTop(s,t.p,card(t.source));break;
  case'g15_ManaUntap':{const x=own.mana.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);if(x&&api.canUntap(x))x.tapped=false;break;}
  case'g15_JohnnyWin':if(own.shields.length>=10)api.finish(s,t.p,card(t.source).name+'：シールド10以上で勝利');break;
- case'g15_NonBreakST':{const x=own.hand.find(x=>x.uid===t.uid);if(x&&own.shields.length<=2&&api.triggersAllowed(s,t.p)&&api.canCast(s,t.p,card(x))&&!api.spellIgnored(s,card(x))&&(card(x).type==='spell'||api.canEnter(s,t.p,card(x),{origin:'hand',execution:true})))choice(s,t,'革命2のS・トリガーを使う？',[opt(card(x).name+(card(x).type==='spell'?'を唱える':'を召喚する'),true,20,x.cardId),skip()]);break;}
+ case'g15_NonBreakST':{const x=own.hand.find(x=>x.uid===t.uid);if(x&&own.shields.length<=2&&api.triggersAllowed(s,t.p)&&!api.triggerLocked597(s,t.p,card(x))&&api.canCast(s,t.p,card(x))&&!api.spellIgnored(s,card(x))&&(card(x).type==='spell'||api.canEnter(s,t.p,card(x),{origin:'hand',execution:true})))choice(s,t,'革命2のS・トリガーを使う？',[opt(card(x).name+(card(x).type==='spell'?'を唱える':'を召喚する'),true,20,x.cardId),skip()]);break;}
  default:throw Error('未実装のライオネル効果：'+t.op);
  }return true;}
  function deploy(s,t,base){const own=s.players[t.p],x=own.hand.find(x=>x.uid===t.uid);if(!x)return;const serial=x.zoneSerial||0;if(t.blocker)put(s,task('g15_AfterDeploy',t.p,t.source,{uid:x.uid,serial}));remove(own.hand,x.uid);enter(s,t.p,x,base,{origin:'hand',execution:false});}
@@ -55,7 +55,7 @@ export function createLionelRules(api){
  case'g15_Song':{const target=s.players[v],all=policyTake(s,v,'grave',api);for(const x of all)api.clear(x,'deck');target.deck.push(...api.shuffled(all,Math.floor(api.random(s)*4294967296)));draw(s,t.p,2);break;}
  case'g15_Keep':{const kept=v?[...t.kept,v]:t.kept;if(t.other!==undefined)put(s,{...t,p:t.other,other:undefined,kept});else put(s,task('g15_HeartMove',t.controller,t.source,{kept}));break;}
  case'g15_SmaxKeep':{const resume=s.g15SmaxResume;delete s.g15SmaxResume;s.decision=null;s.g15ResumeAfterMove=resume;move(s,own.battle.filter(x=>card(x).sMax&&x.uid!==v).map(x=>({player:t.p,uid:x.uid,to:'hand'})));if(!s.decision&&!s.leaving){s.decision=s.g15ResumeAfterMove;delete s.g15ResumeAfterMove;}break;}
- case'g15_NonBreakST':{const x=own.hand.find(x=>x.uid===t.uid);if(v&&x&&api.canCast(s,t.p,card(x))&&(card(x).type==='spell'||api.canEnter(s,t.p,card(x),{origin:'hand',execution:true})))cast(s,t.p,t.uid,true);break;}
+ case'g15_NonBreakST':{const x=own.hand.find(x=>x.uid===t.uid);if(v&&x&&!api.triggerLocked597(s,t.p,card(x))&&api.canCast(s,t.p,card(x))&&(card(x).type==='spell'||api.canEnter(s,t.p,card(x),{origin:'hand',execution:true})))cast(s,t.p,t.uid,true);break;}
  default:throw Error('未実装のライオネル選択：'+t.op);
  }return true;}
  return {run,chosen,
@@ -67,7 +67,7 @@ export function createLionelRules(api){
  allowedSpell(s,p,c){return colors(c).includes('光')||!creatures(s,1-p).some(x=>effective(x,s).arcTeam);},
  tapEntry(s,p){return !(s.players[p].enteredThisTurn||0)&&creatures(s,1-p).some(x=>effective(x,s).arcTeam);},
  handMana(s,p,x){if(card(x).runeUntap)api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g15_ManaUntap',p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0})});},
- shieldHand(s,p,x,broken){if(!broken&&card(x).rev2Trigger)api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g15_NonBreakST',p,x.cardId,{uid:x.uid})});},
+ shieldHand(s,p,x,broken){if(!broken&&card(x).rev2Trigger&&!api.triggerLocked597(s,p,card(x)))api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g15_NonBreakST',p,x.cardId,{uid:x.uid})});},
  beforeBreak(s,defender,uids){const context=s.breakContext;if(!context||context.g19Prepared||defender===context.player&&!context.g14Self)return false;const x=s.players[context.player].battle.find(x=>x.uid===context.sourceUid);if(!x||!effective(x,s).johnny)return false;context.g19Prepared=true;put(s,...uids.map(()=>task('g15_Shield',context.player,x.cardId)),task('g19BeforeCommit',context.player,x.cardId,{defender,uids:[...uids],context:structuredClone(context)}));return true;},
  attackEnd(s,a,x){if(effective(x,s).johnny&&s.players[a.player].shields.length>=10)on(s,a.player,x,'g15_JohnnyWin');},
  lossOptions(s,p){const own=s.players[p],sources=creatures(s,p).filter(x=>effective(x,s).johnny||effective(x,s).g34SmaxLoss),out=[];for(const x of sources){if(api.canLeave(s,p,x))out.push(opt(card(x).name+'を破壊して敗北を回避',{kind:'johnny',uid:x.uid},40,x.cardId));for(const h of own.hand.filter(h=>(effective(x,s).g393JSmaxNames||[card(x).name]).includes(card(h).name)))if(!out.some(v=>v.value?.uid===h.uid))out.push(opt('手札の'+card(h).name+'を捨てて敗北を回避',{kind:'johnnyHand',uid:h.uid},50,h.cardId));}return out;},

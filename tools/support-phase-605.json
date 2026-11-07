@@ -1,0 +1,220 @@
+{
+  "phase": 605,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5644,
+  "description": "公式裁定に沿って暗黒神羅凰ゼロ・フェニックスと最強CPU向けの呪文対策を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/49602/",
+    "https://dm.takaratomy.co.jp/rule/qa/49601/",
+    "https://dm.takaratomy.co.jp/rule/qa/40918/"
+  ],
+  "cards": [
+    {
+      "id": "dm26ex5-S008",
+      "name": "暗黒神羅凰ゼロ・フェニックス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-S008",
+      "faces": [
+        {
+          "name": "暗黒神羅凰ゼロ・フェニックス",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のターンのはじめに、自分のクリーチャーの中に闇と火があり、自分のマナゾーンにカードが５枚以上あれば、このクリーチャーを自分の墓地から出してもよい。\n超無限進化：進化元のカードが２枚以上になるように、自分のクリーチャー１体以上の上に置く。\n{2W} W・ブレイカー\nこのクリーチャー出た時または離れた時、相手のクリーチャー１体選び、破壊する。\nこのクリーチャーがシールドをブレイクする時、相手はそのシールドを手札に加えるかわりに墓地に置く。",
+          "race": "フェニックス/ルナティック・エンペラー",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g31ZeroRise": true,
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "creature": true
+            }
+          ],
+          "variable": true,
+          "minCards": 2
+        },
+        "breaker": 2,
+        "shieldBurn": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave"
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Target",
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-S008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "60cca79e10c49a5251058d4588628593f08379b7baf1f06de2899b0cfb639924",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-050",
+      "name": "戯具 ドゥモグラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-050",
+      "faces": [
+        {
+          "name": "戯具 ドゥモグラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、相手の手札を見てその中から呪文を１枚選び、捨てさせる。",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "InspectHand",
+            "g223Inspect": true,
+            "chooseOne": true,
+            "discard": true,
+            "filter": {
+              "g228Face": {
+                "type": "spell"
+              }
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "3f3dfdf1ab1f2868df08167f6b4fac03b0986bdee92306e49612da988fe1f8dc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx15-025",
+      "name": "闇噛のファミリア ミョウガ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-025",
+      "faces": [
+        {
+          "name": "闇噛のファミリア ミョウガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、相手の手札を見てクリーチャー以外のカードを１枚選び、捨てさせる。",
+          "race": "オラクル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "InspectHand",
+            "g223Inspect": true,
+            "chooseOne": true,
+            "discard": true,
+            "filter": {
+              "nonCreature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx15-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "f2c4d159d4ace3fc4272bf3672222f740f8681ed60342a488e09ced48fa5e217",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp15-s01",
+      "name": "至宝を奪う月のロンリネス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-s01",
+      "faces": [
+        {
+          "name": "至宝を奪う月のロンリネス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "W・ブレイカー\n相手の呪文を唱えるコストは１多くなる。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、コスト７以下の「ブロッカー」を持つクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "エンジェル・コマンド/月光王国",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g222SpellTax": {
+          "opponent": true,
+          "amount": 1
+        },
+        "g536ShieldLeft": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "title": "手札から出すクリーチャーを1体まで選ぶ",
+            "filter": {
+              "creature": true,
+              "max": 7,
+              "blocker": true
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-s01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "f7d67504ef657854d76c3e05f875935179d5dabb8504bba899ed080244b87706",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26ex5-S008": 4,
+      "dmex14-050": 4,
+      "dmx15-025": 4,
+      "dmrp15-s01": 4
+    }
+  }
+}

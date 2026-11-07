@@ -1,0 +1,326 @@
+{
+  "phase": 604,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5639,
+  "description": "手札破壊と盤面除去を組み合わせたカードを公式情報と照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37148/",
+    "https://dm.takaratomy.co.jp/rule/qa/40244/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp1-023",
+      "name": "～不死の黄昏司祭～",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-023",
+      "faces": [
+        {
+          "name": "～不死の黄昏司祭～",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水/闇",
+          "civilizations": [
+            "光",
+            "水",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、相手のエレメントを１つ選び、持ち主の手札に戻す。その後、相手の手札を１枚見ないで選び、捨てさせる。\n相手が自身の手札を１枚捨てた時、相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。",
+          "race": "エンジェル・コマンド/ドラゴン・ゾンビ/スチーム・ナイト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g472OpponentDiscard": [
+          {
+            "op": "Target",
+            "tap": true,
+            "lock": true,
+            "g210TapLock": true
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sequence",
+            "defs": [
+              {
+                "op": "Target",
+                "element": true,
+                "to": "hand"
+              },
+              {
+                "op": "Discard",
+                "n": 1,
+                "random": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "688b805ce635a5a5297363447401754a42c9e8f4f0b9fb1c0198ec5c2139df89",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-049",
+      "name": "魔誕人形ランラン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-049",
+      "faces": [
+        {
+          "name": "魔誕人形ランラン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、次のうちいずれか１つを選ぶ。\n▶相手のエレメントを１つ選び、持ち主の手札に戻す。\n▶相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "デーモン・コマンド/デスパペット",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のエレメントを１つ選び、持ち主の手札に戻す。",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "element": true,
+                    "to": "hand"
+                  }
+                ]
+              },
+              {
+                "label": "相手の手札を１枚見ないで選び、捨てさせる。",
+                "defs": [
+                  {
+                    "op": "Discard",
+                    "n": 1,
+                    "random": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "942c05889b5a53bc94babd28f4075734f498fd7b4148861bee2c3fcc9effe86b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp14-027",
+      "name": "滅砕！鬼札MAX",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-027",
+      "faces": [
+        {
+          "name": "滅砕！鬼札MAX",
+          "typeText": "呪文",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれか１つを選ぶ。バトルゾーンに自分の闇のクリーチャーと火のクリーチャーがそれぞれ１体以上あれば、両方選んでもよい。\n▶相手のパワー3000以下のクリーチャーを１体破壊する。\n▶相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "鬼札王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "パワー3000以下の相手クリーチャー1体を破壊",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 3000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "相手の手札を見ないで1枚捨てさせる",
+                "defs": [
+                  {
+                    "op": "Discard",
+                    "n": 1,
+                    "random": true
+                  }
+                ]
+              },
+              {
+                "label": "両方を選ぶ",
+                "condition": {
+                  "all": [
+                    {
+                      "creature": true,
+                      "color": "闇"
+                    },
+                    {
+                      "creature": true,
+                      "color": "火"
+                    }
+                  ]
+                },
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 3000,
+                      "g199Power": true
+                    }
+                  },
+                  {
+                    "op": "Discard",
+                    "n": 1,
+                    "random": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "a72c463928fc1e0a1d37447e835d91f8d8f3de1267d11f5ad386952bfa9a7087",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-007",
+      "name": "キラードン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-007",
+      "faces": [
+        {
+          "name": "キラードン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手は自身のクリーチャーの中から１体選び、残りを破壊する。\nこのクリーチャーが破壊された時、相手は自身の手札を１枚選び、残りをすべて捨てる。",
+          "race": "マフィ・ギャング/スペシャルズ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "KeepOne604",
+            "zone": "battle"
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "KeepOne604",
+            "zone": "hand"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "7c7447c7491f11b5830167ef84468c2c1a6e53585e9c545916cf3cffd7498707",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-013",
+      "name": "爆霊魔 タイガニトロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-013",
+      "faces": [
+        {
+          "name": "爆霊魔 タイガニトロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナ武装 ５：自分のターンの終わりに、自分のマナゾーンに闇のカードが５枚以上あれば、相手は自身の手札から１枚選び、残りを捨てる。",
+          "race": "ファンキー・ナイトメア",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g174End": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g267Mana": {
+                "n": 5,
+                "color": "闇"
+              }
+            },
+            "defs": [
+              {
+                "op": "KeepOne604",
+                "zone": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "57dbc3034a31aa13bdcd530fd89589c2b01778c5e6c7f3d48e4abf3a04a094ee",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp1-023": 4,
+      "dm24rp4-049": 4,
+      "dmrp14-027": 4,
+      "dmrp02-007": 4,
+      "dmr14-013": 4
+    }
+  }
+}

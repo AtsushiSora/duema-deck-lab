@@ -1,0 +1,282 @@
+{
+  "phase": 603,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5634,
+  "description": "初動のマナ加速、マナに置いたカードを参照する能力、盤面に対応するカードを公式情報と照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/39432/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp4-048",
+      "name": "「朽ちれども!?なら回転してみせよう、そうジェネシス!!」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-048",
+      "faces": [
+        {
+          "name": "「朽ちれども!?なら回転してみせよう、そうジェネシス!!」",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nD・D・D [nn04]（自分のクリーチャーが攻撃する時、このカードを [nn04]支払って自分の手札から実行してもよい）\n自分の山札の上から１枚をマナゾーンに置く。\nこのターン、クリーチャーが攻撃していれば、相手のコスト５以下のエレメントを１つ選び、持ち主のマナゾーンに置いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "ddd": {
+          "cost": 4,
+          "civilizations": [
+            "自然"
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g603AttackThisTurn": true
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "element": true,
+                "to": "mana",
+                "optional": true,
+                "filter": {
+                  "max": 5
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "cef0d56e45d42b9ab6f39019a683a65ff480f47941a422590e26bd111debefff",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-048",
+      "name": "魔誕妖精スイセン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-048",
+      "faces": [
+        {
+          "name": "魔誕妖精スイセン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、次のうちいずれか１つを選ぶ。\n▶相手のコスト６以下のエレメントを１つ選び、持ち主のマナゾーンに置く。\n▶自分の山札の上から１枚目をシールド化する。",
+          "race": "デーモン・コマンド/スノーフェアリー",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のコスト６以下のエレメントを１つ選び、持ち主のマナゾーンに置く。",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "element": true,
+                    "to": "mana",
+                    "filter": {
+                      "max": 6
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "自分の山札の上から１枚目をシールド化する。",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "053722082a1dfae61f5551cf538f954a50d7aa4d1f9a56e625bd18e088aaf1cf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp05-093",
+      "name": "フルール・ライフ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-093",
+      "faces": [
+        {
+          "name": "フルール・ライフ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から２枚を見て、そのうちの１枚をマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 2,
+            "stages": [
+              {
+                "n": 1,
+                "to": "mana"
+              }
+            ],
+            "rest": "top"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-093.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "c3445afa7188d85ccd9a66a64c358b95dd1b234701c98c80f2f43c6c7f3f27f0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp08-057",
+      "name": "オラオラ・ジョーカーズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-057",
+      "faces": [
+        {
+          "name": "オラオラ・ジョーカーズ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の山札の上から１枚目をマナゾーンに置く。それがジョーカーズなら、カードを１枚引く。",
+          "race": "ジョーカーズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "g603Draw": {
+              "filter": {
+                "anyFaceRace": "ジョーカーズ"
+              }
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-057.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "a2f7b7a74ae2d7ba81b1cf76060d30326f0a225fd4a889f4667c938dc215429e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-110",
+      "name": "ジオ・ブロンズ・マジック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-110",
+      "faces": [
+        {
+          "name": "ジオ・ブロンズ・マジック",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の山札の上から１枚目をマナゾーンに置く。そのカードが光または火のカードであれば、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "g603Draw": {
+              "filter": {
+                "any": [
+                  {
+                    "anyFaceColor": "光"
+                  },
+                  {
+                    "anyFaceColor": "火"
+                  }
+                ]
+              },
+              "optional": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-110.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "32d67db0a233d73e403d4e6e09045421a3065b36d2db1e729aea923ef9cb8e45",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp4-048": 4,
+      "dm24rp4-048": 4,
+      "dmrp05-093": 4,
+      "dmrp08-057": 4,
+      "dmr01-110": 4
+    }
+  }
+}

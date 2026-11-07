@@ -27,8 +27,16 @@ test('a loss changes the learned matchup and counter list, preserves legal forty
  const roundTwo=learnStrongestDefeat(feedback,defeat(target,next,target.cards.at(-1).id,{game:'loss-two'})),again=buildStrongestCPU(target,seeds,data.cards,{learning:roundTwo,previousBuild:next});assert.equal(again.learningRevision,2);assert.notEqual(signature(again.deck),signature(next.deck));assert.deepEqual(e.validateDeck(again.deck),[]);assert.ok(!validStrongestBuild(next,target,roundTwo));
 });
 
-// These checks retain the pool available before the additional grave matchup options.
-const earlierPool=data.cards.filter(c=>c.supportBatch!=='phase-592');
+// Isolate earlier card additions from newer options competing for the same deck slots.
+const beforeSpellHandDisruption=data.cards.filter(c=>c.supportBatch!=='phase-605');
+const beforeHandBoardDisruption=beforeSpellHandDisruption.filter(c=>c.supportBatch!=='phase-604');
+const beforeOpeningRamps=beforeHandBoardDisruption.filter(c=>c.supportBatch!=='phase-603');
+const beforeDefensiveTriggers=beforeOpeningRamps.filter(c=>c.supportBatch!=='phase-602');
+const beforeBlockerCounters=beforeDefensiveTriggers.filter(c=>!['phase-599','phase-601'].includes(c.supportBatch));
+const beforeNewGraveCounters=beforeBlockerCounters.filter(c=>c.supportBatch!=='phase-598');
+const beforeSwarmResponses=beforeNewGraveCounters.filter(c=>c.supportBatch!=='phase-596');
+const beforeSpellResponses=beforeSwarmResponses.filter(c=>c.supportBatch!=='phase-595');
+const earlierPool=beforeSpellResponses.filter(c=>!['phase-592','phase-600'].includes(c.supportBatch));
 test('the earlier counter pool uses entry and grave counters in compatible matchups',()=>{
  const targets=[
   [seeds.find(d=>d.id==='env-scs9-niigata-rose'),'dmrp18-042'],
@@ -50,7 +58,8 @@ test('the strongest CPU adopts the new counters against spell chains and expensi
   ['env-gp2026-grimoire',['dm24rp4-S09','dmrp06-024']]
  ];
  for(const [targetId,expected] of matchups){
-  const target=seeds.find(d=>d.id===targetId),build=buildStrongestCPU(target,seeds,data.cards);
+  const target=seeds.find(d=>d.id===targetId);
+  const build=buildStrongestCPU(target,seeds,targetId==='env-gospel-practice'?beforeSpellResponses:beforeSwarmResponses);
   assert.deepEqual(e.validateDeck(build.deck),[]);
   for(const id of expected)assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
  }
@@ -69,7 +78,7 @@ test('the earlier counter pool uses 防鎧 and ハチ公 against discard-heavy d
  assert.ok(learnStrongestDefeat(undefined,defeat(target,build,threat)).weights.discard>0);
 });
 
-test('the current full pool selects all three grave counters across compatible matchups',()=>{
+test('the earlier pool selects all three grave counters across compatible matchups',()=>{
  const cases=[
   ['env-scs9-niigata-rose','dmrp20-020'],
   ['starter25-13','dm25rp1-051'],
@@ -77,23 +86,161 @@ test('the current full pool selects all three grave counters across compatible m
  ];
  for(const [targetId,id] of cases){
   const target=seeds.find(d=>d.id===targetId);
-  const build=buildStrongestCPU(target,seeds,data.cards);
+  const build=buildStrongestCPU(target,seeds,beforeNewGraveCounters);
   assert.ok(build.profile.weights.grave>=.5);
   assert.deepEqual(e.validateDeck(build.deck),[]);
   assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
  }
 });
 
-test('the current full pool selects new attack counters against aggressive matchups',()=>{
+test('the earlier attack counters are selected against aggressive matchups',()=>{
  const cases=[
   ['starter25-23',['dm25rp2-023']],
   ['env-viride-practice',['dmrp10-103','dmr21-084']]
  ];
  for(const [targetId,ids] of cases){
   const target=seeds.find(d=>d.id===targetId);
-  const build=buildStrongestCPU(target,seeds,data.cards);
+  const build=buildStrongestCPU(target,seeds,beforeSwarmResponses);
   assert.ok(build.profile.weights.rush>=.6);
   assert.deepEqual(e.validateDeck(build.deck),[]);
   for(const id of ids)assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ }
+});
+
+test('フィオナ remains an available counter against spell-heavy マジック and 水魔導具',()=>{
+ for(const targetId of ['env-magic-practice','env-water-mado-practice']){
+  const target=seeds.find(d=>d.id===targetId);
+  const build=buildStrongestCPU(target,seeds,targetId==='env-water-mado-practice'?beforeSpellHandDisruption:data.cards);
+  assert.ok(build.profile.weights.spells>=.5);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  assert.ok(build.deck.cards.some(r=>r.id==='dm25ex4-S01'));
+ }
+});
+
+test('the pool before blocker counters selects sweep counters suited to the opposing deck',()=>{
+ const matchups=[
+  ['starter25-11','dm26rp3-069'],
+  ['starter25-14','dm26rp3-069'],
+  ['practice-wu','dm23rp2-019'],
+  ['env-viride-practice','dmrp14-043']
+ ];
+ for(const [targetId,id] of matchups){
+  const target=seeds.find(d=>d.id===targetId);
+  const build=buildStrongestCPU(target,seeds,beforeBlockerCounters);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ }
+});
+
+test('the pool before blocker counters adopts creature-trigger counters against Dragon Girls',()=>{
+ const target=seeds.find(d=>d.id==='starter25-08');
+ const build=buildStrongestCPU(target,seeds,beforeBlockerCounters);
+ assert.deepEqual(build.profile.shieldTriggers,{all:14,spell:0,creature:14});
+ assert.deepEqual(e.validateDeck(build.deck),[]);
+ for(const id of ['dm37-035','dm27-051'])assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ assert.ok(!build.deck.cards.some(r=>r.id==='dmr07-022'));
+});
+
+test('the strongest CPU uses new grave counters against 墓地ソース and アビス',()=>{
+ const matchups=[
+  ['env-scs9-niigata-rose',['dm25rp3-018','dmex02-009']],
+  ['env-abyss-practice',['dmex02-009']]
+ ];
+ for(const [targetId,ids] of matchups){
+  const target=seeds.find(d=>d.id===targetId);
+  const build=buildStrongestCPU(target,seeds,data.cards);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  for(const id of ids)assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ }
+});
+
+test('the strongest CPU adopts blocker removal and unblockable attacks against defensive decks',()=>{
+ const matchups=[
+  ['env-heavens-practice',['dm23ex3-021','dm23rp4-063']],
+  ['starter25-20',['dm23ex3-021','dmrp19-024']]
+ ];
+ for(const [targetId,ids] of matchups){
+  const target=seeds.find(d=>d.id===targetId);
+  const build=buildStrongestCPU(target,seeds,data.cards);
+  assert.ok(build.profile.counts.blocks>=10);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  for(const id of ids)assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ }
+});
+
+test('the strongest CPU counters expensive creatures that can come out early',()=>{
+ const cases=[
+  ['env-gp2026-pinky',['dm25rp1-034']],
+  ['starter25-17',['dm25rp1-034','dm25rp4-056']]
+ ];
+ for(const [targetId,ids] of cases){
+  const target=seeds.find(d=>d.id===targetId);
+  const build=buildStrongestCPU(target,seeds,targetId==='env-gp2026-pinky'?beforeOpeningRamps:data.cards);
+  assert.ok(build.profile.counts.earlyDeployment>=15);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  for(const id of ids)assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ }
+ const cheap=seeds.find(d=>d.id==='practice-rg');
+ const build=buildStrongestCPU(cheap,seeds,data.cards);
+ assert.ok(build.profile.counts.earlyDeployment<9);
+ assert.ok(!build.deck.cards.some(r=>r.id==='dm25rp1-034'||r.id==='dm25rp4-056'));
+});
+
+test('the strongest CPU favors non-multicolored removal when most enemy creatures are eligible',()=>{
+ const galaxy=seeds.find(d=>d.id==='starter25-22');
+ const build=buildStrongestCPU(galaxy,seeds,beforeDefensiveTriggers);
+ assert.equal(build.profile.counts.nonMultiBody,40);
+ assert.deepEqual(e.validateDeck(build.deck),[]);
+ for(const id of ['dmr21-025','dmr04-023'])assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ const zard=seeds.find(d=>d.id==='env-zard-practice');
+ const other=buildStrongestCPU(zard,seeds,data.cards);
+ assert.ok(other.profile.counts.nonMultiBody<26);
+ assert.ok(!other.deck.cards.some(r=>['dmr21-025','dmr04-023'].includes(r.id)));
+});
+
+test('the strongest CPU uses R・R・R against fast decks and keeps the deck legal',()=>{
+ for(const id of ['practice-rg','starter25-22']){
+  const target=seeds.find(d=>d.id===id);
+  const build=buildStrongestCPU(target,seeds,beforeHandBoardDisruption);
+  assert.equal(build.profile.weights.rush,1);
+  assert.ok(build.deck.cards.some(r=>r.id==='dm25rp1-011'));
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+ }
+});
+
+test('the strongest CPU chooses ジェネシス against decks with low-cost support elements',()=>{
+ for(const id of ['starter25-18','env-lionel-practice']){
+  const target=seeds.find(d=>d.id===id);
+  const build=buildStrongestCPU(target,seeds,beforeHandBoardDisruption);
+  assert.ok(build.profile.counts.cheapSupport>=10);
+  assert.ok(build.deck.cards.some(r=>r.id==='dm25rp4-048'));
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+ }
+ const target=seeds.find(d=>d.id==='practice-rg');
+ const build=buildStrongestCPU(target,seeds,beforeHandBoardDisruption);
+ assert.equal(build.profile.counts.cheapSupport,0);
+ assert.ok(!build.deck.cards.some(r=>r.id==='dm25rp4-048'));
+});
+
+test('the strongest CPU selects hand and board disruption for appropriate matchups',()=>{
+ const matchups=[
+  ['starter25-18','dm25rp1-023'],
+  ['starter25-15','dm24rp4-049'],
+  ['practice-wu','dmrp14-027']
+ ];
+ for(const [targetId,id] of matchups){
+  const target=seeds.find(d=>d.id===targetId);
+  const build=buildStrongestCPU(target,seeds,data.cards);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ }
+});
+
+test('the strongest CPU takes ドゥモグラ against spell-rich ゴスペル and 水魔導具',()=>{
+ for(const id of ['env-gospel-practice','env-water-mado-practice']){
+  const target=seeds.find(d=>d.id===id);
+  const build=buildStrongestCPU(target,seeds,data.cards);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  assert.ok(build.deck.cards.some(r=>r.id==='dmex14-050'));
  }
 });

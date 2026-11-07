@@ -1,0 +1,356 @@
+{
+  "phase": 602,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5629,
+  "description": "相手の攻撃を止めるS・トリガーとS・トリガー・プラスの効果を照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/basic/basic08/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31650/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp1-011",
+      "name": "R・R・R",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-011",
+      "faces": [
+        {
+          "name": "R・R・R",
+          "typeText": "呪文",
+          "civilizationText": "光/水/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\n次のうちいずれか１つを選ぶ。\n▶相手のアンタップしているクリーチャーをすべて、持ち主の手札に戻す。\n▶自分の山札の上から１枚をシールド化する。その後、自分のシールドが２つ以下なら、自分の山札の上からもう１枚シールド化する。\n▶相手のタップしているクリーチャーをすべて、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のアンタップしているクリーチャーをすべて、持ち主の手札に戻す。",
+                "defs": [
+                  {
+                    "op": "Sweep",
+                    "to": "hand",
+                    "filter": {
+                      "creature": true,
+                      "untapped": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "自分の山札の上から１枚をシールド化する。その後、自分のシールドが２つ以下なら、自分の山札の上からもう１枚シールド化する。",
+                "defs": [
+                  {
+                    "op": "Sequence",
+                    "defs": [
+                      {
+                        "op": "ShieldTop",
+                        "n": 1
+                      },
+                      {
+                        "op": "IfOwn",
+                        "filter": {
+                          "g334ZoneCount": {
+                            "zone": "shields",
+                            "max": 2
+                          }
+                        },
+                        "defs": [
+                          {
+                            "op": "ShieldTop",
+                            "n": 1
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "相手のタップしているクリーチャーをすべて、持ち主のマナゾーンに置く。",
+                "defs": [
+                  {
+                    "op": "Sweep",
+                    "to": "mana",
+                    "filter": {
+                      "creature": true,
+                      "tapped": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "d6ff3d118d630014c7f39ef96ab9aed8fa79e0ab077d983354acb368478a0b1f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmbd05-013",
+      "name": "龍幻のトラップ・スパーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd05-013",
+      "faces": [
+        {
+          "name": "龍幻のトラップ・スパーク",
+          "typeText": "呪文",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれか１つを選ぶ。バトルゾーンに自分のドラゴンがあれば、両方を選んでもよい。\n▼相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\n▼相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のクリーチャー1体をマナに置く",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "mana"
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーをすべてタップする",
+                "defs": [
+                  {
+                    "op": "TapAll"
+                  }
+                ]
+              },
+              {
+                "label": "両方を選ぶ",
+                "condition": {
+                  "race": "ドラゴン"
+                },
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "mana"
+                  },
+                  {
+                    "op": "TapAll"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd05-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "5649832b91d4a2e6675332671db104063991cd17cf0cc0c6da143d91edeece00",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm34-008",
+      "name": "白騎士スパーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-008",
+      "faces": [
+        {
+          "name": "白騎士スパーク",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンにある相手のクリーチャーをすべてタップする。\nこのターンの終わりに、バトルゾーンにある自分の、名前に《白騎士》とあるクリーチャーをすべてアンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          },
+          {
+            "op": "Schedule537",
+            "when": "turnEnd",
+            "defs": [
+              {
+                "op": "GroupUntap",
+                "filter": {
+                  "creature": true,
+                  "name": "白騎士"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm34-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "a1f3908788d87e5c16a81f52111096214878de1353a0c799304956e78db87e36",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-035",
+      "name": "Uta-Awase選手宣誓のスピーチ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-035",
+      "faces": [
+        {
+          "name": "Uta-Awase選手宣誓のスピーチ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{STP} S・トリガー・プラス（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、この呪文に{x+}能力を与える）\nエレメントを１つ選ぶ。その持ち主は、それを山札の上または下に置く。\n{x+}相手のクリーチャーを２体選ぶ。次の自分のターンのはじめまで、それらのクリーチャーは攻撃もブロックもできない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "triggerPlus": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "anyOwner": true,
+            "g467Destinations": [
+              "deckTop",
+              "deck"
+            ],
+            "g472OwnerDestination": true
+          }
+        ],
+        "g34Plus": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを2体選ぶ",
+            "spell": true
+          }
+        ],
+        "g451PlusAfter": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "ca1c01d99841a1032674b056026fe2efb28a00b04d95766a7d823b449bac36bf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23sd2-013",
+      "name": "忍防の聖沌 h4990u",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd2-013",
+      "faces": [
+        {
+          "name": "忍防の聖沌 h4990u",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{STP} S・トリガー・プラス（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、このクリーチャーに{x+}能力を与える）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n{x+}このクリーチャーが出た時、自分のクリーチャーをすべてアンタップする。このターン、自分のクリーチャーは破壊されない。",
+          "race": "メカ・デル・ステラ/シノビ",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "triggerPlus": true,
+        "g34Plus": [
+          {
+            "op": "Sequence",
+            "defs": [
+              {
+                "op": "GroupUntap",
+                "filter": {
+                  "creature": true
+                }
+              },
+              {
+                "op": "GroupLasting412",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                },
+                "destroySafe": true,
+                "untilEnd": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23sd2-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "c7a71708c243b71048ad53ae7598f35406745ae29d1f66891eeb96e160d1c7a2",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp1-011": 4,
+      "dmbd05-013": 4,
+      "dm34-008": 4,
+      "dm23rp1-035": 4,
+      "dm23sd2-013": 4
+    }
+  }
+}

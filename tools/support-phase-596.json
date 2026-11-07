@@ -1,0 +1,363 @@
+{
+  "phase": 596,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5599,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/43350/",
+    "https://dm.takaratomy.co.jp/rule/qa/47674/",
+    "https://dm.takaratomy.co.jp/rule/qa/40830/",
+    "https://dm.takaratomy.co.jp/rule/qa/45793/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp14-043",
+      "name": "デモニオの鬼宝",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-043",
+      "faces": [
+        {
+          "name": "デモニオの鬼宝",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー11000以下のクリーチャーを１体破壊する。\n自分のシールドを１つ選び、手札に加える。ただし、その「S・トリガー」は使えない。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、相手のコスト３以下のクリーチャーをすべて破壊する。",
+          "race": "鬼札王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 11000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "sumBoth": true,
+                "max": 6
+              }
+            },
+            "defs": [
+              {
+                "op": "Sweep",
+                "to": "grave",
+                "filter": {
+                  "creature": true,
+                  "max": 3
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "84d244e2fbcfa4d35800c2cb2cfa7aece908c1133622d405b70884a148a6a286",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp13-043",
+      "name": "デモニオ八金棒 黒縄棍",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-043",
+      "faces": [
+        {
+          "name": "デモニオ八金棒 黒縄棍",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー5000以下のクリーチャーを１体破壊する。\n相手のパワー3000以下のクリーチャーをすべて破壊してもよい。そうしたら、自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。",
+          "race": "鬼札王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 5000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "Offer",
+            "title": "パワー3000以下の相手をすべて破壊し、自分のシールドを1つ手札に加える？",
+            "defs": [
+              {
+                "op": "Sweep",
+                "to": "grave",
+                "filter": {
+                  "creature": true,
+                  "maxPower": 3000,
+                  "g199Power": true
+                }
+              },
+              {
+                "op": "ShieldHand",
+                "g238ShieldHand": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp13-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "dd9a946930b8f1a4f34efe0113e27c598c5f700c8136d40b8246572107531630",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp12-027",
+      "name": "ハヨダイス・フレア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-027",
+      "faces": [
+        {
+          "name": "ハヨダイス・フレア",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n１から５までの数字を１つ選ぶ。その数字と同じコストを持つ相手のクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CostSweep596",
+            "min": 1,
+            "max": 5
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "10101f94b8f5db7eac436a429b7ad632717e429792bb352d9beab19acaa2f26c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx19-s27",
+      "name": "壊滅の悪魔龍 カナシミドミノ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx19-s27",
+      "faces": [
+        {
+          "name": "壊滅の悪魔龍 カナシミドミノ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "バトルゾーンにある相手のクリーチャーすべてのパワーは-1000される。（パワー０以下のクリーチャーは破壊される）\n他のクリーチャーが破壊された時、そのターン、バトルゾーンにある相手のクリーチャーすべてのパワーは-1000される。\nW・ブレイカー",
+          "race": "デーモン・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g205Aura": {
+          "opponent": true,
+          "power": -1000,
+          "filter": {
+            "creature": true
+          }
+        },
+        "g303DeathWatch": {
+          "both": true,
+          "defs": [
+            {
+              "op": "GroupPower",
+              "power": -1000
+            }
+          ]
+        },
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx19-s27.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "beb1c30fea99c8ed084988e60c636f85655fd2c7799dd1082e78be188d7b6211",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2-019",
+      "name": "死神XENARCH・ハンド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-019",
+      "faces": [
+        {
+          "name": "死神XENARCH・ハンド",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "{STP} S・トリガー・プラス（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、この呪文に{x+}能力を与える）\n相手のクリーチャーを１体選び、破壊する。\n{x+}このターン中に出た相手のクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "triggerPlus": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "grave",
+            "title": "破壊する相手のクリーチャーを1体選ぶ"
+          }
+        ],
+        "g34Plus": [
+          {
+            "op": "Sweep",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "g596EnteredThisTurn": true
+            }
+          }
+        ],
+        "g451PlusAfter": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "d92606056c815b0a259c0ed3566797172b493775f16a96c71abbddfb00d11508",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp3-069",
+      "name": "龍装者 プロチュリス / 「主役を目指すッス！」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-069",
+      "faces": [
+        {
+          "name": "龍装者 プロチュリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）",
+          "race": "ドラゴンギルド/ビートジョッキー",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "「主役を目指すッス！」",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "相手のパワー1000以下のクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "spellFace": {
+          "name": "「主役を目指すッス！」",
+          "type": "spell",
+          "cost": 1,
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Sweep",
+              "to": "grave",
+              "filter": {
+                "creature": true,
+                "maxPower": 1000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-069a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "4b839af9568af18575b8f5eee4ed47be97b9868e9fcb8bd021afdb1822a2df45",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp14-043": 4,
+      "dmrp13-043": 4,
+      "dmrp12-027": 4,
+      "dmx19-s27": 4,
+      "dm23rp2-019": 4,
+      "dm26rp3-069": 4
+    }
+  }
+}

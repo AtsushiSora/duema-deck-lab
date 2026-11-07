@@ -1,5 +1,5 @@
 import {card,playFaces,civilizations,validateDeck,manaPayment,manaValue} from './engine.js';
-import {ONLINE_COMPATIBILITY} from './online-compatibility.js?v=0.682.0';
+import {ONLINE_COMPATIBILITY} from './online-compatibility.js?v=0.693.0';
 export const STRONGEST_BUILD_VERSION=1;
 const finite=n=>Number.isFinite(Number(n))?Number(n):30;
 const rowsSignature=rows=>{const counts=new Map();for(const r of rows||[])counts.set(r.id,(counts.get(r.id)||0)+r.count);return JSON.stringify([...counts].sort(([a],[b])=>a.localeCompare(b)));};
@@ -10,14 +10,100 @@ const removalEffects=new Set(['destroy','destroySmall','destroyUntapped','destro
 const hasOperation=(defs,op,accept=()=>true)=>(defs||[]).some(d=>d.op===op&&accept(d)||hasOperation(d.defs,op,accept)||hasOperation(d.elseDefs,op,accept)||d.modes?.some(m=>hasOperation(m.defs,op,accept)));
 const discardEffects=new Set(['discard','discardAll','inspectDiscard','jennySacrifice','vamBounce','darknessModes','fumiModes','abyssMurder','abyssBella']);
 const discardsOpponent=d=>d.owner===undefined||d.owner==='opponent';
+const respondsToSpell=c=>c.g204SpellWatch?.who==='opponent'&&c.g204SpellWatch.defs.some(d=>
+ d.op==='CastCostDeploy595'||d.op==='Target'&&['hand','grave'].includes(d.to)||d.op==='Select'&&d.owner==='opponent'&&d.to==='hand'
+);
+const oneSidedSweep=d=>!d.both&&d.to==='grave'&&d.filter?.creature;
+function swarmResponse(c,faces){
+ const defs=faces.flatMap(f=>f.g34Tasks||[]);
+ const conditional=hasOperation(defs,'IfOwn',d=>d.filter?.g334ZoneCount?.sumBoth&&hasOperation(d.defs,'Sweep',oneSidedSweep));
+ const tradeShield=hasOperation(defs,'Offer',d=>hasOperation(d.defs,'ShieldHand')&&hasOperation(d.defs,'Sweep',oneSidedSweep));
+ if(conditional||tradeShield||hasOperation(defs,'CostSweep596')||faces.some(f=>hasOperation(f.g34Plus,'Sweep',d=>oneSidedSweep(d)&&d.filter.g596EnteredThisTurn)))return 'sweep';
+ if(c.g205Aura?.opponent&&c.g205Aura.power<0&&c.g303DeathWatch?.both||hasOperation(defs,'Sweep',d=>oneSidedSweep(d)&&d.filter.maxPower===1000))return 'small';
+ return null;
+}
+const printedShieldTrigger=f=>f.trigger||f.triggerPlus||f.superTrigger||f.rev2Trigger||f.graveTotalTrigger||f.shieldConditionalTrigger;
+function graveResponseWeight(c){
+ const defs=c.g34Tasks;
+ if(c.g598UnpaidBottom&&hasOperation(defs,'GraveShuffle545'))return 31;
+ if(hasOperation(defs,'GravePick598',d=>d.mode==='destroy'))return 36;
+ if(hasOperation(defs,'GravePick598',d=>d.mode==='draw'))return 30;
+ return hasOperation(defs,'GravePick598',d=>d.mode==='shuffle')?18:0;
+}
+const destroysBlocker=d=>d.to==='grave'&&d.filter?.blocker;
+function blockerResponseWeight(faces){
+ if(faces.some(f=>(f.crystalCharger||f.normalCharger)&&hasOperation(f.g34Tasks,'Target',destroysBlocker)))return faces.length>1?48:20;
+ if(faces.some(f=>f.speedAttacker&&hasOperation(f.g34Tasks,'GroupGrant364',d=>d.owner==='self'&&d.grant.unblockable)))return 47;
+ if(faces.some(f=>hasOperation(f.g34Tasks,'Sequence',d=>d.defs.some(e=>e.op==='IfOwn'&&e.filter?.color==='自然'&&hasOperation(e.defs,'Target',destroysBlocker)))))return 36;
+ return faces.some(f=>hasOperation(f.g34Attack,'IfOwn',d=>d.filter?.g334ZoneCount?.zone==='shields'&&d.filter.g334ZoneCount.opponent&&hasOperation(d.defs,'Target',destroysBlocker)))?28:0;
+}
+function earlyDeploymentResponse(c,faces){
+ const overMana=d=>d.filter?.g600OverMana;
+ if(c.g600OverManaEntry)return 30;
+ if(faces.some(f=>hasOperation(f.g34Tasks,'Sweep',overMana)))return 28;
+ return faces.some(f=>hasOperation(f.g34Tasks,'Target',overMana))?17:0;
+}
+function nonMultiRemoval(c){
+ const target=c.g34Tasks?.find(d=>d.op==='Target'&&d.filter?.g510NonMulticolor&&!d.filter.max);
+ return target?.to==='hand'?29:target?.to==='grave'?31:0;
+}
+function defensiveTriggerWeight(c){
+ if(!printedShieldTrigger(c))return 0;
+ const defs=c.g34Tasks,bonus=c.g34Plus;
+ if(hasOperation(defs,'Sweep',d=>d.filter?.tapped&&d.to==='mana')&&hasOperation(defs,'Sweep',d=>d.filter?.untapped&&d.to==='hand'))return 55;
+ if(hasOperation(defs,'Choose',d=>d.modes.some(m=>m.condition&&hasOperation(m.defs,'TapAll'))))return 31;
+ if(c.type==='creature'&&hasOperation(defs,'Target',d=>d.element&&d.to==='mana'&&d.filter?.max===6)&&hasOperation(defs,'ShieldTop'))return 24;
+ if(hasOperation(defs,'TapAll')&&hasOperation(defs,'Schedule537',d=>hasOperation(d.defs,'GroupUntap')))return 20;
+ if(hasOperation(bonus,'Select',d=>d.g190Freeze&&d.n>=2)&&hasOperation(defs,'Target',d=>d.element))return 42;
+ return c.blocker&&hasOperation(bonus,'GroupLasting412',d=>d.destroySafe&&d.untilEnd)?30:0;
+}
+function openingRampWeight(c){
+ if(c.type!=='spell'||finite(c.cost)>3)return 0;
+ const defs=c.g34Tasks,ramps=hasOperation(defs,'Ramp');
+ if(ramps&&c.ddd&&hasOperation(defs,'IfOwn',d=>d.filter?.g603AttackThisTurn))return 10;
+ if(ramps&&hasOperation(defs,'Ramp',d=>d.g603Draw))return 17;
+ return printedShieldTrigger(c)&&hasOperation(defs,'Look',d=>d.n===2&&d.rest==='top'&&d.stages[0]?.to==='mana')?16:0;
+}
+function handBoardResponse(c,profile){
+ const defs=c.g34Tasks,w=profile.weights;
+ if(c.g472OpponentDiscard&&hasOperation(defs,'Discard',discardsOpponent))
+  return 58*Math.min(1,Math.max(0,(profile.counts.cheapSupport-5)/6));
+ const modes=defs?.[0]?.modes;
+ if(!c.trigger||!modes?.some(m=>m.defs.length===1&&m.defs[0].op==='Discard'&&m.defs[0].random))return 0;
+ if(modes.length===2&&hasOperation(defs,'Target',d=>d.element&&d.to==='hand'))
+  return 38*Math.min(1,Math.max(0,(profile.counts.cheapSupport-5)/6));
+ if(modes.some(m=>m.condition?.all)&&hasOperation(defs,'Target',d=>d.to==='grave'&&d.filter?.maxPower===3000))
+  return 56*Math.min(1,Math.max(0,(profile.counts.smallBody-10)/12))*Math.min(1,w.rush);
+ return 0;
+}
+function spellHandResponse(c,profile){
+ const spells=Math.min(1,Math.max(0,(profile.counts.spellOnly-14)/11));
+ if(hasOperation(c.g34Tasks,'InspectHand',d=>d.chooseOne&&d.filter?.g228Face?.type==='spell'))return 68*spells;
+ if(hasOperation(c.g34Tasks,'InspectHand',d=>d.chooseOne&&d.filter?.nonCreature))return 38*spells;
+ if(c.g222SpellTax?.opponent&&c.g222SpellTax.amount===1&&hasOperation(c.g536ShieldLeft,'Select',d=>d.filter?.blocker))return 40*spells;
+ return 0;
+}
+function playsEarly(c){
+ return c.type==='creature'&&finite(c.cost)>=5&&(
+  c.rev||c.invasion||c.mugenCrime||c.fushigibirth||c.ddd||c.kirifudaDash||c.abyssRush||
+  /召喚コスト|コストを支払わず.{0,12}召喚|ハイパーエナジー|B・A・D|G・[0０ゼ]/.test(c.text||'')
+ );
+}
 const graveBottom=defs=>hasOperation(defs,'GraveBottom589',d=>!d.self);
-const features=c=>{const faces=playFaces(c),text=String(c.text||'');return {faces,colors:[...new Set(faces.flatMap(civilizations))],cost:Math.min(...faces.map(f=>finite(f.cost))),bodyCost:Math.min(...faces.filter(f=>f.type==='creature').map(f=>finite(f.cost))),body:faces.some(f=>f.type==='creature'),attacker:faces.some(f=>f.type==='creature'&&!f.noAttack&&!f.noPlayerAttack),fast:faces.some(f=>f.speedAttacker||f.invasion||f.rev),block:faces.some(f=>f.blocker||f.slayer),trigger:faces.some(f=>f.trigger||f.gStrike||f.strikeBack),ramp:faces.some(f=>rampEffects.has(f.effect)||graveBottom(f.g34Tasks)&&hasOperation(f.g34Tasks,'Ramp')),removal:faces.some(f=>removalEffects.has(f.effect)||hasOperation(f.g34Tasks,'OverManaBottom590')),grave:/墓地から|墓地にある|墓地の.*召喚/.test(text)||!!c.graveSummon||!!c.mugenCrime,spell:faces.some(f=>f.type==='spell'),discard:/相手(?:は(?:自身|自分自身|自分)?の?|の)手札[^。\n]*捨て/.test(text)||faces.some(f=>discardEffects.has(f.effect)||f.drawDiscard||f.g394Jao||[f.g34Tasks,f.g34Attack,f.g174End].some(defs=>hasOperation(defs,'Discard',discardsOpponent))),discardHate:!!(c.g591HandShield||c.g591Discard||c.enemyDiscardDeploy||c.discardDeploy),cheat:/コストを支払わず|召喚せず/.test(text)||!!c.rev||!!c.invasion||!!c.mugenCrime,graveHate:/(?:相手の墓地|相手は自身の墓地).*(?:山札|マナ)/.test(text)||!!(c.graveGate||c.g277GraveLock||c.g44Apul||c.g592GravesStay)||faces.some(f=>graveBottom(f.g34Tasks)),cheatHate:!!(c.tokoshie||c.oniBounce||c.noNonsummonEntry||c.handEntryOnly||c.entryGate||c.g403Bloom||c.g26Queen)||faces.some(f=>hasOperation(f.g34Tasks,'OverManaBottom590')||hasOperation(f.g397Shinka,'OverManaBottom590')),spellHate:!!(c.spellLockMaxCost||c.travelSpellLock||c.shiroLock||c.g32Dolf||c.genmu||c.g590SpellOnce||c.g26OneNote)||faces.some(f=>hasOperation(f.g34Tasks,'SpellLock589')||hasOperation(f.g34Attack,'SpellLock589')),graveReliant:/自分の墓地から/.test(text)||!!(c.graveCast||c.graveSummon||c.mugenCrime||c.abyssRush||c.fushigibirth),symmetricGraveLock:!!c.g592GravesStay,entryStop:!!c.g593EntryStop,powerStop:faces.some(f=>hasOperation(f.g34Tasks,'PowerAttack593')),draw:faces.some(f=>/draw|search/i.test(f.effect||'')||hasOperation(f.g34Tasks,'Draw')&&(f.g593EntryStop||hasOperation(f.g34Tasks,'PowerAttack593'))),race:String(c.race||'')};};
+const features=c=>{const faces=playFaces(c),text=String(c.text||''),openingRamp=Math.max(...faces.map(openingRampWeight));return {faces,colors:[...new Set(faces.flatMap(civilizations))],cost:Math.min(...faces.map(f=>finite(f.cost))),bodyCost:Math.min(...faces.filter(f=>f.type==='creature').map(f=>finite(f.cost))),body:faces.some(f=>f.type==='creature'),tiny:faces.some(f=>f.type==='creature'&&finite(f.power)<=1000),swarmResponse:swarmResponse(c,faces),graveResponse:graveResponseWeight(c),blockerResponse:blockerResponseWeight(faces),earlyDeploymentResponse:earlyDeploymentResponse(c,faces),earlyDeployment:faces.some(playsEarly),nonMultiBody:faces.some(f=>f.type==='creature'&&civilizations(f).length<=1),nonMultiRemoval:Math.max(...faces.map(nonMultiRemoval)),defensiveTrigger:Math.max(...faces.map(defensiveTriggerWeight)),openingRamp,answersSupport:faces.some(f=>hasOperation(f.g34Tasks,'IfOwn',d=>d.filter?.g603AttackThisTurn)),cheapSupport:faces.some(f=>finite(f.cost)<=5&&['seed','field','gear','aura','artifact','land'].includes(f.type)),blocks:faces.some(f=>f.blocker||f.g260Self?.grants?.blocker||f.g208Auras?.some(a=>a.grants?.blocker)),shieldLock:c.g597TriggerLock,attacker:faces.some(f=>f.type==='creature'&&!f.noAttack&&!f.noPlayerAttack),fast:faces.some(f=>f.speedAttacker||f.invasion||f.rev),block:faces.some(f=>f.blocker||f.slayer),trigger:faces.some(f=>f.trigger||f.gStrike||f.strikeBack||f.triggerPlus&&hasOperation(f.g34Plus,'Sweep',d=>oneSidedSweep(d)&&d.filter.g596EnteredThisTurn)),ramp:openingRamp>0||faces.some(f=>rampEffects.has(f.effect)||graveBottom(f.g34Tasks)&&hasOperation(f.g34Tasks,'Ramp')),removal:faces.some(f=>removalEffects.has(f.effect)||hasOperation(f.g34Tasks,'OverManaBottom590')),grave:/墓地から|墓地にある|墓地の.*召喚/.test(text)||!!c.graveSummon||!!c.mugenCrime,spell:faces.some(f=>f.type==='spell'),discard:/相手(?:は(?:自身|自分自身|自分)?の?|の)手札[^。\n]*捨て/.test(text)||faces.some(f=>discardEffects.has(f.effect)||f.drawDiscard||f.g394Jao||[f.g34Tasks,f.g34Attack,f.g174End].some(defs=>hasOperation(defs,'Discard',discardsOpponent))),discardHate:!!(c.g591HandShield||c.g591Discard||c.enemyDiscardDeploy||c.discardDeploy),cheat:/コストを支払わず|召喚せず/.test(text)||!!c.rev||!!c.invasion||!!c.mugenCrime,graveHate:/(?:相手の墓地|相手は自身の墓地).*(?:山札|マナ)/.test(text)||!!(c.graveGate||c.g277GraveLock||c.g44Apul||c.g592GravesStay)||faces.some(f=>graveBottom(f.g34Tasks)),cheatHate:!!(c.tokoshie||c.oniBounce||c.noNonsummonEntry||c.handEntryOnly||c.entryGate||c.g403Bloom||c.g26Queen)||faces.some(f=>hasOperation(f.g34Tasks,'OverManaBottom590')||hasOperation(f.g397Shinka,'OverManaBottom590')),spellResponse:!!respondsToSpell(c),spellHate:!!(c.g222SpellTax?.perOtherCreature||c.g260Self?.grants?.g595NonLightSpellLock||c.spellLockMaxCost||c.travelSpellLock||c.shiroLock||c.g32Dolf||c.genmu||c.g590SpellOnce||c.g26OneNote)||faces.some(f=>hasOperation(f.g34Tasks,'SpellLock589')||hasOperation(f.g34Attack,'SpellLock589')),graveReliant:/自分の墓地から/.test(text)||!!(c.graveCast||c.graveSummon||c.mugenCrime||c.abyssRush||c.fushigibirth),symmetricGraveLock:!!c.g592GravesStay,entryStop:!!c.g593EntryStop,powerStop:faces.some(f=>hasOperation(f.g34Tasks,'PowerAttack593')),draw:faces.some(f=>/draw|search/i.test(f.effect||'')||hasOperation(f.g34Tasks,'Draw')&&(f.g593EntryStop||hasOperation(f.g34Tasks,'PowerAttack593'))),race:String(c.race||'')};};
 export function analyzeStrongestTarget(deck){
- const counts={cheap:0,fast:0,spell:0,grave:0,cheat:0,large:0,body:0,discard:0},costs=new Map();let cost=0;
- for(const r of deck.cards){const f=features(card(r.id));cost+=f.cost*r.count;for(const key of ['fast','spell','grave','cheat','body','discard'])if(f[key]&&(key!=='fast'||f.bodyCost<=5))counts[key]+=r.count;if(f.body&&f.bodyCost<=3)counts.cheap+=r.count;if(f.body&&f.bodyCost>=7)counts.large+=r.count;const n=Math.min(20,f.cost);costs.set(n,(costs.get(n)||0)+r.count);}
+ const counts={cheap:0,fast:0,spell:0,spellOnly:0,grave:0,cheat:0,large:0,body:0,discard:0,tiny:0,smallBody:0,blocks:0,earlyDeployment:0,nonMultiBody:0,cheapSupport:0},costs=new Map();
+ const shieldTriggers={all:0,spell:0,creature:0};
+ let cost=0;
+ for(const r of deck.cards){const f=features(card(r.id));cost+=f.cost*r.count;
+  const triggerFaces=f.faces.filter(printedShieldTrigger);
+  if(triggerFaces.length)shieldTriggers.all+=r.count;
+  if(f.faces.every(face=>face.type==='spell'))counts.spellOnly+=r.count;
+  for(const kind of ['spell','creature'])if(triggerFaces.some(face=>face.type===kind))shieldTriggers[kind]+=r.count;
+  for(const key of ['fast','spell','grave','cheat','body','discard','tiny','blocks','earlyDeployment','nonMultiBody','cheapSupport'])if(f[key]&&(key!=='fast'||f.bodyCost<=5))counts[key]+=r.count;if(f.faces.some(face=>face.type==='creature'&&finite(face.power)<=3000))counts.smallBody+=r.count;if(f.body&&f.bodyCost<=3)counts.cheap+=r.count;if(f.body&&f.bodyCost>=7)counts.large+=r.count;const n=Math.min(20,f.cost);costs.set(n,(costs.get(n)||0)+r.count);}
  const weights={rush:Math.min(1,(counts.cheap+counts.fast)/22),spells:counts.spell/40,grave:Math.min(1,counts.grave/12),cheat:Math.min(1,counts.cheat/12),large:Math.min(1,counts.large/16),discard:Math.min(1,Math.max(0,counts.discard-4)/10)};
  const labels={rush:'序盤の攻めへの防御・除去',spells:'呪文中心の展開を妨害',grave:'墓地利用を抑える',cheat:'踏み倒し・特殊な登場を牽制',large:'大型が並ぶ前の攻めと除去',discard:'手札破壊に備える'};
- const priorities=Object.entries(weights).sort((a,b)=>b[1]-a[1]);return {counts,weights,averageCost:cost/40,priorities:priorities.filter(([,n])=>n>=.2).slice(0,3).map(([key])=>labels[key]),main:priorities[0][0],commonCost:[...costs].sort((a,b)=>b[1]-a[1])[0]?.[0]||0};
+ const priorities=Object.entries(weights).sort((a,b)=>b[1]-a[1]);return {counts,weights,shieldTriggers,averageCost:cost/40,priorities:priorities.filter(([,n])=>n>=.2).slice(0,3).map(([key])=>labels[key]),main:priorities[0][0],commonCost:[...costs].sort((a,b)=>b[1]-a[1])[0]?.[0]||0};
 }
 const learningKeys=['rush','spells','grave','cheat','large','discard'];
 const bounded=(value,max=1000)=>Number.isFinite(value)?Math.max(0,Math.min(max,value)):0;
@@ -45,6 +131,25 @@ export function learnStrongestDefeat(previous,battle){
 function utility(c,f,profile){
  const w=profile.weights;let v=6+(f.body?Math.min(8,finite(c.power)/1500):0)+(f.attacker?4:0)+(f.cost<=3?5:0)+(f.draw?6:0)+(f.ramp?7:0)+(f.trigger?4:0)+(f.fast?5:0)+(f.removal?5:0);
  v+=(f.block?13:0)*w.rush+(f.trigger?16:0)*w.rush+(f.removal?9:0)*Math.max(w.rush,w.large)+(f.spellHate?35:0)*w.spells+(f.cheatHate?35:0)*w.cheat+(f.symmetricGraveLock?40:f.graveHate?32:0)*w.grave+(f.fast?9:0)*w.large+(f.discardHate?38:0)*w.discard+(c.g591HandShield?18:0)*Math.min(w.cheat,w.discard);
+ if(f.openingRamp)v+=f.openingRamp*Math.min(1,.4+.6*Math.max(w.rush,w.large));
+ v+=handBoardResponse(c,profile)+spellHandResponse(c,profile);
+ if(f.answersSupport)v+=34*Math.min(1,profile.counts.cheapSupport/10);
+ if(f.defensiveTrigger)v+=f.defensiveTrigger*Math.max(0,(w.rush-.5)*2);
+ if(f.nonMultiRemoval)v+=f.nonMultiRemoval*Math.min(1,Math.max(0,(profile.counts.nonMultiBody-23)/11));
+ if(c.g601UnpaidDestroy)v+=35*w.cheat;
+ if(c.g601OffHandMana)v+=22*Math.min(w.grave,w.cheat);
+ if(f.earlyDeploymentResponse)v+=f.earlyDeploymentResponse*Math.min(1,Math.max(0,(profile.counts.earlyDeployment-6)/9));
+ if(f.blockerResponse)v+=f.blockerResponse*Math.min(1,Math.max(0,(profile.counts.blocks-4)/10));
+ if(f.graveResponse)v+=f.graveResponse*w.grave+(c.g598UnpaidBottom?18*w.cheat:0);
+ if(f.swarmResponse==='sweep')v+=27*w.rush;
+ if(f.swarmResponse==='small')v+=28*Math.min(1,profile.counts.tiny/10);
+ if(f.shieldLock){
+  const lock=f.shieldLock,matched=profile.shieldTriggers[lock.type||'all'];
+  const threat=Math.min(1,Math.max(0,(matched-4)/12));
+  v+=(lock.minShields?18:lock.ownBreak?29:lock.allColors?24:40)*threat;
+ }
+ if(f.spellResponse)v+=(c.g204SpellWatch.colorsAny?26:42)*w.spells;
+ if(c.g222SpellTax?.perOtherCreature)v+=30*w.spells;
  if(f.entryStop)v+=18*w.rush+12*Math.min(1,profile.counts.fast/12);
  if(f.powerStop)v+=25*w.rush;
  if(c.effect==='magicNumberLock')v+=8+profile.weights.spells*15;if(f.cost>7)v-=Math.min(18,(f.cost-7)*4);if(!f.attacker&&f.body)v-=4;
@@ -76,7 +181,9 @@ export function buildStrongestCPU(target,seeds,implemented,{onProgress=()=>{},le
  if(!valid.length)throw Error('対策構築の基になる対応済みデッキがありません');
  const trusted=new Set(valid.flatMap(d=>d.rows.map(r=>r.id))),ranked=valid.sort((a,b)=>b.score-a.score||a.name.localeCompare(b.name)).slice(0,8);let best=null;
  ranked.forEach((seed,index)=>{
-  const colors=new Set(seed.base.colors),pool=implemented.filter(c=>{const f=info.get(c.id);return (c.limit??4)>0&&f.cost<=8&&f.colors.every(k=>colors.has(k))&&(trusted.has(c.id)||f.cheatHate||f.spellHate||f.graveHate||f.discardHate||f.entryStop||f.powerStop)&&(!c.evolution&&!c.manaEvolution&&!c.graveEvolution||seed.base.counts.has(c.id));}).sort((a,b)=>(utilities.get(b.id)-utilities.get(a.id))||a.id.localeCompare(b.id)).slice(0,28);
+  const colors=new Set(seed.base.colors);
+  const creatureColors=new Set(seed.rows.flatMap(r=>info.get(r.id).faces.filter(f=>f.type==='creature').flatMap(civilizations)));
+  const pool=implemented.filter(c=>{const f=info.get(c.id);return (c.limit??4)>0&&f.cost<=8&&f.colors.every(k=>colors.has(k))&&(trusted.has(c.id)||f.cheatHate||f.spellHate||f.spellResponse||f.graveHate||f.graveResponse&&profile.weights.grave>=.35||c.g598UnpaidBottom&&profile.weights.cheat>=.5||f.discardHate||f.entryStop||f.powerStop||f.swarmResponse||f.openingRamp||handBoardResponse(c,profile)>=16||spellHandResponse(c,profile)>=20||f.defensiveTrigger&&profile.weights.rush>=.65||f.nonMultiRemoval&&profile.counts.nonMultiBody>=26||c.g601UnpaidDestroy&&profile.weights.cheat>=.5||c.g601OffHandMana&&Math.min(profile.weights.grave,profile.weights.cheat)>=.5||f.earlyDeploymentResponse&&profile.counts.earlyDeployment>=9||f.blockerResponse&&profile.counts.blocks>=8||f.shieldLock&&profile.shieldTriggers[f.shieldLock.type||'all']>=8)&&(!f.shieldLock?.allColors||['光','水','闇','火','自然'].every(color=>creatureColors.has(color)))&&(!c.evolution&&!c.manaEvolution&&!c.graveEvolution||seed.base.counts.has(c.id));}).sort((a,b)=>(utilities.get(b.id)-utilities.get(a.id))||a.id.localeCompare(b.id)).slice(0,28);
   let rows=seed.rows,score=seed.score;
   for(let round=0;round<6;round++){let chosen=null;
    const removable=[...rows].sort((a,b)=>utilities.get(a.id)-utilities.get(b.id)).slice(0,12);
