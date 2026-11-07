@@ -1,3 +1,12 @@
+import {STANDARD588_DECK} from './fixtures/standard588.mjs';
+import {STANDARD587_DECK} from './fixtures/standard587.mjs';
+import {STANDARD586_DECK} from './fixtures/standard586.mjs';
+import {STANDARD585_DECK} from './fixtures/standard585.mjs';
+import {STANDARD584_DECK} from './fixtures/standard584.mjs';
+import {STANDARD583_DECK} from './fixtures/standard583.mjs';
+import {STANDARD582_DECK} from './fixtures/standard582.mjs';
+import {STANDARD581_DECK} from './fixtures/standard581.mjs';
+import {STANDARD580_DECK} from './fixtures/standard580.mjs';
 import {STANDARD579_DECK} from './fixtures/standard579.mjs';
 import {STANDARD577_DECK} from './fixtures/standard577.mjs';
 import {STANDARD576_DECK} from './fixtures/standard576.mjs';
@@ -1483,3 +1492,48 @@ if(validateDeck(STANDARD579_DECK).length||registry.coverage(STANDARD579_DECK).un
   throw Error('Invalid battle-card selection fixture');
 }
 console.log('Checked standard579 legal forty: card-targeted removal and reconstructed evolution stacks.');
+
+if(validateDeck(STANDARD580_DECK).length||registry.coverage(STANDARD580_DECK).unsupported||STANDARD580_DECK.cards.reduce((n,c)=>n+c.count,0)!==40){
+  throw Error('Invalid card choice order fixture');
+}
+console.log('Checked standard580 legal forty: card choice order, opponent destinations, and conditional effects.');
+
+if(validateDeck(STANDARD581_DECK).length||registry.coverage(STANDARD581_DECK).unsupported||STANDARD581_DECK.cards.reduce((n,c)=>n+c.count,0)!==40){
+  throw Error('Invalid cross-zone card selection fixture');
+}
+console.log('Checked standard581 legal forty: selection across zones and turn-player choices.');
+
+if(validateDeck(STANDARD582_DECK).length||registry.coverage(STANDARD582_DECK).unsupported||STANDARD582_DECK.cards.reduce((n,c)=>n+c.count,0)!==40){
+  throw Error('Invalid mana selection fixture');
+}
+console.log('Checked standard582 legal forty: mana selection, movement and entry tapped.');
+
+if(validateDeck(STANDARD583_DECK).length||registry.coverage(STANDARD583_DECK).unsupported||STANDARD583_DECK.cards.reduce((n,c)=>n+c.count,0)!==40){
+  throw Error('Invalid grave-to-mana and conditional ramp fixture');
+}
+console.log('Checked standard583 legal forty: grave-to-mana recovery and conditional ramp.');
+
+if(validateDeck(STANDARD584_DECK).length||registry.coverage(STANDARD584_DECK).unsupported||STANDARD584_DECK.cards.reduce((n,c)=>n+c.count,0)!==40){
+  throw Error('Invalid hand cycling and conditional discard fixture');
+}
+console.log('Checked standard584 legal forty: hand cycling and conditional discard.');
+
+if(validateDeck(STANDARD585_DECK).length||registry.coverage(STANDARD585_DECK).unsupported||STANDARD585_DECK.cards.reduce((n,c)=>n+c.count,0)!==40){
+  throw Error('Invalid shield inspection and exchange fixture');
+}
+console.log('Checked standard585 legal forty: private shield inspection and shield exchanges.');
+
+if(validateDeck(STANDARD586_DECK).length||registry.coverage(STANDARD586_DECK).unsupported||STANDARD586_DECK.cards.reduce((n,c)=>n+c.count,0)!==40){
+  throw Error('Invalid effect battles and battle victory fixture');
+}
+console.log('Checked standard586 legal forty: effect battles, battle victories and battle power.');
+
+if(validateDeck(STANDARD587_DECK).length||registry.coverage(STANDARD587_DECK).unsupported||STANDARD587_DECK.cards.reduce((n,c)=>n+c.count,0)!==40){
+  throw Error('Invalid battle-win and untap fixture');
+}
+console.log('Checked standard587 legal forty: forced battle wins, first victories and untap costs.');
+
+if(validateDeck(STANDARD588_DECK).length||registry.coverage(STANDARD588_DECK).unsupported||STANDARD588_DECK.cards.reduce((n,c)=>n+c.count,0)!==40){
+  throw Error('Invalid battle victory and hand deployment fixture');
+}
+console.log('Checked standard588 legal forty: battle-win declarations, replacement and repeat battles.');

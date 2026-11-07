@@ -1,0 +1,389 @@
+{
+  "phase": 581,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5456,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35425/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31397/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316667/"
+  ],
+  "cards": [
+    {
+      "id": "dm06-034",
+      "name": "クライシス・ボーラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-034",
+      "faces": [
+        {
+          "name": "クライシス・ボーラー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S(シールド)・トリガー(この呪文をシールドゾーンから手札に加えるとき、コストを支払わずにすぐ唱えてよい)\n相手は、バトルゾーンかマナゾーンから自分自身のカードを１枚選び、持ち主の墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OwnCard581",
+            "who": "opponent",
+            "zones": [
+              "battle",
+              "mana"
+            ],
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "18d004c19339e3e6608e8dfa2e8bf2fdb6c4a9ab2306dd5b5db1953a1f2053d9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-022",
+      "name": "シャドーウェーブ・サイクロン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-022",
+      "faces": [
+        {
+          "name": "シャドーウェーブ・サイクロン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "サイクロン(このターン、この呪文を唱える直前にクリーチャーを召喚していれば、この呪文を唱えた後、墓地に置くかわりに自分の手札に戻す)\nバトルゾーン、またはいずれかのマナゾーンからカードを１枚選び、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g420Cyclone": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "anyOwner": true,
+            "zones": [
+              "battle",
+              "mana"
+            ],
+            "to": "hand"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "7f9cba78d2939ce6761ad9f219378e7dffb6c921c8aefaabc81721d32d3ad4e4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-018",
+      "name": "センジュ・スプラッシュ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-018",
+      "faces": [
+        {
+          "name": "センジュ・スプラッシュ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "プレイヤーをひとり選ぶ。そのプレイヤーは、バトルゾーンまたはマナゾーンから自分自身のカードを１枚選び、持ち主の山札の一番上に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OwnCard581",
+            "who": "choose",
+            "zones": [
+              "battle",
+              "mana"
+            ],
+            "to": "deckTop"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "5be56185ef8e90aaedf6adfef097506892f90718a8a42ad5badb2f0231db1a8d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd29-006",
+      "name": "メガ・キリキリ・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd29-006",
+      "faces": [
+        {
+          "name": "メガ・キリキリ・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーがバトルゾーンに出た時、クリーチャーを１体、自分のマナゾーンから山札の一番上に置いてもよい。",
+          "race": "メガ・ドラゴン/革命軍",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "deckTop",
+            "n": 1,
+            "optional": true,
+            "g183Return": true,
+            "filter": {
+              "creature": true,
+              "faceUp": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd29-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "c5905b1aff4c3cfd3f524d4645a4bb21aefc34b04ddaf35c002b3cc6f44f47d1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-045",
+      "name": "ルナ・ウイング",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-045",
+      "faces": [
+        {
+          "name": "ルナ・ウイング",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "サイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\nバトルゾーンか、どちらかのプレイヤーのマナゾーンからカードを１枚選び、持ち主の手札に戻す。",
+          "race": "サイバー・ムーン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g496Silent": [
+          {
+            "op": "BattleCardMove579",
+            "anyOwner": true,
+            "zones": [
+              "battle",
+              "mana"
+            ],
+            "to": "hand"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "61ef0b91dc83302d03298f833de4eceb54aeb3b131d311b3cf801095a57a4084",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04m-004",
+      "name": "針柩医 ゼントヨウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-004",
+      "faces": [
+        {
+          "name": "針柩医 ゼントヨウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "各プレイヤーのターンのはじめに、そのプレイヤーは手札またはバトルゾーンにある自身のカードを１枚選び、持ち主の墓地に置く。",
+          "race": "マフィ・ギャング",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g174Start": [
+          {
+            "op": "OwnCard581",
+            "who": "active",
+            "zones": [
+              "hand",
+              "battle"
+            ],
+            "to": "grave"
+          }
+        ],
+        "g179OpponentStart": [
+          {
+            "op": "OwnCard581",
+            "who": "active",
+            "zones": [
+              "hand",
+              "battle"
+            ],
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04m-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "c599783116402f5115f9d1462165eed3b7ebd0d328722f7a0ef4612580683024",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-046",
+      "name": "族長の霊弓",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-046",
+      "faces": [
+        {
+          "name": "族長の霊弓",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにある相手のアンタップしているクリーチャーを１体選び、持ち主のマナゾーンに置く。\nバトルゾーンに自分のダママ団があれば、多色カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "filter": {
+              "untapped": true
+            }
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "element": true,
+              "race": "ダママ団"
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "mana",
+                "to": "hand",
+                "n": 1,
+                "optional": true,
+                "filter": {
+                  "multi": true,
+                  "faceUp": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "2adea4ac994ed0d4201179616ab0bf7d1a2a29602ac88cd734be7f4c047db448",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-047",
+      "name": "封魔アドラク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-047",
+      "faces": [
+        {
+          "name": "封魔アドラク",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、それぞれのマナゾーンからカードを１枚ずつ選び、持ち主の山札の一番上に置く。",
+          "race": "グランド・デビル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ManaPair581"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "53f984e152c9e1f52ce23958a1369c906fc40307c24a57841a27b87f45d0ccdf",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm06-034": 4,
+      "dm19-022": 4,
+      "dm24-018": 4,
+      "dmd29-006": 4,
+      "dm10-045": 4,
+      "dmrp04m-004": 4,
+      "dmr21-046": 4,
+      "dm19-047": 4
+    }
+  }
+}

@@ -1,0 +1,582 @@
+{
+  "phase": 584,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5490,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/47908/",
+    "https://dm.takaratomy.co.jp/rule/qa/31530/",
+    "https://dm.takaratomy.co.jp/rule/qa/47366/",
+    "https://dm.takaratomy.co.jp/rule/qa/39442/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp18-082",
+      "name": "U・S・A・SHOGI",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-082",
+      "faces": [
+        {
+          "name": "U・S・A・SHOGI",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の手札を１枚捨て、その後、カードを１枚引く。こうして捨てた手札が進化クリーチャーなら、カードをもう１枚引く。",
+          "race": "ビートジョッキー/レクスターズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandFollow584",
+            "always": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ],
+            "filter": {
+              "evolution": true
+            },
+            "then": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-082.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "f6cd86c673bae9d53571c0c84deb3898a560e21d0a056b6df4b9d2d2bc2242c5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25-025",
+      "name": "ゴースト・クラッチ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-025",
+      "faces": [
+        {
+          "name": "ゴースト・クラッチ",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手の手札を１枚見ないで選び、捨てさせる。それが多色カードでない場合、多色クリーチャーを１体、自分の墓地から手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandFollow584",
+            "blind": true,
+            "filter": {
+              "g584MonoCard": true
+            },
+            "then": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "optional": true,
+                "filter": {
+                  "g228Face": {
+                    "type": "creature",
+                    "multicolor": true
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "21e028a7874f4a3414d702c14511ada2518f8afbf78a6f32a308982938c4970b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd13-008",
+      "name": "ザババン・ジョーカーズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd13-008",
+      "faces": [
+        {
+          "name": "ザババン・ジョーカーズ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "カードを１枚引き、その後、自分の手札を１枚捨てる。捨てたカードがジョーカーズなら、カードを１枚引く。",
+          "race": "ジョーカーズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sequence",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              },
+              {
+                "op": "HandFollow584",
+                "filter": {
+                  "anyFaceRace": "ジョーカーズ"
+                },
+                "then": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd13-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "f62a7ad09b717161f6b80488f512102f8f4b4c5feb49d042b7b780f456f0f820",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-017",
+      "name": "シンカイガンガン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-017",
+      "faces": [
+        {
+          "name": "シンカイガンガン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、カードを１枚引き、その後自分の手札を１枚捨てる。こうして呪文を捨てたら、このクリーチャーをアンタップする。",
+          "race": "ブルー・モンスター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Sequence",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              },
+              {
+                "op": "HandFollow584",
+                "filter": {
+                  "spell": true
+                },
+                "then": [
+                  {
+                    "op": "Untap"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "26ef5baeda0b8f0cd7af6a8e943bfa08866eab067a98358bc0ff9417183f9e47",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-027",
+      "name": "ソウル・アドバンテージ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-027",
+      "faces": [
+        {
+          "name": "ソウル・アドバンテージ",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のシールド１枚につき相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "g584Count": "ownShields",
+            "random": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "f0e555271a159bed6666d52599cf4d5e7376408c56c93c89fec8cc01c39b6fce",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr11-043",
+      "name": "ポカポカ・ハンマー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-043",
+      "faces": [
+        {
+          "name": "ポカポカ・ハンマー",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手の手札を１枚、見ないで選び、捨てさせる。そのカードが呪文であれば、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandFollow584",
+            "blind": true,
+            "filter": {
+              "spell": true
+            },
+            "then": [
+              {
+                "op": "Offer",
+                "title": "カードを1枚引く？",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr11-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "d134650ade27baed18518b0522bc9cc2b303951c67af2bd0e7f1f9fc6a0a7b56",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp3-069",
+      "name": "炎怒 コアゲ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-069",
+      "faces": [
+        {
+          "name": "炎怒 コアゲ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分の手札を１枚捨ててもよい。そうしたら、カードを１枚引く。こうして捨てた手札のコストが６以上なら、カードをもう１枚引く。",
+          "race": "デモンズ・レガシー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandFollow584",
+            "optional": true,
+            "success": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ],
+            "filter": {
+              "anyFaceMinCost": 6
+            },
+            "then": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-069.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "05681f3bcf4b4b89fed61156b65118537b12ae8b00f499ba573873b756e8a63f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-003",
+      "name": "海帝 ダイソン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-003",
+      "faces": [
+        {
+          "name": "海帝 ダイソン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、カードを５枚引き、その後、相手のシールドの数と同じ枚数、自分の手札を捨てる。",
+          "race": "アースイーター/侵略者",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sequence",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 5
+              },
+              {
+                "op": "Discard",
+                "owner": "self",
+                "g584Count": "opponentShields"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "95a24eb06163f5eb528aa943a986435385f36db37307bb9f2f4ffc9d9525be4d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc27-003",
+      "name": "滑空男",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc27-003",
+      "faces": [
+        {
+          "name": "滑空男",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが破壊された時、相手の手札を見る。その中から１枚選び、捨てさせる。",
+          "race": "ヘドリアン",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "InspectOne258"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc27-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "ec343735a1ad7056bb588a4ff2578e6e1a70940e2d93d56a300637bdda319436",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmbd17-010",
+      "name": "灼熱の闘志 テスタ・ロッサ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd17-010",
+      "faces": [
+        {
+          "name": "灼熱の闘志 テスタ・ロッサ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、カードを２枚まで引く。その後、こうして引いた枚数と同じ数、自分の手札を捨てる。",
+          "race": "アウトレイジMAX",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "PlayerDraw461",
+            "n": 2,
+            "upTo": true,
+            "discard": "drawn"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd17-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "044c450809b69dd9b5d836180286e901f3a015ea1d69608d0ab16b9abbd1f1dd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr10-026",
+      "name": "真滅の信徒 ジンジャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-026",
+      "faces": [
+        {
+          "name": "真滅の信徒 ジンジャー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手のクリーチャーが破壊された時、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "オラクル/ドラゴン・ゾンビ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g303DeathWatch": {
+          "opponent": true,
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1,
+              "random": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "b3ecb80e71e5166423d61e48b3f8af55320fe82e45a2eacd41fd87c61254e60e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx07-019",
+      "name": "戦略のD・H アツト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx07-019",
+      "faces": [
+        {
+          "name": "戦略のD・H アツト",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。このクリーチャーをバトルゾーンに出した時、カードを２枚引いてもよい。そうした場合、自分の手札を２枚捨てる。",
+          "race": "ヒューマノイド/ヒーロー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "PlayerDraw461",
+            "n": 2,
+            "optional": true,
+            "discard": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx07-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "af9c511393d75bf127ab7db11caadc9c05a5e502397b67f240e33e850555e56a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp18-082": 4,
+      "dm25-025": 4,
+      "dmsd13-008": 4,
+      "dmrp04s-017": 4,
+      "dm28-027": 0,
+      "dmr11-043": 4,
+      "dm24rp3-069": 4,
+      "dmr18-003": 4,
+      "dmc27-003": 4,
+      "dmbd17-010": 4,
+      "dmr10-026": 4,
+      "dmx07-019": 4
+    }
+  }
+}

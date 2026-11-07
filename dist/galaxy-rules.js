@@ -17,7 +17,7 @@ export function createGalaxyRules(api){
   case'g22UntapMana':{const list=own.mana.filter(x=>x.tapped&&api.canUntap(x)&&!t.selected.includes(x.uid));if(t.selected.length===2||!list.length){for(const uid of t.selected){const x=own.mana.find(x=>x.uid===uid);if(x&&api.canUntap(x))x.tapped=false;}break;}choice(s,t,'アンタップするマナを2枚まで選ぶ',[...list.map(x=>opt(card(x).name,x.uid,10,card(x).id)),opt('ここまでで確定',null,0)]);break;}
   case'g22FairySpell':discardSequence(s,t,1,'g22AfterFairy');break;
   case'g22AfterFairy':{const ids=s.g22Discards[t.key];delete s.g22Discards[t.key];put(s,task('destroyPower',t.p,t.source,{max:6000}),...(ids.some(id=>faces(card(id)).some(snow))?[task('destroyPower',t.p,t.source,{max:6000})]:[]));break;}
-  case'g22Shuffle':choice(s,t,'山札に戻してシャッフルする墓地を選ぶ',[opt('自分の墓地',t.p,own.deck.length<8?30:5),opt('相手の墓地',1-t.p,opp.grave.length)]);break;
+  case'g22Shuffle':choice(s,t,'山札に戻してシャッフルする墓地を選ぶ',[opt('自分の墓地',t.p,own.deck.length<8?30:5),opt('相手の墓地',1-t.p,opp.grave.length),...(t.optional?[opt('選ばない',null,0)]:[])]);break;
   case'g22ManaPermit':choice(s,t,'このターン、マナから召喚できるクリーチャーを選ぶ',own.mana.filter(x=>card(x).type==='creature').map(x=>opt(card(x).name,x.uid,cost(card(x)),card(x).id)));break;
   case'g22Speed':if(own.mana.some(x=>api.manaColors(card(x),s,t.p).includes('火')))choice(s,t,'スピードアタッカーを与える他のクリーチャーを選ぶ',creatures(s,t.p).filter(x=>x.uid!==t.uid).map(x=>opt(card(x).name,x.uid,x.entered===s.turn?20:0,x.cardId)));break;
   case'g22BounceEnd':{const x=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation);if(x)move(s,[{player:t.p,uid:x.uid,to:'hand'}]);break;}
@@ -26,7 +26,7 @@ export function createGalaxyRules(api){
  }return true;}
  function chosen(s,t,value){if(!t.op.startsWith('g22'))return false;const own=s.players[t.p];switch(t.op){
   case'g22UntapMana':if(value)put(s,{...t,selected:[...t.selected,value]});else for(const uid of t.selected){const x=own.mana.find(x=>x.uid===uid);if(x&&api.canUntap(x))x.tapped=false;}break;
-  case'g22Shuffle':{const p=s.players[value],all=policyTake(s,value,'grave',api);for(const x of all)clear(x,'deck');api.shuffleLibrary(s,value,all,t.source);log(s,t.p,'shuffleGrave','選んだプレイヤーの墓地を山札に戻してシャッフルする',{cardId:t.source});break;}
+  case'g22Shuffle':{if(value===null)break;const p=s.players[value],all=policyTake(s,value,'grave',api);for(const x of all)clear(x,'deck');api.shuffleLibrary(s,value,all,t.source);log(s,t.p,'shuffleGrave','選んだプレイヤーの墓地を山札に戻してシャッフルする',{cardId:t.source});break;}
   case'g22ManaPermit':{const x=own.mana.find(x=>x.uid===value);if(x)x.g22ManaAllowed=s.turn;break;}
   case'g22Speed':{const x=own.battle.find(x=>x.uid===value);if(x)x.gospelSpeed=s.turn;break;}
   case'g22Replace':applyReplacement(s,value,t.entryUid);break;

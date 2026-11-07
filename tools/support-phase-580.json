@@ -1,0 +1,431 @@
+{
+  "phase": 580,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5447,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31397/",
+    "https://dm.takaratomy.co.jp/rule/qa/45909/"
+  ],
+  "cards": [
+    {
+      "id": "dmr23-s02",
+      "name": "D２W2 ギガスピード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-s02",
+      "faces": [
+        {
+          "name": "D２W2 ギガスピード",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある他のカードを１枚選び、持ち主の手札に戻してもよい。その後、バトルゾーンに自分のD２フィールドがあれば、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻してもよい。\n自分の水のコマンドはブロックされない。",
+          "race": "ソニック・コマンド/マスター・イニシャルズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "color": "水",
+              "race": "コマンド"
+            },
+            "grants": {
+              "unblockable": true
+            }
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "to": "hand",
+            "anyOwner": true,
+            "other": true,
+            "optional": true
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g580D2Field": true
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "hand",
+                "anyOwner": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "18e46fd318bf96cfb73a09d11caad07851ad88040959728c7235319e3dfbb1e8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-074",
+      "name": "ウェイブの伝説",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-074",
+      "faces": [
+        {
+          "name": "ウェイブの伝説",
+          "typeText": "呪文",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このカードを自分のマナゾーンに置いた時、自分の手札にある多色カードを１枚、相手に見せてもよい。そうしたら、このカードをアンタップする。\nバトルゾーンにある相手のカードを１枚選ぶ。相手はそのカードを、自身のマナゾーンに置くか、手札に戻す。",
+          "race": "チームウェイブ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g449ManaReveal": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "to": "hand",
+            "ownerChoosesDestination": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-074.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "e5c821fcf650c1ab500cf1844593da02a8d594c21061fd0848f83985dd536a2b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp12-092",
+      "name": "キグルミ・チュリス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-092",
+      "faces": [
+        {
+          "name": "キグルミ・チュリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが攻撃する時、それがそのターンはじめての攻撃でなければ、バトルゾーンにある相手の、コスト５以下のカードを１枚選び、持ち主の墓地に置いてもよい。",
+          "race": "ビートジョッキー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g580LaterAttack": true
+            },
+            "defs": [
+              {
+                "op": "BattleCardMove579",
+                "to": "grave",
+                "max": 5,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-092.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "24a0624c66dd99f3706597b8ac470c911fa1890b2b2774049ec4112a796ea58c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-039",
+      "name": "ゴブレット＝ブレゴ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-039",
+      "faces": [
+        {
+          "name": "ゴブレット＝ブレゴ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\nこのクリーチャーが出た時、相手はバトルゾーンにある自身のカードを１枚選ぶ。その後、自分はバトルゾーンにある相手の残りのカードの中から１枚選んで破壊する。",
+          "race": "アビスロイヤル",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "abyssRush": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ProtectBattleCard580"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "6359b2533439a6d716893798638c3d4fb25c3aee2b7a05b6adb75ccea2794001",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr15-050",
+      "name": "スーパー獅子幻獣砲",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-050",
+      "faces": [
+        {
+          "name": "スーパー獅子幻獣砲",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにある相手の、コスト４以下のカードを１枚選ぶ。それがクリーチャーであれば破壊し、それ以外なら持ち主の墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "to": "grave",
+            "max": 4
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "1fcf3bbe18063c6ab682d07c7e4fb633b5087bc2e582b4b3eab836e97902741e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx23-007",
+      "name": "メガ・ドラゲナイ・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx23-007",
+      "faces": [
+        {
+          "name": "メガ・ドラゲナイ・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nスピードアタッカー\nT・ブレイカー\nこのクリーチャーが攻撃する時、バトルゾーンにある相手のコスト８以下のカードを１枚選び、持ち主の墓地に置く。その後、プレイヤーを１人選んでもよい。そのプレイヤーは、自身の墓地のカードをすべて山札に加えてシャッフルする。",
+          "race": "メガ・コマンド・ドラゴン/革命軍",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "BattleCardMove579",
+            "to": "grave",
+            "max": 8
+          },
+          {
+            "op": "GraveShuffle545",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx23-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "ab6b72a92d63cbc565ac7571cbd2a59bfddb9dcb07de972f8656ac7b0651ff28",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-034",
+      "name": "缶隊長 サーディン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-034",
+      "faces": [
+        {
+          "name": "缶隊長 サーディン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、プレイヤーを１人選んでもよい。そのプレイヤーは自身の墓地のカードをすべて山札に加えてシャッフルする。",
+          "race": "ムートピア/レクスターズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GraveShuffle545",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "f12244de0f670b4b592a9f3566e0353c1a27e559b443a143a7d8bbed8c8cebd2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp06-s04",
+      "name": "超宮城 コーラリアン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-s04",
+      "faces": [
+        {
+          "name": "超宮城 コーラリアン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "G・ゼロ：このターン、自分が呪文を４枚以上唱えていれば、このクリーチャーをコストを支払わずに召喚してもよい。\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンにある相手のカードを１枚選び、持ち主の手札に戻してもよい。\n相手のターン中、このクリーチャーが破壊される時、墓地に置くかわりに手札に戻す。",
+          "race": "ムートピア",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "g448Spells": 4
+            }
+          ]
+        },
+        "blocker": true,
+        "breaker": 2,
+        "g260Self": {
+          "filter": {
+            "creature": true
+          },
+          "turn": "opponent",
+          "grants": {
+            "destroyToHand": true
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "to": "hand",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "61d51036fb61d82c4d493b1764a2a68dd6935b436c1628b55261497ceb4a7672",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp10-031",
+      "name": "龍装車 リブリジオ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-031",
+      "faces": [
+        {
+          "name": "龍装車 リブリジオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃した時、バトルゾーンにある相手の、クリーチャーではないカードを１枚選び、持ち主のマナゾーンに置いてもよい。",
+          "race": "ドラゴンギルド/グランセクト",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "BattleCardMove579",
+            "to": "mana",
+            "nonCreature": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "a6a2277639831f14d39a4caae8f64895e554e92af88ac84dde8a46582eadb267",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr23-s02": 4,
+      "dmex14-074": 4,
+      "dmrp12-092": 4,
+      "dm22rp2-039": 4,
+      "dmr15-050": 4,
+      "dmx23-007": 4,
+      "dmrp19-034": 4,
+      "dmrp06-s04": 4,
+      "dmrp10-031": 4
+    }
+  }
+}

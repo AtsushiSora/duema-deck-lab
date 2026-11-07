@@ -1,0 +1,492 @@
+{
+  "phase": 582,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5464,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36170/",
+    "https://dm.takaratomy.co.jp/rule/qa/39961/",
+    "https://dm.takaratomy.co.jp/rule/qa/45909/"
+  ],
+  "cards": [
+    {
+      "id": "dm15-s02",
+      "name": "アドミラル・クイーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-s02",
+      "faces": [
+        {
+          "name": "アドミラル・クイーン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化-自分のスプラッシュ・クイーン１体の上に置く。\nこのクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nプレイヤーを一人選ぶ。そのプレイヤーは、自分自身のマナゾーンからカードを２枚選び、手札に戻す。",
+          "race": "スプラッシュ・クイーン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "スプラッシュ・クイーン"
+        },
+        "g439Tap": [
+          {
+            "op": "ManaChoose582",
+            "who": "choose",
+            "n": 2,
+            "to": "hand"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm15-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "095d3ebf94729d59d4071acf9b33c9ef29f72c43450e754d41dc69e420a16fe6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-015",
+      "name": "エクス・リボルバー・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-015",
+      "faces": [
+        {
+          "name": "エクス・リボルバー・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分のマナゾーンからカードを３枚選び、それ以外を自分の墓地に置く。その後、相手は自分自身のマナゾーンからカードを３枚選び、それ以外を持ち主の墓地に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ManaChoose582",
+            "n": 3,
+            "keep": true,
+            "who": "self",
+            "to": "grave"
+          },
+          {
+            "op": "ManaChoose582",
+            "n": 3,
+            "keep": true,
+            "who": "opponent",
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "aea3503e4d87fdc91b75a83da05c7010385d229889b8f22a4a33af3990f8f175",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm38-023",
+      "name": "パーロック～呪われし航海～",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-023",
+      "faces": [
+        {
+          "name": "パーロック～呪われし航海～",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、カードを３枚、自分のマナゾーンから選ぶ。そのうちの１枚を手札に戻し、他の１枚を自分の山札の一番下に置き、残りの１枚を山札の一番上に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "サイバーロード",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ManaChoose582",
+            "n": 3,
+            "destinations": [
+              "hand",
+              "deck",
+              "deckTop"
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "dad8203fe54e4153fbc964eaec883187c4d8777e5e020b586054818712e53d4c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm02-016",
+      "name": "ボマーザウルス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-016",
+      "faces": [
+        {
+          "name": "ボマーザウルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンから墓地に置かれるとき、各プレイヤーは自分自身のマナゾーンからカードを２枚ずつ選び、それぞれの墓地に置く。",
+          "race": "ロック・ビースト",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "ManaChoose582",
+            "who": "each",
+            "n": 2,
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm02-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "110c5c524ac98ed69dace726ffc44e81890832df6a5ec7f491acecc2fb064cd0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm02-050",
+      "name": "技師ピーポ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-050",
+      "faces": [
+        {
+          "name": "技師ピーポ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンから自分の墓地に置かれるとき、各プレイヤーは自分自身のマナゾーンからカードを１枚選び、それぞれの墓地に置く。",
+          "race": "マシン・イーター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "ManaChoose582",
+            "who": "each",
+            "n": 1,
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm02-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "91d231de4f0865c745f262ca60a3989be366928803a493e52f497ea0467987b1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm07-s04",
+      "name": "激震闘士スカイ・クラッシャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-s04",
+      "faces": [
+        {
+          "name": "激震闘士スカイ・クラッシャー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n各プレイヤーは、自分自身のマナゾーンからカードを１枚選び、それぞれの墓地に置く。",
+          "race": "ドラゴノイド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "ManaChoose582",
+            "who": "each",
+            "n": 1,
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm07-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "aaa86c8edb031f3a3e0bed659ee3a527e6628dfb80b1ffbf0add984ebe735cfe",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm03-031",
+      "name": "甲神兵クエロス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-031",
+      "faces": [
+        {
+          "name": "甲神兵クエロス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃するとき、各プレイヤーは自分自身のマナゾーンから火以外のカードを１枚選び、それぞれの墓地に置く。",
+          "race": "アーマロイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "ManaChoose582",
+            "who": "each",
+            "n": 1,
+            "to": "grave",
+            "exceptColor": "火"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm03-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "de02c9cc57fe710be01a4eb23e086511ba6be99002dbcb0dcd762ff0962eb383",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex16-047",
+      "name": "弾丸のリュウセイ・リボルバー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex16-047",
+      "faces": [
+        {
+          "name": "弾丸のリュウセイ・リボルバー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、自分のマナゾーンからカードを６枚選び、残りを墓地に置く。その後、相手は自身のマナゾーンからカードを６枚選び、残りを墓地に置く。\n相手のカードは、タップしてマナゾーンに置く。",
+          "race": "レッド・コマンド・ドラゴン/ハンター",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "opponentManaTap": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ManaChoose582",
+            "n": 6,
+            "keep": true,
+            "who": "self",
+            "to": "grave"
+          },
+          {
+            "op": "ManaChoose582",
+            "n": 6,
+            "keep": true,
+            "who": "opponent",
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex16-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "2510897316225afc2bb423693be365d72352cb930cd35c42624e1fe846fd216b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx17-008",
+      "name": "超熱血 レッド・ブルマッスル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx17-008",
+      "faces": [
+        {
+          "name": "超熱血 レッド・ブルマッスル",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分の火のドラゴン１体の上に置く。\n相手がこのクリーチャーを選んだ時、相手は自身のマナゾーンからカードを３枚選び、それ以外のカードを墓地に置く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "category": "ドラゴン",
+          "civilization": "火"
+        },
+        "g447Selected": [
+          {
+            "op": "ManaChoose582",
+            "n": 3,
+            "keep": true,
+            "who": "opponent",
+            "to": "grave"
+          }
+        ],
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx17-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "08d9b50e0d861159199b537824c81c517ec27319d1015761abc65c5a1438be35",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm01-029",
+      "name": "爆勇士ユーカーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm01-029",
+      "faces": [
+        {
+          "name": "爆勇士ユーカーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、自分のマナゾーンからカードを２枚選び、自分の墓地に置く。\nW(ダブル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする。)",
+          "race": "ドラゴノイド",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ManaChoose582",
+            "n": 2,
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm01-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "6a7e23fd9119b0cc7463aaa62a929908ef4b668648e4be14edb697303f8b89eb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx15-s06",
+      "name": "未知なる弾丸 リュウセイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-s06",
+      "faces": [
+        {
+          "name": "未知なる弾丸 リュウセイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、カードを６枚自分のマナゾーンから選び、残りを墓地に置く。その後、相手はカードを６枚自身のマナゾーンから選び、残りを墓地に置く。\n相手は、自身のマナゾーンにカードを置く時、タップして置く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アウトレイジMAX",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "opponentManaTap": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ManaChoose582",
+            "n": 6,
+            "keep": true,
+            "who": "self",
+            "to": "grave"
+          },
+          {
+            "op": "ManaChoose582",
+            "n": 6,
+            "keep": true,
+            "who": "opponent",
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx15-s06.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "e1591a2617cf04fc239b87913a0bebd6464451228eadf3eb3ecbd84a74b812b4",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm15-s02": 4,
+      "dm16-015": 4,
+      "dm38-023": 4,
+      "dm02-016": 4,
+      "dm02-050": 4,
+      "dm07-s04": 4,
+      "dm03-031": 4,
+      "dmex16-047": 4,
+      "dmx17-008": 4,
+      "dm01-029": 4,
+      "dmx15-s06": 4
+    }
+  }
+}

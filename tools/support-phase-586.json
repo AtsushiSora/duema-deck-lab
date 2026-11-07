@@ -1,0 +1,701 @@
+{
+  "phase": 586,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5513,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/40237/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35721/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35723/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35429/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp22-067",
+      "name": "INABASUKUNA",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-067",
+      "faces": [
+        {
+          "name": "INABASUKUNA",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の進化クリーチャーが攻撃する時、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+          "race": "イブユニット/デモニオ/鬼レクスターズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "filter": {
+              "creature": true,
+              "evolution": true
+            },
+            "g399Attacker": true,
+            "defs": [
+              {
+                "op": "AttackFight408"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-067.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "fac9e140d964f4341bd14eeded89ebf5bf63400ab6485c104d2798be229cdfbc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp05-092",
+      "name": "カカンナブ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-092",
+      "faces": [
+        {
+          "name": "カカンナブ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の他のクリーチャーがバトルに勝った時、そのターン、このクリーチャーのパワーを+4000する。",
+          "race": "グランセクト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g252WinWatch": {
+          "filter": {
+            "creature": true
+          },
+          "other": true,
+          "defs": [
+            {
+              "op": "SelfBoost313",
+              "power": 4000
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-092.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "ce2b693fe9482e7d42614c56f2760782168db344d36c2988171c052da336c03c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm30-011",
+      "name": "キサナティック・X",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-011",
+      "faces": [
+        {
+          "name": "キサナティック・X",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンにあるクリーチャーを２体選び、タップする。そのクリーチャー同士をバトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightPair586",
+            "who": "both",
+            "tap": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm30-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "1a3858fa72e95e73c2c6779b914d1f250580adb82f7a99907b78e8f2e735aced",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd15-005",
+      "name": "ギャノバズガ・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd15-005",
+      "faces": [
+        {
+          "name": "ギャノバズガ・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の火のクリーチャーがバトルする時、そのバトルの終わりまで、そのクリーチャーのパワーは+3000される。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g466BattleAura": {
+          "filter": {
+            "creature": true,
+            "color": "火"
+          },
+          "power": 3000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd15-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "e0869984ee952c74689f8cc0be110876942fc436a4d39bc7406cf1049763a94c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp3-056",
+      "name": "ゴルドラン・スパーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-056",
+      "faces": [
+        {
+          "name": "ゴルドラン・スパーク",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nすべてのクリーチャーをタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll",
+            "both": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-056.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "39c55f78f36096a05f7f431de3eb07512aa900637017f3d3547230f5f448c16e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp05-051",
+      "name": "バッドドッグ・スクラッパー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-051",
+      "faces": [
+        {
+          "name": "バッドドッグ・スクラッパー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを２体選び、バトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightPair586",
+            "who": "opponent"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "73adae2bce3a1340badd0810d4123597282747f58963ff1e2af41a93a565aa44",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy13-008",
+      "name": "バトルエール・カイザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-008",
+      "faces": [
+        {
+          "name": "バトルエール・カイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分のドラゴンがバトルする時、そのバトル中、そのドラゴンのパワーは+7000される。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "レッド・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g466BattleAura": {
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "power": 7000
+        },
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy13-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "7f1be07b6a60d50971bf9982e96d0c91a5579905fe7ced4c5580897f14b2dc9a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-s04",
+      "name": "ファンタジー・ハート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-s04",
+      "faces": [
+        {
+          "name": "ファンタジー・ハート",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにある相手のクリーチャーを２体選び、その２体にバトルさせる。",
+          "race": "スプラッシュ・クイーン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "FightPair586",
+            "who": "opponent"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "57d08c71fb3f844d6f4c1c417ac0c8d7ba3eae55a0e0b3504e69f4f3d7697e1a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-065",
+      "name": "フィーアカノン・ワイバーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-065",
+      "faces": [
+        {
+          "name": "フィーアカノン・ワイバーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、クリーチャーを２体選ぶ。この２体をバトルさせる。",
+          "race": "アーマード・ワイバーン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightPair586",
+            "who": "both"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-065.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "fd613444f59c57dde4fc8ffa7268a92c80ea11abef638fdd7244c60d574f6805",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy14-058",
+      "name": "ラブ・バトラッチ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-058",
+      "faces": [
+        {
+          "name": "ラブ・バトラッチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分のファイアー・バードまたはドラゴンを１体と、相手のクリーチャーを１体選んでもよい。選んだクリーチャー２体をバトルさせる。",
+          "race": "ファイアー・バード炎/革命軍",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "optional": true,
+            "g419FightFilter": {
+              "raceAny": [
+                "ファイアー・バード",
+                "ドラゴン"
+              ]
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy14-058.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "e72ee2f0cc7e22baacebec4f79ef7f5b322674ae952070da6ef437e9d19e1b10",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-085",
+      "name": "轟戦！爆戦!!超決戦!!!",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-085",
+      "faces": [
+        {
+          "name": "轟戦！爆戦!!超決戦!!!",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nクリーチャーを２体選び、バトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightPair586",
+            "who": "both"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-085.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "edd8c0d2a4fc54f9c777caad8cbc4a01b32c360481f9af66496d871a4424ef65",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr09-034",
+      "name": "仁義無き戦い",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-034",
+      "faces": [
+        {
+          "name": "仁義無き戦い",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "バトルゾーンにある自分のクリーチャーを１体選ぶ。その後、相手はバトルゾーンにある自身のクリーチャーを１体選ぶ。この２体にバトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightPair586",
+            "who": "self",
+            "opponentPicks": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "a7a61228101a15a4dd2f792c22c580072e0ed7700cbf140a667aec3936200d82",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp08-041",
+      "name": "堕魔 ヴォガネ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-041",
+      "faces": [
+        {
+          "name": "堕魔 ヴォガネ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n相手のクリーチャーが破壊された時、カードを１枚引く。",
+          "race": "マフィ・ギャング/魔導具",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "slayer": true,
+        "g303DeathWatch": {
+          "opponent": true,
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "4d85186d105aae5ef696b6cc67ff14fd7c81534728643a5b4413edd9598cbf8c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-070",
+      "name": "大きくて小さな農園",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-070",
+      "faces": [
+        {
+          "name": "大きくて小さな農園",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンにあるパワー3000以下のクリーチャーをすべて、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "mana",
+            "filter": {
+              "creature": true,
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "81c0911973c86203e2950ed074bb85a30a97a7aced769a1e10fea0650e646371",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm39-014",
+      "name": "爆竜ベルナルド・タイソン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-014",
+      "faces": [
+        {
+          "name": "爆竜ベルナルド・タイソン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nこのクリーチャーがバトルに勝った時、相手のシールドを３枚ブレイクする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン/フレイム・コマンド",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g189BattleWin": [
+          {
+            "op": "Break497",
+            "n": 3
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "b3e362cdf0f1c176240668649fd62452211be4bebfbce6bf93bb92ca15fd04f5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm20-053",
+      "name": "秘護精マニトゥス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-053",
+      "faces": [
+        {
+          "name": "秘護精マニトゥス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のアーク・セラフィムがバトルに勝った時、自分の山札の上から２枚を自分のマナゾーンに加える。",
+          "race": "セイント・ヘッド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g252WinWatch": {
+          "filter": {
+            "creature": true,
+            "race": "アーク・セラフィム"
+          },
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 2
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "a7f40791ccba7d72118450fdb9244121286c7213ced4df7c216a0c038681c12a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm01-005",
+      "name": "妖姫シルフィ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm01-005",
+      "faces": [
+        {
+          "name": "妖姫シルフィ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、各プレイヤーはバトルゾーンにあるパワー3000以下のクリーチャーすべてを、それぞれの墓地に置く。",
+          "race": "ダークロード",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm01-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "ef6b144a3f8c8ee69388c44e59e868cf5535f2b70d9f8b59e587a132e25556af",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp22-067": 4,
+      "dmrp05-092": 4,
+      "dm30-011": 4,
+      "dmd15-005": 4,
+      "dm24rp3-056": 4,
+      "dmrp05-051": 4,
+      "promoy13-008": 4,
+      "dm19-s04": 4,
+      "dm22rp2-065": 4,
+      "promoy14-058": 4,
+      "dmrp19-085": 4,
+      "dmr09-034": 4,
+      "dmrp08-041": 4,
+      "dmr05-070": 4,
+      "dm39-014": 4,
+      "dm20-053": 4,
+      "dm01-005": 4
+    }
+  }
+}

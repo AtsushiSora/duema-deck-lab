@@ -34,7 +34,7 @@ export function createStarterRules(api){
   case 's6MaryRevive':case 's6DarkRevive':if(value)put(s,task('putCreature',t.p,t.source,{uid:value,origin:'grave'}));break;
   case 's6FumiDraw':if(value&&(s.s6FumiUsed||{})[t.key]!==s.turn){(s.s6FumiUsed??={})[t.key]=s.turn;draw(s,t.p,1);}break;
   case 's6Sacrifice':if(value&&live(s,t)){put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:1,random:true}));move(s,[{player:t.p,uid:t.uid,to:'grave'}]);}break;
-  case 's6Inspect':put(s,task('discardChosen',1-t.p,t.source,{uid:value,n:1}));break;
+  case 's6Inspect':put(s,task('discardChosen',1-t.p,t.source,{uid:value,n:1,causedBy:t.p}));break;
   case 's6OniBounce':if(value&&s.players[t.owner].battle.some(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation))move(s,[{player:t.owner,uid:t.uid,to:'hand'}]);break;
   case 's6Modes':put(s,{...t,remaining:t.remaining-1,selected:[...t.selected,value]});break;
   case 's6Bounce':move(s,[{player:1-t.p,uid:value,to:'hand'}]);break;

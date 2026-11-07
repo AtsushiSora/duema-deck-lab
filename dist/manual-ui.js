@@ -1,13 +1,13 @@
-import {choiceEffectSummary} from './choice-summary.js?v=0.667.0';
-import {publicLogCards,linkedLogText} from './log-card-links.js?v=0.667.0';
-import {battleZoomControlsHTML} from './battle-zoom.js?v=0.667.0';
+import {choiceEffectSummary} from './choice-summary.js?v=0.676.0';
+import {publicLogCards,linkedLogText} from './log-card-links.js?v=0.676.0';
+import {battleZoomControlsHTML} from './battle-zoom.js?v=0.676.0';
 import {displayTurn} from './turn-count.js';
-import {challengeKind} from './character-roster.js?v=0.667.0';
-import {paymentReviewHTML} from './battle-insights.js?v=0.667.0';
-import {sourceCardBadge,sourceCardLabel} from './card-info.js?v=0.667.0';
+import {challengeKind} from './character-roster.js?v=0.676.0';
+import {paymentReviewHTML} from './battle-insights.js?v=0.676.0';
+import {sourceCardBadge,sourceCardLabel} from './card-info.js?v=0.676.0';
 import {shieldCards} from './shield-state.js';
-import {aiPlaybackHTML,aiSpeedLabel,AI_SPEEDS,aiPublicSnapshot,aiResultCues} from './ai-playback.js?v=0.667.0';
-import {handCardModel,preferredHandFace,handShelfHTML,handInspectorHTML,handEvolutionButtonHTML} from './hand-ui.js?v=0.667.0';
+import {aiPlaybackHTML,aiSpeedLabel,AI_SPEEDS,aiPublicSnapshot,aiResultCues} from './ai-playback.js?v=0.676.0';
+import {handCardModel,preferredHandFace,handShelfHTML,handInspectorHTML,handEvolutionButtonHTML} from './hand-ui.js?v=0.676.0';
 import {getLegalActions,graveSummonSources,manaSelectionStatus,manaColors,card,power,effectiveCard,isEvolution,canUntap,abilitiesIgnored,genmuActive,momoActive,selfTriggersStopped,manaValue,manaValueAt,exLifeShieldInfo,exLifeShields,shieldGuardSources,shieldSaverSources,playFaces,attackLocked,evolutionBases,canCastSpell,canEnterCreature,summonCost,paymentPool,manaPayment} from './engine.js';
 import {attackRoute,previewAttackAction} from './battle-visuals.js?v=0.100.0';
 import {pageWindow} from './board-fit.js';
@@ -289,7 +289,9 @@ function handHTML(s,ui,m,{art,icon}){
 function choicesHTML(s,ui,m,h){
  if(s.decision?.type==='manaPayment')return manaPaymentHTML(s,m.actions,h);
  const {positive,quiet,origins,multiple,origin,query,filtered}=choiceSelectionModel(s,ui,m.actions),pane=pageWindow(filtered,ui.choicePage,ui.choicePageSize||4),shown=ui.mobile?pane.items:filtered;
- const inspection=s.decision?.task?.g223Inspect&&s.decision.player===0?`<div class="stack hand-inspection" aria-label="確認した相手の手札">${(s.decision.task.seen||[]).map((id,i)=>`<div class="deck-detail-row">${h.art(id)}<div class="grow"><strong>${esc(card(id).name)}</strong>${s.decision.task.discard?`<div class="small">${s.decision.task.discardSeen[i]?'捨てさせるカード':'手札に残るカード'}</div>`:''}</div><button class="btn sm" data-action="card-detail" data-id="${esc(id)}" aria-label="${esc(card(id).name)}の詳細を見る">詳細</button></div>`).join('')}</div>`:'';
+ const task=s.decision?.task,peek=task?.g585Peek;
+ const rows=peek||(task?.g223Inspect?(task.seen||[]).map((id,i)=>({id,label:task.discard?(task.discardSeen[i]?'捨てさせるカード':'手札に残るカード'):null})):[]);
+ const inspection=s.decision?.player===0&&(peek||task?.g223Inspect)?`<div class="stack hand-inspection" aria-label="${peek?'確認したカード':'確認した相手の手札'}">${rows.map(({id,label})=>`<div class="deck-detail-row">${h.art(id)}<div class="grow"><strong>${esc(card(id).name)}</strong>${label?`<div class="small">${esc(label)}</div>`:''}</div><button class="btn sm" data-action="card-detail" data-id="${esc(id)}" aria-label="${esc(card(id).name)}の詳細を見る">詳細</button></div>`).join('')}</div>`:'';
  const originTabs=multiple?`<div class="choice-origin-tabs" role="group" aria-label="出す場所・選ぶ場所"><button class="btn" data-action="manual-choice-origin" data-origin="all" aria-pressed="${origin==='all'}">すべて ${positive.length}</button>${origins.map(z=>`<button class="btn" data-action="manual-choice-origin" data-origin="${z.id}" aria-pressed="${origin===z.id}">${z.label} ${z.count}</button>`).join('')}</div>`:'';
  return `${s.decision?.task?.op==='g9Number'?`<label class="choice-search">宣言する数字<input id="manual-number" class="field" inputmode="numeric" placeholder="0以上の整数、または∞" aria-label="宣言する数字"></label><button class="btn primary" data-action="manual-number-submit" data-index="${m.actions[0].id}">入力した数字を宣言</button>`:''}${m.source?`<div class="resolving-card"><span class="choice-source-art">${h.art(card(m.source).referenceId||m.source)}</span><div><small>解決中のカード</small><strong>${esc(card(m.source).name)}${card(m.source).copyOf?` / ${esc(card(card(m.source).copyOf).name)}の能力`: ''}</strong></div><button class="icon-btn" data-action="card-detail" data-id="${esc(card(m.source).copyOf||m.source)}" aria-label="解決中の能力を見る">${h.icon('info',18)}</button></div>`:''}${inspection}${originTabs}${positive.length>8?`<label class="choice-search">${h.icon('search',16)}<input id="manual-choice-search" type="search" value="${esc(ui.filter||'')}" placeholder="選択肢をカード名で絞り込む" aria-label="選択肢を絞り込む"></label>`:''}<div class="manual-choices">${shown.map(a=>{const c=actionCard(s,a),detail=choiceDetailCard(s,a),zone=sourceZone(s,a),summary=choiceEffectSummary(s,a);return `<div class="choice-row"><button class="choice-card" data-action="battle-step" data-index="${a.id}" data-focus-key="action-${a.kind}-${a.id}">${c?`<span class="choice-thumb">${h.art(c.id)}</span>`:`<span class="choice-symbol">${h.icon(['judgeAgain','useRamp','useTrigger','declareDDD'].includes(a.kind)?'bolt':'check',19)}</span>`}<span class="choice-copy">${zone?`<small>${zone}${a.cost!=null?' · '+a.cost+'マナ':''}</small>`:''}<strong>${esc(a.label)}</strong>${summary?`<span class="choice-effect-summary">${esc(summary)}</span>`:''}</span>${h.icon('chevron',14)}</button>${detail?`<button type="button" class="btn choice-detail" data-action="manual-choice-detail" data-index="${a.id}" data-context="${esc(m.context)}" data-focus-key="choice-detail-${a.kind}-${a.id}" aria-label="${esc(a.label)}の詳細を見る">詳細</button>`:''}</div>`;}).join('')||(!query?(origin==='all'?'':`<p class="small">${originLabels[origin]}から選べる候補はありません。</p>`):`<p class="small">一致する選択肢がありません。<button class="details-link" data-action="manual-clear-filter">絞り込みを解除</button></p>`)}</div>${ui.mobile?pagingHTML(pane,'manual-choice-page'):''}${quiet.length?`<div class="manual-secondary">${quiet.map(a=>button(a,{quiet:true})).join('')}</div>`:''}`;
 }

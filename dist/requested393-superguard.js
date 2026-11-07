@@ -8,10 +8,12 @@ export function createRequested393SuperguardRules(api){
   const out=[];
   for(let row=0;row<t.rows.length;row++){
    const r=t.rows[row],original=live(s,r);if(r.p!==p||!original)continue;
-   const giant=String(effective(original,s).race||'').includes('ジャイアント');
+   const opposing=t.rows[1-row].p!==p,originalCard=effective(original,s);
+   const giant=opposing&&String(originalCard.race||'').includes('ジャイアント');
+   const fire=opposing&&(originalCard.civilizations||String(originalCard.civ||'').split('/')).includes('火');
    for(const x of creatures(s,p)){
     if(x.sealed||t.rows.some(r=>r.p===p&&r.uid===x.uid))continue;
-    const c=effective(x,s),kinds=[...(c.superGuardman&&!x.tapped?['super']:[]),...(giant&&c.galacticBattle?['galactic']:[])];
+    const c=effective(x,s),kinds=[...(c.superGuardman&&!x.tapped?['super']:[]),...(giant&&c.galacticBattle?['galactic']:[]),...(fire&&c.g588FireBattleReplace?['fire']:[])];
     for(const kind of kinds)out.push({row,kind,...ref(p,x),cardId:x.cardId});
    }
   }
@@ -43,8 +45,8 @@ export function createRequested393SuperguardRules(api){
  return{run,chosen,
   replaceBattle(s,pa,a,pb,b,attacking=null){
    const rows=[ref(pa,a),ref(pb,b)],owners=[s.active,1-s.active],t=task('g393SG_Battle',pa,a.cardId,{rows,owners,attacking});
-   // With no Super Guardman involved, retain the existing Galactic handler.
-   if(!owners.some(p=>candidates(s,t,p).some(r=>r.kind==='super')))return false;
+   // Retain the existing Galactic handler when no competing replacement is present.
+   if(!owners.some(p=>candidates(s,t,p).some(r=>r.kind!=='galactic')))return false;
    put(s,t);return true;
   }
  };
