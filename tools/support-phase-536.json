@@ -1,0 +1,191 @@
+{
+  "phase": 536,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5147,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/38756/",
+    "https://dm.takaratomy.co.jp/rule/qa/46566/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp15-062",
+      "name": "月下の感情なきキカイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-062",
+      "faces": [
+        {
+          "name": "月下の感情なきキカイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "オシオキムーン：カードが自分のシールドゾーンを離れた時、相手のクリーチャーを１体選び、タップする。",
+          "race": "シャイン・モンスター/月光王国",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g536ShieldLeft": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-062.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "863d42f9bbc9ff2b83b7cb87ee3b44b131c5951c91a8804fc4218e4651e40ed7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp15-017",
+      "name": "昏き月のシニガミ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-017",
+      "faces": [
+        {
+          "name": "昏き月のシニガミ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nオシオキムーン：カードが自分のシールドゾーンを離れた時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－3000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "デビルマスク/月光王国",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "slayer": true,
+        "g536ShieldLeft": [
+          {
+            "op": "Target",
+            "power": -3000,
+            "g242PowerMinus": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "82a1311d51d892eb5399a1c6a41017c963b5926a08a814bfb8428fd396669384",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr08-024",
+      "name": "神秘の守護者グッチー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-024",
+      "faces": [
+        {
+          "name": "神秘の守護者グッチー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがブロックした時、相手とガチンコ・ジャッジする。自分が勝ったら、このクリーチャーをアンタップし、そのターン、このクリーチャーのパワーは+11000される。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)",
+          "race": "ガーディアン",
+          "powerText": "500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g178Block": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Sequence",
+                "defs": [
+                  {
+                    "op": "Untap",
+                    "g191First": true
+                  },
+                  {
+                    "op": "SelfBoost313",
+                    "power": 11000,
+                    "g536Source": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "7c5a60aa3a228691d411a5d98bd763a83dd2bdc146f96e28c66fb5215ca9d53b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp05-032",
+      "name": "青守銀 ワッシェン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-032",
+      "faces": [
+        {
+          "name": "青守銀 ワッシェン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nバトルゾーンにある自分のクリーチャーの数が相手より多ければ、このクリーチャーは「ブロッカー」を得、自分のターンの終わりにアンタップする。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）",
+          "race": "メタリカ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g260Self": {
+          "filter": {
+            "g413MoreCreatures": true
+          },
+          "grants": {
+            "blocker": true,
+            "g166EndUntap": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "fb5ab19a228a159651ee13b25bb720c30a8081b02929d3f69b21ce0f61d033f1",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp15-062": 4,
+      "dmrp15-017": 4,
+      "dmr08-024": 4,
+      "dmrp05-032": 4
+    }
+  }
+}

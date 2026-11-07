@@ -5,6 +5,43 @@ const aliasNames=new Set(['炎のたてがみ(バーニング・ヘアー)','青
 const normalize=s=>s.normalize('NFKC').replace(/\s|■/g,'').replaceAll('、','');
 const keyword=(line,name)=>new RegExp('^(?:'+name+'){1,2}(?:\\([^()]*\\))?$').test(line);
 const clauses=(body,phase)=>{
+ if(phase>=568&&instruction568(body))return[body];
+ if(phase>=563&&instruction563(body))return[body];
+ if(phase>=562&&instruction562(body))return[body];
+ if(phase>=561&&instruction561(body))return[body];
+ if(phase>=557&&instruction557(body))return[body];
+ if(phase>=556&&instruction556(body))return[body];
+ if(phase>=555&&instruction555(body))return[body];
+ if(phase>=554){if(instruction554(body))return[body];if(body==='自分の山札の上から2枚を裏向きにしてそれぞれ別の新しいシールドとして自分のシールドゾーンに加える。')return Array(2).fill('自分の山札の上から1枚目をシールド化する。');}
+ if(phase>=553&&instruction553(body))return[body];
+ if(phase>=552&&lookBudget552(body))return[body];
+ if(phase>=551&&deploy551(body))return[body];
+ if(phase>=550&&deployBudget550(body))return[body];
+ if(phase>=549&&instruction549(body))return[body];
+ if(phase>=540&&instruction540(body))return[body];
+ if(phase>=539&&instruction539(body))return[body];
+ if(phase>=538&&instruction538(body))return[body];
+ if(phase>=537){const parts=clauses537(body);if(parts)return parts;}
+ if(phase>=535&&instruction535(body))return[body];
+ if(phase>=533&&instruction533(body))return[body];
+ if(phase>=532&&instruction532(body))return[body];
+ if(phase>=531&&instruction531(body))return[body];
+ if(phase>=530&&instruction530(body))return[body];
+ if(phase>=529&&instruction529(body))return[body];
+ if(phase>=526&&instruction526(body))return[body];
+ if(phase>=523&&manaDeploy523(body))return[body];
+ if(phase>=522&&instruction522(body))return[body];
+ if(phase>=521&&target521(body))return[body];
+ if(phase>=520&&mill520(body))return[body];
+ if(phase>=519&&target519(body))return[body];
+ if(phase>=518&&fight518(body))return[body];
+ if(phase>=517&&discard517(body))return[body];
+ if(phase>=516&&ramp516(body))return[body];
+ if(phase>=515&&boost515(body))return[body];
+ if(phase>=514&&reveal514(body))return[body];
+ if(phase>=513&&instruction513(body))return[body];
+ if(phase>=510&&modal510(body))return[body];
+ if(phase>=509&&body==='バトルゾーンにある相手のクリーチャーを1体選びタップする。その後バトルゾーンにある自分のクリーチャーを1体選んでもよい。このターンそのクリーチャーはブロックされない。')return['バトルゾーンにある相手のクリーチャーを1体選びタップする。','バトルゾーンにある自分のクリーチャーを1体選んでもよい。このターンそのクリーチャーはブロックされない。'];
  if(phase>=506&&powerBudget506(body))return[body];
  if(phase>=503&&ally503(body))return[body];
  if(phase>=501&&body==='自分のターンの終わりにバトルゾーンにある自分のクリーチャーを1体アンタップする。それが進化クリーチャーであればカードを1枚引いてもよい。')return[body];
@@ -440,7 +477,422 @@ function ally503(text){
   'そのターンの終わりまでバトルゾーンにある自分の他のシノビすべてのパワーは+3000される。':{op:'GroupPower',owner:'self',other:true,filter:{creature:true,race:'シノビ'},power:3000}
  }[text]||null;
 }
+function modal510(text){
+ const tap={label:'相手のクリーチャー1体をタップ',defs:[{op:'Target',tap:true}]},bounce={label:'相手のクリーチャー1体を手札に戻す',defs:[{op:'Target',to:'hand'}]},recover={label:'墓地から他のクリーチャー1体を手札に戻す',defs:[{op:'Select',origin:'grave',to:'hand',n:1,g186Other:true,filter:{creature:true}}]},cycle={label:'手札をすべて捨て、同じ枚数引く',defs:[{op:'HandCycle460',mode:'all',to:'grave'}]},untap={label:'自分のクリーチャーを2体までアンタップ',defs:[{op:'Select',origin:'battle',owner:'self',n:2,optional:true,g173Targets:true,g193Select:true,g510Untap:true,filter:{creature:true},title:'アンタップする自分のクリーチャーを2体まで選ぶ'}]},search={label:'山札からコスト3以下のクリーチャーを手札に加える',defs:[{op:'Look',g310Search:true,g201Search:true,g200Search:true,n:'all',rest:'shuffle',stages:[{n:1,to:'hand',filter:{creature:true,max:3},reveal:true}]}]};
+ const modes={
+  'バトルゾーンにある相手のクリーチャーを1体選んでタップするか他のクリーチャーを1体自分の墓地から手札に戻す。':[tap,recover],
+  'バトルゾーンにある相手のクリーチャーを1体選んでタップするか自分の手札をすべて捨て同じ枚数のカードを引く。':[tap,cycle],
+  'バトルゾーンにある相手のクリーチャーを1体選んで持ち主の手札に戻すか自分の手札をすべて捨て同じ枚数のカードを引く。':[bounce,cycle],
+  '自分の他のクリーチャーを1体墓地から手札に戻すか自分の山札からコスト3以下のクリーチャーを1体選んで相手に見せてから手札に加えその後山札をシャッフルする。':[recover,search],
+  '自分の山札の上から1枚目をマナゾーンに置くかバトルゾーンにある自分のクリーチャーを2体までアンタップする。':[{label:'山札の上1枚をマナに置く',defs:[{op:'Ramp',n:1}]},untap],
+  'バトルゾーンにある自分のクリーチャーを2体までアンタップするかカードを1枚引く。':[untap,{label:'カードを1枚引く',defs:[{op:'Draw',n:1}]}],
+  '相手のコスト4以下の多色クリーチャーを1体破壊するか相手のコスト6以下の多色ではないクリーチャーを1体破壊する。':[{label:'コスト4以下の多色クリーチャー1体を破壊',defs:[{op:'Target',to:'grave',filter:{multi:true,max:4}}]},{label:'コスト6以下の多色ではないクリーチャー1体を破壊',defs:[{op:'Target',to:'grave',filter:{g510NonMulticolor:true,max:6}}]}],
+  'バトルゾーンにある相手の多色ではないコスト5以下のクリーチャーを1体破壊するかバトルゾーンにある相手の多色ではないコスト5以下のクロスギアを1枚選んで持ち主の墓地に置く。':[{label:'コスト5以下の多色ではないクリーチャー1体を破壊',defs:[{op:'Target',to:'grave',filter:{g510NonMulticolor:true,max:5}}]},{label:'コスト5以下の多色ではないクロスギア1枚を墓地に置く',defs:[{op:'Target',element:true,to:'grave',filter:{g201Gear:true,g510NonMulticolor:true,max:5}}]}]
+ }[text];return modes?{op:'Choose',g184Modes:true,modes}:null;
+}
+// Whole-clause aliases reuse the existing fight rules and target permissions.
+// Keep the mill and its conditional reward in one complete, verified clause.
+function useBlocker524(text){
+ const head='相手がクリーチャーを召喚するか呪文を唱えた場合そのターンが終わるまでこのクリーチャーは「ブロッカー」を得る。';
+ return text.startsWith(head)&&['(相手クリーチャーが攻撃するときこのクリーチャーをタップしてその攻撃を阻止してよい。そのあとその相手クリーチャーとバトルする)','(相手クリーチャーが攻撃するときこのクリーチャーをタップしてその攻撃を阻止してよい。その後その相手クリーチャーとバトルする)'].includes(text.slice(head.length));
+}
+function manaDeploy523(text){
+ if(text==='自分のマナゾーンにあるカードの枚数以下のコストを持つクリーチャーを1体コストを支払わずに自分の手札から召喚してもよい。')return{op:'ManaDeploy523',origin:'hand',summon:true,optional:true};
+ const m=text.match(/^自分のマナゾーン(?:にある|の)カードの枚数以下のコスト(?:を持つ|の)(進化ではないクリーチャー|進化クリーチャー|クリーチャー)を1体自分の(墓地|マナゾーン)から(?:選び)?(?:バトルゾーンに)?(出す|出してもよい)。$/);
+ return m?{op:'ManaDeploy523',origin:m[2]==='墓地'?'grave':'mana',optional:m[3]==='出してもよい',filter:{creature:true,...(m[1]==='進化ではないクリーチャー'?{nonEvolution:true}:m[1]==='進化クリーチャー'?{evolution:true}:{})}}:null;
+}
+function instruction540(text){return text==='超天フィーバー:バトルゾーンまたはマナゾーンに自分のジョーカーズが合計10枚以上あればこのターン自分のクリーチャー1体に「ワールド・ブレイカー」を与える。(「ワールド・ブレイカー」を持つクリーチャーは相手のシールドをすべてブレイクする)'?{op:'IfOwn',filter:{g539Jokers:10},defs:[{op:'Target',owner:'self',grant:{g313Breaker:'∞',worldBreaker:true}}]}:null;}
+function instruction539(text){return{
+ 'バトルゾーンまたはマナゾーンに自分のジョーカーズが合計5枚以上あればカードを2枚引く。その後ジョーカーズを1枚自分の手札から捨ててもよい。そうしたらカードを2枚引く。':{op:'IfOwn',filter:{g539Jokers:5},defs:[{op:'Draw',n:2},{op:'DiscardDraw',g216DiscardDraw:true,n:2,filter:{g539JokerCard:true}}]},
+ 'バトルゾーンまたはマナゾーンに自分のジョーカーズが合計3枚以上あれば相手のクリーチャーを1体選び相手はそれを自身の山札の一番下に置く。その後自分はカードを1枚引く。':{op:'IfOwn',filter:{g539Jokers:3},defs:[{op:'Target',to:'deck'},{op:'Draw',n:1}]}
+}[text]||null;}
+function instruction538(text){
+ const tap={op:'Select',origin:'battle',owner:'opponent',optional:true,g173Targets:true,g193Select:true,g193Tap:true,filter:{creature:true},title:'タップする相手のクリーチャーを選ぶ'};
+ return{
+  'バトルゾーンにある自分のドラゴン1体につき「ブロッカー」を持つ相手のクリーチャーを1体破壊する。':{op:'CountOwn538',filter:{creature:true,race:'ドラゴン'},mode:'select',def:{op:'Select',origin:'battle',owner:'opponent',to:'grave',optional:false,g173Targets:true,g193Select:true,filter:{creature:true,blocker:true},title:'破壊する相手のブロッカーを選ぶ'}},
+  'バトルゾーンにある自分のドラゴン1体につきバトルゾーンにある相手のクリーチャーを1体選びタップしてもよい。':{op:'CountOwn538',filter:{creature:true,race:'ドラゴン'},mode:'select',def:tap},
+  'バトルゾーンにある自分のタップされているクリーチャー1体につきバトルゾーンにある相手のクリーチャーを1体選びタップしてもよい。':{op:'CountOwn538',filter:{creature:true,tapped:true},mode:'select',def:tap},
+  'バトルゾーンにある自分のタップされているクリーチャーの数よりコストが小さい相手のクリーチャーを1体バトルゾーンから選ぶ。選んだクリーチャーを相手のマナゾーンに置く。':{op:'CountOwn538',filter:{creature:true,tapped:true},mode:'belowCost',def:{op:'Target',to:'mana',filter:{}}},
+  'バトルゾーンにある自分のドラゴン1体につき1回相手とガチンコ・ジャッジする。こうして自分が勝つたび相手のコマンド1体または相手のパワー7000以下のクリーチャー1体を破壊する。(ガチンコ・ジャッジ:各プレイヤーは自身の山札の上から1枚目を見せそれを一番下に置く。そのカードのコストが相手以上であれば自分の勝ちとする)':{op:'CountOwn538',filter:{creature:true,race:'ドラゴン'},mode:'repeat',def:{op:'Judge318',defs:[{op:'Target',to:'grave',filter:{any:[{race:'コマンド'},{maxPower:7000,g199Power:true}]}}]}}
+ }[text]||null;
+}
+function clauses537(text){
+ const shield='自分のシールドを1つ手札に加える。ただしその「S・トリガー」は使えない。',later='次の自分のターンのはじめに自分のシールドを1つ手札に加える。ただしその「S・トリガー」は使えない。';
+ for(const zone of['自分のシールドゾーン','シールドゾーン']){const first='自分の山札の上から1枚目を裏向きのまま新しいシールドとして'+zone+'に置く。';if(text===first+later)return[first,later];}
+ const hand='そのターンの終わりに自分の手札を1枚新しいシールドとして自分のシールドゾーンに裏向きにして置く。';
+ if(text==='自分のシールドをひとつ手札に戻す。ただしその「S・トリガー」は使えない。'+hand)return[shield,hand];
+ if(text==='自分のシールドをすべて手札に加える。ただしその「S・トリガー」は使えない。その後自分の山札の上から5枚を裏向きのまま新しいシールドとして自分のシールドゾーンに置く。')return['自分のシールドをすべて手札に加える。ただしその「S・トリガー」は使えない。',...Array(5).fill('自分の山札の上から1枚目を裏向きのまま新しいシールドとして自分のシールドゾーンに置く。')];
+ return null;
+}
+function instruction537(text){return{
+ '次の自分のターンのはじめに自分のシールドを1つ手札に加える。ただしその「S・トリガー」は使えない。':{op:'Schedule537',when:'nextOwnStart',defs:[{op:'ShieldHand',g238ShieldHand:true}]},
+ 'そのターンの終わりに自分の手札を1枚新しいシールドとして自分のシールドゾーンに裏向きにして置く。':{op:'Schedule537',when:'turnEnd',defs:[{op:'Select',origin:'hand',to:'shields',n:1,optional:false}]},
+ 'このターンの終わりにバトルゾーンにある自分のクリーチャーをすべてアンタップする。':{op:'Schedule537',when:'turnEnd',defs:[{op:'GroupUntap',g219Untap:true,filter:{creature:true}}]},
+ '自分のシールドをすべて手札に加える。ただしその「S・トリガー」は使えない。':{op:'ShieldHand',g238ShieldHand:true,g535Count:'all'}
+}[text]||null;}
+function instruction536(text){return text==='このクリーチャーをアンタップしそのターンこのクリーチャーのパワーは+11000される。'?{op:'Sequence',defs:[{op:'Untap',g191First:true},{op:'SelfBoost313',power:11000,g536Source:true}]}:null;}
+function instruction535(text){return{
+ '自分のシールドを2つ手札に加える。ただしその「S・トリガー」能力は使えない。':{op:'ShieldHand',g238ShieldHand:true,g535Count:2},
+ '自分のシールドを2つまで手札に加えてもよい。ただしその「S・トリガー」は使えない。':{op:'ShieldHand',g238ShieldHand:true,g535Count:2,optional:true},
+ '自分のシールドを2つまで手札に加える。ただしその「S・トリガー」は使えない。':{op:'ShieldHand',g238ShieldHand:true,g535Count:2,optional:true},
+ '自分のシールドをひとつ手札に加える。(ただしその「S・トリガー」は使えない)':{op:'ShieldHand',g238ShieldHand:true},
+ 'カードを1枚自分のシールドゾーンから手札に戻す。ただしその「S・トリガー」は使えない。':{op:'ShieldHand',g238ShieldHand:true,g533CardOnly:true},
+ '自分のシールドを1つ手札に加える。その「S・トリガー」は使えない。':{op:'ShieldHand',g238ShieldHand:true}
+}[text]||null;}
+function instruction533(text){return{
+ 'カードを2枚自分のマナゾーンから山札の一番上に好きな順序で置く。':{op:'Select',origin:'mana',to:'deckTop',n:2,g183Return:true,title:'山札の上に戻すマナを2枚選ぶ（先に選んだカードが一番上）'},
+ 'カードを1枚自分のシールドゾーンから手札に加える。ただしその「S・トリガー」は使えない。':{op:'ShieldHand',g238ShieldHand:true,g533CardOnly:true}
+}[text]||null;}
+function instruction532(text){return{
+ '自分の山札を見る。その中からコスト3以下の進化ではないドリームメイトを1体選びバトルゾーンに出してもよい。その後山札をシャッフルする。':{op:'LookDeploy530',g201Search:true,n:'all',limit:1,rest:'shuffle',filter:{creature:true,nonEvolution:true,race:'ドリームメイト',max:3}},
+ '自分の山札を見る。その中からコスト8以下の進化ではないハンターを1体選びバトルゾーンに出してもよい。その後山札をシャッフルする。':{op:'LookDeploy530',g201Search:true,n:'all',limit:1,rest:'shuffle',filter:{creature:true,nonEvolution:true,race:'ハンター',max:8}},
+ '自分の山札の上から3枚を見る。その中からビートジョッキーを1体バトルゾーンに出してもよい。残りを好きな順序で自分の山札の一番下に置く。このターンの終わりにそのビートジョッキーを破壊する。':{op:'LookDeploy530',n:3,limit:1,rest:'bottom',delayed:'grave',filter:{creature:true,race:'ビートジョッキー'}},
+ '自分の山札の上から7枚を見る。その中からコスト7以下の進化ではないドラゴン/ハンターを1体バトルゾーンに出してもよい。その後山札をシャッフルする。そのクリーチャーは「スピードアタッカー」を得る。そのターンの終わりにそのクリーチャーを破壊する。':{op:'LookDeploy530',n:7,limit:1,rest:'shuffle',delayed:'grave',grant:{speedAttacker:true},filter:{creature:true,nonEvolution:true,race:'ドラゴン',raceAny:['ハンター'],max:7}}
+}[text]||null;}
+function instruction531(text){
+ const rows={
+  '自分の山札を見る。その中から進化クリーチャーを2体まで選び相手に見せてから手札に加えてもよい。その後山札をシャッフルする。':{n:2,filter:{creature:true,evolution:true}},
+  '自分の山札を見る。その中から進化クリーチャーを1体選び相手に見せてから自分の手札に加えてもよい。その後山札をシャッフルする。':{n:1,filter:{creature:true,evolution:true}},
+  '自分の山札を見る。その中からゴッドまたはフェニックスを1体選び相手に見せてから自分の手札に加えてもよい。その後山札をシャッフルする。':{n:1,filter:{creature:true,raceAny:['ゴッド','フェニックス']}},
+  '自分の山札を見る。その中から自然のクリーチャーを1体選び相手に見せてから自分の手札に加えてもよい。その後山札をシャッフルする。':{n:1,filter:{g228Face:{type:'creature',color:'自然'}}},
+  '自分の山札を見る。その中から名前に《ヘブンズ》とある呪文を1枚選んですべてのプレイヤーに見せ新しいシールドとして自分のシールドゾーンに裏向きにして加えてもよい。その後山札をシャッフルする。':{n:1,to:'shields',filter:{g228Face:{type:'spell',nameAny:['ヘブンズ']}}}
+ },r=rows[text];
+ return r?{op:'Look',g201Search:true,g200Search:true,...(r.to==='shields'?{g255Search:true}:{}),n:'all',rest:'shuffle',stages:[{n:r.n,to:r.to||'hand',filter:r.filter,reveal:true,optional:true}]}:null;
+}
+function instruction530(text){return{
+ '自分のマナゾーンにあるカードの枚数以下のコストを持つ進化ではないドラゴンを1体自分のマナゾーンからバトルゾーンに出してもよい。':{op:'ManaDeploy523',origin:'mana',optional:true,filter:{creature:true,nonEvolution:true,race:'ドラゴン'}},
+ '進化ではないドラゴン・ゾンビを1体自分の墓地からバトルゾーンに出してもよい。':{op:'Select',origin:'grave',n:1,deploy:true,g236GraveDeploy:true,optional:true,filter:{creature:true,nonEvolution:true,race:'ドラゴン・ゾンビ'}},
+ '相手とガチンコ・ジャッジする。自分が勝ったら自分の山札を見る。その中からドラゴンを1体選び相手に見せてから自分の手札に加えてもよい。その後山札をシャッフルする。':{op:'Judge318',defs:[{op:'Look',g201Search:true,g200Search:true,n:'all',rest:'shuffle',stages:[{n:1,to:'hand',filter:{creature:true,race:'ドラゴン'},reveal:true,optional:true}]}]},
+ '自分の山札の上から2枚を見る。その中から好きな枚数の進化ではないサイバーロードをバトルゾーンに出してもよい。残りを好きな順序で山札の一番上に戻す。':{op:'LookDeploy530',n:2,filter:{creature:true,nonEvolution:true,race:'サイバーロード'}}
+}[text]||null;}
+function instruction529(text){return{
+ 'バトルゾーンに自分のフィールドがあれば自分の手札を1枚捨ててもよい。そうしたらカードを2枚引く。':{op:'IfOwn',filter:{g228Face:{type:'field'}},defs:[{op:'DiscardDraw',g216DiscardDraw:true,n:2}]},
+ 'バトルゾーンに自分のフィールドがあればそのターン相手のクリーチャーすべてのパワーを_1000し自分のクリーチャーすべてのパワーを+1000する。(パワー0以下のクリーチャーは破壊される)':{op:'IfOwn',filter:{g228Face:{type:'field'}},defs:[{op:'GroupPower',g214GroupPower:true,owner:'both',power:-1000,ownPower:1000,filter:{creature:true}}]},
+ '自分のマナゾーンにあるカードの枚数を数える。その数だけ自分の山札の上からタップしてマナゾーンに置いてもよい。':{op:'ManaCountRamp529'},
+ '自分のマナゾーンにあるカードの枚数以下のコストを持つ進化ではないアウトレイジを1体自分のマナゾーンからバトルゾーンに出してもよい。':{op:'ManaDeploy523',origin:'mana',optional:true,filter:{creature:true,nonEvolution:true,race:'アウトレイジ'}}
+}[text]||null;}
+function instruction526(text){
+ if(text==='自分の山札の上から1枚目を墓地に置く。それが火のカードであればそのターンこのクリーチャーは「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)')return{op:'MillMatch520',n:1,filter:{anyFaceColor:'火'},speedAttacker:true};
+ if(text==='自分の山札の上から1枚目を墓地に置く。それがヒューマノイドかドラゴンであればそのターンこのクリーチャーは「スピードアタッカー」を得る。')return{op:'MillMatch520',n:1,filter:{any:[{anyFaceRace:'ヒューマノイド'},{anyFaceRace:'ドラゴン'}]},speedAttacker:true};
+ if(['そのターン相手のクリーチャーすべてのパワーを_2000する。','そのターン相手のクリーチャーすべてのパワーを_2000する。(パワー0以下のクリーチャーは破壊される)'].includes(text))return{op:'GroupPower',g214GroupPower:true,owner:'opponent',power:-2000,filter:{creature:true}};
+ return null;
+}
+function instruction522(text){return{
+ '相手のマナゾーンにあるカードの枚数よりコストが大きい相手のクリーチャーをすべて破壊する。':{op:'ManaCostSweep522'},
+ '相手のマナゾーンにあるカードの枚数が自分のより多ければ自分の山札の上から1枚目をマナゾーンに置く。':{op:'IfOwn',filter:{g334ZoneCount:{zone:'mana',atLeastOpponent:true}},defs:[],elseDefs:[{op:'Ramp',n:1}]},
+ '自分の山札の上から3枚を表向きにする。その中から呪文をすべて自分の手札に加え残りを墓地に置く。':{op:'Look',n:3,public:true,stages:[{n:'all',to:'hand',filter:{spell:true}}],rest:'grave'}
+}[text]||null;}
+function target521(text){
+ if(text==='次の自分のターンのはじめまで自分のクリーチャー1体のパワーを+3000し「ブロッカー」を与える。(「ブロッカー」を持つクリーチャーをタップして相手クリーチャーの攻撃先をそれに変更してもよい)')return{op:'Target',owner:'self',power:3000,grant:{blocker:true},g521UntilStart:true};
+ if(text==='次の自分のターンのはじめまで自分のクリーチャー1体に「ブロッカー」を与える。(「ブロッカー」を持つクリーチャーをタップして相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい)')return{op:'Target',owner:'self',grant:{blocker:true},g521UntilStart:true};
+ const head='バトルゾーンにある闇または火のクリーチャーを1体選びタップしてもよい。';
+ if(text.startsWith(head)&&['(ただしまず何を攻撃するか選んでからタップしたいクリーチャーを選ぶ)','(まずこのクリーチャーが何を攻撃するかを選びその後タップするクリーチャーを選ぶ)'].includes(text.slice(head.length)))return{op:'Target',anyOwner:true,tap:true,optional:true,filter:{any:[{color:'闇'},{color:'火'}]}};
+ return null;
+}
+function mill520(text){
+ const head='自分の山札の上から1枚目を墓地に置く。';if(!text.startsWith(head))return null;
+ const rest={
+  'それがリキッド・ピープルまたはドラゴンであればそのターンこのクリーチャーはブロックされない。':{filter:{any:[{anyFaceRace:'リキッド・ピープル'},{anyFaceRace:'ドラゴン'}]},unblockable:true},
+  'それが呪文であればこのクリーチャーをアンタップする。':{filter:{spell:true},untap:true},
+  'それがビーストフォークまたはドラゴンであればそのターンこのクリーチャーは「パワーアタッカー+4000」と「W・ブレイカー」を得る。':{filter:{any:[{anyFaceRace:'ビーストフォーク'},{anyFaceRace:'ドラゴン'}]},powerAttacker:4000,breaker:2}
+ }[text.slice(head.length)];return rest?{op:'MillMatch520',n:1,...rest}:null;
+}
+function target519(text){return{
+ '自分の他のクリーチャーを1体選ぶ。そのターン選んだクリーチャーのパワーを+2000する。':{op:'Target',owner:'self',g179Other:true,power:2000},
+ 'そのターン自分のクリーチャー1体に「スレイヤー」を与える。(「スレイヤー」を持つクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)':{op:'Target',owner:'self',grant:{slayer:true}},
+ 'バトルゾーンにある相手のクリーチャーを1体選びタップしてもよい。(まず何を攻撃するか選んでからタップするクリーチャーを選ぶ)':{op:'Target',tap:true,optional:true}
+}[text]||null;}
+function fight518(text){
+ if(text==='自分のクリーチャーと相手のクリーチャーを1体ずつ選びその2体にバトルさせる。')return{op:'Fight240',optional:false};
+ if(text==='自分のクリーチャーと相手のクリーチャーを1体ずつ選んでもよい。その選んだクリーチャー2体をバトルさせる。')return{op:'Fight240',optional:true};
+ if(text==='相手のクリーチャーを1体選び持ち主の山札の一番下に置く。その後カードを1枚引く。')return{op:'Sequence',defs:[{op:'Target',to:'deck'},{op:'Draw',n:1}]};
+ return null;
+}
+// Additional draw requires an actual discard, distinct from hand-size cycling.
+function discard517(text){
+ const prefix='自分の手札を1枚捨てカードを1枚引く。';if(!text.startsWith(prefix))return null;
+ const filter={
+  'こうして火のロスト・クルセイダー・カードを捨てたらカードをもう1枚引く。':{anyFaceColor:'火',anyFaceRace:'ロスト・クルセイダー'},
+  'こうしてジョーカーズ・カードを捨てたらカードをもう1枚引く。':{anyFaceRace:'ジョーカーズ'},
+  'こうして捨てたカードが闇または自然ならカードをもう1枚引く。':{any:[{anyFaceColor:'闇'},{anyFaceColor:'自然'}]}
+ }[text.slice(prefix.length)];return filter?{op:'DiscardMatch517',filter}:null;
+}
+// The first physical ramped card controls only one additional action.
+function ramp516(text){
+ const first='自分の山札の上から1枚をタップしてマナゾーンに置く。';if(!text.startsWith(first))return null;
+ const tails={
+  'それがフェニックス・カードまたはファイアー・バード・カードなら自分の山札の上からもう1枚タップしてマナゾーンに置く。':{filter:{any:[{anyFaceRace:'フェニックス'},{anyFaceRace:'ファイアー・バード'}]}},
+  'それがエンジェル・コマンド・カードなら自分の山札の上からもう1枚タップしてマナゾーンに置く。その後カードを1枚自分のマナゾーンから手札に戻してもよい。':{filter:{anyFaceRace:'エンジェル・コマンド'},after:[{op:'Select',origin:'mana',to:'hand',n:1,optional:true}]},
+  'それがドラグナー・カードなら自分の山札の上からもう1枚タップしてマナゾーンに置く。それ以外ならカードを1枚引く。':{filter:{anyFaceRace:'ドラグナー'},elseDraw:true}
+ }[text.slice(first.length)];return tails?{op:'RampMatch516',...tails}:null;
+}
+// Snapshot a resolved boost; these are not continuously recalculated auras.
+function boost515(text){
+ const other={op:'Target',owner:'self',g179Other:true};
+ if(text==='そのターン自分の他のクリーチャー1体のパワーは+4000されシールドをさらに1つブレイクする。')return{...other,power:4000,g455ExtraBreak:1};
+ if(text==='そのターン自分の他のクリーチャー1体は「パワーアタッカー+4000」を得シールドをさらに1つブレイクする。(攻撃中「パワーアタッカー+4000」を持つクリーチャーのパワーを+4000する)')return{...other,power:4000,g337PowerAttacker:true,g455ExtraBreak:1};
+ if(text==='バトルゾーンにある自分の他のクリーチャーを1体選んでもよい。そのターンそのクリーチャーはブロックされずシールドをさらに1枚ブレイクし「パワーアタッカー+5000」を得る。')return{...other,optional:true,power:5000,g337PowerAttacker:true,g455ExtraBreak:1,grant:{unblockable:true}};
+ if(text==='バトルゾーンにある自分のクリーチャーを1体選ぶ。そのターンそのクリーチャーのパワーは自分のマナゾーンにある文明ひとつにつき+1000される。')return{op:'ManaColorBoost515',amount:1000};
+ return null;
+}
+// One public top card: decide its branch before attempting any zone movement.
+function reveal514(text){
+ const dragon='自分の山札の上から1枚目をすべてのプレイヤーに見せる。そのカードが進化ではないドラゴンであればバトルゾーンに出してもよい。',zero='自分の山札の上から1枚目をすべてのプレイヤーに見せる。そのカードが進化ではない無色クリーチャーであればバトルゾーンに出してもよい。',mate='自分の山札の上から1枚目を表向きにする。それが進化ではないドリームメイトかビークル・ビーであればバトルゾーンに出してもよい。';
+ if(text===dragon)return{op:'RevealTop514',filter:{creature:true,nonEvolution:true,race:'ドラゴン'},to:'battle',optional:true};
+ if(text===zero)return{op:'RevealTop514',filter:{creature:true,nonEvolution:true,g200Colorless:true},to:'battle',optional:true};
+ if(text===mate)return{op:'RevealTop514',filter:{creature:true,nonEvolution:true,raceAny:['ドリームメイト','ビークル・ビー']},to:'battle',optional:true};
+ if(text==='自分の山札の上から1枚目をすべてのプレイヤーに見せる。そのカードがドラゴンであれば自分の手札に加える。ドラゴン以外であれば自分の山札の一番下に戻す。')return{op:'RevealTop514',filter:{race:'ドラゴン'},to:'hand',elseTo:'deck'};
+ if(text==='自分の山札の上から1枚目を表向きにしてもよい。それがムートピアなら自分の手札に加える。')return{op:'Offer',g359RevealAll:true,title:'山札の上1枚を公開する？',defs:[{op:'RevealTop514',n:1,filter:{race:'ムートピア'},to:'hand'}]};
+ if(text==='自分の山札の上から1枚目を表向きにする。それがコスト5以下の進化ではないクリーチャーならバトルゾーンに出す。それ以外なら自分のマナゾーンに置く。')return{op:'RevealTop514',filter:{creature:true,nonEvolution:true,max:5},to:'battle',elseTo:'mana'};
+ if(text==='自分の山札の上から1枚目を表向きにする。それがコスト6以下のジョーカーズ・クリーチャーならバトルゾーンに出す。それ以外なら自分の手札に加える。')return{op:'RevealTop514',filter:{creature:true,race:'ジョーカーズ',max:6},to:'battle',elseTo:'hand'};
+ return null;
+}
+// Inclusive total-cost removal; keep the complete instruction together until selection ends.
+function instruction513(text){
+ if(/^相手のクリーチャーをコストの合計が6以下になるように?好きな数選び破壊する。$/.test(text)||text==='コストの合計が6以下になるように相手のクリーチャーを好きな数選び破壊する。')return{op:'Select',owner:'opponent',origin:'battle',n:'all',optional:true,to:'grave',filter:{creature:true},g173Targets:true,g193Select:true,g513CostBudget:6,title:'合計コスト6以下になるよう好きな数選ぶ'};
+ if(text==='カードを1枚引く。その後進化ではないコスト5以下のクリーチャーを1体自分の手札からバトルゾーンに出してもよい。')return{op:'Sequence',defs:[{op:'Draw',n:1},{op:'Select',origin:'hand',n:1,deploy:true,optional:true,filter:{creature:true,nonEvolution:true,max:5}}]};
+ return null;
+}
+function instruction546(text){const m=text.match(/^相手のクリーチャーを1体選ぶ。(次の相手のターン(?:中|に)?|次の自分のターンのはじめまで|このターン|そのターン)そのクリーチャーは可能(?:なら|であれば)攻撃する。$/);return m?{op:'Target',g546Force:m[1].startsWith('次の相手')?'nextOpponent':m[1].startsWith('次の自分')?'untilOwnStart':'thisTurn'}:null;}
+function instruction549(text){
+ const ramp={op:'Ramp',n:1,tapped:true},less=zone=>({g334ZoneCount:{zone,lessThanOpponent:true}}),rules={
+  '自分の山札の上から1枚目をタップしてマナゾーンに置く。その後自分の他のタマシードがあれば自分の山札の上から1枚目をタップしてマナゾーンに置く。':{op:'Sequence',defs:[ramp,{op:'IfOwn',filter:{g295Tamaseed:true,g334Other:true},defs:[ramp]}]},
+  '相手の手札が自分のより多ければカードを1枚引く。相手のマナゾーンのカードが自分のより多ければ自分の山札の上から1枚目をタップしてマナゾーンに置く。相手のシールドが自分のより多ければ自分の山札の上から1枚目をシールド化する。':{op:'Sequence',defs:[{op:'IfOwn',filter:less('hand'),defs:[{op:'Draw',n:1}]},{op:'IfOwn',filter:less('mana'),defs:[ramp]},{op:'IfOwn',filter:less('shields'),defs:[{op:'ShieldTop',n:1}]}]},
+  '相手の多色カードを1枚破壊する。':{op:'Target',element:true,to:'grave',filter:{multi:true}},
+  '相手のコスト5以下のエレメントを1つ選びシールド化してもよい。':{op:'Target',element:true,to:'shields',optional:true,filter:{max:5}}
+ };return rules[text]?structuredClone(rules[text]):null;
+}
+function deployBudget550(text){
+ const m=text.match(/^コストの合計が([1-9]\d*)以下になるように?(クリーチャー|エレメント|デーモン・コマンド)を(好きな数|([1-9]\d*)(?:体|つ)まで)自分の墓地から(?:(?:選び|選んで))?(?:バトルゾーンに)?出す。$/);
+ if(m)return{op:'Select',origin:'grave',deploy:true,n:m[3]==='好きな数'?'all':+m[4],optional:true,g236GraveDeploy:true,g550CostBudget:+m[1],filter:m[2]==='クリーチャー'?{creature:true}:m[2]==='エレメント'?{element:true}:{race:'デーモン・コマンド'},title:'合計コスト'+m[1]+'以下で、出す順に選ぶ'};
+ if(text==='コストの合計が7以下になるようディスタスを好きな数自分の墓地手札またはマナゾーンから選び出す。')return{op:'Select',zones:['grave','hand','mana'],deploy:true,n:'all',optional:true,g550CostBudget:7,filter:{race:'ディスタス'},title:'墓地・手札・マナから合計コスト7以下で、出す順に選ぶ'};
+ return null;
+}
+function deploy551(text){
+ const base={op:'Select',deploy:true,optional:true},rules={
+  'コストの合計が4以下になるようタマシードを好きな数自分のマナゾーンから選んで出す。':{...base,origin:'mana',n:'all',g550CostBudget:4,filter:{g295Tamaseed:true}},
+  '自分の手札からコストの合計が5以下になるようにクリーチャーを2体まで選びバトルゾーンに出す。そのターンの終わりにそれらを破壊する。':{...base,origin:'hand',n:2,g550CostBudget:5,filter:{creature:true},delayed:'grave'},
+  '自分のマナゾーンから進化ではない自然のクリーチャーをコストの合計が7以下になるように2体まで選びバトルゾーンに出してもよい。':{...base,origin:'mana',n:2,g550CostBudget:7,filter:{creature:true,nonEvolution:true,color:'自然'}}
+ };
+ if(rules[text])return structuredClone(rules[text]);
+ if(/^自分の墓地からコストの合計が5以下になるようにクリーチャーを2体まで選びバトルゾーンに出してもよい。そのターンそれらのクリーチャーは「スピードアタッカー」を得る。(?:\([^()]*\))?$/.test(text))return{...base,origin:'grave',n:2,g550CostBudget:5,filter:{creature:true},grant:{speedAttacker:true}};
+ return null;
+}
+function lookBudget552(text){
+ const rules={
+  '自分の山札を見る。その中から名前に《アイニー》とある進化ではないクリーチャーをコストの合計が7以下になるよう2体まで選びタップしてバトルゾーンに出してもよい。その後山札をシャッフルする。':{op:'LookDeploy530',g201Search:true,n:'all',limit:2,rest:'shuffle',tapped:true,g550CostBudget:7,filter:{creature:true,nonEvolution:true,name:'アイニー'}},
+  '自分の山札を見る。その中から好きな枚数の進化ではないクリーチャーをコストの合計が6以下になるように選びバトルゾーンに出してもよい。その後山札をシャッフルする。':{op:'LookDeploy530',g201Search:true,n:'all',rest:'shuffle',g550CostBudget:6,filter:{creature:true,nonEvolution:true}},
+  '自分の山札の上から4枚を見る。その中からスノーフェアリーをコストの合計が5以下になるように2つまで出す。残りを好きな順序で山札の下に置く。':{op:'LookDeploy530',n:4,limit:2,rest:'bottom',g550CostBudget:5,filter:{race:'スノーフェアリー'}}
+ };return rules[text]?structuredClone(rules[text]):null;
+}
+// Share the inclusive selection budget while preserving destination and card-count limits.
+function instruction553(text){
+ const select=(budget,to,n)=>({op:'Select',owner:'opponent',origin:'battle',n,optional:true,...(to?{to}:{}),filter:{creature:true},g173Targets:true,g193Select:true,g513CostBudget:budget,title:'合計コスト'+budget+'以下になるよう選ぶ'});
+ if(text==='相手のクリーチャーを2体までコストの合計が8以下になるように選び持ち主の手札に戻す。')return select(8,'hand',2);
+ if(text==='コストの合計が自分のマナゾーンにあるドラゴンの数以下になるよう相手のクリーチャーを2体まで破壊する。')return{op:'CountCost553',zone:'mana',filter:{anyFaceRace:'ドラゴン'},def:select(0,'grave',2)};
+ if(text==='相手のエレメントをコストの合計が6以下になるように好きな数選ぶ。それらをすべて持ち主のマナゾーンに置くか破壊する。')return{...select(6,undefined,'all'),filter:{element:true},g553Destinations:true};
+ return null;
+}
+function instruction554(text){
+ if(text==='自分のシールドを2つ手札に加える。ただしその「S・トリガー」は使えない。')return{op:'ShieldHand',g238ShieldHand:true,g535Count:2};
+ if(text==='自分のシールドを2つマナゾーンに置く。')return{op:'ShieldHand',g535Count:2,g554To:'mana'};
+ if(text==='次の自分のターンのはじめに自分のシールドを2枚手札に加える。ただしその「S・トリガー」は使えない。')return{op:'Schedule537',when:'nextOwnStart',defs:[{op:'ShieldHand',g238ShieldHand:true,g535Count:2}]};
+ return null;
+}
+// Casting and the destination after resolution are one complete instruction.
+function instruction555(text){
+ const base={op:'Execute',origin:'grave',spellOnly:true,g555FinishTo:'deck',optional:false};
+ const rules={
+  'コスト7以下の呪文を1枚自分の墓地からコストを支払わずに唱える。唱えた後その呪文を墓地に置くかわりに自分の山札の一番下に置く。':{...base,max:7},
+  'コスト4以下の呪文を1枚自分の墓地からコストを支払わずに唱える。唱えた後墓地に置くかわりに山札の一番下に置く。':{...base,max:4},
+  '自分の墓地にあるコスト7以下の呪文を1枚コストを支払わずに唱える。唱えた後墓地に置くかわりに山札の一番下に置く。':{...base,max:7},
+  'コスト3以下の呪文を1枚自分の墓地からコストを支払わずに唱えてもよい。それを唱えた後墓地に置くかわりに山札の下に置く。':{...base,max:3,optional:true},
+  'コスト4以下の呪文を1枚自分の手札または墓地からコストを支払わずに唱えてもよい。そうしたらそれを唱えた後墓地のかわりにマナゾーンに置く。':{...base,zones:['hand','grave'],max:4,optional:true,g555FinishTo:'mana'}
+ };return rules[text]?structuredClone(rules[text]):null;
+}
+function instruction556(text){
+ const cast={op:'Execute',origin:'grave',spellOnly:true,optional:true,g555FinishTo:'deck'};
+ if(text==='コスト4以下の呪文を1枚自分の墓地からコストを支払わずに唱えてもよい。唱えた後墓地に置くかわりに自分の山札の一番下に置く。')return{...cast,max:4};
+ if(text==='自分の墓地にある呪文を1枚コストを支払わずに唱えてもよい。そうしたらその呪文を唱えた後自分の墓地に置くかわりに山札の一番下に置く。')return cast;
+ if(text==='自分の山札の上から5枚を墓地に置いてもよい。その後闇のコスト6以下の呪文を1枚自分の墓地からコストを支払わずに唱えてもよい。その呪文を唱えた後墓地のかわりに山札の下に置く。')return{op:'Sequence',defs:[{op:'Mill',n:5,optional:true},{...cast,max:6,g556SpellColor:'闇'}]};
+ if(text==='コスト5以下の呪文を1枚自分の墓地または手札からコストを支払わずに唱えてもよい。唱えた後墓地に置くかわりに自分の山札の一番下に置く。')return{...cast,zones:['grave','hand'],max:5};
+ return null;
+}
+function aura560(text){
+ let line=text,condition,hand=false;
+ if(line.startsWith('G・G・G:自分の手札が1枚以下なら')){line=line.slice('G・G・G:自分の手札が1枚以下なら'.length);condition={g334ZoneCount:{zone:'hand',max:1}};hand=true;}
+ const mana=line.match(/^マナ武装3[:―-]自分のマナゾーンに(光|火)のカードが3枚以上あれば(.+)$/);if(mana){condition={g267Mana:{n:3,color:mana[1]}};line=mana[2];}
+ const m=line.match(/^自分の(.+?)の召喚コストを(最大)?([1-9]\d*)(少なくする|少なくしてもよい)。ただし(?:コストは)?(?:0以下(?:には|に)は?ならない|1より少なくならない)。$/);if(!m)return null;
+ const filters={'進化クリーチャー':{evolution:true},'コスト8以上のクリーチャー':{min:8},'ディスタス':{race:'ディスタス'},'ムートピア':{race:'ムートピア'},'コマンド・クリーチャー':{race:'コマンド'},'進化ヒューマノイド':{race:'ヒューマノイド',evolution:true},'エンジェル・コマンドとデーモン・コマンドすべて':{raceAny:['エンジェル・コマンド','デーモン・コマンド']},'ゴッド・ノヴァOMG':{race:'ゴッド・ノヴァ OMG'},'光のコマンド':{color:'光',race:'コマンド'},'光のドラゴン':{color:'光',race:'ドラゴン'},'コマンド・ドラゴン':{race:'コマンド・ドラゴン'},'ビートジョッキーすべて':{race:'ビートジョッキー'}};
+ const filter=filters[m[1]];return filter?{filter,amount:+m[3],...(m[2]||m[4]==='少なくしてもよい'?{g560Optional:true}:{}),...(condition?{condition}:{}),...(hand?{g560InUse:true}:{})}:null;
+}
+function bara565(text){
+ const prefix='バラバラエティ3:',suffix='(コストが異なる自分のエレメントが3つ以上あればこのクリーチャーにこの能力を与える)';
+ if(!text.startsWith(prefix)||!text.endsWith(suffix))return null;
+ const grants={
+  'このクリーチャーが攻撃する時自分の山札の上から1枚目をシールド化してもよい。':{g34Attack:[{op:'Offer',defs:[{op:'ShieldTop',n:1}]}]},
+  '自分のクリーチャーの召喚コストを1少なくする。ただしコストは0以下にはならない。':{g349SummonAuras:[{filter:{creature:true},amount:1}]},
+  '相手のターンのはじめに相手のクリーチャーを1体選ぶ。このターンそのクリーチャーは攻撃できない。':{g179OpponentStart:[{op:'Target',g565AttackLock:true}]},
+  '自分の他のクリーチャーが出た時次の自分のターンのはじめまでそのクリーチャーは相手に選ばれず攻撃されない。':{g468EntryWatch:{filter:{creature:true},g565Other:true,mode:'protect565'}}
+ }[text.slice(prefix.length,-suffix.length)];
+ return grants?{filter:{g466DistinctCosts:3},grants}:null;
+}
+function instruction568(text){
+ const rules={
+  '自分の山札の上から1枚を墓地に置く。その後クリーチャーまたはタマシードを1つ自分の墓地から手札に戻してもよい。':{op:'Sequence',defs:[{op:'Mill',n:1},{op:'Select',origin:'grave',to:'hand',n:1,optional:true,filter:{any:[{creature:true},{g295Tamaseed:true}]}}]},
+  '自分の山札の上から2枚を表向きにする。その中からクリーチャーを1体手札に加えてもよい。残りを墓地に置く。':{op:'Look',n:2,public:true,rest:'grave',stages:[{n:1,to:'hand',filter:{creature:true},optional:true,reveal:true}]},
+  '相手のエレメントを1つ選び破壊する。':{op:'Target',element:true,to:'grave',filter:{element:true}}
+ };return rules[text]?structuredClone(rules[text]):null;
+}
+function instruction567(text){
+ const rules={
+  'バトルゾーンにあるクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーは+5000され相手プレイヤーを攻撃できない。':{op:'Target',anyOwner:true,power:5000,g567PlayerStop:'end',spell:true},
+  'クリーチャーを1体選ぶ。このターンそのクリーチャーのパワーは+4000され次の自分のターンのはじめまで相手プレイヤーを攻撃できない。':{op:'Target',anyOwner:true,power:4000,g567PlayerStop:'start',spell:true},
+  'クリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを+6000しそのクリーチャーは相手プレイヤーを攻撃できない。':{op:'Target',anyOwner:true,power:6000,g567PlayerStop:'end',spell:true},
+  'クリーチャーを1体選ぶ。次の自分のターンのはじめまでそのクリーチャーのパワーを+4000し相手プレイヤーを攻撃できない。':{op:'Target',anyOwner:true,power:4000,g521UntilStart:true,g567PlayerStop:'start',spell:true}
+ };return rules[text]?structuredClone(rules[text]):null;
+}
+function instruction566(text){
+ const rules={
+  'バトルゾーンにある自分のクリーチャーを1体選ぶ。このターンそのクリーチャーはブロックされない。':{op:'Target',owner:'self',grant:{unblockable:true}},
+  'クリーチャーを2体まで自分の墓地から山札の一番上に好きな順序で置く。':{op:'Select',origin:'grave',to:'deckTop',n:2,optional:true,filter:{creature:true},g183Return:true},
+  'バトルゾーンにある自分のクリーチャーを1体選ぶ。その後相手プレイヤーはバトルゾーンにある自身のクリーチャーを1体選ぶ。選ばれたクリーチャー以外のクリーチャーはこのターンと次のターン攻撃できない。':{op:'Bind566'}
+ };return rules[text]?structuredClone(rules[text]):null;
+}
+function instruction565(text){
+ if(['そのターン中にクリーチャーが攻撃していなければカードを1枚引いてもよい。','そのターンクリーチャーが1体も攻撃していなければカードを1枚引いてもよい。'].includes(text))return{op:'IfOwn',filter:{g565NoAttacks:true},defs:[{op:'Offer',defs:[{op:'Draw',n:1}]}]};
+ return null;
+}
+function bara564(text){
+ const prefix='バラバラエティ3:',suffix='(コストが異なる自分のエレメントが3つ以上あればこのクリーチャーにこの能力を与える)';
+ if(text===prefix+'スレイヤー(コストが異なる自分のエレメントが3つ以上あればこのクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)')return{grants:{slayer:true}};
+ if(text===prefix+'このクリーチャーのパワーを+5000し「W・ブレイカー」を与える。(コストが異なる自分のエレメントが3つ以上あればこのクリーチャーはパワーを+5000されシールドを2つブレイクする)')return{grants:{power:5000,breaker:2}};
+ if(!text.startsWith(prefix)||!text.endsWith(suffix))return null;
+ const body=text.slice(prefix.length,-suffix.length),rules={
+  'このクリーチャーが攻撃する時このクリーチャーはシールドを1つブレイクしてもよい。':{grants:{g34Attack:[{op:'Offer',defs:[{op:'Break497',n:1}]}]}},
+  '相手のターン中このクリーチャーのパワーを+10000する。':{turn:'opponent',grants:{power:10000}},
+  '自分のクリーチャーすべてに「スレイヤー」を与える。':{aura:{slayer:true}},
+  '自分のクリーチャーすべてに「マッハファイター」を与える。':{aura:{machFighter:true}},
+  'このクリーチャーが攻撃する時相手は自身のクリーチャーを1体選び破壊する。':{grants:{g34Attack:[{op:'OpponentSelect',n:1,to:'grave'}]}},
+  '各ターンの終わりに自分のクリーチャーをすべてアンタップする。':{grants:{g474AnyEnd:[{op:'GroupUntap',filter:{creature:true}}]}},
+  'このクリーチャーが出た時相手のパワー12000以下のクリーチャーを1体選び破壊する。':{grants:{g34Tasks:[{op:'Target',to:'grave',filter:{creature:true,maxPower:12000,g199Power:true}}]}},
+  'このクリーチャーが出た時カードを2枚引いてもよい。':{grants:{g34Tasks:[{op:'Offer',defs:[{op:'Draw',n:2}]}]}},
+  'このクリーチャーが出た時コスト8以下のクリーチャーを1体自分の墓地から出す。':{grants:{g34Tasks:[{op:'Select',origin:'grave',n:1,deploy:true,g236GraveDeploy:true,filter:{creature:true,max:8}}]}},
+  '自分のターンの終わりに自分の山札の上から1枚目をシールド化してもよい。その後自分のシールドを1つ手札に加えてもよい。ただしその「S・トリガー」は使えない。':{grants:{g174End:[{op:'Offer',defs:[{op:'ShieldTop',n:1}]},{op:'ShieldHand',g238ShieldHand:true,optional:true}]}}
+ };
+ return rules[body]||null;
+}
+function instruction563(text){
+ const defs={
+  'それがNEO進化クリーチャーなら自分の山札の上から2枚をマナゾーンに置く。':[{op:'Ramp',n:2}],
+  'それがNEO進化クリーチャーならカードを3枚まで引く。':[{op:'DrawUpTo',n:3,g203Draw:true}],
+  'それがNEO進化クリーチャーなら闇ではないクリーチャーをすべて破壊する。':[{op:'Sweep',both:true,to:'grave',filter:{creature:true,notColor:'闇'}}],
+  'これがNEO進化クリーチャーなら相手のシールドを2つブレイクする。':[{op:'Break497',n:2}]
+ }[text];
+ if(defs)return{op:'IfNeo563',defs};
+ if(text==='相手のコスト4以下のクリーチャーを1体選び相手はそれを自身の山札の一番下に置く。')return{op:'Target',filter:{creature:true,max:4},to:'deck'};
+ return null;
+}
+function instruction562(text){
+ const schedule=(defs,ownEnd=false)=>({op:'EndUntap562',ownEnd,defs}),choose=(n=1,optional=false)=>({op:'ChooseUntap562',n,optional});
+ const grouped={
+  'ターンの終わりにバトルゾーンにある自分のゴッドをすべてアンタップする。':{filter:{creature:true,race:'ゴッド'}},
+  'ターンの終わりに自分のクリーチャーをすべてアンタップする。':{filter:{creature:true}},
+  '自分のターンの終わりにバトルゾーンにある自分のクリ―チャーをすべてアンタップする。':{filter:{creature:true},ownEnd:true}
+ }[text];
+ if(grouped)return schedule([{op:'GroupUntap',filter:grouped.filter}],!!grouped.ownEnd);
+ if(text==='このターンの終わりにバトルゾーンにある自分のクリーチャーを1体アンタップする。')return schedule([choose()]);
+ if(text==='自分のターンの終わりにバトルゾーンにある自分のクリーチャーを2体までアンタップする。')return schedule([choose(2,true)],true);
+ if(text==='バトルゾーンにある自分のクリーチャーを2体まで選ぶ。このターンの終わりにそのクリーチャーをアンタップしてもよい。')return{...choose(2,true),delay:true,optionalUntap:true};
+ return null;
+}
+function instruction561(text){
+ const counted=(zone,amount,def,filter={})=>({op:'CountPower561',zone,amount,filter,defs:[{...def,power:1,g561Scale:true}]});
+ if(text==='このターンの攻撃中バトルゾーンにある自分のクリーチャーすべてのパワーは自分のマナゾーンにある闇のカード1枚につき+1000される。')return{op:'GroupPower',owner:'self',filter:{creature:true},g561AttackOnly:true,g561DarkMana:true,power:1};
+ if(text==='ターンの終わりまで相手のタップされているクリーチャーすべてのパワーはバトルゾーンにある自分のグランド・デビル1体につき-1000される。')return counted('battle',-1000,{op:'GroupPower',owner:'opponent',filter:{creature:true,tapped:true}},{creature:true,race:'グランド・デビル'});
+ if(text==='このターンバトルゾーンにある自分のドリームメイトすべてのパワーはバトルゾーンにある自分のドリームメイト1体につき+2000される。')return counted('battle',2000,{op:'GroupPower',owner:'self',filter:{creature:true,race:'ドリームメイト'}},{creature:true,race:'ドリームメイト'});
+ if(text==='このターンバトルゾーンにある自分のパワー6000以上のドリームメイトはすべて「W・ブレイカー」を得る。')return{op:'GroupGrant364',owner:'self',filter:{creature:true,race:'ドリームメイト',minPower:6000,g199Power:true},grant:{g313Breaker:2}};
+ if(text==='相手のクリーチャーを1体選ぶ。自分の手札1枚につきこのターンそのクリーチャーのパワーを_1000する。(パワー0以下のクリーチャーは破壊される)')return counted('hand',-1000,{op:'Target',g242PowerMinus:true,filter:{creature:true}});
+ return null;
+}
+function instruction557(text){
+ if(text==='そのターン自分のクリーチャーはすべてパワーを+4000されシールドをさらに1つブレイクする。')return{op:'Sequence',defs:[{op:'GroupPower',owner:'self',filter:{creature:true},power:4000},{op:'GroupLasting412',owner:'self',filter:{creature:true},extraBreak:1}]};
+ if(text==='相手のシールドを1つ選び持ち主のマナゾーンに置く。')return{op:'ShieldMana557'};
+ if(text==='このターン自分のクリーチャーすべてのパワーを+9000し「T・ブレイカー」を与える。(「T・ブレイカー」を持つクリーチャーはシールドを3つブレイクする)')return{op:'Sequence',defs:[{op:'GroupPower',owner:'self',filter:{creature:true},power:9000},{op:'GroupGrant364',owner:'self',filter:{creature:true},grant:{g313Breaker:3}}]};
+ return null;
+}
 function instruction(text,phase){
+ if(phase>=568){const d=instruction568(text);if(d)return d;}
+ if(phase>=567){const d=instruction567(text);if(d)return d;}
+ if(phase>=566){const d=instruction566(text);if(d)return d;}
+ if(phase>=565){const d=instruction565(text);if(d)return d;}
+ if(phase>=563){const d=instruction563(text);if(d)return d;}
+ if(phase>=562){const d=instruction562(text);if(d)return d;}
+ if(phase>=561){const d=instruction561(text);if(d)return d;}
+ if(phase>=557){const d=instruction557(text);if(d)return d;}
+ if(phase>=556){const d=instruction556(text);if(d)return d;}
+ if(phase>=555){const d=instruction555(text);if(d)return d;}
+ if(phase>=554){const d=instruction554(text);if(d)return d;}
+ if(phase>=553){const d=instruction553(text);if(d)return d;}
+ if(phase>=552){const d=lookBudget552(text);if(d)return d;}
+ if(phase>=551){const d=deploy551(text);if(d)return d;}
+ if(phase>=550){const d=deployBudget550(text);if(d)return d;}
+ if(phase>=549){const d=instruction549(text);if(d)return d;}
+ if(phase>=548&&text==='コスト3以下のクリーチャー1体またはコスト3以下のタマシードを1枚破壊する。')return{op:'Target',anyOwner:true,element:true,to:'grave',filter:{creatureOrSeed:true,max:3}};
+ if(phase>=547){const defs={
+  '自分のタマシードを1枚破壊してもよい。そうしたらコスト4以下のタマシードを1枚自分の墓地から出す。':{op:'SacrificeAlly413',g547Seed:true,defs:[{op:'Select',origin:'grave',n:1,deploy:true,g236GraveDeploy:true,optional:false,filter:{g295Tamaseed:true,max:4}}]},
+  '相手のクリーチャー1体またはタマシードを1枚破壊する。':{op:'Target',element:true,to:'grave',filter:{creatureOrSeed:true}},
+  'クリーチャーを1体破壊する。そのクリーチャーの持ち主は自身の山札の上から1枚目をシールド化する。':{op:'Target',anyOwner:true,to:'grave',g547OwnerShield:true},
+  'バトルゾーンにあるクリーチャー1体またはタマシードを1枚選び持ち主の手札に戻してもよい。':{op:'Target',anyOwner:true,element:true,to:'hand',optional:true,filter:{creatureOrSeed:true}}
+ };if(defs[text])return structuredClone(defs[text]);}
+
+ if(phase>=546){const force=instruction546(text);if(force)return force;}
+
+ if(phase>=545&&text==='自分の山札の上から1枚目を墓地に置いてもよい。それが進化クリーチャーなら手札に加えそうでなければカードを1枚引く。')return{op:'Offer',defs:[{op:'MillRecover545',filter:{creature:true,evolution:true},elseDefs:[{op:'Draw',n:1}]}]};
+
+ if(phase>=544){
+  if(text==='自分の山札の上から4枚を表向きにする。その中から進化クリーチャーを1体手札に加えてもよい。残りを墓地に置く。')return{op:'Look',n:4,public:true,rest:'grave',stages:[{n:1,to:'hand',filter:{creature:true,evolution:true},optional:true,reveal:true}]};
+  if(text==='バトルゾーンにある自分のクリーチャー1体につき相手のクリーチャーを1体選びタップする。')return{op:'CountOwn538',filter:{creature:true},mode:'select',def:{op:'Select',origin:'battle',owner:'opponent',optional:false,g173Targets:true,g193Select:true,g193Tap:true,filter:{creature:true},title:'タップする相手のクリーチャーを選ぶ'}};
+ }
+
+ if(phase>=540){const d=instruction540(text);if(d)return d;}
+ if(phase>=539){const d=instruction539(text);if(d)return d;}
+ if(phase>=538){const d=instruction538(text);if(d)return d;}
+ if(phase>=537){const d=instruction537(text);if(d)return d;}
+ if(phase>=536){const d=instruction536(text);if(d)return d;}
+ if(phase>=535){const d=instruction535(text);if(d)return d;}
+ if(phase>=533){const d=instruction533(text);if(d)return d;}
+ if(phase>=532){const d=instruction532(text);if(d)return d;}
+ if(phase>=531){const d=instruction531(text);if(d)return d;}
+ if(phase>=530){const d=instruction530(text);if(d)return d;}
+ if(phase>=529){const d=instruction529(text);if(d)return d;}
+ if(phase>=526){const d=instruction526(text);if(d)return d;}
+ if(phase>=523){const d=manaDeploy523(text);if(d)return d;}
+ if(phase>=522){const d=instruction522(text);if(d)return d;}
+ if(phase>=521){const d=target521(text);if(d)return d;}
+ if(phase>=520){const d=mill520(text);if(d)return d;if(text==='D2フィールド1枚またはクリーチャーを1体自分の墓地から手札に戻してもよい。')return{op:'Select',origin:'grave',to:'hand',n:1,optional:true,filter:{any:[{creature:true},{g228Face:{type:'field',d2:true}}]}};}
+ if(phase>=519){const d=target519(text);if(d)return d;}
+ if(phase>=518){const d=fight518(text);if(d)return d;}
+ if(phase>=517){const d=discard517(text);if(d)return d;}
+ if(phase>=516){const d=ramp516(text);if(d)return d;if(text==='コスト3以下のクリーチャーを1体自分のマナゾーンからバトルゾーンに出してもよい。')return{op:'Select',origin:'mana',n:1,deploy:true,optional:true,filter:{creature:true,max:3}};if(text==='カードを1枚自分のマナゾーンまたは墓地から手札に戻してもよい。')return{op:'Select',zones:['mana','grave'],to:'hand',n:1,optional:true};}
+ if(phase>=515){const d=boost515(text);if(d)return d;}
+ if(phase>=514){const d=reveal514(text);if(d)return d;}
+ if(phase>=513){const d=instruction513(text);if(d)return d;}
+ if(phase>=512){if(text==='カードを1枚引く')return{op:'Draw',n:1};if(text==='この呪文を唱えた後墓地に置くかわりに自分の手札に戻す。')return{op:'SpellFinish416',to:'hand'};}
+ if(phase>=510){const d=modal510(text);if(d)return d;}
+ if(phase>=509){
+  const aliases={
+   '相手はバトルゾーンから自分自身のクリーチャーを1体選び持ち主の墓地に置く。':{op:'OpponentSelect',n:1,to:'grave'},
+   '相手はバトルゾーンから自分自身のクリーチャーを1体選び持ち主の手札に戻す。':{op:'OpponentSelect',n:1,to:'hand'},
+   '相手は自分自身の手札を1枚選んで捨てる。':{op:'Discard',n:1},
+   'バトルゾーンにある自分の他のガーディアンをすべてアンタップする。':{op:'GroupUntap',g179Other:true,filter:{creature:true,race:'ガーディアン'}},
+   'バトルゾーンにある自分のクリーチャーを1体選んでもよい。このターンそのクリーチャーはブロックされない。':{op:'Target',owner:'self',optional:true,grant:{unblockable:true}},
+   '革命2―自分のシールドが2つ以下なら相手のパワー4000以下のクリーチャーをすべて破壊する。':{op:'IfOwn',filter:{g265ShieldsMax:2},defs:[{op:'Sweep',owner:'opponent',to:'grave',filter:{creature:true,maxPower:4000,g199Power:true}}]}
+  }[text];if(aliases)return aliases;
+  const exact=text.match(/^バトルゾーンにあるパワー([1-9]\d*)のクリーチャーすべてを持ち主の墓地に置く。$/);
+  if(exact)return{op:'Sweep',both:true,to:'grave',filter:{creature:true,minPower:+exact[1],maxPower:+exact[1],g199Power:true}};
+ }
+
  if(phase>=507){
   const sweep=text.match(/^バトルゾーンにある(?:パワー([1-9]\d*)以下の)?クリーチャーを?すべてを?持ち主の墓地に置く。$/);
   if(sweep)return{op:'Sweep',both:true,to:'grave',filter:{creature:true,...(sweep[1]?{maxPower:+sweep[1],g199Power:true}:{})}};
@@ -1150,7 +1602,18 @@ function zero396(line,phase=396){
 }
 // Modal Shinka effects resolve after evolution, using the same task pipeline as entry effects.
 // Only complete, source-independent bodies are accepted here.
-function shinkaMode445(text){
+function shinkaMode445(text,phase){
+ if(phase>=546){
+  if(text==='相手のクリーチャーを2体まで選ぶ。次の自分のターンのはじめまでそれらのクリーチャーは攻撃もブロックもできない。')return[{op:'Select',origin:'battle',owner:'opponent',n:2,optional:true,g173Targets:true,g190Freeze:'self',filter:{creature:true}}];
+  if(text==='相手のクリーチャーを2体まで選ぶ。次の相手のターン中それらのクリーチャーは可能なら攻撃する。')return[{op:'Select',origin:'battle',owner:'opponent',n:2,optional:true,g173Targets:true,g546Force:'nextOpponent',filter:{creature:true}}];
+ }
+
+ if(phase>=545){const modes={
+  '相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを-6000する。(パワー0以下のクリーチャーは破壊される)':[{op:'Target',power:-6000,g242PowerMinus:true}],
+  'プレイヤーを1人選ぶ。そのプレイヤーは自身の墓地を山札に加えてシャッフルする。':[{op:'GraveShuffle545'}]
+ };if(modes[text])return structuredClone(modes[text]);}
+
+ if(phase>=543&&text==='このターンこのクリーチャーの最初の攻撃の終わりにこのクリーチャーをアンタップする。')return[{op:'ShinkaDelay543',when:'firstAttackEnd'}];
  const modes={
   'このターン自分のクリーチャーはブロックされない。':[{op:'GroupGrant364',owner:'self',filter:{creature:true},grant:{unblockable:true}}],
   '自分の山札の上から1枚目をマナゾーンに置く。その後カードを1枚自分のマナゾーンから手札に戻してもよい。':[{op:'Ramp',n:1},{op:'Select',origin:'mana',to:'hand',n:1,optional:true}],
@@ -1187,6 +1650,28 @@ function shinka446(body){
  return null;
 }
 function shinka397(body,phase){
+ if(phase>=545){
+  if(body==='相手のクリーチャーを2体まで選びタップする。')return[{op:'Select',origin:'battle',owner:'opponent',n:2,optional:true,g173Targets:true,g193Select:true,g193Tap:true,filter:{creature:true}}];
+  if(body==='自分の手札をすべて捨ててもよい。そうしたらカードを3枚引く。')return[{op:'HandCycle460',to:'grave',mode:'all',optional:true,fixedDraw:3}];
+  if(body==='自分の墓地からコスト3以下のクリーチャーを1体出してもよい。')return[{op:'Select',origin:'grave',n:1,deploy:true,g236GraveDeploy:true,optional:true,filter:{creature:true,max:3}}];
+ }
+
+ if(phase>=544){const rules={
+  '進化した後それよりコストが小さい相手のクリーチャーを1体破壊する。':[{op:'ShinkaHost544',mode:'belowCost'}],
+  '相手のクリーチャーを1体選んでもよい。進化の後その選んだクリーチャーとこのクリーチャーをバトルさせる。':[{op:'ShinkaHost544',mode:'fight'}],
+  '相手のクリーチャーを1体選ぶ。このターン自分の墓地にあるカード1枚につきそのクリーチャーのパワーを-1000する。':[{op:'CountTarget544',zone:'grave',amount:-1000,def:{op:'Target',g242PowerMinus:true}}],
+  'カードを1枚引く。その後自分のシールドの数が相手より多ければカードをもう1枚引く。':[{op:'Draw',n:1},{op:'IfOwn',filter:{g334ZoneCount:{zone:'shields',moreThanOpponent:true}},defs:[{op:'Draw',n:1}]}]
+ };if(rules[body])return structuredClone(rules[body]);}
+
+ if(phase>=543){
+  const rules={
+   '次の自分のターンのはじめまでこのクリーチャーは攻撃されず相手がクリーチャーを選ぶ時選ばれない。':[{op:'ShinkaGrant397',untilStart:true,grant:{cannotBeAttacked:true,untargetable:true}}],
+   '次の自分のターンのはじめまでこのクリーチャーはブロックされず相手がクリーチャーを選ぶ時このクリーチャーは選べない。':[{op:'ShinkaGrant397',untilStart:true,grant:{unblockable:true,untargetable:true}}],
+   '次の自分のターンのはじめまでこの進化したクリーチャーは「ブロッカー」を得このターンの終わりにアンタップする。':[{op:'ShinkaGrant397',untilStart:true,grant:{blocker:true}},{op:'ShinkaDelay543',when:'end'}],
+   'このターンこの進化したクリーチャーがはじめて攻撃する時その攻撃の後アンタップする。':[{op:'ShinkaDelay543',when:'firstAttack'}]
+  };if(rules[body])return structuredClone(rules[body]);
+ }
+
  if(phase>=446){const defs=shinka446(body);if(defs)return defs;}
  const grants={
   'このターンこの進化したクリーチャーはブロックされない。':{unblockable:true},
@@ -1246,6 +1731,14 @@ function chance419(line){
  return named?{name:named[1]}:null;
 }
 export function standardCardSpec(d,{phase=165}={}){
+ // Repair only the complete formatting variants pinned to these official prints.
+ if(phase>=533&&d?.faces?.length===1){
+  const fix={
+   'dmrp17-024':['蟲偵電融 ゼノジェント','W・ブレイカー（このクリーチャーはシールドを２つブレイクする）。','W・ブレイカー（このクリーチャーはシールドを２つブレイクする）'],
+   'dm14-008':['メガアサルト・ワイバーン','W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)このクリーチャーが破壊された時、パワー4000以下のクリーチャーをすべて破壊する。','W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが破壊された時、パワー4000以下のクリーチャーをすべて破壊する。']
+  }[d.id];
+  if(fix&&d.name===fix[0]&&d.faces[0].abilityText.split('\n').includes(fix[1])){d=structuredClone(d);d.faces[0].abilityText=d.faces[0].abilityText.replace(fix[1],fix[2]);}
+ }
  // These older official pages have a broken minus glyph. Keep the exception
  // pinned to the verified print and complete clause; never guess other symbols.
  if(phase>=428){
@@ -1268,14 +1761,51 @@ export function standardCardSpec(d,{phase=165}={}){
  if(f.civilizations.includes('無色')&&f.civilizations.length!==1)throw Error('無色の複合文明');
  const creature=f.typeText.includes('クリーチャー'),evolution=f.typeText==='進化クリーチャー'||phase>=273&&f.typeText==='スター進化クリーチャー',seed=f.typeText==='タマシード';
  if(creature&&!/^\d+\+?$/.test(f.powerText)&&!(phase>=243&&/^\d+-$/.test(f.powerText)))throw Error('特殊なパワー');
- const spec={},entry=[],attack=[],block=[],death=[],leave=[],turnStart=[],turnEnd=[],opponentStart=[],tapped=[],battleWin=[];let powerBonus=false,nativeEntry=null;
+ const spec={},entry=[],attack=[],block=[],death=[],leave=[],turnStart=[],turnEnd=[],opponentStart=[],opponentEnd=[],tapped=[],battleWin=[];let powerBonus=false,nativeEntry=null;
  const compact363=phase>=363?normalize(f.abilityText):'',whole363=phase>=363&&(modal363(compact363)||compact363==='自分の水と闇を両方持つクリーチャーがバトルゾーンに出た時次のうちいずれか1つを選ぶ。▼カードを1枚引く。▼相手は自身の手札を1枚選び捨てる。');
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?f.abilityText.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):f.abilityText).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=527&&creature){
+  const extras=[
+   'マナ武装4:このクリーチャーが出た時自分のマナゾーンに多色カードが4枚以上あればカードを1枚自分の墓地から手札に戻してもよい。',
+   'マナ武装4:このクリーチャーが出た時自分のマナゾーンに多色カードが4枚以上あればカードを2枚引く。'
+  ],at=lines.findIndex(l=>extras.includes(normalize(l)));
+  if(at>=0&&lines.filter(l=>extras.includes(normalize(l))).length===1){
+   const prefix=structuredClone(d);prefix.faces[0].abilityText=lines.filter((_,i)=>i!==at).join('\n');
+   const base=standardCardSpec(prefix,{phase:526}),extra=mana197(normalize(lines[at]),phase);
+   if(base.effect==='sixPhoto'&&base.g34Tasks?.length&&!base.summonedEntryOnly&&!base.evolvedEntryOnly&&!base.stackOnlyEntry&&!base.nonEvolutionBase)return{...base,g527ExtraEntry:[{label:'マナ武装4',defs:[extra.task]}]};
+  }
+ }
+ if(phase>=558&&creature){
+  const headers=[
+   'マーシャル・タッチ(このクリーチャーをバトルゾーンに出した時自分の他のクリーチャーを1体バトルゾーンから手札に戻してもよい。そうした場合このクリーチャーの能力を使う)',
+   'マーシャル・タッチ(このクリーチャーがバトルゾーンに出た時自分の他のクリーチャーを1体バトルゾーンから手札に戻してもよい。そうしたらこのクリーチャーのg能力を使う)'
+  ],at=lines.findIndex(l=>headers.some(h=>normalize(l).startsWith(h)));
+  if(at>=0){
+   if(lines.filter(l=>normalize(l).startsWith('マーシャル・タッチ')).length!==1)throw Error('重複するマーシャル・タッチ');
+   const line=normalize(lines[at]),head=headers.find(h=>line.startsWith(h)),inline=line.slice(head.length),body=inline||normalize(lines[at+1]||''),text=head.includes('g能力')?body.replace(/^g/,''):body;
+   const defs={
+    'このターン自分のクリーチャーすべてに「スピードアタッカー」を与える。(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)':[{op:'GroupGrant364',owner:'self',filter:{creature:true},grant:{speedAttacker:true}}],
+    'パワー4000以下のクリーチャーをすべて破壊する。':[{op:'Sweep',both:true,to:'grave',filter:{creature:true,maxPower:4000,g199Power:true}}],
+    '自分の山札の上から1枚目をマナゾーンに置く。':[{op:'Ramp',n:1}],
+    'この「マーシャル・タッチ」能力で手札に戻すために選んだ自分のクリーチャー以下のコストを持つ相手のクリーチャーを1体破壊する。':[{op:'Target',to:'grave',g558ReturnedCost:true,filter:{creature:true}}],
+    'このターンこのクリーチャーは「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)':[{op:'ShinkaGrant397',grant:{speedAttacker:true}}],
+    'このターンバトルゾーンにある自分の他のクリーチャー1体はタップされていないクリーチャーを攻撃できる。':[{op:'Target',owner:'self',g179Other:true,grant:{attackUntapped:true}}],
+    '相手の「ブロッカー」を持つクリーチャーを1体破壊する。':[{op:'Target',to:'grave',filter:{blocker:true}}],
+    '相手のパワー2000以下のクリーチャーを1体破壊する。':[{op:'Target',to:'grave',filter:{maxPower:2000,g199Power:true}}],
+    'このターンこのクリーチャーのパワーは+3000され「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)':[{op:'ShinkaGrant397',power:3000,grant:{speedAttacker:true}}],
+    'パワー5000以下の光または水のクリーチャーを1体破壊する。':[{op:'Target',anyOwner:true,to:'grave',filter:{creature:true,maxPower:5000,g199Power:true,any:[{color:'光'},{color:'水'}]}}]
+   }[text];
+   if(!defs)throw Error('未対応のマーシャル・タッチの効果');
+   const prefix=structuredClone(d),souls=[];prefix.faces[0].abilityText=lines.filter((l,i)=>{if(i===at||!inline&&i===at+1)return false;const text=normalize(l);if(/^(?:【[HMEKWBU]・ソウル】)+$/.test(text)){souls.push(...text.matchAll(/([HMEKWBU])・ソウル/g));return false;}return true;}).join('\n');prefix.faces[0].powerText=f.powerText.replace(/\+$/,'');const base=standardCardSpec(prefix,{phase:557});
+   if(base.g34Tasks||base.effect)throw Error('独立した登場能力の順序対応が必要');return{...base,...(souls.length?{g558Souls:souls.map(m=>m[1])}:{}),effect:'sixPhoto',g34Tasks:[{op:'MarshalTouch558',defs}]};
+  }
+ }
+ if(phase>=546&&!creature&&!seed&&lines.length===2&&normalize(lines[0])==='相手のクリーチャーを1体選ぶ。次の相手のターンそのクリーチャーは可能なら攻撃する。'&&normalize(lines[1])==='G・G・G:自分の手札が1枚以下なら相手のクリーチャーは1体のかわりにすべて次の相手のターンに可能なら攻撃する。')return{effect:'sixPhoto',g34Tasks:[{op:'IfOwn',filter:{g334ZoneCount:{zone:'hand',max:1}},defs:[{op:'ForceGroup546',when:'nextOpponent',spell:true}],elseDefs:[{op:'Target',g546Force:'nextOpponent',spell:true}]}]};
  if(phase>=445&&creature){
   const at=lines.findIndex(line=>normalize(line)==='シンカパワー:このクリーチャーが進化する時次のうちいずれか1つを選ぶ。');
   if(at>=0){
    const choices=lines.slice(at+1);if(choices.length!==2||choices.some(line=>!/^\s*▶/.test(line)))throw Error('未対応の選択式シンカパワー構成');
-   const bodies=choices.map(line=>normalize(line.replace(/^\s*▶/,''))),defs=bodies.map(shinkaMode445);
+   const bodies=choices.map(line=>normalize(line.replace(/^\s*▶/,''))),defs=bodies.map(body=>shinkaMode445(body,phase));
    if(new Set(bodies).size!==bodies.length||defs.some(d=>!d))throw Error('未対応の選択式シンカパワー効果');
    const prefix=structuredClone(d);prefix.faces[0].abilityText=lines.slice(0,at).join('\n');const prior=standardCardSpec(prefix,{phase:444});
    if(prior.g397Shinka)throw Error('重複するシンカパワー');
@@ -1286,7 +1816,7 @@ export function standardCardSpec(d,{phase=165}={}){
   const heads=lines.filter(l=>normalize(l).startsWith('スペース・チャージ'));if(heads.length!==1)throw Error('未対応のスペース・チャージ構成');const head=normalize(heads[0]),modern=head==='スペース・チャージ(自分のマナゾーンにカードが置かれた時そのカードの文明に合うq能力を使ってもよい)',old=head.match(/^スペース・チャージ:([光水闇火自然]+)(?:\/([光水闇火自然]+))?\((.+)\)$/);
   if(!modern&&!old)throw Error('未対応のスペース・チャージ条件');const cs=old?[old[1],...(old[2]?[old[2]]:[])]:null;
   if(cs&&(cs.some(c=>!colors.includes(c))||new Set(cs).size!==cs.length||old[3]!=='自分のマナゾーンに'+(cs.length===1?cs[0]+'の':cs.join('')+'のいずれかまたは両方を持つ')+'カードが置かれた時このクリーチャーのq能力を使ってもよい'))throw Error('未対応のスペース・チャージ条件');
-  const qs=lines.filter(l=>/^q/.test(normalize(l)));if(!qs.length||cs&&qs.length!==cs.length)throw Error('未対応のスペース・チャージ能力');const rules=qs.map((line,i)=>{const text=normalize(line),tag=text.match(/^q(光|水|闇|火|自然):(.+)$/),color=tag?.[1]||(cs?.length===1&&cs[0]),body=tag?.[2]||text.slice(1);if(!color||cs&&color!==cs[i]||!tag&&cs?.length!==1)throw Error('未対応のスペース・チャージ文明');const defs=clauses(body,Math.min(phase,456)).map(t=>instruction(t,Math.min(phase,456)));if(!defs.length||defs.some(d=>!d))throw Error('未対応のスペース・チャージ効果');const battlePower=xs=>{for(const d of xs){if((d.op==='Target'||d.op==='Select'&&d.origin==='battle')&&d.filter&&(d.filter.maxPower!==undefined||d.filter.minPower!==undefined))d.filter.g199Power=true;if(d.defs)battlePower(d.defs);for(const m of d.modes||[])battlePower(m.defs);}};battlePower(defs);return{color,defs};});
+  const qs=lines.filter(l=>/^q/.test(normalize(l)));if(!qs.length||cs&&qs.length!==cs.length)throw Error('未対応のスペース・チャージ能力');const rules=qs.map((line,i)=>{const text=normalize(line),tag=text.match(/^q(光|水|闇|火|自然):(.+)$/),color=tag?.[1]||(cs?.length===1&&cs[0]),body=tag?.[2]||text.slice(1);if(!color||cs&&color!==cs[i]||!tag&&cs?.length!==1)throw Error('未対応のスペース・チャージ文明');const force=phase>=546&&instruction546(body),defs=force?[force]:clauses(body,Math.min(phase,456)).map(t=>instruction(t,Math.min(phase,456)));if(!defs.length||defs.some(d=>!d))throw Error('未対応のスペース・チャージ効果');const battlePower=xs=>{for(const d of xs){if((d.op==='Target'||d.op==='Select'&&d.origin==='battle')&&d.filter&&(d.filter.maxPower!==undefined||d.filter.minPower!==undefined))d.filter.g199Power=true;if(d.defs)battlePower(d.defs);for(const m of d.modes||[])battlePower(m.defs);}};battlePower(defs);return{color,defs};});
   if(new Set(rules.map(r=>r.color)).size!==rules.length)throw Error('重複するスペース・チャージ文明');const base=structuredClone(d);base.faces[0].abilityText=lines.filter(l=>l!==heads[0]&&!qs.includes(l)).join('\n');const prior=standardCardSpec(base,{phase:phase>=455?Math.min(phase,456):453});if(prior.g454Space)throw Error('重複するスペース・チャージ能力');return{...prior,g454Space:rules};
  }
  if(phase>=452&&creature){
@@ -1303,7 +1833,7 @@ export function standardCardSpec(d,{phase=165}={}){
    const body=lines.slice(1),marked=body.filter(l=>/^\s*\{x\+\}/.test(l));if(marked.length!==1||body.join('').split('{x+}').length!==2)throw Error('未対応のS・トリガー・プラス構成');
    if(creature){
     const base=structuredClone(d),bonus=structuredClone(d);base.faces[0].abilityText=body.filter(l=>l!==marked[0]).join('\n');bonus.faces[0].abilityText=marked[0].replace(/^\s*\{x\+\}/,'');
-    const prior=standardCardSpec(base,{phase:451}),extra=standardCardSpec(bonus,{phase:451});if(Object.keys(extra).some(k=>!['effect','g34Tasks'].includes(k))||extra.effect!=='sixPhoto'||!extra.g34Tasks?.length||prior.trigger||prior.triggerPlus||prior.superTrigger)throw Error('未対応のS・トリガー・プラス能力');
+    const nestedPhase=phase>=553?phase:451,prior=standardCardSpec(base,{phase:nestedPhase}),extra=standardCardSpec(bonus,{phase:nestedPhase});if(Object.keys(extra).some(k=>!['effect','g34Tasks'].includes(k))||extra.effect!=='sixPhoto'||!extra.g34Tasks?.length||prior.trigger||prior.triggerPlus||prior.superTrigger)throw Error('未対応のS・トリガー・プラス能力');
     return{...prior,triggerPlus:true,g34Plus:extra.g34Tasks};
    }
    const at=body.indexOf(marked[0]);if(at!==body.length-1)throw Error('未対応のS・トリガー・プラス呪文構成');
@@ -1451,6 +1981,7 @@ export function standardCardSpec(d,{phase=165}={}){
   if(at>=0){
    if(lines.filter(isMarker).length!==1||at===lines.length-1)throw Error('未対応のアクセル構成');
    const rawBody=normalize(lines.slice(at+1).join('')),body=normalize(lines[at])===modern?rawBody.replace(/^a(?=このクリーチャー)/,''):rawBody,race=body.match(/^このクリーチャーのパワーは\+3000され種族に(サイバー・ムーン|デーモン・コマンド|アース・ドラゴン|エンジェル・コマンド|ボルケーノ・ドラゴン)を追加する。$/),grants=race?{power:3000,raceAdd:[race[1]]}:{
+    ...(phase>=542?{'このクリーチャーがこのターンはじめて攻撃する時攻撃の後このクリーチャーをアンタップする。':{g540FirstAttack:[{op:'AfterAttack542',defs:[{op:'Untap',g191First:true}]}]}}:{}),
     ...(phase>=442?{
      'このクリーチャーが攻撃する時カードを1枚引く。':{g34Attack:[{op:'Draw',n:1}]},
      'このクリーチャーが攻撃する時自分の山札を見る。その中からクリーチャー1体またはクロスギア1枚を選び相手に見せてから自分の手札に加えてもよい。その後山札をシャッフルする。':{g34Attack:[{op:'Look',g201Search:true,g200Search:true,n:'all',stages:[{n:1,to:'hand',optional:true,reveal:true,filter:{any:[{creature:true},{g228Face:{type:'gear'}}]}}],rest:'shuffle'}]},
@@ -1513,6 +2044,67 @@ export function standardCardSpec(d,{phase=165}={}){
  }
  for(let i=0;i<lines.length;i++){
   const raw=lines[i],line=normalize(phase>=231?raw.replace(/^このクリーチャーがブロックしたとき/,phase>=360?'このクリーチャーがブロックした時':'このクリーチャーがブロックしたとき').replace(/^このクリーチャーがバトルゾーンに出たとき/,'このクリーチャーがバトルゾーンに出た時').replace(/^このクリーチャーが攻撃するとき/,'このクリーチャーが攻撃する時'):phase>=228?raw.replace(/^このクリーチャーが攻撃するとき/,'このクリーチャーが攻撃する時'):raw);let m,known=false;
+  if(phase>=542&&creature){
+   const end={op:'AfterAttack542',defs:[{op:'Untap',g191First:true}]},first={
+    '各ターンこのクリーチャーがはじめて攻撃する時その攻撃の後このクリーチャーをアンタップする。':[end],
+    '各ターンこのクリーチャーがはじめて攻撃する時自分のD2フィールドがバトルゾーンにあれば攻撃の後このクリーチャーをアンタップする。':[{op:'IfOwn',filter:{g228Face:{type:'field',d2:true}},defs:[end]}],
+    '水晶武装2:各ターンこのクリーチャーがはじめて攻撃する時自分のマナゾーンに裏向きのカードが2枚以上あればその攻撃の後このクリーチャーをアンタップする。':[{op:'IfOwn',filter:{g286FaceDownMana:2},defs:[end]}],
+    'このクリーチャーが各ターンはじめて攻撃する時自分の他のクリーチャーを1体破壊してもよい。そうした場合このクリーチャーをアンタップする。':[{op:'SacrificeAlly413',other:true,defs:[{op:'Untap',g191First:true}]}]
+   }[line];if(first){if(spec.g540FirstAttack)throw Error('重複する最初の攻撃誘発');spec.g540FirstAttack=first;continue;}
+  }
+  if(phase>=541&&creature){
+   const untap={op:'Untap',g191First:true},first={
+    '各ターンこのクリーチャーがはじめて攻撃する時アンタップする。':[untap],
+    '各ターンこのクリーチャーがはじめて攻撃する時このクリーチャーをアンタップする。':[untap],
+    'このクリーチャーは各ターンはじめて攻撃する時アンタップする。':[untap],
+    '各ターンこのクリーチャーがはじめて攻撃する時自分の手札を1枚捨ててもよい。そうしたらこのクリーチャーをアンタップする。':[{op:'DiscardFor248',defs:[untap]}],
+    'レインボーナス:各ターンこのクリーチャーがはじめて攻撃する時バトルゾーンに自分の多色クリーチャーがあればこのクリーチャーをアンタップする。':[{op:'IfOwn',filter:{creature:true,multi:true},defs:[untap]}],
+    '各ターンこのクリーチャーがはじめて攻撃する時自分のクリーチャーの数が自分のシールドの数以上ならこのクリーチャーをアンタップする。':[{op:'IfOwn',filter:{g541CreaturesAtLeastShields:true},defs:[untap]}],
+    '各ターンこのクリーチャーがはじめて攻撃する時これが進化クリーチャーならアンタップする。':[{op:'IfSource541',evolution:true,defs:[untap]}]
+   }[line];if(first){if(spec.g540FirstAttack)throw Error('重複する最初の攻撃誘発');spec.g540FirstAttack=first;continue;}
+   if(line==='鬼タイム:このクリーチャーが破壊された時自分と相手のシールドの数が合計6つ以下なら相手のパワー8000以下のクリーチャーを1体破壊する。'){if(death.length)throw Error('独立した破壊時能力の順序対応が必要');death.push({op:'IfOwn',filter:{g334ZoneCount:{zone:'shields',sumBoth:true,max:6}},defs:[{op:'Target',to:'grave',filter:{maxPower:8000,g199Power:true}}]});continue;}
+  }
+  if(phase>=540){
+   if(f.typeText==='呪文'&&line==='バトルゾーンまたはマナゾーンに自分のジョーカーズが合計5枚以上あればこの呪文を唱えるコストは5少なくなる。'){if(spec.g261Discount)throw Error('重複するジョーカーズ軽減');spec.g261Discount={filter:{g539Jokers:5},amount:5};continue;}
+   if(creature){
+    if(line==='このクリーチャーはバトルゾーンに出たターン相手プレイヤーを攻撃できる。'){if(spec.entryPlayerAttack)throw Error('重複する登場時プレイヤー攻撃');spec.entryPlayerAttack=true;continue;}
+    if(line==='このクリーチャーは可能なら毎ターン相手プレイヤーを攻撃する。'){if(spec.g540MustPlayer)throw Error('重複するプレイヤー攻撃義務');spec.g540MustPlayer=true;continue;}
+    if(line==='バトルゾーンまたはマナゾーンに自分のジョーカーズが合計2枚以上あればこのクリーチャーのパワーを+3000し「W・ブレイカー」を与える。(「W・ブレイカー」を持つクリーチャーはシールドを2つブレイクする)'){if(spec.g260Self)throw Error('重複するジョーカーズ数条件');spec.g260Self={filter:{g539Jokers:2},grants:{power:3000,breaker:2}};powerBonus=true;continue;}
+    if(line==='バトルゾーンまたはマナゾーンに自分のジョーカーズが合計4枚以上あれば自分のジョーカーズすべてのバトル中のパワーを+3000する。'){if(spec.g466BattleAura)throw Error('重複するジョーカーズのバトル修整');spec.g466BattleAura={filter:{creature:true,race:'ジョーカーズ'},condition:{g539Jokers:4},power:3000};continue;}
+    if(line==='各ターンこのクリーチャーがはじめて攻撃する時バトルゾーンまたはマナゾーンに自分のジョーカーズが合計4枚以上あればこのクリーチャーをアンタップする。'){if(spec.g540FirstAttack)throw Error('重複する最初の攻撃誘発');spec.g540FirstAttack=[{op:'IfOwn',filter:{g539Jokers:4},defs:[{op:'Untap',g191First:true}]}];continue;}
+   }
+  }
+  if(phase>=539&&creature){
+   const joker={
+    'バトルゾーンまたはマナゾーンに自分のジョーカーズが合計10枚以上あればこのクリーチャーのパワーを+8000し「T・ブレイカー」を与える。':{n:10,grants:{power:8000,breaker:3}},
+    'バトルゾーンまたはマナゾーンに自分のジョーカーズが合計4枚以上あればこのクリーチャーに「パワーアタッカー+6000」と「W・ブレイカー」を与える。(「パワーアタッカー+6000」と「W・ブレイカー」を持つクリーチャーは攻撃中パワーを+6000されシールドを2つブレイクする)':{n:4,grants:{attackBonus:6000,breaker:2}}
+   }[line];if(joker){if(spec.g260Self)throw Error('重複するジョーカーズ数条件');spec.g260Self={filter:{g539Jokers:joker.n},grants:joker.grants};powerBonus=true;continue;}
+   if(line==='バトルゾーンまたはマナゾーンに自分のジョーカーズが合計6枚以上あればこのクリーチャーを自分のマナゾーンから召喚してもよい。'){if(spec.g539SelfMana)throw Error('重複する自己マナ召喚');spec.g539SelfMana=6;continue;}
+  }
+  if(phase>=536&&creature){
+   const moon={
+    'オシオキムーン:カードが自分のシールドゾーンを離れた時相手のクリーチャーを1体選びタップする。':[{op:'Target',tap:true}],
+    'オシオキムーン:カードが自分のシールドゾーンを離れた時相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを-3000する。(パワー0以下のクリーチャーは破壊される)':[{op:'Target',power:-3000,g242PowerMinus:true}]
+   }[line];
+   if(moon){if(spec.g536ShieldLeft)throw Error('重複するオシオキムーン');spec.g536ShieldLeft=moon;continue;}
+   if(line==='バトルゾーンにある自分のクリーチャーの数が相手より多ければこのクリーチャーは「ブロッカー」を得自分のターンの終わりにアンタップする。(「ブロッカー」を持つクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'){if(spec.g260Self)throw Error('重複するクリーチャー数条件');spec.g260Self={filter:{g413MoreCreatures:true},grants:{blocker:true,g166EndUntap:true}};continue;}
+  }
+  if(phase>=534&&creature){
+   const reduction={
+    '自分のマナゾーンにあるクリーチャー1体につきこのクリーチャーの召喚コストを1少なくする。ただしコストは0より少なくならない。':{zone:'mana',filter:{creature:true},amount:1,minimum:0},
+    '自分のマナゾーンにあるクリーチャー1体につきこのクリーチャーの召喚コストは1少なくなる。ただしコストは2より少なくならない。':{zone:'mana',filter:{creature:true},amount:1,minimum:2}
+   }[line];
+   if(reduction){if(spec.g212CountDiscount)throw Error('重複する枚数軽減');spec.g212CountDiscount=reduction;continue;}
+   if(line==='マナ武装3:自分のマナゾーンに火のカードが3枚以上あればこのクリーチャーに「スピードアタッカー」を与える。(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)'){if(spec.g260Self)throw Error('重複するマナ武装条件');spec.g260Self={filter:{g267Mana:{n:3,color:'火'}},grants:{speedAttacker:true}};continue;}
+   if(line==='自然・光スレイヤー(このクリーチャーとバトルした相手の自然または光のクリーチャーは勝っても持ち主の墓地に置かれる)'){if(spec.g534SlayerColors)throw Error('重複する文明指定スレイヤー');spec.g534SlayerColors=['自然','光'];continue;}
+  }
+  if(phase>=528&&creature){
+   if(line==='ラビリンス:このクリーチャーがバトルゾーンに出た時自分のシールドの数が相手より多ければ相手のクリーチャーを1体選びタップする。'){if(entry.length||nativeEntry)throw Error('独立した誘発能力の順序対応が必要');entry.push({op:'IfOwn',filter:{g334ZoneCount:{zone:'shields',moreThanOpponent:true}},defs:[{op:'Target',tap:true}]});continue;}
+   if(line==='G・G・G:このクリーチャーが攻撃する時自分の手札が1枚以下ならこのクリーチャーをアンタップしカードを2枚引く。'){if(attack.length)throw Error('独立した誘発能力の順序対応が必要');attack.push({op:'IfHand246',max:1,defs:[{op:'Untap',g191First:true},{op:'Draw',n:2}]});continue;}
+  }
+  if(phase>=527&&creature&&(m=line.match(/^鬼タイム:このクリーチャーがバトルゾーンに出た時自分と相手のシールドの数が合計6つ以下なら相手のクリーチャーを1体選ぶ。そのターンそのクリーチャーのパワーを-(5000|7000)する。\(パワー0以下のクリーチャーは破壊される\)$/))){if(entry.length||nativeEntry)throw Error('独立した誘発能力の順序対応が必要');entry.push({op:'IfOwn',filter:{g334ZoneCount:{zone:'shields',sumBoth:true,max:6}},defs:[{op:'Target',power:-Number(m[1]),g242PowerMinus:true,title:'パワーを-'+m[1]+'する相手のクリーチャーを1体選ぶ'}]});continue;}
+  if(phase>=525&&creature&&line==='このクリーチャーがバトルした時バトルの後このクリーチャーを破壊する。'){if(spec.afterBattleDie)throw Error('重複するバトル後の破壊');spec.afterBattleDie=true;continue;}
+  if(phase>=524&&creature&&useBlocker524(line)){if(spec.g524OpponentUseBlocker)throw Error('重複する相手の召喚・詠唱監視');spec.g524OpponentUseBlocker=true;continue;}
   if(phase>=492&&creature){
    const inv=line.match(/^侵略[:―-](.+)\(自分の(.+)が攻撃する時自分の手札にあるこのクリーチャーをその上に重ねてもよい\)$/),alternatives=inv&&{
     '火の侵略者または火のヒューマノイド':{colors:['火'],categories:['侵略者','ヒューマノイド']},
@@ -1551,6 +2143,100 @@ export function standardCardSpec(d,{phase=165}={}){
   if(phase>=486&&creature){
    const change=line.match(/^革命チェンジ:((?:コスト5以上の)?(?:アビス|マジック|メカ|ジャイアント|アーマード))\(自分の(.+)が攻撃する時そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい\)$/);
    if(change){if(spec.rev||change[1]!==change[2])throw Error('重複または条件が一致しない革命チェンジ');const min=change[1].startsWith('コスト5以上の')?5:0;spec.rev={race:change[1].replace(/^コスト5以上の/,''),...(min?{min}:{}),g486Current:true};continue;}
+  }
+  if(phase>=512&&creature){
+   if(line==='相手の光以外の呪文を唱えるコストを4多くする。'){if(spec.g222SpellTax)throw Error('重複する呪文コスト増加');spec.g222SpellTax={opponent:true,exceptColor:'光',amount:4};continue;}
+   if(line==='相手は多色ではない呪文を唱えることができない。'){if(spec.g512MultiSpellOnly)throw Error('重複する文明数による呪文制限');spec.g512MultiSpellOnly=true;continue;}
+   if(line==='自分の進化クリーチャーは攻撃されない。'){const aura={filter:{creature:true,evolution:true},grants:{cannotBeAttacked:true}};if((spec.g208Auras||[]).some(a=>JSON.stringify(a)===JSON.stringify(aura)))throw Error('重複する進化クリーチャーの攻撃耐性');(spec.g208Auras??=[]).push(aura);continue;}
+   if(line==='このカードは4枚以上デッキに入れることができる。'){if(spec.g314Unlimited)throw Error('重複するデッキ枚数能力');spec.g314Unlimited=true;continue;}
+  }
+  if(phase>=511&&creature){
+   const first=line.match(/^自分のクリーチャーが攻撃する時それがそのターンはじめての攻撃であれば(.+)$/);
+   if(first){
+    const body=first[1],power=body.match(/^そのターンそのクリーチャーのパワーを\+([1-9]\d*)する。$/),defs=power?[{op:'AttackGrant399',power:+power[1]}]:{
+     'このターンそのクリーチャーはブロックされない。':[{op:'AttackGrant399',grant:{unblockable:true}}],
+     'そのターンそのクリーチャーはパワーを+5000されシールドをさらにひとつブレイクする。':[{op:'AttackGrant399',power:5000},{op:'AttackExtraBreak511',amount:1}],
+     '自分のクリーチャーを1体選ぶ。そのターンそのクリーチャーに「スレイヤー」を与える。(「スレイヤー」を持つクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)':[{op:'Target',owner:'self',grant:{slayer:true}}],
+     '自分の山札の上から1枚目を表向きにしてもよい。それがクリーチャーなら自分の手札に加えそれ以外ならマナゾーンに置く。':[{op:'Offer',g359RevealAll:true,defs:[{op:'Look',g255Search:true,n:1,public:true,stages:[{n:'all',to:'hand',filter:{creature:true}}],rest:'mana'}]}],
+     '自分の山札の上から1枚目をマナゾーンに置いてもよい。':[{op:'Offer',defs:[{op:'Ramp',n:1}]}],
+     ...(phase>=528?{
+      '相手のクリーチャーを1体選びタップする。そのクリーチャーは次の相手のターンのはじめにアンタップしない。':[{op:'Target',tap:true,lock:true,g210TapLock:true}],
+      '相手は自身の手札を1枚選び捨てる。':[{op:'Discard',n:1}]
+     }:{})
+    }[body];
+    if(defs){const watch={who:'self',first:true,filter:{creature:true},g399Attacker:true,defs};if((spec.g253AttackWatches||[]).some(w=>JSON.stringify(w)===JSON.stringify(watch)))throw Error('重複する最初の攻撃の監視能力');(spec.g253AttackWatches??=[]).push(watch);continue;}
+   }
+  }
+  if(phase>=568&&creature){
+   const m=line.match(/^自分のマナゾーンに(光|水|闇|火|自然)(光|水|闇|火|自然)(光|水|闇|火|自然)の各文明があればこのクリーチャーを\[cc02\]支払って召喚してもよい。$/);
+   const condition=m?{g568ManaColors:[m[1],m[2],m[3]]}:line==='自分の墓地にカードが5枚以上あればこのクリーチャーを[dd02]支払って召喚してもよい。'?{g334ZoneCount:{zone:'grave',min:5}}:line==='自分のタップしているクリーチャーがあればこのクリーチャーを[ww01]支払って召喚してもよい。'?{creature:true,tapped:true}:null;
+   if(condition){if(spec.g568Alt)throw Error('重複する条件付き代替コスト');spec.g568Alt={condition,cost:m?2:line.includes('[dd02]')?2:1,paymentColors:m?[]:line.includes('[dd02]')?['闇']:['水']};continue;}
+  }
+  if(phase>=567){
+   if(creature){const rules={
+    'バトルゾーンに自分のパワー6000以上のクリーチャーがいなければこのクリーチャーはプレイヤーを攻撃できない。':{noPlayerAttack:true,filter:{creature:true,minPower:6000,g199Power:true},grants:{noPlayerAttack:false}},
+    '自分のマナゾーンにタップしているカードがあればこのクリーチャーは相手プレイヤーを攻撃できない。':{noPlayerAttack:true,filter:{g567NoTappedMana:true},grants:{noPlayerAttack:false}},
+    '自分の他のコマンドがなければこのクリーチャーは攻撃できない。':{noAttack:true,filter:{creature:true,race:'コマンド',g334Other:true},grants:{noAttack:false}},
+    'バトルゾーンに自分の他のドラゴンがなければこのクリーチャーは攻撃できない。':{noAttack:true,filter:{creature:true,race:'ドラゴン',g334Other:true},grants:{noAttack:false}},
+    'レインボーナス:バトルゾーンに自分の多色クリーチャーがあればこのクリーチャーが攻撃できない能力を無視する。':{filter:{creature:true,multi:true},grants:{noPlayerAttack:false}}
+   },r=rules[line];if(r){if(spec.g260Self)throw Error('重複する攻撃条件');if(r.noAttack)spec.noAttack=true;if(r.noPlayerAttack)spec.noPlayerAttack=true;spec.g260Self={filter:r.filter,grants:r.grants};continue;}}
+   if(f.typeText==='呪文'&&instruction567(line)){entry.push(instruction567(line));continue;}
+   if(f.typeText==='呪文'&&line==='革命2―自分のシールドが2つ以下なら次の自分のターンのはじめまで相手のクリーチャーはプレイヤーを攻撃できない。'){entry.push({op:'IfOwn',filter:{g265ShieldsMax:2},defs:[{op:'PlayerStop567',owner:'opponent',g567PlayerStop:'start',spell:true}]});continue;}
+  }
+  if(phase>=566&&f.typeText==='呪文'&&instruction566(line)?.op==='Bind566'){entry.push(instruction566(line));continue;}
+  if(phase>=566&&f.typeText==='呪文'&&line==='Evoチャージャー(この呪文を唱えた後墓地に置くかわりに自分のマナゾーンに置く。その後クリーチャーを1体自分のマナゾーンからバトルゾーンにある自分の進化クリーチャー1体の下に重ねて置いてもよい)'){spec.normalCharger=true;spec.g566EvoCharger=true;continue;}
+  if(phase>=565){
+   if(creature){const rule=bara565(line);if(rule){if(spec.g260Self)throw Error('重複するバラバラエティ条件');spec.g260Self=rule;continue;}
+    if(line==='自分のシールドゾーンに表向きのカードがあればこのクリーチャーに「ブロッカー」を与える。(「ブロッカー」を持つクリーチャーをタップして相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい)'){if(spec.g260Self)throw Error('重複する表向きシールド条件');spec.g260Self={filter:{g565FaceUpShields:true},grants:{blocker:true}};continue;}
+   }
+   if(f.typeText==='呪文'&&line==='自分のシールドゾーンに表向きのカードがあればこの呪文を唱えるコストを3少なくする。'){if(spec.g261Discount)throw Error('重複する表向きシールド軽減');spec.g261Discount={filter:{g565FaceUpShields:true},amount:3};continue;}
+  }
+  if(phase>=564&&creature){const r=bara564(line);if(r){if(r.aura)(spec.g208Auras??=[]).push({filter:{creature:true},g557Condition:{g466DistinctCosts:3},grants:r.aura});else{if(spec.g260Self)throw Error('重複するバラバラエティ条件');spec.g260Self={filter:{g466DistinctCosts:3},grants:r.grants,...(r.turn?{turn:r.turn}:{})};if(r.grants.power)powerBonus=true;}continue;}}
+  if(phase>=563&&creature){
+   const boosts={
+    'これがNEO進化クリーチャーなら「パワーアタッカー+7000」と「T・ブレイカー」を与える。(攻撃中このクリーチャーのパワーは+7000されシールドを3つブレイクする)':{attackBonus:7000,breaker:3},
+    'これがNEO進化クリーチャーならこのクリーチャーに「パワーアタッカー+3000」と「W・ブレイカー」を与える。(攻撃中このクリーチャーのパワーは+3000されシールドをさらに1つブレイクする)':{attackBonus:3000,breaker:2},
+    'このクリーチャーが進化クリーチャーの時そのパワーを+3000し「W・ブレイカー」を与える。':{power:3000,breaker:2}
+   }[line];
+   if(boosts){if(spec.g260Self)throw Error('重複する進化条件');spec.g260Self={filter:{g563Neo:true},grants:boosts};powerBonus=true;continue;}
+  }
+  if(phase>=562&&creature&&line==='自分のコスト4以下のクリーチャーはすべて「ブロッカー」を得自分のターンの終わりにアンタップする。'){
+   (spec.g208Auras??=[]).push({filter:{creature:true,g562MaxCost:4},grants:{blocker:true,g166EndUntap:true}});continue;
+  }
+  if(phase>=561&&creature){
+   const civilizations=line.match(/^このクリーチャーのパワーはバトルゾーンにある自分のカードの文明ひとつにつき\+([1-9]\d*)される。$/);
+   if(civilizations){if(spec.g207CountPower)throw Error('重複する文明数パワー');spec.g207CountPower={zone:'battle',civilizations:true,g561Battle:true,amount:+civilizations[1]};powerBonus=true;continue;}
+   if(line==='自分の墓地にあるファンキー・ナイトメア1体につきこのクリーチャーのパワーは+1000される。'){if(spec.g207CountPower)throw Error('重複する墓地パワー');spec.g207CountPower={zone:'grave',filter:{g561CreatureRace:'ファンキー・ナイトメア'},amount:1000};powerBonus=true;continue;}
+   if(line==='攻撃中このクリーチャーのパワーを自分のタマシード1枚につき+3000する。'){if(spec.g207CountPower)throw Error('重複するタマシード数パワー');spec.g207CountPower={zone:'battle',g561Elements:true,filter:{seed:true},amount:3000,attackOnly:true};powerBonus=true;continue;}
+  }
+  if(phase>=560&&(creature||seed)){
+   const rule=aura560(line);if(rule){if((spec.g349SummonAuras||[]).some(r=>JSON.stringify(r)===JSON.stringify(rule)))throw Error('重複する召喚軽減');(spec.g349SummonAuras??=[]).push({...rule,...(seed?{g560Element:true}:{})});continue;}
+   if(creature&&line==='自分の他のビートジョッキーがバトルゾーンに出た時カードを1枚引いてもよい。'){if(spec.g250EntryDraw)throw Error('重複するビートジョッキー登場監視');spec.g250EntryDraw={filter:{creature:true,race:'ビートジョッキー'},self:false,defs:[{op:'Offer',defs:[{op:'Draw',n:1}]}]};continue;}
+  }
+  if(phase>=559&&creature){
+   const blocked=line.match(/^このクリーチャーがブロック(?:された(?:時|とき)|されるとき)(.+)$/),defs=blocked&&{
+    '相手のシールドが1枚でもあればそのうちの1枚をブレイクする。':[{op:'Break497',n:1}],
+    '相手のシールドを1枚ブレイクする。':[{op:'Break497',n:1}],
+    'このクリーチャーは相手のシールドを2つブレイクする。':[{op:'Break497',n:2}],
+    '自分の山札の上から1枚目を自分のマナゾーンに加えてもよい。':[{op:'Offer',defs:[{op:'Ramp',n:1}]}],
+    '自分の山札の上から1枚目を自分のマナゾーンに置いてもよい。':[{op:'Offer',defs:[{op:'Ramp',n:1}]}],
+    'このクリーチャーをアンタップする。':[{op:'Untap',g191First:true}],
+    '「ブロッカー」を持つ相手のクリーチャーをすべて破壊する。':[{op:'Sweep',to:'grave',filter:{creature:true,blocker:true}}]
+   }[blocked[1]];
+   if(defs){if(spec.g559Blocked)throw Error('重複するブロックされた時の能力');spec.g559Blocked=defs;continue;}
+  }
+  if(phase>=557){
+   if(creature&&line==='自分のドラゴンはすべてシールドをさらに1枚ブレイクする。'){if(spec.g557BreakAura)throw Error('重複する追加ブレイク');spec.g557BreakAura={race:'ドラゴン',amount:1};continue;}
+   if(creature&&line==='バラバラエティ3:自分のクリーチャーすべてに「スピードアタッカー」を与える。(コストが異なる自分のエレメントが3つ以上あればこのクリーチャーにこの能力を与える)'){(spec.g208Auras??=[]).push({filter:{creature:true},g557Condition:{g466DistinctCosts:3},grants:{speedAttacker:true}});continue;}
+   if(!creature&&line==='この呪文を唱えるコストを自分のコスト3以下のエレメント1つにつき3少なくする。ただしコストは0以下にならない。'){if(spec.g212CountDiscount)throw Error('重複するエレメント軽減');spec.g212CountDiscount={zone:'battle',g557Elements:true,filter:{max:3},amount:3};continue;}
+  }
+  if(phase>=556&&creature&&line==='自分のNEOクリーチャーが攻撃する時コスト5以下の呪文を1枚自分の墓地または手札からコストを支払わずに唱えてもよい。唱えた後墓地に置くかわりに自分の山札の一番下に置く。'){if(spec.g253AttackWatches)throw Error('重複するNEO攻撃監視');spec.g253AttackWatches=[{who:'self',filter:{creature:true,g556Neo:true},defs:[instruction556(line.replace('自分のNEOクリーチャーが攻撃する時',''))]}];continue;}
+  if(phase>=554&&creature&&line==='鬼タイム:自分と相手のシールドの数が合計6つ以下ならこのクリーチャーに「パワーアタッカー+7000」と「T・ブレイカー」を与える。'){if(spec.g260Self)throw Error('重複する鬼タイムの自己強化');spec.g260Self={filter:{g334ZoneCount:{zone:'shields',sumBoth:true,max:6}},grants:{attackBonus:7000,breaker:3}};powerBonus=true;continue;}
+  if(phase>=509&&creature){
+   const oni={
+    '鬼タイム:自分と相手のシールドの数が合計6つ以下ならこのクリーチャーのパワーを+2000する。':{power:2000},
+    '鬼タイム:自分と相手のシールドの数が合計6つ以下ならこのクリーチャーのパワーを+6000し「W・ブレイカー」を与える。':{power:6000,breaker:2}
+   }[line];if(oni){if(spec.g260Self)throw Error('重複する鬼タイムの自己強化');spec.g260Self={filter:{g334ZoneCount:{zone:'shields',sumBoth:true,max:6}},grants:oni};powerBonus=true;continue;}
   }
   if(phase>=508&&creature){
    const grants={
@@ -2394,7 +3080,7 @@ export function standardCardSpec(d,{phase=165}={}){
    if(fixed||nonLight||colored||grave){if(spec.g222SpellTax)throw Error('重複する呪文コスト増加');spec.g222SpellTax=grave?{opponent:true,graveSpells:true}:fixed?{opponent:true,amount:+fixed[1]}:nonLight?{exceptColor:'光',amount:+nonLight[1]}:{colors:[colored[1],colored[2]],amount:+colored[3]};continue;}
   }
   if(phase>=184){
-   const modal=line.match(/^(?:(?:このクリーチャーが(?:バトルゾーンに)?出た時|このクリーチャーをバトルゾーンに出した時))?次のうちいずれか(?:1つ|ひとつ)を選ぶ。$/);
+   const modal=phase>=549&&seed?line.match(/^(?:このタマシードが出た時)?次のうちいずれか(?:1つ|ひとつ)を選ぶ。$/):line.match(/^(?:(?:このクリーチャーが(?:バトルゾーンに)?出た時|このクリーチャーをバトルゾーンに出した時))?次のうちいずれか(?:1つ|ひとつ)を選ぶ。$/);
    if(modal){if(entry.length||nativeEntry||((creature||seed)&&line.startsWith('次の'))||(!creature&&line.startsWith('このクリーチャー')))throw Error('独立した誘発能力の順序対応が必要');const modes=[];while(i+1<lines.length&&normalize(lines[i+1]).startsWith('▶')){const text=normalize(lines[++i]).slice(1),defs=clauses(text,phase).map(q=>instruction(q,phase));if(!defs.length||defs.some(t=>!t))throw Error('未対応の選択能力: '+text);modes.push({label:lines[i].replace(/^\s*▶/,'').trim(),defs});}if(modes.length<2)throw Error('選択能力の不足');entry.push({op:'Choose',g184Modes:true,modes});continue;}
   }
   if(phase>=212&&creature){const reduction=countDiscount212(line);if(reduction){if(spec.g212CountDiscount)throw Error("重複する枚数軽減");spec.g212CountDiscount=reduction;continue;}}
@@ -2505,6 +3191,23 @@ export function standardCardSpec(d,{phase=165}={}){
   }
   for(const [word,flag]of Object.entries(flags))if(keyword(line,word)){spec[flag]=true;known=true;break;}
   if(known)continue;
+  if(phase>=551&&line==='シンパシー:自分の墓地にあるクリーチャー(このカードの実行コストを自分の墓地にあるクリーチャー1体につき1少なくする。ただしコストは0以下にならない)'){if(spec.g212CountDiscount||spec.g211Sympathy)throw Error('重複するシンパシー');spec.g212CountDiscount={zone:'grave',amount:1,filter:{creature:true}};continue;}
+  if(phase>=548&&seed){
+   const watch=line.match(/^このタマシードまたは名前に《([^》]+)》とある自分の他のタマシードが出た時(.+)$/),named=line.match(/^自分の《([^》]+)》が出た時(.+)$/);
+   if(watch||named){if(spec.g548SeedEntry||entry.length||nativeEntry)throw Error('重複する同名タマシード登場能力');const m=watch||named,special={
+    '相手のクリーチャーを1体選んでタップする。次の相手のターンのはじめにそのクリーチャーはアンタップしない。':[{op:'Target',tap:true,lock:true}],
+    '相手のクリーチャーを1体選び持ち主の手札に戻す。':[{op:'Target',to:'hand'}]
+   },defs=special[m[2]]||clauses(m[2],phase).map(q=>instruction(q,phase));if(!defs.length||defs.some(d=>!d)||defs.some(d=>!['Draw','Ramp','Target'].includes(d.op)))throw Error('未対応の同名タマシード登場能力');spec.g548SeedEntry={filter:watch?{g295Tamaseed:true,name:m[1]}:{g295Tamaseed:true,g201ExactName:m[1]},selfAlways:!!watch,defs};continue;}
+  }
+  if(phase>=547&&seed){
+   if(line==='自分のターンの終わりに自分のシールドが相手よりも少なければ自分の山札の上から1枚目をシールド化してもよい。'){if(turnEnd.length)throw Error('重複する終了時能力');turnEnd.push({op:'IfOwn',filter:{g334ZoneCount:{zone:'shields',lessThanOpponent:true}},defs:[{op:'Offer',defs:[{op:'ShieldTop',n:1}]}]});continue;}
+   if(line==='自分のターンのはじめに自分のシールドを1つ手札に加える。その「S・トリガー」は使えない。'){if(turnStart.length)throw Error('重複する開始時能力');turnStart.push({op:'ShieldHand',g238ShieldHand:true});spec.g461TurnPlayer=true;continue;}
+  }
+  if(phase>=546&&creature&&line==='このクリーチャーが攻撃したターン自分の他のクリーチャーも可能であれば攻撃する。'){if(spec.g546AttackForceOthers)throw Error('重複する攻撃済みクリーチャーの攻撃義務');spec.g546AttackForceOthers=true;continue;}
+  if(phase>=545&&creature){const gs={
+   'このクリーチャーを「G・ストライク」能力で相手に見せた時相手のクリーチャーを1体選びタップする。':{op:'Target',tap:true},
+   'このクリーチャーが出た時または「G・ストライク」能力で相手に見せた時相手の「ブロッカー」を持つクリーチャーを1体破壊する。':{op:'Target',to:'grave',filter:{blocker:true}}
+  }[line];if(gs){if(spec.g545GS)throw Error('重複するG・ストライク公開時能力');spec.g545GS=[structuredClone(gs)];if(line.startsWith('このクリーチャーが出た時')){if(entry.length||nativeEntry)throw Error('独立した登場時能力の順序対応が必要');entry.push(structuredClone(gs));}continue;}}
   if(keyword(line,'\\{GS\\}G・ストライク')){spec.gStrike=true;continue;}
   if(line==='マナゾーンに置く時このカードはタップして置く。'&&f.civilizations.length>1)continue;
   if(keyword(line,'W・ブレイカー')||keyword(line,'W\\(ダブル\\)・ブレイカー')){if(spec.breaker)throw Error('重複ブレイカー');spec.breaker=2;continue;}
@@ -2556,6 +3259,16 @@ export function standardCardSpec(d,{phase=165}={}){
    if(entry.length||attack.length||nativeEntry)throw Error('独立した誘発能力の順序対応が必要');
    const def={op:'Target',g190Freeze:'self',title:'次の自分のターンまで攻撃とブロックを止める相手のクリーチャーを選ぶ'};entry.push(def);attack.push(structuredClone(def));continue;
   }
+  if(phase>=515&&creature&&(m=line.match(/^このクリーチャーをバトルゾーンに出した時またはこのクリーチャーがバトルゾーンを離れた時(.+)$/))){
+   if(entry.length||leave.length||nativeEntry)throw Error('独立した誘発能力の順序対応が必要');
+   const defs=clauses(m[1],phase).map(text=>instruction(text,phase));if(!defs.length||defs.some(d=>!d))throw Error('未対応の能力文: '+raw);
+   entry.push(...defs);leave.push(...structuredClone(defs));continue;
+  }
+  if(phase>=516&&creature&&(m=line.match(/^このクリーチャーをバトルゾーンに出した時またはこのクリーチャーが破壊された時(.+)$/))){
+   if(entry.length||death.length||nativeEntry)throw Error('独立した誘発能力の順序対応が必要');
+   const defs=clauses(m[1],phase).map(text=>instruction(text,phase));if(!defs.length||defs.some(d=>!d))throw Error('未対応の能力文: '+raw);
+   entry.push(...defs);death.push(...structuredClone(defs));continue;
+  }
   if(phase>=388&&creature&&line==='このクリーチャーがバトルゾーンに出た時またはバトルゾーンを離れた時相手のクリーチャーを1体選びタップする。'){
    if(entry.length||leave.length||nativeEntry)throw Error('独立した誘発能力の順序対応が必要');
    entry.push({op:'Target',tap:true});leave.push({op:'Target',tap:true});continue;
@@ -2593,11 +3306,11 @@ export function standardCardSpec(d,{phase=165}={}){
    const defs=clauses(m[1],phase).map(text=>instruction(text,phase));if(!defs.length||defs.some(d=>!d))throw Error('未対応の攻撃時能力');attack.push(...defs);continue;
   }
   let body=line,dest=entry;
-  if(creature||seed){const trigger=line.match(/^(?:このクリーチャー|このタマシード)(?:が(?:バトルゾーンに)?出た時|をバトルゾーンに出した時)(.+)$/);const atk=creature&&line.match(/^このクリーチャーが攻撃する時(.+)$/);const dies=phase>=172&&creature&&line.match(/^このクリーチャーが破壊された時(.+)$/),leaves=phase>=172&&creature&&line.match(/^このクリーチャーがバトルゾーンを離れた時(.+)$/);if(trigger)body=trigger[1];else if(atk){body=atk[1];dest=attack;}else if(phase>=507&&creature&&(m=line.match(/^このクリーチャーがバトルゾーンから自分の墓地に置かれたとき(.+)$/))){body=m[1];dest=death;}else if(dies){body=dies[1];dest=death;}else if(leaves){body=leaves[1];dest=leave;}else if(phase>=182&&creature&&(m=line.match(/^このクリーチャーが離れた時(.+)$/))){body=m[1];dest=leave;}else if(phase>=179&&creature&&(m=line.match(/^相手のターンの(?:はじめ|始め)に(.+)$/))){body=m[1];dest=opponentStart;}else if(phase>=174&&creature&&(m=line.match(/^自分のターンの(?:はじめ|始め)に(.+)$/))){body=m[1];dest=turnStart;}else if(phase>=174&&creature&&(m=line.match(/^自分のターンの終わりに(.+)$/))){body=m[1];dest=turnEnd;}else throw Error('未対応の能力文: '+raw);if(dest.length||dest===entry&&nativeEntry)throw Error('独立した誘発能力の順序対応が必要');}
+  if(creature||seed){const trigger=line.match(/^(?:このクリーチャー|このタマシード)(?:が(?:バトルゾーンに)?出た時|をバトルゾーンに出した時)(.+)$/);const atk=creature&&line.match(/^このクリーチャーが攻撃する時(.+)$/);const dies=phase>=172&&creature&&line.match(/^このクリーチャーが破壊された時(.+)$/),leaves=phase>=172&&creature&&line.match(/^このクリーチャーがバトルゾーンを離れた時(.+)$/);if(trigger)body=trigger[1];else if(atk){body=atk[1];dest=attack;}else if(phase>=507&&creature&&(m=line.match(/^このクリーチャーがバトルゾーンから自分の墓地に置かれたとき(.+)$/))){body=m[1];dest=death;}else if(dies){body=dies[1];dest=death;}else if(leaves){body=leaves[1];dest=leave;}else if(phase>=182&&creature&&(m=line.match(/^このクリーチャーが離れた時(.+)$/))){body=m[1];dest=leave;}else if(phase>=179&&creature&&(m=line.match(/^相手のターンの(?:はじめ|始め)に(.+)$/))){body=m[1];dest=opponentStart;}else if(phase>=174&&creature&&(m=line.match(/^自分のターンの(?:はじめ|始め)に(.+)$/))){body=m[1];dest=turnStart;}else if(phase>=565&&(m=line.match(/^相手のターンの終わりに(.+)$/))){body=m[1];dest=opponentEnd;}else if(phase>=174&&creature&&(m=line.match(/^自分のターンの終わりに(.+)$/))){body=m[1];dest=turnEnd;}else throw Error('未対応の能力文: '+raw);if(dest.length||dest===entry&&nativeEntry)throw Error('独立した誘発能力の順序対応が必要');}
   if(nativeEntry&&dest===entry)throw Error('未対応の複合効果');
   const parts=clauses(body,phase),tasks=parts.map(text=>instruction(text,phase));if(tasks.some(t=>!t)||!tasks.length)throw Error('未対応の能力文: '+raw);dest.push(...tasks.map(t=>!creature&&!seed&&(t.power||phase>=170&&t.lock)?{...t,spell:true}:t));
  }
- if(phase>=190&&!creature&&!seed){const mark=defs=>{for(const d of defs||[]){if(d.g190Freeze||phase>=210&&d.g210TapLock||phase>=214&&d.power||phase>=335&&(d.grant||d.g335Grant))d.spell=true;mark(d.defs);for(const m of d.modes||[])mark(m.defs);}};mark(entry);}
+ if(phase>=190&&!creature&&!seed){const mark=defs=>{for(const d of defs||[]){if(d.g190Freeze||phase>=546&&d.g546Force||phase>=210&&d.g210TapLock||phase>=214&&d.power||phase>=335&&(d.grant||d.g335Grant))d.spell=true;mark(d.defs);for(const m of d.modes||[])mark(m.defs);}};mark(entry);}
  if(f.typeText==='スター進化クリーチャー'&&!spec.starEvolution)throw Error('スター進化条件の不足');
  if(phase>=492&&spec.invasion&&!spec.evolution&&!spec.neoEvolution)throw Error('侵略に必要な進化条件がありません');
  if(f.typeText==='NEOクリーチャー'&&(!spec.neoEvolution||spec.exLife))throw Error('未対応のNEO進化条件');
@@ -2616,6 +3329,7 @@ export function standardCardSpec(d,{phase=165}={}){
  if(turnStart.length)spec.g174Start=turnStart;
  if(turnEnd.length)spec.g174End=turnEnd;
  if(opponentStart.length)spec.g179OpponentStart=opponentStart;
+ if(opponentEnd.length)spec.g565OpponentEnd=opponentEnd;
  if(tapped.length)spec.g188Tapped=tapped;
  if(battleWin.length)spec.g189BattleWin=battleWin;
  if(f.civilizations.length===5)spec.manaValue=0;

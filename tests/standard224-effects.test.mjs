@@ -39,7 +39,7 @@ for(const id of conditional)test(e.card(id).name+' only obliges its opponents wh
 });
 test('having an obligation never creates an illegal attack through summoning sickness, attack locks or no-attack text',()=>{
  const s=setup(),source=put(s,1,global[0]),x=put(s,0,N);s.phase='attack';x.entered=s.turn;assert.ok(forced(s,x));assert.equal(canEnd(s),true);
- x.entered=0;x.g35Ignored=s.turn;assert.equal(forced(s,x),false);delete x.g35Ignored;
+ x.entered=0;x.g35Ignored=s.turn;assert.ok(forced(s,x));assert.ok(e.getLegalActions(s).some(a=>a.kind==='attack'&&a.uid===x.uid));delete x.g35Ignored;
  s.extLimits=[{kind:'attack',reason:'gStrike',player:0,uid:x.uid,incarnation:x.incarnation||0,expires:'end',who:0}];assert.equal(canEnd(s),true);assert.ok(!e.getLegalActions(s).some(a=>a.kind==='attack'));assert.ok(source);
  const t=setup();put(t,1,global[0]);const guard=put(t,0,BLOCK);t.phase='attack';assert.ok(forced(t,guard));assert.ok(!e.getLegalActions(t).some(a=>a.kind==='attack'));assert.equal(canEnd(t),true);
 });
@@ -48,9 +48,10 @@ test('only top, active battle creatures supply the obligation; other zones and b
  const s=setup(),x=put(s,0,N),source=put(s,1,F);source.under=[inst(global[0])];assert.equal(forced(s,x),false);
  source.under=[];source.cardId=global[0];assert.ok(forced(s,x));source.sealed=true;assert.equal(forced(s,x),false);source.sealed=false;source.g35Ignored=s.turn;assert.equal(forced(s,x),false);delete source.g35Ignored;s.players[1].battle=[];assert.equal(forced(s,x),false);
 });
-test('ignored recipients ignore granted obligations while other creatures remain obliged',()=>{
- const s=setup();put(s,1,'dmr13-029');const x=put(s,0,HIGH),y=put(s,0,F);x.g35Ignored=s.turn;assert.equal(forced(s,x),false);assert.ok(forced(s,y));delete x.g35Ignored;assert.ok(forced(s,x));
- put(s,1,GEN);assert.equal(forced(s,y),false);assert.ok(forced(s,x));
+test('another card direct attack obligation remains on ignored recipients, but ends when its source is ignored',()=>{
+ // QA39131 distinguishes a source's direct effect from an ability granted to its recipient.
+ const s=setup(),source=put(s,1,'dmr13-029'),x=put(s,0,HIGH),y=put(s,0,F);x.g35Ignored=s.turn;assert.ok(forced(s,x));assert.ok(forced(s,y));delete x.g35Ignored;assert.ok(forced(s,x));
+ put(s,1,GEN);assert.ok(forced(s,y));assert.ok(forced(s,x));source.g35Ignored=s.turn;assert.equal(forced(s,x),false);assert.equal(forced(s,y),false);
 });
 test('multiple sources do not expire together; actual source destruction immediately releases the obligation',()=>{
  const s=setup(),source=put(s,1,global[0]);put(s,0,N);give(s,0,'hand',['dm01-027']);act(s,'play');act(s,'effect',a=>a.targets.some(t=>t.uid===source.uid));drain(s);s.phase='attack';assert.equal(forced(s,s.players[0].battle[0]),false);assert.equal(canEnd(s),true);

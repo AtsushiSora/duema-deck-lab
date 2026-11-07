@@ -1,0 +1,220 @@
+{
+  "phase": 526,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5102,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmsp01-014",
+      "name": "死縫医 スキン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp01-014",
+      "faces": [
+        {
+          "name": "死縫医 スキン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、そのターン、相手のクリーチャーすべてのパワーを_2000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "マフィ・ギャング",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "g214GroupPower": true,
+            "owner": "opponent",
+            "power": -2000,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsp01-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "31b3fd679da09d1be66f26cd65be7785406f49b411e2474778d3a2fbb1a56b81",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr12-054",
+      "name": "漆黒の猛虎 チェイサー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-054",
+      "faces": [
+        {
+          "name": "漆黒の猛虎 チェイサー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を墓地に置く。それが火のカードであれば、そのターン、このクリーチャーは「スピードアタッカー」を得る。（「スピードアタッカー」を得たクリーチャーは召喚酔いしない）",
+          "race": "アウトレイジ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "MillMatch520",
+            "n": 1,
+            "filter": {
+              "anyFaceColor": "火"
+            },
+            "speedAttacker": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr12-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "5f12ce4daf28bd853d1cc87d1f6eb2c296239ee25271dd27f296b8a396af5028",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-006",
+      "name": "電殺医 ストマック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-006",
+      "faces": [
+        {
+          "name": "電殺医 ストマック",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：自分の闇のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、そのターン、相手のクリーチャーすべてのパワーを_2000する。\nこのクリーチャーが攻撃する時、クリーチャーを１体、自分の墓地から手札に戻す。",
+          "race": "マフィ・ギャング",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "g214GroupPower": true,
+            "owner": "opponent",
+            "power": -2000,
+            "filter": {
+              "creature": true
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "73a9f9718d5e0c758b6a52fdf8a1840939166c02000a4f501d5ecb3ff7dc4cc6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-047",
+      "name": "爆冒険 キルホルマン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-047",
+      "faces": [
+        {
+          "name": "爆冒険 キルホルマン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を墓地に置く。それがヒューマノイドかドラゴンであれば、そのターン、このクリーチャーは「スピードアタッカー」を得る。",
+          "race": "ヒューマノイド爆",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "MillMatch520",
+            "n": 1,
+            "filter": {
+              "any": [
+                {
+                  "anyFaceRace": "ヒューマノイド"
+                },
+                {
+                  "anyFaceRace": "ドラゴン"
+                }
+              ]
+            },
+            "speedAttacker": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "96ffeee733369ae811fb8ef61557c2edfae7e7b04436d9a264fa175762a4ffae",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmsp01-014": 4,
+      "dmr12-054": 4,
+      "dmrp01-006": 4,
+      "dmr16g-047": 4
+    }
+  }
+}

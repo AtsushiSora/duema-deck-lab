@@ -1,0 +1,383 @@
+{
+  "phase": 565,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5317,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/45916/"
+  ],
+  "cards": [
+    {
+      "id": "dmex14-084",
+      "name": "「黒刃の機士」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-084",
+      "faces": [
+        {
+          "name": "「黒刃の機士」",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーは、相手プレイヤーを攻撃できない。\n自分のシールドゾーンに表向きのカードがあれば、このクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+          "race": "メタリカ/チーム銀河",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "noPlayerAttack": true,
+        "g260Self": {
+          "filter": {
+            "g565FaceUpShields": true
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-084.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "d8d41bbf002b3bb9aecd0e52721ad210fd52853b2dacd429ccafaf57166fdc11",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp1-060",
+      "name": "ガルド・ブレイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-060",
+      "faces": [
+        {
+          "name": "ガルド・ブレイン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のシールドゾーンに表向きのカードがあれば、この呪文を唱えるコストを３少なくする。\nカードを２枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g261Discount": {
+          "filter": {
+            "g565FaceUpShields": true
+          },
+          "amount": 3
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-060.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "2779f898767d5857cb9f7b11660780fc81763fcc171420b002d166802a8a4821",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-034",
+      "name": "スクリュー・ドライバー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-034",
+      "faces": [
+        {
+          "name": "スクリュー・ドライバー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nバラバラエティ３：相手のターンのはじめに、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーは攻撃できない。（コストが異なる自分のエレメントが３つ以上あれば、このクリーチャーにこの能力を与える）\n相手のターンの終わりに、そのターン中にクリーチャーが攻撃していなければ、カードを１枚引いてもよい。",
+          "race": "スプラッシュ・クイーン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g260Self": {
+          "filter": {
+            "g466DistinctCosts": 3
+          },
+          "grants": {
+            "g179OpponentStart": [
+              {
+                "op": "Target",
+                "g565AttackLock": true
+              }
+            ]
+          }
+        },
+        "g565OpponentEnd": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g565NoAttacks": true
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "527c642a77acddb38ec105b0a4f8a0c4580e32cc608d6af46096ed5203019b7b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-036",
+      "name": "どこまでも声乗るマイク（ライブ用）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-036",
+      "faces": [
+        {
+          "name": "どこまでも声乗るマイク（ライブ用）",
+          "typeText": "タマシード",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このタマシードが出た時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\n相手のターンの終わりに、そのターン、クリーチャーが１体も攻撃していなければ、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ],
+        "g565OpponentEnd": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g565NoAttacks": true
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "ec6e73fb340b5427701393d8ebcaa609ca6d3c662e2476aeb7dd8d7b48c2ca7d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp3-036",
+      "name": "パシフィック・ヒーロー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-036",
+      "faces": [
+        {
+          "name": "パシフィック・ヒーロー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\nバラバラエティ３：自分の他のクリーチャーが出た時、次の自分のターンのはじめまで、そのクリーチャーは相手に選ばれず、攻撃されない。（コストが異なる自分のエレメントが３つ以上あれば、このクリーチャーにこの能力を与える）",
+          "race": "マーフォーク",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "justDiver": true,
+        "g260Self": {
+          "filter": {
+            "g466DistinctCosts": 3
+          },
+          "grants": {
+            "g468EntryWatch": {
+              "filter": {
+                "creature": true
+              },
+              "g565Other": true,
+              "mode": "protect565"
+            }
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "a83175f368652062a20d397bca6d50ecb613451b476e41fb0592d72c4cca30c6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-028",
+      "name": "光器マドレーヌ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-028",
+      "faces": [
+        {
+          "name": "光器マドレーヌ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、相手のクリーチャーをすべてタップする。\nバラバラエティ３：このクリーチャーが攻撃する時、自分の山札の上から１枚目をシールド化してもよい。（コストが異なる自分のエレメントが３つ以上あれば、このクリーチャーにこの能力を与える）",
+          "race": "メカ・デル・ソル",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g260Self": {
+          "filter": {
+            "g466DistinctCosts": 3
+          },
+          "grants": {
+            "g34Attack": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "f0fd3a1f8a019b0fa679aa3498d96288f34bb708608c034adafb694462632c47",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-024",
+      "name": "剛勇幻風ナッツムーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-024",
+      "faces": [
+        {
+          "name": "剛勇幻風ナッツムーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手の呪文を唱えるコストを１多くする。\nバラバラエティ３：自分のクリーチャーの召喚コストを１少なくする。ただし、コストは０以下にはならない。（コストが異なる自分のエレメントが３つ以上あれば、このクリーチャーにこの能力を与える）",
+          "race": "ワイルド・ベジーズ/レインボー・ファントム",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g222SpellTax": {
+          "opponent": true,
+          "amount": 1
+        },
+        "g260Self": {
+          "filter": {
+            "g466DistinctCosts": 3
+          },
+          "grants": {
+            "g349SummonAuras": [
+              {
+                "filter": {
+                  "creature": true
+                },
+                "amount": 1
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "bd693e27009ecd234f1f8d3d65905ae5fb6e3d5d0779212a3e32469d3db4c112",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex14-084": 4,
+      "dm26rp1-060": 4,
+      "dm24rp4-034": 4,
+      "dm22rp2-036": 4,
+      "dm24rp3-036": 4,
+      "dm24rp4-028": 4,
+      "dm24rp4-024": 4
+    }
+  },
+  "rulingVerifications": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/45916/",
+      "checkedAt": "2026-11-07",
+      "sha256": "337ceb55492a6c396237c3949fd951a159ce4778ffcc754a4bb3b8b27db388b7",
+      "verifiedText": "すでにトリガーしている能力は解決されます。"
+    }
+  ]
+}

@@ -1,0 +1,261 @@
+{
+  "phase": 545,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5193,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/40694/",
+    "https://dm.takaratomy.co.jp/rule/qa/45066/",
+    "https://dm.takaratomy.co.jp/rule/qa/49542/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp18-004",
+      "name": "テ・ラ・スザーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-004",
+      "faces": [
+        {
+          "name": "テ・ラ・スザーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分のターンの終わりに、自分の山札の上から１枚目を墓地に置いてもよい。それが進化クリーチャーなら手札に加え、そうでなければカードを１枚引く。\nシンカパワー：このクリーチャーが進化する時、自分の墓地からコスト３以下のクリーチャーを１体出してもよい。",
+          "race": "ドルスザク/マフィ・ギャング/レクスターズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "g397Shinka": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            }
+          }
+        ],
+        "g174End": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "MillRecover545",
+                "filter": {
+                  "creature": true,
+                  "evolution": true
+                },
+                "elseDefs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "03ff1c4326cf63fdc386bfaa37c8f7c0f72b2e75d762fdf24744be963e3b3ed2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-005",
+      "name": "モモスター キャンベロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-005",
+      "faces": [
+        {
+          "name": "モモスター キャンベロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nスピードアタッカー\nこのクリーチャーが出た時、または「G・ストライク」能力で相手に見せた時、相手の「ブロッカー」を持つクリーチャーを１体破壊する。\nシンカパワー：このクリーチャーが進化する時、自分の手札をすべて捨ててもよい。そうしたら、カードを３枚引く。",
+          "race": "ジョーカーズ/レクスターズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "speedAttacker": true,
+        "g545GS": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "blocker": true
+            }
+          }
+        ],
+        "g397Shinka": [
+          {
+            "op": "HandCycle460",
+            "to": "grave",
+            "mode": "all",
+            "optional": true,
+            "fixedDraw": 3
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "6c9e0d00585e46440765a0926c5b253711f2435346fe39a649474eb9fc18748a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-056",
+      "name": "魂の絆 すて～る&タイザイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-056",
+      "faces": [
+        {
+          "name": "魂の絆 すて～る&タイザイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nシンカパワー：このクリーチャーが進化する時、次のうちいずれか１つを選ぶ。\n▶相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－6000する。（パワー０以下のクリーチャーは破壊される）\n▶プレイヤーを１人選ぶ。そのプレイヤーは自身の墓地を山札に加えてシャッフルする。",
+          "race": "ジョーカーズ/マフィ・ギャング/レクスターズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "slayer": true,
+        "g397Shinka": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－6000する。（パワー０以下のクリーチャーは破壊される）",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "power": -6000,
+                    "g242PowerMinus": true
+                  }
+                ]
+              },
+              {
+                "label": "プレイヤーを１人選ぶ。そのプレイヤーは自身の墓地を山札に加えてシャッフルする。",
+                "defs": [
+                  {
+                    "op": "GraveShuffle545"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-056.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "b712db3895f4d5f559e1fcc221d19c62cedef923174cc178e2c5824e2b50a912",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-002",
+      "name": "煌星龍 サッヴァーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-002",
+      "faces": [
+        {
+          "name": "煌星龍 サッヴァーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nブロッカー ブロッカー\nこのクリーチャーを「G・ストライク」能力で相手に見せた時、相手のクリーチャーを１体選び、タップする。\nシンカパワー：このクリーチャーが進化する時、相手のクリーチャーを２体まで選び、タップする。",
+          "race": "マスター・ドラゴン/メタリカ/レクスターズ",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "blocker": true,
+        "g545GS": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ],
+        "g397Shinka": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 2,
+            "optional": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "bcb8f5b828916ffd92316739887a5318a743656ab19a4979ffe35afd8e02570f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp18-004": 4,
+      "dmrp19-005": 4,
+      "dmrp20-056": 4,
+      "dmrp18-002": 4
+    }
+  }
+}

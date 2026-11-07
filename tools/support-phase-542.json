@@ -1,0 +1,264 @@
+{
+  "phase": 542,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5179,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31663/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35331/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35329/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36891/"
+  ],
+  "cards": [
+    {
+      "id": "promoy15-014",
+      "name": "D2V ヴェンデッタ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy15-014",
+      "faces": [
+        {
+          "name": "D2V ヴェンデッタ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n各ターン、このクリーチャーがはじめて攻撃する時、自分のD２フィールドがバトルゾーンにあれば、攻撃の後、このクリーチャーをアンタップする。",
+          "race": "ソニック・コマンド/マスター・イニシャルズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g540FirstAttack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g228Face": {
+                "type": "field",
+                "d2": true
+              }
+            },
+            "defs": [
+              {
+                "op": "AfterAttack542",
+                "defs": [
+                  {
+                    "op": "Untap",
+                    "g191First": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy15-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "b337b8cf4807042cc771ccefb7473189df39aeed94657bf97f48706d49e46ba4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm15-004",
+      "name": "メタルカオス・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-004",
+      "faces": [
+        {
+          "name": "メタルカオス・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nアクセル(このクリーチャーにクロスギアがクロスされている時、このクリーチャーは次の能力を得る)\nこのクリーチャーがこのターンはじめて攻撃する時、攻撃の後、このクリーチャーをアンタップする。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g260Self": {
+          "filter": {
+            "g436Crossed": true
+          },
+          "grants": {
+            "g540FirstAttack": [
+              {
+                "op": "AfterAttack542",
+                "defs": [
+                  {
+                    "op": "Untap",
+                    "g191First": true
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm15-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "2d64f79086458e814024486a90af9a8cb9fe372076838a549b75f2b7fa84ac5e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd11-010",
+      "name": "死の獅子 ディオジープ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd11-010",
+      "faces": [
+        {
+          "name": "死の獅子 ディオジープ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが各ターンはじめて攻撃する時、自分の他のクリーチャーを１体破壊してもよい。そうした場合、このクリーチャーをアンタップする。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アウトレイジ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g540FirstAttack": [
+          {
+            "op": "SacrificeAlly413",
+            "other": true,
+            "defs": [
+              {
+                "op": "Untap",
+                "g191First": true
+              }
+            ]
+          }
+        ],
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd11-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "3b31bb1fa3cea44c2d51f6eb954d1399d52a8e3bf8074657aad391b05be2d6cf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex3-066",
+      "name": "灼熱のサトリ 油坊",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-066",
+      "faces": [
+        {
+          "name": "灼熱のサトリ 油坊",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "水晶武装２：各ターン、このクリーチャーがはじめて攻撃する時、自分のマナゾーンに裏向きのカードが２枚以上あれば、その攻撃の後、このクリーチャーをアンタップする。",
+          "race": "オラクル・セレス/ヒューマノイド",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g540FirstAttack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g286FaceDownMana": 2
+            },
+            "defs": [
+              {
+                "op": "AfterAttack542",
+                "defs": [
+                  {
+                    "op": "Untap",
+                    "g191First": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-066.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "a34c00cfc4878030ce9123b8944ead602ee9d79bc90d5b9e6f2ea9b96ef64dd8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-043",
+      "name": "惹起する若輩 ジャイロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-043",
+      "faces": [
+        {
+          "name": "惹起する若輩 ジャイロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "パワーアタッカー+4000（攻撃中、このクリーチャーのパワーを+4000する）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n各ターン、このクリーチャーがはじめて攻撃する時、その攻撃の後、このクリーチャーをアンタップする。",
+          "race": "アウトレイジ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackBonus": 4000,
+        "breaker": 2,
+        "g540FirstAttack": [
+          {
+            "op": "AfterAttack542",
+            "defs": [
+              {
+                "op": "Untap",
+                "g191First": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "231f15580bbb82ce2233fdfdc082816ddfe693b9ee3b1559be08e949b7cf68c7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy15-014": 4,
+      "dm15-004": 4,
+      "dmd11-010": 4,
+      "dm23ex3-066": 4,
+      "dm22rp1-043": 4
+    }
+  }
+}

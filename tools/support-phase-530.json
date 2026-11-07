@@ -1,0 +1,221 @@
+{
+  "phase": 530,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5118,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmx11-078",
+      "name": "サイバー・J・シン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-078",
+      "faces": [
+        {
+          "name": "サイバー・J・シン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から２枚を見る。その中から好きな枚数の、進化ではないサイバーロードをバトルゾーンに出してもよい。残りを好きな順序で山札の一番上に戻す。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "サイバー・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "n": 2,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "サイバーロード"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx11-078.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "8fa6ba383dbcbe684ef199f373f0e9a18252f4267e0ca0ed454700448f21e8fd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr06-s04",
+      "name": "黒神龍ダンチガイ・ファンキガイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-s04",
+      "faces": [
+        {
+          "name": "黒神龍ダンチガイ・ファンキガイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃する時、相手とガチンコ・ジャッジする。自分が勝ったら、進化ではないドラゴン・ゾンビを１体、自分の墓地からバトルゾーンに出してもよい。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ドラゴン・ゾンビ/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "n": 1,
+                "deploy": true,
+                "g236GraveDeploy": true,
+                "optional": true,
+                "filter": {
+                  "creature": true,
+                  "nonEvolution": true,
+                  "race": "ドラゴン・ゾンビ"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "c3ffd51da5f5e2e8a1f92f51da3e6d61cb4a8b4e84a54e6802c84b8792f6f744",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd07-005",
+      "name": "母なる緑鬼龍ダイチノカイザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd07-005",
+      "faces": [
+        {
+          "name": "母なる緑鬼龍ダイチノカイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーが攻撃する時、相手とガチンコ・ジャッジする。自分が勝ったら、自分のマナゾーンにあるカードの枚数以下のコストを持つ、進化ではないドラゴンを１体、自分のマナゾーンからバトルゾーンに出してもよい。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "グリーン・コマンド・ドラゴン/ハンター/エイリアン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "ManaDeploy523",
+                "origin": "mana",
+                "optional": true,
+                "filter": {
+                  "creature": true,
+                  "nonEvolution": true,
+                  "race": "ドラゴン"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd07-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "60733260f04c06c52750c2ff6bd7d713306e987f8d67d6672000df7d5bd00765",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy11-044",
+      "name": "勇鬼 ヒャクバイザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy11-044",
+      "faces": [
+        {
+          "name": "勇鬼 ヒャクバイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが攻撃する時、相手とガチンコ・ジャッジする。自分が勝ったら、自分の山札を見る。その中からドラゴンを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "レッド・コマンド・ドラゴン/ハンター/エイリアン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g34Attack": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Look",
+                "g201Search": true,
+                "g200Search": true,
+                "n": "all",
+                "rest": "shuffle",
+                "stages": [
+                  {
+                    "n": 1,
+                    "to": "hand",
+                    "filter": {
+                      "creature": true,
+                      "race": "ドラゴン"
+                    },
+                    "reveal": true,
+                    "optional": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy11-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "724e95160856e6a9e280af8e2865b41d0e60e8532d9cca8485df2ecb11100eeb",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx11-078": 4,
+      "dmr06-s04": 4,
+      "dmd07-005": 4,
+      "promoy11-044": 4
+    }
+  }
+}

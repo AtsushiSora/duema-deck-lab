@@ -10,5 +10,8 @@ export function forceAttackTargets(s,p,actions,api){
   return c.g431AttackMe||c.g477AttackMeTapped&&x.tapped||totems&&String(c.race||'').includes('ミステリー・トーテム')||c.bairas||c.g393JDonJungle||first&&c.abyssLord||firstEnoki&&c.g160NRole==='enoki'||x.godLinks?.length&&c.g31GodHeavy||lures.length&&api.layers(x).some(y=>lures.some(l=>l.uid===y.uid&&l.incarnation===(y.incarnation||0)));
  }).map(x=>x.uid));
  const attackers=new Set(actions.filter(a=>a.kind==='attack'&&targets.has(a.target)).map(a=>a.uid));
- return actions.filter(a=>a.kind!=='attack'||!attackers.has(a.uid)||targets.has(a.target));
+ // A player-attack obligation applies only when that creature can legally attack the player.
+ // Competing compulsory targets remain alternatives; neither grants an attack permission.
+ const players=new Set(actions.filter(a=>a.kind==='attack'&&a.target==='player'&&api.effective(s.players[p].battle.find(x=>x.uid===a.uid),s).g540MustPlayer).map(a=>a.uid));
+ return actions.filter(a=>a.kind==='endTurn'?!players.size:a.kind!=='attack'||!attackers.has(a.uid)&&!players.has(a.uid)||attackers.has(a.uid)&&targets.has(a.target)||players.has(a.uid)&&a.target==='player');
 }

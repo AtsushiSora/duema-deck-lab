@@ -1,0 +1,399 @@
+{
+  "phase": 563,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5298,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/46945/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp02-052",
+      "name": "あじさいさい",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-052",
+      "faces": [
+        {
+          "name": "あじさいさい",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "NEO進化：自分の自然のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこれがNEO進化クリーチャーなら、「パワーアタッカー+7000」と「T・ブレイカー」を与える。（攻撃中、このクリーチャーのパワーは+7000され、シールドを３つブレイクする）",
+          "race": "グランセクト",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "g260Self": {
+          "filter": {
+            "g563Neo": true
+          },
+          "grants": {
+            "attackBonus": 7000,
+            "breaker": 3
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "662492db38d3470a4e27035e67ccb0b6ef63c241791b879c9a218ff68957ebd7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy16-sp3d01",
+      "name": "デック・ザ・デッキー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-sp3d01",
+      "faces": [
+        {
+          "name": "デック・ザ・デッキー",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "NEO進化：自分のジョーカーズ１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが攻撃する時、相手のコスト４以下のクリーチャーを１体選び、相手はそれを自身の山札の一番下に置く。\nこのクリーチャーが進化クリーチャーの時、そのパワーを+3000し、「W・ブレイカー」を与える。",
+          "race": "ジョーカーズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "race": "ジョーカーズ"
+            }
+          ]
+        },
+        "g260Self": {
+          "filter": {
+            "g563Neo": true
+          },
+          "grants": {
+            "power": 3000,
+            "breaker": 2
+          }
+        },
+        "g34Attack": [
+          {
+            "op": "Target",
+            "filter": {
+              "creature": true,
+              "max": 4
+            },
+            "to": "deck"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-sp3d01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "5ef2ba100e64e4fb15823a39951ae3bb292ec63b8469766215193436b55b1274",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-046",
+      "name": "フルメタ・チュリス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-046",
+      "faces": [
+        {
+          "name": "フルメタ・チュリス",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "NEO進化：自分の火のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこれがNEO進化クリーチャーなら、このクリーチャーに「パワーアタッカー+3000」と「W・ブレイカー」を与える。（攻撃中、このクリーチャーのパワーは+3000され、シールドをさらに１つブレイクする）",
+          "race": "ビートジョッキー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "g260Self": {
+          "filter": {
+            "g563Neo": true
+          },
+          "grants": {
+            "attackBonus": 3000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "9ea161bf860851511876f67cbf78f7071ecb14742b798dc109ee7eb508065aed",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-051",
+      "name": "マエダメダ・タンク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-051",
+      "faces": [
+        {
+          "name": "マエダメダ・タンク",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "NEO進化：自分の自然のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルに勝った時、これがNEO進化クリーチャーなら、相手のシールドを２つブレイクする。",
+          "race": "グランセクト",
+          "powerText": "14000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "noPlayerAttack": true,
+        "g189BattleWin": [
+          {
+            "op": "IfNeo563",
+            "defs": [
+              {
+                "op": "Break497",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "934122c1774c63e9cbffdcc62ccfa71e9004ddfdafffbb8e96afcc7c9842aefe",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22ex1-027",
+      "name": "死神明王 XENIA",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-027",
+      "faces": [
+        {
+          "name": "死神明王 XENIA",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "NEO進化：闇のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nT・ブレイカー\nこのクリーチャーが出た時、それがNEO進化クリーチャーなら、闇ではないクリーチャーをすべて破壊する。\nこのクリーチャーが攻撃する時、闇のクリーチャーを１体、自分の墓地から出してもよい。",
+          "race": "デーモン・コマンド",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfNeo563",
+            "defs": [
+              {
+                "op": "Sweep",
+                "both": true,
+                "to": "grave",
+                "filter": {
+                  "creature": true,
+                  "notColor": "闇"
+                }
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "color": "闇"
+            },
+            "optional": true,
+            "title": "墓地から出すクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "e9c700c9c20a9b7667e6101632229f8fd197dafe7d620580ed0033fa5557af09",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex17-132",
+      "name": "新勇者「ふたつ牙」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-132",
+      "faces": [
+        {
+          "name": "新勇者「ふたつ牙」",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：自然のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、それがNEO進化クリーチャーなら、自分の山札の上から２枚をマナゾーンに置く。",
+          "race": "ビーストフォーク/グランセクト",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfNeo563",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-132.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "ab91568e6178ae1350c225dfad92b1f9a9a1e63f7d482c8d625732730e70815c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex17-113",
+      "name": "電磁艦 シンペラー・マルコ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-113",
+      "faces": [
+        {
+          "name": "電磁艦 シンペラー・マルコ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "NEO進化：水のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、それがNEO進化クリーチャーなら、カードを３枚まで引く。",
+          "race": "サイバーロード/ムートピア",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfNeo563",
+            "defs": [
+              {
+                "op": "DrawUpTo",
+                "n": 3,
+                "g203Draw": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-113.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "2ac166af16bca38613047b3439c1b7791477c4462b11880e0c6fb2ad5c675c34",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp02-052": 4,
+      "promoy16-sp3d01": 4,
+      "dmrp02-046": 4,
+      "dmrp02-051": 4,
+      "dm22ex1-027": 4,
+      "dmex17-132": 4,
+      "dmex17-113": 4
+    }
+  },
+  "rulingVerifications": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/46945/",
+      "checkedAt": "2026-11-07",
+      "sha256": "14e9dbe4cc89bdf3c2498f00050a7f49307fd927e32229d4cb384e5217f98850",
+      "verifiedText": "離れる直前に進化クリーチャーだったかどうかを参照して効果を処理します。"
+    }
+  ]
+}

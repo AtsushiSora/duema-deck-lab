@@ -2,6 +2,7 @@
 import fs from'node:fs';
 import{fileURLToPath}from'node:url';
 import{standardCardSpec}from'./standard-card-spec.mjs';
+import{canonicalCardName}from'../dist/card-name-aliases.js';
 const nameKey=s=>String(s).normalize('NFKC').replace(/\s/g,'');
 function exactNames(value,out=new Set()){
  if(!value||typeof value!=='object')return out;
@@ -11,10 +12,12 @@ function exactNames(value,out=new Set()){
 }
 export function scanStandardCandidates(details,implemented,{phase}={}){
  if(!Number.isSafeInteger(phase)||phase<165)throw Error('有効な対応段階を指定してください');
- const known=new Set(implemented.map(c=>nameKey(c.name))),candidates=[],blocked=[],reasons={},compiled=[];
+ const known=new Set(implemented.map(c=>nameKey(c.name))),canonicalKnown=new Set(implemented.map(c=>canonicalCardName(c.name))),candidates=[],blocked=[],reasons={},compiled=[],canonical=new Set();
  for(const row of details){
-  if(known.has(nameKey(row.name)))continue;
+  if(known.has(nameKey(row.name))||phase>=516&&canonicalKnown.has(canonicalCardName(row.name)))continue;
   let spec;try{spec=standardCardSpec(row,{phase});}catch(e){const reason=e.message.split(':')[0];reasons[reason]=(reasons[reason]||0)+1;continue;}
+  // Preserve historical scans; new batches pin one recognized print per canonical name.
+  if(phase>=516){const key=canonicalCardName(row.name);if(canonical.has(key))continue;canonical.add(key);}
   if(phase>=419){compiled.push({id:row.id,name:row.name,source:row.detailSource||row.source,faces:row.faces,spec});continue;}
   const missing=[...exactNames(spec)].filter(n=>!known.has(nameKey(n))&&nameKey(n)!==nameKey(row.name));
   if(missing.length){blocked.push({id:row.id,name:row.name,missingExactNames:missing});continue;}

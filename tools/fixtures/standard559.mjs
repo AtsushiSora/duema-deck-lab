@@ -1,0 +1,2 @@
+const cards=['dm06-009','dm08-033','dm26rp1-074','dm05-s05','dm14-066','dmd13-001','promoy3-028'];
+export const STANDARD559_DECKS=[{id:'standard559-0',name:'ブロックに反撃するクリーチャー',format:'original',cards:[...cards,'dm01-108','dm01-080','dm06-110'].map(id=>({id,count:4}))},{id:'standard559-1',name:'ブロックとシールドの攻防',format:'original',cards:[...cards,'dm01-076','dm06-085','dm06-110'].map(id=>({id,count:4}))}];

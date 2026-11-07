@@ -1,0 +1,151 @@
+{
+  "phase": 517,
+  "checkedAt": "2026-11-06",
+  "baseCount": 5069,
+  "description": "手札1枚を捨てて1枚引き、実際に捨てたカードが文明・種族の条件に合う場合だけもう1枚引く処理を共通化する。捨てようとした枚数に依存する手札交換とは区別する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/44583/",
+    "https://dm.takaratomy.co.jp/rule/qa/44584/"
+  ],
+  "cards": [
+    {
+      "id": "dm26ex4-093",
+      "name": "テンビ・ラ・ヒツソリ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-093",
+      "faces": [
+        {
+          "name": "テンビ・ラ・ヒツソリ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのクリーチャーが出た時、自分の手札を１枚捨て、カードを１枚引く。こうして火のロスト・クルセイダー・カードを捨てたら、カードをもう１枚引く。",
+          "race": "ヒノガミ/ロスト・クルセイダー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DiscardMatch517",
+            "filter": {
+              "anyFaceColor": "火",
+              "anyFaceRace": "ロスト・クルセイダー"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-093.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "7e5eb3135442d5fe409f7e9d8ea8e0309dc35fefbd3be3e6ef85fde8dfc0238d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex2-100",
+      "name": "王道ダチ キャンベロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-100",
+      "faces": [
+        {
+          "name": "王道ダチ キャンベロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分の手札を１枚捨て、カードを１枚引く。こうしてジョーカーズ・カードを捨てたら、カードをもう１枚引く。",
+          "race": "ジョーカーズ/チーム切札",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DiscardMatch517",
+            "filter": {
+              "anyFaceRace": "ジョーカーズ"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-100.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "81f0d61e012227e8dc1ae45252cc5d96c8ce0cd2250e27e54936b0d52964f440",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-070",
+      "name": "魔誕妖蟲エキサイト・ワーム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-070",
+      "faces": [
+        {
+          "name": "魔誕妖蟲エキサイト・ワーム",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが出た時、自分の手札を１枚捨て、カードを１枚引く。こうして捨てたカードが闇または自然なら、カードをもう１枚引く。",
+          "race": "パラサイトワーム",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DiscardMatch517",
+            "filter": {
+              "any": [
+                {
+                  "anyFaceColor": "闇"
+                },
+                {
+                  "anyFaceColor": "自然"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "2e050e3e9bfe357bda565a0b31647b15a160f8c1a122394febcd8a6690d1a917",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26ex4-093": 4,
+      "dm25ex2-100": 4,
+      "dm25rp1-070": 4
+    }
+  }
+}

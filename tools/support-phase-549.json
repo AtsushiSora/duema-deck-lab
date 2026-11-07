@@ -1,0 +1,359 @@
+{
+  "phase": 549,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5217,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmrp22-072",
+      "name": "バライフの地版",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-072",
+      "faces": [
+        {
+          "name": "バライフの地版",
+          "typeText": "タマシード",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このタマシードが出た時、自分の山札の上から１枚目をタップしてマナゾーンに置く。その後、自分の他のタマシードがあれば、自分の山札の上から１枚目をタップしてマナゾーンに置く。",
+          "race": "グランセクト/レクスターズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sequence",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1,
+                "tapped": true
+              },
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g295Tamaseed": true,
+                  "g334Other": true
+                },
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 1,
+                    "tapped": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-072.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "cc726c8764a56c2b030ce56a98b1cfc66c0f8b263c3d070f619ff1466e056e3b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp22-011",
+      "name": "ライオネルの天宝",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-011",
+      "faces": [
+        {
+          "name": "ライオネルの天宝",
+          "typeText": "タマシード",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "シンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、相手の手札が自分のより多ければ、カードを１枚引く。相手のマナゾーンのカードが自分のより多ければ、自分の山札の上から１枚目をタップしてマナゾーンに置く。相手のシールドが自分のより多ければ、自分の山札の上から１枚目をシールド化する。",
+          "race": "エンジェル・コマンド/レクスターズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "shinkalize": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sequence",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g334ZoneCount": {
+                    "zone": "hand",
+                    "lessThanOpponent": true
+                  }
+                },
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g334ZoneCount": {
+                    "zone": "mana",
+                    "lessThanOpponent": true
+                  }
+                },
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 1,
+                    "tapped": true
+                  }
+                ]
+              },
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g334ZoneCount": {
+                    "zone": "shields",
+                    "lessThanOpponent": true
+                  }
+                },
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "dd75d54524c02e4129ab7d43266b7c5c171ed04ac0ba786a88161fdc14d8551d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp21-021",
+      "name": "ロマネス仙鬼の封",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-021",
+      "faces": [
+        {
+          "name": "ロマネス仙鬼の封",
+          "typeText": "タマシード",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このタマシードをシールドゾーンから手札に加える時、コストを支払わずにすぐ使ってもよい）\nシンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、次のうちいずれか１つを選ぶ。\n▶相手のコスト５以下のクリーチャーを１体破壊する。\n▶相手の多色カードを１枚破壊する。",
+          "race": "デモニオ/鬼レクスターズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "shinkalize": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のコスト５以下のクリーチャーを１体破壊する。",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "max": 5
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "相手の多色カードを１枚破壊する。",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "element": true,
+                    "to": "grave",
+                    "filter": {
+                      "multi": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "6a045fc3b99000896b425ff1a02e1d8f25d7be3dde36da1c4fc60132fb12fa11",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex1-051",
+      "name": "青薔薇の天宝",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-051",
+      "faces": [
+        {
+          "name": "青薔薇の天宝",
+          "typeText": "タマシード",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー\nシンカライズ（このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい）\nこのタマシードが出た時、相手のコスト５以下のエレメントを１つ選び、シールド化してもよい。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "shinkalize": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "to": "shields",
+            "optional": true,
+            "filter": {
+              "max": 5
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex1-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "65db06f3cb66486001914231117d65e8ee31cd1a2a5bf5bd99b6f06f1fd38513",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-029",
+      "name": "富力！ルベル&フォース",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-029",
+      "faces": [
+        {
+          "name": "富力！ルベル&フォース",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、相手の手札が自分のより多ければ、カードを１枚引く。相手のマナゾーンのカードが自分のより多ければ、自分の山札の上から１枚目をタップしてマナゾーンに置く。相手のシールドが自分のより多ければ、自分の山札の上から１枚目をシールド化する。",
+          "race": "メカ・デル・ディネロ/アーマード・ドラゴン",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sequence",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g334ZoneCount": {
+                    "zone": "hand",
+                    "lessThanOpponent": true
+                  }
+                },
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g334ZoneCount": {
+                    "zone": "mana",
+                    "lessThanOpponent": true
+                  }
+                },
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 1,
+                    "tapped": true
+                  }
+                ]
+              },
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g334ZoneCount": {
+                    "zone": "shields",
+                    "lessThanOpponent": true
+                  }
+                },
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "27430b222ff76b42ba1fca28fe70e7dc6d0dfe52f5480e390df3da740db118b7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp22-072": 4,
+      "dmrp22-011": 4,
+      "dmrp21-021": 4,
+      "dm25ex1-051": 4,
+      "dm23rp3-029": 4
+    }
+  }
+}

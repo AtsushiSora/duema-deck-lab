@@ -1,0 +1,532 @@
+{
+  "phase": 560,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5271,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/31799/",
+    "https://dm.takaratomy.co.jp/rule/qa/49527/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp07-s08",
+      "name": "DB”ファンク“Ｃ-軍",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-s08",
+      "faces": [
+        {
+          "name": "DB”ファンク“Ｃ-軍",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "G・G・G：自分の手札が１枚以下なら、自分のビートジョッキーすべての召喚コストを最大５少なくする。ただし、コストは０以下にならない。\n自分の他のビートジョッキーがバトルゾーンに出た時、カードを１枚引いてもよい。",
+          "race": "ビートジョッキー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "race": "ビートジョッキー"
+            },
+            "amount": 5,
+            "g560Optional": true,
+            "condition": {
+              "g334ZoneCount": {
+                "zone": "hand",
+                "max": 1
+              }
+            },
+            "g560InUse": true
+          }
+        ],
+        "g250EntryDraw": {
+          "filter": {
+            "creature": true,
+            "race": "ビートジョッキー"
+          },
+          "self": false,
+          "defs": [
+            {
+              "op": "Offer",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-s08.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "00eabeaae3bdeda5d2a5de8814f3eef1db1f81ec7cba1fb77279ab85dac5ab30",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex2-032",
+      "name": "ガイアッシュの海地図",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-032",
+      "faces": [
+        {
+          "name": "ガイアッシュの海地図",
+          "typeText": "タマシード",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\nシンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、カードを１枚引く。その後、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\n自分のコスト８以上のクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない。",
+          "race": "ブルー・コマンド・ドラゴン/グリーン・コマンド・ドラゴン/ハンター/レクスターズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "shinkalize": true,
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "min": 8
+            },
+            "amount": 2,
+            "g560Element": true
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex2-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "63a63507068028df43b56f172aebc8077c53894e95277053cca44749d65c6aff",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx08-037",
+      "name": "鬼斗マッスグ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx08-037",
+      "faces": [
+        {
+          "name": "鬼斗マッスグ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分の進化ヒューマノイドの召喚コストを最大２少なくしてもよい。ただし、コストは１より少なくならない。",
+          "race": "ヒューマノイド/ハンター/エイリアン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "race": "ヒューマノイド",
+              "evolution": true
+            },
+            "amount": 2,
+            "g560Optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx08-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "f30175b9cbd4bcc0304e7cd709ebd45dae4151a87e5b9dc393271fddae72f6d0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd19-010",
+      "name": "賢樹 エルフィ-１",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd19-010",
+      "faces": [
+        {
+          "name": "賢樹 エルフィ-１",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\n自分のディスタスの召喚コストを１少なくする。ただしコストは０以下にはならない。\nササゲール１（ディスペクターを召喚する時、コストを１少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "ツリーフォーク/ディスタス",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "guardman": true,
+        "noAttack": true,
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "race": "ディスタス"
+            },
+            "amount": 1
+          }
+        ],
+        "sasage": 1
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd19-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "f3afc6b8803caba4008714527970948365901a8d1cc2cde39040c27c8c2ed0c3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-029",
+      "name": "信頼の玉 ララァ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-029",
+      "faces": [
+        {
+          "name": "信頼の玉 ララァ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の光のコマンドの召喚コストを１少なくする。ただし、コストは０以下にならない。\nマナ武装 ３-自分のマナゾーンに光のカードが３枚以上あれば、自分の光のドラゴンの召喚コストを１少なくする。ただし、コストは０以下にならない。",
+          "race": "ジャスティス・オーブ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "color": "光",
+              "race": "コマンド"
+            },
+            "amount": 1
+          },
+          {
+            "filter": {
+              "color": "光",
+              "race": "ドラゴン"
+            },
+            "amount": 1,
+            "condition": {
+              "g267Mana": {
+                "n": 3,
+                "color": "光"
+              }
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "5ea61189d9bcdfc9f14554013b3679a304785022f14d6e8acb0f9f5be0ddb42d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex19-060",
+      "name": "真海の覇王 ググッピー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-060",
+      "faces": [
+        {
+          "name": "真海の覇王 ググッピー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\n自分のムートピアの召喚コストを２少なくする。ただし、コストは０以下にはならない。",
+          "race": "ムートピア",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "justDiver": true,
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "race": "ムートピア"
+            },
+            "amount": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-060.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "934b84a53ad5817ff809b0ec46cf702bd464b1b04d27710c2000e7d1920af3bf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex2-073",
+      "name": "神聖の精霊アルカ・ガール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-073",
+      "faces": [
+        {
+          "name": "神聖の精霊アルカ・ガール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\nこのクリーチャーが出た時、カードを１枚引く。\n自分のコマンド・クリーチャーの召喚コストを２少なくする。ただしコストは０以下にはならない。",
+          "race": "エンジェル・コマンド",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "justDiver": true,
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "race": "コマンド"
+            },
+            "amount": 2
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex2-073.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "7e4d1a2c47c958c05676f0ab95a2ac1885b21b2e0d39fddcf8c51f3dde7018b2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm38-034",
+      "name": "聖黒獣アシュライガー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-034",
+      "faces": [
+        {
+          "name": "聖黒獣アシュライガー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分のエンジェル・コマンドとデーモン・コマンドすべての召喚コストを最大２少なくしてもよい。ただし、コストは１より少なくならない。",
+          "race": "シャイン・モンスター/ダーク・モンスター",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "raceAny": [
+                "エンジェル・コマンド",
+                "デーモン・コマンド"
+              ]
+            },
+            "amount": 2,
+            "g560Optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "a8e371fc823eeb0f923a700340e405effea99b497f6dcbb8bb0081532e899980",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd14-009",
+      "name": "聖邪のインガ スパイス・クィーンズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd14-009",
+      "faces": [
+        {
+          "name": "聖邪のインガ スパイス・クィーンズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分のゴッド・ノヴァ OMGの召喚コストを１少なくしてもよい。ただし、コストは１より少なくならない。",
+          "race": "オラクル",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "race": "ゴッド・ノヴァ OMG"
+            },
+            "amount": 1,
+            "g560Optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd14-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "b28a31871dacfdfdc53a35561ba0b3a8501ff2f2145f38a732ec8ec7fd93baab",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-083",
+      "name": "双子聖霊アンビアス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-083",
+      "faces": [
+        {
+          "name": "双子聖霊アンビアス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のコマンド・クリーチャーの召喚コストを１少なくする。ただし、コストは０以下にならない。\n自分の呪文を唱えるコストを１少なくする。ただし、コストは０以下にならない。",
+          "race": "エンジェル・コマンド/ファンキー・ナイトメア",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "race": "コマンド"
+            },
+            "amount": 1
+          }
+        ],
+        "g467SpellReduction": 1
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-083.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "4aba9ac508ce8222edde971dcf3d5f9871b1c467a5736f00e520ce65e1c1d5fb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16s-047",
+      "name": "龍友伝承 コッコ・ゲット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-047",
+      "faces": [
+        {
+          "name": "龍友伝承 コッコ・ゲット",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナ武装 ３：自分のマナゾーンに火のカードが３枚以上あれば、自分のコマンド・ドラゴンの召喚コストを最大２少なくする。ただし、コストは１より少なくならない。",
+          "race": "ヒューマノイド爆",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "race": "コマンド・ドラゴン"
+            },
+            "amount": 2,
+            "g560Optional": true,
+            "condition": {
+              "g267Mana": {
+                "n": 3,
+                "color": "火"
+              }
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "ca5c45b1b0651bf898667c51d18744dc875753d62db2489d2aaa2903076029ae",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp07-s08": 4,
+      "dm23ex2-032": 4,
+      "dmx08-037": 4,
+      "dmsd19-010": 4,
+      "dmr18-029": 4,
+      "dmex19-060": 4,
+      "dm24ex2-073": 4,
+      "dm38-034": 4,
+      "dmd14-009": 4,
+      "dm24ex4-083": 4,
+      "dmr16s-047": 4
+    }
+  }
+}

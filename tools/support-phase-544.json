@@ -1,0 +1,242 @@
+{
+  "phase": 544,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5189,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/39563/",
+    "https://dm.takaratomy.co.jp/rule/qa/39564/",
+    "https://dm.takaratomy.co.jp/rule/qa/31530/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp18-005",
+      "name": "\"罰星怒\"ブランド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-005",
+      "faces": [
+        {
+          "name": "\"罰星怒\"ブランド",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nシンカパワー：このクリーチャーが進化する時、進化した後、それよりコストが小さい相手のクリーチャーを１体破壊する。",
+          "race": "ビートジョッキー/レクスターズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "g397Shinka": [
+          {
+            "op": "ShinkaHost544",
+            "mode": "belowCost"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "ae88ff7f68e98c147adad7693832678138bb004791c3071cc5e85dc65d600782",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-004",
+      "name": "虚∞龍 ゲンムエンペラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-004",
+      "faces": [
+        {
+          "name": "虚∞龍 ゲンムエンペラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から４枚を表向きにする。その中から進化クリーチャーを１体、手札に加えてもよい。残りを墓地に置く。\nシンカパワー：このクリーチャーが進化する時、相手のクリーチャーを１体選ぶ。このターン、自分の墓地にあるカード１枚につき、そのクリーチャーのパワーを－1000する。",
+          "race": "∞ドラゴン/レクスターズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g397Shinka": [
+          {
+            "op": "CountTarget544",
+            "zone": "grave",
+            "amount": -1000,
+            "def": {
+              "op": "Target",
+              "g242PowerMinus": true
+            }
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 4,
+            "public": true,
+            "rest": "grave",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "evolution": true
+                },
+                "optional": true,
+                "reveal": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "113046e3e44ee5490d7c26587759db975ab83b0384beac48f47ba05042ddb9a8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp19-001",
+      "name": "閃メク星戦 絶十",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-001",
+      "faces": [
+        {
+          "name": "閃メク星戦 絶十",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、バトルゾーンにある自分のクリーチャー１体につき、相手のクリーチャーを１体選びタップする。\nシンカパワー：このクリーチャーが進化する時、カードを１枚引く。その後、自分のシールドの数が相手より多ければ、カードをもう１枚引く。",
+          "race": "メタリカ/レクスターズ",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g397Shinka": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "moreThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountOwn538",
+            "filter": {
+              "creature": true
+            },
+            "mode": "select",
+            "def": {
+              "op": "Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "optional": false,
+              "g173Targets": true,
+              "g193Select": true,
+              "g193Tap": true,
+              "filter": {
+                "creature": true
+              },
+              "title": "タップする相手のクリーチャーを選ぶ"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp19-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "86cdad33f5977b31039e54332ee9fe9937105555babb0a34af3645e4c643167c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-005",
+      "name": "大爆龍 ダイナボルト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-005",
+      "faces": [
+        {
+          "name": "大爆龍 ダイナボルト",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー\n各ターン、このクリーチャーがはじめて攻撃する時、アンタップする。\nシンカパワー：このクリーチャーが進化する時、相手のクリーチャーを１体選んでもよい。進化の後、その選んだクリーチャーとこのクリーチャーをバトルさせる。",
+          "race": "ダイナマイト・ドラゴン/レクスターズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g540FirstAttack": [
+          {
+            "op": "Untap",
+            "g191First": true
+          }
+        ],
+        "g397Shinka": [
+          {
+            "op": "ShinkaHost544",
+            "mode": "fight"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "1311b2b92de08247f8863542680b0a134d914709185f7d46143cdb139e8cb51a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp18-005": 4,
+      "dmrp17-004": 4,
+      "dmrp19-001": 4,
+      "dmrp17-005": 4
+    }
+  }
+}

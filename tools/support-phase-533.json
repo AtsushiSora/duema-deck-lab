@@ -1,0 +1,231 @@
+{
+  "phase": 533,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5131,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmr20-035",
+      "name": "コダマの気合掘り",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-035",
+      "faces": [
+        {
+          "name": "コダマの気合掘り",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "クリーチャーを１体、自分の墓地から手札に戻す。\nカードを１枚、自分のシールドゾーンから手札に加える。ただし、その「S・トリガー」は使えない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true,
+            "g533CardOnly": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr20-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "a2b2b47d6dae44bd04983be28089cbbb4218c143b11170e344cfadf03747d5ee",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-008",
+      "name": "メガアサルト・ワイバーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-008",
+      "faces": [
+        {
+          "name": "メガアサルト・ワイバーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)このクリーチャーが破壊された時、パワー4000以下のクリーチャーをすべて破壊する。",
+          "race": "アーマード・ワイバーン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g172Death": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 4000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "0a5f1fe5ba1b8779064c83c240bf02d53e59f1770e6baa0f4c43b95a172f52e1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm39-019",
+      "name": "獣王の手甲",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-019",
+      "faces": [
+        {
+          "name": "獣王の手甲",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、カードを２枚、自分のマナゾーンから山札の一番上に好きな順序で置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ビーストフォーク",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "deckTop",
+            "n": 2,
+            "g183Return": true,
+            "title": "山札の上に戻すマナを2枚選ぶ（先に選んだカードが一番上）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "fa4d29412308bfd35effb3b1293f688fa2215f63d636b1deab787ea2da158eda",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd06-006",
+      "name": "堕魔 ドゥンブレ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd06-006",
+      "faces": [
+        {
+          "name": "堕魔 ドゥンブレ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、カードを１枚、自分のシールドゾーンから手札に加える。ただし、その「S・トリガー」は使えない。",
+          "race": "マフィ・ギャング/魔導具",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true,
+            "g533CardOnly": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd06-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "0e09003fb4e9a3a4845ccff8eb2bba08494add45336bbfb1a28aea85c73cecfd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-024",
+      "name": "蟲偵電融 ゼノジェント",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-024",
+      "faces": [
+        {
+          "name": "蟲偵電融 ゼノジェント",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nEXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nマッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）。",
+          "race": "ディスペクター/ジャイアント・インセクト/リキッド・ピープル",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "exLife": true,
+        "machFighter": true,
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "fc69a0a8c0158a7c24233a797dbb73e08ffcbc5a238af27e120ab6071f3b3577",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr20-035": 4,
+      "dm14-008": 4,
+      "dm39-019": 4,
+      "dmsd06-006": 4,
+      "dmrp17-024": 4
+    }
+  }
+}

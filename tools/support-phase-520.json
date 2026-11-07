@@ -1,0 +1,215 @@
+{
+  "phase": 520,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5079,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmr16g-037",
+      "name": "アクア冒険家 レイダー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-037",
+      "faces": [
+        {
+          "name": "アクア冒険家 レイダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃する時、自分の山札の上から１枚目を墓地に置く。それがリキッド・ピープルまたはドラゴンであれば、そのターン、このクリーチャーはブロックされない。",
+          "race": "リキッド・ピープル閃",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "MillMatch520",
+            "n": 1,
+            "filter": {
+              "any": [
+                {
+                  "anyFaceRace": "リキッド・ピープル"
+                },
+                {
+                  "anyFaceRace": "ドラゴン"
+                }
+              ]
+            },
+            "unblockable": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "3958be029485410c73d6f247f29e1daa32272390219292c61bfc731175b8ca53",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-039",
+      "name": "禁断U サベージ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-039",
+      "faces": [
+        {
+          "name": "禁断U サベージ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を墓地に置く。その後、D２フィールド１枚またはクリーチャーを１体、自分の墓地から手札に戻してもよい。",
+          "race": "イニシャルズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "any": [
+                {
+                  "creature": true
+                },
+                {
+                  "g228Face": {
+                    "type": "field",
+                    "d2": true
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "e37a7dc4485c349258228f65be6a07a84959ef3a50c48d4a6eeeb8b77bf349c0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr10-002",
+      "name": "灼熱の斬撃 テスタ・ロッサ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-002",
+      "faces": [
+        {
+          "name": "灼熱の斬撃 テスタ・ロッサ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーが攻撃する時、自分の山札の上から１枚目を墓地に置く。それが呪文であれば、このクリーチャーをアンタップする。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アウトレイジMAX",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "MillMatch520",
+            "n": 1,
+            "filter": {
+              "spell": true
+            },
+            "untap": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "dc3f13e676877a5bfd5deb9369e099bc77c91c00fef3091dae3457c9e463cb16",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-031",
+      "name": "冒険の面 ジョーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-031",
+      "faces": [
+        {
+          "name": "冒険の面 ジョーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃する時、自分の山札の上から１枚目を墓地に置く。それがビーストフォークまたはドラゴンであれば、そのターン、このクリーチャーは「パワーアタッカー+4000」と「W・ブレイカー」を得る。",
+          "race": "ビーストフォーク號",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "MillMatch520",
+            "n": 1,
+            "filter": {
+              "any": [
+                {
+                  "anyFaceRace": "ビーストフォーク"
+                },
+                {
+                  "anyFaceRace": "ドラゴン"
+                }
+              ]
+            },
+            "powerAttacker": 4000,
+            "breaker": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "eb178218668465e5166489e5e6dbf37125b4e1e1162ff0567a74e3d4c79ed461",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr16g-037": 4,
+      "dmr21-039": 4,
+      "dmr10-002": 4,
+      "dmr16g-031": 4
+    }
+  }
+}

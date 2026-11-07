@@ -1,0 +1,240 @@
+{
+  "phase": 557,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5250,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/31814/"
+  ],
+  "cards": [
+    {
+      "id": "dmbd07-a-001",
+      "name": "DX銃斬首領 SEVEN",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd07-a-001",
+      "faces": [
+        {
+          "name": "DX銃斬首領 SEVEN",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "マッハファイター\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、そのターン、自分のクリーチャーはすべて、パワーを+4000され、シールドをさらに１つブレイクする。\nこのクリーチャーがバトルに勝った時、相手のシールドを１つ選び、持ち主のマナゾーンに置く。",
+          "race": "ジョーカーズ",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sequence",
+            "defs": [
+              {
+                "op": "GroupPower",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                },
+                "power": 4000
+              },
+              {
+                "op": "GroupLasting412",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                },
+                "extraBreak": 1
+              }
+            ]
+          }
+        ],
+        "g189BattleWin": [
+          {
+            "op": "ShieldMana557"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd07-a-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "5061641b9451c05cc28f04fc36f0217885f0e65098021bcd1c12414e0c9f64e8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd18-005",
+      "name": "アクセル・カイザー「迅雷」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd18-005",
+      "faces": [
+        {
+          "name": "アクセル・カイザー「迅雷」",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "バトルゾーンにある自分のドラゴンはすべて「スピードアタッカー」を得る。（「スピードアタッカー」を得たクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n自分のドラゴンはすべて、シールドをさらに１枚ブレイクする。",
+          "race": "レッド・コマンド・ドラゴン/ハンター/エイリアン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ],
+        "breaker": 2,
+        "g557BreakAura": {
+          "race": "ドラゴン",
+          "amount": 1
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd18-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "96750cbaaf275da39441ff1045048e28e1d3158dc37ac8c01ac418c580d83414",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp3-047",
+      "name": "アニー・笛・ルピア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-047",
+      "faces": [
+        {
+          "name": "アニー・笛・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nバラバラエティ３：自分のクリーチャーすべてに「スピードアタッカー」を与える。（コストが異なる自分のエレメントが３つ以上あれば、このクリーチャーにこの能力を与える）",
+          "race": "アーマード・ファイアー・バード",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "g557Condition": {
+              "g466DistinctCosts": 3
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "8e43176d9d2d19965781daac001d87c7330713f14f2d27c782a9c58a49eded71",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp1-075",
+      "name": "インビンシブル・タワー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-075",
+      "faces": [
+        {
+          "name": "インビンシブル・タワー",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 13,
+          "costText": "13",
+          "abilityText": "この呪文を唱えるコストを、自分のコスト３以下のエレメント１つにつき３少なくする。ただしコストは０以下にならない。\nこのターン、自分のクリーチャーすべてのパワーを+9000し、「T・ブレイカー」を与える。（「T・ブレイカー」を持つクリーチャーはシールドを３つブレイクする）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "battle",
+          "g557Elements": true,
+          "filter": {
+            "max": 3
+          },
+          "amount": 3
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sequence",
+            "defs": [
+              {
+                "op": "GroupPower",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                },
+                "power": 9000,
+                "spell": true
+              },
+              {
+                "op": "GroupGrant364",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                },
+                "grant": {
+                  "g313Breaker": 3
+                },
+                "spell": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-075.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "3b7fe22b68d8c12054e784e72003affc786edf98406c36c97bcdad5c781423f3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmbd07-a-001": 4,
+      "dmd18-005": 4,
+      "dm24rp3-047": 4,
+      "dm26rp1-075": 4
+    }
+  }
+}

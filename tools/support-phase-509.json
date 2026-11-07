@@ -1,0 +1,527 @@
+{
+  "phase": 509,
+  "checkedAt": "2026-11-06",
+  "baseCount": 5016,
+  "description": "相手が選ぶ除去・手札破壊、他のガーディアンのアンタップ、鬼タイムの自己強化、正確な現在パワーの全体除去などを共通処理につなぐ11種類。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmex10-002",
+      "name": "「輪廻」の鬼 シャカ車輪",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex10-002",
+      "faces": [
+        {
+          "name": "「輪廻」の鬼 シャカ車輪",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選んでもよい。このクリーチャーとその選んだクリーチャーをバトルさせる。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーのパワーを+6000し、「W・ブレイカー」を与える。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "grants": {
+            "power": 6000,
+            "breaker": 2
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex10-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "a8ae9de6898d05a2ed02e7cc2688fcdf86c78f843a22ec3662637178a0cdd0d9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr17-052",
+      "name": "Rev.ミリオン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-052",
+      "faces": [
+        {
+          "name": "Rev.ミリオン",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー4000以下のクリーチャーを１体破壊する。\n革命２―自分のシールドが２つ以下なら、相手のパワー4000以下のクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 4000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g265ShieldsMax": 2
+            },
+            "defs": [
+              {
+                "op": "Sweep",
+                "owner": "opponent",
+                "to": "grave",
+                "filter": {
+                  "creature": true,
+                  "maxPower": 4000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "bb5ed1df1dd239d6f15684b75d159118952608dc8f37b6a11e89b22aac52a364",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp14-092",
+      "name": "コブシ童子",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-092",
+      "faces": [
+        {
+          "name": "コブシ童子",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃する時、相手は自身の手札を１枚選び、捨てる。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーのパワーを+2000 する。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "grants": {
+            "power": 2000
+          }
+        },
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-092.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "687f1102ce77cf837b1d0f8509b10387b74f00c7a832f8fcc75b6258d47817af",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm12-040",
+      "name": "バミューダ・クロウラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-040",
+      "faces": [
+        {
+          "name": "バミューダ・クロウラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー (相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーがブロックした時、相手はバトルゾーンから自分自身のクリーチャーを１体選び、持ち主の手札に戻す。\nこのクリーチャーは攻撃することができない。",
+          "race": "アースイーター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g178Block": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "hand"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "11ee2e34a84ef11b4d2c01060141579cf6e076deac601d82c7e8a6b56e7446a9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm04-016",
+      "name": "マグマティラノス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-016",
+      "faces": [
+        {
+          "name": "マグマティラノス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S(シールド)・トリガー(このカードをシールドゾーンから手札に加えるとき、コストを支払わずにすぐ召喚してよい)\nこのクリーチャーがバトルゾーンに出たとき、バトルゾーンにあるパワー1000のクリーチャーすべてを、持ち主の墓地に置く。",
+          "race": "ロック・ビースト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "minPower": 1000,
+              "maxPower": 1000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm04-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "d18fdf94ad001cced51ba62b46aa7bc4b884aec4991985cd57a1fb5fdafaee5f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm08-022",
+      "name": "レーザー・ウィップ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-022",
+      "faces": [
+        {
+          "name": "レーザー・ウィップ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトルゾーンにある相手のクリーチャーを１体選び、タップする。その後、バトルゾーンにある自分のクリーチャーを１体選んでもよい。このターンそのクリーチャーはブロックされない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "Target",
+            "owner": "self",
+            "optional": true,
+            "grant": {
+              "unblockable": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm08-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "2beb50650e705f43b9f521406123f0c384bef00197c888d26a0072e1fd272319",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr07-021",
+      "name": "決起の守護者タコル・ヨイション",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-021",
+      "faces": [
+        {
+          "name": "決起の守護者タコル・ヨイション",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがブロックした時、バトルゾーンにある自分の他のガーディアンをすべてアンタップする。",
+          "race": "ガーディアン/アンノイズ",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g178Block": [
+          {
+            "op": "GroupUntap",
+            "g179Other": true,
+            "filter": {
+              "creature": true,
+              "race": "ガーディアン"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "e8382286c66f6a55469dfa3e20a238e801c2551c8fd8d4ba50fb81af50a65f03",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc48-010",
+      "name": "邪眼の銃鬼イヴァンII世",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc48-010",
+      "faces": [
+        {
+          "name": "邪眼の銃鬼イヴァンII世",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n自分が呪文を唱えた時、相手は自分自身の手札を１枚選んで捨てる。",
+          "race": "デーモン・コマンド/ナイト",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc48-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "c307ce5a94d9ff6cfeac7048c21384229bbd7a73fe819160df4d73ccde8f4b31",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm01-053",
+      "name": "腐食虫スワンプワーム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm01-053",
+      "faces": [
+        {
+          "name": "腐食虫スワンプワーム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、相手はバトルゾーンから自分自身のクリーチャーを１体選び、持ち主の墓地に置く。",
+          "race": "パラサイトワーム",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm01-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "2ef76e878300d0ca6da2a43b3d2ac937bafea37449ceccd64e48e06fc3b79be9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm20-045",
+      "name": "封魔ヴァルフォーグ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-045",
+      "faces": [
+        {
+          "name": "封魔ヴァルフォーグ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは攻撃することができない。\nこのクリーチャーがブロックする時、相手は自分自身の手札を１枚選んで捨てる。",
+          "race": "グランド・デビル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g178Block": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "d60be7205fdc0d66505f050067012012ae5790ddd0f4f0f85ae04ec5bd53f154",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm32-053",
+      "name": "魔星蟲クライシス・ワーム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-053",
+      "faces": [
+        {
+          "name": "魔星蟲クライシス・ワーム",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化-自分のパラサイトワームまたはオリジン１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、相手は自分自身の手札を１枚選んで捨てる。",
+          "race": "パラサイトワーム/オリジン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "パラサイトワーム"
+            },
+            {
+              "race": "オリジン"
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "33f97347219c9d06d3630ec134b8ea853acb2a8c743254638077c601d75e58ba",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex10-002": 4,
+      "dmr17-052": 4,
+      "dmrp14-092": 4,
+      "dm12-040": 4,
+      "dm04-016": 4,
+      "dm08-022": 4,
+      "dmr07-021": 4,
+      "dmc48-010": 4,
+      "dm01-053": 4,
+      "dm20-045": 4,
+      "dm32-053": 4
+    }
+  }
+}

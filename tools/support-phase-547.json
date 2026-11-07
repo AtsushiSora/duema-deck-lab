@@ -1,0 +1,271 @@
+{
+  "phase": 547,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5205,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/42635/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316640/"
+  ],
+  "cards": [
+    {
+      "id": "dm22ex2-042",
+      "name": "アウゼスの天黒筺",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-042",
+      "faces": [
+        {
+          "name": "アウゼスの天黒筺",
+          "typeText": "タマシード",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "シンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、クリーチャーを１体破壊する。そのクリーチャーの持ち主は、自身の山札の上から１枚目をシールド化する。",
+          "race": "エンジェル・コマンド/デーモン・コマンド/レクスターズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "shinkalize": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "grave",
+            "g547OwnerShield": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex2-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "e3b3e7997f7e0bec360f03abef10b0e1725d8d4c2c6553686ef1194394c2a8bc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp22-013",
+      "name": "アトランティスの海幻",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-013",
+      "faces": [
+        {
+          "name": "アトランティスの海幻",
+          "typeText": "タマシード",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このタマシードをシールドゾーンから手札に加える時、コストを支払わずにすぐ使ってもよい）\nシンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、自分のタマシードを１枚破壊してもよい。そうしたら、コスト４以下のタマシードを１枚、自分の墓地から出す。\nシンカパワー：このタマシードが進化する時、バトルゾーンにあるクリーチャー１体またはタマシードを１枚選び、持ち主の手札に戻してもよい。",
+          "race": "リヴァイアサン/レクスターズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "shinkalize": true,
+        "g397Shinka": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "element": true,
+            "to": "hand",
+            "optional": true,
+            "filter": {
+              "creatureOrSeed": true
+            }
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "g547Seed": true,
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "n": 1,
+                "deploy": true,
+                "g236GraveDeploy": true,
+                "optional": false,
+                "filter": {
+                  "g295Tamaseed": true,
+                  "max": 4
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "54c356f9b5de34af2ccdd6b147930a3578451ff031d17c6994db124bc04b626b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-010",
+      "name": "ウルトラクイック・マホガニーハンドル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-010",
+      "faces": [
+        {
+          "name": "ウルトラクイック・マホガニーハンドル",
+          "typeText": "タマシード",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このタマシードが出た時、カードを１枚引く。\n自分のターンの終わりに、自分のシールドが相手よりも少なければ、自分の山札の上から１枚目をシールド化してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ],
+        "g174End": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "lessThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "6004158a415e95b1c0f6c70f4eb9f816d3957adf28255f033559008471f4a90a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex2-042",
+      "name": "カンゴク入道の巻",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-042",
+      "faces": [
+        {
+          "name": "カンゴク入道の巻",
+          "typeText": "タマシード",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "シンカライズ（このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい）\n自分のターンのはじめに、自分のシールドを１つ手札に加える。その「S・トリガー」は使えない。",
+          "race": "デモニオ/鬼レクスターズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "shinkalize": true,
+        "g461TurnPlayer": true,
+        "g174Start": [
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "74feb59eef7e0fe032c3489b491e10cfd256997cdb9d11e9cf6c398aac2f9fce",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22ex2-027",
+      "name": "キラー・ザ・キルの黒像",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-027",
+      "faces": [
+        {
+          "name": "キラー・ザ・キルの黒像",
+          "typeText": "タマシード",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このタマシードをシールドゾーンから手札に加える時、コストを支払わずにすぐ使ってもよい）\nシンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、相手のクリーチャー１体またはタマシードを１枚破壊する。",
+          "race": "デーモン・コマンド・ドラゴン/レクスターズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "shinkalize": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "to": "grave",
+            "filter": {
+              "creatureOrSeed": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex2-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "56001a7aa0675f317cf4862d3c2955f3c67a1ca349cd3add3d3a676a0fd7cfa3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22ex2-042": 4,
+      "dmrp22-013": 4,
+      "dm22rp2-010": 4,
+      "dm26ex2-042": 4,
+      "dm22ex2-027": 4
+    }
+  }
+}

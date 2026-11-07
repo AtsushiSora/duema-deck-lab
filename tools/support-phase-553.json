@@ -1,0 +1,182 @@
+{
+  "phase": 553,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5235,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp2-034",
+      "name": "タカスギ・ワヲンチョッパー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-034",
+      "faces": [
+        {
+          "name": "タカスギ・ワヲンチョッパー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{STP} S・トリガー・プラス（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、このクリーチャーに{x+}能力を与える）\n{x+}このクリーチャーが出た時、相手のクリーチャーを２体まで、コストの合計が８以下になるように選び、持ち主の手札に戻す。\nこのクリーチャーはブロックされない。",
+          "race": "マジック・マーフォーク",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "unblockable": true,
+        "triggerPlus": true,
+        "g34Plus": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "optional": true,
+            "to": "hand",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g513CostBudget": 8,
+            "title": "合計コスト8以下になるよう選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "fe939233da8e1d1486bf2c9b905709292d51aff87282384694488d215d92335c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22bd1-014",
+      "name": "爆流奥義 紅蓮NEXTREME",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22bd1-014",
+      "faces": [
+        {
+          "name": "爆流奥義 紅蓮NEXTREME",
+          "typeText": "呪文",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の山札の上から１枚目をマナゾーンに置く。\nコストの合計が、自分のマナゾーンにあるドラゴンの数以下になるよう、相手のクリーチャーを２体まで破壊する。",
+          "race": "ドラゴン",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "CountCost553",
+            "zone": "mana",
+            "filter": {
+              "anyFaceRace": "ドラゴン"
+            },
+            "def": {
+              "op": "Select",
+              "owner": "opponent",
+              "origin": "battle",
+              "n": 2,
+              "optional": true,
+              "to": "grave",
+              "filter": {
+                "creature": true
+              },
+              "g173Targets": true,
+              "g193Select": true,
+              "g513CostBudget": 0,
+              "title": "合計コスト0以下になるよう選ぶ"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22bd1-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "19ac8d9fcec900cdedf88de26c9cc7fe0e7051e9595882a8731268f34f40c0e2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-052",
+      "name": "魔誕の死神ベル・ヘル・デ・スカル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-052",
+      "faces": [
+        {
+          "name": "魔誕の死神ベル・ヘル・デ・スカル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火/自然",
+          "civilizations": [
+            "闇",
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nこのクリーチャーが出た時、相手のエレメントを、コストの合計が６以下になるように好きな数選ぶ。それらをすべて、持ち主のマナゾーンに置くか破壊する。",
+          "race": "デーモン・コマンド/ビーストフォーク",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": "all",
+            "optional": true,
+            "filter": {
+              "element": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g513CostBudget": 6,
+            "title": "合計コスト6以下になるよう選ぶ",
+            "g553Destinations": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "e1979e4091c3957dae7b0524f68f906c9859e0084062a5a97132d74afb9e9ce4",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp2-034": 4,
+      "dm22bd1-014": 4,
+      "dm25rp1-052": 4
+    }
+  }
+}

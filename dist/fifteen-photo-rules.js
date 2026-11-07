@@ -1,5 +1,5 @@
-import {afterEntry} from './entry-followup.js?v=0.596.0';
-import {hasCopiedRole393,copiedRoles393} from './requested393-joker-rules.js?v=0.596.0';
+import {afterEntry} from './entry-followup.js?v=0.656.0';
+import {hasCopiedRole393,copiedRoles393} from './requested393-joker-rules.js?v=0.656.0';
 import {policyRemove,policyLook} from './champion-zone-policy.js';
 // Fifteen screenshot decks. Continuations store physical UIDs, never copies of game cards.
 export function createFifteenPhotoRules(api){
@@ -203,7 +203,7 @@ export function createFifteenPhotoRules(api){
  discount(s,p,c){let n=0;if(c.type==='creature'){if(active(s,1-p,'alphaLion').length)n-=5*active(s,1-p,'alphaLion').length;if(c.g35Role==='chief'&&c.g27BaseUid)n+=2;if(c.g35Role==='ruru')n+=2*creatures(s,p).filter(y=>angel(effective(y,s))).length;if(c.g35Role==='roadJohnny')n+=jokerCount(s,p);if(c.g35Role==='finalJohnny')n+=2*new Set(s.players[1-p].mana.flatMap(y=>api.manaColors(card(y),s,1-p))).size;if(c.g35Role==='flameDance'&&jokerCount(s,p)>=4)n+=3;if(cost(c)>=6)n+=active(s,p,'girl').length;if(j(c))n+=active(s,p,'man').length;}return n;},
  allowedCast(s,p,c){if(c.type!=='spell')return true;if(active(s,1-p,'alphaLion').length||active(s,1-p,'alpha').length&&!colors(c).includes('光'))return false;if((s.g35SpellLocks||[]).some(l=>l.p===p&&l.turn===s.turn&&colors(c).includes(l.color)))return false;const a=s.attack&&s.players[1-p].battle.find(x=>x.uid===s.attack.attacker);return !(a&&(a.g35Maximum||[]).some(g=>g.turn===s.turn));},
  canLeave(s,p,x){if(card(x.cardId).g35Role==='skull'&&(s.players[p].seals||[]).some(y=>y.sealOf===x.uid))return false;return !active(s,p,'galaxy').some(y=>s.players[p].shields.some(root=>api.shieldCards(root).some(z=>z.uid===y.g35ShieldForce)));},
- canAttack(s,p,x){return !(s.g35AttackStops||[]).some(l=>l.p===p&&l.turn===s.turn)&&!(x.g35NoAttack||[]).some(l=>l.turn===s.turn||l.who!==undefined&&s.players[l.who].turns<=l.turns);},
+ canAttack(s,p,x){return !(s.g35AttackStops||[]).some(l=>l.p===p&&l.turn===s.turn)&&!(x.g35NoAttack||[]).some(l=>(l.g566SpellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.g566SpellCost})&&!(l.g566Controller!==p&&creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks)))&&(l.turn===s.turn||l.who!==undefined&&s.players[l.who].turns<=l.turns));},
  canAttackTarget(s,a,b){return !(soul(s,b,'sixfall')&&cost(effective(a,s))<cost(effective(b,s)));},
  targetable(s,p,owner,x){if(p===owner||!soul(s,x,'sixfall'))return true;const id=s.g35ChoosingSource||s.resolvingSpell?.source||s.extSpells?.at(-1)?.spell?.id,spell=s.extSpells?.findLast(f=>f.spell.id===id)?.spell,source=spell||(id&&card(id));return !source||cost(source)>=cost(effective(x,s));},
  noLose(s,p){return (s.g35BakuNoLose||[]).some(r=>r.p===p&&r.turn===s.turn)||s.players[p].deck.length<=5&&active(s,p,'rose').length>0&&!(s.attack?.player===1-p&&s.attack.target==='player'&&!s.players[p].shields.length);},

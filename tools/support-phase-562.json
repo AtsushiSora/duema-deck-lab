@@ -1,0 +1,448 @@
+{
+  "phase": 562,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5290,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmrp17-s01",
+      "name": "「正義星帝」 ＜鬼羅.Star＞",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-s01",
+      "faces": [
+        {
+          "name": "「正義星帝」 ＜鬼羅.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スター進化：レクスターズまたは光のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー\nこのクリーチャーが出た時または攻撃する時、カードを１枚引く。その後、コスト４以下のクリーチャーを１体、自分の手札から出してもよい。\n自分のコスト４以下のクリーチャーはすべて「ブロッカー」を得、自分のターンの終わりにアンタップする。",
+          "race": "メタリカ/ヒューマノイド/レクスターズ",
+          "powerText": "8500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "光"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "breaker": 2,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "g562MaxCost": 4
+            },
+            "grants": {
+              "blocker": true,
+              "g166EndUntap": true
+            }
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "max": 4
+            },
+            "optional": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "g195HandDeploy": true,
+            "filter": {
+              "creature": true,
+              "max": 4
+            },
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-s01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "d1fac1efc51f1e2ff599a11d23667d2e2756ebf351bfa2a2af009d2d1233c9ad",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd14-003",
+      "name": "オラクルDJ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd14-003",
+      "faces": [
+        {
+          "name": "オラクルDJ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにある相手のクリーチャーをすべてタップする。\nターンの終わりに、バトルゾーンにある自分のゴッドをすべてアンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          },
+          {
+            "op": "EndUntap562",
+            "ownEnd": false,
+            "defs": [
+              {
+                "op": "GroupUntap",
+                "filter": {
+                  "creature": true,
+                  "race": "ゴッド"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd14-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "f42622cb505b8c47c69c68ee8dc1f151f69377acecb60bea6ece7387d62db025",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-062",
+      "name": "ジャスティスの誓い",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-062",
+      "faces": [
+        {
+          "name": "ジャスティスの誓い",
+          "typeText": "呪文",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nカードを１枚引く。\nターンの終わりに、自分のクリーチャーをすべてアンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "EndUntap562",
+            "ownEnd": false,
+            "defs": [
+              {
+                "op": "GroupUntap",
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-062.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "1f87a93899d9ee0d0af6f499d4ba3f27cca47f587c6dbda72abd57060a6b5333",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm08-039",
+      "name": "ソーラー・チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-039",
+      "faces": [
+        {
+          "name": "ソーラー・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "バトルゾーンにある自分のクリーチャーを２体まで選ぶ。このターンの終わりに、そのクリーチャーをアンタップしてもよい。\nチャージャー(この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ChooseUntap562",
+            "n": 2,
+            "optional": true,
+            "delay": true,
+            "optionalUntap": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm08-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "f8559e8aeb0206ab0e4800abfde63c131cbed3be56d1ee162f1a968f164dd612",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-077",
+      "name": "ダブル・ディフェンス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-077",
+      "faces": [
+        {
+          "name": "ダブル・ディフェンス",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分のターンの終わりに、バトルゾーンにある自分のクリーチャーを２体まで、アンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EndUntap562",
+            "ownEnd": true,
+            "defs": [
+              {
+                "op": "ChooseUntap562",
+                "n": 2,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-077.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "641947677f96f90c490eac13fddb088b41395792b12bbca3ac125caf927d330e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm29-039",
+      "name": "バキューム・レイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-039",
+      "faces": [
+        {
+          "name": "バキューム・レイ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "バトルゾーンにある相手のクリーチャーを１体選んでタップする。\nこのターンの終わりに、バトルゾーンにある自分のクリーチャーを１体アンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "EndUntap562",
+            "ownEnd": false,
+            "defs": [
+              {
+                "op": "ChooseUntap562",
+                "n": 1,
+                "optional": false
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm29-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "4556f3938a10d38312f53fd9cfc92f6e14b9ffb27c60a22a6b44c85ff02a1c4c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr09-078",
+      "name": "ビリビリ・スイッチオン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-078",
+      "faces": [
+        {
+          "name": "ビリビリ・スイッチオン",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このターンの終わりに、バトルゾーンにある自分のクリーチャーを１体、アンタップする。\nカードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EndUntap562",
+            "ownEnd": false,
+            "defs": [
+              {
+                "op": "ChooseUntap562",
+                "n": 1,
+                "optional": false
+              }
+            ]
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-078.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "5feb7956a4d49e5d7f466ef925928686fd10c6b046622284b0b9103a508225f7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm04-040",
+      "name": "ライト・ディフェンス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-040",
+      "faces": [
+        {
+          "name": "ライト・ディフェンス",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分のターンの終わりに、バトルゾーンにある自分のクリ―チャーをすべてアンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "EndUntap562",
+            "ownEnd": true,
+            "defs": [
+              {
+                "op": "GroupUntap",
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm04-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "1552dce651cde7c6a6f211cffa7bf3d1d776198c6e1b6b2f6517428e98168676",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp17-s01": 4,
+      "dmd14-003": 4,
+      "dmr23-062": 4,
+      "dm08-039": 4,
+      "dmr01-077": 4,
+      "dm29-039": 4,
+      "dmr09-078": 4,
+      "dm04-040": 4
+    }
+  }
+}

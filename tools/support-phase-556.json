@@ -1,0 +1,237 @@
+{
+  "phase": 556,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5246,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/42365/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316669/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp10-005",
+      "name": "イグゾースト・Ⅱ・フォー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-005",
+      "faces": [
+        {
+          "name": "イグゾースト・Ⅱ・フォー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、コスト４以下の呪文を１枚、自分の墓地からコストを支払わずに唱えてもよい。唱えた後、墓地に置くかわりに自分の山札の一番下に置く。\n自分が呪文を唱えた時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "ソニック・コマンド",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Target",
+              "g190Freeze": "self",
+              "title": "攻撃とブロックを止めるクリーチャーを1体選ぶ"
+            }
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Execute",
+            "origin": "grave",
+            "spellOnly": true,
+            "optional": true,
+            "g555FinishTo": "deck",
+            "max": 4
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "019c3944427abbe97b63978477821b08d58ca0f445948c81d2c92b5753197b2c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsp02-005",
+      "name": "邪眼皇ロマノフⅠ世 GS",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp02-005",
+      "faces": [
+        {
+          "name": "邪眼皇ロマノフⅠ世 GS",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から５枚を墓地に置いてもよい。その後、闇のコスト６以下の呪文を１枚、自分の墓地からコストを支払わずに唱えてもよい。その呪文を唱えた後、墓地のかわりに山札の下に置く。",
+          "race": "ダークロード/ドラゴン・ゾンビ/ナイト",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Sequence",
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 5,
+                "optional": true
+              },
+              {
+                "op": "Execute",
+                "origin": "grave",
+                "spellOnly": true,
+                "optional": true,
+                "g555FinishTo": "deck",
+                "max": 6,
+                "g556SpellColor": "闇"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsp02-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "9d55a99bea60e0cec6f1b43e75abff94971a81148f4964e231c68cb3b8c522c5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-009",
+      "name": "邪眼大帝 ラスト・ロマノフ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-009",
+      "faces": [
+        {
+          "name": "邪眼大帝 ラスト・ロマノフ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から５枚を墓地に置く。\nこのクリーチャーが攻撃する時、自分の墓地にある呪文を１枚、コストを支払わずに唱えてもよい。そうしたら、その呪文を唱えた後、自分の墓地に置くかわりに山札の一番下に置く。",
+          "race": "クリスタル・コマンド・ドラゴン/ダークロード",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 5
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Execute",
+            "origin": "grave",
+            "spellOnly": true,
+            "optional": true,
+            "g555FinishTo": "deck"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "3689ea2eed839ac6d0c80f1b60a6a5841954bc216a8b0c5deb276ff62726177d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-s05",
+      "name": "魔法特区 クジルマギカ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-s05",
+      "faces": [
+        {
+          "name": "魔法特区 クジルマギカ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：自分の水のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー\n自分のNEOクリーチャーが攻撃する時、コスト５以下の呪文を１枚、自分の墓地または手札からコストを支払わずに唱えてもよい。唱えた後、墓地に置くかわりに自分の山札の一番下に置く。",
+          "race": "ムートピア",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "filter": {
+              "creature": true,
+              "g556Neo": true
+            },
+            "defs": [
+              {
+                "op": "Execute",
+                "origin": "grave",
+                "spellOnly": true,
+                "optional": true,
+                "g555FinishTo": "deck",
+                "zones": [
+                  "grave",
+                  "hand"
+                ],
+                "max": 5
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-s05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "5c587cfeb6b11c2a406eaa6d4f968c76a6f27dbda61ed38a7a82f81db1e41f04",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp10-005": 4,
+      "dmsp02-005": 4,
+      "dmr21-009": 4,
+      "dmrp02-s05": 4
+    }
+  }
+}

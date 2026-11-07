@@ -1,0 +1,294 @@
+{
+  "phase": 538,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5156,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36396/"
+  ],
+  "cards": [
+    {
+      "id": "dmc55-008",
+      "name": "ボッコ・ルピア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc55-008",
+      "faces": [
+        {
+          "name": "ボッコ・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のドラゴン１体につき、「ブロッカー」を持つ相手のクリーチャーを１体破壊する。",
+          "race": "ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountOwn538",
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "mode": "select",
+            "def": {
+              "op": "Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "to": "grave",
+              "optional": false,
+              "g173Targets": true,
+              "g193Select": true,
+              "filter": {
+                "creature": true,
+                "blocker": true
+              },
+              "title": "破壊する相手のブロッカーを選ぶ"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc55-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "11311e1eb269c505acdf3ab1ebcb8dd98d37e7de0aee0b2c3e421f551e7eabe3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx17-010",
+      "name": "音階の精霊龍 コルティオール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx17-010",
+      "faces": [
+        {
+          "name": "音階の精霊龍 コルティオール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のドラゴン１体につき、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountOwn538",
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "mode": "select",
+            "def": {
+              "op": "Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "optional": true,
+              "g173Targets": true,
+              "g193Select": true,
+              "g193Tap": true,
+              "filter": {
+                "creature": true
+              },
+              "title": "タップする相手のクリーチャーを選ぶ"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx17-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "60b1adf940419ef44475655b7a76209fa505755c77f577f956e57bf794defd8d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd07-001",
+      "name": "国士無双カイザー「勝×喝」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd07-001",
+      "faces": [
+        {
+          "name": "国士無双カイザー「勝×喝」",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のドラゴン１体につき１回、相手とガチンコ・ジャッジする。こうして自分が勝つたび、相手のコマンド１体または相手のパワー7000以下のクリーチャー１体を破壊する。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)\nスピードアタッカー(このクリーチャーは召喚酔いしない)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "レッド・コマンド・ドラゴン/ハンター/エイリアン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountOwn538",
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン"
+            },
+            "mode": "repeat",
+            "def": {
+              "op": "Judge318",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "any": [
+                      {
+                        "race": "コマンド"
+                      },
+                      {
+                        "maxPower": 7000,
+                        "g199Power": true
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd07-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "8cff4de823d420509602e429a436bacebea189df16611b21714a41e93d940c77",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr02-035",
+      "name": "神討の精霊アマネス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-035",
+      "faces": [
+        {
+          "name": "神討の精霊アマネス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、バトルゾーンにある自分のタップされているクリーチャー１体につき、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。",
+          "race": "エンジェル・コマンド/ハンター",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "CountOwn538",
+            "filter": {
+              "creature": true,
+              "tapped": true
+            },
+            "mode": "select",
+            "def": {
+              "op": "Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "optional": true,
+              "g173Targets": true,
+              "g193Select": true,
+              "g193Tap": true,
+              "filter": {
+                "creature": true
+              },
+              "title": "タップする相手のクリーチャーを選ぶ"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr02-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "dffa4c8b2667a0c99054c7edd884a9f72def623c7e07454409eac47e237d11cc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr02-047",
+      "name": "神討妖精ユキダル・オジサン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-047",
+      "faces": [
+        {
+          "name": "神討妖精ユキダル・オジサン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃する時、バトルゾーンにある自分のタップされているクリーチャーの数よりコストが小さい相手のクリーチャーを１体、バトルゾーンから選ぶ。選んだクリーチャーを相手のマナゾーンに置く。",
+          "race": "スノーフェアリー/ハンター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "CountOwn538",
+            "filter": {
+              "creature": true,
+              "tapped": true
+            },
+            "mode": "belowCost",
+            "def": {
+              "op": "Target",
+              "to": "mana",
+              "filter": {}
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr02-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "cbb4504483d57787e8e2002ada932925a7c6239765616bc1d9bad64d1334f59d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmc55-008": 4,
+      "dmx17-010": 4,
+      "dmd07-001": 4,
+      "dmr02-035": 4,
+      "dmr02-047": 4
+    }
+  }
+}

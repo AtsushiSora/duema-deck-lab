@@ -1,0 +1,552 @@
+{
+  "phase": 510,
+  "checkedAt": "2026-11-06",
+  "baseCount": 5027,
+  "description": "破壊時の選択式能力と、文明数・カードタイプを区別する選択式除去の8種類。複数体のアンタップを共通の選択処理に追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm26-013",
+      "name": "永遠のジャック・ヴァルディ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-013",
+      "faces": [
+        {
+          "name": "永遠のジャック・ヴァルディ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分の多色クリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手の多色ではない、コスト５以下のクリーチャーを１体破壊するか、バトルゾーンにある相手の多色ではない、コスト５以下のクロスギアを１枚選んで持ち主の墓地に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "スピリット・クォーツ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "multicolor": true
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "コスト5以下の多色ではないクリーチャー1体を破壊",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "g510NonMulticolor": true,
+                      "max": 5
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "コスト5以下の多色ではないクロスギア1枚を墓地に置く",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "element": true,
+                    "to": "grave",
+                    "filter": {
+                      "g201Gear": true,
+                      "g510NonMulticolor": true,
+                      "max": 5
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "bc8027b5c89ebb88a2f1002fd0ab99df05e3b28065cfe49be7ad15fcf033801a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-064",
+      "name": "幻獣賢者エレファウスト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-064",
+      "faces": [
+        {
+          "name": "幻獣賢者エレファウスト",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが破壊された時、自分の山札の上から１枚目をマナゾーンに置くか、バトルゾーンにある自分のクリーチャーを２体までアンタップする。",
+          "race": "ドリームメイト/グラディエーター",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "山札の上1枚をマナに置く",
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "自分のクリーチャーを2体までアンタップ",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "battle",
+                    "owner": "self",
+                    "n": 2,
+                    "optional": true,
+                    "g173Targets": true,
+                    "g193Select": true,
+                    "g510Untap": true,
+                    "filter": {
+                      "creature": true
+                    },
+                    "title": "アンタップする自分のクリーチャーを2体まで選ぶ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-064.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "da0772967ffd1684419bddc34a35d4874f1bbbfa0a4cc821b12c6ad95290ab11",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26-041",
+      "name": "護聖秘宝イーグル・カーゴ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-041",
+      "faces": [
+        {
+          "name": "護聖秘宝イーグル・カーゴ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが破壊された時、バトルゾーンにある相手のクリーチャーを１体選んでタップするか、他のクリーチャーを１体、自分の墓地から手札に戻す。",
+          "race": "ガーディアン/パンドラボックス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のクリーチャー1体をタップ",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "tap": true
+                  }
+                ]
+              },
+              {
+                "label": "墓地から他のクリーチャー1体を手札に戻す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "grave",
+                    "to": "hand",
+                    "n": 1,
+                    "g186Other": true,
+                    "filter": {
+                      "creature": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "4ef17d8ab891c3f5ab9d289211ba95cff982edfde47308b73a570bf74d4e48e2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26-043",
+      "name": "甲蟲王機ビートルーダー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-043",
+      "faces": [
+        {
+          "name": "甲蟲王機ビートルーダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが破壊された時、バトルゾーンにある相手のクリーチャーを１体選んでタップするか、自分の手札をすべて捨て、同じ枚数のカードを引く。",
+          "race": "グレートメカオー/ビークル・ビー",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のクリーチャー1体をタップ",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "tap": true
+                  }
+                ]
+              },
+              {
+                "label": "手札をすべて捨て、同じ枚数引く",
+                "defs": [
+                  {
+                    "op": "HandCycle460",
+                    "mode": "all",
+                    "to": "grave"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "43b91f37a064e9439b63456acbb4676b38a79e0e2d298f54b2c539dd54200b37",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25-013",
+      "name": "次元の雷球",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-013",
+      "faces": [
+        {
+          "name": "次元の雷球",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手のコスト４以下の多色クリーチャーを１体破壊するか、相手のコスト６以下の多色ではないクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "コスト4以下の多色クリーチャー1体を破壊",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "multi": true,
+                      "max": 4
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "コスト6以下の多色ではないクリーチャー1体を破壊",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "g510NonMulticolor": true,
+                      "max": 6
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "12cfe5d61e8097526faef3ee5facacbdc2994562a22a543d972d847ff01de9fe",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26-052",
+      "name": "深塊剛勇アングラ・グレープ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-052",
+      "faces": [
+        {
+          "name": "深塊剛勇アングラ・グレープ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが破壊された時、自分の他のクリーチャーを１体墓地から手札に戻すか、自分の山札からコスト３以下のクリーチャーを１体選んで相手に見せてから手札に加え、その後山札をシャッフルする。",
+          "race": "ディープ・マリーン/ワイルド・ベジーズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "墓地から他のクリーチャー1体を手札に戻す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "grave",
+                    "to": "hand",
+                    "n": 1,
+                    "g186Other": true,
+                    "filter": {
+                      "creature": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "山札からコスト3以下のクリーチャーを手札に加える",
+                "defs": [
+                  {
+                    "op": "Look",
+                    "g310Search": true,
+                    "g201Search": true,
+                    "g200Search": true,
+                    "n": "all",
+                    "rest": "shuffle",
+                    "stages": [
+                      {
+                        "n": 1,
+                        "to": "hand",
+                        "filter": {
+                          "creature": true,
+                          "max": 3
+                        },
+                        "reveal": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "85a48ce5b677747813080478d747e961b3d994e4417b277c0a1b159934aad0ca",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26-046",
+      "name": "闘竜麗姫アントワネット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-046",
+      "faces": [
+        {
+          "name": "闘竜麗姫アントワネット",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが破壊された時、バトルゾーンにある相手のクリーチャーを１体選んで持ち主の手札に戻すか、自分の手札をすべて捨て、同じ枚数のカードを引く。",
+          "race": "スプラッシュ・クイーン/ティラノ・ドレイク",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のクリーチャー1体を手札に戻す",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "hand"
+                  }
+                ]
+              },
+              {
+                "label": "手札をすべて捨て、同じ枚数引く",
+                "defs": [
+                  {
+                    "op": "HandCycle460",
+                    "mode": "all",
+                    "to": "grave"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "9bca2a031afc0df207e71c7d87977124802c6eaa753be7b5cc8d8b144291210e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-062",
+      "name": "猛菌霊騎ウィール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-062",
+      "faces": [
+        {
+          "name": "猛菌霊騎ウィール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが破壊された時、バトルゾーンにある自分のクリーチャーを２体までアンタップするか、カードを１枚引く。",
+          "race": "アーク・セラフィム/サイバー・ウイルス",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g172Death": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "自分のクリーチャーを2体までアンタップ",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "battle",
+                    "owner": "self",
+                    "n": 2,
+                    "optional": true,
+                    "g173Targets": true,
+                    "g193Select": true,
+                    "g510Untap": true,
+                    "filter": {
+                      "creature": true
+                    },
+                    "title": "アンタップする自分のクリーチャーを2体まで選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "カードを1枚引く",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-062.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "7cc82dafdf2e0399569680bcdc83b75b28c8d508390f89bdcd8f38ab8d8c05a9",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26-013": 4,
+      "dm24-064": 4,
+      "dm26-041": 4,
+      "dm26-043": 4,
+      "dm25-013": 4,
+      "dm26-052": 4,
+      "dm26-046": 4,
+      "dm24-062": 4
+    }
+  }
+}

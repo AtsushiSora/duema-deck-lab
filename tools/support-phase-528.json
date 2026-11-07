@@ -1,0 +1,214 @@
+{
+  "phase": 528,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5110,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmex03-s07",
+      "name": "印鑑D",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-s07",
+      "faces": [
+        {
+          "name": "印鑑D",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "B・A・D２（このクリーチャーを、コストを２少なくして召喚してもよい。そうしたら、このターンの終わりにこのクリーチャーを破壊する）\nスピードアタッカー\nG・G・G：このクリーチャーが攻撃する時、自分の手札が１枚以下なら、このクリーチャーをアンタップし、カードを２枚引く。\nバトル中、このクリーチャーのパワーを+5000する。",
+          "race": "ビートジョッキー/ハンター/スペシャルズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "bad": 2,
+        "g175Bad": true,
+        "speedAttacker": true,
+        "g38BattleBonus": 5000,
+        "g34Attack": [
+          {
+            "op": "IfHand246",
+            "max": 1,
+            "defs": [
+              {
+                "op": "Untap",
+                "g191First": true
+              },
+              {
+                "op": "Draw",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex03-s07.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "9d45ff3ed802a5d0bf49b5d16c0465d405c19ab3972d9d07897198fe8a26c650",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp03-063",
+      "name": "奇石 カンラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-063",
+      "faces": [
+        {
+          "name": "奇石 カンラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ラビリンス：このクリーチャーがバトルゾーンに出た時、自分のシールドの数が相手より多ければ、相手のクリーチャーを１体選び、タップする。",
+          "race": "メタリカ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "moreThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "tap": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-063.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "72bca456d759d13678e99837e979f8d5c3d7039623b52f3e41889891be5e7c2e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-028",
+      "name": "煽動の翼 ピッケス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-028",
+      "faces": [
+        {
+          "name": "煽動の翼 ピッケス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のクリーチャーが攻撃する時、それがそのターンはじめての攻撃であれば、相手のクリーチャーを１体選び、タップする。そのクリーチャーは、次の相手のターンのはじめにアンタップしない。",
+          "race": "ジャスティス・ウイング",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "first": true,
+            "filter": {
+              "creature": true
+            },
+            "g399Attacker": true,
+            "defs": [
+              {
+                "op": "Target",
+                "tap": true,
+                "lock": true,
+                "g210TapLock": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "c6ec38cedd454cbf14af3ed558f61ca1b33d0a6e8fb3b346d01d5f0d0753e7bd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr20-055",
+      "name": "電波の影 レビーテー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-055",
+      "faces": [
+        {
+          "name": "電波の影 レビーテー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のクリーチャーが攻撃する時、それがそのターンはじめての攻撃であれば、相手は自身の手札を１枚選び、捨てる。",
+          "race": "ゴースト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "first": true,
+            "filter": {
+              "creature": true
+            },
+            "g399Attacker": true,
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr20-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "0882954a9f7ea53934f22a9b0137f8309029b05007f31a7eac2f6ddb5ea5b84e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex03-s07": 4,
+      "dmrp03-063": 4,
+      "dmr19-028": 4,
+      "dmr20-055": 4
+    }
+  }
+}

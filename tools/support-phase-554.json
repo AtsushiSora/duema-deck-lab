@@ -1,0 +1,167 @@
+{
+  "phase": 554,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5238,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmrp13-009",
+      "name": "「貪」の鬼 バクロ法師",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-009",
+      "faces": [
+        {
+          "name": "「貪」の鬼 バクロ法師",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー\nこのクリーチャーがバトルゾーンに出た時、自分のシールドを２つ、手札に加える。ただし、その「S・トリガー」は使えない。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、このクリーチャーに「パワーアタッカー+7000」と「T・ブレイカー」を与える。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "grants": {
+            "attackBonus": 7000,
+            "breaker": 3
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true,
+            "g535Count": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp13-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "93b24aad0b034382be15f9ed6b5b6e1ca4c3ea1d65fa1263753238b8dd4495f1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-016",
+      "name": "ハピネス・ベル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-016",
+      "faces": [
+        {
+          "name": "ハピネス・ベル",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n自分の山札の上から２枚を裏向きにして、それぞれ別の新しいシールドとして自分のシールドゾーンに加える。\n次の自分のターンのはじめに、自分のシールドを２枚手札に加える。ただし、その「S・トリガー」は使えない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          },
+          {
+            "op": "ShieldTop",
+            "n": 1
+          },
+          {
+            "op": "Schedule537",
+            "when": "nextOwnStart",
+            "defs": [
+              {
+                "op": "ShieldHand",
+                "g238ShieldHand": true,
+                "g535Count": 2
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "7429d9414e4b07974f5b33ab115598c8f944edf516ec4b6d67170a13f56abc73",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04m-038",
+      "name": "リブロッコ・タンク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-038",
+      "faces": [
+        {
+          "name": "リブロッコ・タンク",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "T・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分のシールドを２つ、マナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldHand",
+            "g535Count": 2,
+            "g554To": "mana"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04m-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "1b5d8545303b0e5fa8d60f08b18cf4e95b29243d28b9bd0dfe2a7e96cb24100a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp13-009": 4,
+      "dmr01-016": 4,
+      "dmrp04m-038": 4
+    }
+  }
+}

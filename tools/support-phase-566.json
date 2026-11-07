@@ -1,0 +1,268 @@
+{
+  "phase": 566,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5324,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35952/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35953/"
+  ],
+  "cards": [
+    {
+      "id": "dm35-043",
+      "name": "インビジブル・EVO チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-043",
+      "faces": [
+        {
+          "name": "インビジブル・EVO チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトルゾーンにある自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーはブロックされない。\nEvoチャージャー(この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く。その後、クリーチャーを１体、自分のマナゾーンからバトルゾーンにある自分の進化クリーチャー１体の下に重ねて置いてもよい)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "g566EvoCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "unblockable": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm35-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "ccecc23b162efe9859b68ba3b05e30e3707c6703b245ac8db95770093f4f108f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm35-051",
+      "name": "クリティカル・EVO チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-051",
+      "faces": [
+        {
+          "name": "クリティカル・EVO チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手の「ブロッカー」を持つクリーチャーを１体破壊する。\nEvoチャージャー(この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く。その後、クリーチャーを１体、自分のマナゾーンからバトルゾーンにある自分の進化クリーチャー１体の下に重ねて置いてもよい)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "g566EvoCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "optional": false,
+            "filter": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm35-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "5c8d8e936bcb731038b6015010d40d0f04b47417f9395232e00cb39f191776e4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm35-055",
+      "name": "クレスト・EVO チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-055",
+      "faces": [
+        {
+          "name": "クレスト・EVO チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の山札を見る。その中から進化クリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。\nEvoチャージャー(この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く。その後、クリーチャーを１体、自分のマナゾーンからバトルゾーンにある自分の進化クリーチャー１体の下に重ねて置いてもよい)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "g566EvoCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "evolution": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm35-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "f99abf1b94d6a22b91d2e0df1db20b92c3bd1b997b76221329f2719e0a943df4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm35-047",
+      "name": "リボーン・EVO チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-047",
+      "faces": [
+        {
+          "name": "リボーン・EVO チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "クリーチャーを２体まで、自分の墓地から山札の一番上に好きな順序で置く。\nEvoチャージャー(この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く。その後、クリーチャーを１体、自分のマナゾーンからバトルゾーンにある自分の進化クリーチャー１体の下に重ねて置いてもよい)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "g566EvoCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "deckTop",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "g183Return": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm35-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "26c2bab1aabf308b1318e820b9fea395d7308a22c40317f5a6c6819195cf4b79",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm35-008",
+      "name": "バインド・EVO チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-008",
+      "faces": [
+        {
+          "name": "バインド・EVO チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンにある自分のクリーチャーを１体選ぶ。その後、相手プレイヤーはバトルゾーンにある自身のクリーチャーを１体選ぶ。選ばれたクリーチャー以外のクリーチャーはこのターンと次のターン、攻撃できない。\nEvoチャージャー(この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く。その後、クリーチャーを１体、自分のマナゾーンからバトルゾーンにある自分の進化クリーチャー１体の下に重ねて置いてもよい)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "g566EvoCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Bind566"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm35-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "e79aa97b9a53dee39f5d7c1830803025da1048956e9f02e38d6cb668ff2e1f8d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm35-043": 4,
+      "dm35-051": 4,
+      "dm35-055": 4,
+      "dm35-047": 4,
+      "dm35-008": 4
+    }
+  },
+  "rulingVerifications": [
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35952/",
+      "checkedAt": "2026-11-07",
+      "sha256": "9a4cace99c204c033dabd16f86b026c82d9dfb0c68a587acdd92bf4fbae937b5",
+      "verifiedText": "そのターンの残りいっぱいと、次のターン中、効果を及ぼすことになります。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa_old/35953/",
+      "checkedAt": "2026-11-07",
+      "sha256": "a76fd27188e22b408333ac954ce311daa3312b2eb0e00e6a3d4280e2e4a508dd",
+      "verifiedText": "を使えば攻撃可能になります。"
+    },
+    {
+      "source": "https://dm.takaratomy.co.jp/rule/qa/34191/",
+      "checkedAt": "2026-11-07",
+      "sha256": "aafe68d783ff5927056f136af4b47b40a21c783d043e86f4d2d46b9c131fa0cd",
+      "verifiedText": "呪文が生成した継続的効果も無視する"
+    }
+  ]
+}

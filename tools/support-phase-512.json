@@ -1,0 +1,282 @@
+{
+  "phase": 512,
+  "checkedAt": "2026-11-06",
+  "baseCount": 5042,
+  "description": "文明別の呪文コスト・使用制限、進化クリーチャーの攻撃耐性、登場時ドロー、呪文の手札復帰とデッキ枚数例外を持つ6種類。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmr21-059",
+      "name": "O・HA・NA・P",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-059",
+      "faces": [
+        {
+          "name": "O・HA・NA・P",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのカードは、４枚以上デッキに入れることができる。",
+          "race": "スターライト・ツリー/イニシャルズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g314Unlimited": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-059.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "1c8736d8318ca332d77ee71f5c5cb6c2d95268b696322e1fbab1b6c1b6e77b06",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy20-cp06",
+      "name": "アルカディアス・モモキング ～光丸～",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy20-cp06",
+      "faces": [
+        {
+          "name": "アルカディアス・モモキング ～光丸～",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スター進化：レクスターズ、光のクリーチャー、または火のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nバトル中、自分の他のレクスターズすべてのパワーを+2000する。\n相手の光以外の呪文を唱えるコストを４多くする。",
+          "race": "エンジェル・コマンド/ジョーカーズ・ドラゴン/レクスターズ",
+          "powerText": "12500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "breaker": 3,
+        "g466BattleAura": {
+          "filter": {
+            "creature": true,
+            "race": "レクスターズ"
+          },
+          "other": true,
+          "power": 2000
+        },
+        "g222SpellTax": {
+          "opponent": true,
+          "exceptColor": "光",
+          "amount": 4
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy20-cp06.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "da7f50250715a2da6527ea9cc88f4a36dd224361e0ea169944291c39b2969ea9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr08-051",
+      "name": "ダッシュ・リピート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-051",
+      "faces": [
+        {
+          "name": "ダッシュ・リピート",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このターン、バトルゾーンにある自分のクリーチャー１体は「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)\nこの呪文を唱えた後、墓地に置くかわりに自分の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g301Grant": true,
+            "grant": {
+              "speedAttacker": true
+            },
+            "title": "このターン、スピードアタッカーを与える自分のクリーチャーを1体選ぶ",
+            "spell": true
+          },
+          {
+            "op": "SpellFinish416",
+            "to": "hand"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "1b93e362d74c76d15235504e7e5a527b971fbb3552b02ccfbab780ae3331fdc3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx20-015",
+      "name": "ムテキ・バトラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx20-015",
+      "faces": [
+        {
+          "name": "ムテキ・バトラゴン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分の火のクリーチャー１体の上に置く。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分の進化クリーチャーは攻撃されない。",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "civilization": "火"
+        },
+        "breaker": 2,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "evolution": true
+            },
+            "grants": {
+              "cannotBeAttacked": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx20-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "cd824d187ffe575050287357a24b8922c557e3039df1f177e3a473b384f743a8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm27-005",
+      "name": "聖鎧亜クイーン・アルカディアス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-005",
+      "faces": [
+        {
+          "name": "聖鎧亜クイーン・アルカディアス",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分の多色クリーチャー１体の上に置く。\n相手は多色ではない呪文を唱えることができない。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ロスト・クルセイダー/エンジェル・コマンド",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "multicolor": true
+        },
+        "g512MultiSpellOnly": true,
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm27-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "74df1354793a7aa09336ab96e135e9f5c5cd8e8487a1214fbc0e1609861abb01",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd18-011",
+      "name": "腐聖 ブラッドウ-２",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd18-011",
+      "faces": [
+        {
+          "name": "腐聖 ブラッドウ-２",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが出た時、カードを１枚引く\nササゲール２（ディスペクターを召喚する時、コストを２少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "イニシエート/ゴースト/ディスタス",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "sasage": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd18-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "c7f622896ddfe84b49c49e070ec6868fcf786779a5418684fe2523f4385077f5",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr21-059": 4,
+      "promoy20-cp06": 4,
+      "dmr08-051": 4,
+      "dmx20-015": 4,
+      "dm27-005": 4,
+      "dmsd18-011": 4
+    }
+  }
+}

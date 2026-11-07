@@ -1,0 +1,502 @@
+{
+  "phase": 558,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5254,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36050/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37562/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37567/"
+  ],
+  "cards": [
+    {
+      "id": "dmex03-022",
+      "name": "E-GO55",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-022",
+      "faces": [
+        {
+          "name": "E-GO55",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マーシャル・タッチ（このクリーチャーがバトルゾーンに出た時、自分の他のクリーチャーを１体、バトルゾーンから手札に戻してもよい。そうしたら、 このクリーチャーの g能力を使う）\ngこのターン、自分のクリーチャーすべてに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "ビートジョッキー/ソニック・コマンド/スペシャルズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "MarshalTouch558",
+            "defs": [
+              {
+                "op": "GroupGrant364",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                },
+                "grant": {
+                  "speedAttacker": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex03-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "092f5453d4d0f5b9dd01bab28c6c2399db710bdcadb87e45a7fd08a74e13434f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm37-014",
+      "name": "アブドーラ・フレイム・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-014",
+      "faces": [
+        {
+          "name": "アブドーラ・フレイム・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マーシャル・タッチ(このクリーチャーをバトルゾーンに出した時、自分の他のクリーチャーを１体、バトルゾーンから手札に戻してもよい。そうした場合、このクリーチャーの能力を使う) パワー4000以下のクリーチャーをすべて破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "MarshalTouch558",
+            "defs": [
+              {
+                "op": "Sweep",
+                "both": true,
+                "to": "grave",
+                "filter": {
+                  "creature": true,
+                  "maxPower": 4000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "8b962fc7ee687e486c4e6bf3584a848ca6217e9d830e22ec00b2909746527174",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm37-051",
+      "name": "アラゴト・ムスビ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-051",
+      "faces": [
+        {
+          "name": "アラゴト・ムスビ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "【K・ソウル】【W・ソウル】\nマーシャル・タッチ(このクリーチャーをバトルゾーンに出した時、自分の他のクリーチャーを１体、バトルゾーンから手札に戻してもよい。そうした場合、このクリーチャーの能力を使う) 自分の山札の上から１枚目をマナゾーンに置く。\nマナ爆誕５(このクリーチャーを自分のマナゾーンから、コスト５を支払って召喚してもよい)",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g296ManaBirth": 5,
+        "g558Souls": [
+          "K",
+          "W"
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "MarshalTouch558",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "f55514d248ad6156ef2dec01c773431250ed410ce471dbb0471fffa74e2e9451",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-062",
+      "name": "サラマンダー・リザード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-062",
+      "faces": [
+        {
+          "name": "サラマンダー・リザード",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マーシャル・タッチ(このクリーチャーをバトルゾーンに出した時、自分の他のクリーチャーを１体、バトルゾーンから手札に戻してもよい。そうした場合、このクリーチャーの能力を使う)\nこの「マーシャル・タッチ」能力で手札に戻すために選んだ自分のクリーチャー以下のコストを持つ相手のクリーチャーを１体、破壊する。",
+          "race": "メルト・ウォリアー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "MarshalTouch558",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "g558ReturnedCost": true,
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-062.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "4e8650b8350bcce5888143c44e556dc12a3e118be6b69db8fb63e4ffb6bd2536",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-095",
+      "name": "スネイクマン・ドラグーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-095",
+      "faces": [
+        {
+          "name": "スネイクマン・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マーシャル・タッチ(このクリーチャーをバトルゾーンに出した時、自分の他のクリーチャーを１体、バトルゾーンから手札に戻してもよい。そうした場合、このクリーチャーの能力を使う)\nこのターン、このクリーチャーは「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)",
+          "race": "ティラノ・ドレイク",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "MarshalTouch558",
+            "defs": [
+              {
+                "op": "ShinkaGrant397",
+                "grant": {
+                  "speedAttacker": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-095.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "06c12a13af0f501915b250d8ae921b8b5cbf869efee7685ce36be390b07ac2da",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm39-048",
+      "name": "パイソンマン・ドラグーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-048",
+      "faces": [
+        {
+          "name": "パイソンマン・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マーシャル・タッチ(このクリーチャーをバトルゾーンに出した時、自分の他のクリーチャーを１体、バトルゾーンから手札に戻してもよい。そうした場合、 このクリーチャーの能力を使う)\nこのターン、バトルゾーンにある自分の他のクリーチャー１体は、タップされていないクリーチャーを攻撃できる。",
+          "race": "ティラノ・ドレイク",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "MarshalTouch558",
+            "defs": [
+              {
+                "op": "Target",
+                "owner": "self",
+                "g179Other": true,
+                "grant": {
+                  "attackUntapped": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "43d62100fc5d2ad9ced7f1567eee15135b7c9c8e0a461b85864589ae5b75d341",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-033",
+      "name": "火炎の流星ソンクン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-033",
+      "faces": [
+        {
+          "name": "火炎の流星ソンクン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マーシャル・タッチ(このクリーチャーをバトルゾーンに出した時、自分の他のクリーチャーを１体、バトルゾーンから手札に戻してもよい。そうした場合、このクリーチャーの能力を使う)\n相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+          "race": "ドリームメイト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "MarshalTouch558",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "blocker": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "5f3f96c831d84f84aecd058bd8321d1116854189aefb32d9fde504b6caf548d5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm38-050",
+      "name": "斬込隊長マサト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-050",
+      "faces": [
+        {
+          "name": "斬込隊長マサト",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マーシャル・タッチ(このクリーチャーをバトルゾーンに出した時、自分の他のクリーチャーを１体、バトルゾーンから手札に戻してもよい。そうした場合、 このクリーチャーの能力を使う)\nこのターン、このクリーチャーのパワーは+3000され、「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)",
+          "race": "ヒューマノイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "MarshalTouch558",
+            "defs": [
+              {
+                "op": "ShinkaGrant397",
+                "power": 3000,
+                "grant": {
+                  "speedAttacker": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "e8879178801b9fbd30dc8d0aa898e464ee11d5392b94b7cda5efea6799d1c118",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-099",
+      "name": "隻眼の粉砕脚ポン吉",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-099",
+      "faces": [
+        {
+          "name": "隻眼の粉砕脚ポン吉",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "【K・ソウル】\nS・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nマーシャル・タッチ(このクリーチャーをバトルゾーンに出した時、自分の他のクリーチャーを１体、バトルゾーンから手札に戻してもよい。そうした場合、このクリーチャーの能力を使う)\n相手のパワー2000以下のクリーチャーを１体破壊する。",
+          "race": "ドリームメイト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g558Souls": [
+          "K"
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "MarshalTouch558",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 2000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-099.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "2cadb9ef45ae2e9798273af11a35684d67de5b03e3dd091c7c9048d1aa41ff4a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm37-031",
+      "name": "分解屋ゲンナイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-031",
+      "faces": [
+        {
+          "name": "分解屋ゲンナイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マーシャル・タッチ(このクリーチャーをバトルゾーンに出した時、自分の他のクリーチャーを１体、バトルゾーンから手札に戻してもよい。そうした場合、 このクリーチャーの能力を使う) パワー5000以下の光または水のクリーチャーを１体破壊する。\nマナ爆誕７(このクリーチャーを自分のマナゾーンから、コスト７を支払って召喚してもよい)",
+          "race": "マシン・イーター",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g296ManaBirth": 7,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "MarshalTouch558",
+            "defs": [
+              {
+                "op": "Target",
+                "anyOwner": true,
+                "to": "grave",
+                "filter": {
+                  "creature": true,
+                  "maxPower": 5000,
+                  "g199Power": true,
+                  "any": [
+                    {
+                      "color": "光"
+                    },
+                    {
+                      "color": "水"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "4b901b7758ad3a63ad6fa74b4bdac46be5d6891e67f0c36ed90fb814de905f2a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex03-022": 4,
+      "dm37-014": 4,
+      "dm37-051": 4,
+      "dm36-062": 4,
+      "dm36-095": 4,
+      "dm39-048": 4,
+      "dm36-033": 4,
+      "dm38-050": 4,
+      "dm36-099": 4,
+      "dm37-031": 4
+    }
+  }
+}

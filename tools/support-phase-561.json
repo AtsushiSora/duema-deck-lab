@@ -1,0 +1,457 @@
+{
+  "phase": 561,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5282,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-084",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35062/"
+  ],
+  "cards": [
+    {
+      "id": "dmr04-037",
+      "name": "ガガの守護者サメヘッド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-037",
+      "faces": [
+        {
+          "name": "ガガの守護者サメヘッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーのパワーは、バトルゾーンにある自分のカードの文明ひとつにつき+1000される。",
+          "race": "ガーディアン/エイリアン",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g207CountPower": {
+          "zone": "battle",
+          "civilizations": true,
+          "g561Battle": true,
+          "amount": 1000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr04-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "3bf38af323cf045801bf0bb8d99c1528d0656fc09583e7a495b3b4c42630a668",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm04-033",
+      "name": "デーモン・ソード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-033",
+      "faces": [
+        {
+          "name": "デーモン・ソード",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このターンの攻撃中、バトルゾーンにある自分のクリーチャーすべてのパワーは、自分のマナゾーンにある闇のカード１枚につき+1000される。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "g561AttackOnly": true,
+            "g561DarkMana": true,
+            "power": 1,
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm04-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "d84ea5b3f02a9d3e5ceb458f27e00f0ec777fa9e26cad6060044adb3b4800062",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-042",
+      "name": "デモンズ・ライト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-042",
+      "faces": [
+        {
+          "name": "デモンズ・ライト",
+          "typeText": "呪文",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nカードを２枚引く。\n相手のクリーチャーを１体選ぶ。自分の手札１枚につき、このターン、そのクリーチャーのパワーを_1000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "CountPower561",
+            "zone": "hand",
+            "amount": -1000,
+            "filter": {},
+            "defs": [
+              {
+                "op": "Target",
+                "g242PowerMinus": true,
+                "filter": {
+                  "creature": true
+                },
+                "power": 1,
+                "g561Scale": true,
+                "spell": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "881434c4bd7aa4b8f81bd1c8a86729f4ce151947adb685f034a4d3564aa1ca5a",
+        "facesMatched": true
+      },
+      "currentPrint": {
+        "id": "dm23ex2-084",
+        "name": "デモンズ・ライト",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-084",
+        "faces": [
+          {
+            "name": "デモンズ・ライト",
+            "typeText": "呪文",
+            "civilizationText": "水/闇",
+            "civilizations": [
+              "水",
+              "闇"
+            ],
+            "cost": 4,
+            "costText": "4",
+            "abilityText": "カードを２枚引く。\n相手のクリーチャーを１体選ぶ。自分の手札１枚につき、このターン、そのクリーチャーのパワーを－1000する。（パワー０以下のクリーチャーは破壊される）",
+            "race": "",
+            "powerText": "",
+            "missingFields": []
+          }
+        ],
+        "verification": {
+          "checkedAt": "2026-11-07",
+          "sha256": "78be30d4af9d932a8ed727c11a944459e29df713995939178fe09ffbc699479e",
+          "facesMatched": true
+        }
+      }
+    },
+    {
+      "id": "dmsd21-005",
+      "name": "バクエン変怪 ＜シグマ.鬼＞",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd21-005",
+      "faces": [
+        {
+          "name": "バクエン変怪 ＜シグマ.鬼＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "スター進化：レクスターズまたは火のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n攻撃中、このクリーチャーのパワーを、自分のタマシード１枚につき+3000する。",
+          "race": "鬼レクスターズ/サバイバー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "poweredBreaker": true,
+        "g207CountPower": {
+          "zone": "battle",
+          "g561Elements": true,
+          "filter": {
+            "seed": true
+          },
+          "amount": 3000,
+          "attackOnly": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd21-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "07affa43d30a55fa8ff2f2e5ec7c5671fe0b9af904974a80c18fade29576f66f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr15-013",
+      "name": "パックポック・ピッグ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-013",
+      "faces": [
+        {
+          "name": "パックポック・ピッグ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から５枚を墓地に置いてもよい。\n自分の墓地にあるファンキー・ナイトメア１体につき、このクリーチャーのパワーは+1000される。\nこのクリーチャーは、パワーが6000以上の時、「Ｗ・ブレイカー」を得る。",
+          "race": "ファンキー・ナイトメア",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g207CountPower": {
+          "zone": "grave",
+          "filter": {
+            "g561CreatureRace": "ファンキー・ナイトメア"
+          },
+          "amount": 1000
+        },
+        "g207Breakers": [
+          {
+            "power": 6000,
+            "breaker": 2
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 5,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "38efb952db4833e2cb5d78b3a751aa803446a2601b61dce18f4eb87ddfbbc61e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr04-025",
+      "name": "ポンズ・DE・オイシイタケ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-025",
+      "faces": [
+        {
+          "name": "ポンズ・DE・オイシイタケ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーのパワーは、バトルゾーンにある自分のカードの文明ひとつにつき+2000される。\nこのクリーチャーは、パワーが6000以上の時、「W・ブレイカー」を得る。",
+          "race": "ワイルド・ベジーズ/エイリアン",
+          "powerText": "0",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g207CountPower": {
+          "zone": "battle",
+          "civilizations": true,
+          "g561Battle": true,
+          "amount": 2000
+        },
+        "g207Breakers": [
+          {
+            "power": 6000,
+            "breaker": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr04-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "9d0653db336e997ad34d0380941a244597701835dd8893107c109257d1209eb4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23-012",
+      "name": "ミスティック・ガストゥール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-012",
+      "faces": [
+        {
+          "name": "ミスティック・ガストゥール",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、ターンの終わりまで、相手のタップされているクリーチャーすべてのパワーは、バトルゾーンにある自分のグランド・デビル１体につき-1000される。",
+          "race": "ディープ・マリーン",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountPower561",
+            "zone": "battle",
+            "amount": -1000,
+            "filter": {
+              "creature": true,
+              "race": "グランド・デビル"
+            },
+            "defs": [
+              {
+                "op": "GroupPower",
+                "owner": "opponent",
+                "filter": {
+                  "creature": true,
+                  "tapped": true
+                },
+                "power": 1,
+                "g561Scale": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "6a5652fd0562194b6adedf1a9c3efb31b90ea36ba50b16654426cff80a439ecc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-040",
+      "name": "メイ様とおサルのシンバル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-040",
+      "faces": [
+        {
+          "name": "メイ様とおサルのシンバル",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このターン、バトルゾーンにある自分のドリームメイトすべてのパワーは、バトルゾーンにある自分のドリームメイト１体につき+2000される。\nこのターン、バトルゾーンにある自分の、パワー6000以上のドリームメイトはすべて「W・ブレイカー」を得る。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountPower561",
+            "zone": "battle",
+            "amount": 2000,
+            "filter": {
+              "creature": true,
+              "race": "ドリームメイト"
+            },
+            "defs": [
+              {
+                "op": "GroupPower",
+                "owner": "self",
+                "filter": {
+                  "creature": true,
+                  "race": "ドリームメイト"
+                },
+                "power": 1,
+                "g561Scale": true,
+                "spell": true
+              }
+            ]
+          },
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "race": "ドリームメイト",
+              "minPower": 6000,
+              "g199Power": true
+            },
+            "grant": {
+              "g313Breaker": 2
+            },
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "f1cd95328b597a3c7128938ea737f6030884577dfc684af5125786c13d66cf60",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr04-037": 4,
+      "dm04-033": 4,
+      "dmr23-042": 4,
+      "dmsd21-005": 4,
+      "dmr15-013": 4,
+      "dmr04-025": 4,
+      "dm23-012": 4,
+      "dmr05-040": 4
+    }
+  }
+}

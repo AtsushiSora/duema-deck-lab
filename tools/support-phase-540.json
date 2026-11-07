@@ -1,0 +1,300 @@
+{
+  "phase": 540,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5166,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/31563/",
+    "https://dm.takaratomy.co.jp/rule/qa/43292/",
+    "https://dm.takaratomy.co.jp/rule/qa/41262/"
+  ],
+  "cards": [
+    {
+      "id": "dmex07-m11",
+      "name": "ガンマスター・超天・マキシマム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex07-m11",
+      "faces": [
+        {
+          "name": "ガンマスター・超天・マキシマム",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "バトルゾーンまたはマナゾーンに、自分のジョーカーズが合計５枚以上あれば、この呪文を唱えるコストは５少なくなる。\nこのターン、自分のクリーチャーすべてのパワーを+5000する。\n超天フィーバー：バトルゾーンまたはマナゾーンに、自分のジョーカーズが合計10枚以上あれば、このターン、自分のクリーチャー１体に「ワールド・ブレイカー」を与える。（「ワールド・ブレイカー」を持つクリーチャーは、相手のシールドをすべてブレイクする）",
+          "race": "ジョーカーズ/ワンダフォース",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g261Discount": {
+          "filter": {
+            "g539Jokers": 5
+          },
+          "amount": 5
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "g214GroupPower": true,
+            "owner": "self",
+            "power": 5000,
+            "filter": {
+              "creature": true
+            },
+            "spell": true
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g539Jokers": 10
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "owner": "self",
+                "grant": {
+                  "g313Breaker": "∞",
+                  "worldBreaker": true
+                },
+                "spell": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex07-m11.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "ef5775f4f5372f61ef44df3ce9c87c9ccd307a18ff077295e8bf27a91e382898",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd01-009",
+      "name": "チョートッQ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd01-009",
+      "faces": [
+        {
+          "name": "チョートッQ",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーは、バトルゾーンに出たターン、相手プレイヤーを攻撃できる。\nこのクリーチャーは、可能なら毎ターン、相手プレイヤーを攻撃する。\nバトルゾーンまたはマナゾーンに自分のジョーカーズが合計２枚以上あれば、このクリーチャーのパワーを+3000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）",
+          "race": "ジョーカーズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "entryPlayerAttack": true,
+        "g540MustPlayer": true,
+        "g260Self": {
+          "filter": {
+            "g539Jokers": 2
+          },
+          "grants": {
+            "power": 3000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd01-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "d761a4a1265495c0ac49d4f5650b2e2aa5b84b41180666e2e12166c111497a67",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-094",
+      "name": "チョトツ変怪",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-094",
+      "faces": [
+        {
+          "name": "チョトツ変怪",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーは、可能なら毎ターン相手プレイヤーを攻撃する。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g540MustPlayer": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-094.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "cf15291d654737e29aa20c85d6159644fba98f65aafa6a3e99d0464f052918f2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy16-029",
+      "name": "バーバーパパ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-029",
+      "faces": [
+        {
+          "name": "バーバーパパ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "Ｊ・Ｏ・Ｅ ２ (このクリーチャーを、コストを２少なくして召喚してもよい。そうしたら、このターンの終わりに、これを自分の山札の一番下に置く。下に置いたら、カードを１枚引く)\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーは、バトルゾーンに出たターン、相手プレイヤーを攻撃できる。\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。",
+          "race": "ジョーカーズ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "joeDiscount": 2,
+        "breaker": 2,
+        "entryPlayerAttack": true,
+        "g34Attack": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "a311a5b041fbae619a7585330a5696420f425ea28ff8f9b3a40f892269f5469b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp03-021",
+      "name": "ファイト！ イッパツマン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-021",
+      "faces": [
+        {
+          "name": "ファイト！ イッパツマン",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "NEO進化：自分のジョーカーズ・クリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nバトルゾーンまたはマナゾーンに、自分のジョーカーズが合計４枚以上あれば、自分のジョーカーズすべてのバトル中のパワーを+3000する。",
+          "race": "ジョーカーズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "race": "ジョーカーズ"
+            }
+          ]
+        },
+        "g466BattleAura": {
+          "filter": {
+            "creature": true,
+            "race": "ジョーカーズ"
+          },
+          "condition": {
+            "g539Jokers": 4
+          },
+          "power": 3000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "3f8413e6f2baa711e5621af0bf5d241f84ca79b0237e46707b1a068d01bac8e6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp03-s06",
+      "name": "仏斬！ 富士山ッスル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-s06",
+      "faces": [
+        {
+          "name": "仏斬！ 富士山ッスル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "Ｊ・Ｏ・Ｅ ２ (このクリーチャーを、コストを２少なくして召喚してもよい。そうしたら、このターンの終わりに、これを自分の山札の一番下に置く。下に置いたら、カードを１枚引く)\nスピードアタッカー\nパワーアタッカー+1000000\nW・ブレイカー\n各ターン、このクリーチャーがはじめて攻撃する時、バトルゾーンまたはマナゾーンに自分のジョーカーズが合計４枚以上あれば、このクリーチャーをアンタップする。",
+          "race": "ジョーカーズ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "joeDiscount": 2,
+        "speedAttacker": true,
+        "attackBonus": 1000000,
+        "breaker": 2,
+        "g540FirstAttack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g539Jokers": 4
+            },
+            "defs": [
+              {
+                "op": "Untap",
+                "g191First": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-s06.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "8040c4468a0fa35a9ad94e923e7ef734e2e515d8839058a2f67e21e4de51bab7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex07-m11": 4,
+      "dmsd01-009": 4,
+      "dmrp16-094": 4,
+      "promoy16-029": 4,
+      "dmrp03-021": 4,
+      "dmrp03-s06": 4
+    }
+  }
+}

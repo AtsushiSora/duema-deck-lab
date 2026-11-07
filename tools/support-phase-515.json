@@ -1,0 +1,249 @@
+{
+  "phase": 515,
+  "checkedAt": "2026-11-06",
+  "baseCount": 5059,
+  "description": "他の味方1体のパワー・パワーアタッカー・追加ブレイク・ブロック回避をそのターン中付与し、マナ文明数に応じたパワー変化を解決時の値で固定する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmrp07-052",
+      "name": "C.W.テラス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-052",
+      "faces": [
+        {
+          "name": "C.W.テラス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "Jチェンジ６（このクリーチャーが攻撃する時、このクリーチャーと自分のマナゾーンにあるコスト６以下のジョーカーズ１体を入れ替えてもよい）\nこのクリーチャーがバトルゾーンに出た時、そのターン、自分の他のクリーチャー１体のパワーは+4000され、シールドをさらに１つブレイクする。",
+          "race": "ジョーカーズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g393Change": {
+          "mana": 6
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g179Other": true,
+            "power": 4000,
+            "g455ExtraBreak": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "f622ae987ac4a540272b8b155465ada67ab910f9ec7dd91f04b0f190afa8c99d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-049",
+      "name": "サンタクロスケ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-049",
+      "faces": [
+        {
+          "name": "サンタクロスケ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "Ｊ・Ｏ・Ｅ １ (このクリーチャーを、コストを１少なくして召喚してもよい。そうしたら、このターンの終わりに、これを自分の山札の一番下に置く。下に置いたら、カードを１枚引く)\nこのクリーチャーがバトルゾーンに出た時、そのターン、自分の他のクリーチャー１体は「パワーアタッカー+4000」を得、シールドをさらに１つブレイクする。（攻撃中、「パワーアタッカー+4000」を持つクリーチャーのパワーを+4000する）",
+          "race": "ジョーカーズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "joeDiscount": 1,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g179Other": true,
+            "power": 4000,
+            "g337PowerAttacker": true,
+            "g455ExtraBreak": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "fca77728ddcee22bb6bca92b01c0a95238cd830890d1d4ab367f326e4379e463",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm38-035",
+      "name": "ドスコイ・イチバンボシ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-035",
+      "faces": [
+        {
+          "name": "ドスコイ・イチバンボシ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、またはこのクリーチャーがバトルゾーンを離れた時、バトルゾーンにある自分の他のクリーチャーを１体選んでもよい。そのターン、そのクリーチャーはブロックされず、シールドをさらに１枚ブレイクし、「パワーアタッカー+5000」を得る。",
+          "race": "サイバー・ムーン/ビッグマッスル",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g179Other": true,
+            "optional": true,
+            "power": 5000,
+            "g337PowerAttacker": true,
+            "g455ExtraBreak": 1,
+            "grant": {
+              "unblockable": true
+            }
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g179Other": true,
+            "optional": true,
+            "power": 5000,
+            "g337PowerAttacker": true,
+            "g455ExtraBreak": 1,
+            "grant": {
+              "unblockable": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "67d2378fbfe475b96ddc01f8299889cd91f0d94a01a097f44dd754580d422b19",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm27-032",
+      "name": "黄金の円盾",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-032",
+      "faces": [
+        {
+          "name": "黄金の円盾",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは、自分のマナゾーンにある文明ひとつにつき+1000される。",
+          "race": "ビーストフォーク",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ManaColorBoost515",
+            "amount": 1000
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm27-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "6103ecb36cb4bfc67f09431ee43c3f73778764772166ddd63e4d56b635d0f045",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp07-052": 4,
+      "dmrp04s-049": 4,
+      "dm38-035": 4,
+      "dm39-046": 4,
+      "dm27-032": 4
+    }
+  },
+  "deferredCards": [
+    {
+      "id": "dm39-046",
+      "name": "ヤミノキルマジロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-046",
+      "faces": [
+        {
+          "name": "ヤミノキルマジロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-1000される。バトルゾーンにある自分のサイキック・クリーチャー１体につき、選んだクリーチャーのパワーはさらに-1000される。(パワー０以下のクリーチャーは破壊される)",
+          "race": "ダーク・モンスター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ScaleTarget515",
+            "count": "psychics",
+            "base": -1000,
+            "powerPer": -1000,
+            "target": {}
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "5d9472946f178d0ee3812e8e28e052bf5a442f89d2ebe9fc2b5ba221e6e74271",
+        "facesMatched": true
+      },
+      "reason": "サイキック本体の召喚・覚醒・超次元ゾーンの一連の処理が未実装のため、完全な対戦対応を後続に回す。"
+    }
+  ]
+}

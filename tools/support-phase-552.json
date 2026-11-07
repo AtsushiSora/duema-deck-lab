@@ -1,0 +1,160 @@
+{
+  "phase": 552,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5232,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/42639/"
+  ],
+  "cards": [
+    {
+      "id": "dm39-032",
+      "name": "GENJI・ブラスター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-032",
+      "faces": [
+        {
+          "name": "GENJI・ブラスター",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n自分の山札を見る。その中から、名前に《アイニー》とある、進化ではないクリーチャーを、コストの合計が７以下になるよう２体まで選び、タップしてバトルゾーンに出してもよい。その後、山札をシャッフルする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "g201Search": true,
+            "n": "all",
+            "limit": 2,
+            "rest": "shuffle",
+            "tapped": true,
+            "g550CostBudget": 7,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "name": "アイニー"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "46a34ea1784e93b0a85c1aa8fa0bd267d9989097038f19344d303f25f8410497",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr07-017",
+      "name": "真実の名 ナッツ・スパゲッティーノ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-017",
+      "faces": [
+        {
+          "name": "真実の名 ナッツ・スパゲッティーノ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが破壊された時、自分の山札を見る。その中から好きな枚数の進化ではないクリーチャーを、コストの合計が６以下になるように選び、バトルゾーンに出してもよい。その後、山札をシャッフルする。",
+          "race": "ジャイアント/アンノウン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g172Death": [
+          {
+            "op": "LookDeploy530",
+            "g201Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "g550CostBudget": 6,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "660a1a03162122b55f509f609128a22796ba065a1ce79a297c6a4ead5dbf240f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-056",
+      "name": "探究の絆",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-056",
+      "faces": [
+        {
+          "name": "探究の絆",
+          "typeText": "呪文",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{GS} G・ストライク（この呪文を自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分の山札の上から４枚を見る。その中から、スノーフェアリーをコストの合計が５以下になるように２つまで出す。残りを好きな順序で山札の下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "n": 4,
+            "limit": 2,
+            "rest": "bottom",
+            "g550CostBudget": 5,
+            "filter": {
+              "race": "スノーフェアリー"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-056.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "659061a3460d216360c7b2890779af51658985d5e59fd8673c8a42a9894a82cb",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm39-032": 4,
+      "dmr07-017": 4,
+      "dm24ex4-056": 4
+    }
+  }
+}

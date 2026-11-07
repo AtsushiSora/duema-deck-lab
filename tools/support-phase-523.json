@@ -1,0 +1,215 @@
+{
+  "phase": 523,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5093,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmrp05-020",
+      "name": "デビット・ガーター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-020",
+      "faces": [
+        {
+          "name": "デビット・ガーター",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：自分の闇のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分のマナゾーンにあるカードの枚数以下のコストを持つ、進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+          "race": "マフィ・ギャング",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "ManaDeploy523",
+            "origin": "grave",
+            "optional": false,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "181d0b1158544ab573b8cb10e107f9b5b089ffdffc9cbff199b4b5bd29d017a8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-s04",
+      "name": "モンキッド ＜ライゾウ.Star＞",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-s04",
+      "faces": [
+        {
+          "name": "モンキッド ＜ライゾウ.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スター進化：レクスターズまたは自然のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nT・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から１枚目をマナゾーンに置く。その後、自分のマナゾーンにあるカードの枚数以下のコストを持つ進化クリーチャーを１体、自分のマナゾーンから選び、出してもよい。",
+          "race": "ジョーカーズ/アース・ドラゴン/レクスターズ",
+          "powerText": "16000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "ManaDeploy523",
+            "origin": "mana",
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "evolution": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "5f43609dfd9795792eb390d4e848d57d8d0885bb1315b7a3015b755a2d9e1d78",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp21-008",
+      "name": "剣の地版",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-008",
+      "faces": [
+        {
+          "name": "剣の地版",
+          "typeText": "タマシード",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "シンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、自分の山札の上から１枚目をマナゾーンに置く。その後、自分のマナゾーンのカードの枚数以下のコストを持つ進化クリーチャーを１体、自分のマナゾーンから出してもよい。",
+          "race": "メガ・コマンド・ドラゴン/レクスターズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "shinkalize": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "ManaDeploy523",
+            "origin": "mana",
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "evolution": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "a9dfe88d8105749089fb4382e51f2bb95fe9ff104bc87e38c242dd04f6d762f4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp11-009",
+      "name": "葉鳴妖精ハキリ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-009",
+      "faces": [
+        {
+          "name": "葉鳴妖精ハキリ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手のターン中、このクリーチャーのパワーを+4000する。\nこのクリーチャーが攻撃する時、自分のマナゾーンにあるカードの枚数以下のコストを持つクリーチャーを１体、コストを支払わずに自分の手札から召喚してもよい。",
+          "race": "スノーフェアリー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g38EnemyTurnBonus": 4000,
+        "g34Attack": [
+          {
+            "op": "ManaDeploy523",
+            "origin": "hand",
+            "summon": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "144ca31f9149c740da9ae263f57164a50b7c6e6108ea784ad24b60570ccfce50",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp05-020": 4,
+      "dmrp18-s04": 4,
+      "dmrp21-008": 4,
+      "dmrp11-009": 4
+    }
+  }
+}

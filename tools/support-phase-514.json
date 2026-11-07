@@ -1,0 +1,347 @@
+{
+  "phase": 514,
+  "checkedAt": "2026-11-06",
+  "baseCount": 5052,
+  "description": "山札の上1枚を公開し、印刷された条件の一致・不一致を先に確定して展開・回収・マナ・山札下に振り分ける。展開見送りや展開禁止では不一致側の処理を行わない。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/31530/",
+    "https://dm.takaratomy.co.jp/rule/qa/31608/"
+  ],
+  "cards": [
+    {
+      "id": "dmsd04-005",
+      "name": "ビックラボックス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd04-005",
+      "faces": [
+        {
+          "name": "ビックラボックス",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を表向きにする。それがコスト６以下のジョーカーズ・クリーチャーなら、バトルゾーンに出す。それ以外なら、自分の手札に加える。",
+          "race": "ジョーカーズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "creature": true,
+              "race": "ジョーカーズ",
+              "max": 6
+            },
+            "to": "battle",
+            "elseTo": "hand"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd04-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "901756637d0f9c5a47e4a96cd9be9f1bb0b22d2a8f31466c8852d9f46d74a4d4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsp01-013",
+      "name": "貝獣 アンモ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp01-013",
+      "faces": [
+        {
+          "name": "貝獣 アンモ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を表向きにしてもよい。それがムートピアなら、自分の手札に加える。",
+          "race": "ムートピア",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g359RevealAll": true,
+            "title": "山札の上1枚を公開する？",
+            "defs": [
+              {
+                "op": "RevealTop514",
+                "n": 1,
+                "filter": {
+                  "race": "ムートピア"
+                },
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsp01-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "2ffb9e444bf1ceea3698b0a7fb19c277c9a1ba9a333aa5561368fe1be3063d29",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx09-004",
+      "name": "偽りの名 バルガ・ラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx09-004",
+      "faces": [
+        {
+          "name": "偽りの名 バルガ・ラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーが攻撃する時、自分の山札の上から１枚目をすべてのプレイヤーに見せる。そのカードが進化ではないドラゴンであれば、バトルゾーンに出してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン/アンノウン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "ドラゴン"
+            },
+            "to": "battle",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx09-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "822a5e911a5bbcfb77f0e18c7ea861e52e82f01fb959b5281b3e39d9613ee3f5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx13-006",
+      "name": "真実の名 修羅丸",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-006",
+      "faces": [
+        {
+          "name": "真実の名 修羅丸",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーが攻撃する時、自分の山札の上から１枚目をすべてのプレイヤーに見せる。そのカードが進化ではない無色クリーチャーであれば、バトルゾーンに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "ヒューマノイド/アンノウン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "g200Colorless": true
+            },
+            "to": "battle",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx13-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "c4c5d98e635a9c80c2b9f0246f22fb331e191e0eda4d3bf99779b7c011615bf1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex01-057",
+      "name": "神聖櫃 シューゲイズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex01-057",
+      "faces": [
+        {
+          "name": "神聖櫃 シューゲイズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、自分の山札の上から１枚目を表向きにする。それがコスト５以下の進化ではないクリーチャーなら、バトルゾーンに出す。それ以外なら、自分のマナゾーンに置く。",
+          "race": "オラクリオン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "max": 5
+            },
+            "to": "battle",
+            "elseTo": "mana"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "max": 5
+            },
+            "to": "battle",
+            "elseTo": "mana"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex01-057.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "8cff95318b25f46835e70976e0495e94f58124086bfe110e4fc3bff3e30a451c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc41-001",
+      "name": "独裁者ケンジ・パンダネルラ将軍",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc41-001",
+      "faces": [
+        {
+          "name": "独裁者ケンジ・パンダネルラ将軍",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分のドリームメイト１体の上に置く。\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を表向きにする。それが進化ではないドリームメイトかビークル・ビーであれば、バトルゾーンに出してもよい。\nW・ブレイカー",
+          "race": "ドリームメイト",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "ドリームメイト"
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "raceAny": [
+                "ドリームメイト",
+                "ビークル・ビー"
+              ]
+            },
+            "to": "battle",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc41-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "213c796a93420fa53347862f3100ee9a7da791951563157edb319d89c2dba92a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd18-008",
+      "name": "熱血龍 バクアドルガン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd18-008",
+      "faces": [
+        {
+          "name": "熱血龍 バクアドルガン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目をすべてのプレイヤーに見せる。そのカードがドラゴンであれば、自分の手札に加える。ドラゴン以外であれば、自分の山札の一番下に戻す。",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g34Attack": [
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "race": "ドラゴン"
+            },
+            "to": "hand",
+            "elseTo": "deck"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd18-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "16c11255e4799c229d88d081b3af707b5398f1583280b86848bfd080005aa754",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmsd04-005": 4,
+      "dmsp01-013": 4,
+      "dmx09-004": 4,
+      "dmx13-006": 4,
+      "dmex01-057": 4,
+      "dmc41-001": 4,
+      "dmd18-008": 4
+    }
+  }
+}

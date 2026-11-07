@@ -1,0 +1,345 @@
+{
+  "phase": 521,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5083,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmrp07-062",
+      "name": "チェサイズ・ジム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp07-062",
+      "faces": [
+        {
+          "name": "チェサイズ・ジム",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次の自分のターンのはじめまで、自分のクリーチャー１体に「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）\nカードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "blocker": true
+            },
+            "g521UntilStart": true,
+            "spell": true
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp07-062.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "623e16dedeeccb6b1bba270131f6a2036e321849c0ae4b6740a4aa76138451c0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp3-029",
+      "name": "輝晶 シンプ-2",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-029",
+      "faces": [
+        {
+          "name": "輝晶 シンプ-2",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から１枚をシールド化する。\nこのクリーチャーが離れた時、次の自分のターンのはじめまで、自分のクリーチャー１体に「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）\nササゲール２（自分のディスペクター・クリーチャーの召喚コストを２少なくしてもよい。そうしたら、このエレメントを破壊する。ただしコストは０以下にならない）",
+          "race": "メタリカ/ディスタス",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "sasage": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "blocker": true
+            },
+            "g521UntilStart": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "f6ab63e86943ba4de6bb019bc148a4e235ec5f390a10e15cca42ee1b2fc159d2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-071",
+      "name": "光器グラーシャ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-071",
+      "faces": [
+        {
+          "name": "光器グラーシャ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが攻撃する時、バトルゾーンにある闇または火のクリーチャーを１体選び、タップしてもよい。(ただし、まず何を攻撃するか選んでから、タップしたいクリーチャーを選ぶ)",
+          "race": "メカ・デル・ソル",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "tap": true,
+            "optional": true,
+            "filter": {
+              "any": [
+                {
+                  "color": "闇"
+                },
+                {
+                  "color": "火"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-071.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "463858d62771da6207f8dfc98e4cbc1c50f1741e10952412439169706396ae55",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr17-013",
+      "name": "降臨の精霊 トリガブリエ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-013",
+      "faces": [
+        {
+          "name": "降臨の精霊 トリガブリエ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、次の自分のターンのはじめまで、自分のクリーチャー１体のパワーを+3000し、「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそれに変更してもよい）",
+          "race": "エンジェル・コマンド",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 3000,
+            "grant": {
+              "blocker": true
+            },
+            "g521UntilStart": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "ba8c41179ed76da904e2efc10c87693059426cb69cfa7f9a793ce5375c603f2e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm07-022",
+      "name": "聖騎士プラネットシャイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-022",
+      "faces": [
+        {
+          "name": "聖騎士プラネットシャイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃するとき、バトルゾーンにある闇または火のクリーチャーを１体選び、タップしてもよい。(ただし、まず何を攻撃するか選んでから、タップしたいクリーチャーを選ぶ)",
+          "race": "レインボー・ファントム",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "tap": true,
+            "optional": true,
+            "filter": {
+              "any": [
+                {
+                  "color": "闇"
+                },
+                {
+                  "color": "火"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm07-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "50aebd6ff750d5b60d0bd58c7d1c3488214dcb79035f3e3d724947e8300d7397",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp06-034",
+      "name": "赤攻銀 マブルーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-034",
+      "faces": [
+        {
+          "name": "赤攻銀 マブルーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、次の自分のターンのはじめまで、自分のクリーチャー１体に「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+          "race": "メタリカ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "blocker": true
+            },
+            "g521UntilStart": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "49f07196f046159872365991dd919a9d7e62975e3e2c7622041d07dd3f250dc6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm05-039",
+      "name": "予言者レクイル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-039",
+      "faces": [
+        {
+          "name": "予言者レクイル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃するとき、バトルゾーンにある闇または火のクリーチャーを１体選び、タップしてもよい。(まず、このクリーチャーが何を攻撃するかを選び、その後タップするクリーチャーを選ぶ)",
+          "race": "ライトブリンガー",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "tap": true,
+            "optional": true,
+            "filter": {
+              "any": [
+                {
+                  "color": "闇"
+                },
+                {
+                  "color": "火"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm05-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "535ffb87c56f2fedca3115f460874e67ceb321e53ed4f2edae0abb6f575be650",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp07-062": 4,
+      "dm26rp3-029": 4,
+      "dm14-071": 4,
+      "dmr17-013": 4,
+      "dm07-022": 4,
+      "dmrp06-034": 4,
+      "dm05-039": 4
+    }
+  }
+}

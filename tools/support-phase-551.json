@@ -1,0 +1,263 @@
+{
+  "phase": 551,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5227,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/42639/"
+  ],
+  "cards": [
+    {
+      "id": "dm25ex4-008",
+      "name": "D2R2 邪眼のブラックオーバー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-008",
+      "faces": [
+        {
+          "name": "D2R2 邪眼のブラックオーバー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "{GS} G・ストライク\nシンパシー：自分の墓地にあるクリーチャー（このカードの実行コストを、自分の墓地にあるクリーチャー１体につき１少なくする。ただしコストは０以下にならない）\nW・ブレイカー\nこのクリーチャーが出た時、コストの合計が５以下になるように、エレメントを２つまで自分の墓地から出す。",
+          "race": "ソニック・コマンド/マスター・イニシャルズ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "g212CountDiscount": {
+          "zone": "grave",
+          "amount": 1,
+          "filter": {
+            "creature": true
+          }
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "deploy": true,
+            "n": 2,
+            "optional": true,
+            "g236GraveDeploy": true,
+            "g550CostBudget": 5,
+            "filter": {
+              "element": true
+            },
+            "title": "合計コスト5以下で、出す順に選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "ac22a6c6a1ab6a29a9f76d20cdb26034ef1978cbc711b17b492db5dc4197d8f4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp21-044",
+      "name": "トレジャー・ルーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-044",
+      "faces": [
+        {
+          "name": "トレジャー・ルーン",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nコストの合計が４以下になるよう、タマシードを好きな数自分のマナゾーンから選んで出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "deploy": true,
+            "optional": true,
+            "origin": "mana",
+            "n": "all",
+            "g550CostBudget": 4,
+            "filter": {
+              "g295Tamaseed": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "c3669bb43d42c7dfec1b320e6c15ed5f1cb60f968f57eb56df921696e627e607",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp06-023",
+      "name": "バンバン戦車 バンチュー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-023",
+      "faces": [
+        {
+          "name": "バンバン戦車 バンチュー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の手札から、コストの合計が５以下になるようにクリーチャーを２体まで選び、バトルゾーンに出す。そのターンの終わりに、それらを破壊する。",
+          "race": "ビートジョッキー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "deploy": true,
+            "optional": true,
+            "origin": "hand",
+            "n": 2,
+            "g550CostBudget": 5,
+            "filter": {
+              "creature": true
+            },
+            "delayed": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "9ca275621f45b56aa83969309f66646e2ce7465c4a6d5179c1f06179a51b71e6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx16-036",
+      "name": "帝王類増殖目 トリプレックス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-036",
+      "faces": [
+        {
+          "name": "帝王類増殖目 トリプレックス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分のマナゾーンから進化ではない自然のクリーチャーを、コストの合計が７以下になるように２体まで選び、バトルゾーンに出してもよい。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+          "race": "ジュラシック・コマンド・ドラゴン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "deploy": true,
+            "optional": true,
+            "origin": "mana",
+            "n": 2,
+            "g550CostBudget": 7,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "color": "自然"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx16-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "7c73f1e0adec6d0a08f9ec2f255a99a4154888071b4e8682c7b3de91ed34cca4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26-020",
+      "name": "霊翼の宝アルバトロス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-020",
+      "faces": [
+        {
+          "name": "霊翼の宝アルバトロス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火/自然",
+          "civilizations": [
+            "闇",
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが破壊された時、自分の墓地からコストの合計が５以下になるようにクリーチャーを２体まで選び、バトルゾーンに出してもよい。そのターン、それらのクリーチャーは「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは、召喚酔いしない)",
+          "race": "パンドラボックス/ゼノパーツ/ビーストフォーク",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Select",
+            "deploy": true,
+            "optional": true,
+            "origin": "grave",
+            "n": 2,
+            "g550CostBudget": 5,
+            "filter": {
+              "creature": true
+            },
+            "grant": {
+              "speedAttacker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "2c3dc86909e1541171bb328fedf37eeca377dcd97ca469a81c9229a60adfc457",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25ex4-008": 4,
+      "dmrp21-044": 4,
+      "dmrp06-023": 4,
+      "dmx16-036": 4,
+      "dm26-020": 4
+    }
+  }
+}

@@ -1,0 +1,290 @@
+{
+  "phase": 550,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5222,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/42639/"
+  ],
+  "cards": [
+    {
+      "id": "dmsd21-009",
+      "name": "シラズ死鬼の封",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd21-009",
+      "faces": [
+        {
+          "name": "シラズ死鬼の封",
+          "typeText": "タマシード",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このタマシードをシールドゾーンから手札に加える時、コストを支払わずにすぐ使ってもよい）\nシンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、コストの合計が４以下になるよう、クリーチャーを好きな数自分の墓地から選んで出す。",
+          "race": "デモニオ/鬼レクスターズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "shinkalize": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "deploy": true,
+            "n": "all",
+            "optional": true,
+            "g236GraveDeploy": true,
+            "g550CostBudget": 4,
+            "filter": {
+              "creature": true
+            },
+            "title": "合計コスト4以下で、出す順に選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd21-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "4015fa335c172127df247a471c45ea9eef3a1887a8b220cfc335037652a6acda",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-028",
+      "name": "ディスタス・ゲート",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-028",
+      "faces": [
+        {
+          "name": "ディスタス・ゲート",
+          "typeText": "呪文",
+          "civilizationText": "光/闇/自然",
+          "civilizations": [
+            "光",
+            "闇",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nコストの合計が７以下になるよう、ディスタスを好きな数、自分の墓地、手札、またはマナゾーンから選び、出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "zones": [
+              "grave",
+              "hand",
+              "mana"
+            ],
+            "deploy": true,
+            "n": "all",
+            "optional": true,
+            "g550CostBudget": 7,
+            "filter": {
+              "race": "ディスタス"
+            },
+            "title": "墓地・手札・マナから合計コスト7以下で、出す順に選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "94a5e5e40ffef014e4110d6ddf69a07e7903393e84f09f13a5d0ef08cabc3539",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-039",
+      "name": "邪入梵",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-039",
+      "faces": [
+        {
+          "name": "邪入梵",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nコストの合計が６以下になるようにクリーチャーを２体まで、自分の墓地から出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "deploy": true,
+            "n": 2,
+            "optional": true,
+            "g236GraveDeploy": true,
+            "g550CostBudget": 6,
+            "filter": {
+              "creature": true
+            },
+            "title": "合計コスト6以下で、出す順に選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "2512a85d4681b8fbd8b1a29b3d78799d9701d7c527310e50af314f9af0aa0ce9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-003",
+      "name": "魔誕の前兆",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-003",
+      "faces": [
+        {
+          "name": "魔誕の前兆",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\n次のうちいずれか１つを選ぶ。\n▶コストの合計が７以下になるようにデーモン・コマンドを２つまで、自分の墓地から出す。\n▶相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－12000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "コストの合計が７以下になるようにデーモン・コマンドを２つまで、自分の墓地から出す。",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "grave",
+                    "deploy": true,
+                    "n": 2,
+                    "optional": true,
+                    "g236GraveDeploy": true,
+                    "g550CostBudget": 7,
+                    "filter": {
+                      "race": "デーモン・コマンド"
+                    },
+                    "title": "合計コスト7以下で、出す順に選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－12000する。（パワー０以下のクリーチャーは破壊される）",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "power": -12000,
+                    "g242PowerMinus": true,
+                    "title": "パワーを-12000する相手のクリーチャーを選ぶ",
+                    "spell": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "3832fcf26d638142c3b13983019a57fb567d831e9226565d1295078bd671bca2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp15-039",
+      "name": "無限皇帝の顕現",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-039",
+      "faces": [
+        {
+          "name": "無限皇帝の顕現",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の山札の上から２枚を墓地に置く。その後、コストの合計が２以下になるよう、クリーチャーを２体まで自分の墓地から選び、バトルゾーンに出す。",
+          "race": "チーム零",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 2
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "deploy": true,
+            "n": 2,
+            "optional": true,
+            "g236GraveDeploy": true,
+            "g550CostBudget": 2,
+            "filter": {
+              "creature": true
+            },
+            "title": "合計コスト2以下で、出す順に選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "cc27c0bb54eacf59284e12d60ed26d3d84130b58ae02a0fef72a1ea85879cb70",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmsd21-009": 4,
+      "dmrp18-028": 4,
+      "dm25rp1-039": 4,
+      "dm24rp4-003": 4,
+      "dmrp15-039": 4
+    }
+  }
+}

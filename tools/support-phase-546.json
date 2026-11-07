@@ -1,0 +1,382 @@
+{
+  "phase": 546,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5197,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316682/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp08-087",
+      "name": "“Ｋ-狩”コンビ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-087",
+      "faces": [
+        {
+          "name": "“Ｋ-狩”コンビ",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のクリーチャーを１体選ぶ。次の相手のターン、そのクリーチャーは可能なら攻撃する。\nG・G・G：自分の手札が１枚以下なら、相手のクリーチャーは１体のかわりにすべて、次の相手のターンに可能なら攻撃する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "hand",
+                "max": 1
+              }
+            },
+            "defs": [
+              {
+                "op": "ForceGroup546",
+                "when": "nextOpponent",
+                "spell": true
+              }
+            ],
+            "elseDefs": [
+              {
+                "op": "Target",
+                "g546Force": "nextOpponent",
+                "spell": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-087.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "672f25d2e613b8166263b9cf354606059fe50f80116b3238ea4527aaba8ce2f6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-031",
+      "name": "ヒートウェイブ・ドラグーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-031",
+      "faces": [
+        {
+          "name": "ヒートウェイブ・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーは、タップされていないクリーチャーを攻撃できる。\nこのクリーチャーが攻撃したターン、自分の他のクリーチャーも、可能であれば攻撃する。",
+          "race": "ティラノ・ドレイク",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackUntapped": true,
+        "g546AttackForceOthers": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "d37adb99c10bbf02e1b251cb18d8b6b244657eb033b688c608fca98815dec614",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-030",
+      "name": "ペリオンブレス・ドラグーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-030",
+      "faces": [
+        {
+          "name": "ペリオンブレス・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが攻撃したターン、自分の他のクリーチャーも、可能であれば攻撃する。\n相手のターンにこのクリーチャーがタップされていれば、相手のクリーチャーはすべて、可能であれば攻撃する。",
+          "race": "ティラノ・ドレイク",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g546AttackForceOthers": true,
+        "g224ForceAttack": {
+          "owner": "opponent",
+          "tapped": true,
+          "opponentTurn": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "f64cca22141d6ac9ad0c744fef25a9140df3c78bbf81406431f4056504aeb79c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-062",
+      "name": "一撃勇者ホノオ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-062",
+      "faces": [
+        {
+          "name": "一撃勇者ホノオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "パワーアタッカー+5000(攻撃中、このクリーチャーのパワーは+5000される)\nこのクリーチャーが攻撃したターン、自分の他のクリーチャーも、可能であれば攻撃する。",
+          "race": "ヒューマノイド",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackBonus": 5000,
+        "g546AttackForceOthers": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-062.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "6264f7410a06e6f7fa7ce7fe0d7bca9362209ff934e6fbbe0c24dd833d18a086",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp15-006",
+      "name": "影より出でて影に還るシャドウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-006",
+      "faces": [
+        {
+          "name": "影より出でて影に還るシャドウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。\n相手のターンのはじめに、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーは可能なら攻撃する。",
+          "race": "エンジェル・コマンド/デーモン・コマンド/月光王国",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ],
+        "g179OpponentStart": [
+          {
+            "op": "Target",
+            "g546Force": "thisTurn"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "c2e4f6c87962efc34c7b9a9527907955d5912d40ba669b6e4962767c343bde5c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp2-034",
+      "name": "鎧亜寄生パラス・ボクサー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-034",
+      "faces": [
+        {
+          "name": "鎧亜寄生パラス・ボクサー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nパワード・ブロッカー+8000（ブロック中、このクリーチャーのパワーを+8000する）\nスペース・チャージ（自分のマナゾーンにカードが置かれた時、そのカードの文明に合うq能力を使ってもよい）\nq 火：相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは可能なら攻撃する。",
+          "race": "ロスト・クルセイダー/エイリアン",
+          "powerText": "1000+",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g209PoweredBlocker": 8000,
+        "g454Space": [
+          {
+            "color": "火",
+            "defs": [
+              {
+                "op": "Target",
+                "g546Force": "untilOwnStart"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "35a4300aa2f97c7004296cddc4f0ba639c8589ec5b2b9762f4fabebdb973bf2d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-038",
+      "name": "黒神龍シュヴァルザーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-038",
+      "faces": [
+        {
+          "name": "黒神龍シュヴァルザーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガーS・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーが出た時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは可能なら攻撃する。",
+          "race": "ドラゴン・ゾンビ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "slayer": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g546Force": "untilOwnStart"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "7e64ea189f21f2096c4047e3de6f14b0b7fcbca79c8a134f05509bf02a3dcc2f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-052",
+      "name": "魂の絆 シェイク&\"S-駆\"",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-052",
+      "faces": [
+        {
+          "name": "魂の絆 シェイク&\"S-駆\"",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nシンカパワー：このクリーチャーが進化する時、次のうちいずれか１つを選ぶ。\n▶相手のクリーチャーを２体まで選ぶ。次の自分のターンのはじめまで、それらのクリーチャーは攻撃もブロックもできない。\n▶相手のクリーチャーを２体まで選ぶ。次の相手のターン中、それらのクリーチャーは可能なら攻撃する。",
+          "race": "トリックス/ビートジョッキー/レクスターズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g397Shinka": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のクリーチャーを２体まで選ぶ。次の自分のターンのはじめまで、それらのクリーチャーは攻撃もブロックもできない。",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "battle",
+                    "owner": "opponent",
+                    "n": 2,
+                    "optional": true,
+                    "g173Targets": true,
+                    "g190Freeze": "self",
+                    "filter": {
+                      "creature": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーを２体まで選ぶ。次の相手のターン中、それらのクリーチャーは可能なら攻撃する。",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "battle",
+                    "owner": "opponent",
+                    "n": 2,
+                    "optional": true,
+                    "g173Targets": true,
+                    "g546Force": "nextOpponent",
+                    "filter": {
+                      "creature": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "2efc6cd4e55253586099f92e7922cfb1ea7828423fba8908201ae70e88e7b24c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp08-087": 4,
+      "dm19-031": 4,
+      "dm19-030": 4,
+      "dm19-062": 4,
+      "dmrp15-006": 4,
+      "dm26rp2-034": 4,
+      "dm24rp2-038": 4,
+      "dmrp20-052": 4
+    }
+  }
+}

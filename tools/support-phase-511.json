@@ -1,0 +1,376 @@
+{
+  "phase": 511,
+  "checkedAt": "2026-11-06",
+  "baseCount": 5035,
+  "description": "そのターン最初の攻撃を強化する7種類。攻撃回数、発生源と攻撃クリーチャーの識別、追加ブレイクの期限を共通処理で扱う。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/39073/"
+  ],
+  "cards": [
+    {
+      "id": "dmr19-033",
+      "name": "アクア煽動兵 ザ・ダンディ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-033",
+      "faces": [
+        {
+          "name": "アクア煽動兵 ザ・ダンディ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のクリーチャーが攻撃する時、それがそのターンはじめての攻撃であれば、このターン、そのクリーチャーはブロックされない。",
+          "race": "リキッド・ピープル閃",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "first": true,
+            "filter": {
+              "creature": true
+            },
+            "g399Attacker": true,
+            "defs": [
+              {
+                "op": "AttackGrant399",
+                "grant": {
+                  "unblockable": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "b2f7e2baad60f936fc736f2b7605eb56d3ca9965ae029795cd518168113a17dd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-071",
+      "name": "センドウ・ニャンコ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-071",
+      "faces": [
+        {
+          "name": "センドウ・ニャンコ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のクリーチャーが攻撃する時、それがそのターンはじめての攻撃であれば、自分のクリーチャーを１体選ぶ。そのターン、そのクリーチャーに「スレイヤー」を与える。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+          "race": "ファンキー・ナイトメア",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "first": true,
+            "filter": {
+              "creature": true
+            },
+            "g399Attacker": true,
+            "defs": [
+              {
+                "op": "Target",
+                "owner": "self",
+                "grant": {
+                  "slayer": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-071.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "f6416dd63ac55d254b6a641a354f42043ff96c2159af520c6b9db46975eea6be",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr20-069",
+      "name": "雪精 ホウホウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-069",
+      "faces": [
+        {
+          "name": "雪精 ホウホウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のクリーチャーが攻撃する時、それがそのターンはじめての攻撃であれば、そのターン、そのクリーチャーのパワーを+3000する。",
+          "race": "スノーフェアリー風/革命軍",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "first": true,
+            "filter": {
+              "creature": true
+            },
+            "g399Attacker": true,
+            "defs": [
+              {
+                "op": "AttackGrant399",
+                "power": 3000
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr20-069.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "e8e4b8a31d037249bd6cde08eaa9ebd50c93e5d5bd5ec5f200b1e3aef3db3760",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr20-042",
+      "name": "雪精 マリニャン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-042",
+      "faces": [
+        {
+          "name": "雪精 マリニャン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のクリーチャーが攻撃する時、それがそのターンはじめての攻撃であれば、自分の山札の上から１枚目を表向きにしてもよい。それがクリーチャーなら自分の手札に加え、それ以外ならマナゾーンに置く。",
+          "race": "スノーフェアリー風/革命軍",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "first": true,
+            "filter": {
+              "creature": true
+            },
+            "g399Attacker": true,
+            "defs": [
+              {
+                "op": "Offer",
+                "g359RevealAll": true,
+                "defs": [
+                  {
+                    "op": "Look",
+                    "g255Search": true,
+                    "n": 1,
+                    "public": true,
+                    "stages": [
+                      {
+                        "n": "all",
+                        "to": "hand",
+                        "filter": {
+                          "creature": true
+                        }
+                      }
+                    ],
+                    "rest": "mana"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr20-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "7ae61b37d27d100430b72ecaa7f2257ee007d02b1bffa984aed367eacd189b90",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr20-044",
+      "name": "先導の使徒ニプラス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-044",
+      "faces": [
+        {
+          "name": "先導の使徒ニプラス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のクリーチャーが攻撃する時、それがそのターンはじめての攻撃であれば、そのターン、そのクリーチャーのパワーを+2000する。",
+          "race": "イニシエート",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "first": true,
+            "filter": {
+              "creature": true
+            },
+            "g399Attacker": true,
+            "defs": [
+              {
+                "op": "AttackGrant399",
+                "power": 2000
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr20-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "47ffd04d0b66945a61135ae8dab39f9ebcf629ad2d4071ceccc7e2453973b41b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-084",
+      "name": "煽動の面 ウルーセ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-084",
+      "faces": [
+        {
+          "name": "煽動の面 ウルーセ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のクリーチャーが攻撃する時、それがそのターンはじめての攻撃であれば、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+          "race": "ビーストフォーク號",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "first": true,
+            "filter": {
+              "creature": true
+            },
+            "g399Attacker": true,
+            "defs": [
+              {
+                "op": "Offer",
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-084.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "6cd5a0edd4f95b12a6a3fac702218723d61a92feb37548a14f0c007dddb5e904",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-047",
+      "name": "煽動の面 フリント",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-047",
+      "faces": [
+        {
+          "name": "煽動の面 フリント",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のクリーチャーが攻撃する時、それがそのターンはじめての攻撃であれば、そのターン、そのクリーチャーはパワーを+5000され、シールドをさらにひとつブレイクする。",
+          "race": "ビーストフォーク號",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "first": true,
+            "filter": {
+              "creature": true
+            },
+            "g399Attacker": true,
+            "defs": [
+              {
+                "op": "AttackGrant399",
+                "power": 5000
+              },
+              {
+                "op": "AttackExtraBreak511",
+                "amount": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "1ea28f8107b80ab82e384bad1b543877d2a5d03a56281b0aaab5a06a738cc3e4",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr19-033": 4,
+      "dmr19-071": 4,
+      "dmr20-069": 4,
+      "dmr20-042": 4,
+      "dmr20-044": 4,
+      "dmr19-084": 4,
+      "dmr19-047": 4
+    }
+  }
+}

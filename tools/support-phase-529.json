@@ -1,0 +1,211 @@
+{
+  "phase": 529,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5114,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36088/"
+  ],
+  "cards": [
+    {
+      "id": "dm36-s10",
+      "name": "恵みの大地ババン・バン・バン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-s10",
+      "faces": [
+        {
+          "name": "恵みの大地ババン・バン・バン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分のマナゾーンにあるカードの枚数を数える。その数だけ、自分の山札の上から、タップしてマナゾーンに置いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nマナ爆誕９(このクリーチャーを自分のマナゾーンから、コスト９を支払って召喚してもよい)",
+          "race": "ガイア・コマンド",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g296ManaBirth": 9,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ManaCountRamp529"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-s10.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "95c8ae1838fa97feb607f730c9394d4d30b84b3cdf4e57356c717bb20bb180ec",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-044",
+      "name": "終断α ドルーター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-044",
+      "faces": [
+        {
+          "name": "終断α ドルーター",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンに自分のフィールドがあれば、自分の手札を１枚捨ててもよい。そうしたら、カードを２枚引く。",
+          "race": "イニシャルズX",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g228Face": {
+                "type": "field"
+              }
+            },
+            "defs": [
+              {
+                "op": "DiscardDraw",
+                "g216DiscardDraw": true,
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "2ac37c6f0c33f05aa09b4389a54896ebb547523d9a45d4b90e40d90cb4001cc8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-052",
+      "name": "終断β ドルドレイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-052",
+      "faces": [
+        {
+          "name": "終断β ドルドレイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、バトルゾーンに自分のフィールドがあれば、そのターン、相手のクリーチャーすべてのパワーを_1000し、自分のクリーチャーすべてのパワーを+1000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "イニシャルズX",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g228Face": {
+                "type": "field"
+              }
+            },
+            "defs": [
+              {
+                "op": "GroupPower",
+                "g214GroupPower": true,
+                "owner": "both",
+                "power": -1000,
+                "ownPower": 1000,
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "caeec3e286de2057e62628c10083bd14d1fcb7c03d8149309ae3b1e005ecfc69",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx15-s07",
+      "name": "超竜の潮流 コンコルド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-s07",
+      "faces": [
+        {
+          "name": "超竜の潮流 コンコルド",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分のアウトレイジ１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、自分のマナゾーンにあるカードの枚数以下のコストを持つ進化ではないアウトレイジを１体、自分のマナゾーンからバトルゾーンに出してもよい。\nT・ブレイカー",
+          "race": "アウトレイジMAX",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "アウトレイジ"
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ManaDeploy523",
+            "origin": "mana",
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "アウトレイジ"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx15-s07.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "9319698d4e51d2a40fbb00df66bbbf459238a888597645e790a965b845d8ab77",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm36-s10": 4,
+      "dmr23-044": 4,
+      "dmr23-052": 4,
+      "dmx15-s07": 4
+    }
+  }
+}

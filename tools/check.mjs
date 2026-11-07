@@ -1,3 +1,63 @@
+import {STANDARD568_DECKS} from './fixtures/standard568.mjs';
+import {STANDARD567_DECKS} from './fixtures/standard567.mjs';
+import {STANDARD566_DECKS} from './fixtures/standard566.mjs';
+import {STANDARD565_DECKS} from './fixtures/standard565.mjs';
+import {STANDARD564_DECKS} from './fixtures/standard564.mjs';
+import {STANDARD563_DECKS} from './fixtures/standard563.mjs';
+import {STANDARD562_DECKS} from './fixtures/standard562.mjs';
+import {STANDARD561_DECKS} from './fixtures/standard561.mjs';
+import {STANDARD560_DECKS} from './fixtures/standard560.mjs';
+import {STANDARD559_DECKS} from './fixtures/standard559.mjs';
+import {STANDARD558_DECKS} from './fixtures/standard558.mjs';
+import {STANDARD557_DECKS} from './fixtures/standard557.mjs';
+import {STANDARD556_DECKS} from './fixtures/standard556.mjs';
+import {STANDARD555_DECKS} from './fixtures/standard555.mjs';
+import {STANDARD554_DECKS} from './fixtures/standard554.mjs';
+import {STANDARD553_DECKS} from './fixtures/standard553.mjs';
+import {STANDARD552_DECKS} from './fixtures/standard552.mjs';
+import {STANDARD551_DECKS} from './fixtures/standard551.mjs';
+import {STANDARD550_DECKS} from './fixtures/standard550.mjs';
+import {STANDARD549_DECKS} from './fixtures/standard549.mjs';
+import {STANDARD548_DECKS} from './fixtures/standard548.mjs';
+import {STANDARD547_DECKS} from './fixtures/standard547.mjs';
+import {STANDARD546_DECKS} from './fixtures/standard546.mjs';
+import {STANDARD545_DECKS} from './fixtures/standard545.mjs';
+import {STANDARD544_DECKS} from './fixtures/standard544.mjs';
+import {STANDARD543_DECKS} from './fixtures/standard543.mjs';
+import {STANDARD542_DECKS} from './fixtures/standard542.mjs';
+import {STANDARD541_DECKS} from './fixtures/standard541.mjs';
+import {STANDARD540_DECKS} from './fixtures/standard540.mjs';
+import {STANDARD539_DECKS} from './fixtures/standard539.mjs';
+import {STANDARD538_DECKS} from './fixtures/standard538.mjs';
+import {STANDARD537_DECKS} from './fixtures/standard537.mjs';
+import {STANDARD536_DECKS} from './fixtures/standard536.mjs';
+import {STANDARD535_DECKS} from './fixtures/standard535.mjs';
+import {STANDARD534_DECKS} from './fixtures/standard534.mjs';
+import {STANDARD533_DECKS} from './fixtures/standard533.mjs';
+import {STANDARD532_DECKS} from './fixtures/standard532.mjs';
+import {STANDARD531_DECKS} from './fixtures/standard531.mjs';
+import {STANDARD530_DECKS} from './fixtures/standard530.mjs';
+import {STANDARD529_DECKS} from './fixtures/standard529.mjs';
+import {STANDARD528_DECKS} from './fixtures/standard528.mjs';
+import {STANDARD527_DECKS} from './fixtures/standard527.mjs';
+import {STANDARD526_DECKS} from './fixtures/standard526.mjs';
+import {STANDARD525_DECKS} from './fixtures/standard525.mjs';
+import {STANDARD524_DECKS} from './fixtures/standard524.mjs';
+import {STANDARD523_DECKS} from './fixtures/standard523.mjs';
+import {STANDARD522_DECKS} from './fixtures/standard522.mjs';
+import {STANDARD521_DECKS} from './fixtures/standard521.mjs';
+import {STANDARD520_DECKS} from './fixtures/standard520.mjs';
+import {STANDARD519_DECKS} from './fixtures/standard519.mjs';
+import {STANDARD518_DECKS} from './fixtures/standard518.mjs';
+import {STANDARD517_DECKS} from './fixtures/standard517.mjs';
+import {STANDARD516_DECKS} from './fixtures/standard516.mjs';
+import {STANDARD515_DECKS} from './fixtures/standard515.mjs';
+import {STANDARD514_DECKS} from './fixtures/standard514.mjs';
+import {STANDARD513_DECKS} from './fixtures/standard513.mjs';
+import {STANDARD512_DECKS} from './fixtures/standard512.mjs';
+import {STANDARD511_DECKS} from './fixtures/standard511.mjs';
+import {STANDARD510_DECKS} from './fixtures/standard510.mjs';
+import {STANDARD509_DECKS} from './fixtures/standard509.mjs';
 import {STANDARD508_DECKS} from './fixtures/standard508.mjs';
 import {STANDARD507_DECKS} from './fixtures/standard507.mjs';
 import {STANDARD506_DECKS} from './fixtures/standard506.mjs';
@@ -1250,3 +1310,123 @@ for(const deck of STANDARD506_DECKS)if(validateDeck(deck).length||registry.cover
 for(const deck of STANDARD507_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid legacy death trigger fixture');console.log('Checked standard507 legal forties: legacy death triggers, simultaneous sweeps, named mana deployment and own shield movement.');
 
 for(const deck of STANDARD508_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid evolution and tapped-count fixture');console.log('Checked standard508 legal forties: evolution or linked Gods, conditional self grants and three tapped allies at turn end.');
+
+for(const deck of STANDARD509_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid block and conditional battle fixture');console.log('Checked standard509 legal forties: opponent choices, block triggers, other Guardians, exact current power, Oni Time and shield-conditioned removal.');
+
+for(const deck of STANDARD510_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid modal death and multicolor fixture');console.log('Checked standard510 legal forties: modal death triggers, grave recovery, hand cycling, multiple untaps and mono or multicolor removal.');
+
+for(const deck of STANDARD511_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid first attack watcher fixture');console.log('Checked standard511 legal forties: first-attack power, unblockable and slayer grants, reveal and ramp, extra shield breaks and attacker identity.');
+
+for(const deck of STANDARD512_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid spell-control and evolution fixture');console.log('Checked standard512 legal forties: spell color taxes and locks, evolution protection, entry draw, reusable spell and unlimited deck copies.');
+
+for(const deck of STANDARD513_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid cost-budget removal fixture');console.log('Checked standard513 legal forties: inclusive total-cost removal, revolution shield conditions and draw-before-deployment.');
+
+for(const deck of STANDARD514_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid public top-card branching fixture');console.log('Checked standard514 legal forties: public top-card reveal, conditional deployment, optional reveal, hand or mana branches and evolution bases.');
+
+for(const deck of STANDARD515_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid targeted power and extra-break fixture');console.log('Checked standard515 legal forties: targeted power, Power Attacker, unblockable, extra shield breaks, leave triggers and mana civilization counts.');
+
+for(const deck of STANDARD516_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid conditional ramp and recovery fixture');console.log('Checked standard516 legal forties: conditional tapped ramp, recovery across mana and grave, death or entry deployment and canonical print deduplication.');
+
+for(const deck of STANDARD517_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid conditional discard-and-draw fixture');console.log('Checked standard517 legal forties: mandatory self-discard, actual-discard conditions, civilization and race qualifiers, shield G Strike and speed attacker.');
+
+for(const deck of STANDARD518_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid effect-battle and ninja fixture');console.log('Checked standard518 legal forties: forced and optional effect battles, creature shield trigger, bottom-deck removal, draw continuation and Ninja Strike eight.');
+
+for(const deck of STANDARD519_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid targeted power, Slayer and attack-tap fixture');console.log('Checked standard519 legal forties: other-creature power boosts, Slayer grants, Guardman, creature shield trigger and optional attack-time taps.');
+
+for(const deck of STANDARD520_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid conditional milling and grave recovery fixture');console.log('Checked standard520 legal forties: conditional attack-time mill, unblockable, untap, Power Attacker and D2-field grave recovery.');
+
+for(const deck of STANDARD521_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid next-start blocker grant and attack-tap fixture');console.log('Checked standard521 legal forties: next-own-start blocker and power grants, spell and leave effects, creature shield trigger and either-player Dark or Fire attack taps.');
+
+for(const deck of STANDARD522_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid mana-count comparison and public top-spell fixture');console.log('Checked standard522 legal forties: opponent-mana cost sweeps, strict physical mana comparisons, public spell recovery on attack, NEO evolution and Kirifuda Dash.');
+
+for(const deck of STANDARD523_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid mana-bound deployment and creature-only free-summon fixture');console.log('Checked standard523 legal forties: mana-bound grave and mana deployment, mandatory and optional choices, creature-only free summons, NEO and Star evolution, and Shinkalize.');
+
+for(const deck of STANDARD524_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid opponent-use blocker watcher fixture');console.log('Checked standard524 legal forties: actual opposing summons and spell casts, temporary self-blocker grants, non-summon exclusions and pending source identity.');
+
+for(const deck of STANDARD525_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid after-battle self-destruction and physical-unit tracking fixture');console.log('Checked standard525 legal forties: shield-trigger blockers, after-battle self destruction, win triggers, EX-life and physical-unit identity.');
+
+for(const deck of STANDARD526_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid conditional entry-speed and whole-field power reduction fixture');console.log('Checked standard526 legal forties: conditional entry milling, temporary speed attacker, opposing power reduction, shield triggers, NEO evolution and grave recovery.');
+
+for(const deck of STANDARD527_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid ordered entry and shield-conditioned power reduction fixture');console.log('Checked standard527 legal forties: independent entry ordering, multicolor mana conditions, mandatory discard and draw, optional recovery, Oni Time and creature shield triggers.');
+
+for(const deck of STANDARD528_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid first-attack disruption and conditional untap fixture');console.log('Checked standard528 legal forties: first-attack tap locks and opponent discard, Labyrinth entry taps, hand-conditioned untap and draw, battle power and B.A.D. delayed destruction.');
+
+for(const deck of STANDARD529_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid field conditions and mana-count deployment fixture');console.log('Checked standard529 legal forties: own-field discard and draw, simultaneous opposite power changes, fixed-count tapped ramp, Mana Birth nine and mana-bound Outrage deployment.');
+
+for(const deck of STANDARD530_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid judge deployment and top-library Cyber Lord fixture');console.log('Checked standard530 legal forties: single-judge mana and grave deployment, optional dragon searches, top-two Cyber Lord selection and library ordering.');
+
+for(const deck of STANDARD531_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid typed library search fixture');console.log('Checked standard531 legal forties: evolution and nature searches, God or Phoenix recovery, Horn Beast evolution, after-battle destruction and judge-enabled Heavens shield additions.');
+
+for(const deck of STANDARD532_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid library deployment and delayed destruction fixture');console.log('Checked standard532 legal forties: optional death searches, capped top-library deployment, Hunter and Dragon conjunction, B.A.D., hunting and delayed destruction.');
+
+for(const deck of STANDARD533_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid shield recovery and mana stacking fixture');console.log('Checked standard533 legal forties: EX-life, Mach Fighter and G-Strike, current-power death sweeps, ordered mana returns, shield recovery and creature triggers.');
+
+for(const deck of STANDARD534_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid mana count and conditional Slayer fixture');console.log('Checked standard534 legal forties: mana creature reductions, civilization payment, Mana Armament and color-qualified Slayer.');
+
+for(const deck of STANDARD535_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid shield group recovery fixture');console.log('Checked standard535 legal forties: multiple shield group selection, optional recovery, card-only recovery, G-Strike, Shield Saver and Abyss Rush.');
+
+for(const deck of STANDARD536_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid moon and defensive trigger fixture');console.log('Checked standard536 legal forties: physical shield departures, Oshioki Moon, block judging, temporary power, conditional blockers and mandatory end untap.');
+
+for(const deck of STANDARD537_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid delayed shield and untap fixture');console.log('Checked standard537 legal forties: source-independent scheduled abilities, next-own-turn shield recovery, end-turn hand shielding, judge-delayed group untap and all-shield reset.');
+
+for(const deck of STANDARD538_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid own creature count and target fixture');console.log('Checked standard538 legal forties: dragon and tapped creature counts, simultaneous target selection, repeated judging and strict below-cost mana removal.');
+
+for(const deck of STANDARD539_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid Joker zone-count fixture');console.log('Checked standard539 legal forties: Joker counts across zones, mana summons, conditional entry draws and static grants.');
+
+for(const deck of STANDARD540_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid Joker attack fixture');console.log('Checked standard540 legal forties: player attack permissions and obligations, conditional first-attack untaps, battle-only Joker power and spell discounts.');
+
+for(const deck of STANDARD541_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid conditional first-attack fixture');console.log('Checked standard541 legal forties: unconditional, discard, multicolor, evolution and own creature-to-shield conditions on first attacks, Star and NEO evolution, Oni Time death effects and G-Strike.');
+
+for(const deck of STANDARD542_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid delayed attack untap fixture');console.log('Checked standard542 legal forties: attack-end scheduling, source-independent delayed untaps, D2 field, facedown mana, Accel and optional ally sacrifice.');
+
+for(const deck of STANDARD543_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid Shinka delayed fixture');console.log('Checked standard543 legal forties: Shinka first attacks, delayed untaps, next-start protection and evolution search.');
+
+for(const deck of STANDARD544_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid Shinka host fixture');console.log('Checked standard544 legal forties: evolved host costs and fights, grave-count power reduction, revealed evolution search and shield comparisons.');
+
+for(const deck of STANDARD545_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid GS reveal fixture');console.log('Checked standard545 legal forties: GS reveal triggers, Shinka modes, grave shuffle, optional full-hand discard and end-turn mill recovery.');
+
+for(const deck of STANDARD546_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid forced attack fixture');console.log('Checked standard546 legal forties: scoped attack obligations, attacked-source auras, GGG replacement, opponent-start triggers and Fire space charge.');
+
+for(const deck of STANDARD547_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid tamaseed revival fixture');console.log('Checked standard547 legal forties: tamaseed sacrifices, grave deployment, creature-or-seed targets, owner shields and seed turn triggers.');
+
+for(const deck of STANDARD548_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid matching-tamaseed fixture');console.log('Checked standard548 legal forties: same-name seed entry watches, independent trigger ordering, Shield Triggers and creature-or-seed cost limits.');
+
+for(const deck of STANDARD549_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid conditional resource fixture');console.log('Checked standard549 legal forties: independent hand, mana and shield comparisons, other tamaseeds, seed modal removal and element shielding.');
+
+for(const deck of STANDARD550_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid total-cost deployment fixture');console.log('Checked standard550 legal forties: inclusive total-cost deployment, card-count caps, mixed origins, race filters and evolution ordering.');
+
+for(const deck of STANDARD551_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid conditional deployment fixture');console.log('Checked standard551 legal forties: grave sympathy, element revival, hand and mana budgets, delayed destruction and death-triggered speed attackers.');
+
+for(const deck of STANDARD552_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid library deployment fixture');console.log('Checked standard552 legal forties: full-library searches, top-four deployment, inclusive cost caps, tapped entry, bottom order and death triggers.');
+
+for(const deck of STANDARD553_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid cost removal fixture');console.log('Checked standard553 legal forties: conditional triggers, inclusive total costs, dragon mana counts and shared destinations.');
+
+for(const deck of STANDARD554_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid shield resource fixture');console.log('Checked standard554 legal forties: grouped shield recovery, delayed recovery, shield mana and dynamic Oni Time.');
+
+for(const deck of STANDARD555_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid spell reuse fixture');console.log('Checked standard555 legal forties: grave and hand casting, spell finish destinations, mandatory choices and current restrictions.');
+
+for(const deck of STANDARD556_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid attack spell reuse fixture');console.log('Checked standard556 legal forties: spell watches, optional mills, dark spell face filters, unrestricted grave casting and NEO attack watches.');
+
+for(const deck of STANDARD557_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid group reinforcement fixture');console.log('Checked standard557 legal forties: additive breaks, conditional speed, low cost elements and shield mana.');
+
+for(const deck of STANDARD558_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid Marshall Touch fixture');console.log('Checked standard558 legal forties: optional allied returns, visible cost snapshots, source-independent rewards, Mana Birth and Shield Trigger.');
+
+for(const deck of STANDARD559_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid blocked attack fixture');console.log('Checked standard559 legal forties: being-blocked triggers, effect break interruption, optional ramps, untapping and canonical print names.');
+
+for(const deck of STANDARD560_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid summon support fixture');console.log('Checked standard560 legal forties: optional aura amounts, creature and seed providers, mana conditions, remaining hand counts and Beat Jockey watches.');
+
+for(const deck of STANDARD561_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid counted power fixture');console.log('Checked standard561 legal forties: battlefield civilizations, hand counts, tribal grave counts, tamaseed power and temporary spell boosts.');
+
+for(const deck of STANDARD562_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid delayed untap fixture');console.log('Checked standard562 legal forties: Kira blocker aura, end-step choices, multiple delayed targets, untap locks and charger completion.');
+
+for(const deck of STANDARD563_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid conditional NEO fixture');console.log('Checked standard563 legal forties: normal and NEO summons, conditional power, entry effects, battle-win breaks and last-known evolution state.');
+
+for(const deck of STANDARD564_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid Bara fixture');console.log('Checked standard564 legal forties: distinct element costs, conditional power and auras, independent entry triggers, end effects and source departure.');
+
+for(const deck of STANDARD565_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid opponent turn and protection fixture');console.log('Checked standard565 legal forties: opponent start and end, attack history, temporary protection and face-up shields.');
+
+for(const deck of STANDARD566_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid Evo Charger fixture');console.log('Checked standard566 legal forties: Evo Charger mana completion, evolution sources, grave top ordering, evolution search and two-turn attack restrictions.');
+
+for(const deck of STANDARD567_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid player attack restriction fixture');console.log('Checked standard567 legal forties: separate power and player attack durations, Revolution Two, tapped mana and allied tribe requirements.');
+
+for(const deck of STANDARD568_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid conditional alternative summon fixture');console.log('Checked standard568 legal forties: distinct payment colors, printed card identity, conditional paid summons, NEO evolution and origin permissions.');

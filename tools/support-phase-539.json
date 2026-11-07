@@ -1,0 +1,258 @@
+{
+  "phase": 539,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5161,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31624/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp05-s01",
+      "name": "ガヨウ神",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-s01",
+      "faces": [
+        {
+          "name": "ガヨウ神",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、バトルゾーンまたはマナゾーンに自分のジョーカーズが合計５枚以上あれば、カードを２枚引く。その後、ジョーカーズを１枚、自分の手札から捨ててもよい。そうしたら、カードを２枚引く。",
+          "race": "ジョーカーズ/スペシャルズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g539Jokers": 5
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 2
+              },
+              {
+                "op": "DiscardDraw",
+                "g216DiscardDraw": true,
+                "n": 2,
+                "filter": {
+                  "g539JokerCard": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-s01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "02f53652cdf20bf9897502e35f00d186dbc658f721665f69ce572f30e60d8381",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-011",
+      "name": "バイナラドア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-011",
+      "faces": [
+        {
+          "name": "バイナラドア",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンまたはマナゾーンに自分のジョーカーズが合計３枚以上あれば、相手のクリーチャーを１体選び、相手はそれを自身の山札の一番下に置く。その後、自分はカードを１枚引く。",
+          "race": "ジョーカーズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g539Jokers": 3
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "deck"
+              },
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "156c62266025d400ee7c1c6ac22abdadad79b48c65165f58db1d0ffb4aace977",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp10-s11",
+      "name": "バングリッドX7",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-s11",
+      "faces": [
+        {
+          "name": "バングリッドX7",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこのクリーチャーが攻撃する時、自分の山札の上から１枚をマナゾーンに置く。\n自分のターン中、クリーチャーを１体、自分のマナゾーンから召喚してもよい。\nバトルゾーンまたはマナゾーンに自分のジョーカーズが合計６枚以上あれば、このクリーチャーを自分のマナゾーンから召喚してもよい。",
+          "race": "ジョーカーズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "g450ZoneSummon": {
+          "origin": "mana",
+          "filter": {
+            "creature": true
+          }
+        },
+        "g539SelfMana": 6,
+        "g34Attack": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-s11.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "01e05b2265b6090d1f841b368f9f49b676a5952ebe16f19980be3efcab7366f6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex03-037",
+      "name": "ピアノザウルス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-037",
+      "faces": [
+        {
+          "name": "ピアノザウルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "Ｊ・Ｏ・Ｅ ２ (このクリーチャーを、コストを２少なくして召喚してもよい。そうしたら、このターンの終わりに、これを自分の山札の一番下に置く。下に置いたら、カードを１枚引く)\nスピードアタッカー\nW・ブレイカー\nバトルゾーンまたはマナゾーンに自分のジョーカーズが合計10枚以上あれば、このクリーチャーのパワーを+8000し、「T・ブレイカー」を与える。",
+          "race": "ジョーカーズ/スペシャルズ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "joeDiscount": 2,
+        "speedAttacker": true,
+        "breaker": 2,
+        "g260Self": {
+          "filter": {
+            "g539Jokers": 10
+          },
+          "grants": {
+            "power": 8000,
+            "breaker": 3
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex03-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "bca2491b64c4036e83cbd302bcb4a8b2ba61a2e1d684e12e36e8cf23c54d4e34",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy16-022",
+      "name": "ワッショイ万太郎",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-022",
+      "faces": [
+        {
+          "name": "ワッショイ万太郎",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "NEO進化：自分のジョーカーズ・クリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nバトルゾーンまたはマナゾーンに自分のジョーカーズが合計４枚以上あれば、このクリーチャーに「パワーアタッカー+6000」と「W・ブレイカー」を与える。（「パワーアタッカー+6000」と「W・ブレイカー」を持つクリーチャーは、攻撃中、パワーを+6000され、シールドを２つブレイクする）",
+          "race": "ジョーカーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "race": "ジョーカーズ"
+            }
+          ]
+        },
+        "g260Self": {
+          "filter": {
+            "g539Jokers": 4
+          },
+          "grants": {
+            "attackBonus": 6000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "71207011436340f9e58c39e8a8ad49c318910d22164867ed590910f822a41d52",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp05-s01": 4,
+      "dmrp01-011": 4,
+      "dmrp10-s11": 4,
+      "dmex03-037": 4,
+      "promoy16-022": 4
+    }
+  }
+}

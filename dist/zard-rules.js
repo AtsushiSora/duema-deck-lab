@@ -67,7 +67,7 @@ export function createZardRules(api){
   spellCast(s,p){(s.g2Spells??=[null,null])[p]=s.turn;},
   end(s){const p=s.active;return s.g2Spells?.[p]===s.turn?creatures(s,p).filter(x=>effective(x,s).zardEnd).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('g2_End',p,x.cardId)})):[];},
   shieldLeft(s,p,shield){for(const x of creatures(s,p))if(effective(x,s).dolf&&x.exLifeShieldUid===shield.uid)on(s,p,x,'g2_Dolf');},
-  allowedSpell(s,p,c){return colors(c).filter(c=>c!=='無色').length>1||!creatures(s,1-p).some(x=>effective(x,s).dolf);},
+  allowedSpell(s,p,c){return colors(c).filter(c=>c!=='無色').length>1||!creatures(s,1-p).some(x=>{const d=effective(x,s);return d.dolf||d.g512MultiSpellOnly;});},
   battleWins(s,p,w){const x=w&&ownCreature(s,p,w.uid);return x&&effective(x,s).revZero&&s.players[p].shields.length===0?[{player:p,uid:x.uid,source:x.cardId,task:task('g2_Untap',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})}]:[];},
   attackStart(s,p,a){if(!invasionMatches(s,a))return;const remaining=['hand','grave','mana','battle'].flatMap(origin=>s.players[p][origin].filter(x=>x.uid!==a.uid&&card(x).sssInvasion&&(origin!=='battle'||!api.ignored(s,x))).map(x=>({uid:x.uid,origin,cardId:x.cardId,serial:x.zoneSerial||0})));if(remaining.length)put(s,task('g2_Declare',p,a.cardId,{remaining,declared:[],attacker:a.uid}));},
   discarded(s,t,x,discarded){if(t.g2Boss&&discarded)put(s,task('g2_BossDeploy',t.g2Boss.p,t.g2Boss.source,{discardId:x.cardId}));},

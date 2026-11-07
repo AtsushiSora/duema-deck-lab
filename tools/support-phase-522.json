@@ -1,0 +1,167 @@
+{
+  "phase": 522,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5090,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmrp15-018",
+      "name": "サイコロ町の半兵衛",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-018",
+      "faces": [
+        {
+          "name": "サイコロ町の半兵衛",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "キリフダッシュ [ff02]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを[ff02]支払って召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手のマナゾーンにあるカードの枚数よりコストが大きい相手のクリーチャーをすべて破壊する。",
+          "race": "ジョーカーズ/チーム切札",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "kirifudaDash": 2,
+        "g402DashColors": [
+          "火"
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ManaCostSweep522"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "d4bed7a20f436552f334ebffa4a83dc0ecef8ed3dbe4a38099054e019e9a1600",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp06-037",
+      "name": "貝獣 イカリヤ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-037",
+      "faces": [
+        {
+          "name": "貝獣 イカリヤ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "NEO進化：自分の水のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を表向きにする。その中から呪文をすべて自分の手札に加え、残りを墓地に置く。",
+          "race": "ムートピア",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "g34Attack": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "stages": [
+              {
+                "n": "all",
+                "to": "hand",
+                "filter": {
+                  "spell": true
+                }
+              }
+            ],
+            "rest": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "91e9396319b8a99d1457d7497e7c38b67d988fb6c0ebaaecd50d5febcf1d1473",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp03-061",
+      "name": "地の学び 至脚",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-061",
+      "faces": [
+        {
+          "name": "地の学び 至脚",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、相手のマナゾーンにあるカードの枚数が自分のより多ければ、自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "メタリカ",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "mana",
+                "atLeastOpponent": true
+              }
+            },
+            "defs": [],
+            "elseDefs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-061.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "543f7460db4ffbb371e80704c2050d6bdd635cc966ec9ef5830387107c969be8",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp15-018": 4,
+      "dmrp06-037": 4,
+      "dmrp03-061": 4
+    }
+  }
+}

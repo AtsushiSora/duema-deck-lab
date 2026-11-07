@@ -1,0 +1,215 @@
+{
+  "phase": 532,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5127,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36483/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36484/"
+  ],
+  "cards": [
+    {
+      "id": "dmex02-059",
+      "name": "“末法”チュリス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-059",
+      "faces": [
+        {
+          "name": "“末法”チュリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "B・A・D １（このクリーチャーを、コストを１少なくして召喚してもよい。そうしたら、このターンの終わりにこのクリーチャーを破壊する）\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を見る。その中からビートジョッキーを１体バトルゾーンに出してもよい。残りを好きな順序で自分の山札の一番下に置く。このターンの終わりに、そのビートジョッキーを破壊する。",
+          "race": "ビートジョッキー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "bad": 1,
+        "g175Bad": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "n": 3,
+            "limit": 1,
+            "rest": "bottom",
+            "delayed": "grave",
+            "filter": {
+              "creature": true,
+              "race": "ビートジョッキー"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex02-059.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "b21b4b400bff97355136eac341a4900bbcc8f47a7314fdaa0f4e19499ddd74ad",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx06-s02",
+      "name": "ドラゴンフレンド・カチュア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx06-s02",
+      "faces": [
+        {
+          "name": "ドラゴンフレンド・カチュア",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から７枚を見る。その中からコスト７以下の進化ではないドラゴン/ハンターを１体、バトルゾーンに出してもよい。その後、山札をシャッフルする。そのクリーチャーは「スピードアタッカー」を得る。そのターンの終わりに、そのクリーチャーを破壊する。\nハンティング(バトル中、このクリーチャーのパワーは、バトルゾーンにある自分のハンター１体につき+1000される)",
+          "race": "スノーフェアリー/ハンター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g166Hunting": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "n": 7,
+            "limit": 1,
+            "rest": "shuffle",
+            "delayed": "grave",
+            "grant": {
+              "speedAttacker": true
+            },
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "ドラゴン",
+              "raceAny": [
+                "ハンター"
+              ],
+              "max": 7
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx06-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "7aa874d4b23d4a88b714c7dbe0158e3d5aa9c7ea9282604904392de038b40816",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr08-035",
+      "name": "パンダっ子パンダ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-035",
+      "faces": [
+        {
+          "name": "パンダっ子パンダ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが破壊された時、自分の山札を見る。その中から、コスト３以下の進化ではないドリームメイトを１体選び、バトルゾーンに出してもよい。その後、山札をシャッフルする。",
+          "race": "ドリームメイト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "LookDeploy530",
+            "g201Search": true,
+            "n": "all",
+            "limit": 1,
+            "rest": "shuffle",
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "ドリームメイト",
+              "max": 3
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "86872c3a037a416d4aa2d77c2429818a53ed899326cc27233a709a5762e2fb7e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr08-031",
+      "name": "鬼の襲撃 モエル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-031",
+      "faces": [
+        {
+          "name": "鬼の襲撃 モエル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "パワーアタッカー+4000(攻撃中、このクリーチャーのパワーは+4000される)\nW・ブレイカー\nこのクリーチャーが破壊された時、自分の山札を見る。その中から、コスト８以下の進化ではないハンターを１体選び、バトルゾーンに出してもよい。その後、山札をシャッフルする。",
+          "race": "ヒューマノイド/ハンター/エイリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackBonus": 4000,
+        "breaker": 2,
+        "g172Death": [
+          {
+            "op": "LookDeploy530",
+            "g201Search": true,
+            "n": "all",
+            "limit": 1,
+            "rest": "shuffle",
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "ハンター",
+              "max": 8
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "2d07ae46c1481dd47dde41d0663e6970e7674f00e1711439aab581509baf4c5f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex02-059": 4,
+      "dmx06-s02": 4,
+      "dmr08-035": 4,
+      "dmr08-031": 4
+    }
+  }
+}

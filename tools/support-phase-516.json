@@ -1,0 +1,419 @@
+{
+  "phase": 516,
+  "checkedAt": "2026-11-06",
+  "baseCount": 5063,
+  "description": "最初にマナへ置いたカードの種族で追加ブーストやドローを分岐し、任意のマナ回収・墓地回収・小型展開にも対応する。新規バッチでは同名別印刷を1種類として照合・登録する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm25ex1-086",
+      "name": "ザールベル・ラピア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-086",
+      "faces": [
+        {
+          "name": "ザールベル・ラピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から１枚をタップしてマナゾーンに置く。それがフェニックス・カードまたはファイアー・バード・カードなら、自分の山札の上からもう１枚、タップしてマナゾーンに置く。",
+          "race": "ファイアー・バード/アース・ドラゴン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RampMatch516",
+            "filter": {
+              "any": [
+                {
+                  "anyFaceRace": "フェニックス"
+                },
+                {
+                  "anyFaceRace": "ファイアー・バード"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex1-086.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "2bd2a9e37ae43472c00daee3f23646f100d58eccbe6f7987a1bdcb79bb740b98",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25bd2-012",
+      "name": "叡光の精霊アレックス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25bd2-012",
+      "faces": [
+        {
+          "name": "叡光の精霊アレックス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\nブロッカー ブロッカー\nこのクリーチャーが出た時、自分の山札の上から１枚をタップしてマナゾーンに置く。それがエンジェル・コマンド・カードなら、自分の山札の上からもう１枚、タップしてマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻してもよい。",
+          "race": "エンジェル・コマンド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RampMatch516",
+            "filter": {
+              "anyFaceRace": "エンジェル・コマンド"
+            },
+            "after": [
+              {
+                "op": "Select",
+                "origin": "mana",
+                "to": "hand",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25bd2-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "448b99ed739ae45be1179daa35c992abc35d51e18aacfe5d73fc49d67c773a7f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex03-031",
+      "name": "月の死神 ベル・ヘル・デ・スカル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-031",
+      "faces": [
+        {
+          "name": "月の死神 ベル・ヘル・デ・スカル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、カードを１枚、自分のマナゾーンまたは墓地から手札に戻してもよい。",
+          "race": "デーモン・コマンド/ビーストフォーク",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "zones": [
+              "mana",
+              "grave"
+            ],
+            "to": "hand",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex03-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "82eb9f1868780333fac296ae6a4efbbecefba4b9f990737263c281a79701b90e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-041",
+      "name": "護龍目 レヴィータ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-041",
+      "faces": [
+        {
+          "name": "護龍目 レヴィータ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがバトルゾーンに出た時、コスト３以下のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。",
+          "race": "ジュラシック・コマンド・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "43a2e439709112222ba3910d147fd1388656d76d4fdcb2e6a034f6ddd5578a65",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd20-011",
+      "name": "守護炎龍 レヴィヤ・ターン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd20-011",
+      "faces": [
+        {
+          "name": "守護炎龍 レヴィヤ・ターン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが破壊された時、コスト３以下のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "レッド・コマンド・ドラゴン/スノーフェアリー",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            }
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd20-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "f414d1e72b3efb7779ccf5119aa0f0828175c1ca117f84ae75adb233fd1234d7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25bd3-020",
+      "name": "伝説龍覇 グレンアイラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25bd3-020",
+      "faces": [
+        {
+          "name": "伝説龍覇 グレンアイラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火/自然",
+          "civilizations": [
+            "水",
+            "火",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から１枚をタップしてマナゾーンに置く。それがドラグナー・カードなら、自分の山札の上からもう１枚、タップしてマナゾーンに置く。それ以外なら、カードを１枚引く。",
+          "race": "ガイアール・コマンド・ドラゴン/ヒューマノイド爆/ドラグナー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RampMatch516",
+            "filter": {
+              "anyFaceRace": "ドラグナー"
+            },
+            "elseDraw": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25bd3-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "0b114579088511a4acf0ace3bf9c1ebbb90ec27041feda8c266571c0471349d0",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-06",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25ex1-086": 4,
+      "dm25bd2-012": 4,
+      "dmex03-031": 4,
+      "dmr23-041": 4,
+      "dmd20-011": 4,
+      "dm25bd3-020": 4,
+      "dmd33-010": 4,
+      "promoy12-033": 4
+    }
+  },
+  "printAliases": [
+    {
+      "id": "dmd33-010",
+      "name": "月の死神ベル・ヘル・デ・スカル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd33-010",
+      "faces": [
+        {
+          "name": "月の死神ベル・ヘル・デ・スカル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、カードを１枚、自分のマナゾーンまたは墓地から手札に戻してもよい。",
+          "race": "デーモン・コマンド/ビーストフォーク",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "zones": [
+              "mana",
+              "grave"
+            ],
+            "to": "hand",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "canonicalId": "dmex03-031",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd33-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "24c1fd8d31425e3a817f2bb330209e011e4c1012fe48241f02cb63675b22fd77",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy12-033",
+      "name": "守護炎龍レヴィヤ・ターン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-033",
+      "faces": [
+        {
+          "name": "守護炎龍レヴィヤ・ターン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが破壊された時、コスト３以下のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "レッド・コマンド・ドラゴン/スノーフェアリー",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            }
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 3
+            }
+          }
+        ]
+      },
+      "canonicalId": "dmd20-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy12-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-06",
+        "sha256": "a70afdf0dacca8b941300ed525e17a3b9e27902a949177830bffcacb9675c31a",
+        "facesMatched": true
+      }
+    }
+  ]
+}
