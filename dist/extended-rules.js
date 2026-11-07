@@ -1,14 +1,14 @@
-import {createGZeroRules} from './gzero-rules.js?v=0.678.0';
-import {createRequested394Rules} from './requested394-rules.js?v=0.678.0';
-import {createRequested393SuperguardRules} from './requested393-superguard.js?v=0.678.0';
-import {createRequested393ChangeRules} from './requested393-change-rules.js?v=0.678.0';
-import {createRequested393DispectorRules} from './requested393-dispector-rules.js?v=0.678.0';
-import {createRequested393JokerRules} from './requested393-joker-rules.js?v=0.678.0';
-import {createRequested393PuppetRules} from './requested393-puppet-rules.js?v=0.678.0';
-import {createPhoto167Rules} from './photo167-rules.js?v=0.678.0';
+import {createGZeroRules} from './gzero-rules.js?v=0.682.0';
+import {createRequested394Rules} from './requested394-rules.js?v=0.682.0';
+import {createRequested393SuperguardRules} from './requested393-superguard.js?v=0.682.0';
+import {createRequested393ChangeRules} from './requested393-change-rules.js?v=0.682.0';
+import {createRequested393DispectorRules} from './requested393-dispector-rules.js?v=0.682.0';
+import {createRequested393JokerRules} from './requested393-joker-rules.js?v=0.682.0';
+import {createRequested393PuppetRules} from './requested393-puppet-rules.js?v=0.682.0';
+import {createPhoto167Rules} from './photo167-rules.js?v=0.682.0';
 import{createUtility161Rules}from'./utility161-rules.js?v=0.227.0';
 import{createPhoto160Rules}from'./photo160-rules.js?v=0.227.0';
-import {createPhoto159Rules} from './photo159-rules.js?v=0.678.0';
+import {createPhoto159Rules} from './photo159-rules.js?v=0.682.0';
 import {createUtilityHandSupport} from './utility-hand-support.js?v=0.161.0';
 import {createUtilityDispectorSeeds} from './utility-dispector-seeds.js?v=0.148.0';
 import {createUtilityNatureDeployment} from './utility-nature-deployment.js?v=0.144.0';
@@ -29,11 +29,11 @@ import {createUtilityTideRules} from './utility-tide-rules.js?v=0.130.0';
 import {createUtilityFireRules} from './utility-fire-rules.js?v=0.169.0';
 import {createUtilityLightRules} from './utility-light-rules.js?v=0.128.0';
 import {createUtilityLibraryMana} from './utility-library-mana.js?v=0.127.0';
-import {createUtilityBlockRules} from './utility-block-rules.js?v=0.678.0';
+import {createUtilityBlockRules} from './utility-block-rules.js?v=0.682.0';
 import {createUtilityShieldSpells} from './utility-shield-spells.js?v=0.124.0';
 import {createUtilityKnightRules} from './utility-knight-rules.js?v=0.124.0';
 import {createUtilityModalRules} from './utility-modal-rules.js?v=0.161.0';
-import {createUtilitySacrificeRules} from './utility-sacrifice-rules.js?v=0.678.0';
+import {createUtilitySacrificeRules} from './utility-sacrifice-rules.js?v=0.682.0';
 import {createUtilityRecoveryRules} from './utility-recovery-rules.js?v=0.119.0';
 import {createUtilityExchangeRules} from './utility-exchange-rules.js?v=0.118.0';
 import {createUtilityBattleRules} from './utility-battle-rules.js?v=0.117.0';
@@ -46,47 +46,47 @@ import {createUtilityManaRules} from './utility-mana-rules.js?v=0.111.0';
 import {createUtilityDefenseRules} from './utility-defense-rules.js?v=0.168.0';
 import {createUtilityTacticsRules} from './utility-tactics-rules.js?v=0.109.0';
 import {createUtilityControlRules} from './utility-control-rules.js?v=0.227.0';
-import {createUtilityExpansionRules} from './utility-expansion-rules.js?v=0.678.0';
+import {createUtilityExpansionRules} from './utility-expansion-rules.js?v=0.682.0';
 import {createUtilityWaterRules} from './utility-water-rules.js?v=0.227.0';
-import {createUtilityNatureRules} from './utility-nature-rules.js?v=0.678.0';
+import {createUtilityNatureRules} from './utility-nature-rules.js?v=0.682.0';
 import {createUtilityDarkRules} from './utility-dark-rules.js?v=0.105.0';
 import {createSagaChampionRules} from './champion-saga-rules.js?v=0.105.0';
 import {createControlChampionRules} from './champion-control-rules.js?v=0.104.0';
 import {createSeedChampionRules} from './champion-seed-rules.js?v=0.104.0';
-import {createChampionCyberRules} from './champion-cyber-rules.js?v=0.678.0';
-import {createChampionFirebirdRules} from './champion-firebird-rules.js?v=0.678.0';
+import {createChampionCyberRules} from './champion-cyber-rules.js?v=0.682.0';
+import {createChampionFirebirdRules} from './champion-firebird-rules.js?v=0.682.0';
 import {createCombatChampionRules} from './champion-combat-rules.js?v=0.104.0';
 import {createJuniorChampionRules} from './champion-junior-rules.js?v=0.104.0';
 import {createChampion2025Rules} from './champion-2025-rules.js?v=0.104.0';
 import {createPhotoRevisionRules} from './photo-revisions-rules.js?v=0.103.0';
-import {createChampionContinuationRules} from './champion-continuation-rules.js?v=0.678.0';
-import {createOriginalChampionRules} from './champion-original-rules.js?v=0.678.0';
-import {createChampionRules} from './champion-rules.js?v=0.678.0';
-import {createEnvironmentRules} from './environment-rules.js?v=0.678.0';
+import {createChampionContinuationRules} from './champion-continuation-rules.js?v=0.682.0';
+import {createOriginalChampionRules} from './champion-original-rules.js?v=0.682.0';
+import {createChampionRules} from './champion-rules.js?v=0.682.0';
+import {createEnvironmentRules} from './environment-rules.js?v=0.682.0';
 import {createRecommendedRules} from './recommended-rules.js?v=0.111.0';
-import {createSixPhotoRules} from './six-photo-rules.js?v=0.678.0';
+import {createSixPhotoRules} from './six-photo-rules.js?v=0.682.0';
 import {createShieldPhotoRules} from './shield-photo-rules.js?v=0.104.0';
 import {createKenjiPhotoRules} from './kenji-photo-rules.js?v=0.227.0';
-import {createPhoenixRules} from './phoenix-rules.js?v=0.678.0';
-import {createBolshackRules} from './bolshack-rules.js?v=0.678.0';
+import {createPhoenixRules} from './phoenix-rules.js?v=0.682.0';
+import {createBolshackRules} from './bolshack-rules.js?v=0.682.0';
 import {createBandeRules} from './bande-rules.js';
 import {blockedLibraryTask} from './library-policy.js?v=0.89';
-import {createGolgyRules} from './golgy-rules.js?v=0.678.0';
+import {createGolgyRules} from './golgy-rules.js?v=0.682.0';
 import {createVirideRules} from './viride-rules.js';
 import {createHachiRules} from './hachi-rules.js?v=0.104.0';
-import {createAbyssRules} from './abyss-rules.js?v=0.678.0';
-import {createRedzoneRules} from './redzone-rules.js?v=0.678.0';
+import {createAbyssRules} from './abyss-rules.js?v=0.682.0';
+import {createRedzoneRules} from './redzone-rules.js?v=0.682.0';
 import {createMadoRules} from './mado-rules.js?v=0.104.0';
 import {createGirlsRules} from './girls-rules.js?v=0.104.0';
 import {createMaruruRules} from './maruru-rules.js?v=0.104.0';
 import {createGraveRules} from './grave-rules.js?v=0.104.0';
-import {createTravelRules} from './travel-rules.js?v=0.678.0';
-import {createKenjiRules} from './kenji-rules.js?v=0.678.0';
-import {createLionelRules} from './lionel-rules.js?v=0.678.0';
+import {createTravelRules} from './travel-rules.js?v=0.682.0';
+import {createKenjiRules} from './kenji-rules.js?v=0.682.0';
+import {createLionelRules} from './lionel-rules.js?v=0.682.0';
 import {createSamuraiRules} from './samurai-rules.js?v=0.171.0';
 import {createGachiroboRules} from './gachirobo-rules.js?v=0.104.0';
-import {createGiantRules} from './giant-rules.js?v=0.678.0';
-import {createJaouRules} from './jaou-rules.js?v=0.678.0';
+import {createGiantRules} from './giant-rules.js?v=0.682.0';
+import {createJaouRules} from './jaou-rules.js?v=0.682.0';
 import {createZardRules} from './zard-rules.js?v=0.104.0';
 import {createHunterRules} from './hunter-rules.js?v=0.104.0';
 import {createArmoredRules} from './armored-rules.js?v=0.104.0';
@@ -95,9 +95,9 @@ import {createMechaRules} from './mecha-rules.js?v=0.104.0';
 import {createKiyonagaRules} from './kiyonaga-rules.js?v=0.104.0';
 import {createGransectRules} from './gransect-rules.js?v=0.111.0';
 import {createGateRules} from './gate-rules.js?v=0.104.0';
-import {createGalaxyRules} from './galaxy-rules.js?v=0.678.0';
+import {createGalaxyRules} from './galaxy-rules.js?v=0.682.0';
 import {createGospelRules} from './gospel-rules.js?v=0.104.0';
-import {createStarterRules} from './starter-rules.js?v=0.678.0';
+import {createStarterRules} from './starter-rules.js?v=0.682.0';
 // Serializable continuations for the verified tournament-card effects.
 export function createExtendedRules(api){
  const {card,faces,cost,colors,effective,power,layers,draw,mill,move,enter,cast,remove,removeShield,clear,enqueue,log,random,canEnter,canCast,evolutionBases}=api;
@@ -148,7 +148,7 @@ export function createExtendedRules(api){
  const requested393J=createRequested393JokerRules(requested393Api);
  const requested393P=createRequested393PuppetRules(requested393Api);
  const requested393SG=createRequested393SuperguardRules(requested393Api);
- const requested394=createRequested394Rules({...requested393Api,discardDeploy:(s,t,x)=>discardDeploy(s,t,x),afterDiscard:(s,t,x,discarded)=>afterDiscard(s,t,x,discarded)});
+ const requested394=createRequested394Rules({...requested393Api,discardMode:(s,t,x)=>discardMode(s,t,x),handProtected:(s,t)=>handProtected(s,t),replaceDiscard:(s,t,x)=>replaceDiscard(s,t,x),discardCard:(s,t,x)=>discardCard(s,t,x)});
  const shieldPhoto=createShieldPhotoRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const photo=createKenjiPhotoRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const bolshack=createBolshackRules({...api,creatures,put,task,choice,opt,skip,targetOptions,targetable,lock});
@@ -178,7 +178,17 @@ export function createExtendedRules(api){
  const redzone=createRedzoneRules({...api,creatures,put,task,choice,opt,skip,targetOptions,targetable,canLeave,gearCleanup:s=>samurai.cleanup(s),inherit:(s,a,b)=>{viride.inherit(s,a,b);hachi.inherit(s,a,b);travel.inherit(s,a,b);lionel.inherit(s,a,b);samurai.inherit(s,a,b);armored.inherit(s,a,b);magic.inherit(s,a,b);},manaPermits:(s,p,x)=>[...galaxy.manaPermits(s,p,x),...kenji.manaPermits(s,p,x),...gran.manaPermits(s,p,x),...girls.manaPermits(s,p,x),...six.manaPermits297(s,p,x)].filter(k=>!String(k).startsWith('g450:')),useOrigin:(s,p,c,x,origin,permit)=>{galaxy.played(s,p,{...c,snowReducers:[]},x,origin,permit);kenji.played(s,p,c,x,origin,permit);gran.played(s,p,c,x,origin,permit);girls.played(s,p,c,x,origin,permit);}});
  const maruru=createMaruruRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const abyss=createAbyssRules({...api,creatures,put,task,choice,opt,skip,targetOptions,canLeave,discardSelected:(s,t,ids)=>beginDiscardBatch(s,t,ids)});
- const discardDeploy=(s,t,x)=>card(x).discardDeploy&&t.p!==s.active||card(x).enemyDiscardDeploy&&(t.causedBy??s.active)!==t.p&&["spell","creature"].includes(card(t.source)?.type);
+ const enemyDiscardEffect=(s,t)=>!t.selfDiscard&&(t.causedBy??t.controller??s.active)===1-t.p&&['spell','creature'].includes(card(t.source)?.type);
+ const handProtected=(s,t)=>enemyDiscardEffect(s,t)&&creatures(s,t.p).some(x=>effective(x,s).g591HandShield);
+ function discardMode(s,t,x){
+  const c=card(x),enemyTurn=t.p!==s.active;
+  if(c.g591Discard&&!api.handAbilityIgnored(s,x)){
+   if(c.g591Discard==='opponentTurn'&&enemyTurn)return 'mandatory';
+   if(c.g591Discard!=='opponentTurn'&&enemyDiscardEffect(s,t))return 'optional';
+  }
+  if(c.discardDeploy&&enemyTurn||c.enemyDiscardDeploy&&(t.causedBy??s.active)!==t.p&&['spell','creature'].includes(card(t.source)?.type))return 'optional';
+  return null;
+ }
  const hachi=createHachiRules({...api,creatures,put,task,choice,opt,skip,targetOptions,manaPermits:(s,p,x)=>[...galaxy.manaPermits(s,p,x),...kenji.manaPermits(s,p,x),...gran.manaPermits(s,p,x),...girls.manaPermits(s,p,x),...six.manaPermits297(s,p,x)],discardSelected:(s,t,ids)=>beginDiscardBatch(s,t,ids)});
  const viride=createVirideRules({...api,creatures,put,task,choice,opt,skip,targetOptions,manaPermits:(s,p,x)=>[...galaxy.manaPermits(s,p,x),...kenji.manaPermits(s,p,x),...gran.manaPermits(s,p,x),...girls.manaPermits(s,p,x),...six.manaPermits297(s,p,x)]});
  const bande=createBandeRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
@@ -225,10 +235,11 @@ export function createExtendedRules(api){
    case 'discardSelect':{const available=own.hand.filter(x=>!t.selected.includes(x.uid));if(t.selected.length>=t.n||!available.length){beginDiscardBatch(s,t,t.selected);break;}choice(s,t,'捨てる手札を選ぶ（'+t.selected.length+'枚選択済み）',[...available.map(x=>opt(card(x).name,x.uid,t.selfDiscard?-cost(card(x)):cost(card(x)),x.cardId)),...(t.optional?[opt('ここまでで確定',null,0)]:[])]);break;}
    case 'discardBatch':{const b=s.extDiscardBatches[t.batchId];if(!b)break;if(!b.uids.length){delete s.extDiscardBatches[t.batchId];if(b.actual&&t.afterDiscard248)put(s,t.afterDiscard248);if(t.afterDiscard321)put(s,{...t.afterDiscard321,discarded:!!b.actual});if(b.randomDiscardAfter&&b.actual)put(s,task('discard',1-b.p,b.source,{causedBy:b.p,n:b.actual,random:true}));break;}const [uid,...rest]=b.uids;b.uids=rest;if(own.hand.some(x=>x.uid===uid))put(s,{...t,op:'discardChosen',uid,n:1});else put(s,t);break;}
    case 'discard':{
+    if(handProtected(s,t)){if(t.afterDiscard321)put(s,{...t.afterDiscard321,discarded:false});break;}
     if(t.n>1&&!t.all){if(t.random){const available=[...own.hand],chosen=[];while(chosen.length<t.n&&available.length)chosen.push(available.splice(Math.floor(random(s)*available.length),1)[0].uid);beginDiscardBatch(s,t,chosen);}else put(s,{...t,op:'discardSelect',selected:[]});break;}
-    if(t.all&&own.hand.some(x=>discardDeploy(s,t,x))){beginDiscardBatch(s,t,own.hand.map(x=>x.uid));break;}
+    if(t.all&&own.hand.some(x=>discardMode(s,t,x))){beginDiscardBatch(s,t,own.hand.map(x=>x.uid));break;}
     if(!t.n||!own.hand.length){if(t.randomDiscardAfter&&t.discarded)put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:t.discarded,random:true}));break;}
-    if(t.all&&!own.hand.some(x=>discardDeploy(s,t,x))){const all=[...own.hand];for(const x of all){remove(own.hand,x.uid);clear(x);api.addZone(s,own,'grave',x);afterDiscard(s,{...t,n:1},x,true);}log(s,t.p,'discard',`手札${all.length}枚をすべて捨てる`,{cardId:t.source});break;}
+    if(t.all){const all=[...own.hand];for(const x of all){remove(own.hand,x.uid);clear(x);api.addZone(s,own,'grave',x);afterDiscard(s,{...t,n:1},x,true);}log(s,t.p,'discard',`手札${all.length}枚をすべて捨てる`,{cardId:t.source});break;}
     const candidates=t.random?[own.hand[Math.floor(random(s)*own.hand.length)]]:own.hand;
     if(t.random){const x=candidates[0];put(s,{...t,op:'discardChosen',uid:x.uid});}
     else choice(s,t,`${t.n}枚${t.optional?'まで':''}手札を捨てる${t.discarded?'（'+t.discarded+'枚選択済み）':''}`, [...candidates.map(x=>opt(card(x).name,x.uid,(t.selfDiscard?-1:1)*Math.min(20,cost(card(x))),x.cardId)),...(t.optional?[opt('ここまでで確定',null,own.hand.length>4?-1:0)]:[])]);
@@ -236,7 +247,13 @@ export function createExtendedRules(api){
    }
    case 'discardChosen':{
     const x=own.hand.find(x=>x.uid===t.uid);if(!x)break;
-    if(discardDeploy(s,t,x)&&canEnter(s,t.p,card(x),{origin:'hand',execution:false})){choice(s,t,'捨てるかわりにバトルゾーンに出しますか？',[opt('墓地のかわりに出す',true,30,x.cardId),opt('そのまま捨てる',false,0)]);break;}
+    if(handProtected(s,t)){if(t.batchId)put(s,{...t,op:'discardBatch'});break;}
+    const mode=discardMode(s,t,x);
+    if(mode&&canEnter(s,t.p,card(x),{origin:'hand',execution:false})){
+     if(mode==='mandatory')replaceDiscard(s,t,x);
+     else choice(s,t,'捨てるかわりにバトルゾーンに出しますか？',[opt('墓地のかわりに出す',true,card(x).g591Discard==='drawTwo'&&own.deck.length<=2?-1000:30,x.cardId),opt('そのまま捨てる',false,0)]);
+     break;
+    }
     discardCard(s,t,x);break;
    }
    case 'elementBounce':choice(s,t,'手札に戻す相手のエレメントを選ぶ',targetOptions(s,t.p,opp.battle));if(!targetOptions(s,t.p,opp.battle).length&&t.discardAfter)put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:1,random:true}));break;
@@ -311,7 +328,15 @@ export function createExtendedRules(api){
  function revOrigin486(own,x,serial){return serial===undefined||own.hand.includes(x)&&(x.zoneSerial||0)===serial;}
  function revMatches(s,x,c){const r=c.rev,d=r?.g486Current?effective(x,s):card(x);return !!r&&api.isCreature(s,x)&&(r.any|| (r.categories?r.categories.some(q=>String(d.race).includes(q)):r.race?String(d.race).includes(r.race):d.race.includes('ドラゴン')))&&(!r.nameIncludes||d.name.includes(r.nameIncludes))&&(!r.multicolor||colors(d).length>1)&&(!r.powerMin||power(x,x.uid===s.attack?.attacker,s)>=r.powerMin)&&cost(d)>=(r.min||0)&&(!r.colors||colors(d).some(v=>r.colors.includes(v)));}
  function startSwap(s,t,uid,revolution){const own=s.players[t.p],incoming=revCard(s,t.p,t.uid),origin=incoming&&own.hand.includes(incoming)?'hand':'shields';if(incoming&&galaxy.entryWouldReplace(s,t.p,card(incoming),origin,false)){log(s,t.p,'swapFailed','登場の置き換えにより入れ替えは実行されない',{cardId:t.source});return;}const old=nowCreature(s,t.p,uid);if(!old||!incoming||!revOrigin486(own,incoming,t.g486Serial))return;if(card(old).starEvolution&&old.under?.length){log(s,t.p,'swapFailed','スター進化の構成カードすべては戻せないため入れ替えできない',{cardId:t.source});return;}const attack=s.attack&&[s.attack.attacker,s.attack.target,s.attack.blockUid].includes(uid)?structuredClone(s.attack):null;put(s,{...t,op:'swapFinish',old:uid,tapped:old.tapped,attack,revolution,origin});move(s,[{player:t.p,uid,exchange:true,to:origin==='hand'?'hand':'shields',...(origin==='shields'?{shieldAttach:api.shieldGroup(own.shields.find(root=>api.shieldCards(root).some(y=>y.uid===incoming.uid)))}:{}),destroy:false}]);}
- function beginDiscardBatch(s,t,uids){const batchId=String(s.extDiscardSerial=(s.extDiscardSerial||0)+1);(s.extDiscardBatches??={})[batchId]={p:t.p,source:t.source,uids:[...uids],actual:0,randomDiscardAfter:t.randomDiscardAfter};put(s,{...t,op:'discardBatch',batchId,n:1,randomDiscardAfter:false});}
+ function beginDiscardBatch(s,t,uids){if(handProtected(s,t))uids=[];const batchId=String(s.extDiscardSerial=(s.extDiscardSerial||0)+1);(s.extDiscardBatches??={})[batchId]={p:t.p,source:t.source,uids:[...uids],actual:0,randomDiscardAfter:t.randomDiscardAfter};put(s,{...t,op:'discardBatch',batchId,n:1,randomDiscardAfter:false});}
+ function replaceDiscard(s,t,x){
+  const c=card(x);
+  remove(s.players[t.p].hand,x.uid);
+  enter(s,t.p,x,null,{origin:'hand',execution:false,...(c.g591Discard?{replacement:true}:{})});
+  afterDiscard(s,t,x,false);
+  if(c.discardBounce)put(s,task('bounceAny',t.p,x.cardId));
+  if(c.g591Discard==='drawTwo')put(s,task('draw',t.p,x.cardId,{n:2,controller:t.p}));
+ }
  function discardCard(s,t,x){
   remove(s.players[t.p].hand,x.uid);clear(x);api.addZone(s,s.players[t.p],'grave',x);log(s,t.p,'discard',`${card(x).name}を手札から捨てる`,{cardId:x.cardId});
   afterDiscard(s,t,x,true);
@@ -344,7 +369,7 @@ export function createExtendedRules(api){
   case 'optionalLoot':if(value)put(s,task('draw',t.p,t.source,{n:t.n}),task('discard',t.p,t.source,{causedBy:t.p,n:1}));break;
   case 'discardSelect':if(value)put(s,{...t,selected:[...t.selected,value]});else beginDiscardBatch(s,t,t.selected);break;
   case 'discard':if(value)put(s,{...t,op:'discardChosen',uid:value});else if(t.randomDiscardAfter&&t.discarded)put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:t.discarded,random:true}));break;
-  case 'discardChosen':{const x=own.hand.find(x=>x.uid===t.uid);if(!x)break;if(value){remove(own.hand,x.uid);enter(s,t.p,x,null,{origin:'hand',execution:false});afterDiscard(s,t,x,false);if(card(x).discardBounce)put(s,task('bounceAny',t.p,x.cardId));}else discardCard(s,t,x);break;}
+  case 'discardChosen':{const x=own.hand.find(x=>x.uid===t.uid);if(!x)break;if(value)replaceDiscard(s,t,x);else discardCard(s,t,x);break;}
   case 'elementBounce':move(s,[{player:1-t.p,uid:value,to:'hand'}]);if(t.discardAfter)put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:1,random:true}));break;
   case 'jadowShield':{const all=api.moveShield(s,t.p,value,'hand',{handEffects:false});abyss.beginSB(s,t.p,all);for(const x of all){lionel.shieldHand(s,t.p,x,false);gachi.shieldHand(s,t.p,x);}put(s,...all.filter(x=>card(x).gStrike).map(x=>task('gsTarget',t.p,x.cardId)),task('destroyUntapped',t.p,t.source));break;}
   case 'destroyUntapped':move(s,[{player:1-t.p,uid:value,to:'grave'}]);break;
@@ -375,7 +400,14 @@ export function createExtendedRules(api){
  }}
  return {
   requested393C,requested393D,requested393J,requested393P,photo160,photo159,utilityLightControl,utilityTwinSupport,utilityRaid,utilityGraveKnights,utilityRomano,utilityNatureSupport,utilityGuard,utilityDragon,utilityTide,utilityTop,utilityControl,spellTax:utilityControl.spellTax,utilityExpansion,utilityWater,utilityNature,utilityDark,saga,control,seed,cyber,firebird,combat,junior,history,revisions,continuation,original,environment,recommended,six,photo,golgy,viride,originAllowed:viride.originAllowed,everSaver:viride.everSaver,virideDiscount:viride.discount,
-  abyss,abyssDiscount:abyss.discount,abyssPlayer:abyss.playerPermission,hasSB:(s,p,a)=>abyss.hasSB(s,p,a),beginSB:(s,p,a,w)=>abyss.beginSB(s,p,a,w),forcedDiscard(s,p,uids,source){for(const uid of uids){const x=s.players[p].hand.find(x=>x.uid===uid);if(x)discardCard(s,{p,source,n:1,causedBy:p},x);}},
+  abyss,abyssDiscount:abyss.discount,abyssPlayer:abyss.playerPermission,hasSB:(s,p,a)=>abyss.hasSB(s,p,a),beginSB:(s,p,a,w)=>abyss.beginSB(s,p,a,w),forcedDiscard(s,p,uids,source,{allowTurnReplacement=false}={}){
+   const event={p,source,n:1,causedBy:p};
+   for(const uid of uids){
+    const x=s.players[p].hand.find(x=>x.uid===uid);if(!x)continue;
+    if(allowTurnReplacement&&discardMode(s,event,x)==='mandatory'&&canEnter(s,p,card(x),{origin:'hand',execution:false}))replaceDiscard(s,event,x);
+    else discardCard(s,event,x);
+   }
+  },
   shieldPhoto,phoenix,bolshack,redzone,manaTap:(s,p)=>utilityExpansion.manaTap(s,p)||redzone.manaTap(s,p),extraAdded:(s,p,x)=>redzone.extraAdded(s,p,x),command:(s,p,x)=>redzone.command(s,p,x),pandora:(s,p,a)=>redzone.pandora(s,p,a),gsAllowed,
   mado,spellPermission:(s,p,c)=>mado.spellPermission(s,p,c),beforeSpell:(s,p,c,x)=>mado.beforeSpell(s,p,c,x),beforeEnd:s=>mado.beforeEnd(s),beforeUntap:(s,p)=>junior.beforeUntap(s,p)||mado.beforeUntap(s,p),graveAdded(s,p,all,snapshot){photo160.graveAdded(s,p,all,snapshot);photo159.graveAdded(s,p,all,snapshot);saga.graveAdded(s,p,all);cyber.graveAdded(s,p,all);mado.graveAdded(s,p,all,snapshot);six.graveAdded(s,p,all);},block(s,p,x){utilityBlock.block(s,p,x);mado.block(s,p,x);six.block(s,p,x);six.fifteen.block(s,p,x);},
   requested394,evolutionBase(s,p,x){six.evolutionBase397(s,p,x);seed.evolutionBase(s,p,x);combat.evolutionBase(s,p,x);bande.evolutionBase(s,p,x);},copyEntry:maruru.copyEntry,photo167,put,task,choice,lock,locked,beginGraveCast:grave.beginCast,beginGravePut:grave.beginPut,beginUra:grave.beginUra,uraBelow:grave.below,selectBreaker:travel.selectBreaker,broken(s,context,count){six.broken484(s,context,count);requested393J.broken(s,context,count);photo159.broken(s,context,count);combat.broken(s,context,count);travel.broken(s,context,count);},advanceAfterAttack(s){travel.advanceAfter(s);redzone.advanceAfter(s);},travelDecorate:travel.decorate,beginOni:kenji.beginOni,oniCards:kenji.oniCards,manaRedirect:kenji.manaRedirect,lionelPower:lionel.power,lionelDecorate:lionel.decorate,lionelState(s){combat.stateCheck(s);history.stateCheck(s);return lionel.stateCheck(s); },samuraiPower:samurai.power,samuraiUnblocked:samurai.unblocked,samuraiSpeed:samurai.speed,samuraiDiscount:samurai.discount,crossAction:samurai.crossAction,gearCleanup:samurai.cleanup,gearInherit:samurai.inherit,variants:samurai.variants,muteEntry:giant.muteEntry,deckSafe:(s,p)=>gachi.deckSafe(s,p)||!!s.players[p].g38LibrarySafe,shieldDeclarations:gachi.shieldDeclarations,allowedCard:giant.allowedCard,giantDiscount:giant.discount,replaceBattle:(s,...a)=>requested393SG.replaceBattle(s,...a)||giant.replaceBattle(s,...a),creatures,shieldTo,targetable,allowedSpell:(s,p,c)=>mado.allowedSpell(s,p,c)&&travel.allowedSpell(s,p)&&zard.allowedSpell(s,p,c)&&lionel.allowedSpell(s,p,c),forceActions:(s,p,out)=>requested393J.forceActions(s,p,photo160.forceActions(s,p,history.forceActions(s,p,phoenix.forceActions(s,p,abyss.attackFilter(s,p,kiyo.forceActions(s,p,out)))))),spellShieldTrigger:kiyo.spellShieldTrigger,handMana(s,p,x){shieldPhoto.handMana(s,p,x);redzone.handMana(s,p,x);lionel.handMana(s,p,x);kiyo.handMana(s,p,x);},mechaDiscount:mecha.discount,canLeave,shieldAdded(s,p,x){photo167.shieldAdded(s,p,x);photo160.shieldAdded(s,p,x);photo159.shieldAdded(s,p,x);six.fifteen.shieldAdded(s,p,x);shieldPhoto.shieldAdded(s,p,x);mecha.shieldAdded(s,p,x);viride.shieldAdded(s,p,x);},beforeBreak:(s,p,uids)=>photo159.beforeBreak(s,p,uids)||environment.beforeBreak(s,p,uids)||six.fifteen.beforeBreak(s,p,uids)||girls.beforeBreak(s,p,uids)||lionel.beforeBreak(s,p,uids)||magic.beforeBreak(s,p,uids)||mecha.beforeBreak(s,p,uids)||viride.beforeBreak(s,p,uids),advanceBreak:mecha.advanceBreak,inherit(s,base,x){if(base.g393JCopies?.length){const present=new Map();for(const r of x.g393JCopies||[]){const k=r.key||JSON.stringify(r);present.set(k,(present.get(k)||0)+1);}for(const r of base.g393JCopies){const k=r.key||JSON.stringify(r),n=present.get(k)||0;if(n)present.set(k,n-1);else(x.g393JCopies??=[]).push(structuredClone(r));}}if(base.g393JZero)x.g393JZero=structuredClone(base.g393JZero);seed.inherit(s,base,x);combat.inherit(s,base,x);continuation.inherit(s,base,x);six.inherit(s,base,x);thisInherit(s,base,x);viride.inherit(s,base,x);hachi.inherit(s,base,x);travel.inherit(s,base,x);lionel.inherit(s,base,x);samurai.inherit(s,base,x);zard.inherit(s,base,x);armored.inherit(s,base,x);magic.inherit(s,base,x);},armoredDiscount:armored.discount,noLose:(s,p,kind)=>seed.noLose(s,p,kind)||viride.noLose(s,p)||armored.noLose(s,p)||hunter.noLose(s,p)||six.noLose(s,p),hunterDiscount:hunter.discount,beforeNonActive(s){const w=s.g3Window;if(!w||w.done)return false;const added=jaou.beforeNonActive(s);if(w.done&&s.attack){const ninja=this.ninjaWindow(s,w.p);return added||ninja;}return added;},lossOptions(s,p){const old=hunter.lossOptions(s,p),johnny=lionel.lossOptions(s,p),more=[...johnny,...grave.lossOptions(s,p),...kenji.lossOptions(s,p),...jaou.lossOptions(s,p),...six.lossOptions(s,p),...six.fifteen.lossOptions(s,p)];if(!more.length)return old;const out=[...old.filter(x=>x.value),...more];if(!six.lossOptions(s,p).length&&!six.fifteen.lossOptions(s,p).length&&!johnny.length&&!old.some(x=>x.value?.kind==='diehard'))out.push(opt('置換せず敗北する',null,-1000));return out;},triggersAllowed:(s,p,c)=>hunter.triggersAllowed(s,p)&&(!c||firebird.triggerAllowed(s,p,c)),tapEntry:(s,p)=>armored.tapEntry(s,p)||lionel.tapEntry(s,p),beforeBattle(s,pa,a,pd,b){const v=armored.beforeBattle(s,pa,a,pd,b);return[v[0]||six.winBattle(s,a),v[1]||six.winBattle(s,b)];},advanceAttackEnd(s){const a=s.attackLifecycle,x=a&&s.players[a.player].battle.find(x=>x.uid===a.uid&&(x.incarnation||0)===a.incarnation);magic.advanceAttackEnd(s);if(a&&!s.attackLifecycle){photo160.attackEnd(s,a,x);photo159.attackEnd(s,a,x);combat.attackEnd(s,a,x);firebird.attackEnd(s,a,x);bolshack.attackEnd(s,a);bande.attackEnd(s,a,x);if(x)lionel.attackEnd(s,a,x);travel.attackEnd(s,a);redzone.attackEnd(s,a,x);hachi.attackEnd(s,a,x);six.attackEnd(s,a,x);continuation.attackEnd(s,a);}},magicDiscount:magic.discount,

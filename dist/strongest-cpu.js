@@ -1,5 +1,5 @@
 import {card,playFaces,civilizations,validateDeck,manaPayment,manaValue} from './engine.js';
-import {ONLINE_COMPATIBILITY} from './online-compatibility.js?v=0.678.0';
+import {ONLINE_COMPATIBILITY} from './online-compatibility.js?v=0.682.0';
 export const STRONGEST_BUILD_VERSION=1;
 const finite=n=>Number.isFinite(Number(n))?Number(n):30;
 const rowsSignature=rows=>{const counts=new Map();for(const r of rows||[])counts.set(r.id,(counts.get(r.id)||0)+r.count);return JSON.stringify([...counts].sort(([a],[b])=>a.localeCompare(b)));};
@@ -7,16 +7,19 @@ export function strongestDeckKey(deck){return JSON.stringify([STRONGEST_BUILD_VE
 const rampEffects=new Set(['ramp1','ramp2','dragonRamp2','ramp2Return1','dogiRamp','girlsRupia']);
 const removalEffects=new Set(['destroy','destroySmall','destroyUntapped','destroy6000','bounce','bounceSmall','vtBounce','superheroSweep','tapAll','abyssMakua']);
 // Exact compiled rules distinguish a real counter from incidental card text.
-const hasOperation=(defs,op)=>(defs||[]).some(d=>d.op===op||hasOperation(d.defs,op)||d.modes?.some(m=>hasOperation(m.defs,op)));
-const features=c=>{const faces=playFaces(c),text=String(c.text||'');return {faces,colors:[...new Set(faces.flatMap(civilizations))],cost:Math.min(...faces.map(f=>finite(f.cost))),bodyCost:Math.min(...faces.filter(f=>f.type==='creature').map(f=>finite(f.cost))),body:faces.some(f=>f.type==='creature'),attacker:faces.some(f=>f.type==='creature'&&!f.noAttack&&!f.noPlayerAttack),fast:faces.some(f=>f.speedAttacker||f.invasion||f.rev),block:faces.some(f=>f.blocker||f.slayer),trigger:faces.some(f=>f.trigger||f.gStrike||f.strikeBack),ramp:faces.some(f=>rampEffects.has(f.effect)),removal:faces.some(f=>removalEffects.has(f.effect)||hasOperation(f.g34Tasks,'OverManaBottom590')),grave:/墓地から|墓地にある|墓地の.*召喚/.test(text)||!!c.graveSummon||!!c.mugenCrime,spell:faces.some(f=>f.type==='spell'),cheat:/コストを支払わず|召喚せず/.test(text)||!!c.rev||!!c.invasion||!!c.mugenCrime,graveHate:/(?:相手の墓地|相手は自身の墓地).*(?:山札|マナ)/.test(text)||!!(c.graveGate||c.g277GraveLock||c.g44Apul)||faces.some(f=>hasOperation(f.g34Tasks,'GraveBottom589')),cheatHate:!!(c.tokoshie||c.oniBounce||c.noNonsummonEntry||c.handEntryOnly||c.entryGate||c.g403Bloom||c.g26Queen)||faces.some(f=>hasOperation(f.g34Tasks,'OverManaBottom590')||hasOperation(f.g397Shinka,'OverManaBottom590')),spellHate:!!(c.spellLockMaxCost||c.travelSpellLock||c.shiroLock||c.g32Dolf||c.genmu||c.g590SpellOnce||c.g26OneNote)||faces.some(f=>hasOperation(f.g34Tasks,'SpellLock589')||hasOperation(f.g34Attack,'SpellLock589')),draw:faces.some(f=>/draw|search/i.test(f.effect||'')),race:String(c.race||'')};};
+const hasOperation=(defs,op,accept=()=>true)=>(defs||[]).some(d=>d.op===op&&accept(d)||hasOperation(d.defs,op,accept)||hasOperation(d.elseDefs,op,accept)||d.modes?.some(m=>hasOperation(m.defs,op,accept)));
+const discardEffects=new Set(['discard','discardAll','inspectDiscard','jennySacrifice','vamBounce','darknessModes','fumiModes','abyssMurder','abyssBella']);
+const discardsOpponent=d=>d.owner===undefined||d.owner==='opponent';
+const graveBottom=defs=>hasOperation(defs,'GraveBottom589',d=>!d.self);
+const features=c=>{const faces=playFaces(c),text=String(c.text||'');return {faces,colors:[...new Set(faces.flatMap(civilizations))],cost:Math.min(...faces.map(f=>finite(f.cost))),bodyCost:Math.min(...faces.filter(f=>f.type==='creature').map(f=>finite(f.cost))),body:faces.some(f=>f.type==='creature'),attacker:faces.some(f=>f.type==='creature'&&!f.noAttack&&!f.noPlayerAttack),fast:faces.some(f=>f.speedAttacker||f.invasion||f.rev),block:faces.some(f=>f.blocker||f.slayer),trigger:faces.some(f=>f.trigger||f.gStrike||f.strikeBack),ramp:faces.some(f=>rampEffects.has(f.effect)||graveBottom(f.g34Tasks)&&hasOperation(f.g34Tasks,'Ramp')),removal:faces.some(f=>removalEffects.has(f.effect)||hasOperation(f.g34Tasks,'OverManaBottom590')),grave:/墓地から|墓地にある|墓地の.*召喚/.test(text)||!!c.graveSummon||!!c.mugenCrime,spell:faces.some(f=>f.type==='spell'),discard:/相手(?:は(?:自身|自分自身|自分)?の?|の)手札[^。\n]*捨て/.test(text)||faces.some(f=>discardEffects.has(f.effect)||f.drawDiscard||f.g394Jao||[f.g34Tasks,f.g34Attack,f.g174End].some(defs=>hasOperation(defs,'Discard',discardsOpponent))),discardHate:!!(c.g591HandShield||c.g591Discard||c.enemyDiscardDeploy||c.discardDeploy),cheat:/コストを支払わず|召喚せず/.test(text)||!!c.rev||!!c.invasion||!!c.mugenCrime,graveHate:/(?:相手の墓地|相手は自身の墓地).*(?:山札|マナ)/.test(text)||!!(c.graveGate||c.g277GraveLock||c.g44Apul||c.g592GravesStay)||faces.some(f=>graveBottom(f.g34Tasks)),cheatHate:!!(c.tokoshie||c.oniBounce||c.noNonsummonEntry||c.handEntryOnly||c.entryGate||c.g403Bloom||c.g26Queen)||faces.some(f=>hasOperation(f.g34Tasks,'OverManaBottom590')||hasOperation(f.g397Shinka,'OverManaBottom590')),spellHate:!!(c.spellLockMaxCost||c.travelSpellLock||c.shiroLock||c.g32Dolf||c.genmu||c.g590SpellOnce||c.g26OneNote)||faces.some(f=>hasOperation(f.g34Tasks,'SpellLock589')||hasOperation(f.g34Attack,'SpellLock589')),graveReliant:/自分の墓地から/.test(text)||!!(c.graveCast||c.graveSummon||c.mugenCrime||c.abyssRush||c.fushigibirth),symmetricGraveLock:!!c.g592GravesStay,entryStop:!!c.g593EntryStop,powerStop:faces.some(f=>hasOperation(f.g34Tasks,'PowerAttack593')),draw:faces.some(f=>/draw|search/i.test(f.effect||'')||hasOperation(f.g34Tasks,'Draw')&&(f.g593EntryStop||hasOperation(f.g34Tasks,'PowerAttack593'))),race:String(c.race||'')};};
 export function analyzeStrongestTarget(deck){
- const counts={cheap:0,fast:0,spell:0,grave:0,cheat:0,large:0,body:0},costs=new Map();let cost=0;
- for(const r of deck.cards){const f=features(card(r.id));cost+=f.cost*r.count;for(const key of ['fast','spell','grave','cheat','body'])if(f[key]&&(key!=='fast'||f.bodyCost<=5))counts[key]+=r.count;if(f.body&&f.bodyCost<=3)counts.cheap+=r.count;if(f.body&&f.bodyCost>=7)counts.large+=r.count;const n=Math.min(20,f.cost);costs.set(n,(costs.get(n)||0)+r.count);}
- const weights={rush:Math.min(1,(counts.cheap+counts.fast)/22),spells:counts.spell/40,grave:Math.min(1,counts.grave/12),cheat:Math.min(1,counts.cheat/12),large:Math.min(1,counts.large/16)};
- const labels={rush:'序盤の攻めへの防御・除去',spells:'呪文中心の展開を妨害',grave:'墓地利用を抑える',cheat:'踏み倒し・特殊な登場を牽制',large:'大型が並ぶ前の攻めと除去'};
+ const counts={cheap:0,fast:0,spell:0,grave:0,cheat:0,large:0,body:0,discard:0},costs=new Map();let cost=0;
+ for(const r of deck.cards){const f=features(card(r.id));cost+=f.cost*r.count;for(const key of ['fast','spell','grave','cheat','body','discard'])if(f[key]&&(key!=='fast'||f.bodyCost<=5))counts[key]+=r.count;if(f.body&&f.bodyCost<=3)counts.cheap+=r.count;if(f.body&&f.bodyCost>=7)counts.large+=r.count;const n=Math.min(20,f.cost);costs.set(n,(costs.get(n)||0)+r.count);}
+ const weights={rush:Math.min(1,(counts.cheap+counts.fast)/22),spells:counts.spell/40,grave:Math.min(1,counts.grave/12),cheat:Math.min(1,counts.cheat/12),large:Math.min(1,counts.large/16),discard:Math.min(1,Math.max(0,counts.discard-4)/10)};
+ const labels={rush:'序盤の攻めへの防御・除去',spells:'呪文中心の展開を妨害',grave:'墓地利用を抑える',cheat:'踏み倒し・特殊な登場を牽制',large:'大型が並ぶ前の攻めと除去',discard:'手札破壊に備える'};
  const priorities=Object.entries(weights).sort((a,b)=>b[1]-a[1]);return {counts,weights,averageCost:cost/40,priorities:priorities.filter(([,n])=>n>=.2).slice(0,3).map(([key])=>labels[key]),main:priorities[0][0],commonCost:[...costs].sort((a,b)=>b[1]-a[1])[0]?.[0]||0};
 }
-const learningKeys=['rush','spells','grave','cheat','large'];
+const learningKeys=['rush','spells','grave','cheat','large','discard'];
 const bounded=(value,max=1000)=>Number.isFinite(value)?Math.max(0,Math.min(max,value)):0;
 export function normalizeStrongestLearning(value,target){
  const key=strongestDeckKey(target),valid=value?.key===key,rows=new Set((target?.cards||[]).map(r=>r.id));
@@ -32,7 +35,7 @@ export function learnStrongestDefeat(previous,battle){
  const played=new Map(),attacks=new Map();for(const [id,n]of Object.entries(s.metrics?.[0]?.played||{})){const base=ids.get(id)||id;if(target.cards.some(r=>r.id===base))played.set(base,(played.get(base)||0)+bounded(n,20));}
  for(const event of s.log||[]){if(event.player!==0)continue;const id=ids.get(event.cardId)||event.cardId;if(!target.cards.some(r=>r.id===id))continue;if(event.type==='attack')attacks.set(id,(attacks.get(id)||0)+1);else if(['play','trigger','gaiaSummon','enter'].includes(event.type)&&!played.has(id))played.set(id,1);}
  const signals=Object.fromEntries(learningKeys.map(k=>[k,0])),threats=new Map(old.threats.map(x=>[x.id,x.score*.7]));let total=0;
- for(const id of new Set([...played.keys(),...attacks.keys()])){const score=Math.min(12,(played.get(id)||0)+(attacks.get(id)||0)*2),f=features(card(id));total+=score;threats.set(id,Math.min(100,(threats.get(id)||0)+score));if(f.body&&(f.bodyCost<=3||f.fast))signals.rush+=score;if(f.spell)signals.spells+=score;if(f.grave)signals.grave+=score;if(f.cheat)signals.cheat+=score;if(f.body&&f.bodyCost>=7)signals.large+=score;}
+ for(const id of new Set([...played.keys(),...attacks.keys()])){const score=Math.min(12,(played.get(id)||0)+(attacks.get(id)||0)*2),f=features(card(id));total+=score;threats.set(id,Math.min(100,(threats.get(id)||0)+score));if(f.body&&(f.bodyCost<=3||f.fast))signals.rush+=score;if(f.spell)signals.spells+=score;if(f.grave)signals.grave+=score;if(f.cheat)signals.cheat+=score;if(f.discard)signals.discard+=score;if(f.body&&f.bodyCost>=7)signals.large+=score;}
  const turns=s.metrics?.[0]?.turns||0;if(turns>0&&turns<=4&&(s.metrics?.[0]?.breaks||attacks.size))signals.rush+=Math.max(1,total)*.5;
  const weights=Object.fromEntries(learningKeys.map(k=>[k,Math.min(2,old.weights[k]*.65+(signals[k]/Math.max(1,total))*.7)]));
  const signature=rowsSignature(battle.strongestCPU.deck.cards),failed=old.failed.find(x=>x.signature===signature);
@@ -41,17 +44,19 @@ export function learnStrongestDefeat(previous,battle){
 
 function utility(c,f,profile){
  const w=profile.weights;let v=6+(f.body?Math.min(8,finite(c.power)/1500):0)+(f.attacker?4:0)+(f.cost<=3?5:0)+(f.draw?6:0)+(f.ramp?7:0)+(f.trigger?4:0)+(f.fast?5:0)+(f.removal?5:0);
- v+=(f.block?13:0)*w.rush+(f.trigger?16:0)*w.rush+(f.removal?9:0)*Math.max(w.rush,w.large)+(f.spellHate?35:0)*w.spells+(f.cheatHate?35:0)*w.cheat+(f.graveHate?32:0)*w.grave+(f.fast?9:0)*w.large;
+ v+=(f.block?13:0)*w.rush+(f.trigger?16:0)*w.rush+(f.removal?9:0)*Math.max(w.rush,w.large)+(f.spellHate?35:0)*w.spells+(f.cheatHate?35:0)*w.cheat+(f.symmetricGraveLock?40:f.graveHate?32:0)*w.grave+(f.fast?9:0)*w.large+(f.discardHate?38:0)*w.discard+(c.g591HandShield?18:0)*Math.min(w.cheat,w.discard);
+ if(f.entryStop)v+=18*w.rush+12*Math.min(1,profile.counts.fast/12);
+ if(f.powerStop)v+=25*w.rush;
  if(c.effect==='magicNumberLock')v+=8+profile.weights.spells*15;if(f.cost>7)v-=Math.min(18,(f.cost-7)*4);if(!f.attacker&&f.body)v-=4;
  return v;
 }
 const countRows=rows=>new Map(rows.map(r=>[r.id,r.count]));
 const asRows=map=>[...map].filter(([,n])=>n>0).map(([id,count])=>({id,count})).sort((a,b)=>a.id.localeCompare(b.id));
 function structuralScore(rows,info,utilities,base){
- let score=0,early=0,attackers=0,high=0,ramp=0,overlap=0;const colors=new Map(),races=new Map();
- for(const {id,count}of rows){const f=info.get(id);score+=(utilities.get(id)||0)*count;if(f.cost<=3)early+=count;if(f.attacker)attackers+=count;if(f.bodyCost>=6&&f.body||!f.body&&f.cost>=6)high+=count;if(f.ramp)ramp+=count;overlap+=Math.min(base.counts.get(id)||0,count);for(const color of f.colors)colors.set(color,(colors.get(color)||0)+count);for(const race of base.races)if(f.race.includes(race))races.set(race,(races.get(race)||0)+count);}
+ let score=0,early=0,attackers=0,high=0,ramp=0,overlap=0,graveReliant=0,symmetricGraveLock=0;const colors=new Map(),races=new Map();
+ for(const {id,count}of rows){const f=info.get(id);score+=(utilities.get(id)||0)*count;if(f.cost<=3)early+=count;if(f.attacker)attackers+=count;if(f.bodyCost>=6&&f.body||!f.body&&f.cost>=6)high+=count;if(f.ramp)ramp+=count;if(f.graveReliant)graveReliant+=count;if(f.symmetricGraveLock)symmetricGraveLock+=count;overlap+=Math.min(base.counts.get(id)||0,count);for(const color of f.colors)colors.set(color,(colors.get(color)||0)+count);for(const race of base.races)if(f.race.includes(race))races.set(race,(races.get(race)||0)+count);}
  if(overlap<28||attackers<Math.min(8,base.attackers)||high<Math.min(4,base.high))return -Infinity;
- score-=Math.max(0,12-early)*14+Math.max(0,high-12)*8+Math.max(0,ramp-12)*5;
+ score-=symmetricGraveLock*Math.max(0,graveReliant-4)*2+Math.max(0,12-early)*14+Math.max(0,high-12)*8+Math.max(0,ramp-12)*5;
  for(const color of base.colors)score-=Math.max(0,Math.min(8,base.sources.get(color)||0)-(colors.get(color)||0))*12;
  for(const race of base.races)score-=Math.max(0,(base.raceCounts.get(race)||0)-4-(races.get(race)||0))*7;
  return score;
@@ -71,7 +76,7 @@ export function buildStrongestCPU(target,seeds,implemented,{onProgress=()=>{},le
  if(!valid.length)throw Error('対策構築の基になる対応済みデッキがありません');
  const trusted=new Set(valid.flatMap(d=>d.rows.map(r=>r.id))),ranked=valid.sort((a,b)=>b.score-a.score||a.name.localeCompare(b.name)).slice(0,8);let best=null;
  ranked.forEach((seed,index)=>{
-  const colors=new Set(seed.base.colors),pool=implemented.filter(c=>{const f=info.get(c.id);return (c.limit??4)>0&&f.cost<=8&&f.colors.every(k=>colors.has(k))&&(trusted.has(c.id)||f.cheatHate||f.spellHate||f.graveHate)&&(!c.evolution&&!c.manaEvolution&&!c.graveEvolution||seed.base.counts.has(c.id));}).sort((a,b)=>(utilities.get(b.id)-utilities.get(a.id))||a.id.localeCompare(b.id)).slice(0,28);
+  const colors=new Set(seed.base.colors),pool=implemented.filter(c=>{const f=info.get(c.id);return (c.limit??4)>0&&f.cost<=8&&f.colors.every(k=>colors.has(k))&&(trusted.has(c.id)||f.cheatHate||f.spellHate||f.graveHate||f.discardHate||f.entryStop||f.powerStop)&&(!c.evolution&&!c.manaEvolution&&!c.graveEvolution||seed.base.counts.has(c.id));}).sort((a,b)=>(utilities.get(b.id)-utilities.get(a.id))||a.id.localeCompare(b.id)).slice(0,28);
   let rows=seed.rows,score=seed.score;
   for(let round=0;round<6;round++){let chosen=null;
    const removable=[...rows].sort((a,b)=>utilities.get(a.id)-utilities.get(b.id)).slice(0,12);

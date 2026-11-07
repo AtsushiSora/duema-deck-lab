@@ -1,4 +1,4 @@
-import {ONLINE_COMPATIBILITY} from './online-compatibility.js?v=0.678.0';
+import {ONLINE_COMPATIBILITY} from './online-compatibility.js?v=0.682.0';
 export function createOnlineClient({getToken,fetcher=fetch,onChange=()=>{},interval=3000,timeout=15000,timer=setTimeout,cancel=clearTimeout}={}){
  let identity=null,epoch=0,handle=null,controller=null,active=false,reading=false,verifiedRules=false;const state={room:null,busy:false,connected:false,error:null,loaded:false};
  const emit=()=>onChange(structuredClone(state));

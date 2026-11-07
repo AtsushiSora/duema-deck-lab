@@ -617,6 +617,7 @@ function instruction590(text){
  if(text==='クリーチャーを1体選び持ち主の手札に戻してもよい。')return {op:'Target',anyOwner:true,to:'hand',optional:true};
  return null;
 }
+const graveSpellBottom594='コスト9以下の呪文を1枚いずれかのプレイヤーの墓地からコストを支払わずに唱える。それを唱えた後墓地のかわりに持ち主の山札の下に置く。';
 function superInstructions437(text,phase){
  // A card selection can include seals and buried cards; element targeting is insufficient.
  if(/^バトルゾーンにある相手の(?:コスト[1-9]\d*以下の)?カードを1枚/.test(text)){
@@ -1075,6 +1076,29 @@ function instruction557(text){
  return null;
 }
 function instruction(text,phase){
+ if(phase>=593){
+  const stop={
+   '次の自分のターンのはじめまで相手はパワー5000以下のクリーチャーで攻撃できない。':{max:5000},
+   '次の自分のターンのはじめまで相手のパワー4000以下のクリーチャーはすべてプレイヤーを攻撃できない。':{max:4000,playerOnly:true},
+   '次の自分のターンのはじめまでパワー3000以下のクリーチャーは攻撃できない。':{max:3000,both:true}
+  }[text];
+  if(stop)return {op:'PowerAttack593',...stop};
+  if(text==='相手のマナゾーンにあるカードの枚数より大きいコストを持つ相手のエレメントを1つ選ぶ。相手はそれを山札の下に置く。')return {op:'Target',to:'deck',element:true,g593OverMana:true};
+ }
+ if(phase>=592){
+  const bottom={op:'GraveBottom589',choosePlayer:true};
+  const body='プレイヤーを1人選んでもよい。そのプレイヤーは自身の墓地をシャッフルし山札の下に置く。';
+  if(text===body)return bottom;
+  if(text==='自分の山札の上から1枚目をマナゾーンに置く。その後'+body)return {op:'Sequence',defs:[{op:'Ramp',n:1},bottom]};
+ }
+ if(phase>=591){
+  const defs={
+   'バトルゾーンにある相手のクリーチャーを1体選ぶ。そのターンそのクリーチャーのパワーは-6000される。(パワー0以下のクリーチャーは破壊される)':{op:'Target',power:-6000,g242PowerMinus:true},
+   'バトルゾーンにある相手のコスト4以下のカードを1枚選び持ち主のマナゾーンに置く。':{op:'Target',element:true,to:'mana',filter:{max:4}},
+   '相手の「ブロッカー」を持つクリーチャーを1体選び破壊する。':{op:'Target',to:'grave',filter:{blocker:true}}
+  }[text];
+  if(defs)return defs;
+ }
  if(phase>=590){const task=instruction590(text);if(task)return task;}
  if(phase>=589){const task=instruction589(text);if(task)return task;}
  if(phase>=588){const task=instruction588(text);if(task)return task;}
@@ -2050,6 +2074,12 @@ export function standardCardSpec(d,{phase=165}={}){
  }
  const f=d?.faces?.[0];
  if(aliasNames.has(d?.name)||phase>=250&&d?.name==='アイドルマスターレオ')throw Error('既存名の別表記');
+ if(phase>=593&&d?.status==='complete'&&d.faces.length===2&&f.typeText==='クリーチャー'&&d.faces[1].typeText==='呪文'&&normalize(f.abilityText)==='相手のクリーチャーが出た時そのターンそのクリーチャーは攻撃できない。'){
+  const [front,spell]=d.faces;
+  const creature=standardCardSpec({...d,faces:[front]},{phase}),body=standardCardSpec({...d,faces:[spell]},{phase});
+  if(!body.crystalCharger||body.g34Tasks?.length!==1||!body.g34Tasks[0].g593OverMana)throw Error('未対応の水晶チャージャーの構成');
+  return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
+ }
  if(d?.status!=='complete'||d.faces.length!==1||!['クリーチャー','進化クリーチャー','タマシード','呪文',...(phase>=166?['NEOクリーチャー']:[]),...(phase>=273?['スター進化クリーチャー']:[])].includes(f.typeText))throw Error('複数面・特殊カードタイプまたは情報不足');
  if(!Number.isInteger(f.cost)||f.cost<1||!f.civilizations.length||f.civilizations.some(c=>!colors.includes(c)&&c!=='無色')||new Set(f.civilizations).size!==f.civilizations.length)throw Error('コスト・文明の個別処理が必要');
  if(f.civilizations.includes('無色')&&f.civilizations.length!==1)throw Error('無色の複合文明');
@@ -2147,10 +2177,16 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  if(phase>=437&&f.typeText==='呪文'){
-  const header=normalize(lines[0]||'').match(/^(?:スーパー・S・トリガー){1,2}\(この呪文を自分のシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい。その時自分のシールドが1つもなければこの呪文に([xo]B)能力を与える\)$/);
+  const text=normalize(lines[0]||'');
+  const header=text.match(/^(?:スーパー・S・トリガー){1,2}\(この呪文を自分のシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい。その時自分のシールドが1つもなければこの呪文に([xo]B)能力を与える\)$/)
+   ||(phase>=594&&text.match(/^(?:スーパー・S・トリガー){1,2}\(このカードを自分のシールドゾーンから手札に加える時コストを支払わずにすぐ実行してもよい。その時自分のシールドが1つもなければこのカードに(\{[xo]B\})能力を与える\)$/));
   if(header){
    const marker=header[1],body=lines.slice(1).join('\n');if(body.split(marker).length!==2)throw Error('未対応のスーパー・S・トリガー構成');const at=body.indexOf(marker);
-   const compile=text=>text.split('\n').filter(s=>s.trim()).flatMap(s=>clauses(normalize(s),phase)).map(s=>superInstructions437(s,phase));
+   const compile=text=>text.split('\n').filter(s=>s.trim()).flatMap(s=>{
+    const line=normalize(s);
+    if(phase>=594&&line===graveSpellBottom594)return [{op:'GraveSpell594',max:9}];
+    return clauses(line,phase).map(s=>superInstructions437(s,phase));
+   });
    const base=compile(body.slice(0,at)),bonus=compile(body.slice(at+marker.length));if(!bonus.length||[...base,...bonus].some(d=>!d))throw Error('未対応のスーパー・S・トリガー能力');
    return{superTrigger:true,effect:'sixPhoto',g34Tasks:base,g437Super:bonus};
   }
@@ -2462,6 +2498,53 @@ export function standardCardSpec(d,{phase=165}={}){
      }:{})
     }[body];
     if(defs){const watch={who:'self',first:true,filter:{creature:true},g399Attacker:true,defs};if((spec.g253AttackWatches||[]).some(w=>JSON.stringify(w)===JSON.stringify(watch)))throw Error('重複する最初の攻撃の監視能力');(spec.g253AttackWatches??=[]).push(watch);continue;}
+   }
+  }
+  if(phase>=593){
+   if(creature&&/^相手のクリーチャーが出た時(?:この|その)ターンそのクリーチャーは攻撃できない。$/.test(line)){
+    if(spec.g593EntryStop)throw Error('重複する登場時攻撃制限');
+    spec.g593EntryStop=true;
+    continue;
+   }
+   if(creature&&line==='相手がこのクリーチャーを選んだ時相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを-3000する。'){
+    if(spec.g447Selected)throw Error('重複する被選択時能力');
+    spec.g447Selected=[{op:'Target',power:-3000,g242PowerMinus:true}];
+    continue;
+   }
+   if(f.typeText==='呪文'&&line==='水晶チャージャー(この呪文を唱えた後墓地に置くかわりに裏向きにしてマナゾーンに置く)'){
+    if(spec.crystalCharger)throw Error('重複する水晶チャージャー');
+    spec.crystalCharger=true;
+    continue;
+   }
+  }
+  if(phase>=592&&creature&&line==='カードは墓地を離れない。'){
+   if(spec.g592GravesStay)throw Error('重複する墓地移動禁止');
+   spec.g592GravesStay=true;
+   continue;
+  }
+  if(phase>=592&&creature&&line==='墓地から呪文を唱えられない。'){
+   if(spec.g592GraveSpellLock)throw Error('重複する墓地呪文禁止');
+   spec.g592GraveSpellLock=true;
+   continue;
+  }
+  if(phase>=591&&creature){
+   const optionalDiscard=line.match(/^相手の呪文の効果または(?:相手の)?クリーチャーの能力によってこのクリーチャーが自分の手札から捨てられる時墓地に置くかわりにバトルゾーンに(?:出して|置いて|出しカードを2枚引いて)もよい。$/);
+   const mandatoryDiscard=/^相手のターン中(?:に)?このクリーチャーが(?:自分の)?手札から捨てられる時墓地に置くかわりに(?:バトルゾーンに)?(?:出す|置く)。$/.test(line);
+   if(optionalDiscard||mandatoryDiscard){
+    if(spec.g591Discard||spec.discardDeploy||spec.enemyDiscardDeploy)throw Error('重複する手札破壊の置換');
+    spec.g591Discard=mandatoryDiscard?'opponentTurn':line.includes('カードを2枚')?'drawTwo':'opponentEffect';
+    continue;
+   }
+   const abilities={
+    '相手が自身のマナゾーンにあるカードの枚数よりコストが大きいクリーチャーをバトルゾーンに出した時相手はそれを山札の一番下に置く。':{recommendRole:'mixel'},
+    '相手の呪文の効果またはクリーチャーの能力によって自分の手札は捨てられない。':{g591HandShield:true},
+    '自分の手札が5枚以上あればこのクリーチャーのパワーは+4000され「W・ブレイカー」を得る。':{g247HandStats:{min:5,power:4000,breaker:2}}
+   }[line];
+   if(abilities){
+    if(Object.keys(abilities).some(k=>k in spec))throw Error('重複する手札破壊の対策能力');
+    Object.assign(spec,abilities);
+    if(abilities.g247HandStats)powerBonus=true;
+    continue;
    }
   }
   if(phase>=590&&creature){

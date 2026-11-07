@@ -1,0 +1,331 @@
+{
+  "phase": 591,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5575,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/38717/",
+    "https://dm.takaratomy.co.jp/rule/qa/39438/",
+    "https://dm.takaratomy.co.jp/rule/qa/48483/",
+    "https://dm.takaratomy.co.jp/rule/qa/48484/"
+  ],
+  "cards": [
+    {
+      "id": "dmx18-032",
+      "name": "アクア闘士 サンダーボルト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx18-032",
+      "faces": [
+        {
+          "name": "アクア闘士 サンダーボルト",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手の呪文の効果またはクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出し、カードを２枚引いてもよい。\n自分の手札が５枚以上あれば、このクリーチャーのパワーは+4000され、「Ｗ・ブレイカー」を得る。",
+          "race": "リキッド・ピープル閃",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g591Discard": "drawTwo",
+        "g247HandStats": {
+          "min": 5,
+          "power": 4000,
+          "breaker": 2
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx18-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "c21059a4c8429d9c65b476ac76c1958ebd7c5dc713bfae24d750a675427e4fa5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx04-006",
+      "name": "ゲロ NICE・ハンゾウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx04-006",
+      "faces": [
+        {
+          "name": "ゲロ NICE・ハンゾウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-6000される。(パワー０以下のクリーチャーは破壊される)\n相手の呪文の効果または相手のクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに置いてもよい。",
+          "race": "デーモン・コマンド/ハンター",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g591Discard": "opponentEffect",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -6000,
+            "g242PowerMinus": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx04-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "0783639a73ef0b34ba070992b115ffe4b499af96f74909e9c48870def48164e1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23sd1-003",
+      "name": "メテオキャノン・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd1-003",
+      "faces": [
+        {
+          "name": "メテオキャノン・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n相手のターン中に、このクリーチャーが手札から捨てられる時、墓地に置くかわりに出す。\nこのクリーチャーが出た時、相手の「ブロッカー」を持つクリーチャーを１体選び、破壊する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g591Discard": "opponentTurn",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23sd1-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "c3570447b42c9bfb6dfd1965fe8bced793f62f58c053e5e9e558b2c782c58b52",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr03-027",
+      "name": "若頭の忠剣ハチ公",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-027",
+      "faces": [
+        {
+          "name": "若頭の忠剣ハチ公",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手の呪文の効果または相手のクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出してもよい。\nこのクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中から《若頭の忠剣ハチ公》を１枚選んで相手に見せ、自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "フレイム・モンスター/ハンター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g591Discard": "opponentEffect",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "g201ExactName": "若頭の忠剣ハチ公"
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "482adf9d055884c0e22023bb720828d7ad551f982fc2bd05a39c554991114f8c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmbd04-003",
+      "name": "絶対の畏れ 防鎧",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd04-003",
+      "faces": [
+        {
+          "name": "絶対の畏れ 防鎧",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手が自身のマナゾーンにあるカードの枚数よりコストが大きいクリーチャーをバトルゾーンに出した時、相手はそれを山札の一番下に置く。\n相手の呪文の効果またはクリーチャーの能力によって、自分の手札は捨てられない。",
+          "race": "メタリカ",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "recommendRole": "mixel",
+        "g591HandShield": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd04-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "a979909b0898f7b4ff3381ec23d1a3572abb1fbd45c302e1326d3c191624bf77",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm12-036",
+      "name": "宣凶師ビンゴレ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-036",
+      "faces": [
+        {
+          "name": "宣凶師ビンゴレ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手のターン中、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出す。",
+          "race": "グラディエーター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g591Discard": "opponentTurn"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "10a589dcb7da232db16c4939594d556938714d4db8af7448aef4daf225c92e09",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx18-047",
+      "name": "有毒類罠顎目 ドクゲーター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx18-047",
+      "faces": [
+        {
+          "name": "有毒類罠顎目 ドクゲーター",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手の呪文の効果またはクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出してもよい。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のコスト４以下のカードを１枚選び、持ち主のマナゾーンに置く。",
+          "race": "ジュラシック・コマンド・ドラゴン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g591Discard": "opponentEffect",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "to": "mana",
+            "filter": {
+              "max": 4
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx18-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "0c75b4aced862bc8e09a1b13f5595bd2bdb50352fe1b39773bebe5308028d474",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm12-s01",
+      "name": "緑神龍アーク・デラセルナ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-s01",
+      "faces": [
+        {
+          "name": "緑神龍アーク・デラセルナ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n相手のターン中、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに置く。",
+          "race": "アース・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g591Discard": "opponentTurn"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-s01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "136fe5cd4fa43785a5a6a38ea69f4d8d39bd1953d2cb517e54c05a3214f78b8d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx18-032": 4,
+      "dmx04-006": 4,
+      "dm23sd1-003": 4,
+      "dmr03-027": 4,
+      "dmbd04-003": 4,
+      "dm12-036": 4,
+      "dmx18-047": 4,
+      "dm12-s01": 4
+    }
+  }
+}

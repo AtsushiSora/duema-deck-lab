@@ -1,4 +1,4 @@
-import {canonicalCardName,hasVerifiedCardNameAlias} from './card-name-aliases.js?v=0.678.0';
+import {canonicalCardName,hasVerifiedCardNameAlias} from './card-name-aliases.js?v=0.682.0';
 import {deckCopyLimit,editingCopyLimit} from './historical-regulations.js';
 // Registration is deliberately separate from the battle engine's supported cards.
 export const nameKey=canonicalCardName;

@@ -158623,20 +158623,540 @@
       ],
       "supportBatch": "phase-590",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx18-032",
+      "name": "アクア闘士 サンダーボルト",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "リキッド・ピープル閃",
+      "text": "相手の呪文の効果またはクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出し、カードを２枚引いてもよい。\n自分の手札が５枚以上あれば、このクリーチャーのパワーは+4000され、「Ｗ・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx18-032",
+      "limit": 4,
+      "g591Discard": "drawTwo",
+      "g247HandStats": {
+        "min": 5,
+        "power": 4000,
+        "breaker": 2
+      },
+      "supportBatch": "phase-591",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx04-006",
+      "name": "ゲロ NICE・ハンゾウ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "デーモン・コマンド/ハンター",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-6000される。(パワー０以下のクリーチャーは破壊される)\n相手の呪文の効果または相手のクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx04-006",
+      "limit": 4,
+      "g591Discard": "opponentEffect",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -6000,
+          "g242PowerMinus": true
+        }
+      ],
+      "supportBatch": "phase-591",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23sd1-003",
+      "name": "メテオキャノン・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 6000,
+      "race": "アーマード・ドラゴン",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n相手のターン中に、このクリーチャーが手札から捨てられる時、墓地に置くかわりに出す。\nこのクリーチャーが出た時、相手の「ブロッカー」を持つクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sd1-003",
+      "limit": 4,
+      "breaker": 2,
+      "g591Discard": "opponentTurn",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-591",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr03-027",
+      "name": "若頭の忠剣ハチ公",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "フレイム・モンスター/ハンター",
+      "text": "相手の呪文の効果または相手のクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出してもよい。\nこのクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中から《若頭の忠剣ハチ公》を１枚選んで相手に見せ、自分の手札に加えてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-027",
+      "limit": 4,
+      "g591Discard": "opponentEffect",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g200Search": true,
+          "n": "all",
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "g201ExactName": "若頭の忠剣ハチ公"
+              },
+              "reveal": true,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-591",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd04-003",
+      "name": "絶対の畏れ 防鎧",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3500,
+      "race": "メタリカ",
+      "text": "相手が自身のマナゾーンにあるカードの枚数よりコストが大きいクリーチャーをバトルゾーンに出した時、相手はそれを山札の一番下に置く。\n相手の呪文の効果またはクリーチャーの能力によって、自分の手札は捨てられない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd04-003",
+      "limit": 4,
+      "recommendRole": "mixel",
+      "g591HandShield": true,
+      "supportBatch": "phase-591",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm12-036",
+      "name": "宣凶師ビンゴレ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "グラディエーター",
+      "text": "相手のターン中、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-036",
+      "limit": 4,
+      "g591Discard": "opponentTurn",
+      "supportBatch": "phase-591",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx18-047",
+      "name": "有毒類罠顎目 ドクゲーター",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ジュラシック・コマンド・ドラゴン",
+      "text": "相手の呪文の効果またはクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに出してもよい。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のコスト４以下のカードを１枚選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx18-047",
+      "limit": 4,
+      "g591Discard": "opponentEffect",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "element": true,
+          "to": "mana",
+          "filter": {
+            "max": 4
+          }
+        }
+      ],
+      "supportBatch": "phase-591",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm12-s01",
+      "name": "緑神龍アーク・デラセルナ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 6000,
+      "race": "アース・ドラゴン",
+      "text": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n相手のターン中、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりにバトルゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-s01",
+      "limit": 4,
+      "breaker": 2,
+      "g591Discard": "opponentTurn",
+      "supportBatch": "phase-591",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp20-020",
+      "name": "かぼちゃうちゃうちゃう",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "グランセクト/レクスターズ",
+      "text": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nカードは墓地を離れない。\n墓地から呪文を唱えられない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-020",
+      "limit": 4,
+      "machFighter": true,
+      "g592GravesStay": true,
+      "g592GraveSpellLock": true,
+      "supportBatch": "phase-592",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp1-051",
+      "name": "バース＝ターブ",
+      "civ": "水/闇/火",
+      "civilizations": [
+        "水",
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "アビスロイヤル",
+      "text": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーが出た時、プレイヤーを１人選んでもよい。そのプレイヤーは、自身の墓地をシャッフルし、山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-051",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "slayer": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GraveBottom589",
+          "choosePlayer": true
+        }
+      ],
+      "supportBatch": "phase-592",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-075",
+      "name": "型破の兎",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ビーストフォーク",
+      "text": "このクリーチャーが出た時、自分の山札の上から１枚目をマナゾーンに置く。その後、プレイヤーを１人選んでもよい。そのプレイヤーは、自身の墓地をシャッフルし、山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-075",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        },
+        {
+          "op": "GraveBottom589",
+          "choosePlayer": true
+        }
+      ],
+      "supportBatch": "phase-592",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp19-070",
+      "name": "「龍素充填314％！龍素砲、撃てぇ！」",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "次の自分のターンのはじめまで、相手はパワー5000以下のクリーチャーで攻撃できない。\nカードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp19-070",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "PowerAttack593",
+          "max": 5000
+        },
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-593",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-023",
+      "name": "～驚異的な矛盾～",
+      "civ": "光/水/闇",
+      "civilizations": [
+        "光",
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4500,
+      "race": "エンジェル・コマンド/デーモン・コマンド/スチーム・ナイト",
+      "text": "NEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nブロッカー ブロッカー\n相手のクリーチャーが出た時、そのターン、そのクリーチャーは攻撃できない。\n相手がこのクリーチャーを選んだ時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－3000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-023",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "blocker": true,
+      "g593EntryStop": true,
+      "g447Selected": [
+        {
+          "op": "Target",
+          "power": -3000,
+          "g242PowerMinus": true
+        }
+      ],
+      "supportBatch": "phase-593",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp10-103",
+      "name": "キャンプダ・ホホホイ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次の自分のターンのはじめまで、相手のパワー4000以下のクリーチャーはすべて、プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-103",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "PowerAttack593",
+          "max": 4000,
+          "playerOnly": true
+        }
+      ],
+      "supportBatch": "phase-593",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-084",
+      "name": "クレイジー・マンドレイカー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次の自分のターンのはじめまで、パワー3000以下のクリーチャーは攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-084",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "PowerAttack593",
+          "max": 3000,
+          "both": true
+        }
+      ],
+      "supportBatch": "phase-593",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-012",
+      "name": "神判のカルマ コットン / ジャッジ・水晶チャージャー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "オラクル・セレス/ヒューマノイド",
+      "text": "相手のクリーチャーが出た時、そのターン、そのクリーチャーは攻撃できない。\n【呪文面】\n相手のマナゾーンにあるカードの枚数より大きいコストを持つ相手のエレメントを１つ選ぶ。相手はそれを山札の下に置く。\n水晶チャージャー（この呪文を唱えた後、墓地に置くかわりに、裏向きにしてマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-012",
+      "limit": 4,
+      "g593EntryStop": true,
+      "spellFace": {
+        "name": "ジャッジ・水晶チャージャー",
+        "type": "spell",
+        "cost": 3,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "crystalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "deck",
+            "element": true,
+            "g593OverMana": true
+          }
+        ]
+      },
+      "supportBatch": "phase-593",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp3-052",
+      "name": "万能バンノー",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ジョーカーズ",
+      "text": "このクリーチャーが出た時、カードを１枚引く。\n相手のクリーチャーが出た時、このターン、そのクリーチャーは攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-052",
+      "limit": 4,
+      "g593EntryStop": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-593",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp3-015",
+      "name": "裏魔導書グリモア-Ⅰ章",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "スーパー・S・トリガー スーパー・S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい。その時自分のシールドが１つもなければ、このカードに{xB}能力を与える）\nカードを３枚引き、自分の手札を１枚捨てる。\n{xB} コスト９以下の呪文を１枚、いずれかのプレイヤーの墓地からコストを支払わずに唱える。それを唱えた後、墓地のかわりに持ち主の山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-015",
+      "limit": 4,
+      "superTrigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sequence",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 3
+            },
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "g437Super": [
+        {
+          "op": "GraveSpell594",
+          "max": 9
+        }
+      ],
+      "supportBatch": "phase-594",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 590,
+    "phase": 594,
     "checkedAt": "2026-11-07",
-    "baseCount": 5567,
-    "newEffectCards": 8,
+    "baseCount": 5592,
+    "newEffectCards": 1,
     "newVanillaCards": 0,
-    "totalCount": 5575,
+    "totalCount": 5593,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/34332/",
-      "https://dm.takaratomy.co.jp/rule/qa/39945/"
+      "https://dm.takaratomy.co.jp/rule/qa/31533/",
+      "https://dm.takaratomy.co.jp/rule/qa/47369/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -168788,6 +169308,77 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/qa_old/35713/",
           "https://dm.takaratomy.co.jp/rule/qa/44311/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 590,
+        "checkedAt": "2026-11-07",
+        "baseCount": 5567,
+        "newEffectCards": 8,
+        "newVanillaCards": 0,
+        "totalCount": 5575,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/34332/",
+          "https://dm.takaratomy.co.jp/rule/qa/39945/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 591,
+        "checkedAt": "2026-11-07",
+        "baseCount": 5575,
+        "newEffectCards": 8,
+        "newVanillaCards": 0,
+        "totalCount": 5583,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/38717/",
+          "https://dm.takaratomy.co.jp/rule/qa/39438/",
+          "https://dm.takaratomy.co.jp/rule/qa/48483/",
+          "https://dm.takaratomy.co.jp/rule/qa/48484/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 592,
+        "checkedAt": "2026-11-07",
+        "baseCount": 5583,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5586,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/40654/",
+          "https://dm.takaratomy.co.jp/rule/qa/40655/",
+          "https://dm.takaratomy.co.jp/rule/qa/40656/",
+          "https://dm.takaratomy.co.jp/rule/qa/40657/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 593,
+        "checkedAt": "2026-11-07",
+        "baseCount": 5586,
+        "newEffectCards": 6,
+        "newVanillaCards": 0,
+        "totalCount": 5592,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/47676/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

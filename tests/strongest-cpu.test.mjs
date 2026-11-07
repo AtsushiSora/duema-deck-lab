@@ -27,13 +27,15 @@ test('a loss changes the learned matchup and counter list, preserves legal forty
  const roundTwo=learnStrongestDefeat(feedback,defeat(target,next,target.cards.at(-1).id,{game:'loss-two'})),again=buildStrongestCPU(target,seeds,data.cards,{learning:roundTwo,previousBuild:next});assert.equal(again.learningRevision,2);assert.notEqual(signature(again.deck),signature(next.deck));assert.deepEqual(e.validateDeck(again.deck),[]);assert.ok(!validStrongestBuild(next,target,roundTwo));
 });
 
-test('the full counter pool uses new entry and grave counters in compatible matchups',()=>{
+// These checks retain the pool available before the additional grave matchup options.
+const earlierPool=data.cards.filter(c=>c.supportBatch!=='phase-592');
+test('the earlier counter pool uses entry and grave counters in compatible matchups',()=>{
  const targets=[
   [seeds.find(d=>d.id==='env-scs9-niigata-rose'),'dmrp18-042'],
   [seeds.find(d=>d.id==='env-barom-practice'),'promoy22-014']
  ];
  for(const [target,id] of targets){
-  const build=buildStrongestCPU(target,seeds,data.cards);
+  const build=buildStrongestCPU(target,seeds,earlierPool);
   assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
   assert.deepEqual(e.validateDeck(build.deck),[]);
  }
@@ -51,5 +53,47 @@ test('the strongest CPU adopts the new counters against spell chains and expensi
   const target=seeds.find(d=>d.id===targetId),build=buildStrongestCPU(target,seeds,data.cards);
   assert.deepEqual(e.validateDeck(build.deck),[]);
   for(const id of expected)assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ }
+});
+
+test('the earlier counter pool uses 防鎧 and ハチ公 against discard-heavy decks',()=>{
+ const target=seeds.find(d=>d.id==='starter25-06');
+ const build=buildStrongestCPU(target,seeds,earlierPool);
+ assert.ok(build.profile.counts.discard>=12);
+ assert.deepEqual(e.validateDeck(build.deck),[]);
+ for(const id of ['dmbd04-003','dmr03-027'])assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ const idle={cards:[{id:'dm11-043',count:4},{id:'dmx18-032',count:4},{id:'dmbd04-003',count:4}]};
+ assert.equal(analyzeStrongestTarget(idle).counts.discard,0);
+ const threat=target.cards.find(r=>analyzeStrongestTarget({cards:[r]}).counts.discard)?.id;
+ assert.ok(threat);
+ assert.ok(learnStrongestDefeat(undefined,defeat(target,build,threat)).weights.discard>0);
+});
+
+test('the current full pool selects all three grave counters across compatible matchups',()=>{
+ const cases=[
+  ['env-scs9-niigata-rose','dmrp20-020'],
+  ['starter25-13','dm25rp1-051'],
+  ['env-abyss-practice','dm24ex4-075']
+ ];
+ for(const [targetId,id] of cases){
+  const target=seeds.find(d=>d.id===targetId);
+  const build=buildStrongestCPU(target,seeds,data.cards);
+  assert.ok(build.profile.weights.grave>=.5);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ }
+});
+
+test('the current full pool selects new attack counters against aggressive matchups',()=>{
+ const cases=[
+  ['starter25-23',['dm25rp2-023']],
+  ['env-viride-practice',['dmrp10-103','dmr21-084']]
+ ];
+ for(const [targetId,ids] of cases){
+  const target=seeds.find(d=>d.id===targetId);
+  const build=buildStrongestCPU(target,seeds,data.cards);
+  assert.ok(build.profile.weights.rush>=.6);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  for(const id of ids)assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
  }
 });
