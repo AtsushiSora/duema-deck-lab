@@ -1,4 +1,4 @@
-import {forceAttackTargets} from './forced-attack-targets.js?v=0.676.0';
+import {forceAttackTargets} from './forced-attack-targets.js?v=0.678.0';
 import {policyRemove,policyTake,policyLook} from './champion-zone-policy.js';
 // No.13: grave summons, delayed returns, private Mekraid and borrowed entry abilities.
 export function createAbyssRules(api){
@@ -12,7 +12,17 @@ export function createAbyssRules(api){
  const protect=(s,p,n)=>{const own=s.players[p];const ids=policyLook(s,p,n,own.deck.filter(x=>!(own.g13Protected||[]).includes(x.uid)),api).map(x=>x.uid);(own.g13Protected??=[]).push(...ids);return ids;};
  const release=(own,ids)=>own.g13Protected=(own.g13Protected||[]).filter(x=>!ids.includes(x));
  function grant(s,x,conditional){(x.g13Rush??=[]).push({turn:s.turn,conditional,attacked:false});}
- function sbPairs(s,t){const own=s.players[t.p];return own.hand.filter(x=>card(x).strikeBack&&api.canCast(s,t.p,card(x))&&!t.declared?.includes(x.uid)).flatMap(x=>t.costs.filter(uid=>uid!==x.uid&&own.hand.some(y=>y.uid===uid&&(card(x).strikeBackRace?api.faces(card(y)).some(c=>String(c.race).includes(card(x).strikeBackRace)):api.faces(card(y)).some(c=>colors(c).includes(card(x).strikeBackColor||'闇'))))).map(uid=>opt(card(x).name+'：'+card(own.hand.find(y=>y.uid===uid)).name+'を捨ててS・バック',{uid:x.uid,cost:uid},35,x.cardId)));}
+ function sbPairs(s,t){
+  const own=s.players[t.p];
+  const sources=own.hand.filter(x=>card(x).strikeBack&&api.canCast(s,t.p,card(x))&&!t.declared?.includes(x.uid));
+  return sources.flatMap(x=>{
+   const c=card(x),eligibleColors=c.strikeBackColors||[c.strikeBackColor||'闇'];
+   const payments=t.costs.map(uid=>own.hand.find(y=>y.uid===uid)).filter(y=>y&&y.uid!==x.uid&&faces(card(y)).some(f=>
+    c.strikeBackRace?String(f.race).includes(c.strikeBackRace):colors(f).some(color=>eligibleColors.includes(color))
+   ));
+   return payments.map(y=>opt(c.name+'：'+card(y).name+'を捨ててS・バック',{uid:x.uid,cost:y.uid},35,x.cardId));
+  });
+ }
  function run(s,t){if(!t.op.startsWith('g13_'))return false;const own=s.players[t.p];switch(t.op){
  case'g13_Noradi':if(own.grave.length>=4)choice(s,t,'墓地4枚を戻してアビス・メクレイド8する？',[opt('墓地4枚を選び、山札の下に戻してメクレイド8',true,30),opt('戻さず、山札の上から4枚まで墓地に置く',null,own.deck.length>4?10:-10)]);else put(s,{...t,op:'g13_NoradiMill'});break;
  case'g13_NoradiReturn':{const selected=t.selected||[],rows=own.grave.filter(x=>!selected.includes(x.uid));if(selected.length===4){for(const uid of selected){const x=policyRemove(s,t.p,'grave',uid,api);if(x){clear(x,'deck');own.deck.push(x);}}put(s,task('g13_Mek',t.p,t.source,{maxCost:8}));break;}if(rows.length<4-selected.length){put(s,{...t,op:'g13_NoradiMill'});break;}choice(s,t,'山札の下に戻す墓地のカードを4枚選ぶ（'+selected.length+'/4・選んだ順に下へ）',rows.map(x=>opt(card(x).name,x.uid,10-cost(card(x)),x.cardId)));break;}

@@ -5,6 +5,8 @@ const aliasNames=new Set(['炎のたてがみ(バーニング・ヘアー)','青
 const normalize=s=>s.normalize('NFKC').replace(/\s|■/g,'').replaceAll('、','');
 const keyword=(line,name)=>new RegExp('^(?:'+name+'){1,2}(?:\\([^()]*\\))?$').test(line);
 const clauses=(body,phase)=>{
+ if(phase>=590&&instruction590(body))return[body];
+ if(phase>=589&&instruction589(body))return[body];
  if(phase>=588&&instruction588(body))return[body];
  if(phase>=587&&instruction587(body))return[body];
  if(phase>=586&&instruction586(body))return[body];
@@ -596,6 +598,25 @@ function instruction588(text){
  default:return null;
  }
 }
+function instruction589(text){
+ switch(text){
+ case '次の相手のターン相手は呪文を唱えることができない。':
+  return {op:'SpellLock589',nextOnly:true};
+ case '文明をひとつ選ぶ。相手は自分自身の次のターンの終わりまでその文明の呪文を唱えることができない。':
+  return {op:'SpellLock589',chooseColor:true};
+ case '相手は自身の墓地をシャッフルし山札の下に置く。':
+ case '相手は自身の墓地をシャッフルし山札の一番下に置く。':
+  return {op:'GraveBottom589'};
+ default:return null;
+ }
+}
+function instruction590(text){
+ if(/^相手は自身のマナゾーンにあるカードの枚数よりコスト(?:が|の)大きい自身のクリーチャーをすべて好きな順序で(?:持ち主の)?山札の(?:一番)?下に置く。$/.test(text)){
+  return {op:'OverManaBottom590'};
+ }
+ if(text==='クリーチャーを1体選び持ち主の手札に戻してもよい。')return {op:'Target',anyOwner:true,to:'hand',optional:true};
+ return null;
+}
 function superInstructions437(text,phase){
  // A card selection can include seals and buried cards; element targeting is insufficient.
  if(/^バトルゾーンにある相手の(?:コスト[1-9]\d*以下の)?カードを1枚/.test(text)){
@@ -1054,6 +1075,8 @@ function instruction557(text){
  return null;
 }
 function instruction(text,phase){
+ if(phase>=590){const task=instruction590(text);if(task)return task;}
+ if(phase>=589){const task=instruction589(text);if(task)return task;}
  if(phase>=588){const task=instruction588(text);if(task)return task;}
  if(phase>=587){const task=instruction587(text);if(task)return task;}
  if(phase>=586){const task=instruction586(text);if(task)return task;}
@@ -1868,6 +1891,11 @@ function zero396(line,phase=396){
 // Modal Shinka effects resolve after evolution, using the same task pipeline as entry effects.
 // Only complete, source-independent bodies are accepted here.
 function shinkaMode445(text,phase){
+ if(phase>=590){
+  const sweep=instruction590(text);
+  if(sweep?.op==='OverManaBottom590')return [sweep];
+  if(text==='カードを1枚自分の墓地から手札に戻す。')return [{op:'Select',origin:'grave',to:'hand',n:1}];
+ }
  if(phase>=546){
   if(text==='相手のクリーチャーを2体まで選ぶ。次の自分のターンのはじめまでそれらのクリーチャーは攻撃もブロックもできない。')return[{op:'Select',origin:'battle',owner:'opponent',n:2,optional:true,g173Targets:true,g190Freeze:'self',filter:{creature:true}}];
   if(text==='相手のクリーチャーを2体まで選ぶ。次の相手のターン中それらのクリーチャーは可能なら攻撃する。')return[{op:'Select',origin:'battle',owner:'opponent',n:2,optional:true,g173Targets:true,g546Force:'nextOpponent',filter:{creature:true}}];
@@ -2434,6 +2462,43 @@ export function standardCardSpec(d,{phase=165}={}){
      }:{})
     }[body];
     if(defs){const watch={who:'self',first:true,filter:{creature:true},g399Attacker:true,defs};if((spec.g253AttackWatches||[]).some(w=>JSON.stringify(w)===JSON.stringify(watch)))throw Error('重複する最初の攻撃の監視能力');(spec.g253AttackWatches??=[]).push(watch);continue;}
+   }
+  }
+  if(phase>=590&&creature){
+   const abilities={
+    '相手は自身のマナゾーンにあるカードの枚数よりコストが大きいクリーチャーをバトルゾーンに出す時かわりにそのクリーチャーをマナゾーンに置く。':{g26Queen:true},
+    '相手が自身のマナゾーンにあるカードの枚数より大きいコストを持つクリーチャーをバトルゾーンに出す時相手はかわりにそのクリーチャーをマナゾーンに置く。':{g26Queen:true},
+    'ストライク・バックS・バック:闇または火(闇または火のカードを自分のシールドゾーンから手札に加える時そのカードを捨ててもよい。そうしたらコストを支払わずにこのクリーチャーを召喚する)':{strikeBack:true,strikeBackColors:['闇','火']},
+    '鬼エンド:シールドが1つもないプレイヤーがいればこのクリーチャーに「ブロッカー」と「スレイヤー」を与える。':{g260Self:{filter:{g590AnyEmptyShields:true},grants:{blocker:true,slayer:true}}},
+    '相手は各ターンに一度しか呪文を唱えられない。':{g590SpellOnce:true},
+    'このクリーチャーがどこからでも自分の墓地に置かれた時墓地をシャッフルし自分の山札の一番下に置く。':{g590SelfGraveBottom:true}
+   }[line];
+   if(abilities){
+    if(Object.keys(abilities).some(k=>k in spec))throw Error('重複する対策能力');
+    Object.assign(spec,abilities);
+    continue;
+   }
+   if(line==='マスター・ブラスター(このクリーチャーが攻撃する時バトルゾーンまたはマナゾーンに自分のジョーカーズが合計4枚以上あればバトルゾーンにある相手のカードを1枚選ぶ。相手はそれを自身の山札の一番下に置く)'){
+    if(attack.length)throw Error('重複する攻撃時能力');
+    attack.push({op:'IfOwn',filter:{g539Jokers:4},defs:[{op:'Target',to:'deck',element:true}]});
+    continue;
+   }
+   if(line==='自分のターンの終わりにこのクリーチャーがタップしていたらカードを1枚引いてもよい。'){
+    if(turnEnd.length)throw Error('重複するターン終了時能力');
+    turnEnd.push({op:'IfOwn',filter:{g590SourceTapped:true},defs:[{op:'Offer',title:'カードを1枚引く？',defs:[{op:'Draw',n:1}]}]});
+    continue;
+   }
+  }
+  if(phase>=589&&creature){
+   if(/^相手のターン中に相手(?:が|のクリーチャーが)召喚以外の方法で(?:クリーチャーを)?(?:バトルゾーンに)?出(?:した|た)時そのクリーチャーを破壊する。$/.test(line)){
+    if(spec.g403Bloom)throw Error('重複する召喚以外の登場監視');
+    spec.g403Bloom=true;
+    continue;
+   }
+   if(line==='相手のターン中に相手のクリーチャーが召喚以外の方法で出る時相手はかわりにそのクリーチャーを墓地に置く。'){
+    if(spec.noNonsummonEntry)throw Error('重複する召喚以外の登場置換');
+    spec.noNonsummonEntry=true;
+    continue;
    }
   }
   if(phase>=588&&creature){

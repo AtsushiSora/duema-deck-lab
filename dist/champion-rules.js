@@ -1,4 +1,4 @@
-import {afterEntry} from './entry-followup.js?v=0.676.0';
+import {afterEntry} from './entry-followup.js?v=0.678.0';
 import {policyRemove,policyTake} from './champion-zone-policy.js';
 // Exact champion-list additions. All choices refer to physical UIDs and survive JSON replay.
 export function createChampionRules(api){

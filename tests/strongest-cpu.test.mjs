@@ -26,3 +26,30 @@ test('a loss changes the learned matchup and counter list, preserves legal forty
  const next=buildStrongestCPU(target,seeds,data.cards,{learning:feedback,previousBuild:initial});assert.equal(next.learningRevision,1);assert.notEqual(signature(next.deck),signature(initial.deck));assert.deepEqual(e.validateDeck(next.deck),[]);assert.equal(next.deck.cards.reduce((n,r)=>n+r.count,0),40);assert.ok(validStrongestBuild(next,target,feedback));assert.ok(!validStrongestBuild(initial,target,feedback));assert.ok(validStrongestBuild(initial,target));assert.equal(JSON.stringify([initial,feedback,seeds]),before);assert.notDeepEqual(next.profile.weights,initial.profile.weights);
  const roundTwo=learnStrongestDefeat(feedback,defeat(target,next,target.cards.at(-1).id,{game:'loss-two'})),again=buildStrongestCPU(target,seeds,data.cards,{learning:roundTwo,previousBuild:next});assert.equal(again.learningRevision,2);assert.notEqual(signature(again.deck),signature(next.deck));assert.deepEqual(e.validateDeck(again.deck),[]);assert.ok(!validStrongestBuild(next,target,roundTwo));
 });
+
+test('the full counter pool uses new entry and grave counters in compatible matchups',()=>{
+ const targets=[
+  [seeds.find(d=>d.id==='env-scs9-niigata-rose'),'dmrp18-042'],
+  [seeds.find(d=>d.id==='env-barom-practice'),'promoy22-014']
+ ];
+ for(const [target,id] of targets){
+  const build=buildStrongestCPU(target,seeds,data.cards);
+  assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+ }
+});
+
+
+test('the strongest CPU adopts the new counters against spell chains and expensive deployment',()=>{
+ const matchups=[
+  ['env-gospel-practice',['promoy16-063']],
+  ['practice-rg',['dmrp12-017']],
+  ['practice-wu',['dmrp20-048']],
+  ['env-gp2026-grimoire',['dm24rp4-S09','dmrp06-024']]
+ ];
+ for(const [targetId,expected] of matchups){
+  const target=seeds.find(d=>d.id===targetId),build=buildStrongestCPU(target,seeds,data.cards);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  for(const id of expected)assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ }
+});

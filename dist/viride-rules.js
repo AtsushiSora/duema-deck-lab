@@ -53,7 +53,10 @@ export function createVirideRules(api){
  return {run,chosen,castles,
   effect(s,p,c,uid,entry){if(c.effect!=='virideEver')return false;put(s,task('g26_Ever',p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;},
   originAllowed(s,p,origin){return ['hand','deck'].includes(origin)||!has(s,1-p,'g26Poppi');},
-  spellAllowed(s,p,c){return c.type!=='spell'||!has(s,1-p,'g26OneNote')||(s.players[p].spellsThisTurn||0)<1;},
+  spellAllowed(s,p,c){
+   return c.type!=='spell'||(s.players[p].spellsThisTurn||0)<1||
+    !creatures(s,1-p).some(x=>{const d=effective(x,s);return d.g26OneNote||d.g590SpellOnce;});
+  },
   entryAllowed(s,p,c){return c?.type!=='creature'||(s.players[p].enteredThisTurn||0)<1||!creatures(s,1-p).some(x=>effective(x,s).g26OneNote&&x.under?.length);},
   everSaver(s,p){return lightMana(s,p)>=5&&has(s,p,'g26Ever');},
   noLose:(s,p)=>!!s.g26Extreme?.[p],
