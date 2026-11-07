@@ -1,4 +1,14 @@
 import {policyRemove,policyLook} from './champion-zone-policy.js';
+// Simultaneous replacement choices may not reserve the same destruction cost.
+export function replacementSacrifices(rows){
+ const sacrifices=new Set();
+ for(const {plan} of rows){
+  if(plan?.kind==='ultra'||plan?.kind==='ater')sacrifices.add(plan.uid);
+  if(plan?.kind==='g49'&&plan.mode==='queen')sacrifices.add(plan.target);
+  if(plan?.kind==='oni')for(const uid of plan.cards)sacrifices.add(uid);
+ }
+ return sacrifices;
+}
 // No.25: grave/mana summons, ultimate evolution and physical-card replacements.
 export function createKenjiRules(api){
  const {card,faces,cost,effective,creatures,put,task,choice,opt,skip,remove,clear,enter,cast,move,targetOptions}=api;
@@ -8,7 +18,7 @@ export function createKenjiRules(api){
  function ramp(s,p,n){for(let i=0;i<n&&s.winner===null&&!s.lossEvent;i++){const x=api.takeTop(s,p);if(x){const to=api.deckRedirect(s,p)?'grave':'mana';clear(x,to);api.addZone(s,s.players[p],to,x);}api.deckCheck(s,p);}}
  function oniCards(s,p,excluded=[]){return s.players[p].battle.flatMap(top=>api.layers(top).filter(x=>!x.faceDown&&!excluded.includes(x.uid)&&(x!==top||api.canLeave(s,p,top))).map(x=>({x,top})));}
  function beginOni(s,p,uid,mode='loss',selected=[]){
-  const reserved=mode==='leave'?s.leaving.rows.flatMap(r=>r.plan?.kind==='oni'?r.plan.cards:[]):[];
+  const reserved=mode==='leave'?[...replacementSacrifices(s.leaving.rows)]:[];
   if(selected.length===3){s.decision=null;if(mode==='leave'){const row=s.leaving.rows.find(r=>r.player===p&&r.uid===uid);row.plan={kind:'oni',cards:selected};}else{api.destroyReplacementCards(s,p,selected);api.completeLossReplacement(s);}return;}
   const xs=oniCards(s,p,[...reserved,...selected]);
   choice(s,task('g25_Oni',p,card(s.players[p].battle.find(x=>x.uid===uid)).id,{uid,mode,selected}),'鬼S-MAX：かわりに破壊する表向きのカード（'+selected.length+'/3）',[...xs.map(({x,top})=>opt(card(x).name+(x!==top?'（'+card(top).name+'の下）':''),x.uid,50-cost(card(x))-(x===top?15:0),x.cardId)),opt('選び直す',null,-100)]);

@@ -1,3 +1,13 @@
+import {STANDARD579_DECK} from './fixtures/standard579.mjs';
+import {STANDARD577_DECK} from './fixtures/standard577.mjs';
+import {STANDARD576_DECK} from './fixtures/standard576.mjs';
+import {STANDARD575_DECK} from './fixtures/standard575.mjs';
+import {STANDARD574_DECK} from './fixtures/standard574.mjs';
+import {STANDARD573_DECK} from './fixtures/standard573.mjs';
+import {STANDARD572_DECKS} from './fixtures/standard572.mjs';
+import {STANDARD571_DECKS} from './fixtures/standard571.mjs';
+import {STANDARD570_DECKS} from './fixtures/standard570.mjs';
+import {STANDARD569_DECKS} from './fixtures/standard569.mjs';
 import {STANDARD568_DECKS} from './fixtures/standard568.mjs';
 import {STANDARD567_DECKS} from './fixtures/standard567.mjs';
 import {STANDARD566_DECKS} from './fixtures/standard566.mjs';
@@ -1430,3 +1440,46 @@ for(const deck of STANDARD566_DECKS)if(validateDeck(deck).length||registry.cover
 for(const deck of STANDARD567_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid player attack restriction fixture');console.log('Checked standard567 legal forties: separate power and player attack durations, Revolution Two, tapped mana and allied tribe requirements.');
 
 for(const deck of STANDARD568_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid conditional alternative summon fixture');console.log('Checked standard568 legal forties: distinct payment colors, printed card identity, conditional paid summons, NEO evolution and origin permissions.');
+
+for(const deck of STANDARD569_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid relative-power blocking fixture');console.log('Checked standard569 legal forties: relative blocker power, temporary spell restrictions, nature auras and mana armor.');
+
+for(const deck of STANDARD570_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid conditional blocking fixture');console.log('Checked standard570 legal forties: evolution, non-evolution opponent, Revolution Two and conditional blocking power.');
+
+for(const deck of STANDARD571_DECKS)if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40)throw Error('Invalid Saver fixture');console.log('Checked standard571 legal forties: Saver destruction replacements, current power, race and evolution conditions, and tamaseed sources.');
+
+for(const deck of STANDARD572_DECKS){
+  if(validateDeck(deck).length||registry.coverage(deck).unsupported||deck.cards.reduce((n,c)=>n+c.count,0)!==40){
+    throw Error('Invalid Ultra Saver fixture');
+  }
+}
+console.log('Checked standard572 legal forties: normal and Ultra Saver conditions and replacement destinations.');
+
+if(validateDeck(STANDARD573_DECK).length||registry.coverage(STANDARD573_DECK).unsupported||STANDARD573_DECK.cards.reduce((n,c)=>n+c.count,0)!==40){
+  throw Error('Invalid Saver and cost reduction fixture');
+}
+console.log('Checked standard573 legal forty: civilization, tribe, optional summon reduction and Saver.');
+
+if(validateDeck(STANDARD574_DECK).length||registry.coverage(STANDARD574_DECK).unsupported||STANDARD574_DECK.cards.reduce((n,c)=>n+c.count,0)!==40){
+  throw Error('Invalid legacy Saver fixture');
+}
+console.log('Checked standard574 legal forty: grave movement, other creatures, and consecutive-turn restriction.');
+
+if(validateDeck(STANDARD575_DECK).length||registry.coverage(STANDARD575_DECK).unsupported||STANDARD575_DECK.cards.reduce((n,c)=>n+c.count,0)!==40){
+  throw Error('Invalid destruction destination fixture');
+}
+console.log('Checked standard575 legal forty: mandatory and optional destruction destinations and tapped mana.');
+
+if(validateDeck(STANDARD576_DECK).length||registry.coverage(STANDARD576_DECK).unsupported||STANDARD576_DECK.cards.reduce((n,c)=>n+c.count,0)!==40){
+  throw Error('Invalid element destruction fixture');
+}
+console.log('Checked standard576 legal forty: element sweeps, optional mana replacements, and Snow Fairy deployment.');
+
+if(validateDeck(STANDARD577_DECK).length||registry.coverage(STANDARD577_DECK).unsupported||STANDARD577_DECK.cards.reduce((n,c)=>n+c.count,0)!==40){
+  throw Error('Invalid battle-zone protection fixture');
+}
+console.log('Checked standard577 legal forty: conditional battle-zone replacements and mandatory blockers.');
+
+if(validateDeck(STANDARD579_DECK).length||registry.coverage(STANDARD579_DECK).unsupported||STANDARD579_DECK.cards.reduce((n,c)=>n+c.count,0)!==40){
+  throw Error('Invalid battle-card selection fixture');
+}
+console.log('Checked standard579 legal forty: card-targeted removal and reconstructed evolution stacks.');

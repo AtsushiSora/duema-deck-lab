@@ -1,0 +1,623 @@
+{
+  "phase": 579,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5436,
+  "description": "能力文全体を認識し、公式情報との照合後にまとめて対戦対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/41079/",
+    "https://dm.takaratomy.co.jp/rule/qa/42057/",
+    "https://dm.takaratomy.co.jp/rule/qa/40033/",
+    "https://dm.takaratomy.co.jp/rule/qa/41637/",
+    "https://dm.takaratomy.co.jp/rule/qa/45574/",
+    "https://dm.takaratomy.co.jp/rule/qa/42925/",
+    "https://dm.takaratomy.co.jp/rule/qa/43873/",
+    "https://dm.takaratomy.co.jp/rule/qa/41171/",
+    "https://dm.takaratomy.co.jp/rule/qa/45909/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-028"
+  ],
+  "cards": [
+    {
+      "id": "dmrp09-092",
+      "name": "アッカン・ペロケット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-092",
+      "faces": [
+        {
+          "name": "アッカン・ペロケット",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、バトルゾーンにある相手のクリーチャーではないカードを１枚選び、持ち主の墓地に置く。",
+          "race": "ジョーカーズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "to": "grave",
+            "nonCreature": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-092.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "d3c1e6bdd02a54f4f7a9c77ac6f692e1a264a9662c941157ed61599fce19c6d1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-049",
+      "name": "イデア・パラドックス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-049",
+      "faces": [
+        {
+          "name": "イデア・パラドックス",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれか１つを選ぶ。\n▶バトルゾーンにある相手の、コスト４以上のカードを１枚選び、持ち主の手札に戻す。\n▶バトルゾーンにある相手の、コスト３以下のカードを１枚選んで破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "バトルゾーンにある相手の、コスト４以上のカードを１枚選び、持ち主の手札に戻す。",
+                "defs": [
+                  {
+                    "op": "BattleCardMove579",
+                    "to": "hand",
+                    "min": 4
+                  }
+                ]
+              },
+              {
+                "label": "バトルゾーンにある相手の、コスト３以下のカードを１枚選んで破壊する。",
+                "defs": [
+                  {
+                    "op": "BattleCardMove579",
+                    "to": "grave",
+                    "max": 3
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "bfdc615f19204a723f6a973f3fc8296ad874e3aed5c7c2bb54fd163f9fe0b690",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-025",
+      "name": "ドドンガ轟キャノン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-025",
+      "faces": [
+        {
+          "name": "ドドンガ轟キャノン",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スーパー・S・トリガースーパー・S・トリガー（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。その時自分のシールドが１つもなければ、この呪文にoB 能力を与える）\nバトルゾーンにある相手のコスト５以下のカードを１枚選び、持ち主の墓地に置く。\noB 相手のコスト７以下のクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "to": "grave",
+            "max": 5
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "Sweep",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "max": 7
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "8468fe1904db29301f708045eadfced87bf7d7973ae44d053c08d067b44fbe54",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp14-078",
+      "name": "ハエタタ・チュリス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-078",
+      "faces": [
+        {
+          "name": "ハエタタ・チュリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、バトルゾーンにある相手の、クリーチャーではないカードを１枚選び、持ち主の墓地に置く。",
+          "race": "ビートジョッキー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "to": "grave",
+            "nonCreature": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-078.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "52945c844795e93da14e32fdab739418440d3f1875a9749b8c110c2ea762a735",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy15-064",
+      "name": "ハムカツ団の爆砕Go！",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy15-064",
+      "faces": [
+        {
+          "name": "ハムカツ団の爆砕Go！",
+          "typeText": "呪文",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガーS・トリガー（この呪文をシールドゾーンから手札に加える時とき、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれか１ つを選ぶ。▼相手のパワー3000以下のクリーチャーをすべて破壊する。▼バトルゾーンにあるカードを１ 枚選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のパワー3000以下のクリーチャーをすべて破壊する。",
+                "defs": [
+                  {
+                    "op": "Sweep",
+                    "to": "grave",
+                    "filter": {
+                      "creature": true,
+                      "maxPower": 3000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "バトルゾーンにあるカードを１ 枚選び、持ち主のマナゾーンに置く。",
+                "defs": [
+                  {
+                    "op": "BattleCardMove579",
+                    "to": "mana",
+                    "anyOwner": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "manaReference": {
+        "id": "dmr23-028",
+        "name": "ハムカツ団の爆砕Go！",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-028",
+        "faces": [
+          {
+            "name": "ハムカツ団の爆砕Go！",
+            "typeText": "呪文",
+            "civilizationText": "火/自然",
+            "civilizations": [
+              "火",
+              "自然"
+            ],
+            "cost": 6,
+            "costText": "6",
+            "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれか１つを選ぶ。 ▼相手のパワー3000以下のクリーチャーをすべて破壊する。 ▼バトルゾーンにあるカードを１枚選び、持ち主のマナゾーンに置く。",
+            "race": "",
+            "powerText": "",
+            "missingFields": []
+          }
+        ],
+        "status": "complete",
+        "parserVersion": 2,
+        "verification": {
+          "checkedAt": "2026-11-07",
+          "sha256": "5154f73ddebf677f6785cb3172595b05e5623e3e7cf3a423939420bb3f1e4a25",
+          "facesMatched": true,
+          "manaValue": 1
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy15-064.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "fadee26d3f12e19a3b16cfcf7c00f043e4cf7510ccbb30fff9e5dee895e5c12a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp12-056",
+      "name": "メッチャ映えタタキ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-056",
+      "faces": [
+        {
+          "name": "メッチャ映えタタキ",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれか１つを選ぶ。\n→相手のパワー3000以下のクリーチャーを１体破壊する。\n→バトルゾーンにある相手の、クリーチャーではないカードを１枚選び、持ち主の墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のパワー3000以下のクリーチャーを１体破壊する。",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 3000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "バトルゾーンにある相手の、クリーチャーではないカードを１枚選び、持ち主の墓地に置く。",
+                "defs": [
+                  {
+                    "op": "BattleCardMove579",
+                    "to": "grave",
+                    "nonCreature": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-056.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "87ee705e2bc8bbb1c662abd715fb2cec4fa0491067692edfcd8c60671a807d26",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-019",
+      "name": "死の鬼術 鬼暴崩",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-019",
+      "faces": [
+        {
+          "name": "死の鬼術 鬼暴崩",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにある相手の、コスト３以下のカードを１枚選び、持ち主の墓地に置く。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、バトルゾーンにある相手の、コスト５以下のカードを１枚選び、持ち主の墓地に置く。",
+          "race": "鬼札王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "to": "grave",
+            "max": 3
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "sumBoth": true,
+                "max": 6
+              }
+            },
+            "defs": [
+              {
+                "op": "BattleCardMove579",
+                "to": "grave",
+                "max": 5
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "54b54215311a7943db595192a99ba2ee54ac6ab0f0d45e95a5c3465940b975fd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-003",
+      "name": "蒼き熱剣 デカベッタ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-003",
+      "faces": [
+        {
+          "name": "蒼き熱剣 デカベッタ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\nブロッカー ブロッカー\nこのクリーチャーがタップした時、バトルゾーンにある相手の、コスト４以下のカードを１枚選び、持ち主の手札に戻してもよい。\nシビルカウント３：自分の水のクリーチャーまたは水のタマシードが合計３つ以上あれば、このクリーチャーのパワーは+6000され、「W・ブレイカー」を得、相手に選ばれない。（ただし、このクリーチャーを攻撃またはブロックしてもよい）",
+          "race": "ムートピア",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "g260Self": {
+          "filter": {
+            "creatureOrSeed": true,
+            "color": "水",
+            "g258Civil": 3
+          },
+          "grants": {
+            "power": 6000,
+            "breaker": 2,
+            "untargetable": true
+          }
+        },
+        "g188Tapped": [
+          {
+            "op": "BattleCardMove579",
+            "to": "hand",
+            "max": 4,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "7a08e6c7b5745d9fbc218a9fb7d27efb47fe429536aa727686813cacccb92b52",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp21-010",
+      "name": "白騎士の精霊HEAVEN・キッド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-010",
+      "faces": [
+        {
+          "name": "白騎士の精霊HEAVEN・キッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nこのクリーチャーが出た時、バトルゾーンにある他の、コスト３以下のカードを１枚選び、シールド化してもよい。",
+          "race": "エンジェル・コマンド",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "to": "shields",
+            "anyOwner": true,
+            "other": true,
+            "max": 3,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "ee617922aad4f10d7b8e6f35a0c4e67cef4b1478477b929753dcf5932bdc3fa8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-023",
+      "name": "龍脈術 水霊の計",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-023",
+      "faces": [
+        {
+          "name": "龍脈術 水霊の計",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー\n次のうちいずれかひとつを選ぶ。 ▼バトルゾーンにある相手のカードを１枚選ぶ。相手はそれを自身の山札の一番下に置く。　▼カードを３枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "バトルゾーンにある相手のカードを１枚選ぶ。相手はそれを自身の山札の一番下に置く。",
+                "defs": [
+                  {
+                    "op": "BattleCardMove579",
+                    "to": "deck"
+                  }
+                ]
+              },
+              {
+                "label": "カードを３枚引く。",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 3
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "b8dce80d687c9005f303ce7ed2394ed0a2200d8a428362640f0fcb5f9e0844f3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr15-041",
+      "name": "龍脈術 落城の計",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-041",
+      "faces": [
+        {
+          "name": "龍脈術 落城の計",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにあるコスト６以下のカードを１枚選び、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "to": "hand",
+            "anyOwner": true,
+            "max": 6
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "2f5695f342ebeb48c469ff9c30b27664db007f96cfbfe924645b6d5b30fd8943",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp09-092": 4,
+      "dm22rp2-049": 4,
+      "dmrp01-025": 4,
+      "dmrp14-078": 4,
+      "promoy15-064": 4,
+      "dmrp12-056": 4,
+      "dmrp16-019": 4,
+      "dm22rp1-003": 4,
+      "dmrp21-010": 4,
+      "dmr14-023": 4,
+      "dmr15-041": 4
+    }
+  }
+}

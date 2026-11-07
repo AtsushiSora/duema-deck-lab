@@ -25,6 +25,11 @@ if(process.argv.includes('--prepare')){
   const detail=details.cards.find(c=>c.id===row.id);assert.deepEqual(row.faces,detail.faces);
   assert.deepEqual(row.spec,standardCardSpec(detail,{phase}));
   assert.ok(row.verification?.facesMatched);assert.match(row.verification.sha256,/^[a-f0-9]{64}$/);
+  if(row.manaReference){
+   const reference=row.manaReference.verification;
+   assert.ok(reference?.facesMatched);assert.match(reference.sha256,/^[a-f0-9]{64}$/);
+   assert.equal(reference.manaValue,row.spec.manaValue??1);
+  }
   assert.equal(new URL(row.image).hostname,'dm.takaratomy.co.jp');
   const limit=m.regulationVerification.limits[row.id];assert.ok([0,1,4].includes(limit));
   const old=data.cards.find(c=>c.id===row.id||c.name===row.name);assert.ok(!old||old.supportBatch===batch,'Do not overwrite an existing definition');

@@ -24,7 +24,15 @@ export function createGransectRules(api){
   case'g16Plant':{const x=ramp(s,t.p,1)[0];if(x&&bigCreature(card(x))&&s.winner===null)ramp(s,t.p,1);break;}
   case'g16Smash':{const c=card(t.source);if(faces(c)[1]&&api.canCast(s,t.p,faces(c)[1]))choice(s,t,'スマッシュ・バーストで呪文側を唱える？',[opt('ソニック・ダンスを唱える',true,creatures(s,1-t.p).some(x=>power(x,false,s)<=7000)?20:-1,c.id),skip()]);break;}
   case'g16Defend':api.defend(s,t.p,t.uid,t.kind,t.incarnation);break;
-  case'g16DefenseSelect':{const list=api.defenseOptions(s,t.p).filter(x=>!t.selected.some(y=>y.kind===x.kind&&y.uid===x.uid));choice(s,t,'使うブロッカー・ガードマンをすべて選ぶ（'+t.selected.length+'件）',[...list.map(x=>opt(x.label,{kind:x.kind,uid:x.uid},5,x.cardId)),opt('選択を確定',null,t.selected.length?10:0)]);break;}
+  case'g16DefenseSelect':{
+   const defenses=api.defenseOptions(s,t.p);
+   const required=t.g577Required?new Set(defenses.filter(x=>x.required).map(x=>x.uid)):new Set();
+   const list=defenses.filter(x=>(x.required||!required.has(x.uid))&&!t.selected.some(y=>y.uid===x.uid&&(t.g577Required||y.kind===x.kind)));
+   const options=list.map(x=>opt(x.label+(x.required?'（必須）':''),{kind:x.kind,uid:x.uid},x.required?20:5,x.cardId));
+   if(!list.some(x=>x.required))options.push(opt('選択を確定',null,t.selected.length?10:0));
+   choice(s,t,t.g577Required?'必須のブロッカーを含め、使う順に選ぶ':'使うブロッカー・ガードマンをすべて選ぶ（'+t.selected.length+'件）',options);
+   break;
+  }
   case'g16Deathmatch':{const a=own.battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===t.incarnation),b=s.players[t.owner].battle.find(x=>x.uid===t.target&&(x.incarnation||0)===t.targetIncarnation);if(a&&b&&api.isCreature(s,a)&&api.isCreature(s,b))choice(s,t,'デスマッチ・ビートルで出たクリーチャーとバトルする？',[opt('バトルする',true,power(a,false,s)>power(b,false,s)?20:-10,a.cardId),skip()]);break;}
   default:throw Error('未実装のグランセクト効果：'+t.op);
  }return true;}
@@ -37,7 +45,7 @@ export function createGransectRules(api){
   case'g16ManaTarget':if(value)move(s,[{player:1-t.p,uid:value,to:'mana'}]);break;
   case'g16RevealSelect':if(value)put(s,{...t,selected:[...t.selected,value]});else finishReveal(s,t);break;
   case'g16Smash':if(value)api.castBattleSpell(s,t.p,t.uid,t.incarnation,t.source);break;
-  case'g16DefenseSelect':if(value)put(s,{...t,selected:[...t.selected,value]});else if(s.attack){s.attack.stage='redirecting';for(const x of t.selected){const inst=own.battle.find(y=>y.uid===x.uid);if(inst)on(s,t.p,inst.cardId,'g16Defend',{uid:x.uid,kind:x.kind,incarnation:inst.incarnation||0});}}break;
+  case'g16DefenseSelect':if(value)put(s,{...t,selected:[...t.selected,value]});else if(s.attack&&t.g577Required)api.defendRequired(s,t.p,t.selected);else if(s.attack){s.attack.stage='redirecting';for(const x of t.selected){const inst=own.battle.find(y=>y.uid===x.uid);if(inst)on(s,t.p,inst.cardId,'g16Defend',{uid:x.uid,kind:x.kind,incarnation:inst.incarnation||0});}}break;
   case'g16Deathmatch':if(value){const a=own.battle.find(x=>x.uid===t.uid),b=s.players[t.owner].battle.find(x=>x.uid===t.target);if(a&&b)api.battle(s,t.p,a,t.owner,b,s.attack?.attacker);}break;
   default:throw Error('未実装のグランセクト選択：'+t.op);
  }return true;}

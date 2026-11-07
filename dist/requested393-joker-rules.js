@@ -1,4 +1,4 @@
-import {forceAttackTargets} from './forced-attack-targets.js?v=0.656.0';
+import {forceAttackTargets} from './forced-attack-targets.js?v=0.667.0';
 // Requested Joker abilities; physical identities remain stable across choices and WD transformations.
 const characterKeys=new Set(['id','name','type','cost','printedCost','power','manaValue','civ','civilizations','race','text','source','limit','supportBatch','supportKind','spellFace','g393JWDFaces']);
 export function wdDefinition393(x,base){return base?.g393JWDFaces&&typeof x!=='string'?{...base,...base.g393JWDFaces[x.g393JWDBack?1:0],id:base.id,g393JWDFaces:base.g393JWDFaces}:base;}
