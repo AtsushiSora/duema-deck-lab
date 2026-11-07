@@ -44,11 +44,16 @@ export function createUtilityControlRules(api){
  }return true;}
  return{run,chosen,mainActions(s,p){return (s.players[p].spellsThisTurn||0)>0?s.players[p].hand.filter(x=>card(x).g118SpellZero&&api.canCast(s,p,card(x),'hand')&&api.canEnter(s,p,card(x),{origin:'hand',execution:true})).map(x=>({kind:'play',uid:x.uid,cardId:x.cardId,origin:'hand',cost:0,freeSummon:'G・ゼロ',label:card(x).name+'をG・ゼロで召喚'})):[];},
   spellTax(s,p,c){
-   if(c.crossing||!['creature','spell'].includes(c.type))return 0;
+   if(c.crossing)return 0;
    const colors=api.colors(c);
    return s.players.reduce((n,_,owner)=>n+api.creatures(s,owner).filter(x=>!x.sealed).reduce((n,x)=>{
-    const source=api.effective(x,s),both=source.g505ExecutionTax,tax=source.g222SpellTax;
-    const shared=both&&colors.includes(both.color)?both.amount:0;
+    const source=api.effective(x,s),both=source.g505ExecutionTax,tax=source.g222SpellTax,execution=source.g619Tax;
+    const shared=both&&['creature','spell'].includes(c.type)&&colors.includes(both.color)?both.amount:0;
+    const applies=execution&&owner!==p&&(
+     execution.kind==='multicolor'&&colors.length>1||
+     execution.kind==='spellOrSeed'&&(c.type==='spell'||c.type==='seed'&&!c.seedCreature)||
+     execution.kind==='noncreature'&&c.type!=='creature'&&!c.seedCreature);
+    n+=applies?execution.amount:0;
     if(c.type!=='spell')return n+shared;
     return n+shared+(source.g56SpellTax||0)+(!tax||tax.opponent&&owner===p||tax.first&&(s.players[p].spellsThisTurn||0)>0||tax.exceptColor&&colors.includes(tax.exceptColor)||tax.colors&&!tax.colors.some(color=>colors.includes(color))?0:tax.graveSpells?s.players[p].grave.filter(x=>!x.faceDown&&!(c.summonOrigin==='grave'&&x.uid===c.executionUid)&&api.faces(card(x)).some(c=>c.type==='spell')).length:tax.perOtherCreature?api.creatures(s,owner).filter(y=>!y.sealed&&y.uid!==x.uid).length:tax.amount);
    },0),0);

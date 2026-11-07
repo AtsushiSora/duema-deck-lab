@@ -8,7 +8,7 @@ export function inheritSoul404(c,inst,card,layers){
  for(const {grants:g}of out.g404Inherited){
   for(const k of['blocker','unblockable','spellUntargetable'])if(g[k])out[k]=true;
   if(g.slayer){out.slayer=true;slayers++;}
-  for(const k of['g38BattleBonus','g38EnemyTurnBonus'])if(g[k])out[k]=(out[k]||0)+g[k];
+  for(const k of['g38BattleBonus','g38EnemyTurnBonus','g607StackPower'])if(g[k])out[k]=(out[k]||0)+g[k];
  }
  if(slayers>1)out.g208SlayerCount=slayers;
  return out;

@@ -1,0 +1,135 @@
+{
+  "phase": 614,
+  "checkedAt": "2026-11-08",
+  "baseCount": 5678,
+  "description": "墓地を利用するデッキへの対策カードを公式情報と照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/43454/"
+  ],
+  "cards": [
+    {
+      "id": "dm38-018",
+      "name": "機動電影レッド・スコーピオン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-018",
+      "faces": [
+        {
+          "name": "機動電影レッド・スコーピオン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、またはこのクリーチャーがバトルゾーンを離れた時、バトルゾーンにある相手の「ブロッカー」を持つクリーチャー１体と、相手の墓地からカードを２枚選ぶ。相手は選ばれたカードを好きな順序で自身の山札の一番下に置く。",
+          "race": "アーマロイド/マーフォーク",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Scorpion614"
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Scorpion614"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "68119e1c390d09fcc14fda1a3682315dba3ef84af1616c12a6dd6478ed826e08",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm30-013",
+      "name": "嘆きの連鎖",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-013",
+      "faces": [
+        {
+          "name": "嘆きの連鎖",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー\n相手の墓地にあるクリーチャーと同じカード名の相手のクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "g614GraveCreatureName": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm30-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "73006ce53f63f436e89c97a683dede9fd0e6886e94027cbdd12513e0674b7559",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-025",
+      "name": "外道秘宝ラングル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-025",
+      "faces": [
+        {
+          "name": "外道秘宝ラングル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手は、自分自身の墓地にある自然または光の呪文と同じ名前の呪文を唱えることはできない。",
+          "race": "パンドラボックス",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g614GraveNameSpellLock": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "6071f12d73a04ff722cea88d6172661312d88cc7e734ad9adaca1a7cd9289a67",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-08",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm38-018": 4,
+      "dm30-013": 4,
+      "dm14-025": 4
+    }
+  }
+}

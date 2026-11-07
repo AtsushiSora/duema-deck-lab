@@ -1,5 +1,5 @@
 // Exact name matching for text imports; OCR corrections are handled separately.
-import {nameKey} from './catalogue.js?v=0.693.0';
+import {nameKey} from './catalogue.js?v=0.707.0';
 export function parseList(text,registry){
  const counts=new Map();
  for(const raw of text.split('\n')){

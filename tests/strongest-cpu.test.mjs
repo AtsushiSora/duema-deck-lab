@@ -28,7 +28,21 @@ test('a loss changes the learned matchup and counter list, preserves legal forty
 });
 
 // Isolate earlier card additions from newer options competing for the same deck slots.
-const beforeSpellHandDisruption=data.cards.filter(c=>c.supportBatch!=='phase-605');
+const beforeExecutionTax=data.cards.filter(c=>c.supportBatch!=='phase-619');
+const beforeShieldPressure=beforeExecutionTax.filter(c=>c.supportBatch!=='phase-618');
+const beforeElementRemoval=beforeShieldPressure.filter(c=>c.supportBatch!=='phase-617');
+const beforeRepeatedDeployment=beforeElementRemoval.filter(c=>c.supportBatch!=='phase-616');
+const beforeAttackPressure=beforeRepeatedDeployment.filter(c=>c.supportBatch!=='phase-615');
+const beforeGraveNameCounters=beforeAttackPressure.filter(c=>c.supportBatch!=='phase-614');
+const beforeNewBlockerCounters=beforeGraveNameCounters.filter(c=>c.supportBatch!=='phase-613');
+const beforeSmallBoardCounters=beforeNewBlockerCounters.filter(c=>c.supportBatch!=='phase-612');
+const beforeUntappedCounters=beforeSmallBoardCounters.filter(c=>c.supportBatch!=='phase-611');
+const beforeResourceCounters=beforeUntappedCounters.filter(c=>c.supportBatch!=='phase-610');
+const beforeTempoCounters=beforeResourceCounters.filter(c=>c.supportBatch!=='phase-609');
+const beforeLargeRemoval=beforeTempoCounters.filter(c=>c.supportBatch!=='phase-608');
+const beforeOffHandCounters=beforeLargeRemoval.filter(c=>c.supportBatch!=='phase-607');
+const beforeFastDefense=beforeOffHandCounters.filter(c=>c.supportBatch!=='phase-606');
+const beforeSpellHandDisruption=beforeFastDefense.filter(c=>c.supportBatch!=='phase-605');
 const beforeHandBoardDisruption=beforeSpellHandDisruption.filter(c=>c.supportBatch!=='phase-604');
 const beforeOpeningRamps=beforeHandBoardDisruption.filter(c=>c.supportBatch!=='phase-603');
 const beforeDefensiveTriggers=beforeOpeningRamps.filter(c=>c.supportBatch!=='phase-602');
@@ -110,7 +124,7 @@ test('the earlier attack counters are selected against aggressive matchups',()=>
 test('フィオナ remains an available counter against spell-heavy マジック and 水魔導具',()=>{
  for(const targetId of ['env-magic-practice','env-water-mado-practice']){
   const target=seeds.find(d=>d.id===targetId);
-  const build=buildStrongestCPU(target,seeds,targetId==='env-water-mado-practice'?beforeSpellHandDisruption:data.cards);
+  const build=buildStrongestCPU(target,seeds,targetId==='env-water-mado-practice'?beforeSpellHandDisruption:beforeUntappedCounters);
   assert.ok(build.profile.weights.spells>=.5);
   assert.deepEqual(e.validateDeck(build.deck),[]);
   assert.ok(build.deck.cards.some(r=>r.id==='dm25ex4-S01'));
@@ -141,27 +155,27 @@ test('the pool before blocker counters adopts creature-trigger counters against 
  assert.ok(!build.deck.cards.some(r=>r.id==='dmr07-022'));
 });
 
-test('the strongest CPU uses new grave counters against 墓地ソース and アビス',()=>{
+test('the earlier pool selects grave counters against 墓地ソース and アビス',()=>{
  const matchups=[
   ['env-scs9-niigata-rose',['dm25rp3-018','dmex02-009']],
   ['env-abyss-practice',['dmex02-009']]
  ];
  for(const [targetId,ids] of matchups){
   const target=seeds.find(d=>d.id===targetId);
-  const build=buildStrongestCPU(target,seeds,data.cards);
+  const build=buildStrongestCPU(target,seeds,beforeOffHandCounters);
   assert.deepEqual(e.validateDeck(build.deck),[]);
   for(const id of ids)assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
  }
 });
 
-test('the strongest CPU adopts blocker removal and unblockable attacks against defensive decks',()=>{
+test('the earlier blocker counters provide removal and unblockable attacks against defensive decks',()=>{
  const matchups=[
   ['env-heavens-practice',['dm23ex3-021','dm23rp4-063']],
   ['starter25-20',['dm23ex3-021','dmrp19-024']]
  ];
  for(const [targetId,ids] of matchups){
   const target=seeds.find(d=>d.id===targetId);
-  const build=buildStrongestCPU(target,seeds,data.cards);
+  const build=buildStrongestCPU(target,seeds,beforeNewBlockerCounters);
   assert.ok(build.profile.counts.blocks>=10);
   assert.deepEqual(e.validateDeck(build.deck),[]);
   for(const id of ids)assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
@@ -175,7 +189,7 @@ test('the strongest CPU counters expensive creatures that can come out early',()
  ];
  for(const [targetId,ids] of cases){
   const target=seeds.find(d=>d.id===targetId);
-  const build=buildStrongestCPU(target,seeds,targetId==='env-gp2026-pinky'?beforeOpeningRamps:data.cards);
+  const build=buildStrongestCPU(target,seeds,targetId==='env-gp2026-pinky'?beforeOpeningRamps:beforeUntappedCounters);
   assert.ok(build.profile.counts.earlyDeployment>=15);
   assert.deepEqual(e.validateDeck(build.deck),[]);
   for(const id of ids)assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
@@ -226,11 +240,13 @@ test('the strongest CPU selects hand and board disruption for appropriate matchu
  const matchups=[
   ['starter25-18','dm25rp1-023'],
   ['starter25-15','dm24rp4-049'],
-  ['practice-wu','dmrp14-027']
+  ['env-bande-practice','dmrp14-027']
  ];
  for(const [targetId,id] of matchups){
   const target=seeds.find(d=>d.id===targetId);
-  const build=buildStrongestCPU(target,seeds,data.cards);
+  // Keep the disruption checks separate from the later entry cap and removal strategies.
+  const pool=targetId==='env-bande-practice'?beforeRepeatedDeployment:beforeElementRemoval;
+  const build=buildStrongestCPU(target,seeds,pool);
   assert.deepEqual(e.validateDeck(build.deck),[]);
   assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
  }
@@ -243,4 +259,224 @@ test('the strongest CPU takes ドゥモグラ against spell-rich ゴスペル an
   assert.deepEqual(e.validateDeck(build.deck),[]);
   assert.ok(build.deck.cards.some(r=>r.id==='dmex14-050'));
  }
+});
+
+test('the strongest CPU selects クリスタント・バーナミア against aggressive decks',()=>{
+ for(const id of ['practice-rg','env-magic-practice']){
+  const target=seeds.find(d=>d.id===id);
+  const build=buildStrongestCPU(target,seeds,id==='practice-rg'?beforeUntappedCounters:data.cards);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  assert.ok(build.deck.cards.some(r=>r.id==='dmrp12-038'));
+ }
+});
+
+test('the strongest CPU targets off-hand entries and noncreature support in the relevant matchups',()=>{
+ const cases=[
+  ['env-complex-practice','dm25rp2-022'],
+  ['env-abyss-practice','dm25rp2-022'],
+  ['env-lionel-practice','dm25rp4-072']
+ ];
+ for(const [targetId,id] of cases){
+  const build=buildStrongestCPU(seeds.find(d=>d.id===targetId),seeds,data.cards);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ }
+ const fast=buildStrongestCPU(seeds.find(d=>d.id==='practice-rg'),seeds,data.cards);
+ assert.ok(fast.profile.counts.offHandEntry<10);
+ assert.ok(!fast.deck.cards.some(r=>r.id==='dm25rp2-022'));
+});
+
+test('the strongest CPU brings MAX triggers against decks with many large creatures',()=>{
+ const pinky=seeds.find(d=>d.id==='env-gp2026-pinky'),hachiko=seeds.find(d=>d.id==='starter25-11');
+ const older=buildStrongestCPU(pinky,seeds,beforeTempoCounters);
+ assert.deepEqual(e.validateDeck(older.deck),[]);
+ for(const id of ['dmrp15-022','dmrp15-023'])assert.ok(older.deck.cards.some(r=>r.id===id),e.card(id).name);
+ for(const [target,id] of [[pinky,'dmrp15-022'],[hachiko,'dmrp15-023']]){
+  const build=buildStrongestCPU(target,seeds,data.cards);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ }
+});
+
+test('the strongest CPU uses tempo counters against fast evolutions, Mach Fighters and cheap support',()=>{
+ const matchups=[
+  ['env-nationals2025-dotto','dmr08s-004'],
+  ['env-kenji-gp2024-maiken','dmex08-046'],
+  ['starter25-15','dm23sd3-012']
+ ];
+ for(const [targetId,id] of matchups){
+  const target=seeds.find(d=>d.id===targetId);
+  const build=buildStrongestCPU(target,seeds,targetId==='starter25-15'?beforeElementRemoval:data.cards);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ }
+ const slow=buildStrongestCPU(seeds.find(d=>d.id==='env-water-mado-practice'),seeds,data.cards);
+ assert.ok(slow.profile.counts.fastEntry+slow.profile.counts.machEntry<=7);
+ assert.ok(!slow.deck.cards.some(r=>e.card(r.id).g609TapEntry));
+});
+
+test('the strongest CPU selects the new spell and resource counters for compatible decks',()=>{
+ const matchups=[
+  ['env-gospel-practice','dm09-013'],
+  ['env-dark-mado-practice','dmr13-014'],
+  ['starter25-06','dm24rp4-054'],
+  ['env-barom-practice','dmr17-014']
+ ];
+ for(const [targetId,id] of matchups){
+  const target=seeds.find(d=>d.id===targetId);
+  const build=buildStrongestCPU(target,seeds,data.cards);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ }
+});
+
+test('the strongest CPU picks untapped removal and shield defense for compatible matchups',()=>{
+ const matchups=[
+  ['starter25-07','dmrp05-035'],
+  ['env-magic-practice','dmr17-044'],
+  ['env-giant-practice','dmrp06-020'],
+  ['env-gp2026-sara','dmrp12-006']
+ ];
+ for(const [targetId,id] of matchups){
+  const target=seeds.find(d=>d.id===targetId);
+  const build=buildStrongestCPU(target,seeds,data.cards);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ }
+});
+
+test('the strongest CPU selects the new sweepers against low-power or low-cost creatures',()=>{
+ const matchups=[
+  ['practice-rg','dm22sd1-007'],
+  ['env-kenji-gp2024-maiken','dm24rp3-018'],
+  ['starter25-11','dmrp06-028']
+ ];
+ for(const [targetId,id] of matchups){
+  const target=seeds.find(d=>d.id===targetId);
+  const build=buildStrongestCPU(target,seeds,data.cards);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ }
+ const spellDeck=seeds.find(d=>d.id==='env-gospel-practice');
+ const build=buildStrongestCPU(spellDeck,seeds,data.cards);
+ assert.ok(!build.deck.cards.some(r=>e.card(r.id).supportBatch==='phase-612'));
+});
+
+test('the strongest CPU selects the new blocker answers against appropriate decks',()=>{
+ const matchups=[
+  ['env-heavens-practice','dmr01-064'],
+  ['starter25-20','dmrp05-023'],
+  ['env-nationals2025-denne','dm23rp1-036'],
+  ['env-complex-practice','dm25rp2-069']
+ ];
+ for(const [targetId,id] of matchups){
+  const target=seeds.find(d=>d.id===targetId);
+  const build=buildStrongestCPU(target,seeds,targetId==='env-heavens-practice'?beforeExecutionTax:data.cards);
+  assert.ok(build.profile.counts.blocks>=10);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ }
+ const target=seeds.find(d=>d.id==='practice-rg');
+ const build=buildStrongestCPU(target,seeds,data.cards);
+ assert.ok(!build.deck.cards.some(r=>e.card(r.id).supportBatch==='phase-613'));
+});
+
+test('the strongest CPU chooses grave and matching-name counters for compatible decks',()=>{
+ const matchups=[
+  ['starter25-24',['dm38-018','dm30-013']],
+  ['starter25-16',['dm14-025']]
+ ];
+ for(const [targetId,ids] of matchups){
+  const target=seeds.find(d=>d.id===targetId);
+  const build=buildStrongestCPU(target,seeds,data.cards);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  for(const id of ids)assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ }
+ const target=seeds.find(d=>d.id==='practice-rg');
+ const build=buildStrongestCPU(target,seeds,data.cards);
+ assert.ok(!build.deck.cards.some(r=>e.card(r.id).supportBatch==='phase-614'));
+});
+
+test('the strongest CPU attacks before 8-axis Gacharobo can establish its large creatures',()=>{
+ const target=seeds.find(d=>d.id==='starter25-10');
+ const build=buildStrongestCPU(target,seeds,data.cards);
+ assert.deepEqual(e.validateDeck(build.deck),[]);
+ const picks=Object.fromEntries(build.deck.cards.map(r=>[r.id,r.count]));
+ for(const id of ['dm25ex2-007','dmr17-024','dmrp14-044'])assert.ok(picks[id]>0,e.card(id).name);
+ assert.ok(picks['dmrp14-044']<=2);
+ const rush=buildStrongestCPU(seeds.find(d=>d.id==='practice-rg'),seeds,data.cards);
+ assert.ok(!rush.deck.cards.some(r=>e.card(r.id).supportBatch==='phase-615'));
+});
+
+test('the strongest CPU picks a two-entry cap for batch, invasion and creature trigger decks',()=>{
+ const matchups=[
+  ['env-bande-practice','dm26ex2-019'],
+  ['starter25-23','dm23rp1-027'],
+  ['starter25-08','dmrp14-013']
+ ];
+ for(const [targetId,id] of matchups){
+  const target=seeds.find(d=>d.id===targetId);
+  const build=buildStrongestCPU(target,seeds,data.cards);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ }
+ const target=seeds.find(d=>d.id==='practice-rg');
+ const build=buildStrongestCPU(target,seeds,data.cards);
+ assert.ok(!build.deck.cards.some(r=>e.card(r.id).g616EntryLimit));
+});
+
+test('the strongest CPU picks element removal for Mecha, Samurai and Lionel decks',()=>{
+ const matchups=[
+  ['starter25-19','dm23rp3-022'],
+  ['starter25-18','dm25rp1-068'],
+  ['starter25-15','dm25sp1-012']
+ ];
+ for(const [targetId,id] of matchups){
+  const target=seeds.find(d=>d.id===targetId);
+  const build=buildStrongestCPU(target,seeds,targetId==='starter25-15'?beforeExecutionTax:data.cards);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ }
+ const target=seeds.find(d=>d.id==='practice-rg');
+ const build=buildStrongestCPU(target,seeds,data.cards);
+ assert.ok(!build.deck.cards.some(r=>e.card(r.id).supportBatch==='phase-617'));
+});
+
+test('the strongest CPU picks shield pressure suited to each opposing deck',()=>{
+ const matchups=[
+  ['starter25-21','dmrp18-s07'],
+  ['starter25-08','dmsp02-002'],
+  ['starter25-02','dm33-033']
+ ];
+ for(const [targetId,id] of matchups){
+  const target=seeds.find(d=>d.id===targetId);
+  const build=buildStrongestCPU(target,seeds,data.cards);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+ }
+ const target=seeds.find(d=>d.id==='practice-rg');
+ const build=buildStrongestCPU(target,seeds,data.cards);
+ assert.ok(!build.deck.cards.some(r=>e.card(r.id).supportBatch==='phase-618'));
+});
+
+test('the strongest CPU counters early multicolor cards, Tamaseeds and spell-heavy decks',()=>{
+ const matchups=[
+  ['starter25-03','dmrp22-009','earlyMultiExecution',12],
+  ['starter25-15','dm22rp2-009','seedOnly',10],
+  ['starter25-05','dm25rp2-017','spellOnly',28]
+ ];
+ for(const [targetId,id,signal,min] of matchups){
+  const target=seeds.find(d=>d.id===targetId);
+  const build=buildStrongestCPU(target,seeds,data.cards);
+  assert.deepEqual(e.validateDeck(build.deck),[]);
+  assert.ok(build.profile.counts[signal]>=min);
+  assert.ok(build.deck.cards.some(r=>r.id===id),e.card(id).name);
+  const colors=e.civilizations(e.card(id));
+  for(const color of colors)assert.ok(build.deck.cards.reduce((n,row)=>n+(e.civilizations(e.card(row.id)).includes(color)?row.count:0),0)>=8);
+  const game=e.createGame([target,build.deck],{seed:619,first:0});
+  assert.ok(arrangeStrongestCPU(game).opening.includes(id),e.card(id).name);
+ }
+ const target=seeds.find(d=>d.id==='practice-rg');
+ const build=buildStrongestCPU(target,seeds,data.cards);
+ assert.ok(!build.deck.cards.some(r=>e.card(r.id).g619Tax));
 });

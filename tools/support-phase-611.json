@@ -1,0 +1,249 @@
+{
+  "phase": 611,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5667,
+  "description": "アンタップしているクリーチャーへの対策を公式情報と照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/45557/",
+    "https://dm.takaratomy.co.jp/rule/qa/40279/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp05-035",
+      "name": "グリングル・バインドル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-035",
+      "faces": [
+        {
+          "name": "グリングル・バインドル",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のアンタップしているクリーチャーを１体選び、裏向きにして、新しいシールドとして持ち主のシールドゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "shields",
+            "filter": {
+              "untapped": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "c8855d7381358490b39fceb15e9440f5874f2df3508a91a0bce0aa4eacd4ddbd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr17-044",
+      "name": "暗黒鎧 ヘルミッション",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-044",
+      "faces": [
+        {
+          "name": "暗黒鎧 ヘルミッション",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "シールド・セイバー（自分のシールドがブレイクされる時、かわりにこれを破壊してもよい）\nこれがバトルゾーンを離れた時、相手のアンタップしているクリーチャーを１体破壊する。",
+          "race": "ダーク・ナイトメア/革命軍",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g401ShieldSaver": true,
+        "g172Leave": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "untapped": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "d5555faa385c9ce7d5fa6670fb9a02bd58b89f84587a4efe831d78fbe77f1426",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp06-020",
+      "name": "凶鬼92号 デンカ/世紀末ハンド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-020",
+      "faces": [
+        {
+          "name": "凶鬼92号 デンカ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、相手は自身の手札を１枚選び、捨てる。",
+          "race": "マフィ・ギャング",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "世紀末ハンド",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のアンタップしているクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ],
+        "spellFace": {
+          "name": "世紀末ハンド",
+          "type": "spell",
+          "cost": 5,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "untapped": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-020a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "742c12fd6ab08dc98c56fad87677da4f8b347a5c380f65f1520cb43c2e688233",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp12-006",
+      "name": "凶鬼01号 ドケイダイモス/アレックス・ギアーズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-006",
+      "faces": [
+        {
+          "name": "凶鬼01号 ドケイダイモス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーを墓地から召喚してもよい。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手は自身の手札を２枚選び、捨てる。",
+          "race": "マフィ・ギャング/デーモン・コマンド",
+          "powerText": "9000",
+          "missingFields": []
+        },
+        {
+          "name": "アレックス・ギアーズ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\n相手のアンタップしているクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "graveSummon": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 2
+          }
+        ],
+        "spellFace": {
+          "name": "アレックス・ギアーズ",
+          "type": "spell",
+          "cost": 5,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "to": "mana",
+              "filter": {
+                "untapped": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-006a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "921919d746705d7f53fa3c085f925745f546aab2241af9727347075b4ec416aa",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp05-035": 4,
+      "dmr17-044": 4,
+      "dmrp06-020": 4,
+      "dmrp12-006": 4
+    }
+  }
+}

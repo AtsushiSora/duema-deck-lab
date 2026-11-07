@@ -1,0 +1,253 @@
+{
+  "phase": 607,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5652,
+  "description": "手札以外からの登場を止めるカードとエレメント除去、手札破壊への対策を公式情報と照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp2-022",
+      "name": "場和了GO-YAMA-58",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-022",
+      "faces": [
+        {
+          "name": "場和了GO-YAMA-58",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n相手のエレメントは、相手の手札以外から出ない。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーにカードが３枚以上含まれていれば、このクリーチャーのパワーを+6000し、「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）",
+          "race": "ワイルド・ベジーズ/テクノ・サムライ/フュージョナー",
+          "powerText": "3000+",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "g607HandOnly": true,
+        "g607StackPower": 6000,
+        "g404Soul": {
+          "g607StackPower": 6000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "d17b9a56fa95fdd7e03717efa9af615282e6e6c43363b2537d058a193bbd01f5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp4-072",
+      "name": "メルテオ＝メッテオ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-072",
+      "faces": [
+        {
+          "name": "メルテオ＝メッテオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nこのクリーチャーが出た時、相手の、クリーチャーではないエレメントを１つ選び、破壊する。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nバトル中、このクリーチャーのパワーを+3000する。",
+          "race": "ルージュアビス/フュージョナー",
+          "powerText": "1000+",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "g38BattleBonus": 3000,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "to": "grave",
+            "filter": {
+              "nonCreatureElement": true
+            }
+          }
+        ],
+        "g404Soul": {
+          "g38BattleBonus": 3000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-072.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "31ac7e593419decb11073990c3ded9c499351f27c71c5e98ed12cc95c09b1002",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex2-056",
+      "name": "邪閃光",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex2-056",
+      "faces": [
+        {
+          "name": "邪閃光",
+          "typeText": "呪文",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれかひとつを選ぶ。自分のアビスがあれば、両方選んでもよい。\n▶相手のエレメントを１つ選び、持ち主の山札の下に置く。\n▶相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のエレメント1つを山札の下に置く",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "element": true,
+                    "to": "deck"
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーをすべてタップ",
+                "defs": [
+                  {
+                    "op": "TapAll"
+                  }
+                ]
+              },
+              {
+                "label": "両方を選ぶ",
+                "condition": {
+                  "race": "アビス"
+                },
+                "defs": [
+                  {
+                    "op": "Target",
+                    "element": true,
+                    "to": "deck"
+                  },
+                  {
+                    "op": "TapAll"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex2-056.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "b0f0e2a473e91d538441953ffc1e9e6567d355ef1a49dfebabdfda2d04073f02",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex4-S15",
+      "name": "影炎のリュウセイ・シャドウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-S15",
+      "faces": [
+        {
+          "name": "影炎のリュウセイ・シャドウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火/自然",
+          "civilizations": [
+            "闇",
+            "火",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手の、エレメントの能力または呪文によって、自分の手札にあるこのクリーチャーが捨てられる時、墓地に置くかわりに出す。\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーが出た時、次の中から１回選ぶ。\n▶このターン、相手のクリーチャーすべてのパワーを－3000する。（パワー０以下のクリーチャーは破壊される）\n▶相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "レッド・コマンド・ドラゴン/デーモン・コマンド/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g591Discard": "opponentEffect607",
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "このターン、相手のクリーチャーすべてのパワーを－3000する。（パワー０以下のクリーチャーは破壊される）",
+                "defs": [
+                  {
+                    "op": "GroupPower",
+                    "g214GroupPower": true,
+                    "owner": "opponent",
+                    "power": -3000,
+                    "filter": {
+                      "creature": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "owner": "opponent",
+                    "origin": "battle",
+                    "n": 1,
+                    "filter": {
+                      "creature": true
+                    },
+                    "g173Targets": true,
+                    "g193Select": true,
+                    "to": "mana",
+                    "title": "マナに置く相手のクリーチャーを1体選ぶ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-S15.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "a0b2e0aabb07cc2fab8bafa2dc0c7d08e440d7626a4e616d179d80cd4fad6a8f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp2-022": 4,
+      "dm25rp4-072": 4,
+      "dm24ex2-056": 4,
+      "dm25ex4-S15": 4
+    }
+  }
+}

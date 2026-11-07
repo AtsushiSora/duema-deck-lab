@@ -1,5 +1,5 @@
 import {displayTurn} from './turn-count.js';
-import {sourceCardCount,sourceCardLabel,sourceCardBadge} from './card-info.js?v=0.693.0';
+import {sourceCardCount,sourceCardLabel,sourceCardBadge} from './card-info.js?v=0.707.0';
 import {battlePrimaryAction} from './battle-controls.js';
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const button=(action,text,disabled=false,extra='',primary=false)=>`<button class="btn ${primary?'primary':''}" data-action="${action}" ${disabled?'disabled':''} ${extra}>${text}</button>`;

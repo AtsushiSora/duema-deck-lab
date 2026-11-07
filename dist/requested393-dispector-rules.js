@@ -1,4 +1,4 @@
-import{hasCopiedRole393}from'./requested393-joker-rules.js?v=0.693.0';
+import{hasCopiedRole393}from'./requested393-joker-rules.js?v=0.707.0';
 // Requested Dispectors: serializable continuations, public targets and full-card identity.
 export function createRequested393DispectorRules(api){
  const{card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,move,targetOptions}=api;

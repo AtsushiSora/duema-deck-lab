@@ -1,0 +1,213 @@
+{
+  "phase": 610,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5663,
+  "description": "相手の呪文、手札破壊、マナ加速に対応するカードを公式情報と照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/40192/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm09-013",
+      "name": "崩壊の影デス・タギア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-013",
+      "faces": [
+        {
+          "name": "崩壊の影デス・タギア",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンにある間、相手は呪文を唱えたとき、自分自身の手札を１枚選び、持ち主の墓地に置く。その後、相手は自分自身のマナゾーンからカードを１枚選び、持ち主の墓地に置く。",
+          "race": "ゴースト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g204SpellWatch": {
+          "who": "opponent",
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1
+            },
+            {
+              "op": "ManaChoose582",
+              "who": "opponent",
+              "n": 1,
+              "to": "grave"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "b12003ff144ddbbde6b5101a58cb8bb2b15b1c60fd73b42033e7d0ce3d804a82",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-014",
+      "name": "鏡面の翼 リブラミラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-014",
+      "faces": [
+        {
+          "name": "鏡面の翼 リブラミラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のターン中に、相手が呪文を唱えた時、自分の山札を見る。その中から《鏡面の翼 リブラミラ》を１体、バトルゾーンに出してもよい。その後、山札をシャッフルする。",
+          "race": "ジャスティス・ウイング",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g204SpellWatch": {
+          "who": "opponent",
+          "opponentTurn": true,
+          "defs": [
+            {
+              "op": "LookDeploy530",
+              "g201Search": true,
+              "n": "all",
+              "limit": 1,
+              "rest": "shuffle",
+              "filter": {
+                "creature": true,
+                "g201ExactName": "鏡面の翼 リブラミラ"
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "017f7eed517f3f55e1ffb12a9e0c3cd929530bbcdc24830ac97f8f11a758b755",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-054",
+      "name": "碧天の守護者シャ・マイム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-054",
+      "faces": [
+        {
+          "name": "碧天の守護者シャ・マイム",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分のターンの終わりに、相手の手札が自分のより多ければ、カードを１枚引いてもよい。",
+          "race": "ガーディアン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g174End": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "hand",
+                "lessThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "7569fb43c4fa49bf98a8816af038c692424a15b1a345e3b39d9a23be29c28142",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr17-014",
+      "name": "天星の玉 ラ・クルスタ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-014",
+      "faces": [
+        {
+          "name": "天星の玉 ラ・クルスタ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、相手のマナゾーンにあるカードの数が自分のより多ければ、自分の山札の上から２枚をマナゾーンに置く。",
+          "race": "ジャスティス・オーブ/革命軍",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "mana",
+                "lessThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "f4081870168725f6b2f08ab3e39539bb561d9a41d5675050c75e5a25392a0fae",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm09-013": 4,
+      "dmr13-014": 4,
+      "dm24rp4-054": 4,
+      "dmr17-014": 4
+    }
+  }
+}

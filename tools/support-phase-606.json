@@ -1,0 +1,267 @@
+{
+  "phase": 606,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5648,
+  "description": "速攻・横並びに対するS・トリガーを公式情報と照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmr02-050",
+      "name": "ワーニング・スパイク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-050",
+      "faces": [
+        {
+          "name": "ワーニング・スパイク",
+          "typeText": "呪文",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンにある相手のクリーチャーを好きな数選ぶ。このターン、そのクリーチャーは攻撃またはブロックできない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": "all",
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g190Freeze": "end",
+            "title": "このターン、攻撃とブロックを止める相手クリーチャーを選ぶ",
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr02-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "3fd10cc7c61343962b8dac9678b1e74aeb75cb567a3583d7b8b0e857422c0f36",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp12-038",
+      "name": "クリスタント・バーナミア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-038",
+      "faces": [
+        {
+          "name": "クリスタント・バーナミア",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーをすべてタップする。\n相手のパワー4000以下のクリーチャーはすべて、次の相手のターンのはじめにアンタップしない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          },
+          {
+            "op": "LockUntap606",
+            "g210TapLock": true,
+            "filter": {
+              "maxPower": 4000,
+              "g199Power": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "17eacb53081f6870f8eba4803416b9b644537133c12fd2a00da00d10a55cccbe",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd24-011",
+      "name": "ボルメテウス・ホワイト・フレア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd24-011",
+      "faces": [
+        {
+          "name": "ボルメテウス・ホワイト・フレア",
+          "typeText": "呪文",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれかひとつを選ぶ。名前に《ボルメテウス》とある自分のクリーチャーがバトルゾーンにあれば、両方選んでもよい。▼相手のパワー6000以下のクリーチャーを１体破壊する。▼相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "パワー6000以下の相手クリーチャー1体を破壊",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 6000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャーをすべてタップ",
+                "defs": [
+                  {
+                    "op": "TapAll"
+                  }
+                ]
+              },
+              {
+                "label": "両方を選ぶ",
+                "condition": {
+                  "creature": true,
+                  "name": "ボルメテウス"
+                },
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 6000,
+                      "g199Power": true
+                    }
+                  },
+                  {
+                    "op": "TapAll"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd24-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "9314a78a9a9a419b95a752066770b25c9aabf8a486e10cb3392dc56283c60c74",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy15-063",
+      "name": "ドレミ団の光魂Go！",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy15-063",
+      "faces": [
+        {
+          "name": "ドレミ団の光魂Go！",
+          "typeText": "呪文",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次のうちいずれかひとつを選ぶ。 ▼相手のクリーチャーをすべてタップする。 ▼カードを１枚引く。その後、光または水のコスト５以下の呪文を１枚、コストを支払わずに自分の手札から唱えてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のクリーチャーをすべてタップする。",
+                "defs": [
+                  {
+                    "op": "TapAll"
+                  }
+                ]
+              },
+              {
+                "label": "カードを１枚引く。その後、光または水のコスト５以下の呪文を１枚、コストを支払わずに自分の手札から唱えてもよい。",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  },
+                  {
+                    "op": "Execute",
+                    "origin": "hand",
+                    "spellOnly": true,
+                    "max": 5,
+                    "spellColorsAny": [
+                      "光",
+                      "水"
+                    ],
+                    "optional": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy15-063.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "068697a4f979ecac5e9ea1ddd85e5d329e6b3eea10097a2751c5f2d88661d833",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr02-050": 4,
+      "dmrp12-038": 4,
+      "dmd24-011": 4,
+      "promoy15-063": 4
+    }
+  }
+}

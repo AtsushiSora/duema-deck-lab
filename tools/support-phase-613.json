@@ -1,0 +1,277 @@
+{
+  "phase": 613,
+  "checkedAt": "2026-11-07",
+  "baseCount": 5674,
+  "description": "ブロッカーへの対策となるカードを公式情報と照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/"
+  ],
+  "cards": [
+    {
+      "id": "dmr01-064",
+      "name": "パワフル・ビーム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-064",
+      "faces": [
+        {
+          "name": "パワフル・ビーム",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手の「ブロッカー」を持つクリーチャーを１体破壊する。\nこのターン、バトルゾーンにある自分の闇または自然のクリーチャー１体のパワーは+2000され、「W・ブレイカー」を得る。(「W・ブレイカー」を得たクリーチャーはシールドを２枚ブレイクする)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "optional": false,
+            "filter": {
+              "blocker": true
+            }
+          },
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "any": [
+                {
+                  "color": "闇"
+                },
+                {
+                  "color": "自然"
+                }
+              ]
+            },
+            "power": 2000,
+            "grant": {
+              "g313Breaker": 2
+            },
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-064.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "e1cea2b10f16c6f1ec18db72f60bc8b8011eda5312198c9743dfd50e5b9e9f2f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp05-023",
+      "name": "スニーク戦車 オーリー / トゲ玉・キャノンボール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-023",
+      "faces": [
+        {
+          "name": "スニーク戦車 オーリー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時または攻撃する時、そのターン、自分の他のクリーチャー１体に「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "ビートジョッキー",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "トゲ玉・キャノンボール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "相手の、「ブロッカー」を持つクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g179Other": true,
+            "g301Grant": true,
+            "grant": {
+              "speedAttacker": true
+            },
+            "title": "このターン、スピードアタッカーを与える自分の他のクリーチャーを1体選ぶ"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g179Other": true,
+            "g301Grant": true,
+            "grant": {
+              "speedAttacker": true
+            },
+            "title": "このターン、スピードアタッカーを与える自分の他のクリーチャーを1体選ぶ"
+          }
+        ],
+        "spellFace": {
+          "name": "トゲ玉・キャノンボール",
+          "type": "spell",
+          "cost": 6,
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Sweep",
+              "to": "grave",
+              "filter": {
+                "creature": true,
+                "blocker": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-023a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "f651b04e97e69f5a1ab3667703d7016f7d87d60fdbf8fa7f0556d38119d434aa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-036",
+      "name": "♪ぬけがらの 空蝉の術 ここ撃つなや",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-036",
+      "faces": [
+        {
+          "name": "♪ぬけがらの 空蝉の術 ここ撃つなや",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のクリーチャーを１体選ぶ、このターン、そのクリーチャーはブロックされない。\nこのターン、自分のクリーチャーが攻撃する時、カードを１枚引く。",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "unblockable": true
+            },
+            "spell": true
+          },
+          {
+            "op": "TurnAttackDraw613"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "7d7946bb602816c03e3cb3d21b8f124610bf8f7faa3ca506a7f5df174f9b9ae6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-069",
+      "name": "魔誕の影デスプルーフ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-069",
+      "faces": [
+        {
+          "name": "魔誕の影デスプルーフ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "NEO進化：闇、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが、進化して出た時、または進化元になる時、相手の「ブロッカー」を持つクリーチャーを１体選び、破壊する。",
+          "race": "ゴースト",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "evolvedEntryOnly": true,
+        "g397Shinka": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "blocker": true
+            }
+          }
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-069.jpg",
+      "verification": {
+        "checkedAt": "2026-11-07",
+        "sha256": "64dc43b231dbb659ba3ad7381f15e7d53aae4b087bc086f28249e92643f5ccee",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-07",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr01-064": 4,
+      "dmrp05-023": 4,
+      "dm23rp1-036": 4,
+      "dm25rp2-069": 4
+    }
+  }
+}
