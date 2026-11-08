@@ -5,6 +5,18 @@ const aliasNames=new Set(['炎のたてがみ(バーニング・ヘアー)','青
 const normalize=s=>s.normalize('NFKC').replace(/\s|■/g,'').replaceAll('、','');
 const keyword=(line,name)=>new RegExp('^(?:'+name+'){1,2}(?:\\([^()]*\\))?$').test(line);
 const replicaAuction616='自分の山札の上から3枚を見る。そのうちの1枚をシールド化しその後残りを好きな順序で山札の下に置く。';
+function instruction655(text){
+ if(text==='相手のクリーチャーをパワーの合計が5000以下になるように好きな数選び破壊してもよい。')
+  return powerBudget506(text.replace('破壊してもよい。','破壊する。'));
+ const highPower={g228Face:{type:'creature',minPower:6000}};
+ if(text==='自分の手札を1枚捨ててもよい。そうしたらその捨てたカードよりコストが小さい相手のエレメントを1つ選び破壊する。')
+  return {op:'DiscardFor248',defs:[{op:'DiscardCost655'}]};
+ if(text==='自分の山札の上から2枚をタップしてマナゾーンに置く。その後カードを1枚自分のマナゾーンから手札に戻す。こうしてパワー6000以上のクリーチャーを手札に戻したら相手のコスト6以下のエレメントを1つ選び持ち主のマナゾーンに置いてもよい。')
+  return {op:'Sequence',defs:[{op:'Ramp',n:2,tapped:true},{op:'Select',origin:'mana',to:'hand',n:1,title:'手札に戻すマナゾーンのカードを1枚選ぶ',g654MovedFilter:highPower,g583OnMove:[{op:'Target',element:true,to:'mana',filter:{max:6},optional:true}]}]};
+ if(text==='コスト2以下のクリーチャーを1体自分のマナゾーンから出してもよい。その後相手の自分のクリーチャーの数以下のコストを持つクリーチャーを1体選び持ち主のマナゾーンに置いてもよい。')
+  return {op:'Sequence',defs:[{op:'Select',origin:'mana',deploy:true,n:1,optional:true,filter:{creature:true,max:2},title:'マナゾーンから出すコスト2以下のクリーチャーを選ぶ（任意）'},{op:'TargetByOwnCount655',to:'mana',optional:true}]};
+ return null;
+}
 function instruction654(text){
  const highPower={g228Face:{type:'creature',minPower:6000}};
  if(text==='自分の山札の上から3枚を墓地に置く。その後クリーチャーを1体自分の墓地から手札に戻す。こうしてパワー6000以上のクリーチャーを手札に戻したら相手のクリーチャーを1体選び破壊する。')
@@ -16,6 +28,7 @@ function instruction654(text){
  return null;
 }
 const clauses=(body,phase)=>{
+ if(phase>=655&&instruction655(body))return[body];
  if(phase>=654&&instruction654(body))return[body];
  if(phase>=638&&body==='相手のクリーチャーを1体選び破壊する。その後選んだクリーチャーのコストと同じ枚数自分の山札の上から墓地に置いてもよい。')return[body];
  if(phase>=632&&body==='自分のパワー5000以下のクリーチャーを1体破壊する。そうした場合相手のパワー5000以下のクリーチャーを1体破壊する。')return[body];
@@ -1189,6 +1202,7 @@ function instruction604(text){
  }
 }
 function instruction(text,phase){
+ if(phase>=655){const def=instruction655(text);if(def)return def;}
  if(phase>=654){const def=instruction654(text);if(def)return def;}
  if(phase>=653){
   if(text==='自分のシールドを1つブレイクする。')return{op:'Break497',owner:'self',n:1};

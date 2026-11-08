@@ -166593,20 +166593,168 @@
       ],
       "supportBatch": "phase-654",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-021",
+      "name": "サクサク打つべしナウ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n自分の山札の上から２枚をタップしてマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻す。こうしてパワー6000以上のクリーチャーを手札に戻したら、相手のコスト６以下のエレメントを１つ選び、持ち主のマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-021",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sequence",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 2,
+              "tapped": true
+            },
+            {
+              "op": "Select",
+              "origin": "mana",
+              "to": "hand",
+              "n": 1,
+              "title": "手札に戻すマナゾーンのカードを1枚選ぶ",
+              "g654MovedFilter": {
+                "g228Face": {
+                  "type": "creature",
+                  "minPower": 6000
+                }
+              },
+              "g583OnMove": [
+                {
+                  "op": "Target",
+                  "element": true,
+                  "to": "mana",
+                  "filter": {
+                    "max": 6
+                  },
+                  "optional": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-655",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp1-022",
+      "name": "ジェネラル・ガルガタン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ドリームメイト/ビークル・ビー",
+      "text": "S・トリガー S・トリガー\nこのクリーチャーが出た時、コスト２以下のクリーチャーを１体、自分のマナゾーンから出してもよい。その後、相手の、自分のクリーチャーの数以下のコストを持つクリーチャーを１体選び、持ち主のマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-022",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sequence",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "deploy": true,
+              "n": 1,
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "max": 2
+              },
+              "title": "マナゾーンから出すコスト2以下のクリーチャーを選ぶ（任意）"
+            },
+            {
+              "op": "TargetByOwnCount655",
+              "to": "mana",
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-655",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp1-018",
+      "name": "メタルカオスクラッパー・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "アーマード・ドラゴン",
+      "text": "S・トリガー S・トリガー\nこのクリーチャーが出た時、自分の手札を１枚捨ててもよい。そうしたら、その捨てたカードよりコストが小さい相手のエレメントを１つ選び、破壊する。\nこのクリーチャーが攻撃する時、相手のクリーチャーを、パワーの合計が5000以下になるように好きな数選び、破壊してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-018",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DiscardFor248",
+          "defs": [
+            {
+              "op": "DiscardCost655"
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": "all",
+          "optional": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g506PowerBudget": 5000,
+          "title": "合計パワー5000以下になるよう好きな数選ぶ"
+        }
+      ],
+      "supportBatch": "phase-655",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 654,
+    "phase": 655,
     "checkedAt": "2026-11-09",
-    "baseCount": 5786,
+    "baseCount": 5789,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5789,
+    "totalCount": 5792,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/45440/",
-      "https://dm.takaratomy.co.jp/rule/qa/47367/"
+      "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+      "https://dm.takaratomy.co.jp/rule/qa/48497/",
+      "https://dm.takaratomy.co.jp/rule/qa/47366/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -177825,6 +177973,23 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
           "https://dm.takaratomy.co.jp/rule/qa/49406/",
           "https://dm.takaratomy.co.jp/rule/qa/39516/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 654,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5786,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5789,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/45440/",
+          "https://dm.takaratomy.co.jp/rule/qa/47367/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

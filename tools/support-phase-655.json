@@ -1,0 +1,207 @@
+{
+  "phase": 655,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5789,
+  "description": "マナ回収、展開後のクリーチャー数、捨てたカードのコストに応じた除去。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+    "https://dm.takaratomy.co.jp/rule/qa/48497/",
+    "https://dm.takaratomy.co.jp/rule/qa/47366/"
+  ],
+  "cards": [
+    {
+      "id": "dm26rp2-021",
+      "name": "サクサク打つべしナウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-021",
+      "faces": [
+        {
+          "name": "サクサク打つべしナウ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n自分の山札の上から２枚をタップしてマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻す。こうしてパワー6000以上のクリーチャーを手札に戻したら、相手のコスト６以下のエレメントを１つ選び、持ち主のマナゾーンに置いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sequence",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 2,
+                "tapped": true
+              },
+              {
+                "op": "Select",
+                "origin": "mana",
+                "to": "hand",
+                "n": 1,
+                "title": "手札に戻すマナゾーンのカードを1枚選ぶ",
+                "g654MovedFilter": {
+                  "g228Face": {
+                    "type": "creature",
+                    "minPower": 6000
+                  }
+                },
+                "g583OnMove": [
+                  {
+                    "op": "Target",
+                    "element": true,
+                    "to": "mana",
+                    "filter": {
+                      "max": 6
+                    },
+                    "optional": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "1e7e3352b2c921cd094cd2c8dcc56de5bb59d99665dbf2467889ad304f428b85",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp1-022",
+      "name": "ジェネラル・ガルガタン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-022",
+      "faces": [
+        {
+          "name": "ジェネラル・ガルガタン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、コスト２以下のクリーチャーを１体、自分のマナゾーンから出してもよい。その後、相手の、自分のクリーチャーの数以下のコストを持つクリーチャーを１体選び、持ち主のマナゾーンに置いてもよい。",
+          "race": "ドリームメイト/ビークル・ビー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sequence",
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "mana",
+                "deploy": true,
+                "n": 1,
+                "optional": true,
+                "filter": {
+                  "creature": true,
+                  "max": 2
+                },
+                "title": "マナゾーンから出すコスト2以下のクリーチャーを選ぶ（任意）"
+              },
+              {
+                "op": "TargetByOwnCount655",
+                "to": "mana",
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "e0ac8c4e90b5269c33e1924e0ecc0104df49a324494871641a2d1de256064053",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp1-018",
+      "name": "メタルカオスクラッパー・ドラゴン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-018",
+      "faces": [
+        {
+          "name": "メタルカオスクラッパー・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、自分の手札を１枚捨ててもよい。そうしたら、その捨てたカードよりコストが小さい相手のエレメントを１つ選び、破壊する。\nこのクリーチャーが攻撃する時、相手のクリーチャーを、パワーの合計が5000以下になるように好きな数選び、破壊してもよい。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DiscardFor248",
+            "defs": [
+              {
+                "op": "DiscardCost655"
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": "all",
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 5000,
+            "title": "合計パワー5000以下になるよう好きな数選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "ec861a586295512ab38ca1ec921c407e06e5b571be475109c439e9ad8b831b5e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26rp2-021": 4,
+      "dm26rp1-022": 4,
+      "dm26rp1-018": 4
+    }
+  }
+}
