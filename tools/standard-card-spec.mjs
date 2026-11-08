@@ -1177,6 +1177,11 @@ function instruction604(text){
  }
 }
 function instruction(text,phase){
+ if(phase>=635){
+  if(text==='相手のエレメントを1つ選ぶ。相手はそれを山札の上か下に置く。')return{op:'Target',element:true,g467Destinations:['deckTop','deck'],g472OwnerDestination:true};
+  if(text==='クリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを+2000する。')return{op:'Target',anyOwner:true,power:2000,g419Boost:true,spell:true};
+  if(text==='自分と相手のクリーチャーを1体ずつ選ぶ。その2体をバトルさせる。')return{op:'Fight240',optional:false};
+ }
  if(phase>=634){
   if([
    '自分の手札を1枚裏向きのまま新しいシールドとしてシールドゾーンに置いてもよい。',
@@ -3405,6 +3410,10 @@ export function standardCardSpec(d,{phase=165}={}){
    }
   }
   if(phase>=619&&creature){
+   if(phase>=635&&line==='自分のクリーチャーがこのクリーチャーだけならこのクリーチャーは離れない。'){
+    if(spec.g619Stay)throw Error('重複する離れない条件');
+    spec.g619Stay={g479OnlyCreature:true};continue;
+   }
    const tax={
     '相手の多色カードを使うコストを2多くする。':{kind:'multicolor',amount:2},
     '相手の呪文またはクリーチャーではないタマシードを使うコストを1多くする。':{kind:'spellOrSeed',amount:1},

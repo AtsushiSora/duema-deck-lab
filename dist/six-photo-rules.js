@@ -1399,7 +1399,7 @@ export function createSixPhotoRules(api){
   const c=effective(x,s);
   if(c.g34Role==='engels'&&s.g34ShieldLeftTurn!==s.turn)return false;
   if(c.g34Role==='perfect'&&api.power(x,false,s)>0)return false;
-  if(c.g619Stay&&ownCondition(s,p,c.g619Stay))return false;
+  if(c.g619Stay&&ownCondition(s,p,c.g619Stay,x.uid,x.incarnation||0))return false;
   if((s.extLimits||[]).some(l=>l.kind==='g627Stay'&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)))return false;
   return context.skip577Stay||!c.g577Stay||!stay577(s,p,x,context.battlePower);
  },
