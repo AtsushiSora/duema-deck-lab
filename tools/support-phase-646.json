@@ -1,0 +1,254 @@
+{
+  "phase": 646,
+  "checkedAt": "2026-11-08",
+  "baseCount": 5763,
+  "description": "破壊時の復活とレインボーナス、水・火各1体の墓地回収を公式照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/39395/",
+    "https://dm.takaratomy.co.jp/rule/qa/39442/",
+    "https://dm.takaratomy.co.jp/rule/qa/38709/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp01-046",
+      "name": "魔薬医 ヘモグロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-046",
+      "faces": [
+        {
+          "name": "魔薬医 ヘモグロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、相手は自身の手札を１枚選び、捨てる。\n自分のターン中にこのクリーチャーが破壊された時、そのターンの終わりにこのクリーチャーを自分の墓地からバトルゾーンに出す。",
+          "race": "マフィ・ギャング",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "ScheduleGraveReturn644"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "919bcfead6c3ed72499229ea1139c506a39736d9053cffaa882e4631c9122e1c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-090",
+      "name": "戯具 ドゥコハン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-090",
+      "faces": [
+        {
+          "name": "戯具 ドゥコハン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "レインボーナス：自分のターン中にこのクリーチャーが破壊された時、バトルゾーンに自分の多色クリーチャーがあれば、そのターンの終わりにこのクリーチャーを墓地からバトルゾーンに出す。",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "ScheduleGraveReturn644",
+            "condition": {
+              "creature": true,
+              "multi": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-090.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "dbd63988ac339658985821aa09b92a1ac67142fc810cb825a22ab068215cd688",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-065",
+      "name": "センメン＝メンダーソン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-065",
+      "faces": [
+        {
+          "name": "センメン＝メンダーソン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、水のクリーチャーと火のクリーチャーを最大１体ずつ、自分の墓地から手札に戻してもよい。",
+          "race": "アビスロイヤル",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 2,
+            "optional": true,
+            "g646CivilizationPair": [
+              "水",
+              "火"
+            ],
+            "filter": {
+              "any": [
+                {
+                  "g228Face": {
+                    "type": "creature",
+                    "color": "水"
+                  }
+                },
+                {
+                  "g228Face": {
+                    "type": "creature",
+                    "color": "火"
+                  }
+                }
+              ]
+            },
+            "title": "墓地から手札に戻す水と火のクリーチャーを各1体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-065.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "b8b8001e9cc9ffd3466c65d934dbb643c3b8a4308d484d6b53e1e619b5f3264a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm22sd1-011",
+      "name": "魔薬医 ヘモグロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22sd1-011",
+      "canonicalId": "dmrp01-046",
+      "faces": [
+        {
+          "name": "魔薬医 ヘモグロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、相手は自身の手札を１枚選んで捨てる。\n自分のターン中にこのクリーチャーが破壊された時、そのターンの終わりにこのクリーチャーを自分の墓地から出す。",
+          "race": "マフィ・ギャング",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "ScheduleGraveReturn644"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22sd1-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "1301797c328ee9ce7c9ea4b733ecca872a90a367b7a8fd21cb741f6d18f3eb07",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex02-035",
+      "name": "魔薬医 ヘモグロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-035",
+      "canonicalId": "dmrp01-046",
+      "faces": [
+        {
+          "name": "魔薬医 ヘモグロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、相手は自身の手札を１枚選び、捨てる。\n自分のターン中にこのクリーチャーが破壊された時、そのターンの終わりにこのクリーチャーを自分の墓地からバトルゾーンに出す。",
+          "race": "マフィ・ギャング",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "ScheduleGraveReturn644"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex02-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "6fb2950327beb0ed9c0b4ab2f7e358e480dfb5e8f04922bc017c9a530698d942",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-08",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp01-046": 4,
+      "dmex14-090": 4,
+      "dm25rp1-065": 4,
+      "dm22sd1-011": 4,
+      "dmex02-035": 4
+    }
+  }
+}

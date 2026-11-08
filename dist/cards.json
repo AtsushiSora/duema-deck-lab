@@ -165644,23 +165644,127 @@
       ],
       "supportBatch": "phase-645",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp01-046",
+      "name": "魔薬医 ヘモグロ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "マフィ・ギャング",
+      "text": "このクリーチャーがバトルゾーンに出た時、相手は自身の手札を１枚選び、捨てる。\n自分のターン中にこのクリーチャーが破壊された時、そのターンの終わりにこのクリーチャーを自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-046",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "n": 1
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "ScheduleGraveReturn644"
+        }
+      ],
+      "supportBatch": "phase-646",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex14-090",
+      "name": "戯具 ドゥコハン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "マフィ・ギャング/チーム零",
+      "text": "レインボーナス：自分のターン中にこのクリーチャーが破壊された時、バトルゾーンに自分の多色クリーチャーがあれば、そのターンの終わりにこのクリーチャーを墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-090",
+      "limit": 4,
+      "g172Death": [
+        {
+          "op": "ScheduleGraveReturn644",
+          "condition": {
+            "creature": true,
+            "multi": true
+          }
+        }
+      ],
+      "supportBatch": "phase-646",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp1-065",
+      "name": "センメン＝メンダーソン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "アビスロイヤル",
+      "text": "このクリーチャーが出た時、水のクリーチャーと火のクリーチャーを最大１体ずつ、自分の墓地から手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-065",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 2,
+          "optional": true,
+          "g646CivilizationPair": [
+            "水",
+            "火"
+          ],
+          "filter": {
+            "any": [
+              {
+                "g228Face": {
+                  "type": "creature",
+                  "color": "水"
+                }
+              },
+              {
+                "g228Face": {
+                  "type": "creature",
+                  "color": "火"
+                }
+              }
+            ]
+          },
+          "title": "墓地から手札に戻す水と火のクリーチャーを各1体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-646",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 645,
+    "phase": 646,
     "checkedAt": "2026-11-08",
-    "baseCount": 5758,
-    "newEffectCards": 5,
+    "baseCount": 5763,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5763,
+    "totalCount": 5766,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/39854/",
-      "https://dm.takaratomy.co.jp/rule/qa/31759/",
-      "https://dm.takaratomy.co.jp/rule/qa/39542/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37076/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37077/"
+      "https://dm.takaratomy.co.jp/rule/qa/39395/",
+      "https://dm.takaratomy.co.jp/rule/qa/39442/",
+      "https://dm.takaratomy.co.jp/rule/qa/38709/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -176706,6 +176810,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/49431/",
           "https://dm.takaratomy.co.jp/rule/qa/39542/",
           "https://dm.takaratomy.co.jp/rule/qa/31648/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37077/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 645,
+        "checkedAt": "2026-11-08",
+        "baseCount": 5758,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 5763,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/39854/",
+          "https://dm.takaratomy.co.jp/rule/qa/31759/",
+          "https://dm.takaratomy.co.jp/rule/qa/39542/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37076/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37077/"
         ],
         "next": [

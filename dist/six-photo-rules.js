@@ -372,6 +372,12 @@ export function createSixPhotoRules(api){
    const first=s.players[t.p].grave.find(x=>x.uid===t.selected[0]);
    if(first)candidates=candidates.filter(r=>api.isEvolution(r.x)!==api.isEvolution(first));
   }
+  if(t.g646CivilizationPair&&t.selected.length){
+   const first=s.players[t.p].grave.find(x=>x.uid===t.selected[0]);
+   const [one,other]=t.g646CivilizationPair;
+   const hasColor=(x,color)=>matches(s,t.p,x,{g228Face:{type:'creature',color}});
+   if(first)candidates=candidates.filter(({x})=>hasColor(first,one)&&hasColor(x,other)||hasColor(first,other)&&hasColor(x,one));
+  }
   const eligible=t.g173Targets?new Set(targetOptions(s,t.p,candidates.map(r=>r.x)).map(o=>o.value)):null,rows=eligible?candidates.filter(r=>eligible.has(r.x.uid)):candidates,n=t.n==='all'?Infinity:t.n??1;if((t.selected?.length||0)>=n||!rows.length){if(t.selected?.length)finishSelect(s,t);else if(t.after)start(s,t,t.after);return;}const scores550=t.g550CostBudget===undefined?null:budgetScores550(s,t,rows,n);choice(s,t,t.title||('カードを'+n+'枚'+(t.optional?'まで':'')+'選ぶ'),[...rows.map(({x,origin,p})=>opt((t.anyOwner?(p===t.p?'自分：':'相手：'):'')+(t.zones?.length>1?({mana:'マナ：',grave:'墓地：',hand:'手札：'}[origin]||''):'')+(x.faceDown?'裏向きのカード':card(x).name)+(t.g210ManaUntap?(x.tapped?(api.canUntap(x)?'（タップ中）':'（タップ中・アンタップ不可）'):'（アンタップ）'):''),{uid:x.uid,origin,p,...(scores550?{cost550:cost(api.zoneCard(s,p,x,origin)),serial550:x.zoneSerial||0}:{})},scores550?scores550.get(x.uid):t.g583DrawMoved?contractScore583(s.players[p],x,t.selected.length):t.g405Search&&origin==='deck'&&s.players[t.p].deck.length<=1?-1000:t.g210ManaUntap?(x.tapped&&api.canUntap(x)?25:-1):x.faceDown?15:t.g530Ids&&origin==='deck'&&(t.selected?.length||0)+1>=s.players[t.p].deck.length?-1000:t.score??(t.g193Select?selectedBattleScore(s,t,x,candidates,n):t.g187OwnPick?-cost(card(x))-api.power(x,false,s)/10000:t.g182HandMana||t.g183Return||t.g184ManaLoss?15-cost(card(x)):t.to==='grave'?-cost(card(x)):15+cost(card(x))),x.faceDown?null:x.cardId)),...(t.optional&&(!t.g626DistinctEvolution||!t.selected.length)?[opt(t.g626DistinctEvolution?'戻さない':'ここまでで確定',null,0)]:[])]);}
  function freeze(s,t,p,y){if(!y||y.sealed)return;for(const kind of ['attack','block'])(s.extLimits??=[]).push({kind,g190Freeze:true,player:p,uid:y.uid,incarnation:y.incarnation||0,controller:t.controller??t.p,expires:t.g190Freeze==='end'?'end':'start',who:t.g190Freeze==='end'?s.active:t.g190Freeze==='opponent'?1-t.p:t.p,...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});}
  function startUntapLock210(t,y){if(t.spell)(y.g170StartFreeze??=[]).push({spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});else y.skipUntap=true;}
@@ -757,7 +763,7 @@ export function createSixPhotoRules(api){
  case'g34_SelfHand299':{const host=sourceHost474(s,t);if(host)move(s,[{player:host.p,uid:host.x.uid,to:'hand',controller:t.controller??t.p}]);break;}
  // The death trigger follows its first grave visit, never a later visit by the same physical card.
  case'g34_ScheduleGraveReturn644':
-  if((t.anyTurn||s.active===t.p)&&!s.endStep)put(s,{...t,op:'g34_Schedule537',when:'turnEnd',defs:[{op:'SelfGraveRevive644',serial:t.serial}]});
+  if((t.anyTurn||s.active===t.p)&&!s.endStep&&(!t.condition||ownCondition(s,t.p,t.condition)))put(s,{...t,op:'g34_Schedule537',when:'turnEnd',defs:[{op:'SelfGraveRevive644',serial:t.serial}]});
   break;
  case'g34_SelfGraveRevive644':{
   const y=own.grave.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);
