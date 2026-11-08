@@ -2472,6 +2472,13 @@ export function standardCardSpec(d,{phase=165}={}){
   };
   const base={shieldGo:true,g172Death:[{op:'SelfGraveShield659'}]};
   if(text==='このクリーチャーはブロックされない。'+keyword)return {...base,unblockable:true};
+  if(phase>=665){
+   if(text==='このクリーチャーをバトルゾーンに出した時バトルゾーンにある相手のクリーチャーを1体選びタップしてもよい。'+keyword){
+    return {...base,effect:'sixPhoto',g34Tasks:[{op:'Target',tap:true,optional:true}]};
+   }
+   if(text==='スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)'+keyword)return {...base,slayer:true};
+   if(text==='パワーアタッカー+1000(攻撃中このクリーチャーのパワーは+1000される)'+keyword)return {...base,attackBonus:1000};
+  }
   const sacrifice='このクリーチャーをバトルゾーンに出した時このクリーチャーを破壊してもよい。そうした場合';
   if(phase>=664&&text.startsWith(sacrifice)&&text.endsWith(keyword)){
    const body=text.slice(sacrifice.length,-keyword.length);
