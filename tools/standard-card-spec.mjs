@@ -2453,6 +2453,18 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=666&&creature){
+  const text=normalize(f.abilityText),hasShieldGo='「シールド・ゴー」を持つカードが自分のシールドゾーンに表向きであれば';
+  if(text===hasShieldGo+'このクリーチャーは「ブロッカー」を得る。自分のターンの終わりにこのクリーチャーをアンタップする。'){
+   return {g666ShieldGoGrants:{blocker:true},g166EndUntap:true};
+  }
+  if(text==='このクリーチャーはこのクリーチャーよりパワーが小さいクリーチャーにブロックされない。'+hasShieldGo+'このクリーチャーのパワーは+4000され「W・ブレイカー」を得る。'){
+   return {g408LessPowerBlock:true,g666ShieldGoGrants:{power:4000,breaker:2}};
+  }
+  if(text===hasShieldGo+'このクリーチャーが攻撃する時バトルゾーンにあるコスト4以下のクリーチャーを1体選び持ち主の手札に戻してもよい。このクリーチャーが破壊される時墓地に置くかわりに手札に戻す。'){
+   return {g34Attack:[{op:'IfOwn',filter:{g666FaceUpShieldGo:true},defs:[{op:'Target',anyOwner:true,filter:{max:4},to:'hand',optional:true}]}],destroyToHand:true};
+  }
+ }
  if(phase>=662&&creature&&normalize(f.abilityText)==='自分のシールドゾーンにある「シールド・ゴー」を持つ表向きのカード1枚につきこのクリーチャーのパワーは+5000されシールドをさらに1枚ブレイクする。'){
   return {g662ShieldGoStats:5000};
  }
@@ -2472,6 +2484,9 @@ export function standardCardSpec(d,{phase=165}={}){
   };
   const base={shieldGo:true,g172Death:[{op:'SelfGraveShield659'}]};
   if(text==='このクリーチャーはブロックされない。'+keyword)return {...base,unblockable:true};
+  if(phase>=666&&text==='このクリーチャーが各ターンはじめて攻撃する時このクリーチャーをアンタップする。'+keyword+'このクリーチャーが自分のシールドゾーンに表向きであればバトルゾーンにある自分のクリーチャーはすべて「スピードアタッカー」を得る。'){
+   return {...base,g540FirstAttack:[{op:'Untap',g191First:true}],g666ShieldSpeed:true};
+  }
   if(phase>=665){
    if(text==='このクリーチャーをバトルゾーンに出した時バトルゾーンにある相手のクリーチャーを1体選びタップしてもよい。'+keyword){
     return {...base,effect:'sixPhoto',g34Tasks:[{op:'Target',tap:true,optional:true}]};

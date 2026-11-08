@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-09",
   "catalogueNames": 11830,
-  "supportedNames": 5826,
-  "pendingNames": 6004,
-  "phase": 665,
-  "added": 3,
+  "supportedNames": 5830,
+  "pendingNames": 6000,
+  "phase": 666,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3643,
+    "クリーチャー": 3639,
     "NEOクリーチャー": 153,
     "呪文": 846,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1338,
-    "未対応の能力文": 4450,
+    "未対応の能力文": 4446,
     "未対応のG・ゼロ条件": 27,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -1791,44 +1791,38 @@
         "scope": "登場時の任意タップと保存・復元、スレイヤーと戦闘破壊、攻撃中のパワー、破壊から表向きシールドを経てブレイクで墓地へ移動。"
       },
       "deferred": []
+    },
+    {
+      "phase": 666,
+      "added": [
+        {
+          "id": "dmr09-008",
+          "name": "進軍する巨砲 クロムウェル"
+        },
+        {
+          "id": "dmr10-022",
+          "name": "説対防御 マンガン"
+        },
+        {
+          "id": "dmr10-024",
+          "name": "憂鬱の青 タイム・パラドックス"
+        },
+        {
+          "id": "dmr10-030",
+          "name": "雪滑り ヘパティカ"
+        }
+      ],
+      "supportedNames": 5830,
+      "pendingNames": 6000,
+      "verification": {
+        "focusedPassed": 11,
+        "regressionPassed": 108,
+        "regressionIncludesFocused": true,
+        "check": "成功",
+        "officialPrints": 4,
+        "scope": "各ターン最初の攻撃、表向きシールドと常在能力、ブロック制限、攻撃誘発の解決時条件、破壊置換、保存・復元。"
+      },
+      "deferred": []
     }
-  ],
-  "resume": {
-    "lastVerifiedPhase": 665,
-    "lastVerifiedCommit": "e86c52d6dad52923d8cbb2ed5aa3d037a16d815a",
-    "nextPhase": 666,
-    "workInProgress": "phase 665まで検証・ローカルコミット済み。phase 666のコード変更なし。効果でブレイクする共通経路には追加ブレイク枚数の参照がない。カニスは保留中。アウトランダーは通常攻撃を検証済みで、追加ブレイクを持つクリーチャーが効果でブレイクする組み合わせは未検証。",
-    "nextCandidates": [
-      {
-        "id": "dmr09-008",
-        "name": "進軍する巨砲 クロムウェル",
-        "check": "公式カード文を一次確認。各ターン初回の攻撃時にアンタップし、表向きシールドから自軍にスピードアタッカーを付与。再録・画像の最終照合と初回攻撃処理を確認する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-008"
-      },
-      {
-        "id": "dmr10-022",
-        "name": "説対防御 マンガン",
-        "check": "公式カード文を一次確認。自分の終了時の強制アンタップと、自分の表向きシールド・ゴーがある間のブロッカー。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-022"
-      },
-      {
-        "id": "dmr10-030",
-        "name": "雪滑り ヘパティカ",
-        "check": "公式ページのキャッシュを取得できなかった。公式の直接取得で能力文・画像を照合してから、表向きシールド・ゴーによるパワー上昇とW・ブレイカー、ブロック制限を確認する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-030"
-      },
-      {
-        "id": "dmr10-024",
-        "name": "憂鬱の青 タイム・パラドックス",
-        "check": "ヘパティカの公式確認ができない場合の候補。表向きシールド・ゴー条件の任意バウンスと、破壊を手札への移動に置き換える効果の両方を確認する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-024"
-      }
-    ],
-    "steps": [
-      "git statusとAGENTS.mdを確認し、候補のカードID・正規名・再録・能力文全体・基本情報・画像・使用制限・関連裁定を照合する。",
-      "カニスなどを追加する前に、総合ルール701.14dと現行の効果ブレイク処理を比較する。対象シールドを選ぶ処理、ブレイクの発生元、途中保存・復元への影響を確認する。",
-      "カード固有と関連回帰を各最大10分で実行する。対戦シミュレーションを含む既存ファイルは必要なテスト名を明示する。全体のnpm testは中断・合否未確認のままとする。",
-      "実データから再集計し、batchHistoryを更新して検証済みのバッチだけローカルコミットする。"
-    ]
-  }
+  ]
 }

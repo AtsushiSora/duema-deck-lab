@@ -1,0 +1,187 @@
+{
+  "phase": 666,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5826,
+  "description": "表向きシールドの常在能力、初回攻撃、強制アンタップと破壊置換を持つアウトレイジ4種類。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/40671/",
+    "https://dm.takaratomy.co.jp/rule/qa/41413/",
+    "https://dm.takaratomy.co.jp/rule/qa/44188/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36877/"
+  ],
+  "cards": [
+    {
+      "id": "dmr09-008",
+      "name": "進軍する巨砲 クロムウェル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-008",
+      "faces": [
+        {
+          "name": "進軍する巨砲 クロムウェル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが各ターンはじめて攻撃する時、このクリーチャーをアンタップする。 {SG}シールド・ゴー（このクリーチャーが破壊された時、新しいシールドとして自分のシールドゾーンに表向きのまま加える。このクリーチャーが表向きで、シールドゾーンを離れる時、かわりに自分の墓地に置く）\nこのクリーチャーが自分のシールドゾーンに表向きであれば、バトルゾーンにある自分のクリーチャーはすべて「スピードアタッカー」を得る。",
+          "race": "アウトレイジ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "shieldGo": true,
+        "g172Death": [
+          {
+            "op": "SelfGraveShield659"
+          }
+        ],
+        "g540FirstAttack": [
+          {
+            "op": "Untap",
+            "g191First": true
+          }
+        ],
+        "g666ShieldSpeed": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "66f0065c239d89dc40aa1c526ca206f68facdf6ad4a7e45e3e6367327a7aae17",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr10-022",
+      "name": "説対防御 マンガン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-022",
+      "faces": [
+        {
+          "name": "説対防御 マンガン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "「シールド・ゴー」を持つカードが自分のシールドゾーンに表向きであれば、このクリーチャーは「ブロッカー」を得る。\n自分のターンの終わりに、このクリーチャーをアンタップする。",
+          "race": "アウトレイジ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g666ShieldGoGrants": {
+          "blocker": true
+        },
+        "g166EndUntap": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "9d2a08cbf770994c19c2c146126be6ce244a9a884df07825dab3f446d1188fce",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr10-024",
+      "name": "憂鬱の青 タイム・パラドックス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-024",
+      "faces": [
+        {
+          "name": "憂鬱の青 タイム・パラドックス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "「シールド・ゴー」を持つカードが自分のシールドゾーンに表向きであれば、このクリーチャーが攻撃する時、バトルゾーンにあるコスト４以下のクリーチャーを１体選び、持ち主の手札に戻してもよい。\nこのクリーチャーが破壊される時、墓地に置くかわりに手札に戻す。",
+          "race": "アウトレイジ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g666FaceUpShieldGo": true
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "anyOwner": true,
+                "filter": {
+                  "max": 4
+                },
+                "to": "hand",
+                "optional": true
+              }
+            ]
+          }
+        ],
+        "destroyToHand": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "54a8f135fd372ac07b1ba47c7ca2ac97f811112343a6abf6a907963bcf9a888b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr10-030",
+      "name": "雪滑り ヘパティカ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-030",
+      "faces": [
+        {
+          "name": "雪滑り ヘパティカ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーは、このクリーチャーよりパワーが小さいクリーチャーにブロックされない。\n「シールド・ゴー」を持つカードが自分のシールドゾーンに表向きであれば、このクリーチャーのパワーは+4000され、「W・ブレイカー」を得る。",
+          "race": "アウトレイジ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g408LessPowerBlock": true,
+        "g666ShieldGoGrants": {
+          "power": 4000,
+          "breaker": 2
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "70ca5a98d7c652e43c25cdc327fc6dd6c1b252727ad93b2cf8ccac0a638929e1",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr09-008": 4,
+      "dmr10-022": 4,
+      "dmr10-024": 4,
+      "dmr10-030": 4
+    }
+  }
+}

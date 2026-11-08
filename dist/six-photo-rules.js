@@ -225,6 +225,7 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g666FaceUpShieldGo)return api.shieldGoCount(s,p)>0;
   if(f.g650SourceCards){
    const host=sourceHost474(s,{uid:sourceUid,incarnation:sourceIncarnation});
    const count=host?(!host.x.sealed&&api.isCreature(s,host.x)?api.allLayers(host.x).length:0):lastKnownCount;

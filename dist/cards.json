@@ -167852,19 +167852,135 @@
       "attackBonus": 1000,
       "supportBatch": "phase-665",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-008",
+      "name": "進軍する巨砲 クロムウェル",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "アウトレイジ",
+      "text": "このクリーチャーが各ターンはじめて攻撃する時、このクリーチャーをアンタップする。 {SG}シールド・ゴー（このクリーチャーが破壊された時、新しいシールドとして自分のシールドゾーンに表向きのまま加える。このクリーチャーが表向きで、シールドゾーンを離れる時、かわりに自分の墓地に置く）\nこのクリーチャーが自分のシールドゾーンに表向きであれば、バトルゾーンにある自分のクリーチャーはすべて「スピードアタッカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-008",
+      "limit": 4,
+      "shieldGo": true,
+      "g172Death": [
+        {
+          "op": "SelfGraveShield659"
+        }
+      ],
+      "g540FirstAttack": [
+        {
+          "op": "Untap",
+          "g191First": true
+        }
+      ],
+      "g666ShieldSpeed": true,
+      "supportBatch": "phase-666",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-022",
+      "name": "説対防御 マンガン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "アウトレイジ",
+      "text": "「シールド・ゴー」を持つカードが自分のシールドゾーンに表向きであれば、このクリーチャーは「ブロッカー」を得る。\n自分のターンの終わりに、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-022",
+      "limit": 4,
+      "g666ShieldGoGrants": {
+        "blocker": true
+      },
+      "g166EndUntap": true,
+      "supportBatch": "phase-666",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-024",
+      "name": "憂鬱の青 タイム・パラドックス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "アウトレイジ",
+      "text": "「シールド・ゴー」を持つカードが自分のシールドゾーンに表向きであれば、このクリーチャーが攻撃する時、バトルゾーンにあるコスト４以下のクリーチャーを１体選び、持ち主の手札に戻してもよい。\nこのクリーチャーが破壊される時、墓地に置くかわりに手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-024",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g666FaceUpShieldGo": true
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "anyOwner": true,
+              "filter": {
+                "max": 4
+              },
+              "to": "hand",
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "destroyToHand": true,
+      "supportBatch": "phase-666",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-030",
+      "name": "雪滑り ヘパティカ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "アウトレイジ",
+      "text": "このクリーチャーは、このクリーチャーよりパワーが小さいクリーチャーにブロックされない。\n「シールド・ゴー」を持つカードが自分のシールドゾーンに表向きであれば、このクリーチャーのパワーは+4000され、「W・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-030",
+      "limit": 4,
+      "g408LessPowerBlock": true,
+      "g666ShieldGoGrants": {
+        "power": 4000,
+        "breaker": 2
+      },
+      "supportBatch": "phase-666",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 665,
+    "phase": 666,
     "checkedAt": "2026-11-09",
-    "baseCount": 5823,
-    "newEffectCards": 3,
+    "baseCount": 5826,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 5826,
+    "totalCount": 5830,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
       "https://dm.takaratomy.co.jp/rule/qa/40671/",
+      "https://dm.takaratomy.co.jp/rule/qa/41413/",
+      "https://dm.takaratomy.co.jp/rule/qa/44188/",
       "https://dm.takaratomy.co.jp/rule/qa_old/36877/"
     ],
     "next": [
@@ -179290,6 +179406,23 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
           "https://dm.takaratomy.co.jp/rule/qa/42955/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
+          "https://dm.takaratomy.co.jp/rule/qa/40671/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36877/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 665,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5823,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5826,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
           "https://dm.takaratomy.co.jp/rule/qa/40671/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36877/"
         ],

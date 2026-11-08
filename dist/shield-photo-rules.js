@@ -94,8 +94,14 @@ export function createShieldPhotoRules(api){
   if(c.type!=='creature')return c;
   if(armored(c)&&castles(s,p,'g33Mai').length)c={...c,blocker:true,speedAttacker:true};
   if(colors(c).length>1&&s.players[p].battle.some(y=>!api.ignored(s,y)&&card(y).g33Dogi))c={...c,speedAttacker:true};
-  if(!c.g401ShieldSaver&&up(s,p).some(y=>card(y).g663ShieldSaver))c={...c,g401ShieldSaver:true};
+  const faceUpShields=up(s,p);
+  if(!c.g401ShieldSaver&&faceUpShields.some(y=>card(y).g663ShieldSaver))c={...c,g401ShieldSaver:true};
   if(c.g663ShieldGoAttackUntapped&&shieldGoCount(s,p))c={...c,attackUntapped:true};
+  if(c.g666ShieldGoGrants&&shieldGoCount(s,p)){
+   const {power,breaker,...grants}=c.g666ShieldGoGrants;
+   c={...c,...grants,...(power?{power:c.power+power}:{}),...(breaker&&c.breaker!=='∞'?{breaker:Math.max(c.breaker||1,breaker)}:{})};
+  }
+  if(!c.speedAttacker&&faceUpShields.some(y=>card(y).g666ShieldSpeed))c={...c,speedAttacker:true};
   return c;
  },
  beforeExecution(s,p,c,inst,options){if(c.type==='creature'||c.ignoreSpellLocks)return false;const pending={p,c,inst,options},hikari=up(s,1-p).length&&creatures(s,1-p).some(x=>card(x).g33Hikari&&!api.ignored(s,x))&&replaceable(s,pending,'grave'),momo=momos(s,1-p).length&&replaceable(s,pending,'mana');if(!hikari&&!momo)return false;(s.g33Executions??=[]).push(pending);put(s,task('g33_Counter',1-p,c.id,{target:inst.uid}));return true;},
