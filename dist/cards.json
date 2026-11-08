@@ -165106,21 +165106,87 @@
       ],
       "supportBatch": "phase-639",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmbd03-009",
+      "name": "メラメラ・ジョーカーズ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "ジョーカーズ",
+      "text": "ジョーカーズを１枚、自分の手札から捨ててもよい。そうしたら、カードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd03-009",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DiscardFor248",
+          "g488DiscardFilter": {
+            "g539JokerCard": true
+          },
+          "title": "捨てるジョーカーズ・カードを1枚選ぶ（任意）",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 2
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-640",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex2-093",
+      "name": "パンドラの記憶",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "カードを３枚引き、その後、自分の手札を１枚、超次元ゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-093",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 3
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "extra",
+          "n": 1,
+          "title": "超次元ゾーンに置く手札を1枚選ぶ"
+        }
+      ],
+      "supportBatch": "phase-640",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 639,
+    "phase": 640,
     "checkedAt": "2026-11-08",
-    "baseCount": 5742,
+    "baseCount": 5744,
     "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 5744,
+    "totalCount": 5746,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35530/",
-      "https://dm.takaratomy.co.jp/rule/qa/41076/",
-      "https://dm.takaratomy.co.jp/rule/qa/45451/"
+      "https://dm.takaratomy.co.jp/rule/qa/48125/",
+      "https://dm.takaratomy.co.jp/coverage/dmnt23_round2-1/",
+      "https://dm.takaratomy.co.jp/coverage/dmscs02_f06a/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -176059,6 +176125,24 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37424/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37428/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 639,
+        "checkedAt": "2026-11-08",
+        "baseCount": 5742,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 5744,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35530/",
+          "https://dm.takaratomy.co.jp/rule/qa/41076/",
+          "https://dm.takaratomy.co.jp/rule/qa/45451/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -1178,6 +1178,12 @@ function instruction604(text){
  }
 }
 function instruction(text,phase){
+ if(phase>=640){
+  if(text==='ジョーカーズを1枚自分の手札から捨ててもよい。そうしたらカードを2枚引く。')
+   return{op:'DiscardFor248',g488DiscardFilter:{g539JokerCard:true},title:'捨てるジョーカーズ・カードを1枚選ぶ（任意）',defs:[{op:'Draw',n:2}]};
+  if(text==='自分の手札を1枚超次元ゾーンに置く。')
+   return{op:'Select',origin:'hand',to:'extra',n:1,title:'超次元ゾーンに置く手札を1枚選ぶ'};
+ }
  if(phase>=639){
   if(text==='自分のタマシードを1枚破壊してもよい。そうしたらカードを2枚引く。')
    return{op:'SacrificeAlly413',g547Seed:true,defs:[{op:'Draw',n:2}]};
