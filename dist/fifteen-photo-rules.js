@@ -42,7 +42,7 @@ export function createFifteenPhotoRules(api){
  case'moujaDiscard':choice(s,t,'捨てる手札を1枚選ぶ',own.hand.map(y=>opt(card(y).name,y.uid,colors(card(y)).length>1?25:0,y.cardId)));break;
  case'brandDiscard':{const selected=t.selected||[];choice(s,{...t,selected},'捨てる手札を選ぶ（'+selected.length+'枚）',[...own.hand.filter(y=>!selected.includes(y.uid)).map(y=>opt(card(y).name,y.uid,creatures(s,1-t.p).filter(y=>api.power(y,false,s)<=6000).length>selected.length?5:-5,y.cardId)),opt('ここまでで確定',null,0)]);break;}
  case'joragonLoot':give(s,t,[E('Draw',{n:1}),E('Discard',{owner:'self',n:1})]);break;
- case'copyEntry':{const c=card(t.copy),entries=api.entryAbilities(s,t.p,t.copy,{source:t.source,uid:t.uid,incarnation:t.incarnation||0});if(entries.length&&c.g35Role!=='galaxy')choice(s,{...t,entries},c.name+'の登場時能力を1つ使う？',[...entries.map((e,i)=>opt(e.label,i,15,t.copy)),skip()]);break;}
+ case'copyEntry':{const c=card(t.copy),entries=api.entryAbilities(s,t.p,t.copy,{source:t.source,uid:t.uid,incarnation:t.incarnation||0,jBig:t.jBig});if(entries.length&&c.g35Role!=='galaxy')choice(s,{...t,entries},c.name+'の登場時能力を1つ使う？',[...entries.map((e,i)=>opt(e.label,i,15,t.copy)),skip()]);break;}
  case'melaventureDelay':break;
  case'melaSweep':if(jokerCount(s,t.p)>=7)give(s,t,[E('Sweep',{filter:{creature:true,blocker:true}})]);break;
  case'slot':{const ids=reveal(s,t,3);if(ids.length===3&&ids.every(uid=>j(card(own.deck.find(x=>x.uid===uid))))){pending(s,t,'slotPick',{ids});}else order(s,t,ids);break;}
@@ -128,7 +128,7 @@ export function createFifteenPhotoRules(api){
  case'masterBreak':{const ids=t.uids.filter(uid=>s.players[t.defender].shields.some(y=>y.uid===uid));if(!ids.length){s.breakContext=null;break;}give(s,t,[E('Target',{to:'grave'}),C('masterCommit',{...t,uids:ids})]);break;}
  case'masterCommit':{s.breakContext={...t.context,g35Prepared:true};api.interruptBreak(s,t.defender,[t.uids[0]],task('g35_Custom',t.p,t.source,{...t,name:'masterBreak',uids:t.uids.slice(1)}));break;}
  case'chief':choice(s,t,'ジョット・首魁・ジョラゴンの効果を選ぶ',[opt('コスト5以下のジョーカーズを手札から出す',0,20),...(!card(t.source).copyOf?[opt('Jビッグ1：他のジョーカーズの登場時能力を使う',1,10)]:[])]);break;
- case'big1':target(s,t,'登場時能力を使う他のジョーカーズを選ぶ',own.battle.filter(y=>y.uid!==t.uid&&j(effective(y,s))));break;
+ case'big1':target(s,t,'登場時能力を使う他のジョーカーズを選ぶ',own.battle.filter(y=>y.uid!==t.uid&&!y.sealed&&!y.faceDown&&!api.ignored(s,y)&&j(effective(y,s))));break;
  case'chiefBase':choice(s,t,'ジョーカーズまたはレクスターズに重ねて召喚する',api.evolutionBases(s,t.p,card(t.source)).map(y=>opt(card(y).name,y.uid,10,y.cardId)));break;
  case'jazzy':choice(s,t,'墓地から手札に戻すクリーチャーを選ぶ',own.grave.filter(y=>card(y).type==='creature').map(y=>opt(card(y).name,y.uid,cost(card(y)),y.cardId)));break;
  default:throw Error('未実装の15画像効果：'+t.name);
@@ -186,7 +186,7 @@ export function createFifteenPhotoRules(api){
  case'infinityPick':order(s,t,t.ids.filter(uid=>uid!==v?.uid));if(v)execute(s,t,'deck',v.uid,v.face);break;
  case'untapOther':{const y=own.battle.find(y=>y.uid===v);if(y)api.untap(s,t.p,y);break;}
  case'chief':if(v===0)give(s,t,[S('hand',null,1,{race:'ジョーカーズ',max:5},{deploy:true})]);else pending(s,t,'big1');break;
- case'big1':{const y=own.battle.find(y=>y.uid===v);if(y)pending(s,t,'copyEntry',{copy:y.cardId});break;}
+ case'big1':{const y=own.battle.find(y=>y.uid===v);if(y&&!y.sealed&&!api.ignored(s,y))pending(s,t,'copyEntry',{copy:y.cardId,jBig:true});break;}
  case'chiefBase':cast(s,t.p,t.uid,false,v);break;
  case'jazzy':{const y=own.grave.find(y=>y.uid===v);if(y){const n=cost(card(y));zoneMove(s,t.p,'grave',v,'hand',t);give(s,t,[E('Target',{filter:{max:n},to:'grave'})]);}break;}
  default:throw Error('未実装の15画像選択：'+t.name);

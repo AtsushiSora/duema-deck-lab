@@ -2388,6 +2388,14 @@ export function standardCardSpec(d,{phase=165}={}){
  if(f.civilizations.includes('無色')&&f.civilizations.length!==1)throw Error('無色の複合文明');
  const creature=f.typeText.includes('クリーチャー'),evolution=f.typeText==='進化クリーチャー'||phase>=273&&f.typeText==='スター進化クリーチャー',seed=f.typeText==='タマシード';
  if(creature&&!/^\d+\+?$/.test(f.powerText)&&!(phase>=243&&/^\d+-$/.test(f.powerText)))throw Error('特殊なパワー');
+ if(phase>=644&&creature){
+  const text=normalize(f.abilityText)
+   .replace('S・トリガー(このカードを自分のシールドゾーンから手札に加える時コストを支払わずにすぐ実行してもよい)','S・トリガー')
+   .replace(/Jビッグ1する。\(自分の他のジョーカーズのJビッグ1(?:能力)?以外の出た時にトリガーする能力を1つ使う\)/,'Jビッグ1する。');
+  const start='このクリーチャーが出た時次の中から1回選ぶ。▶',end='▶Jビッグ1する。';
+  if(text===start+'カードを1枚引く。'+end)return{effect:'champion',g159CEffect:'Benzaman'};
+  if(text==='S・トリガーS・トリガー'+start+'クリーチャーを1体選びタップまたはアンタップする。'+end)return{trigger:true,effect:'champion',g159CEffect:'HitoridachiMonkid'};
+ }
  const spec={},entry=[],attack=[],block=[],death=[],leave=[],turnStart=[],turnEnd=[],opponentStart=[],opponentEnd=[],tapped=[],battleWin=[];let powerBonus=false,nativeEntry=null;
  const compact363=phase>=363?normalize(f.abilityText):'',whole363=phase>=363&&(modal363(compact363)||compact363==='自分の水と闇を両方持つクリーチャーがバトルゾーンに出た時次のうちいずれか1つを選ぶ。▼カードを1枚引く。▼相手は自身の手札を1枚選び捨てる。');
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
@@ -2705,6 +2713,9 @@ export function standardCardSpec(d,{phase=165}={}){
     '各ターンこのクリーチャーがはじめて攻撃する時これが進化クリーチャーならアンタップする。':[{op:'IfSource541',evolution:true,defs:[untap]}]
    }[line];if(first){if(spec.g540FirstAttack)throw Error('重複する最初の攻撃誘発');spec.g540FirstAttack=first;continue;}
    if(line==='鬼タイム:このクリーチャーが破壊された時自分と相手のシールドの数が合計6つ以下なら相手のパワー8000以下のクリーチャーを1体破壊する。'){if(death.length)throw Error('独立した破壊時能力の順序対応が必要');death.push({op:'IfOwn',filter:{g334ZoneCount:{zone:'shields',sumBoth:true,max:6}},defs:[{op:'Target',to:'grave',filter:{maxPower:8000,g199Power:true}}]});continue;}
+  }
+  if(phase>=644&&creature&&line==='自分のターンにこのクリーチャーが破壊された時そのターンの終わりにこのクリーチャーを自分の墓地から出す。'){
+   death.push({op:'ScheduleGraveReturn644'});continue;
   }
   if(phase>=643&&creature){
    if(line==='自分のジョーカーズとマナゾーンにあるジョーカーズ・カードが合計8つ以上ならこのクリーチャーのパワーを+5000し「W・ブレイカー」を与える。(「W・ブレイカー」を持つクリーチャーはシールドを2つブレイクする)'){

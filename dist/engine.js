@@ -787,7 +787,15 @@ export function entryAbilities(s,p,original,reference){
  const base={player:p,uid,incarnation,source,original,lastKnownPower:reference.lastKnownPower},out=[];
  const add=(label,effect,more={})=>out.push({...base,label,effect,...more});
  const extended=(label,op,more={})=>add(label,'extended',{task:extra.task(op,p,source,{uid,incarnation,...more})});
- if(c.type!=='spell'&&c.effect)add('出た時の効果','entry');
+ const ordinaryJBig=reference.jBig&&{
+  Nyani:{label:'相手のクリーチャーをすべてタップする',op:'g159C_TapEnemies'},
+  Benzaman:{label:'カードを1枚引く',op:'g34_Draw',n:1},
+  HitoridachiMonkid:{label:'クリーチャーをタップまたはアンタップする',op:'g159C_TapOrUntap'},
+ }[c.g159CEffect];
+ if(ordinaryJBig){
+  const {label,op,...args}=ordinaryJBig;
+  extended(label,op,args);
+ }else if(c.type!=='spell'&&c.effect)add('出た時の効果','entry');
  for(const ability of c.g527ExtraEntry||[])extended(ability.label,'g34_Sequence',{defs:ability.defs});
  if(c.justDiver)add('ジャストダイバー','justDiver');
  if(c.g414ShieldPlus)extended('シールド・プラス','g34_ShieldPlus414');

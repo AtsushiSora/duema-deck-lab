@@ -8,6 +8,11 @@ export function createPhoto159CombatRules(api){
  const live=(s,t)=>living(s,t.p).find(x=>key(x)===key(t));
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g159C_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  const queue=(s,t,op,more={})=>put(s,{...t,op:'g159C_'+op,...more});
+ function jBigEntries(s,t){
+  return s.players[t.p].battle.filter(x=>x.uid!==t.uid&&!x.sealed&&!x.faceDown&&!api.ignored(s,x)&&joker(effective(x,s)))
+   .flatMap(x=>api.entryAbilities(s,t.p,x.cardId,{uid:t.uid,source:t.source,incarnation:t.incarnation||0,jBig:true})
+    .filter(e=>!String(e.label).includes('Jビッグ')).map(e=>({...e,borrowedFrom:x.cardId})));
+ }
  const skip=()=>opt('使わない',null,0);
  const held=own=>new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&/Protected$|Reveals$/.test(k)).flatMap(([,v])=>v));
  const release=(s,p,ids)=>s.players[p].g34Protected=(s.players[p].g34Protected||[]).filter(uid=>!ids.includes(uid));
@@ -19,8 +24,12 @@ export function createPhoto159CombatRules(api){
  case'g159C_WinMana':{const max=unit?power(unit,unit.uid===s.attack?.attacker,s):t.lastPower;choice(s,{...t,max},'このクリーチャー以下のパワーの火の1体をマナから出す？',[...(api.canMoveZone(s,t.p,'mana')?own.mana.filter(x=>!x.faceDown&&!(own.g34ManaHeld||[]).includes(x.uid)&&card(x).type==='creature'&&faces(card(x)).some(c=>c.type==='creature'&&api.colors(c).includes('火'))&&Number(card(x).power)<=max&&usable(s,t.p,x,'mana')):[]).map(x=>opt(card(x).name,x.uid,20+Math.min(cost(card(x)),20),x.cardId)),skip()]);break;}
  case'g159C_Deploy':{const x=own[t.origin].find(x=>x.uid===t.target);if(!x||!usable(s,t.p,x,t.origin))break;const b=bases(s,t.p,card(x));if(b.length===1&&!b[0])deploy(s,t,null);else choice(s,t,'出すクリーチャーの進化元を選ぶ',b.map(x=>opt(x?card(x).name:'進化させずに出す',x?.uid??null,x?10:1,x?.cardId)));break;}
  case'g159C_Supreme':put(s,task('g34_Target',t.p,t.source,{to:'deck',title:'山札の下へ置く相手のクリーチャーを1体選ぶ'}),task('g34_Draw',t.p,t.source,{n:1,optional:true}));break;
- case'g159C_Nyani':choice(s,t,'にやにYAH：使う効果を1つ選ぶ',[opt('相手のクリーチャーをすべてタップする','tap',living(s,1-t.p).filter(x=>!x.tapped).length*15),opt('Jビッグ1：他のジョーカーズの登場時能力を1つ使う','jbig',living(s,t.p).some(x=>x.uid!==t.uid&&joker(effective(x,s))&&card(x).effect&&card(x).g159CRole!=='nyani')?25:0)]);break;
- case'g159C_JBig':{const entries=living(s,t.p).filter(x=>x.uid!==t.uid&&joker(effective(x,s))&&!api.ignored(s,x)&&!hasRole(effective(x,s),'nyani')).flatMap(x=>api.entryAbilities(s,t.p,x.cardId,{uid:t.uid,source:t.source,incarnation:t.incarnation||0}).filter(e=>!String(e.label).includes('Jビッグ')).map(e=>({...e,borrowedFrom:x.cardId})));if(entries.length)choice(s,{...t,entries},'使うジョーカーズの登場時能力を1つ選ぶ',entries.map((e,i)=>opt(card(e.borrowedFrom).name+'：'+e.label,i,20,e.borrowedFrom)));break;}
+ case'g159C_Nyani':choice(s,t,'にやにYAH：使う効果を1つ選ぶ',[opt('相手のクリーチャーをすべてタップする','tap',living(s,1-t.p).filter(x=>!x.tapped).length*15),opt('Jビッグ1：他のジョーカーズの登場時能力を1つ使う','jbig',jBigEntries(s,t).length?25:0)]);break;
+ case'g159C_Benzaman':choice(s,t,'使う効果を1つ選ぶ',[opt('カードを1枚引く','draw',own.deck.length>1?12:-100),opt('Jビッグ1：他のジョーカーズの登場時能力を1つ使う','jbig',jBigEntries(s,t).length?20:0)]);break;
+ case'g159C_HitoridachiMonkid':choice(s,t,'使う効果を1つ選ぶ',[opt('クリーチャーを1体選び、タップまたはアンタップする','tapState',10),opt('Jビッグ1：他のジョーカーズの登場時能力を1つ使う','jbig',jBigEntries(s,t).length?20:0)]);break;
+ case'g159C_TapOrUntap':put(s,task('g34_Target',t.p,t.source,{anyOwner:true,g235TapOrUntap:true,title:'タップまたはアンタップするクリーチャーを選ぶ'}));break;
+ case'g159C_TapEnemies':for(const x of living(s,1-t.p))api.tap(s,1-t.p,x);break;
+ case'g159C_JBig':{const entries=jBigEntries(s,t);if(entries.length)choice(s,{...t,entries},'使うジョーカーズの登場時能力を1つ選ぶ',entries.map((e,i)=>opt(card(e.borrowedFrom).name+'：'+e.label,i,20,e.borrowedFrom)));break;}
  case'g159C_MomoDM':put(s,task('g34_Select',t.p,t.source,{origin:'mana',n:2,deploy:true,optional:true,filter:{creature:true,evolution:true,race:'ジョーカーズ',max:8},title:'マナから出すコスト8以下の進化ジョーカーズを2体まで選ぶ'}),task('g34_Ramp',t.p,t.source,{n:2,tapped:true}));break;
  case'g159C_MonkidMana':{const x=living(s,t.owner).find(x=>x.uid===t.target&&(x.incarnation||0)===(t.targetIncarnation||0));if(x)api.move(s,[{player:t.owner,uid:x.uid,to:'mana',destroy:false,controller:t.p}]);break;}
  case'g159C_Mekraid':{if(api.deckLocked(s,t.p))break;const reserved=held(own),xs=own.deck.filter(x=>!reserved.has(x.uid)).slice(0,api.lookCount(s,t.p,3)),ids=xs.map(x=>x.uid);(own.g34Protected??=[]).push(...ids);const publicly=api.lookPublic(s,t.p);api.log(s,t.p,publicly?'reveal':'look',card(t.source).name+'：山札の上'+ids.length+'枚を確認'+(publicly?'：'+xs.map(x=>card(x).name).join('・'):''),{cardId:t.source});const rows=xs.flatMap(x=>faces(card(x)).flatMap((c,face)=>joker(c)&&cost(c)<=5&&api.canCast(s,t.p,c,'deck')&&(c.type!=='creature'||usable(s,t.p,x,'deck',c,true))?[opt(c.name,{uid:x.uid,face},20+cost(c),x.cardId)]:[]));choice(s,{...t,ids},'ジョーカーズ・メクレイド5：実行するカードを1枚まで選ぶ',[...rows,skip()]);break;}
@@ -34,7 +43,12 @@ export function createPhoto159CombatRules(api){
  case'g159C_Fight':if(v){const x=live(s,t),y=living(s,1-t.p).find(y=>y.uid===v);if(x&&y)api.battle(s,t.p,x,1-t.p,y,s.attack?.attacker);}break;
  case'g159C_WinMana':if(v)queue(s,t,'Deploy',{origin:'mana',target:v});break;
  case'g159C_Deploy':deploy(s,t,v);break;
- case'g159C_Nyani':if(v==='tap')for(const x of living(s,1-t.p))api.tap(s,1-t.p,x);else queue(s,t,'JBig');break;
+ case'g159C_Nyani':case'g159C_Benzaman':case'g159C_HitoridachiMonkid':
+  if(v==='tap')queue(s,t,'TapEnemies');
+  else if(v==='tapState')queue(s,t,'TapOrUntap');
+  else if(v==='draw')put(s,task('g34_Draw',t.p,t.source,{n:1}));
+  else if(v==='jbig')queue(s,t,'JBig');
+  break;
  case'g159C_JBig':if(t.entries[v])api.resolveEntry(s,t.entries[v]);break;
  case'g159C_Mekraid':{release(s,t.p,v?[v.uid]:[]);put(s,...(v?[{...t,op:'g159C_MekUse',target:v.uid,face:v.face}]:[]),{...t,op:'g159C_Order',ids:t.ids.filter(uid=>uid!==v?.uid),protected:t.ids.filter(uid=>uid!==v?.uid)});break;}
  case'g159C_MekUse':cast(s,t.p,t.target,true,v,t.face||0,null,'deck','ジョーカーズ・メクレイド');break;
