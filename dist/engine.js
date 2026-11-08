@@ -326,8 +326,10 @@ function shieldLeft(s,p,x,group=null){
 }
 function removeShield(s,p,uid){const own=s.players[p],root=findShield(own,uid);if(!root)return null;if(shieldCards(root).some(x=>x.g37ShieldHeld)){const moved=shieldCards(root).filter(x=>!x.g37ShieldHeld).map(x=>removeShieldCard(s,p,x.uid)).filter(Boolean);if(!moved.length)return null;const first=moved.shift();if(moved.length)first.shieldStack=moved;return first;}remove(own.shields,root.uid);for(const [i,x] of shieldCards(root).entries())shieldLeft(s,p,x,i===0?shieldGroup(root):null);return root;}
 function removeShieldCard(s,p,uid){if(s.players[p].shields.flatMap(shieldCards).some(x=>x.uid===uid&&x.g37ShieldHeld))return null;const row=detachShieldCard(s.players[p],uid);if(!row)return null;shieldLeft(s,p,row.card,row.removedGroup?row.group:null);return row.card;}
+// A face-up Shield Go card still counts as a broken shield (official QA 36950).
+function shieldLeavesToGrave(x){return x.faceUp&&(card(x).gCastle||card(x).shieldGo);}
 function canSwapShield585(s,p,uid){
- return canAddShield(s,p)&&!deckRedirect(s)&&deckTopIndex(s,p)>=0&&s.players[p].shields.some(root=>shieldCards(root).some(x=>x.uid===uid&&!x.g37ShieldHeld&&!(x.faceUp&&card(x).gCastle)));
+ return canAddShield(s,p)&&!deckRedirect(s)&&deckTopIndex(s,p)>=0&&s.players[p].shields.some(root=>shieldCards(root).some(x=>x.uid===uid&&!x.g37ShieldHeld&&!shieldLeavesToGrave(x)));
 }
 function swapShield585(s,p,uid){
  if(!canSwapShield585(s,p,uid))return false;
@@ -354,7 +356,7 @@ function swapShield585(s,p,uid){
 function moveShields535(s,p,uids,to,{cardOnly=false,handEffects=true,replacement=false,noST=false}={}){
  if(to==='shields'&&!canAddShield(s,p))return [];
  const roots=[...new Set(uids)].map(uid=>cardOnly?removeShieldCard(s,p,uid):removeShield(s,p,uid)),all=roots.flatMap(shieldCards),hand=[];
- for(const x of all){const target=!replacement&&x.faceUp&&card(x).gCastle||to==='mana'&&extra.manaRedirect(s,p)?'grave':to;clearBattleState(x,target);addZone(s,s.players[p],target,x);if(target==='hand')hand.push(x);}
+ for(const x of all){const target=!replacement&&shieldLeavesToGrave(x)||to==='mana'&&extra.manaRedirect(s,p)?'grave':to;clearBattleState(x,target);addZone(s,s.players[p],target,x);if(target==='hand')hand.push(x);}
  if(handEffects)for(const x of hand)extra.shieldHand(s,p,x,false,{noST});
  return all;
 }
@@ -1132,8 +1134,8 @@ function commitShieldBreak(s,defender,uids){
  // Shields in the pending break do not count for ヤミノリミット (official QA 44581).
  const remaining=s.players[defender].shields.length-groups.length;
  const breaker=breakContext?.sourceUid?{uid:breakContext.sourceUid,incarnation:breakContext.incarnation}:undefined;
- const eligibleFaces=Object.fromEntries(all.flatMap(x=>{if(x.faceUp&&card(x).gCastle&&!breakContext?.replacementBreak)return [];const faces=!breakContext?.noST&&extra.triggersAllowed(s,defender)?playFaces(card(x)).flatMap((c,face)=>(c.g26Viride&&s.players[1-defender].battle.filter(x=>isCreature(s,x)).length>=3||extra.six.shieldTrigger(s,defender,x,c)||extra.requested393J.shieldTrigger(s,defender,x,c)||c.trigger||c.triggerPlus||c.superTrigger||c.graveTotalTrigger&&s.players.reduce((n,p)=>n+p.grave.length,0)>=c.graveTotalTrigger||c.rev2Trigger&&s.players[defender].shields.length-count<=2||x.g19ShieldST!==undefined||c.type==='spell'&&extra.spellShieldTrigger(s,defender)||c.shieldConditionalTrigger&&s.players[defender].grave.filter(x=>playFaces(card(x)).some(c=>c.type==='spell')).length>=2)&&extra.triggersAllowed(s,defender,c)&&!extra.triggerLocked597(s,defender,c,remaining,breaker)&&canCastSpell(s,defender,c)?[face]:[]):[];return faces.length?[[x.uid,faces]]:[];})),eligible=Object.keys(eligibleFaces);
- const broken=[];for(const uid of uids){const root=removeShield(s,defender,uid);for(const x of shieldCards(root)){const castle=x.faceUp&&card(x).gCastle&&!breakContext?.replacementBreak;clearBattleState(x,'hand');if(castle)addZone(s,s.players[defender],'grave',x);else broken.push(x);}}
+ const eligibleFaces=Object.fromEntries(all.flatMap(x=>{if(shieldLeavesToGrave(x)&&!breakContext?.replacementBreak)return [];const faces=!breakContext?.noST&&extra.triggersAllowed(s,defender)?playFaces(card(x)).flatMap((c,face)=>(c.g26Viride&&s.players[1-defender].battle.filter(x=>isCreature(s,x)).length>=3||extra.six.shieldTrigger(s,defender,x,c)||extra.requested393J.shieldTrigger(s,defender,x,c)||c.trigger||c.triggerPlus||c.superTrigger||c.graveTotalTrigger&&s.players.reduce((n,p)=>n+p.grave.length,0)>=c.graveTotalTrigger||c.rev2Trigger&&s.players[defender].shields.length-count<=2||x.g19ShieldST!==undefined||c.type==='spell'&&extra.spellShieldTrigger(s,defender)||c.shieldConditionalTrigger&&s.players[defender].grave.filter(x=>playFaces(card(x)).some(c=>c.type==='spell')).length>=2)&&extra.triggersAllowed(s,defender,c)&&!extra.triggerLocked597(s,defender,c,remaining,breaker)&&canCastSpell(s,defender,c)?[face]:[]):[];return faces.length?[[x.uid,faces]]:[];})),eligible=Object.keys(eligibleFaces);
+ const broken=[];for(const uid of uids){const root=removeShield(s,defender,uid);for(const x of shieldCards(root)){const toGrave=shieldLeavesToGrave(x)&&!breakContext?.replacementBreak;clearBattleState(x,'hand');if(toGrave)addZone(s,s.players[defender],'grave',x);else broken.push(x);}}
  extra.broken(s,breakContext,count);s.players[defender].hand.push(...broken);s.players[defender].brokenThisTurn=(s.players[defender].brokenThisTurn||0)+count;s.metrics[controller].breaks+=count;
  for(const x of broken){if(card(x).triggerPlus)x.triggerPlus=defender!==s.active&&s.players[defender].brokenThisTurn>=2;if(playFaces(card(x)).some(c=>c.superTrigger))x.superTrigger=s.players[defender].shields.length===0;}
  log(s,controller,'break',`シールド${count}つ（カード${broken.length}枚）を同時にブレイク（残り${s.players[defender].shields.length}つ）`);
