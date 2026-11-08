@@ -30,7 +30,15 @@ export function createSixPhotoRules(api){
  }
  // Delayed abilities belong to the controller who created them, independently of their source.
  function collect537(s,when,p){const due=[],keep=[];for(const r of s.g537Delays||[]){if(r.when===when&&(when==='turnEnd'?r.turn===s.turn:r.p===p&&r.turn<s.turn))due.push({player:r.p,source:r.source,uid:r.uid,incarnation:r.incarnation,effect:'extended',task:task('g34_ResolveDelay537',r.p,r.source,{uid:r.uid,incarnation:r.incarnation,defs:r.defs})});else if(r.when!=='turnEnd'||r.turn>=s.turn)keep.push(r);}s.g537Delays=keep;return due;}
- function shieldDeparture536(s,p){for(const x of creatures(s,p)){if(x.sealed)continue;const defs=effective(x,s).g536ShieldLeft;if(defs)queue(s,p,x,defs);}}
+ function shieldDeparture536(s,p){
+  for(const x of creatures(s,p)){
+   if(x.sealed)continue;
+   const {g536ShieldLeft,g536Once}=effective(x,s);
+   if(!g536ShieldLeft||g536Once&&used(s,'g536ShieldLeftUsed',x))continue;
+   if(g536Once)mark(s,'g536ShieldLeftUsed',x);
+   queue(s,p,x,g536ShieldLeft);
+  }
+ }
  function sourceHost474(s,t){for(const p of[0,1]){const x=s.players[p].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)));if(x)return{p,x};}return null;}
  function entryFight624(s,t){
   const own=sourceHost474(s,t),enemy=sourceHost474(s,t.enemy);

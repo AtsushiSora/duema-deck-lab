@@ -1,0 +1,108 @@
+{
+  "phase": 649,
+  "checkedAt": "2026-11-08",
+  "baseCount": 5772,
+  "description": "シールド離脱時の各ターン1回のタップと、相手エレメントのシールド化。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/48491/",
+    "https://dm.takaratomy.co.jp/rule/qa/38756/",
+    "https://dm.takaratomy.co.jp/rule/qa/44380/",
+    "https://dm.takaratomy.co.jp/rule/qa/45447/"
+  ],
+  "cards": [
+    {
+      "id": "dm26rp1-012",
+      "name": "霊騎ガルテオ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-012",
+      "faces": [
+        {
+          "name": "霊騎ガルテオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\nブロッカー ブロッカー\n各ターンに１度、カードが自分のシールドゾーンを離れた時、相手のクリーチャーを１体選び、タップしてもよい。\nエスケープ（このクリーチャーが破壊される時、かわりに自分のシールドを１つ手札に加えてもよい。その「S・トリガー」は使えない）",
+          "race": "アーク・セラフィム/オリジン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "g536ShieldLeft": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true,
+            "title": "タップする相手のクリーチャーを1体選ぶ（任意）"
+          }
+        ],
+        "g536Once": true,
+        "escape": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "4475e358d55a72ba95e2937727d918a0bc7306c689c40c0184db2922f26288f1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp1-028",
+      "name": "超電磁工兵ガル・キーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-028",
+      "faces": [
+        {
+          "name": "超電磁工兵ガル・キーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nこのクリーチャーが出た時、相手のエレメントを１つ選び、シールド化してもよい。",
+          "race": "グレートメカオー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "to": "shields",
+            "optional": true,
+            "title": "シールド化する相手のエレメントを1つ選ぶ（任意）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "f11107b881a2b9fbdfe792b74dbda518aea2f18eb2a32e75cb6979862481517d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-08",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26rp1-012": 4,
+      "dm26rp1-028": 4
+    }
+  }
+}
