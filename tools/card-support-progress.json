@@ -1852,5 +1852,48 @@
       },
       "deferred": []
     }
-  ]
+  ],
+  "resume": {
+    "lastVerifiedPhase": 667,
+    "lastVerifiedCommit": "ef43db71db61b7ae52cffde23e0c18e069246db9",
+    "nextPhase": 668,
+    "workInProgress": "phase 667まで検証・ローカルコミット済み。phase 668は公式本文・共通処理の一次調査のみ。効果によるブレイクへの追加枚数適用は共通処理の未対応として継続調査。カニスは保留中。アウトランダーの通常攻撃は検証済み。",
+    "nextCandidates": [
+      {
+        "id": "dmr10-s02",
+        "name": "驚異的陣形 アレキサンドライト",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-s02",
+        "check": "公式本文確認済み。上6枚から1枚まで表向きシールド化し、残りを任意順で下に置く。g34_Lookのステージからg657FaceUpを引き継ぐこと、シールドを追加できない場合も残りを正しく処理すること、味方アウトレイジ限定のブロッカーを検証する。"
+      },
+      {
+        "id": "dmr10-011",
+        "name": "百識 アカシック",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-011",
+        "check": "公式本文確認済み。表向きの各物理カードから、召喚または呪文を唱えた時に任意ドロー。summoned・spellCastの共通フックを確認した。召喚を伴わない登場、相手ターンの自分の実行、置換・解決順もテストする。"
+      },
+      {
+        "id": "dmr10-013",
+        "name": "凄惨なる牙 パラノーマル",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-013",
+        "check": "再録dm23ex1-036も照合する。各物理カードの常在-3000とパワー0以下の処理、シールド離脱時の置換の公式裁定を確認する。",
+        "rules": [
+          "https://dm.takaratomy.co.jp/rule/qa/39110/",
+          "https://dm.takaratomy.co.jp/rule/qa/40456/",
+          "https://dm.takaratomy.co.jp/rule/qa/48493/"
+        ]
+      },
+      {
+        "id": "dmr10-017",
+        "name": "呼ぶ者 サリックス",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-017",
+        "check": "マナ召喚の既存許可と支払い経路を再利用できるかを確認し、エグザイルの対象条件と表向きシールドのパワー強化を検証する。"
+      }
+    ],
+    "steps": [
+      "git statusとAGENTS.mdを確認し、カードID・正規名・再録・能力文全体・基本情報・画像・使用制限・関連裁定を照合する。",
+      "カニスの前に総合ルールVer.1.54の701.14dを確認する。効果によるブレイクの主体、追加枚数、選択途中の保存・復元を回帰検証し、既存の通常ブレイクと効果ブレイクを維持する。",
+      "個別・関連回帰は各最大10分。対戦シミュレーションを含むファイルは対象テスト名を明示し、全体のnpm testは中断・合否未確認のままとする。",
+      "実データで再集計し、検証内容と保留理由をbatchHistoryに残して、検証済み差分のみローカルコミットする。"
+    ]
+  }
 }
