@@ -2453,6 +2453,18 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=670){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='呪文'&&text==='相手はバトルゾーンにある自身の進化ではないクリーチャーを2体選び新しいシールドとして自身のシールドゾーンに裏向きにして加える。'){
+   return {effect:'sixPhoto',g34Tasks:[{op:'OpponentSelect',n:2,to:'shields',filter:{nonEvolution:true},title:'裏向きのシールドにする自分の進化ではないクリーチャーを2体選ぶ'}]};
+  }
+  if(creature&&text==='このクリーチャーをバトルゾーンに出した時自分の他のクリーチャーを1体バトルゾーンから手札に戻してもよい。そうした場合バトルゾーンにある相手のクリーチャーを1体選び持ち主の手札に戻す。'){
+   return {effect:'sixPhoto',g34Tasks:[{op:'MarshalTouch558',title:'手札に戻す自分の他のクリーチャーを1体選ぶ（任意）',defs:[{op:'Target',to:'hand'}]}]};
+  }
+  if(creature&&text==='このクリーチャーが攻撃する時「ガードマン」を持つクリーチャーを1体自分の手札またはマナゾーンからバトルゾーンに出してもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)'){
+   return {breaker:2,g34Attack:[{op:'Select',zones:['hand','mana'],filter:{creature:true,g670Guardman:true},n:1,optional:true,deploy:true,title:'手札かマナから出すガードマンを1体選ぶ（任意）'}]};
+  }
+ }
  if(phase>=668&&creature&&normalize(f.abilityText)==='このクリーチャーをバトルゾーンに出した時自分の山札の上から6枚を見る。その中から「シールド・ゴー」を持つカードを1枚表向きにして新しいシールドとして自分のシールドゾーンに加えてもよい。残りを好きな順序で自分の山札の一番下に戻す。W・ブレイカー「シールド・ゴー」を持つカードが自分のシールドゾーンに表向きであればバトルゾーンにある自分のアウトレイジはすべて「ブロッカー」を得る。'){
   return {breaker:2,g668OutrageBlockers:true,effect:'sixPhoto',g34Tasks:[{op:'Look',n:6,stages:[{to:'shields',n:1,optional:true,filter:{g661ShieldGo:true},g657FaceUp:true}]}]};
  }

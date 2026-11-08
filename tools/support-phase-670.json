@@ -1,0 +1,157 @@
+{
+  "phase": 670,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5838,
+  "description": "相手が選ぶ裏向きシールド化、任意の味方バウンスから続く相手バウンス、ガードマンの手札・マナからの展開。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/46514/",
+    "https://dm.takaratomy.co.jp/rule/qa/40102/",
+    "https://dm.takaratomy.co.jp/rule/qa/46490/"
+  ],
+  "cards": [
+    {
+      "id": "dmr09-017",
+      "name": "神々しき光",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-017",
+      "faces": [
+        {
+          "name": "神々しき光",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "相手はバトルゾーンにある自身の進化ではないクリーチャーを２体選び、新しいシールドとして、自身のシールドゾーンに裏向きにして加える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OpponentSelect",
+            "n": 2,
+            "to": "shields",
+            "filter": {
+              "nonEvolution": true
+            },
+            "title": "裏向きのシールドにする自分の進化ではないクリーチャーを2体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "a86dd32a3f56363bb32ff5e95d610b0bc0b47c43771d4a73bafb243469b8db56",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr09-020",
+      "name": "バクバク・クロウラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-020",
+      "faces": [
+        {
+          "name": "バクバク・クロウラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の他のクリーチャーを１体、バトルゾーンから手札に戻してもよい。そうした場合、バトルゾーンにある相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "アースイーター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "MarshalTouch558",
+            "title": "手札に戻す自分の他のクリーチャーを1体選ぶ（任意）",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "6efde59a5a51c6d77f86f878d156720024ef11abd2693f027bf3bd8d160f488a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr09-035",
+      "name": "桜舞う師匠",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-035",
+      "faces": [
+        {
+          "name": "桜舞う師匠",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃する時、「ガードマン」を持つクリーチャーを１体、自分の手札またはマナゾーンからバトルゾーンに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "ビーストフォーク/ハンター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "zones": [
+              "hand",
+              "mana"
+            ],
+            "filter": {
+              "creature": true,
+              "g670Guardman": true
+            },
+            "n": 1,
+            "optional": true,
+            "deploy": true,
+            "title": "手札かマナから出すガードマンを1体選ぶ（任意）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "eac077222a4cf12d239bcce78a2788281bb05113a638177df2c7bec4b28e38f7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr09-017": 4,
+      "dmr09-020": 4,
+      "dmr09-035": 4
+    }
+  }
+}

@@ -168209,27 +168209,118 @@
       ],
       "supportBatch": "phase-669",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-017",
+      "name": "神々しき光",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 8,
+      "power": 0,
+      "race": "",
+      "text": "相手はバトルゾーンにある自身の進化ではないクリーチャーを２体選び、新しいシールドとして、自身のシールドゾーンに裏向きにして加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-017",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "OpponentSelect",
+          "n": 2,
+          "to": "shields",
+          "filter": {
+            "nonEvolution": true
+          },
+          "title": "裏向きのシールドにする自分の進化ではないクリーチャーを2体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-670",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-020",
+      "name": "バクバク・クロウラー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "アースイーター",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の他のクリーチャーを１体、バトルゾーンから手札に戻してもよい。そうした場合、バトルゾーンにある相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-020",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "MarshalTouch558",
+          "title": "手札に戻す自分の他のクリーチャーを1体選ぶ（任意）",
+          "defs": [
+            {
+              "op": "Target",
+              "to": "hand"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-670",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-035",
+      "name": "桜舞う師匠",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ビーストフォーク/ハンター",
+      "text": "このクリーチャーが攻撃する時、「ガードマン」を持つクリーチャーを１体、自分の手札またはマナゾーンからバトルゾーンに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-035",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "zones": [
+            "hand",
+            "mana"
+          ],
+          "filter": {
+            "creature": true,
+            "g670Guardman": true
+          },
+          "n": 1,
+          "optional": true,
+          "deploy": true,
+          "title": "手札かマナから出すガードマンを1体選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-670",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 669,
+    "phase": 670,
     "checkedAt": "2026-11-09",
-    "baseCount": 5836,
-    "newEffectCards": 2,
+    "baseCount": 5838,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5838,
+    "totalCount": 5841,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/40671/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36929/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36930/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36931/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36932/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36933/",
-      "https://dm.takaratomy.co.jp/rule/qa/43873/",
-      "https://dm.takaratomy.co.jp/rule/qa/43918/",
-      "https://dm.takaratomy.co.jp/rule/qa/44587/"
+      "https://dm.takaratomy.co.jp/rule/qa/46514/",
+      "https://dm.takaratomy.co.jp/rule/qa/40102/",
+      "https://dm.takaratomy.co.jp/rule/qa/46490/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -179729,6 +179820,30 @@
           "https://dm.takaratomy.co.jp/rule/qa/39110/",
           "https://dm.takaratomy.co.jp/rule/qa/40456/",
           "https://dm.takaratomy.co.jp/rule/qa/48493/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 669,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5836,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 5838,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/40671/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36929/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36930/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36931/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36932/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36933/",
+          "https://dm.takaratomy.co.jp/rule/qa/43873/",
+          "https://dm.takaratomy.co.jp/rule/qa/43918/",
+          "https://dm.takaratomy.co.jp/rule/qa/44587/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
