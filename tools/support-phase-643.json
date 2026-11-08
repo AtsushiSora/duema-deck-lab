@@ -1,0 +1,157 @@
+{
+  "phase": 643,
+  "checkedAt": "2026-11-08",
+  "baseCount": 5752,
+  "description": "Jクライムと離脱時除去、ジョーカーズの合計を参照する強化とJチェンジを照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/49408/",
+    "https://dm.takaratomy.co.jp/rule/qa/49409/",
+    "https://dm.takaratomy.co.jp/rule/qa/47497/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37939/"
+  ],
+  "cards": [
+    {
+      "id": "dm26rp3-064",
+      "name": "ツーキンカイソッQ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-064",
+      "faces": [
+        {
+          "name": "ツーキンカイソッQ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "Jクライム６（このクリーチャーが攻撃する時、これと自分の墓地にあるコスト６以下のジョーカーズ・クリーチャー１体を入れ替えてもよい）\nこのクリーチャーが離れた時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－4000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "ジョーカーズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g393Change": {
+          "grave": 6
+        },
+        "g172Leave": [
+          {
+            "op": "Target",
+            "power": -4000,
+            "g242PowerMinus": true,
+            "title": "パワーを-4000する相手のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-064.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "15c5b61c12779961288393512668c4f17f5e517981d8960605fbc6b25924796c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp3-067",
+      "name": "SMANAGER",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-067",
+      "faces": [
+        {
+          "name": "SMANAGER",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\n自分の、ジョーカーズとマナゾーンにあるジョーカーズ・カードが合計８つ以上なら、このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）",
+          "race": "ジョーカーズ",
+          "powerText": "5000+",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "speedAttacker": true,
+        "g260Self": {
+          "filter": {
+            "g539Jokers": 8
+          },
+          "grants": {
+            "power": 5000,
+            "breaker": 2
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-067.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "1096b1bf190556b82dc3e2f26f974bff84b35eb444702a7d81ceef0584b3bbd6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp3-074",
+      "name": "ホッタレマン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-074",
+      "faces": [
+        {
+          "name": "ホッタレマン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分の、ジョーカーズとマナゾーンにあるジョーカーズ・カードが合計５つ以上なければ、このクリーチャーは攻撃できない。\nJチェンジ４（このクリーチャーが攻撃する時、これと自分のマナゾーンにあるコスト４以下のジョーカーズ・クリーチャー１体を入れ替えてもよい）",
+          "race": "ジョーカーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "noAttack": true,
+        "g260Self": {
+          "filter": {
+            "g539Jokers": 5
+          },
+          "grants": {
+            "noAttack": false
+          }
+        },
+        "g393Change": {
+          "mana": 4
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-074.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "cb702e26dafb5e12a902a7504e30a9ac9a83d67338dde72d4a691b563c7ff72d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-08",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26rp3-064": 4,
+      "dm26rp3-067": 4,
+      "dm26rp3-074": 4
+    }
+  }
+}

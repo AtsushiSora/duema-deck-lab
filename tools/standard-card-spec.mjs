@@ -2706,6 +2706,20 @@ export function standardCardSpec(d,{phase=165}={}){
    }[line];if(first){if(spec.g540FirstAttack)throw Error('重複する最初の攻撃誘発');spec.g540FirstAttack=first;continue;}
    if(line==='鬼タイム:このクリーチャーが破壊された時自分と相手のシールドの数が合計6つ以下なら相手のパワー8000以下のクリーチャーを1体破壊する。'){if(death.length)throw Error('独立した破壊時能力の順序対応が必要');death.push({op:'IfOwn',filter:{g334ZoneCount:{zone:'shields',sumBoth:true,max:6}},defs:[{op:'Target',to:'grave',filter:{maxPower:8000,g199Power:true}}]});continue;}
   }
+  if(phase>=643&&creature){
+   if(line==='自分のジョーカーズとマナゾーンにあるジョーカーズ・カードが合計8つ以上ならこのクリーチャーのパワーを+5000し「W・ブレイカー」を与える。(「W・ブレイカー」を持つクリーチャーはシールドを2つブレイクする)'){
+    if(spec.g260Self)throw Error('重複するジョーカーズ数条件');
+    spec.g260Self={filter:{g539Jokers:8},grants:{power:5000,breaker:2}};
+    powerBonus=true;
+    continue;
+   }
+   if(line==='自分のジョーカーズとマナゾーンにあるジョーカーズ・カードが合計5つ以上なければこのクリーチャーは攻撃できない。'){
+    if(spec.g260Self||spec.noAttack)throw Error('重複するジョーカーズ数条件');
+    spec.noAttack=true;
+    spec.g260Self={filter:{g539Jokers:5},grants:{noAttack:false}};
+    continue;
+   }
+  }
   if(phase>=540){
    if(f.typeText==='呪文'&&line==='バトルゾーンまたはマナゾーンに自分のジョーカーズが合計5枚以上あればこの呪文を唱えるコストは5少なくなる。'){if(spec.g261Discount)throw Error('重複するジョーカーズ軽減');spec.g261Discount={filter:{g539Jokers:5},amount:5};continue;}
    if(creature){
@@ -4015,6 +4029,11 @@ export function standardCardSpec(d,{phase=165}={}){
   }
   if(phase>=401&&(creature||seed)&&line===`シールド・セイバー(自分のシールドがブレイクされる時かわりにこの${seed?'タマシード':'クリーチャー'}を破壊してもよい)`){if(spec.g401ShieldSaver)throw Error('重複するシールド・セイバー');spec.g401ShieldSaver=true;continue;}
   if(phase>=399&&creature){
+   if(phase>=643&&(m=line.match(/^Jチェンジ([1-9]\d*)\(このクリーチャーが攻撃する時これと自分のマナゾーンにあるコスト\1以下のジョーカーズ・クリーチャー1体を入れ替えてもよい\)$/))){
+    if(spec.g393Change)throw Error('重複するJチェンジ');
+    spec.g393Change={mana:+m[1]};
+    continue;
+   }
    if(phase>=642&&(m=line.match(/^Jクライム([1-9]\d*)\(このクリーチャーが攻撃する時これと自分の墓地にあるコスト\1以下のジョーカーズ・クリーチャー1体を入れ替えてもよい\)$/))){
     if(spec.g393Change)throw Error('重複するJクライム');
     spec.g393Change={grave:+m[1]};
@@ -4817,7 +4836,7 @@ export function standardCardSpec(d,{phase=165}={}){
   if(evolution&&(m=line.match(/^進化[-―−:]自分の([^。/]+)1体の上に置く。$/))){if(spec.evolution)throw Error('重複進化条件');const q=m[1];if(q.endsWith('のクリーチャー')&&colors.includes(q.slice(0,-7)))spec.evolution={civilization:q.slice(0,-7)};else if(!/[、または以上以下枚体]|クリーチャー/.test(q))spec.evolution={race:phase>=226&&q==='ツリー・フォーク'?'ツリーフォーク':q};else throw Error('複雑な進化条件');continue;}
   if(phase>=169){
    const trigger=creature&&line.match(/^(?:このクリーチャーが(?:バトルゾーンに)?出た時|このクリーチャーをバトルゾーンに出した時)(.+)$/),body=trigger?trigger[1]:!creature&&!seed?line:null;
-   const effect=body==='相手のクリーチャーを1体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。'&&creature?'fightOptional':body==='相手の手札を見て1枚選び捨てさせる。'?'inspectDiscard':null;
+   const effect=phase<643&&body==='相手のクリーチャーを1体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。'&&creature?'fightOptional':body==='相手の手札を見て1枚選び捨てさせる。'?'inspectDiscard':null;
    if(effect){if(nativeEntry||entry.length)throw Error('独立した誘発能力の順序対応が必要');nativeEntry=effect;continue;}
   }
   if(phase>=388&&creature&&line==='このクリーチャーをバトルゾーンに出した時またはこのクリーチャーが攻撃する時バトルゾーンにある相手のクリーチャーを1体選ぶ。次の自分のターンのはじめまでそのクリーチャーは攻撃もブロックもできない。'){

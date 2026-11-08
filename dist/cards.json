@@ -165357,20 +165357,118 @@
       ],
       "supportBatch": "phase-642",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp3-064",
+      "name": "ツーキンカイソッQ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "ジョーカーズ",
+      "text": "Jクライム６（このクリーチャーが攻撃する時、これと自分の墓地にあるコスト６以下のジョーカーズ・クリーチャー１体を入れ替えてもよい）\nこのクリーチャーが離れた時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－4000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-064",
+      "limit": 4,
+      "g393Change": {
+        "grave": 6
+      },
+      "g172Leave": [
+        {
+          "op": "Target",
+          "power": -4000,
+          "g242PowerMinus": true,
+          "title": "パワーを-4000する相手のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-643",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp3-067",
+      "name": "SMANAGER",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ジョーカーズ",
+      "text": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\n自分の、ジョーカーズとマナゾーンにあるジョーカーズ・カードが合計８つ以上なら、このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-067",
+      "limit": 4,
+      "trigger": true,
+      "speedAttacker": true,
+      "g260Self": {
+        "filter": {
+          "g539Jokers": 8
+        },
+        "grants": {
+          "power": 5000,
+          "breaker": 2
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Fight240",
+          "self": true,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-643",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp3-074",
+      "name": "ホッタレマン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 1000,
+      "race": "ジョーカーズ",
+      "text": "自分の、ジョーカーズとマナゾーンにあるジョーカーズ・カードが合計５つ以上なければ、このクリーチャーは攻撃できない。\nJチェンジ４（このクリーチャーが攻撃する時、これと自分のマナゾーンにあるコスト４以下のジョーカーズ・クリーチャー１体を入れ替えてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-074",
+      "limit": 4,
+      "noAttack": true,
+      "g260Self": {
+        "filter": {
+          "g539Jokers": 5
+        },
+        "grants": {
+          "noAttack": false
+        }
+      },
+      "g393Change": {
+        "mana": 4
+      },
+      "supportBatch": "phase-643",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 642,
+    "phase": 643,
     "checkedAt": "2026-11-08",
-    "baseCount": 5748,
-    "newEffectCards": 4,
+    "baseCount": 5752,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5752,
+    "totalCount": 5755,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+      "https://dm.takaratomy.co.jp/rule/qa/49408/",
       "https://dm.takaratomy.co.jp/rule/qa/49409/",
-      "https://dm.takaratomy.co.jp/rule/qa/49401/"
+      "https://dm.takaratomy.co.jp/rule/qa/47497/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37939/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -176361,6 +176459,23 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
           "https://dm.takaratomy.co.jp/rule/qa/42652/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 642,
+        "checkedAt": "2026-11-08",
+        "baseCount": 5748,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 5752,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/49409/",
+          "https://dm.takaratomy.co.jp/rule/qa/49401/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
