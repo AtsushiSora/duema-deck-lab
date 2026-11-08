@@ -2472,6 +2472,18 @@ export function standardCardSpec(d,{phase=165}={}){
   };
   const base={shieldGo:true,g172Death:[{op:'SelfGraveShield659'}]};
   if(text==='このクリーチャーはブロックされない。'+keyword)return {...base,unblockable:true};
+  const sacrifice='このクリーチャーをバトルゾーンに出した時このクリーチャーを破壊してもよい。そうした場合';
+  if(phase>=664&&text.startsWith(sacrifice)&&text.endsWith(keyword)){
+   const body=text.slice(sacrifice.length,-keyword.length);
+   const defs={
+    'バトルゾーンにある相手のクリーチャーをすべてタップする。':[{op:'TapAll'}],
+    'カードを1枚引く。':[{op:'Draw',n:1}],
+    '相手の手札を1枚見ないで選び捨てさせる。':[{op:'Discard',n:1,random:true}],
+    'パワー4000以下の相手のクリーチャーを1体破壊する。':[{op:'Target',to:'grave',filter:{maxPower:4000,g199Power:true}}],
+    '自分の山札の上から1枚目をマナゾーンに置く。':[{op:'Ramp',n:1}]
+   }[body];
+   if(defs)return {...base,effect:'sixPhoto',g34Tasks:[{op:'SelfSacrifice407',defs}]};
+  }
   if(phase>=663&&text==='ブロッカーブロッカーW・ブレイカー'+keyword+'このカードが自分のシールドゾーンに表向きであればバトルゾーンにある自分のクリーチャーはすべて「シールド・セイバー」を得る。(自分のシールドがブレイクされる時かわりに「シールド・セイバー」を持つクリーチャーを破壊してもよい)'){
    return {...base,blocker:true,breaker:2,g663ShieldSaver:true};
   }
