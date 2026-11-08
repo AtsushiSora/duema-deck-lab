@@ -166740,21 +166740,166 @@
       ],
       "supportBatch": "phase-655",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp1-050",
+      "name": "蛇王のL ナーガ",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 8000,
+      "race": "ナーガ",
+      "text": "進化：水または闇のクリーチャー１体の上に置く。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時または離れた時、相手のクリーチャーを１体選ぶ。相手はそのクリーチャーを、破壊するか山札の上に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-050",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "civilization": "水"
+          },
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "g467Destinations": [
+            "grave",
+            "deckTop"
+          ],
+          "g472OwnerDestination": true
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "Target",
+          "g467Destinations": [
+            "grave",
+            "deckTop"
+          ],
+          "g472OwnerDestination": true
+        }
+      ],
+      "supportBatch": "phase-656",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp1-051",
+      "name": "死王のK デス・フェニックス",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 9000,
+      "race": "フェニックス",
+      "text": "進化：闇または火のクリーチャー１体の上に置く。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時または離れた時、各プレイヤーは自身の手札を１枚選び、捨てる。その後、自分はカードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-051",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "火"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "EachPlayer459",
+          "origin": "hand",
+          "to": "grave",
+          "discard": true
+        },
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "EachPlayer459",
+          "origin": "hand",
+          "to": "grave",
+          "discard": true
+        },
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-656",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp1-052",
+      "name": "魂王のE ソウル・フェニックス",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 13000,
+      "race": "フェニックス",
+      "text": "進化：火または自然のクリーチャー１体の上に置く。\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーが攻撃する時または離れた時、自分と相手のクリーチャーを１体ずつ選ぶ。その２体をバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-052",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "Fight240"
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "Fight240"
+        }
+      ],
+      "supportBatch": "phase-656",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 655,
+    "phase": 656,
     "checkedAt": "2026-11-09",
-    "baseCount": 5789,
+    "baseCount": 5792,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5792,
+    "totalCount": 5795,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
       "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
-      "https://dm.takaratomy.co.jp/rule/qa/48497/",
-      "https://dm.takaratomy.co.jp/rule/qa/47366/"
+      "https://dm.takaratomy.co.jp/rule/qa/48919/",
+      "https://dm.takaratomy.co.jp/rule/qa/46870/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37327/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -177990,6 +178135,24 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
           "https://dm.takaratomy.co.jp/rule/qa/45440/",
           "https://dm.takaratomy.co.jp/rule/qa/47367/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 655,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5789,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5792,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+          "https://dm.takaratomy.co.jp/rule/qa/48497/",
+          "https://dm.takaratomy.co.jp/rule/qa/47366/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

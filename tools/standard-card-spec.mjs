@@ -4953,7 +4953,8 @@ export function standardCardSpec(d,{phase=165}={}){
   };
   if(creature&&staticFlags[line]){spec[staticFlags[line]]=true;continue;}
   if(!creature&&!seed&&keyword(line,'チャージャー')){spec.normalCharger=true;continue;}
-  if(phase>=469&&evolution&&(m=line.match(/^進化[-―−:]自分の(.+)1体の上に置く。$/))){
+  const evoLine=phase>=656?line.replace(/^進化:((?:光|水|闇|火|自然)または(?:光|水|闇|火|自然)のクリーチャー1体の上に置く。)$/,'進化:自分の$1'):line;
+  if(phase>=469&&evolution&&(m=evoLine.match(/^進化[-―−:]自分の(.+)1体の上に置く。$/))){
    const q=m[1],fixed={
     'クリーチャー':{creature:true},'多色クリーチャー':{multicolor:true},'「ブロッカー」を持つクリーチャー':{blocker:true},
     '「サイバー」と種族にあるクリーチャー':{category:'サイバー'},'「コマンド」と種族にあるクリーチャー':{category:'コマンド'},
@@ -5011,6 +5012,16 @@ export function standardCardSpec(d,{phase=165}={}){
   if(phase>=371&&creature&&line==='このクリーチャーがバトルゾーンに出た時またはバトルゾーンを離れた時相手は自身の手札を1枚選び捨てる。'){
    if(entry.length||leave.length||nativeEntry)throw Error('独立した誘発能力の順序対応が必要');
    entry.push({op:'Discard',n:1});leave.push({op:'Discard',n:1});continue;
+  }
+  if(phase>=656&&creature&&(m=line.match(/^このクリーチャーが攻撃する時または離れた時(.+)$/))){
+   if(attack.length||leave.length)throw Error('独立した誘発能力の順序対応が必要');
+   const defs={
+    '相手のクリーチャーを1体選ぶ。相手はそのクリーチャーを破壊するか山札の上に置く。':[{op:'Target',g467Destinations:['grave','deckTop'],g472OwnerDestination:true}],
+    '各プレイヤーは自身の手札を1枚選び捨てる。その後自分はカードを1枚引く。':[{op:'EachPlayer459',origin:'hand',to:'grave',discard:true},{op:'Draw',n:1}],
+    '自分と相手のクリーチャーを1体ずつ選ぶ。その2体をバトルさせる。':[{op:'Fight240'}]
+   }[m[1]];
+   if(!defs)throw Error('未対応の能力文: '+raw);
+   attack.push(...defs);leave.push(...structuredClone(defs));continue;
   }
   if(phase>=233&&creature&&(m=line.match(/^このクリーチャーが出た時または離れた時(.+)$/))){
    if(entry.length||leave.length||nativeEntry)throw Error('独立した誘発能力の順序対応が必要');

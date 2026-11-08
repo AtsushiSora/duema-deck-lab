@@ -1,0 +1,205 @@
+{
+  "phase": 656,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5792,
+  "description": "進化クリーチャーの攻撃時と離脱時の効果。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+    "https://dm.takaratomy.co.jp/rule/qa/48919/",
+    "https://dm.takaratomy.co.jp/rule/qa/46870/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37327/"
+  ],
+  "cards": [
+    {
+      "id": "dm26rp1-050",
+      "name": "蛇王のL ナーガ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-050",
+      "faces": [
+        {
+          "name": "蛇王のL ナーガ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "進化：水または闇のクリーチャー１体の上に置く。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時または離れた時、相手のクリーチャーを１体選ぶ。相手はそのクリーチャーを、破壊するか山札の上に置く。",
+          "race": "ナーガ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Target",
+            "g467Destinations": [
+              "grave",
+              "deckTop"
+            ],
+            "g472OwnerDestination": true
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Target",
+            "g467Destinations": [
+              "grave",
+              "deckTop"
+            ],
+            "g472OwnerDestination": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "f6d3f48a31b9c33172bab8a0db9e604d62f3ed6758f767e60615360e4b848d3b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp1-051",
+      "name": "死王のK デス・フェニックス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-051",
+      "faces": [
+        {
+          "name": "死王のK デス・フェニックス",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化：闇または火のクリーチャー１体の上に置く。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時または離れた時、各プレイヤーは自身の手札を１枚選び、捨てる。その後、自分はカードを１枚引く。",
+          "race": "フェニックス",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "civilization": "闇"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "EachPlayer459",
+            "origin": "hand",
+            "to": "grave",
+            "discard": true
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "EachPlayer459",
+            "origin": "hand",
+            "to": "grave",
+            "discard": true
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "4b9ce276dc9085af5f5d53b7a4eaa83eaa3621c038e9158fe98d1dbc03cafd0c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp1-052",
+      "name": "魂王のE ソウル・フェニックス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-052",
+      "faces": [
+        {
+          "name": "魂王のE ソウル・フェニックス",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化：火または自然のクリーチャー１体の上に置く。\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーが攻撃する時または離れた時、自分と相手のクリーチャーを１体ずつ選ぶ。その２体をバトルさせる。",
+          "race": "フェニックス",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "Fight240"
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Fight240"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "f8a0193d465f293830d1d7f9b33977b870dc0fb449bec9dd151b7a9cfbd86526",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26rp1-050": 4,
+      "dm26rp1-051": 4,
+      "dm26rp1-052": 4
+    }
+  }
+}
