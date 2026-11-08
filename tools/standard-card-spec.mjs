@@ -2453,6 +2453,9 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=667&&evolution&&normalize(f.abilityText)==='進化-自分のアウトレイジ1体の上に置く。このクリーチャーが攻撃する時「シールド・ゴー」を持つクリーチャーを1体自分の墓地から表向きのまま新しいシールドとして自分のシールドゾーンに加えてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)'){
+  return {evolution:{race:'アウトレイジ'},breaker:2,g34Attack:[{op:'Select',origin:'grave',to:'shields',filter:{creature:true,g661ShieldGo:true},n:1,optional:true,g657FaceUp:true}]};
+ }
  if(phase>=666&&creature){
   const text=normalize(f.abilityText),hasShieldGo='「シールド・ゴー」を持つカードが自分のシールドゾーンに表向きであれば';
   if(text===hasShieldGo+'このクリーチャーは「ブロッカー」を得る。自分のターンの終わりにこのクリーチャーをアンタップする。'){
@@ -2486,6 +2489,12 @@ export function standardCardSpec(d,{phase=165}={}){
   if(text==='このクリーチャーはブロックされない。'+keyword)return {...base,unblockable:true};
   if(phase>=666&&text==='このクリーチャーが各ターンはじめて攻撃する時このクリーチャーをアンタップする。'+keyword+'このクリーチャーが自分のシールドゾーンに表向きであればバトルゾーンにある自分のクリーチャーはすべて「スピードアタッカー」を得る。'){
    return {...base,g540FirstAttack:[{op:'Untap',g191First:true}],g666ShieldSpeed:true};
+  }
+  if(phase>=667){
+   if(text==='ガードマン(自分の他のクリーチャーが攻撃される時このクリーチャーをタップしてもよい。そうした場合攻撃クリーチャーはかわりにこのクリーチャーを攻撃する)'+keyword)return {...base,guardman:true};
+   if(text==='このクリーチャーをバトルゾーンに出した時バトルゾーンにあるクリーチャーを1体選び持ち主の手札に戻してもよい。'+keyword+'このクリーチャーが自分のシールドゾーンに表向きであれば自分のクリーチャーが攻撃する時カードを1枚引いてもよい。'){
+    return {...base,effect:'sixPhoto',g34Tasks:[{op:'Target',anyOwner:true,to:'hand',optional:true}],g662ShieldAttack:[{op:'Draw',n:1,optional:true}]};
+   }
   }
   if(phase>=665){
    if(text==='このクリーチャーをバトルゾーンに出した時バトルゾーンにある相手のクリーチャーを1体選びタップしてもよい。'+keyword){

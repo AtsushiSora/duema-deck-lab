@@ -167966,22 +167966,122 @@
       },
       "supportBatch": "phase-666",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-019",
+      "name": "全力艦長 イカリ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "アウトレイジMAX",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻してもよい。 {SG}シールド・ゴー（このクリーチャーが破壊された時、新しいシールドとして自分のシールドゾーンに表向きのまま加える。このクリーチャーが表向きで、シールドゾーンを離れる時、かわりに自分の墓地に置く）\nこのクリーチャーが自分のシールドゾーンに表向きであれば、自分のクリーチャーが攻撃する時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-019",
+      "limit": 4,
+      "shieldGo": true,
+      "g172Death": [
+        {
+          "op": "SelfGraveShield659"
+        }
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "to": "hand",
+          "optional": true
+        }
+      ],
+      "g662ShieldAttack": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-667",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-070",
+      "name": "大象原 ロクソドンタ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "アウトレイジ",
+      "text": "ガードマン（自分の他のクリーチャーが攻撃される時、このクリーチャーをタップしてもよい。そうした場合、攻撃クリーチャーはかわりにこのクリーチャーを攻撃する） {SG}シールド・ゴー（このクリーチャーが破壊された時、新しいシールドとして自分のシールドゾーンに表向きのまま加える。このクリーチャーが表向きで、シールドゾーンを離れる時、かわりに自分の墓地に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-070",
+      "limit": 4,
+      "shieldGo": true,
+      "g172Death": [
+        {
+          "op": "SelfGraveShield659"
+        }
+      ],
+      "guardman": true,
+      "supportBatch": "phase-667",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr11-009",
+      "name": "守護大帝 ストーンゴルド",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "アウトレイジMAX",
+      "text": "進化-自分のアウトレイジ１体の上に置く。\nこのクリーチャーが攻撃する時、「シールド・ゴー」を持つクリーチャーを１体、自分の墓地から表向きのまま、新しいシールドとして自分のシールドゾーンに加えてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-009",
+      "limit": 4,
+      "evolution": {
+        "race": "アウトレイジ"
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "shields",
+          "filter": {
+            "creature": true,
+            "g661ShieldGo": true
+          },
+          "n": 1,
+          "optional": true,
+          "g657FaceUp": true
+        }
+      ],
+      "supportBatch": "phase-667",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 666,
+    "phase": 667,
     "checkedAt": "2026-11-09",
-    "baseCount": 5826,
-    "newEffectCards": 4,
+    "baseCount": 5830,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5830,
+    "totalCount": 5833,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
       "https://dm.takaratomy.co.jp/rule/qa/40671/",
-      "https://dm.takaratomy.co.jp/rule/qa/41413/",
-      "https://dm.takaratomy.co.jp/rule/qa/44188/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36877/"
+      "https://dm.takaratomy.co.jp/rule/qa/40102/",
+      "https://dm.takaratomy.co.jp/rule/qa/46490/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -179424,6 +179524,25 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
           "https://dm.takaratomy.co.jp/rule/qa/40671/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36877/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 666,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5826,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 5830,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/40671/",
+          "https://dm.takaratomy.co.jp/rule/qa/41413/",
+          "https://dm.takaratomy.co.jp/rule/qa/44188/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36877/"
         ],
         "next": [
