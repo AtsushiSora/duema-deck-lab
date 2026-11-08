@@ -1399,5 +1399,37 @@
       },
       "deferred": []
     }
-  ]
+  ],
+  "resume": {
+    "lastVerifiedPhase": 653,
+    "lastVerifiedCommit": "043ea0169cc4248dde7c63a3b7f1ded315ec148d",
+    "nextPhase": 654,
+    "workInProgress": "phase 653までの実装・検証は完了。phase 654は候補の公式ページを一次確認済み。候補の裁定・再録・画像の照合、実装、テストは未着手。",
+    "nextCandidates": [
+      {
+        "id": "dm26rp2-017",
+        "name": "ごくごく掘るナウ",
+        "check": "墓地肥やし後に実際に回収したクリーチャーのパワーを参照し、6000以上の場合に破壊。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-017"
+      },
+      {
+        "id": "dm26rp2-013",
+        "name": "ポプポプ守るナウ",
+        "check": "山札のカードを実際に表向きでシールド化できた場合だけ、パワーを参照して相手のクリーチャーを任意でシールド化。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-013"
+      },
+      {
+        "id": "dm26rp2-019",
+        "name": "ドファドファ叩くナウ",
+        "check": "実際に捨てたクリーチャーのパワーを参照し、ドロー後にコスト合計6以下の相手のエレメントを任意選択。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-019"
+      }
+    ],
+    "steps": [
+      "git statusとAGENTS.mdを確認し、phase 654の候補のカードID・正規名・再録を照合する。",
+      "公式の能力文全体・基本情報・画像・使用制限・関連裁定を確認してからmanifestを作る。カードが実際に指定ゾーンへ移動したかと、参照する面やパワーを確認する。",
+      "カード固有と関連回帰を各最大10分で実行する。全体のnpm testは中断・合否未確認のままとする。",
+      "実データから件数を再集計し、batchHistoryを更新して、検証済みのバッチだけローカルコミットする。"
+    ]
+  }
 }
