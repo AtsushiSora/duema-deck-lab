@@ -89,6 +89,14 @@ export function createSixPhotoRules(api){
   return spell&&name.endsWith(spell)?name.slice(0,-spell.length).replace(/[\s/／]+$/,''):name;
  }
  const exactName=name=>name.normalize('NFKC').replace(/\s/g,'');
+ // A linked God has each component's name, while an evolution uses its top card.
+ const battleNames676=x=>x.godLinks?.length?[x,...x.godLinks].map(y=>exactName(creatureFaceName(card(y.cardId)))):[exactName(creatureFaceName(card(x)))];
+ function tapNames676(s,target){
+  const names=new Set(battleNames676(target));
+  const rows=[0,1].flatMap(p=>creatures(s,p).filter(y=>!y.sealed&&battleNames676(y).some(n=>names.has(n))).map(y=>[p,y]));
+  for(const [p,y] of rows)api.tap(s,p,y);
+ }
+
  function chanceMatches419(s,p,x,w){const name=creatureFaceName(effective(x,s));return(!w.name||name.includes(w.name))&&(!w.g201ExactName||exactName(name)===exactName(w.g201ExactName))&&matches(s,p,x,{...w,g199Power:true});}
  function graveCreatureName614(s,p,c){
   const name=exactName(creatureFaceName(c));
@@ -1407,7 +1415,7 @@ export function createSixPhotoRules(api){
    else moveSelectedCard581(s,t,row,to);
   }
  }break;
- case'g34_Target':if(v){const y=s.players[v.p].battle.find(y=>y.uid===v.uid);if(y){if(t.g503Stack){start(s,t,[{op:t.g503Stack==='draw'?'DrawUpTo':'Ramp',n:api.allLayers(y).length},...(t.after||[])]);break;}if(t.g467Destinations){put(s,{...t,op:'g34_TargetDestination467',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g235TapOrUntap){put(s,{...t,op:'g34_TapState235',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g565AttackLock)(y.g35NoAttack??=[]).push({turn:s.turn});if(t.g569WeakerBlock)(s.extLimits??=[]).push({kind:'g569WeakerBlock',ref:{uid:y.uid,incarnation:y.incarnation||0},spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1)),expires:'end',who:s.active});if(t.g567PlayerStop)stopPlayerAttack567(s,t,y);if(t.g190Freeze)freeze(s,t,v.p,y);if(t.g546Force)force546(s,t,v.p,y);if(t.g547OwnerShield)put(s,task('g34_ShieldTop',v.p,t.source,{n:1,controller:t.controller??t.p}));if(t.g631MillCost){const amount=cost(effective(y,s));start(s,t,[{op:'Mill',n:Number.isFinite(amount)?amount:'∞',...(t.g638OptionalMill?{optional:true}:{})}]);}if(t.to)move(s,[{player:v.p,uid:v.uid,to:t.to,destroy:t.to==='grave',tapped:!!t.tapped,...(t.faceUp?{faceUp:true}:{})}]);if(t.tap)api.tap(s,v.p,y);if(t.g291UntapUntilSelf)(y.tapLocks??=[]).push(t.p);if(t.untap&&api.canUntap(y)){const was=y.tapped;y.tapped=false;if(was)combined.untapped(s,v.p,y);}if(t.lock){if(t.spell)(y.g170StartFreeze??=[]).push({spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});else y.skipUntap=true;}if(t.power)(y.powerModifiers??=[]).push({amount:t.power,expires:t.g521UntilStart?'start':'end',who:t.g521UntilStart?t.p:s.active,...(t.g337PowerAttacker?{attackOnly:true,grantedAbility:true}:{}),spellSource:t.spell? t.source:undefined,spellCost:t.spell?cost(faces(card(t.source)).at(-1)):undefined});if(t.grant)applyGrant(s,t,y);if(t.g465DestroySafe)(s.extLimits??=[]).push({kind:'g409AttackEffect',player:v.p,ref:{uid:y.uid,incarnation:y.incarnation||0},source:t.source,effect:'destroySafe',expires:t.g465DestroySafe,who:t.g465DestroySafe==='start'?t.p:s.active});if(t.g455ExtraBreak)(s.extLimits??=[]).push({kind:'g412ExtraBreak',player:v.p,ref:{uid:y.uid,incarnation:y.incarnation||0},source:t.source,amount:t.g455ExtraBreak,expires:'end',who:s.active});if(t.seal)api.seal(s,v.p,[y.uid]);if(t.g587AfterSelection)start(s,t,t.after);}}if(t.after&&!t.g587AfterSelection)start(s,t,t.after);break;
+ case'g34_Target':if(v){const y=s.players[v.p].battle.find(y=>y.uid===v.uid);if(y){if(t.g503Stack){start(s,t,[{op:t.g503Stack==='draw'?'DrawUpTo':'Ramp',n:api.allLayers(y).length},...(t.after||[])]);break;}if(t.g467Destinations){put(s,{...t,op:'g34_TargetDestination467',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g235TapOrUntap){put(s,{...t,op:'g34_TapState235',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g565AttackLock)(y.g35NoAttack??=[]).push({turn:s.turn});if(t.g569WeakerBlock)(s.extLimits??=[]).push({kind:'g569WeakerBlock',ref:{uid:y.uid,incarnation:y.incarnation||0},spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1)),expires:'end',who:s.active});if(t.g567PlayerStop)stopPlayerAttack567(s,t,y);if(t.g190Freeze)freeze(s,t,v.p,y);if(t.g546Force)force546(s,t,v.p,y);if(t.g547OwnerShield)put(s,task('g34_ShieldTop',v.p,t.source,{n:1,controller:t.controller??t.p}));if(t.g631MillCost){const amount=cost(effective(y,s));start(s,t,[{op:'Mill',n:Number.isFinite(amount)?amount:'∞',...(t.g638OptionalMill?{optional:true}:{})}]);}if(t.to)move(s,[{player:v.p,uid:v.uid,to:t.to,destroy:t.to==='grave',tapped:!!t.tapped,...(t.faceUp?{faceUp:true}:{})}]);if(t.tap)api.tap(s,v.p,y);if(t.g676TapNames)tapNames676(s,y);if(t.g291UntapUntilSelf)(y.tapLocks??=[]).push(t.p);if(t.untap&&api.canUntap(y)){const was=y.tapped;y.tapped=false;if(was)combined.untapped(s,v.p,y);}if(t.lock){if(t.spell)(y.g170StartFreeze??=[]).push({spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});else y.skipUntap=true;}if(t.power)(y.powerModifiers??=[]).push({amount:t.power,expires:t.g521UntilStart?'start':'end',who:t.g521UntilStart?t.p:s.active,...(t.g337PowerAttacker?{attackOnly:true,grantedAbility:true}:{}),spellSource:t.spell? t.source:undefined,spellCost:t.spell?cost(faces(card(t.source)).at(-1)):undefined});if(t.grant)applyGrant(s,t,y);if(t.g465DestroySafe)(s.extLimits??=[]).push({kind:'g409AttackEffect',player:v.p,ref:{uid:y.uid,incarnation:y.incarnation||0},source:t.source,effect:'destroySafe',expires:t.g465DestroySafe,who:t.g465DestroySafe==='start'?t.p:s.active});if(t.g455ExtraBreak)(s.extLimits??=[]).push({kind:'g412ExtraBreak',player:v.p,ref:{uid:y.uid,incarnation:y.incarnation||0},source:t.source,amount:t.g455ExtraBreak,expires:'end',who:s.active});if(t.seal)api.seal(s,v.p,[y.uid]);if(t.g587AfterSelection)start(s,t,t.after);}}if(t.after&&!t.g587AfterSelection)start(s,t,t.after);break;
  case'g34_Execute':if(v){const y=own[v.origin].find(x=>x.uid===v.uid);if(t.g555FinishTo&&(!y||(y.zoneSerial||0)!==(v.serial555||0)||!api.canMoveZone(s,t.p,v.origin)))break;const c=faces(card(y))[v.face];if(t.g555FinishTo){if(!c||c.type!=='spell'||cost(c)>t.max||t.g556SpellColor&&!colors(c).includes(t.g556SpellColor)||!api.canCast(s,t.p,c,v.origin))break;y.finishTo=t.g555FinishTo;}if(c.evolution||c.neoEvolution)put(s,{...t,op:'g34_Put',target:v.uid,origin:v.origin,execution:true,face:v.face});else cast(s,t.p,v.uid,true,null,v.face,null,v.origin,'カードの能力');}else if(t.g408Decline)start(s,t,t.g408Decline);break;
  case'g34_Choose':put(s,...tasks(t.p,t.source,t.modes[v].defs,{uid:t.uid,incarnation:t.incarnation}),...(t.repeat>1?[{...t,repeat:t.repeat-1}]:[]));break;
  case'g34_Custom':customChosen(s,t,v);break;
@@ -1667,6 +1675,13 @@ export function createSixPhotoRules(api){
   for(const y of watchers)if(s.players[y.p].battle.some(x=>key(x)===key(y)))queue(s,y.p,y,[{op:'Draw',n:1,optional:true}]);
  },
  flushShield536(s){if(s.leaving)return;const departed=s.g536ShieldDepartures||[];delete s.g536ShieldDepartures;for(const p of departed)shieldDeparture536(s,p);},
+ drawn676(s,p,n){
+  if(!n)return;
+  for(const y of creatures(s,1-p)){
+   const defs=!y.sealed&&effective(y,s).g676OppDraw;
+   if(defs)for(let i=0;i<n;i++)queue(s,1-p,y,defs);
+  }
+ },
  graveAdded(s,p,all){
   for(const y of all)if(card(y).g590SelfGraveBottom)queue(s,p,y,[{op:'GraveBottom589',self:true}]);
   // Cards with grave-entry abilities trigger from the new zone (QA46841).

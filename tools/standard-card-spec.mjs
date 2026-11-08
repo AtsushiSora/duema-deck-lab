@@ -2453,6 +2453,18 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=676){
+  const text=normalize(f.abilityText);
+  if(creature&&text==='相手がバトルゾーンにあるクリーチャーを選ぶ時自分の無色クリーチャーを選ぶことはできない。(ただしそのクリーチャーを攻撃またはブロックしてもよい)'){
+   return {g608Protect:{noColor:true}};
+  }
+  if(f.typeText==='呪文'&&text==='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)バトルゾーンにある相手のクリーチャーを1体選ぶ。そのクリーチャーとバトルゾーンにある同じ名前を持つクリーチャーをすべてタップする。'){
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',spell:true,g676TapNames:true,title:'同名のクリーチャーと一緒にタップする相手のクリーチャーを選ぶ'}]};
+  }
+  if(creature&&text==='マナゾーンに置く時このカードはタップして置く。相手がカードを引いた時自分の山札の上から1枚目をマナゾーンに置いてもよい。'){
+   return {g676OppDraw:[{op:'Ramp',n:1,optional:true}]};
+  }
+ }
  if(phase>=675&&creature){
   const text=normalize(f.abilityText);
   if(text==='∞ブレイカー(このクリーチャーは相手のシールドを好きな数ブレイクする)')return {breaker:'∞'};
