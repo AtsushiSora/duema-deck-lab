@@ -1178,6 +1178,10 @@ function instruction604(text){
  }
 }
 function instruction(text,phase){
+ if(phase>=653){
+  if(text==='自分のシールドを1つブレイクする。')return{op:'Break497',owner:'self',n:1};
+  if(text==='相手は自身のシールドを1つ選ぶ。そのシールドをブレイクする。')return{op:'Break497',n:1,ownerChooses:true};
+ }
  if(phase>=642){
   if(text==='相手のクリーチャーを1体選び持ち主の山札の下に置く。')return{op:'Target',to:'deck'};
   if(text==='ジョーカーズ・カードを1枚自分の墓地から手札に戻してもよい。')
@@ -2727,6 +2731,10 @@ export function standardCardSpec(d,{phase=165}={}){
     '各ターンこのクリーチャーがはじめて攻撃する時これが進化クリーチャーならアンタップする。':[{op:'IfSource541',evolution:true,defs:[untap]}]
    }[line];if(first){if(spec.g540FirstAttack)throw Error('重複する最初の攻撃誘発');spec.g540FirstAttack=first;continue;}
    if(line==='鬼タイム:このクリーチャーが破壊された時自分と相手のシールドの数が合計6つ以下なら相手のパワー8000以下のクリーチャーを1体破壊する。'){if(death.length)throw Error('独立した破壊時能力の順序対応が必要');death.push({op:'IfOwn',filter:{g334ZoneCount:{zone:'shields',sumBoth:true,max:6}},defs:[{op:'Target',to:'grave',filter:{maxPower:8000,g199Power:true}}]});continue;}
+  }
+  if(phase>=653&&creature&&line==='手札から召喚するならこのクリーチャーの召喚コストを3多くする。'){
+   if(spec.g653HandSummonTax)throw Error('重複する手札召喚コスト増加');
+   spec.g653HandSummonTax=3;continue;
   }
   if(phase>=652&&creature&&line==='自分のクリーチャーが3体以上あればこのクリーチャーのパワーを+6000する。'){
    if(spec.g260Self)throw Error('重複する自己強化条件');

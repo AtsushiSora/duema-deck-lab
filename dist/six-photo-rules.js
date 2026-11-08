@@ -939,11 +939,11 @@ export function createSixPhotoRules(api){
  case'g34_FightEnemy240':{const a=fightUnit240(s,t.fighterOwner??t.p,t.fighter);if(a){const rows=fightRows240(s,t.p,1-t.p,t.enemyFilter).filter(o=>o.value!==a.uid);if(rows.length)choice(s,t,'バトルする相手のクリーチャーを1体選ぶ',[...rows.map(o=>{const b=s.players[1-t.p].battle.find(y=>y.uid===o.value);return{...o,value:{uid:b.uid,incarnation:b.incarnation||0},score:fightScore240(s,a,b)};}),...(t.optional?[skip()]:[])]);}break;}
  case'g34_ShieldGrave':{const rows=own.shields.filter(x=>api.shieldCards(x).some(y=>!y.g37ShieldHeld));if(rows.length)choice(s,t,'墓地に置く自分のシールドを1つ選ぶ',rows.map(x=>opt('シールド '+(own.shields.indexOf(x)+1)+(x.faceUp?'：'+card(x).name:''),x.uid,10,x.faceUp?x.cardId:undefined)));break;}
  case'g34_Break497':{
-  const self=t.owner==='self',owner=self?t.p:1-t.p,shields=s.players[owner].shields;
+  const self=t.owner==='self',owner=self?t.p:1-t.p,shields=s.players[owner].shields,chooser=t.ownerChooses?owner:t.p;
   const selected=(t.selected||[]).filter(uid=>shields.some(y=>y.uid===uid)),n=Math.min(t.n,shields.length);
   if(selected.length<n)choice(s,{...t,selected},
-   'ブレイクする'+(self?'自分':'相手')+'のシールドを'+n+'つ選ぶ（'+selected.length+'つ選択済み）',
-   shields.flatMap((y,i)=>selected.includes(y.uid)?[]:[opt('シールド'+(i+1),y.uid,10)]));
+   'ブレイクする'+(chooser===owner?'自分':'相手')+'のシールドを'+n+'つ選ぶ（'+selected.length+'つ選択済み）',
+   shields.flatMap((y,i)=>selected.includes(y.uid)?[]:[opt('シールド'+(i+1),y.uid,10)]),chooser);
   else if(n)api.interruptBreak(s,owner,selected,{...t,op:'g34_AfterBreak278'},
    {player:t.p,sourceUid:t.uid,source:t.source,controller:t.p,g278Effect:true});
   break;

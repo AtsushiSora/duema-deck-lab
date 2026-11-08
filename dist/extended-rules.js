@@ -115,7 +115,7 @@ export function createExtendedRules(api){
  }
  const put=(s,...tasks)=>{(s.extTasks??=[]).unshift(...tasks.filter(Boolean).map(t=>({...t,controller:t.controller??api.effectActor(s)??t.causedBy??t.p})));};
  const task=(op,p,source,more={})=>({op,p,source,...more});
- const choice=(s,t,title,options)=>{if(options.length)s.decision={type:'extended',player:t.p,source:t.source,title,task:t,choices:options};};
+ const choice=(s,t,title,options,chooser=t.p)=>{if(options.length)s.decision={type:'extended',player:chooser,source:t.source,title,task:t,choices:options};};
  const opt=(label,value,score=0,cardId=null)=>({label,value,score:Number.isFinite(score)?Math.max(-1000,Math.min(1000,score)):score>0?1000:-1000,...(cardId?{cardId}:{})});
  const skip=()=>opt('使わない',null,0);
  const targetOptions=(s,p,list)=>forceTargets(s,p,list.filter(x=>{const owner=s.players.findIndex(y=>y.battle.some(z=>z.uid===x.uid));return owner<0||targetable(s,p,owner,x);})).map(x=>opt(card(x).name,x.uid,cost(card(x))*3,card(x).id));
