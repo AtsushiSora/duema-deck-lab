@@ -1911,5 +1911,50 @@
         }
       ]
     }
-  ]
+  ],
+  "resume": {
+    "lastVerifiedPhase": 669,
+    "lastVerifiedCommit": "7afc6f16f9fd7ee3bc971bf74ed924abc638824a",
+    "nextPhase": 670,
+    "workInProgress": "phase 669まで検証・ローカルコミット済み。phase 670のコード変更なし。残るシールド・ゴー候補は、追加ブレイクの発生元、シールド優先の攻撃、パワー・ガチンコ・ジャッジ、またはエグザイルの共通処理を先に確認する。アウトランダーの通常攻撃は検証済みで、効果ブレイクとの組み合わせは未確認。",
+    "nextCandidates": [
+      {
+        "id": "dmd11-007",
+        "name": "焔の下の力持ち ワーゲン",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd11-007",
+        "check": "公式QA 36889・36890を確認。攻撃そのものは強制せず、可能ならプレイヤーへ向ける。通常攻撃のブレイク選択、複数のワーゲン・複数ブレイク、ゼロヨンと同時にある場合を調べる。",
+        "rules": [
+          "https://dm.takaratomy.co.jp/rule/qa_old/36889/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36890/"
+        ]
+      },
+      {
+        "id": "dmr09-036",
+        "name": "驚愕の存在 カニス",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-036",
+        "check": "攻撃経路と効果経路を分けて確認。interruptBreakの呼び出しには発生元のないものがある。クリーチャー自身が行うブレイクを特定し、選択数の決定時に追加枚数を反映してから回帰を検証する。"
+      },
+      {
+        "id": "dm26rp2-042",
+        "name": "連射のラクシャ ユキメ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-042",
+        "check": "judgeRoundは公開後にコスト比較を行い、そのまま山札の下に移す。パワー比較、同値、パワーのないカード、公開時能力、山札下への置換、敗北後の自壊とシールド・ゴーを確認してから登録する。",
+        "rules": [
+          "https://dm.takaratomy.co.jp/rule/qa/48931/"
+        ]
+      },
+      {
+        "id": "dmr10-017",
+        "name": "呼ぶ者 サリックス",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-017",
+        "check": "先にエグザイルのカード種別とカード固有の同名制限を確認する。少なくとも実カードのマナ召喚とシールドからの強化を検証できる状態にしてから登録する。"
+      }
+    ],
+    "steps": [
+      "git statusとAGENTS.mdを確認し、カードID・正規名・再録・能力文全体・基本情報・画像・使用制限・関連裁定を照合する。",
+      "共通処理の修正は既存カードの回帰を個別に検証する。対応できる候補を並行して選定し、公式裁定が未確認のカードは理由を記録して保留する。",
+      "個別・関連回帰は各最大10分。対戦シミュレーションを含むファイルは対象テスト名を明示し、全体のnpm testは中断・合否未確認のままとする。",
+      "実データで再集計し、検証内容と保留理由をbatchHistoryに残して、検証済み差分のみローカルコミットする。"
+    ]
+  }
 }
