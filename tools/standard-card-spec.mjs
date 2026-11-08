@@ -6,6 +6,7 @@ const normalize=s=>s.normalize('NFKC').replace(/\s|■/g,'').replaceAll('、',''
 const keyword=(line,name)=>new RegExp('^(?:'+name+'){1,2}(?:\\([^()]*\\))?$').test(line);
 const replicaAuction616='自分の山札の上から3枚を見る。そのうちの1枚をシールド化しその後残りを好きな順序で山札の下に置く。';
 const clauses=(body,phase)=>{
+ if(phase>=638&&body==='相手のクリーチャーを1体選び破壊する。その後選んだクリーチャーのコストと同じ枚数自分の山札の上から墓地に置いてもよい。')return[body];
  if(phase>=632&&body==='自分のパワー5000以下のクリーチャーを1体破壊する。そうした場合相手のパワー5000以下のクリーチャーを1体破壊する。')return[body];
  if(phase>=631&&body==='相手のクリーチャーを1体選び破壊する。その後選んだクリーチャーのコストと同じ枚数自分の山札の上から墓地に置く。')return[body];
  if(phase>=625&&body==='自分の山札の上から1枚目をシールド化する。このターンの終わりに自分のシールドを1つブレイクする。')
@@ -1177,6 +1178,8 @@ function instruction604(text){
  }
 }
 function instruction(text,phase){
+ if(phase>=638&&text==='相手のクリーチャーを1体選び破壊する。その後選んだクリーチャーのコストと同じ枚数自分の山札の上から墓地に置いてもよい。')
+  return{op:'Target',to:'grave',g631MillCost:true,g638OptionalMill:true,title:'破壊する相手のクリーチャーを選ぶ'};
  if(phase>=637){
   if(text==='相手のエレメントを1つ選び持ち主のマナゾーンに置く。')return{op:'Target',element:true,to:'mana'};
   if(text==='相手のエレメントをすべて持ち主の手札に戻す。')return{op:'Sweep',to:'hand',filter:{element:true}};
@@ -3683,6 +3686,11 @@ export function standardCardSpec(d,{phase=165}={}){
    if(defs){if(spec.g559Blocked)throw Error('重複するブロックされた時の能力');spec.g559Blocked=defs;continue;}
   }
   if(phase>=557){
+   if(phase>=638&&creature&&line==='自分の多色クリーチャーはシールドをさらに1枚ブレイクする。'){
+    if(spec.g557BreakAura)throw Error('重複する追加ブレイク');
+    spec.g557BreakAura={multi:true,amount:1};
+    continue;
+   }
    if(creature&&line==='自分のドラゴンはすべてシールドをさらに1枚ブレイクする。'){if(spec.g557BreakAura)throw Error('重複する追加ブレイク');spec.g557BreakAura={race:'ドラゴン',amount:1};continue;}
    if(creature&&line==='バラバラエティ3:自分のクリーチャーすべてに「スピードアタッカー」を与える。(コストが異なる自分のエレメントが3つ以上あればこのクリーチャーにこの能力を与える)'){(spec.g208Auras??=[]).push({filter:{creature:true},g557Condition:{g466DistinctCosts:3},grants:{speedAttacker:true}});continue;}
    if(!creature&&line==='この呪文を唱えるコストを自分のコスト3以下のエレメント1つにつき3少なくする。ただしコストは0以下にならない。'){if(spec.g212CountDiscount)throw Error('重複するエレメント軽減');spec.g212CountDiscount={zone:'battle',g557Elements:true,filter:{max:3},amount:3};continue;}
@@ -3963,7 +3971,7 @@ export function standardCardSpec(d,{phase=165}={}){
   if(phase>=415&&creature&&(m=line.match(/^ムゲンクライム([1-5])\(自分のクリーチャーを\1体タップし\[([a-z]{2}\d{2})\]支払ってこのクリーチャーを自分の手札または墓地から召喚してもよい\)$/))){
    const payment=mana402(m[2]);if(!payment||payment.cost!==+m[1]||JSON.stringify([...payment.civilizations].sort())!==JSON.stringify([...f.civilizations].sort())||spec.mugenCrime)throw Error('未対応のムゲンクライム支払い');spec.mugenCrime=+m[1];continue;
   }
-  if(phase>=414&&creature&&line==='シールド・プラス-このクリーチャーをバトルゾーンに出した時自分の山札の上から1枚目を裏向きのまま自分のシールドいずれかの下に置いてもよい。(こうして重ねたカードの束を1枚のシールドとみなす)'){if(spec.g414ShieldPlus)throw Error('重複するシールド・プラス');spec.g414ShieldPlus=true;continue;}
+  if(phase>=414&&creature&&(line==='シールド・プラス-このクリーチャーをバトルゾーンに出した時自分の山札の上から1枚目を裏向きのまま自分のシールドいずれかの下に置いてもよい。(こうして重ねたカードの束を1枚のシールドとみなす)'||phase>=638&&line==='シールド・プラス:このクリーチャーが出た時自分の山札の上から1枚を裏向きで自分のシールド1つの下に置いてもよい。(そのシールドの束は1つと数える)')){if(spec.g414ShieldPlus)throw Error('重複するシールド・プラス');spec.g414ShieldPlus=true;continue;}
   if(phase>=407&&creature&&/^(?:このクリーチャーが(?:バトルゾーンに)?出た時|このクリーチャーをバトルゾーンに出した時)このクリーチャーを破壊してもよい。そうした(?:場合|ら)次のうちいずれか(?:1つ|ひとつ)を選ぶ。$/.test(line)){
    if(entry.length||nativeEntry)throw Error('独立した誘発能力の順序対応が必要');const modes=[];while(i+1<lines.length&&normalize(lines[i+1]).startsWith('▶')){const text=normalize(lines[++i]).slice(1),defs=clauses(text,phase).map(q=>instruction(q,phase));if(!defs.length||defs.some(t=>!t))throw Error('未対応の自壊後の選択能力');modes.push({label:lines[i].replace(/^\s*▶/,'').trim(),defs});}if(modes.length<2)throw Error('選択能力の不足');entry.push({op:'SelfSacrifice407',defs:[{op:'Choose',g184Modes:true,modes}]});continue;
   }
