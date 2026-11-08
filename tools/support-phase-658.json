@@ -1,0 +1,229 @@
+{
+  "phase": 658,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5798,
+  "description": "山札の上からの任意展開と、破壊・ターン開始に誘発するG城。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/49237/",
+    "https://dm.takaratomy.co.jp/rule/qa/48488/",
+    "https://dm.takaratomy.co.jp/rule/qa/48486/",
+    "https://dm.takaratomy.co.jp/rule/qa/48491/"
+  ],
+  "cards": [
+    {
+      "id": "dm26rp1-049",
+      "name": "獣王のB ペガサス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-049",
+      "faces": [
+        {
+          "name": "獣王のB ペガサス",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "進化：光または自然のクリーチャー１体の上に置く。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時または離れた時、自分の山札の上から１枚を表向きにする。それがコスト３以下のクリーチャーなら出してもよい。こうして出さなければ、それを山札の下に置く。",
+          "race": "セイント・ペガサス",
+          "powerText": "8500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "LookDeploy530",
+            "n": 1,
+            "public": true,
+            "limit": 1,
+            "rest": "bottom",
+            "filter": {
+              "creature": true,
+              "max": 3
+            }
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "LookDeploy530",
+            "n": 1,
+            "public": true,
+            "limit": 1,
+            "rest": "bottom",
+            "filter": {
+              "creature": true,
+              "max": 3
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "bef70900d5ac7d74dacd187fe401baa272ebfcf3a188e45509a15d25b974f478",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp1-067",
+      "name": "我竜塔第四層 ポチョムキン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-067",
+      "faces": [
+        {
+          "name": "我竜塔第四層 ポチョムキン",
+          "typeText": "G城",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "（G城は実行したら、表向きでシールド化される。このカードが表向きで自分のシールドゾーンを離れる時、かわりに墓地に置く）\n各ターン、はじめてクリーチャーが破壊された時、自分はカードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "castle",
+        "gCastle": true,
+        "g658FirstDestruction": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-067.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "52684ba335483575514ae807227378a0c4fa3cbd7098bd999577eda7e4338b34",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp1-023",
+      "name": "創造の天空城 ホワイト・ネオウェーブ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-023",
+      "faces": [
+        {
+          "name": "創造の天空城 ホワイト・ネオウェーブ",
+          "typeText": "G城",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "（G城は実行したら、表向きでシールド化される。このカードが表向きで自分のシールドゾーンを離れる時、かわりに墓地に置く）\nこのG城が表向きで自分のシールドゾーンに置かれた時、または自分のターンのはじめに、カードを１枚引く。その後、コスト４以下のクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "castle",
+        "gCastle": true,
+        "g658ShieldOrStart": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 4
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "807fa5bc4bdccb627f5584d272d1462f3dde140fb3908cfcde52efb835779286",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy25-030",
+      "name": "創造の天空城 ホワイト・ネオウェーブ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy25-030",
+      "faces": [
+        {
+          "name": "創造の天空城 ホワイト・ネオウェーブ",
+          "typeText": "G城",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "（G城は実行したら、表向きでシールド化される。このカードが表向きで自分のシールドゾーンを離れる時、かわりに墓地に置く）\nこのG城が表向きで自分のシールドゾーンに置かれた時、または自分のターンのはじめに、カードを１枚引く。その後、コスト４以下のクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "castle",
+        "gCastle": true,
+        "g658ShieldOrStart": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 4
+            }
+          }
+        ]
+      },
+      "canonicalId": "dm26rp1-023",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy25-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "ae5c2ddf05a29711ca2df1b21e9781662e6e1d0cf083cab0c8f7bde66ab94474",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26rp1-049": 4,
+      "dm26rp1-067": 4,
+      "dm26rp1-023": 4,
+      "promoy25-030": 4
+    }
+  }
+}

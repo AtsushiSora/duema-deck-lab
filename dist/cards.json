@@ -166986,19 +166986,132 @@
       ],
       "supportBatch": "phase-657",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp1-049",
+      "name": "獣王のB ペガサス",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 8500,
+      "race": "セイント・ペガサス",
+      "text": "進化：光または自然のクリーチャー１体の上に置く。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時または離れた時、自分の山札の上から１枚を表向きにする。それがコスト３以下のクリーチャーなら出してもよい。こうして出さなければ、それを山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-049",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "LookDeploy530",
+          "n": 1,
+          "public": true,
+          "limit": 1,
+          "rest": "bottom",
+          "filter": {
+            "creature": true,
+            "max": 3
+          }
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "LookDeploy530",
+          "n": 1,
+          "public": true,
+          "limit": 1,
+          "rest": "bottom",
+          "filter": {
+            "creature": true,
+            "max": 3
+          }
+        }
+      ],
+      "supportBatch": "phase-658",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp1-067",
+      "name": "我竜塔第四層 ポチョムキン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "castle",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "（G城は実行したら、表向きでシールド化される。このカードが表向きで自分のシールドゾーンを離れる時、かわりに墓地に置く）\n各ターン、はじめてクリーチャーが破壊された時、自分はカードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-067",
+      "limit": 4,
+      "gCastle": true,
+      "g658FirstDestruction": true,
+      "supportBatch": "phase-658",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp1-023",
+      "name": "創造の天空城 ホワイト・ネオウェーブ",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "castle",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "（G城は実行したら、表向きでシールド化される。このカードが表向きで自分のシールドゾーンを離れる時、かわりに墓地に置く）\nこのG城が表向きで自分のシールドゾーンに置かれた時、または自分のターンのはじめに、カードを１枚引く。その後、コスト４以下のクリーチャーを１体、自分の手札から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-023",
+      "limit": 4,
+      "gCastle": true,
+      "g658ShieldOrStart": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "max": 4
+          }
+        }
+      ],
+      "supportBatch": "phase-658",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 657,
+    "phase": 658,
     "checkedAt": "2026-11-09",
-    "baseCount": 5795,
+    "baseCount": 5798,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5798,
+    "totalCount": 5801,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37856/",
+      "https://dm.takaratomy.co.jp/rule/qa/49237/",
       "https://dm.takaratomy.co.jp/rule/qa/48488/",
       "https://dm.takaratomy.co.jp/rule/qa/48486/",
       "https://dm.takaratomy.co.jp/rule/qa/48491/"
@@ -178274,6 +178387,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/48919/",
           "https://dm.takaratomy.co.jp/rule/qa/46870/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37327/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 657,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5795,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5798,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37856/",
+          "https://dm.takaratomy.co.jp/rule/qa/48488/",
+          "https://dm.takaratomy.co.jp/rule/qa/48486/",
+          "https://dm.takaratomy.co.jp/rule/qa/48491/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -2422,8 +2422,13 @@ export function standardCardSpec(d,{phase=165}={}){
   const text=normalize(f.abilityText);
   const rule='(G城は実行したら表向きでシールド化される。このカードが表向きで自分のシールドゾーンを離れる時かわりに墓地に置く)';
   const entry='このG城が表向きで自分のシールドゾーンに置かれた時相手のクリーチャーを2体まで選び持ち主の手札に戻す。';
-  if(text!==rule+entry)throw Error('未対応のG城能力');
-  return {type:'castle',gCastle:true,g657FaceUpEntry:true};
+  const castle={type:'castle',gCastle:true};
+  if(text===rule+entry)return {...castle,g657FaceUpEntry:true};
+  if(phase>=658&&text===rule+'各ターンはじめてクリーチャーが破壊された時自分はカードを1枚引いてもよい。')return {...castle,g658FirstDestruction:true};
+  if(phase>=658&&text===rule+'このG城が表向きで自分のシールドゾーンに置かれた時または自分のターンのはじめにカードを1枚引く。その後コスト4以下のクリーチャーを1体自分の手札から出してもよい。'){
+   return {...castle,g658ShieldOrStart:[{op:'Draw',n:1},{op:'Select',origin:'hand',deploy:true,n:1,optional:true,filter:{creature:true,max:4}}]};
+  }
+  throw Error('未対応のG城能力');
  }
  const creature=f.typeText.includes('クリーチャー'),evolution=f.typeText==='進化クリーチャー'||phase>=273&&f.typeText==='スター進化クリーチャー',seed=f.typeText==='タマシード';
  if(creature&&!/^\d+\+?$/.test(f.powerText)&&!(phase>=243&&/^\d+-$/.test(f.powerText)))throw Error('特殊なパワー');
@@ -5028,7 +5033,8 @@ export function standardCardSpec(d,{phase=165}={}){
     '相手のクリーチャーを1体選ぶ。相手はそのクリーチャーを破壊するか山札の上に置く。':[{op:'Target',g467Destinations:['grave','deckTop'],g472OwnerDestination:true}],
     '各プレイヤーは自身の手札を1枚選び捨てる。その後自分はカードを1枚引く。':[{op:'EachPlayer459',origin:'hand',to:'grave',discard:true},{op:'Draw',n:1}],
     '自分と相手のクリーチャーを1体ずつ選ぶ。その2体をバトルさせる。':[{op:'Fight240'}],
-    ...(phase>=657?{'カードを1枚引く。その後自分の手札を1枚表向きまたは裏向きでシールド化してもよい。':[{op:'Draw',n:1},{op:'HandShield657'}]}:{})
+    ...(phase>=657?{'カードを1枚引く。その後自分の手札を1枚表向きまたは裏向きでシールド化してもよい。':[{op:'Draw',n:1},{op:'HandShield657'}]}:{}),
+    ...(phase>=658?{'自分の山札の上から1枚を表向きにする。それがコスト3以下のクリーチャーなら出してもよい。こうして出さなければそれを山札の下に置く。':[{op:'LookDeploy530',n:1,public:true,limit:1,rest:'bottom',filter:{creature:true,max:3}}]}:{})
    }[m[1]];
    if(!defs)throw Error('未対応の能力文: '+raw);
    attack.push(...defs);leave.push(...structuredClone(defs));continue;
