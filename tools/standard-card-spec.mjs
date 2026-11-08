@@ -1178,6 +1178,12 @@ function instruction604(text){
  }
 }
 function instruction(text,phase){
+ if(phase>=641){
+  if(text==='コスト4以下のタマシードをすべて自分の墓地から出す。')
+   return{op:'Select',origin:'grave',n:'all',deploy:true,g236GraveDeploy:true,filter:{g295Tamaseed:true,max:4},title:'墓地のコスト4以下のタマシードを出す順に選ぶ'};
+  if(text==='バトルゾーンにある自分のカードの文明ひとつにつきカードを1枚引く。')
+   return{op:'CountDraw',zone:'battle',g641Civilizations:true};
+ }
  if(phase>=640){
   if(text==='ジョーカーズを1枚自分の手札から捨ててもよい。そうしたらカードを2枚引く。')
    return{op:'DiscardFor248',g488DiscardFilter:{g539JokerCard:true},title:'捨てるジョーカーズ・カードを1枚選ぶ（任意）',defs:[{op:'Draw',n:2}]};

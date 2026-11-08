@@ -1,0 +1,106 @@
+{
+  "phase": 641,
+  "checkedAt": "2026-11-08",
+  "baseCount": 5746,
+  "description": "墓地の対象タマシードを順に出し、場の文明の種類数を数えて引く効果を照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/42652/"
+  ],
+  "cards": [
+    {
+      "id": "dm22ex2-008",
+      "name": "魂の再動",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-008",
+      "faces": [
+        {
+          "name": "魂の再動",
+          "typeText": "呪文",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "コスト４以下のタマシードをすべて、自分の墓地から出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": "all",
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "g295Tamaseed": true,
+              "max": 4
+            },
+            "title": "墓地のコスト4以下のタマシードを出す順に選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex2-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "9daf23b4ee9f00242ef24cc9741113609bdc3e1100336f671e86d99f577ca1f5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr04-039",
+      "name": "エナジー・ステッキ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-039",
+      "faces": [
+        {
+          "name": "エナジー・ステッキ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "バトルゾーンにある自分のカードの文明ひとつにつき、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "g641Civilizations": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr04-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "0d644c67c9ee166421b9af57288b826de6367cf48b545754ed21a7d384e42dee",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-08",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22ex2-008": 4,
+      "dmr04-039": 4
+    }
+  }
+}
