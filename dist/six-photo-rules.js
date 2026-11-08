@@ -830,6 +830,11 @@ export function createSixPhotoRules(api){
  }
  case'g34_ManaTurn297':(s.extLimits??=[]).push({kind:'g297ManaTurn',player:t.p,controller:t.p,turn:s.turn,who:s.active,expires:'end'});break;
  case'g34_SelfMana297':if(x&&(!t.unlessOtherDragon||!own.battle.some(y=>y.uid!==x.uid&&!y.sealed&&race(effective(y,s),'ドラゴン'))))move(s,[{player:t.p,uid:x.uid,to:'mana',tapped:!!t.tapped,controller:t.controller??t.p}]);break;
+ case'g34_BlindHandMana675':
+  if(opp.hand.length&&api.canMoveZone(s,1-t.p,'hand')){
+   choice(s,t,'マナに置く相手の手札を裏向きのまま1枚選ぶ',opp.hand.map((_,i)=>opt('裏向きの手札 '+(i+1),i,0)));
+  }
+  break;
  case'g34_InspectHand':{
   const hand=opp.hand;
   if(!hand.length){api.log(s,t.p,'look',card(t.source).name+'：相手の手札はありません',{cardId:t.source});break;}
@@ -1338,6 +1343,13 @@ export function createSixPhotoRules(api){
   break;
  case'g34_ShieldExchange446':{const y=v&&own.hand.find(y=>y.uid===v);if(y)zoneMove(s,t.p,'hand',y.uid,'shields',t);if(!t.optional||y)put(s,{...t,op:'g34_ShieldHand',g238ShieldHand:true});break;}
  case'g34_ShieldGrave':if(v){const moved=api.moveShield(s,t.p,v,'grave');api.log(s,t.p,'shieldGrave',card(t.source).name+'：シールド1つ（カード'+moved.length+'枚）を墓地に置いた',{cardId:t.source});}break;
+ case'g34_BlindHandMana675':{
+  const y=s.players[1-t.p].hand[v];
+  if(y&&zoneMove(s,1-t.p,'hand',y.uid,'mana',{g182HandMana:true})){
+   api.log(s,t.p,'handToMana',card(t.source).name+'：'+card(y).name+'を相手のマナゾーンに置いた',{cardId:y.cardId});
+  }
+  break;
+ }
  case'g34_InspectHand':
   if(t.chooseOne){if(t.discardIds.includes(v))api.discardSelected(s,1-t.p,[v],t.source,t.p);}
   else if(v&&t.discard)api.discardSelected(s,1-t.p,t.discardIds,t.source,t.p);
@@ -1657,6 +1669,8 @@ export function createSixPhotoRules(api){
  flushShield536(s){if(s.leaving)return;const departed=s.g536ShieldDepartures||[];delete s.g536ShieldDepartures;for(const p of departed)shieldDeparture536(s,p);},
  graveAdded(s,p,all){
   for(const y of all)if(card(y).g590SelfGraveBottom)queue(s,p,y,[{op:'GraveBottom589',self:true}]);
+  // Cards with grave-entry abilities trigger from the new zone (QA46841).
+  for(const y of all)if(card(y).g675GraveEntry)queue(s,p,y,card(y).g675GraveEntry);
   const watchers=s.leaving?.snapshot?.six?.scarlet?.[p]||active(s,p,'scarlet').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0}));for(const x of watchers)if(!used(s,'g34Scarlet',x))for(const y of all)if(card(y).type==='creature'&&cost(card(y))<=5)queue(s,p,x,[C('scarletRevive',{target:y.uid,targetSerial:y.zoneSerial||0})]);},
  snapshot(s){return{leave320:s.players.flatMap((own,p)=>own.battle.map(x=>({p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:!x.sealed&&api.isCreature(s,x),race:effective(x,s).race,watch:!x.sealed&&!!effective(x,s).g320Jave}))),death303:s.players.flatMap((own,p)=>own.battle.map(x=>{const c=effective(x,s);return{p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:api.isCreature(s,x),race:c.race,name:c.name,colors:colors(c),element:!x.sealed&&!x.faceDown,elementDraw:!!c.g617OpponentElementLeaves&&!x.sealed&&!x.faceDown&&!api.ignored(s,x),watch:!x.sealed&&!api.ignored(s,x)?c.g303DeathWatch:undefined};})),selfLeaves:s.players.flatMap((own,p)=>own.battle.flatMap(x=>{const c=effective(x,s);return c.g172Death||c.g172Leave?[{p,uid:x.uid,incarnation:x.incarnation||0,g172Death:c.g172Death,g172Leave:c.g172Leave,g601OpponentLeave:c.g601OpponentLeave}]:[];})),scarlet:[0,1].map(p=>active(s,p,'scarlet').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0}))),dororon:[0,1].map(p=>active(s,p,'dororon').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0})))};},
  leaving(s,p,x,snapshot,to,destroy){

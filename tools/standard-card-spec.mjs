@@ -2453,6 +2453,16 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=675&&creature){
+  const text=normalize(f.abilityText);
+  if(text==='∞ブレイカー(このクリーチャーは相手のシールドを好きな数ブレイクする)')return {breaker:'∞'};
+  if(text==='このクリーチャーがどこからでも自分の墓地に置かれた時相手のパワー1000以下のクリーチャーを1体破壊する。'){
+   return {g675GraveEntry:[{op:'Target',to:'grave',filter:{maxPower:1000,g199Power:true},title:'破壊するパワー1000以下の相手クリーチャーを選ぶ'}]};
+  }
+  if(text==='マナゾーンに置く時このカードはタップして置く。このクリーチャーが攻撃する時相手の手札を1枚見ないで選び持ち主のマナゾーンに置く。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)'){
+   return {breaker:2,g34Attack:[{op:'BlindHandMana675'}]};
+  }
+ }
  if(phase>=674&&creature){
   const text=normalize(f.abilityText);
   if(text==='このクリーチャーをバトルゾーンに出した時自分の山札を見る。その中から《絆のファミリアコブル》を1枚バトルゾーンに出してもよい。その後山札をシャッフルする。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)'){

@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-09",
   "catalogueNames": 11830,
-  "supportedNames": 5853,
-  "pendingNames": 5977,
-  "phase": 674,
+  "supportedNames": 5856,
+  "pendingNames": 5974,
+  "phase": 675,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3621,
+    "クリーチャー": 3618,
     "NEOクリーチャー": 153,
     "呪文": 843,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1338,
-    "未対応の能力文": 4423,
+    "未対応の能力文": 4420,
     "未対応のG・ゼロ条件": 27,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -2063,6 +2063,35 @@
           "reason": "単独時の離脱置換はパワーが0以下でも適用され得るため、正のパワーを要求する既存g577Stayのままでは再現できない。状況起因処理の再評価と他の置換との競合の検証が必要。"
         }
       ]
+    },
+    {
+      "phase": 675,
+      "added": [
+        {
+          "id": "dmr10-015",
+          "name": "無限の銃刃 ダン・クローリー"
+        },
+        {
+          "id": "dmr09-097",
+          "name": "沈黙の戦士 ダンプ・タンク"
+        },
+        {
+          "id": "dmr11-033",
+          "name": "神滅無双ドニデ・ラッテラ"
+        }
+      ],
+      "supportedNames": 5856,
+      "pendingNames": 5974,
+      "verification": {
+        "focusedPassed": 12,
+        "regressionPassed": 166,
+        "regressionIncludesFocused": true,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "∞ブレイカーの0・1・複数・全シールドと選択途中の復元、4ゾーンから墓地に入る誘発とパワー判定、非公開手札からの位置選択、単色・多色のマナ配置。",
+        "fixedDuringVerification": "ドニデの選択確定処理で未定義の相手参照を修正し、同じ手順で成功を確認。"
+      },
+      "deferred": []
     }
   ]
 }

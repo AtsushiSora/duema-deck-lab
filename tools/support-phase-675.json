@@ -1,0 +1,136 @@
+{
+  "phase": 675,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5853,
+  "description": "∞ブレイカー、墓地に置かれた時の除去、裏向きの相手手札からマナへの移動。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36923/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36924/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36925/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36926/",
+    "https://dm.takaratomy.co.jp/rule/qa/46841/",
+    "https://dm.takaratomy.co.jp/rule/qa/31825/"
+  ],
+  "cards": [
+    {
+      "id": "dmr10-015",
+      "name": "無限の銃刃 ダン・クローリー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-015",
+      "faces": [
+        {
+          "name": "無限の銃刃 ダン・クローリー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 13,
+          "costText": "13",
+          "abilityText": "∞ ブレイカー（このクリーチャーは相手のシールドを好きな数ブレイクする）",
+          "race": "アウトレイジMAX",
+          "powerText": "35000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": "∞"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "d7bd4fa30d7b5f353d69c112a81649ad2a3f2aa6c1c7dfe7608996748d14c070",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr09-097",
+      "name": "沈黙の戦士 ダンプ・タンク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-097",
+      "faces": [
+        {
+          "name": "沈黙の戦士 ダンプ・タンク",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがどこからでも自分の墓地に置かれた時、相手のパワー1000以下のクリーチャーを１体、破壊する。",
+          "race": "アウトレイジ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g675GraveEntry": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 1000,
+              "g199Power": true
+            },
+            "title": "破壊するパワー1000以下の相手クリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-097.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "f7924b78128039f9448f4b790e8c04b6029581a12e868850b25d65a2540179fc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr11-033",
+      "name": "神滅無双ドニデ・ラッテラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-033",
+      "faces": [
+        {
+          "name": "神滅無双ドニデ・ラッテラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが攻撃する時、相手の手札を１枚見ないで選び、持ち主のマナゾーンに置く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アース・ドラゴン/ドラゴン・ゾンビ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "BlindHandMana675"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr11-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "b13d8a122a58f7bed7163e7607f8728d9e6bb1e8f563691e282e9550637a7e71",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr10-015": 4,
+      "dmr09-097": 4,
+      "dmr11-033": 4
+    }
+  }
+}
