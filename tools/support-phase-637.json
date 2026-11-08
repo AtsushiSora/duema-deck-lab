@@ -1,0 +1,186 @@
+{
+  "phase": 637,
+  "checkedAt": "2026-11-08",
+  "baseCount": 5736,
+  "description": "相手エレメントのマナ送りと一括手札戻し、呪文封鎖、墓地からのゴッド展開を照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/39516/",
+    "https://dm.takaratomy.co.jp/rule/qa/47369/",
+    "https://dm.takaratomy.co.jp/rule/qa/43474/"
+  ],
+  "cards": [
+    {
+      "id": "dm25ex2-101",
+      "name": "魅惑の緑 トラップグリーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-101",
+      "faces": [
+        {
+          "name": "魅惑の緑 トラップグリーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nこのクリーチャーが出た時、相手のエレメントを１つ選び、持ち主のマナゾーンに置く。",
+          "race": "ミステリー・トーテム/シノビ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "to": "mana"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex2-101.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "cf8c7311ab75c58ea39a74089fd031e93a017f4de34e6036b151529795feca1a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp3-003",
+      "name": "ARTIFICIAL REALITY CHARGER",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-003",
+      "faces": [
+        {
+          "name": "ARTIFICIAL REALITY CHARGER",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "{GS} G・ストライク\n相手のエレメントをすべて持ち主の手札に戻す。\n次の自分のターンのはじめまで、相手は呪文を唱えられない。\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "to": "hand",
+            "filter": {
+              "element": true
+            }
+          },
+          {
+            "op": "SpellLock489",
+            "expires": "start"
+          }
+        ]
+      },
+      "currentPrint": {
+        "id": "dm25ex3-rp3003",
+        "name": "ARTIFICIAL REALITY CHARGER",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp3003",
+        "faces": [
+          {
+            "name": "ARTIFICIAL REALITY CHARGER",
+            "typeText": "呪文",
+            "civilizationText": "水",
+            "civilizations": [
+              "水"
+            ],
+            "cost": 9,
+            "costText": "9",
+            "abilityText": "{GS} G・ストライク\n相手のエレメントをすべて持ち主の手札に戻す。\n次の自分のターンのはじめまで、相手は呪文を唱えられない。\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）",
+            "race": "",
+            "powerText": "",
+            "missingFields": []
+          }
+        ],
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-rp3003.jpg",
+        "verification": {
+          "checkedAt": "2026-11-08",
+          "sha256": "31a7816b4db4bde278b270dcad2a7b7324c352f5f56e1adaac7273cff0612bfe",
+          "facesMatched": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "4153006b8ac9cdc09b9a8eb915f483eb789ce77bdc00b0fa6c05c3fbfd0a71b4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex2-043",
+      "name": "プライマル・サーガ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-043",
+      "faces": [
+        {
+          "name": "プライマル・サーガ",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー\n自分の山札の上から４枚を墓地に置く。その後、コスト５以下のゴッドを１つ、自分の墓地から出す。",
+          "race": "ゴッド",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 4
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "element": true,
+              "race": "ゴッド",
+              "max": 5
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "95ac1d5c1e5ec39f4d7d199229090959372db125eedd44431d4898cef30ee9f9",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-08",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25ex2-101": 4,
+      "dm25rp3-003": 4,
+      "dm26ex2-043": 4
+    }
+  }
+}

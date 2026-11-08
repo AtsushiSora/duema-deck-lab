@@ -1177,6 +1177,12 @@ function instruction604(text){
  }
 }
 function instruction(text,phase){
+ if(phase>=637){
+  if(text==='相手のエレメントを1つ選び持ち主のマナゾーンに置く。')return{op:'Target',element:true,to:'mana'};
+  if(text==='相手のエレメントをすべて持ち主の手札に戻す。')return{op:'Sweep',to:'hand',filter:{element:true}};
+  if(text==='コスト5以下のゴッドを1つ自分の墓地から出す。')
+   return{op:'Select',origin:'grave',n:1,deploy:true,g236GraveDeploy:true,filter:{element:true,race:'ゴッド',max:5}};
+ }
  if(phase>=636){
   if(text==='自分のドラゴン・クリーチャーと相手のクリーチャーを1体ずつ選んでもよい。その2体をバトルさせる。')return{op:'Fight240',optional:true,g419FightFilter:{race:'ドラゴン'}};
   if(text==='水または自然のコスト4以下のクリーチャーを1体自分の手札から出してもよい。')

@@ -164847,20 +164847,120 @@
       ],
       "supportBatch": "phase-636",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex2-101",
+      "name": "魅惑の緑 トラップグリーン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ミステリー・トーテム/シノビ",
+      "text": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nこのクリーチャーが出た時、相手のエレメントを１つ選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex2-101",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "element": true,
+          "to": "mana"
+        }
+      ],
+      "supportBatch": "phase-637",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp3-003",
+      "name": "ARTIFICIAL REALITY CHARGER",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 9,
+      "power": 0,
+      "race": "",
+      "text": "{GS} G・ストライク\n相手のエレメントをすべて持ち主の手札に戻す。\n次の自分のターンのはじめまで、相手は呪文を唱えられない。\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-003",
+      "limit": 4,
+      "gStrike": true,
+      "normalCharger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "to": "hand",
+          "filter": {
+            "element": true
+          }
+        },
+        {
+          "op": "SpellLock489",
+          "expires": "start"
+        }
+      ],
+      "supportBatch": "phase-637",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex2-043",
+      "name": "プライマル・サーガ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "ゴッド",
+      "text": "S・トリガー S・トリガー\n自分の山札の上から４枚を墓地に置く。その後、コスト５以下のゴッドを１つ、自分の墓地から出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-043",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 4
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "g236GraveDeploy": true,
+          "filter": {
+            "element": true,
+            "race": "ゴッド",
+            "max": 5
+          }
+        }
+      ],
+      "supportBatch": "phase-637",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 636,
+    "phase": 637,
     "checkedAt": "2026-11-08",
-    "baseCount": 5733,
+    "baseCount": 5736,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5736,
+    "totalCount": 5739,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
       "https://dm.takaratomy.co.jp/rule/qa/39516/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37335/"
+      "https://dm.takaratomy.co.jp/rule/qa/47369/",
+      "https://dm.takaratomy.co.jp/rule/qa/43474/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -175746,6 +175846,23 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20251217.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 636,
+        "checkedAt": "2026-11-08",
+        "baseCount": 5733,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5736,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/39516/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37335/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
