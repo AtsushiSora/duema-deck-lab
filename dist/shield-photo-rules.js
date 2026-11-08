@@ -88,6 +88,7 @@ export function createShieldPhotoRules(api){
  default:throw Error('未実装の表向きシールド選択：'+t.op);
  }return true;}
  return{run,chosen,up,shieldGoCount,
+ forcesCreatureAttack:(s,p)=>up(s,1-p).some(shield=>card(shield).g669ShieldForceCreatureAttack),
  execution(s,p){
   for(const shield of up(s,p))if(card(shield).g668ShieldExecutionDraw)api.enqueue(s,p,shieldEffect(p,shield,[{op:'Draw',n:1,optional:true}]));
  },

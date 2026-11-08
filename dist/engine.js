@@ -1382,6 +1382,12 @@ export function getLegalActions(s){
  }
  out=out.filter(a=>(!['fight','dragonTap'].includes(a.kind)||extra.targetable(s,p,1-p,s.players[1-p].battle.find(x=>x.uid===(a.target||a.uid))))&&(!a.targets||a.targets.every(t=>extra.targetable(s,p,t.player,s.players[t.player].battle.find(x=>layers(x).some(y=>y.uid===t.uid))))));
  out=extra.six.variants463(s,p,extra.six.variants456(s,p,extra.utilityWater.variants(s,p,extra.history.variants(s,p,extra.viride.variants(s,p,extra.variants(s,p,extra.forceActions(s,p,out))))))).filter(a=>!['play','mugenStart'].includes(a.kind)||extra.originAllowed(s,p,a.origin||'hand'));
+ if(s.phase==='attack'&&extra.shieldPhoto.forcesCreatureAttack(s,p)){
+  // Check the available creature targets after all other attack restrictions.
+  const attackers=new Set(out.filter(a=>a.kind==='attack'&&a.target!=='player').map(a=>a.uid));
+  const forced=new Set(own.battle.filter(x=>attackers.has(x.uid)&&power(x,false,s)<=6000).map(x=>x.uid));
+  if(forced.size)out=out.filter(a=>a.kind!=='endTurn'&&(a.kind!=='attack'||a.target!=='player'||!forced.has(a.uid)));
+ }
  return out.map((a,i)=>({...a,...(a.kind==='play'&&typeof a.manaPermit==='string'&&a.manaPermit.startsWith('g450:')?{label:a.label+extra.six.permitLabel450(s,p,a.manaPermit)}:{}),id:i,player:p}));
 }
 function nameOf(s,t){const seal=(s.players[t.player].seals||[]).find(x=>x.uid===t.uid);if(seal)return '裏向きの封印';const top=s.players[t.player].battle.find(x=>layers(x).some(y=>y.uid===t.uid)),x=top&&layers(top).find(x=>x.uid===t.uid);return card(x).name+(top.uid!==x.uid?'（'+card(top).name+'の下）':'');}

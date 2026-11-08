@@ -2493,6 +2493,9 @@ export function standardCardSpec(d,{phase=165}={}){
   if(phase>=666&&text==='このクリーチャーが各ターンはじめて攻撃する時このクリーチャーをアンタップする。'+keyword+'このクリーチャーが自分のシールドゾーンに表向きであればバトルゾーンにある自分のクリーチャーはすべて「スピードアタッカー」を得る。'){
    return {...base,g540FirstAttack:[{op:'Untap',g191First:true}],g666ShieldSpeed:true};
   }
+  if(phase>=669&&text==='ガードマンW・ブレイカー'+keyword+'このカードが自分のシールドゾーンに表向きであれば相手のパワー6000以下のクリーチャーはすべて可能であればクリーチャーを攻撃する。'){
+   return {...base,guardman:true,breaker:2,g669ShieldForceCreatureAttack:true};
+  }
   if(phase>=668){
    const shield='このカードが自分のシールドゾーンに表向きであれば';
    if(text==='W・ブレイカー'+keyword+shield+'自分のクリーチャーを召喚した時または呪文を唱えた時カードを1枚引いてもよい。'){
@@ -2552,7 +2555,8 @@ export function standardCardSpec(d,{phase=165}={}){
    const base=structuredClone(d);
    base.faces[0].abilityText=lines.filter(line=>normalize(line)!==keyword).join('\n');
    const inca=normalize(base.faces[0].abilityText)==='このクリーチャーをタップして出してもよい。相手のクリーチャーが攻撃するなら可能ならこのクリーチャーを攻撃する。';
-   const rest=inca?{g432EntryTap:true,g431AttackMe:true}:standardCardSpec(base,{phase:658});
+   const forceTarget=phase>=669&&normalize(base.faces[0].abilityText)==='相手がクリーチャーを選ぶなら可能ならこのクリーチャーを選ぶ。';
+   const rest=forceTarget?{forceTarget:true}:inca?{g432EntryTap:true,g431AttackMe:true}:standardCardSpec(base,{phase:658});
    return {...rest,shieldGo:true,g172Death:[...(rest.g172Death||[]),{op:'SelfGraveShield659'}]};
   }
  }
