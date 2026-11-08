@@ -1218,5 +1218,37 @@
         }
       ]
     }
-  ]
+  ],
+  "resume": {
+    "lastVerifiedPhase": 647,
+    "lastVerifiedCommit": "8ea59df1145e534aa6cd3fa7ce624b13958b15ad",
+    "nextPhase": 648,
+    "workInProgress": "phase 647のカード実装と検証は完了。phase 648は候補を選定済みで、生成ファイル・実装・テストは未着手。",
+    "nextCandidates": [
+      {
+        "id": "dm26rp3-031",
+        "name": "輝晶 マルハヴ-2",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-031",
+        "check": "相手ターン限定のディスタスへのエスケープ付与と本人への適用。"
+      },
+      {
+        "id": "dm26rp3-051",
+        "name": "邪鬼 コオニ-4",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-051",
+        "check": "鬼タイムによるササゲール4の境界と、ターン終了時のシールド回収時のS・トリガー抑制。"
+      },
+      {
+        "id": "dm26rp3-041",
+        "name": "ケツカッちん",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-041",
+        "check": "J・O・Eの終了時処理、スーパーガードマン、攻撃によらないシールド1つの選択・ブレイク。"
+      }
+    ],
+    "steps": [
+      "git statusで差分を確認し、AGENTS.mdの手順に従ってphase 648の候補のカードID・正規名・再録を照合する。",
+      "公式の能力文全体・基本情報・画像・使用制限・関連裁定を確認してからmanifestを作る。既存処理で能力全体を再現できない候補は理由を記録して別候補に進む。",
+      "カード固有と影響範囲の回帰テストを各最大10分で実行する。全体のnpm testは中断・合否未確認のままとする。",
+      "実データから件数を再集計し、batchHistoryと再開情報を更新して、検証済みのバッチをローカルコミットする。"
+    ]
+  }
 }
