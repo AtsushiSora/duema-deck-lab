@@ -1,0 +1,255 @@
+{
+  "phase": 634,
+  "checkedAt": "2026-11-08",
+  "baseCount": 5727,
+  "description": "電脳対戦の再録3種類を元のカードIDのまま対応し、両版の能力文と既存の効果処理を照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316678/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37511/"
+  ],
+  "cards": [
+    {
+      "id": "dmbd06-016",
+      "name": "トライガード・チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd06-016",
+      "faces": [
+        {
+          "name": "トライガード・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のシールドを１つ、手札に戻してもよい。ただし、その「S・トリガー」は使えない。\n自分の手札を１枚、裏向きのまま、新しいシールドとしてシールドゾーンに置いてもよい。\nチャージャー（この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g299ShieldHand": true,
+            "title": "シールド1つを手札に加える？（S・トリガーは使えない）",
+            "defs": [
+              {
+                "op": "ShieldHand",
+                "g238ShieldHand": true
+              }
+            ]
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "shields",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "currentPrint": {
+        "id": "dm26ex5-012",
+        "name": "トライガード・チャージャー",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-012",
+        "faces": [
+          {
+            "name": "トライガード・チャージャー",
+            "typeText": "呪文",
+            "civilizationText": "光",
+            "civilizations": [
+              "光"
+            ],
+            "cost": 4,
+            "costText": "4",
+            "abilityText": "自分のシールドを１つ、手札に加えてもよい。その「S・トリガー」は使えない。\n自分の手札を１枚、シールド化してもよい。\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）",
+            "race": "",
+            "powerText": "",
+            "missingFields": []
+          }
+        ],
+        "verification": {
+          "checkedAt": "2026-11-08",
+          "sha256": "e82488f5fb99f6b0c548639ed2508cf5fe14f6e0d8fe25ea8e744c88c89b6873",
+          "facesMatched": true
+        },
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-012.jpg"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd06-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "f0434309cd7f6fe1d1edd72a54193cc2a87257027a3fc7fd844c6c8bd7d01d62",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr17-091",
+      "name": "雪精 ジャーベル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-091",
+      "faces": [
+        {
+          "name": "雪精 ジャーベル",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナ武装 ３：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンに自然のカードが３枚以上あれば、山札の上から４枚を見る。その中からクリーチャーを１体相手に見せ、手札に加えてもよい。残りを好きな順序で山札の一番下に置く。",
+          "race": "スノーフェアリー風",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfMana",
+            "n": 3,
+            "color": "自然",
+            "defs": [
+              {
+                "op": "Look",
+                "g185Search": true,
+                "n": 4,
+                "rest": "bottom",
+                "stages": [
+                  {
+                    "n": 1,
+                    "to": "hand",
+                    "filter": {
+                      "creature": true
+                    },
+                    "reveal": true,
+                    "optional": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "currentPrint": {
+        "id": "dm26ex5-037",
+        "name": "雪精 ジャーベル",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-037",
+        "faces": [
+          {
+            "name": "雪精 ジャーベル",
+            "typeText": "クリーチャー",
+            "civilizationText": "自然",
+            "civilizations": [
+              "自然"
+            ],
+            "cost": 3,
+            "costText": "3",
+            "abilityText": "マナ武装 ３：このクリーチャーが出た時、自分のマナゾーンに自然のカードが３枚以上あれば、自分の山札の上から４枚を見る。その中からクリーチャーを１体、表向きにしてから手札に加えてもよい。残りを好きな順序で山札の下に置く。",
+            "race": "スノーフェアリー風",
+            "powerText": "3000",
+            "missingFields": []
+          }
+        ],
+        "verification": {
+          "checkedAt": "2026-11-08",
+          "sha256": "c78a3e9279d8047da48fca24e2c32b98b98600fc59acf1b2274648105af56b32",
+          "facesMatched": true
+        },
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-037.jpg"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-091.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "0d26c05c314f0c4fb6f68a88a80d8e0f83af53e06d6bd89e0d977a10f72bf488",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd30-004",
+      "name": "青音の精霊龍 リンガール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd30-004",
+      "faces": [
+        {
+          "name": "青音の精霊龍 リンガール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の手札を１枚裏向きにして、新しいシールドとして自分のシールドゾーンに置いてもよい。",
+          "race": "エンジェル・ドラゴン/革命軍",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "shields",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "currentPrint": {
+        "id": "dm26ex5-038",
+        "name": "青音の精霊龍 リンガール",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-038",
+        "faces": [
+          {
+            "name": "青音の精霊龍 リンガール",
+            "typeText": "クリーチャー",
+            "civilizationText": "光/水",
+            "civilizations": [
+              "光",
+              "水"
+            ],
+            "cost": 4,
+            "costText": "4",
+            "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、自分の手札を１枚シールド化してもよい。",
+            "race": "エンジェル・ドラゴン/革命軍",
+            "powerText": "3000",
+            "missingFields": []
+          }
+        ],
+        "verification": {
+          "checkedAt": "2026-11-08",
+          "sha256": "a38fe2ae03b732e1d1bfdd21cb2bae7200925430f0aad57f5f9e0318739473bf",
+          "facesMatched": true
+        },
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-038.jpg"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd30-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "1479e572c406222e90d379c7a4b451c11b70166b58ca4b59f6a5812779aaa148",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-08",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmbd06-016": 4,
+      "dmr17-091": 4,
+      "dmd30-004": 4
+    }
+  }
+}

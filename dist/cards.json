@@ -164537,21 +164537,134 @@
       ],
       "supportBatch": "phase-633",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmbd06-016",
+      "name": "トライガード・チャージャー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "自分のシールドを１つ、手札に戻してもよい。ただし、その「S・トリガー」は使えない。\n自分の手札を１枚、裏向きのまま、新しいシールドとしてシールドゾーンに置いてもよい。\nチャージャー（この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd06-016",
+      "limit": 4,
+      "normalCharger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "g299ShieldHand": true,
+          "title": "シールド1つを手札に加える？（S・トリガーは使えない）",
+          "defs": [
+            {
+              "op": "ShieldHand",
+              "g238ShieldHand": true
+            }
+          ]
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "shields",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-634",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-091",
+      "name": "雪精 ジャーベル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "スノーフェアリー風",
+      "text": "マナ武装 ３：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンに自然のカードが３枚以上あれば、山札の上から４枚を見る。その中からクリーチャーを１体相手に見せ、手札に加えてもよい。残りを好きな順序で山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-091",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfMana",
+          "n": 3,
+          "color": "自然",
+          "defs": [
+            {
+              "op": "Look",
+              "g185Search": true,
+              "n": 4,
+              "rest": "bottom",
+              "stages": [
+                {
+                  "n": 1,
+                  "to": "hand",
+                  "filter": {
+                    "creature": true
+                  },
+                  "reveal": true,
+                  "optional": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-634",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmd30-004",
+      "name": "青音の精霊龍 リンガール",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "エンジェル・ドラゴン/革命軍",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の手札を１枚裏向きにして、新しいシールドとして自分のシールドゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd30-004",
+      "limit": 4,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "shields",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-634",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 633,
+    "phase": 634,
     "checkedAt": "2026-11-08",
-    "baseCount": 5726,
-    "newEffectCards": 1,
+    "baseCount": 5727,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5727,
+    "totalCount": 5730,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34948/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37323/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36842/",
-      "https://dm.takaratomy.co.jp/rule/qa/43486/"
+      "https://dm.takaratomy.co.jp/rule/rulechange/316678/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37511/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -175388,6 +175501,24 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/42955/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 633,
+        "checkedAt": "2026-11-08",
+        "baseCount": 5726,
+        "newEffectCards": 1,
+        "newVanillaCards": 0,
+        "totalCount": 5727,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34948/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37323/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36842/",
+          "https://dm.takaratomy.co.jp/rule/qa/43486/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

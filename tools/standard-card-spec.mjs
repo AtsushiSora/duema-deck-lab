@@ -1177,6 +1177,17 @@ function instruction604(text){
  }
 }
 function instruction(text,phase){
+ if(phase>=634){
+  if([
+   '自分の手札を1枚裏向きのまま新しいシールドとしてシールドゾーンに置いてもよい。',
+   '自分の手札を1枚裏向きにして新しいシールドとして自分のシールドゾーンに置いてもよい。',
+   '自分の手札を1枚シールド化してもよい。'
+  ].includes(text))return{op:'Select',origin:'hand',to:'shields',n:1,optional:true};
+  if([
+   '山札の上から4枚を見る。その中からクリーチャーを1体相手に見せ手札に加えてもよい。残りを好きな順序で山札の一番下に置く。',
+   '自分の山札の上から4枚を見る。その中からクリーチャーを1体表向きにしてから手札に加えてもよい。残りを好きな順序で山札の下に置く。'
+  ].includes(text))return lookSpec('自分の山札の上から4枚を見る。その中からクリーチャーを1体相手に見せ手札に加えてもよい。残りを好きな順序で山札の下に置く。',phase);
+ }
  if(phase>=632){
   if(text==='相手のコスト3以下のクリーチャーを1体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。')
    return{op:'Fight240',self:true,optional:true,enemyFilter:{max:3}};
@@ -1841,7 +1852,7 @@ function instruction(text,phase){
   if(text==='このターン自分の他のクリーチャー1体に「スピードアタッカー」を与える。(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)')return{op:'Target',owner:'self',g179Other:true,g301Grant:true,grant:{speedAttacker:true},title:'このターン、スピードアタッカーを与える他の自分のクリーチャーを1体選ぶ'};
  }
  if(phase>=299){
-  if(text==='自分のシールドを1つ手札に加えてもよい。ただしその「S・トリガー」は使えない。')return{op:'Offer',g299ShieldHand:true,title:'シールド1つを手札に加える？（S・トリガーは使えない）',defs:[{op:'ShieldHand',g238ShieldHand:true}]};
+  if(text==='自分のシールドを1つ手札に加えてもよい。ただしその「S・トリガー」は使えない。'||phase>=634&&text==='自分のシールドを1つ手札に加えてもよい。その「S・トリガー」は使えない。')return{op:'Offer',g299ShieldHand:true,title:'シールド1つを手札に加える？（S・トリガーは使えない）',defs:[{op:'ShieldHand',g238ShieldHand:true}]};
   if(text==='このクリーチャーを自分の手札に戻す。')return{op:'SelfHand299'};
  }
  if(phase>=298){
