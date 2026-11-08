@@ -2216,5 +2216,85 @@
         }
       ]
     }
-  ]
+  ],
+  "resume": {
+    "lastVerifiedPhase": 679,
+    "lastVerifiedCommit": "d7e6d0c9b587903d8895b2bd89419dc7b1547fc0",
+    "nextPhase": 680,
+    "workInProgress": "phase 679まで検証とローカルコミット済み。phase 680は公式本文・関連裁定を確認した候補から再開できる。未コミットの実装なし。",
+    "nextCandidates": [
+      {
+        "id": "dmr06-048",
+        "name": "鉄拳制裁オニノブシ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-048",
+        "check": "公式本文と類似QA 45925を確認。既存の現在パワーと離れる直前の値の取得を再利用し、同値・∞・復元を検証する。"
+      },
+      {
+        "id": "dmr10-s04",
+        "name": "奈落の葬儀人デス・シュテロン",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-s04",
+        "check": "公式QA 40183と原版を確認。各ターン末の双方の手札廃棄と離脱時の全体破壊。3つの再録と捨てる順序・置換を確認する。"
+      },
+      {
+        "id": "dmr05-062",
+        "name": "鬼姫モエル",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-062",
+        "check": "対戦データにサイキック・クリーチャーの対象例がなく、対象判定と超次元への移動を実戦経路で検証できないため保留。"
+      },
+      {
+        "id": "dmr09-102",
+        "name": "戦場のロックンロール",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-102",
+        "check": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
+      },
+      {
+        "id": "dmr12-015",
+        "name": "三つ目の超人",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-015",
+        "check": "公式QA 37034を確認。+5000と追加ブレイクが複数の付与元で加算される。効果ブレイクと呪文ブレイクの扱いはカニスの共通調査と合わせる。"
+      },
+      {
+        "id": "dmr12-008",
+        "name": "散舞する世界 パシフィック R",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-008",
+        "check": "公式本文を確認。自分のターン開始時、発生源と手札・墓地を同じシャッフルに含める。離脱置換がある場合の実行順と、その後の3枚ドローを検証する。"
+      },
+      {
+        "id": "dmr12-s01",
+        "name": "新聖綺神 クロスオーバー・ヨミ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-s01",
+        "check": "単独時の離脱置換はパワーが0以下でも適用され得るため、正のパワーを要求する既存g577Stayのままでは再現できない。状況起因処理の再評価と他の置換との競合の検証が必要。"
+      },
+      {
+        "id": "dmd11-007",
+        "name": "焔の下の力持ち ワーゲン",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd11-007",
+        "check": "QA 36889・36890確認済み。表向きに複数ある場合とゼロヨンとの競合は未確認。攻撃選択とシールド選択を両方検証する。"
+      },
+      {
+        "id": "dmr09-036",
+        "name": "驚愕の存在 カニス",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-036",
+        "check": "クリーチャー自身の効果ブレイクに、対象シールドを選ぶ前に追加枚数を反映できるよう調査中。呪文・通常ブレイク・途中保存の互換性を検証する。"
+      },
+      {
+        "id": "dm26rp2-042",
+        "name": "連射のラクシャ ユキメ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-042",
+        "check": "公式QA 48931に沿う比較・公開時能力・山札下への置換処理が前提。"
+      },
+      {
+        "id": "dmr10-017",
+        "name": "呼ぶ者 サリックス",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-017",
+        "check": "エグザイルは種族ではなくカードタイプ。まず実カードの対戦対応が必要。"
+      }
+    ],
+    "steps": [
+      "git statusとAGENTS.mdを確認し、カードID・正規名・再録・能力文全体・基本情報・画像・使用制限・関連裁定を照合する。",
+      "新たな条件は既存カードの挙動と保存形式を維持して追加し、公式確認や効果全体の再現ができない場合は保留する。",
+      "個別・関連回帰は各最大10分。対戦シミュレーションを含むファイルは対象テスト名を明示し、全体のnpm testは中断・合否未確認のままとする。",
+      "実データで再集計し、検証内容と保留理由をbatchHistoryに残して、検証済み差分のみローカルコミットする。"
+    ]
+  }
 }
