@@ -88,6 +88,13 @@ export function createShieldPhotoRules(api){
  default:throw Error('未実装の表向きシールド選択：'+t.op);
  }return true;}
  return{run,chosen,up,shieldGoCount,
+ execution(s,p){
+  for(const shield of up(s,p))if(card(shield).g668ShieldExecutionDraw)api.enqueue(s,p,shieldEffect(p,shield,[{op:'Draw',n:1,optional:true}]));
+ },
+ enemyPower(s,x){
+  const p=s.players.findIndex(owner=>owner.battle.some(y=>y.uid===x.uid));
+  return p<0?0:up(s,1-p).reduce((power,shield)=>power+(card(shield).g668ShieldEnemyPower||0),0);
+ },
  effect(s,p,c,uid){const effects={shieldFaceTop:'FaceTop',shieldDogi:'Dogi',shieldResolve:'Resolve',shieldBounce:'Bounce',shieldMirror:'Mirror',shieldMirrorSpell:'Mirror',shieldD4:'D4',shieldParfe:'Parfe',shieldDeka:'Deka'};if(!effects[c.effect])return false;put(s,task('g33_'+effects[c.effect],p,c.id,{uid,optional:c.effect==='shieldMirror'}));return true;},
  discount(s,p,c){return c.type==='creature'&&up(s,p).length?c.g33FaceDiscount||0:0;},
  decorate(s,p,x,c){
@@ -102,6 +109,7 @@ export function createShieldPhotoRules(api){
    c={...c,...grants,...(power?{power:c.power+power}:{}),...(breaker&&c.breaker!=='∞'?{breaker:Math.max(c.breaker||1,breaker)}:{})};
   }
   if(!c.speedAttacker&&faceUpShields.some(y=>card(y).g666ShieldSpeed))c={...c,speedAttacker:true};
+  if(!c.blocker&&String(c.race).includes('アウトレイジ')&&faceUpShields.some(y=>card(y).shieldGo)&&s.players[p].battle.some(y=>card(y).g668OutrageBlockers&&!api.ignored(s,y)))c={...c,blocker:true};
   return c;
  },
  beforeExecution(s,p,c,inst,options){if(c.type==='creature'||c.ignoreSpellLocks)return false;const pending={p,c,inst,options},hikari=up(s,1-p).length&&creatures(s,1-p).some(x=>card(x).g33Hikari&&!api.ignored(s,x))&&replaceable(s,pending,'grave'),momo=momos(s,1-p).length&&replaceable(s,pending,'mana');if(!hikari&&!momo)return false;(s.g33Executions??=[]).push(pending);put(s,task('g33_Counter',1-p,c.id,{target:inst.uid}));return true;},

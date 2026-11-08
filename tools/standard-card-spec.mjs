@@ -2453,6 +2453,9 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=668&&creature&&normalize(f.abilityText)==='このクリーチャーをバトルゾーンに出した時自分の山札の上から6枚を見る。その中から「シールド・ゴー」を持つカードを1枚表向きにして新しいシールドとして自分のシールドゾーンに加えてもよい。残りを好きな順序で自分の山札の一番下に戻す。W・ブレイカー「シールド・ゴー」を持つカードが自分のシールドゾーンに表向きであればバトルゾーンにある自分のアウトレイジはすべて「ブロッカー」を得る。'){
+  return {breaker:2,g668OutrageBlockers:true,effect:'sixPhoto',g34Tasks:[{op:'Look',n:6,stages:[{to:'shields',n:1,optional:true,filter:{g661ShieldGo:true},g657FaceUp:true}]}]};
+ }
  if(phase>=667&&evolution&&normalize(f.abilityText)==='進化-自分のアウトレイジ1体の上に置く。このクリーチャーが攻撃する時「シールド・ゴー」を持つクリーチャーを1体自分の墓地から表向きのまま新しいシールドとして自分のシールドゾーンに加えてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)'){
   return {evolution:{race:'アウトレイジ'},breaker:2,g34Attack:[{op:'Select',origin:'grave',to:'shields',filter:{creature:true,g661ShieldGo:true},n:1,optional:true,g657FaceUp:true}]};
  }
@@ -2489,6 +2492,17 @@ export function standardCardSpec(d,{phase=165}={}){
   if(text==='このクリーチャーはブロックされない。'+keyword)return {...base,unblockable:true};
   if(phase>=666&&text==='このクリーチャーが各ターンはじめて攻撃する時このクリーチャーをアンタップする。'+keyword+'このクリーチャーが自分のシールドゾーンに表向きであればバトルゾーンにある自分のクリーチャーはすべて「スピードアタッカー」を得る。'){
    return {...base,g540FirstAttack:[{op:'Untap',g191First:true}],g666ShieldSpeed:true};
+  }
+  if(phase>=668){
+   const shield='このカードが自分のシールドゾーンに表向きであれば';
+   if(text==='W・ブレイカー'+keyword+shield+'自分のクリーチャーを召喚した時または呪文を唱えた時カードを1枚引いてもよい。'){
+    return {...base,breaker:2,g668ShieldExecutionDraw:true};
+   }
+   const power='相手のクリーチャーすべてのパワーは-3000される。(パワー0以下のクリーチャーは破壊される)';
+   const currentKeyword='{SG}シールド・ゴー(このクリーチャーが破壊された時表向きにシールド化する。このクリーチャーが表向きでシールドゾーンを離れる時かわりに自分の墓地に置く)';
+   if(text==='W・ブレイカー'+keyword+shield+'バトルゾーンにある'+power||text==='W・ブレイカー'+currentKeyword+shield+power){
+    return {...base,breaker:2,g668ShieldEnemyPower:-3000};
+   }
   }
   if(phase>=667){
    if(text==='ガードマン(自分の他のクリーチャーが攻撃される時このクリーチャーをタップしてもよい。そうした場合攻撃クリーチャーはかわりにこのクリーチャーを攻撃する)'+keyword)return {...base,guardman:true};

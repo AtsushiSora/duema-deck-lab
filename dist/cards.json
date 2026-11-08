@@ -168067,21 +168067,112 @@
       ],
       "supportBatch": "phase-667",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-s02",
+      "name": "驚異的陣形 アレキサンドライト",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アウトレイジMAX",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から６枚を見る。その中から「シールド・ゴー」を持つカードを１枚表向きにして、新しいシールドとして自分のシールドゾーンに加えてもよい。残りを好きな順序で自分の山札の一番下に戻す。\nW・ブレイカー\n「シールド・ゴー」を持つカードが自分のシールドゾーンに表向きであれば、バトルゾーンにある自分のアウトレイジはすべて「ブロッカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-s02",
+      "limit": 4,
+      "breaker": 2,
+      "g668OutrageBlockers": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 6,
+          "stages": [
+            {
+              "to": "shields",
+              "n": 1,
+              "optional": true,
+              "filter": {
+                "g661ShieldGo": true
+              },
+              "g657FaceUp": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-668",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-011",
+      "name": "百識 アカシック",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アウトレイジ",
+      "text": "W・ブレイカー {SG}シールド・ゴー（このクリーチャーが破壊された時、新しいシールドとして自分のシールドゾーンに表向きのまま加える。このクリーチャーが表向きで、シールドゾーンを離れる時、かわりに自分の墓地に置く）\nこのカードが自分のシールドゾーンに表向きであれば、自分のクリーチャーを召喚した時または呪文を唱えた時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-011",
+      "limit": 4,
+      "shieldGo": true,
+      "g172Death": [
+        {
+          "op": "SelfGraveShield659"
+        }
+      ],
+      "breaker": 2,
+      "g668ShieldExecutionDraw": true,
+      "supportBatch": "phase-668",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-013",
+      "name": "凄惨なる牙 パラノーマル",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "アウトレイジ",
+      "text": "W・ブレイカー {SG}シールド・ゴー（このクリーチャーが破壊された時、新しいシールドとして自分のシールドゾーンに表向きのまま加える。このクリーチャーが表向きで、シールドゾーンを離れる時、かわりに自分の墓地に置く）\nこのカードが自分のシールドゾーンに表向きであれば、バトルゾーンにある相手のクリーチャーすべてのパワーは-3000される。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-013",
+      "limit": 1,
+      "shieldGo": true,
+      "g172Death": [
+        {
+          "op": "SelfGraveShield659"
+        }
+      ],
+      "breaker": 2,
+      "g668ShieldEnemyPower": -3000,
+      "supportBatch": "phase-668",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 667,
+    "phase": 668,
     "checkedAt": "2026-11-09",
-    "baseCount": 5830,
+    "baseCount": 5833,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5833,
+    "totalCount": 5836,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
       "https://dm.takaratomy.co.jp/rule/qa/40671/",
-      "https://dm.takaratomy.co.jp/rule/qa/40102/",
-      "https://dm.takaratomy.co.jp/rule/qa/46490/"
+      "https://dm.takaratomy.co.jp/rule/qa/39110/",
+      "https://dm.takaratomy.co.jp/rule/qa/40456/",
+      "https://dm.takaratomy.co.jp/rule/qa/48493/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -179544,6 +179635,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/41413/",
           "https://dm.takaratomy.co.jp/rule/qa/44188/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36877/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 667,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5830,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5833,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/40671/",
+          "https://dm.takaratomy.co.jp/rule/qa/40102/",
+          "https://dm.takaratomy.co.jp/rule/qa/46490/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
