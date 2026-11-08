@@ -126,6 +126,8 @@ export function createExtendedRules(api){
   if(kind==='attack'&&s.g481Attackers?.turn===s.turn&&s.g481Attackers.events.some(event=>event.p===p)&&
    (s.extLimits||[]).some(l=>l.kind==='g627AttackCap'&&l.player===p&&l.active&&
     !api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})))return true;
+  if(kind==='attack'&&(s.extLimits||[]).some(l=>l.kind==='g677OnlyAttacker'&&l.player===p&&
+   !api.allLayers(x).some(y=>l.refs.includes(y.uid+'@'+(y.incarnation||0)))))return true;
   if(kind==='attack'&&creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks))return false;
   if(kind==='attack'&&utilityLightControl.locked(s,x))return true;
   if(kind==='attack'&&x.entered===s.turn&&effective(x,s).speedAttacker&&[0,1].some(q=>creatures(s,q).some(y=>effective(y,s).g163Dione)))return true;

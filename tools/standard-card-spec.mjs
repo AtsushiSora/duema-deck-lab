@@ -2453,6 +2453,21 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=677){
+  const text=normalize(f.abilityText);
+  if(creature&&text==='自分の他のクリーチャーがどこからでも墓地に置かれた時そのターンこのクリーチャーは「パワーアタッカー+5000」と「W・ブレイカー」を得る。'){
+   return {g677AllyGrave:[{op:'SelfBoost313',power:5000,breaker:2,g337PowerAttacker:true,g536Source:true}]};
+  }
+  if(creature&&text==='相手のクリーチャーが攻撃する時そのターン相手の他のクリーチャーは攻撃できない。'){
+   return {g252AttackWatch:{who:'opponent',g399Attacker:true,g677Layers:true,defs:[{op:'OnlyAttacker677'}]}};
+  }
+  if(f.typeText==='呪文'&&/^自分の山札の上から2枚を見て好きな順序で戻(?:す|してもよい)。この呪文を唱えた後墓地に置くかわりに自分の手札に戻す。$/.test(text)){
+   return {effect:'sixPhoto',g34Tasks:[
+    {op:'Offer',title:'山札の上から2枚を見て好きな順序で戻す？',defs:[{op:'Look',n:2,stages:[],rest:'top',g259OrderTop:true}]},
+    {op:'SpellFinish416',to:'hand'}
+   ]};
+  }
+ }
  if(phase>=676){
   const text=normalize(f.abilityText);
   if(creature&&text==='相手がバトルゾーンにあるクリーチャーを選ぶ時自分の無色クリーチャーを選ぶことはできない。(ただしそのクリーチャーを攻撃またはブロックしてもよい)'){

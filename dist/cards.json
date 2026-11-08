@@ -168843,22 +168843,118 @@
       ],
       "supportBatch": "phase-676",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-032",
+      "name": "紅き血の テスタ・ロッサ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "アウトレイジ",
+      "text": "自分の他のクリーチャーがどこからでも墓地に置かれた時、そのターン、このクリーチャーは「パワーアタッカー+5000」と「W・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-032",
+      "limit": 4,
+      "g677AllyGrave": [
+        {
+          "op": "SelfBoost313",
+          "power": 5000,
+          "breaker": 2,
+          "g337PowerAttacker": true,
+          "g536Source": true
+        }
+      ],
+      "supportBatch": "phase-677",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-037",
+      "name": "高飛車姫プリン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ハンター/エイリアン",
+      "text": "相手のクリーチャーが攻撃する時、そのターン、相手の他のクリーチャーは攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-037",
+      "limit": 4,
+      "g252AttackWatch": {
+        "who": "opponent",
+        "g399Attacker": true,
+        "g677Layers": true,
+        "defs": [
+          {
+            "op": "OnlyAttacker677"
+          }
+        ]
+      },
+      "supportBatch": "phase-677",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr08-043",
+      "name": "エターナル・ブレイン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "自分の山札の上から２枚を見て、好きな順序で戻す。\nこの呪文を唱えた後、墓地に置くかわりに自分の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-043",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "山札の上から2枚を見て好きな順序で戻す？",
+          "defs": [
+            {
+              "op": "Look",
+              "n": 2,
+              "stages": [],
+              "rest": "top",
+              "g259OrderTop": true
+            }
+          ]
+        },
+        {
+          "op": "SpellFinish416",
+          "to": "hand"
+        }
+      ],
+      "supportBatch": "phase-677",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 676,
+    "phase": 677,
     "checkedAt": "2026-11-09",
-    "baseCount": 5856,
+    "baseCount": 5859,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5859,
+    "totalCount": 5862,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36853/",
-      "https://dm.takaratomy.co.jp/rule/qa/31825/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35234/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31645/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36842/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36844/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36684/",
+      "https://dm.takaratomy.co.jp/rule/qa/43355/",
+      "https://dm.takaratomy.co.jp/rule/qa/40925/",
+      "https://dm.takaratomy.co.jp/rule/qa/42365/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31411/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -180486,6 +180582,25 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36926/",
           "https://dm.takaratomy.co.jp/rule/qa/46841/",
           "https://dm.takaratomy.co.jp/rule/qa/31825/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 676,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5856,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5859,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36853/",
+          "https://dm.takaratomy.co.jp/rule/qa/31825/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35234/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31645/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
