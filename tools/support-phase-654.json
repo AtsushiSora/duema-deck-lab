@@ -1,0 +1,205 @@
+{
+  "phase": 654,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5786,
+  "description": "回収・表向きのシールド化・手札破棄で動いたクリーチャーのパワーを参照するS・トリガー。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/45440/",
+    "https://dm.takaratomy.co.jp/rule/qa/47367/"
+  ],
+  "cards": [
+    {
+      "id": "dm26rp2-017",
+      "name": "ごくごく掘るナウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-017",
+      "faces": [
+        {
+          "name": "ごくごく掘るナウ",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n自分の山札の上から３枚を墓地に置く。その後、クリーチャーを１体、自分の墓地から手札に戻す。こうしてパワー6000以上のクリーチャーを手札に戻したら、相手のクリーチャーを１体選び、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sequence",
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 3
+              },
+              {
+                "op": "Select",
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "g228Face": {
+                    "type": "creature"
+                  }
+                },
+                "title": "手札に戻す墓地のクリーチャーを1体選ぶ",
+                "g654MovedFilter": {
+                  "g228Face": {
+                    "type": "creature",
+                    "minPower": 6000
+                  }
+                },
+                "g583OnMove": [
+                  {
+                    "op": "Target",
+                    "to": "grave"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "d8ec032e9e2546ba10dabaced3ca78d9db87fe22ac683c8a9129113636dca074",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp2-013",
+      "name": "ポプポプ守るナウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-013",
+      "faces": [
+        {
+          "name": "ポプポプ守るナウ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n自分の山札の上から１枚を表向きでシールド化する。こうしてパワー6000以上のクリーチャーをシールド化したら、相手のクリーチャーを１体選び、シールド化してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 1,
+            "faceUp": true,
+            "g654MovedFilter": {
+              "g228Face": {
+                "type": "creature",
+                "minPower": 6000
+              }
+            },
+            "after": [
+              {
+                "op": "Target",
+                "to": "shields",
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "ad7d954cddf11b2e19ff71586e5630ab2e6142e8111f62564c88cd2329a0f612",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp2-019",
+      "name": "ドファドファ叩くナウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-019",
+      "faces": [
+        {
+          "name": "ドファドファ叩くナウ",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n自分の手札を１枚捨て、カードを２枚引く。こうしてパワー6000以上のクリーチャーを捨てたら、コストの合計が６以下になるように相手のエレメントを好きな数選び、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandFollow584",
+            "always": [
+              {
+                "op": "Draw",
+                "n": 2
+              }
+            ],
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "minPower": 6000
+              }
+            },
+            "then": [
+              {
+                "op": "Select",
+                "owner": "opponent",
+                "origin": "battle",
+                "n": "all",
+                "optional": true,
+                "to": "grave",
+                "g173Targets": true,
+                "g193Select": true,
+                "g513CostBudget": 6,
+                "title": "合計コスト6以下になるよう相手のエレメントを選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "10983c9f33e9f3dfd695552058304cf5e9fcac9b46de990083095672fd229e68",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26rp2-017": 4,
+      "dm26rp2-013": 4,
+      "dm26rp2-019": 4
+    }
+  }
+}

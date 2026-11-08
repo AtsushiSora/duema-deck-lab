@@ -5,7 +5,18 @@ const aliasNames=new Set(['炎のたてがみ(バーニング・ヘアー)','青
 const normalize=s=>s.normalize('NFKC').replace(/\s|■/g,'').replaceAll('、','');
 const keyword=(line,name)=>new RegExp('^(?:'+name+'){1,2}(?:\\([^()]*\\))?$').test(line);
 const replicaAuction616='自分の山札の上から3枚を見る。そのうちの1枚をシールド化しその後残りを好きな順序で山札の下に置く。';
+function instruction654(text){
+ const highPower={g228Face:{type:'creature',minPower:6000}};
+ if(text==='自分の山札の上から3枚を墓地に置く。その後クリーチャーを1体自分の墓地から手札に戻す。こうしてパワー6000以上のクリーチャーを手札に戻したら相手のクリーチャーを1体選び破壊する。')
+  return {op:'Sequence',defs:[{op:'Mill',n:3},{op:'Select',origin:'grave',to:'hand',n:1,filter:{g228Face:{type:'creature'}},title:'手札に戻す墓地のクリーチャーを1体選ぶ',g654MovedFilter:highPower,g583OnMove:[{op:'Target',to:'grave'}]}]};
+ if(text==='自分の山札の上から1枚を表向きでシールド化する。こうしてパワー6000以上のクリーチャーをシールド化したら相手のクリーチャーを1体選びシールド化してもよい。')
+  return {op:'ShieldTop',n:1,faceUp:true,g654MovedFilter:highPower,after:[{op:'Target',to:'shields',optional:true}]};
+ if(text==='自分の手札を1枚捨てカードを2枚引く。こうしてパワー6000以上のクリーチャーを捨てたらコストの合計が6以下になるように相手のエレメントを好きな数選び破壊する。')
+  return {op:'HandFollow584',always:[{op:'Draw',n:2}],filter:highPower,then:[{op:'Select',owner:'opponent',origin:'battle',n:'all',optional:true,to:'grave',g173Targets:true,g193Select:true,g513CostBudget:6,title:'合計コスト6以下になるよう相手のエレメントを選ぶ'}]};
+ return null;
+}
 const clauses=(body,phase)=>{
+ if(phase>=654&&instruction654(body))return[body];
  if(phase>=638&&body==='相手のクリーチャーを1体選び破壊する。その後選んだクリーチャーのコストと同じ枚数自分の山札の上から墓地に置いてもよい。')return[body];
  if(phase>=632&&body==='自分のパワー5000以下のクリーチャーを1体破壊する。そうした場合相手のパワー5000以下のクリーチャーを1体破壊する。')return[body];
  if(phase>=631&&body==='相手のクリーチャーを1体選び破壊する。その後選んだクリーチャーのコストと同じ枚数自分の山札の上から墓地に置く。')return[body];
@@ -1178,6 +1189,7 @@ function instruction604(text){
  }
 }
 function instruction(text,phase){
+ if(phase>=654){const def=instruction654(text);if(def)return def;}
  if(phase>=653){
   if(text==='自分のシールドを1つブレイクする。')return{op:'Break497',owner:'self',n:1};
   if(text==='相手は自身のシールドを1つ選ぶ。そのシールドをブレイクする。')return{op:'Break497',n:1,ownerChooses:true};

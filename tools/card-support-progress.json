@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-09",
   "catalogueNames": 11830,
-  "supportedNames": 5786,
-  "pendingNames": 6044,
-  "phase": 653,
+  "supportedNames": 5789,
+  "pendingNames": 6041,
+  "phase": 654,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -156,7 +156,7 @@
   "pendingByType": {
     "クリーチャー": 3669,
     "NEOクリーチャー": 153,
-    "呪文": 852,
+    "呪文": 849,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 60,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1351,
-    "未対応の能力文": 4486,
+    "未対応の能力文": 4483,
     "未対応のG・ゼロ条件": 27,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -1398,38 +1398,34 @@
         "scope": "シールド選択者、選択途中の保存復元、S・トリガーとG・ストライク、手札7マナと墓地4マナの召喚、マッハファイターとQ・ブレイカー。"
       },
       "deferred": []
+    },
+    {
+      "phase": 654,
+      "added": [
+        {
+          "id": "dm26rp2-017",
+          "name": "ごくごく掘るナウ"
+        },
+        {
+          "id": "dm26rp2-013",
+          "name": "ポプポプ守るナウ"
+        },
+        {
+          "id": "dm26rp2-019",
+          "name": "ドファドファ叩くナウ"
+        }
+      ],
+      "supportedNames": 5789,
+      "pendingNames": 6041,
+      "verification": {
+        "focusedPassed": 15,
+        "regressionPassed": 79,
+        "regressionIncludesFocused": true,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "パワーの境界と∞、ツインパクト、回収・シールド化・捨てる処理の不成立、予算内の選択と復元を検証。長いCPUシミュレーションを含む実行は中断し、関連ケースに限定して完了。"
+      },
+      "deferred": []
     }
-  ],
-  "resume": {
-    "lastVerifiedPhase": 653,
-    "lastVerifiedCommit": "043ea0169cc4248dde7c63a3b7f1ded315ec148d",
-    "nextPhase": 654,
-    "workInProgress": "phase 653までの実装・検証は完了。phase 654は候補の公式ページを一次確認済み。候補の裁定・再録・画像の照合、実装、テストは未着手。",
-    "nextCandidates": [
-      {
-        "id": "dm26rp2-017",
-        "name": "ごくごく掘るナウ",
-        "check": "墓地肥やし後に実際に回収したクリーチャーのパワーを参照し、6000以上の場合に破壊。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-017"
-      },
-      {
-        "id": "dm26rp2-013",
-        "name": "ポプポプ守るナウ",
-        "check": "山札のカードを実際に表向きでシールド化できた場合だけ、パワーを参照して相手のクリーチャーを任意でシールド化。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-013"
-      },
-      {
-        "id": "dm26rp2-019",
-        "name": "ドファドファ叩くナウ",
-        "check": "実際に捨てたクリーチャーのパワーを参照し、ドロー後にコスト合計6以下の相手のエレメントを任意選択。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-019"
-      }
-    ],
-    "steps": [
-      "git statusとAGENTS.mdを確認し、phase 654の候補のカードID・正規名・再録を照合する。",
-      "公式の能力文全体・基本情報・画像・使用制限・関連裁定を確認してからmanifestを作る。カードが実際に指定ゾーンへ移動したかと、参照する面やパワーを確認する。",
-      "カード固有と関連回帰を各最大10分で実行する。全体のnpm testは中断・合否未確認のままとする。",
-      "実データから件数を再集計し、batchHistoryを更新して、検証済みのバッチだけローカルコミットする。"
-    ]
-  }
+  ]
 }

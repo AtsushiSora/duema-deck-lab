@@ -10,11 +10,32 @@ export function createShieldPhotoRules(api){
  const pool=(s,t)=>(t.ids||[]).map(uid=>s.players[t.p].deck.find(x=>x.uid===uid)).filter(Boolean);
  function look(s,t,n){if(api.deckLocked(s,t.p))return[];const own=s.players[t.p],protectedIds=new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&/Protected$|Reveals$/.test(k)).flatMap(([,v])=>v)),xs=policyLook(s,t.p,n,own.deck.filter(x=>!protectedIds.has(x.uid)),api);own.g33Protected=[...(own.g33Protected||[]),...xs.map(x=>x.uid)];api.log(s,t.p,'look',card(t.source).name+'：山札の上'+xs.length+'枚を確認',{cardId:t.source});return xs.map(x=>x.uid);}
  function release(s,p,uid){s.players[p].g33Protected=(s.players[p].g33Protected||[]).filter(x=>x!==uid);}
- function addFace(s,p,x,fromDeck=false){if(!x)return;clear(x,'shields');if(fromDeck&&s.players.some(y=>y.battle.some(x=>effective(x,s).deckRedirect)))api.addZone(s,p,'grave',x);else{x.faceUp=true;api.addZone(s,p,'shields',x);api.notifyShieldAdded(s,p,x);api.log(s,p,'shieldAdd',card(x).name+'を表向きでシールド化',{cardId:x.cardId});}}
- function faceTop(s,p){if(!api.canAddShield(s,p))return;addFace(s,p,api.takeTop(s,p),true);api.deckCheck(s,p);}
+ function addFace(s,p,x,fromDeck=false){
+  if(!x)return null;
+  clear(x,'shields');
+  if(fromDeck&&s.players.some(y=>y.battle.some(x=>effective(x,s).deckRedirect))){
+   api.addZone(s,p,'grave',x);
+   return null;
+  }
+  x.faceUp=true;
+  api.addZone(s,p,'shields',x);
+  api.notifyShieldAdded(s,p,x);
+  api.log(s,p,'shieldAdd',card(x).name+'を表向きでシールド化',{cardId:x.cardId});
+  return x;
+ }
+ function faceTop(s,p){
+  if(!api.canAddShield(s,p))return null;
+  const placed=addFace(s,p,api.takeTop(s,p),true);
+  api.deckCheck(s,p);
+  return placed;
+ }
  function take(s,t,uid,to){if(to==='shields'&&!api.canAddShield(s,t.p)){release(s,t.p,uid);return null;}const x=remove(s.players[t.p].deck,uid);release(s,t.p,uid);if(x){if(to==='shields')addFace(s,t.p,x,true);else{clear(x,to);api.addZone(s,t.p,to,x);}}return x;}
  function run(s,t){if(!t.op.startsWith('g33_'))return false;const own=s.players[t.p],opp=s.players[1-t.p];switch(t.op){
- case'g33_FaceTop':faceTop(s,t.p);break;
+ case'g33_FaceTop':{
+  const placed=faceTop(s,t.p);
+  if(placed&&t.g654MovedFilter)put(s,{...t,op:'g34_OnShieldMove654',placed:placed.uid});
+  break;
+ }
  case'g33_Hikari':case'g33_Resolve':{const ids=look(s,t,t.op==='g33_Hikari'?2:3);if(ids.length)put(s,{...t,op:'g33_FacePick',ids,resolve:t.op==='g33_Resolve'});break;}
  case'g33_FacePick':choice(s,t,'表向きでシールド化する1枚を選ぶ',pool(s,t).map(x=>opt(card(x).name,x.uid,armored(card(x))?10:5,x.cardId)));break;
  case'g33_GravePick':choice(s,t,'墓地に置く1枚を選ぶ（そのコスト以下の相手を破壊）',pool(s,t).map(x=>opt(card(x).name,x.uid,cost(card(x)),x.cardId)));break;

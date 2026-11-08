@@ -166447,20 +166447,166 @@
       "breaker": 4,
       "supportBatch": "phase-653",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-017",
+      "name": "ごくごく掘るナウ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n自分の山札の上から３枚を墓地に置く。その後、クリーチャーを１体、自分の墓地から手札に戻す。こうしてパワー6000以上のクリーチャーを手札に戻したら、相手のクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-017",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sequence",
+          "defs": [
+            {
+              "op": "Mill",
+              "n": 3
+            },
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "hand",
+              "n": 1,
+              "filter": {
+                "g228Face": {
+                  "type": "creature"
+                }
+              },
+              "title": "手札に戻す墓地のクリーチャーを1体選ぶ",
+              "g654MovedFilter": {
+                "g228Face": {
+                  "type": "creature",
+                  "minPower": 6000
+                }
+              },
+              "g583OnMove": [
+                {
+                  "op": "Target",
+                  "to": "grave"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-654",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-013",
+      "name": "ポプポプ守るナウ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n自分の山札の上から１枚を表向きでシールド化する。こうしてパワー6000以上のクリーチャーをシールド化したら、相手のクリーチャーを１体選び、シールド化してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-013",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "n": 1,
+          "faceUp": true,
+          "g654MovedFilter": {
+            "g228Face": {
+              "type": "creature",
+              "minPower": 6000
+            }
+          },
+          "after": [
+            {
+              "op": "Target",
+              "to": "shields",
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-654",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-019",
+      "name": "ドファドファ叩くナウ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n自分の手札を１枚捨て、カードを２枚引く。こうしてパワー6000以上のクリーチャーを捨てたら、コストの合計が６以下になるように相手のエレメントを好きな数選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-019",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "HandFollow584",
+          "always": [
+            {
+              "op": "Draw",
+              "n": 2
+            }
+          ],
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "minPower": 6000
+            }
+          },
+          "then": [
+            {
+              "op": "Select",
+              "owner": "opponent",
+              "origin": "battle",
+              "n": "all",
+              "optional": true,
+              "to": "grave",
+              "g173Targets": true,
+              "g193Select": true,
+              "g513CostBudget": 6,
+              "title": "合計コスト6以下になるよう相手のエレメントを選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-654",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 653,
+    "phase": 654,
     "checkedAt": "2026-11-09",
-    "baseCount": 5783,
+    "baseCount": 5786,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5786,
+    "totalCount": 5789,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/49406/",
-      "https://dm.takaratomy.co.jp/rule/qa/39516/"
+      "https://dm.takaratomy.co.jp/rule/qa/45440/",
+      "https://dm.takaratomy.co.jp/rule/qa/47367/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -177662,6 +177808,23 @@
           "https://dm.takaratomy.co.jp/rule/rulechange/31632/",
           "https://dm.takaratomy.co.jp/rule/qa/41185/",
           "https://dm.takaratomy.co.jp/rule/qa/48919/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 653,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5783,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5786,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/49406/",
+          "https://dm.takaratomy.co.jp/rule/qa/39516/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
