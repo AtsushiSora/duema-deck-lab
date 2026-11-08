@@ -166283,25 +166283,110 @@
       },
       "supportBatch": "phase-651",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-049",
+      "name": "刀の3号 カツえもん逆",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "メガ・コマンド・ドラゴン/革命軍/ハムカツ団",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをもう１つブレイクする）\n自分のクリーチャーが３体以上あれば、このクリーチャーのパワーを+6000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-049",
+      "limit": 4,
+      "blocker": true,
+      "poweredBreaker": true,
+      "g260Self": {
+        "filter": {
+          "g370BattleCount": {
+            "filter": {
+              "creature": true
+            },
+            "min": 3
+          }
+        },
+        "grants": {
+          "power": 6000
+        }
+      },
+      "supportBatch": "phase-652",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-065",
+      "name": "熱血の親衛隊ファンク",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 4000,
+      "race": "ダークロード/ハンター/エイリアン",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n各ターンの終わりに、このクリーチャーがタップしていれば、このクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-065",
+      "limit": 4,
+      "blocker": true,
+      "g474AnyEnd": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g590SourceTapped": true
+          },
+          "defs": [
+            {
+              "op": "SelfDestroy"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-652",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp2-069",
+      "name": "雪精 マリニャン。",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 8000,
+      "race": "スノーフェアリー風",
+      "text": "スーパーガードマン（自分の他のクリーチャーがバトルする時、かわりにこのクリーチャーをタップしてバトルさせてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのターンに他のクリーチャーが攻撃していなければ、このクリーチャーは攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-069",
+      "limit": 4,
+      "superGuardman": true,
+      "breaker": 2,
+      "g225AttackRequires": {
+        "kind": "otherAttack"
+      },
+      "supportBatch": "phase-652",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 651,
+    "phase": 652,
     "checkedAt": "2026-11-09",
-    "baseCount": 5777,
+    "baseCount": 5780,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5780,
+    "totalCount": 5783,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/46502/",
-      "https://dm.takaratomy.co.jp/rule/qa/46860/",
-      "https://dm.takaratomy.co.jp/rule/qa/47060/",
-      "https://dm.takaratomy.co.jp/rule/qa/41075/",
-      "https://dm.takaratomy.co.jp/rule/qa/41076/",
-      "https://dm.takaratomy.co.jp/rule/qa/46533/",
-      "https://dm.takaratomy.co.jp/rule/qa/42377/"
+      "https://dm.takaratomy.co.jp/rule/rulechange/31632/",
+      "https://dm.takaratomy.co.jp/rule/qa/41185/",
+      "https://dm.takaratomy.co.jp/rule/qa/48919/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -177462,6 +177547,28 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
           "https://dm.takaratomy.co.jp/rule/qa/46533/",
           "https://dm.takaratomy.co.jp/rule/qa/46530/",
+          "https://dm.takaratomy.co.jp/rule/qa/42377/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 651,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5777,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5780,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/46502/",
+          "https://dm.takaratomy.co.jp/rule/qa/46860/",
+          "https://dm.takaratomy.co.jp/rule/qa/47060/",
+          "https://dm.takaratomy.co.jp/rule/qa/41075/",
+          "https://dm.takaratomy.co.jp/rule/qa/41076/",
+          "https://dm.takaratomy.co.jp/rule/qa/46533/",
           "https://dm.takaratomy.co.jp/rule/qa/42377/"
         ],
         "next": [

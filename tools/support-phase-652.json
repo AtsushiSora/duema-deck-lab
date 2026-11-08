@@ -1,0 +1,149 @@
+{
+  "phase": 652,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5780,
+  "description": "盤面のクリーチャー数・タップ状態・同ターンの攻撃履歴を参照する能力。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31632/",
+    "https://dm.takaratomy.co.jp/rule/qa/41185/",
+    "https://dm.takaratomy.co.jp/rule/qa/48919/"
+  ],
+  "cards": [
+    {
+      "id": "dm26rp2-049",
+      "name": "刀の3号 カツえもん逆",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-049",
+      "faces": [
+        {
+          "name": "刀の3号 カツえもん逆",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをもう１つブレイクする）\n自分のクリーチャーが３体以上あれば、このクリーチャーのパワーを+6000する。",
+          "race": "メガ・コマンド・ドラゴン/革命軍/ハムカツ団",
+          "powerText": "6000+",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "poweredBreaker": true,
+        "g260Self": {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true
+              },
+              "min": 3
+            }
+          },
+          "grants": {
+            "power": 6000
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "b1ac47ba6e93dc84fddb07467198a394d9826ff2f259bb56c44b8a8d2e4aef45",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp2-065",
+      "name": "熱血の親衛隊ファンク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-065",
+      "faces": [
+        {
+          "name": "熱血の親衛隊ファンク",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n各ターンの終わりに、このクリーチャーがタップしていれば、このクリーチャーを破壊する。",
+          "race": "ダークロード/ハンター/エイリアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g474AnyEnd": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g590SourceTapped": true
+            },
+            "defs": [
+              {
+                "op": "SelfDestroy"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-065.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "8dab19b9b1f516b20b80453094ca752e8df29561d506ea4068cfacdd74434a1f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp2-069",
+      "name": "雪精 マリニャン。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-069",
+      "faces": [
+        {
+          "name": "雪精 マリニャン。",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スーパーガードマン（自分の他のクリーチャーがバトルする時、かわりにこのクリーチャーをタップしてバトルさせてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのターンに他のクリーチャーが攻撃していなければ、このクリーチャーは攻撃できない。",
+          "race": "スノーフェアリー風",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superGuardman": true,
+        "breaker": 2,
+        "g225AttackRequires": {
+          "kind": "otherAttack"
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-069.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "f2138491a1a829feb13dee152108f2eec3e557f56e88b0705deaaea5fd7cd9a0",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26rp2-049": 4,
+      "dm26rp2-065": 4,
+      "dm26rp2-069": 4
+    }
+  }
+}

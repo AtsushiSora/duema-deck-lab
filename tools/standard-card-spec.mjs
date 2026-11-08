@@ -2728,6 +2728,11 @@ export function standardCardSpec(d,{phase=165}={}){
    }[line];if(first){if(spec.g540FirstAttack)throw Error('重複する最初の攻撃誘発');spec.g540FirstAttack=first;continue;}
    if(line==='鬼タイム:このクリーチャーが破壊された時自分と相手のシールドの数が合計6つ以下なら相手のパワー8000以下のクリーチャーを1体破壊する。'){if(death.length)throw Error('独立した破壊時能力の順序対応が必要');death.push({op:'IfOwn',filter:{g334ZoneCount:{zone:'shields',sumBoth:true,max:6}},defs:[{op:'Target',to:'grave',filter:{maxPower:8000,g199Power:true}}]});continue;}
   }
+  if(phase>=652&&creature&&line==='自分のクリーチャーが3体以上あればこのクリーチャーのパワーを+6000する。'){
+   if(spec.g260Self)throw Error('重複する自己強化条件');
+   spec.g260Self={filter:{g370BattleCount:{filter:{creature:true},min:3}},grants:{power:6000}};
+   powerBonus=true;continue;
+  }
   if(phase>=651&&creature){
    if(line==='このクリーチャーの召喚コストを自分の墓地にあるカード1枚につき1少なくする。ただしコストは0以下にはならない。'){
     if(spec.g212CountDiscount)throw Error('重複する墓地の枚数軽減');
@@ -3924,6 +3929,7 @@ export function standardCardSpec(d,{phase=165}={}){
    const restriction={
     'このクリーチャーは進化クリーチャーである時しか攻撃できない。':{kind:'selfEvolution'},
     'このターン他のクリーチャーが攻撃していなければこのクリーチャーは攻撃できない。':{kind:'otherAttack'},
+    ...(phase>=652?{'このターンに他のクリーチャーが攻撃していなければこのクリーチャーは攻撃できない。':{kind:'otherAttack'}}:{}),
     'このターン中に自分の他のクリーチャーが攻撃していなければこのクリーチャーは攻撃できない。':{kind:'otherAttack',own:true},
     'このクリーチャーはバトルゾーンに自分のディスペクターがなければ攻撃できない。':{kind:'ally',filter:{race:'ディスペクター'}},
     '自分の火のクリーチャーがバトルゾーンになければこのクリーチャーは攻撃できない。':{kind:'ally',filter:{color:'火'}},
@@ -3956,6 +3962,7 @@ export function standardCardSpec(d,{phase=165}={}){
    if(line==='このクリーチャーの攻撃の終わりにこのクリーチャーを破壊する。'){if(spec.g474AttackEnd)throw Error('重複する攻撃終了時能力');spec.g474AttackEnd=[{op:'SelfDestroy'}];continue;}
    const end={
     'ターンの終わりにこのクリーチャーを破壊する。':[{op:'SelfDestroy'}],
+    ...(phase>=652?{'各ターンの終わりにこのクリーチャーがタップしていればこのクリーチャーを破壊する。':[{op:'IfOwn',filter:{g590SourceTapped:true},defs:[{op:'SelfDestroy'}]}]}:{}),
     'ターンの終わりにこのクリーチャーをアンタップしてもよい。':[{op:'Offer',title:'このクリーチャーをアンタップする？',defs:[{op:'Untap'}]}]
    }[line];if(end){if(spec.g474AnyEnd)throw Error('重複する両ターン終了時能力');spec.g474AnyEnd=end;continue;}
   }
