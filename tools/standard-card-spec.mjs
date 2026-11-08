@@ -1177,6 +1177,11 @@ function instruction604(text){
  }
 }
 function instruction(text,phase){
+ if(phase>=636){
+  if(text==='自分のドラゴン・クリーチャーと相手のクリーチャーを1体ずつ選んでもよい。その2体をバトルさせる。')return{op:'Fight240',optional:true,g419FightFilter:{race:'ドラゴン'}};
+  if(text==='水または自然のコスト4以下のクリーチャーを1体自分の手札から出してもよい。')
+   return{op:'Select',origin:'hand',n:1,deploy:true,g195HandDeploy:true,filter:{creature:true,max:4,any:[{color:'水'},{color:'自然'}]},optional:true};
+ }
  if(phase>=635){
   if(text==='相手のエレメントを1つ選ぶ。相手はそれを山札の上か下に置く。')return{op:'Target',element:true,g467Destinations:['deckTop','deck'],g472OwnerDestination:true};
   if(text==='クリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを+2000する。')return{op:'Target',anyOwner:true,power:2000,g419Boost:true,spell:true};

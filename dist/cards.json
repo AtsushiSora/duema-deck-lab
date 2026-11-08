@@ -164738,18 +164738,129 @@
       ],
       "supportBatch": "phase-635",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp1-042",
+      "name": "邪神か、蛇神か",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分と相手のクリーチャーを１体ずつ選ぶ。その２体をバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-042",
+      "limit": 4,
+      "gStrike": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Fight240",
+          "optional": false
+        }
+      ],
+      "supportBatch": "phase-636",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp1-054",
+      "name": "レヴェクラウド-C10",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "メカ・デル・ディネロ",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、水または自然の、コスト４以下のクリーチャーを１体、自分の手札から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-054",
+      "limit": 4,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "g195HandDeploy": true,
+          "filter": {
+            "creature": true,
+            "max": 4,
+            "any": [
+              {
+                "color": "水"
+              },
+              {
+                "color": "自然"
+              }
+            ]
+          },
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-636",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp1-069",
+      "name": "ダブルソード・王闘・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "アーマード・ドラゴン",
+      "text": "NEO進化：闇、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、これをNEO進化クリーチャーとして扱う）\nこのクリーチャーが出た時、自分のドラゴン・クリーチャーと相手のクリーチャーを１体ずつ選んでもよい。その２体をバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-069",
+      "limit": 4,
+      "neoEvolution": {
+        "any": [
+          {
+            "civilization": "闇"
+          },
+          {
+            "civilization": "火"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Fight240",
+          "optional": true,
+          "g419FightFilter": {
+            "race": "ドラゴン"
+          }
+        }
+      ],
+      "supportBatch": "phase-636",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 635,
+    "phase": 636,
     "checkedAt": "2026-11-08",
-    "baseCount": 5730,
+    "baseCount": 5733,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5733,
+    "totalCount": 5736,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20251217.pdf"
+      "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+      "https://dm.takaratomy.co.jp/rule/qa/39516/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37335/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -175620,6 +175731,21 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316678/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37511/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 635,
+        "checkedAt": "2026-11-08",
+        "baseCount": 5730,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5733,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20251217.pdf"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
