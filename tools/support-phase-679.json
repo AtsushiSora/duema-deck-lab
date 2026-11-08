@@ -1,0 +1,150 @@
+{
+  "phase": 679,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5865,
+  "description": "破壊されたクリーチャーごとの強化とブレイカー、ターン末に同じクリーチャーをアンタップする呪文。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37085/",
+    "https://dm.takaratomy.co.jp/rule/qa/45450/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31617/"
+  ],
+  "cards": [
+    {
+      "id": "dmr15-026",
+      "name": "ニャンダフル・ニャン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-026",
+      "faces": [
+        {
+          "name": "ニャンダフル・ニャン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "クリーチャーが破壊された時、そのターン、このクリーチャーのパワーは+2000される。\nこのクリーチャーは、パワーが6000以上の時、「Ｗ・ブレイカー」を得る。",
+          "race": "ファンキー・ナイトメア",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g303DeathWatch": {
+          "both": true,
+          "self": true,
+          "defs": [
+            {
+              "op": "SelfBoost313",
+              "power": 2000,
+              "g536Source": true
+            }
+          ]
+        },
+        "g207Breakers": [
+          {
+            "power": 6000,
+            "breaker": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "964e181eebbd08021d3d97defa7255edeae65b3a5ae8bbd55044bdda558f11dc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-053",
+      "name": "ハチノス・バッチクマ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-053",
+      "faces": [
+        {
+          "name": "ハチノス・バッチクマ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "他のクリーチャーが破壊された時、そのターン、このクリーチャーのパワーは+4000され、「W・ブレイカー」を得る。",
+          "race": "ファンキー・ナイトメア",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g303DeathWatch": {
+          "both": true,
+          "defs": [
+            {
+              "op": "SelfBoost313",
+              "power": 4000,
+              "breaker": 2,
+              "g536Source": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "9cdfa054b7ed3ad873710891fb3b4c1996232a88dce1d78c22dccb8d5e8d1e97",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr15-037",
+      "name": "正義と愛の賛歌",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-037",
+      "faces": [
+        {
+          "name": "正義と愛の賛歌",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このターン、バトルゾーンにある自分のクリーチャー１体のパワーは+2000される。このターンの終わりに、そのクリーチャーをアンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ChooseEndUntap501",
+            "power": 2000,
+            "thisTurn": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "db8fcf263caa8f103066bf3fdbcb3b40051fd73fae2ca8ed39132fcd51ec181a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr15-026": 4,
+      "dmr13-053": 4,
+      "dmr15-037": 4
+    }
+  }
+}

@@ -928,7 +928,7 @@ export function createSixPhotoRules(api){
  }
  case'g34_EndUntap562':scheduleUntap562(s,t,t.defs);break;
  case'g34_ChooseUntap562':{const refs=t.refs||[],rows=creatures(s,t.p).filter(y=>!y.sealed&&!refs.some(r=>r.uid===y.uid&&(y.incarnation||0)===r.incarnation));if(refs.length>=t.n||!rows.length){finishUntap562(s,t);break;}choice(s,t,t.delay?'ターン終了時にアンタップするクリーチャーを選ぶ':'アンタップするクリーチャーを選ぶ',[...targetOptions(s,t.p,rows).map(o=>{const y=rows.find(y=>y.uid===o.value);return{...o,value:{uid:y.uid,incarnation:y.incarnation||0},score:y.tapped&&api.canUntap(y)?10+Number(!!effective(y,s).blocker)*5:0};}),...(t.optional?[skip()]:[])]);break;}
- case'g34_ChooseEndUntap501':{const rows=creatures(s,t.p).filter(y=>!y.sealed);choice(s,t,'ターン終了時にアンタップするクリーチャーを選ぶ',targetOptions(s,t.p,rows).map(o=>{const y=rows.find(y=>y.uid===o.value);return{...o,value:{uid:y.uid,incarnation:y.incarnation||0},score:(api.isEvolution(y)&&own.deck.length>1?25:0)+(effective(y,s).blocker?10:0)+Math.min(20,cost(effective(y,s)))};}));break;}
+ case'g34_ChooseEndUntap501':{const rows=creatures(s,t.p).filter(y=>!y.sealed);choice(s,t,t.power?'パワーを+'+t.power+'し、ターン終了時にアンタップするクリーチャーを選ぶ':'ターン終了時にアンタップするクリーチャーを選ぶ',targetOptions(s,t.p,rows).map(o=>{const y=rows.find(y=>y.uid===o.value);return{...o,value:{uid:y.uid,incarnation:y.incarnation||0},score:(api.isEvolution(y)&&own.deck.length>1?25:0)+(effective(y,s).blocker?10:0)+Math.min(20,cost(effective(y,s)))};}));break;}
  case'g34_ResolveEnd501':if(!api.spellIgnored(s,{type:'spell',cost:t.spellCost,spellSource:t.source}))start(s,t,t.defs);break;
  case'g34_AfterAttack542':if(s.attackLifecycle)(s.attackLifecycle.g542After??=[]).push({p:t.p,source:t.source,uid:t.uid,incarnation:t.incarnation||0,defs:structuredClone(t.defs)});break;
  case'g34_Schedule537':(s.g537Delays??=[]).push({p:t.p,source:t.source,uid:t.uid,incarnation:t.incarnation||0,turn:s.turn,when:t.when,defs:structuredClone(t.defs)});break;
@@ -1402,7 +1402,15 @@ export function createSixPhotoRules(api){
  case'g34_DiscardMatch517':{const y=own.hand.find(y=>y.uid===v);if(y)api.discardSelected(s,t.p,[y.uid],t.source,t.p,null,{op:'g34_DrawAfterDiscard517',p:t.p,source:t.source,matches:matches(s,t.p,y,t.filter)});else api.draw(s,t.p,1);break;}
  case'g34_Mill':if(v)api.mill(s,t.owner??t.p,t.n==='∞'?s.players[t.owner??t.p].deck.length:t.n);break;
  case'g34_ChooseUntap562':if(v){const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation);put(s,{...t,refs:[...(t.refs||[]),...(y?[v]:[])]});}else finishUntap562(s,t);break;
- case'g34_ChooseEndUntap501':if(v){const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation);if(y){const source=faces(card(t.source)).find(c=>c.type==='spell')||card(t.source),ref={uid:y.uid,incarnation:y.incarnation||0};(s.g501EndDelays??=[]).push({p:t.p,source:t.source,ownEnd:true,defs:[{op:'AttackUntap408',g399Attacker:ref}],spellCost:cost(source)});if(t.evolutionDraw&&api.isEvolution(y))start(s,t,[{op:'Offer',title:'進化クリーチャーを選んだので1枚引く？',defs:[{op:'Draw',n:1}]}]);}}break;
+ case'g34_ChooseEndUntap501':if(v){
+  const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation);
+  if(y){
+   const source=faces(card(t.source)).find(c=>c.type==='spell')||card(t.source),ref={uid:y.uid,incarnation:y.incarnation||0};
+   if(t.power)(y.powerModifiers??=[]).push({amount:t.power,expires:'end',who:s.active,spellSource:t.source,spellCost:cost(source)});
+   scheduleUntap562(s,{...t,ownEnd:!t.thisTurn},[{op:'AttackUntap408',g399Attacker:ref}]);
+   if(t.evolutionDraw&&api.isEvolution(y))start(s,t,[{op:'Offer',title:'進化クリーチャーを選んだので1枚引く？',defs:[{op:'Draw',n:1}]}]);
+  }
+ }break;
  case'g34_EvoCharge566':if(v){if(!t.host)put(s,{...t,host:v});else{const host=creatures(s,t.p).find(y=>!y.sealed&&api.isEvolution(y)&&key(y)===key(t.host)),y=own.mana.find(y=>y.uid===v.uid&&(y.zoneSerial||0)===v.serial&&!y.faceDown&&faces(card(y)).some(c=>c.type==='creature'));if(host&&y&&api.canMoveZone(s,t.p,'mana')){remove(own.mana,y.uid);clear(y,'under');(host.under??=[]).push(y);api.log(s,t.p,'evoCharger',card(y).name+'を'+card(host).name+'の進化元に追加',{cardId:y.cardId});}}}break;
  case'g34_Bind566':if(v)put(s,{...t,p:t.caster,stage:t.stage+1,chosen:[...(t.chosen||[]),key(v)]});break;
  case'g34_ManaChoose582':manaPlayer582(s,t,v);break;

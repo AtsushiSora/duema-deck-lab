@@ -2453,6 +2453,18 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=679){
+  const text=normalize(f.abilityText);
+  if(creature&&text==='クリーチャーが破壊された時そのターンこのクリーチャーのパワーは+2000される。このクリーチャーはパワーが6000以上の時「W・ブレイカー」を得る。'){
+   return {g303DeathWatch:{both:true,self:true,defs:[{op:'SelfBoost313',power:2000,g536Source:true}]},g207Breakers:[{power:6000,breaker:2}]};
+  }
+  if(creature&&text==='他のクリーチャーが破壊された時そのターンこのクリーチャーのパワーは+4000され「W・ブレイカー」を得る。'){
+   return {g303DeathWatch:{both:true,defs:[{op:'SelfBoost313',power:4000,breaker:2,g536Source:true}]}};
+  }
+  if(f.typeText==='呪文'&&text==='このターンバトルゾーンにある自分のクリーチャー1体のパワーは+2000される。このターンの終わりにそのクリーチャーをアンタップする。'){
+   return {effect:'sixPhoto',g34Tasks:[{op:'ChooseEndUntap501',power:2000,thisTurn:true}]};
+  }
+ }
  if(phase>=678&&creature){
   const text=normalize(f.abilityText);
   if(text==='自分のターン中相手のクリーチャーがタップされた時カードを1枚引いてもよい。'){
