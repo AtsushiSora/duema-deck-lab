@@ -86,7 +86,7 @@ export function createShieldPhotoRules(api){
  case'g33_Counter':finishExecution(s,t.target,v);break;
  default:throw Error('未実装の表向きシールド選択：'+t.op);
  }return true;}
- return{run,chosen,up,
+ return{run,chosen,up,shieldGoCount:(s,p)=>up(s,p).filter(x=>card(x).shieldGo).length,
  effect(s,p,c,uid){const effects={shieldFaceTop:'FaceTop',shieldDogi:'Dogi',shieldResolve:'Resolve',shieldBounce:'Bounce',shieldMirror:'Mirror',shieldMirrorSpell:'Mirror',shieldD4:'D4',shieldParfe:'Parfe',shieldDeka:'Deka'};if(!effects[c.effect])return false;put(s,task('g33_'+effects[c.effect],p,c.id,{uid,optional:c.effect==='shieldMirror'}));return true;},
  discount(s,p,c){return c.type==='creature'&&up(s,p).length?c.g33FaceDiscount||0:0;},
  decorate(s,p,x,c){if(c.type==='creature'&&armored(c)&&castles(s,p,'g33Mai').length)c={...c,blocker:true,speedAttacker:true};if(c.type==='creature'&&colors(c).length>1&&s.players[p].battle.some(x=>!api.ignored(s,x)&&card(x).g33Dogi))c={...c,speedAttacker:true};return c;},
@@ -105,13 +105,21 @@ export function createShieldPhotoRules(api){
   for(const y of s.players[p].hand)if(card(y).g33Parfe&&s.players[p].mana.length>=2)on(s,p,y,'Offer',{serial:y.zoneSerial||0});},
  shieldLeft(s,p,x){if(x.faceUp&&card(x).g33Mai)on(s,p,x,'FaceTop');},
  entry(s,p,x,options){if(!api.isCreature(s,x))return;const c=effective(x,s);if(!options.selfMuted&&!api.selfStopped(s,p)&&!api.ignored(s,x)){if(c.g33Hikari&&options.revolution)on(s,p,x,'Hikari');if(c.g33Dogi&&options.revolution)on(s,p,x,'Final');}if(ad(c))for(const y of creatures(s,p))if(effective(y,s).g33Golgini&&(y.uid!==x.uid||!options.selfMuted&&!api.selfStopped(s,p)))on(s,p,y,'TapLock');for(const castle of castles(s,1-p,'g33Shachi'))if(cost(c)>s.players[p].mana.length)on(s,1-p,castle,'Shachi',{p,target:x.uid,targetInc:x.incarnation||0,controller:1-p});},
- attack(s,p,x){if(api.selfStopped(s,p))return;const c=effective(x,s);if(c.g33Hikari)on(s,p,x,'Hikari');if(c.g33Golgini)on(s,p,x,'Draw2');},
+ attack(s,p,x){
+  for(const shield of up(s,p)){
+   const defs=card(shield).g662ShieldAttack;
+   if(defs)api.enqueue(s,p,shieldEffect(p,shield,defs));
+  }
+  if(api.selfStopped(s,p))return;const c=effective(x,s);if(c.g33Hikari)on(s,p,x,'Hikari');if(c.g33Golgini)on(s,p,x,'Draw2');},
  snapshot(s){return[0,1].flatMap(p=>creatures(s,p).filter(x=>effective(x,s).g33Deka).map(x=>({p,uid:x.uid,source:x.cardId})));},
  leaving(s,p,x,snapshot,to,destroy){if(destroy&&to==='grave'&&snapshot?.some(y=>y.uid===x.uid&&y.p===p))on(s,p,x,'UntapDragons');},
  firstDestruction(s){
   for(const p of [s.active,1-s.active])for(const x of castles(s,p,'g658FirstDestruction'))api.enqueue(s,p,shieldEffect(p,x,[{op:'Draw',n:1,optional:true}]));
  },
- start(s,p){return castles(s,p,'g658ShieldOrStart').map(x=>shieldEffect(p,x,card(x).g658ShieldOrStart));},
+ start(s,p){return up(s,p).flatMap(x=>{
+  const c=card(x),defs=c.g662ShieldStart||(c.gCastle&&c.g658ShieldOrStart);
+  return defs?[shieldEffect(p,x,defs)]:[];
+ });},
  handMana(s,p,x){if(card(x).g33ChargeReveal)on(s,p,x,'Charge',{serial:x.zoneSerial||0});},
  end(s){return[0,1].flatMap(p=>castles(s,p,'g33Mai').map(x=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g33_UntapArmored',p,x.cardId)})));},
  };

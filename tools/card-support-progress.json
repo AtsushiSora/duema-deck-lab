@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-09",
   "catalogueNames": 11830,
-  "supportedNames": 5812,
-  "pendingNames": 6018,
-  "phase": 661,
+  "supportedNames": 5815,
+  "pendingNames": 6015,
+  "phase": 662,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3656,
+    "クリーチャー": 3653,
     "NEOクリーチャー": 153,
     "呪文": 847,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1338,
-    "未対応の能力文": 4464,
+    "未対応の能力文": 4461,
     "未対応のG・ゼロ条件": 27,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -1665,38 +1665,34 @@
         "scope": "表向き配置での手札破棄とターン短縮、攻撃の中止、ターン終了時能力の不発と継続効果の期限、光臨の対象・検索制限・シャッフル・保存復元を検証。"
       },
       "deferred": []
+    },
+    {
+      "phase": 662,
+      "added": [
+        {
+          "id": "dmr09-014",
+          "name": "O.S.D. ジェットストーン"
+        },
+        {
+          "id": "dmr09-024",
+          "name": "薔薇の裂爪 ファントム"
+        },
+        {
+          "id": "dmr12-013",
+          "name": "究極番長 アウトランダー"
+        }
+      ],
+      "supportedNames": 5815,
+      "pendingNames": 6015,
+      "verification": {
+        "focusedPassed": 7,
+        "regressionPassed": 76,
+        "regressionIncludesFocused": true,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "ターン開始の任意タップ、攻撃ごとの低下と離脱後の期限、表向きの物理カード単位の強化・追加ブレイク・公開情報・保存復元を検証。"
+      },
+      "deferred": []
     }
-  ],
-  "resume": {
-    "lastVerifiedPhase": 661,
-    "lastVerifiedCommit": "34d3522f43cd9f457f4dd808886bf3b1042f8c3b",
-    "nextPhase": 662,
-    "workInProgress": "phase 661まで実装・検証・ローカルコミット済み。phase 662候補の公式カードページとファントムの個別裁定を一次確認。再録・画像の最終照合、実装、テストは未着手。",
-    "nextCandidates": [
-      {
-        "id": "dmr09-014",
-        "name": "O.S.D. ジェットストーン",
-        "check": "自分のターン開始に表向きの各物理カードから任意のタップ。G城の開始時キューとシールド・ゴーを再利用できるか確認する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-014"
-      },
-      {
-        "id": "dmr09-024",
-        "name": "薔薇の裂爪 ファントム",
-        "check": "自分の攻撃ごとに表向きの各物理カードから相手全体を-1000。適用後にシールドを離れてもそのターン中は残る（QA 36862）。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-024"
-      },
-      {
-        "id": "dmr12-013",
-        "name": "究極番長 アウトランダー",
-        "check": "シールドの束の数ではなく表向きのシールド・ゴーを持つ物理カードの枚数で、パワーと追加ブレイクを算出。公開情報によるCPU評価、離脱時と複数枚重なった場合も検証する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-013"
-      }
-    ],
-    "steps": [
-      "git statusとAGENTS.mdを確認し、次候補のカードID・正規名・再録を照合する。",
-      "能力文全体・基本情報・画像・使用制限・関連裁定を公式照合し、未確認の候補は理由を残して保留する。パワー・ガチンコ・ジャッジはQA 48931に沿って、公開時能力と山札の下への置換も確認してから対応する。",
-      "カード固有と関連回帰を各最大10分で実行する。対戦シミュレーションを含む既存ファイルは必要なテスト名を明示する。全体のnpm testは中断・合否未確認のままとする。",
-      "実データから再集計し、batchHistoryを更新して検証済みのバッチだけローカルコミットする。"
-    ]
-  }
+  ]
 }

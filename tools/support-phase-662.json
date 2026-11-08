@@ -1,0 +1,146 @@
+{
+  "phase": 662,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5812,
+  "description": "表向きのシールド・ゴーを参照する開始・攻撃時の能力と継続効果。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36862/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36950/"
+  ],
+  "cards": [
+    {
+      "id": "dmr09-014",
+      "name": "O.S.D. ジェットストーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-014",
+      "faces": [
+        {
+          "name": "O.S.D. ジェットストーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー ブロッカー\nW・ブレイカー {SG}シールド・ゴー（このクリーチャーが破壊された時、新しいシールドとして自分のシールドゾーンに表向きのまま加える。このクリーチャーが表向きで、シールドゾーンを離れる時、かわりに自分の墓地に置く）\nこのカードが自分のシールドゾーンに表向きであれば、自分のターンのはじめに、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。",
+          "race": "アウトレイジ",
+          "powerText": "7500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "shieldGo": true,
+        "g172Death": [
+          {
+            "op": "SelfGraveShield659"
+          }
+        ],
+        "blocker": true,
+        "breaker": 2,
+        "g662ShieldStart": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "9f182b05a414226e76e16cdecc35d001b43c70eeac58c7461261d3835b93021d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr09-024",
+      "name": "薔薇の裂爪 ファントム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-024",
+      "faces": [
+        {
+          "name": "薔薇の裂爪 ファントム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー {SG}シールド・ゴー（このクリーチャーが破壊された時、新しいシールドとして自分のシールドゾーンに表向きのまま加える。このクリーチャーが表向きで、シールドゾーンを離れる時、かわりに自分の墓地に置く）\nこのカードが自分のシールドゾーンに表向きであれば、自分のクリーチャーが攻撃する時、バトルゾーンにある相手のクリーチャーすべてのパワーは-1000される。",
+          "race": "アウトレイジ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "shieldGo": true,
+        "g172Death": [
+          {
+            "op": "SelfGraveShield659"
+          }
+        ],
+        "breaker": 2,
+        "g662ShieldAttack": [
+          {
+            "op": "GroupPower",
+            "owner": "opponent",
+            "filter": {
+              "creature": true
+            },
+            "power": -1000
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "815e0b0cf9a1ee94b6a24bf32b500bd51b541e35f8772a35f10f9c64e073b0fd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr12-013",
+      "name": "究極番長 アウトランダー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-013",
+      "faces": [
+        {
+          "name": "究極番長 アウトランダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のシールドゾーンにある、「シールド・ゴー」を持つ表向きのカード１枚につき、このクリーチャーのパワーは+5000され、シールドをさらに１枚ブレイクする。",
+          "race": "アウトレイジ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g662ShieldGoStats": 5000
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr12-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "6c175a491b006ff576211ed0271f80ebbfd6bd2f0f7d38722299f8f40f03f0a2",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr09-014": 4,
+      "dmr09-024": 4,
+      "dmr12-013": 4
+    }
+  }
+}

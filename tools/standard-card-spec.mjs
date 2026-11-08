@@ -2444,6 +2444,9 @@ export function standardCardSpec(d,{phase=165}={}){
  const compact363=phase>=363?normalize(f.abilityText):'',whole363=phase>=363&&(modal363(compact363)||compact363==='自分の水と闇を両方持つクリーチャーがバトルゾーンに出た時次のうちいずれか1つを選ぶ。▼カードを1枚引く。▼相手は自身の手札を1枚選び捨てる。');
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?abilityText.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):abilityText).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=662&&creature&&normalize(f.abilityText)==='自分のシールドゾーンにある「シールド・ゴー」を持つ表向きのカード1枚につきこのクリーチャーのパワーは+5000されシールドをさらに1枚ブレイクする。'){
+  return {g662ShieldGoStats:5000};
+ }
  if(phase>=660&&creature){
   const keyword='{SG}シールド・ゴー(このクリーチャーが破壊された時新しいシールドとして自分のシールドゾーンに表向きのまま加える。このクリーチャーが表向きでシールドゾーンを離れる時かわりに自分の墓地に置く)';
   const text=normalize(f.abilityText);
@@ -2460,6 +2463,15 @@ export function standardCardSpec(d,{phase=165}={}){
   };
   const base={shieldGo:true,g172Death:[{op:'SelfGraveShield659'}]};
   if(text==='このクリーチャーはブロックされない。'+keyword)return {...base,unblockable:true};
+  if(phase>=662){
+   const shield='このカードが自分のシールドゾーンに表向きであれば';
+   if(text==='ブロッカーブロッカーW・ブレイカー'+keyword+shield+'自分のターンのはじめにバトルゾーンにある相手のクリーチャーを1体選びタップしてもよい。'){
+    return {...base,blocker:true,breaker:2,g662ShieldStart:[{op:'Target',tap:true,optional:true}]};
+   }
+   if(text==='W・ブレイカー'+keyword+shield+'自分のクリーチャーが攻撃する時バトルゾーンにある相手のクリーチャーすべてのパワーは-1000される。'){
+    return {...base,breaker:2,g662ShieldAttack:[{op:'GroupPower',owner:'opponent',filter:{creature:true},power:-1000}]};
+   }
+  }
   if(text.startsWith(keyword+trigger)){
    const effect=shieldEntry[text.slice((keyword+trigger).length)];
    if(effect)return {...base,g660ShieldEntry:[effect]};

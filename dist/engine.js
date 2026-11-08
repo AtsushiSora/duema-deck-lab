@@ -69,6 +69,10 @@ export function effectiveCard(inst,context,forPower=false){
  base=zoneCard(context,owner,inst,'battle');
  if(abilitiesIgnored(context,inst)){const {id,name,type,civ,civilizations,manaValue,cost,power,race,limit,sMax,starEvolution}=base;return externalBlockState(context,owner,inst,extra.utilityNatureSupport.decorate(context,owner,inst,{id,name,type,civ,civilizations,manaValue,cost,...(inst.g40Reckless?.turn===context.turn||extra.six.forced546(context,owner,inst)?{mustAttack:true}:{}),...(sMax?{sMax:true}:{}),...(starEvolution?{starEvolution:true}:{}),power:base.hyperTap&&inst.hyperActive?base.hyper.power:power,race,limit}));}
  let c=inheritSoul404(base.hyper&&inst.hyperActive?{...base,...base.hyper}:base,inst,card,layers);if(base.natureAce4&&!isCreature(context,inst))c={...c,type:'seed',power:0};
+ if(c.type==='creature'&&c.g662ShieldGoStats){
+  const count=extra.shieldPhoto.shieldGoCount(context,owner);
+  if(count)c={...c,power:numeric(c.power)+count*c.g662ShieldGoStats,extraBreak:(c.extraBreak||0)+count};
+ }
  if(c.type==='creature'&&c.g607StackPower&&layers(inst).length>=3)c={...c,power:numeric(c.power)+c.g607StackPower,poweredBreaker:true};
  for(const rule of [...(c.g260Self?[c.g260Self]:[]),...(c.g268ManaGrants||[])])if(!conditional260Reading.has(context)&&(!rule.turn||rule.turn==='opponent'&&context.active!==owner)){
   let ready=false;conditional260Reading.add(context);try{ready=extra.six.ownCondition(context,owner,rule.filter,inst.uid);}finally{conditional260Reading.delete(context);}
