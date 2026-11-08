@@ -100,7 +100,7 @@ export function createShieldPhotoRules(api){
     g173Targets:true,g193Select:true,title:'手札に戻す相手のクリーチャーを2体まで選ぶ'
    })
   });
-  const defs=card(x).g658ShieldOrStart;
+  const defs=card(x).g658ShieldOrStart||card(x).g660ShieldEntry;
   if(defs)api.enqueue(s,p,shieldEffect(p,x,defs));
   for(const y of s.players[p].hand)if(card(y).g33Parfe&&s.players[p].mana.length>=2)on(s,p,y,'Offer',{serial:y.zoneSerial||0});},
  shieldLeft(s,p,x){if(x.faceUp&&card(x).g33Mai)on(s,p,x,'FaceTop');},

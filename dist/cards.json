@@ -167181,24 +167181,177 @@
       ],
       "supportBatch": "phase-659",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-054",
+      "name": "結晶の鎖 ネビュラ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "アウトレイジ",
+      "text": "このクリーチャーはブロックされない。 {SG}シールド・ゴー（このクリーチャーが破壊された時、新しいシールドとして自分のシールドゾーンに表向きのまま加える。このクリーチャーが表向きで、シールドゾーンを離れる時、かわりに自分の墓地に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-054",
+      "limit": 4,
+      "shieldGo": true,
+      "g172Death": [
+        {
+          "op": "SelfGraveShield659"
+        }
+      ],
+      "unblockable": true,
+      "supportBatch": "phase-660",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-035",
+      "name": "不退転の遺志 コハク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2500,
+      "race": "アウトレイジ",
+      "text": "{SG}シールド・ゴー（このクリーチャーが破壊された時、新しいシールドとして自分のシールドゾーンに表向きのまま加える。このクリーチャーが表向きで、シールドゾーンを離れる時、かわりに自分の墓地に置く）\nこのクリーチャーを表向きにして自分のシールドゾーンに加えた時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-035",
+      "limit": 4,
+      "shieldGo": true,
+      "g172Death": [
+        {
+          "op": "SelfGraveShield659"
+        }
+      ],
+      "g660ShieldEntry": [
+        {
+          "op": "Target",
+          "tap": true,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-660",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-038",
+      "name": "不退転の遺志 エリジウム",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "アウトレイジ",
+      "text": "{SG}シールド・ゴー（このクリーチャーが破壊された時、新しいシールドとして自分のシールドゾーンに表向きのまま加える。このクリーチャーが表向きで、シールドゾーンを離れる時、かわりに自分の墓地に置く）\nこのクリーチャーを表向きにして自分のシールドゾーンに加えた時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-038",
+      "limit": 4,
+      "shieldGo": true,
+      "g172Death": [
+        {
+          "op": "SelfGraveShield659"
+        }
+      ],
+      "g660ShieldEntry": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-660",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-046",
+      "name": "不退転の遺志 チョイノリ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "アウトレイジ",
+      "text": "{SG}シールド・ゴー（このクリーチャーが破壊された時、新しいシールドとして自分のシールドゾーンに表向きのまま加える。このクリーチャーが表向きで、シールドゾーンを離れる時、かわりに自分の墓地に置く）\nこのクリーチャーを表向きにして自分のシールドゾーンに加えた時、相手のパワー2000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-046",
+      "limit": 4,
+      "shieldGo": true,
+      "g172Death": [
+        {
+          "op": "SelfGraveShield659"
+        }
+      ],
+      "g660ShieldEntry": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 2000,
+            "g199Power": true
+          }
+        }
+      ],
+      "supportBatch": "phase-660",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-049",
+      "name": "不退転の遺志 ライノー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "アウトレイジ",
+      "text": "{SG}シールド・ゴー（このクリーチャーが破壊された時、新しいシールドとして自分のシールドゾーンに表向きのまま加える。このクリーチャーが表向きで、シールドゾーンを離れる時、かわりに自分の墓地に置く）\nこのクリーチャーを表向きにして自分のシールドゾーンに加えた時、バトルゾーンにある相手のコスト４以下のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-049",
+      "limit": 4,
+      "shieldGo": true,
+      "g172Death": [
+        {
+          "op": "SelfGraveShield659"
+        }
+      ],
+      "g660ShieldEntry": [
+        {
+          "op": "Target",
+          "to": "mana",
+          "filter": {
+            "max": 4
+          }
+        }
+      ],
+      "supportBatch": "phase-660",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 659,
+    "phase": 660,
     "checkedAt": "2026-11-09",
-    "baseCount": 5801,
-    "newEffectCards": 3,
+    "baseCount": 5804,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 5804,
+    "totalCount": 5809,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+      "https://dm.takaratomy.co.jp/rule/qa/33517/",
       "https://dm.takaratomy.co.jp/rule/qa/33612/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36877/",
       "https://dm.takaratomy.co.jp/rule/qa_old/36950/",
-      "https://dm.takaratomy.co.jp/rule/qa/48493/",
-      "https://dm.takaratomy.co.jp/rule/qa/40671/",
-      "https://dm.takaratomy.co.jp/rule/qa/40894/",
-      "https://dm.takaratomy.co.jp/rule/qa/48491/"
+      "https://dm.takaratomy.co.jp/rule/qa/48488/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -178508,6 +178661,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/49237/",
           "https://dm.takaratomy.co.jp/rule/qa/48488/",
           "https://dm.takaratomy.co.jp/rule/qa/48486/",
+          "https://dm.takaratomy.co.jp/rule/qa/48491/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 659,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5801,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5804,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/33612/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36950/",
+          "https://dm.takaratomy.co.jp/rule/qa/48493/",
+          "https://dm.takaratomy.co.jp/rule/qa/40671/",
+          "https://dm.takaratomy.co.jp/rule/qa/40894/",
           "https://dm.takaratomy.co.jp/rule/qa/48491/"
         ],
         "next": [

@@ -2444,6 +2444,23 @@ export function standardCardSpec(d,{phase=165}={}){
  const compact363=phase>=363?normalize(f.abilityText):'',whole363=phase>=363&&(modal363(compact363)||compact363==='自分の水と闇を両方持つクリーチャーがバトルゾーンに出た時次のうちいずれか1つを選ぶ。▼カードを1枚引く。▼相手は自身の手札を1枚選び捨てる。');
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?abilityText.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):abilityText).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=660&&creature){
+  const keyword='{SG}シールド・ゴー(このクリーチャーが破壊された時新しいシールドとして自分のシールドゾーンに表向きのまま加える。このクリーチャーが表向きでシールドゾーンを離れる時かわりに自分の墓地に置く)';
+  const text=normalize(f.abilityText);
+  const trigger='このクリーチャーを表向きにして自分のシールドゾーンに加えた時';
+  const shieldEntry={
+   'カードを1枚引いてもよい。':{op:'Draw',n:1,optional:true},
+   'バトルゾーンにある相手のクリーチャーを1体選びタップしてもよい。':{op:'Target',tap:true,optional:true},
+   '相手のパワー2000以下のクリーチャーを1体破壊する。':{op:'Target',to:'grave',filter:{maxPower:2000,g199Power:true}},
+   'バトルゾーンにある相手のコスト4以下のクリーチャーを1体選び持ち主のマナゾーンに置く。':{op:'Target',to:'mana',filter:{max:4}}
+  };
+  const base={shieldGo:true,g172Death:[{op:'SelfGraveShield659'}]};
+  if(text==='このクリーチャーはブロックされない。'+keyword)return {...base,unblockable:true};
+  if(text.startsWith(keyword+trigger)){
+   const effect=shieldEntry[text.slice((keyword+trigger).length)];
+   if(effect)return {...base,g660ShieldEntry:[effect]};
+  }
+ }
  if(phase>=659&&creature){
   const keyword='{SG}シールド・ゴー(このクリーチャーが破壊された時自分の墓地から表向きでシールド化する。このクリーチャーが表向きでシールドゾーンを離れる時かわりに墓地に置く)';
   if(lines.some(line=>normalize(line)===keyword)){
