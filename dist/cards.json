@@ -165750,21 +165750,119 @@
       ],
       "supportBatch": "phase-646",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp3-023",
+      "name": "冥運逆夢 ハミデスナスカ",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ディスペクター/デーモン・コマンド/メタリカ/月光王国",
+      "text": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から１枚をシールド化してもよい。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、相手は自身のアンタップしているクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-023",
+      "limit": 4,
+      "exLife": true,
+      "blocker": true,
+      "breaker": 2,
+      "g536ShieldLeft": [
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "to": "grave",
+          "filter": {
+            "untapped": true
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-647",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp3-047",
+      "name": "Q字工事",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5000,
+      "race": "ジョーカーズ",
+      "text": "スーパーガードマン（自分の他のクリーチャーがバトルする時、かわりにこのクリーチャーをタップしてバトルさせてもよい）\nこのクリーチャーが破壊される時、墓地のかわりにマナゾーンに置く。\nJチェンジ６（このクリーチャーが攻撃する時、これと自分のマナゾーンにあるコスト６以下のジョーカーズ・クリーチャー１体を入れ替えてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-047",
+      "limit": 4,
+      "superGuardman": true,
+      "destroyToMana": true,
+      "g393Change": {
+        "mana": 6
+      },
+      "supportBatch": "phase-647",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp3-073",
+      "name": "大地 ワタン-2",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "グランセクト/ディスタス",
+      "text": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nササゲール２（自分のディスペクター・クリーチャーの召喚コストを２少なくしてもよい。そうしたら、このエレメントを破壊する。ただしコストは０以下にならない）\nこのクリーチャーが離れた時、このターン、自分のクリーチャー１体に「マッハファイター」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-073",
+      "limit": 4,
+      "machFighter": true,
+      "sasage": 2,
+      "g172Leave": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "grant": {
+            "machFighter": true
+          },
+          "title": "マッハファイターを与える自分のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-647",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 646,
+    "phase": 647,
     "checkedAt": "2026-11-08",
-    "baseCount": 5763,
+    "baseCount": 5766,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5766,
+    "totalCount": 5769,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/39395/",
-      "https://dm.takaratomy.co.jp/rule/qa/39442/",
-      "https://dm.takaratomy.co.jp/rule/qa/38709/"
+      "https://dm.takaratomy.co.jp/rule/qa/39553/",
+      "https://dm.takaratomy.co.jp/rule/qa/38756/",
+      "https://dm.takaratomy.co.jp/rule/qa/40676/",
+      "https://dm.takaratomy.co.jp/rule/qa/47497/",
+      "https://dm.takaratomy.co.jp/rule/qa/31690/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -176831,6 +176929,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/39542/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37076/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37077/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 646,
+        "checkedAt": "2026-11-08",
+        "baseCount": 5763,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5766,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/39395/",
+          "https://dm.takaratomy.co.jp/rule/qa/39442/",
+          "https://dm.takaratomy.co.jp/rule/qa/38709/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

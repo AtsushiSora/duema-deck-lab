@@ -2714,6 +2714,20 @@ export function standardCardSpec(d,{phase=165}={}){
    }[line];if(first){if(spec.g540FirstAttack)throw Error('重複する最初の攻撃誘発');spec.g540FirstAttack=first;continue;}
    if(line==='鬼タイム:このクリーチャーが破壊された時自分と相手のシールドの数が合計6つ以下なら相手のパワー8000以下のクリーチャーを1体破壊する。'){if(death.length)throw Error('独立した破壊時能力の順序対応が必要');death.push({op:'IfOwn',filter:{g334ZoneCount:{zone:'shields',sumBoth:true,max:6}},defs:[{op:'Target',to:'grave',filter:{maxPower:8000,g199Power:true}}]});continue;}
   }
+  if(phase>=647&&creature){
+   if(line==='スーパーガードマン(自分の他のクリーチャーがバトルする時かわりにこのクリーチャーをタップしてバトルさせてもよい)'){spec.superGuardman=true;continue;}
+   if(line==='このクリーチャーが破壊される時墓地のかわりにマナゾーンに置く。'){spec.destroyToMana=true;continue;}
+   if(line==='このクリーチャーが離れた時このターン自分のクリーチャー1体に「マッハファイター」を与える。'){
+    leave.push({op:'Target',owner:'self',grant:{machFighter:true},title:'マッハファイターを与える自分のクリーチャーを選ぶ'});continue;
+   }
+   if(line==='このクリーチャーが攻撃する時自分の山札の上から1枚をシールド化してもよい。'){
+    attack.push({op:'Offer',defs:[{op:'ShieldTop',n:1}]});continue;
+   }
+   if(line==='オシオキムーン:カードが自分のシールドゾーンを離れた時相手は自身のアンタップしているクリーチャーを1体選び破壊する。'){
+    if(spec.g536ShieldLeft)throw Error('重複するオシオキムーン');
+    spec.g536ShieldLeft=[{op:'OpponentSelect',n:1,to:'grave',filter:{untapped:true}}];continue;
+   }
+  }
   if(phase>=646&&creature){
    if(line==='レインボーナス:自分のターン中にこのクリーチャーが破壊された時バトルゾーンに自分の多色クリーチャーがあればそのターンの終わりにこのクリーチャーを墓地からバトルゾーンに出す。'){
     death.push({op:'ScheduleGraveReturn644',condition:{creature:true,multi:true}});continue;

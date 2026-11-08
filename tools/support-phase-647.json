@@ -1,0 +1,158 @@
+{
+  "phase": 647,
+  "checkedAt": "2026-11-08",
+  "baseCount": 5766,
+  "description": "シールド離脱時の選択、バトル置換・Jチェンジ、離脱時のマッハファイター付与。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/39553/",
+    "https://dm.takaratomy.co.jp/rule/qa/38756/",
+    "https://dm.takaratomy.co.jp/rule/qa/40676/",
+    "https://dm.takaratomy.co.jp/rule/qa/47497/",
+    "https://dm.takaratomy.co.jp/rule/qa/31690/"
+  ],
+  "cards": [
+    {
+      "id": "dm26rp3-023",
+      "name": "冥運逆夢 ハミデスナスカ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-023",
+      "faces": [
+        {
+          "name": "冥運逆夢 ハミデスナスカ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から１枚をシールド化してもよい。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、相手は自身のアンタップしているクリーチャーを１体選び、破壊する。",
+          "race": "ディスペクター/デーモン・コマンド/メタリカ/月光王国",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "exLife": true,
+        "blocker": true,
+        "breaker": 2,
+        "g536ShieldLeft": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave",
+            "filter": {
+              "untapped": true
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "325634aa7fd0ea6231a592ed66dfba7a8af0c26169b4d6cfb30bc1dcebe947ca",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp3-047",
+      "name": "Q字工事",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-047",
+      "faces": [
+        {
+          "name": "Q字工事",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スーパーガードマン（自分の他のクリーチャーがバトルする時、かわりにこのクリーチャーをタップしてバトルさせてもよい）\nこのクリーチャーが破壊される時、墓地のかわりにマナゾーンに置く。\nJチェンジ６（このクリーチャーが攻撃する時、これと自分のマナゾーンにあるコスト６以下のジョーカーズ・クリーチャー１体を入れ替えてもよい）",
+          "race": "ジョーカーズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superGuardman": true,
+        "destroyToMana": true,
+        "g393Change": {
+          "mana": 6
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "14c1f762fe677753b34b7a0c0863f1845aa065f2276e332a1de63fdf699ad8aa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp3-073",
+      "name": "大地 ワタン-2",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-073",
+      "faces": [
+        {
+          "name": "大地 ワタン-2",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nササゲール２（自分のディスペクター・クリーチャーの召喚コストを２少なくしてもよい。そうしたら、このエレメントを破壊する。ただしコストは０以下にならない）\nこのクリーチャーが離れた時、このターン、自分のクリーチャー１体に「マッハファイター」を与える。",
+          "race": "グランセクト/ディスタス",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "machFighter": true,
+        "sasage": 2,
+        "g172Leave": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "machFighter": true
+            },
+            "title": "マッハファイターを与える自分のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-073.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "d0c0094e42d0c18306f9da8e551f5f10021dfc6a6ee57f10d265375441590dfd",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-08",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26rp3-023": 4,
+      "dm26rp3-047": 4,
+      "dm26rp3-073": 4
+    }
+  }
+}
