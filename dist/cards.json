@@ -165016,21 +165016,111 @@
       },
       "supportBatch": "phase-638",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp22-061",
+      "name": "凶鬼310号 シナイガ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "マフィ・ギャング/レクスターズ",
+      "text": "このクリーチャーが出た時、自分のタマシードを１枚破壊してもよい。そうしたら、カードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-061",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SacrificeAlly413",
+          "g547Seed": true,
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 2
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-639",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24-026",
+      "name": "天地爆炎",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 8,
+      "power": 0,
+      "race": "",
+      "text": "パワー6000以下のタップされているクリーチャーすべて、または、パワー3000以下のタップされていないクリーチャーすべてを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-026",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "パワー6000以下のタップ中のクリーチャーをすべて破壊",
+              "defs": [
+                {
+                  "op": "Sweep",
+                  "both": true,
+                  "to": "grave",
+                  "filter": {
+                    "creature": true,
+                    "tapped": true,
+                    "maxPower": 6000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            },
+            {
+              "label": "パワー3000以下のアンタップ中のクリーチャーをすべて破壊",
+              "defs": [
+                {
+                  "op": "Sweep",
+                  "both": true,
+                  "to": "grave",
+                  "filter": {
+                    "creature": true,
+                    "untapped": true,
+                    "maxPower": 3000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-639",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 638,
+    "phase": 639,
     "checkedAt": "2026-11-08",
-    "baseCount": 5739,
-    "newEffectCards": 3,
+    "baseCount": 5742,
+    "newEffectCards": 2,
     "newVanillaCards": 0,
-    "totalCount": 5742,
+    "totalCount": 5744,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37424/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37428/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35530/",
+      "https://dm.takaratomy.co.jp/rule/qa/41076/",
+      "https://dm.takaratomy.co.jp/rule/qa/45451/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -175951,6 +176041,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/39516/",
           "https://dm.takaratomy.co.jp/rule/qa/47369/",
           "https://dm.takaratomy.co.jp/rule/qa/43474/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 638,
+        "checkedAt": "2026-11-08",
+        "baseCount": 5739,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5742,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37424/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37428/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

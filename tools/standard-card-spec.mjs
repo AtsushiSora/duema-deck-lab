@@ -1178,6 +1178,15 @@ function instruction604(text){
  }
 }
 function instruction(text,phase){
+ if(phase>=639){
+  if(text==='自分のタマシードを1枚破壊してもよい。そうしたらカードを2枚引く。')
+   return{op:'SacrificeAlly413',g547Seed:true,defs:[{op:'Draw',n:2}]};
+  if(text==='パワー6000以下のタップされているクリーチャーすべてまたはパワー3000以下のタップされていないクリーチャーすべてを破壊する。')
+   return{op:'Choose',g184Modes:true,modes:[
+    {label:'パワー6000以下のタップ中のクリーチャーをすべて破壊',defs:[{op:'Sweep',both:true,to:'grave',filter:{creature:true,tapped:true,maxPower:6000,g199Power:true}}]},
+    {label:'パワー3000以下のアンタップ中のクリーチャーをすべて破壊',defs:[{op:'Sweep',both:true,to:'grave',filter:{creature:true,untapped:true,maxPower:3000,g199Power:true}}]}
+   ]};
+ }
  if(phase>=638&&text==='相手のクリーチャーを1体選び破壊する。その後選んだクリーチャーのコストと同じ枚数自分の山札の上から墓地に置いてもよい。')
   return{op:'Target',to:'grave',g631MillCost:true,g638OptionalMill:true,title:'破壊する相手のクリーチャーを選ぶ'};
  if(phase>=637){

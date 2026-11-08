@@ -1,0 +1,138 @@
+{
+  "phase": 639,
+  "checkedAt": "2026-11-08",
+  "baseCount": 5742,
+  "description": "任意のタマシード破壊からのドローと、両陣営のタップ状態別破壊を照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35530/",
+    "https://dm.takaratomy.co.jp/rule/qa/41076/",
+    "https://dm.takaratomy.co.jp/rule/qa/45451/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp22-061",
+      "name": "凶鬼310号 シナイガ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-061",
+      "faces": [
+        {
+          "name": "凶鬼310号 シナイガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分のタマシードを１枚破壊してもよい。そうしたら、カードを２枚引く。",
+          "race": "マフィ・ギャング/レクスターズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "g547Seed": true,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp22-061.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "6e92844b012c665a4c7de6fffdb8678f727c03bffd09f239de4ee2c5fea488a1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-026",
+      "name": "天地爆炎",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-026",
+      "faces": [
+        {
+          "name": "天地爆炎",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "パワー6000以下のタップされているクリーチャーすべて、または、パワー3000以下のタップされていないクリーチャーすべてを破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "パワー6000以下のタップ中のクリーチャーをすべて破壊",
+                "defs": [
+                  {
+                    "op": "Sweep",
+                    "both": true,
+                    "to": "grave",
+                    "filter": {
+                      "creature": true,
+                      "tapped": true,
+                      "maxPower": 6000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "パワー3000以下のアンタップ中のクリーチャーをすべて破壊",
+                "defs": [
+                  {
+                    "op": "Sweep",
+                    "both": true,
+                    "to": "grave",
+                    "filter": {
+                      "creature": true,
+                      "untapped": true,
+                      "maxPower": 3000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "2fa66200e527ffe1b52f5a044ccc943e56abcdebb373c33b36260ac17673d0af",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-08",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp22-061": 4,
+      "dm24-026": 4
+    }
+  }
+}
