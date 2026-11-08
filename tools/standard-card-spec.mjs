@@ -2453,6 +2453,18 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=671){
+  const text=normalize(f.abilityText);
+  if(creature&&text==='このクリーチャーをバトルゾーンに出した時相手はバトルゾーンにある自身の無色ではないクリーチャーを1体選び持ち主のマナゾーンに置く。'){
+   return {effect:'sixPhoto',g34Tasks:[{op:'OpponentSelect',n:1,to:'mana',filter:{g218Colored:true},title:'マナに置く自分の無色ではないクリーチャーを1体選ぶ'}]};
+  }
+  if(evolution&&text==='進化-自分のイニシエート1体の上に置く。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)誰も自身のターン中コスト4以上の呪文を唱えることはできない。'){
+   return {evolution:{race:'イニシエート'},breaker:2,g671OwnTurnSpellMin:4};
+  }
+  if(f.typeText==='呪文'&&text==='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)バトルゾーンにあるクリーチャーを2体まで選ぶ。このターンそのクリーチャーのパワーは+2000され相手プレイヤーを攻撃できない。'){
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'battle',anyOwner:true,n:2,optional:true,filter:{creature:true},g173Targets:true,g193Select:true,g671PlayerLockPower:2000,spell:true,title:'パワーを+2000し、プレイヤーへの攻撃を止めるクリーチャーを2体まで選ぶ'}]};
+  }
+ }
  if(phase>=670){
   const text=normalize(f.abilityText);
   if(f.typeText==='呪文'&&text==='相手はバトルゾーンにある自身の進化ではないクリーチャーを2体選び新しいシールドとして自身のシールドゾーンに裏向きにして加える。'){

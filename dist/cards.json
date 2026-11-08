@@ -168306,21 +168306,108 @@
       ],
       "supportBatch": "phase-670",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-038",
+      "name": "豊穣のサトリ マグノリア",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "オラクル",
+      "text": "このクリーチャーをバトルゾーンに出した時、相手はバトルゾーンにある自身の、無色ではないクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-038",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "to": "mana",
+          "filter": {
+            "g218Colored": true
+          },
+          "title": "マナに置く自分の無色ではないクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-671",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-013",
+      "name": "サイレンス トパーズ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "アウトレイジ",
+      "text": "進化-自分のイニシエート１体の上に置く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n誰も、自身のターン中、コスト４以上の呪文を唱えることはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-013",
+      "limit": 4,
+      "evolution": {
+        "race": "イニシエート"
+      },
+      "breaker": 2,
+      "g671OwnTurnSpellMin": 4,
+      "supportBatch": "phase-671",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-051",
+      "name": "決闘準備完了",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにあるクリーチャーを２体まで選ぶ。このターン、そのクリーチャーのパワーは+2000され、相手プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-051",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "anyOwner": true,
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g671PlayerLockPower": 2000,
+          "spell": true,
+          "title": "パワーを+2000し、プレイヤーへの攻撃を止めるクリーチャーを2体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-671",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 670,
+    "phase": 671,
     "checkedAt": "2026-11-09",
-    "baseCount": 5838,
+    "baseCount": 5841,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5841,
+    "totalCount": 5844,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/46514/",
-      "https://dm.takaratomy.co.jp/rule/qa/40102/",
-      "https://dm.takaratomy.co.jp/rule/qa/46490/"
+      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -179844,6 +179931,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/43873/",
           "https://dm.takaratomy.co.jp/rule/qa/43918/",
           "https://dm.takaratomy.co.jp/rule/qa/44587/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 670,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5838,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5841,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/46514/",
+          "https://dm.takaratomy.co.jp/rule/qa/40102/",
+          "https://dm.takaratomy.co.jp/rule/qa/46490/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
