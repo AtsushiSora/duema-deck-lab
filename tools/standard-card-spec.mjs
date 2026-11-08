@@ -2714,8 +2714,14 @@ export function standardCardSpec(d,{phase=165}={}){
    }[line];if(first){if(spec.g540FirstAttack)throw Error('重複する最初の攻撃誘発');spec.g540FirstAttack=first;continue;}
    if(line==='鬼タイム:このクリーチャーが破壊された時自分と相手のシールドの数が合計6つ以下なら相手のパワー8000以下のクリーチャーを1体破壊する。'){if(death.length)throw Error('独立した破壊時能力の順序対応が必要');death.push({op:'IfOwn',filter:{g334ZoneCount:{zone:'shields',sumBoth:true,max:6}},defs:[{op:'Target',to:'grave',filter:{maxPower:8000,g199Power:true}}]});continue;}
   }
-  if(phase>=644&&creature&&line==='自分のターンにこのクリーチャーが破壊された時そのターンの終わりにこのクリーチャーを自分の墓地から出す。'){
-   death.push({op:'ScheduleGraveReturn644'});continue;
+  if(phase>=644&&creature){
+   const delayedRevival='このクリーチャーが破壊された時そのターンの終わりに';
+   if(line==='自分のターンに'+delayedRevival+'このクリーチャーを自分の墓地から出す。'||phase>=645&&line.startsWith('自分のターン中に'+delayedRevival)&&['墓地からバトルゾーンに出す。','このクリーチャーを自分の墓地からバトルゾーンに出す。','このクリーチャーを自分の墓地から出す。'].includes(line.slice(('自分のターン中に'+delayedRevival).length))){
+    death.push({op:'ScheduleGraveReturn644'});continue;
+   }
+   if(phase>=645&&line===delayedRevival+'このクリーチャーを自分の墓地から出す。'){
+    death.push({op:'ScheduleGraveReturn644',anyTurn:true});continue;
+   }
   }
   if(phase>=643&&creature){
    if(line==='自分のジョーカーズとマナゾーンにあるジョーカーズ・カードが合計8つ以上ならこのクリーチャーのパワーを+5000し「W・ブレイカー」を与える。(「W・ブレイカー」を持つクリーチャーはシールドを2つブレイクする)'){
