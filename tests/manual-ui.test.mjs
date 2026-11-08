@@ -32,6 +32,27 @@ test('the board conceals opposing face-down mana identities while its owner can 
  give(s,0,'mana',['dm23ex3-024']);s.players[0].mana[0].faceDown=true;html=markup(s);assert.match(html,/裏向き：清浄のカルマ インカ/);assert.equal((html.match(/data-card="dm23ex3-024"/g)||[]).length,1);
 });
 
+test('Galaxyshield adds one face-up tile and reveals only public shield cards',()=>{
+ const s=setup(),eva='dm26rp3-022';
+ give(s,0,'hand',[eva]);
+ const evaUid=s.players[0].hand[0].uid;
+ const hidden=s.players[1].shields[0],publicCard={...inst('dm01-097'),faceUp:true};
+ hidden.shieldStack=[publicCard,{...inst('dm01-075'),cardId:'PRIVATE_SHIELD_STACK'}];
+ act(s,'galaxyShield');
+ const before=structuredClone(s);
+ for(const mobile of [false,true]){
+  const html=markup(s,{...newManualUI(),mobile});
+  assert.equal((html.match(/data-visual-key="shield:0:/g)||[]).length,6);
+  assert.equal((html.match(/class="shield-faceup-art"/g)||[]).length,2);
+  assert.match(html,new RegExp(`shield:0:${evaUid}"[^>]*is-face-up[^>]*自分のシールド6・表向き：輝晶 エヴァ-3`));
+  assert.match(html,/data-card="dm26rp3-022"[\s\S]*?class="shield-tile-number">6 表/);
+  assert.match(html,/相手のシールド1・3枚の束・表向き：不死身男爵ボーグ/);
+  assert.ok(html.includes('data-card="dm01-097"'));
+  assert.ok(!html.includes('PRIVATE_SHIELD_STACK'));
+ }
+ assert.deepEqual(s,before);
+});
+
 test('manual screen renders the three phase steps, current guidance, readable cards and only valid engine action buttons',()=>{
  const s=e.createGame([target,target],{seed:20}),ui=newManualUI();ui.hand=s.players[0].hand[0].uid;const html=markup(s,ui);assert.ok(html.includes('マナに置くカードを選ぼう'));assert.ok(html.includes('aria-current="step"'));assert.ok(html.includes('manual-hand-cards'));assert.ok(html.includes('能力を見る'));assert.ok(html.includes('data-action="battle-hint"'));assert.ok(html.includes('data-action="undo-battle"'));assert.ok(html.includes('data-action="manual-log"'));const ids=e.getLegalActions(s).map(a=>a.id);assert.ok(buttonIds(html).every(x=>ids.includes(x)));assert.equal(manualModel(s,ui).hand.uid,ui.hand);
 });

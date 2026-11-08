@@ -38,7 +38,7 @@ import {bindFittedBoard,pageWindow} from './board-fit.js';
 import {attackRoute,previewAttackAction,updateBoardFeedback,bindAttackArrow} from './battle-visuals.js?v=0.227.0';
 import {setCards,card as battleCard,validateDeck,createGame,getLegalActions,attackLocked,chooseAI,step,runGame,runSummary,aggregate,power,manaValue,manaValueAt,playFaces,canCastSpell,effectiveCard,canUntap,shieldGuardSources,exLifeShields,exLifeShieldInfo,evolutionBases,isEvolution,selfTriggersStopped,abilitiesIgnored,genmuActive,peekDeckTop,RULE_VERSION,ENGINE_VERSION,AI_VERSION} from './engine.js';
 import {PRESETS} from './decks.js';
-import {newManualUI,hyperModeModel,manualModel,manualScreenHTML,manualLogHTML,MANUAL_LOG_FILTERS,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,graveZoneHTML,graveSummonStatusHTML,choiceSelectionModel,choiceDetailCard} from './manual-ui.js?v=0.720.0';
+import {newManualUI,hyperModeModel,manualModel,manualScreenHTML,manualLogHTML,MANUAL_LOG_FILTERS,boardChoice,confirmEndTurn,manualPrimaryAction,manualShieldModel,manaZoneHTML,manaSummonHTML,graveZoneHTML,graveSummonStatusHTML,choiceSelectionModel,choiceDetailCard} from './manual-ui.js?v=0.720.0-shield-face';
 import {resolveEnvironmentDecks,environmentSupport,groupEnvironmentDecks,ENVIRONMENT_TARGET} from './environment.js';
 import {resolveStarter25Decks,starter25Matches} from './starter25.js';
 import {prepareDeckCopy} from './deck-copy.js';

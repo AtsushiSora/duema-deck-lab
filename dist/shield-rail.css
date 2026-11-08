@@ -1,6 +1,11 @@
 /* Keep shields visible at the edge; use the enlarged picker for touch targets. */
 .shield-rail-open{border:0;background:transparent;color:inherit;display:flex;align-items:center;justify-content:center;gap:3px;padding:0;min-width:44px;min-height:44px;cursor:pointer}
 .shield-rail-open>small{font-size:9px;opacity:.7}.shield-rail-open:focus-visible{outline:2px solid #78edc4;outline-offset:-2px;border-radius:6px}
+.manual-playing .shield-tiles .shield-tile.is-face-up{background:#17364a}
+.manual-playing .shield-tile>.shield-faceup-art{position:absolute;inset:0;display:block;overflow:hidden;border-radius:inherit;padding:0;background:none;pointer-events:none}
+.shield-faceup-art>.art-card{display:block;width:100%;height:100%;max-width:none;border:0;border-radius:0}
+.manual-playing .shield-tile.is-face-up>.shield-tile-number{position:absolute;inset:auto auto 0 0;z-index:2;padding:0 2px;background:#061626eb;color:#fff;font-size:8px;line-height:1.3;white-space:nowrap}
+.manual-playing .shield-tile.is-face-up>small{z-index:2}
 .shield-picker-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:10px}
 .shield-picker-grid article{min-width:0}.shield-picker-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:100%;min-height:90px;border:1px solid #507183;border-radius:9px;color:#c6dce6;background:repeating-linear-gradient(45deg,#25465a,#25465a 5px,#284c5e 5px,#284c5e 10px)}
 .shield-picker-tile>strong{font-size:22px}.shield-picker-tile>span{font-size:10px}.shield-picker-tile:disabled{opacity:1}.shield-picker-tile.is-target{border:2px solid #16a77d;color:#fff;box-shadow:0 0 0 2px #16a77d22}
