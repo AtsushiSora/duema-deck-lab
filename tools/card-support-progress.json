@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-08",
   "catalogueNames": 11830,
-  "supportedNames": 5769,
-  "pendingNames": 6061,
-  "phase": 647,
+  "supportedNames": 5772,
+  "pendingNames": 6058,
+  "phase": 648,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3683,
+    "クリーチャー": 3680,
     "NEOクリーチャー": 153,
     "呪文": 854,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1351,
-    "未対応の能力文": 4503,
+    "未対応の能力文": 4500,
     "未対応のG・ゼロ条件": 27,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -1217,38 +1217,45 @@
           "reason": "シールド合計で変わるササゲールと、終了時のシールド回収・トリガー抑制を検証する。"
         }
       ]
+    },
+    {
+      "phase": 648,
+      "added": [
+        {
+          "id": "dm26rp3-031",
+          "name": "輝晶 マルハヴ-2"
+        },
+        {
+          "id": "dm26rp3-041",
+          "name": "ケツカッちん"
+        },
+        {
+          "id": "dm26rp3-051",
+          "name": "邪鬼 コオニ-4"
+        }
+      ],
+      "supportedNames": 5772,
+      "pendingNames": 6058,
+      "verification": {
+        "focusedPassed": 8,
+        "regressionPassed": 136,
+        "regressionIncludesFocused": true,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "直接関連する効果を検証。長時間のCPU対戦シミュレーションは対象外。"
+      },
+      "deferred": [
+        {
+          "id": "dm26rp3-033",
+          "name": "スイドー・ド・デショー",
+          "reason": "Jトルネードの戻す処理が置換された場合や進化元を含む場合の確認が必要。凍結だけの部分実装は行わない。"
+        },
+        {
+          "id": "dm26rp3-030",
+          "name": "ヒトリダチ キャンベロ",
+          "reason": "Jビッグとターンをまたぐバトル中の破壊防止、登場時点のマナ枚数を参照する強制処理の組み合わせを検証する必要がある。"
+        }
+      ]
     }
-  ],
-  "resume": {
-    "lastVerifiedPhase": 647,
-    "lastVerifiedCommit": "8ea59df1145e534aa6cd3fa7ce624b13958b15ad",
-    "nextPhase": 648,
-    "workInProgress": "phase 647のカード実装と検証は完了。phase 648は候補を選定済みで、生成ファイル・実装・テストは未着手。",
-    "nextCandidates": [
-      {
-        "id": "dm26rp3-031",
-        "name": "輝晶 マルハヴ-2",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-031",
-        "check": "相手ターン限定のディスタスへのエスケープ付与と本人への適用。"
-      },
-      {
-        "id": "dm26rp3-051",
-        "name": "邪鬼 コオニ-4",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-051",
-        "check": "鬼タイムによるササゲール4の境界と、ターン終了時のシールド回収時のS・トリガー抑制。"
-      },
-      {
-        "id": "dm26rp3-041",
-        "name": "ケツカッちん",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-041",
-        "check": "J・O・Eの終了時処理、スーパーガードマン、攻撃によらないシールド1つの選択・ブレイク。"
-      }
-    ],
-    "steps": [
-      "git statusで差分を確認し、AGENTS.mdの手順に従ってphase 648の候補のカードID・正規名・再録を照合する。",
-      "公式の能力文全体・基本情報・画像・使用制限・関連裁定を確認してからmanifestを作る。既存処理で能力全体を再現できない候補は理由を記録して別候補に進む。",
-      "カード固有と影響範囲の回帰テストを各最大10分で実行する。全体のnpm testは中断・合否未確認のままとする。",
-      "実データから件数を再集計し、batchHistoryと再開情報を更新して、検証済みのバッチをローカルコミットする。"
-    ]
-  }
+  ]
 }

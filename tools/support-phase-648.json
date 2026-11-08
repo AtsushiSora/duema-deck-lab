@@ -1,0 +1,158 @@
+{
+  "phase": 648,
+  "checkedAt": "2026-11-08",
+  "baseCount": 5769,
+  "description": "相手ターンのエスケープ付与、鬼タイムとシールド回収、J・O・Eと登場時ブレイク。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/31593/",
+    "https://dm.takaratomy.co.jp/rule/qa/39542/",
+    "https://dm.takaratomy.co.jp/rule/qa/40676/",
+    "https://dm.takaratomy.co.jp/rule/qa/45078/",
+    "https://dm.takaratomy.co.jp/rule/qa/39516/"
+  ],
+  "cards": [
+    {
+      "id": "dm26rp3-031",
+      "name": "輝晶 マルハヴ-2",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-031",
+      "faces": [
+        {
+          "name": "輝晶 マルハヴ-2",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手のターン中、自分のディスタス・クリーチャーすべてに「エスケープ」を与える。（「エスケープ」を持つクリーチャーが破壊される時、かわりに自分のシールドを１つ手札に加えてもよい。その「S・トリガー」は使えない）\nササゲール２（自分のディスペクター・クリーチャーの召喚コストを２少なくしてもよい。そうしたら、このエレメントを破壊する。ただしコストは０以下にならない）",
+          "race": "メタリカ/ディスタス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g208Auras": [
+          {
+            "filter": {
+              "race": "ディスタス"
+            },
+            "grants": {
+              "escape": true
+            },
+            "opponentTurn": true
+          }
+        ],
+        "sasage": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "f2b6d9b9a923f657ee12123f120c43d25ffa19726c4eb123e6ef3ec672e909ea",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp3-041",
+      "name": "ケツカッちん",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-041",
+      "faces": [
+        {
+          "name": "ケツカッちん",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "Ｊ・Ｏ・Ｅ ２ (このクリーチャーを、コストを２少なくして召喚してもよい。こうして出したら、このターンの終わりに、それを自分の山札の下に置く。そうしたら、カードを１枚引く)\nスーパーガードマン（自分の他のクリーチャーがバトルする時、かわりにこのクリーチャーをタップしてバトルさせてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、このクリーチャーはシールドを１つブレイクする。",
+          "race": "ジョーカーズ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "joeDiscount": 2,
+        "superGuardman": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Break278",
+            "requiresCreature": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "211a4c803cc5f656c5972eef0be9103a2922020a8fcb95fbde1f60dbf829972d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp3-051",
+      "name": "邪鬼 コオニ-4",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-051",
+      "faces": [
+        {
+          "name": "邪鬼 コオニ-4",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n自分のターンの終わりに、自分のシールドを１つ手札に加える。その「S・トリガー」は使えない。\n鬼タイム ：自分と相手のシールドが合計６つ以下なら、このクリーチャーに「ササゲール４」を与える。（自分のディスペクター・クリーチャーの召喚コストを４少なくしてもよい。そうしたら、このエレメントを破壊する。ただしコストは０以下にならない）",
+          "race": "デモニオ/ディスタス/鬼札王国",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "slayer": true,
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "grants": {
+            "sasage": 4
+          }
+        },
+        "g174End": [
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "5ad2e1725782656daf674667c1094712503d887c3caff0127af625494c17d494",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-08",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26rp3-031": 4,
+      "dm26rp3-041": 4,
+      "dm26rp3-051": 4
+    }
+  }
+}

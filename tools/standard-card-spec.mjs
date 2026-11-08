@@ -2714,6 +2714,17 @@ export function standardCardSpec(d,{phase=165}={}){
    }[line];if(first){if(spec.g540FirstAttack)throw Error('重複する最初の攻撃誘発');spec.g540FirstAttack=first;continue;}
    if(line==='鬼タイム:このクリーチャーが破壊された時自分と相手のシールドの数が合計6つ以下なら相手のパワー8000以下のクリーチャーを1体破壊する。'){if(death.length)throw Error('独立した破壊時能力の順序対応が必要');death.push({op:'IfOwn',filter:{g334ZoneCount:{zone:'shields',sumBoth:true,max:6}},defs:[{op:'Target',to:'grave',filter:{maxPower:8000,g199Power:true}}]});continue;}
   }
+  if(phase>=648&&creature){
+   if(line==='相手のターン中自分のディスタス・クリーチャーすべてに「エスケープ」を与える。(「エスケープ」を持つクリーチャーが破壊される時かわりに自分のシールドを1つ手札に加えてもよい。その「S・トリガー」は使えない)'){
+    (spec.g208Auras??=[]).push({filter:{race:'ディスタス'},grants:{escape:true},opponentTurn:true});continue;
+   }
+   if(line==='鬼タイム:自分と相手のシールドが合計6つ以下ならこのクリーチャーに「ササゲール4」を与える。(自分のディスペクター・クリーチャーの召喚コストを4少なくしてもよい。そうしたらこのエレメントを破壊する。ただしコストは0以下にならない)'){
+    spec.g260Self={filter:{g334ZoneCount:{zone:'shields',sumBoth:true,max:6}},grants:{sasage:4}};continue;
+   }
+   if(line==='このクリーチャーが出た時このクリーチャーはシールドを1つブレイクする。'){
+    entry.push({op:'Break278',requiresCreature:true});continue;
+   }
+  }
   if(phase>=647&&creature){
    if(line==='スーパーガードマン(自分の他のクリーチャーがバトルする時かわりにこのクリーチャーをタップしてバトルさせてもよい)'){spec.superGuardman=true;continue;}
    if(line==='このクリーチャーが破壊される時墓地のかわりにマナゾーンに置く。'){spec.destroyToMana=true;continue;}
