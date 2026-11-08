@@ -2609,6 +2609,14 @@ export function standardCardSpec(d,{phase=165}={}){
    return{...base,g496Silent:bonus.g34Tasks};
   }
  }
+ if(phase>=651&&seed){
+  const marker='超魂X(これがクリーチャーの下にあればそのクリーチャーにも以下の能力を与える)',at=lines.findIndex(l=>normalize(l)===marker);
+  if(at>=0&&at===lines.length-2&&normalize(lines[at+1])==='このクリーチャーは攻撃されない。'){
+   const prefix=structuredClone(d);
+   prefix.faces[0].abilityText=lines.slice(0,at).join('\n');
+   return {...standardCardSpec(prefix,{phase}),g404Soul:{cannotBeAttacked:true}};
+  }
+ }
  if(phase>=404&&creature){
   const marker='超魂X(これがクリーチャーの下にあればそのクリーチャーにも以下の能力を与える)',at=lines.findIndex(l=>normalize(l)===marker);
   if(at>=0){
@@ -2618,7 +2626,11 @@ export function standardCardSpec(d,{phase=165}={}){
    const extended607=phase>=607&&['dm25rp2-022','dm25rp4-072'].includes(d.id);
    const tailText=normalize(tail.faces[0].abilityText);
    const extended650=phase>=650&&(tailText==='このクリーチャーの攻撃中相手は「G・ストライク」を使えない。'||tailText.startsWith('このクリーチャーが攻撃する時このクリーチャーにカードが3枚以上含まれていれば'));
-   const subphase=extended607||extended650?phase:phase>=438?438:403,base=standardCardSpec(whole,{phase:subphase}),grants=standardCardSpec(tail,{phase:subphase}),allowed=new Set(['blocker','slayer','unblockable','g38BattleBonus','g38EnemyTurnBonus','g34Attack','g174End','g166EndUntap',...(phase>=438?['spellUntargetable']:[]),...(extended607?['g607StackPower']:[]),...(extended650?['attackNoGS']:[])]);
+   const extended651=phase>=651&&(
+    tailText==='このクリーチャーが攻撃する時このクリーチャーの下にあるカードを1枚墓地に置いてもよい。そうしたら相手のシールドを1つ選び持ち主の墓地に置く。'||
+    lines.some(l=>normalize(l)==='このクリーチャーの召喚コストを自分の墓地にあるカード1枚につき1少なくする。ただしコストは0以下にはならない。')
+   );
+   const subphase=extended607||extended650||extended651?phase:phase>=438?438:403,base=standardCardSpec(whole,{phase:subphase}),grants=standardCardSpec(tail,{phase:subphase}),allowed=new Set(['blocker','slayer','unblockable','g38BattleBonus','g38EnemyTurnBonus','g34Attack','g174End','g166EndUntap',...(phase>=438?['spellUntargetable']:[]),...(extended607?['g607StackPower']:[]),...(extended650?['attackNoGS']:[])]);
    if(!Object.keys(grants).length||Object.keys(grants).some(k=>!allowed.has(k)))throw Error('超魂Xの付与処理が未対応');
    return{...base,g404Soul:grants};
   }
@@ -2715,6 +2727,15 @@ export function standardCardSpec(d,{phase=165}={}){
     '各ターンこのクリーチャーがはじめて攻撃する時これが進化クリーチャーならアンタップする。':[{op:'IfSource541',evolution:true,defs:[untap]}]
    }[line];if(first){if(spec.g540FirstAttack)throw Error('重複する最初の攻撃誘発');spec.g540FirstAttack=first;continue;}
    if(line==='鬼タイム:このクリーチャーが破壊された時自分と相手のシールドの数が合計6つ以下なら相手のパワー8000以下のクリーチャーを1体破壊する。'){if(death.length)throw Error('独立した破壊時能力の順序対応が必要');death.push({op:'IfOwn',filter:{g334ZoneCount:{zone:'shields',sumBoth:true,max:6}},defs:[{op:'Target',to:'grave',filter:{maxPower:8000,g199Power:true}}]});continue;}
+  }
+  if(phase>=651&&creature){
+   if(line==='このクリーチャーの召喚コストを自分の墓地にあるカード1枚につき1少なくする。ただしコストは0以下にはならない。'){
+    if(spec.g212CountDiscount)throw Error('重複する墓地の枚数軽減');
+    spec.g212CountDiscount={zone:'grave',filter:{},amount:1,excludeExecutingCard:true};continue;
+   }
+   if(line==='このクリーチャーが攻撃する時このクリーチャーの下にあるカードを1枚墓地に置いてもよい。そうしたら相手のシールドを1つ選び持ち主の墓地に置く。'){
+    attack.push({op:'StackShieldGrave651'});continue;
+   }
   }
   if(phase>=650&&creature){
    if(line==='このクリーチャーの攻撃中相手は「G・ストライク」を使えない。'){spec.attackNoGS=true;continue;}

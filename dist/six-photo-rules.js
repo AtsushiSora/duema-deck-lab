@@ -63,7 +63,7 @@ export function createSixPhotoRules(api){
  function firstSummonMax463(s,p,c){if(c.type!=='creature'||c.crossing)return 0;const history=s.g463Summons?.[p],seen=history?.turn===s.turn?history:null;return creatures(s,p).filter(x=>!x.sealed).reduce((n,x)=>{const r=effective(x,s).g463FirstSummon;return n+(r&&(!r.colors.length?!seen?.n:r.colors.some(q=>colors(c).includes(q))&&!r.colors.some(q=>seen?.colors[q]))?r.amount:0);},0);}
  function firstSummonDiscount463(s,p,c){const max=firstSummonMax463(s,p,c);return c.g463Reduction===undefined?max:Math.min(max,Math.max(0,c.g463Reduction));}
  // A card being used from its counted zone is held aside before computing its cost.
- function countDiscountMax499(s,p,c){const t=c.g212CountDiscount;if(!t)return 0;const owner=t.owner==='opponent'?1-p:p;if(t.zone==='draws')return(s.players[owner].drawsThisTurn||0)*t.amount;if(t.zone==='shields'){const shields=s.players[owner].shields;return(typeof shields==='number'?shields:shields.length)*t.amount;}return(s.players[owner][t.zone]||[]).filter(x=>!x.faceDown&&!((t.optional||t.minimum===2||t.minimum===0)&&owner===p&&c.summonOrigin===t.zone&&x.uid===c.executionUid)&&(t.zone!=='battle'||!x.sealed&&(t.g557Elements?!x.faceDown&&['creature','seed','gear','field','aura'].includes(api.zoneCard(s,owner,x).type):api.isCreature(s,x)))&&matches(s,owner,x,t.filter)).length*t.amount;}
+ function countDiscountMax499(s,p,c){const t=c.g212CountDiscount;if(!t)return 0;const owner=t.owner==='opponent'?1-p:p;if(t.zone==='draws')return(s.players[owner].drawsThisTurn||0)*t.amount;if(t.zone==='shields'){const shields=s.players[owner].shields;return(typeof shields==='number'?shields:shields.length)*t.amount;}return(s.players[owner][t.zone]||[]).filter(x=>!x.faceDown&&!((t.excludeExecutingCard||t.optional||t.minimum===2||t.minimum===0)&&owner===p&&c.summonOrigin===t.zone&&x.uid===c.executionUid)&&(t.zone!=='battle'||!x.sealed&&(t.g557Elements?!x.faceDown&&['creature','seed','gear','field','aura'].includes(api.zoneCard(s,owner,x).type):api.isCreature(s,x)))&&matches(s,owner,x,t.filter)).length*t.amount;}
  function payCount499(s,t){const choices=[],max=countDiscountMax499(s,t.p,t.c);for(let amount=max;amount>=0;amount--){const c={...t.c,g499Handled:true,g499Reduction:amount};if(api.canPay(s,t.p,c)){const n=api.summonCost(s,t.p,c);choices.push(opt((amount?amount+'軽減する':'軽減しない')+'（'+n+'マナ）',amount,100-n*5,t.source));}}choice(s,t,'召喚の軽減量を選ぶ',[...choices,opt('召喚をやめる',false,-1000)]);}
  // Apply higher floors before the independent one-mana-floor reductions.
  function sympathyAmount500(s,p,c){const r=c.g211Sympathy;return r?s.players[p].battle.filter(x=>!x.sealed&&(r.filter.seed?(card(x).type==='seed'||card(x).natureAce4):api.isCreature(s,x)&&matches(s,p,x,r.filter))).length*r.amount:0;}
@@ -904,10 +904,17 @@ export function createSixPhotoRules(api){
   else choice(s,t,'残す相手のシールドを3つ選ぶ（'+kept.length+'/3）',rest.map(x=>opt('シールド '+(opp.shields.indexOf(x)+1),x.uid)));
   break;
  }
+ case'g34_StackShieldGrave651':{
+  const host=sourceHost474(s,t),under=host&&!host.x.sealed&&api.isCreature(s,host.x)?(host.x.under||[]).flatMap(api.allLayers):[];
+  if(under.length)choice(s,t,'下から墓地に置くカードを1枚選ぶ（任意）',[
+   ...under.map(y=>opt(y.faceDown?'裏向きのカード':card(y).name,{uid:y.uid,incarnation:y.incarnation||0},10,y.faceDown?undefined:y.cardId)),skip()
+  ]);
+  break;
+ }
  case'g34_ShieldGrave588':{
   const selected=t.selected||[],rows=opp.shields.filter(y=>!selected.includes(y.uid)&&api.shieldCards(y).some(x=>!x.g37ShieldHeld));
-  if(selected.length<t.n&&rows.length)choice(s,t,'墓地に置く相手のシールドを'+t.n+'つまで選ぶ（'+selected.length+'つ選択済み）',[
-   ...rows.map(y=>opt('シールド '+(opp.shields.indexOf(y)+1),y.uid,10)),opt('選択を完了',null,0)
+  if(selected.length<t.n&&rows.length)choice(s,t,t.required?'墓地に置く相手のシールドを1つ選ぶ':'墓地に置く相手のシールドを'+t.n+'つまで選ぶ（'+selected.length+'つ選択済み）',[
+   ...rows.map(y=>opt('シールド '+(opp.shields.indexOf(y)+1),y.uid,10)),...(t.required?[]:[opt('選択を完了',null,0)])
   ]);else finishShieldGrave588(s,t);
   break;
  }
@@ -1223,6 +1230,14 @@ export function createSixPhotoRules(api){
   break;
  }else break;
  case'g34_Harpoon618':put(s,{...t,kept:[...(t.kept||[]),v]});break;
+ case'g34_StackShieldGrave651':if(v){
+  const host=sourceHost474(s,t);
+  if(!host||host.x.sealed||!api.isCreature(s,host.x))break;
+  const paid=(host.x.under||[]).flatMap(api.allLayers).find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation);
+  if(!paid)break;
+  api.moveBattleCard(s,host.p,paid.uid,'grave',{controller:t.p});
+  if(s.players[host.p].grave.some(y=>y.uid===paid.uid))put(s,{...t,op:'g34_ShieldGrave588',n:1,required:true});
+ }break;
  case'g34_ShieldGrave588':if(v)put(s,{...t,selected:[...(t.selected||[]),v]});else finishShieldGrave588(s,t);break;
  case'g34_FightPair586':if(v){
   const owners=t.who==='both'?[t.p,1-t.p]:[t.opponentPicks||t.who==='opponent'?1-t.p:t.p];

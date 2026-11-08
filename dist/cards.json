@@ -166151,20 +166151,156 @@
       },
       "supportBatch": "phase-650",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp1-038",
+      "name": "～黒馬の騎兵長～",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "デーモン・コマンド/スチーム・ナイト/フュージョナー",
+      "text": "このクリーチャーの召喚コストを、自分の墓地にあるカード１枚につき１少なくする。ただし、コストは０以下にはならない。\nブロッカー ブロッカー\nW・ブレイカー\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、クリーチャーを１体、自分の墓地から手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-038",
+      "limit": 4,
+      "g212CountDiscount": {
+        "zone": "grave",
+        "filter": {},
+        "amount": 1,
+        "excludeExecutingCard": true
+      },
+      "blocker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "g228Recovery": true,
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "filter": {
+            "g228Face": {
+              "type": "creature"
+            }
+          },
+          "optional": true,
+          "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+        }
+      ],
+      "g404Soul": {
+        "g34Attack": [
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "optional": true,
+            "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-651",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-009",
+      "name": "喜像エル",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "デーモン・コマンド/デモンズ・レガシー/フュージョナー",
+      "text": "スピードアタッカー\nこのクリーチャーが出た時、クリーチャーを１体、自分の墓地から手札に戻してもよい。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚墓地に置いてもよい。そうしたら、相手のシールドを１つ選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-009",
+      "limit": 4,
+      "speedAttacker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "g228Recovery": true,
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "filter": {
+            "g228Face": {
+              "type": "creature"
+            }
+          },
+          "optional": true,
+          "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "StackShieldGrave651"
+        }
+      ],
+      "g404Soul": {
+        "g34Attack": [
+          {
+            "op": "StackShieldGrave651"
+          }
+        ]
+      },
+      "supportBatch": "phase-651",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp4-073",
+      "name": "クック・ポロンの炎霊",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 1,
+      "power": 0,
+      "race": "ファイアー・バード/フュージョナー",
+      "text": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nシンカライズ（このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい）\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーは攻撃されない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-073",
+      "limit": 4,
+      "gStrike": true,
+      "shinkalize": true,
+      "g404Soul": {
+        "cannotBeAttacked": true
+      },
+      "supportBatch": "phase-651",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 650,
+    "phase": 651,
     "checkedAt": "2026-11-09",
-    "baseCount": 5774,
+    "baseCount": 5777,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5777,
+    "totalCount": 5780,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+      "https://dm.takaratomy.co.jp/rule/qa/46502/",
+      "https://dm.takaratomy.co.jp/rule/qa/46860/",
+      "https://dm.takaratomy.co.jp/rule/qa/47060/",
+      "https://dm.takaratomy.co.jp/rule/qa/41075/",
+      "https://dm.takaratomy.co.jp/rule/qa/41076/",
       "https://dm.takaratomy.co.jp/rule/qa/46533/",
-      "https://dm.takaratomy.co.jp/rule/qa/46530/",
       "https://dm.takaratomy.co.jp/rule/qa/42377/"
     ],
     "next": [
@@ -177309,6 +177445,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/38756/",
           "https://dm.takaratomy.co.jp/rule/qa/44380/",
           "https://dm.takaratomy.co.jp/rule/qa/45447/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 650,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5774,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5777,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/46533/",
+          "https://dm.takaratomy.co.jp/rule/qa/46530/",
+          "https://dm.takaratomy.co.jp/rule/qa/42377/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

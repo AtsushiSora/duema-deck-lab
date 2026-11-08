@@ -1,0 +1,322 @@
+{
+  "phase": 651,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5777,
+  "description": "超魂Xの墓地回収・シールド除去・攻撃耐性。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/46502/",
+    "https://dm.takaratomy.co.jp/rule/qa/46860/",
+    "https://dm.takaratomy.co.jp/rule/qa/47060/",
+    "https://dm.takaratomy.co.jp/rule/qa/41075/",
+    "https://dm.takaratomy.co.jp/rule/qa/41076/",
+    "https://dm.takaratomy.co.jp/rule/qa/46533/",
+    "https://dm.takaratomy.co.jp/rule/qa/42377/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp1-038",
+      "name": "～黒馬の騎兵長～",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-038",
+      "faces": [
+        {
+          "name": "～黒馬の騎兵長～",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーの召喚コストを、自分の墓地にあるカード１枚につき１少なくする。ただし、コストは０以下にはならない。\nブロッカー ブロッカー\nW・ブレイカー\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、クリーチャーを１体、自分の墓地から手札に戻してもよい。",
+          "race": "デーモン・コマンド/スチーム・ナイト/フュージョナー",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g212CountDiscount": {
+          "zone": "grave",
+          "filter": {},
+          "amount": 1,
+          "excludeExecutingCard": true
+        },
+        "blocker": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "optional": true,
+            "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+          }
+        ],
+        "g404Soul": {
+          "g34Attack": [
+            {
+              "op": "Select",
+              "g228Recovery": true,
+              "origin": "grave",
+              "to": "hand",
+              "n": 1,
+              "filter": {
+                "g228Face": {
+                  "type": "creature"
+                }
+              },
+              "optional": true,
+              "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "b7d3ec38f7fab5330f9b075564a762ad07eaac9443e26fc4ff8ed5fbac6a145d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-009",
+      "name": "喜像エル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-009",
+      "faces": [
+        {
+          "name": "喜像エル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー\nこのクリーチャーが出た時、クリーチャーを１体、自分の墓地から手札に戻してもよい。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚墓地に置いてもよい。そうしたら、相手のシールドを１つ選び、持ち主の墓地に置く。",
+          "race": "デーモン・コマンド/デモンズ・レガシー/フュージョナー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "optional": true,
+            "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "StackShieldGrave651"
+          }
+        ],
+        "g404Soul": {
+          "g34Attack": [
+            {
+              "op": "StackShieldGrave651"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "bcb443b9043456a44b3a1df843726dbf117512821a9a4933f7ada152f8b587be",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp4-073",
+      "name": "クック・ポロンの炎霊",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-073",
+      "faces": [
+        {
+          "name": "クック・ポロンの炎霊",
+          "typeText": "タマシード",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "{GS} G・ストライク（このカードを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nシンカライズ（このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい）\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーは攻撃されない。",
+          "race": "ファイアー・バード/フュージョナー",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "gStrike": true,
+        "shinkalize": true,
+        "g404Soul": {
+          "cannotBeAttacked": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-073.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "304c83847f55a175c88a7984c46b5bbea29e45c4b2c2854a8ef52216722ff4bd",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25rp2-Sec14",
+      "name": "喜像エル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-Sec14",
+      "canonicalId": "dm25rp2-009",
+      "faces": [
+        {
+          "name": "喜像エル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー\nこのクリーチャーが出た時、クリーチャーを１体、自分の墓地から手札に戻してもよい。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚墓地に置いてもよい。そうしたら、相手のシールドを１つ選び、持ち主の墓地に置く。",
+          "race": "デーモン・コマンド/デモンズ・レガシー/フュージョナー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "optional": true,
+            "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "StackShieldGrave651"
+          }
+        ],
+        "g404Soul": {
+          "g34Attack": [
+            {
+              "op": "StackShieldGrave651"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-Sec14.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "f21ee00c40273f982b9f34fe8f56783d27eb4671a19f417ae9cb815b7ace08bc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex3-rp2Sec14",
+      "name": "喜像エル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp2Sec14",
+      "canonicalId": "dm25rp2-009",
+      "faces": [
+        {
+          "name": "喜像エル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー\nこのクリーチャーが出た時、クリーチャーを１体、自分の墓地から手札に戻してもよい。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚墓地に置いてもよい。そうしたら、相手のシールドを１つ選び、持ち主の墓地に置く。",
+          "race": "デーモン・コマンド/デモンズ・レガシー/フュージョナー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "g228Recovery": true,
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "optional": true,
+            "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "StackShieldGrave651"
+          }
+        ],
+        "g404Soul": {
+          "g34Attack": [
+            {
+              "op": "StackShieldGrave651"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-rp2Sec14.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "4133517b114b5a629ce5a24e2077cbcf8caa51d42444dd928e7fd1e192131473",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp1-038": 4,
+      "dm25rp2-009": 4,
+      "dm25rp4-073": 4,
+      "dm25rp2-Sec14": 4,
+      "dm25ex3-rp2Sec14": 4
+    }
+  }
+}
