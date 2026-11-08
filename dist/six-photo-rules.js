@@ -1668,7 +1668,12 @@ export function createSixPhotoRules(api){
  },
  battleWins(s,p,w){const x=s.players[p].battle.find(x=>x.uid===w?.uid),c=x&&effective(x,s),defs=c&&(!c.g588FirstSelfWin||w.g588FirstForUnit)&&c.g189BattleWin;return [...(defs?[{player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Sequence',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs})}]:[]),...winWatches252(s,p,w)];},
  mugenTapped415(s,p,x){const c=effective(x,s);if(!x.sealed&&c.g415MugenTapped)queue(s,p,x,c.g415MugenTapped);},
- tapped(s,p,x){const c=effective(x,s),first=!used(s,'g191Tapped',x);mark(s,'g191Tapped',x);if(first&&c.g219FirstTap)queue(s,p,x,c.g219FirstTap);if(first&&c.g191FirstTapUntap)queue(s,p,x,[E('Untap',{g191First:true})]);if(c.g188Tapped)queue(s,p,x,c.g188Tapped);if(c.g34Role==='fourJustice')queue(s,p,x,[C('justiceBreak')]);if(ninja(effective(x,s)))for(const y of active(s,p,'mukade'))if(!used(s,'g34FirstTap',y)){mark(s,'g34FirstTap',y);queue(s,p,y,[E('Draw',{n:1,optional:true})]);}},
+ tapped(s,p,x){
+  if(s.active===1-p&&api.isCreature(s,x))for(const y of s.players[1-p].battle){
+   const defs=card(y).g678OpponentTap;
+   if(defs&&!y.sealed&&!api.ignored(s,y)&&api.isCreature(s,y))queue(s,1-p,y,defs);
+  }
+  const c=effective(x,s),first=!used(s,'g191Tapped',x);mark(s,'g191Tapped',x);if(first&&c.g219FirstTap)queue(s,p,x,c.g219FirstTap);if(first&&c.g191FirstTapUntap)queue(s,p,x,[E('Untap',{g191First:true})]);if(c.g188Tapped)queue(s,p,x,c.g188Tapped);if(c.g34Role==='fourJustice')queue(s,p,x,[C('justiceBreak')]);if(ninja(effective(x,s)))for(const y of active(s,p,'mukade'))if(!used(s,'g34FirstTap',y)){mark(s,'g34FirstTap',y);queue(s,p,y,[E('Draw',{n:1,optional:true})]);}},
  // Remember the physical incarnation at the break, then follow later evolution at turn end.
  broken484(s,context,n){if(!n||!context||context.reverse||context.burn)return;const p=context.player,x=s.players[p]?.battle.find(x=>x.uid===context.sourceUid&&(context.incarnation===undefined||(x.incarnation||0)===context.incarnation));if(x&&!x.sealed&&effective(x,s).g484BreakEndReturn)queue(s,p,x,[E('BreakDelay484')]);},
  unblocked482(s,p,x){const defs=!x.sealed&&!api.selfStopped(s,p)&&effective(x,s).g482Unblocked;if(!defs)return false;queue(s,p,x,defs);return true;},
@@ -1679,11 +1684,13 @@ export function createSixPhotoRules(api){
   for(const y of watchers)if(s.players[y.p].battle.some(x=>key(x)===key(y)))queue(s,y.p,y,[{op:'Draw',n:1,optional:true}]);
  },
  flushShield536(s){if(s.leaving)return;const departed=s.g536ShieldDepartures||[];delete s.g536ShieldDepartures;for(const p of departed)shieldDeparture536(s,p);},
- drawn676(s,p,n){
+ drawn676(s,p,n,before){
   if(!n)return;
-  for(const y of creatures(s,1-p)){
-   const defs=!y.sealed&&effective(y,s).g676OppDraw;
-   if(defs)for(let i=0;i<n;i++)queue(s,1-p,y,defs);
+  for(const y of s.players[1-p].battle){
+   const {g676OppDraw,g678LaterOppDraw}=card(y);
+   if(!(g676OppDraw||g678LaterOppDraw)||y.sealed||api.ignored(s,y)||!api.isCreature(s,y))continue;
+   if(g676OppDraw)for(let i=0;i<n;i++)queue(s,1-p,y,g676OppDraw);
+   if(g678LaterOppDraw&&s.active===p)for(let i=before===0?1:0;i<n;i++)queue(s,1-p,y,g678LaterOppDraw);
   }
  },
  graveAdded(s,p,all){

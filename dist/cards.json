@@ -168936,25 +168936,112 @@
       ],
       "supportBatch": "phase-677",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr11-034",
+      "name": "閃光娘々プリン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ハンター/エイリアン",
+      "text": "自分のターン中、相手のクリーチャーがタップされた時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-034",
+      "limit": 4,
+      "g678OpponentTap": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-678",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr06-034",
+      "name": "サイコメトラー ヤミカバチ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "デーモン・コマンド/アンノイズ",
+      "text": "相手のターン中、相手がカードを引いた時、それがそのターン１枚目のドローでなければ、自分もカードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-034",
+      "limit": 4,
+      "g678LaterOppDraw": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-678",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr07-051",
+      "name": "爆走鬼娘モエル・ゴー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ヒューマノイド/ハンター/エイリアン",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からハンターを１体選び、相手に見せてから手札に加えてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-051",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g200Search": true,
+          "n": "all",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "creature": true,
+                "race": "ハンター"
+              }
+            }
+          ],
+          "rest": "shuffle"
+        }
+      ],
+      "supportBatch": "phase-678",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 677,
+    "phase": 678,
     "checkedAt": "2026-11-09",
-    "baseCount": 5859,
+    "baseCount": 5862,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5862,
+    "totalCount": 5865,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36842/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36844/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36684/",
-      "https://dm.takaratomy.co.jp/rule/qa/43355/",
-      "https://dm.takaratomy.co.jp/rule/qa/40925/",
-      "https://dm.takaratomy.co.jp/rule/qa/42365/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31411/"
+      "https://dm.takaratomy.co.jp/rule/qa/33524/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35233/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31645/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31624/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -180601,6 +180688,28 @@
           "https://dm.takaratomy.co.jp/rule/qa/31825/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35234/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31645/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 677,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5859,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5862,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36842/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36844/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36684/",
+          "https://dm.takaratomy.co.jp/rule/qa/43355/",
+          "https://dm.takaratomy.co.jp/rule/qa/40925/",
+          "https://dm.takaratomy.co.jp/rule/qa/42365/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31411/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -2453,6 +2453,18 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=678&&creature){
+  const text=normalize(f.abilityText);
+  if(text==='自分のターン中相手のクリーチャーがタップされた時カードを1枚引いてもよい。'){
+   return {g678OpponentTap:[{op:'Draw',n:1,optional:true}]};
+  }
+  if(text==='相手のターン中相手がカードを引いた時それがそのターン1枚目のドローでなければ自分もカードを1枚引いてもよい。'){
+   return {g678LaterOppDraw:[{op:'Draw',n:1,optional:true}]};
+  }
+  if(/^このクリーチャー(?:をバトルゾーンに出した|が出た)時自分の山札を見る。その中からハンターを1体(?:選び相手に見せてから|相手に見せ)手札に加えてもよい。その後山札をシャッフルする。$/.test(text)){
+   return {effect:'sixPhoto',g34Tasks:[{op:'Look',g201Search:true,g200Search:true,n:'all',stages:[{n:1,to:'hand',optional:true,reveal:true,filter:{creature:true,race:'ハンター'}}],rest:'shuffle'}]};
+  }
+ }
  if(phase>=677){
   const text=normalize(f.abilityText);
   if(creature&&text==='自分の他のクリーチャーがどこからでも墓地に置かれた時そのターンこのクリーチャーは「パワーアタッカー+5000」と「W・ブレイカー」を得る。'){
