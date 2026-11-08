@@ -2121,5 +2121,79 @@
       },
       "deferred": []
     }
-  ]
+  ],
+  "resume": {
+    "lastVerifiedPhase": 676,
+    "lastVerifiedCommit": "e81d209c31e0edd5aabfe757428ba64bbd7864cb",
+    "nextPhase": 677,
+    "workInProgress": "phase 676まで検証とローカルコミット済み。phase 677の候補は公式本文と関連Q&Aを確認中。コード変更・未追跡ファイルなし。",
+    "nextCandidates": [
+      {
+        "id": "dmr09-032",
+        "name": "紅き血の テスタ・ロッサ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-032",
+        "check": "公式QA 36842を確認。墓地に置かれたクリーチャー1体ごとに攻撃中のパワー加算が重なる。W・ブレイカーは重複せず、同時に自身が離れる場合と進化元・封印の扱いを確認する。"
+      },
+      {
+        "id": "dmr09-037",
+        "name": "高飛車姫プリン",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-037",
+        "check": "公式QA 36844・36684を確認。最初の攻撃宣言は選択可能で、解決後は当該攻撃クリーチャーだけ再攻撃できるよう、既存の攻撃回数制限とは別の条件が必要か確認する。プロモ再録を照合する。"
+      },
+      {
+        "id": "dmr08-043",
+        "name": "エターナル・ブレイン",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-043",
+        "check": "公式本文とDMRP06再録、別カードのツインパクトを確認。山札上2枚の並べ替えと呪文自身の手札戻り置換を調べる。公式QA 40925の横向きカードも検証する。"
+      },
+      {
+        "id": "dmr12-015",
+        "name": "三つ目の超人",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-015",
+        "check": "公式QA 37034を確認。+5000と追加ブレイクが複数の付与元で加算される。効果ブレイクと呪文ブレイクの扱いはカニスの共通調査と合わせる。"
+      },
+      {
+        "id": "dmr12-008",
+        "name": "散舞する世界 パシフィック R",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-008",
+        "check": "公式本文を確認。自分のターン開始時、発生源と手札・墓地を同じシャッフルに含める。離脱置換がある場合の実行順と、その後の3枚ドローを検証する。"
+      },
+      {
+        "id": "dmr12-s01",
+        "name": "新聖綺神 クロスオーバー・ヨミ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-s01",
+        "check": "単独時の離脱置換はパワーが0以下でも適用され得るため、正のパワーを要求する既存g577Stayのままでは再現できない。状況起因処理の再評価と他の置換との競合の検証が必要。"
+      },
+      {
+        "id": "dmd11-007",
+        "name": "焔の下の力持ち ワーゲン",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd11-007",
+        "check": "QA 36889・36890確認済み。表向きに複数ある場合とゼロヨンとの競合は未確認。攻撃選択とシールド選択を両方検証する。"
+      },
+      {
+        "id": "dmr09-036",
+        "name": "驚愕の存在 カニス",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-036",
+        "check": "クリーチャー自身の効果ブレイクに、対象シールドを選ぶ前に追加枚数を反映できるよう調査中。呪文・通常ブレイク・途中保存の互換性を検証する。"
+      },
+      {
+        "id": "dm26rp2-042",
+        "name": "連射のラクシャ ユキメ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-042",
+        "check": "公式QA 48931に沿う比較・公開時能力・山札下への置換処理が前提。"
+      },
+      {
+        "id": "dmr10-017",
+        "name": "呼ぶ者 サリックス",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-017",
+        "check": "エグザイルは種族ではなくカードタイプ。まず実カードの対戦対応が必要。"
+      }
+    ],
+    "steps": [
+      "git statusとAGENTS.mdを確認し、カードID・正規名・再録・能力文全体・基本情報・画像・使用制限・関連裁定を照合する。",
+      "新たな条件は既存カードの挙動と保存形式を維持して追加し、公式確認や効果全体の再現ができない場合は保留する。",
+      "個別・関連回帰は各最大10分。対戦シミュレーションを含むファイルは対象テスト名を明示し、全体のnpm testは中断・合否未確認のままとする。",
+      "実データで再集計し、検証内容と保留理由をbatchHistoryに残して、検証済み差分のみローカルコミットする。"
+    ]
+  }
 }
