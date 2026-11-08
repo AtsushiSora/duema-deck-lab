@@ -1,0 +1,128 @@
+{
+  "phase": 630,
+  "checkedAt": "2026-11-08",
+  "baseCount": 5720,
+  "description": "手札の追加展開からマナやシールドを補うカードを公式情報と照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/45920/"
+  ],
+  "cards": [
+    {
+      "id": "dm26rp1-056",
+      "name": "アドベント・チャージャー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-056",
+      "faces": [
+        {
+          "name": "アドベント・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "コスト３以下の、クリーチャーではないカードを１枚、自分の手札からコストを支払わずに実行してもよい。\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "nonCreature": true,
+            "max": 3,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-056.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "e74efd2597a96a2be5f23994e18caab850dbb4bc8a6fcc5e89cbfe0455c7899f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp3-014",
+      "name": "ノヴァルチャ・ハレイズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-014",
+      "faces": [
+        {
+          "name": "ノヴァルチャ・ハレイズ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スーパー・S・トリガー スーパー・S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい。その時自分のシールドが１つもなければ、このカードに{xB}能力を与える）\nカードを１枚引く。その後、コストの合計が４以下になるようにクリーチャーを好きな数、自分の手札から出す。\n{xB} 自分の山札の上から２枚をシールド化してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "superTrigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": "all",
+            "deploy": true,
+            "optional": true,
+            "g550CostBudget": 4,
+            "filter": {
+              "creature": true
+            },
+            "title": "合計コスト4以下で、手札から出す順に選ぶ"
+          }
+        ],
+        "g437Super": [
+          {
+            "op": "Offer",
+            "title": "山札の上から2枚をシールド化する？",
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 1
+              },
+              {
+                "op": "ShieldTop",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp3-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "990fd73f6061576f3ab3515ccc76f5d2071251dc71baa8de494800afae6c690a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-08",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26rp1-056": 4,
+      "dm26rp3-014": 4
+    }
+  }
+}

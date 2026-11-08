@@ -1,0 +1,219 @@
+{
+  "phase": 622,
+  "checkedAt": "2026-11-08",
+  "baseCount": 5703,
+  "description": "バトル勝利と防御に関するカードを公式情報と照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/46525/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp3-008",
+      "name": "「GT」-002",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-008",
+      "faces": [
+        {
+          "name": "「GT」-002",
+          "typeText": "G-NEOクリーチャー",
+          "civilizationText": "光/火/自然",
+          "civilizations": [
+            "光",
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "D・D・D [lfn04]（自分のクリーチャーが攻撃する時、このカードを [lfn04]支払って自分の手札から実行してもよい）\nG-NEO進化：光、火、または自然のクリーチャー１体の上に置いてもよい。（カードが下にあれば、NEO進化クリーチャーとして扱い、離れる時、かわりに下のカードすべてが離れる）\nブロッカー ブロッカー\nスピードアタッカー\nマッハファイター\nW・ブレイカー\n自分のクリーチャーがバトルに勝った時、自分の山札の上から１枚を見て、手札に加えるかマナゾーンに置く。その後、自分のマナゾーンにあるカードをすべてアンタップする。",
+          "race": "ガイアール・コマンド・ドラゴン/ヒューマノイド爆/テクノ・サムライ",
+          "powerText": "10500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ddd": {
+          "cost": 4,
+          "civilizations": [
+            "光",
+            "火",
+            "自然"
+          ]
+        },
+        "gNeo": true,
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "火"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "blocker": true,
+        "speedAttacker": true,
+        "machFighter": true,
+        "breaker": 2,
+        "g252WinWatch": {
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Look",
+              "n": 1,
+              "stages": [
+                {
+                  "n": 1,
+                  "g467Destinations": [
+                    "hand",
+                    "mana"
+                  ]
+                }
+              ],
+              "rest": "top"
+            },
+            {
+              "op": "UntapMana",
+              "g216UntapMana": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "a2f011b73e8df70b9f3c6494c4eeda80eb2189dc41f77652917bb2a9c8c045d4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm30-037",
+      "name": "無限の精霊リーサ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-037",
+      "faces": [
+        {
+          "name": "無限の精霊リーサ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルに勝った時、バトルの後、このクリーチャーをアンタップしてもよい。",
+          "race": "エンジェル・コマンド",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g189BattleWin": [
+          {
+            "op": "Offer",
+            "title": "このクリーチャーをアンタップする？",
+            "defs": [
+              {
+                "op": "Untap"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm30-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "ab79373864548b8a9e44d0db60a08e7112869778730e25b382aee351a2c2626d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-031",
+      "name": "ディライト・ディフェンス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-031",
+      "faces": [
+        {
+          "name": "ディライト・ディフェンス",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{STP} S・トリガー・プラス（この呪文を自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、この呪文に{x+}能力を与える）\n自分のクリーチャーをすべてアンタップする。次の自分のターンのはじめまで、それらのクリーチャーに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）\n{x+}このターン、自分のクリーチャーはすべてのバトルに勝つ。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "triggerPlus": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sequence",
+            "defs": [
+              {
+                "op": "GroupUntap",
+                "g219Untap": true,
+                "filter": {
+                  "creature": true
+                }
+              },
+              {
+                "op": "GroupGrant364",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                },
+                "grant": {
+                  "blocker": true
+                },
+                "g521UntilStart": true,
+                "spell": true
+              }
+            ]
+          }
+        ],
+        "g34Plus": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "grant": {
+              "g34AlwaysWin": true
+            },
+            "spell": true
+          }
+        ],
+        "g451PlusAfter": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "2d47eca5abb54d5b131d09aeb0541a19bacad7f9ccd8b2461e973706525d7742",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-08",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp3-008": 4,
+      "dm30-037": 4,
+      "dm23rp1-031": 4
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import {nameKey}from'./catalogue.js?v=0.707.0';
+import {nameKey}from'./catalogue.js?v=0.720.0';
 import {STARTER25_DATA}from'./starter25-data.js';
 export function resolveStarter25Decks(registry,data=STARTER25_DATA){
  if(data.schemaVersion!==1||data.product!=='DM26-SD1'||data.decks?.length!==25)throw Error('25の王道のデッキ一覧が正しくありません');

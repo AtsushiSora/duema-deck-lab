@@ -1,5 +1,5 @@
 import {displayTurn} from './turn-count.js';
-import {aiPublicSnapshot,aiResultCues} from './ai-playback.js?v=0.707.0';
+import {aiPublicSnapshot,aiResultCues} from './ai-playback.js?v=0.720.0';
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function screenshotReportFields(value={}){return {card:String(value.card||'').slice(0,120),effect:String(value.effect||'').slice(0,160),memo:String(value.memo||'').slice(0,400),logCount:[3,5,10].includes(Number(value.logCount))?Number(value.logCount):3};}
 // Freeze only visible report information. Hidden cards and full game state stay out.

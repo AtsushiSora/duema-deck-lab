@@ -1,18 +1,18 @@
-import {replacementSacrifices} from './kenji-rules.js?v=0.707.0';
-import {decorateSurvivor406} from './survivor-rules.js?v=0.707.0';
-import {inheritSoul404} from './super-soul.js?v=0.707.0';
-import {wdDefinition393,copiedDefinition393} from './requested393-joker-rules.js?v=0.707.0';
+import {replacementSacrifices} from './kenji-rules.js?v=0.720.0';
+import {decorateSurvivor406} from './survivor-rules.js?v=0.720.0';
+import {inheritSoul404} from './super-soul.js?v=0.720.0';
+import {wdDefinition393,copiedDefinition393} from './requested393-joker-rules.js?v=0.720.0';
 import {displayTurn,completeDisplayTurn} from './turn-count.js';
 export {displayTurn} from './turn-count.js';
 import {deckCopyLimit} from './historical-regulations.js?v=0.98.0';
-import {CHALLENGER_IDS,chooseHeroDraw,chooseHeroOpening} from './hero-draw.js?v=0.707.0';
+import {CHALLENGER_IDS,chooseHeroDraw,chooseHeroOpening} from './hero-draw.js?v=0.720.0';
 import {shieldCards,shieldGroup,findShield,attachShield,detachShieldCard} from './shield-state.js';
-import {createExtendedRules} from './extended-rules.js?v=0.707.0';
-import {createStrategicAI} from './strategic-ai.js?v=0.707.0';
+import {createExtendedRules} from './extended-rules.js?v=0.720.0';
+import {createStrategicAI} from './strategic-ai.js?v=0.720.0';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.227';
-export const ENGINE_VERSION='0.581.0';
-export const AI_VERSION='2.3.399';
+export const ENGINE_VERSION='0.594.0';
+export const AI_VERSION='2.3.412';
 const EFFECTS=new Set(['champion','environment','recommended','sixPhoto','ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers','dragonRamp2','ramp2Return1','optionalRamp4Return2','purgeNonDragonMana','fightOptional','destroyWeakerLimitNextTurn','shieldTop1','deployMulticolor7','superheroSweep','destroyBattleCard3','destroyBattleCard2','jadowShield','vamBounce','goodEvil','aterModes','jaganRevive','reverseLock','urEvolve','muteLoot','tensaiLoot','graveRecycle','destroyMin','vtBounce','miradaCast','spellLock','miracleDraw','serpentModal','icicleModes','mirageModes','judgeDraw','maryRevive','darknessModes','fumiModes','brainSlash','charonReset','jennySacrifice','inspectDiscard','gospelRecover','dolsuzakuTurn','frozenCarnival','finalStop','oriotisJudge','nextSummonSpeed','tripleMode','sirenMana','courageMode','burningLoot','lastDragonFlame','destroy6000','masterGGGLoot','untapTwoMana','fairyDiscard6000','graveShuffle','permitManaSummon','wellkius','mikadoreo','sheva','rudolf','saiphogate','heavensGate','stargaze','bambooRamp','sharappu','fairyPower','takeback','hugePlan','shakoRecycle','naturalGo','herculesRecycle','jurassicHowl','corenReveal','plantRamp','sonicMana','jumboReveal','granRamp','kiyonagaReveal','gohaten','zenonRamp','wiseShutter','dokiBounce','minogamiRecover','hazardPact','fortress','casablancaBounce','sheketDraw','petrovaProtect','bojiMill','dranEntry','goldShield','c0braRevive','mechaDraw','ameliaShield','mechaMinus','goryuShield','magicNapo','magicSmallDestroy','magicIgnore','magicNumberLock','magicFire','magicKaraku','magicHime','magicBounce','magicPeecap','magicDraw','armoredBaku','armoredValkyria','armoredVal','armoredMonster','hunterMekraid','hunterBambi','hunterSweep4','hunterSweep2','hunterVictory','hunterMana','hunterDraw','zardCast','dogiRamp','dolfSweep','damdRemove','fiveModes','dragonSign','aquaReveal','bossDeploy','dedoAllocate','fireAllocate','fairyMiracle','babaBottom','cycleEntry','jaougaShields','katsuLook','reverseMinus','jaoumon','fortuneRamp','giantHeavy','giantLake','giantTouch','giantYuki','giantSpace','giantSineraria','giantFirefly','gachiRobo','gachiCambiare','gachiFight','gachiMystery','gachiNicol','gachiBigBang','gachiMagrul','gachiRice','gachiGuignol','samuraiBui','samuraiMusashi','samuraiMekraid','samuraiFlash','lionelPeace','lionelRune','lionelHeart','lionelSlotton','lionelAQ','lionelKorail','lionelGera','lionelSong','lionelStar','kenjiCrymax','kenjiDida','kenjiMill','kenjiPlan','kenjiHeart','travelJourney','travelAfro','travelKatsura','travelPrison','travelRevZero','travelG3','travelZero','travelHelt','travelOra','travelChicken','graveGT','graveObuza','graveKaibyaku','graveUra','graveAbaku','graveLoot','graveDoor','graveMinus4','maruruOrugate','maruruKiinary','maruruWatch','maruruBunker','maruruSky','girlsDaiou','girlsSavak','girlsZeos','girlsTry','girlsMega','girlsGyai','girlsArshu','girlsRupia','madoNothing','madoAirvo','madoBarred','madoGon','madoBlood','madoBock','madoCombat','madoDollar','madoDraw','madoShuno','madoGokusatsu','madoGyap','redBlack','redMax','redRoyal','redCircle','redClock','redGareck','abyssJaga','abyssSis','abyssMurder','abyssMakua','abyssMill','abyssMek','abyssSeal','abyssBella','hachiRedZ','hachiStorm','hachiFight','hachiForbidden','hachiShibire','hachiPower','hachiSSD','virideEver','golgyEntry','golgyKohaku','golgyBig','golgyShield','golgyHerc','golgyWest','golgyGin','golgyBlueprint','golgyJasmine','bandeRadio','bandePizza','bandeDecision','bandeDagra','bandeBalance','bandeSeal','bandeTaka','madoZadan','madoMaou','madoNameless','madoJaw','madoGride','madoFunz','madoVoga','madoLab','madoTin','bolBaro','bolBT','bolAgony','bolLoot','bolMol','bolLand','bolJura','bolDuel','bolBird','phoenixFel','phoenixGate','phoenixMetal','phoenixReverse','phoenixRecover','phoenixXeno','phoenixLoot','phoenixAbu','phoenixHeavy','phoenixMill','phoenixReload','phoenixOni','kenjiMysteryCube','kenjiCocoon','kenjiPanda','kenjiJaouga8','shieldDogi','shieldResolve','shieldBounce','shieldD4','shieldMirror','shieldMirrorSpell','shieldParfe','shieldDeka','shieldFaceTop']);
 let catalogue=new Map();
 const standardDDD495=c=>['creature','spell','seed'].includes(c.type)&&!c.evolution&&Number.isSafeInteger(c.ddd?.cost)&&c.ddd.cost>0&&Object.keys(c.ddd).length===2&&Array.isArray(c.ddd.civilizations)&&c.ddd.civilizations.length>0&&c.ddd.civilizations.length<=c.ddd.cost&&new Set(c.ddd.civilizations).size===c.ddd.civilizations.length&&c.ddd.civilizations.every(v=>['光','水','闇','火','自然'].includes(v));
@@ -413,6 +413,11 @@ function saver571(s,row,source){
  if(!rule||source.sealed||rule.other&&row.uid===source.uid)return false;
  if(!rule.ultra&&(row.to!=='grave'||row.destroy===false&&!rule.graveMove))return false;
  const target=s.players[row.player].battle.find(x=>x.uid===row.uid);
+ if(rule.to==='mana'){
+  if(!target||shevaProtection(s,row.player))return false;
+  return row.battlePower===undefined?extra.six.matches(s,row.player,target,rule.filter)
+   :isCreature(s,target)&&row.battlePower>=rule.filter.minPower;
+ }
  return !!target&&extra.six.matches(s,row.player,target,rule.filter)
   &&!extra.six.zeroSafe(s,source)&&!extra.six.destroySafe409(s,source)
   &&!(sourceCard.caddy&&shevaProtection(s,row.player));
@@ -460,8 +465,20 @@ function advanceLeaving(s){if(s.lossEvent)return;
  const savers=[...new Set(batch.rows.filter(r=>r.plan.kind==='ultra').map(r=>r.plan.uid))];
  batch.snapshot=batch.after?.snapshot401??extra.leaveSnapshot(s,batch.rows.flatMap(r=>r.plan.kind==='oni'?s.players[r.player].battle.filter(x=>r.plan.cards.includes(x.uid)).map(x=>({player:r.player,uid:x.uid})):r.plan.kind==='ultra'?[{player:r.player,uid:r.plan.uid}]:['leave','star','g47','g49'].includes(r.plan.kind)&&!savers.includes(r.uid)?[{player:r.player,uid:r.uid}]:r.plan.kind==='ater'?[{player:r.player,uid:r.plan.uid}]:[]));
  s.g20LeavingUids=[...savers,...batch.rows.flatMap(r=>['leave','star','g47','g49'].includes(r.plan.kind)?[r.uid]:r.plan.kind==='ater'?[r.plan.uid]:[])];
- // Ultra-Saver is itself a replacement: its destruction cannot be replaced again.
- for(const uid of savers){const row=batch.rows.find(r=>r.plan.kind==='ultra'&&r.plan.uid===uid),own=s.players[row.player],x=own.battle.find(x=>x.uid===uid);if(!x)continue;recordLastPower(s,row.player,x,layers(x));extra.leaving(s,row.player,x,!!effectiveCard(x,s).kakuLeave,batch.snapshot,'grave');remove(own.battle,uid);const all=layers(x);for(const y of all)clearBattleState(y);addZone(s,own,'grave',...all);if(s.attack&&[s.attack.attacker,s.attack.target,s.attack.blockUid].includes(uid))s.attack=null;log(s,row.player,'ultraSaver',card(x).name+'をかわりに破壊する',{cardId:x.cardId});}
+ // The movement made by a replacement cannot be replaced again.
+ for(const uid of savers){
+  const row=batch.rows.find(r=>r.plan.kind==='ultra'&&r.plan.uid===uid),own=s.players[row.player];
+  const x=own.battle.find(x=>x.uid===uid);
+  if(!x)continue;
+  const to=row.plan.to||'grave',all=layers(x);
+  recordLastPower(s,row.player,x,all);
+  extra.leaving(s,row.player,x,!!effectiveCard(x,s).kakuLeave,batch.snapshot,to,to==='grave');
+  remove(own.battle,uid);
+  for(const y of all)clearBattleState(y,to);
+  addZone(s,own,to,...all);
+  if(s.attack&&[s.attack.attacker,s.attack.target,s.attack.blockUid].includes(uid))s.attack=null;
+  log(s,row.player,'ultraSaver',card(x).name+(to==='mana'?'をかわりにマナゾーンへ置く':'をかわりに破壊する'),{cardId:x.cardId});
+ }
  // Preserve LKI for every card before applying any of the simultaneous moves.
  if(batch.after?.kind!=='shieldSaverBreak401')for(const row of batch.rows){const c=s.players[row.player].battle.find(x=>x.uid===row.uid);if(!c)continue;if(['leave','star'].includes(row.plan.kind))recordLastPower(s,row.player,c,row.cardOnly||row.plan.kind==='star'?[c]:layers(c));else if(row.plan.kind==='gneo')recordLastPower(s,row.player,c,(c.under||[]).flatMap(layers));}
  for(const row of batch.rows.filter(r=>r.plan.kind==='ater')){const own=s.players[row.player],victim=own.battle.find(x=>x.uid===row.plan.uid),kaku=!!(victim&&effectiveCard(victim,s).kakuLeave),other=remove(own.battle,row.plan.uid);if(other){const cards=layers(other);recordLastPower(s,row.player,other,cards);extra.leaving(s,row.player,other,kaku,batch.snapshot,'grave');for(const x of cards)clearBattleState(x);addZone(s,own,'grave',...cards);log(s,row.player,'aterGuard',`${card(other).name}をかわりに破壊する`,{cardId:other.cardId});}}
@@ -1255,6 +1272,10 @@ export function getLegalActions(s){
    if(v.tappedMana)out.push(option('replaceYamata',name+'をかわりにタップしてマナゾーンに置く',{tapped:true}));
    for(const x of v.ultra){
     const source=effectiveCard(x,s);
+    if(source.g571Saver?.to==='mana'){
+     out.push(option('replaceUltra',`${name}を残し、${source.name}をかわりにマナゾーンへ置く`,{uid:x.uid,cardId:x.cardId,to:'mana'}));
+     continue;
+    }
     const keyword=source.g40Saver||source.g571Saver&&!source.g571Saver.ultra?'セイバー':'ウルトラ・セイバー';
     out.push(option('replaceUltra',card(x).name+'を'+keyword+'でかわりに破壊する',{uid:x.uid,cardId:x.cardId}));
    }
@@ -1385,7 +1406,7 @@ function stepCore(s,action){
  if(a.kind==='replaceUra')extra.beginUra(s,p,d.uid,'leave');
  if(a.kind==='replaceOni')extra.beginOni(s,p,d.uid,'leave');
  if(a.kind==='replaceYamata'){s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p).plan={kind:'yamata',...(a.tapped?{tapped:true}:{})};s.decision=null;}
- if(a.kind==='replaceUltra'){s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p).plan={kind:'ultra',uid:a.uid};s.decision=null;}
+ if(a.kind==='replaceUltra'){s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p).plan={kind:'ultra',uid:a.uid,...(a.to?{to:a.to}:{})};s.decision=null;}
  if(a.kind==='replaceAter'){s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p).plan={kind:'ater',uid:a.uid};s.decision=null;}
  if(a.kind==='replaceMana')s.decision={type:'leaveMana',player:p,uid:d.uid,chosen:[],mandatory:d.mandatory};
  if(a.kind==='leaveMana'){d.chosen.push(a.uid);if(d.chosen.length===3){s.leaving.rows.find(x=>x.uid===d.uid&&x.player===p).plan={kind:'mana',mana:[...d.chosen]};s.decision=null;}}
@@ -1492,6 +1513,12 @@ export function rankHeuristicActions(s){
  const acts=getLegalActions(s);if(!acts.length)return [];const p=acts[0].player,v=observation(s,p),me=v.players[p],them=v.players[1-p];
  const find=(who,uid)=>v.players[who].battle.find(x=>x.uid===uid);
  const currentPower=x=>power(x,x.uid===v.attack?.attacker,v),living=xs=>xs.filter(x=>isCreature(v,x)&&!x.sealed);
+ const cheapExecution=x=>playFaces(card(x)).some(f=>f.type!=='creature'&&costValue(f)<=3&&canCastSpell(v,p,f,'hand')&&!spellIgnored(v,f));
+ const destroyAndMill631=x=>{
+  const cost=costValue(effectiveCard(x,v));
+  if(!deckLocked(v,p)&&cost>0&&cost>=me.deckCount)return -1000;
+  return (extra.canLeave(v,1-p,x)?22:3)+Math.min(12,currentPower(x)/1000)-Math.min(12,cost);
+ };
  const manaEffects=defs=>(defs||[]).flatMap(d=>d.op==='IfMana'?(me.mana.filter(x=>{const cs=manaColors(card(x),v,p);return d.multi?cs.length>1:cs.includes(d.color);}).length>=d.n?manaEffects(d.defs):[]):[d]);
  const fireSweepValue=c=>{const matches=x=>c.g75Effect==='Duel'?effectiveCard(x,v).blocker:currentPower(x)<=(c.g75Effect==='Shark'?2000:c.g75Effect==='Burst'?3000:4000),value=xs=>living(xs).filter(matches).reduce((n,x)=>n+aiCost(effectiveCard(x,v))+2,0);return value(them.battle)-(c.g75Effect==='Burst'?0:value(me.battle));};
  // Grave deployments use public grave identities and normal entry rules, not summoning costs.
@@ -1831,6 +1858,155 @@ export function rankHeuristicActions(s){
    if(me.deckCount<=2)return -1000;
    return body+24;
   }
+  if(c?.supportBatch==='phase-622'&&c.triggerPlus&&['play','useTrigger'].includes(a.kind)){
+   const allies=living(me.battle),attacks=living(them.battle).filter(x=>!x.tapped&&!effectiveCard(x,v).noPlayerAttack);
+   if(!allies.length||!attacks.length||spellIgnored(v,c))return -1;
+   const available=allies.filter(x=>!x.tapped||canUntap(x));
+   const added=available.filter(x=>x.tapped||!effectiveCard(x,v).blocker).length;
+   const plus=a.kind==='useTrigger'&&me.hand.some(x=>x.uid===a.uid&&x.triggerPlus);
+   return Math.min(attacks.length,added)*19+(plus?Math.min(attacks.length,available.length)*25:0);
+  }
+  if(c?.supportBatch==='phase-632'&&['play','useTrigger'].includes(a.kind)){
+   if(c.g571Saver){
+    const targets=living(them.battle).filter(x=>costValue(effectiveCard(x,v))<=3&&extra.targetable(v,p,1-p,x));
+    const ally=living(me.battle).some(x=>currentPower(x)>=12000);
+    const entry=!abilitiesIgnored(v,{cardId:c.id,uid:a.uid})&&!selfTriggersStopped(v,p)&&!extra.muteEntry(v,p);
+    return 8+(ally?14:0)+(entry&&targets.length?24:0);
+   }
+   if(spellIgnored(v,c))return -20;
+   const allies=living(me.battle).filter(x=>currentPower(x)<=5000&&extra.targetable(v,p,p,x));
+   const enemies=living(them.battle).filter(x=>currentPower(x)<=5000&&extra.targetable(v,p,1-p,x)&&extra.canLeave(v,1-p,x));
+   if(!allies.length||!enemies.length)return -20;
+   const sacrifice=Math.min(...allies.map(x=>extra.canLeave(v,p,x)?aiCost(effectiveCard(x,v)):0));
+   const threat=Math.max(...enemies.map(x=>aiCost(effectiveCard(x,v))+(v.attack?.attacker===x.uid?3:0)));
+   return threat>=sacrifice?12+(threat-sacrifice)*5:-5;
+  }
+  if(a.kind==='extended'&&s.decision?.task?.g587AfterSelection&&card(s.decision.task.source)?.supportBatch==='phase-632'){
+   const x=find(p,s.decision.choices[a.choice]?.value?.uid);
+   if(x){
+    const body=effectiveCard(x,v);
+    if(!extra.canLeave(v,p,x)||extra.six.destroySafe409(v,x)||body.caddy)return 30;
+    return (body.g172Death?.length?8:0)-aiCost(body)*3-currentPower(x)/1000;
+   }
+  }
+  if(c?.supportBatch==='phase-631'&&['play','useTrigger'].includes(a.kind)){
+   if(spellIgnored(v,c))return -20;
+   const targets=living(them.battle).filter(x=>extra.targetable(v,p,1-p,x));
+   if(!targets.length)return -15;
+   if(c.gStrike)return deckLocked(v,1-p)?-15:Math.max(...targets.map(x=>22+aiCost(effectiveCard(x,v))*2));
+   return Math.max(...targets.map(destroyAndMill631));
+  }
+  if(a.kind==='extended'&&s.decision?.task?.g631MillCost){
+   const x=find(1-p,s.decision.choices[a.choice]?.value?.uid);
+   if(x)return destroyAndMill631(x);
+  }
+  if(c?.supportBatch==='phase-630'&&['play','useTrigger'].includes(a.kind)){
+   if(spellIgnored(v,c))return -20;
+   if(c.normalCharger){
+    const ramp=me.mana.length<7&&!extra.manaRedirect(v,p)?12:0;
+    return me.hand.some(cheapExecution)?24+ramp:ramp-8;
+   }
+   const danger=entryExhaustion236(c,null,{entry:false});
+   if(danger!==null)return danger;
+   const trigger=a.kind==='useTrigger',bonus=trigger&&me.hand.some(x=>x.uid===a.uid&&x.superTrigger)&&me.deckCount>3&&canAddShield(v,p);
+   const deployable=me.hand.filter(x=>card(x).type==='creature'&&costValue(card(x))<=4&&extra.six.canPut(v,p,x,'hand'));
+   const block=deployable.some(x=>card(x).blocker);
+   return (trigger?16:me.hand.length<=3?10:1)+Math.min(2,deployable.length)*13+(trigger&&block?16:0)+(bonus?35:0);
+  }
+  if(c?.supportBatch==='phase-629'&&['play','useTrigger','declareDDD','summonDDD','evolve','triggerEvolve'].includes(a.kind)){
+   if(c.ddd){
+    if(spellIgnored(v,c))return -20;
+    const danger=entryExhaustion236(c,null,{entry:false});
+    if(danger!==null)return danger;
+    const followUp=me.hand.some(cheapExecution);
+    return followUp?34:me.hand.length<=3?14:a.kind==='play'?1:-1;
+   }
+   const source=me.hand.find(x=>x.uid===a.uid);
+   const defs=c.g34Tasks.flatMap(d=>d.op==='IfNeo563'?(a.baseUid?d.defs:[]):[d]);
+   const danger=entryExhaustion236(c,source,{defs});
+   if(danger!==null)return danger;
+   if(a.kind==='evolve'||a.kind==='triggerEvolve'){
+    const base=find(p,a.baseUid);
+    return base?24-aiCost(effectiveCard(base,v))-(base.tapped?9:0):16;
+   }
+   return 33+(living(them.battle).some(x=>!effectiveCard(x,v).noAttack)?14:0);
+  }
+  if(a.kind==='extended'&&s.decision?.task?.op==='g34_Execute'&&s.decision.task.nonCreature){
+   const option=s.decision.choices[a.choice],value=option?.value;
+   if(value){
+    const x=me[value.origin].find(x=>x.uid===value.uid),face=x&&playFaces(card(x))[value.face];
+    if(face?.type==='spell'){
+     if(spellIgnored(v,face))return -20;
+     const danger=entryExhaustion236(face,null,{entry:false});
+     if(danger!==null)return danger;
+    }
+   }
+  }
+  if(c?.supportBatch==='phase-628'&&['play','useTrigger','declareDDD','summonDDD'].includes(a.kind)){
+   if(spellIgnored(v,c))return -20;
+   if(c.ddd){
+    if(me.deckCount<=1&&!deckLocked(v,p)&&!living(me.battle).some(x=>effectiveCard(x,v).shako))return -1000;
+    const enemies=living(them.battle).filter(x=>extra.targetable(v,p,1-p,x)&&extra.canLeave(v,1-p,x));
+    const bounce=enemies.map(x=>12+aiCost(effectiveCard(x,v))*2).sort((a,b)=>b-a).slice(0,2).reduce((n,x)=>n+x,0);
+    return bounce+(a.kind==='useTrigger'||me.hand.length<=3?8:0);
+   }
+   const allies=living(me.battle).filter(x=>!x.tapped||canUntap(x));
+   const attackers=living(them.battle).filter(x=>!effectiveCard(x,v).noAttack);
+   if(!allies.length||!attackers.length)return -15;
+   return (allies.some(x=>x.tapped)?24:12)+(me.shields<=2?14:0);
+  }
+  if(a.kind==='extended'&&s.decision?.task?.op==='g34_Target'&&card(s.decision.task.source)?.supportBatch==='phase-628'){
+   const x=find(p,s.decision.choices[a.choice]?.value?.uid);
+   if(x){
+    if(x.tapped&&!canUntap(x))return -10;
+    const stronger=living(them.battle).some(y=>currentPower(y)>currentPower(x)&&currentPower(y)<=currentPower(x)+4000);
+    return 10+(x.tapped?14:0)+(stronger?12:0)+Math.min(10,currentPower(x)/1500);
+   }
+  }
+  if(c?.supportBatch==='phase-627'&&a.kind==='play'){
+   if(c.type==='spell'){
+    if(spellIgnored(v,c)||(v.extLimits||[]).some(l=>l.kind==='g627AttackCap'&&l.player===1-p))return -20;
+    const threats=living(them.battle).filter(x=>!effectiveCard(x,v).noAttack).length;
+    return threats>=2?Math.min(66,(threats-1)*(me.shields<=2?28:18)+(me.shields<=2?16:0)):-15;
+   }
+   const body=30+aiCost(c)*2,source=me.hand.find(x=>x.uid===a.uid)||{cardId:c.id,uid:a.uid};
+   if(abilitiesIgnored(v,source))return body;
+   const entry=!selfTriggersStopped(v,p)&&!extra.muteEntry(v,p);
+   return body+12+(entry&&me.deckCount>1&&canAddShield(v,p)&&!deckLocked(v,p)?12:0);
+  }
+  if(c?.supportBatch==='phase-626'&&['play','useTrigger'].includes(a.kind)){
+   const ctx={p,source:c.id};
+   if(c.type==='spell'){
+    if(spellIgnored(v,c))return -20;
+    const value=Math.max(...c.g34Tasks[0].modes.map(m=>extra.six.modeScore(v,ctx,m.defs)));
+    return value>0?value:-20;
+   }
+   const source=me.hand.find(x=>x.uid===a.uid)||{cardId:c.id,uid:a.uid};
+   const body=30+aiCost(c)*2;
+   if(abilitiesIgnored(v,source)||selfTriggersStopped(v,p)||extra.muteEntry(v,p))return body;
+   const stays=extra.six.ownCondition(v,p,{creatureOrSeed:true,color:'火',g258Civil:2});
+   return (stays?body:0)+extra.six.modeScore(v,ctx,c.g34Tasks)-(stays?0:6);
+  }
+  if(a.kind==='useTrigger'&&c?.supportBatch==='phase-625'&&c.triggerPlus&&!deckLocked(v,p)){
+   const source=me.hand.find(x=>x.uid===a.uid&&x.triggerPlus);
+   if(source&&canAddShield(v,p)&&entryExhaustion236(c,source,{defs:c.g34Plus})===-1000)return -1000;
+  }
+  if((c?.g624EntryResponse||c?.supportBatch==='phase-625')&&a.kind==='play'){
+   const body=30+aiCost(c)*2;
+   const redundant=living(me.battle).some(x=>{
+    const ally=effectiveCard(x,v);
+    return c.g591HandShield?ally.g591HandShield:ally.g624EntryResponse===c.g624EntryResponse;
+   });
+   return body+(redundant||abilitiesIgnored(v,{cardId:c.id,uid:a.uid})?0:20);
+  }
+  if(c?.supportBatch==='phase-621'&&a.kind==='play'){
+   const body=30+aiCost(c)*2;
+   if(abilitiesIgnored(v,{cardId:c.id,uid:a.uid}))return body;
+   if(c.g621NonSummon==='skip')return body+(them.mana.length<=4?16:8);
+   if(c.g621NonSummon==='bottom')return body+8;
+   if(selfTriggersStopped(v,p)||extra.muteEntry(v,p))return body;
+   return body+extra.six.modeScore(v,{p,source:c.id},c.g34Tasks);
+  }
   if(c?.g619Tax&&a.kind==='play'){
    const body=30+aiCost(c)*2;
    if(abilitiesIgnored(v,{cardId:c.id,uid:a.uid}))return body;
@@ -2138,8 +2314,11 @@ export function rankHeuristicActions(s){
   if(a.kind==='infinityShield')return a.exLifeHit?5:1;
   if(a.kind==='charge'){
    const duplicates=me.hand.filter(x=>x.cardId===c.id).length;
-   const colors=manaCivilizations(c).filter(v=>!me.mana.some(x=>manaCivilizations(card(x)).includes(v))).length;
-   return 50+colors*10+aiCost(c)*1.5+(duplicates>1?4:0)-(c.type==='creature'&&aiCost(c)<=3?10:0);
+   const missingColors=manaCivilizations(c).filter(color=>!me.mana.some(x=>manaCivilizations(card(x)).includes(color)));
+   const keepResponse=duplicates===1&&
+    (c.supportBatch==='phase-622'&&(c.ddd||c.triggerPlus)||c.supportBatch==='phase-623'||c.g624EntryResponse||c.supportBatch==='phase-625'||c.supportBatch==='phase-626'||c.supportBatch==='phase-627'||c.supportBatch==='phase-628'||c.supportBatch==='phase-629')&&
+    missingColors.every(color=>me.hand.some(x=>x.uid!==a.uid&&manaCivilizations(card(x)).includes(color)));
+   return 50+missingColors.length*10+aiCost(c)*1.5+(duplicates>1?4:0)-(c.type==='creature'&&aiCost(c)<=3?10:0)-(keepResponse?18:0);
   }
   if(a.kind==='skipCharge')return me.mana.reduce((n,x)=>n+manaValue(card(x)),0)>=Math.max(7,...me.hand.map(x=>aiCost(card(x))))?100:me.hand.length<=1&&me.mana.length>=4?70:0;
   if(a.kind==='pandora')return me.mana.length<4?42:(me.extra||[]).some(x=>card(x).pandora)?5:30;
@@ -2765,7 +2944,11 @@ export function rankHeuristicActions(s){
   if(a.kind==='attack'){const x=find(p,a.uid);if(effectiveCard(x,v).g159D==='pucho'&&!abilitiesIgnored(v,x)&&!selfTriggersStopped(v,p)&&me.deckCount<=3&&!(a.target==='player'&&!them.shields&&!defenseOptions({...v,active:p,attack:{attacker:x.uid,target:'player',player:p}},1-p).length))return -1000;}
   if(a.kind==='attack'){
    const x=find(p,a.uid),recovery=!abilitiesIgnored(v,x)&&!selfTriggersStopped(v,p)?Math.max(-20,(effectiveCard(x,v).g34Attack||[]).filter(d=>d.op==='RecoverAll326').reduce((n,d)=>n+extra.six.recoveryScore326(v,{p,source:x.cardId,...d}),0)):0;if(effectiveCard(x,v).g141Role==='kuchiku'&&!abilitiesIgnored(v,x)&&!selfTriggersStopped(v,p)&&me.deckCount<=1&&!living(me.battle).some(x=>effectiveCard(x,v).shako))return -1000;if(effectiveCard(x,v).g76Juggler&&extra.utilityTide.monoWater(v,p)&&me.deckCount<=1&&!me.battle.some(x=>effectiveCard(x,v).shako))return -1000;if(a.target==='player')return 25+(a.exLifeHit?3:0)+(them.shields===0?100:recovery)+(effectiveCard(x,v).unblockable?8:0)-(effectiveCard(x,v).blocker&&me.shields===0?20:0);
-   const y=find(1-p,a.target);if(effectiveCard(y,v).g35Role==='venom')return effectiveCard(x,v).mustAttack?1:-5;if(effectiveCard(y,v).g34BattleSafe||y.g19Protected||them.shields>=7&&them.battle.some(z=>effectiveCard(z,v).engelsProtect))return effectiveCard(x,v).mustAttack?1:-10;return recovery+(matchupPower(x,y,true,v)>matchupPower(y,x,false,v)?40+aiCost(card(y)):matchupPower(x,y,true,v)===matchupPower(y,x,false,v)?16:effectiveCard(x,v).mustAttack?1:-10);
+   const y=find(1-p,a.target),attacker=effectiveCard(x,v),enemy=effectiveCard(y,v);
+   if(attacker.supportBatch==='phase-620'&&attacker.gNeo&&x.under?.length&&attacker.slayer&&aiCost(enemy)>=7&&
+      !enemy.g34BattleSafe&&!y.g19Protected&&!y.under?.length&&!enemy.exLife&&
+      !extra.six.destroySafe409(v,y)&&extra.canLeave(v,1-p,y))return 33+aiCost(enemy);
+   if(enemy.g35Role==='venom')return effectiveCard(x,v).mustAttack?1:-5;if(effectiveCard(y,v).g34BattleSafe||y.g19Protected||them.shields>=7&&them.battle.some(z=>effectiveCard(z,v).engelsProtect))return effectiveCard(x,v).mustAttack?1:-10;return recovery+(matchupPower(x,y,true,v)>matchupPower(y,x,false,v)?40+aiCost(card(y)):matchupPower(x,y,true,v)===matchupPower(y,x,false,v)?16:effectiveCard(x,v).mustAttack?1:-10);
   }
   if(a.kind==='endTurn')return 0;
   if(a.kind==='defendMany')return -1;

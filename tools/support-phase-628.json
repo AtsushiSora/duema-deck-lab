@@ -1,0 +1,125 @@
+{
+  "phase": 628,
+  "checkedAt": "2026-11-08",
+  "baseCount": 5716,
+  "description": "盤面や手札を立て直すカードを公式情報と照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/45450/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp3-036",
+      "name": "OLD LIMITED DEPTH",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-036",
+      "faces": [
+        {
+          "name": "OLD LIMITED DEPTH",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nD・D・D [ww03]（自分のクリーチャーが攻撃する時、このカードを [ww03]支払って自分の手札から実行してもよい）\nクリーチャーを２体まで選び、持ち主の手札に戻す。その後、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "ddd": {
+          "cost": 3,
+          "civilizations": [
+            "水"
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "anyOwner": true,
+            "to": "hand",
+            "n": 2,
+            "optional": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "filter": {
+              "creature": true
+            },
+            "title": "持ち主の手札に戻すクリーチャーを2体まで選ぶ"
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "674a9701edb9c173711c61c71d15130e728d8d326aafc69560580fdd66eb1e0e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp2-057",
+      "name": "ホーリー・出す・バナナ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-057",
+      "faces": [
+        {
+          "name": "ホーリー・出す・バナナ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\n自分のクリーチャーを１体アンタップする。次の自分のターンのはじめまで、そのクリーチャーのパワーを+4000し、「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "untap": true,
+            "power": 4000,
+            "grant": {
+              "blocker": true
+            },
+            "g521UntilStart": true,
+            "title": "アンタップして強化する自分のクリーチャーを選ぶ",
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp2-057.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "5055be2718cbb2d9e4e30b2713e8942adf2694c257d0fa1d2a7eb451c6be4348",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-08",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp3-036": 4,
+      "dm26rp2-057": 4
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import {forceAttackTargets} from './forced-attack-targets.js?v=0.707.0';
+import {forceAttackTargets} from './forced-attack-targets.js?v=0.720.0';
 import {policyRemove} from './champion-zone-policy.js';
 // Exact 2025 champion lists: zone choices and delayed targets retain physical identities.
 export function createChampion2025Rules(api){

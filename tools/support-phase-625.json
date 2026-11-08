@@ -1,0 +1,103 @@
+{
+  "phase": 625,
+  "checkedAt": "2026-11-08",
+  "baseCount": 5710,
+  "description": "相手による手札破壊を防ぐ対策カードを公式情報と照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37158/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp2-031",
+      "name": "巡霊者ニージェ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-031",
+      "faces": [
+        {
+          "name": "巡霊者ニージェ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーは、相手に選ばれない。（ただし、このクリーチャーを攻撃またはブロックしてもよい）\n相手の、呪文またはクリーチャーの能力によって、自分の手札は捨てられない。",
+          "race": "コスモ・ウォーカー",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "untargetable": true,
+        "g591HandShield": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "1139b5d08f972fc1f93c4b074d722b2e39221c0ab9deaa3ab11221327367abd6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2-029",
+      "name": "忍爪の聖沌 k491",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-029",
+      "faces": [
+        {
+          "name": "忍爪の聖沌 k491",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{STP} S・トリガー・プラス（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、このクリーチャーに{x+}能力を与える）\n{x+}このクリーチャーが出た時、自分の山札の上から１枚目をシールド化する。このターンの終わりに、自分のシールドを１つブレイクする。\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n相手の呪文またはクリーチャーの能力によって、自分の手札は捨てられない。",
+          "race": "メカ・デル・ステラ/シノビ",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g591HandShield": true,
+        "triggerPlus": true,
+        "g34Plus": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          },
+          {
+            "op": "Schedule537",
+            "when": "turnEnd",
+            "defs": [
+              {
+                "op": "Break497",
+                "owner": "self",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "0297c89b609791cfab7ca4632b38eaf15f4580e9ba086c75c9139b45dbe63e76",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-08",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp2-031": 4,
+      "dm23rp2-029": 4
+    }
+  }
+}

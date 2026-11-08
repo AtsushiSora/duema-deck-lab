@@ -1,0 +1,135 @@
+{
+  "phase": 629,
+  "checkedAt": "2026-11-08",
+  "baseCount": 5718,
+  "description": "ドローから防御や追加展開につなぐカードを公式情報と照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/46949/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp2-015",
+      "name": "～紺碧の奇術師～",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-015",
+      "faces": [
+        {
+          "name": "～紺碧の奇術師～",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このカードをシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nNEO進化：光、水、または闇のクリーチャー１体の上に置いてもよい。\nブロッカー ブロッカー\nこのクリーチャーが出た時、カードを１枚引く。これが進化クリーチャーなら、カードをもう１枚引き、自分の手札を１枚シールド化し、自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。",
+          "race": "リキッド・ピープル/スチーム・ナイト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "水"
+            },
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "IfNeo563",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              },
+              {
+                "op": "ShieldExchange446"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "291c61b8af3b666da79da6fdd92c1e57a3557ffa9609d7d7b15019c005166825",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp3-037",
+      "name": "NEW ECHO WHISPER",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-037",
+      "faces": [
+        {
+          "name": "NEW ECHO WHISPER",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "D・D・D [ww02]（自分のクリーチャーが攻撃する時、このカードを [ww02]支払って自分の手札から実行してもよい）\nカードを１枚引く。\nコスト３以下の、クリーチャーではないカードを１枚、自分の手札からコストを支払わずに実行してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "ddd": {
+          "cost": 2,
+          "civilizations": [
+            "水"
+          ]
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "nonCreature": true,
+            "max": 3,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "48547602f5caed1148eceef8130dbb87a41e81d8491cfa2f4c13b871a2490dfd",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-08",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp2-015": 4,
+      "dm25rp3-037": 4
+    }
+  }
+}

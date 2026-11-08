@@ -1,0 +1,187 @@
+{
+  "phase": 623,
+  "checkedAt": "2026-11-08",
+  "baseCount": 5706,
+  "description": "登場と呪文詠唱で盤面を制御するカードを公式情報と照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/40683/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp20-001",
+      "name": "終刃混成 ミケラトレス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-001",
+      "faces": [
+        {
+          "name": "終刃混成 ミケラトレス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nW・ブレイカー\nこのクリーチャーが出た時、または自分が呪文を唱えた時、相手のクリーチャーを１体選び、タップする。そのクリーチャーは、次の相手のターンのはじめにアンタップしない。\n自分の呪文を唱えるコストを最大３少なくする。ただし、コストは０以下にはならない。",
+          "race": "ディスペクター/アウトレイジ",
+          "powerText": "10500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "exLife": true,
+        "breaker": 2,
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Target",
+              "tap": true,
+              "lock": true,
+              "g210TapLock": true,
+              "title": "タップして次のターンまで止めるクリーチャーを1体選ぶ"
+            }
+          ]
+        },
+        "g485SpellReduction": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "lock": true,
+            "g210TapLock": true,
+            "title": "タップして次のターンまで止めるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "ab7bcdf3b9c41b496277d0a2d8366e9d4678026cc3bbd66c055debb4f1babb48",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp20-002",
+      "name": "終絶電融 パワーロビン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp20-002",
+      "faces": [
+        {
+          "name": "終絶電融 パワーロビン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nW・ブレイカー\n自分のクリーチャーが出た時、または自分が呪文を唱えた時、次のうちいずれか１つを選ぶ。\n▶相手のクリーチャーを１体選び、持ち主の手札に戻す。\n▶カードを１枚引く。",
+          "race": "ディスペクター/アウトレイジ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "exLife": true,
+        "breaker": 2,
+        "g250EntryDraw": {
+          "self": true,
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Choose",
+              "g184Modes": true,
+              "modes": [
+                {
+                  "label": "相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+                  "defs": [
+                    {
+                      "op": "Select",
+                      "owner": "opponent",
+                      "origin": "battle",
+                      "n": 1,
+                      "filter": {
+                        "creature": true
+                      },
+                      "g173Targets": true,
+                      "g193Select": true,
+                      "to": "hand",
+                      "title": "手札に戻す相手のクリーチャーを1体選ぶ"
+                    }
+                  ]
+                },
+                {
+                  "label": "カードを１枚引く。",
+                  "defs": [
+                    {
+                      "op": "Draw",
+                      "n": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Choose",
+              "g184Modes": true,
+              "modes": [
+                {
+                  "label": "相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+                  "defs": [
+                    {
+                      "op": "Select",
+                      "owner": "opponent",
+                      "origin": "battle",
+                      "n": 1,
+                      "filter": {
+                        "creature": true
+                      },
+                      "g173Targets": true,
+                      "g193Select": true,
+                      "to": "hand",
+                      "title": "手札に戻す相手のクリーチャーを1体選ぶ"
+                    }
+                  ]
+                },
+                {
+                  "label": "カードを１枚引く。",
+                  "defs": [
+                    {
+                      "op": "Draw",
+                      "n": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp20-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "22c981aeae3ddc7e725d31dfccd1600260e86c69bc400799a168810404f96cf9",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-08",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp20-001": 4,
+      "dmrp20-002": 4
+    }
+  }
+}
