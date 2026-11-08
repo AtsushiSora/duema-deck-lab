@@ -165232,19 +165232,145 @@
       ],
       "supportBatch": "phase-641",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp3-037",
+      "name": "ワーク騎士",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ジョーカーズ",
+      "text": "このクリーチャーが出た時、自分の山札の上から４枚を墓地に置いてもよい。その後、ジョーカーズ・カードを１枚、自分の墓地から手札に戻してもよい。\nJクライム６（このクリーチャーが攻撃する時、これと自分の墓地にあるコスト６以下のジョーカーズ・クリーチャー１体を入れ替えてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-037",
+      "limit": 4,
+      "g393Change": {
+        "grave": 6
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 4,
+          "optional": true
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "g539JokerCard": true
+          }
+        }
+      ],
+      "supportBatch": "phase-642",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp3-038",
+      "name": "×マドギワ親父",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ジョーカーズ",
+      "text": "このクリーチャーを自分の墓地から召喚してもよい。\nこのクリーチャーが出た時、相手は自身の手札を１枚選び、捨てる。\nJクライム４（このクリーチャーが攻撃する時、これと自分の墓地にあるコスト４以下のジョーカーズ・クリーチャー１体を入れ替えてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-038",
+      "limit": 4,
+      "graveSummon": true,
+      "g393Change": {
+        "grave": 4
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-642",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp3-062",
+      "name": "バイナラベーター",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 3000,
+      "race": "ジョーカーズ",
+      "text": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、持ち主の山札の下に置く。\nJクライム４（このクリーチャーが攻撃する時、これと自分の墓地にあるコスト４以下のジョーカーズ・クリーチャー１体を入れ替えてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-062",
+      "limit": 4,
+      "trigger": true,
+      "g393Change": {
+        "grave": 4
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "deck"
+        }
+      ],
+      "supportBatch": "phase-642",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp3-065",
+      "name": "ツミタテンカーネン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ジョーカーズ",
+      "text": "このクリーチャーが出た時、自分の山札の上から２枚を墓地に置く。\nJクライム４（このクリーチャーが攻撃する時、これと自分の墓地にあるコスト４以下のジョーカーズ・クリーチャー１体を入れ替えてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp3-065",
+      "limit": 4,
+      "g393Change": {
+        "grave": 4
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-642",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 641,
+    "phase": 642,
     "checkedAt": "2026-11-08",
-    "baseCount": 5746,
-    "newEffectCards": 2,
+    "baseCount": 5748,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 5748,
+    "totalCount": 5752,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/42652/"
+      "https://dm.takaratomy.co.jp/rule/qa/49409/",
+      "https://dm.takaratomy.co.jp/rule/qa/49401/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -176219,6 +176345,22 @@
           "https://dm.takaratomy.co.jp/rule/qa/48125/",
           "https://dm.takaratomy.co.jp/coverage/dmnt23_round2-1/",
           "https://dm.takaratomy.co.jp/coverage/dmscs02_f06a/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 641,
+        "checkedAt": "2026-11-08",
+        "baseCount": 5746,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 5748,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/42652/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

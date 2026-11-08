@@ -1178,6 +1178,11 @@ function instruction604(text){
  }
 }
 function instruction(text,phase){
+ if(phase>=642){
+  if(text==='相手のクリーチャーを1体選び持ち主の山札の下に置く。')return{op:'Target',to:'deck'};
+  if(text==='ジョーカーズ・カードを1枚自分の墓地から手札に戻してもよい。')
+   return{op:'Select',origin:'grave',to:'hand',n:1,optional:true,filter:{g539JokerCard:true}};
+ }
  if(phase>=641){
   if(text==='コスト4以下のタマシードをすべて自分の墓地から出す。')
    return{op:'Select',origin:'grave',n:'all',deploy:true,g236GraveDeploy:true,filter:{g295Tamaseed:true,max:4},title:'墓地のコスト4以下のタマシードを出す順に選ぶ'};
@@ -4010,6 +4015,11 @@ export function standardCardSpec(d,{phase=165}={}){
   }
   if(phase>=401&&(creature||seed)&&line===`シールド・セイバー(自分のシールドがブレイクされる時かわりにこの${seed?'タマシード':'クリーチャー'}を破壊してもよい)`){if(spec.g401ShieldSaver)throw Error('重複するシールド・セイバー');spec.g401ShieldSaver=true;continue;}
   if(phase>=399&&creature){
+   if(phase>=642&&(m=line.match(/^Jクライム([1-9]\d*)\(このクリーチャーが攻撃する時これと自分の墓地にあるコスト\1以下のジョーカーズ・クリーチャー1体を入れ替えてもよい\)$/))){
+    if(spec.g393Change)throw Error('重複するJクライム');
+    spec.g393Change={grave:+m[1]};
+    continue;
+   }
    if(m=line.match(/^Jチェンジ([1-9]\d*)\(このクリーチャーが攻撃する時このクリーチャーと自分のマナゾーンにあるコスト\1以下のジョーカーズ1体を入れ替えてもよい\)$/)){if(spec.g393Change)throw Error('重複するJチェンジ');spec.g393Change={mana:+m[1]};continue;}
    if(m=line.match(/^アバレチェーン:自分のクリーチャーが攻撃する時それがこのターン最初の攻撃なら(.+)$/)){if(spec.g252AttackWatch)throw Error('重複する攻撃監視');const defs=abare399(m[1],phase);if(!defs)throw Error('未対応のアバレチェーン');spec.g252AttackWatch={who:'self',first:true,filter:{creature:true},g399Attacker:true,defs};continue;}
   }
