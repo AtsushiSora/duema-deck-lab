@@ -1,0 +1,139 @@
+{
+  "phase": 663,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5815,
+  "description": "表向きのシールドからのセイバー付与・攻撃許可とシールド・ゴー枚数に応じた手札破棄。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/48479/",
+    "https://dm.takaratomy.co.jp/rule/qa/48481/",
+    "https://dm.takaratomy.co.jp/rule/qa/45557/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36942/"
+  ],
+  "cards": [
+    {
+      "id": "dmr10-008",
+      "name": "守護すぎる守護 鋼鉄",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-008",
+      "faces": [
+        {
+          "name": "守護すぎる守護 鋼鉄",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー ブロッカー\nW・ブレイカー {SG}シールド・ゴー（このクリーチャーが破壊された時、新しいシールドとして自分のシールドゾーンに表向きのまま加える。このクリーチャーが表向きで、シールドゾーンを離れる時、かわりに自分の墓地に置く）\nこのカードが自分のシールドゾーンに表向きであれば、バトルゾーンにある自分のクリーチャーはすべて「シールド・セイバー」を得る。（自分のシールドがブレイクされる時、かわりに「シールド・セイバー」を持つクリーチャーを破壊してもよい）",
+          "race": "アウトレイジ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "shieldGo": true,
+        "g172Death": [
+          {
+            "op": "SelfGraveShield659"
+          }
+        ],
+        "blocker": true,
+        "breaker": 2,
+        "g663ShieldSaver": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "8e448d1f2a98fdd8b5fddcd1eb6d557acb5f5c8d31367c55d47dfab006c6cd45",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr10-044",
+      "name": "がらくた野郎 ポンコツ・カブー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-044",
+      "faces": [
+        {
+          "name": "がらくた野郎 ポンコツ・カブー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "パワーアタッカー+3000（攻撃中、このクリーチャーのパワーは+3000される）\n「シールド・ゴー」を持つカードが自分のシールドゾーンに表向きであれば、このクリーチャーはタップされていないクリーチャーを攻撃できる。",
+          "race": "アウトレイジ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackBonus": 3000,
+        "g663ShieldGoAttackUntapped": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "715d86a306e712ccc1c1fa8df71734bf216c37539f07172650da18dd49cae431",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx15-026",
+      "name": "魂の道しるべ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-026",
+      "faces": [
+        {
+          "name": "魂の道しるべ",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手の手札を１枚見ないで選び、捨てさせる。その後、自分のシールドゾーンに表向きである「シールド・ゴー」を持つカード１枚につき相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1,
+            "random": true
+          },
+          {
+            "op": "Discard",
+            "g584Count": "faceUpShieldGo",
+            "random": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx15-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "f6c8d08a81197a18f908c940e60adb41a51387ed0fdd0a29a5bb2783d124c575",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr10-008": 4,
+      "dmr10-044": 4,
+      "dmx15-026": 4
+    }
+  }
+}

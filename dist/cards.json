@@ -167508,20 +167508,100 @@
       "g662ShieldGoStats": 5000,
       "supportBatch": "phase-662",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-008",
+      "name": "守護すぎる守護 鋼鉄",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "アウトレイジ",
+      "text": "ブロッカー ブロッカー\nW・ブレイカー {SG}シールド・ゴー（このクリーチャーが破壊された時、新しいシールドとして自分のシールドゾーンに表向きのまま加える。このクリーチャーが表向きで、シールドゾーンを離れる時、かわりに自分の墓地に置く）\nこのカードが自分のシールドゾーンに表向きであれば、バトルゾーンにある自分のクリーチャーはすべて「シールド・セイバー」を得る。（自分のシールドがブレイクされる時、かわりに「シールド・セイバー」を持つクリーチャーを破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-008",
+      "limit": 4,
+      "shieldGo": true,
+      "g172Death": [
+        {
+          "op": "SelfGraveShield659"
+        }
+      ],
+      "blocker": true,
+      "breaker": 2,
+      "g663ShieldSaver": true,
+      "supportBatch": "phase-663",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-044",
+      "name": "がらくた野郎 ポンコツ・カブー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "アウトレイジ",
+      "text": "パワーアタッカー+3000（攻撃中、このクリーチャーのパワーは+3000される）\n「シールド・ゴー」を持つカードが自分のシールドゾーンに表向きであれば、このクリーチャーはタップされていないクリーチャーを攻撃できる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-044",
+      "limit": 4,
+      "attackBonus": 3000,
+      "g663ShieldGoAttackUntapped": true,
+      "supportBatch": "phase-663",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx15-026",
+      "name": "魂の道しるべ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "相手の手札を１枚見ないで選び、捨てさせる。その後、自分のシールドゾーンに表向きである「シールド・ゴー」を持つカード１枚につき相手の手札を１枚見ないで選び、捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-026",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "n": 1,
+          "random": true
+        },
+        {
+          "op": "Discard",
+          "g584Count": "faceUpShieldGo",
+          "random": true
+        }
+      ],
+      "supportBatch": "phase-663",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 662,
+    "phase": 663,
     "checkedAt": "2026-11-09",
-    "baseCount": 5812,
+    "baseCount": 5815,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5815,
+    "totalCount": 5818,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36862/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36950/"
+      "https://dm.takaratomy.co.jp/rule/qa/48479/",
+      "https://dm.takaratomy.co.jp/rule/qa/48481/",
+      "https://dm.takaratomy.co.jp/rule/qa/45557/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36942/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -178893,6 +178973,23 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37029/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37030/",
           "https://dm.takaratomy.co.jp/rule/qa/33517/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 662,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5812,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5815,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36862/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36950/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -4,6 +4,7 @@ export function createShieldPhotoRules(api){
  const{card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,enter,cast,move,targetOptions}=api;
  const armored=c=>String(c.race).includes('アーマード'),dragon=c=>String(c.race).includes('ドラゴン'),ad=c=>String(c.race).includes('アーマード・ドラゴン');
  const shields=(s,p)=>Array.isArray(s.players[p].shields)?s.players[p].shields.flatMap(api.shieldCards):(s.players[p].publicShields||[]),up=(s,p)=>shields(s,p).filter(x=>x.faceUp),castles=(s,p,flag)=>up(s,p).filter(x=>card(x).gCastle&&card(x)[flag]);
+ const shieldGoCount=(s,p)=>up(s,p).filter(x=>card(x).shieldGo).length;
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g33_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  const shieldEffect=(p,x,defs)=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Sequence',p,x.cardId,{defs})});
  const momoKey=x=>x.uid+'@'+(x.incarnation||0),momos=(s,p)=>s.players[p].battle.filter(x=>card(x).g41Momo&&!api.ignored(s,x)&&api.isCreature(s,x)&&s.g41MomoUsed?.[momoKey(x)]!==s.turn);
@@ -86,10 +87,17 @@ export function createShieldPhotoRules(api){
  case'g33_Counter':finishExecution(s,t.target,v);break;
  default:throw Error('未実装の表向きシールド選択：'+t.op);
  }return true;}
- return{run,chosen,up,shieldGoCount:(s,p)=>up(s,p).filter(x=>card(x).shieldGo).length,
+ return{run,chosen,up,shieldGoCount,
  effect(s,p,c,uid){const effects={shieldFaceTop:'FaceTop',shieldDogi:'Dogi',shieldResolve:'Resolve',shieldBounce:'Bounce',shieldMirror:'Mirror',shieldMirrorSpell:'Mirror',shieldD4:'D4',shieldParfe:'Parfe',shieldDeka:'Deka'};if(!effects[c.effect])return false;put(s,task('g33_'+effects[c.effect],p,c.id,{uid,optional:c.effect==='shieldMirror'}));return true;},
  discount(s,p,c){return c.type==='creature'&&up(s,p).length?c.g33FaceDiscount||0:0;},
- decorate(s,p,x,c){if(c.type==='creature'&&armored(c)&&castles(s,p,'g33Mai').length)c={...c,blocker:true,speedAttacker:true};if(c.type==='creature'&&colors(c).length>1&&s.players[p].battle.some(x=>!api.ignored(s,x)&&card(x).g33Dogi))c={...c,speedAttacker:true};return c;},
+ decorate(s,p,x,c){
+  if(c.type!=='creature')return c;
+  if(armored(c)&&castles(s,p,'g33Mai').length)c={...c,blocker:true,speedAttacker:true};
+  if(colors(c).length>1&&s.players[p].battle.some(y=>!api.ignored(s,y)&&card(y).g33Dogi))c={...c,speedAttacker:true};
+  if(!c.g401ShieldSaver&&up(s,p).some(y=>card(y).g663ShieldSaver))c={...c,g401ShieldSaver:true};
+  if(c.g663ShieldGoAttackUntapped&&shieldGoCount(s,p))c={...c,attackUntapped:true};
+  return c;
+ },
  beforeExecution(s,p,c,inst,options){if(c.type==='creature'||c.ignoreSpellLocks)return false;const pending={p,c,inst,options},hikari=up(s,1-p).length&&creatures(s,1-p).some(x=>card(x).g33Hikari&&!api.ignored(s,x))&&replaceable(s,pending,'grave'),momo=momos(s,1-p).length&&replaceable(s,pending,'mana');if(!hikari&&!momo)return false;(s.g33Executions??=[]).push(pending);put(s,task('g33_Counter',1-p,c.id,{target:inst.uid}));return true;},
  guard(s,p,x){return ad(effective(x,s))&&creatures(s,p).some(y=>effective(y,s).g33Kaku);},
  shieldAdded(s,p,x){

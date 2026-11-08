@@ -1110,7 +1110,8 @@ export function createSixPhotoRules(api){
  case'g34_LockUntap606':for(const y of creatures(s,1-t.p))if(!y.sealed&&matches(s,1-t.p,y,t.filter))startUntapLock210(t,y);break;
  case'g34_TapAll':for(const p of t.both?[0,1]:[1-t.p])for(const y of creatures(s,p))if(!t.g218Tap||matches(s,p,y,t.filter))api.tap(s,p,y);break;
  case'g34_Discard':{
-  const n=t.g585ShieldDeficit?Math.max(0,5-own.shields.length):t.g584Count==='ownShields'?own.shields.length:t.g584Count==='opponentShields'?opp.shields.length:t.n??1;
+  const n=t.g584Count==='faceUpShieldGo'?api.shieldGoCount(s,t.p):
+   t.g585ShieldDeficit?Math.max(0,5-own.shields.length):t.g584Count==='ownShields'?own.shields.length:t.g584Count==='opponentShields'?opp.shields.length:t.n??1;
   if(n)put(s,task('discard',t.owner==='self'?t.p:t.owner??1-t.p,t.source,{causedBy:t.p,n,random:!!t.random,optional:!!t.optional,selfDiscard:t.owner==='self'}));
   break;
  }
