@@ -1202,6 +1202,8 @@ function instruction604(text){
  }
 }
 function instruction(text,phase){
+ if(phase>=657&&text==='次の自分のターンのはじめまで自分のクリーチャーはすべて攻撃もブロックもされない。')
+  return {op:'GroupGrant364',owner:'self',filter:{creature:true},g521UntilStart:true,grant:{cannotBeAttacked:true,unblockable:true}};
  if(phase>=655){const def=instruction655(text);if(def)return def;}
  if(phase>=654){const def=instruction654(text);if(def)return def;}
  if(phase>=653){
@@ -2413,9 +2415,16 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
- if(d?.status!=='complete'||d.faces.length!==1||!['クリーチャー','進化クリーチャー','タマシード','呪文',...(phase>=166?['NEOクリーチャー']:[]),...(phase>=273?['スター進化クリーチャー']:[]),...(phase>=619?['G-NEOクリーチャー']:[])].includes(f.typeText))throw Error('複数面・特殊カードタイプまたは情報不足');
+ if(d?.status!=='complete'||d.faces.length!==1||!['クリーチャー','進化クリーチャー','タマシード','呪文',...(phase>=166?['NEOクリーチャー']:[]),...(phase>=273?['スター進化クリーチャー']:[]),...(phase>=619?['G-NEOクリーチャー']:[]),...(phase>=657?['G城']:[])].includes(f.typeText))throw Error('複数面・特殊カードタイプまたは情報不足');
  if(!Number.isInteger(f.cost)||f.cost<1||!f.civilizations.length||f.civilizations.some(c=>!colors.includes(c)&&c!=='無色')||new Set(f.civilizations).size!==f.civilizations.length)throw Error('コスト・文明の個別処理が必要');
  if(f.civilizations.includes('無色')&&f.civilizations.length!==1)throw Error('無色の複合文明');
+ if(f.typeText==='G城'){
+  const text=normalize(f.abilityText);
+  const rule='(G城は実行したら表向きでシールド化される。このカードが表向きで自分のシールドゾーンを離れる時かわりに墓地に置く)';
+  const entry='このG城が表向きで自分のシールドゾーンに置かれた時相手のクリーチャーを2体まで選び持ち主の手札に戻す。';
+  if(text!==rule+entry)throw Error('未対応のG城能力');
+  return {type:'castle',gCastle:true,g657FaceUpEntry:true};
+ }
  const creature=f.typeText.includes('クリーチャー'),evolution=f.typeText==='進化クリーチャー'||phase>=273&&f.typeText==='スター進化クリーチャー',seed=f.typeText==='タマシード';
  if(creature&&!/^\d+\+?$/.test(f.powerText)&&!(phase>=243&&/^\d+-$/.test(f.powerText)))throw Error('特殊なパワー');
  if(phase>=644&&creature){
@@ -5018,7 +5027,8 @@ export function standardCardSpec(d,{phase=165}={}){
    const defs={
     '相手のクリーチャーを1体選ぶ。相手はそのクリーチャーを破壊するか山札の上に置く。':[{op:'Target',g467Destinations:['grave','deckTop'],g472OwnerDestination:true}],
     '各プレイヤーは自身の手札を1枚選び捨てる。その後自分はカードを1枚引く。':[{op:'EachPlayer459',origin:'hand',to:'grave',discard:true},{op:'Draw',n:1}],
-    '自分と相手のクリーチャーを1体ずつ選ぶ。その2体をバトルさせる。':[{op:'Fight240'}]
+    '自分と相手のクリーチャーを1体ずつ選ぶ。その2体をバトルさせる。':[{op:'Fight240'}],
+    ...(phase>=657?{'カードを1枚引く。その後自分の手札を1枚表向きまたは裏向きでシールド化してもよい。':[{op:'Draw',n:1},{op:'HandShield657'}]}:{})
    }[m[1]];
    if(!defs)throw Error('未対応の能力文: '+raw);
    attack.push(...defs);leave.push(...structuredClone(defs));continue;

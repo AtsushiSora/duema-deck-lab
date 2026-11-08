@@ -166884,22 +166884,124 @@
       ],
       "supportBatch": "phase-656",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp1-048",
+      "name": "英王のM スターマン",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 8000,
+      "race": "スターノイド",
+      "text": "進化：光または水のクリーチャー１体の上に置く。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時または離れた時、カードを１枚引く。その後、自分の手札を１枚、表向きまたは裏向きでシールド化してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-048",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "水"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "HandShield657"
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "HandShield657"
+        }
+      ],
+      "supportBatch": "phase-657",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp1-062",
+      "name": "我竜塔第五層 海底鬼面城",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "castle",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "（G城は実行したら、表向きでシールド化される。このカードが表向きで自分のシールドゾーンを離れる時、かわりに墓地に置く）\nこのG城が表向きで自分のシールドゾーンに置かれた時、相手のクリーチャーを２体まで選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-062",
+      "limit": 4,
+      "gCastle": true,
+      "g657FaceUpEntry": true,
+      "supportBatch": "phase-657",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26rp1-059",
+      "name": "漂流大陸の進撃",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "次の自分のターンのはじめまで、自分のクリーチャーはすべて攻撃もブロックもされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-059",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "g521UntilStart": true,
+          "grant": {
+            "cannotBeAttacked": true,
+            "unblockable": true
+          },
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-657",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 656,
+    "phase": 657,
     "checkedAt": "2026-11-09",
-    "baseCount": 5792,
+    "baseCount": 5795,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5795,
+    "totalCount": 5798,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
-      "https://dm.takaratomy.co.jp/rule/qa/48919/",
-      "https://dm.takaratomy.co.jp/rule/qa/46870/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37327/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37856/",
+      "https://dm.takaratomy.co.jp/rule/qa/48488/",
+      "https://dm.takaratomy.co.jp/rule/qa/48486/",
+      "https://dm.takaratomy.co.jp/rule/qa/48491/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -178153,6 +178255,25 @@
           "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
           "https://dm.takaratomy.co.jp/rule/qa/48497/",
           "https://dm.takaratomy.co.jp/rule/qa/47366/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 656,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5792,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5795,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+          "https://dm.takaratomy.co.jp/rule/qa/48919/",
+          "https://dm.takaratomy.co.jp/rule/qa/46870/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37327/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

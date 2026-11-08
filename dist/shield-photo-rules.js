@@ -91,7 +91,15 @@ export function createShieldPhotoRules(api){
  decorate(s,p,x,c){if(c.type==='creature'&&armored(c)&&castles(s,p,'g33Mai').length)c={...c,blocker:true,speedAttacker:true};if(c.type==='creature'&&colors(c).length>1&&s.players[p].battle.some(x=>!api.ignored(s,x)&&card(x).g33Dogi))c={...c,speedAttacker:true};return c;},
  beforeExecution(s,p,c,inst,options){if(c.type==='creature'||c.ignoreSpellLocks)return false;const pending={p,c,inst,options},hikari=up(s,1-p).length&&creatures(s,1-p).some(x=>card(x).g33Hikari&&!api.ignored(s,x))&&replaceable(s,pending,'grave'),momo=momos(s,1-p).length&&replaceable(s,pending,'mana');if(!hikari&&!momo)return false;(s.g33Executions??=[]).push(pending);put(s,task('g33_Counter',1-p,c.id,{target:inst.uid}));return true;},
  guard(s,p,x){return ad(effective(x,s))&&creatures(s,p).some(y=>effective(y,s).g33Kaku);},
- shieldAdded(s,p,x){if(!x.faceUp)return;for(const y of s.players[p].hand)if(card(y).g33Parfe&&s.players[p].mana.length>=2)on(s,p,y,'Offer',{serial:y.zoneSerial||0});},
+ shieldAdded(s,p,x){
+  if(!x.faceUp)return;
+  if(card(x).g657FaceUpEntry)api.enqueue(s,p,{
+   uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Select',p,x.cardId,{
+    owner:'opponent',origin:'battle',to:'hand',n:2,optional:true,filter:{creature:true},
+    g173Targets:true,g193Select:true,title:'手札に戻す相手のクリーチャーを2体まで選ぶ'
+   })
+  });
+  for(const y of s.players[p].hand)if(card(y).g33Parfe&&s.players[p].mana.length>=2)on(s,p,y,'Offer',{serial:y.zoneSerial||0});},
  shieldLeft(s,p,x){if(x.faceUp&&card(x).g33Mai)on(s,p,x,'FaceTop');},
  entry(s,p,x,options){if(!api.isCreature(s,x))return;const c=effective(x,s);if(!options.selfMuted&&!api.selfStopped(s,p)&&!api.ignored(s,x)){if(c.g33Hikari&&options.revolution)on(s,p,x,'Hikari');if(c.g33Dogi&&options.revolution)on(s,p,x,'Final');}if(ad(c))for(const y of creatures(s,p))if(effective(y,s).g33Golgini&&(y.uid!==x.uid||!options.selfMuted&&!api.selfStopped(s,p)))on(s,p,y,'TapLock');for(const castle of castles(s,1-p,'g33Shachi'))if(cost(c)>s.players[p].mana.length)on(s,1-p,castle,'Shachi',{p,target:x.uid,targetInc:x.incarnation||0,controller:1-p});},
  attack(s,p,x){if(api.selfStopped(s,p))return;const c=effective(x,s);if(c.g33Hikari)on(s,p,x,'Hikari');if(c.g33Golgini)on(s,p,x,'Draw2');},

@@ -311,7 +311,7 @@ export function createSixPhotoRules(api){
   return(zero?10:synergy?12:0)-lost.length*30+(synergy&&y.tapped?1:0);
  }
  const release=(s,p,uid)=>{for(const k of['g34Protected','g35Protected'])s.players[p][k]=(s.players[p][k]||[]).filter(x=>x!==uid);};
- function zoneMove(s,p,from,uid,to,t={}){if(!api.canMoveZone(s,p,from))return;if(to==='shields'&&!api.canAddShield(s,p)){if(from==='deck')release(s,p,uid);return;}const own=s.players[p];if(from==='battle'){move(s,[{player:p,uid,to,destroy:to==='grave',controller:t.controller??p}]);return;}const x=remove(own[from],uid);if(!x)return;if(from==='deck')release(s,p,uid);let dest=to;if(from==='deck'&&['mana','shields'].includes(to)&&api.deckRedirect(s,p))dest='grave';if(to==='mana'&&!(from==='hand'&&t.g182HandMana)&&api.manaRedirect(s,p))dest='grave';clear(x,dest);if(t.tapped&&dest==='mana')x.tapped=true;if(t.g183Return&&dest==='deckTop')own.deck.unshift(x);else api.addZone(s,p,dest,x);if(from==='hand'&&dest==='mana')api.handMana(s,p,x);if(dest==='shields')api.notifyShieldAdded(s,p,x);return true;}
+ function zoneMove(s,p,from,uid,to,t={}){if(!api.canMoveZone(s,p,from))return;if(to==='shields'&&!api.canAddShield(s,p)){if(from==='deck')release(s,p,uid);return;}const own=s.players[p];if(from==='battle'){move(s,[{player:p,uid,to,destroy:to==='grave',controller:t.controller??p}]);return;}const x=remove(own[from],uid);if(!x)return;if(from==='deck')release(s,p,uid);let dest=to;if(from==='deck'&&['mana','shields'].includes(to)&&api.deckRedirect(s,p))dest='grave';if(to==='mana'&&!(from==='hand'&&t.g182HandMana)&&api.manaRedirect(s,p))dest='grave';clear(x,dest);if(dest==='shields'&&t.g657FaceUp)x.faceUp=true;if(t.tapped&&dest==='mana')x.tapped=true;if(t.g183Return&&dest==='deckTop')own.deck.unshift(x);else api.addZone(s,p,dest,x);if(from==='hand'&&dest==='mana')api.handMana(s,p,x);if(dest==='shields')api.notifyShieldAdded(s,p,x);return true;}
  const attacking587=(s,x)=>x.uid===s.attack?.attacker||x.uid===s.attackLifecycle?.uid&&(x.incarnation||0)===(s.attackLifecycle.incarnation||0);
  const currentPower506=(s,x)=>api.power(x,attacking587(s,x),s);
  function fitsPower506(s,t,x){if(t.g506PowerBudget===undefined)return true;const used=(t.rows||[]).reduce((n,r)=>{const y=s.players[r.p].battle.find(y=>y.uid===r.uid);return n+(y?currentPower506(s,y):0);},0);return used+currentPower506(s,x)<=t.g506PowerBudget;}
@@ -982,6 +982,18 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ShieldHand':put(s,{...t,op:'g55_ShieldHand'});break;
+ case'g34_HandShield657':
+  if(own.hand.length&&api.canAddShield(s,t.p))choice(s,t,'シールド化する手札を1枚選ぶ（任意）',[
+   ...own.hand.map(y=>opt(card(y).name,y.uid,card(y).gCastle||faces(card(y)).some(c=>c.trigger)?12:2,y.cardId)),skip()
+  ]);
+  break;
+ case'g34_ShieldSide657':{
+  const y=own.hand.find(y=>y.uid===t.target&&(y.zoneSerial||0)===t.serial);
+  if(y&&api.canAddShield(s,t.p))choice(s,t,'シールドを置く向きを選ぶ',[
+   opt('表向きで置く',true,card(y).gCastle?10:-2,y.cardId),opt('裏向きで置く',false,1,y.cardId)
+  ]);
+  break;
+ }
  case'g34_ShieldTop':
   if(t.faceUp)put(s,{...t,op:'g33_FaceTop'});
   else api.shieldTop(s,t.p,card(t.source));
@@ -1269,6 +1281,15 @@ export function createSixPhotoRules(api){
   api.moveBattleCard(s,host.p,paid.uid,'grave',{controller:t.p});
   if(s.players[host.p].grave.some(y=>y.uid===paid.uid))put(s,{...t,op:'g34_ShieldGrave588',n:1,required:true});
  }break;
+ case'g34_HandShield657':if(v){
+  const y=own.hand.find(y=>y.uid===v);
+  if(y)put(s,{...t,op:'g34_ShieldSide657',target:v,serial:y.zoneSerial||0});
+ }break;
+ case'g34_ShieldSide657':{
+  const y=own.hand.find(y=>y.uid===t.target&&(y.zoneSerial||0)===t.serial);
+  if(y)zoneMove(s,t.p,'hand',y.uid,'shields',{...t,g657FaceUp:v===true});
+  break;
+ }
  case'g34_ShieldGrave588':if(v)put(s,{...t,selected:[...(t.selected||[]),v]});else finishShieldGrave588(s,t);break;
  case'g34_FightPair586':if(v){
   const owners=t.who==='both'?[t.p,1-t.p]:[t.opponentPicks||t.who==='opponent'?1-t.p:t.p];

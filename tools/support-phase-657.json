@@ -1,0 +1,164 @@
+{
+  "phase": 657,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5795,
+  "description": "表向きのシールド化とG城、期限付きの攻撃・ブロック耐性。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37856/",
+    "https://dm.takaratomy.co.jp/rule/qa/48488/",
+    "https://dm.takaratomy.co.jp/rule/qa/48486/",
+    "https://dm.takaratomy.co.jp/rule/qa/48491/"
+  ],
+  "cards": [
+    {
+      "id": "dm26rp1-048",
+      "name": "英王のM スターマン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-048",
+      "faces": [
+        {
+          "name": "英王のM スターマン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化：光または水のクリーチャー１体の上に置く。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時または離れた時、カードを１枚引く。その後、自分の手札を１枚、表向きまたは裏向きでシールド化してもよい。",
+          "race": "スターノイド",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "水"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "HandShield657"
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "HandShield657"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "0020bfcded12a71f0c532ba29db7c3bb4d4bdc6d2495cf2117a50aa31efa36d1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp1-062",
+      "name": "我竜塔第五層 海底鬼面城",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-062",
+      "faces": [
+        {
+          "name": "我竜塔第五層 海底鬼面城",
+          "typeText": "G城",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "（G城は実行したら、表向きでシールド化される。このカードが表向きで自分のシールドゾーンを離れる時、かわりに墓地に置く）\nこのG城が表向きで自分のシールドゾーンに置かれた時、相手のクリーチャーを２体まで選び、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "castle",
+        "gCastle": true,
+        "g657FaceUpEntry": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-062.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "e16557931d5daf1259f228508dbdb71fc473d5e4403bcdf0ddfdd2d522def357",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp1-059",
+      "name": "漂流大陸の進撃",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-059",
+      "faces": [
+        {
+          "name": "漂流大陸の進撃",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "次の自分のターンのはじめまで、自分のクリーチャーはすべて攻撃もブロックもされない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "g521UntilStart": true,
+            "grant": {
+              "cannotBeAttacked": true,
+              "unblockable": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-059.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "8340e1fc7072538ce73213c2670a0e6b2a6f87210726ca39faaa11ade6a3963e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm26rp1-048": 4,
+      "dm26rp1-062": 4,
+      "dm26rp1-059": 4
+    }
+  }
+}
