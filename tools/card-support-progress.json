@@ -1533,5 +1533,37 @@
       },
       "deferred": []
     }
-  ]
+  ],
+  "resume": {
+    "lastVerifiedPhase": 657,
+    "lastVerifiedCommit": "54325132f84839bb33ff514e9c01d286f6ef4048",
+    "nextPhase": 658,
+    "workInProgress": "phase 657までの実装・検証は完了。phase 658の候補は公式ページと関連裁定を一次確認し、既存の効果処理を調査した。再録・画像の最終照合、実装、テストは未着手。",
+    "nextCandidates": [
+      {
+        "id": "dm26rp1-049",
+        "name": "獣王のB ペガサス",
+        "check": "既存の山札公開・任意展開と残りを下に置く処理を候補とし、進化元不足・着地置換時に同じカードを二重移動しないことを確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-049"
+      },
+      {
+        "id": "dm26rp1-067",
+        "name": "我竜塔第四層 ポチョムキン",
+        "check": "既存のターン内の破壊数とG城処理を候補とし、置換や同時破壊、途中で置かれたG城、双方のターンを確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-067"
+      },
+      {
+        "id": "dm26rp2-075",
+        "name": "清浄のラクシャ インカ",
+        "check": "任意のタップ登場と攻撃先制限の処理は既存。シールド・ゴーの共通処理が見当たらず、墓地からの表向きシールド化と離脱置換を検証できるまで保留。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-075"
+      }
+    ],
+    "steps": [
+      "git statusとAGENTS.mdを確認し、phase 658の候補のカードID・正規名・再録を照合する。",
+      "公式の能力文全体・基本情報・画像・使用制限・関連裁定を照合してmanifestを作る。共通処理が不足する候補は保留理由を記録し、既存処理で完結する別の候補へ進む。",
+      "カード固有と関連回帰を各最大10分で実行する。全体のnpm testは中断・合否未確認のままとする。",
+      "実データから件数を再集計し、batchHistoryを更新して、検証済みのバッチだけローカルコミットする。"
+    ]
+  }
 }
