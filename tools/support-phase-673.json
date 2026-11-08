@@ -1,0 +1,197 @@
+{
+  "phase": 673,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5847,
+  "description": "相手のタップイン、移動できた場合の山札シャッフル、破壊時に選ぶバウンスか手札交換。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36816/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37007/",
+    "https://dm.takaratomy.co.jp/rule/qa/39985/",
+    "https://dm.takaratomy.co.jp/rule/qa/40969/"
+  ],
+  "cards": [
+    {
+      "id": "dmr09-s01",
+      "name": "閃光の神官 ヴェルベット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-s01",
+      "faces": [
+        {
+          "name": "閃光の神官 ヴェルベット",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "ブロッカー ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\n相手のクリーチャーは、タップしてバトルゾーンに置かれる。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "オラクル",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "opponentTapEntry": true,
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-s01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "57e8f5be5ecca7199d9bea43ebc6c462abde77e10413fe36cc2d3f67e9f737f6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr09-s03",
+      "name": "サイバー・W・スパイラル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-s03",
+      "faces": [
+        {
+          "name": "サイバー・W・スパイラル",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを２体まで選ぶ。相手はそのクリーチャーを自身の山札に加えてシャッフルする。\nこのクリーチャーはブロックされない。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "サイバー・コマンド",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "unblockable": true,
+        "breaker": 2,
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "deck",
+            "g673ShuffleOnMove": true,
+            "title": "山札に戻す相手のクリーチャーを2体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-s03.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "9ba2eaac2357ad9ee857d3775848f9d45776e5512cd04555f56521d5eb3e647a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr11-053",
+      "name": "不屈！熱血!! テスタ・ロッサ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-053",
+      "faces": [
+        {
+          "name": "不屈！熱血!! テスタ・ロッサ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが破壊された時、次のうちいずれかひとつを選ぶ。 　▼バトルゾーンにある相手のクリーチャーを１体選び、持ち主の手札に戻す。 　▼自分の手札を１枚捨て、その後、カードを１枚引く。",
+          "race": "アウトレイジMAX",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のクリーチャーを1体手札に戻す",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "hand"
+                  }
+                ]
+              },
+              {
+                "label": "自分の手札を1枚捨て、その後1枚引く",
+                "defs": [
+                  {
+                    "op": "Discard",
+                    "owner": "self",
+                    "n": 1
+                  },
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "currentPrint": {
+        "id": "promoy12-062",
+        "name": "不屈！熱血!! テスタ・ロッサ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-062",
+        "faces": [
+          {
+            "name": "不屈！熱血!! テスタ・ロッサ",
+            "typeText": "クリーチャー",
+            "civilizationText": "水/火",
+            "civilizations": [
+              "水",
+              "火"
+            ],
+            "cost": 4,
+            "costText": "4",
+            "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが破壊された時、次のうちいずれかひとつを選ぶ。\n▼バトルゾーンにある相手のクリーチャーを１体選び、持ち主の手札に戻す。\n▼自分の手札を１枚捨て、その後、カードを１枚引く。",
+            "race": "アウトレイジMAX",
+            "powerText": "3000",
+            "missingFields": []
+          }
+        ],
+        "verification": {
+          "checkedAt": "2026-11-09",
+          "sha256": "9ac0d31ce4a8c3b6450013c2350ef6ed4175de625555236ec5f69ca05bacf37d",
+          "facesMatched": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr11-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "e91f6381ca4a17b980fa7c3ec9537c215db60a5ab552e9cbf72efb3ce92d5fc2",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr09-s01": 4,
+      "dmr09-s03": 4,
+      "dmr11-053": 4
+    }
+  }
+}

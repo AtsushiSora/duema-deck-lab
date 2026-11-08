@@ -438,6 +438,18 @@ export function createSixPhotoRules(api){
    stopPlayerAttack567(s,{...t,g567PlayerStop:'end'},target);
   }
   if(t.g583Group){moveManaSelection583(s,t,t.rows||[]);return;}
+  if(t.g673ShuffleOnMove){
+   const rows=t.rows||[];
+   if(!rows.length)return;
+   const opponent=1-t.p;
+   const uids=rows.flatMap(row=>{
+    const unit=s.players[row.p].battle.find(x=>x.uid===row.uid);
+    return unit?api.allLayers(unit).map(x=>x.uid):[];
+   });
+   move(s,rows.map(row=>({player:row.p,uid:row.uid,to:'deck',destroy:false,controller:t.controller??t.p})));
+   put(s,task('g34_ShuffleOnMove673',t.p,t.source,{opponent,uids}));
+   return;
+  }
   if(t.g583OnMove){
    const r=t.rows?.[0],x=r&&s.players[r.p][r.origin].find(y=>y.uid===r.uid);
    const matched=x&&(!t.g654MovedFilter||matches(s,r.p,x,t.g654MovedFilter));
@@ -893,6 +905,10 @@ export function createSixPhotoRules(api){
  case'g34_IfOwnPower':if(creatures(s,t.p).some(y=>api.power(y,y.uid===s.attack?.attacker||y.uid===s.attackLifecycle?.uid&&(y.incarnation||0)===(s.attackLifecycle.incarnation||0),s)>=t.minPower))start(s,t,t.defs);break;
  case'g34_Kourin405':{const r=t.rule;if(r.origin==='deck'&&api.deckLocked(s,t.p))break;put(s,task('g34_Select',t.p,t.source,{uid:t.uid,incarnation:t.incarnation||0,origin:r.origin,g405Search:r.origin==='deck',deploy:true,n:1,optional:true,filter:r.filter,title:({deck:'山札',mana:'マナゾーン',grave:'墓地'}[r.origin])+'から光臨で出すクリーチャーを1体まで選ぶ',...(r.origin==='deck'?{after:[{op:'Shuffle405'}]}:{})}));break;}
  case'g34_Shuffle405':api.shuffleLibrary(s,t.p);api.deckCheck(s,t.p);break;
+ case'g34_ShuffleOnMove673':{
+  if(s.players[t.opponent].deck.some(x=>t.uids.includes(x.uid)))api.shuffleLibrary(s,t.opponent);
+  break;
+ }
  case'g34_EndUntap562':scheduleUntap562(s,t,t.defs);break;
  case'g34_ChooseUntap562':{const refs=t.refs||[],rows=creatures(s,t.p).filter(y=>!y.sealed&&!refs.some(r=>r.uid===y.uid&&(y.incarnation||0)===r.incarnation));if(refs.length>=t.n||!rows.length){finishUntap562(s,t);break;}choice(s,t,t.delay?'ターン終了時にアンタップするクリーチャーを選ぶ':'アンタップするクリーチャーを選ぶ',[...targetOptions(s,t.p,rows).map(o=>{const y=rows.find(y=>y.uid===o.value);return{...o,value:{uid:y.uid,incarnation:y.incarnation||0},score:y.tapped&&api.canUntap(y)?10+Number(!!effective(y,s).blocker)*5:0};}),...(t.optional?[skip()]:[])]);break;}
  case'g34_ChooseEndUntap501':{const rows=creatures(s,t.p).filter(y=>!y.sealed);choice(s,t,'ターン終了時にアンタップするクリーチャーを選ぶ',targetOptions(s,t.p,rows).map(o=>{const y=rows.find(y=>y.uid===o.value);return{...o,value:{uid:y.uid,incarnation:y.incarnation||0},score:(api.isEvolution(y)&&own.deck.length>1?25:0)+(effective(y,s).blocker?10:0)+Math.min(20,cost(effective(y,s)))};}));break;}

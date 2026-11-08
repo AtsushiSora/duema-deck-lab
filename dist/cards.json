@@ -168488,18 +168488,131 @@
       ],
       "supportBatch": "phase-672",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-s01",
+      "name": "閃光の神官 ヴェルベット",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 11000,
+      "race": "オラクル",
+      "text": "ブロッカー ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\n相手のクリーチャーは、タップしてバトルゾーンに置かれる。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-s01",
+      "limit": 4,
+      "blocker": true,
+      "opponentTapEntry": true,
+      "breaker": 2,
+      "supportBatch": "phase-673",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-s03",
+      "name": "サイバー・W・スパイラル",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 11000,
+      "race": "サイバー・コマンド",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを２体まで選ぶ。相手はそのクリーチャーを自身の山札に加えてシャッフルする。\nこのクリーチャーはブロックされない。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-s03",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "unblockable": true,
+      "breaker": 2,
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "opponent",
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "to": "deck",
+          "g673ShuffleOnMove": true,
+          "title": "山札に戻す相手のクリーチャーを2体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-673",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr11-053",
+      "name": "不屈！熱血!! テスタ・ロッサ",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "アウトレイジMAX",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーが破壊された時、次のうちいずれかひとつを選ぶ。 　▼バトルゾーンにある相手のクリーチャーを１体選び、持ち主の手札に戻す。 　▼自分の手札を１枚捨て、その後、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-053",
+      "limit": 4,
+      "g172Death": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "相手のクリーチャーを1体手札に戻す",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "hand"
+                }
+              ]
+            },
+            {
+              "label": "自分の手札を1枚捨て、その後1枚引く",
+              "defs": [
+                {
+                  "op": "Discard",
+                  "owner": "self",
+                  "n": 1
+                },
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-673",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 672,
+    "phase": 673,
     "checkedAt": "2026-11-09",
-    "baseCount": 5844,
+    "baseCount": 5847,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5847,
+    "totalCount": 5850,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36816/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37007/",
+      "https://dm.takaratomy.co.jp/rule/qa/39985/",
+      "https://dm.takaratomy.co.jp/rule/qa/40969/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -180053,6 +180166,21 @@
         "newEffectCards": 3,
         "newVanillaCards": 0,
         "totalCount": 5844,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 672,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5844,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5847,
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"

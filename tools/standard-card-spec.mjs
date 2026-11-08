@@ -2453,6 +2453,21 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=673&&creature){
+  const text=normalize(f.abilityText);
+  if(text==='ブロッカーブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)相手のクリーチャーはタップしてバトルゾーンに置かれる。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)'){
+   return {blocker:true,opponentTapEntry:true,breaker:2};
+  }
+  if(text==='このクリーチャーをバトルゾーンに出した時バトルゾーンにある相手のクリーチャーを2体まで選ぶ。相手はそのクリーチャーを自身の山札に加えてシャッフルする。このクリーチャーはブロックされない。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)'){
+   return {effect:'sixPhoto',unblockable:true,breaker:2,g34Tasks:[{op:'Select',origin:'battle',owner:'opponent',n:2,optional:true,filter:{creature:true},g173Targets:true,g193Select:true,to:'deck',g673ShuffleOnMove:true,title:'山札に戻す相手のクリーチャーを2体まで選ぶ'}]};
+  }
+  if(text==='マナゾーンに置く時このカードはタップして置く。このクリーチャーが破壊された時次のうちいずれかひとつを選ぶ。▼バトルゾーンにある相手のクリーチャーを1体選び持ち主の手札に戻す。▼自分の手札を1枚捨てその後カードを1枚引く。'){
+   return {g172Death:[{op:'Choose',g184Modes:true,modes:[
+    {label:'相手のクリーチャーを1体手札に戻す',defs:[{op:'Target',to:'hand'}]},
+    {label:'自分の手札を1枚捨て、その後1枚引く',defs:[{op:'Discard',owner:'self',n:1},{op:'Draw',n:1}]}
+   ]}]};
+  }
+ }
  if(phase>=672){
   const text=normalize(f.abilityText);
   if(creature&&text==='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)自分の無色クリーチャーをバトルゾーンに出した時自分の山札の上から1枚目をマナゾーンに置く。'){
