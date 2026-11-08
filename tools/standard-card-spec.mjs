@@ -2452,7 +2452,11 @@ export function standardCardSpec(d,{phase=165}={}){
    'カードを1枚引いてもよい。':{op:'Draw',n:1,optional:true},
    'バトルゾーンにある相手のクリーチャーを1体選びタップしてもよい。':{op:'Target',tap:true,optional:true},
    '相手のパワー2000以下のクリーチャーを1体破壊する。':{op:'Target',to:'grave',filter:{maxPower:2000,g199Power:true}},
-   'バトルゾーンにある相手のコスト4以下のクリーチャーを1体選び持ち主のマナゾーンに置く。':{op:'Target',to:'mana',filter:{max:4}}
+   'バトルゾーンにある相手のコスト4以下のクリーチャーを1体選び持ち主のマナゾーンに置く。':{op:'Target',to:'mana',filter:{max:4}},
+   ...(phase>=661?{
+    '相手は自身の手札を1枚選んで捨てる。':{op:'Discard',n:1},
+    'このターンの残りをとばす。':{op:'Custom',name:'endTurn'}
+   }:{})
   };
   const base={shieldGo:true,g172Death:[{op:'SelfGraveShield659'}]};
   if(text==='このクリーチャーはブロックされない。'+keyword)return {...base,unblockable:true};
@@ -4196,7 +4200,7 @@ export function standardCardSpec(d,{phase=165}={}){
   if(phase>=405&&creature&&(m=line.match(/^(マナ|墓地)?光臨[-―−–—]自分のターンの終わりにこのクリーチャーがタップされて(?:いれば|いた場合)(.+)$/))){
    if(spec.g405Kourin)throw Error('重複する光臨');
    const body=m[2];let rule;
-   if(!m[1]){const q=body.match(/^自分の山札を見る。その中からコスト([1-9]\d*)以下の(.+?)を1体(?:選び)?バトルゾーンに出してもよい。その後山札をシャッフルする。$/),races=new Set(['オラクル','メカ・デル・ソル','グレートメカオー','ゴッド','ドラゴン・ゾンビ','アーマード・ドラゴン','アースイーター','フレイム・コマンド','グランド・デビル','スノーフェアリー','アーク・セラフィム']);if(q){const names=q[2].split('または');if(q[2]==='無色クリーチャー')rule={origin:'deck',filter:{creature:true,max:+q[1],noColor:true}};else if(names.every(n=>races.has(n)))rule={origin:'deck',filter:{creature:true,max:+q[1],...(names.length===1?{race:names[0]}:{raceAny:names})}};}}
+   if(!m[1]){const q=body.match(/^自分の山札を見る。その中からコスト([1-9]\d*)以下の(.+?)を1体(?:選び)?バトルゾーンに出してもよい。その後山札をシャッフルする。$/),races=new Set(['オラクル','メカ・デル・ソル','グレートメカオー','ゴッド','ドラゴン・ゾンビ','アーマード・ドラゴン','アースイーター','フレイム・コマンド','グランド・デビル','スノーフェアリー','アーク・セラフィム']);if(q){const names=q[2].split('または');if(q[2]==='無色クリーチャー')rule={origin:'deck',filter:{creature:true,max:+q[1],noColor:true}};else if(phase>=661&&q[2]==='「シールド・ゴー」を持つクリーチャー')rule={origin:'deck',filter:{creature:true,max:+q[1],g661ShieldGo:true}};else if(names.every(n=>races.has(n)))rule={origin:'deck',filter:{creature:true,max:+q[1],...(names.length===1?{race:names[0]}:{raceAny:names})}};}}
    else if(m[1]==='マナ'){const q=body.match(/^自分のマナゾーンからコスト([1-9]\d*)以下の進化ではないクリーチャーを1体バトルゾーンに出してもよい。$/);if(q)rule={origin:'mana',filter:{creature:true,max:+q[1],nonEvolution:true}};}
    else{const q=body.match(/^コスト([1-9]\d*)以下のデスパペットを1体自分の墓地からバトルゾーンに出してもよい。$/);if(q)rule={origin:'grave',filter:{creature:true,max:+q[1],race:'デスパペット'}};}
    if(!rule)throw Error('未対応の光臨条件');spec.g405Kourin=rule;continue;

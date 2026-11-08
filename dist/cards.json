@@ -167335,23 +167335,109 @@
       ],
       "supportBatch": "phase-660",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-042",
+      "name": "不退転の遺志 エルムストリート",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "アウトレイジ",
+      "text": "{SG}シールド・ゴー（このクリーチャーが破壊された時、新しいシールドとして自分のシールドゾーンに表向きのまま加える。このクリーチャーが表向きで、シールドゾーンを離れる時、かわりに自分の墓地に置く）\nこのクリーチャーを表向きにして自分のシールドゾーンに加えた時、相手は自身の手札を１枚選んで捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-042",
+      "limit": 4,
+      "shieldGo": true,
+      "g172Death": [
+        {
+          "op": "SelfGraveShield659"
+        }
+      ],
+      "g660ShieldEntry": [
+        {
+          "op": "Discard",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-661",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-009",
+      "name": "破滅の時計 ザ・ストップ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "アウトレイジMAX",
+      "text": "{SG}シールド・ゴー（このクリーチャーが破壊された時、新しいシールドとして自分のシールドゾーンに表向きのまま加える。このクリーチャーが表向きで、シールドゾーンを離れる時、かわりに自分の墓地に置く）\nこのクリーチャーを表向きにして自分のシールドゾーンに加えた時、このターンの残りをとばす。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-009",
+      "limit": 4,
+      "shieldGo": true,
+      "g172Death": [
+        {
+          "op": "SelfGraveShield659"
+        }
+      ],
+      "g660ShieldEntry": [
+        {
+          "op": "Custom",
+          "name": "endTurn"
+        }
+      ],
+      "supportBatch": "phase-661",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-006",
+      "name": "匠のイザナイ ファッション・モンスター",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "アウトレイジMAX/オラクル",
+      "text": "光臨-自分のターンの終わりに、このクリーチャーがタップされていれば、自分の山札を見る。その中からコスト６以下の、「シールド・ゴー」を持つクリーチャーを１体、バトルゾーンに出してもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-006",
+      "limit": 4,
+      "g405Kourin": {
+        "origin": "deck",
+        "filter": {
+          "creature": true,
+          "max": 6,
+          "g661ShieldGo": true
+        }
+      },
+      "supportBatch": "phase-661",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 660,
+    "phase": 661,
     "checkedAt": "2026-11-09",
-    "baseCount": 5804,
-    "newEffectCards": 5,
+    "baseCount": 5809,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5809,
+    "totalCount": 5812,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/33517/",
-      "https://dm.takaratomy.co.jp/rule/qa/33612/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36877/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36950/",
-      "https://dm.takaratomy.co.jp/rule/qa/48488/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36879/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37028/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37029/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37030/",
+      "https://dm.takaratomy.co.jp/rule/qa/33517/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -178683,6 +178769,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/40671/",
           "https://dm.takaratomy.co.jp/rule/qa/40894/",
           "https://dm.takaratomy.co.jp/rule/qa/48491/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 660,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5804,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 5809,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/33517/",
+          "https://dm.takaratomy.co.jp/rule/qa/33612/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36877/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36950/",
+          "https://dm.takaratomy.co.jp/rule/qa/48488/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
