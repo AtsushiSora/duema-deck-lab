@@ -1,4 +1,4 @@
-import {deckContentSnapshot} from './deck-history.js?v=0.720.0';
+import {deckContentSnapshot} from './deck-history.js?v=0.721.0';
 export function lastMatchSetup({deck,opponent,mode='manual',first='random',count=1000,practice=true,allOpp=false}){
  if(!deck?.id||!['manual','spectate','auto'].includes(mode))return null;
  return {version:1,deckId:deck.id,mode,first:['first','second','random'].includes(first)?first:'random',count:Number.isSafeInteger(count)&&count>0&&count<=100000?count:1000,practice:!!practice,allOpp:mode==='auto'&&!!allOpp,opponent:opponent?.id?{id:opponent.id,...deckContentSnapshot(opponent)}:null};

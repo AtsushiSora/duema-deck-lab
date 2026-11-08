@@ -1,0 +1,76 @@
+{
+  "phase": 633,
+  "checkedAt": "2026-11-08",
+  "baseCount": 5726,
+  "description": "ダイナマイト・ピークのメタモーフとタップ中の常在付与を公式情報と照合する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34948/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37323/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36842/",
+    "https://dm.takaratomy.co.jp/rule/qa/43486/"
+  ],
+  "cards": [
+    {
+      "id": "dm14-031",
+      "name": "ダイナマイト・ピーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-031",
+      "faces": [
+        {
+          "name": "ダイナマイト・ピーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "メタモーフ(自分のマナゾーンに７枚以上カードがあれば、このクリーチャーは次の能力を得る)\nこのクリーチャーがタップされている時、バトルゾーンにある自分のクリーチャーはすべて｢パワーアタッカー+3000｣と｢W・ブレイカー｣を得る。",
+          "race": "ビッグマッスル",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "g557Condition": {
+              "all": [
+                {
+                  "g272ManaCount": 7
+                },
+                {
+                  "g590SourceTapped": true
+                }
+              ]
+            },
+            "grants": {
+              "attackBonus": 3000,
+              "breaker": 2,
+              "g633DoubleBreaker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-08",
+        "sha256": "93a9ad4801e858df51c33003487a93a5992c8da851e1ac184f32c99c9eaa7d94",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-08",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm14-031": 4
+    }
+  }
+}

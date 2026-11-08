@@ -1,1 +1,1 @@
-export const RELEASE_NOTES={"version":"0.720.0","title":"最強CPU戦に小型クリーチャーへの対策を追加しました","items":["ゲイルマッチ・ビートルとたたりとホラーの贈り物が対戦に対応しました。","最強CPUは、火自然ビートや火自然ギャラクシーに対して、相手や自身のデッキ構成に合わせて採用します。"],"addedCardIds":["dm26ex1-N020","dm26-050"]};
+export const RELEASE_NOTES={"version":"0.721.0","title":"ダイナマイト・ピークが対戦に対応しました","items":["メタモーフで味方クリーチャーにパワーアタッカーとW・ブレイカーを与えます。"],"addedCardIds":["dm14-031"]};

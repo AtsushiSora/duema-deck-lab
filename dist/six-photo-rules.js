@@ -1,4 +1,4 @@
-import {createFifteenPhotoRules} from './fifteen-photo-rules.js?v=0.720.0';
+import {createFifteenPhotoRules} from './fifteen-photo-rules.js?v=0.721.0';
 import {policyTake} from './champion-zone-policy.js';
 // Six photographed deck lists: serializable effects, physical cards and explicit choices.
 export function createSixPhotoRules(api){
@@ -1143,6 +1143,7 @@ export function createSixPhotoRules(api){
  case'g34_GraveBottom589':if(v===0||v===1)put(s,{...t,choosePlayer:false,self:v===t.p});break;
  case'g34_TargetDestination467':{const r=t.target,y=s.players[r.p].battle.find(x=>x.uid===r.uid&&(x.incarnation||0)===r.incarnation&&!x.sealed),controller=t.g472EffectPlayer??t.p;if(y)move(s,[{player:r.p,uid:r.uid,to:v,destroy:v==='grave',controller}]);if(t.after)start(s,{...t,p:controller},t.after);break;}
  case'g34_NullBreaker471':if(s.attack?.attacker===t.uid){s.attack.g471Breaker=v;api.resolveAttack(s,null);}break;
+ case'g34_GrantedBreaker633':if(s.attack?.attacker===t.uid){s.attack.g633Breaker=v;api.resolveAttack(s,null);}break;
  case'g34_PayAura560':if(typeof v==='number'){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g560Handled:true,g560Amount:v};api.cast(s,t.p,...args);}break;
  case'g34_PayFloor500':if(typeof v==='number'){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g500Handled:true,g500Amount:v};api.cast(s,t.p,...args);}break;
  case'g34_PayCount499':if(typeof v==='number'){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g499Handled:true,g499Reduction:v};api.cast(s,t.p,...args);}break;
@@ -1344,6 +1345,16 @@ export function createSixPhotoRules(api){
  turnStart(s,p){if(s.extLimits){s.extLimits=s.extLimits.filter(l=>!(l.kind==='g546Force'&&l.when==='nextOpponent'&&l.activeTurn!==undefined&&l.activeTurn!==s.turn));for(const l of s.extLimits)if(l.kind==='g546Force'&&l.when==='nextOpponent'&&p===1-l.controller&&s.turn>l.turn)l.activeTurn=s.turn;}const delayed537=collect537(s,'nextOwnStart',p),generic=[p,1-p].flatMap(controller=>s.players[controller].battle.filter(x=>!x.sealed&&(api.isCreature(s,x)||effective(x,s).g461TurnPlayer)).flatMap(x=>{const defs=effective(x,s)[controller===p?'g174Start':'g179OpponentStart'];return defs?[{player:controller,uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g34_Sequence',controller,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs})}]:[];}));return [...delayed537,...generic,...active(s,p,'engels').filter(()=>!s.g7TerminalUsed?.[p]).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Custom',p,x.cardId,{name:'engelsTerminal',uid:x.uid,incarnation:x.incarnation||0})}))];},
  active,
  decorate(s,p,x,c){if(!s||p<0||c.type!=='creature')return c;const d={},own=s.players[p];for(const l of s.extLimits||[])if(l.kind==='g521Grant'&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}))&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation))Object.assign(d,l.grant);if(c.g225AttackRequires&&!attackConditionReading481.has(s)){let ready;attackConditionReading481.add(s);try{ready=attackCondition225(s,p,c.g225AttackRequires,x);}finally{attackConditionReading481.delete(s);}if(!ready)d.noAttack=true;}if(race(c,'コマンド')&&active(s,p,'scarlet').length)d.speedAttacker=true;if(ninja(c)&&active(s,p,'dororon').length)d.blocker=true;if(active(s,p,'fallenMantra').length)d.slayer=true;if(angel(c)&&cost(c)<=8&&active(s,p,'sirius').length)Object.assign(d,{cannotBeAttacked:true,unblockable:true,spellUntargetable:true});if(c.g34Role==='emotional'&&own.battle.some(y=>y.uid!==x.uid&&race(card(y),'オラクル')&&!api.ignored(s,y)))d.untargetable=true;if(c.g34Role==='nightmare'&&x.tapped)d.opponentTapEntry=true;if((s.extLimits||[]).some(l=>l.kind==='g34ForceAttack'&&l.player===p)||active(s,0,'baromreizu').length||active(s,1,'baromreizu').length||forceAttack224(s,p)||forced546(s,p,x))d.mustAttack=true;let slayers=c.g208SlayerCount||Number(!!(c.slayer||d.slayer));for(const g of x.g34Grants||[])if(g.turn===s.turn&&(g.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:g.spellCost,spellSource:g.spellSource}))){if(g.slayer)slayers++;const attackBonus=g.attackBonus?(d.attackBonus??c.attackBonus??0)+g.attackBonus:null;Object.assign(d,g);if(attackBonus!==null)d.attackBonus=attackBonus;}if(slayers>1)d.g208SlayerCount=slayers;const boosts=(x.g34Grants||[]).filter(g=>g.turn===s.turn&&g.g313Breaker);if(boosts.length){const counts=[c.breaker,d.breaker,...boosts.map(g=>g.g313Breaker)].filter(Boolean);d.breaker=counts.includes('∞')?'∞':Math.max(...counts);}return Object.keys(d).length?{...c,...d}:c;},
+ selectGrantedBreaker633(s,p,x){
+  if(s.attack.g633Breaker!==undefined||!s.players[1-p].shields.length)return false;
+  const c=effective(x,s),counts=c.g633BreakerChoices;
+  if(!counts||counts.length<2)return false;
+  const shields=s.players[1-p].shields.length;
+  choice(s,task('g34_GrantedBreaker633',p,x.cardId,{uid:x.uid}),'この攻撃で使うブレイカーを選ぶ',
+   counts.map(n=>opt(n===2?'W・ブレイカー':n==='∞'?(c.worldBreaker?'ワールド・ブレイカー':'∞ ブレイカー'):n+'枚をブレイクする',
+    n,Math.min(n==='∞'?Infinity:n,shields))));
+  return true;
+ },
  noUntap(s,x){const p=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));return p>=0&&api.isCreature(s,x)&&!mecha(effective(x,s))&&(active(s,0,'shinGod').length||active(s,1,'shinGod').length)>0;},
  countDiscount212(s,p,c){if(c.g212CountDiscount?.minimum===2)return 0;const max=countDiscountMax499(s,p,c);return c.g212CountDiscount?.optional&&c.g499Reduction!==undefined?Math.min(max,Math.max(0,c.g499Reduction)):max;},
  summonAuraDiscount290(s,p,c){const r=summonAuras560(s,p,c);return r.mandatory+(c.g560Amount===undefined?r.optional:Math.min(r.optional,Math.max(0,c.g560Amount)));},

@@ -2604,7 +2604,12 @@ export function standardCardSpec(d,{phase=165}={}){
   const marker='メタモーフ(自分のマナゾーンに7枚以上カードがあればこのクリーチャーは次の能力を得る)',at=lines.findIndex(l=>normalize(l)===marker);
   if(at>=0){
    if(!/^\d+$/.test(f.powerText)||lines.slice(at+1).some(l=>normalize(l)===marker))throw Error('未対応のメタモーフ構成');
-   const body=normalize(lines.slice(at+1).join('')),grants={
+   const body=normalize(lines.slice(at+1).join(''));
+   if(phase>=633&&at===0&&body==='このクリーチャーがタップされている時バトルゾーンにある自分のクリーチャーはすべて「パワーアタッカー+3000」と「W・ブレイカー」を得る。'){
+    return{g208Auras:[{filter:{creature:true},g557Condition:{all:[{g272ManaCount:7},{g590SourceTapped:true}]},
+     grants:{attackBonus:3000,breaker:2,g633DoubleBreaker:true}}]};
+   }
+   const grants={
     ...(phase>=435?{
      'このクリーチャーをバトルゾーンに出した時カードを1枚引いてもよい。':{g34Tasks:[{op:'Offer',defs:[{op:'Draw',n:1}]}]},
      'どんな種族の進化クリーチャーをこのクリーチャーの上に置いてもよい。':{g293AnyEvolutionRace:true},

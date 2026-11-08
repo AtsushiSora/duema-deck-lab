@@ -1,18 +1,18 @@
-import {replacementSacrifices} from './kenji-rules.js?v=0.720.0';
-import {decorateSurvivor406} from './survivor-rules.js?v=0.720.0';
-import {inheritSoul404} from './super-soul.js?v=0.720.0';
-import {wdDefinition393,copiedDefinition393} from './requested393-joker-rules.js?v=0.720.0';
+import {replacementSacrifices} from './kenji-rules.js?v=0.721.0';
+import {decorateSurvivor406} from './survivor-rules.js?v=0.721.0';
+import {inheritSoul404} from './super-soul.js?v=0.721.0';
+import {wdDefinition393,copiedDefinition393} from './requested393-joker-rules.js?v=0.721.0';
 import {displayTurn,completeDisplayTurn} from './turn-count.js';
 export {displayTurn} from './turn-count.js';
 import {deckCopyLimit} from './historical-regulations.js?v=0.98.0';
-import {CHALLENGER_IDS,chooseHeroDraw,chooseHeroOpening} from './hero-draw.js?v=0.720.0';
+import {CHALLENGER_IDS,chooseHeroDraw,chooseHeroOpening} from './hero-draw.js?v=0.721.0';
 import {shieldCards,shieldGroup,findShield,attachShield,detachShieldCard} from './shield-state.js';
-import {createExtendedRules} from './extended-rules.js?v=0.720.0';
-import {createStrategicAI} from './strategic-ai.js?v=0.720.0';
+import {createExtendedRules} from './extended-rules.js?v=0.721.0';
+import {createStrategicAI} from './strategic-ai.js?v=0.721.0';
 // Supported-card rules engine. No strength-based or precomputed win rates.
 export const RULE_VERSION='総合ルール 1.53 / 対応カード版 0.227';
-export const ENGINE_VERSION='0.594.0';
-export const AI_VERSION='2.3.412';
+export const ENGINE_VERSION='0.595.0';
+export const AI_VERSION='2.3.413';
 const EFFECTS=new Set(['champion','environment','recommended','sixPhoto','ramp1','ramp2','discard','teamBuff','optionalDraw','drawUpTo3','searchCreature','tap','tapTwo','buff','unblock','bounce','destroySmall','destroyUntapped','draw2','destroy','manaRemoval','tapAll','discardAll','bounceOptional','bounceSmall','bounceBlockers','dragonRamp2','ramp2Return1','optionalRamp4Return2','purgeNonDragonMana','fightOptional','destroyWeakerLimitNextTurn','shieldTop1','deployMulticolor7','superheroSweep','destroyBattleCard3','destroyBattleCard2','jadowShield','vamBounce','goodEvil','aterModes','jaganRevive','reverseLock','urEvolve','muteLoot','tensaiLoot','graveRecycle','destroyMin','vtBounce','miradaCast','spellLock','miracleDraw','serpentModal','icicleModes','mirageModes','judgeDraw','maryRevive','darknessModes','fumiModes','brainSlash','charonReset','jennySacrifice','inspectDiscard','gospelRecover','dolsuzakuTurn','frozenCarnival','finalStop','oriotisJudge','nextSummonSpeed','tripleMode','sirenMana','courageMode','burningLoot','lastDragonFlame','destroy6000','masterGGGLoot','untapTwoMana','fairyDiscard6000','graveShuffle','permitManaSummon','wellkius','mikadoreo','sheva','rudolf','saiphogate','heavensGate','stargaze','bambooRamp','sharappu','fairyPower','takeback','hugePlan','shakoRecycle','naturalGo','herculesRecycle','jurassicHowl','corenReveal','plantRamp','sonicMana','jumboReveal','granRamp','kiyonagaReveal','gohaten','zenonRamp','wiseShutter','dokiBounce','minogamiRecover','hazardPact','fortress','casablancaBounce','sheketDraw','petrovaProtect','bojiMill','dranEntry','goldShield','c0braRevive','mechaDraw','ameliaShield','mechaMinus','goryuShield','magicNapo','magicSmallDestroy','magicIgnore','magicNumberLock','magicFire','magicKaraku','magicHime','magicBounce','magicPeecap','magicDraw','armoredBaku','armoredValkyria','armoredVal','armoredMonster','hunterMekraid','hunterBambi','hunterSweep4','hunterSweep2','hunterVictory','hunterMana','hunterDraw','zardCast','dogiRamp','dolfSweep','damdRemove','fiveModes','dragonSign','aquaReveal','bossDeploy','dedoAllocate','fireAllocate','fairyMiracle','babaBottom','cycleEntry','jaougaShields','katsuLook','reverseMinus','jaoumon','fortuneRamp','giantHeavy','giantLake','giantTouch','giantYuki','giantSpace','giantSineraria','giantFirefly','gachiRobo','gachiCambiare','gachiFight','gachiMystery','gachiNicol','gachiBigBang','gachiMagrul','gachiRice','gachiGuignol','samuraiBui','samuraiMusashi','samuraiMekraid','samuraiFlash','lionelPeace','lionelRune','lionelHeart','lionelSlotton','lionelAQ','lionelKorail','lionelGera','lionelSong','lionelStar','kenjiCrymax','kenjiDida','kenjiMill','kenjiPlan','kenjiHeart','travelJourney','travelAfro','travelKatsura','travelPrison','travelRevZero','travelG3','travelZero','travelHelt','travelOra','travelChicken','graveGT','graveObuza','graveKaibyaku','graveUra','graveAbaku','graveLoot','graveDoor','graveMinus4','maruruOrugate','maruruKiinary','maruruWatch','maruruBunker','maruruSky','girlsDaiou','girlsSavak','girlsZeos','girlsTry','girlsMega','girlsGyai','girlsArshu','girlsRupia','madoNothing','madoAirvo','madoBarred','madoGon','madoBlood','madoBock','madoCombat','madoDollar','madoDraw','madoShuno','madoGokusatsu','madoGyap','redBlack','redMax','redRoyal','redCircle','redClock','redGareck','abyssJaga','abyssSis','abyssMurder','abyssMakua','abyssMill','abyssMek','abyssSeal','abyssBella','hachiRedZ','hachiStorm','hachiFight','hachiForbidden','hachiShibire','hachiPower','hachiSSD','virideEver','golgyEntry','golgyKohaku','golgyBig','golgyShield','golgyHerc','golgyWest','golgyGin','golgyBlueprint','golgyJasmine','bandeRadio','bandePizza','bandeDecision','bandeDagra','bandeBalance','bandeSeal','bandeTaka','madoZadan','madoMaou','madoNameless','madoJaw','madoGride','madoFunz','madoVoga','madoLab','madoTin','bolBaro','bolBT','bolAgony','bolLoot','bolMol','bolLand','bolJura','bolDuel','bolBird','phoenixFel','phoenixGate','phoenixMetal','phoenixReverse','phoenixRecover','phoenixXeno','phoenixLoot','phoenixAbu','phoenixHeavy','phoenixMill','phoenixReload','phoenixOni','kenjiMysteryCube','kenjiCocoon','kenjiPanda','kenjiJaouga8','shieldDogi','shieldResolve','shieldBounce','shieldD4','shieldMirror','shieldMirrorSpell','shieldParfe','shieldDeka','shieldFaceTop']);
 let catalogue=new Map();
 const standardDDD495=c=>['creature','spell','seed'].includes(c.type)&&!c.evolution&&Number.isSafeInteger(c.ddd?.cost)&&c.ddd.cost>0&&Object.keys(c.ddd).length===2&&Array.isArray(c.ddd.civilizations)&&c.ddd.civilizations.length>0&&c.ddd.civilizations.length<=c.ddd.cost&&new Set(c.ddd.civilizations).size===c.ddd.civilizations.length&&c.ddd.civilizations.every(v=>['光','水','闇','火','自然'].includes(v));
@@ -139,8 +139,18 @@ export function effectiveCard(inst,context,forPower=false){
  c=extra.utilityTop.decorate(context,owner,inst,c);
  c=extra.six.grantAuras(context,owner,inst,externalBlockState(context,owner,inst,extra.utilityNatureSupport.decorate(context,owner,inst,extra.utilityGuard.decorate(context,owner,inst,extra.saga.decorate(context,owner,inst,extra.combat.decorate(context,owner,inst,extra.firebird.decorate(context,owner,inst,extra.history.decorate(context,owner,inst,extra.continuation.decorate(context,owner,inst,extra.six.decorate(context,owner,inst,extra.shieldPhoto.decorate(context,owner,inst,extra.photo.decorate(context,owner,inst,c))))))))))));
  c=decorateSurvivor406(context,owner,inst,c,{card,ignored:abilitiesIgnored,isCreature});
- if(c.g444Crew&&!forPower)c={...c,breaker:c.breaker==='∞'?'∞':Math.max(Number(c.breaker)||1,extra.six.crewBreak444(context,owner,inst,c))};
- if(c.poweredBreaker&&!forPower){const n=power(inst,inst.uid===context.attack?.attacker,context);c={...c,breaker:n===Infinity||c.breaker==='∞'?'∞':Math.max(Number(c.breaker)||1,1+Math.floor(n/6000))};}
+ const breakerChoices=c.g633DoubleBreaker&&!forPower?[c.breaker]:null;
+ if(c.g444Crew&&!forPower){
+  const n=extra.six.crewBreak444(context,owner,inst,c);
+  breakerChoices?.push(n);
+  c={...c,breaker:c.breaker==='∞'?'∞':Math.max(Number(c.breaker)||1,n)};
+ }
+ if(c.poweredBreaker&&!forPower){
+  const n=power(inst,inst.uid===context.attack?.attacker,context),count=n===Infinity?'∞':Math.max(1,1+Math.floor(n/6000));
+  breakerChoices?.push(count);
+  c={...c,breaker:count==='∞'||c.breaker==='∞'?'∞':Math.max(Number(c.breaker)||1,count)};
+ }
+ if(breakerChoices)c={...c,g633BreakerChoices:[...new Set([2,...breakerChoices])]};
  return c;
 }
 export const playFaces=c=>c.g393JWDFaces?c.g393JWDFaces.map(f=>({id:c.id,limit:c.limit,...f})):c.spellFace?[c,{id:c.id,limit:c.limit,...c.spellFace}]:[c];
@@ -1071,15 +1081,18 @@ function resolveAttack(s,blockUid){
  if(s.attack.target==='player'&&extra.six.selectNullBreaker471(s,s.active,a))return;
  if(s.attack.target==='player'&&s.attack.g471Breaker!=='null'&&extra.selectBreaker(s,s.active,a))return;
  const gMode=s.attack.g471Breaker!=='null'&&(s.attack.g14Breaker==='g'||!s.attack.g14Breaker&&effectiveCard(a,s).gBreaker);if(s.attack.target==='player'&&gMode&&s.attackLifecycle)s.attackLifecycle.g14G={p:s.active,uid:a.uid,source:a.cardId};
+ if(s.attack.target==='player'&&!gMode&&s.attack.g471Breaker!=='null'&&extra.six.selectGrantedBreaker633(s,s.active,a))return;
  if(s.attack.target!=='player'){const b=s.players[other].battle.find(x=>x.uid===s.attack.target);if(b&&!blockedBattle484(s,a))battle(s,s.active,a,other,b,a.uid);}
  else if(!s.players[other].shields.length)finish(s,s.active,'ダイレクトアタックが成立','loss','directAttack');
  else{
   s.breakContext={player:s.active,sourceUid:a.uid,incarnation:a.incarnation||0,source:a.cardId,...(effectiveCard(a,s).g122NoST?{noST:true}:{}),reverse:!!effectiveCard(a,s).reverseBurn,burn:!!effectiveCard(a,s).shieldBurn};
-  const shields=s.players[other].shields,n=gMode?shields.length:Math.min((s.attack.g471Breaker==='null'?0:numeric(effectiveCard(a,s).breaker??1))+(effectiveCard(a,s).extraBreak||0),shields.length);
+  const shields=s.players[other].shields,c=effectiveCard(a,s),breaker=s.attack.g633Breaker??c.breaker??1;
+  const n=gMode?shields.length:Math.min((s.attack.g471Breaker==='null'?0:numeric(breaker))+(c.extraBreak||0),shields.length);
   if(n===0)breakShields(s,other,[]);
-  else if(s.attack.g471Breaker!=='null'&&!gMode&&effectiveCard(a,s).breaker==='∞'&&!effectiveCard(a,s).worldBreaker)s.decision={type:'infinityCount',player:s.active,defender:other};
+  else if(s.attack.g471Breaker!=='null'&&!gMode&&breaker==='∞'&&!c.worldBreaker)s.decision={type:'infinityCount',player:s.active,defender:other};
   else if(n===shields.length)breakShields(s,other,shields.map(c=>c.uid));
-  else if(n===1){if(s.attack.shield&&!shields.some(x=>x.uid===s.attack.shield)&&shields.length>1)s.decision={type:'breakChoice',player:s.active,defender:other,count:1};else breakShields(s,other,[shields.some(x=>x.uid===s.attack.shield)?s.attack.shield:shields[0].uid]);}
+  else if(n===1&&shields.some(x=>x.uid===s.attack.shield))breakShields(s,other,[s.attack.shield]);
+  else if(n===1&&!s.attack.shield&&s.attack.g633Breaker===undefined)breakShields(s,other,[shields[0].uid]);
   else s.decision={type:'breakChoice',player:s.active,defender:other,count:n};
  }
  s.attack=null;
