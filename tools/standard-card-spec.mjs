@@ -2453,6 +2453,18 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=672){
+  const text=normalize(f.abilityText);
+  if(creature&&text==='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)自分の無色クリーチャーをバトルゾーンに出した時自分の山札の上から1枚目をマナゾーンに置く。'){
+   return {breaker:2,g251EntryDraw:{filter:{creature:true,noColor:true},defs:[{op:'Ramp',n:1}]}};
+  }
+  if(creature&&text==='バトルゾーンにある自分のオラクルはすべて「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)'){
+   return {breaker:2,g208Auras:[{filter:{creature:true,race:'オラクル'},grants:{speedAttacker:true}}]};
+  }
+  if(f.typeText==='呪文'&&text==='バトルゾーンにあるクリーチャーを1体選ぶ。次の自分のターンのはじめまでそのクリーチャーは「ブロッカー」を得る。'){
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',anyOwner:true,grant:{blocker:true},g521UntilStart:true,spell:true,title:'次の自分のターンまでブロッカーを与えるクリーチャーを1体選ぶ'}]};
+  }
+ }
  if(phase>=671){
   const text=normalize(f.abilityText);
   if(creature&&text==='このクリーチャーをバトルゾーンに出した時相手はバトルゾーンにある自身の無色ではないクリーチャーを1体選び持ち主のマナゾーンに置く。'){

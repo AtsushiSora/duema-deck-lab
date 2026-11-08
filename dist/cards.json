@@ -168396,15 +168396,107 @@
       ],
       "supportBatch": "phase-671",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-067",
+      "name": "共鳴のサトリ エラソウ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "オラクル/トライストーン",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n自分の無色クリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目をマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-067",
+      "limit": 4,
+      "breaker": 2,
+      "g251EntryDraw": {
+        "filter": {
+          "creature": true,
+          "noColor": true
+        },
+        "defs": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-672",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-003",
+      "name": "爆走マントラ シラヌイ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "オラクル/フレイム・コマンド",
+      "text": "バトルゾーンにある自分のオラクルはすべて、「スピードアタッカー」を得る。（「スピードアタッカー」を得たクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-003",
+      "limit": 4,
+      "breaker": 2,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "race": "オラクル"
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-672",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr11-036",
+      "name": "究極防衛司令 コード777",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにあるクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは「ブロッカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-036",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "grant": {
+            "blocker": true
+          },
+          "g521UntilStart": true,
+          "spell": true,
+          "title": "次の自分のターンまでブロッカーを与えるクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-672",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 671,
+    "phase": 672,
     "checkedAt": "2026-11-09",
-    "baseCount": 5841,
+    "baseCount": 5844,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5844,
+    "totalCount": 5847,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
@@ -179949,6 +180041,21 @@
           "https://dm.takaratomy.co.jp/rule/qa/46514/",
           "https://dm.takaratomy.co.jp/rule/qa/40102/",
           "https://dm.takaratomy.co.jp/rule/qa/46490/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 671,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5841,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5844,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -1,0 +1,149 @@
+{
+  "phase": 672,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5844,
+  "description": "無色クリーチャーの登場によるマナ加速、オラクルの常在能力、ターン開始までのブロッカー付与。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmr09-067",
+      "name": "共鳴のサトリ エラソウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-067",
+      "faces": [
+        {
+          "name": "共鳴のサトリ エラソウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n自分の無色クリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "オラクル/トライストーン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "noColor": true
+          },
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-067.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "88f82b6867f6f10a05de06e9ca4e09b19c7dcff494f8d068255490fe3bc98aa2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr12-003",
+      "name": "爆走マントラ シラヌイ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-003",
+      "faces": [
+        {
+          "name": "爆走マントラ シラヌイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "バトルゾーンにある自分のオラクルはすべて、「スピードアタッカー」を得る。（「スピードアタッカー」を得たクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "オラクル/フレイム・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "race": "オラクル"
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr12-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "f0c1261e80b779fc945b444410eeab5267082c387283fb8cc35e7b44fd5a3d11",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr11-036",
+      "name": "究極防衛司令 コード777",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-036",
+      "faces": [
+        {
+          "name": "究極防衛司令 コード777",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "バトルゾーンにあるクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは「ブロッカー」を得る。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "grant": {
+              "blocker": true
+            },
+            "g521UntilStart": true,
+            "spell": true,
+            "title": "次の自分のターンまでブロッカーを与えるクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr11-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "a522f32debb98cd065ba8ef22c4ea9bb84e10c86d2ee68e1c8180a08843bafe3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr09-067": 4,
+      "dmr12-003": 4,
+      "dmr11-036": 4
+    }
+  }
+}
