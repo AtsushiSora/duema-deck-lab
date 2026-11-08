@@ -2616,7 +2616,9 @@ export function standardCardSpec(d,{phase=165}={}){
    const whole=structuredClone(d),tail=structuredClone(d);whole.faces[0].abilityText=lines.filter((_,i)=>i!==at).join('\n');tail.faces[0].abilityText=lines.slice(at+1).join('\n');tail.faces[0].powerText=f.powerText.replace(/\+$/,'');
    if(phase>=438&&normalize(tail.faces[0].abilityText)==='このクリーチャーが攻撃する時このターン自分のクリーチャーすべてのパワーを+4000し「パワード・ブレイカー」を与える。')whole.faces[0].powerText=tail.faces[0].powerText;
    const extended607=phase>=607&&['dm25rp2-022','dm25rp4-072'].includes(d.id);
-   const subphase=extended607?phase:phase>=438?438:403,base=standardCardSpec(whole,{phase:subphase}),grants=standardCardSpec(tail,{phase:subphase}),allowed=new Set(['blocker','slayer','unblockable','g38BattleBonus','g38EnemyTurnBonus','g34Attack','g174End','g166EndUntap',...(phase>=438?['spellUntargetable']:[]),...(extended607?['g607StackPower']:[])]);
+   const tailText=normalize(tail.faces[0].abilityText);
+   const extended650=phase>=650&&(tailText==='このクリーチャーの攻撃中相手は「G・ストライク」を使えない。'||tailText.startsWith('このクリーチャーが攻撃する時このクリーチャーにカードが3枚以上含まれていれば'));
+   const subphase=extended607||extended650?phase:phase>=438?438:403,base=standardCardSpec(whole,{phase:subphase}),grants=standardCardSpec(tail,{phase:subphase}),allowed=new Set(['blocker','slayer','unblockable','g38BattleBonus','g38EnemyTurnBonus','g34Attack','g174End','g166EndUntap',...(phase>=438?['spellUntargetable']:[]),...(extended607?['g607StackPower']:[]),...(extended650?['attackNoGS']:[])]);
    if(!Object.keys(grants).length||Object.keys(grants).some(k=>!allowed.has(k)))throw Error('超魂Xの付与処理が未対応');
    return{...base,g404Soul:grants};
   }
@@ -2713,6 +2715,15 @@ export function standardCardSpec(d,{phase=165}={}){
     '各ターンこのクリーチャーがはじめて攻撃する時これが進化クリーチャーならアンタップする。':[{op:'IfSource541',evolution:true,defs:[untap]}]
    }[line];if(first){if(spec.g540FirstAttack)throw Error('重複する最初の攻撃誘発');spec.g540FirstAttack=first;continue;}
    if(line==='鬼タイム:このクリーチャーが破壊された時自分と相手のシールドの数が合計6つ以下なら相手のパワー8000以下のクリーチャーを1体破壊する。'){if(death.length)throw Error('独立した破壊時能力の順序対応が必要');death.push({op:'IfOwn',filter:{g334ZoneCount:{zone:'shields',sumBoth:true,max:6}},defs:[{op:'Target',to:'grave',filter:{maxPower:8000,g199Power:true}}]});continue;}
+  }
+  if(phase>=650&&creature){
+   if(line==='このクリーチャーの攻撃中相手は「G・ストライク」を使えない。'){spec.attackNoGS=true;continue;}
+   const stackedAttack='このクリーチャーが攻撃する時このクリーチャーにカードが3枚以上含まれていれば';
+   const effect={
+    '相手のコスト6以下のエレメントを1つ選び破壊する。':{op:'Target',to:'grave',element:true,filter:{max:6}},
+    '相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを-9000する。':{op:'Target',power:-9000,g242PowerMinus:true}
+   }[line.startsWith(stackedAttack)?line.slice(stackedAttack.length):''];
+   if(effect){attack.push({op:'IfOwn',filter:{g650SourceCards:3},defs:[effect]});continue;}
   }
   if(phase>=649&&creature){
    if(line==='各ターンに1度カードが自分のシールドゾーンを離れた時相手のクリーチャーを1体選びタップしてもよい。'){

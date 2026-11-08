@@ -1,0 +1,294 @@
+{
+  "phase": 650,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5774,
+  "description": "超魂Xで引き継ぐ攻撃能力とG・ストライク抑止。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/46533/",
+    "https://dm.takaratomy.co.jp/rule/qa/46530/",
+    "https://dm.takaratomy.co.jp/rule/qa/42377/",
+    "https://dm.takaratomy.co.jp/rule/qa/47053/"
+  ],
+  "cards": [
+    {
+      "id": "dm25rp2-043",
+      "name": "ラーヴァ＝アーヴァ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-043",
+      "faces": [
+        {
+          "name": "ラーヴァ＝アーヴァ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の手札を１枚捨て、カードを２枚引く。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、このクリーチャーにカードが３枚以上含まれていれば、相手のコスト６以下のエレメントを１つ選び、破壊する。",
+          "race": "ルージュアビス/フュージョナー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          },
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g650SourceCards": 3
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "element": true,
+                "filter": {
+                  "max": 6
+                }
+              }
+            ]
+          }
+        ],
+        "g404Soul": {
+          "g34Attack": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g650SourceCards": 3
+              },
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "element": true,
+                  "filter": {
+                    "max": 6
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "b71cbcd6fa5a1167f2a873193dd52374b2f3ab5ae6bfd9c8bc73c34985f62d3d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-039",
+      "name": "楽像フミ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-039",
+      "faces": [
+        {
+          "name": "楽像フミ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－3000する。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、このクリーチャーにカードが３枚以上含まれていれば、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－9000する。",
+          "race": "デーモン・コマンド/デモンズ・レガシー/フュージョナー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -3000,
+            "g242PowerMinus": true,
+            "title": "パワーを-3000する相手のクリーチャーを選ぶ"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g650SourceCards": 3
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "power": -9000,
+                "g242PowerMinus": true
+              }
+            ]
+          }
+        ],
+        "g404Soul": {
+          "g34Attack": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g650SourceCards": 3
+              },
+              "defs": [
+                {
+                  "op": "Target",
+                  "power": -9000,
+                  "g242PowerMinus": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "19a5177fdea464b15e37442bf19b9dae3ee2882859b3b61116778da2617bf6c6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex2-044",
+      "name": "轟速 ザ・リフル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-044",
+      "faces": [
+        {
+          "name": "轟速 ザ・リフル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーの攻撃中、相手は「G・ストライク」を使えない。",
+          "race": "ソニック・コマンド/侵略者/フュージョナー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "attackNoGS": true,
+        "g404Soul": {
+          "attackNoGS": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "8779f963ac175bd0dbaff64703d8fcaf2ace3b72d803ede422ab4a39260bf38a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25ex3-048",
+      "name": "ラーヴァ＝アーヴァ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-048",
+      "canonicalId": "dm25rp2-043",
+      "faces": [
+        {
+          "name": "ラーヴァ＝アーヴァ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の手札を１枚捨て、カードを２枚引く。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、このクリーチャーにカードが３枚以上含まれていれば、相手のコスト６以下のエレメントを１つ選び、破壊する。",
+          "race": "ルージュアビス/フュージョナー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          },
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g650SourceCards": 3
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "element": true,
+                "filter": {
+                  "max": 6
+                }
+              }
+            ]
+          }
+        ],
+        "g404Soul": {
+          "g34Attack": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g650SourceCards": 3
+              },
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "element": true,
+                  "filter": {
+                    "max": 6
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "b583a55afe89398cd628bf716668b6cfe340cb51e0f9c89e89533ca75bced99e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25rp2-043": 4,
+      "dm25rp2-039": 4,
+      "dm26ex2-044": 4,
+      "dm25ex3-048": 4
+    }
+  }
+}

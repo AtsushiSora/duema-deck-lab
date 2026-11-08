@@ -166001,22 +166001,171 @@
       ],
       "supportBatch": "phase-649",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-043",
+      "name": "ラーヴァ＝アーヴァ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "ルージュアビス/フュージョナー",
+      "text": "このクリーチャーが出た時、自分の手札を１枚捨て、カードを２枚引く。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、このクリーチャーにカードが３枚以上含まれていれば、相手のコスト６以下のエレメントを１つ選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-043",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1
+        },
+        {
+          "op": "Draw",
+          "n": 2
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g650SourceCards": 3
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "element": true,
+              "filter": {
+                "max": 6
+              }
+            }
+          ]
+        }
+      ],
+      "g404Soul": {
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g650SourceCards": 3
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "element": true,
+                "filter": {
+                  "max": 6
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-650",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-039",
+      "name": "楽像フミ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "デーモン・コマンド/デモンズ・レガシー/フュージョナー",
+      "text": "このクリーチャーが出た時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－3000する。\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーが攻撃する時、このクリーチャーにカードが３枚以上含まれていれば、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－9000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-039",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -3000,
+          "g242PowerMinus": true,
+          "title": "パワーを-3000する相手のクリーチャーを選ぶ"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g650SourceCards": 3
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "power": -9000,
+              "g242PowerMinus": true
+            }
+          ]
+        }
+      ],
+      "g404Soul": {
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g650SourceCards": 3
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "power": -9000,
+                "g242PowerMinus": true
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-650",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex2-044",
+      "name": "轟速 ザ・リフル",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ソニック・コマンド/侵略者/フュージョナー",
+      "text": "スピードアタッカー\n超魂X（これがクリーチャーの下にあれば、そのクリーチャーにも以下の能力を与える）\nこのクリーチャーの攻撃中、相手は「G・ストライク」を使えない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-044",
+      "limit": 4,
+      "speedAttacker": true,
+      "attackNoGS": true,
+      "g404Soul": {
+        "attackNoGS": true
+      },
+      "supportBatch": "phase-650",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 649,
-    "checkedAt": "2026-11-08",
-    "baseCount": 5772,
-    "newEffectCards": 2,
+    "phase": 650,
+    "checkedAt": "2026-11-09",
+    "baseCount": 5774,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5774,
+    "totalCount": 5777,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/48491/",
-      "https://dm.takaratomy.co.jp/rule/qa/38756/",
-      "https://dm.takaratomy.co.jp/rule/qa/44380/",
-      "https://dm.takaratomy.co.jp/rule/qa/45447/"
+      "https://dm.takaratomy.co.jp/rule/qa/46533/",
+      "https://dm.takaratomy.co.jp/rule/qa/46530/",
+      "https://dm.takaratomy.co.jp/rule/qa/42377/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -177141,6 +177290,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/40676/",
           "https://dm.takaratomy.co.jp/rule/qa/45078/",
           "https://dm.takaratomy.co.jp/rule/qa/39516/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 649,
+        "checkedAt": "2026-11-08",
+        "baseCount": 5772,
+        "newEffectCards": 2,
+        "newVanillaCards": 0,
+        "totalCount": 5774,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/48491/",
+          "https://dm.takaratomy.co.jp/rule/qa/38756/",
+          "https://dm.takaratomy.co.jp/rule/qa/44380/",
+          "https://dm.takaratomy.co.jp/rule/qa/45447/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
