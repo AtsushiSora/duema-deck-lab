@@ -1341,6 +1341,7 @@ export function createSixPhotoRules(api){
  case'g34_InspectHand':
   if(t.chooseOne){if(t.discardIds.includes(v))api.discardSelected(s,1-t.p,[v],t.source,t.p);}
   else if(v&&t.discard)api.discardSelected(s,1-t.p,t.discardIds,t.source,t.p);
+  if(t.after)start(s,t,t.after);
   break;
  case'g34_DiscardAll244':if(v)put(s,{...t,accepted:true});break;
  case'g34_DiscardFor248':{const y=own.hand.find(y=>y.uid===v);if(y&&matches(s,t.p,y,t.g488DiscardFilter))api.discardSelected(s,t.p,[y.uid],t.source,t.p,{...t,op:'g34_Sequence',defs:discardDefs248(s,t,y)});break;}

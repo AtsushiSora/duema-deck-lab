@@ -1,0 +1,156 @@
+{
+  "phase": 674,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5850,
+  "description": "デカブルとコブルの連動、相手の手札の呪文の枚数に応じた任意ドロー。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/46866/"
+  ],
+  "cards": [
+    {
+      "id": "dmr11-015",
+      "name": "絆のイザナイ デカブル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-015",
+      "faces": [
+        {
+          "name": "絆のイザナイ デカブル",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中から 《絆のファミリア コブル》を１枚、バトルゾーンに出してもよい。その後、山札をシャッフルする。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "オラクル/ドリームメイト",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "breaker": 2,
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "g201Search": true,
+            "limit": 1,
+            "rest": "shuffle",
+            "filter": {
+              "creature": true,
+              "g201ExactName": "絆のファミリア コブル"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr11-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "cd1bba0a45cb04f1b8c5c8026576d9421edae54d85127b262534d6e9cc05f01b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr11-049",
+      "name": "絆のファミリア コブル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-049",
+      "faces": [
+        {
+          "name": "絆のファミリア コブル",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "バトルゾーンに自分の《絆のイザナイ デカブル》があれば、このクリーチャーのパワーは+3000され、「W・ブレイカー」を得る。",
+          "race": "オラクル/ドリームメイト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "g201ExactName": "絆のイザナイ デカブル"
+          },
+          "grants": {
+            "power": 3000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr11-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "b1b675f797fd415d7b7a1555c8a132f7340a03932b3b36d040307729d3573525",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr11-037",
+      "name": "愛羅武勇 パッチギ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-037",
+      "faces": [
+        {
+          "name": "愛羅武勇 パッチギ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、相手は自身の手札を見せる。その中にある呪文１枚につきカードを１枚引いてもよい。\nこのクリーチャーはブロックされない。",
+          "race": "アウトレイジ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "unblockable": true,
+        "g34Tasks": [
+          {
+            "op": "InspectHand",
+            "g223Inspect": true,
+            "reveal": true,
+            "after": [
+              {
+                "op": "CountDraw",
+                "owner": "opponent",
+                "zone": "hand",
+                "filter": {
+                  "spell": true
+                },
+                "optional": "each"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr11-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "d2f759e050303f7d1cbb6031cba5f10ac86c18e73a96ce247c89217370e8fbf6",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr11-015": 4,
+      "dmr11-049": 4,
+      "dmr11-037": 4
+    }
+  }
+}

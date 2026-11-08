@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-09",
   "catalogueNames": 11830,
-  "supportedNames": 5850,
-  "pendingNames": 5980,
-  "phase": 673,
+  "supportedNames": 5853,
+  "pendingNames": 5977,
+  "phase": 674,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3624,
+    "クリーチャー": 3621,
     "NEOクリーチャー": 153,
     "呪文": 843,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1338,
-    "未対応の能力文": 4426,
+    "未対応の能力文": 4423,
     "未対応のG・ゼロ条件": 27,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -2029,62 +2029,40 @@
         "scope": "タップインと進化、別カードのツインパクトとのID分離、シャッフル有無とEXライフ、破壊時の2モード、手札0枚とタップマナ、プロモ再録、保存・復元。"
       },
       "deferred": []
+    },
+    {
+      "phase": 674,
+      "added": [
+        {
+          "id": "dmr11-015",
+          "name": "絆のイザナイ デカブル"
+        },
+        {
+          "id": "dmr11-049",
+          "name": "絆のファミリア コブル"
+        },
+        {
+          "id": "dmr11-037",
+          "name": "愛羅武勇 パッチギ"
+        }
+      ],
+      "supportedNames": 5853,
+      "pendingNames": 5977,
+      "verification": {
+        "focusedPassed": 10,
+        "regressionPassed": 165,
+        "regressionIncludesFocused": true,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "山札全体の検索、対象不在・辞退時のシャッフル、コブルの常在強化と能力無視、手札公開、ツインパクトを含む呪文の枚数と任意ドロー、選択途中の保存・復元。"
+      },
+      "deferred": [
+        {
+          "id": "dmr12-s01",
+          "name": "新聖綺神 クロスオーバー・ヨミ",
+          "reason": "単独時の離脱置換はパワーが0以下でも適用され得るため、正のパワーを要求する既存g577Stayのままでは再現できない。状況起因処理の再評価と他の置換との競合の検証が必要。"
+        }
+      ]
     }
-  ],
-  "resume": {
-    "lastVerifiedPhase": 673,
-    "lastVerifiedCommit": "71b3debc7c5eeb0979f6c7683ed0e37e42ba6a6e",
-    "nextPhase": 674,
-    "workInProgress": "phase 673まで検証・ローカルコミット済み。phase 674の実装は未着手。候補3種類の公式本文を確認済み。ワーゲン、カニス、ユキメ、サリックスの保留理由は継続。",
-    "nextCandidates": [
-      {
-        "id": "dmr11-015",
-        "name": "絆のイザナイ デカブル",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-015",
-        "check": "公式本文を確認。山札から正規名でコブルを指定する。任意で出さなかった場合も「その後」のシャッフルを行う処理を検証する。"
-      },
-      {
-        "id": "dmr11-049",
-        "name": "絆のファミリア コブル",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-049",
-        "check": "公式本文を確認。味方のデカブルが存在する間だけ+3000とW・ブレイカー。名称の一致、相手側、離脱で失うことを検証する。"
-      },
-      {
-        "id": "dmr12-s01",
-        "name": "新聖綺神 クロスオーバー・ヨミ",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-s01",
-        "check": "公式本文を確認。単独でブロックされない効果と離脱置換は既存g479OnlyCreature・g619Stayの再利用を調べる。T・ブレイカー、ブロッカー、自分のターン終了時の強制アンタップも検証する。"
-      },
-      {
-        "id": "dmd11-007",
-        "name": "焔の下の力持ち ワーゲン",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd11-007",
-        "check": "QA 36889・36890確認済み。表向きに複数ある場合とゼロヨンとの競合は未確認。攻撃選択とシールド選択を両方検証する。"
-      },
-      {
-        "id": "dmr09-036",
-        "name": "驚愕の存在 カニス",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-036",
-        "check": "クリーチャー自身の効果ブレイクに、対象シールドを選ぶ前に追加枚数を反映できるよう調査中。呪文・通常ブレイク・途中保存の互換性を検証する。"
-      },
-      {
-        "id": "dm26rp2-042",
-        "name": "連射のラクシャ ユキメ",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp2-042",
-        "check": "公式QA 48931に沿う比較・公開時能力・山札下への置換処理が前提。"
-      },
-      {
-        "id": "dmr10-017",
-        "name": "呼ぶ者 サリックス",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-017",
-        "check": "エグザイルは種族ではなくカードタイプ。まず実カードの対戦対応が必要。"
-      }
-    ],
-    "steps": [
-      "git statusとAGENTS.mdを確認し、カードID・正規名・再録・能力文全体・基本情報・画像・使用制限・関連裁定を照合する。",
-      "新たな条件は既存カードの挙動と保存形式を維持して追加し、公式確認や効果全体の再現ができない場合は保留する。",
-      "個別・関連回帰は各最大10分。対戦シミュレーションを含むファイルは対象テスト名を明示し、全体のnpm testは中断・合否未確認のままとする。",
-      "実データで再集計し、検証内容と保留理由をbatchHistoryに残して、検証済み差分のみローカルコミットする。"
-    ]
-  }
+  ]
 }

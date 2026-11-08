@@ -2453,6 +2453,18 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=674&&creature){
+  const text=normalize(f.abilityText);
+  if(text==='このクリーチャーをバトルゾーンに出した時自分の山札を見る。その中から《絆のファミリアコブル》を1枚バトルゾーンに出してもよい。その後山札をシャッフルする。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)'){
+   return {effect:'sixPhoto',breaker:2,g34Tasks:[{op:'LookDeploy530',g201Search:true,limit:1,rest:'shuffle',filter:{creature:true,g201ExactName:'絆のファミリア コブル'}}]};
+  }
+  if(text==='バトルゾーンに自分の《絆のイザナイデカブル》があればこのクリーチャーのパワーは+3000され「W・ブレイカー」を得る。'){
+   return {g260Self:{filter:{creature:true,g201ExactName:'絆のイザナイ デカブル'},grants:{power:3000,breaker:2}}};
+  }
+  if(text==='このクリーチャーをバトルゾーンに出した時相手は自身の手札を見せる。その中にある呪文1枚につきカードを1枚引いてもよい。このクリーチャーはブロックされない。'){
+   return {effect:'sixPhoto',unblockable:true,g34Tasks:[{op:'InspectHand',g223Inspect:true,reveal:true,after:[{op:'CountDraw',owner:'opponent',zone:'hand',filter:{spell:true},optional:'each'}]}]};
+  }
+ }
  if(phase>=673&&creature){
   const text=normalize(f.abilityText);
   if(text==='ブロッカーブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)相手のクリーチャーはタップしてバトルゾーンに置かれる。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)'){
