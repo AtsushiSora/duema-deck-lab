@@ -176044,19 +176044,152 @@
       ],
       "supportBatch": "phase-746",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-005",
+      "name": "パロッタ・剣・ルピア",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "アーマード・ファイアー・バード",
+      "text": "各ターンに一度、自分のドラゴンが攻撃する時、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。\n自分のドラゴンがバトルに勝った時、そのクリーチャーをアンタップする。\n自分のドラゴンの召喚コストを１少なくする。ただし、コストは０以下にはならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-005",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g349SummonAuras": [
+        {
+          "race": "ドラゴン",
+          "amount": 1
+        }
+      ],
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "race": "ドラゴン"
+        },
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "AttackFight408",
+            "g747Once": true
+          }
+        ]
+      },
+      "g252WinWatch": {
+        "filter": {
+          "creature": true,
+          "race": "ドラゴン"
+        },
+        "winner": true,
+        "defs": [
+          {
+            "op": "AttackUntap408",
+            "g562Creature": true
+          }
+        ]
+      },
+      "supportBatch": "phase-747",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-026",
+      "name": "ローズスパイク・バタフライ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "ジャイアント・インセクト",
+      "text": "自分のクリーチャーがバトルに勝った時、カードを１枚引いてもよい。\nこのクリーチャーがタップした時、このターン中に出た自分のクリーチャーを１体選んでもよい。このターンの終わりまで、そのクリーチャーに「マッハファイター」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-026",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g252WinWatch": {
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "カードを1枚引く？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "g188Tapped": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "g596EnteredThisTurn": true
+          },
+          "g301Grant": true,
+          "grant": {
+            "machFighter": true
+          },
+          "title": "このターンに出た自分のクリーチャーにマッハファイターを与える？"
+        }
+      ],
+      "supportBatch": "phase-747",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr11-047",
+      "name": "先導する防衛者 イーグル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "アウトレイジ",
+      "text": "ガードマン（自分の他のクリーチャーが攻撃される時、このクリーチャーをタップしてもよい。そうした場合、攻撃クリーチャーはかわりにこのクリーチャーを攻撃する）\nこのクリーチャーがバトルに勝った時、このクリーチャーは相手のシールドをひとつブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-047",
+      "limit": 4,
+      "guardman": true,
+      "effect": "sixPhoto",
+      "g189BattleWin": [
+        {
+          "op": "Break497",
+          "n": 1,
+          "g747CreatureBreak": true
+        }
+      ],
+      "supportBatch": "phase-747",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 746,
+    "phase": 747,
     "checkedAt": "2026-11-10",
-    "baseCount": 6083,
+    "baseCount": 6086,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6086,
+    "totalCount": 6089,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/44319/"
+      "https://dm.takaratomy.co.jp/rule/qa/44212/",
+      "https://dm.takaratomy.co.jp/rule/qa/44319/",
+      "https://dm.takaratomy.co.jp/rule/qa/31568/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -189006,6 +189139,22 @@
           "https://dm.takaratomy.co.jp/rule/qa/41150/",
           "https://dm.takaratomy.co.jp/rule/qa/45547/",
           "https://dm.takaratomy.co.jp/rule/qa/48947/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 746,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6083,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6086,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/44319/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

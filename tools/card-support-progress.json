@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-09",
   "catalogueNames": 11828,
-  "supportedNames": 6086,
-  "pendingNames": 5742,
-  "phase": 746,
+  "supportedNames": 6089,
+  "pendingNames": 5739,
+  "phase": 747,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3440,
+    "クリーチャー": 3437,
     "NEOクリーチャー": 152,
     "呪文": 813,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4214,
+    "未対応の能力文": 4211,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -8628,30 +8628,77 @@
           "reason": "公式QA 39393に従い自身を含む強制の表向きシールド化が必要。複数同時の破壊、シールド追加禁止、置換効果の競合を確認するため保留。"
         }
       ]
+    },
+    {
+      "phase": 747,
+      "cards": [
+        {
+          "id": "dm23rp1-005",
+          "name": "パロッタ・剣・ルピア"
+        },
+        {
+          "id": "dm24rp2-026",
+          "name": "ローズスパイク・バタフライ"
+        },
+        {
+          "id": "dmr11-047",
+          "name": "先導する防衛者 イーグル"
+        }
+      ],
+      "supportedNames": 6089,
+      "pendingNames": 5739,
+      "verification": {
+        "focusedPassed": 9,
+        "regressionPassed": 245,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 6,
+        "scope": "公式の全能力文・基本情報・マナ・JPEG画像・殿堂区分を3種類と再録3版で照合。再録は元IDへ解決。任意バトルを見送った場合、召喚軽減と下限、任意ドロー、マッハファイターの付与と失効、ガードマン、効果ブレイクの追加枚数・対象UID・途中復元、スレイヤーとの順序を検証。既存カード定義は基点と一致。",
+        "runtimeNote": "各実行は強制終了込み最大10分。Phase 188・252・278・301・408・692・745・746の関連回帰245件が成功（約7秒）。長時間対戦シミュレーションは最終差分の限定実行から除外。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dmr09-036",
+          "name": "驚愕の存在 カニス",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-036",
+          "reason": "Phase 747でクリーチャー自身の効果ブレイクに追加枚数を反映する経路をイーグルで検証済み。カニスは表向きシールド中の常在付与の適用・消失と他の付与元との加算、他カードの効果ブレイクへの適用を検証するまで保留。"
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "対戦データにサイキック・クリーチャーの対象例がなく、対象判定と超次元への移動を実戦経路で検証できないため保留。"
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 746,
-    "nextPhase": 747,
+    "lastVerifiedPhase": 747,
+    "nextPhase": 748,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmr11-047",
-        "name": "先導する防衛者 イーグル",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-047",
-        "check": "ガードマンと勝利時にそのクリーチャー自身が行う効果ブレイクを確認する。発生源が離れた場合と選択した盾のUIDを検証する。"
+        "id": "dmsd05-003",
+        "name": "リ・ハナッキ・パンツァー",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd05-003",
+        "check": "バトル勝利時に自然・コスト6以下・非進化の条件でマナから任意展開できるか、既存の選択処理を確認する。"
       },
       {
-        "id": "dm23rp1-005",
-        "name": "パロッタ・剣・ルピア",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-005",
-        "check": "ドラゴンの攻撃監視と任意バトル、勝利したドラゴンのアンタップ、召喚軽減を確認する。"
+        "id": "dm20-022",
+        "name": "キャプテン・ジャイロ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-022",
+        "check": "味方のグレートメカオーの勝利時、自身を実際にタップできた場合だけ勝者をアンタップする。既存のタップ選択と勝者参照を確認する。"
       },
       {
-        "id": "dm24rp2-026",
-        "name": "ローズスパイク・バタフライ",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-026",
-        "check": "自軍の勝利時の任意ドローと、タップ時にこのターン出た味方へマッハファイターを任意付与する処理を確認する。"
+        "id": "dmx15-s08",
+        "name": "偽りなし ゾルゲXIII",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-s08",
+        "check": "自身または他の味方アウトレイジの登場時に、実際に登場した個体と相手をバトルさせる。勝利時の種族フィルター付き任意ドローも確認する。"
       },
       {
         "id": "dmrp05-025",
@@ -8921,7 +8968,7 @@
         "id": "dmr09-036",
         "name": "驚愕の存在 カニス",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-036",
-        "check": "クリーチャー自身の効果ブレイクに、対象シールドを選ぶ前に追加枚数を反映できるよう調査中。呪文・通常ブレイク・途中保存の互換性を検証する。"
+        "check": "Phase 747でクリーチャー自身の効果ブレイクに追加枚数を反映する経路をイーグルで検証済み。カニスは表向きシールド中の常在付与の適用・消失と他の付与元との加算、他カードの効果ブレイクへの適用を検証するまで保留。"
       },
       {
         "id": "dm26rp2-042",

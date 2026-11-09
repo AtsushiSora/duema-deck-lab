@@ -278,7 +278,7 @@ export function createSixPhotoRules(api){
   // also remembers earlier attacks made before a watcher entered the battlefield.
   const previous=s.g23Attacks?.[p],first=previous?.turn!==s.turn||!previous.count;
   for(const owner of[s.active,1-s.active])for(const x of watchSources252(s,owner)){const c=effective(x,s),watches=[...(c.g252AttackWatch?[c.g252AttackWatch]:[]),...(c.g253AttackWatches||[])];
-   for(const watch of watches)if((watch.who==='self'?owner===p:owner!==p)&&!(x.uid===attacker.uid&&(watch.other||api.selfStopped(s,p)))&&(!watch.first||first)&&(!watch.entryTurn||attacker.entered===s.turn)&&(!watch.playerAttack||s.attack?.target==='player')&&matches(s,p,attacker,watch.filter)){if(watch.g399Attacker)send(s,owner,x,'Sequence',{defs:watch.defs,g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0,...(watch.g677Layers?{refs:api.allLayers(attacker).map(key)}:{}),...(watch.defs.some(d=>d.op==='AttackDeploy409')?{cost:cost(effective(attacker,s))===Infinity?'∞':cost(effective(attacker,s))}: {})}});else queue(s,owner,x,watch.defs);}
+   for(const watch of watches)if((watch.who==='self'?owner===p:owner!==p)&&!(x.uid===attacker.uid&&(watch.other||api.selfStopped(s,p)))&&(!watch.first||first)&&(!watch.entryTurn||attacker.entered===s.turn)&&(!watch.playerAttack||s.attack?.target==='player')&&(!watch.defs.some(d=>d.g747Once)||!parottaUsed747(s,x))&&matches(s,p,attacker,watch.filter)){if(watch.g399Attacker)send(s,owner,x,'Sequence',{defs:watch.defs,g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0,...(watch.g677Layers?{refs:api.allLayers(attacker).map(key)}:{}),...(watch.defs.some(d=>d.op==='AttackDeploy409')?{cost:cost(effective(attacker,s))===Infinity?'∞':cost(effective(attacker,s))}: {})}});else queue(s,owner,x,watch.defs);}
   }
  }
  function opponentAddedShields618(s,p){
@@ -906,7 +906,7 @@ export function createSixPhotoRules(api){
  case'g34_AttackOtherMana409':{const attacker=attackHost408(s,t),enemies=creatures(s,1-t.p).filter(y=>!y.sealed),rows=creatures(s,t.p).filter(y=>!y.sealed&&y!==attacker);if(rows.length)choice(s,t,t.g399Attacker?'攻撃中のクリーチャー以外をマナに置く？':'マナに置く自分のクリーチャーを1体選ぶ（任意）',[...rows.map(y=>opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},enemies.length?Math.min(...enemies.map(z=>cost(effective(z,s))*3))+4-cost(effective(y,s))*2:-10,y.cardId)),skip()]);break;}
  case'g34_AttackEndUntap408':if(attackHost408(s,t))(s.g408EndUntaps??=[]).push({p:t.p,source:t.source,g399Attacker:t.g399Attacker,turn:s.turn});break;
  case'g34_AttackUntap408':{const y=attackHost408(s,t);if(y&&(!t.g562Creature||!y.sealed&&api.isCreature(s,y))&&api.canUntap(y)){const was=y.tapped;y.tapped=false;if(was)combined.untapped(s,t.p,y);}break;}
- case'g34_AttackFight408':{const y=attackHost408(s,t);if(y&&api.isCreature(s,y)&&!y.sealed)put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:y.uid,incarnation:y.incarnation||0},optional:true});break;}
+ case'g34_AttackFight408':{if(t.g747Once&&parottaUsed747(s,t))break;const y=attackHost408(s,t);if(y&&api.isCreature(s,y)&&!y.sealed)put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:y.uid,incarnation:y.incarnation||0},optional:true});break;}
  case'g34_AttackExtraBreak511':{const ref=t.g399Attacker;if(ref)start(s,{...t,uid:ref.uid,incarnation:ref.incarnation},[{op:'SelfExtraBreak444',amount:t.amount}]);break;}
  case'g34_DefenderBoost694':{
   if(!t.g694Defender)break;
@@ -1304,12 +1304,17 @@ export function createSixPhotoRules(api){
  }
  case'g34_Break497':{
   const self=t.owner==='self',owner=self?t.p:1-t.p,shields=s.players[owner].shields,chooser=t.ownerChooses?owner:t.p;
-  const selected=(t.selected||[]).filter(uid=>shields.some(y=>y.uid===uid)),n=Math.min(t.n,shields.length);
+  const host=t.g747CreatureBreak?sourceHost474(s,t)?.x:null;
+  if(t.g747CreatureBreak&&(!host||host.sealed||!api.isCreature(s,host)))break;
+  const c=host&&effective(host,s);
+  const n=Math.min(t.n+(c?.extraBreak||0),shields.length);
+  const selected=(t.selected||[]).filter(uid=>shields.some(y=>y.uid===uid));
   if(selected.length<n)choice(s,{...t,selected},
    'ブレイクする'+(chooser===owner?'自分':'相手')+'のシールドを'+n+'つ選ぶ（'+selected.length+'つ選択済み）',
    shields.flatMap((y,i)=>selected.includes(y.uid)?[]:[opt('シールド'+(i+1),y.uid,10)]),chooser);
-  else if(n)api.interruptBreak(s,owner,selected,{...t,op:'g34_AfterBreak278'},
-   {player:t.p,sourceUid:t.uid,source:t.source,controller:t.p,g278Effect:true});
+  else if(n)api.interruptBreak(s,owner,host?selected.slice(0,n):selected,{...t,op:'g34_AfterBreak278'},
+   {player:t.p,sourceUid:host?.uid??t.uid,source:t.source,controller:t.p,g278Effect:true,
+    ...(host?{incarnation:host.incarnation||0,...(c.g122NoST?{noST:true}:{}),reverse:!!c.reverseBurn,burn:!!c.shieldBurn,...(c.qqLock?{qqBreak:true}:{})}:{})});
   break;
  }
  case'g34_ShieldMana557':if(opp.shields.length)choice(s,t,'マナに置く相手のシールドを1つ選ぶ',opp.shields.map((x,i)=>opt('シールド'+(i+1),x.uid,10)));break;
@@ -1767,7 +1772,7 @@ export function createSixPhotoRules(api){
  case'g34_FightPairSecond586':if(v)finishFightPair586(s,t,v);break;
  case'g34_FightBuff241':if(v){const a=fightUnit240(s,t.p,v);if(a){(a.powerModifiers??=[]).push({amount:t.power,expires:'end',who:s.active,spellSource:t.spell?t.source:undefined,spellCost:t.spell?cost(card(t.source)):undefined});put(s,{...t,op:'g34_FightEnemy240',fighter:v,optional:t.enemyOptional});}}break;
  case'g34_Fight240':if(v)put(s,{...t,op:'g34_FightEnemy240',fighter:v});break;
- case'g34_FightEnemy240':if(v){const owner=t.fighterOwner??t.p,a=fightUnit240(s,owner,t.fighter,t.g745FollowFighter),b=fightUnit240(s,1-t.p,v);if(a&&b&&a.uid!==b.uid)api.battle(s,owner,a,1-t.p,b,s.attack?.attacker);}break;
+ case'g34_FightEnemy240':if(v){const owner=t.fighterOwner??t.p,a=fightUnit240(s,owner,t.fighter,t.g745FollowFighter),b=fightUnit240(s,1-t.p,v);if(a&&b&&a.uid!==b.uid&&(!t.g747Once||!parottaUsed747(s,t))){if(t.g747Once)(s.once??={})[parottaKey747(t)]=s.turn;api.battle(s,owner,a,1-t.p,b,s.attack?.attacker);}}break;
  case'g34_Peek585':if(v){const row=peekRows585(s,t).find(r=>r.p===v.player&&r.x.uid===v.uid);if(row)showPeek585(s,{...t,viewed:[...(t.viewed||[]),v.uid]},[row]);}break;
  case'g34_PeekRead585':
   if(v&&api.swapShield585(s,t.p,t.shieldUid))api.log(s,t.p,'shieldSwap',card(t.source).name+'：確認したカードと山札の上を入れ替えた',{cardId:t.source});
@@ -1928,6 +1933,7 @@ export function createSixPhotoRules(api){
  const buff=(s,x,n)=>{(x.powerModifiers??=[]).push({amount:n,expires:'end',who:s.active});};
  const sourceDefs=(s,t,defs)=>start(s,t,defs),queue=(s,p,x,defs,source=x.cardId)=>send(s,p,source===x.cardId?x:{...x,cardId:source},'Sequence',{defs});
  const used=(s,slot,x)=>s[slot]?.[key(x)]===s.turn,mark=(s,slot,x)=>{(s[slot]??={})[key(x)]=s.turn;};
+ const parottaKey747=x=>'parotta:'+key(x),parottaUsed747=(s,x)=>s.once?.[parottaKey747(x)]===s.turn;
  function custom(s,t){const own=s.players[t.p],opp=s.players[1-t.p],x=live(s,t);switch(t.name){
  case'finishBatch':delete s.g34DeployBatch;delete own.g34ManaHeld;break;
  case'endTurn':api.skipTurn(s,t.p,t.source);break;

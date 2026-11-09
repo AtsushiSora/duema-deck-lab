@@ -2564,6 +2564,27 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=747&&f.typeText==='クリーチャー'){
+  const fight='各ターンに一度自分のドラゴンが攻撃する時相手のクリーチャーを1体選んでもよい。その2体をバトルさせる。';
+  const untap='自分のドラゴンがバトルに勝った時そのクリーチャーをアンタップする。';
+  const reduction='の召喚コストを1少なくする。ただしコストは0以下にはならない。';
+  if(['ドラゴン','ドラゴン・クリーチャー'].some(r=>compact363===fight+untap+'自分の'+r+reduction)){
+   const filter={creature:true,race:'ドラゴン'};
+   return {effect:'sixPhoto',g349SummonAuras:[{race:'ドラゴン',amount:1}],
+    g252AttackWatch:{who:'self',filter,g399Attacker:true,defs:[{op:'AttackFight408',g747Once:true}]},
+    g252WinWatch:{filter,winner:true,defs:[{op:'AttackUntap408',g562Creature:true}]}};
+  }
+  const draw='自分のクリーチャーがバトルに勝った時カードを1枚引いてもよい。';
+  const tap='このクリーチャーがタップした時このターン中に出た自分のクリーチャーを1体選んでもよい。';
+  if(['このターンの終わりまで','このターン'].some(duration=>compact363===draw+tap+duration+'そのクリーチャーに「マッハファイター」を与える。'))
+   return {effect:'sixPhoto',
+    g252WinWatch:{filter:{creature:true},defs:[{op:'Offer',title:'カードを1枚引く？',defs:[{op:'Draw',n:1}]}]},
+    g188Tapped:[{op:'Target',owner:'self',optional:true,filter:{creature:true,g596EnteredThisTurn:true},
+     g301Grant:true,grant:{machFighter:true},title:'このターンに出た自分のクリーチャーにマッハファイターを与える？'}]};
+  const guard='ガードマン(自分の他のクリーチャーが攻撃される時このクリーチャーをタップしてもよい。そうした場合攻撃クリーチャーはかわりにこのクリーチャーを攻撃する)';
+  if(compact363===guard+'このクリーチャーがバトルに勝った時このクリーチャーは相手のシールドをひとつブレイクする。')
+   return {guardman:true,effect:'sixPhoto',g189BattleWin:[{op:'Break497',n:1,g747CreatureBreak:true}]};
+ }
  if(phase>=746&&f.typeText==='クリーチャー'){
   const draw={op:'Draw',n:1};
   const bad='B・A・D2(このクリーチャーの召喚コストを2少なくしてもよい。そうしたらこのターンの終わりにこのクリーチャーを破壊する)';
