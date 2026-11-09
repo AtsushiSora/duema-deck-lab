@@ -28,7 +28,8 @@ export function createChampion2025Rules(api){
  decorate(s,p,x,c){if(c.type==='creature'&&api.isEvolution(x)&&s.players[p].battle.some(x=>card(x).g42Lab&&!api.ignored(s,x)))return {...c,unblockable:true};return c;},
  canAttack(s,p,x){return x.entered!==s.turn||!api.isEvolution(x)||!s.players[1-p].battle.some(x=>card(x).g42Lab&&!api.ignored(s,x));},
  canLeave(s,p,x,{battleLoss=false}={}){return battleLoss||!api.isCreature(s,x)||!s.players[p].battle.some(y=>card(y).g42Jista&&!api.ignored(s,y)&&api.isCreature(s,y))||power(x,x.uid===s.attack?.attacker,s)<12000;},
- d2Entry(s,p,x){if(!card(x).d2Field)return;const rows=[0,1].flatMap(p=>s.players[p].battle.filter(y=>y.uid!==x.uid&&card(y).d2Field).map(y=>({player:p,uid:y.uid,to:'grave',destroy:false,stateBased:true})));if(rows.length)api.move(s,rows);},
+ // D2 replacement is a one-time destruction event, so Saver may replace it (QA 47896).
+ d2Entry(s,p,x){if(!card(x).d2Field)return;const rows=[0,1].flatMap(p=>s.players[p].battle.filter(y=>y.uid!==x.uid&&!y.sealed&&card(y).d2Field).map(y=>({player:p,uid:y.uid,to:'grave',destroy:true,stateBased:true})));if(rows.length)api.move(s,rows);},
  spellCast(s,p,c,x){if(x&&c.g42Bottom&&!api.spellIgnored(s,c))x.finishTo='deck';},
  attack(s,p,x){if(card(x).g42Mino&&!api.ignored(s,x)&&!api.selfStopped(s,p))on(s,p,x,'MinoAttack');},
  start(s,p){if(!big(s,p))return[];return s.players[p].grave.filter(x=>card(x).g42Mino).map(x=>({player:p,source:x.cardId,uid:x.uid,effect:'extended',task:task('g42_MinoReturn',p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0})}));},

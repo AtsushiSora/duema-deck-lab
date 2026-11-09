@@ -2415,9 +2415,20 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
- if(d?.status!=='complete'||d.faces.length!==1||!['クリーチャー','進化クリーチャー','タマシード','呪文',...(phase>=166?['NEOクリーチャー']:[]),...(phase>=273?['スター進化クリーチャー']:[]),...(phase>=619?['G-NEOクリーチャー']:[]),...(phase>=657?['G城']:[])].includes(f.typeText))throw Error('複数面・特殊カードタイプまたは情報不足');
+ if(d?.status!=='complete'||d.faces.length!==1||!['クリーチャー','進化クリーチャー','タマシード','呪文',...(phase>=166?['NEOクリーチャー']:[]),...(phase>=273?['スター進化クリーチャー']:[]),...(phase>=619?['G-NEOクリーチャー']:[]),...(phase>=657?['G城']:[]),...(phase>=682?['D2フィールド']:[])].includes(f.typeText))throw Error('複数面・特殊カードタイプまたは情報不足');
  if(!Number.isInteger(f.cost)||f.cost<1||!f.civilizations.length||f.civilizations.some(c=>!colors.includes(c)&&c!=='無色')||new Set(f.civilizations).size!==f.civilizations.length)throw Error('コスト・文明の個別処理が必要');
  if(f.civilizations.includes('無色')&&f.civilizations.length!==1)throw Error('無色の複合文明');
+ if(f.typeText==='D2フィールド'){
+  const text=normalize(f.abilityText);
+  const reminder='(他のD2フィールドがバトルゾーンに出た時このD2フィールドを自分の墓地に置く)';
+  if(text==='自分のクリーチャーすべてのパワーを+3000する。'+reminder){
+   return {d2Field:true,g205Aura:{filter:{creature:true},power:3000}};
+  }
+  if(text==='自分のクリーチャーはブロックされない。'+reminder){
+   return {d2Field:true,g682FieldUnblockable:true};
+  }
+  throw Error('未対応のD2フィールド能力');
+ }
  if(f.typeText==='G城'){
   const text=normalize(f.abilityText);
   const rule='(G城は実行したら表向きでシールド化される。このカードが表向きで自分のシールドゾーンを離れる時かわりに墓地に置く)';
@@ -2452,6 +2463,11 @@ export function standardCardSpec(d,{phase=165}={}){
   if(f.typeText==='呪文'&&text==='相手の手札を1枚見ないで選び捨てさせる。その後自分のシールドゾーンに表向きである「シールド・ゴー」を持つカード1枚につき相手の手札を1枚見ないで選び捨てさせる。'){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
+ }
+ // The official artwork confirms the minus sign missing from this print's HTML.
+ if(phase>=682&&d.id==='dmr20-059'&&d.name==='カミカミ・カーニバル'&&f.typeText==='呪文'&&
+  normalize(f.abilityText)==='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを_5000する。(パワー0以下のクリーチャーは破壊される)'){
+  return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',power:-5000,g242PowerMinus:true,spell:true}]};
  }
  if(phase>=681){
   const text=normalize(f.abilityText);
