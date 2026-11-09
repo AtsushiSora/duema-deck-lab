@@ -328,7 +328,7 @@ export function createSixPhotoRules(api){
  // recursively decorating other aura recipients; ignored recipients never reach this hook.
  function grantAuras(s,owner,x,c){
   if(c.type!=='creature')return c;
-  const fits=f=>(f.g562MaxCost===undefined||cost(c)<=f.g562MaxCost)&&(!f.multi||colors(c).length>1)&&(!f.tapped||x.tapped)&&(!f.untapped||!x.tapped)&&(!f.g227NameIncludes||String(c.name).normalize('NFKC').includes(f.g227NameIncludes))&&(!f.color||colors(c).includes(f.color))&&(!f.colorsAny||f.colorsAny.some(q=>colors(c).includes(q)))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.raceAll||f.raceAll.every(q=>race(c,q)))&&(!f.notRace||!race(c,f.notRace))&&(!f.evolution||api.isEvolution(x))&&(f.min===undefined||cost(c)>=f.min);
+  const fits=f=>(f.g562MaxCost===undefined||cost(c)<=f.g562MaxCost)&&(!f.g717Silent||!!c.g496Silent)&&(!f.multi||colors(c).length>1)&&(!f.tapped||x.tapped)&&(!f.untapped||!x.tapped)&&(!f.g227NameIncludes||String(c.name).normalize('NFKC').includes(f.g227NameIncludes))&&(!f.color||colors(c).includes(f.color))&&(!f.colorsAny||f.colorsAny.some(q=>colors(c).includes(q)))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.raceAll||f.raceAll.every(q=>race(c,q)))&&(!f.notRace||!race(c,f.notRace))&&(!f.evolution||api.isEvolution(x))&&(f.min===undefined||cost(c)>=f.min);
   let out=c,slayers=c.g208SlayerCount||Number(!!c.slayer);
   for(const p of [0,1])for(const source of s.players[p].battle){
    const sourceCard=card(source),auras=sourceCard.g208Auras;

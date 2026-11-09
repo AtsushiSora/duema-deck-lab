@@ -1160,8 +1160,8 @@ function resolveAttack(s,blockUid){
  if(s.attack.target!=='player'){const b=s.players[other].battle.find(x=>x.uid===s.attack.target);if(b&&!blockedBattle484(s,a))battle(s,s.active,a,other,b,a.uid);}
  else if(!s.players[other].shields.length)finish(s,s.active,'ダイレクトアタックが成立','loss','directAttack');
  else{
-  s.breakContext={player:s.active,sourceUid:a.uid,incarnation:a.incarnation||0,source:a.cardId,...(effectiveCard(a,s).g122NoST?{noST:true}:{}),reverse:!!effectiveCard(a,s).reverseBurn,burn:!!effectiveCard(a,s).shieldBurn};
   const shields=s.players[other].shields,c=effectiveCard(a,s),breaker=s.attack.g633Breaker??c.breaker??1;
+  s.breakContext={player:s.active,sourceUid:a.uid,incarnation:a.incarnation||0,source:a.cardId,...(c.g122NoST?{noST:true}:{}),reverse:!!c.reverseBurn,burn:!!c.shieldBurn,...(c.qqLock?{qqBreak:true}:{})};
   const n=gMode?shields.length:Math.min((s.attack.g471Breaker==='null'?0:numeric(breaker))+(c.extraBreak||0),shields.length);
   if(n===0)breakShields(s,other,[]);
   else if(s.attack.g471Breaker!=='null'&&!gMode&&breaker==='∞'&&!c.worldBreaker)s.decision={type:'infinityCount',player:s.active,defender:other};
@@ -1176,11 +1176,20 @@ function resolveAttack(s,blockUid){
 function breakShields(s,defender,uids){
  uids=uids.filter(uid=>findShield(s.players[defender],uid));if(!uids.length){s.breakContext=null;return;}
  if(extra.beforeBreak(s,defender,uids))return;
- if(!s.breakContext?.burn&&(shieldGuardSources(s,defender).length||shieldSaverSources(s,defender).length)){s.shieldBreak={player:defender,uids:[...uids],protections:[]};s.decision={type:'shieldGuard',player:defender};return;}
+ // Rule 609.8: the attacking player's replacement takes priority over a Shield Saver.
+ if(!s.breakContext?.burn&&!s.breakContext?.reverse&&!qqBreakSource(s,defender)&&(shieldGuardSources(s,defender).length||shieldSaverSources(s,defender).length)){s.shieldBreak={player:defender,uids:[...uids],protections:[]};s.decision={type:'shieldGuard',player:defender};return;}
  commitBreakReplacements401(s,defender,uids);
 }
+function qqBreakSource(s,defender){
+ const context=s.breakContext;
+ if(!context||context.reverse)return null;
+ if(context.qqBreak)return context.source;
+ // Older saved attacks may still carry the attack object instead of the snapshot flag.
+ const attacker=s.players[1-defender].battle.find(x=>x.uid===s.attack?.attacker&&x.uid===context.sourceUid);
+ return attacker&&effectiveCard(attacker,s).qqLock?attacker.cardId:null;
+}
 function commitBreakReplacements401(s,defender,uids){
- const attacker=s.players[1-defender].battle.find(x=>x.uid===s.attack?.attacker);if(attacker&&s.breakContext?.sourceUid===attacker.uid&&effectiveCard(attacker,s).qqLock&&!s.breakContext?.reverse){s.breakContext=null;const moved=[];for(const uid of uids)moved.push(...moveShield(s,defender,uid,'deckFourth',{replacement:true}));if(moved.length>1)extra.put(s,extra.task('g11_FourthOrder',defender,attacker.cardId,{uids:moved.map(x=>x.uid),selected:[]}));log(s,1-defender,'fiveSD',`シールド${uids.length}つのカード${moved.length}枚を山札の4枚目へ横向きで置く`,{cardId:attacker.cardId});return;}
+ const qqSource=qqBreakSource(s,defender);if(qqSource){s.breakContext=null;const moved=[];for(const uid of uids)moved.push(...moveShield(s,defender,uid,'deckFourth',{replacement:true}));if(moved.length>1)extra.put(s,extra.task('g11_FourthOrder',defender,qqSource,{uids:moved.map(x=>x.uid),selected:[]}));log(s,1-defender,'fiveSD',`シールド${uids.length}つのカード${moved.length}枚を山札の4枚目へ横向きで置く`,{cardId:qqSource});return;}
  if(s.breakContext?.burn){
   const {player,source}=s.breakContext;
   s.breakContext=null;

@@ -25,7 +25,29 @@ test('a direct attack with no shields cannot be replaced by Shield Saver',()=>{c
 test('creature muting does not ignore tamaseed Shield Savers',()=>{for(const id of[S,'dmrp22-049']){const s=setup(),x=put(s,1,id);put(s,0,GEN);hit(s,1);assert.equal(s.decision?.type==='shieldGuard',e.card(id).type==='seed');if(e.card(id).type==='seed')act(s,'saveShield',a=>a.uid===x.uid);finish(s);assert.equal(s.players[1].shields.length,e.card(id).type==='seed'?5:4);}});
 test('copied Shield Saver is available and counts the physical copying creature as its cost',()=>{const s=setup(),x=put(s,1,'dmrp22-1B');x.g393JCopies=[{key:'save',cardId:S,expiresPlayer:1}];assert.equal(e.shieldSaverSources(s,1)[0].uid,x.uid);hit(s,1);act(s,'saveShield',a=>a.uid===x.uid);finish(s);assert.ok(s.players[1].grave.some(y=>y.uid===x.uid));assert.equal(s.players[1].shields.length,5);});
 test('saved shields keep EX Life association and Super Shield Plus stacks intact',()=>{const s=setup(),x=put(s,1,S),owner=put(s,1,'dm23ex2-016'),shield=s.players[1].shields[0];shield.shieldStack=[inst(BRAIN)];owner.exLifeShieldUid=shield.uid;owner.exLifeShieldUids=[shield.uid];const before=physical(s),a=hit(s,1);act(s,'saveShield',v=>v.shield===shield.uid);finish(s);assert.ok(e.exLifeShieldInfo(s,1,shield.uid).active);assert.equal(shield.shieldStack.length,1);assert.equal(s.metrics[1].triggers,0);assert.deepEqual(physical(s),[...before,a.uid].sort());});
-test('burning and deck-return replacement breakers allow Shield Saver as an alternative replacement',()=>{for(const mode of['burn','qq','reverse']){const s=setup(),x=put(s,1,S);give(s,1,'shields',[N,N]);const a=put(s,0,mode==='qq'?'dmrp07-m01':BIG);a.g34Grants=[{turn:s.turn,breaker:2,...(mode==='burn'?{shieldBurn:true}:mode==='reverse'?{reverseBurn:true}:{})}];s.phase='attack';act(s,'attack',v=>v.uid===a.uid&&v.target==='player');if(s.decision?.type==='block')act(s,'noBlock');if(s.decision?.type==='breakChoice')act(s,'breakShields');assert.equal(s.decision.type,'shieldGuard',mode);const keep=s.shieldBreak.uids[0];act(s,'saveShield',v=>v.uid===x.uid&&v.shield===keep);finish(s);assert.equal(s.players[1].shields.length,1);assert.ok(s.players[1].shields.some(y=>y.uid===keep));}});
+test('mandatory attack replacements take priority over Shield Saver (QA 39513 and 48480)',()=>{
+ for(const mode of ['burn','qq','reverse']){
+  let s=setup();
+  const saver=put(s,1,S),a=put(s,0,mode==='qq'?'dmrp07-m01':BIG);
+  give(s,1,'shields',[N,N,N]);
+  a.g34Grants=[{turn:s.turn,breaker:2,...(mode==='burn'?{shieldBurn:true}:mode==='reverse'?{reverseBurn:true}:{})}];
+  const [first,second,third]=s.players[1].shields;
+  s.phase='attack';
+  act(s,'attack',v=>v.uid===a.uid&&v.target==='player');
+  if(s.decision?.type==='block')act(s,'noBlock');
+  assert.equal(s.decision.type,'breakChoice',mode);
+  s=JSON.parse(JSON.stringify(s));
+  act(s,'breakShields',v=>v.shields.includes(first.uid)&&v.shields.includes(third.uid));
+  assert.notEqual(s.decision?.type,'shieldGuard',mode);
+  finish(s);
+  assert.deepEqual(s.players[1].shields.map(x=>x.uid),[second.uid],mode);
+  assert.ok(s.players[1].battle.some(x=>x.uid===saver.uid),mode);
+  const destination=s.players[1][mode==='burn'?'grave':'deck'];
+  assert.ok([first,third].every(({uid})=>destination.some(x=>x.uid===uid)),mode);
+  if(mode==='qq')assert.ok([first,third].every(({uid})=>destination.some(x=>x.uid===uid&&x.g11Sideways)));
+  assert.equal(s.metrics[0].breaks,0,mode);
+ }
+});
 test('non-break shield loss never offers Shield Saver',()=>{const s=setup(),x=put(s,0,S);invoke(s,0,x,[{op:'ShieldHand',g238ShieldHand:true}]);finish(s);assert.equal(s.players[0].shields.length,4);assert.ok(s.players[0].battle.some(y=>y.uid===x.uid));});
 test('an effect break without an attacking creature can be saved and resumes its remaining tasks',()=>{let s=setup(),source=put(s,0,N),saver=put(s,1,S);const before=physical(s),deck=s.players[0].deck.length;invoke(s,0,source,[{op:'Break278'},{op:'Draw',n:1}]);pick(s,s.players[1].shields[0].uid);assert.equal(s.decision.type,'shieldGuard');assert.ok(!s.attack);s=JSON.parse(JSON.stringify(s));act(s,'saveShield',a=>a.uid===saver.uid);finish(s);assert.equal(s.players[1].shields.length,5);assert.ok(s.players[1].grave.some(y=>y.uid===saver.uid));assert.equal(s.players[0].deck.length,deck-1);assert.deepEqual(physical(s),before);assert.ok(!s.g19Interrupt);});
 for(const p of[0,1])test('Bucket death mana removal, Chake leave removal and Nightle tap still resolve '+p,()=>{for(const id of[BUCKET,'dmr17-028','dmr17-033']){const s=setup(),source=put(s,p,id),attacker=hit(s,p);act(s,'saveShield',a=>a.uid===source.uid);if(s.decision?.type==='extended')pick(s,attacker.uid);finish(s);if(id==='dmr17-033')assert.ok(s.players[1-p].battle.find(y=>y.uid===attacker.uid)?.tapped);else assert.ok(s.players[1-p].mana.some(y=>y.uid===attacker.uid));}});
