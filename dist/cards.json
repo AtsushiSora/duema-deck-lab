@@ -171778,22 +171778,151 @@
       },
       "supportBatch": "phase-704",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-091",
+      "name": "要撃闘士スピニング・スピン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ドラゴノイド",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nマジボンバー ３（このクリーチャーが攻撃する時、自分の山札の上から１枚目を見る。その後、コスト３以下のクリーチャーを１体、自分の手札または山札の上から出してもよい）\nウェーブストライカー（「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーに次のw能力を与える）\nwこのクリーチャーのパワーを+3000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーは、シールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-091",
+      "limit": 4,
+      "speedAttacker": true,
+      "g34Attack": [
+        {
+          "op": "Magibomber321",
+          "n": 3
+        }
+      ],
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "power": 3000,
+          "breaker": 2,
+          "g633DoubleBreaker": true
+        }
+      },
+      "supportBatch": "phase-705",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-111",
+      "name": "幽煙の影イマジナリ・スモーク",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ゴースト",
+      "text": "ムゲンクライム ２（自分のクリーチャーを２体タップし、 [dd02]支払って、このクリーチャーを自分の手札または墓地から召喚してもよい）\nウェーブストライカー（「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーに次のw能力を与える）\nwこのクリーチャーに、「ブロッカー」と「スレイヤー」を与える。（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい。このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-111",
+      "limit": 4,
+      "mugenCrime": 2,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "blocker": true,
+          "slayer": true
+        }
+      },
+      "supportBatch": "phase-705",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-125",
+      "name": "ゲキオコ・マロン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "ワイルド・ベジーズ",
+      "text": "キリフダッシュ [nn01]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを[nn01]支払って召喚してもよい）\nウェーブストライカー（「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーに次のw能力を与える）\nwこのクリーチャーに「マッハファイター」を与える。（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-125",
+      "limit": 4,
+      "kirifudaDash": 1,
+      "g402DashColors": [
+        "自然"
+      ],
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "machFighter": true
+        }
+      },
+      "supportBatch": "phase-705",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm05-014",
+      "name": "ファントム・ベール",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "相手の次のターンに、相手の攻撃できるクリーチャーはすべて、攻撃しなければならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-014",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ForceGroup546",
+          "when": "nextOpponent",
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-705",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 704,
+    "phase": 705,
     "checkedAt": "2026-11-09",
-    "baseCount": 5943,
-    "newEffectCards": 3,
+    "baseCount": 5946,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 5946,
+    "totalCount": 5950,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
       "https://dm.takaratomy.co.jp/rule/qa_old/37609/",
       "https://dm.takaratomy.co.jp/rule/qa_old/35081/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35188/",
-      "https://dm.takaratomy.co.jp/rule/qa/43928/"
+      "https://dm.takaratomy.co.jp/rule/qa/33393/",
+      "https://dm.takaratomy.co.jp/rule/qa/41664/",
+      "https://dm.takaratomy.co.jp/rule/qa/38746/",
+      "https://dm.takaratomy.co.jp/rule/qa/33420/",
+      "https://dm.takaratomy.co.jp/rule/qa/31690/",
+      "https://dm.takaratomy.co.jp/rule/qa/31691/",
+      "https://dm.takaratomy.co.jp/rule/qa/43928/",
+      "https://dm.takaratomy.co.jp/rule/qa/34243/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31627/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -183940,6 +184069,25 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35189/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35190/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 704,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5943,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5946,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37609/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35081/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35188/",
+          "https://dm.takaratomy.co.jp/rule/qa/43928/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

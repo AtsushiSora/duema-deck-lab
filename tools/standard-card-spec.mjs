@@ -2400,6 +2400,12 @@ const waveTwinFaces704=[
  }
 ];
 
+const waveGrants705={
+ 'wこのクリーチャーのパワーを+3000し「W・ブレイカー」を与える。(「W・ブレイカー」を持つクリーチャーはシールドを2つブレイクする)':{power:3000,breaker:2,g633DoubleBreaker:true},
+ 'wこのクリーチャーに「ブロッカー」と「スレイヤー」を与える。(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい。このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)':{blocker:true,slayer:true},
+ 'wこのクリーチャーに「マッハファイター」を与える。(このクリーチャーは出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)':{machFighter:true}
+};
+
 export function standardCardSpec(d,{phase=165}={}){
  // Repair only the complete formatting variants pinned to these official prints.
  if(phase>=533&&d?.faces?.length===1){
@@ -3094,7 +3100,7 @@ export function standardCardSpec(d,{phase=165}={}){
    if(base.g34Tasks||base.effect)throw Error('独立した登場能力の順序対応が必要');return{...base,...(souls.length?{g558Souls:souls.map(m=>m[1])}:{}),effect:'sixPhoto',g34Tasks:[{op:'MarshalTouch558',defs}]};
   }
  }
- if(phase>=704&&f.typeText==='呪文'&&lines.length===1&&normalize(lines[0])===phantomVeil704)return{effect:'sixPhoto',g34Tasks:[{op:'ForceGroup546',when:'nextOpponent',spell:true}]};
+ if(phase>=704&&f.typeText==='呪文'&&lines.length===1&&(normalize(lines[0])===phantomVeil704||phase>=705&&normalize(lines[0])==='相手の次のターンに相手の攻撃できるクリーチャーはすべて攻撃しなければならない。'))return{effect:'sixPhoto',g34Tasks:[{op:'ForceGroup546',when:'nextOpponent',spell:true}]};
  if(phase>=546&&!creature&&!seed&&lines.length===2&&normalize(lines[0])==='相手のクリーチャーを1体選ぶ。次の相手のターンそのクリーチャーは可能なら攻撃する。'&&normalize(lines[1])==='G・G・G:自分の手札が1枚以下なら相手のクリーチャーは1体のかわりにすべて次の相手のターンに可能なら攻撃する。')return{effect:'sixPhoto',g34Tasks:[{op:'IfOwn',filter:{g334ZoneCount:{zone:'hand',max:1}},defs:[{op:'ForceGroup546',when:'nextOpponent',spell:true}],elseDefs:[{op:'Target',g546Force:'nextOpponent',spell:true}]}]};
  if(phase>=445&&creature){
   const at=lines.findIndex(line=>normalize(line)==='シンカパワー:このクリーチャーが進化する時次のうちいずれか1つを選ぶ。');
@@ -3313,6 +3319,14 @@ export function standardCardSpec(d,{phase=165}={}){
    }[body];
    if(!grants)throw Error('未対応のアクセル能力');const prefix=structuredClone(d);prefix.faces[0].abilityText=lines.slice(0,at).join('\n');prefix.faces[0].powerText=f.powerText.replace(/\+$/,'');
    const base=standardCardSpec(prefix,{phase:phase>=442?442:435});if(base.g260Self)throw Error('重複するアクセル条件');return{...base,g260Self:{filter:normalize(lines[at])===superMarker?{g442CrossedAlly:true}:{g436Crossed:true},grants}};
+  }
+ }
+ if(phase>=705&&f.typeText==='クリーチャー'&&normalize(lines.at(-2)||'')===waveMarker702){
+  const grants=waveGrants705[normalize(lines.at(-1))];
+  if(grants){
+   const base=standardCardSpec({...d,faces:[{...f,abilityText:lines.slice(0,-2).join('\n'),powerText:f.powerText.replace(/\+$/,'')}]},{phase});
+   if(base.g400Wave||base.g260Self||Object.keys(grants).some(k=>Object.hasOwn(base,k)))throw Error('重複するウェーブストライカー能力');
+   return{...base,g400Wave:true,g260Self:{filter:{g400Wave:3},grants}};
   }
  }
  if(phase>=400&&creature){
