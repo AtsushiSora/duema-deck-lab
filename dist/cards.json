@@ -170877,23 +170877,164 @@
       ],
       "supportBatch": "phase-699",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm12-016",
+      "name": "超戦攻賢者アギラ",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5500,
+      "race": "グラディエーター/アースイーター",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n進化ー自分のグラディエーターまたはアースイーター１体の上に置く。\nバトルゾーンにある自分の他のグラディエーターとアースイーターすべてのパワーは+2000される。\n自分のグラディエーターまたはアースイーターがブロックした時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-016",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "グラディエーター"
+          },
+          {
+            "race": "アースイーター"
+          }
+        ]
+      },
+      "g205Aura": {
+        "filter": {
+          "creature": true,
+          "raceAny": [
+            "グラディエーター",
+            "アースイーター"
+          ]
+        },
+        "power": 2000,
+        "other": true
+      },
+      "g700BlockDraw": [
+        "グラディエーター",
+        "アースイーター"
+      ],
+      "supportBatch": "phase-700",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm12-017",
+      "name": "超電磁妖魔ロメール",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "サイバーロード/ヘドリアン",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分のサイバーロードまたはヘドリアン１体の上に置く。\nバトルゾーンにある自分の他のサイバーロードとヘドリアンすべてのパワーは+2000される。\n自分のサイバーロードとヘドリアンはブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-017",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "サイバーロード"
+          },
+          {
+            "race": "ヘドリアン"
+          }
+        ]
+      },
+      "g205Aura": {
+        "filter": {
+          "creature": true,
+          "raceAny": [
+            "サイバーロード",
+            "ヘドリアン"
+          ]
+        },
+        "power": 2000,
+        "other": true
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "サイバーロード",
+              "ヘドリアン"
+            ]
+          },
+          "grants": {
+            "unblockable": true
+          }
+        }
+      ],
+      "supportBatch": "phase-700",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm12-s02",
+      "name": "英霊王スターマン",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 9000,
+      "race": "スターノイド",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n進化Vー自分のライトブリンガー１体とサイバーロード１体を重ねた上に置く。\nこのクリーチャーが攻撃した時またはバトルゾーンを離れた時、自分の山札の上から１枚目を、裏向きのまま自分のシールドに加える。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-s02",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "race": "ライトブリンガー"
+          },
+          {
+            "race": "サイバーロード"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "ShieldTop",
+          "n": 1
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "ShieldTop",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-700",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 699,
+    "phase": 700,
     "checkedAt": "2026-11-09",
-    "baseCount": 5927,
+    "baseCount": 5930,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5930,
+    "totalCount": 5933,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/42392/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35238/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37438/",
-      "https://dm.takaratomy.co.jp/rule/qa/45603/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34816/"
+      "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
+      "https://dm.takaratomy.co.jp/rule/qa/46490/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -182944,6 +183085,26 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35233/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35234/",
           "https://dm.takaratomy.co.jp/rule/qa/39076/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 699,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5927,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5930,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/42392/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35238/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37438/",
+          "https://dm.takaratomy.co.jp/rule/qa/45603/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34816/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

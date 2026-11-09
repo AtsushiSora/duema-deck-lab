@@ -2417,7 +2417,7 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
- if(d?.status!=='complete'||d.faces.length!==1||!['クリーチャー','進化クリーチャー','タマシード','呪文',...(phase>=166?['NEOクリーチャー']:[]),...(phase>=273?['スター進化クリーチャー']:[]),...(phase>=619?['G-NEOクリーチャー']:[]),...(phase>=657?['G城']:[]),...(phase>=682?['D2フィールド']:[])].includes(f.typeText))throw Error('複数面・特殊カードタイプまたは情報不足');
+ if(d?.status!=='complete'||d.faces.length!==1||!['クリーチャー','進化クリーチャー','タマシード','呪文',...(phase>=166?['NEOクリーチャー']:[]),...(phase>=273?['スター進化クリーチャー']:[]),...(phase>=619?['G-NEOクリーチャー']:[]),...(phase>=657?['G城']:[]),...(phase>=682?['D2フィールド']:[]),...(phase>=700?['進化クリーチャー(進化V)','進化クリーチャー（進化V）']:[])].includes(f.typeText))throw Error('複数面・特殊カードタイプまたは情報不足');
  if(!Number.isInteger(f.cost)||f.cost<1||!f.civilizations.length||f.civilizations.some(c=>!colors.includes(c)&&c!=='無色')||new Set(f.civilizations).size!==f.civilizations.length)throw Error('コスト・文明の個別処理が必要');
  if(f.civilizations.includes('無色')&&f.civilizations.length!==1)throw Error('無色の複合文明');
  if(f.typeText==='D2フィールド'){
@@ -2476,6 +2476,22 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=700&&f.civilizations.length>1){
+  const text=normalize(f.abilityText).replaceAll('進化ー','進化-').replaceAll('進化Vー','進化V-');
+  const mana='マナゾーンに置く時このカードはタップして置く。';
+  if(evolution&&text===mana+'進化-自分のグラディエーターまたはアースイーター1体の上に置く。バトルゾーンにある自分の他のグラディエーターとアースイーターすべてのパワーは+2000される。自分のグラディエーターまたはアースイーターがブロックした時カードを1枚引いてもよい。'){
+   const races=['グラディエーター','アースイーター'];
+   return {evolution:{any:races.map(race=>({race}))},g205Aura:{filter:{creature:true,raceAny:races},power:2000,other:true},g700BlockDraw:races};
+  }
+  if(evolution&&text===mana+'進化-自分のサイバーロードまたはヘドリアン1体の上に置く。バトルゾーンにある自分の他のサイバーロードとヘドリアンすべてのパワーは+2000される。自分のサイバーロードとヘドリアンはブロックされない。'){
+   const races=['サイバーロード','ヘドリアン'],filter={creature:true,raceAny:races};
+   return {evolution:{any:races.map(race=>({race}))},g205Aura:{filter,power:2000,other:true},g208Auras:[{filter,grants:{unblockable:true}}]};
+  }
+  if(f.typeText.normalize('NFKC')==='進化クリーチャー(進化V)'&&text.replace('裏向きのまま新しいシールドとして自分のシールドゾーンに加える','裏向きのまま自分のシールドに加える')===mana+'進化V-自分のライトブリンガー1体とサイバーロード1体を重ねた上に置く。このクリーチャーが攻撃した時またはバトルゾーンを離れた時自分の山札の上から1枚目を裏向きのまま自分のシールドに加える。W・ブレイカー'){
+   return {evolution:{g31:true},g31Evolution:{zone:'battle',conditions:[{race:'ライトブリンガー'},{race:'サイバーロード'}]},breaker:2,g34Attack:[{op:'ShieldTop',n:1}],g172Leave:[{op:'ShieldTop',n:1}]};
+  }
+ }
+ if(f.typeText.normalize('NFKC')==='進化クリーチャー(進化V)')throw Error('未対応の進化V能力');
  if(phase>=699){
   const text=normalize(f.abilityText);
   if(creature&&text==='ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)このクリーチャーがブロックした時バトルの後でこのクリーチャーを破壊する。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)'){

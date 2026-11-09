@@ -1,0 +1,265 @@
+{
+  "phase": 700,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5930,
+  "description": "種族ごとの進化・強化・ブロック時のドローと、進化Vからのシールド化。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
+    "https://dm.takaratomy.co.jp/rule/qa/46490/"
+  ],
+  "cards": [
+    {
+      "id": "dm12-016",
+      "name": "超戦攻賢者アギラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-016",
+      "faces": [
+        {
+          "name": "超戦攻賢者アギラ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化ー自分のグラディエーターまたはアースイーター１体の上に置く。\nバトルゾーンにある自分の他のグラディエーターとアースイーターすべてのパワーは+2000される。\n自分のグラディエーターまたはアースイーターがブロックした時、カードを１枚引いてもよい。",
+          "race": "グラディエーター/アースイーター",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "グラディエーター"
+            },
+            {
+              "race": "アースイーター"
+            }
+          ]
+        },
+        "g205Aura": {
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "グラディエーター",
+              "アースイーター"
+            ]
+          },
+          "power": 2000,
+          "other": true
+        },
+        "g700BlockDraw": [
+          "グラディエーター",
+          "アースイーター"
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "6095e7264eb688f21642be4414f4ad9958e491c111e2217136d516c21dafb59a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm12-017",
+      "name": "超電磁妖魔ロメール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-017",
+      "faces": [
+        {
+          "name": "超電磁妖魔ロメール",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分のサイバーロードまたはヘドリアン１体の上に置く。\nバトルゾーンにある自分の他のサイバーロードとヘドリアンすべてのパワーは+2000される。\n自分のサイバーロードとヘドリアンはブロックされない。",
+          "race": "サイバーロード/ヘドリアン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "サイバーロード"
+            },
+            {
+              "race": "ヘドリアン"
+            }
+          ]
+        },
+        "g205Aura": {
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "サイバーロード",
+              "ヘドリアン"
+            ]
+          },
+          "power": 2000,
+          "other": true
+        },
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "raceAny": [
+                "サイバーロード",
+                "ヘドリアン"
+              ]
+            },
+            "grants": {
+              "unblockable": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "4913faca21f8c6390b64a218b5eee70a2abdc53fc0a70178de6f028c33636374",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm12-s02",
+      "name": "英霊王スターマン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-s02",
+      "faces": [
+        {
+          "name": "英霊王スターマン",
+          "typeText": "進化クリーチャー(進化V)",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化Vー自分のライトブリンガー１体とサイバーロード１体を重ねた上に置く。\nこのクリーチャーが攻撃した時またはバトルゾーンを離れた時、自分の山札の上から１枚目を、裏向きのまま自分のシールドに加える。\nW・ブレイカー",
+          "race": "スターノイド",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "race": "ライトブリンガー"
+            },
+            {
+              "race": "サイバーロード"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "1213eacf9368e6fe848a14a1b35c8a435968351f4f60db0fe4aca75aaf454a0c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc55-045",
+      "name": "超電磁妖魔ロメール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc55-045",
+      "faces": [
+        {
+          "name": "超電磁妖魔ロメール",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分のサイバーロードまたはヘドリアン１体の上に置く。\nバトルゾーンにある自分の他のサイバーロードとヘドリアンすべてのパワーは+2000される。\n自分のサイバーロードとヘドリアンはブロックされない。",
+          "race": "サイバーロード/ヘドリアン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "canonicalId": "dm12-017",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc55-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "f445cc16c65a1c3f0f56e538b368d095f3fa62a1158b62e3d3728c974ba11053",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx12b-045",
+      "name": "英霊王スターマン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12b-045",
+      "faces": [
+        {
+          "name": "英霊王スターマン",
+          "typeText": "進化クリーチャー（進化V）",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化V-自分のライトブリンガー１体とサイバーロード１体を重ねた上に置く。\nこのクリーチャーが攻撃した時またはバトルゾーンを離れた時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加える。\nW・ブレイカー",
+          "race": "スターノイド",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "canonicalId": "dm12-s02",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx12b-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "6954f63e6bea0dc5577535f5425060210281eea10548d8d63efe5784c164f83c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm12-016": 4,
+      "dm12-017": 4,
+      "dm12-s02": 4,
+      "dmc55-045": 4,
+      "dmx12b-045": 4
+    }
+  }
+}
