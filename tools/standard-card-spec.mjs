@@ -2564,6 +2564,33 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=751&&f.typeText==='クリーチャー'){
+  const win='このクリーチャーがバトルに勝った時';
+  const shield={op:'ShieldTop',n:1};
+  const shieldText='自分の山札の上から1枚目を裏向きのまま新しいシールドとして';
+  const double='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';
+  const dogi='スピードアタッカーT・ブレイカー';
+  const dogiTarget='このクリーチャーはアンタップしているクリーチャーを攻撃できる。';
+  const dogiWin=win+'次の自分のターンのはじめまで';
+  if(compact363===dogi+'このクリーチャーがバトルゾーンに出た時そのターン'+dogiTarget+dogiWin+'自分はゲームに負けず相手はゲームに勝てない。'||
+     compact363===dogi+'このクリーチャーが出た時このターン'+dogiTarget+dogiWin+'自分はゲームに負けない。')
+   return {effect:'sixPhoto',speedAttacker:true,breaker:3,g34Tasks:[{op:'ShinkaGrant397',grant:{attackUntapped:true}}],
+    g189BattleWin:[{op:'Lock',g746Self:true,limit:{kind:'g34NoLose'}}]};
+  if(compact363===win+shieldText+'自分のシールドゾーンに置く。ラビリンス:自分のシールドが相手より多ければこのクリーチャーのパワーを+3000し「W・ブレイカー」を与える。(「W・ブレイカー」を持つクリーチャーはシールドを2つブレイクする)')
+   return {g189BattleWin:[shield],g260Self:{filter:{g334ZoneCount:{zone:'shields',moreThanOpponent:true}},grants:{power:3000,breaker:2}}};
+  if(compact363===double+'自分の光または自然のクリーチャーがバトルに勝った時次のうちいずれか1つを選んでもよい。▶'+shieldText+'シールドゾーンに置く。▶自分の山札の上から1枚目をマナゾーンに置く。')
+   return {breaker:2,g252WinWatch:{filter:{creature:true,any:[{color:'光'},{color:'自然'}]},defs:[
+    {op:'Choose',g184Modes:true,modes:[
+     {label:'山札の上からシールドを1つ追加',defs:[shield]},
+     {label:'山札の上からマナに1枚置く',defs:[{op:'Ramp',n:1}]},
+     {label:'この能力を使わない',defs:[]}
+    ]}
+   ]}};
+  const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+  if(compact363===blocker+double+'シビルカウント3:'+win+'自分の光のクリーチャーまたは光のタマシードが合計3つ以上あれば自分の山札の上から1枚目をシールド化してもよい。')
+   return {blocker:true,breaker:2,g189BattleWin:[{op:'IfOwn',filter:{creatureOrSeed:true,color:'光',g258Civil:3},
+    defs:[{op:'Offer',title:'山札の上からシールドを1つ追加する？',defs:[shield]}]}]};
+ }
  if(phase>=750&&f.typeText==='クリーチャー'){
   const speed='スピードアタッカー(このクリーチャーは召喚酔いしない)';
   const double='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';

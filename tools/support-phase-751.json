@@ -1,0 +1,400 @@
+{
+  "phase": 751,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6098,
+  "description": "登場したターンのアンタップ状態への攻撃、バトル勝利時の敗北回避、シールド化、マナ加速、ラビリンスとシビルカウントに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/45448/",
+    "https://dm.takaratomy.co.jp/rule/qa/31558/",
+    "https://dm.takaratomy.co.jp/rule/qa/42510/",
+    "https://dm.takaratomy.co.jp/rule/qa/42500/",
+    "https://dm.takaratomy.co.jp/rule/qa/31825/"
+  ],
+  "cards": [
+    {
+      "id": "dmx26-l02",
+      "name": "伝説のレジェンド ドギラゴン",
+      "faces": [
+        {
+          "name": "伝説のレジェンド ドギラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "スピードアタッカー\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、そのターン、このクリーチャーはアンタップしているクリーチャーを攻撃できる。\nこのクリーチャーがバトルに勝った時、次の自分のターンのはじめまで、自分はゲームに負けず、相手はゲームに勝てない。",
+          "race": "メガ・コマンド・ドラゴン/革命軍/ハムカツ団",
+          "powerText": "14000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx26-l02",
+      "spec": {
+        "effect": "sixPhoto",
+        "speedAttacker": true,
+        "breaker": 3,
+        "g34Tasks": [
+          {
+            "op": "ShinkaGrant397",
+            "grant": {
+              "attackUntapped": true
+            }
+          }
+        ],
+        "g189BattleWin": [
+          {
+            "op": "Lock",
+            "g746Self": true,
+            "limit": {
+              "kind": "g34NoLose"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx26-l02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "c8b8a890b31ce56313c073526cf06ef1c6396b5b98fedb0f47894d175b4b3b4f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd02-009",
+      "name": "土の怒り 岩砕",
+      "faces": [
+        {
+          "name": "土の怒り 岩砕",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルに勝った時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。\nラビリンス：自分のシールドが相手より多ければ、このクリーチャーのパワーを+3000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーは、シールドを２つブレイクする）",
+          "race": "メタリカ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd02-009",
+      "spec": {
+        "g189BattleWin": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "moreThanOpponent": true
+            }
+          },
+          "grants": {
+            "power": 3000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd02-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "b061d5d79af19cb64086891e8676534d9381271d09c2ef3731d08de5bcb3378c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp15-050",
+      "name": "暴衣の蝙蝠",
+      "faces": [
+        {
+          "name": "暴衣の蝙蝠",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分の光または自然のクリーチャーがバトルに勝った時、次のうちいずれか１つを選んでもよい。\n▶自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。\n▶自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "ビーストフォーク/暴拳王国",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-050",
+      "spec": {
+        "breaker": 2,
+        "g252WinWatch": {
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "color": "光"
+              },
+              {
+                "color": "自然"
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Choose",
+              "g184Modes": true,
+              "modes": [
+                {
+                  "label": "山札の上からシールドを1つ追加",
+                  "defs": [
+                    {
+                      "op": "ShieldTop",
+                      "n": 1
+                    }
+                  ]
+                },
+                {
+                  "label": "山札の上からマナに1枚置く",
+                  "defs": [
+                    {
+                      "op": "Ramp",
+                      "n": 1
+                    }
+                  ]
+                },
+                {
+                  "label": "この能力を使わない",
+                  "defs": []
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "da9a0a68f84d9b765643000ee03e425c4ece3efc5bda5f8f44c3f338fc8f772c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-027",
+      "name": "利則の求道者シャ・イロック",
+      "faces": [
+        {
+          "name": "利則の求道者シャ・イロック",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nシビルカウント ３：このクリーチャーがバトルに勝った時、自分の光のクリーチャーまたは光のタマシードが合計３つ以上あれば、自分の山札の上から１枚目をシールド化してもよい。",
+          "race": "メカサンダー",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-027",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g189BattleWin": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creatureOrSeed": true,
+              "color": "光",
+              "g258Civil": 3
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "山札の上からシールドを1つ追加する？",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "2b3e008a5a8daad331b5988208b08b8d059e604b6a3547ef6c149fffe41fc153",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmrp06-g02",
+      "canonicalId": "dmx26-l02",
+      "name": "伝説のレジェンド ドギラゴン",
+      "faces": [
+        {
+          "name": "伝説のレジェンド ドギラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "スピードアタッカー\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、そのターン、このクリーチャーはアンタップしているクリーチャーを攻撃できる。\nこのクリーチャーがバトルに勝った時、次の自分のターンのはじめまで、自分はゲームに負けず、相手はゲームに勝てない。",
+          "race": "メガ・コマンド・ドラゴン/革命軍/ハムカツ団",
+          "powerText": "14000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-g02",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-g02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "75ae74cc824bde1470f1c582e1c59528197c4cde20110a83f50de34944cdddb2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex08-288",
+      "canonicalId": "dmx26-l02",
+      "name": "伝説のレジェンド ドギラゴン",
+      "faces": [
+        {
+          "name": "伝説のレジェンド ドギラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "スピードアタッカー\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、そのターン、このクリーチャーはアンタップしているクリーチャーを攻撃できる。\nこのクリーチャーがバトルに勝った時、次の自分のターンのはじめまで、自分はゲームに負けず、相手はゲームに勝てない。",
+          "race": "メガ・コマンド・ドラゴン/革命軍/ハムカツ団",
+          "powerText": "14000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-288",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-288.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "64ba4e6f03a36e3cc411ba877e58ec6555dc883d283d8381d7fce90a6c30bbd3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23bd4-012",
+      "canonicalId": "dmx26-l02",
+      "name": "伝説のレジェンド ドギラゴン",
+      "faces": [
+        {
+          "name": "伝説のレジェンド ドギラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "スピードアタッカー\nT・ブレイカー\nこのクリーチャーが出た時、このターン、このクリーチャーはアンタップしているクリーチャーを攻撃できる。\nこのクリーチャーがバトルに勝った時、次の自分のターンのはじめまで、自分はゲームに負けない。",
+          "race": "メガ・コマンド・ドラゴン/革命軍/ハムカツ団",
+          "powerText": "14000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-012",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd4-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "081ca935a8c033be6eebdb8569cd793c0a0fc2711eb76bb791067c2bfa04fa72",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24bd1-003",
+      "canonicalId": "dmx26-l02",
+      "name": "伝説のレジェンド ドギラゴン",
+      "faces": [
+        {
+          "name": "伝説のレジェンド ドギラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "スピードアタッカー\nT・ブレイカー\nこのクリーチャーが出た時、このターン、このクリーチャーはアンタップしているクリーチャーを攻撃できる。\nこのクリーチャーがバトルに勝った時、次の自分のターンのはじめまで、自分はゲームに負けない。",
+          "race": "メガ・コマンド・ドラゴン/革命軍/ハムカツ団",
+          "powerText": "14000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd1-003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd1-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "cb4d9c12c110706ad2c73b3c22b33142a12e52494763a870cea5f06746a28242",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2X-027",
+      "canonicalId": "dm22rp2-027",
+      "name": "利則の求道者シャ・イロック",
+      "faces": [
+        {
+          "name": "利則の求道者シャ・イロック",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nシビルカウント ３：このクリーチャーがバトルに勝った時、自分の光のクリーチャーまたは光のタマシードが合計３つ以上あれば、自分の山札の上から１枚目をシールド化してもよい。",
+          "race": "メカサンダー",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2X-027",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "9553faa2c57d80e62d6b33277cbd484cb3c7a86ddc4c03051f444d98fa30d378",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx26-l02": 4,
+      "dmsd02-009": 4,
+      "dmrp15-050": 4,
+      "dm22rp2-027": 4,
+      "dmrp06-g02": 4,
+      "dmex08-288": 4,
+      "dm23bd4-012": 4,
+      "dm24bd1-003": 4,
+      "dm22rp2X-027": 4
+    }
+  }
+}

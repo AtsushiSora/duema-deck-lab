@@ -176528,24 +176528,202 @@
       ],
       "supportBatch": "phase-750",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx26-l02",
+      "name": "伝説のレジェンド ドギラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 14000,
+      "race": "メガ・コマンド・ドラゴン/革命軍/ハムカツ団",
+      "text": "スピードアタッカー\nT・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、そのターン、このクリーチャーはアンタップしているクリーチャーを攻撃できる。\nこのクリーチャーがバトルに勝った時、次の自分のターンのはじめまで、自分はゲームに負けず、相手はゲームに勝てない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx26-l02",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "speedAttacker": true,
+      "breaker": 3,
+      "g34Tasks": [
+        {
+          "op": "ShinkaGrant397",
+          "grant": {
+            "attackUntapped": true
+          }
+        }
+      ],
+      "g189BattleWin": [
+        {
+          "op": "Lock",
+          "g746Self": true,
+          "limit": {
+            "kind": "g34NoLose"
+          }
+        }
+      ],
+      "supportBatch": "phase-751",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd02-009",
+      "name": "土の怒り 岩砕",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "メタリカ",
+      "text": "このクリーチャーがバトルに勝った時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。\nラビリンス：自分のシールドが相手より多ければ、このクリーチャーのパワーを+3000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーは、シールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd02-009",
+      "limit": 4,
+      "g189BattleWin": [
+        {
+          "op": "ShieldTop",
+          "n": 1
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "moreThanOpponent": true
+          }
+        },
+        "grants": {
+          "power": 3000,
+          "breaker": 2
+        }
+      },
+      "supportBatch": "phase-751",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-050",
+      "name": "暴衣の蝙蝠",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ビーストフォーク/暴拳王国",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分の光または自然のクリーチャーがバトルに勝った時、次のうちいずれか１つを選んでもよい。\n▶自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置く。\n▶自分の山札の上から１枚目をマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-050",
+      "limit": 4,
+      "breaker": 2,
+      "g252WinWatch": {
+        "filter": {
+          "creature": true,
+          "any": [
+            {
+              "color": "光"
+            },
+            {
+              "color": "自然"
+            }
+          ]
+        },
+        "defs": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "山札の上からシールドを1つ追加",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "山札の上からマナに1枚置く",
+                "defs": [
+                  {
+                    "op": "Ramp",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "この能力を使わない",
+                "defs": []
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-751",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-027",
+      "name": "利則の求道者シャ・イロック",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6500,
+      "race": "メカサンダー",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nシビルカウント ３：このクリーチャーがバトルに勝った時、自分の光のクリーチャーまたは光のタマシードが合計３つ以上あれば、自分の山札の上から１枚目をシールド化してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-027",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g189BattleWin": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creatureOrSeed": true,
+            "color": "光",
+            "g258Civil": 3
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "山札の上からシールドを1つ追加する？",
+              "defs": [
+                {
+                  "op": "ShieldTop",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-751",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 750,
+    "phase": 751,
     "checkedAt": "2026-11-10",
-    "baseCount": 6095,
-    "newEffectCards": 3,
+    "baseCount": 6098,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6098,
+    "totalCount": 6102,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34978/",
-      "https://dm.takaratomy.co.jp/rule/qa/31703/",
-      "https://dm.takaratomy.co.jp/rule/qa/31704/",
-      "https://dm.takaratomy.co.jp/rule/qa/33428/",
-      "https://dm.takaratomy.co.jp/rule/qa/39660/",
-      "https://dm.takaratomy.co.jp/rule/qa/33420/"
+      "https://dm.takaratomy.co.jp/rule/qa/45448/",
+      "https://dm.takaratomy.co.jp/rule/qa/31558/",
+      "https://dm.takaratomy.co.jp/rule/qa/42510/",
+      "https://dm.takaratomy.co.jp/rule/qa/42500/",
+      "https://dm.takaratomy.co.jp/rule/qa/31825/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -189567,6 +189745,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/44319/",
           "https://dm.takaratomy.co.jp/rule/qa/40827/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31624/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 750,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6095,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6098,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34978/",
+          "https://dm.takaratomy.co.jp/rule/qa/31703/",
+          "https://dm.takaratomy.co.jp/rule/qa/31704/",
+          "https://dm.takaratomy.co.jp/rule/qa/33428/",
+          "https://dm.takaratomy.co.jp/rule/qa/39660/",
+          "https://dm.takaratomy.co.jp/rule/qa/33420/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
