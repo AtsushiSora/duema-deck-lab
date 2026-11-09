@@ -2557,6 +2557,18 @@ export function standardCardSpec(d,{phase=165}={}){
  const compact363=phase>=363?normalize(f.abilityText):'',whole363=phase>=363&&(modal363(compact363)||compact363==='自分の水と闇を両方持つクリーチャーがバトルゾーンに出た時次のうちいずれか1つを選ぶ。▼カードを1枚引く。▼相手は自身の手札を1枚選び捨てる。');
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?abilityText.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):abilityText).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=730&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(text==='攻撃を受けたときこのクリーチャーはこのターンが終わるまで「スレイヤー」を得る。(このクリーチャーとバトルした相手クリーチャーは勝っても持ち主の墓地に置かれる)')
+   return {g447Attacked:[{op:'ShinkaGrant397',grant:{slayer:true}}]};
+  const reduction='このクリーチャーのパワーはバトルゾーンにある';
+  const suffix='のクリーチャー1体につき-1000される。(パワー0以下のクリーチャーは破壊される)';
+  const count=colorsAny=>({g207CountPower:{zone:'battle',both:true,filter:{colorsAny},amount:-1000}});
+  if(text==='ブロッカー'+reduction+'火または闇'+suffix+'このクリーチャーは相手プレイヤーを攻撃できない。')
+   return {blocker:true,noPlayerAttack:true,...count(['火','闇'])};
+  if(text===reduction+'水または闇'+suffix+'このクリーチャーはパワーが6000以上の時「W・ブレイカー」を得る。(「W・ブレイカー」を得たクリーチャーはシールドを2枚ブレイクする)')
+   return {...count(['水','闇']),g207Breakers:[{power:6000,breaker:2}]};
+ }
  if(phase>=729&&f.typeText==='進化クリーチャー'){
   const text=normalize(f.abilityText);
   if(text==='進化ー自分のゴースト1体の上に置く。このクリーチャーがバトルゾーンにある間バトルゾーンにある自分のゴーストはそれぞれ「スレイヤー」を得る。(そのクリーチャーとバトルした相手クリーチャーは勝っても持ち主の墓地に置かれる)')

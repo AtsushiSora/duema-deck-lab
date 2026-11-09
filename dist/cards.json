@@ -174121,22 +174121,112 @@
       },
       "supportBatch": "phase-729",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm07-028",
+      "name": "ポイズン・ティアラ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ブレインジャッカー",
+      "text": "攻撃を受けたとき、このクリーチャーはこのターンが終わるまで「スレイヤー」を得る。(このクリーチャーとバトルした相手クリーチャーは、勝っても持ち主の墓地に置かれる)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-028",
+      "limit": 4,
+      "g447Attacked": [
+        {
+          "op": "ShinkaGrant397",
+          "grant": {
+            "slayer": true
+          }
+        }
+      ],
+      "supportBatch": "phase-730",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm14-043",
+      "name": "紫宮の守護者レギ・バエル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 4000,
+      "race": "ガーディアン",
+      "text": "ブロッカー\nこのクリーチャーのパワーは、バトルゾーンにある火または闇のクリーチャー１体につき-1000される。(パワー０以下のクリーチャーは破壊される)\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-043",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g207CountPower": {
+        "zone": "battle",
+        "both": true,
+        "filter": {
+          "colorsAny": [
+            "火",
+            "闇"
+          ]
+        },
+        "amount": -1000
+      },
+      "supportBatch": "phase-730",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm14-065",
+      "name": "乱戦の化身",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "ミステリー・トーテム",
+      "text": "このクリーチャーのパワーは、バトルゾーンにある水または闇のクリーチャー１体につき-1000される。(パワー０以下のクリーチャーは破壊される)\nこのクリーチャーは、パワーが6000以上の時、｢W・ブレイカー｣を得る。(｢W・ブレイカー｣を得たクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-065",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "both": true,
+        "filter": {
+          "colorsAny": [
+            "水",
+            "闇"
+          ]
+        },
+        "amount": -1000
+      },
+      "g207Breakers": [
+        {
+          "power": 6000,
+          "breaker": 2
+        }
+      ],
+      "supportBatch": "phase-730",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 729,
+    "phase": 730,
     "checkedAt": "2026-11-10",
-    "baseCount": 6025,
+    "baseCount": 6028,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6028,
+    "totalCount": 6031,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34815/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35322/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37607/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31649/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35288/",
+      "https://dm.takaratomy.co.jp/cls/creatorsletter43/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -186743,6 +186833,25 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/34832/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37504/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31641/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 729,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6025,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6028,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34815/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35322/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37607/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31649/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
