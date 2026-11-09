@@ -675,6 +675,11 @@ function superInstructions437(text,phase){
 }
 // Pinned aliases for older wording, only within an explicitly marked tap ability.
 function tap440(text,phase){return{
+ ...(phase>=711?{
+  'このターンが終わるまでバトルゾーンにある自分の火のクリーチャーはすべて次の能力を得る。「このクリーチャーはタップされていないクリーチャーを攻撃できる」':[{op:'GroupGrant364',owner:'self',filter:{creature:true,color:'火'},grant:{attackUntapped:true}}],
+  'バトルゾーンにある自分のクリーチャーを1体選び裏向きにして自分のシールドに加える。':[{op:'Target',owner:'self',to:'shields',title:'シールド化する自分のクリーチャーを選ぶ'}],
+  'バトルゾーンにある相手のクリーチャーを1体選ぶ。そのクリーチャーは次のターン可能であれば攻撃する。':[{op:'Target',g546Force:'nextOpponent'}]
+ }:{}),
  ...(phase>=710?{
   'バトルゾーンにある自分のドラゴンを1体アンタップする。':[{op:'Target',owner:'self',untap:true,filter:{race:'ドラゴン'},title:'アンタップする自分のドラゴンを選ぶ'}],
   'バトルゾーンにある自分のフレイム・コマンドを1体アンタップする。':[{op:'Target',owner:'self',untap:true,filter:{race:'フレイム・コマンド'},title:'アンタップする自分のフレイム・コマンドを選ぶ'}]

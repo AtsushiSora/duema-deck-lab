@@ -172413,21 +172413,102 @@
       },
       "supportBatch": "phase-710",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm07-004",
+      "name": "鎧神兵ガリアクルーズ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "アーマロイド",
+      "text": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nこのターンが終わるまで、バトルゾーンにある自分の火のクリーチャーはすべて、次の能力を得る。「このクリーチャーはタップされていないクリーチャーを攻撃できる」",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-004",
+      "limit": 4,
+      "g439Tap": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true,
+            "color": "火"
+          },
+          "grant": {
+            "attackUntapped": true
+          }
+        }
+      ],
+      "supportBatch": "phase-711",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm07-021",
+      "name": "宣凶師ロンドビル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "グラディエーター",
+      "text": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにある自分のクリーチャーを１体選び、裏向きにして自分のシールドに加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-021",
+      "limit": 4,
+      "g439Tap": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "to": "shields",
+          "title": "シールド化する自分のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-711",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm29-044",
+      "name": "高波男",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ヘドリアン",
+      "text": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにある相手のクリーチャーを１体選ぶ。そのクリーチャーは、次のターン、可能であれば攻撃する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-044",
+      "limit": 4,
+      "g439Tap": [
+        {
+          "op": "Target",
+          "g546Force": "nextOpponent"
+        }
+      ],
+      "supportBatch": "phase-711",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 710,
+    "phase": 711,
     "checkedAt": "2026-11-09",
-    "baseCount": 5963,
+    "baseCount": 5966,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5966,
+    "totalCount": 5969,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316652/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37678/",
-      "https://dm.takaratomy.co.jp/rule/qa/42373/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35112/",
+      "https://dm.takaratomy.co.jp/rule/qa/31707/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36239/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -184692,6 +184773,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/45263/",
           "https://dm.takaratomy.co.jp/rule/qa/49538/",
           "https://dm.takaratomy.co.jp/rule/qa/45909/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 710,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5963,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5966,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316652/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37678/",
+          "https://dm.takaratomy.co.jp/rule/qa/42373/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -1,0 +1,141 @@
+{
+  "phase": 711,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5966,
+  "description": "タップ能力による火のクリーチャーへの攻撃先拡張、味方のシールド化、次ターンの攻撃義務を実装。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35112/",
+    "https://dm.takaratomy.co.jp/rule/qa/31707/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36239/"
+  ],
+  "cards": [
+    {
+      "id": "dm07-004",
+      "name": "鎧神兵ガリアクルーズ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-004",
+      "faces": [
+        {
+          "name": "鎧神兵ガリアクルーズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nこのターンが終わるまで、バトルゾーンにある自分の火のクリーチャーはすべて、次の能力を得る。「このクリーチャーはタップされていないクリーチャーを攻撃できる」",
+          "race": "アーマロイド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "color": "火"
+            },
+            "grant": {
+              "attackUntapped": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm07-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "4e07aade0871c1f85d4787d067e7a04f4f9bd9ca16b35dea56e14da3b76378ec",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm07-021",
+      "name": "宣凶師ロンドビル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-021",
+      "faces": [
+        {
+          "name": "宣凶師ロンドビル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにある自分のクリーチャーを１体選び、裏向きにして自分のシールドに加える。",
+          "race": "グラディエーター",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "shields",
+            "title": "シールド化する自分のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm07-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "eb6b28c3ac5f7a345ec9bcfcf26663bd70c696f354f64fbfc8b0e7404144e00e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm29-044",
+      "name": "高波男",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-044",
+      "faces": [
+        {
+          "name": "高波男",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにある相手のクリーチャーを１体選ぶ。そのクリーチャーは、次のターン、可能であれば攻撃する。",
+          "race": "ヘドリアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Target",
+            "g546Force": "nextOpponent"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm29-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "944f148682152fa9ea23f7bbcc9ef9b7f70d3d9738b2016c271c9a2c6a29b1ae",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm07-004": 4,
+      "dm07-021": 4,
+      "dm29-044": 4
+    }
+  }
+}
