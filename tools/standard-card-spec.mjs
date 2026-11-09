@@ -2557,6 +2557,17 @@ export function standardCardSpec(d,{phase=165}={}){
  const compact363=phase>=363?normalize(f.abilityText):'',whole363=phase>=363&&(modal363(compact363)||compact363==='自分の水と闇を両方持つクリーチャーがバトルゾーンに出た時次のうちいずれか1つを選ぶ。▼カードを1枚引く。▼相手は自身の手札を1枚選び捨てる。');
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?abilityText.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):abilityText).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=731&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(text==='このクリーチャーのパワーはバトルゾーンにある文明1つにつき+2000される。このクリーチャーはパワーが6000以上の時「W・ブレイカー」を得る。(このクリーチャーはシールドを2枚ブレイクする)')
+   return {g207CountPower:{zone:'battle',both:true,civilizations:true,g561Battle:true,amount:2000},g207Breakers:[{power:6000,breaker:2}]};
+  if(text==='このクリーチャーのパワーはバトルゾーンにある自分の他の水のクリーチャー1体につき+1000される。このクリーチャーが攻撃するとき自分の山札から好きな枚数のカードを引いてよい。ただしその枚数はバトルゾーンにある自分の他の水のクリーチャーの数までであること。'){
+   const filter={creature:true,color:'水'};
+   return {g207CountPower:{zone:'battle',other:true,filter,amount:1000},g34Attack:[{op:'CountDraw',zone:'battle',g329Other:true,filter,optional:'amount'}]};
+  }
+  if(text==='このクリーチャーのパワーはバトルゾーンにある自分の他のタップされていないクリーチャー1体につき+2000される。このクリーチャーが破壊される時墓地に置くかわりに自分の山札に戻す。その後山札をシャッフルする。')
+   return {g207CountPower:{zone:'battle',other:true,filter:{creature:true,untapped:true},amount:2000},g731DestroyShuffle:true};
+ }
  if(phase>=730&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(text==='攻撃を受けたときこのクリーチャーはこのターンが終わるまで「スレイヤー」を得る。(このクリーチャーとバトルした相手クリーチャーは勝っても持ち主の墓地に置かれる)')

@@ -1,0 +1,159 @@
+{
+  "phase": 731,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6031,
+  "description": "文明の種類と味方の数によるパワー増加、任意の枚数の攻撃時ドロー、破壊時の山札への置換を実装。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35032/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35167/",
+    "https://dm.takaratomy.co.jp/rule/qa/31782/",
+    "https://dm.takaratomy.co.jp/rule/qa/31783/"
+  ],
+  "cards": [
+    {
+      "id": "dm13-014",
+      "name": "地脈の超人",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-014",
+      "faces": [
+        {
+          "name": "地脈の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーのパワーは、バトルゾーンにある文明１つにつき+2000される。\nこのクリーチャーは、パワーが6000以上の時、｢W・ブレイカー｣を得る。(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ジャイアント",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g207CountPower": {
+          "zone": "battle",
+          "both": true,
+          "civilizations": true,
+          "g561Battle": true,
+          "amount": 2000
+        },
+        "g207Breakers": [
+          {
+            "power": 6000,
+            "breaker": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "c9a0d9c538b85938a80289574b19dc55bd912d33ed4a658694186166fe4f14af",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm03-s02",
+      "name": "混沌魚",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-s02",
+      "faces": [
+        {
+          "name": "混沌魚",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーのパワーは、バトルゾーンにある自分の他の水のクリーチャー１体につき+1000される。\nこのクリーチャーが攻撃するとき、自分の山札から好きな枚数のカードを引いてよい。ただし、その枚数は、バトルゾーンにある自分の他の水のクリーチャーの数までであること。",
+          "race": "ゲル・フィッシュ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g207CountPower": {
+          "zone": "battle",
+          "other": true,
+          "filter": {
+            "creature": true,
+            "color": "水"
+          },
+          "amount": 1000
+        },
+        "g34Attack": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "g329Other": true,
+            "filter": {
+              "creature": true,
+              "color": "水"
+            },
+            "optional": "amount"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm03-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "20e5e49751e2934fc7ebaeeab247e12af6c4a3c8fb1202729424ba815481fb17",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-002",
+      "name": "光器リュドミーラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-002",
+      "faces": [
+        {
+          "name": "光器リュドミーラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーのパワーは、バトルゾーンにある自分の他のタップされていないクリーチャー１体につき+2000される。\nこのクリーチャーが破壊される時、墓地に置くかわりに自分の山札に戻す。その後、山札をシャッフルする。",
+          "race": "メカ・デル・ソル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g207CountPower": {
+          "zone": "battle",
+          "other": true,
+          "filter": {
+            "creature": true,
+            "untapped": true
+          },
+          "amount": 2000
+        },
+        "g731DestroyShuffle": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "848e210844196649adf2545ed7766aa4e2f0e32b598193b34d9e79e1bf3ab545",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm13-014": 4,
+      "dm03-s02": 4,
+      "dm10-002": 4
+    }
+  }
+}

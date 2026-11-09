@@ -174213,20 +174213,120 @@
       ],
       "supportBatch": "phase-730",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm13-014",
+      "name": "地脈の超人",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ジャイアント",
+      "text": "このクリーチャーのパワーは、バトルゾーンにある文明１つにつき+2000される。\nこのクリーチャーは、パワーが6000以上の時、｢W・ブレイカー｣を得る。(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-014",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "both": true,
+        "civilizations": true,
+        "g561Battle": true,
+        "amount": 2000
+      },
+      "g207Breakers": [
+        {
+          "power": 6000,
+          "breaker": 2
+        }
+      ],
+      "supportBatch": "phase-731",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm03-s02",
+      "name": "混沌魚",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 1000,
+      "race": "ゲル・フィッシュ",
+      "text": "このクリーチャーのパワーは、バトルゾーンにある自分の他の水のクリーチャー１体につき+1000される。\nこのクリーチャーが攻撃するとき、自分の山札から好きな枚数のカードを引いてよい。ただし、その枚数は、バトルゾーンにある自分の他の水のクリーチャーの数までであること。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-s02",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "creature": true,
+          "color": "水"
+        },
+        "amount": 1000
+      },
+      "g34Attack": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "g329Other": true,
+          "filter": {
+            "creature": true,
+            "color": "水"
+          },
+          "optional": "amount"
+        }
+      ],
+      "supportBatch": "phase-731",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm10-002",
+      "name": "光器リュドミーラ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "メカ・デル・ソル",
+      "text": "このクリーチャーのパワーは、バトルゾーンにある自分の他のタップされていないクリーチャー１体につき+2000される。\nこのクリーチャーが破壊される時、墓地に置くかわりに自分の山札に戻す。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-002",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "creature": true,
+          "untapped": true
+        },
+        "amount": 2000
+      },
+      "g731DestroyShuffle": true,
+      "supportBatch": "phase-731",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 730,
+    "phase": 731,
     "checkedAt": "2026-11-10",
-    "baseCount": 6028,
+    "baseCount": 6031,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6031,
+    "totalCount": 6034,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35288/",
-      "https://dm.takaratomy.co.jp/cls/creatorsletter43/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35032/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35167/",
+      "https://dm.takaratomy.co.jp/rule/qa/31782/",
+      "https://dm.takaratomy.co.jp/rule/qa/31783/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -186852,6 +186952,23 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35322/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37607/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31649/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 730,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6028,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6031,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35288/",
+          "https://dm.takaratomy.co.jp/cls/creatorsletter43/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
