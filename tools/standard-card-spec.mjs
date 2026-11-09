@@ -675,6 +675,9 @@ function superInstructions437(text,phase){
 }
 // Pinned aliases for older wording, only within an explicitly marked tap ability.
 function tap440(text,phase){return{
+ ...(phase>=708?{
+  'バトルゾーンにある自分の他のクリーチャーを1体アンタップする。':[{op:'Target',owner:'self',untap:true,g179Other:true,title:'アンタップする自分の他のクリーチャーを選ぶ'}]
+ }:{}),
  ...(phase>=441?{
  'バトルゾーンにある自分のクリーチャーを1体選ぶ。このターンそのクリーチャーはブロックされない。':[{op:'Target',owner:'self',grant:{unblockable:true}}],
  'バトルゾーンにある相手の「ブロッカー」を持つクリーチャーを1体選び持ち主の墓地に置く。':[{op:'Target',to:'grave',filter:{blocker:true}}],
@@ -3226,6 +3229,7 @@ export function standardCardSpec(d,{phase=165}={}){
   const marker='サバイバー(このクリーチャーがバトルゾーンにある間自分の他のサバイバーも上の能力を得る)',at=lines.findIndex(l=>normalize(l)===marker);
   if(at>=0){
    if(evolution||lines.length!==2||at!==1||!String(f.race).split('/').includes('サバイバー'))throw Error('未対応のサバイバー構成');
+   if(phase>=708&&normalize(lines[0])==='バトルゾーンにある間このクリーチャーのパワーは+1000される。')return{g406OwnPower:1000,g406Survivor:{power:1000}};
    const shared=structuredClone(d);shared.faces[0].abilityText=lines[0];const grants=standardCardSpec(shared,{phase:405}),allowed=new Set(['slayer','speedAttacker','attackBonus','breaker','blocker','unblockable','effect','g34Tasks','g34Attack']);
    if(!Object.keys(grants).length||Object.keys(grants).some(k=>!allowed.has(k))||grants.effect&&grants.effect!=='sixPhoto')throw Error('サバイバーの共有処理が未対応');
    return{...grants,g406Survivor:structuredClone(grants)};
@@ -5506,6 +5510,7 @@ export function standardCardSpec(d,{phase=165}={}){
    if(line==='バトルゾーンにある自分のグランド・デビルすべてのパワーは+2000されブロックされない。'){if(spec.g205Aura)throw Error('重複する常在パワー能力');spec.g205Aura={filter:{creature:true,race:'グランド・デビル'},power:2000};(spec.g208Auras??=[]).push({filter:{creature:true,race:'グランド・デビル'},grants:{unblockable:true}});continue;}
   }
   if(phase>=226&&creature){
+   if(phase>=708&&line==='水ステルス(相手のマナゾーンに水のカードがあればこのクリーチャーはブロックされない)'){if(spec.g226Stealth)throw Error('重複するステルス');spec.g226Stealth='水';continue;}
    if(m=line.match(/^(光|水|闇|火|自然)ステルス\(相手のマナゾーンに\1のカードが1枚でもあればこのクリーチャーはブロックされない\)$/)){if(spec.g226Stealth)throw Error('重複するステルス');spec.g226Stealth=m[1];continue;}
   }
   if(phase>=225&&creature){
@@ -5587,6 +5592,10 @@ export function standardCardSpec(d,{phase=165}={}){
    if(keyword(line,'S\\(シールド\\)・トリガー')){spec.trigger=true;continue;}
    if(creature&&['自分のターンの終わりにこのクリーチャーをアンタップする。','自分のターンの終わりにこのクリーチャーをアンタップする','自分のターンが終わる時このクリーチャーをアンタップする。'].includes(line)){spec.g166EndUntap=true;continue;}
    if(creature&&(['このクリーチャーは可能であれば毎ターン攻撃する。','このクリーチャーは可能なら毎ターン攻撃する。'].includes(line)||phase>=385&&line==='このクリーチャーは攻撃可能であれば必ず攻撃しなければならない。')){spec.mustAttack=true;continue;}
+   if(phase>=708&&creature&&[
+    'このクリーチャーがバトルゾーンから自分の墓地に置かれるとき墓地に置くかわりに自分の手札に戻してもよい。',
+    'このクリーチャーが破壊される時墓地に置くかわりに手札に戻してもよい。'
+   ].includes(line)){spec.g708OptionalGraveToHand=true;continue;}
    if(creature&&['このクリーチャーが破壊される時墓地に置くかわりに手札に戻す。','このクリーチャーが破壊される時墓地に置くかわりにマナゾーンに置く。'].includes(line)){spec[line.includes('マナゾーン')?'destroyToMana':'destroyToHand']=true;continue;}
    if(creature&&/^このクリーチャーは相手に選ばれない。(?:\(ただしこのクリーチャーを攻撃またはブロックしてもよい\))?$/.test(line)){spec.untargetable=true;continue;}
    if(f.typeText==='NEOクリーチャー'&&(m=line.match(/^NEO進化:(?:自分の)?((?:光|水|闇|火|自然)(?:(?:または)?(?:光|水|闇|火|自然)){0,2})のクリーチャー1体の上に置いてもよい。(?:\([^()]*\))?$/))){const cs=m[1].match(/光|水|闇|火|自然/g);if(new Set(cs).size!==cs.length||spec.neoEvolution)throw Error('NEO進化条件の重複');spec.neoEvolution={any:cs.map(civilization=>({civilization}))};continue;}

@@ -1,0 +1,165 @@
+{
+  "phase": 708,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5957,
+  "description": "サバイバーのパワー加算、他の味方をアンタップするタップ能力、ステルスと任意の手札戻し置換を実装。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35066/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316652/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35357/",
+    "https://dm.takaratomy.co.jp/rule/qa/45909/"
+  ],
+  "cards": [
+    {
+      "id": "dm05-054",
+      "name": "威嚇するスマッシュ・ホーンα",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-054",
+      "faces": [
+        {
+          "name": "威嚇するスマッシュ・ホーンα",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "バトルゾーンにある間、このクリーチャーのパワーは+1000される。\nサバイバー(このクリーチャーがバトルゾーンにある間、自分の他のサバイバーも上の能力を得る)",
+          "race": "ホーン・ビースト/サバイバー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g406OwnPower": 1000,
+        "g406Survivor": {
+          "power": 1000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm05-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "4c9321784689181ba7bd6be868edcb2499d9b6bbe1f08dc408029276f8608cd8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-032",
+      "name": "メタルコックのタイマー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-032",
+      "faces": [
+        {
+          "name": "メタルコックのタイマー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにある、自分の他のクリーチャーを１体アンタップする。",
+          "race": "ゼノパーツ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "untap": true,
+            "g179Other": true,
+            "title": "アンタップする自分の他のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "753697f7116e4103bf6bf74d8686e102271a12a56e668aefe4ec1ef6168e0b91",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm07-040",
+      "name": "アクア・エージェント",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-040",
+      "faces": [
+        {
+          "name": "アクア・エージェント",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "水ステルス(相手のマナゾーンに水のカードが１枚でもあれば、このクリーチャーはブロックされない)\nこのクリーチャーがバトルゾーンから自分の墓地に置かれるとき、墓地に置くかわりに自分の手札に戻してもよい。",
+          "race": "リキッド・ピープル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g226Stealth": "水",
+        "g708OptionalGraveToHand": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm07-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "56cf84f81fc1dae83d299b2b5bf505a0f24fc4043dc937d5076fb109a5fbc67a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex08-235",
+      "name": "アクア・エージェント",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-235",
+      "faces": [
+        {
+          "name": "アクア・エージェント",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "水ステルス（相手のマナゾーンに水のカードがあれば、このクリーチャーはブロックされない）\nこのクリーチャーが破壊される時、墓地に置くかわりに手札に戻してもよい。",
+          "race": "リキッド・ピープル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g226Stealth": "水",
+        "g708OptionalGraveToHand": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-235.jpg",
+      "canonicalId": "dm07-040",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "1e0a3c70ff8973f91150db5b48d2959267c319a44023e376bc71323153bad96c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm05-054": 4,
+      "dm16-032": 4,
+      "dm07-040": 4,
+      "dmex08-235": 4
+    }
+  }
+}

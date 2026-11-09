@@ -1,6 +1,8 @@
 // Only the marked ability is shared. Re-read physical sources, never forwarded grants.
 export function decorateSurvivor406(s,p,inst,c,{card,ignored,isCreature}){
- if(c.type!=='creature'||!String(c.race).split('/').includes('サバイバー'))return c;
+ if(c.type!=='creature')return c;
+ if(c.g406OwnPower&&!inst.sealed&&c.power!=='∞')c={...c,power:Number(c.power)+c.g406OwnPower};
+ if(!String(c.race).split('/').includes('サバイバー'))return c;
  const sources=s.players[p].battle.filter(x=>x.uid!==inst.uid&&!x.sealed&&card(x)?.g406Survivor&&isCreature(s,x)&&!ignored(s,x));
  if(!sources.length)return c;
  const out={...c,g406Inherited:sources.map(x=>({uid:x.uid,source:x.cardId,grants:card(x).g406Survivor}))};
@@ -8,6 +10,7 @@ export function decorateSurvivor406(s,p,inst,c,{card,ignored,isCreature}){
  for(const {grants:g}of out.g406Inherited){
   for(const k of['speedAttacker','blocker','unblockable'])if(g[k])out[k]=true;
   if(g.slayer){out.slayer=true;slayers++;}
+  if(g.power&&out.power!=='∞')out.power=Number(out.power)+g.power;
   if(g.attackBonus)out.attackBonus=(out.attackBonus||0)+g.attackBonus;
   if(g.breaker)out.breaker=out.breaker==='∞'?'∞':Math.max(Number(out.breaker)||1,g.breaker);
  }
