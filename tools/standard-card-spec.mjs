@@ -3286,6 +3286,7 @@ export function standardCardSpec(d,{phase=165}={}){
     'このターンの終わりまで自分の火のクリーチャーはすべて「W・ブレイカー」を得る。':[{op:'GroupGrant364',owner:'self',filter:{creature:true,color:'火'},grant:{g313Breaker:2}}],
     'このターンバトルゾーンにある自分の他のクリーチャーはタップされていないクリーチャーを攻撃できる。':[{op:'GroupGrant364',owner:'self',other:true,filter:{creature:true},grant:{attackUntapped:true}}],
     'このターン自分の光のクリーチャーはブロックされない。':[{op:'GroupGrant364',owner:'self',filter:{creature:true,color:'光'},grant:{unblockable:true}}],
+    ...(phase>=707?{'このターン自分のクリーチャーが攻撃する時カードを1枚引いてもよい。':[{op:'TurnAttackDraw613',optional:true,spell:false}]}:{}),
     '自分のマナゾーンからドラゴンを1体バトルゾーンに出す。':[{op:'Select',origin:'mana',n:1,deploy:true,optional:false,filter:{creature:true,race:'ドラゴン'}}]
    }[normalize(tail.faces[0].abilityText)]:null;
    const crossZone=phase>=581?instruction581(normalize(tail.faces[0].abilityText)):null;
@@ -4614,6 +4615,25 @@ export function standardCardSpec(d,{phase=165}={}){
    if(untapped){if(spec.g483AttackUntappedColors||untapped[2]===untapped[1])throw Error('重複する文明別アンタップ攻撃');spec.g483AttackUntappedColors=untapped.slice(1).filter(Boolean);continue;}
    if(line==='このクリーチャーは光以外のクリーチャーを攻撃できない。'){if(spec.g483AttackCreatureColors)throw Error('重複する攻撃対象の文明制限');spec.g483AttackCreatureColors=['光'];continue;}
    if(line==='このクリーチャーはアンタップされているクリーチャーを攻撃できる。'){if(spec.attackUntapped)throw Error('重複するアンタップ攻撃');spec.attackUntapped=true;continue;}
+  }
+  if(phase>=707&&creature){
+   const graveRecovery=[
+    'このクリーチャーがバトルゾーンから自分の墓地に置かれたとき自分の墓地から他のクリーチャーを1体選び自分の手札に加えてもよい。',
+    'このクリーチャーが破壊された時他のクリーチャーを1体自分の墓地から手札に戻してもよい。',
+    'このクリーチャーが破壊された時自分の他のクリーチャーを1体自分の墓地から手札に戻してもよい。'
+   ];
+   if(graveRecovery.includes(line)){
+    if(death.length)throw Error('重複する破壊時能力');
+    death.push({op:'Select',origin:'grave',to:'hand',n:1,optional:true,g186Other:true,filter:{g228Face:{type:'creature'}},title:'墓地から手札に戻す他のクリーチャーを選ぶ'});
+    continue;
+   }
+   if(line==='このクリーチャーが破壊された時進化ではないデーモン・コマンドをすべて自分の墓地からバトルゾーンに出してもよい。'){
+    if(death.length)throw Error('重複する破壊時能力');
+    death.push({op:'Offer',title:'墓地から進化ではないデーモン・コマンドをすべて出す？',defs:[
+     {op:'Select',origin:'grave',n:'all',deploy:true,filter:{creature:true,nonEvolution:true,race:'デーモン・コマンド'},title:'墓地から出すデーモン・コマンドをすべて選ぶ'}
+    ]});
+    continue;
+   }
   }
   if(phase>=482&&creature){
    const unblocked=line.match(/^このクリーチャーが相手プレイヤーを攻撃してブロックされなかった(?:時|とき)(.+)$/);

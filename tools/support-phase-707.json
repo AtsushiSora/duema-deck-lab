@@ -1,0 +1,280 @@
+{
+  "phase": 707,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5954,
+  "description": "サイレントスキルの攻撃時ドロー、破壊時の墓地回収、進化クリーチャーの破壊時の一括蘇生を実装。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/45909/",
+    "https://dm.takaratomy.co.jp/rule/qa/39558/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35435/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35436/"
+  ],
+  "cards": [
+    {
+      "id": "dm13-008",
+      "name": "インスペクト・シード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-008",
+      "faces": [
+        {
+          "name": "インスペクト・シード",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "サイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\nこのターン、自分のクリーチャーが攻撃する時、カードを１枚引いてもよい。",
+          "race": "ゲル・フィッシュ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g496Silent": [
+          {
+            "op": "TurnAttackDraw613",
+            "optional": true,
+            "spell": false
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "99e87321ce2f1d270d19eb8c861c4bf816b1987afd44c9ec5d583560432c0945",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-046",
+      "name": "暗闇に潜む者バット・ドクター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-046",
+      "faces": [
+        {
+          "name": "暗闇に潜む者バット・ドクター",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンから自分の墓地に置かれたとき、自分の墓地から他のクリーチャーを１体選び、自分の手札に加えてもよい。",
+          "race": "ゴースト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "g186Other": true,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "title": "墓地から手札に戻す他のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "cccf9b9a3de8332f75393c44f878c94ce43cafc0757477b116fae7f7af6a9c62",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-s05",
+      "name": "悪魔神デスモナーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-s05",
+      "faces": [
+        {
+          "name": "悪魔神デスモナーク",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化-自分のデーモン・コマンド１体の上に置く。\nW・ブレイカー\nこのクリーチャーが破壊された時、進化ではないデーモン・コマンドをすべて、自分の墓地からバトルゾーンに出してもよい。",
+          "race": "デーモン・コマンド",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "デーモン・コマンド"
+        },
+        "breaker": 2,
+        "g172Death": [
+          {
+            "op": "Offer",
+            "title": "墓地から進化ではないデーモン・コマンドをすべて出す？",
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "n": "all",
+                "deploy": true,
+                "filter": {
+                  "creature": true,
+                  "nonEvolution": true,
+                  "race": "デーモン・コマンド"
+                },
+                "title": "墓地から出すデーモン・コマンドをすべて選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-s05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "e02f388a9913e8752c208875eadc8a4aa7f2f49f4808812367744202869f9ba7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm18-073",
+      "name": "暗闇に潜む者バット・ドクター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm18-073",
+      "faces": [
+        {
+          "name": "暗闇に潜む者バット・ドクター",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが破壊された時、他のクリーチャーを１体、自分の墓地から手札に戻してもよい。",
+          "race": "ゴースト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "canonicalId": "dm09-046",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm18-073.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "74442c38d8e3821658f7c6b1326851db52bd24d4cc545d803c52fea18aa2fba0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx10-052",
+      "name": "暗闇に潜む者バット・ドクター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx10-052",
+      "faces": [
+        {
+          "name": "暗闇に潜む者バット・ドクター",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが破壊された時、自分の他のクリーチャーを１体、自分の墓地から手札に戻してもよい。",
+          "race": "ゴースト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "canonicalId": "dm09-046",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx10-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "1c103ebc8d2824a33631dba77a87cc62e1824d86c2aa3ee467765a71c9c272ef",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc55-018",
+      "name": "悪魔神デスモナーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc55-018",
+      "faces": [
+        {
+          "name": "悪魔神デスモナーク",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化-自分のデーモン・コマンド１体の上に置く。\nW・ブレイカー\nこのクリーチャーが破壊された時、進化ではないデーモン・コマンドをすべて、自分の墓地からバトルゾーンに出してもよい。",
+          "race": "デーモン・コマンド",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "canonicalId": "dm19-s05",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc55-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "d79afc6869b1737fad28255c9d1f1022e78c2dc8b99b976532c06c1bc7dd066b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx19-s21",
+      "name": "悪魔神デスモナーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx19-s21",
+      "faces": [
+        {
+          "name": "悪魔神デスモナーク",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化-自分のデーモン・コマンド１体の上に置く。\nW・ブレイカー\nこのクリーチャーが破壊された時、進化ではないデーモン・コマンドをすべて、自分の墓地からバトルゾーンに出してもよい。",
+          "race": "デーモン・コマンド",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "canonicalId": "dm19-s05",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx19-s21.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "9b51922182981e32238822b0031105cb7d24ef13bc56f73ca0b200d5082ea837",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm13-008": 4,
+      "dm09-046": 4,
+      "dm19-s05": 4,
+      "dm18-073": 4,
+      "dmx10-052": 4,
+      "dmc55-018": 4,
+      "dmx19-s21": 4
+    }
+  }
+}

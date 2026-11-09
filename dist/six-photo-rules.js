@@ -261,7 +261,7 @@ export function createSixPhotoRules(api){
  const countDraw=(s,p,t)=>{const owner=t.owner==='opponent'?1-p:p;if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle);const rows=t.zone==='battle'?(t.g262Elements?s.players[owner].battle:creatures(s,owner)).filter(y=>!y.sealed):s.players[owner][t.zone]||[];return rows.filter(y=>(!t.g329Other||y.uid!==t.uid||(y.incarnation||0)!==(t.incarnation||0))&&matches(s,owner,y,t.filter)).length;};
  // Attack watchers include tamaseeds; losing an ability or a seal disables the source.
  const watchSources252=(s,p)=>s.players[p].battle.filter(x=>!x.sealed&&!api.ignored(s,x));
- const attackDraws613=(s,p)=>(s.extLimits||[]).filter(l=>l.kind==='g613AttackDraw'&&l.player===p&&l.turn===s.turn&&!api.spellIgnored(s,{type:'spell',spellSource:l.source,cost:cost(card(l.source))}));
+ const attackDraws613=(s,p)=>(s.extLimits||[]).filter(l=>l.kind==='g613AttackDraw'&&l.player===p&&l.turn===s.turn&&(l.spell===false||!api.spellIgnored(s,{type:'spell',spellSource:l.source,cost:cost(card(l.source))})));
  function attackWatches252(s,p,attacker){
   for(const l of attackDraws613(s,p))api.enqueue(s,p,{source:l.source,effect:'extended',task:task('g34_Draw',p,l.source,{n:1,...(l.optional?{optional:true}:{})})});
   // Redzone records this attack immediately after this hook; its existing counter
@@ -1340,7 +1340,7 @@ export function createSixPhotoRules(api){
   ));
   break;
  }
- case'g34_TurnAttackDraw613':(s.extLimits??=[]).push({kind:'g613AttackDraw',player:t.p,source:t.source,turn:s.turn,expires:'end',who:s.active,...(t.optional?{optional:true}:{})});break;
+ case'g34_TurnAttackDraw613':(s.extLimits??=[]).push({kind:'g613AttackDraw',player:t.p,source:t.source,turn:s.turn,expires:'end',who:s.active,...(t.spell===false?{spell:false}:{}),...(t.optional?{optional:true}:{})});break;
  case'g34_SpellLock489':(s.extLimits??=[]).push({kind:t.max===undefined?'cast':'spellCostLock',player:1-t.p,controller:t.p,expires:t.expires,who:t.expires==='end'?s.active:t.p,...(t.max===undefined?{}:{max:t.max})});break;
  case'g34_AttackCap627':{
   const player=1-t.p;

@@ -172019,19 +172019,123 @@
       ],
       "supportBatch": "phase-706",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm13-008",
+      "name": "インスペクト・シード",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ゲル・フィッシュ",
+      "text": "サイレントスキル(自分のターンのはじめに、このクリーチャーがタップされていたら、アンタップするかわりに次の能力を使ってもよい)\nこのターン、自分のクリーチャーが攻撃する時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-008",
+      "limit": 4,
+      "g496Silent": [
+        {
+          "op": "TurnAttackDraw613",
+          "optional": true,
+          "spell": false
+        }
+      ],
+      "supportBatch": "phase-707",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm09-046",
+      "name": "暗闇に潜む者バット・ドクター",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ゴースト",
+      "text": "このクリーチャーがバトルゾーンから自分の墓地に置かれたとき、自分の墓地から他のクリーチャーを１体選び、自分の手札に加えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-046",
+      "limit": 4,
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "g186Other": true,
+          "filter": {
+            "g228Face": {
+              "type": "creature"
+            }
+          },
+          "title": "墓地から手札に戻す他のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-707",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-s05",
+      "name": "悪魔神デスモナーク",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "デーモン・コマンド",
+      "text": "進化-自分のデーモン・コマンド１体の上に置く。\nW・ブレイカー\nこのクリーチャーが破壊された時、進化ではないデーモン・コマンドをすべて、自分の墓地からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-s05",
+      "limit": 4,
+      "evolution": {
+        "race": "デーモン・コマンド"
+      },
+      "breaker": 2,
+      "g172Death": [
+        {
+          "op": "Offer",
+          "title": "墓地から進化ではないデーモン・コマンドをすべて出す？",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "n": "all",
+              "deploy": true,
+              "filter": {
+                "creature": true,
+                "nonEvolution": true,
+                "race": "デーモン・コマンド"
+              },
+              "title": "墓地から出すデーモン・コマンドをすべて選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-707",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 706,
+    "phase": 707,
     "checkedAt": "2026-11-09",
-    "baseCount": 5950,
-    "newEffectCards": 4,
+    "baseCount": 5954,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5954,
+    "totalCount": 5957,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/38652/"
+      "https://dm.takaratomy.co.jp/rule/qa/45909/",
+      "https://dm.takaratomy.co.jp/rule/qa/39558/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35435/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35436/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -184223,6 +184327,22 @@
           "https://dm.takaratomy.co.jp/rule/qa/43928/",
           "https://dm.takaratomy.co.jp/rule/qa/34243/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31627/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 706,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5950,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 5954,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/38652/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
