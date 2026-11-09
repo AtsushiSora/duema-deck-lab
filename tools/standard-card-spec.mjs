@@ -2564,6 +2564,19 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=761&&f.typeText==='クリーチャー'){
+  const giantAura=min=>({
+   breaker:2,
+   g205Aura:{filter:{creature:true,race:'ジャイアント',...(min?{min}:{})},power:5000,other:true},
+   g557BreakAura:{race:'ジャイアント',...(min?{min}:{}),amount:1,other:true}
+  });
+  if(compact363==='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)このクリーチャーがバトルゾーンに出た時自分のマナゾーンにあるドリームメイトとジャイアントをすべてアンタップする。自分の他のコスト7以上のジャイアントはすべてパワーを+5000されシールドをさらにひとつブレイクする。')
+   return {...giantAura(7),effect:'sixPhoto',g34Tasks:[{op:'UntapMana',filter:{faceUp:true,raceAny:['ドリームメイト','ジャイアント']}}]};
+  if(compact363==='バトルゾーンにある自分の他のジャイアントすべてのパワーは+5000されシールドをさらに1枚ブレイクする。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return giantAura();
+  if(compact363==='オシオキムーン:カードが自分のシールドゾーンを離れた時クリーチャーを1体選びタップまたはアンタップする。')
+   return {g536ShieldLeft:[{op:'Target',anyOwner:true,g235TapOrUntap:true,title:'タップまたはアンタップするクリーチャーを選ぶ'}]};
+ }
  if(phase>=760&&f.typeText==='クリーチャー'){
   if(compact363==='マナゾーンに置く時このカードはタップして置く。W・ブレイカーこのクリーチャーが召喚されてバトルゾーンに出た時自分のマナゾーンにある闇のカードと火のカードをすべてアンタップする。')
    return {breaker:2,summonedEntryOnly:true,effect:'sixPhoto',g34Tasks:[{op:'UntapMana',manaColorsAny:['闇','火']}]};

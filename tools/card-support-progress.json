@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6130,
-  "pendingNames": 5697,
-  "phase": 760,
+  "supportedNames": 6133,
+  "pendingNames": 5694,
+  "phase": 761,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3395,
+    "クリーチャー": 3392,
     "NEOクリーチャー": 152,
     "呪文": 813,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4170,
+    "未対応の能力文": 4167,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -9302,29 +9302,84 @@
           "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-044"
         }
       ]
+    },
+    {
+      "phase": 761,
+      "cards": [
+        {
+          "id": "dmr21-018",
+          "name": "甘味の超人"
+        },
+        {
+          "id": "dmr12-015",
+          "name": "三つ目の超人"
+        },
+        {
+          "id": "dmrp16-030",
+          "name": "千年の月のファラオ"
+        }
+      ],
+      "supportedNames": 6133,
+      "pendingNames": 5694,
+      "verification": {
+        "focusedPassed": 7,
+        "regressionPassed": 111,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "3種類3版の公式本文・基本情報・マナ・画像・同名商品・使用制限を照合。ジャイアント強化のコスト条件と重複、攻撃と効果での追加ブレイク、マナの種族・裏向きとアンタップ禁止、シールドの束のカード単位の離脱と選択途中の復元を検証。既存カード定義は基点と一致。",
+        "runtimeNote": "強制終了込み各最大10分。Phase 205・235・536・557・747・760から関連回帰111件が成功。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dm36-009",
+          "name": "無双大地ナズナグマ",
+          "check": "初出の公式本文と、ソウルをバトルゾーン以外でも参照する公式旧QA 37634を確認。公式本文だけではカード自身のソウル標識を取りこぼす版があるため、使用可能なW・ソウルのカード群を印刷面と照合し、登場監視とマナのフィルターを検証するまで保留。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-009"
+        },
+        {
+          "id": "dm24rp2-051",
+          "name": "粛清者ゴットハルト",
+          "check": "初出の公式本文と同名商品を確認。対象を最大2体重複なく選ぶ段階と、それぞれの位相を指定する段階、処理中の誘発順と保存復元を検証するまで保留。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-051"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 760,
-    "nextPhase": 761,
+    "lastVerifiedPhase": 761,
+    "nextPhase": 762,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm36-009",
-        "name": "無双大地ナズナグマ",
-        "check": "他のW・ソウル持ちの登場監視、マナのクリーチャーのアンタップとT・ブレイカーを公式本文と照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-009"
+        "id": "promoy17-033",
+        "name": "ワ・タンポ－ポ・タンク",
+        "check": "マッハファイターと破壊をマナ移動に置き換える処理を再利用できるか、正規表記・再録・公式裁定を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-033"
       },
       {
-        "id": "dmr21-018",
-        "name": "甘味の超人",
-        "check": "登場時の種族別マナのアンタップと、他のコスト7以上のジャイアントに付与するパワーと追加ブレイクを公式本文と照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-018"
+        "id": "dm22rp2-023",
+        "name": "試練の大地ダン・ティラン",
+        "check": "登場ターンの相手クリーチャーの攻撃に反応する対象と、マナ移動および攻撃中止を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-023"
+      },
+      {
+        "id": "dm24rp2-048",
+        "name": "ムーンベル シアン",
+        "check": "マッハファイターと、自分の超化獣への任意のバトル置換を公式本文と関連裁定に照らして確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-048"
+      },
+      {
+        "id": "dm36-009",
+        "name": "無双大地ナズナグマ",
+        "check": "初出の公式本文と、ソウルをバトルゾーン以外でも参照する公式旧QA 37634を確認。公式本文だけではカード自身のソウル標識を取りこぼす版があるため、使用可能なW・ソウルのカード群を印刷面と照合し、登場監視とマナのフィルターを検証するまで保留。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-009"
       },
       {
         "id": "dm24rp2-051",
         "name": "粛清者ゴットハルト",
-        "check": "S・トリガー召喚後の両陣営からの最大2体選択、各対象のタップ・アンタップの選択順を公式本文と照合する。",
+        "check": "初出の公式本文と同名商品を確認。対象を最大2体重複なく選ぶ段階と、それぞれの位相を指定する段階、処理中の誘発順と保存復元を検証するまで保留。",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-051"
       },
       {
@@ -9608,12 +9663,6 @@
         "name": "戦場のロックンロール",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-102",
         "check": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
-      },
-      {
-        "id": "dmr12-015",
-        "name": "三つ目の超人",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-015",
-        "check": "公式QA 37034を確認。+5000と追加ブレイクが複数の付与元で加算される。効果ブレイクと呪文ブレイクの扱いはカニスの共通調査と合わせる。"
       },
       {
         "id": "dmr12-008",

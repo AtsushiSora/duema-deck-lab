@@ -177502,21 +177502,125 @@
       "g695UntapAfterBlock": true,
       "supportBatch": "phase-760",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-018",
+      "name": "甘味の超人",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ジャイアント",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分のマナゾーンにあるドリームメイトとジャイアントをすべてアンタップする。\n自分の他の、コスト７以上のジャイアントはすべて、パワーを+5000され、シールドをさらにひとつブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-018",
+      "limit": 4,
+      "breaker": 2,
+      "g205Aura": {
+        "filter": {
+          "creature": true,
+          "race": "ジャイアント",
+          "min": 7
+        },
+        "power": 5000,
+        "other": true
+      },
+      "g557BreakAura": {
+        "race": "ジャイアント",
+        "min": 7,
+        "amount": 1,
+        "other": true
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "UntapMana",
+          "filter": {
+            "faceUp": true,
+            "raceAny": [
+              "ドリームメイト",
+              "ジャイアント"
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-761",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-015",
+      "name": "三つ目の超人",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "ジャイアント",
+      "text": "バトルゾーンにある自分の他のジャイアントすべてのパワーは+5000され、シールドをさらに１枚ブレイクする。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-015",
+      "limit": 4,
+      "breaker": 2,
+      "g205Aura": {
+        "filter": {
+          "creature": true,
+          "race": "ジャイアント"
+        },
+        "power": 5000,
+        "other": true
+      },
+      "g557BreakAura": {
+        "race": "ジャイアント",
+        "amount": 1,
+        "other": true
+      },
+      "supportBatch": "phase-761",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-030",
+      "name": "千年の月のファラオ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4500,
+      "race": "エンジェル・コマンド/月光王国",
+      "text": "オシオキムーン：カードが自分のシールドゾーンを離れた時、クリーチャーを１体選び、タップまたはアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-030",
+      "limit": 4,
+      "g536ShieldLeft": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "g235TapOrUntap": true,
+          "title": "タップまたはアンタップするクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-761",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 760,
+    "phase": 761,
     "checkedAt": "2026-11-10",
-    "baseCount": 6127,
+    "baseCount": 6130,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6130,
+    "totalCount": 6133,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35256/",
-      "https://dm.takaratomy.co.jp/rule/qa/44603/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31636/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37034/",
+      "https://dm.takaratomy.co.jp/rule/qa/38756/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -190725,6 +190829,24 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/qa_old/36347/",
           "https://dm.takaratomy.co.jp/rule/qa/46490/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 760,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6127,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6130,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35256/",
+          "https://dm.takaratomy.co.jp/rule/qa/44603/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31636/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

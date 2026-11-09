@@ -1,0 +1,165 @@
+{
+  "phase": 761,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6130,
+  "description": "ジャイアントの常在強化、種族別マナのアンタップ、シールド離脱時のタップまたはアンタップに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37034/",
+    "https://dm.takaratomy.co.jp/rule/qa/38756/"
+  ],
+  "cards": [
+    {
+      "id": "dmr21-018",
+      "name": "甘味の超人",
+      "faces": [
+        {
+          "name": "甘味の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、自分のマナゾーンにあるドリームメイトとジャイアントをすべてアンタップする。\n自分の他の、コスト７以上のジャイアントはすべて、パワーを+5000され、シールドをさらにひとつブレイクする。",
+          "race": "ジャイアント",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-018",
+      "spec": {
+        "breaker": 2,
+        "g205Aura": {
+          "filter": {
+            "creature": true,
+            "race": "ジャイアント",
+            "min": 7
+          },
+          "power": 5000,
+          "other": true
+        },
+        "g557BreakAura": {
+          "race": "ジャイアント",
+          "min": 7,
+          "amount": 1,
+          "other": true
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "UntapMana",
+            "filter": {
+              "faceUp": true,
+              "raceAny": [
+                "ドリームメイト",
+                "ジャイアント"
+              ]
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "a94ac0a9c1a86b4284d9e9bf9e8203d4e34d8b88a411b97c1262ca65c9ece061",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr12-015",
+      "name": "三つ目の超人",
+      "faces": [
+        {
+          "name": "三つ目の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "バトルゾーンにある自分の他のジャイアントすべてのパワーは+5000され、シールドをさらに１枚ブレイクする。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "ジャイアント",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-015",
+      "spec": {
+        "breaker": 2,
+        "g205Aura": {
+          "filter": {
+            "creature": true,
+            "race": "ジャイアント"
+          },
+          "power": 5000,
+          "other": true
+        },
+        "g557BreakAura": {
+          "race": "ジャイアント",
+          "amount": 1,
+          "other": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr12-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "75db9c79bce6d71de93f0a33b0092278e86d4ada858a51dec245367327ca5686",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-030",
+      "name": "千年の月のファラオ",
+      "faces": [
+        {
+          "name": "千年の月のファラオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "オシオキムーン：カードが自分のシールドゾーンを離れた時、クリーチャーを１体選び、タップまたはアンタップする。",
+          "race": "エンジェル・コマンド/月光王国",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-030",
+      "spec": {
+        "g536ShieldLeft": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "g235TapOrUntap": true,
+            "title": "タップまたはアンタップするクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "6abc19ba2201d18acd01b8522e2cfae64c43cf9863c66b7968c02e6efed07ef5",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr21-018": 4,
+      "dmr12-015": 4,
+      "dmrp16-030": 4
+    }
+  }
+}
