@@ -175927,23 +175927,136 @@
       "g745MagibomberFight": true,
       "supportBatch": "phase-745",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-031",
+      "name": "\"麗片禅\"戦車 バッドラマー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "ビートジョッキー",
+      "text": "B・A・D ２（このクリーチャーの召喚コストを２少なくしてもよい。そうしたら、このターンの終わりにこのクリーチャーを破壊する）\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\nこのクリーチャーがバトルに勝った時、カードを１枚引く。その後、「B・A・D」を持つビートジョッキーを１体、自分の手札から出してもよい。このターンの終わりに、そのビートジョッキーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-031",
+      "limit": 4,
+      "bad": 2,
+      "g175Bad": true,
+      "speedAttacker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Fight240",
+          "self": true,
+          "optional": true
+        }
+      ],
+      "g189BattleWin": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "delayed": "grave",
+          "filter": {
+            "creature": true,
+            "race": "ビートジョッキー",
+            "g746Bad": true
+          },
+          "title": "手札からB・A・Dを持つビートジョッキーを1体まで出す"
+        }
+      ],
+      "supportBatch": "phase-746",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-001",
+      "name": "むじゅうりょ君",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "ジョーカーズ",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルに勝った時、カードを１枚引く。その後、自分のマナゾーンにあるカードの枚数以下のコストを持つジョーカーズを１体、自分のマナゾーンから選び、バトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-001",
+      "limit": 4,
+      "breaker": 2,
+      "g189BattleWin": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "g746OwnManaCost": true,
+          "filter": {
+            "creature": true,
+            "race": "ジョーカーズ"
+          },
+          "title": "マナの枚数以下のコストのジョーカーズを1体まで出す"
+        }
+      ],
+      "supportBatch": "phase-746",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmbd09-004",
+      "name": "リュウセイ・天下五剣カイザー",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 14000,
+      "race": "レッド・コマンド・ドラゴン/ハンター",
+      "text": "スピードアタッカー\nマッハファイター\nT・ブレイカー\nこのクリーチャーがバトルに勝った時、次の自分のターンのはじめまで、自分はゲームに負けず、相手は勝てない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd09-004",
+      "limit": 4,
+      "speedAttacker": true,
+      "machFighter": true,
+      "breaker": 3,
+      "g189BattleWin": [
+        {
+          "op": "Lock",
+          "g746Self": true,
+          "limit": {
+            "kind": "g34NoLose"
+          }
+        }
+      ],
+      "supportBatch": "phase-746",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 745,
+    "phase": 746,
     "checkedAt": "2026-11-10",
-    "baseCount": 6080,
+    "baseCount": 6083,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6083,
+    "totalCount": 6086,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/33393/",
-      "https://dm.takaratomy.co.jp/rule/qa/33394/",
-      "https://dm.takaratomy.co.jp/rule/qa/41150/",
-      "https://dm.takaratomy.co.jp/rule/qa/45547/",
-      "https://dm.takaratomy.co.jp/rule/qa/48947/"
+      "https://dm.takaratomy.co.jp/rule/qa/44319/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -188873,6 +188986,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/45212/",
           "https://dm.takaratomy.co.jp/rule/qa/46822/",
           "https://dm.takaratomy.co.jp/rule/qa/47059/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 745,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6080,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6083,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/33393/",
+          "https://dm.takaratomy.co.jp/rule/qa/33394/",
+          "https://dm.takaratomy.co.jp/rule/qa/41150/",
+          "https://dm.takaratomy.co.jp/rule/qa/45547/",
+          "https://dm.takaratomy.co.jp/rule/qa/48947/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

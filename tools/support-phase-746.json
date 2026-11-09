@@ -1,0 +1,239 @@
+{
+  "phase": 746,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6083,
+  "description": "バトル勝利後の手札・マナからの展開と、次の自分のターン開始までの敗北防止に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/44319/"
+  ],
+  "cards": [
+    {
+      "id": "dm22ex1-031",
+      "name": "\"麗片禅\"戦車 バッドラマー",
+      "faces": [
+        {
+          "name": "\"麗片禅\"戦車 バッドラマー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "B・A・D ２（このクリーチャーの召喚コストを２少なくしてもよい。そうしたら、このターンの終わりにこのクリーチャーを破壊する）\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーを１体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。\nこのクリーチャーがバトルに勝った時、カードを１枚引く。その後、「B・A・D」を持つビートジョッキーを１体、自分の手札から出してもよい。このターンの終わりに、そのビートジョッキーを破壊する。",
+          "race": "ビートジョッキー",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-031",
+      "spec": {
+        "bad": 2,
+        "g175Bad": true,
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240",
+            "self": true,
+            "optional": true
+          }
+        ],
+        "g189BattleWin": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "delayed": "grave",
+            "filter": {
+              "creature": true,
+              "race": "ビートジョッキー",
+              "g746Bad": true
+            },
+            "title": "手札からB・A・Dを持つビートジョッキーを1体まで出す"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ec8bfa3ea69dbeb5ed0f606c757dbffb5e52fe803363df1ea8870af4addf8f97",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp08-001",
+      "name": "むじゅうりょ君",
+      "faces": [
+        {
+          "name": "むじゅうりょ君",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルに勝った時、カードを１枚引く。その後、自分のマナゾーンにあるカードの枚数以下のコストを持つジョーカーズを１体、自分のマナゾーンから選び、バトルゾーンに出してもよい。",
+          "race": "ジョーカーズ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-001",
+      "spec": {
+        "breaker": 2,
+        "g189BattleWin": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "g746OwnManaCost": true,
+            "filter": {
+              "creature": true,
+              "race": "ジョーカーズ"
+            },
+            "title": "マナの枚数以下のコストのジョーカーズを1体まで出す"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "e429794a22efab1ab585d6d23c75d29fcc15dc0b38dcc6ccff4dd732d7e52dda",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmbd09-004",
+      "name": "リュウセイ・天下五剣カイザー",
+      "faces": [
+        {
+          "name": "リュウセイ・天下五剣カイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "スピードアタッカー\nマッハファイター\nT・ブレイカー\nこのクリーチャーがバトルに勝った時、次の自分のターンのはじめまで、自分はゲームに負けず、相手は勝てない。",
+          "race": "レッド・コマンド・ドラゴン/ハンター",
+          "powerText": "14000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd09-004",
+      "spec": {
+        "speedAttacker": true,
+        "machFighter": true,
+        "breaker": 3,
+        "g189BattleWin": [
+          {
+            "op": "Lock",
+            "g746Self": true,
+            "limit": {
+              "kind": "g34NoLose"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd09-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "293e8c2f76d202eee4567685526468b9241db8933e74acf43ee1052641c7b252",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23bd4-016",
+      "canonicalId": "dmbd09-004",
+      "name": "リュウセイ・天下五剣カイザー",
+      "faces": [
+        {
+          "name": "リュウセイ・天下五剣カイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "スピードアタッカー\nマッハファイター\nT・ブレイカー\nこのクリーチャーがバトルに勝った時、次の自分のターンのはじめまで、自分はゲームに負けない。",
+          "race": "レッド・コマンド・ドラゴン/ハンター",
+          "powerText": "14000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-016",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd4-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "1d7b96343b0d6cd5cc5eb1d764a56d24664e0ede350445e3f6693ac32239e0a2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex09-s03",
+      "canonicalId": "dmbd09-004",
+      "name": "リュウセイ・天下五剣カイザー",
+      "faces": [
+        {
+          "name": "リュウセイ・天下五剣カイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "スピードアタッカー\nマッハファイター\nT・ブレイカー\nこのクリーチャーがバトルに勝った時、次の自分のターンのはじめまで、自分はゲームに負けず、相手は勝てない。",
+          "race": "レッド・コマンド・ドラゴン/ハンター",
+          "powerText": "14000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex09-s03",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex09-s03.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "961b5ec1120975dbf1ff4332363805f252a1ae67b350eb286458e04f987a5f73",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22ex1-031": 4,
+      "dmrp08-001": 4,
+      "dmbd09-004": 4,
+      "dm23bd4-016": 4,
+      "dmex09-s03": 4
+    }
+  }
+}

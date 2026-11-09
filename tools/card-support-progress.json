@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-09",
   "catalogueNames": 11828,
-  "supportedNames": 6083,
-  "pendingNames": 5745,
-  "phase": 745,
+  "supportedNames": 6086,
+  "pendingNames": 5742,
+  "phase": 746,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3443,
+    "クリーチャー": 3440,
     "NEOクリーチャー": 152,
     "呪文": 813,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4217,
+    "未対応の能力文": 4214,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -8563,18 +8563,95 @@
           "reason": "W・マジボンバー6。手札・山札から合計2体まで、残ったカードの順序、EXライフで閲覧中のカードを除外する裁定を検証する。 今回の単体マジボンバーと異なる処理の検証が必要なため保留。"
         }
       ]
+    },
+    {
+      "phase": 746,
+      "cards": [
+        {
+          "id": "dm22ex1-031",
+          "name": "\"麗片禅\"戦車 バッドラマー"
+        },
+        {
+          "id": "dmrp08-001",
+          "name": "むじゅうりょ君"
+        },
+        {
+          "id": "dmbd09-004",
+          "name": "リュウセイ・天下五剣カイザー"
+        }
+      ],
+      "supportedNames": 6086,
+      "pendingNames": 5742,
+      "verification": {
+        "focusedPassed": 9,
+        "regressionPassed": 200,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 5,
+        "scope": "公式同名検索で3種類とリュウセイの同名再録2版について全能力文・基本情報・マナ・JPEG画像・殿堂区分を照合。再録は元IDへ解決。任意の登場時バトル、同値、勝利後のドロー・手札またはマナからの任意展開、スレイヤーとの順序、終了時破壊、敗北防止の継続と失効・途中復元を検証。既存カード定義は基点と一致。",
+        "runtimeNote": "各実行は強制終了込み最大10分。Phase 175・189・240・523・588・744・745の関連回帰200件が成功（約25秒）。長時間対戦を対象外にした限定実行。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dmrp05-033",
+          "name": "イカリノ裁徒",
+          "reason": "初出とDMSD07再録の公式能力文・マナ・画像を照合。公式QA 39978・31797では通常シールド化のほか、既存の束への追加や城の設置もカード単位で誘発する。現在は一部の経路が共通の通知を通らないため、既存カードの通知を二重にせず全移動経路を検証できるまで保留。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-033"
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "対戦データにサイキック・クリーチャーの対象例がなく、対象判定と超次元への移動を実戦経路で検証できないため保留。"
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
+        },
+        {
+          "id": "dmrp14-km1",
+          "name": "爆龍皇 ダイナボルト",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-km1",
+          "reason": "W・マジボンバー6。手札・山札から合計2体まで、残ったカードの順序、EXライフで閲覧中のカードを除外する裁定を検証する。 今回の単体マジボンバーと異なる処理の検証が必要なため保留。"
+        },
+        {
+          "id": "dmrp05-025",
+          "name": "“真友”チュリス",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-025",
+          "reason": "B・A・Dと最大2の任意軽減の併用、および進化・離脱をまたぐスピードアタッカー付与と終了時破壊を合わせて検証するため保留。"
+        },
+        {
+          "id": "dmex14-s03",
+          "name": "超救命主 タイヨー",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-s03",
+          "reason": "公式QA 39393に従い自身を含む強制の表向きシールド化が必要。複数同時の破壊、シールド追加禁止、置換効果の競合を確認するため保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 745,
-    "nextPhase": 746,
+    "lastVerifiedPhase": 746,
+    "nextPhase": 747,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm22ex1-031",
-        "name": "\"麗片禅\"戦車 バッドラマー",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-031",
-        "check": "B・A・D、登場時の任意バトル、勝利後のドローと手札から出した対象の終了時破壊を確認する。"
+        "id": "dmr11-047",
+        "name": "先導する防衛者 イーグル",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr11-047",
+        "check": "ガードマンと勝利時にそのクリーチャー自身が行う効果ブレイクを確認する。発生源が離れた場合と選択した盾のUIDを検証する。"
+      },
+      {
+        "id": "dm23rp1-005",
+        "name": "パロッタ・剣・ルピア",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-005",
+        "check": "ドラゴンの攻撃監視と任意バトル、勝利したドラゴンのアンタップ、召喚軽減を確認する。"
+      },
+      {
+        "id": "dm24rp2-026",
+        "name": "ローズスパイク・バタフライ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-026",
+        "check": "自軍の勝利時の任意ドローと、タップ時にこのターン出た味方へマッハファイターを任意付与する処理を確認する。"
       },
       {
         "id": "dmrp05-025",

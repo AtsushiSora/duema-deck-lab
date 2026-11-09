@@ -2564,6 +2564,22 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=746&&f.typeText==='クリーチャー'){
+  const draw={op:'Draw',n:1};
+  const bad='B・A・D2(このクリーチャーの召喚コストを2少なくしてもよい。そうしたらこのターンの終わりにこのクリーチャーを破壊する)';
+  const win='このクリーチャーがバトルに勝った時';
+  if(compact363===bad+'スピードアタッカーW・ブレイカーこのクリーチャーが出た時相手のクリーチャーを1体選んでもよい。その選んだクリーチャーとこのクリーチャーをバトルさせる。'+win+'カードを1枚引く。その後「B・A・D」を持つビートジョッキーを1体自分の手札から出してもよい。このターンの終わりにそのビートジョッキーを破壊する。')
+   return {bad:2,g175Bad:true,speedAttacker:true,breaker:2,effect:'sixPhoto',
+    g34Tasks:[{op:'Fight240',self:true,optional:true}],
+    g189BattleWin:[draw,{op:'Select',origin:'hand',n:1,deploy:true,optional:true,delayed:'grave',
+     filter:{creature:true,race:'ビートジョッキー',g746Bad:true},title:'手札からB・A・Dを持つビートジョッキーを1体まで出す'}]};
+  if(compact363==='W・ブレイカー'+win+'カードを1枚引く。その後自分のマナゾーンにあるカードの枚数以下のコストを持つジョーカーズを1体自分のマナゾーンから選びバトルゾーンに出してもよい。')
+   return {breaker:2,g189BattleWin:[draw,{op:'Select',origin:'mana',n:1,deploy:true,optional:true,g746OwnManaCost:true,
+    filter:{creature:true,race:'ジョーカーズ'},title:'マナの枚数以下のコストのジョーカーズを1体まで出す'}]};
+  const protect='スピードアタッカーマッハファイターT・ブレイカー'+win+'次の自分のターンのはじめまで';
+  if(compact363===protect+'自分はゲームに負けず相手は勝てない。'||compact363===protect+'自分はゲームに負けない。')
+   return {speedAttacker:true,machFighter:true,breaker:3,g189BattleWin:[{op:'Lock',g746Self:true,limit:{kind:'g34NoLose'}}]};
+ }
  if(phase>=745&&f.typeText==='クリーチャー'){
   const bad='B・A・D2(このクリーチャーをコストを2少なくして召喚してもよい。そうしたらこのターンの終わりにこのクリーチャーを破壊する)スピードアタッカー';
   const fast={bad:2,g175Bad:true,speedAttacker:true};
