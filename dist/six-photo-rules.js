@@ -1853,7 +1853,20 @@ export function createSixPhotoRules(api){
   const c=effective(x,s),first=!used(s,'g191Tapped',x);mark(s,'g191Tapped',x);if(first&&c.g219FirstTap)queue(s,p,x,c.g219FirstTap);if(first&&c.g191FirstTapUntap)queue(s,p,x,[E('Untap',{g191First:true})]);if(c.g188Tapped)queue(s,p,x,c.g188Tapped);if(c.g34Role==='fourJustice')queue(s,p,x,[C('justiceBreak')]);if(ninja(effective(x,s)))for(const y of active(s,p,'mukade'))if(!used(s,'g34FirstTap',y)){mark(s,'g34FirstTap',y);queue(s,p,y,[E('Draw',{n:1,optional:true})]);}},
  // Remember the physical incarnation at the break, then follow later evolution at turn end.
  broken484(s,context,n){if(!n||!context||context.reverse||context.burn)return;const p=context.player,x=s.players[p]?.battle.find(x=>x.uid===context.sourceUid&&(context.incarnation===undefined||(x.incarnation||0)===context.incarnation));if(x&&!x.sealed&&effective(x,s).g484BreakEndReturn)queue(s,p,x,[E('BreakDelay484')]);},
- unblocked482(s,p,x){const defs=!x.sealed&&!api.selfStopped(s,p)&&effective(x,s).g482Unblocked;if(!defs)return false;queue(s,p,x,defs);return true;},
+ unblocked482(s,p,x){
+  if(x.sealed)return false;
+  const attacker=effective(x,s),defs=!api.selfStopped(s,p)&&attacker.g482Unblocked;
+  if(defs)queue(s,p,x,defs);
+  let triggered=!!defs;
+  if(!s.attack.g484Blocked)for(const source of creatures(s,p)){
+   if(source.sealed)continue;
+   const races=effective(source,s).g701UnblockedMana;
+   if(!races?.some(name=>race(attacker,name)))continue;
+   queue(s,p,source,[{op:'OpponentManaLoss478'}]);
+   triggered=true;
+  }
+  return triggered;
+ },
  untapped(s,p,x,turnStart=false){recordUntap472(s,p,x);const defs=effective(x,s).g299Untapped;if(!x.sealed&&defs)queue(s,p,x,defs);if(turnStart&&effective(x,s).g34Role==='kusabi')queue(s,p,x,[E('Ramp',{n:2,optional:true}),C('kusabi12')]);},
  shieldLeft(s,p,shield,group){s.g34ShieldLeftTurn=s.turn;if(s.leaving)(s.g536ShieldDepartures??=[]).push(p);else shieldDeparture536(s,p);if(group==null)return;for(const x of s.players[p].battle){if(!api.layers(x).some(z=>(z.exLifeShieldUids||[z.exLifeShieldUid]).includes(group))||api.ignored(s,x))continue;const role=card(x).g34Role;if(role==='doll')queue(s,p,x,[C('dollModes')]);if(role==='romaion')queue(s,p,x,[exec('hand',8,{spellOnly:true})]);if(role==='godtime')queue(s,p,x,[E('Offer',{defs:[C('endTurn')]})]);}},
  // A departing watcher can only observe its own departure (603.5d).

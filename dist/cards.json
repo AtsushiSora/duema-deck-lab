@@ -171021,20 +171021,169 @@
       ],
       "supportBatch": "phase-700",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm12-s03",
+      "name": "蛇魂王ナーガ",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 9000,
+      "race": "ナーガ",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n進化Vー自分のマーフォーク１体とキマイラ１体を重ねた上に置く。\nこのクリーチャーはブロックされない。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーがバトルゾーンを離れた時、クリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-s03",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "race": "マーフォーク"
+          },
+          {
+            "race": "キマイラ"
+          }
+        ]
+      },
+      "unblockable": true,
+      "breaker": 2,
+      "g172Leave": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-701",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm12-019",
+      "name": "超神機鎧冑ゼノメノン",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "ゼノパーツ/ジャイアント・インセクト",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分のゼノパーツまたはジャイアント・インセクト１体の上に置く。\nバトルゾーンにある自分の他のゼノパーツとジャイアント・インセクトすべてのパワーは+2000される。\n自分のゼノパーツまたはジャイアント・インセクトが相手を攻撃してブロックされなかった時、相手は自分自身のマナゾーンからカードを１枚選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-019",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "ゼノパーツ"
+          },
+          {
+            "race": "ジャイアント・インセクト"
+          }
+        ]
+      },
+      "g205Aura": {
+        "filter": {
+          "creature": true,
+          "raceAny": [
+            "ゼノパーツ",
+            "ジャイアント・インセクト"
+          ]
+        },
+        "power": 2000,
+        "other": true
+      },
+      "g701UnblockedMana": [
+        "ゼノパーツ",
+        "ジャイアント・インセクト"
+      ],
+      "supportBatch": "phase-701",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm12-020",
+      "name": "超剛勇幻風ジャガスター",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5500,
+      "race": "ワイルド・ベジーズ/レインボー・ファントム",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n進化ー自分のワイルド・ベジーズまたはレインボー・ファントム１体の上に置く。\nバトルゾーンにある自分の他のワイルド・ベジーズとレインボー・ファントムすべてのパワーは+2000される。\n自分のターンの終わりに、バトルゾーンにある自分のワイルド・ベジーズとレインボー・ファントムを、好きな数アンタップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-020",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "ワイルド・ベジーズ"
+          },
+          {
+            "race": "レインボー・ファントム"
+          }
+        ]
+      },
+      "g205Aura": {
+        "filter": {
+          "creature": true,
+          "raceAny": [
+            "ワイルド・ベジーズ",
+            "レインボー・ファントム"
+          ]
+        },
+        "power": 2000,
+        "other": true
+      },
+      "g174End": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "n": "all",
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "ワイルド・ベジーズ",
+              "レインボー・ファントム"
+            ]
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g510Untap": true,
+          "title": "アンタップする自分のクリーチャーを好きな数選ぶ"
+        }
+      ],
+      "supportBatch": "phase-701",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 700,
+    "phase": 701,
     "checkedAt": "2026-11-09",
-    "baseCount": 5930,
+    "baseCount": 5933,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5933,
+    "totalCount": 5936,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
-      "https://dm.takaratomy.co.jp/rule/qa/46490/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35225/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35222/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316639/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -183105,6 +183254,23 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37438/",
           "https://dm.takaratomy.co.jp/rule/qa/45603/",
           "https://dm.takaratomy.co.jp/rule/qa_old/34816/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 700,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5930,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5933,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
+          "https://dm.takaratomy.co.jp/rule/qa/46490/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

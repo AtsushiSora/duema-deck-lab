@@ -1,0 +1,270 @@
+{
+  "phase": 701,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5933,
+  "description": "進化Vの離脱時破壊、種族強化とブロックされない攻撃、ターン終了時の任意アンタップ。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35225/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35222/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316639/"
+  ],
+  "cards": [
+    {
+      "id": "dm12-s03",
+      "name": "蛇魂王ナーガ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-s03",
+      "faces": [
+        {
+          "name": "蛇魂王ナーガ",
+          "typeText": "進化クリーチャー(進化V)",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化Vー自分のマーフォーク１体とキマイラ１体を重ねた上に置く。\nこのクリーチャーはブロックされない。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーがバトルゾーンを離れた時、クリーチャーをすべて破壊する。",
+          "race": "ナーガ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "race": "マーフォーク"
+            },
+            {
+              "race": "キマイラ"
+            }
+          ]
+        },
+        "unblockable": true,
+        "breaker": 2,
+        "g172Leave": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-s03.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "bcbd0bde8ac40e2d7c74348441bde0b48e88f1536ebc87c2f97587d6bdf6df08",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm12-019",
+      "name": "超神機鎧冑ゼノメノン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-019",
+      "faces": [
+        {
+          "name": "超神機鎧冑ゼノメノン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分のゼノパーツまたはジャイアント・インセクト１体の上に置く。\nバトルゾーンにある自分の他のゼノパーツとジャイアント・インセクトすべてのパワーは+2000される。\n自分のゼノパーツまたはジャイアント・インセクトが相手を攻撃してブロックされなかった時、相手は自分自身のマナゾーンからカードを１枚選び、持ち主の墓地に置く。",
+          "race": "ゼノパーツ/ジャイアント・インセクト",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "ゼノパーツ"
+            },
+            {
+              "race": "ジャイアント・インセクト"
+            }
+          ]
+        },
+        "g205Aura": {
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "ゼノパーツ",
+              "ジャイアント・インセクト"
+            ]
+          },
+          "power": 2000,
+          "other": true
+        },
+        "g701UnblockedMana": [
+          "ゼノパーツ",
+          "ジャイアント・インセクト"
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "e1ffbf01530e12269aecb71dc88052ff81ba62d7045564d271409e7eec8f7324",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm12-020",
+      "name": "超剛勇幻風ジャガスター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-020",
+      "faces": [
+        {
+          "name": "超剛勇幻風ジャガスター",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化ー自分のワイルド・ベジーズまたはレインボー・ファントム１体の上に置く。\nバトルゾーンにある自分の他のワイルド・ベジーズとレインボー・ファントムすべてのパワーは+2000される。\n自分のターンの終わりに、バトルゾーンにある自分のワイルド・ベジーズとレインボー・ファントムを、好きな数アンタップしてもよい。",
+          "race": "ワイルド・ベジーズ/レインボー・ファントム",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "ワイルド・ベジーズ"
+            },
+            {
+              "race": "レインボー・ファントム"
+            }
+          ]
+        },
+        "g205Aura": {
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "ワイルド・ベジーズ",
+              "レインボー・ファントム"
+            ]
+          },
+          "power": 2000,
+          "other": true
+        },
+        "g174End": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "n": "all",
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "raceAny": [
+                "ワイルド・ベジーズ",
+                "レインボー・ファントム"
+              ]
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g510Untap": true,
+            "title": "アンタップする自分のクリーチャーを好きな数選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "a9ee3f714343549ac30488f7e4b2a5832200f1beae03a211899a3af350c16b05",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy3-019",
+      "name": "超神機鎧冑ゼノメノン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy3-019",
+      "faces": [
+        {
+          "name": "超神機鎧冑ゼノメノン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然/火",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分のゼノパーツまたはジャイアント・インセクト1体の上に置く。\nバトルゾーンにある自分の他のゼノパーツとジャイアント・インセクトすべてのパワーは+2000される。\n自分のゼノパーツまたはジャイアント・インセクトが相手を攻撃してブロックされなかった時、相手は自分自身のマナゾーンからカードを1枚選び、持ち主の墓地に置く。",
+          "race": "ゼノパーツ/ジャイアント・インセクト",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "canonicalId": "dm12-019",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy3-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "64efac1a239692cd2ff44dedf03ca16e1fc88e1125aba44e8ebfb5c55c44fed1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc34-018",
+      "name": "超剛勇幻風ジャガスター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc34-018",
+      "faces": [
+        {
+          "name": "超剛勇幻風ジャガスター",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分のワイルド・ベジーズまたはレインボー・ファントム１体の上に置く。\nバトルゾーンにある自分の他のワイルド・ベジーズとレインボー・ファントムすべてのパワーは+2000される。\n自分のターンの終わりに、バトルゾーンにある自分のワイルド・ベジーズとレインボー・ファントムを、好きな数アンタップしてもよい。",
+          "race": "ワイルド・ベジーズ/レインボー・ファントム",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "canonicalId": "dm12-020",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc34-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "47a26762e028c2a6d5ea23f52e5f484776571d689d53b821e3109855740271b1",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm12-s03": 4,
+      "dm12-019": 4,
+      "dm12-020": 4,
+      "promoy3-019": 4,
+      "dmc34-018": 4
+    }
+  }
+}

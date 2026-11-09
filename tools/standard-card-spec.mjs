@@ -2476,6 +2476,21 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=701&&f.civilizations.length>1){
+  const text=normalize(f.abilityText).replaceAll('進化ー','進化-').replaceAll('進化Vー','進化V-');
+  const mana='マナゾーンに置く時このカードはタップして置く。';
+  if(evolution&&text===mana+'進化-自分のゼノパーツまたはジャイアント・インセクト1体の上に置く。バトルゾーンにある自分の他のゼノパーツとジャイアント・インセクトすべてのパワーは+2000される。自分のゼノパーツまたはジャイアント・インセクトが相手を攻撃してブロックされなかった時相手は自分自身のマナゾーンからカードを1枚選び持ち主の墓地に置く。'){
+   const races=['ゼノパーツ','ジャイアント・インセクト'];
+   return {evolution:{any:races.map(race=>({race}))},g205Aura:{filter:{creature:true,raceAny:races},power:2000,other:true},g701UnblockedMana:races};
+  }
+  if(evolution&&text===mana+'進化-自分のワイルド・ベジーズまたはレインボー・ファントム1体の上に置く。バトルゾーンにある自分の他のワイルド・ベジーズとレインボー・ファントムすべてのパワーは+2000される。自分のターンの終わりにバトルゾーンにある自分のワイルド・ベジーズとレインボー・ファントムを好きな数アンタップしてもよい。'){
+   const races=['ワイルド・ベジーズ','レインボー・ファントム'],filter={creature:true,raceAny:races};
+   return {evolution:{any:races.map(race=>({race}))},g205Aura:{filter,power:2000,other:true},g174End:[{op:'Select',origin:'battle',n:'all',optional:true,filter,g173Targets:true,g193Select:true,g510Untap:true,title:'アンタップする自分のクリーチャーを好きな数選ぶ'}]};
+  }
+  if(f.typeText.normalize('NFKC')==='進化クリーチャー(進化V)'&&text===mana+'進化V-自分のマーフォーク1体とキマイラ1体を重ねた上に置く。このクリーチャーはブロックされない。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)このクリーチャーがバトルゾーンを離れた時クリーチャーをすべて破壊する。'){
+   return {evolution:{g31:true},g31Evolution:{zone:'battle',conditions:[{race:'マーフォーク'},{race:'キマイラ'}]},unblockable:true,breaker:2,g172Leave:[{op:'Sweep',both:true,to:'grave',filter:{creature:true}}]};
+  }
+ }
  if(phase>=700&&f.civilizations.length>1){
   const text=normalize(f.abilityText).replaceAll('進化ー','進化-').replaceAll('進化Vー','進化V-');
   const mana='マナゾーンに置く時このカードはタップして置く。';
