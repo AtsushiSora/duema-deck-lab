@@ -2547,6 +2547,17 @@ export function standardCardSpec(d,{phase=165}={}){
  const compact363=phase>=363?normalize(f.abilityText):'',whole363=phase>=363&&(modal363(compact363)||compact363==='自分の水と闇を両方持つクリーチャーがバトルゾーンに出た時次のうちいずれか1つを選ぶ。▼カードを1枚引く。▼相手は自身の手札を1枚選び捨てる。');
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?abilityText.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):abilityText).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=718&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(text==='W(ダブル)・ブレイカー(シールドを攻撃したときこのクリーチャーはシールドを2枚ブレイクする)このクリーチャーがバトルゾーンにある間相手は「S(シールド)・トリガー」を使えない。'){
+   return {breaker:2,g718TriggerLock:true};
+  }
+  if(text==='他の闇のクリーチャーを召喚する時支払うコストは1多くなる。')return {g718DarkSummonTax:1};
+  if(text==='このクリーチャーをバトルゾーンに出した時相手はコスト3以下のクリーチャーを1体自分自身の手札からバトルゾーンに出してもよい。'){
+   return {effect:'sixPhoto',g34Tasks:[{op:'OpponentHandArmy716',n:1,max:3}]};
+  }
+  if(text==='自分のシールドが1枚ブレイクされる時かわりにこのクリーチャーを破壊してもよい。')return {g401ShieldSaver:true};
+ }
  if(phase>=717&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const shieldSaver='このクリーチャーがバトルゾーンにある間自分のシールドが1枚ブレイクされるときかわりにこのクリーチャーを自分の墓地に置いてもよい。';

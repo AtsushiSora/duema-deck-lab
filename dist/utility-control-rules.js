@@ -54,7 +54,10 @@ export function createUtilityControlRules(api){
      execution.kind==='spellOrSeed'&&(c.type==='spell'||c.type==='seed'&&!c.seedCreature)||
      execution.kind==='noncreature'&&c.type!=='creature'&&!c.seedCreature);
     n+=applies?execution.amount:0;
-    if(c.type!=='spell')return n+shared+(c.type==='creature'&&!colors.includes('闇')?(source.g715NonDarkSummonTax||0):0);
+    if(c.type!=='spell'){
+     const summonTax=colors.includes('闇')?source.g718DarkSummonTax:source.g715NonDarkSummonTax;
+     return n+shared+(c.type==='creature'?(summonTax||0):0);
+    }
     return n+shared+(source.g56SpellTax||0)+(!tax||tax.opponent&&owner===p||tax.first&&(s.players[p].spellsThisTurn||0)>0||tax.exceptColor&&colors.includes(tax.exceptColor)||tax.colors&&!tax.colors.some(color=>colors.includes(color))?0:tax.graveSpells?s.players[p].grave.filter(x=>!x.faceDown&&!(c.summonOrigin==='grave'&&x.uid===c.executionUid)&&api.faces(card(x)).some(c=>c.type==='spell')).length:tax.perOtherCreature?api.creatures(s,owner).filter(y=>!y.sealed&&y.uid!==x.uid).length:tax.amount);
    },0),0);
   },

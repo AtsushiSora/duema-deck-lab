@@ -62,7 +62,10 @@ export function createHunterRules(api){
   leaveSnapshot(s,rows){return Object.fromEntries(rows.flatMap(({player,uid})=>{const x=s.players[player].battle.find(x=>x.uid===uid);return x&&effective(x,s).diehard?[[uid,true]]:[];}));},
   leaving(s,p,x,snapshot,to,destroy){if(snapshot?.[x.uid]&&to==='grave'&&destroy)enqueue(s,p,x,'g12DiehardProtect');},
   noLose:(s,p)=>(s.g12NoLose||[]).some(x=>x.p===p&&x.turn===s.turn),
-  triggersAllowed:(s,p)=>!creatures(s,1-p).some(x=>x.tapped&&effective(x,s).bairas),
+  triggersAllowed:(s,p)=>!creatures(s,1-p).some(x=>{
+   const c=effective(x,s);
+   return c.g718TriggerLock||x.tapped&&c.bairas;
+  }),
   forceActions(s,p,actions){const must=new Map();for(const a of actions)if(a.kind==='attack'&&a.target!=='player'){const target=s.players[1-p].battle.find(x=>x.uid===a.target);if(target&&effective(target,s).bairas){const ids=must.get(a.uid)||new Set();ids.add(a.target);must.set(a.uid,ids);}}return actions.filter(a=>a.kind!=='attack'||!must.has(a.uid)||must.get(a.uid).has(a.target));},
   lossOptions(s,p){const own=s.players[p],destroyable=x=>api.canLeave(s,p,x),all=creatures(s,p),mandatory=all.filter(x=>effective(x,s).diehard&&destroyable(x));const out=mandatory.map(x=>opt(card(x).name+'をかわりに破壊',{kind:'diehard',uid:x.uid},40,x.cardId));for(const source of all.filter(x=>effective(x,s).hunterLoss&&s.g12LossUsed?.[key(x)]!==s.turn))for(const x of own.battle.filter(x=>hunter(card(x))&&destroyable(x)))out.push(opt(card(source).name+'：'+card(x).name+'を破壊',{kind:'hunter',key:key(source),uid:x.uid},30-cost(card(x)),x.cardId));if(out.length&&!mandatory.length)out.push(opt('置換せず敗北する',null,-1000));return out;},
  };

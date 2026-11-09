@@ -1018,7 +1018,7 @@ export function createSixPhotoRules(api){
   put(s,{...t,op:'g34_HandArmy716',p:1-t.p});
   break;
  case'g34_HandArmy716':{
-  const rows=t.n>0?list(s,{...t,origin:'hand',deploy:true,filter:{g228Face:{type:'creature'}}}):[];
+  const rows=t.n>0?list(s,{...t,origin:'hand',deploy:true,filter:{g228Face:{type:'creature',max:t.max}}}):[];
   if(!rows.length){put(s,task('g34_Custom',t.p,t.source,{name:'finishBatch'}));break;}
   choice(s,t,'自分の手札から出すクリーチャーを選ぶ（あと'+t.n+'体まで）',[
    ...rows.map(({x})=>opt(card(x).name,x.uid,15+cost(card(x)),x.cardId)),opt('ここまでで確定',null,0)
