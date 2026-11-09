@@ -1,0 +1,267 @@
+{
+  "phase": 696,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5917,
+  "description": "攻撃の義務とブロック後のアンタップ、現在パワーを参照する一掃とシールドの墓地送り。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35245/",
+    "https://dm.takaratomy.co.jp/rule/qa/39076/",
+    "https://dm.takaratomy.co.jp/rule/qa/42392/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31650/"
+  ],
+  "cards": [
+    {
+      "id": "dm13-001",
+      "name": "悪魔聖霊バルホルス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-001",
+      "faces": [
+        {
+          "name": "悪魔聖霊バルホルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ブロッカー\nマナゾーンに置く時、このカードはタップして置く。\n相手のクリーチャーはすべて、可能であれば毎ターン攻撃する。\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがブロックした時、バトルの後でこのクリーチャーをアンタップする。",
+          "race": "エンジェル・コマンド/デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g224ForceAttack": {
+          "owner": "opponent"
+        },
+        "g695UntapAfterBlock": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "f1be554df49698db48008c1a178baba60c3115ec26e174da8e4aacd627db9f2c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm12-013",
+      "name": "ドラゴン・シャウト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-013",
+      "faces": [
+        {
+          "name": "ドラゴン・シャウト",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "6000以下の数字をひとつ選ぶ。その数字と同じパワーを持つクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "PowerSweep696",
+            "max": 6000
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "0e095123c4e4124219af06d1a4fedb90808ce588e55bee5288a8169a8eb5d6a6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm03-032",
+      "name": "灼熱波",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-032",
+      "faces": [
+        {
+          "name": "灼熱波",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手は、バトルゾーンにある自分自身のパワー3000以下のクリーチャーすべてを、持ち主の墓地に置く。\n自分のシールドが１枚でもあれば、裏向きのまま１枚選び、自分の墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "ShieldGrave",
+            "g239ShieldGrave": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm03-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "424deb8462743dc120b7831243857bc61cd1d8214ec828928369c9641053cc43",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc42-016",
+      "name": "悪魔聖霊バルホルス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc42-016",
+      "faces": [
+        {
+          "name": "悪魔聖霊バルホルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー\n相手のクリーチャーはすべて、可能であれば毎ターン攻撃する。\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがブロックした時、バトルの後、このクリーチャーをアンタップする。",
+          "race": "エンジェル・コマンド/デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "canonicalId": "dm13-001",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc42-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "aad3490225bbf323db169efd80d42490b95ca8aa7996aa01697f5c0cdba5797e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc68-003",
+      "name": "悪魔聖霊バルホルス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc68-003",
+      "faces": [
+        {
+          "name": "悪魔聖霊バルホルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー\n相手のクリーチャーはすべて、可能であれば毎ターン攻撃する。\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがブロックした時、バトルの後、このクリーチャーをアンタップする。",
+          "race": "エンジェル・コマンド/デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "canonicalId": "dm13-001",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc68-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "04cea7a5ce88bdd3883bf92df2237e2ec1d8031cccf1e84b7b9e10157da0724a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx12b-061",
+      "name": "悪魔聖霊バルホルス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12b-061",
+      "faces": [
+        {
+          "name": "悪魔聖霊バルホルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nブロッカー\n相手のクリーチャーはすべて、可能であれば毎ターン攻撃する。\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがブロックした時、バトルの後、このクリーチャーをアンタップする。",
+          "race": "エンジェル・コマンド/デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "canonicalId": "dm13-001",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx12b-061.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "7eef3ab5d4ef84950560f1932b8f93ffeb5e0eddf4abe3cea0ece20dc174fdae",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy3-025",
+      "name": "ドラゴン・シャウト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy3-025",
+      "faces": [
+        {
+          "name": "ドラゴン・シャウト",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "6000以下の数字をひとつ選ぶ。その数字と同じパワーを持つクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "canonicalId": "dm12-013",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy3-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "74b7a078d05fdc827f8f7aaa25d741bb88c0573297cd3f3585575c22b599c004",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm13-001": 4,
+      "dm12-013": 4,
+      "dm03-032": 4,
+      "dmc42-016": 4,
+      "dmc68-003": 4,
+      "dmx12b-061": 4,
+      "promoy3-025": 4
+    }
+  }
+}

@@ -2476,6 +2476,23 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=696){
+  const text=normalize(f.abilityText);
+  const blocker='ブロッカー',manaTap='マナゾーンに置く時このカードはタップして置く。';
+  const balhorus='相手のクリーチャーはすべて可能であれば毎ターン攻撃する。このクリーチャーは相手プレイヤーを攻撃できない。';
+  if(creature&&f.name==='悪魔聖霊バルホルス'&&[
+   blocker+manaTap+balhorus+'このクリーチャーがブロックした時バトルの後でこのクリーチャーをアンタップする。',
+   manaTap+blocker+balhorus+'このクリーチャーがブロックした時バトルの後このクリーチャーをアンタップする。'
+  ].includes(text)){
+   return {blocker:true,noPlayerAttack:true,g224ForceAttack:{owner:'opponent'},g695UntapAfterBlock:true};
+  }
+  if(f.typeText==='呪文'&&text==='6000以下の数字をひとつ選ぶ。その数字と同じパワーを持つクリーチャーをすべて破壊する。'){
+   return {effect:'sixPhoto',g34Tasks:[{op:'PowerSweep696',max:6000}]};
+  }
+  if(f.typeText==='呪文'&&text==='相手はバトルゾーンにある自分自身のパワー3000以下のクリーチャーすべてを持ち主の墓地に置く。自分のシールドが1枚でもあれば裏向きのまま1枚選び自分の墓地に置く。'){
+   return {effect:'sixPhoto',g34Tasks:[{op:'Sweep',to:'grave',filter:{creature:true,maxPower:3000,g199Power:true}},{op:'ShieldGrave',g239ShieldGrave:true}]};
+  }
+ }
  if(phase>=695&&creature){
   const text=normalize(f.abilityText);
   if(text==='ブロッカー誰かが呪文を唱えた場合そのターンが終わるまでこのクリーチャーのパワーは+3000される。(呪文の効果を行ってからクリーチャーのパワーを増やす)'){

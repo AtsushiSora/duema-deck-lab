@@ -170521,24 +170521,107 @@
       "g695UntapAfterBlock": true,
       "supportBatch": "phase-695",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm13-001",
+      "name": "悪魔聖霊バルホルス",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 6000,
+      "race": "エンジェル・コマンド/デーモン・コマンド",
+      "text": "ブロッカー\nマナゾーンに置く時、このカードはタップして置く。\n相手のクリーチャーはすべて、可能であれば毎ターン攻撃する。\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがブロックした時、バトルの後でこのクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-001",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g224ForceAttack": {
+        "owner": "opponent"
+      },
+      "g695UntapAfterBlock": true,
+      "supportBatch": "phase-696",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm12-013",
+      "name": "ドラゴン・シャウト",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "6000以下の数字をひとつ選ぶ。その数字と同じパワーを持つクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-013",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "PowerSweep696",
+          "max": 6000
+        }
+      ],
+      "supportBatch": "phase-696",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm03-032",
+      "name": "灼熱波",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "相手は、バトルゾーンにある自分自身のパワー3000以下のクリーチャーすべてを、持ち主の墓地に置く。\n自分のシールドが１枚でもあれば、裏向きのまま１枚選び、自分の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-032",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "to": "grave",
+          "filter": {
+            "creature": true,
+            "maxPower": 3000,
+            "g199Power": true
+          }
+        },
+        {
+          "op": "ShieldGrave",
+          "g239ShieldGrave": true
+        }
+      ],
+      "supportBatch": "phase-696",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 695,
+    "phase": 696,
     "checkedAt": "2026-11-09",
-    "baseCount": 5914,
+    "baseCount": 5917,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5917,
+    "totalCount": 5920,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35123/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35124/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35293/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35245/",
+      "https://dm.takaratomy.co.jp/rule/qa/39076/",
       "https://dm.takaratomy.co.jp/rule/qa/42392/",
-      "https://dm.takaratomy.co.jp/rule/qa/48919/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31636/"
+      "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31650/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -182510,6 +182593,27 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35293/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37778/",
           "https://dm.takaratomy.co.jp/rule/qa/45068/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 695,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5914,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5917,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35123/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35124/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35293/",
+          "https://dm.takaratomy.co.jp/rule/qa/42392/",
+          "https://dm.takaratomy.co.jp/rule/qa/48919/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31636/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
