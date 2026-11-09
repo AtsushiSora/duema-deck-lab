@@ -2476,6 +2476,22 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=695&&creature){
+  const text=normalize(f.abilityText);
+  if(text==='ブロッカー誰かが呪文を唱えた場合そのターンが終わるまでこのクリーチャーのパワーは+3000される。(呪文の効果を行ってからクリーチャーのパワーを増やす)'){
+   return {blocker:true,g204SpellWatch:{who:'both',defs:[{op:'SelfBoost313',power:3000,g536Source:true,g694ClearOnSeal:true}]}};
+  }
+  if(text==='ブロッカー進化-自分のメカサンダー1体の上に置く。このクリーチャーは相手プレイヤーを攻撃できない。このクリーチャーがブロックしたときバトルの後でアンタップする。'){
+   return {blocker:true,evolution:{race:'メカサンダー'},noPlayerAttack:true,g695UntapAfterBlock:true};
+  }
+  if(f.name==='風撃の求道者ラ・バイル'&&[
+   'ブロッカー(相手クリーチャーが攻撃するときこのクリーチャーをタップしてその攻撃を阻止してよい。そのあとその相手クリーチャーとバトルする)このクリーチャーがブロックしたときバトルの後でアンタップする。',
+   'ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)このクリーチャーがブロックした時バトルの後このクリーチャーをアンタップする。',
+   'ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)このクリーチャーがブロックした時バトルの後でアンタップする。'
+  ].includes(text)){
+   return {blocker:true,g695UntapAfterBlock:true};
+  }
+ }
  if(phase>=694&&creature){
   const text=normalize(f.abilityText);
   if(text==='他のクリーチャーがバトルゾーンに置かれた場合そのターンが終わるまでこのクリーチャーのパワーは+3000される。'||

@@ -1051,12 +1051,12 @@ function advanceAttack(s){if(s.lossEvent)return;
  if(!s.attack||s.decision||s.winner!==null||s.pendingEffects?.length||s.extTasks?.length||s.triggers||s.battleResolution||s.judge||s.attackDeclarations||s.leaving)return;
  if(s.attack.stage==='effects'){if(extra.ninjaWindow(s,1-s.active))return;s.attack.stage='block';s.decision={type:'block',player:1-s.active};}
  else if(s.attack.stage.startsWith('redirecting')||s.attack.stage==='unblocked482')resolveAttack(s,null);
- else if(s.attack.stage==='blockedEffects'){const a=s.players[s.active].battle.find(x=>x.uid===s.attack.attacker),b=s.players[1-s.active].battle.find(x=>x.uid===s.attack.blockUid);if(a&&b&&!blockedBattle484(s,a))battle(s,s.active,a,1-s.active,b,a.uid);s.attack=null;}
+ else if(s.attack.stage==='blockedEffects'){const a=s.players[s.active].battle.find(x=>x.uid===s.attack.attacker),b=s.players[1-s.active].battle.find(x=>x.uid===s.attack.blockUid);if(a&&b&&!blockedBattle484(s,a))battle(s,s.active,a,1-s.active,b,a.uid,false,s.attack.g695BlockUntap);s.attack=null;}
 }
 // Capture color-qualified Slayer at the start of the battle, alongside ordinary Slayer.
 function slayerCount534(s,x,y){const c=effectiveCard(x,s);return(c.slayer?(c.g208SlayerCount||1):0)+(c.g534SlayerColors?.some(color=>civilizations(effectiveCard(y,s)).includes(color))?1:0);}
-function battle(s,pa,a,pd,b,attackingUid=null,replaced=false){
- if(!replaced&&extra.replaceBattle(s,pa,a,pd,b,attackingUid))return;
+function battle(s,pa,a,pd,b,attackingUid=null,replaced=false,blockUntap){
+ if(!replaced&&extra.replaceBattle(s,pa,a,pd,b,attackingUid,blockUntap))return;
  if(s.battleResolution){(s.battleStack??=[]).push(s.battleResolution);s.battleResolution=null;}
  const bonus=(x,p)=>effectiveCard(x,s).revZero&&!s.players[p].shields.length?10000:0;
  const ap=matchupPower(a,b,a.uid===attackingUid,s,b.uid===attackingUid)+bonus(a,pa),bp=matchupPower(b,a,b.uid===attackingUid,s,a.uid===attackingUid)+bonus(b,pd),late=[],forced=extra.beforeBattle(s,pa,a,pd,b);
@@ -1064,6 +1064,7 @@ function battle(s,pa,a,pd,b,attackingUid=null,replaced=false){
  for(let n=0,count=slayerCount534(s,b,a);n<count;n++)late.push({controller:pd,player:pa,uid:a.uid,source:b.cardId});
  if(effectiveCard(a,s).afterBattleDie)late.push({controller:pa,player:pa,uid:a.uid,source:a.cardId,selfRefs:layers(a).map(y=>({uid:y.uid,incarnation:y.incarnation||0}))});
  if(effectiveCard(b,s).afterBattleDie)late.push({controller:pd,player:pd,uid:b.uid,source:b.cardId,selfRefs:layers(b).map(y=>({uid:y.uid,incarnation:y.incarnation||0}))});
+ if(blockUntap)late.push(blockUntap);
  log(s,pa,'battle',`${card(a).name}(${ap===Infinity?'∞':ap}) 対 ${card(b).name}(${bp===Infinity?'∞':bp})`);
  const aw=forced[0]||!forced[1]&&ap>bp,bw=forced[1]||!forced[0]&&bp>ap,winner=aw&&!bw?pa:bw&&!aw?pd:null,winning=aw&&!bw?a:bw&&!aw?b:null,moves=[];if(!aw&&!extra.firebird.battleSafe(s,a)&&!extra.six.battleSafe(s,a,b,bp))moves.push({player:pa,uid:a.uid,battlePower:ap});if(!bw&&!extra.firebird.battleSafe(s,b)&&!extra.six.battleSafe(s,b,a,ap))moves.push({player:pd,uid:b.uid,battlePower:bp});
  moveCreatures(s,moves,{kind:'battleResult',winner,both:aw&&bw?[{player:pa,uid:a.uid,source:a.cardId,mechade:!!effectiveCard(a,s).mechade,breakNine:!!effectiveCard(a,s).breakNine},{player:pd,uid:b.uid,source:b.cardId,mechade:!!effectiveCard(b,s).mechade,breakNine:!!effectiveCard(b,s).breakNine}]:null,winning:winning?{uid:winning.uid,source:winning.cardId,mechade:!!effectiveCard(winning,s).mechade,breakNine:!!effectiveCard(winning,s).breakNine}:null,late:late.sort((x,y)=>Number(y.controller===s.active)-Number(x.controller===s.active))});
@@ -1107,14 +1108,38 @@ function advanceBattle(s){
   const who=r.wins.some(x=>x.player===s.active)?s.active:1-s.active,available=r.wins.filter(x=>x.player===who);
   if(available.length>1){s.decision={type:'battleWinOrder',player:who};return;}
   if(available.length){const e=available[0];r.wins.splice(r.wins.indexOf(e),1);resolveBattleWin(s,e);return;}
-  // A pending self-destruction follows the battled unit's layers and incarnation across evolution or control changes.
-  if(r.late.length){const e=r.late.shift(),host=e.selfRefs?[0,1].flatMap(p=>s.players[p].battle.filter(x=>layers(x).some(y=>e.selfRefs.some(ref=>ref.uid===y.uid&&ref.incarnation===(y.incarnation||0)))).map(x=>({player:p,uid:x.uid})))[0]:s.players[e.player].battle.some(x=>x.uid===e.uid)?{player:e.player,uid:e.uid}:null;if(host){log(s,e.controller,'afterBattle',`${card(e.source).name}のバトルの後の効果`,{cardId:e.source});moveCreatures(s,[{...e,...host}]);}}else s.battleResolution=s.battleStack?.pop()||null;
+  // Pending self-effects follow the unit's layers and incarnation across evolution or control changes.
+  if(!r.late.length){s.battleResolution=s.battleStack?.pop()||null;continue;}
+  const e=r.late.shift();
+  const host=e.selfRefs?s.players.flatMap((pl,p)=>pl.battle.filter(x=>layers(x).some(y=>e.selfRefs.some(ref=>ref.uid===y.uid&&ref.incarnation===(y.incarnation||0)))).map(unit=>({p,unit})))[0]:null;
+  if(e.g695Untap){
+   if(host&&isCreature(s,host.unit)&&!host.unit.sealed){
+    log(s,e.controller,'afterBattle',`${card(e.source).name}のバトルの後の効果`,{cardId:e.source});
+    untapCard(s,host.p,host.unit);
+   }
+   continue;
+  }
+  const target=e.selfRefs?(host&&{player:host.p,uid:host.unit.uid}):s.players[e.player].battle.some(x=>x.uid===e.uid)?{player:e.player,uid:e.uid}:null;
+  if(target){
+   log(s,e.controller,'afterBattle',`${card(e.source).name}のバトルの後の効果`,{cardId:e.source});
+   moveCreatures(s,[{...e,...target}]);
+  }
  }
 }
 function resolveAttack(s,blockUid){
  const a=s.players[s.active].battle.find(x=>x.uid===s.attack.attacker),other=1-s.active;
  if(!a){s.attack=null;return;}
- if(blockUid){recordCombat(s,other);const b=s.players[other].battle.find(x=>x.uid===blockUid);s.attack.g484Blocked=true;s.attack.g209BlockingUid=blockUid;s.attack.blockUid=blockUid;s.attack.stage='blockedEffects';tapCard(s,other,b);extra.block(s,other,b);log(s,other,'block',`${card(b).name}でブロック`,{cardId:b.cardId});extra.ninjaWindow(s,s.active);return;}
+ if(blockUid){
+  recordCombat(s,other);
+  const b=s.players[other].battle.find(x=>x.uid===blockUid);
+  s.attack.g484Blocked=true;s.attack.g209BlockingUid=blockUid;s.attack.blockUid=blockUid;s.attack.stage='blockedEffects';
+  if(effectiveCard(b,s).g695UntapAfterBlock){
+   s.attack.g695BlockUntap={controller:other,source:b.cardId,g695Untap:true,selfRefs:layers(b).map(x=>({uid:x.uid,incarnation:x.incarnation||0}))};
+  }
+  tapCard(s,other,b);extra.block(s,other,b);
+  log(s,other,'block',`${card(b).name}でブロック`,{cardId:b.cardId});
+  extra.ninjaWindow(s,s.active);return;
+ }
  if(s.attack.target==='player'&&!s.attack.g482Unblocked){s.attack.g482Unblocked=true;if(extra.six.unblocked482(s,s.active,a)){s.attack.stage='unblocked482';return;}}
  if(s.attack.target==='player'&&extra.six.selectNullBreaker471(s,s.active,a))return;
  if(s.attack.target==='player'&&s.attack.g471Breaker!=='null'&&extra.selectBreaker(s,s.active,a))return;
