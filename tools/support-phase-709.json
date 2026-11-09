@@ -1,0 +1,307 @@
+{
+  "phase": 709,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5960,
+  "description": "ヨビニオンと任意の手札戻し置換、サバイバーの登場時の墓地回収・山札検索を実装。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316652/",
+    "https://dm.takaratomy.co.jp/rule/qa/45263/",
+    "https://dm.takaratomy.co.jp/rule/qa/49538/",
+    "https://dm.takaratomy.co.jp/rule/qa/45909/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp3-017",
+      "name": "ヨビニオン・クロウラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-017",
+      "faces": [
+        {
+          "name": "ヨビニオン・クロウラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー\nヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\nこのクリーチャーが破壊される時、墓地に置くかわりに手札に戻してもよい。",
+          "race": "アースイーター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "yobinion": true,
+        "g708OptionalGraveToHand": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "ca5db4a8a174c54b39c320fd3310aa4f08071293f25a97e864af0c885ff12e6c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-026",
+      "name": "死縛虫グレイブ・ワームγ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-026",
+      "faces": [
+        {
+          "name": "死縛虫グレイブ・ワームγ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、自分の墓地からサバイバーを１体選び、自分の手札に戻してもよい。\nサバイバー(このクリーチャーがバトルゾーンにある間、自分の他のサバイバーも上の能力を得る)",
+          "race": "パラサイトワーム/サバイバー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "race": "サバイバー"
+            }
+          }
+        ],
+        "g406Survivor": {
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "hand",
+              "n": 1,
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "race": "サバイバー"
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "16c77f557b4ecbe15309514a6e539faccf7c1c6502a92473e145b5d454884619",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-037",
+      "name": "シェル・ファクトリーγ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-037",
+      "faces": [
+        {
+          "name": "シェル・ファクトリーγ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、自分の山札を見る。その中からサバイバーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。\nサバイバー(このクリーチャーがバトルゾーンにある間、自分の他のサバイバーも上の能力を得る)",
+          "race": "コロニー・ビートル/サバイバー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "reveal": true,
+                "optional": true,
+                "filter": {
+                  "creature": true,
+                  "race": "サバイバー"
+                }
+              }
+            ]
+          }
+        ],
+        "g406Survivor": {
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Look",
+              "g201Search": true,
+              "g200Search": true,
+              "n": "all",
+              "rest": "shuffle",
+              "stages": [
+                {
+                  "n": 1,
+                  "to": "hand",
+                  "reveal": true,
+                  "optional": true,
+                  "filter": {
+                    "creature": true,
+                    "race": "サバイバー"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "d48a81e96fb9aca7386aa519cd7940f5725225a43ab92a059b69f2f440045489",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex3-012",
+      "name": "ヨビニオン・クロウラー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-012",
+      "faces": [
+        {
+          "name": "ヨビニオン・クロウラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー\nヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\nこのクリーチャーが破壊される時、墓地に置くかわりに手札に戻してもよい。",
+          "race": "アースイーター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "yobinion": true,
+        "g708OptionalGraveToHand": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-012.jpg",
+      "canonicalId": "dm24rp3-017",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "021dc6edc739c6dab0c31417a47a726eb0aa55d57b44239567115016cb494845",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd26-015",
+      "name": "シェル・ファクトリーγ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd26-015",
+      "faces": [
+        {
+          "name": "シェル・ファクトリーγ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "oS このクリーチャーがバトルゾーンに出た時、自分の山札を見る。その中からサバイバーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。\nサバイバー（自分のサバイバーはすべて、上のoS 能力を持つ）",
+          "race": "コロニー・ビートル/サバイバー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "reveal": true,
+                "optional": true,
+                "filter": {
+                  "creature": true,
+                  "race": "サバイバー"
+                }
+              }
+            ]
+          }
+        ],
+        "g406Survivor": {
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Look",
+              "g201Search": true,
+              "g200Search": true,
+              "n": "all",
+              "rest": "shuffle",
+              "stages": [
+                {
+                  "n": 1,
+                  "to": "hand",
+                  "reveal": true,
+                  "optional": true,
+                  "filter": {
+                    "creature": true,
+                    "race": "サバイバー"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd26-015.jpg",
+      "canonicalId": "dm06-037",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "da760a9adab204bb2db7f1edcd835d657c6c77e0142cac9e3cacc27d8beda64d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp3-017": 4,
+      "dm06-026": 4,
+      "dm06-037": 4,
+      "dm24ex3-012": 4,
+      "dmd26-015": 4
+    }
+  }
+}

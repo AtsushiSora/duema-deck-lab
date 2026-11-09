@@ -3226,9 +3226,26 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  if(phase>=406&&creature){
-  const marker='サバイバー(このクリーチャーがバトルゾーンにある間自分の他のサバイバーも上の能力を得る)',at=lines.findIndex(l=>normalize(l)===marker);
+  const marker='サバイバー(このクリーチャーがバトルゾーンにある間自分の他のサバイバーも上の能力を得る)';
+  const reprintMarker='サバイバー(自分のサバイバーはすべて上のoS能力を持つ)';
+  const at=lines.findIndex(l=>normalize(l)===marker||phase>=709&&normalize(l)===reprintMarker);
   if(at>=0){
    if(evolution||lines.length!==2||at!==1||!String(f.race).split('/').includes('サバイバー'))throw Error('未対応のサバイバー構成');
+   if(phase>=709){
+    const reprint=normalize(lines[at])===reprintMarker;
+    const prefix=reprint?/^oSこのクリーチャーがバトルゾーンに出た時(.+)$/:/^このクリーチャーがバトルゾーンに出たとき(.+)$/;
+    const body=normalize(lines[0]).match(prefix)?.[1];
+    const filter={creature:true,race:'サバイバー'};
+    const task={
+     '自分の墓地からサバイバーを1体選び自分の手札に戻してもよい。':{op:'Select',origin:'grave',to:'hand',n:1,optional:true,filter},
+     '自分の山札を見る。その中からサバイバーを1体選び相手に見せてから自分の手札に加えてもよい。その後山札をシャッフルする。':{op:'Look',g201Search:true,g200Search:true,n:'all',rest:'shuffle',stages:[{n:1,to:'hand',reveal:true,optional:true,filter}]}
+    }[body];
+    if(task){
+     const grants={effect:'sixPhoto',g34Tasks:[task]};
+     return{...grants,g406Survivor:structuredClone(grants)};
+    }
+    if(reprint)throw Error('再録サバイバーの共有処理が未対応');
+   }
    if(phase>=708&&normalize(lines[0])==='バトルゾーンにある間このクリーチャーのパワーは+1000される。')return{g406OwnPower:1000,g406Survivor:{power:1000}};
    const shared=structuredClone(d);shared.faces[0].abilityText=lines[0];const grants=standardCardSpec(shared,{phase:405}),allowed=new Set(['slayer','speedAttacker','attackBonus','breaker','blocker','unblockable','effect','g34Tasks','g34Attack']);
    if(!Object.keys(grants).length||Object.keys(grants).some(k=>!allowed.has(k))||grants.effect&&grants.effect!=='sixPhoto')throw Error('サバイバーの共有処理が未対応');

@@ -172189,21 +172189,154 @@
       "g708OptionalGraveToHand": true,
       "supportBatch": "phase-708",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp3-017",
+      "name": "ヨビニオン・クロウラー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "アースイーター",
+      "text": "ブロッカー ブロッカー\nヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\nこのクリーチャーが破壊される時、墓地に置くかわりに手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-017",
+      "limit": 4,
+      "blocker": true,
+      "yobinion": true,
+      "g708OptionalGraveToHand": true,
+      "supportBatch": "phase-709",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm06-026",
+      "name": "死縛虫グレイブ・ワームγ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "パラサイトワーム/サバイバー",
+      "text": "このクリーチャーがバトルゾーンに出たとき、自分の墓地からサバイバーを１体選び、自分の手札に戻してもよい。\nサバイバー(このクリーチャーがバトルゾーンにある間、自分の他のサバイバーも上の能力を得る)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-026",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "race": "サバイバー"
+          }
+        }
+      ],
+      "g406Survivor": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "race": "サバイバー"
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-709",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm06-037",
+      "name": "シェル・ファクトリーγ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 2000,
+      "race": "コロニー・ビートル/サバイバー",
+      "text": "このクリーチャーがバトルゾーンに出たとき、自分の山札を見る。その中からサバイバーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。\nサバイバー(このクリーチャーがバトルゾーンにある間、自分の他のサバイバーも上の能力を得る)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-037",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g200Search": true,
+          "n": "all",
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "reveal": true,
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "race": "サバイバー"
+              }
+            }
+          ]
+        }
+      ],
+      "g406Survivor": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "reveal": true,
+                "optional": true,
+                "filter": {
+                  "creature": true,
+                  "race": "サバイバー"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-709",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 708,
+    "phase": 709,
     "checkedAt": "2026-11-09",
-    "baseCount": 5957,
+    "baseCount": 5960,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5960,
+    "totalCount": 5963,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35066/",
       "https://dm.takaratomy.co.jp/rule/rulechange/316652/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35357/",
+      "https://dm.takaratomy.co.jp/rule/qa/45263/",
+      "https://dm.takaratomy.co.jp/rule/qa/49538/",
       "https://dm.takaratomy.co.jp/rule/qa/45909/"
     ],
     "next": [
@@ -184431,6 +184564,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/39558/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35435/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35436/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 708,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5957,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5960,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35066/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316652/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35357/",
+          "https://dm.takaratomy.co.jp/rule/qa/45909/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
