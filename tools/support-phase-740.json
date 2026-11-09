@@ -1,0 +1,376 @@
+{
+  "phase": 740,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6063,
+  "description": "最低・最高パワーの相手選択、シビルカウント、攻撃後の自己破壊、攻撃に反応するアンタップ限定の除去に対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/45223/",
+    "https://dm.takaratomy.co.jp/rule/qa/42949/",
+    "https://dm.takaratomy.co.jp/rule/qa/43335/",
+    "https://dm.takaratomy.co.jp/rule/qa/41457/",
+    "https://dm.takaratomy.co.jp/rule/qa/45224/",
+    "https://dm.takaratomy.co.jp/rule/qa/39545/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37323/"
+  ],
+  "cards": [
+    {
+      "id": "dmsp01-007",
+      "name": "ハクション・マスク",
+      "faces": [
+        {
+          "name": "ハクション・マスク",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手はバトルゾーンにある自身の、パワーが一番小さいクリーチャーを１体選び、破壊する。",
+          "race": "ジョーカーズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp01-007",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Custom",
+            "name": "opponentExtreme",
+            "extreme": "min",
+            "to": "grave",
+            "g740Power": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsp01-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "c6fc9b4865e8309ac96b18137aa2ab6a2d906b35a862cccc70cd4f06ea9d4b20",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-005",
+      "name": "悪灯 トーチ＝トートロット",
+      "faces": [
+        {
+          "name": "悪灯 トーチ＝トートロット",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\nブロッカー ブロッカー\nこのクリーチャーが出た時、相手は自身のパワーが一番小さいクリーチャーを１体選んで破壊する。\nシビルカウント３：このクリーチャーが出た時、自分の闇のクリーチャーまたは闇のタマシードが合計３つ以上あれば、相手は自身のパワーが一番大きいクリーチャーを１体選んで破壊する。\nこのクリーチャーが攻撃する時、その攻撃の後、このクリーチャーを破壊する。",
+          "race": "アビスロイヤル",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-005",
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Custom",
+            "name": "opponentExtreme",
+            "extreme": "min",
+            "to": "grave",
+            "g740Power": true
+          }
+        ],
+        "g527ExtraEntry": [
+          {
+            "label": "シビルカウント3",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "creatureOrSeed": true,
+                  "color": "闇",
+                  "g258Civil": 3
+                },
+                "defs": [
+                  {
+                    "op": "Custom",
+                    "name": "opponentExtreme",
+                    "extreme": "max",
+                    "to": "grave",
+                    "g740Power": true
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "AfterAttack542",
+            "defs": [
+              {
+                "op": "SelfDestroy"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ef28824988b37663c60b6b50705f0a5c74a287c28034ace87b58ce004e76229e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp3-022",
+      "name": "逆転兵ウインドアックス",
+      "faces": [
+        {
+          "name": "逆転兵ウインドアックス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のパワー3000以下のクリーチャーをすべて破壊する。\n相手のクリーチャーが自分または自分のクリーチャーを攻撃する時、相手は自身のアンタップしているクリーチャーの中で、パワーが一番小さいクリーチャーを１体選び、破壊する。",
+          "race": "ヒューマノイド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-022",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "filter": {
+              "creature": true,
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ],
+        "g252AttackWatch": {
+          "who": "opponent",
+          "defs": [
+            {
+              "op": "Custom",
+              "name": "opponentExtreme",
+              "extreme": "min",
+              "to": "grave",
+              "g740Power": true,
+              "untapped": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "b7c1fe973b7da0affbc866c2a778f1b6ce59730072fd5491e320cecda49c4d22",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmsd04-006",
+      "canonicalId": "dmsp01-007",
+      "name": "ハクション・マスク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd04-006",
+      "faces": [
+        {
+          "name": "ハクション・マスク",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手はバトルゾーンにある自身の、パワーが一番小さいクリーチャーを１体選び、破壊する。",
+          "race": "ジョーカーズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd04-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "bf62237cbbf58ee96f929dae4bb68cddd2d7626573ad4eff7d33e77a7f68b3ef",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23sp1-007",
+      "canonicalId": "dm22rp1-005",
+      "name": "悪灯 トーチ＝トートロット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23sp1-007",
+      "faces": [
+        {
+          "name": "悪灯 トーチ＝トートロット",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\nブロッカー ブロッカー\nこのクリーチャーが出た時、相手は自身のパワーが一番小さいクリーチャーを１体選んで破壊する。\nシビルカウント３：このクリーチャーが出た時、自分の闇のクリーチャーまたは闇のタマシードが合計３つ以上あれば、相手は自身のパワーが一番大きいクリーチャーを１体選んで破壊する。\nこのクリーチャーが攻撃する時、その攻撃の後、このクリーチャーを破壊する。",
+          "race": "アビスロイヤル",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23sp1-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "31b3487a6682752ac52051bb0133d07413702a01697cc2473d6fbe684f14a3fb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-024",
+      "canonicalId": "dm24rp3-022",
+      "name": "逆転兵ウインドアックス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-024",
+      "faces": [
+        {
+          "name": "逆転兵ウインドアックス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のパワー3000以下のクリーチャーをすべて破壊する。\n相手のクリーチャーが自分または自分のクリーチャーを攻撃する時、相手は自身のアンタップしているクリーチャーの中で、パワーが一番小さいクリーチャーを１体選び、破壊する。",
+          "race": "ヒューマノイド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "2b91add223d37c578fa271647141bcaeef4daa48a85cf7e1e3acae7f665612db",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy17-037",
+      "canonicalId": "dmsp01-007",
+      "name": "ハクション・マスク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-037",
+      "faces": [
+        {
+          "name": "ハクション・マスク",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手はバトルゾーンにある自身の、パワーが一番小さいクリーチャーを１体選び、破壊する。",
+          "race": "ジョーカーズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy17-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "3c899c5de9c76b85ce3b7ef7b289bb2ada0fe226a214c4ffdee433ae508180ec",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy17-sp4d04",
+      "canonicalId": "dmsp01-007",
+      "name": "ハクション・マスク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-sp4d04",
+      "faces": [
+        {
+          "name": "ハクション・マスク",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手は自身のパワーが一番小さいクリーチャーを１体選び、破壊する。",
+          "race": "ジョーカーズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy17-sp4d04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "759f65ac502ca9ec0b323dd820014f21691cc81fe6b9590c97466d180f412883",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-9A",
+      "canonicalId": "dm22rp1-005",
+      "name": "悪灯 トーチ＝トートロット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-9A",
+      "faces": [
+        {
+          "name": "悪灯 トーチ＝トートロット",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\nブロッカー ブロッカー\nこのクリーチャーが出た時、相手は自身のパワーが一番小さいクリーチャーを１体選んで破壊する。\nシビルカウント３：このクリーチャーが出た時、自分の闇のクリーチャーまたは闇のタマシードが合計３つ以上あれば、相手は自身のパワーが一番大きいクリーチャーを１体選んで破壊する。\nこのクリーチャーが攻撃する時、その攻撃の後、このクリーチャーを破壊する。",
+          "race": "アビスロイヤル",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-9A.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "2f55a25ade437eef5bc63fdaebad78c01c57f851a294d9749d22507c9fd38dde",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmsp01-007": 4,
+      "dm22rp1-005": 4,
+      "dm24rp3-022": 4,
+      "dmsd04-006": 4,
+      "dm23sp1-007": 4,
+      "dm24ex3-024": 4,
+      "promoy17-037": 4,
+      "promoy17-sp4d04": 4,
+      "dm22rp1-9A": 4
+    }
+  }
+}

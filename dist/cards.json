@@ -175184,21 +175184,156 @@
       },
       "supportBatch": "phase-739",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmsp01-007",
+      "name": "ハクション・マスク",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "ジョーカーズ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、相手はバトルゾーンにある自身の、パワーが一番小さいクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp01-007",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Custom",
+          "name": "opponentExtreme",
+          "extreme": "min",
+          "to": "grave",
+          "g740Power": true
+        }
+      ],
+      "supportBatch": "phase-740",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-005",
+      "name": "悪灯 トーチ＝トートロット",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "アビスロイヤル",
+      "text": "S・トリガー S・トリガー\nブロッカー ブロッカー\nこのクリーチャーが出た時、相手は自身のパワーが一番小さいクリーチャーを１体選んで破壊する。\nシビルカウント３：このクリーチャーが出た時、自分の闇のクリーチャーまたは闇のタマシードが合計３つ以上あれば、相手は自身のパワーが一番大きいクリーチャーを１体選んで破壊する。\nこのクリーチャーが攻撃する時、その攻撃の後、このクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-005",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Custom",
+          "name": "opponentExtreme",
+          "extreme": "min",
+          "to": "grave",
+          "g740Power": true
+        }
+      ],
+      "g527ExtraEntry": [
+        {
+          "label": "シビルカウント3",
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "creatureOrSeed": true,
+                "color": "闇",
+                "g258Civil": 3
+              },
+              "defs": [
+                {
+                  "op": "Custom",
+                  "name": "opponentExtreme",
+                  "extreme": "max",
+                  "to": "grave",
+                  "g740Power": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "AfterAttack542",
+          "defs": [
+            {
+              "op": "SelfDestroy"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-740",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp3-022",
+      "name": "逆転兵ウインドアックス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 5000,
+      "race": "ヒューマノイド",
+      "text": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のパワー3000以下のクリーチャーをすべて破壊する。\n相手のクリーチャーが自分または自分のクリーチャーを攻撃する時、相手は自身のアンタップしているクリーチャーの中で、パワーが一番小さいクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-022",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "filter": {
+            "creature": true,
+            "maxPower": 3000,
+            "g199Power": true
+          }
+        }
+      ],
+      "g252AttackWatch": {
+        "who": "opponent",
+        "defs": [
+          {
+            "op": "Custom",
+            "name": "opponentExtreme",
+            "extreme": "min",
+            "to": "grave",
+            "g740Power": true,
+            "untapped": true
+          }
+        ]
+      },
+      "supportBatch": "phase-740",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 739,
+    "phase": 740,
     "checkedAt": "2026-11-10",
-    "baseCount": 6060,
+    "baseCount": 6063,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6063,
+    "totalCount": 6066,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
       "https://dm.takaratomy.co.jp/rule/qa/45223/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37943/",
-      "https://dm.takaratomy.co.jp/rule/qa/42947/"
+      "https://dm.takaratomy.co.jp/rule/qa/42949/",
+      "https://dm.takaratomy.co.jp/rule/qa/43335/",
+      "https://dm.takaratomy.co.jp/rule/qa/41457/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -188004,6 +188139,24 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/qa_old/35145/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 739,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6060,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6063,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/45223/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37943/",
+          "https://dm.takaratomy.co.jp/rule/qa/42947/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

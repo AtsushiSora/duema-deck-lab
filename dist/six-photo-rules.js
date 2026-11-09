@@ -1901,7 +1901,19 @@ export function createSixPhotoRules(api){
  case'destroyTwo':{const selected=t.selected||[],ps=t.anyOwner?[t.p,1-t.p]:[1-t.p],rows=ps.flatMap(p=>s.players[p].battle.filter(y=>(t.element||api.isCreature(s,y))&&!selected.includes(y.uid)));if(selected.length>=2||!rows.length){destroySelected(s,t);break;}choice(s,t,'破壊する'+(t.element?'エレメント':'相手クリーチャー')+'を2つ'+(t.optional?'まで':'')+'選ぶ',[...targetOptions(s,t.p,rows).map(o=>({...o,score:s.players[t.p].battle.some(y=>y.uid===o.value)?-Math.min(100,10+cost(card(o.cardId))*3):o.score})),...(t.optional?[opt('選択を確定',null,0)]:[])]);break;}
  case'shieldMandatory':api.shieldTop(s,t.p,card(t.source));break;
  case'shieldOptional':choice(s,t,'山札の上1枚をシールド化する？',[opt('シールド化する',true,own.deck.length>1?10:-100),skip()]);break;
- case'opponentExtreme':{const ps=1-t.p,rows=creatures(s,ps);if(!rows.length)break;const n=Math[t.extreme](...rows.map(y=>api.power(y,false,s)));choice(s,{...t,p:ps,controller:t.p,chooser:ps},'自分のパワーが'+(t.extreme==='min'?'最小':'最大')+'のクリーチャーを選ぶ',rows.filter(y=>api.power(y,false,s)===n).map(y=>opt(card(y).name,y.uid,-cost(card(y)),y.cardId)));break;}
+ case'opponentExtreme':{
+  const ps=1-t.p;
+  const rows=creatures(s,ps).filter(y=>!t.g740Power||!y.sealed&&(!t.untapped||!y.tapped));
+  if(!rows.length)break;
+  const power=y=>t.g740Power?currentPower506(s,y):api.power(y,false,s);
+  const n=Math[t.extreme](...rows.map(power));
+  // Compare all eligible creatures first, then check whether the chooser can select the tied extrema.
+  const options=rows.filter(y=>power(y)===n&&(!t.g740Power||api.targetable(s,ps,ps,y)))
+   .map(y=>opt(card(y).name,y.uid,-cost(card(y)),y.cardId));
+  const title='自分の'+(t.untapped?'アンタップしている':'')+'パワーが'+(t.extreme==='min'?'最小':'最大')+'のクリーチャーを選ぶ';
+  choice(s,{...t,p:ps,controller:t.p,chooser:ps},title,options);
+  break;
+ }
  case'cottonRamp':{const y=api.takeTop(s,t.p);if(!y)break;const multi=api.manaColors(card(y),s,t.p).length>1,dest=api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana';clear(y,dest);y.tapped=dest==='mana';api.addZone(s,t.p,dest,y);if(multi)ramp(s,{...t,tapped:true},1);api.deckCheck(s,t.p);break;}
  case'minogamiBuff':if(x)buff(s,x,5000*(t.moved||0));break;
  case'emrakulSix':{const owner=1-t.p,enemy=s.players[owner],chosen=t.selected||[],rows=[...enemy.battle.flatMap(top=>api.layers(top).filter(y=>!y.faceDown).map(y=>({x:y,origin:'battle'}))),...enemy.mana.filter(y=>!y.faceDown).map(y=>({x:y,origin:'mana'})),...enemy.shields.flatMap(api.shieldCards).filter(y=>y.faceUp).map(y=>({x:y,origin:'shields'}))].filter(r=>!chosen.some(y=>y.uid===r.x.uid));if(chosen.length>=6||!rows.length){const b=chosen.filter(y=>y.origin==='battle');for(const r of chosen.filter(y=>y.origin!=='battle'))if(r.origin==='shields')api.moveShield(s,owner,r.uid,'grave',{cardOnly:true});else zoneMove(s,owner,r.origin,r.uid,'grave',t);if(b.length)put(s,...b.map(r=>task('g34_Custom',owner,t.source,{name:'emrakulMove',target:r.uid}))); break;}choice(s,{...t,p:owner,controller:t.p,chooser:owner},'表向きのカードを合計6枚選ぶ（'+chosen.length+'/6）',rows.map(r=>opt(card(r.x).name,{uid:r.x.uid,origin:r.origin},-cost(card(r.x)),r.x.cardId)));break;}

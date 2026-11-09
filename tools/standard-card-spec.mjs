@@ -2564,6 +2564,21 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=740&&f.typeText==='クリーチャー'){
+  const trigger='S・トリガーS・トリガー';
+  const extreme=(which,untapped=false)=>({op:'Custom',name:'opponentExtreme',extreme:which,to:'grave',g740Power:true,...(untapped?{untapped}:{})});
+  const maskEntry=trigger+'(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)このクリーチャーがバトルゾーンに出た時相手は';
+  const maskEffect='自身のパワーが一番小さいクリーチャーを1体選び破壊する。';
+  if(compact363===maskEntry+maskEffect||compact363===maskEntry+'バトルゾーンにある'+maskEffect)
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[extreme('min')]};
+  if(compact363===trigger+'ブロッカーブロッカーこのクリーチャーが出た時相手は自身のパワーが一番小さいクリーチャーを1体選んで破壊する。シビルカウント3:このクリーチャーが出た時自分の闇のクリーチャーまたは闇のタマシードが合計3つ以上あれば相手は自身のパワーが一番大きいクリーチャーを1体選んで破壊する。このクリーチャーが攻撃する時その攻撃の後このクリーチャーを破壊する。')
+   return {trigger:true,blocker:true,effect:'sixPhoto',g34Tasks:[extreme('min')],
+    g527ExtraEntry:[{label:'シビルカウント3',defs:[{op:'IfOwn',filter:{creatureOrSeed:true,color:'闇',g258Civil:3},defs:[extreme('max')]}]}],
+    g34Attack:[{op:'AfterAttack542',defs:[{op:'SelfDestroy'}]}]};
+  if(compact363===trigger+'このクリーチャーが出た時相手のパワー3000以下のクリーチャーをすべて破壊する。相手のクリーチャーが自分または自分のクリーチャーを攻撃する時相手は自身のアンタップしているクリーチャーの中でパワーが一番小さいクリーチャーを1体選び破壊する。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Sweep',filter:{creature:true,maxPower:3000,g199Power:true}}],
+    g252AttackWatch:{who:'opponent',defs:[extreme('min',true)]}};
+ }
  if(phase>=739&&f.typeText==='クリーチャー'){
   const dragonEntry='このクリーチャーがバトルゾーンにある間自分のドラゴンまたはドラゴノイドがバトルゾーンに出たとき';
   const filter={creature:true,raceAny:['ドラゴン','ドラゴノイド']};
