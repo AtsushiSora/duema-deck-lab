@@ -172322,22 +172322,112 @@
       },
       "supportBatch": "phase-709",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm37-047",
+      "name": "ピッチュ・アイニー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ファイアー・バード",
+      "text": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nこのクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。 バトルゾーンにある自分のフレイム・コマンドを１体アンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-047",
+      "limit": 4,
+      "speedAttacker": true,
+      "g439Tap": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "untap": true,
+          "filter": {
+            "race": "フレイム・コマンド"
+          },
+          "title": "アンタップする自分のフレイム・コマンドを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-710",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22-050",
+      "name": "ポップ・ルビン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ファイアー・バード",
+      "text": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにある自分のドラゴンを１体アンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-050",
+      "limit": 4,
+      "g439Tap": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "untap": true,
+          "filter": {
+            "race": "ドラゴン"
+          },
+          "title": "アンタップする自分のドラゴンを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-710",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm05-013",
+      "name": "ダーク・ティアラγ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ブレインジャッカー/サバイバー",
+      "text": "このクリーチャーが攻撃するとき、相手の手札が１枚でもあれば、相手はその中から１枚選んで持ち主の墓地に置く。\nサバイバー(このクリーチャーがバトルゾーンにある間、自分の他のサバイバーも上の能力を得る)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-013",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Discard",
+          "n": 1
+        }
+      ],
+      "g406Survivor": {
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-710",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 709,
+    "phase": 710,
     "checkedAt": "2026-11-09",
-    "baseCount": 5960,
+    "baseCount": 5963,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5963,
+    "totalCount": 5966,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
       "https://dm.takaratomy.co.jp/rule/rulechange/316652/",
-      "https://dm.takaratomy.co.jp/rule/qa/45263/",
-      "https://dm.takaratomy.co.jp/rule/qa/49538/",
-      "https://dm.takaratomy.co.jp/rule/qa/45909/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37678/",
+      "https://dm.takaratomy.co.jp/rule/qa/42373/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -184582,6 +184672,25 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35066/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316652/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35357/",
+          "https://dm.takaratomy.co.jp/rule/qa/45909/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 709,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5960,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5963,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316652/",
+          "https://dm.takaratomy.co.jp/rule/qa/45263/",
+          "https://dm.takaratomy.co.jp/rule/qa/49538/",
           "https://dm.takaratomy.co.jp/rule/qa/45909/"
         ],
         "next": [

@@ -675,6 +675,10 @@ function superInstructions437(text,phase){
 }
 // Pinned aliases for older wording, only within an explicitly marked tap ability.
 function tap440(text,phase){return{
+ ...(phase>=710?{
+  'バトルゾーンにある自分のドラゴンを1体アンタップする。':[{op:'Target',owner:'self',untap:true,filter:{race:'ドラゴン'},title:'アンタップする自分のドラゴンを選ぶ'}],
+  'バトルゾーンにある自分のフレイム・コマンドを1体アンタップする。':[{op:'Target',owner:'self',untap:true,filter:{race:'フレイム・コマンド'},title:'アンタップする自分のフレイム・コマンドを選ぶ'}]
+ }:{}),
  ...(phase>=708?{
   'バトルゾーンにある自分の他のクリーチャーを1体アンタップする。':[{op:'Target',owner:'self',untap:true,g179Other:true,title:'アンタップする自分の他のクリーチャーを選ぶ'}]
  }:{}),
@@ -3228,6 +3232,18 @@ export function standardCardSpec(d,{phase=165}={}){
  if(phase>=406&&creature){
   const marker='サバイバー(このクリーチャーがバトルゾーンにある間自分の他のサバイバーも上の能力を得る)';
   const reprintMarker='サバイバー(自分のサバイバーはすべて上のoS能力を持つ)';
+  if(phase>=710&&lines.length===2&&!evolution&&String(f.race).split('/').includes('サバイバー')){
+   const [ability,sharing]=lines.map(normalize);
+   const earlyDiscard='このクリーチャーが攻撃するとき相手の手札が1枚でもあれば相手はその中から1枚選んで持ち主の墓地に置く。';
+   const promoMarker='サバイバー(このクリーチャーがバトルゾーンにある間自分の他のサバイバーも上のoS能力を得る)';
+   const laterMarker='サバイバー(自分のサバイバーすべてに上のoS能力を与える)';
+   if(ability===earlyDiscard&&sharing===marker||
+    ability==='oS'+earlyDiscard&&sharing===promoMarker||
+    ability==='oSこのクリーチャーが攻撃する時相手は自身の手札を1枚選び捨てる。'&&sharing===laterMarker){
+    const grants={g34Attack:[{op:'Discard',n:1}]};
+    return{...grants,g406Survivor:structuredClone(grants)};
+   }
+  }
   const at=lines.findIndex(l=>normalize(l)===marker||phase>=709&&normalize(l)===reprintMarker);
   if(at>=0){
    if(evolution||lines.length!==2||at!==1||!String(f.race).split('/').includes('サバイバー'))throw Error('未対応のサバイバー構成');
@@ -3281,11 +3297,23 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  if(phase>=439&&creature){
-  const marker=/^このクリーチャーで攻撃する(?:かわり|代わり)にタップして次の能力を使ってもよい。$/,at=lines.findIndex(l=>marker.test(normalize(l)));
+  const marker=/^このクリーチャーで攻撃する(?:かわり|代わり)にタップして次の能力を使ってもよい。$/;
+  const header='このクリーチャーで攻撃するかわりにタップして次の能力を使ってもよい。';
+  const tHeader='このクリーチャーで攻撃するかわりにタップして次のt能力を使ってもよい。';
+  const tDragon='t自分のドラゴン・クリーチャーを1体アンタップする。';
+  // These prints place the tap marker and its effect on the same line or mark the effect with t.
+  const tapLines=phase>=710?lines.flatMap((line,i)=>{
+   const text=normalize(line),suffix=text.slice(header.length);
+   if(text.startsWith(header)&&/^バトルゾーンにある自分の(?:ドラゴン|フレイム・コマンド)を1体アンタップする。$/.test(suffix))return[header,suffix];
+   if(text===tHeader&&normalize(lines[i+1]||'')===tDragon)return[header];
+   if(text===tDragon&&normalize(lines[i-1]||'')===tHeader)return['バトルゾーンにある自分のドラゴンを1体アンタップする。'];
+   return[line];
+  }):lines;
+  const at=tapLines.findIndex(l=>marker.test(normalize(l)));
   if(at>=0){
-   if(lines.filter(l=>marker.test(normalize(l))).length!==1||at===lines.length-1)throw Error('未対応のタップ能力構成');
-   const prefix=structuredClone(d),body=structuredClone(d);prefix.faces[0].abilityText=lines.slice(0,at).join('\n');body.faces[0].typeText='クリーチャー';body.faces[0].abilityText='このクリーチャーが出た時、'+lines.slice(at+1).join('\n');
-   const base=standardCardSpec(prefix,{phase:438}),bodyText=normalize(lines.slice(at+1).join('')),mappedBody=(phase>=586?instruction586(bodyText):null)||(phase>=585?instruction585(bodyText):null)||(phase>=583?instruction583(bodyText):null)||(phase>=582?instruction582(bodyText):null);
+   if(tapLines.filter(l=>marker.test(normalize(l))).length!==1||at===tapLines.length-1)throw Error('未対応のタップ能力構成');
+   const prefix=structuredClone(d),body=structuredClone(d);prefix.faces[0].abilityText=tapLines.slice(0,at).join('\n');body.faces[0].typeText='クリーチャー';body.faces[0].abilityText='このクリーチャーが出た時、'+tapLines.slice(at+1).join('\n');
+   const base=standardCardSpec(prefix,{phase:438}),bodyText=normalize(tapLines.slice(at+1).join('')),mappedBody=(phase>=586?instruction586(bodyText):null)||(phase>=585?instruction585(bodyText):null)||(phase>=583?instruction583(bodyText):null)||(phase>=582?instruction582(bodyText):null);
    const mapped=mappedBody?[mappedBody]:phase>=440?tap440(bodyText,phase):null;
    if(mapped)return{...base,g439Tap:structuredClone(mapped)};
    const compiled=standardCardSpec(body,{phase:438});

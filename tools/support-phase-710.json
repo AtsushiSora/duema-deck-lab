@@ -1,0 +1,411 @@
+{
+  "phase": 710,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5963,
+  "description": "種族を指定するタップ能力のアンタップと、サバイバーの攻撃時の手札破棄を実装。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316652/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37678/",
+    "https://dm.takaratomy.co.jp/rule/qa/42373/"
+  ],
+  "cards": [
+    {
+      "id": "dm37-047",
+      "name": "ピッチュ・アイニー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-047",
+      "faces": [
+        {
+          "name": "ピッチュ・アイニー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nこのクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。 バトルゾーンにある自分のフレイム・コマンドを１体アンタップする。",
+          "race": "ファイアー・バード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "speedAttacker": true,
+        "g439Tap": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "untap": true,
+            "filter": {
+              "race": "フレイム・コマンド"
+            },
+            "title": "アンタップする自分のフレイム・コマンドを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "85adc3ab750b14a027a13613e868d825c603ca9ad526f21076777e8d20cb6d3f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22-050",
+      "name": "ポップ・ルビン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-050",
+      "faces": [
+        {
+          "name": "ポップ・ルビン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにある自分のドラゴンを１体アンタップする。",
+          "race": "ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "untap": true,
+            "filter": {
+              "race": "ドラゴン"
+            },
+            "title": "アンタップする自分のドラゴンを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "5f14a70ece939ee8a7895a7e67354a93dce8ec0a880c0c6cd1167922f3ce3384",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm05-013",
+      "name": "ダーク・ティアラγ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-013",
+      "faces": [
+        {
+          "name": "ダーク・ティアラγ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが攻撃するとき、相手の手札が１枚でもあれば、相手はその中から１枚選んで持ち主の墓地に置く。\nサバイバー(このクリーチャーがバトルゾーンにある間、自分の他のサバイバーも上の能力を得る)",
+          "race": "ブレインジャッカー/サバイバー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ],
+        "g406Survivor": {
+          "g34Attack": [
+            {
+              "op": "Discard",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm05-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "835db855673c0f26c4be3641cf8921f79f5f5f6840440d5808c7d1cebe303402",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc43-037",
+      "name": "ポップ・ルビン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc43-037",
+      "faces": [
+        {
+          "name": "ポップ・ルビン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにある自分のドラゴンを１体アンタップする。",
+          "race": "ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "untap": true,
+            "filter": {
+              "race": "ドラゴン"
+            },
+            "title": "アンタップする自分のドラゴンを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc43-037.jpg",
+      "canonicalId": "dm22-050",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "37f43c4fb942b10ee9f44ce2cc91bbe510b6846db086064b358e96b16fb6192a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc64-041",
+      "name": "ポップ・ルビン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc64-041",
+      "faces": [
+        {
+          "name": "ポップ・ルビン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。 バトルゾーンにある自分のドラゴンを１体アンタップする。",
+          "race": "ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "untap": true,
+            "filter": {
+              "race": "ドラゴン"
+            },
+            "title": "アンタップする自分のドラゴンを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc64-041.jpg",
+      "canonicalId": "dm22-050",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "60acdee0f93228e4ef3a82a624b05e12db46c832859f1b84d8815a643fc8828e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc67-019",
+      "name": "ポップ・ルビン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc67-019",
+      "faces": [
+        {
+          "name": "ポップ・ルビン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにある自分のドラゴンを１体アンタップする。",
+          "race": "ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "untap": true,
+            "filter": {
+              "race": "ドラゴン"
+            },
+            "title": "アンタップする自分のドラゴンを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc67-019.jpg",
+      "canonicalId": "dm22-050",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "7f3826e6bc9cf5dd60543edafe11ef1809a48b5e8727a53b1f1c0463084ed72f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26rp1-T010",
+      "name": "ポップ・ルビン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-T010",
+      "faces": [
+        {
+          "name": "ポップ・ルビン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次のt能力を使ってもよい。\nt 自分のドラゴン・クリーチャーを１体アンタップする。",
+          "race": "ファイアー・バード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "untap": true,
+            "filter": {
+              "race": "ドラゴン"
+            },
+            "title": "アンタップする自分のドラゴンを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26rp1-T010.jpg",
+      "canonicalId": "dm22-050",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "dd783e7ea7c844536809a6da3e8a863bbdfb10c6f1e1d2211990e92f73d2113d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy1-025",
+      "name": "ダーク・ティアラγ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy1-025",
+      "faces": [
+        {
+          "name": "ダーク・ティアラγ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "oS このクリーチャーが攻撃するとき、相手の手札が1枚でもあれば、相手はその中から１枚選んで持ち主の墓地に置く。\nサバイバー（このクリーチャーがバトルゾーンにある間、自分の他のサバイバーも上のoS 能力を得る）",
+          "race": "ブレインジャッカー/サバイバー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ],
+        "g406Survivor": {
+          "g34Attack": [
+            {
+              "op": "Discard",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy1-025.jpg",
+      "canonicalId": "dm05-013",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "5e25be43543833fa78eb27ce71e1138146b33728300e3c75c154306b33b0a19e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex18-061",
+      "name": "ダーク・ティアラγ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex18-061",
+      "faces": [
+        {
+          "name": "ダーク・ティアラγ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "oSこのクリーチャーが攻撃する時、相手は自身の手札を１枚選び、捨てる。\nサバイバー（自分のサバイバーすべてに、上のoS 能力を与える）",
+          "race": "ブレインジャッカー/サバイバー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "n": 1
+          }
+        ],
+        "g406Survivor": {
+          "g34Attack": [
+            {
+              "op": "Discard",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex18-061.jpg",
+      "canonicalId": "dm05-013",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "0b1d320b1f9ba137a34d5f440c50ceb45bb32eb4979c5b9d65d64dd15974134e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm37-047": 4,
+      "dm22-050": 4,
+      "dm05-013": 4,
+      "dmc43-037": 4,
+      "dmc64-041": 4,
+      "dmc67-019": 4,
+      "dm26rp1-T010": 4,
+      "promoy1-025": 4,
+      "dmex18-061": 4
+    }
+  }
+}
