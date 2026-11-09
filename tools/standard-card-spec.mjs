@@ -2476,6 +2476,11 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=685&&creature){
+  const text=normalize(f.abilityText);
+  const match=text.match(/^Q・ブレイカー(?:\(このクリーチャーはシールドを4つブレイクする\))?(相手は呪文を唱えたりフィールドを展開できない。|相手は呪文またはフィールドを実行できない。)このクリーチャーがバトルに勝った時相手のシールドを3つまで選び持ち主のマナゾーンに置く。$/);
+  if(match)return {breaker:4,g473OpponentSpellLock:true,g685OpponentFieldLock:true,g189BattleWin:[{op:'ShieldMove685',n:3,to:'mana'}]};
+ }
  if(phase>=684&&creature&&/^このクリーチャーが攻撃する時多色カードを1枚自分の手札から捨ててもよい。そうした(?:場合|ら)このクリーチャーをアンタップする。$/.test(normalize(f.abilityText))){
   return {g34Attack:[{op:'DiscardFor248',g488DiscardFilter:{g223Multicolor:true},title:'多色カードを1枚捨てて、このクリーチャーをアンタップする？',defs:[{op:'Untap',g191First:true}]}]};
  }

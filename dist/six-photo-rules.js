@@ -260,10 +260,11 @@ export function createSixPhotoRules(api){
   const owner=1-p,prior=s.players[owner].turns-Number(s.active===owner);
   return (s.g618ShieldTurns?.[owner]||[]).includes(prior);
  }
- function finishShieldGrave588(s,t){
+ function finishShieldMove588(s,t){
   if(!t.selected?.length)return;
-  const moved=api.moveShields(s,1-t.p,t.selected,'grave');
-  if(moved.length)api.log(s,t.p,'shieldGrave',card(t.source).name+'：相手のシールドからカード'+moved.length+'枚を墓地に置いた',{cardId:t.source});
+  const to=t.to==='mana'?'mana':'grave',zone=to==='mana'?'マナゾーン':'墓地';
+  const moved=api.moveShields(s,1-t.p,t.selected,to);
+  if(moved.length)api.log(s,t.p,to==='mana'?'shieldMana':'shieldGrave',card(t.source).name+'：相手のシールドからカード'+moved.length+'枚を'+zone+'に置いた',{cardId:t.source});
  }
  function winWatches252(s,p,w){const winner=s.players[p].battle.find(x=>x.uid===w?.uid);if(!winner)return[];return watchSources252(s,p).flatMap(x=>{const watch=effective(x,s).g252WinWatch;return watch&&(!watch.first||w.g587First)&&(!watch.other||x.uid!==winner.uid)&&matches(s,p,winner,watch.filter)?[{player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Sequence',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs:watch.defs,...(watch.winner?{g399Attacker:{uid:winner.uid,incarnation:winner.incarnation||0}}:{})})}]:[];});}
  // Use events come from actual summons and spell casts, not arbitrary battlefield entries.
@@ -967,7 +968,7 @@ export function createSixPhotoRules(api){
  case'g34_Harpoon618':{
   if(opp.shields.length<=3||!opponentAddedShields618(s,t.p))break;
   const kept=t.kept||[],rest=opp.shields.filter(x=>!kept.includes(x.uid));
-  if(kept.length===3)finishShieldGrave588(s,{...t,selected:rest.map(x=>x.uid)});
+  if(kept.length===3)finishShieldMove588(s,{...t,selected:rest.map(x=>x.uid)});
   else choice(s,t,'残す相手のシールドを3つ選ぶ（'+kept.length+'/3）',rest.map(x=>opt('シールド '+(opp.shields.indexOf(x)+1),x.uid)));
   break;
  }
@@ -978,11 +979,13 @@ export function createSixPhotoRules(api){
   ]);
   break;
  }
+ case'g34_ShieldMove685':
  case'g34_ShieldGrave588':{
   const selected=t.selected||[],rows=opp.shields.filter(y=>!selected.includes(y.uid)&&api.shieldCards(y).some(x=>!x.g37ShieldHeld));
-  if(selected.length<t.n&&rows.length)choice(s,t,t.required?'墓地に置く相手のシールドを1つ選ぶ':'墓地に置く相手のシールドを'+t.n+'つまで選ぶ（'+selected.length+'つ選択済み）',[
+  const zone=t.to==='mana'?'マナゾーン':'墓地';
+  if(selected.length<t.n&&rows.length)choice(s,t,t.required?zone+'に置く相手のシールドを1つ選ぶ':zone+'に置く相手のシールドを'+t.n+'つまで選ぶ（'+selected.length+'つ選択済み）',[
    ...rows.map(y=>opt('シールド '+(opp.shields.indexOf(y)+1),y.uid,10)),...(t.required?[]:[opt('選択を完了',null,0)])
-  ]);else finishShieldGrave588(s,t);
+  ]);else finishShieldMove588(s,t);
   break;
  }
  case'g34_FightPair586':{
@@ -1342,7 +1345,8 @@ export function createSixPhotoRules(api){
   if(y)zoneMove(s,t.p,'hand',y.uid,'shields',{...t,g657FaceUp:v===true});
   break;
  }
- case'g34_ShieldGrave588':if(v)put(s,{...t,selected:[...(t.selected||[]),v]});else finishShieldGrave588(s,t);break;
+ case'g34_ShieldMove685':
+ case'g34_ShieldGrave588':if(v)put(s,{...t,selected:[...(t.selected||[]),v]});else finishShieldMove588(s,t);break;
  case'g34_FightPair586':if(v){
   const owners=t.who==='both'?[t.p,1-t.p]:[t.opponentPicks||t.who==='opponent'?1-t.p:t.p];
   put(s,{...t,op:'g34_FightPairSecond586',p:t.opponentPicks?1-t.p:t.p,first:v,owners});
@@ -1575,6 +1579,7 @@ export function createSixPhotoRules(api){
  sympathyDiscount211:(s,p,c)=>c.g211Sympathy?.minimum===2?0:sympathyAmount500(s,p,c),
  discount(s,p,c){return nextReduction456(s,p,c)+(c.g34Role==='shinGod'?s.players[p].battle.filter(x=>!x.sealed&&mecha(effective(x,s))).length:0)+(c.type==='creature'&&colors(c).includes('自然')&&Number(c.power)>=12000?(s.g34Discounts||[]).filter(x=>x.p===p&&x.turn===s.turn).reduce((n,x)=>n+x.amount,0):0);},
  allowedCast(s,p,c){
+  if(c.type==='field'&&creatures(s,1-p).some(x=>!x.sealed&&effective(x,s).g685OpponentFieldLock))return false;
   if(c.type==='spell'&&(s.extLimits||[]).some(l=>l.kind==='g589SpellLock'&&l.player===p&&
    (!l.nextOnly||s.active===p&&s.players[p].turns>l.afterTurns)&&(!l.color||colors(c).includes(l.color))))return false;
   if(c.type==='spell'&&!colors(c).includes('光')&&(active(s,0,'alca').length||active(s,1,'alca').length))return false;if(c.type==='creature'||c.type==='spell'){if(active(s,1-p,'perfect').length&&s.g34Executions?.[p]?.turn===s.turn&&s.g34Executions[p].n>=3)return false;if(!colors(c).includes('光')&&(active(s,0,'alphadios').length||active(s,1,'alphadios').length))return false;}return c.type!=='spell'||!active(s,1-p,'hAlka').some(x=>x.hyperActive&&creatures(s,1-p).some(y=>y.tapped));},
