@@ -175667,23 +175667,203 @@
       ],
       "supportBatch": "phase-743",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex11-019",
+      "name": "U・S・A・DANGER",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ビートジョッキー/チームボンバー",
+      "text": "マジボンバー ３（このクリーチャーが攻撃する時、自分の山札の上から１枚目を見る。その後、コスト３以下のクリーチャーを１体、自分の手札または山札の上から、バトルゾーンに出してもよい）\n自分のクリーチャーが攻撃する時、自分の手札を１枚捨て、その後、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex11-019",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Magibomber321",
+          "n": 3,
+          "g743HoldTop": true
+        }
+      ],
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-744",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-031",
+      "name": "笑笑-エナジー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4500,
+      "race": "エンジェル・コマンド/チームボンバー",
+      "text": "マジボンバー ４（このクリーチャーが攻撃する時、自分の山札の上から１枚目を見る。その後、コスト４以下のクリーチャーを１体、自分の手札または山札の上から、バトルゾーンに出してもよい）\n自分のターンの終わりに、そのターン、自分のクリーチャーを２体以上バトルゾーンに出していれば、自分の山札の上から１枚目を見る。それを表向きまたは裏向きにして、新しいシールドとしてシールドゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-031",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Magibomber321",
+          "n": 4,
+          "g743HoldTop": true
+        }
+      ],
+      "g174End": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "enteredThisTurn",
+              "min": 2
+            }
+          },
+          "defs": [
+            {
+              "op": "LookShield744"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-744",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-s04",
+      "name": "ロック・クロック・六九",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ビートジョッキー/チームボンバー/スペシャルズ",
+      "text": "スピードアタッカー\nW・ブレイカー\nマジボンバー ５（このクリーチャーが攻撃する時、自分の山札の上から１枚目を見る。その後、コスト５以下のクリーチャーを１体、自分の手札または山札の上から、バトルゾーンに出してもよい）\nこのクリーチャーの攻撃の終わりに、このターン中にシールドが１つもブレイクされていなければ、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-s04",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Magibomber321",
+          "n": 5,
+          "g743HoldTop": true
+        }
+      ],
+      "g474AttackEnd": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "brokenThisTurn",
+              "sumBoth": true,
+              "max": 0
+            }
+          },
+          "defs": [
+            {
+              "op": "Untap"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-744",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-s07",
+      "name": "雷龍 ヴァリヴァリウス",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 11000,
+      "race": "ニトロ・ドラゴン/チームボンバー",
+      "text": "バトルゾーンに自分のクリーチャーがなければ、このクリーチャーの召喚コストを３少なくする。\nスピードアタッカー\nW・ブレイカー\nマジボンバー ７（このクリーチャーが攻撃する時、自分の山札の上から１枚目を見る。その後、コスト７以下のクリーチャーを１体、自分の手札または山札の上から、バトルゾーンに出してもよい）\nこのクリーチャーの攻撃の終わりに、自分の山札の上から１枚目を裏向きのまま、新しいシールドとしてシールドゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-s07",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g261Discount": {
+        "filter": {
+          "g370BattleCount": {
+            "max": 0,
+            "filter": {
+              "creature": true
+            }
+          }
+        },
+        "amount": 3
+      },
+      "g34Attack": [
+        {
+          "op": "Magibomber321",
+          "n": 7,
+          "g743HoldTop": true
+        }
+      ],
+      "g474AttackEnd": [
+        {
+          "op": "Offer",
+          "title": "山札の上から1枚を裏向きでシールド化する？",
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-744",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 743,
+    "phase": 744,
     "checkedAt": "2026-11-10",
-    "baseCount": 6073,
-    "newEffectCards": 3,
+    "baseCount": 6076,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6076,
+    "totalCount": 6080,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
       "https://dm.takaratomy.co.jp/rule/qa/33393/",
       "https://dm.takaratomy.co.jp/rule/qa/33394/",
+      "https://dm.takaratomy.co.jp/rule/qa/33522/",
       "https://dm.takaratomy.co.jp/rule/qa/41150/",
-      "https://dm.takaratomy.co.jp/rule/qa/46607/",
-      "https://dm.takaratomy.co.jp/rule/qa/46608/"
+      "https://dm.takaratomy.co.jp/rule/qa/45212/",
+      "https://dm.takaratomy.co.jp/rule/qa/46822/",
+      "https://dm.takaratomy.co.jp/rule/qa/47059/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -188571,6 +188751,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/46608/",
           "https://dm.takaratomy.co.jp/rule/qa/46069/",
           "https://dm.takaratomy.co.jp/rule/qa/42949/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 743,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6073,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6076,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/33393/",
+          "https://dm.takaratomy.co.jp/rule/qa/33394/",
+          "https://dm.takaratomy.co.jp/rule/qa/41150/",
+          "https://dm.takaratomy.co.jp/rule/qa/46607/",
+          "https://dm.takaratomy.co.jp/rule/qa/46608/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

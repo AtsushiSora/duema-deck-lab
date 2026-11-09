@@ -1346,6 +1346,17 @@ export function createSixPhotoRules(api){
   ]);
   break;
  }
+ case'g34_LookShield744':{
+  // QA47059: there is no referenced card if the look is prohibited.
+  const [uid]=look(s,{...t,n:1});
+  const y=own.deck.find(x=>x.uid===uid);
+  if(!y)break;
+  const name=card(y).name;
+  choice(s,{...t,target:uid},name+'を新しいシールドに置く',api.canAddShield(s,t.p)?[
+   opt('表向きで置く',true,-1,y.cardId),opt('裏向きで置く',false,1,y.cardId)
+  ]:[opt('確認',false,0,y.cardId)]);
+  break;
+ }
  case'g34_ShieldTop':
   if(t.faceUp)put(s,{...t,op:'g33_FaceTop'});
   else api.shieldTop(s,t.p,card(t.source));
@@ -1691,6 +1702,10 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_KatsuFight321':{const b=fightUnit240(s,1-t.p,t.enemy);if(v&&x&&b)api.battle(s,t.p,x,1-t.p,b,s.attack?.attacker);break;}
+ case'g34_LookShield744':
+  release(s,t.p,t.target);
+  api.shieldTop(s,t.p,card(t.source),null,{uid:t.target,faceUp:v});
+  break;
  case'g34_KatsuLoot321':{const y=own.hand.find(y=>y.uid===v);if(y)api.discardSelected(s,t.p,[y.uid],t.source,t.p,null,{...t,op:'g34_KatsuDraw321',high:card(y).type==='creature'&&api.power(y,false,s)>=6000});break;}
  case'g34_Next320':{const y=own.deck.find(y=>y.uid===t.target);if(!y)break;release(s,t.p,y.uid);if(v.to){zoneMove(s,t.p,'deck',y.uid,v.to,t);api.deckCheck(s,t.p);}else cast(s,t.p,y.uid,true,v.baseUid,v.face,null,'deck','ゴルギーネクスト');break;}
  case'g34_Smash320':if(v&&smashSource320(s,t))api.castBattleSpell(s,t.p,t.uid,t.incarnation,t.source);break;

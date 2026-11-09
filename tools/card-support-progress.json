@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-09",
   "catalogueNames": 11828,
-  "supportedNames": 6076,
-  "pendingNames": 5752,
-  "phase": 743,
-  "added": 3,
+  "supportedNames": 6080,
+  "pendingNames": 5748,
+  "phase": 744,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3450,
+    "クリーチャー": 3446,
     "NEOクリーチャー": 152,
     "呪文": 813,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4224,
+    "未対応の能力文": 4220,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -8447,30 +8447,99 @@
           "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
         }
       ]
+    },
+    {
+      "phase": 744,
+      "cards": [
+        {
+          "id": "dmex11-019",
+          "name": "U・S・A・DANGER"
+        },
+        {
+          "id": "dmrp14-031",
+          "name": "笑笑-エナジー"
+        },
+        {
+          "id": "dmrp13-s04",
+          "name": "ロック・クロック・六九"
+        },
+        {
+          "id": "dmrp14-s07",
+          "name": "雷龍 ヴァリヴァリウス"
+        }
+      ],
+      "supportedNames": 6080,
+      "pendingNames": 5748,
+      "verification": {
+        "focusedPassed": 11,
+        "regressionPassed": 314,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 7,
+        "scope": "公式検索で初出4種類と雷龍 ヴァリヴァリウスの同名再録3版の能力文・基本情報・マナ・JPEG画像・殿堂区分を照合。別名のボルシャック・ヴァリヴァリウスは既に別IDで対応済み。手札0枚のドロー、攻撃時の誘発順、閲覧不可、シールドの向きと公開範囲、両者のブレイク履歴、召喚軽減、EXライフ、攻撃中のターン中断、選択中の復元を検証。既存カード定義と従来の山札上シールド化の除外条件は基点と一致。",
+        "runtimeNote": "各実行は強制終了込み最大10分。Phase 252・321・322・474・657・743とshield-photoの回帰314件が成功。長時間のCPU対戦と前回基点で再現したPhase 322旧スキャナーテストは除外。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dmrp05-033",
+          "name": "イカリノ裁徒",
+          "reason": "初出とDMSD07再録の公式能力文・マナ・画像を照合。公式QA 39978・31797では通常シールド化のほか、既存の束への追加や城の設置もカード単位で誘発する。現在は一部の経路が共通の通知を通らないため、既存カードの通知を二重にせず全移動経路を検証できるまで保留。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-033"
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "対戦データにサイキック・クリーチャーの対象例がなく、対象判定と超次元への移動を実戦経路で検証できないため保留。"
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
+        },
+        {
+          "id": "dmrp14-020",
+          "name": "砕砕-スプレー",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-020",
+          "reason": "マジボンバーで実際に出たクリーチャーを追跡し、他の登場や出せなかった場合と区別する。 今回の単体マジボンバーと異なる処理の検証が必要なため保留。"
+        },
+        {
+          "id": "dmrp14-km1",
+          "name": "爆龍皇 ダイナボルト",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-km1",
+          "reason": "W・マジボンバー6。手札・山札から合計2体まで、残ったカードの順序、EXライフで閲覧中のカードを除外する裁定を検証する。 今回の単体マジボンバーと異なる処理の検証が必要なため保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 743,
-    "nextPhase": 744,
+    "lastVerifiedPhase": 744,
+    "nextPhase": 745,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmex11-019",
-        "name": "U・S・A・DANGER",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex11-019",
-        "check": "既存の自軍攻撃監視と手札交換を使い、同時に誘発するマジボンバー3との解決順と手札0枚を検証する。"
+        "id": "dmrp03-s07",
+        "name": "“滅砲”戦車 ヘビーベビィ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-s07",
+        "check": "既存のB・A・Dと現在パワーの比較を使い、自軍も含む全体破壊および置換効果を確認する。"
       },
       {
-        "id": "dmrp14-s07",
-        "name": "雷龍 ヴァリヴァリウス",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-s07",
-        "check": "クリーチャー不在時の軽減、マジボンバー7と攻撃終了時の任意シールド化を再利用できるか確認する。QA 41150のEXライフも検証する。"
+        "id": "dmsp01-005",
+        "name": "\"切駆\"戦車 ネズギアス",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp01-005",
+        "check": "B・A・Dと墓地に置いたカードの内訳を使い、追加ブレイク数とターン終了時の解除を確認する。"
       },
       {
-        "id": "dmrp14-031",
-        "name": "笑笑-エナジー",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-031",
-        "check": "マジボンバー4と終了時の2体以上の登場判定、山札の一番上を表向きまたは裏向きでシールド化する選択を確認する。"
+        "id": "dmrp14-020",
+        "name": "砕砕-スプレー",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-020",
+        "check": "マジボンバーで実際に出たクリーチャーを追跡し、他の登場や出せなかった場合と区別する。"
+      },
+      {
+        "id": "dmrp14-km1",
+        "name": "爆龍皇 ダイナボルト",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-km1",
+        "check": "W・マジボンバー6。手札・山札から合計2体まで、残ったカードの順序、EXライフで閲覧中のカードを除外する裁定を検証する。"
       },
       {
         "id": "dm19-018",

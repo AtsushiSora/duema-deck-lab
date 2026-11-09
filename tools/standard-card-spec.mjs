@@ -2564,6 +2564,24 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=744&&f.typeText==='クリーチャー'){
+  const bomber=(n,top='1枚目')=>'マジボンバー'+n+'(このクリーチャーが攻撃する時自分の山札の上から'+top+'を見る。その後コスト'+n+'以下のクリーチャーを1体自分の手札または山札の上から';
+  const attack=n=>[{op:'Magibomber321',n,g743HoldTop:true}];
+  const fast={speedAttacker:true,breaker:2};
+  const attackEnd='このクリーチャーの攻撃の終わりに';
+  if(compact363===bomber(3)+'バトルゾーンに出してもよい)自分のクリーチャーが攻撃する時自分の手札を1枚捨てその後カードを1枚引く。')
+   return {g34Attack:attack(3),g252AttackWatch:{who:'self',filter:{creature:true},defs:[{op:'Discard',owner:'self',n:1},{op:'Draw',n:1}]}};
+  if(compact363===bomber(4)+'バトルゾーンに出してもよい)自分のターンの終わりにそのターン自分のクリーチャーを2体以上バトルゾーンに出していれば自分の山札の上から1枚目を見る。それを表向きまたは裏向きにして新しいシールドとしてシールドゾーンに置く。')
+   return {g34Attack:attack(4),g174End:[{op:'IfOwn',filter:{g334ZoneCount:{zone:'enteredThisTurn',min:2}},defs:[{op:'LookShield744'}]}]};
+  if(compact363==='スピードアタッカーW・ブレイカー'+bomber(5)+'バトルゾーンに出してもよい)'+attackEnd+'このターン中にシールドが1つもブレイクされていなければこのクリーチャーをアンタップする。')
+   return {...fast,g34Attack:attack(5),g474AttackEnd:[{op:'IfOwn',filter:{g334ZoneCount:{zone:'brokenThisTurn',sumBoth:true,max:0}},defs:[{op:'Untap'}]}]};
+  const discount='自分のクリーチャーがなければこのクリーチャーの召喚コストを3少なくする。';
+  const vari=discount+'スピードアタッカーW・ブレイカー';
+  if(compact363==='バトルゾーンに'+vari+bomber(7)+'バトルゾーンに出してもよい)'+attackEnd+'自分の山札の上から1枚目を裏向きのまま新しいシールドとしてシールドゾーンに置いてもよい。'||
+     ['1枚','1枚目'].some(count=>compact363===vari+bomber(7,count)+'出してもよい)'+attackEnd+'自分の山札の上から'+count+'をシールド化してもよい。'))
+   return {...fast,g261Discount:{filter:{g370BattleCount:{max:0,filter:{creature:true}}},amount:3},g34Attack:attack(7),
+    g474AttackEnd:[{op:'Offer',title:'山札の上から1枚を裏向きでシールド化する？',defs:[{op:'ShieldTop',n:1}]}]};
+ }
  if(phase>=743){
   if(f.typeText==='クリーチャー'&&compact363==='自分のクリーチャーがバトルゾーンに出た時それがこのターン自分がバトルゾーンに出した2体目のクリーチャーならカードを1枚引く。マジボンバー5(このクリーチャーが攻撃する時自分の山札の上から1枚目を見る。その後コスト5以下のクリーチャーを1体自分の手札または山札の上からバトルゾーンに出してもよい)')
    return {g742SecondEntry:[{op:'Draw',n:1}],g34Attack:[{op:'Magibomber321',n:5,g743HoldTop:true}]};

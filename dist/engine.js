@@ -391,12 +391,16 @@ function sendBattleCardToShield(s,p,uid,shield){if(!canAddShield(s,p))return;if(
 
 function deckRedirect(s,p=null){return (p!==null&&extra.manaRedirect(s,p))|| s.players.some(p=>p.battle.some(x=>effectiveCard(x,s).deckRedirect));}
 export function canAddShield(s,p){return s.active!==p||!s.players[1-p].battle.some(x=>effectiveCard(x,s).g39Fuujin);}
-function shieldTop(s,p,source,exLifeSource=null){
+function shieldTop(s,p,source,exLifeSource=null,{uid=null,faceUp=false}={}){
  if(!canAddShield(s,p))return null;
- const own=s.players[p],index=own.deck.findIndex(x=>![...(own.g39Protected||[]),...(own.g38Protected||[]),...(own.g36Protected||[]),...(own.g34Protected||[]),...(own.g33Protected||[]),...(own.g29Protected||[]),...(own.g28Protected||[]),...(own.g27Protected||[]),...(own.g13Protected||[]),...(own.g4Protected||[]),...(own.g8Protected||[]),...(own.g14Protected||[]),...(own.g25Protected||[]),...(own.g18Protected||[]),...(own.g10Protected||[]),...(own.g17Protected||[]),...(own.g3Protected||[]),...(own.g2Protected||[]),...(own.g21Protected||[]),...(own.g19Reveals||[]),...(own.g7Reveals||[]),...(own.g12Reveals||[])].includes(x.uid)),shield=index<0?null:own.deck.splice(index,1)[0];
+ const own=s.players[p];
+ const index=uid===null
+  ?own.deck.findIndex(x=>![...(own.g39Protected||[]),...(own.g38Protected||[]),...(own.g36Protected||[]),...(own.g34Protected||[]),...(own.g33Protected||[]),...(own.g29Protected||[]),...(own.g28Protected||[]),...(own.g27Protected||[]),...(own.g13Protected||[]),...(own.g4Protected||[]),...(own.g8Protected||[]),...(own.g14Protected||[]),...(own.g25Protected||[]),...(own.g18Protected||[]),...(own.g10Protected||[]),...(own.g17Protected||[]),...(own.g3Protected||[]),...(own.g2Protected||[]),...(own.g21Protected||[]),...(own.g19Reveals||[]),...(own.g7Reveals||[]),...(own.g12Reveals||[])].includes(x.uid))
+  :own.deck.findIndex(x=>x.uid===uid);
+ const shield=index<0?null:own.deck.splice(index,1)[0];
  if(shield&&s.players.some(p=>p.battle.some(x=>effectiveCard(x,s).deckRedirect))){clearBattleState(shield);addZone(s,own,'grave',shield);log(s,p,'deckReplace','カレイコの黒像でシールドのかわりに墓地へ置く',{cardId:shield.cardId});deckCheck(s,p);return;}
- if(shield){clearBattleState(shield,'shields');addZone(s,p,'shields',shield);if(exLifeSource){if(card(exLifeSource).extraExLife)(exLifeSource.exLifeShieldUids??=[]).push(shield.uid);else exLifeSource.exLifeShieldUid=shield.uid;}
-  log(s,p,exLifeSource?'exLifeAdd':'shieldAdd',`${source.name}${exLifeSource?'のEXライフ':''}で山札の上から1枚をシールド化（内容は非公開）`,{cardId:source.id});
+ if(shield){clearBattleState(shield,'shields');if(faceUp)shield.faceUp=true;addZone(s,p,'shields',shield);if(exLifeSource){if(card(exLifeSource).extraExLife)(exLifeSource.exLifeShieldUids??=[]).push(shield.uid);else exLifeSource.exLifeShieldUid=shield.uid;}
+  log(s,p,exLifeSource?'exLifeAdd':'shieldAdd',faceUp?`${source.name}で${card(shield).name}を表向きでシールド化`:`${source.name}${exLifeSource?'のEXライフ':''}で山札の上から1枚をシールド化（内容は非公開）`,{cardId:source.id});
   extra.shieldAdded(s,p,shield);
   for(const c of own.battle)if(effectiveCard(c,s).shieldEntryTapLock)enqueueEffect(s,p,{uid:c.uid,source:c.cardId,effect:'shieldEntryTapLock'});
  }
