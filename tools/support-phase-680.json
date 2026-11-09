@@ -1,0 +1,145 @@
+{
+  "phase": 680,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5868,
+  "description": "攻撃時の任意ドロー、墓地から山札上への順序付き移動、手札公開の枚数に応じたタップ状態のマナ加速。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/44188/",
+    "https://dm.takaratomy.co.jp/rule/qa/44609/"
+  ],
+  "cards": [
+    {
+      "id": "dmr05-052",
+      "name": "スーパーハッカー養成プラン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-052",
+      "faces": [
+        {
+          "name": "スーパーハッカー養成プラン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このターン、自分のクリーチャーが攻撃する時、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TurnAttackDraw613",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "01e2ccbcadd80d4a047bdf270675cf6870742944353b10c8a184648f18879d25",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-056",
+      "name": "鬼人形ブソウ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-056",
+      "faces": [
+        {
+          "name": "鬼人形ブソウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、クリーチャーを好きな数、自分の墓地から好きな順序で山札の一番上に置いてもよい。",
+          "race": "デスパペット/ハンター/エイリアン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "deckTop",
+            "n": "all",
+            "optional": true,
+            "g183Return": true,
+            "filter": {
+              "creature": true
+            },
+            "title": "山札の上に戻すクリーチャーを上から順に選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-056.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "88b49c67384665b3ac6359eabf9b2b9105a319c861c2ebece2f3233cefde85e6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr06-019",
+      "name": "広くて狭い牧場",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-019",
+      "faces": [
+        {
+          "name": "広くて狭い牧場",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の手札にあるコスト７以上のカードを好きな数、相手に見せる。このようにして見せたカード１枚につき、自分の山札の上から１枚目をタップしてマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandReveal462",
+            "filter": {
+              "anyFaceMinCost": 7
+            },
+            "rampEach": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "3b4b16e98377c8130880eb77eb8effd42aa3c4fba174f99f1633d9a3a41c03e0",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr05-052": 4,
+      "dmr05-056": 4,
+      "dmr06-019": 4
+    }
+  }
+}

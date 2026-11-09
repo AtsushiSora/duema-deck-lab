@@ -2453,6 +2453,18 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=680){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='呪文'&&text==='このターン自分のクリーチャーが攻撃する時カードを1枚引いてもよい。'){
+   return {effect:'sixPhoto',g34Tasks:[{op:'TurnAttackDraw613',optional:true}]};
+  }
+  if(creature&&text==='このクリーチャーをバトルゾーンに出した時クリーチャーを好きな数自分の墓地から好きな順序で山札の一番上に置いてもよい。'){
+   return {effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'grave',to:'deckTop',n:'all',optional:true,g183Return:true,filter:{creature:true},title:'山札の上に戻すクリーチャーを上から順に選ぶ'}]};
+  }
+  if(f.typeText==='呪文'&&text==='自分の手札にあるコスト7以上のカードを好きな数相手に見せる。このようにして見せたカード1枚につき自分の山札の上から1枚目をタップしてマナゾーンに置く。'){
+   return {effect:'sixPhoto',g34Tasks:[{op:'HandReveal462',filter:{anyFaceMinCost:7},rampEach:true}]};
+  }
+ }
  if(phase>=679){
   const text=normalize(f.abilityText);
   if(creature&&text==='クリーチャーが破壊された時そのターンこのクリーチャーのパワーは+2000される。このクリーチャーはパワーが6000以上の時「W・ブレイカー」を得る。'){

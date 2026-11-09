@@ -1567,7 +1567,7 @@ export function rankHeuristicActions(s){
  const score=a=>{
   const c=a.cardId?(a.kind==='play'?playFaces(card(a.cardId))[a.face||0]:card(a.cardId)):null;
   if(a.kind==='attack'){
-   const n=extra.six.attackDraws613(v,p).length;
+   const n=extra.six.attackDraws613(v,p).filter(l=>!l.optional).length;
    if(n&&n>=me.deckCount)return living(me.battle).some(x=>effectiveCard(x,v).shako)?1000:-1000;
   }
   // Entry counts include the new Joker, but a mana summon moves an already-counted card.
@@ -1833,7 +1833,7 @@ export function rankHeuristicActions(s){
    if(grant?.unblockable)return canAttack(v,p,x)&&!target.unblockable?20+aiCost(target):0;
    return (canAttack(v,p,x)?20:0)+aiCost(target);
   }
-  if(a.kind==='play'&&c&&card(c.id).supportBatch==='phase-613'){
+  if(a.kind==='play'&&c&&(card(c.id).supportBatch==='phase-613'||c.g34Tasks?.some(d=>d.op==='TurnAttackDraw613'))){
    const defs=c.g34Tasks,ctx={p,source:c.id};
    const ready=()=>living(me.battle).filter(x=>canAttack(v,p,x));
    const blockers=()=>living(them.battle).some(x=>!x.tapped&&effectiveCard(x,v).blocker);

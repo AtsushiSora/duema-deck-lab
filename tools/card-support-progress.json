@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-09",
   "catalogueNames": 11830,
-  "supportedNames": 5868,
-  "pendingNames": 5962,
-  "phase": 679,
+  "supportedNames": 5871,
+  "pendingNames": 5959,
+  "phase": 680,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3609,
+    "クリーチャー": 3608,
     "NEOクリーチャー": 153,
-    "呪文": 840,
+    "呪文": 838,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 60,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1338,
-    "未対応の能力文": 4408,
+    "未対応の能力文": 4405,
     "未対応のG・ゼロ条件": 27,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -2215,13 +2215,62 @@
           "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
         }
       ]
+    },
+    {
+      "phase": 680,
+      "cards": [
+        {
+          "id": "dmr05-052",
+          "name": "スーパーハッカー養成プラン"
+        },
+        {
+          "id": "dmr05-056",
+          "name": "鬼人形ブソウ"
+        },
+        {
+          "id": "dmr06-019",
+          "name": "広くて狭い牧場"
+        }
+      ],
+      "supportedNames": 5871,
+      "pendingNames": 5959,
+      "verification": {
+        "focusedPassed": 10,
+        "regressionPassed": 193,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "攻撃ごとの任意ドローと期限、呪文無視、CPUの山札切れ回避、墓地のカードの選択順、公開枚数に応じたタップ状態でのマナ加速、途中保存・復元、既存のデッキID。公式画像3件を取得してJPEGを確認。",
+        "runtimeNote": "初回の回帰はCPU対戦で出力待ちが長引いたため中断。別の回帰実行は193件が約132秒で完了し、CPU対戦3件も成功。全体のnpm testは未再実行。"
+      },
+      "deferred": [
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "対戦データにサイキック・クリーチャーの対象例がなく、対象判定と超次元への移動を実戦経路で検証できないため保留。"
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
+        },
+        {
+          "id": "dmr06-048",
+          "name": "鉄拳制裁オニノブシ",
+          "reason": "離れる直前のパワーを復元後も参照できることと、∞・同値の判定を確認するまで保留。"
+        },
+        {
+          "id": "dmr10-s04",
+          "name": "奈落の葬儀人デス・シュテロン",
+          "reason": "3つの再録と、双方が手札を捨てる順序・置換の組み合わせを確認するまで保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 679,
-    "lastVerifiedCommit": "d7e6d0c9b587903d8895b2bd89419dc7b1547fc0",
-    "nextPhase": 680,
-    "workInProgress": "phase 679まで検証とローカルコミット済み。phase 680は公式本文・関連裁定を確認した候補から再開できる。未コミットの実装なし。",
+    "lastVerifiedPhase": 680,
+    "nextPhase": 681,
+    "workInProgress": "phase 680は個別・関連回帰・npm run checkを確認済み。次回はphase 681。保留候補の確認事項が解決していない場合、対戦対応データにない完全な効果を既存処理で再現できる候補へ進む。",
     "nextCandidates": [
       {
         "id": "dmr06-048",

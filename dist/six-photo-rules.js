@@ -248,7 +248,7 @@ export function createSixPhotoRules(api){
  const watchSources252=(s,p)=>s.players[p].battle.filter(x=>!x.sealed&&!api.ignored(s,x));
  const attackDraws613=(s,p)=>(s.extLimits||[]).filter(l=>l.kind==='g613AttackDraw'&&l.player===p&&l.turn===s.turn&&!api.spellIgnored(s,{type:'spell',spellSource:l.source,cost:cost(card(l.source))}));
  function attackWatches252(s,p,attacker){
-  for(const l of attackDraws613(s,p))api.enqueue(s,p,{source:l.source,effect:'extended',task:task('g34_Draw',p,l.source,{n:1})});
+  for(const l of attackDraws613(s,p))api.enqueue(s,p,{source:l.source,effect:'extended',task:task('g34_Draw',p,l.source,{n:1,...(l.optional?{optional:true}:{})})});
   // Redzone records this attack immediately after this hook; its existing counter
   // also remembers earlier attacks made before a watcher entered the battlefield.
   const previous=s.g23Attacks?.[p],first=previous?.turn!==s.turn||!previous.count;
@@ -727,12 +727,12 @@ export function createSixPhotoRules(api){
  function handReveal462(s,t){const own=s.players[t.p],selected=t.selected||[],shown=own.hand.filter(x=>selected.includes(x.uid)),max=t.max??own.hand.length,rows=own.hand.filter(x=>!selected.includes(x.uid)&&matches(s,t.p,x,t.filter));
   if(selected.length>=max||!rows.length){finishReveal462(s,t,shown);return;}
   const seen=new Set(shown.flatMap(x=>faces(card(x)).flatMap(colors))),ready=t.needColors?.every(c=>seen.has(c));
-  const score=x=>{if(t.drawEach)return shown.length+1>=own.deck.length?-1000:10;if(t.powerEach)return creatures(s,t.p).filter(y=>!y.sealed).length?8:0;if(t.needColors){const added=new Set(faces(card(x)).flatMap(colors));return t.needColors.filter(c=>!seen.has(c)&&added.has(c)).length*20-2;}if(t.defs?.some(d=>d.op==='Draw'||d.op==='Ramp'))return own.deck.length>1?10:-1000;return 5;};
+  const score=x=>{if(t.drawEach||t.rampEach)return shown.length+1>=own.deck.length?-1000:10;if(t.powerEach)return creatures(s,t.p).filter(y=>!y.sealed).length?8:0;if(t.needColors){const added=new Set(faces(card(x)).flatMap(colors));return t.needColors.filter(c=>!seen.has(c)&&added.has(c)).length*20-2;}if(t.defs?.some(d=>d.op==='Draw'||d.op==='Ramp'))return own.deck.length>1?10:-1000;return 5;};
   choice(s,{...t,selected},'効果のために見せる手札を選ぶ（'+selected.length+'枚選択済み）',[...rows.map(x=>opt(card(x).name,x.uid,score(x),x.cardId)),opt(selected.length?'この枚数で確定':'見せずに進む',null,ready?25:0)]);
  }
  function finishReveal462(s,t,shown){if(!shown.length)return;for(const x of shown)api.log(s,t.p,'reveal',card(t.source).name+'で手札公開：'+card(x).name,{cardId:x.cardId,source:t.source});
   const seen=new Set(shown.flatMap(x=>faces(card(x)).flatMap(colors)));if(t.needColors&&!t.needColors.every(c=>seen.has(c)))return;
-  if(t.drawEach)start(s,t,[{op:'Draw',n:shown.length}]);else if(t.powerEach)start(s,t,[{op:'GroupPower',owner:'self',filter:{creature:true},power:t.powerEach*shown.length}]);else start(s,t,t.defs);
+  if(t.drawEach)start(s,t,[{op:'Draw',n:shown.length}]);else if(t.rampEach)start(s,t,[{op:'Ramp',n:shown.length,tapped:true}]);else if(t.powerEach)start(s,t,[{op:'GroupPower',owner:'self',filter:{creature:true},power:t.powerEach*shown.length}]);else start(s,t,t.defs);
  }
  const destinationName467={hand:'手札に加える',mana:'マナゾーンに置く',grave:'墓地に置く',deckTop:'山札の上に置く',deck:'山札の下に置く'};
  function lookDestination467(s,t){const stage=t.stages[t.stage],own=s.players[t.p],y=own.deck.find(x=>x.uid===t.chosen[0]);if(!y){put(s,{...t,op:'g34_LookPick',chosen:[]});return;}choice(s,t,'選んだカードをどこに置く？',stage.g467Destinations.map(to=>opt(destinationName467[to],to,to==='hand'?(own.hand.length<3?20:12):to==='mana'?(own.mana.length<6?18:8):3,t.g467Blind?undefined:y.cardId)));}
@@ -1216,7 +1216,7 @@ export function createSixPhotoRules(api){
   ));
   break;
  }
- case'g34_TurnAttackDraw613':(s.extLimits??=[]).push({kind:'g613AttackDraw',player:t.p,source:t.source,turn:s.turn,expires:'end',who:s.active});break;
+ case'g34_TurnAttackDraw613':(s.extLimits??=[]).push({kind:'g613AttackDraw',player:t.p,source:t.source,turn:s.turn,expires:'end',who:s.active,...(t.optional?{optional:true}:{})});break;
  case'g34_SpellLock489':(s.extLimits??=[]).push({kind:t.max===undefined?'cast':'spellCostLock',player:1-t.p,controller:t.p,expires:t.expires,who:t.expires==='end'?s.active:t.p,...(t.max===undefined?{}:{max:t.max})});break;
  case'g34_AttackCap627':{
   const player=1-t.p;
