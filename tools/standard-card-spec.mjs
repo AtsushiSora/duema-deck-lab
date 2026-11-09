@@ -2564,6 +2564,16 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=759&&f.typeText==='クリーチャー'){
+  if(compact363==='このクリーチャーが攻撃する時バトルゾーンにある自分のクリーチャーの数が相手より多ければ相手のクリーチャーを1体選びタップする。')
+   return {g34Attack:[{op:'IfOwn',filter:{g413MoreCreatures:true},defs:[{op:'Target',tap:true}]}]};
+  if(compact363==='このクリーチャーが攻撃する時クリーチャーを1体選びタップしてもよい。(まず何を攻撃するか選んでからタップするクリーチャーを選ぶ)')
+   return {g34Attack:[{op:'Target',anyOwner:true,tap:true,optional:true}]};
+  if(compact363==='S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)このクリーチャーがバトルゾーンに出た時クリーチャーを2体まで選びタップする。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'battle',anyOwner:true,n:2,optional:true,g173Targets:true,g193Select:true,g193Tap:true,filter:{creature:true},title:'タップするクリーチャーを2体まで選ぶ'}]};
+  if(compact363==='相手のクリーチャーが攻撃する時相手はバトルゾーンにある自身のタップされていないクリーチャーを1体選びタップする。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g252AttackWatch:{who:'opponent',defs:[{op:'OpponentSelect',n:1,tap:true,filter:{untapped:true}}]}};
+ }
  if(phase>=758&&f.typeText==='クリーチャー'){
   if(compact363==='相手が「S・トリガー」を使った時カードを2枚まで引いてもよい。')
    return {g699OpponentShieldTrigger:[{op:'DrawUpTo',n:2}]};

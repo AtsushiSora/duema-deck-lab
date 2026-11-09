@@ -177304,19 +177304,146 @@
       },
       "supportBatch": "phase-758",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-061",
+      "name": "赤攻銀 シュクラン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "メタリカ",
+      "text": "このクリーチャーが攻撃する時、バトルゾーンにある自分のクリーチャーの数が相手より多ければ、相手のクリーチャーを１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-061",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g413MoreCreatures": true
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "tap": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-759",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-062",
+      "name": "奇石 グリン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "メタリカ",
+      "text": "このクリーチャーが攻撃する時、クリーチャーを１体選び、タップしてもよい。（まず何を攻撃するか選んでから、タップするクリーチャーを選ぶ）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-062",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "tap": true,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-759",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp02-061",
+      "name": "嵐撃の求道者ル・ライバ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 3000,
+      "race": "メカサンダー",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、クリーチャーを２体まで選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-061",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "anyOwner": true,
+          "n": 2,
+          "optional": true,
+          "g173Targets": true,
+          "g193Select": true,
+          "g193Tap": true,
+          "filter": {
+            "creature": true
+          },
+          "title": "タップするクリーチャーを2体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-759",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-s02",
+      "name": "光神龍シャイニング・エッジ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6500,
+      "race": "アポロニア・ドラゴン",
+      "text": "相手のクリーチャーが攻撃する時、相手はバトルゾーンにある自身のタップされていないクリーチャーを１体選び、タップする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-s02",
+      "limit": 4,
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "opponent",
+        "defs": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "tap": true,
+            "filter": {
+              "untapped": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-759",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 758,
+    "phase": 759,
     "checkedAt": "2026-11-10",
-    "baseCount": 6120,
-    "newEffectCards": 3,
+    "baseCount": 6123,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6123,
+    "totalCount": 6127,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35517/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36347/",
+      "https://dm.takaratomy.co.jp/rule/qa/46490/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -190492,6 +190619,22 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 758,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6120,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6123,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35517/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

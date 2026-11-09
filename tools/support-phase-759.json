@@ -1,0 +1,198 @@
+{
+  "phase": 759,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6123,
+  "description": "攻撃時のクリーチャー数比較とタップ、登場時の任意タップ、相手の攻撃時の自己選択によるタップに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36347/",
+    "https://dm.takaratomy.co.jp/rule/qa/46490/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp05-061",
+      "name": "赤攻銀 シュクラン",
+      "faces": [
+        {
+          "name": "赤攻銀 シュクラン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃する時、バトルゾーンにある自分のクリーチャーの数が相手より多ければ、相手のクリーチャーを１体選び、タップする。",
+          "race": "メタリカ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-061",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g413MoreCreatures": true
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "tap": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-061.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "003a61bf00137a0a4ef51d7d77c0338d5b0db2052226e0577752cce274277c08",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-062",
+      "name": "奇石 グリン",
+      "faces": [
+        {
+          "name": "奇石 グリン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃する時、クリーチャーを１体選び、タップしてもよい。（まず何を攻撃するか選んでから、タップするクリーチャーを選ぶ）",
+          "race": "メタリカ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-062",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "tap": true,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-062.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "0a45546a1cfa75e862fcb099858da55c2f63864890c36d85f0d1bc0a6da3db5c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-061",
+      "name": "嵐撃の求道者ル・ライバ",
+      "faces": [
+        {
+          "name": "嵐撃の求道者ル・ライバ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、クリーチャーを２体まで選び、タップする。",
+          "race": "メカサンダー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-061",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "anyOwner": true,
+            "n": 2,
+            "optional": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "filter": {
+              "creature": true
+            },
+            "title": "タップするクリーチャーを2体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-061.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ed73ed4b233a32601097aee6e53d37fb936f9b6bf881ee24738d26bb4d613b80",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-s02",
+      "name": "光神龍シャイニング・エッジ",
+      "faces": [
+        {
+          "name": "光神龍シャイニング・エッジ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "相手のクリーチャーが攻撃する時、相手はバトルゾーンにある自身のタップされていないクリーチャーを１体選び、タップする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アポロニア・ドラゴン",
+          "powerText": "6500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-s02",
+      "spec": {
+        "breaker": 2,
+        "g252AttackWatch": {
+          "who": "opponent",
+          "defs": [
+            {
+              "op": "OpponentSelect",
+              "n": 1,
+              "tap": true,
+              "filter": {
+                "untapped": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "81b10912571f05204dde078bf244fea6bdd8947aaff12cd6a914ce03ba0694a3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp05-061": 4,
+      "dmrp04s-062": 4,
+      "dmrp02-061": 4,
+      "dmr01-s02": 4
+    }
+  }
+}
