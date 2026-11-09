@@ -1,0 +1,194 @@
+{
+  "phase": 743,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6073,
+  "description": "2体目の登場とマジボンバー、革命2の登場タップ、NEO進化時のアンタップ制限を追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/33393/",
+    "https://dm.takaratomy.co.jp/rule/qa/33394/",
+    "https://dm.takaratomy.co.jp/rule/qa/41150/",
+    "https://dm.takaratomy.co.jp/rule/qa/46607/",
+    "https://dm.takaratomy.co.jp/rule/qa/46608/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp13-025",
+      "name": "U・S・A・HOOD",
+      "faces": [
+        {
+          "name": "U・S・A・HOOD",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のクリーチャーがバトルゾーンに出た時、それがこのターン自分がバトルゾーンに出した２体目のクリーチャーなら、カードを１枚引く。\nマジボンバー ５（このクリーチャーが攻撃する時、自分の山札の上から１枚目を見る。その後、コスト５以下のクリーチャーを１体、自分の手札または山札の上から、バトルゾーンに出してもよい）",
+          "race": "ビートジョッキー/チームボンバー",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-025",
+      "spec": {
+        "g742SecondEntry": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Magibomber321",
+            "n": 5,
+            "g743HoldTop": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp13-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "f9ccf0e848e875d40a8b9cbd3cbab4653d6506281b7a072b15a630f74ac9113b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-002",
+      "name": "革命龍 スターリースカイ",
+      "faces": [
+        {
+          "name": "革命龍 スターリースカイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\n自分のターンの終わりに、このクリーチャーをアンタップする。\n革命２―相手のクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、そのクリーチャーをタップする。",
+          "race": "エンジェル・コマンド・ドラゴン/革命軍",
+          "powerText": "7500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-002",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g174End": [
+          {
+            "op": "Untap"
+          }
+        ],
+        "g743OpponentEntryTap": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "35f8adc64486e5f50b872e469889da70c137242da0962abf15b782a2499a0c19",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-013",
+      "name": "龍装者 ヴァルハ",
+      "faces": [
+        {
+          "name": "龍装者 ヴァルハ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、相手のクリーチャーを２体まで選び、タップする。これがNEO進化クリーチャーなら、選んだクリーチャーは次の相手のターンのはじめにアンタップしない。",
+          "race": "ドラゴンギルド/メタリカ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-013",
+      "spec": {
+        "neoEvolution": {
+          "any": [
+            {
+              "civilization": "光"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "g743NeoLock": true,
+            "title": "タップする相手のクリーチャーを2体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "a15ead364660f65150f380ff4a986769c0c7148b51c970b7a5bd8d83bf2ebbfa",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmbd04-009",
+      "canonicalId": "dmrp02-013",
+      "name": "龍装者 ヴァルハ",
+      "faces": [
+        {
+          "name": "龍装者 ヴァルハ",
+          "typeText": "NEOクリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "NEO進化：自分の光のクリーチャー１体の上に置いてもよい。（クリーチャーが下にあれば、これをNEO進化クリーチャーとして扱う）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、相手のクリーチャーを２体まで選び、タップする。これがNEO進化クリーチャーなら、選んだクリーチャーは次の相手のターンのはじめにアンタップしない。",
+          "race": "ドラゴンギルド/メタリカ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd04-009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd04-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "0191466ca695fa90c0cb2972725c4c9993cb48320470803fa99777ab25808e15",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp13-025": 4,
+      "dmr19-002": 4,
+      "dmrp02-013": 4,
+      "dmbd04-009": 4
+    }
+  }
+}

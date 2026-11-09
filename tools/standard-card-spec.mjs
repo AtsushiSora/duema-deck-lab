@@ -2564,6 +2564,16 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=743){
+  if(f.typeText==='クリーチャー'&&compact363==='自分のクリーチャーがバトルゾーンに出た時それがこのターン自分がバトルゾーンに出した2体目のクリーチャーならカードを1枚引く。マジボンバー5(このクリーチャーが攻撃する時自分の山札の上から1枚目を見る。その後コスト5以下のクリーチャーを1体自分の手札または山札の上からバトルゾーンに出してもよい)')
+   return {g742SecondEntry:[{op:'Draw',n:1}],g34Attack:[{op:'Magibomber321',n:5,g743HoldTop:true}]};
+  if(f.typeText==='クリーチャー'&&compact363==='ブロッカーブロッカーW・ブレイカー自分のターンの終わりにこのクリーチャーをアンタップする。革命2―相手のクリーチャーがバトルゾーンに出た時自分のシールドが2つ以下ならそのクリーチャーをタップする。')
+   return {blocker:true,breaker:2,g174End:[{op:'Untap'}],g743OpponentEntryTap:true};
+  if(f.typeText==='NEOクリーチャー'&&compact363==='NEO進化:自分の光のクリーチャー1体の上に置いてもよい。(クリーチャーが下にあればこれをNEO進化クリーチャーとして扱う)W・ブレイカー(このクリーチャーはシールドを2つブレイクする)このクリーチャーが攻撃する時相手のクリーチャーを2体まで選びタップする。これがNEO進化クリーチャーなら選んだクリーチャーは次の相手のターンのはじめにアンタップしない。')
+   return {neoEvolution:{any:[{civilization:'光'}]},breaker:2,
+    g34Attack:[{op:'Select',origin:'battle',owner:'opponent',n:2,optional:true,filter:{creature:true},
+     g173Targets:true,g193Select:true,g193Tap:true,g743NeoLock:true,title:'タップする相手のクリーチャーを2体まで選ぶ'}]};
+ }
  if(phase>=742&&f.typeText==='クリーチャー'){
   const freeze={op:'Target',tap:true,lock:true,g210TapLock:true,title:'タップして次のターン開始時のアンタップを止めるクリーチャーを選ぶ'};
   if(compact363==='このクリーチャーが攻撃する時相手のシールドが2つ以下なら相手のクリーチャーを1体選んでタップする。次の相手のターンのはじめにそのクリーチャーはアンタップしない。')
