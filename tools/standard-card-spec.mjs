@@ -674,7 +674,13 @@ function superInstructions437(text,phase){
  }[text]||null;
 }
 // Pinned aliases for older wording, only within an explicitly marked tap ability.
+const tappedPowerAttacker712='このクリーチャーがタップされている間自分の他のクリーチャーは「パワーアタッカー+1500」を得る。';
 function tap440(text,phase){return{
+ ...(phase>=712?{
+  'このターンの終わりに自分の光のクリーチャーをすべてアンタップする。':[{op:'Schedule537',when:'turnEnd',defs:[{op:'GroupUntap',filter:{creature:true,color:'光'}}]}],
+  'このターンバトルゾーンにある自分の自然クリーチャーが相手を攻撃してブロックされたとき相手のシールドが1枚でもあればそのうち1枚をブレイクする。':[{op:'TurnBlockBreak712'}],
+  'バトルゾーンにある相手のクリーチャーを1体タップする。':[{op:'Target',tap:true}]
+ }:{}),
  ...(phase>=711?{
   'このターンが終わるまでバトルゾーンにある自分の火のクリーチャーはすべて次の能力を得る。「このクリーチャーはタップされていないクリーチャーを攻撃できる」':[{op:'GroupGrant364',owner:'self',filter:{creature:true,color:'火'},grant:{attackUntapped:true}}],
   'バトルゾーンにある自分のクリーチャーを1体選び裏向きにして自分のシールドに加える。':[{op:'Target',owner:'self',to:'shields',title:'シールド化する自分のクリーチャーを選ぶ'}],
@@ -3318,7 +3324,8 @@ export function standardCardSpec(d,{phase=165}={}){
   if(at>=0){
    if(tapLines.filter(l=>marker.test(normalize(l))).length!==1||at===tapLines.length-1)throw Error('未対応のタップ能力構成');
    const prefix=structuredClone(d),body=structuredClone(d);prefix.faces[0].abilityText=tapLines.slice(0,at).join('\n');body.faces[0].typeText='クリーチャー';body.faces[0].abilityText='このクリーチャーが出た時、'+tapLines.slice(at+1).join('\n');
-   const base=standardCardSpec(prefix,{phase:438}),bodyText=normalize(tapLines.slice(at+1).join('')),mappedBody=(phase>=586?instruction586(bodyText):null)||(phase>=585?instruction585(bodyText):null)||(phase>=583?instruction583(bodyText):null)||(phase>=582?instruction582(bodyText):null);
+   const prefixPhase=phase>=712&&tapLines.slice(0,at).some(line=>normalize(line)===tappedPowerAttacker712)?712:438;
+   const base=standardCardSpec(prefix,{phase:prefixPhase}),bodyText=normalize(tapLines.slice(at+1).join('')),mappedBody=(phase>=586?instruction586(bodyText):null)||(phase>=585?instruction585(bodyText):null)||(phase>=583?instruction583(bodyText):null)||(phase>=582?instruction582(bodyText):null);
    const mapped=mappedBody?[mappedBody]:phase>=440?tap440(bodyText,phase):null;
    if(mapped)return{...base,g439Tap:structuredClone(mapped)};
    const compiled=standardCardSpec(body,{phase:438});
@@ -5579,6 +5586,10 @@ export function standardCardSpec(d,{phase=165}={}){
   if(phase>=224&&creature){
    if(['クリーチャーはすべて可能なら攻撃する。','すべてのクリーチャーは可能であれば攻撃する。','このクリーチャーがバトルゾーンにある間すべてのクリーチャーは可能なら毎ターン攻撃する。'].includes(line)){if(spec.g224ForceAttack)throw Error('重複する攻撃義務');spec.g224ForceAttack={owner:'both'};continue;}
    if(['相手のターン中このクリーチャーがタップされていたら相手のクリーチャーはすべて可能なら攻撃する。','相手のターンにこのクリーチャーがタップされていれば相手のクリーチャーはすべて可能であれば攻撃する。'].includes(line)){if(spec.g224ForceAttack)throw Error('重複する攻撃義務');spec.g224ForceAttack={owner:'opponent',tapped:true,opponentTurn:true};continue;}
+  }
+  if(phase>=712&&creature&&line===tappedPowerAttacker712){
+   (spec.g208Auras??=[]).push({filter:{creature:true},other:true,g557Condition:{g590SourceTapped:true},grants:{attackBonus:1500}});
+   continue;
   }
   if(phase>=208&&creature){const aura=grantAura208(line,phase);if(aura){(spec.g208Auras??=[]).push(aura);continue;}}
   if(phase>=207&&creature){

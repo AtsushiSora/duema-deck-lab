@@ -172494,21 +172494,117 @@
       ],
       "supportBatch": "phase-711",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm07-001",
+      "name": "爆雷の求道者ガラ・ガンダール",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6500,
+      "race": "メカサンダー",
+      "text": "W(ダブル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nこのターンの終わりに、自分の光のクリーチャーをすべてアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-001",
+      "limit": 4,
+      "breaker": 2,
+      "g439Tap": [
+        {
+          "op": "Schedule537",
+          "when": "turnEnd",
+          "defs": [
+            {
+              "op": "GroupUntap",
+              "filter": {
+                "creature": true,
+                "color": "光"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-712",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm07-005",
+      "name": "爆転の化身",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ミステリー・トーテム",
+      "text": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nこのターン、バトルゾーンにある自分の自然クリーチャーが相手を攻撃してブロックされたとき、相手のシールドが１枚でもあれば、そのうち１枚をブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-005",
+      "limit": 4,
+      "g439Tap": [
+        {
+          "op": "TurnBlockBreak712"
+        }
+      ],
+      "supportBatch": "phase-712",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm10-010",
+      "name": "霊光の化身",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ミステリー・トーテム",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーがタップされている間、自分の他のクリーチャーは「パワーアタッカー+1500」を得る。\nこのクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにある相手のクリーチャーを１体タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-010",
+      "limit": 4,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "other": true,
+          "g557Condition": {
+            "g590SourceTapped": true
+          },
+          "grants": {
+            "attackBonus": 1500
+          }
+        }
+      ],
+      "g439Tap": [
+        {
+          "op": "Target",
+          "tap": true
+        }
+      ],
+      "supportBatch": "phase-712",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 711,
+    "phase": 712,
     "checkedAt": "2026-11-09",
-    "baseCount": 5966,
+    "baseCount": 5969,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5969,
+    "totalCount": 5972,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35112/",
-      "https://dm.takaratomy.co.jp/rule/qa/31707/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36239/"
+      "https://dm.takaratomy.co.jp/rule/qa/47061/",
+      "https://dm.takaratomy.co.jp/rule/qa/46493/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37678/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -184791,6 +184887,24 @@
           "https://dm.takaratomy.co.jp/rule/rulechange/316652/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37678/",
           "https://dm.takaratomy.co.jp/rule/qa/42373/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 711,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5966,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5969,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35112/",
+          "https://dm.takaratomy.co.jp/rule/qa/31707/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36239/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

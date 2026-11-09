@@ -1340,6 +1340,9 @@ export function createSixPhotoRules(api){
   ));
   break;
  }
+ case'g34_TurnBlockBreak712':
+  (s.extLimits??=[]).push({kind:'g712BlockBreak',player:t.p,source:t.source,uid:t.uid,incarnation:t.incarnation||0,turn:s.turn,expires:'end',who:s.active});
+  break;
  case'g34_TurnAttackDraw613':(s.extLimits??=[]).push({kind:'g613AttackDraw',player:t.p,source:t.source,turn:s.turn,expires:'end',who:s.active,...(t.spell===false?{spell:false}:{}),...(t.optional?{optional:true}:{})});break;
  case'g34_SpellLock489':(s.extLimits??=[]).push({kind:t.max===undefined?'cast':'spellCostLock',player:1-t.p,controller:t.p,expires:t.expires,who:t.expires==='end'?s.active:t.p,...(t.max===undefined?{}:{max:t.max})});break;
  case'g34_AttackCap627':{
@@ -1668,6 +1671,12 @@ export function createSixPhotoRules(api){
   }
   const owner=1-p,a=s.players[owner].battle.find(y=>y.uid===s.attack?.attacker),blocked=a&&!a.sealed&&effective(a,s).g559Blocked;
   if(blocked)queue(s,owner,a,blocked);
+  if(a&&!a.sealed&&s.attack.g712PlayerTarget&&s.players[p].shields.length&&colors(effective(a,s)).includes('自然')){
+   for(const rule of s.extLimits||[]){
+    if(rule.kind!=='g712BlockBreak'||rule.player!==owner||rule.turn!==s.turn)continue;
+    queue(s,owner,{uid:rule.uid,incarnation:rule.incarnation,cardId:rule.source},[{op:'Break497',n:1}]);
+   }
+  }
  },
  turnStart(s,p){if(s.extLimits){s.extLimits=s.extLimits.filter(l=>!(l.kind==='g546Force'&&l.when==='nextOpponent'&&l.activeTurn!==undefined&&l.activeTurn!==s.turn));for(const l of s.extLimits)if(l.kind==='g546Force'&&l.when==='nextOpponent'&&p===1-l.controller&&s.turn>l.turn)l.activeTurn=s.turn;}const delayed537=collect537(s,'nextOwnStart',p),generic=[p,1-p].flatMap(controller=>s.players[controller].battle.filter(x=>!x.sealed&&(api.isCreature(s,x)||effective(x,s).g461TurnPlayer)).flatMap(x=>{const defs=effective(x,s)[controller===p?'g174Start':'g179OpponentStart'];return defs?[{player:controller,uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g34_Sequence',controller,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs})}]:[];}));return [...delayed537,...generic,...active(s,p,'engels').filter(()=>!s.g7TerminalUsed?.[p]).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Custom',p,x.cardId,{name:'engelsTerminal',uid:x.uid,incarnation:x.incarnation||0})}))];},
  active,
@@ -1838,7 +1847,9 @@ export function createSixPhotoRules(api){
    if(abilities&&!watcher.sealed)send(s,1-p,watcher,'Sequence',{defs:abilities,g694Defender:ref});
   }
  }const c=effective(x,s),own=s.players[p];if(first&&c.g540FirstAttack&&!api.selfStopped(s,p))queue(s,p,x,c.g540FirstAttack);if(c.g320Jave&&!api.selfStopped(s,p))queue(s,p,x,[{op:'Smash320',serial:x.zoneSerial||0}]);if(c.g34Attack&&!api.selfStopped(s,p))queue(s,p,x,c.g34Attack);if(defender&&c.g691AttackCreature&&!api.selfStopped(s,p))queue(s,p,x,c.g691AttackCreature);if(!api.selfStopped(s,p))for(const {source,grants:g}of c.g404Inherited||[])if(g.g34Attack)queue(s,p,x,g.g34Attack,source);if(!api.selfStopped(s,p))for(const {source,grants:g}of c.g406Inherited||[])if(g.g34Attack)queue(s,p,x,g.g34Attack,source);if(c.g34Role==='emrakul')queue(s,p,x,[C('emrakulSix')]);if(c.g34Role==='minogami')queue(s,p,x,[E('Offer',{defs:[E('Look',{n:3,public:true,stages:[{to:'mana',n:'all',filter:{twin:true}}],after:[C('minogamiBuff')]})]})]);if(card(x).neoEvolution)for(const y of active(s,p,'grasper'))queue(s,p,y,[select('mana',null,1,{creature:true,belowPower:api.power(x,false,s)},{deploy:true,optional:true})]);if(!api.ignored(s,x))for(const layer of api.layers(x))if(card(layer).g34SoulDiscard)queue(s,p,x,[E('Discard',{n:1,random:true})]);if(ninja(c))for(const y of active(s,p,'happou')){if(s.attack?.target==='player')queue(s,p,y,[E('Discard',{n:1,random:true})]);else(x.g34Grants??=[]).push({turn:s.turn,slayer:true,g34BattleSafe:true});}if(api.isEvolution(x)&&cost(c)>=2)for(const y of own.hand.filter(y=>card(y).g34Role==='baromreizu'))queue(s,p,y,[C('reizuCast')]);},
- attackStart(s,p,x){attackWatches252(s,p,x);for(const y of s.players[p].hand)for(const[c,face]of faces(card(y)).map((c,i)=>[c,i])){const w=c.g417Chance;if(w&&!api.spellIgnored(s,c)&&(!w.hyper||hyperMode418(s,x))&&chanceMatches419(s,p,x,w))send(s,p,y,'Chance417',{serial:y.zoneSerial||0,face});}for(const y of active(s,1-p,'souzan'))queue(s,1-p,y,[C('souzanStop')]);{for(const y of s.players[1-p].shields.flatMap(api.shieldCards).filter(y=>y.faceUp&&card(y).g34Role==='mantraCastle'))queue(s,1-p,y,[C('mantraDefend')]);if(s.attack?.target==='player'&&s.players.some(p=>!p.shields.length)&&!s.players[1-p].battle.some(y=>!y.sealed&&card(y).g34Role==='nightmare'))for(const y of s.players[1-p].hand.filter(y=>card(y).g34Role==='nightmare'))queue(s,1-p,y,[C('nightmare')]);}},
+ attackStart(s,p,x){
+  if(s.attack?.target==='player'&&(s.extLimits||[]).some(r=>r.kind==='g712BlockBreak'&&r.player===p&&r.turn===s.turn))s.attack.g712PlayerTarget=true;
+  attackWatches252(s,p,x);for(const y of s.players[p].hand)for(const[c,face]of faces(card(y)).map((c,i)=>[c,i])){const w=c.g417Chance;if(w&&!api.spellIgnored(s,c)&&(!w.hyper||hyperMode418(s,x))&&chanceMatches419(s,p,x,w))send(s,p,y,'Chance417',{serial:y.zoneSerial||0,face});}for(const y of active(s,1-p,'souzan'))queue(s,1-p,y,[C('souzanStop')]);{for(const y of s.players[1-p].shields.flatMap(api.shieldCards).filter(y=>y.faceUp&&card(y).g34Role==='mantraCastle'))queue(s,1-p,y,[C('mantraDefend')]);if(s.attack?.target==='player'&&s.players.some(p=>!p.shields.length)&&!s.players[1-p].battle.some(y=>!y.sealed&&card(y).g34Role==='nightmare'))for(const y of s.players[1-p].hand.filter(y=>card(y).g34Role==='nightmare'))queue(s,1-p,y,[C('nightmare')]);}},
  handBattleWins588(s,p,w){
   const own=s.players[p],winner=own.battle.find(x=>x.uid===w.uid);
   if(!winner)return[];
