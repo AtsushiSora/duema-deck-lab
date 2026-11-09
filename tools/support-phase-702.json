@@ -1,0 +1,364 @@
+{
+  "phase": 702,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5936,
+  "description": "ウェーブストライカーの継続強化とツインパクト両面、進化Vの公開・展開・手札追加。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37609/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35189/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35221/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35222/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31641/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316689/",
+    "https://dm.takaratomy.co.jp/rule/qa/46526/"
+  ],
+  "cards": [
+    {
+      "id": "dm12-001",
+      "name": "星雲の精霊キルスティン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-001",
+      "faces": [
+        {
+          "name": "星雲の精霊キルスティン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nバトルゾーンにある自分のクリーチャーすべてのパワーは+5000され、「ブロッカー」と「W・ブレイカー」を得る。",
+          "race": "エンジェル・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "g205Aura": {
+              "filter": {
+                "creature": true
+              },
+              "power": 5000
+            }
+          }
+        },
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "g557Condition": {
+              "g400Wave": 3
+            },
+            "grants": {
+              "blocker": true,
+              "breaker": 2,
+              "g633DoubleBreaker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "2a726e74af00d4d9e02bf2d0515a871ba14b383eab321d87003ed4a9ab2902b0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22ex1-063",
+      "name": "星雲の精霊キルスティン / 神秘の石柱",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-063",
+      "faces": [
+        {
+          "name": "星雲の精霊キルスティン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ウェーブストライカー（「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーに次のw能力を与える）\nw自分のクリーチャーすべてのパワーを+5000し、「ブロッカー」と「W・ブレイカー」を与える。",
+          "race": "エンジェル・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        },
+        {
+          "name": "神秘の石柱",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の山札の上から２枚を、タップしてマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "g205Aura": {
+              "filter": {
+                "creature": true
+              },
+              "power": 5000
+            }
+          }
+        },
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "g557Condition": {
+              "g400Wave": 3
+            },
+            "grants": {
+              "blocker": true,
+              "breaker": 2,
+              "g633DoubleBreaker": true
+            }
+          }
+        ],
+        "spellFace": {
+          "name": "神秘の石柱",
+          "type": "spell",
+          "cost": 3,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Ramp",
+              "n": 2,
+              "tapped": true
+            },
+            {
+              "op": "Select",
+              "origin": "mana",
+              "to": "grave",
+              "n": 1,
+              "g184ManaLoss": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-063a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "735876e99b8796138b710b9c00d9af1c4fb58e85201689bd296655409d17938c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22ex1-074",
+      "name": "予言者ラメール / マスター・スパーク",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-074",
+      "faces": [
+        {
+          "name": "予言者ラメール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ウェーブストライカー（「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーに次のw能力を与える）\nw自分のクリーチャーすべてのパワーを+1000する。",
+          "race": "ライトブリンガー",
+          "powerText": "1500",
+          "missingFields": []
+        },
+        {
+          "name": "マスター・スパーク",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガーS・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーをすべてタップする。\nカードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "g205Aura": {
+              "filter": {
+                "creature": true
+              },
+              "power": 1000
+            }
+          }
+        },
+        "spellFace": {
+          "name": "マスター・スパーク",
+          "type": "spell",
+          "cost": 6,
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "TapAll"
+            },
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-074a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "1e70c3166afb7d7f56a29053507c05ad7cd5bd10f49c2d077bb9c95594ce9e19",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm12-s05",
+      "name": "聖獣王ペガサス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-s05",
+      "faces": [
+        {
+          "name": "聖獣王ペガサス",
+          "typeText": "進化クリーチャー(進化V)",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化Vー自分のホーン・ビースト１体とエンジェル・コマンド１体を重ねた上に置く。\nこのクリーチャーが攻撃した時またはバトルゾーンを離れた時、自分の山札の上から１枚目を表向きにする。それが進化クリーチャー以外のクリーチャーであれば、バトルゾーンに出す。それ以外のカードであれば、自分の手札に加える。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "セイント・ペガサス",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "race": "ホーン・ビースト"
+            },
+            {
+              "race": "エンジェル・コマンド"
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "creature": true,
+              "nonEvolution": true
+            },
+            "to": "battle",
+            "elseTo": "hand"
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "creature": true,
+              "nonEvolution": true
+            },
+            "to": "battle",
+            "elseTo": "hand"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-s05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "cc3b44bb9167e7a15b6672cf7c1e5a1d50633910698aedaa7623d5fefbb114b7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc42-009",
+      "name": "聖獣王ペガサス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc42-009",
+      "faces": [
+        {
+          "name": "聖獣王ペガサス",
+          "typeText": "進化クリーチャー(進化V)",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化V-自分のホーン・ビースト１体とエンジェル・コマンド１体を重ねた上に置く。\nこのクリーチャーが攻撃した時またはバトルゾーンを離れた時、自分の山札の上から１枚目を表向きにする。それが進化クリーチャー以外のクリーチャーであれば、バトルゾーンに出す。それ以外のカードであれば、自分の手札に加える。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "セイント・ペガサス",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "canonicalId": "dm12-s05",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc42-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "67e557d202bf49374ab933b90297a9674e47a392de650beb18b39d22cf2534d3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm12-001": 4,
+      "dm22ex1-063": 4,
+      "dm22ex1-074": 4,
+      "dm12-s05": 4,
+      "dmc42-009": 4
+    }
+  }
+}

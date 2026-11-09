@@ -171169,21 +171169,253 @@
       ],
       "supportBatch": "phase-701",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm12-001",
+      "name": "星雲の精霊キルスティン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "エンジェル・コマンド",
+      "text": "ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーは次の能力を得る)\nバトルゾーンにある自分のクリーチャーすべてのパワーは+5000され、「ブロッカー」と「W・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-001",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "g205Aura": {
+            "filter": {
+              "creature": true
+            },
+            "power": 5000
+          }
+        }
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "blocker": true,
+            "breaker": 2,
+            "g633DoubleBreaker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-702",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-063",
+      "name": "星雲の精霊キルスティン / 神秘の石柱",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "エンジェル・コマンド",
+      "text": "ウェーブストライカー（「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーに次のw能力を与える）\nw自分のクリーチャーすべてのパワーを+5000し、「ブロッカー」と「W・ブレイカー」を与える。\n【呪文面】\n自分の山札の上から２枚を、タップしてマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-063",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "g205Aura": {
+            "filter": {
+              "creature": true
+            },
+            "power": 5000
+          }
+        }
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "blocker": true,
+            "breaker": 2,
+            "g633DoubleBreaker": true
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "神秘の石柱",
+        "type": "spell",
+        "cost": 3,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 2,
+            "tapped": true
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "grave",
+            "n": 1,
+            "g184ManaLoss": true
+          }
+        ]
+      },
+      "supportBatch": "phase-702",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-074",
+      "name": "予言者ラメール / マスター・スパーク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1500,
+      "race": "ライトブリンガー",
+      "text": "ウェーブストライカー（「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーに次のw能力を与える）\nw自分のクリーチャーすべてのパワーを+1000する。\n【呪文面】\nS・トリガーS・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーをすべてタップする。\nカードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-074",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "g205Aura": {
+            "filter": {
+              "creature": true
+            },
+            "power": 1000
+          }
+        }
+      },
+      "spellFace": {
+        "name": "マスター・スパーク",
+        "type": "spell",
+        "cost": 6,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-702",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm12-s05",
+      "name": "聖獣王ペガサス",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 12000,
+      "race": "セイント・ペガサス",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n進化Vー自分のホーン・ビースト１体とエンジェル・コマンド１体を重ねた上に置く。\nこのクリーチャーが攻撃した時またはバトルゾーンを離れた時、自分の山札の上から１枚目を表向きにする。それが進化クリーチャー以外のクリーチャーであれば、バトルゾーンに出す。それ以外のカードであれば、自分の手札に加える。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-s05",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "race": "ホーン・ビースト"
+          },
+          {
+            "race": "エンジェル・コマンド"
+          }
+        ]
+      },
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "RevealTop514",
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          },
+          "to": "battle",
+          "elseTo": "hand"
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "RevealTop514",
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          },
+          "to": "battle",
+          "elseTo": "hand"
+        }
+      ],
+      "supportBatch": "phase-702",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 701,
+    "phase": 702,
     "checkedAt": "2026-11-09",
-    "baseCount": 5933,
-    "newEffectCards": 3,
+    "baseCount": 5936,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 5936,
+    "totalCount": 5940,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35225/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37609/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35189/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35221/",
       "https://dm.takaratomy.co.jp/rule/qa_old/35222/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316639/"
+      "https://dm.takaratomy.co.jp/rule/rulechange/31641/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316689/",
+      "https://dm.takaratomy.co.jp/rule/qa/46526/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -183271,6 +183503,24 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
           "https://dm.takaratomy.co.jp/rule/qa/46490/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 701,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5933,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5936,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35225/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35222/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316639/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

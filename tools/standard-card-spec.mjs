@@ -2357,6 +2357,10 @@ function chance419(line){
  const named=line.match(/^アタック・チャンス[:―-]名前に《(ジョニー|ドギラゴン)》とあるクリーチャー\(名前に《\1》とある自分のクリーチャーが攻撃する時この呪文をコストを支払わずに唱えてもよい\)$/);
  return named?{name:named[1]}:null;
 }
+const waveMarker702='ウェーブストライカー(「ウェーブストライカー」を持つクリーチャーが他に2体以上あればこのクリーチャーに次のw能力を与える)';
+const waveKirstein702=waveMarker702+'w自分のクリーチャーすべてのパワーを+5000し「ブロッカー」と「W・ブレイカー」を与える。';
+const waveLameer702=waveMarker702+'w自分のクリーチャーすべてのパワーを+1000する。';
+
 export function standardCardSpec(d,{phase=165}={}){
  // Repair only the complete formatting variants pinned to these official prints.
  if(phase>=533&&d?.faces?.length===1){
@@ -2411,7 +2415,11 @@ export function standardCardSpec(d,{phase=165}={}){
    spellText==='相手の「ブロッカー」を持つクリーチャーをすべて破壊する。';
   const capOrShield=phase>=616&&frontText==='相手のターン中相手はクリーチャーを2体までしか出せない。'&&
    spellText===replicaAuction616;
-  if(entryStop||rushSweep||blockerCharger||bounceOrRemove||discardOrRemove||rampOrSweep||speedOrSweep||capOrShield||mammoth){
+  const waveTwin=phase>=702&&(
+   frontText===waveKirstein702&&spellText==='自分の山札の上から2枚をタップしてマナゾーンに置く。その後カードを1枚自分のマナゾーンから墓地に置く。'||
+   frontText===waveLameer702&&spellText==='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)相手のクリーチャーをすべてタップする。カードを1枚引く。'
+  );
+  if(entryStop||rushSweep||blockerCharger||bounceOrRemove||discardOrRemove||rampOrSweep||speedOrSweep||capOrShield||mammoth||waveTwin){
    const creature=standardCardSpec({...d,faces:[front]},{phase}),body=standardCardSpec({...d,faces:[spell]},{phase});
    if(entryStop&&(!body.crystalCharger||body.g34Tasks?.length!==1||!body.g34Tasks[0].g593OverMana))throw Error('未対応の水晶チャージャーの構成');
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
@@ -2474,6 +2482,21 @@ export function standardCardSpec(d,{phase=165}={}){
   }
   if(f.typeText==='呪文'&&text==='相手の手札を1枚見ないで選び捨てさせる。その後自分のシールドゾーンに表向きである「シールド・ゴー」を持つカード1枚につき相手の手札を1枚見ないで選び捨てさせる。'){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
+  }
+ }
+ if(phase>=702){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='クリーチャー'){
+   const originalKirstein='ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に2体以上あればこのクリーチャーは次の能力を得る)バトルゾーンにある自分のクリーチャーすべてのパワーは+5000され「ブロッカー」と「W・ブレイカー」を得る。';
+   if(text===originalKirstein||text===waveKirstein702||text===waveLameer702){
+    const filter={creature:true},condition={g400Wave:3},lameer=text===waveLameer702;
+    return {g400Wave:true,g260Self:{filter:condition,grants:{g205Aura:{filter,power:lameer?1000:5000}}},
+     ...(lameer?{}:{g208Auras:[{filter,g557Condition:condition,grants:{blocker:true,breaker:2,g633DoubleBreaker:true}}]})};
+   }
+  }
+  if(f.civilizations.length>1&&f.typeText.normalize('NFKC')==='進化クリーチャー(進化V)'&&text.replace('進化Vー','進化V-')==='マナゾーンに置く時このカードはタップして置く。進化V-自分のホーン・ビースト1体とエンジェル・コマンド1体を重ねた上に置く。このクリーチャーが攻撃した時またはバトルゾーンを離れた時自分の山札の上から1枚目を表向きにする。それが進化クリーチャー以外のクリーチャーであればバトルゾーンに出す。それ以外のカードであれば自分の手札に加える。T・ブレイカー(このクリーチャーはシールドを3枚ブレイクする)'){
+   const reveal={op:'RevealTop514',filter:{creature:true,nonEvolution:true},to:'battle',elseTo:'hand'};
+   return {evolution:{g31:true},g31Evolution:{zone:'battle',conditions:[{race:'ホーン・ビースト'},{race:'エンジェル・コマンド'}]},breaker:3,g34Attack:[reveal],g172Leave:[reveal]};
   }
  }
  if(phase>=701&&f.civilizations.length>1){
