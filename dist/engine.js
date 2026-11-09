@@ -993,6 +993,13 @@ function attackTargetAllowed(s,attacker,target){
  const a=effectiveCard(attacker,s),d=effectiveCard(target,s),f=d.g206AttackProtection;
  if(a.g483AttackCreatureColors&&!a.g483AttackCreatureColors.some(color=>civilizations(d).includes(color)))return false;
  if((d.cannotBeAttackedByCivs||[]).some(c=>civilizations(a).includes(c)))return false;
+ // This restriction belongs to the protecting creature, even if the target's abilities are ignored.
+ const owner=1-s.active,allies=s.players[owner].battle;
+ for(const source of allies){
+  if(!card(source).g691AttackProtection||source.sealed||!isCreature(s,source))continue;
+  const rule=effectiveCard(source,s).g691AttackProtection;
+  if(rule?.races.some(r=>String(d.race||'').includes(r))&&allies.some(x=>!x.sealed&&isCreature(s,x)&&String(effectiveCard(x,s).race||'').includes(rule.requires)))return false;
+ }
  return !f||!(f.maxCost!==undefined&&costValue(a)<=f.maxCost||f.nonEvolution&&!isEvolution(attacker)||f.race&&String(a.race||'').includes(f.race)||f.exceptRace&&!String(a.race||'').includes(f.exceptRace));
 }
 // Check the current characteristics before declaring a blocker. Battle-only

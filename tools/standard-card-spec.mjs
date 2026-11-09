@@ -2476,6 +2476,18 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=691&&creature){
+  const text=normalize(f.abilityText);
+  if(text==='このクリーチャーがクリーチャーを攻撃する時そのターンこのクリーチャーのパワーは+4000される。'){
+   return {g691AttackCreature:[{op:'SelfBoost313',power:4000,g536Source:true}]};
+  }
+  if(text==='ブロッカーこのクリーチャーは攻撃することができない。自分の他のクリーチャーがバトルゾーンに出たときこのクリーチャーを自分の墓地に置く。'){
+   return {blocker:true,noAttack:true,g250EntryDraw:{filter:{creature:true},self:false,defs:[{op:'SelfDestroy'}]}};
+  }
+  if(text==='自分のブレイブ・スピリットが1体でもバトルゾーンにある時自分のティラノ・ドレイクとブレイブ・スピリットは攻撃されない。'){
+   return {g691AttackProtection:{requires:'ブレイブ・スピリット',races:['ティラノ・ドレイク','ブレイブ・スピリット']}};
+  }
+ }
  if(phase>=690&&creature){
   const text=normalize(f.abilityText);
   if(/^このクリーチャーが攻撃するとき相手のシールドを1枚見て(?:も)?よい。その後そのシールドを元の場所に戻す。$/.test(text)){

@@ -170056,20 +170056,102 @@
       ],
       "supportBatch": "phase-690",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm28-063",
+      "name": "ライジン・ドラグーン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ティラノ・ドレイク",
+      "text": "このクリーチャーがクリーチャーを攻撃する時、そのターン、このクリーチャーのパワーは+4000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-063",
+      "limit": 4,
+      "g691AttackCreature": [
+        {
+          "op": "SelfBoost313",
+          "power": 4000,
+          "g536Source": true
+        }
+      ],
+      "supportBatch": "phase-691",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm08-027",
+      "name": "単車男",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "ヘドリアン",
+      "text": "ブロッカー\nこのクリーチャーは攻撃することができない。\n自分の他のクリーチャーがバトルゾーンに出たとき、このクリーチャーを自分の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-027",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g250EntryDraw": {
+        "filter": {
+          "creature": true
+        },
+        "self": false,
+        "defs": [
+          {
+            "op": "SelfDestroy"
+          }
+        ]
+      },
+      "supportBatch": "phase-691",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-033",
+      "name": "ラプトル・ドラグーン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ティラノ・ドレイク",
+      "text": "自分のブレイブ・スピリットが１体でもバトルゾーンにある時、自分のティラノ・ドレイクとブレイブ・スピリットは攻撃されない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-033",
+      "limit": 4,
+      "g691AttackProtection": {
+        "requires": "ブレイブ・スピリット",
+        "races": [
+          "ティラノ・ドレイク",
+          "ブレイブ・スピリット"
+        ]
+      },
+      "supportBatch": "phase-691",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 690,
+    "phase": 691,
     "checkedAt": "2026-11-09",
-    "baseCount": 5896,
+    "baseCount": 5899,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5899,
+    "totalCount": 5902,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35030/",
-      "https://dm.takaratomy.co.jp/rule/qa/31786/"
+      "https://dm.takaratomy.co.jp/rule/qa/47061/",
+      "https://dm.takaratomy.co.jp/rule/qa/45909/",
+      "https://dm.takaratomy.co.jp/rule/qa/40177/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -181947,6 +182029,23 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
           "https://dm.takaratomy.co.jp/rule/qa_old/35398/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 690,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5896,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5899,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35030/",
+          "https://dm.takaratomy.co.jp/rule/qa/31786/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

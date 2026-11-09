@@ -1,0 +1,141 @@
+{
+  "phase": 691,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5899,
+  "description": "クリーチャーへの攻撃時のパワー上昇、他の味方の登場による自己破壊、種族を参照する攻撃対象制限。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/47061/",
+    "https://dm.takaratomy.co.jp/rule/qa/45909/",
+    "https://dm.takaratomy.co.jp/rule/qa/40177/"
+  ],
+  "cards": [
+    {
+      "id": "dm28-063",
+      "name": "ライジン・ドラグーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-063",
+      "faces": [
+        {
+          "name": "ライジン・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがクリーチャーを攻撃する時、そのターン、このクリーチャーのパワーは+4000される。",
+          "race": "ティラノ・ドレイク",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g691AttackCreature": [
+          {
+            "op": "SelfBoost313",
+            "power": 4000,
+            "g536Source": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-063.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "c8bc20cbec7888729cadce7417ab541915685ff16149d8c9f465c157f32f3d2d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm08-027",
+      "name": "単車男",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-027",
+      "faces": [
+        {
+          "name": "単車男",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー\nこのクリーチャーは攻撃することができない。\n自分の他のクリーチャーがバトルゾーンに出たとき、このクリーチャーを自分の墓地に置く。",
+          "race": "ヘドリアン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g250EntryDraw": {
+          "filter": {
+            "creature": true
+          },
+          "self": false,
+          "defs": [
+            {
+              "op": "SelfDestroy"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm08-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "24df9a8e419db23c4953462f24a46a4929340f1a0366d3c07f7e336a9acb3e0d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-033",
+      "name": "ラプトル・ドラグーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-033",
+      "faces": [
+        {
+          "name": "ラプトル・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のブレイブ・スピリットが１体でもバトルゾーンにある時、自分のティラノ・ドレイクとブレイブ・スピリットは攻撃されない。",
+          "race": "ティラノ・ドレイク",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g691AttackProtection": {
+          "requires": "ブレイブ・スピリット",
+          "races": [
+            "ティラノ・ドレイク",
+            "ブレイブ・スピリット"
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "9017e001d6a0f7651a8df972033e104aab287923a3387d2efd26c443f1b59790",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm28-063": 4,
+      "dm08-027": 4,
+      "dm19-033": 4
+    }
+  }
+}
