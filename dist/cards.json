@@ -176707,22 +176707,185 @@
       ],
       "supportBatch": "phase-751",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex03-g01",
+      "name": "メッサー・シュミット",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "スプリガン/グランセクト",
+      "text": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nバトル中、このクリーチャーのパワーを+4000する。\nこのクリーチャーがバトルに勝った時、カードを１枚引く。それがこのクリーチャーがこのターンはじめて勝ったバトルなら、相手のクリーチャーを１体選んでもよい。このクリーチャーとその選んだクリーチャーをバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-g01",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 2,
+      "g38BattleBonus": 4000,
+      "g189BattleWin": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "ShinkaHost544",
+          "mode": "fight",
+          "g752FirstOnly": true
+        }
+      ],
+      "supportBatch": "phase-752",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp1-032",
+      "name": "ヨサノ・エレキハイカー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "マジック・マーフォーク",
+      "text": "このクリーチャーが出た時、相手の、コスト３以下のクリーチャー１体またはコスト３以下のタマシードを１枚、持ち主の手札に戻す。その後、自分のタマシードがあれば、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-032",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "element": true,
+          "filter": {
+            "creatureOrSeed": true,
+            "max": 3
+          },
+          "to": "hand"
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g295Tamaseed": true
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-752",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-057",
+      "name": "透明な工作員 コジェリ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ムートピア",
+      "text": "シビルカウント ３：自分の水のクリーチャーまたは水のタマシードが合計３つ以上あれば、このクリーチャーは攻撃もブロックもされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-057",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "creatureOrSeed": true,
+          "color": "水",
+          "g258Civil": 3
+        },
+        "grants": {
+          "cannotBeAttacked": true,
+          "unblockable": true
+        }
+      },
+      "supportBatch": "phase-752",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-093",
+      "name": "侵略者 タネタロウ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ビーストフォーク號/侵略者",
+      "text": "このクリーチャーが攻撃する時、相手のシールドが２つ以下なら、自分の山札の上から２枚をマナゾーンに置いてもよい。そうしたら、クリーチャーを１体、自分のマナゾーンから手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-093",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "opponent": true,
+              "max": 2
+            }
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "g356RampReturn": true,
+              "title": "山札の上から2枚をマナに置き、クリーチャー1体を手札に戻す？",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 2
+                },
+                {
+                  "op": "Select",
+                  "origin": "mana",
+                  "n": 1,
+                  "to": "hand",
+                  "g232ManaReturn": true,
+                  "filter": {
+                    "creature": true
+                  },
+                  "title": "マナから手札に戻すクリーチャーを1体選ぶ"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-752",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 751,
+    "phase": 752,
     "checkedAt": "2026-11-10",
-    "baseCount": 6098,
+    "baseCount": 6102,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6102,
+    "totalCount": 6106,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/45448/",
-      "https://dm.takaratomy.co.jp/rule/qa/31558/",
-      "https://dm.takaratomy.co.jp/rule/qa/42510/",
-      "https://dm.takaratomy.co.jp/rule/qa/42500/",
+      "https://dm.takaratomy.co.jp/rule/qa/41983/",
+      "https://dm.takaratomy.co.jp/rule/qa/41076/",
+      "https://dm.takaratomy.co.jp/rule/qa/44318/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
       "https://dm.takaratomy.co.jp/rule/qa/31825/"
     ],
     "next": [
@@ -189766,6 +189929,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/33428/",
           "https://dm.takaratomy.co.jp/rule/qa/39660/",
           "https://dm.takaratomy.co.jp/rule/qa/33420/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 751,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6098,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6102,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/45448/",
+          "https://dm.takaratomy.co.jp/rule/qa/31558/",
+          "https://dm.takaratomy.co.jp/rule/qa/42510/",
+          "https://dm.takaratomy.co.jp/rule/qa/42500/",
+          "https://dm.takaratomy.co.jp/rule/qa/31825/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

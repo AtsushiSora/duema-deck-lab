@@ -2564,6 +2564,29 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=752&&f.typeText==='クリーチャー'){
+  const mach='マッハファイター(このクリーチャーはバトルゾーンに出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)';
+  const double='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';
+  const win='このクリーチャーがバトルに勝った時';
+  const draw={op:'Draw',n:1};
+  if(compact363===mach+double+'バトル中このクリーチャーのパワーを+4000する。'+win+'カードを1枚引く。それがこのクリーチャーがこのターンはじめて勝ったバトルなら相手のクリーチャーを1体選んでもよい。このクリーチャーとその選んだクリーチャーをバトルさせる。')
+   return {machFighter:true,breaker:2,g38BattleBonus:4000,g189BattleWin:[
+    draw,{op:'ShinkaHost544',mode:'fight',g752FirstOnly:true}
+   ]};
+  if(compact363==='このクリーチャーが出た時相手のコスト3以下のクリーチャー1体またはコスト3以下のタマシードを1枚持ち主の手札に戻す。その後自分のタマシードがあればカードを1枚引いてもよい。')
+   return {effect:'sixPhoto',g34Tasks:[
+    {op:'Target',element:true,filter:{creatureOrSeed:true,max:3},to:'hand'},
+    {op:'IfOwn',filter:{g295Tamaseed:true},defs:[{op:'Offer',title:'カードを1枚引く？',defs:[draw]}]}
+   ]};
+  if(compact363==='シビルカウント3:自分の水のクリーチャーまたは水のタマシードが合計3つ以上あればこのクリーチャーは攻撃もブロックもされない。')
+   return {g260Self:{filter:{creatureOrSeed:true,color:'水',g258Civil:3},grants:{cannotBeAttacked:true,unblockable:true}}};
+  if(compact363==='このクリーチャーが攻撃する時相手のシールドが2つ以下なら自分の山札の上から2枚をマナゾーンに置いてもよい。そうしたらクリーチャーを1体自分のマナゾーンから手札に戻す。')
+   return {g34Attack:[{op:'IfOwn',filter:{g334ZoneCount:{zone:'shields',opponent:true,max:2}},defs:[
+    {op:'Offer',g356RampReturn:true,title:'山札の上から2枚をマナに置き、クリーチャー1体を手札に戻す？',defs:[
+     {op:'Ramp',n:2},{op:'Select',origin:'mana',n:1,to:'hand',g232ManaReturn:true,filter:{creature:true},title:'マナから手札に戻すクリーチャーを1体選ぶ'}
+    ]}
+   ]}]};
+ }
  if(phase>=751&&f.typeText==='クリーチャー'){
   const win='このクリーチャーがバトルに勝った時';
   const shield={op:'ShieldTop',n:1};

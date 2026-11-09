@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-09",
   "catalogueNames": 11828,
-  "supportedNames": 6102,
-  "pendingNames": 5726,
-  "phase": 751,
+  "supportedNames": 6106,
+  "pendingNames": 5722,
+  "phase": 752,
   "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3424,
+    "クリーチャー": 3420,
     "NEOクリーチャー": 152,
     "呪文": 813,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4198,
+    "未対応の能力文": 4195,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -250,7 +250,7 @@
     "未対応の攻撃時能力": 1,
     "鬼タイムで無視する直前の能力が未対応": 1,
     "未対応の被攻撃・被選択能力": 2,
-    "未対応のシビルカウント種別": 5,
+    "未対応のシビルカウント種別": 4,
     "未対応のスペース・チャージ効果": 5,
     "独立した誘発能力の順序対応が必要": 11,
     "未対応の進化V能力": 16,
@@ -8921,36 +8921,147 @@
           "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
         }
       ]
+    },
+    {
+      "phase": 752,
+      "cards": [
+        {
+          "id": "dmex03-g01",
+          "name": "メッサー・シュミット"
+        },
+        {
+          "id": "dm22rp1-032",
+          "name": "ヨサノ・エレキハイカー"
+        },
+        {
+          "id": "dm22rp2-057",
+          "name": "透明な工作員 コジェリ"
+        },
+        {
+          "id": "dmr17-093",
+          "name": "侵略者 タネタロウ"
+        }
+      ],
+      "supportedNames": 6106,
+      "pendingNames": 5722,
+      "verification": {
+        "focusedPassed": 10,
+        "regressionPassed": 124,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 5,
+        "scope": "4種類とコジェリの超刺激パック再録について、公式能力文、基本情報、マナ、画像、殿堂区分を照合。裏斬隠 メッサー・シュミットは別名・別能力として除外。初勝利と2度目の勝利、追加バトルと選択の復元、タマシードを含む対象と任意ドロー、攻撃・ブロック耐性の境界、マナ追加と回収を検証。既存カード定義は基点と一致。",
+        "runtimeNote": "強制終了込み各最大10分。Phase 258・356・586・587・588・746・747・750・751の関連回帰124ケースが成功。テストランナーのファイル読込1件は件数外。長時間シミュレーションを除外。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dmrp15-004",
+          "name": "絶対悪役 ヴィランヒヰル",
+          "reason": "公式QA 38753・38754・40964・40447を確認。既存処理にビビッドローの使用宣言がなく、他の効果や手札を捨てる処理より先に公開する経路と、手札を離れた際の失効を検証するまで保留。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-004"
+        },
+        {
+          "id": "dmsp02-009",
+          "name": "武闘将軍 カツキング GS",
+          "reason": "同系統の公式旧QA 36815で自分のシールドも選ぶことを確認。攻撃中だけ無限になるパワーと、両側から対象を選ぶ強制ブレイクを検証するまで保留。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp02-009"
+        },
+        {
+          "id": "dmr14-031",
+          "name": "有毒目ヴェスプトックス",
+          "reason": "公式QA 40374の事例に沿って、発生源自身がそのバトルで破壊される場合の誘発、タップ状態の参照時点、勝者が先に移動した場合を検証するまで保留。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-031"
+        },
+        {
+          "id": "dmbd03-002",
+          "name": "ヴァーニング・ヒーター",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd03-002",
+          "reason": "公式の本文と同名検索1版を確認。相手の呪文またはクリーチャー能力による手札破棄だけで誘発する条件と、選ぶ相手クリーチャーのパワー合計・同時破壊を、J・O・Eの遅延処理と合わせて検証するまで保留。"
+        },
+        {
+          "id": "dmrp01-s08",
+          "name": "ドープ“DBL”ボーダー",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-s08",
+          "reason": "公式QA 31546で加算後に倍化を確認。複数回の倍化、後から加わるパワー修整、破壊置換の併用と、DMEX07再録の照合を検証するまで保留。"
+        },
+        {
+          "id": "dm31-s03",
+          "name": "薩摩の超人",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-s03",
+          "reason": "公式本文と総合ルール507.1を確認。攻撃側ジャイアントへの強制ブロックを守備側の強制ブロックやガードマンと区別し、合法なブロッカーがいない場合を検証するまで保留。"
+        },
+        {
+          "id": "dmr09-036",
+          "name": "驚愕の存在 カニス",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-036",
+          "reason": "Phase 747でクリーチャー自身の効果ブレイクに追加枚数を反映する経路をイーグルで検証済み。カニスは表向きシールド中の常在付与の適用・消失と他の付与元との加算、他カードの効果ブレイクへの適用を検証するまで保留。"
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "対戦データにサイキック・クリーチャーの対象例がなく、対象判定と超次元への移動を実戦経路で検証できないため保留。"
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 751,
-    "nextPhase": 752,
+    "lastVerifiedPhase": 752,
+    "nextPhase": 753,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmex03-g01",
-        "name": "メッサー・シュミット",
-        "check": "バトル中のパワー修整、勝利ごとのドロー、各ターン最初の勝利後の任意バトルをPhase 588の処理と照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-g01"
+        "id": "dmrp05-068",
+        "name": "海底歩き カグッツ",
+        "check": "呪文の唱えた時の監視と、自分の次ターン開始まで攻撃・ブロックされない付与を確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-068"
+      },
+      {
+        "id": "dm23-004",
+        "name": "闘龍騎リューガライザー",
+        "check": "相手の呪文使用時に誘発し、自身を持ち主の手札に戻す経路と再録を確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-004"
+      },
+      {
+        "id": "dmrp16-093",
+        "name": "球遊者 イドコロガワリ",
+        "check": "ターン開始時のアンタップとタップ状態の確認時点、自壊とドローの順序を公式裁定と照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-093"
+      },
+      {
+        "id": "dm26ex4-099",
+        "name": "ビワ入道",
+        "check": "闇・火のマナ条件、墓地からの任意回収とスピードアタッカーを照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-099"
+      },
+      {
+        "id": "dmrp06-s10",
+        "name": "ドルツヴァイ・アステリオ",
+        "check": "公式QA 31744を確認。マナ枚数分を一括でタップして置く選択、WとTの選択、再録を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-s10"
       },
       {
         "id": "dmrp15-004",
         "name": "絶対悪役 ヴィランヒヰル",
-        "check": "ビビッドローの公開と召喚経路、登場時の任意バトル、勝利後の任意ドローを照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-004"
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-004",
+        "check": "公式QA 38753・38754・40964・40447を確認。既存処理にビビッドローの使用宣言がなく、他の効果や手札を捨てる処理より先に公開する経路と、手札を離れた際の失効を検証するまで保留。"
       },
       {
         "id": "dmsp02-009",
         "name": "武闘将軍 カツキング GS",
-        "check": "G・ストライク、攻撃中の無限パワー、アンタップ状態への攻撃、勝利後の効果ブレイクを照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp02-009"
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp02-009",
+        "check": "同系統の公式旧QA 36815で自分のシールドも選ぶことを確認。攻撃中だけ無限になるパワーと、両側から対象を選ぶ強制ブレイクを検証するまで保留。"
       },
       {
         "id": "dmr14-031",
         "name": "有毒目ヴェスプトックス",
-        "check": "相手側の勝利、タップ中の条件判定、勝者が先に移動した場合の参照とマナ移動を確認する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-031"
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-031",
+        "check": "公式QA 40374の事例に沿って、発生源自身がそのバトルで破壊される場合の誘発、タップ状態の参照時点、勝者が先に移動した場合を検証するまで保留。"
       },
       {
         "id": "dmbd03-002",
