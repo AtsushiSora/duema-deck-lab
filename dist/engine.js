@@ -1054,6 +1054,8 @@ function blockAttackerAllowed(s,attacker,blocker){
  if(card(blocker).g716DragonBlock&&effectiveCard(blocker,s).g716DragonBlockOnly&&!isDragon(effectiveCard(attacker,s)))return false;
  if(unblockedNow(s,attacker)||(effectiveCard(attacker,s).g408LessPowerBlock||(attacker.g34Grants||[]).some(g=>g.turn===s.turn&&g.g408LessPowerBlock))&&power(blocker,false,s)<power(attacker,true,s))return false;
  if(extra.six.weakerBlock569(s,attacker,blocker))return false;
+ const tribalGrants=(attacker.g34Grants||[]).filter(g=>g.g725NoBlockMaxPower!==undefined&&g.turn===s.turn);
+ if(tribalGrants.some(g=>power(blocker,false,s)<=g.g725NoBlockMaxPower&&!spellIgnored(s,{type:'spell',cost:g.spellCost,spellSource:g.spellSource})))return false;
  const f=effectiveCard(attacker,s).g206NoBlock;if(!f)return true;
  const b=effectiveCard(blocker,s);
  return !(f.minPower!=null&&power(blocker,false,s)>=f.minPower||f.maxPower!=null&&power(blocker,false,s)<=f.maxPower||f.maxCost!=null&&costValue(b)<=f.maxCost||f.lessPower&&power(blocker,false,s)<power(attacker,true,s)||f.color&&civilizations(b).includes(f.color)||f.exceptRace&&!String(b.race||'').includes(f.exceptRace)||f.nonEvolution&&!isEvolution(blocker)||f.creatureAttack&&s.attack?.target!=='player');

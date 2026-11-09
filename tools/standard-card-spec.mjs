@@ -2547,6 +2547,21 @@ export function standardCardSpec(d,{phase=165}={}){
  const compact363=phase>=363?normalize(f.abilityText):'',whole363=phase>=363&&(modal363(compact363)||compact363==='自分の水と闇を両方持つクリーチャーがバトルゾーンに出た時次のうちいずれか1つを選ぶ。▼カードを1枚引く。▼相手は自身の手札を1枚選び捨てる。');
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?abilityText.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):abilityText).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=725){
+  const text=normalize(f.abilityText);
+  const trigger='S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  if(f.typeText==='呪文'&&text===trigger+'種族をひとつ選ぶ。このターンの終わりまでバトルゾーンにある選んだ種族の自分のクリーチャーすべてのパワーは+4000されパワーが5000以下のクリーチャーにブロックされない。'){
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'ChooseRace724',g725Tribal:true}]};
+  }
+  const blocker='ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)';
+  const noPlayer='このクリーチャーは相手プレイヤーを攻撃できない。';
+  if(f.typeText==='クリーチャー'&&text===blocker+noPlayer+'デーモン・コマンドまたは種族にドラゴンとあるクリーチャーとバトルする時このクリーチャーのパワーは+4000される。'){
+   return {blocker:true,noPlayerAttack:true,g209BattlePower:{amount:4000,opponentRaces:['デーモン・コマンド','ドラゴン']}};
+  }
+  if(f.typeText==='クリーチャー'&&text===blocker+'相手の闇または火のクリーチャーが破壊された時このクリーチャーをアンタップしてもよい。'+noPlayer){
+   return {blocker:true,noPlayerAttack:true,g303DeathWatch:{opponent:true,colorsAny:['闇','火'],g725RemainInBattle:true,defs:[{op:'Offer',title:'このクリーチャーをアンタップする？',defs:[{op:'Untap'}]}]}};
+  }
+ }
  if(phase>=724){
   const text=normalize(f.abilityText);
   if(f.typeText==='クリーチャー'&&text==='このクリーチャーをバトルゾーンに出した時バトルゾーンにある自分のクリーチャーの数と同じ枚数のカードを自分の山札の上から表向きにする。その中から呪文をすべて手札に加えそれ以外のカードをすべて好きな順番で山札の上に戻す。'){

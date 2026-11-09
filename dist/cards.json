@@ -173702,20 +173702,111 @@
       ],
       "supportBatch": "phase-724",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm19-040",
+      "name": "トライバル・コミューン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n種族をひとつ選ぶ。このターンの終わりまで、バトルゾーンにある、選んだ種族の自分のクリーチャーすべてのパワーは+4000され、パワーが5000以下のクリーチャーにブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-040",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ChooseRace724",
+          "g725Tribal": true
+        }
+      ],
+      "supportBatch": "phase-725",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm16-021",
+      "name": "光器スヴェータ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "メカ・デル・ソル",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nデーモン・コマンドまたは種族にドラゴンとあるクリーチャーとバトルする時、このクリーチャーのパワーは+4000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-021",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g209BattlePower": {
+        "amount": 4000,
+        "opponentRaces": [
+          "デーモン・コマンド",
+          "ドラゴン"
+        ]
+      },
+      "supportBatch": "phase-725",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-043",
+      "name": "光粒の守護者バル・パース",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ガーディアン",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\n相手の闇または火のクリーチャーが破壊された時、このクリーチャーをアンタップしてもよい。\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-043",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g303DeathWatch": {
+        "opponent": true,
+        "colorsAny": [
+          "闇",
+          "火"
+        ],
+        "g725RemainInBattle": true,
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "このクリーチャーをアンタップする？",
+            "defs": [
+              {
+                "op": "Untap"
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-725",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 724,
+    "phase": 725,
     "checkedAt": "2026-11-09",
-    "baseCount": 6010,
+    "baseCount": 6013,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6013,
+    "totalCount": 6016,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35437/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35417/"
+      "https://dm.takaratomy.co.jp/rule/qa/39429/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -186236,6 +186327,23 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/qa/38647/",
           "https://dm.takaratomy.co.jp/rule/qa/39628/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 724,
+        "checkedAt": "2026-11-09",
+        "baseCount": 6010,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6013,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35437/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35417/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -346,6 +346,7 @@ export function createSixPhotoRules(api){
  }
  function battlePower209(s,x,y,c){
   const t=c.g209BattlePower;if(!t||!s)return 0;const p=s.players.findIndex(p=>p.battle.some(z=>z.uid===x.uid));if(p<0)return 0;
+  if(t.opponentRaces&&(!y||!t.opponentRaces.some(q=>race(effective(y,s),q))))return 0;
   if(t.opponentDragon&&(!y||!race(effective(y,s),'ドラゴン')))return 0;
   if(t.opponentColors&&(!y||!t.opponentColors.some(q=>colors(effective(y,s)).includes(q))))return 0;
   if(t.vsBlocker&&(!y||!effective(y,s).blocker)||t.opponentMaxCost!=null&&(!y||cost(effective(y,s))>t.opponentMaxCost)||t.handMax!=null&&s.players[p].hand.length>t.handMax||t.opponentTurn&&s.active===p)return 0;
@@ -1672,9 +1673,14 @@ export function createSixPhotoRules(api){
   });
   break;
  }
- case'g34_ChooseRace724':
-  start(s,t,[{op:'CountOwn538',filter:{creature:true,g724ExactRace:v},mode:'select',def:t.def}]);
+ case'g34_ChooseRace724':{
+  const filter={creature:true,g724ExactRace:v};
+  if(t.g725Tribal){
+   const group={owner:'self',filter,spell:true};
+   start(s,t,[{op:'GroupPower',...group,power:4000},{op:'GroupGrant364',...group,grant:{g725NoBlockMaxPower:5000}}]);
+  }else start(s,t,[{op:'CountOwn538',filter,mode:'select',def:t.def}]);
   break;
+ }
  case'g34_ChooseRaceUntap713':
   start(s,t,[{op:'Schedule537',when:'turnEnd',defs:[{op:'GroupUntap',owner:'both',g713ExactRace:v,filter:{creature:true}}]}]);
   break;
@@ -2067,7 +2073,7 @@ export function createSixPhotoRules(api){
    for(const x of graveWatchers)for(const y of newCreatures)if(y.uid!==x.uid)queue(s,p,x,card(x).g677AllyGrave);
   }
   const watchers=s.leaving?.snapshot?.six?.scarlet?.[p]||active(s,p,'scarlet').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0}));for(const x of watchers)if(!used(s,'g34Scarlet',x))for(const y of all)if(card(y).type==='creature'&&cost(card(y))<=5)queue(s,p,x,[C('scarletRevive',{target:y.uid,targetSerial:y.zoneSerial||0})]);},
- snapshot(s){return{leave320:s.players.flatMap((own,p)=>own.battle.map(x=>({p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:!x.sealed&&api.isCreature(s,x),race:effective(x,s).race,watch:!x.sealed&&!!effective(x,s).g320Jave}))),death303:s.players.flatMap((own,p)=>own.battle.map(x=>{const c=effective(x,s);return{p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:api.isCreature(s,x),race:c.race,name:c.name,colors:colors(c),element:!x.sealed&&!x.faceDown,elementDraw:!!c.g617OpponentElementLeaves&&!x.sealed&&!x.faceDown&&!api.ignored(s,x),...(c.g693OtherCreatureGraveDraw&&!x.sealed&&!x.faceDown&&!api.ignored(s,x)&&api.isCreature(s,x)?{graveDraw:true}:{}),watch:!x.sealed&&!api.ignored(s,x)?c.g303DeathWatch:undefined};})),selfLeaves:s.players.flatMap((own,p)=>own.battle.flatMap(x=>{const c=effective(x,s);return c.g172Death||c.g172Leave?[{p,uid:x.uid,incarnation:x.incarnation||0,g172Death:c.g172Death,g172Leave:c.g172Leave,g601OpponentLeave:c.g601OpponentLeave}]:[];})),scarlet:[0,1].map(p=>active(s,p,'scarlet').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0}))),dororon:[0,1].map(p=>active(s,p,'dororon').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0})))};},
+ snapshot(s,leaving=[]){return{leave320:s.players.flatMap((own,p)=>own.battle.map(x=>({p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:!x.sealed&&api.isCreature(s,x),race:effective(x,s).race,watch:!x.sealed&&!!effective(x,s).g320Jave}))),death303:s.players.flatMap((own,p)=>own.battle.map(x=>{const c=effective(x,s);return{p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:api.isCreature(s,x),race:c.race,name:c.name,colors:colors(c),element:!x.sealed&&!x.faceDown,elementDraw:!!c.g617OpponentElementLeaves&&!x.sealed&&!x.faceDown&&!api.ignored(s,x),...(c.g693OtherCreatureGraveDraw&&!x.sealed&&!x.faceDown&&!api.ignored(s,x)&&api.isCreature(s,x)?{graveDraw:true}:{}),watch:!x.sealed&&!api.ignored(s,x)&&(!c.g303DeathWatch?.g725RemainInBattle||!leaving.some(row=>row.player===p&&row.uid===x.uid))?c.g303DeathWatch:undefined};})),selfLeaves:s.players.flatMap((own,p)=>own.battle.flatMap(x=>{const c=effective(x,s);return c.g172Death||c.g172Leave?[{p,uid:x.uid,incarnation:x.incarnation||0,g172Death:c.g172Death,g172Leave:c.g172Leave,g601OpponentLeave:c.g601OpponentLeave}]:[];})),scarlet:[0,1].map(p=>active(s,p,'scarlet').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0}))),dororon:[0,1].map(p=>active(s,p,'dororon').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0})))};},
  leaving(s,p,x,snapshot,to,destroy){
   const before=snapshot?.death303;
   const victim=before?.find(y=>y.p===p&&y.element&&key(y)===key(x));
@@ -2145,7 +2151,7 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
  for(const k of ['shieldTrigger','noLose'])combined[k]=(...args)=>!!hooks[k]?.(...args)||!!fifteen[k]?.(...args);
  combined.decorate=(s,p,x,c)=>fifteen.decorate(s,p,x,hooks.decorate(s,p,x,c));
  combined.discount=(...args)=>hooks.discount(...args)+fifteen.discount(...args);
- combined.snapshot=s=>({...hooks.snapshot(s),fifteen:fifteen.snapshot(s)});
+ combined.snapshot=(s,leaving)=>({...hooks.snapshot(s,leaving),fifteen:fifteen.snapshot(s)});
  combined.leaving=(s,p,x,snapshot,to,destroy)=>{hooks.leaving(s,p,x,snapshot,to,destroy);fifteen.leaving(s,p,x,snapshot?.fifteen,to,destroy);};
  return{...combined,fifteen, afterSpell566(s,f){if(f.spell?.g566EvoCharger&&!api.spellIgnored(s,f.spell))put(s,task('g34_EvoCharge566',f.caster??f.owner,f.spell.id,{}));},
 weakerBlock569(s,a,b){const p=s.players.findIndex(own=>own.battle.includes(a));if(p<0)return false;const fromSpell=(s.extLimits||[]).some(l=>l.kind==='g569WeakerBlock'&&api.allLayers(a).some(y=>key(y)===key(l.ref))&&!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})),fromAura=creatures(s,p).some(x=>{if(x.sealed||api.ignored(s,x))return false;const r=effective(x,s).g569Aura;return r&&matches(s,p,a,r.filter)&&(!r.mana||s.players[p].mana.filter(y=>api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,p).includes(r.mana.color)).length>=r.mana.n);});return (fromSpell||fromAura)&&api.power(b,false,s)<api.power(a,true,s);},

@@ -1,0 +1,150 @@
+{
+  "phase": 725,
+  "checkedAt": "2026-11-09",
+  "baseCount": 6013,
+  "description": "選択した種族の一時強化とブロック制限、相手の種族を参照するバトル強化、相手の闇か火のクリーチャーの破壊に反応する任意アンタップを実装。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/39429/"
+  ],
+  "cards": [
+    {
+      "id": "dm19-040",
+      "name": "トライバル・コミューン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-040",
+      "faces": [
+        {
+          "name": "トライバル・コミューン",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n種族をひとつ選ぶ。このターンの終わりまで、バトルゾーンにある、選んだ種族の自分のクリーチャーすべてのパワーは+4000され、パワーが5000以下のクリーチャーにブロックされない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ChooseRace724",
+            "g725Tribal": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "aea5acf46a4df667e6b010f9809042d2cbc838846b8acf792f7a6c3b5a4ecc7b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-021",
+      "name": "光器スヴェータ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-021",
+      "faces": [
+        {
+          "name": "光器スヴェータ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nデーモン・コマンドまたは種族にドラゴンとあるクリーチャーとバトルする時、このクリーチャーのパワーは+4000される。",
+          "race": "メカ・デル・ソル",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g209BattlePower": {
+          "amount": 4000,
+          "opponentRaces": [
+            "デーモン・コマンド",
+            "ドラゴン"
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "550c47ea3396e859d7f9abbb6f4ba103678443e201699485d40b4377e2807414",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-043",
+      "name": "光粒の守護者バル・パース",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-043",
+      "faces": [
+        {
+          "name": "光粒の守護者バル・パース",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\n相手の闇または火のクリーチャーが破壊された時、このクリーチャーをアンタップしてもよい。\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+          "race": "ガーディアン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g303DeathWatch": {
+          "opponent": true,
+          "colorsAny": [
+            "闇",
+            "火"
+          ],
+          "g725RemainInBattle": true,
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "このクリーチャーをアンタップする？",
+              "defs": [
+                {
+                  "op": "Untap"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "515b7d1bc9deab53da69b3ea8542cde240802e7ed49c01002a85ae0ce6f97c62",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm19-040": 4,
+      "dm16-021": 4,
+      "dm19-043": 4
+    }
+  }
+}
