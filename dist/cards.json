@@ -177142,23 +177142,97 @@
       "g756TurboRush": "discard",
       "supportBatch": "phase-756",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-082",
+      "name": "お邪魔菌トリオ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ジョーカーズ",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\n自分の他のクリーチャーが攻撃する時、このクリーチャーを自分の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-082",
+      "limit": 4,
+      "speedAttacker": true,
+      "g252AttackWatch": {
+        "who": "self",
+        "other": true,
+        "defs": [
+          {
+            "op": "SelfHand299"
+          }
+        ]
+      },
+      "supportBatch": "phase-757",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx14-002",
+      "name": "どんでん返しのミラジーノ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "アウトレイジ",
+      "text": "自分のシールドゾーンに表向きのカードがあれば、このクリーチャーは「スピードアタッカー」を得る。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-002",
+      "limit": 4,
+      "breaker": 2,
+      "g260Self": {
+        "filter": {
+          "g757FaceUpShield": true
+        },
+        "grants": {
+          "speedAttacker": true
+        }
+      },
+      "supportBatch": "phase-757",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23-014",
+      "name": "ナイトメア・ドラグーン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ティラノ・ドレイク",
+      "text": "相手は、自分自身のシールドの「S・トリガー」を使った時、手札を１枚選んで捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-014",
+      "limit": 4,
+      "g699OpponentShieldTrigger": [
+        {
+          "op": "Discard",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-757",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 756,
+    "phase": 757,
     "checkedAt": "2026-11-10",
-    "baseCount": 6114,
+    "baseCount": 6117,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6117,
+    "totalCount": 6120,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36774/",
-      "https://dm.takaratomy.co.jp/rule/qa/39980/",
-      "https://dm.takaratomy.co.jp/rule/qa/47898/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37329/",
-      "https://dm.takaratomy.co.jp/rule/qa/48037/"
+      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -190299,6 +190373,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/31552/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36182/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37633/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 756,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6114,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6117,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36774/",
+          "https://dm.takaratomy.co.jp/rule/qa/39980/",
+          "https://dm.takaratomy.co.jp/rule/qa/47898/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37329/",
+          "https://dm.takaratomy.co.jp/rule/qa/48037/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

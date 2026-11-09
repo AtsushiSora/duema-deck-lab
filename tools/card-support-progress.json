@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6117,
-  "pendingNames": 5710,
-  "phase": 756,
+  "supportedNames": 6120,
+  "pendingNames": 5707,
+  "phase": 757,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3408,
+    "クリーチャー": 3405,
     "NEOクリーチャー": 152,
     "呪文": 813,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4183,
+    "未対応の能力文": 4180,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -9151,13 +9151,68 @@
           "check": "公式の初出本文と旧QA 35545を確認。多色が2枚でも追加は1枚。ドロー置換で別に引いたカードや、その場で手札から移動したカードを公開対象と混同しないよう、実際にこの呪文で引いたカードのUIDを検証するまで保留。"
         }
       ]
+    },
+    {
+      "phase": 757,
+      "cards": [
+        {
+          "id": "dmrp05-082",
+          "name": "お邪魔菌トリオ"
+        },
+        {
+          "id": "dmx14-002",
+          "name": "どんでん返しのミラジーノ"
+        },
+        {
+          "id": "dm23-014",
+          "name": "ナイトメア・ドラグーン"
+        }
+      ],
+      "supportedNames": 6120,
+      "pendingNames": 5707,
+      "verification": {
+        "focusedPassed": 6,
+        "regressionPassed": 78,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "3種類の公式本文、基本情報、マナ、画像、殿堂区分と同名商品を照合。味方だけの攻撃監視と自己バウンス、表向きのシールドの束の判定、使用した相手のS・トリガーの解決と相手による手札選択、保存復元を検証。既存カード定義は基点と一致。",
+        "runtimeNote": "強制終了込み各最大10分。Phase 252・260・521・699・754・756の関連回帰78件が成功。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dmrp05-060",
+          "name": "ケジメノ裁徒",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-060",
+          "check": "初出の公式本文とDMSD07収録を確認。公式QA 39978・31797の同条件に従い、既存シールドの束への追加、表向きの紋章、城などもカード単位で誘発する。イカリノ裁徒と共通で、追加経路の通知を重複なく検証するまで保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 756,
-    "nextPhase": 757,
+    "lastVerifiedPhase": 757,
+    "nextPhase": 758,
     "workInProgress": [],
     "nextCandidates": [
+      {
+        "id": "dm23-010",
+        "name": "封魔ガリエフ・イルゾール",
+        "check": "相手のS・トリガー使用時に任意で最大2枚引く能力を、既存の使用監視で扱えるか公式本文と再録を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-010"
+      },
+      {
+        "id": "dm23-020",
+        "name": "霊騎ドゥール・カリオン",
+        "check": "相手のS・トリガー使用時に任意で山札の上をマナに置く能力と、同名版・裁定を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-020"
+      },
+      {
+        "id": "promoy16-048",
+        "name": "チョクシン・ゴー",
+        "check": "味方攻撃の監視、タップを支払えた場合だけ攻撃クリーチャーをアンタップする処理、再録を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-048"
+      },
       {
         "id": "dmrp06-s10",
         "name": "ドルツヴァイ・アステリオ",
@@ -9541,6 +9596,12 @@
         "name": "プリズム・ブレイン",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-024",
         "check": "公式の初出本文と旧QA 35545を確認。多色が2枚でも追加は1枚。ドロー置換で別に引いたカードや、その場で手札から移動したカードを公開対象と混同しないよう、実際にこの呪文で引いたカードのUIDを検証するまで保留。"
+      },
+      {
+        "id": "dmrp05-060",
+        "name": "ケジメノ裁徒",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-060",
+        "check": "初出の公式本文とDMSD07収録を確認。公式QA 39978・31797の同条件に従い、既存シールドの束への追加、表向きの紋章、城などもカード単位で誘発する。イカリノ裁徒と共通で、追加経路の通知を重複なく検証するまで保留。"
       }
     ],
     "steps": [

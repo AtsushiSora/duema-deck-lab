@@ -2564,6 +2564,14 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=757&&f.typeText==='クリーチャー'){
+  if(compact363==='スピードアタッカー(このクリーチャーは召喚酔いしない)自分の他のクリーチャーが攻撃する時このクリーチャーを自分の手札に戻す。')
+   return {speedAttacker:true,g252AttackWatch:{who:'self',other:true,defs:[{op:'SelfHand299'}]}};
+  if(compact363==='自分のシールドゾーンに表向きのカードがあればこのクリーチャーは「スピードアタッカー」を得る。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g260Self:{filter:{g757FaceUpShield:true},grants:{speedAttacker:true}}};
+  if(compact363==='相手は自分自身のシールドの「S・トリガー」を使った時手札を1枚選んで捨てる。')
+   return {g699OpponentShieldTrigger:[{op:'Discard',n:1}]};
+ }
  if(phase>=756&&f.typeText==='クリーチャー'){
   if(['自分の無色クリーチャーの召喚コストを最大2少なくしてもよい。','自分の無色クリーチャーの召喚コストを最大2少なくする。'].includes(compact363))
    return {g349SummonAuras:[{filter:{g756Colorless:true},amount:2,g560Optional:true,g756ZeroFloor:true}]};
