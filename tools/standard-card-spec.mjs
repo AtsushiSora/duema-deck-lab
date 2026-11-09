@@ -2564,6 +2564,17 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=753&&f.typeText==='クリーチャー'){
+  const sympathy='シンパシー:相手のマナゾーンにあるカード';
+  const oldHelp='(相手のマナゾーンにあるカード1枚につきこのクリーチャーの召喚コストを1少なくする。ただしコストは0以下にはならない)';
+  const newHelp='(このカードの実行コストを相手のマナゾーンにあるカード1枚につき1少なくする。ただしコストは0以下にならない)';
+  const attack='マッハファイターQ・ブレイカーこのクリーチャーが攻撃する時バトルゾーンにあるエレメントを1つとその持ち主のマナゾーンにあるそれよりコストが小さいエレメントを1つ';
+  if([sympathy+oldHelp+attack+'選びそれらを入れ替えてもよい。',
+      sympathy+attack+'選びそれらを入れ替えてもよい。',
+      sympathy+newHelp+attack+'選んでもよい。選ばれたエレメントの持ち主はそれらを入れ替える。'].includes(compact363))
+   return {machFighter:true,breaker:4,g212CountDiscount:{zone:'mana',owner:'opponent',amount:1,g753AllMana:true},
+    g34Attack:[{op:'ManaExchange753'}]};
+ }
  if(phase>=752&&f.typeText==='クリーチャー'){
   const mach='マッハファイター(このクリーチャーはバトルゾーンに出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)';
   const double='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';
