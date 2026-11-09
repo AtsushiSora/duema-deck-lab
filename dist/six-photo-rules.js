@@ -970,6 +970,14 @@ export function createSixPhotoRules(api){
   choice(s,t,'アンタップする種族を1つ選ぶ',options);
   break;
  }
+ case'g34_BlockUntapPick715':{
+  if(!s.attack||s.attack.stage!=='blockedEffects'||s.attack.blockUid!==t.uid)break;
+  const rows=creatures(s,t.p).filter(y=>!y.sealed);
+  if(rows.length)choice(s,t,'バトルの後にアンタップする自分のクリーチャーを1体まで選ぶ',[
+   ...rows.map(y=>opt(card(y).name,y.uid,y.tapped&&api.canUntap(y)?10:0,y.cardId)),skip()
+  ]);
+  break;
+ }
  case'g34_GroupUntap':
   for(const p of (t.owner==='both'?[t.p,1-t.p]:[t.p]))for(const y of creatures(s,p)){
    if(!y.tapped||y.sealed||!api.canUntap(y))continue;
@@ -1578,6 +1586,18 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_Destination553':finishSelect(s,{...t,to:v});break;
+ case'g34_BlockUntapPick715':{
+  const target=v&&creatures(s,t.p).find(y=>y.uid===v&&!y.sealed);
+  if(!target||!s.attack||s.attack.blockUid!==t.uid)break;
+  const attack=s.attack,previous=attack.g695BlockUntap;
+  if(!Array.isArray(previous))attack.g695BlockUntap=previous?[previous]:[];
+  attack.g695BlockUntap.push({
+   controller:t.p,source:t.source,g695Untap:true,
+   g715BlockerRef:{uid:t.uid,incarnation:t.incarnation||0},
+   selfRefs:api.allLayers(target).map(({uid,incarnation=0})=>({uid,incarnation}))
+  });
+  break;
+ }
  case'g34_ChooseRaceUntap713':
   start(s,t,[{op:'Schedule537',when:'turnEnd',defs:[{op:'GroupUntap',owner:'both',g713ExactRace:v,filter:{creature:true}}]}]);
   break;

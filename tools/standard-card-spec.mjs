@@ -2547,6 +2547,18 @@ export function standardCardSpec(d,{phase=165}={}){
  const compact363=phase>=363?normalize(f.abilityText):'',whole363=phase>=363&&(modal363(compact363)||compact363==='自分の水と闇を両方持つクリーチャーがバトルゾーンに出た時次のうちいずれか1つを選ぶ。▼カードを1枚引く。▼相手は自身の手札を1枚選び捨てる。');
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?abilityText.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):abilityText).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=715&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(text==='このクリーチャーが攻撃するとき自分のシールドが1枚でもあればその中から裏向きのまま1枚選び自分の墓地に置く。ただしその「S・トリガー」は使えない。'){
+   return {g34Attack:[{op:'ShieldGrave',g239ShieldGrave:true}]};
+  }
+  if(text==='ブロッカーこのクリーチャーは相手プレイヤーを攻撃できない。このクリーチャーがブロックする時バトルゾーンにある自分のクリーチャーを1体選んでもよい。このクリーチャーのバトルの後選んだクリーチャーをアンタップする。'){
+   return {blocker:true,noPlayerAttack:true,g178Block:[{op:'BlockUntapPick715'}]};
+  }
+  if(text==='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)闇以外のクリーチャーを召喚する時支払うコストは2多くなる。'){
+   return {breaker:2,g715NonDarkSummonTax:2};
+  }
+ }
  if(phase>=714&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const untappedAttack='このクリーチャーはタップされていないクリーチャーを攻撃できる。';

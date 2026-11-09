@@ -1067,7 +1067,11 @@ function battle(s,pa,a,pd,b,attackingUid=null,replaced=false,blockUntap){
  for(let n=0,count=slayerCount534(s,b,a);n<count;n++)late.push({controller:pd,player:pa,uid:a.uid,source:b.cardId});
  if(effectiveCard(a,s).afterBattleDie)late.push({controller:pa,player:pa,uid:a.uid,source:a.cardId,selfRefs:layers(a).map(y=>({uid:y.uid,incarnation:y.incarnation||0}))});
  if(effectiveCard(b,s).afterBattleDie)late.push({controller:pd,player:pd,uid:b.uid,source:b.cardId,selfRefs:layers(b).map(y=>({uid:y.uid,incarnation:y.incarnation||0}))});
- if(blockUntap)late.push(blockUntap);
+ for(const effect of (Array.isArray(blockUntap)?blockUntap:blockUntap?[blockUntap]:[])){
+  const ref=effect.g715BlockerRef;
+  // If a replacement changes the defender, only effects for a creature that actually battled resolve.
+  if(!ref||layers(b).some(x=>x.uid===ref.uid&&(x.incarnation||0)===ref.incarnation))late.push(effect);
+ }
  log(s,pa,'battle',`${card(a).name}(${ap===Infinity?'∞':ap}) 対 ${card(b).name}(${bp===Infinity?'∞':bp})`);
  const aw=forced[0]||!forced[1]&&ap>bp,bw=forced[1]||!forced[0]&&bp>ap,winner=aw&&!bw?pa:bw&&!aw?pd:null,winning=aw&&!bw?a:bw&&!aw?b:null,moves=[];if(!aw&&!extra.firebird.battleSafe(s,a)&&!extra.six.battleSafe(s,a,b,bp))moves.push({player:pa,uid:a.uid,battlePower:ap});if(!bw&&!extra.firebird.battleSafe(s,b)&&!extra.six.battleSafe(s,b,a,ap))moves.push({player:pd,uid:b.uid,battlePower:bp});
  moveCreatures(s,moves,{kind:'battleResult',winner,both:aw&&bw?[{player:pa,uid:a.uid,source:a.cardId,mechade:!!effectiveCard(a,s).mechade,breakNine:!!effectiveCard(a,s).breakNine},{player:pd,uid:b.uid,source:b.cardId,mechade:!!effectiveCard(b,s).mechade,breakNine:!!effectiveCard(b,s).breakNine}]:null,winning:winning?{uid:winning.uid,source:winning.cardId,mechade:!!effectiveCard(winning,s).mechade,breakNine:!!effectiveCard(winning,s).breakNine}:null,late:late.sort((x,y)=>Number(y.controller===s.active)-Number(x.controller===s.active))});
