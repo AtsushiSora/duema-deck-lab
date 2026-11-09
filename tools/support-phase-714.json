@@ -1,0 +1,234 @@
+{
+  "phase": 714,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5975,
+  "description": "アンタップ中の相手への攻撃とパワー条件、次回の通常アンタップ制限、相手の手札とマナ間の移動を実装。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31436/",
+    "https://dm.takaratomy.co.jp/rule/qa/46493/",
+    "https://dm.takaratomy.co.jp/rule/qa/46504/"
+  ],
+  "cards": [
+    {
+      "id": "dm10-031",
+      "name": "砕神兵ガッツンダー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-031",
+      "faces": [
+        {
+          "name": "砕神兵ガッツンダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーは、タップされていないクリーチャーを攻撃できる。\nこのクリーチャーがパワー6000以上のクリーチャーを攻撃する時、そのターンの終わりまで、このクリーチャーのパワーは+9000される。",
+          "race": "アーマロイド",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackUntapped": true,
+        "g714AttackMinPower": 6000,
+        "g691AttackCreature": [
+          {
+            "op": "SelfBoost313",
+            "power": 9000,
+            "g536Source": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "8ffb5ab19409d0f407730425d0f891631c043ae5fbb50ceede4e453355c6229f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm15-019",
+      "name": "驚愕の化身",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-019",
+      "faces": [
+        {
+          "name": "驚愕の化身",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、バトルゾーンにある相手のタップされているクリーチャーを１体選ぶ。相手は次の自分自身のターンのはじめに、そのクリーチャーをアンタップできない。",
+          "race": "ミステリー・トーテム",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Target",
+            "filter": {
+              "tapped": true
+            },
+            "lock": true,
+            "title": "次の相手ターンのはじめにアンタップさせないクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm15-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "71c824d7a719f8df133982a86ec04d3e393aa91a5083ce246e692e38a372691f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-024",
+      "name": "ギガンデュラ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-024",
+      "faces": [
+        {
+          "name": "ギガンデュラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、相手の手札を見る。その中から１枚選び、持ち主のマナゾーンに置いてもよい。そうした場合、相手のマナゾーンからカードを１枚選び、持ち主の手札に戻す。",
+          "race": "キマイラ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "InspectHand",
+            "g223Inspect": true,
+            "chooseOne": true,
+            "g714ToMana": true,
+            "after": [
+              {
+                "op": "Select",
+                "origin": "mana",
+                "owner": "opponent",
+                "to": "hand",
+                "n": 1,
+                "title": "手札に戻す相手のマナを1枚選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "d3393f8a68dfdcdefd22f1a871bf49666091696adb33fab8d8c01693f46a59c2",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc55-040",
+      "name": "砕神兵ガッツンダー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc55-040",
+      "faces": [
+        {
+          "name": "砕神兵ガッツンダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーは、タップされていないクリーチャーを攻撃できる。\nこのクリーチャーがパワー6000以上のクリーチャーを攻撃する時、そのターンの終わりまで、このクリーチャーのパワーは+9000される。",
+          "race": "アーマロイド",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackUntapped": true,
+        "g714AttackMinPower": 6000,
+        "g691AttackCreature": [
+          {
+            "op": "SelfBoost313",
+            "power": 9000,
+            "g536Source": true
+          }
+        ]
+      },
+      "canonicalId": "dm10-031",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc55-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "bcb98a20784a34ea20a1a0b589d186fa0f7ef6d257e6493c7e64e561e262e85c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd15-009",
+      "name": "砕神兵ガッツンダー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd15-009",
+      "faces": [
+        {
+          "name": "砕神兵ガッツンダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーは、タップされていないクリーチャーを攻撃できる。\nこのクリーチャーがパワー6000以上のクリーチャーを攻撃する時、そのターン、このクリーチャーのパワーは+9000される。",
+          "race": "アーマロイド",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "attackUntapped": true,
+        "g714AttackMinPower": 6000,
+        "g691AttackCreature": [
+          {
+            "op": "SelfBoost313",
+            "power": 9000,
+            "g536Source": true
+          }
+        ]
+      },
+      "canonicalId": "dm10-031",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd15-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "8db7df56174afc2b643edbabe8e32d9e505caa9c810b74c8cb56d4d85dabfbde",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm10-031": 4,
+      "dm15-019": 4,
+      "dm10-024": 4,
+      "dmc55-040": 4,
+      "dmd15-009": 4
+    }
+  }
+}

@@ -2547,6 +2547,21 @@ export function standardCardSpec(d,{phase=165}={}){
  const compact363=phase>=363?normalize(f.abilityText):'',whole363=phase>=363&&(modal363(compact363)||compact363==='自分の水と闇を両方持つクリーチャーがバトルゾーンに出た時次のうちいずれか1つを選ぶ。▼カードを1枚引く。▼相手は自身の手札を1枚選び捨てる。');
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?abilityText.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):abilityText).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=714&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const untappedAttack='このクリーチャーはタップされていないクリーチャーを攻撃できる。';
+  const strongDefender='このクリーチャーがパワー6000以上のクリーチャーを攻撃する時';
+  if(['そのターンの終わりまで','そのターン'].some(duration=>text===untappedAttack+strongDefender+duration+'このクリーチャーのパワーは+9000される。')){
+   return {attackUntapped:true,g714AttackMinPower:6000,g691AttackCreature:[{op:'SelfBoost313',power:9000,g536Source:true}]};
+  }
+  if(text==='このクリーチャーが攻撃する時バトルゾーンにある相手のタップされているクリーチャーを1体選ぶ。相手は次の自分自身のターンのはじめにそのクリーチャーをアンタップできない。'){
+   return {g34Attack:[{op:'Target',filter:{tapped:true},lock:true,title:'次の相手ターンのはじめにアンタップさせないクリーチャーを選ぶ'}]};
+  }
+  if(text==='このクリーチャーをバトルゾーンに出した時相手の手札を見る。その中から1枚選び持ち主のマナゾーンに置いてもよい。そうした場合相手のマナゾーンからカードを1枚選び持ち主の手札に戻す。'){
+   const after=[{op:'Select',origin:'mana',owner:'opponent',to:'hand',n:1,title:'手札に戻す相手のマナを1枚選ぶ'}];
+   return {effect:'sixPhoto',g34Tasks:[{op:'InspectHand',g223Inspect:true,chooseOne:true,g714ToMana:true,after}]};
+  }
+ }
  if(phase>=706&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(f.civilizations.length>1&&text==='マナゾーンに置く時このカードはタップして置く。自分のシールドが相手のシールドより多ければこのクリーチャーは攻撃することができない。'){

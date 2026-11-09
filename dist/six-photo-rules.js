@@ -938,6 +938,12 @@ export function createSixPhotoRules(api){
  case'g34_InspectHand':{
   const hand=opp.hand;
   if(!hand.length){api.log(s,t.p,'look',card(t.source).name+'：相手の手札はありません',{cardId:t.source});break;}
+  if(t.g714ToMana){
+   api.log(s,t.p,'look',card(t.source).name+'で相手の手札を確認',{cardId:t.source});
+   const options=hand.map(y=>opt(card(y).name+'をマナに置く',y.uid,cost(card(y))-2,y.cardId));
+   choice(s,{...t,seen:hand.map(y=>y.cardId)},'マナに置く相手の手札を1枚まで選ぶ',[...options,opt('マナに置かない',null,0)]);
+   break;
+  }
   const eligible=t.discard?hand.filter(y=>matches(s,1-t.p,y,t.filter)):[];
   const ids=eligible.map(y=>y.uid),seen=hand.map(y=>y.cardId);
   api.log(s,t.p,t.reveal?'reveal':'look',t.reveal?'相手の手札を公開：'+hand.map(y=>card(y).name).join('・'):card(t.source).name+'で相手の手札を確認',{cardId:t.source});
@@ -1538,6 +1544,14 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_InspectHand':
+  if(t.g714ToMana){
+   const opponent=s.players[1-t.p],y=opponent.hand.find(x=>x.uid===v);
+   if(y&&zoneMove(s,1-t.p,'hand',y.uid,'mana')&&opponent.mana.includes(y)){
+    api.log(s,t.p,'handToMana',card(t.source).name+'：'+card(y).name+'を相手のマナゾーンに置いた',{cardId:y.cardId});
+    start(s,t,t.after);
+   }
+   break;
+  }
   if(t.chooseOne){if(t.discardIds.includes(v))api.discardSelected(s,1-t.p,[v],t.source,t.p);}
   else if(v&&t.discard)api.discardSelected(s,1-t.p,t.discardIds,t.source,t.p);
   if(t.after)start(s,t,t.after);
@@ -1885,7 +1899,7 @@ export function createSixPhotoRules(api){
    const abilities=effective(watcher,s).g694DefenderWatch;
    if(abilities&&!watcher.sealed)send(s,1-p,watcher,'Sequence',{defs:abilities,g694Defender:ref});
   }
- }const c=effective(x,s),own=s.players[p];if(first&&c.g540FirstAttack&&!api.selfStopped(s,p))queue(s,p,x,c.g540FirstAttack);if(c.g320Jave&&!api.selfStopped(s,p))queue(s,p,x,[{op:'Smash320',serial:x.zoneSerial||0}]);if(c.g34Attack&&!api.selfStopped(s,p))queue(s,p,x,c.g34Attack);if(defender&&c.g691AttackCreature&&!api.selfStopped(s,p))queue(s,p,x,c.g691AttackCreature);if(!api.selfStopped(s,p))for(const {source,grants:g}of c.g404Inherited||[])if(g.g34Attack)queue(s,p,x,g.g34Attack,source);if(!api.selfStopped(s,p))for(const {source,grants:g}of c.g406Inherited||[])if(g.g34Attack)queue(s,p,x,g.g34Attack,source);if(c.g34Role==='emrakul')queue(s,p,x,[C('emrakulSix')]);if(c.g34Role==='minogami')queue(s,p,x,[E('Offer',{defs:[E('Look',{n:3,public:true,stages:[{to:'mana',n:'all',filter:{twin:true}}],after:[C('minogamiBuff')]})]})]);if(card(x).neoEvolution)for(const y of active(s,p,'grasper'))queue(s,p,y,[select('mana',null,1,{creature:true,belowPower:api.power(x,false,s)},{deploy:true,optional:true})]);if(!api.ignored(s,x))for(const layer of api.layers(x))if(card(layer).g34SoulDiscard)queue(s,p,x,[E('Discard',{n:1,random:true})]);if(ninja(c))for(const y of active(s,p,'happou')){if(s.attack?.target==='player')queue(s,p,y,[E('Discard',{n:1,random:true})]);else(x.g34Grants??=[]).push({turn:s.turn,slayer:true,g34BattleSafe:true});}if(api.isEvolution(x)&&cost(c)>=2)for(const y of own.hand.filter(y=>card(y).g34Role==='baromreizu'))queue(s,p,y,[C('reizuCast')]);},
+ }const c=effective(x,s),own=s.players[p];if(first&&c.g540FirstAttack&&!api.selfStopped(s,p))queue(s,p,x,c.g540FirstAttack);if(c.g320Jave&&!api.selfStopped(s,p))queue(s,p,x,[{op:'Smash320',serial:x.zoneSerial||0}]);if(c.g34Attack&&!api.selfStopped(s,p))queue(s,p,x,c.g34Attack);if(defender&&c.g691AttackCreature&&!api.selfStopped(s,p)&&(c.g714AttackMinPower===undefined||currentPower506(s,defender)>=c.g714AttackMinPower))queue(s,p,x,c.g691AttackCreature);if(!api.selfStopped(s,p))for(const {source,grants:g}of c.g404Inherited||[])if(g.g34Attack)queue(s,p,x,g.g34Attack,source);if(!api.selfStopped(s,p))for(const {source,grants:g}of c.g406Inherited||[])if(g.g34Attack)queue(s,p,x,g.g34Attack,source);if(c.g34Role==='emrakul')queue(s,p,x,[C('emrakulSix')]);if(c.g34Role==='minogami')queue(s,p,x,[E('Offer',{defs:[E('Look',{n:3,public:true,stages:[{to:'mana',n:'all',filter:{twin:true}}],after:[C('minogamiBuff')]})]})]);if(card(x).neoEvolution)for(const y of active(s,p,'grasper'))queue(s,p,y,[select('mana',null,1,{creature:true,belowPower:api.power(x,false,s)},{deploy:true,optional:true})]);if(!api.ignored(s,x))for(const layer of api.layers(x))if(card(layer).g34SoulDiscard)queue(s,p,x,[E('Discard',{n:1,random:true})]);if(ninja(c))for(const y of active(s,p,'happou')){if(s.attack?.target==='player')queue(s,p,y,[E('Discard',{n:1,random:true})]);else(x.g34Grants??=[]).push({turn:s.turn,slayer:true,g34BattleSafe:true});}if(api.isEvolution(x)&&cost(c)>=2)for(const y of own.hand.filter(y=>card(y).g34Role==='baromreizu'))queue(s,p,y,[C('reizuCast')]);},
  attackStart(s,p,x){
   if(s.attack?.target==='player'&&(s.extLimits||[]).some(r=>r.kind==='g712BlockBreak'&&r.player===p&&r.turn===s.turn))s.attack.g712PlayerTarget=true;
   attackWatches252(s,p,x);for(const y of s.players[p].hand)for(const[c,face]of faces(card(y)).map((c,i)=>[c,i])){const w=c.g417Chance;if(w&&!api.spellIgnored(s,c)&&(!w.hyper||hyperMode418(s,x))&&chanceMatches419(s,p,x,w))send(s,p,y,'Chance417',{serial:y.zoneSerial||0,face});}for(const y of active(s,1-p,'souzan'))queue(s,1-p,y,[C('souzanStop')]);{for(const y of s.players[1-p].shields.flatMap(api.shieldCards).filter(y=>y.faceUp&&card(y).g34Role==='mantraCastle'))queue(s,1-p,y,[C('mantraDefend')]);if(s.attack?.target==='player'&&s.players.some(p=>!p.shields.length)&&!s.players[1-p].battle.some(y=>!y.sealed&&card(y).g34Role==='nightmare'))for(const y of s.players[1-p].hand.filter(y=>card(y).g34Role==='nightmare'))queue(s,1-p,y,[C('nightmare')]);}},

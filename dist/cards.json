@@ -172681,21 +172681,113 @@
       ],
       "supportBatch": "phase-713",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm10-031",
+      "name": "砕神兵ガッツンダー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "アーマロイド",
+      "text": "このクリーチャーは、タップされていないクリーチャーを攻撃できる。\nこのクリーチャーがパワー6000以上のクリーチャーを攻撃する時、そのターンの終わりまで、このクリーチャーのパワーは+9000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-031",
+      "limit": 4,
+      "attackUntapped": true,
+      "g714AttackMinPower": 6000,
+      "g691AttackCreature": [
+        {
+          "op": "SelfBoost313",
+          "power": 9000,
+          "g536Source": true
+        }
+      ],
+      "supportBatch": "phase-714",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm15-019",
+      "name": "驚愕の化身",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ミステリー・トーテム",
+      "text": "このクリーチャーが攻撃する時、バトルゾーンにある相手のタップされているクリーチャーを１体選ぶ。相手は次の自分自身のターンのはじめに、そのクリーチャーをアンタップできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-019",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "filter": {
+            "tapped": true
+          },
+          "lock": true,
+          "title": "次の相手ターンのはじめにアンタップさせないクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-714",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm10-024",
+      "name": "ギガンデュラ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "キマイラ",
+      "text": "このクリーチャーをバトルゾーンに出した時、相手の手札を見る。その中から１枚選び、持ち主のマナゾーンに置いてもよい。そうした場合、相手のマナゾーンからカードを１枚選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-024",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "InspectHand",
+          "g223Inspect": true,
+          "chooseOne": true,
+          "g714ToMana": true,
+          "after": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "owner": "opponent",
+              "to": "hand",
+              "n": 1,
+              "title": "手札に戻す相手のマナを1枚選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-714",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 713,
+    "phase": 714,
     "checkedAt": "2026-11-09",
-    "baseCount": 5972,
+    "baseCount": 5975,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5975,
+    "totalCount": 5978,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316652/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316689/",
-      "https://dm.takaratomy.co.jp/rule/qa/40634/"
+      "https://dm.takaratomy.co.jp/rule/rulechange/31436/",
+      "https://dm.takaratomy.co.jp/rule/qa/46493/",
+      "https://dm.takaratomy.co.jp/rule/qa/46504/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -185014,6 +185106,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/47061/",
           "https://dm.takaratomy.co.jp/rule/qa/46493/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37678/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 713,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5972,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5975,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316652/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316689/",
+          "https://dm.takaratomy.co.jp/rule/qa/40634/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
