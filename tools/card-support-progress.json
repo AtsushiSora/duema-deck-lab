@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-10",
-  "catalogueNames": 11828,
-  "supportedNames": 6111,
-  "pendingNames": 5717,
-  "phase": 754,
-  "added": 4,
+  "catalogueNames": 11827,
+  "supportedNames": 6114,
+  "pendingNames": 5713,
+  "phase": 755,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3415,
+    "クリーチャー": 3411,
     "NEOクリーチャー": 152,
     "呪文": 813,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4190,
+    "未対応の能力文": 4186,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -280,16 +280,16 @@
     ],
     "未対応の能力文": [
       {
-        "id": "dmrp01-050",
-        "name": "\"BC\" ヒット"
-      },
-      {
         "id": "promoy19-051",
         "name": "\"KNG\"メガヒット"
       },
       {
         "id": "dmrp03-045",
         "name": "“RED”ダスター"
+      },
+      {
+        "id": "dmrp03-048",
+        "name": "“SNG”シンガー"
       }
     ],
     "未対応のG・ゼロ条件": [
@@ -9071,11 +9071,54 @@
           "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-s10"
         }
       ]
+    },
+    {
+      "phase": 755,
+      "cards": [
+        {
+          "id": "dmrp01-050",
+          "name": "\"BC\" ヒット"
+        },
+        {
+          "id": "dm38-029",
+          "name": "ブルース・ガー"
+        },
+        {
+          "id": "dmrp06-091",
+          "name": "ムオーム"
+        }
+      ],
+      "supportedNames": 6114,
+      "pendingNames": 5713,
+      "verification": {
+        "focusedPassed": 5,
+        "regressionPassed": 139,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 5,
+        "scope": "3種類と再録2版の公式本文、基本情報、マナ、画像、殿堂区分を照合。召喚するカード自身を含む手札枚数、効果による登場との差、開始時と効果によるアンタップの区別、複数の味方のパワー上昇と期限、保存途中の解決を検証。BC ヒットの重複行を再録IDに統合し、画像照合も同じ正規IDに集約。既存カード定義は基点と一致。",
+        "runtimeNote": "強制終了込み各最大10分。カード情報・カタログとPhase 475・496・521・694・754の関連回帰139件が成功。初回のnpm run checkで再録の画像照合IDが残っていることを検出し、既存の画像署名と印刷IDを保持して正規IDへ修正後に成功。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dmrp12-018",
+          "name": "ホエル・デージェ",
+          "check": "初出の公式本文と同名収録を確認。対戦エンジンに超GRゾーンとGR召喚の実行経路がないため、攻撃制限とW・ブレイカーを通常デッキのカードとして登録せず保留。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-018"
+        },
+        {
+          "id": "dmrp09-s08",
+          "name": "ドドド・ドーピードープ",
+          "check": "初出の公式本文と再録商品（DMEX05・DMBD22）を確認。超GRゾーンとGR召喚の実装後に、再録と攻撃時の2枚破棄を検証するまで保留。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-s08"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 754,
-    "nextPhase": 755,
+    "lastVerifiedPhase": 755,
+    "nextPhase": 756,
     "workInProgress": [],
     "nextCandidates": [
       {
@@ -9455,6 +9498,18 @@
         "name": "イカリノ裁徒",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-033",
         "check": "初出とDMSD07再録の公式能力文・マナ・画像を照合。公式QA 39978・31797では通常シールド化のほか、既存の束への追加や城の設置もカード単位で誘発する。現在は一部の経路が共通の通知を通らないため、既存カードの通知を二重にせず全移動経路を検証できるまで保留。"
+      },
+      {
+        "id": "dmrp12-018",
+        "name": "ホエル・デージェ",
+        "check": "初出の公式本文と同名収録を確認。対戦エンジンに超GRゾーンとGR召喚の実行経路がないため、攻撃制限とW・ブレイカーを通常デッキのカードとして登録せず保留。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-018"
+      },
+      {
+        "id": "dmrp09-s08",
+        "name": "ドドド・ドーピードープ",
+        "check": "初出の公式本文と再録商品（DMEX05・DMBD22）を確認。超GRゾーンとGR召喚の実装後に、再録と攻撃時の2枚破棄を検証するまで保留。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-s08"
       }
     ],
     "steps": [

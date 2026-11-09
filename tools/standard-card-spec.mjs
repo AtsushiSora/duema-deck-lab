@@ -2564,6 +2564,14 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=755&&f.typeText==='クリーチャー'){
+  if(compact363==='このクリーチャーは自分の手札が2枚以下なら召喚できる。W・ブレイカー(このクリーチャーはシールドを2つブレイクする)')
+   return {g755SummonHandMax:2,breaker:2};
+  if(compact363==='【K・ソウル】このクリーチャーは自分のターンのはじめにアンタップしない。')
+   return {g558Souls:['K'],g40StartNoUntap:true};
+  if(compact363==='自分の他のクリーチャーがバトルゾーンに出た時そのターンそのクリーチャーのパワーを+3000する。')
+   return {g314OtherEntry:{who:'self',g755EntrantPower:3000}};
+ }
  if(phase>=754&&f.typeText==='クリーチャー'){
   if(compact363==='自分が呪文を唱えた時次の自分のターンのはじめまでこのクリーチャーは攻撃もブロックもされない。')
    return {g204SpellWatch:{who:'self',defs:[{op:'SelfGrant754',g521UntilStart:true,grant:{cannotBeAttacked:true,unblockable:true}}]}};
