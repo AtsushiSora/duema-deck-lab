@@ -175467,27 +175467,123 @@
       ],
       "supportBatch": "phase-741",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-063",
+      "name": "侵略者 クマウス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2500,
+      "race": "ジャスティス・ウイング/侵略者",
+      "text": "このクリーチャーが攻撃する時、相手のシールドが２つ以下なら、相手のクリーチャーを１体選んでタップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-063",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g465OpponentShieldsMax": 2
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "tap": true,
+              "lock": true,
+              "g210TapLock": true,
+              "title": "タップして次のターン開始時のアンタップを止めるクリーチャーを選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-742",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-031",
+      "name": "鮮鮮-グラフィ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3500,
+      "race": "バーサーカー/チームボンバー",
+      "text": "自分のクリーチャーがバトルゾーンに出た時、それがこのターン自分がバトルゾーンに出した２体目のクリーチャーなら、相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-031",
+      "limit": 4,
+      "g742SecondEntry": [
+        {
+          "op": "Target",
+          "tap": true,
+          "lock": true,
+          "g210TapLock": true,
+          "title": "タップして次のターン開始時のアンタップを止めるクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-742",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22rp2-053",
+      "name": "ゼヴォカート-M2",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2500,
+      "race": "メカ・デル・ディネロ",
+      "text": "シビルカウント３：このクリーチャーが攻撃する時、自分の光のクリーチャーまたは光のタマシードが合計３つ以上あれば、相手のクリーチャーを１体選び、タップする。そのクリーチャーは、次の相手のターンのはじめにアンタップしない。（まず自分のクリーチャーが何を攻撃するか選ぶ。その後、タップする相手のクリーチャーを選ぶ）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-053",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creatureOrSeed": true,
+            "color": "光",
+            "g258Civil": 3
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "tap": true,
+              "lock": true,
+              "g210TapLock": true,
+              "title": "タップして次のターン開始時のアンタップを止めるクリーチャーを選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-742",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 741,
+    "phase": 742,
     "checkedAt": "2026-11-10",
-    "baseCount": 6066,
-    "newEffectCards": 4,
+    "baseCount": 6070,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6070,
+    "totalCount": 6073,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/43058/",
-      "https://dm.takaratomy.co.jp/rule/qa/43057/",
-      "https://dm.takaratomy.co.jp/rule/qa/43334/",
-      "https://dm.takaratomy.co.jp/rule/qa/43335/",
-      "https://dm.takaratomy.co.jp/rule/qa/43290/",
-      "https://dm.takaratomy.co.jp/rule/qa/31530/",
+      "https://dm.takaratomy.co.jp/rule/qa/39979/",
       "https://dm.takaratomy.co.jp/rule/qa/44661/",
-      "https://dm.takaratomy.co.jp/rule/qa/45223/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36517/"
+      "https://dm.takaratomy.co.jp/rule/qa/46607/",
+      "https://dm.takaratomy.co.jp/rule/qa/46608/",
+      "https://dm.takaratomy.co.jp/rule/qa/46069/",
+      "https://dm.takaratomy.co.jp/rule/qa/42949/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -188330,6 +188426,30 @@
           "https://dm.takaratomy.co.jp/rule/qa/42949/",
           "https://dm.takaratomy.co.jp/rule/qa/43335/",
           "https://dm.takaratomy.co.jp/rule/qa/41457/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 741,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6066,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6070,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/43058/",
+          "https://dm.takaratomy.co.jp/rule/qa/43057/",
+          "https://dm.takaratomy.co.jp/rule/qa/43334/",
+          "https://dm.takaratomy.co.jp/rule/qa/43335/",
+          "https://dm.takaratomy.co.jp/rule/qa/43290/",
+          "https://dm.takaratomy.co.jp/rule/qa/31530/",
+          "https://dm.takaratomy.co.jp/rule/qa/44661/",
+          "https://dm.takaratomy.co.jp/rule/qa/45223/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36517/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -1,0 +1,251 @@
+{
+  "phase": 742,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6070,
+  "description": "シールド数、2体目の登場、シビルカウントで相手のクリーチャーをタップし、次のターン開始時のアンタップを止める。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/39979/",
+    "https://dm.takaratomy.co.jp/rule/qa/44661/",
+    "https://dm.takaratomy.co.jp/rule/qa/46607/",
+    "https://dm.takaratomy.co.jp/rule/qa/46608/",
+    "https://dm.takaratomy.co.jp/rule/qa/46069/",
+    "https://dm.takaratomy.co.jp/rule/qa/42949/"
+  ],
+  "cards": [
+    {
+      "id": "dmr17-063",
+      "name": "侵略者 クマウス",
+      "faces": [
+        {
+          "name": "侵略者 クマウス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃する時、相手のシールドが２つ以下なら、相手のクリーチャーを１体選んでタップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。",
+          "race": "ジャスティス・ウイング/侵略者",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-063",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g465OpponentShieldsMax": 2
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "tap": true,
+                "lock": true,
+                "g210TapLock": true,
+                "title": "タップして次のターン開始時のアンタップを止めるクリーチャーを選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-063.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "419e45fe30ddfcae9b632e5358e277307566d8dd196cf53199ec84f9f0ef92bf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp13-031",
+      "name": "鮮鮮-グラフィ",
+      "faces": [
+        {
+          "name": "鮮鮮-グラフィ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のクリーチャーがバトルゾーンに出た時、それがこのターン自分がバトルゾーンに出した２体目のクリーチャーなら、相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。",
+          "race": "バーサーカー/チームボンバー",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-031",
+      "spec": {
+        "g742SecondEntry": [
+          {
+            "op": "Target",
+            "tap": true,
+            "lock": true,
+            "g210TapLock": true,
+            "title": "タップして次のターン開始時のアンタップを止めるクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp13-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "f5aaef8b6a9aa44bcef3f43653ce16de4c44b21cdc804453e21dfa65c589cdc2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-053",
+      "name": "ゼヴォカート-M2",
+      "faces": [
+        {
+          "name": "ゼヴォカート-M2",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "シビルカウント３：このクリーチャーが攻撃する時、自分の光のクリーチャーまたは光のタマシードが合計３つ以上あれば、相手のクリーチャーを１体選び、タップする。そのクリーチャーは、次の相手のターンのはじめにアンタップしない。（まず自分のクリーチャーが何を攻撃するか選ぶ。その後、タップする相手のクリーチャーを選ぶ）",
+          "race": "メカ・デル・ディネロ",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-053",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creatureOrSeed": true,
+              "color": "光",
+              "g258Civil": 3
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "tap": true,
+                "lock": true,
+                "g210TapLock": true,
+                "title": "タップして次のターン開始時のアンタップを止めるクリーチャーを選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "04512dd968452c9d9b4b61d734510832d51f6358f6f95b25cc25905f626a9481",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm22rp2x-053",
+      "canonicalId": "dm22rp2-053",
+      "name": "ゼヴォカート-M2",
+      "faces": [
+        {
+          "name": "ゼヴォカート-M2",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "シビルカウント３：このクリーチャーが攻撃する時、自分の光のクリーチャーまたは光のタマシードが合計３つ以上あれば、相手のクリーチャーを１体選び、タップする。そのクリーチャーは、次の相手のターンのはじめにアンタップしない。（まず自分のクリーチャーが何を攻撃するか選ぶ。その後、タップする相手のクリーチャーを選ぶ）",
+          "race": "メカ・デル・ディネロ",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-053",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "7230434d625143eaab5981230354e78f077392c1d3d587d0fb5dce3d4f233381",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-18A",
+      "canonicalId": "dm22rp2-053",
+      "name": "ゼヴォカート-M2",
+      "faces": [
+        {
+          "name": "ゼヴォカート-M2",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "シビルカウント３：このクリーチャーが攻撃する時、自分の光のクリーチャーまたは光のタマシードが合計３つ以上あれば、相手のクリーチャーを１体選び、タップする。そのクリーチャーは、次の相手のターンのはじめにアンタップしない。（まず自分のクリーチャーが何を攻撃するか選ぶ。その後、タップする相手のクリーチャーを選ぶ）",
+          "race": "メカ・デル・ディネロ",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-18A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-18A.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "64dc1187947e4191de03b1854824906219129678c46912b7e12d2548f02280cb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2x-18A",
+      "canonicalId": "dm22rp2-053",
+      "name": "ゼヴォカート-M2",
+      "faces": [
+        {
+          "name": "ゼヴォカート-M2",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "シビルカウント３：このクリーチャーが攻撃する時、自分の光のクリーチャーまたは光のタマシードが合計３つ以上あれば、相手のクリーチャーを１体選び、タップする。そのクリーチャーは、次の相手のターンのはじめにアンタップしない。（まず自分のクリーチャーが何を攻撃するか選ぶ。その後、タップする相手のクリーチャーを選ぶ）",
+          "race": "メカ・デル・ディネロ",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-18A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-18A.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "6f1e7c3e6eecb2535d5f27adc53b35394fc8899e7387f7d3b1b9ebfc22ee9a3f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr17-063": 4,
+      "dmrp13-031": 4,
+      "dm22rp2-053": 4,
+      "dm22rp2x-053": 4,
+      "dm22rp2-18A": 4,
+      "dm22rp2x-18A": 4
+    }
+  }
+}

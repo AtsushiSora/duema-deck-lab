@@ -2564,6 +2564,15 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=742&&f.typeText==='クリーチャー'){
+  const freeze={op:'Target',tap:true,lock:true,g210TapLock:true,title:'タップして次のターン開始時のアンタップを止めるクリーチャーを選ぶ'};
+  if(compact363==='このクリーチャーが攻撃する時相手のシールドが2つ以下なら相手のクリーチャーを1体選んでタップする。次の相手のターンのはじめにそのクリーチャーはアンタップしない。')
+   return {g34Attack:[{op:'IfOwn',filter:{g465OpponentShieldsMax:2},defs:[freeze]}]};
+  if(compact363==='自分のクリーチャーがバトルゾーンに出た時それがこのターン自分がバトルゾーンに出した2体目のクリーチャーなら相手のクリーチャーを1体選びタップする。次の相手のターンのはじめにそのクリーチャーはアンタップしない。')
+   return {g742SecondEntry:[freeze]};
+  if(compact363==='シビルカウント3:このクリーチャーが攻撃する時自分の光のクリーチャーまたは光のタマシードが合計3つ以上あれば相手のクリーチャーを1体選びタップする。そのクリーチャーは次の相手のターンのはじめにアンタップしない。(まず自分のクリーチャーが何を攻撃するか選ぶ。その後タップする相手のクリーチャーを選ぶ)')
+   return {g34Attack:[{op:'IfOwn',filter:{creatureOrSeed:true,color:'光',g258Civil:3},defs:[freeze]}]};
+ }
  if(phase>=741){
   if(f.typeText==='クリーチャー'){
    if(compact363==='このクリーチャーが出た時次の自分のターンのはじめまで自分が攻撃される時相手は自身のパワーが一番小さいクリーチャーを1体選び破壊する。')

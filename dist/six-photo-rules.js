@@ -2124,6 +2124,13 @@ export function createSixPhotoRules(api){
  },
  entry(s,p,y,options){const c=card(y),creature=api.isCreature(s,y);
   for(const {x,defs}of seedWatches548(s,p,y,options))queue(s,p,x,defs);
+  if(creature&&!y.sealed&&s.players[p].enteredThisTurn===2){
+   for(const watcher of creatures(s,p)){
+    if(watcher.sealed||api.ignored(s,watcher)||watcher.uid===y.uid&&(options.selfMuted||api.selfStopped(s,p)))continue;
+    const defs=effective(watcher,s).g742SecondEntry;
+    if(defs)queue(s,p,watcher,defs);
+   }
+  }
   if(c.g414ShieldPlus&&creature&&!y.sealed&&!options.selfMuted&&!api.selfStopped(s,p)&&!api.ignored(s,y))queue(s,p,y,[{op:'ShieldPlus414'}]);
   if(creature&&!y.sealed&&!options.selfMuted&&!api.selfStopped(s,p)&&!api.ignored(s,y))for(const {source,grants:g}of effective(y,s).g406Inherited||[])if(g.g34Tasks)queue(s,p,y,g.g34Tasks,source);
   if(creature&&!y.sealed)for(const watcher of creatures(s,1-p)){
