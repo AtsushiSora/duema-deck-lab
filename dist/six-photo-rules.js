@@ -1405,7 +1405,12 @@ export function createSixPhotoRules(api){
   break;
  }
  // Count physical mana cards once on resolution, independently of their mana numbers or tapped state.
- case'g34_ManaCostSweep522':start(s,t,[{op:'Sweep',filter:{creature:true,min:opp.mana.length+1}}]);break;
+ case'g34_ManaCostSweep522':
+  if(t.g735BelowColorless){
+   const n=own.mana.filter(y=>api.manaColors(card(y.faceDown?'face-down-mana':y),s,t.p).length===0).length;
+   if(n)start(s,t,[{op:'Sweep',both:true,filter:{creature:true,belowCost:n}}]);
+  }else start(s,t,[{op:'Sweep',filter:{creature:true,min:opp.mana.length+1}}]);
+  break;
  // Capture the physical mana count before moving a card out of that zone. Execute preserves actual summoning.
  case'g34_ManaCountRamp529':{const n=own.mana.length;if(n)start(s,t,[{op:'Offer',title:'山札から'+n+'枚をまとめてタップしてマナに置く？',defs:[{op:'Ramp',n,tapped:true}]}]);break;}
  case'g34_ManaDeploy523':{const max=own.mana.length;start(s,t,[t.summon?{op:'Execute',origin:'hand',creatureOnly:true,max,optional:t.optional}:{op:'Select',origin:t.origin,n:1,deploy:true,optional:t.optional,filter:{...t.filter,max}}]);break;}
@@ -1779,7 +1784,11 @@ export function createSixPhotoRules(api){
  }
  case'g34_ChooseRace724':{
   const filter={creature:true,g724ExactRace:v};
-  if(t.g725Tribal){
+  if(t.g735Grant){
+   // Dragon is a legal declaration and refers to the category (QA42400).
+   const chosen=v==='ドラゴン'?{creature:true,race:v}:filter;
+   start(s,t,[{op:'GroupGrant364',owner:'both',filter:chosen,spell:true,grant:t.g735Grant,g521UntilStart:t.g521UntilStart}]);
+  }else if(t.g725Tribal){
    const group={owner:'self',filter,spell:true};
    start(s,t,[{op:'GroupPower',...group,power:4000},{op:'GroupGrant364',...group,grant:{g725NoBlockMaxPower:5000}}]);
   }else start(s,t,[{op:'CountOwn538',filter,mode:'select',def:t.def}]);

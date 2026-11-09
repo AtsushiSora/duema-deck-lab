@@ -1,0 +1,144 @@
+{
+  "phase": 735,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6047,
+  "description": "無色マナの枚数で決まる全体除去と、種族を宣言して両陣営へ付与する攻防効果を実装。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/44618/",
+    "https://dm.takaratomy.co.jp/rule/qa/44603/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35256/",
+    "https://dm.takaratomy.co.jp/rule/qa/42400/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35476/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31395/"
+  ],
+  "cards": [
+    {
+      "id": "dmx13-016",
+      "name": "進撃のトライストーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-016",
+      "faces": [
+        {
+          "name": "進撃のトライストーン",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分のマナゾーンにある無色カードの枚数よりコストが小さいクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ManaCostSweep522",
+            "g735BelowColorless": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx13-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "428dfac4e86e4eb1e619cd63835dc9432d9e15fc5df78ce5ccb1261604c25011",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-043",
+      "name": "サイバー・トンネル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-043",
+      "faces": [
+        {
+          "name": "サイバー・トンネル",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "種族を１つ選ぶ。このターン、その種族のクリーチャーはブロックされない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ChooseRace724",
+            "g735Grant": {
+              "unblockable": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "275d702d1b1c6b77605416b3d93bf6ffb52c3b740162470db08dae5ffbbc2f6b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-023",
+      "name": "センチネル・ガード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-023",
+      "faces": [
+        {
+          "name": "センチネル・ガード",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー\n種族を１つ選ぶ。次の自分のターンが始まるまで、バトルゾーンにあるその種族のクリーチャーはすべて「ブロッカー」を得る。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ChooseRace724",
+            "g735Grant": {
+              "blocker": true
+            },
+            "g521UntilStart": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "6b7aa94841d4805b9dcc5890375ed82d5bc74131b40b992a0d7ba3db37c15f07",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx13-016": 4,
+      "dm09-043": 4,
+      "dm09-023": 4
+    }
+  }
+}

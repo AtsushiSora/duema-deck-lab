@@ -2564,6 +2564,14 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=735&&f.typeText==='呪文'){
+  if(compact363==='自分のマナゾーンにある無色カードの枚数よりコストが小さいクリーチャーをすべて破壊する。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'ManaCostSweep522',g735BelowColorless:true}]};
+  if(compact363==='種族を1つ選ぶ。このターンその種族のクリーチャーはブロックされない。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'ChooseRace724',g735Grant:{unblockable:true}}]};
+  if(compact363==='S・トリガー種族を1つ選ぶ。次の自分のターンが始まるまでバトルゾーンにあるその種族のクリーチャーはすべて「ブロッカー」を得る。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'ChooseRace724',g735Grant:{blocker:true},g521UntilStart:true}]};
+ }
  if(phase>=733){
   if(f.typeText==='クリーチャー'&&compact363==='Q・ブレイカー(このクリーチャーはシールドを4つブレイクする)このクリーチャーが破壊される時墓地に置くかわりに山札に加えてシャッフルする。')
    return {breaker:4,g731DestroyShuffle:true};
