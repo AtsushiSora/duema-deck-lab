@@ -1328,7 +1328,10 @@ function nextTurn(s){
 }
 function canSilent496(s,x){const c=effectiveCard(x,s);return !!(isCreature(s,x)&&x.tapped&&c.g496Silent&&!skipsStartUntap(s,x)&&!c.g26Zaze&&!c.g40StartNoUntap&&canUntap(x));}
 function finishStartUntap496(s,chosen=[]){
- const p=s.players[s.active],kept=new Set(chosen.map(c=>c.uid)),limited=extra.beforeUntap(s,s.active);for(const c of [...p.mana,...p.battle]){const wasTapped=c.tapped;if(!kept.has(c.uid)&&(!limited||p.battle.includes(c))&&!skipsStartUntap(s,c)&&!(p.battle.includes(c)&&(effectiveCard(c,s).g26Zaze||effectiveCard(c,s).g40StartNoUntap))&&canUntap(c))c.tapped=false;delete c.skipUntap;for(const layer of layers(c))delete layer.g170StartFreeze;if(wasTapped&&!c.tapped&&p.battle.includes(c))extra.six.untapped(s,s.active,c,true);}
+ const p=s.players[s.active],kept=new Set(chosen.map(c=>c.uid));
+ const preventMana=p.battle.some(x=>!x.sealed&&isCreature(s,x)&&effectiveCard(x,s).g723NoStartManaUntap);
+ const limited=extra.beforeUntap(s,s.active,preventMana)||preventMana;
+ for(const c of [...p.mana,...p.battle]){const wasTapped=c.tapped;if(!kept.has(c.uid)&&(!limited||p.battle.includes(c))&&!skipsStartUntap(s,c)&&!(p.battle.includes(c)&&(effectiveCard(c,s).g26Zaze||effectiveCard(c,s).g40StartNoUntap))&&canUntap(c))c.tapped=false;delete c.skipUntap;for(const layer of layers(c))delete layer.g170StartFreeze;if(wasTapped&&!c.tapped&&p.battle.includes(c))extra.six.untapped(s,s.active,c,true);}
  p.entryLimitThisTurn=!!p.entryLimitNextTurn;p.entryLimitNextTurn=false;
  log(s,s.active,'turn',`${p.name}の${displayTurn(s)}ターン目`);s.startStep={player:s.active};s.phase='start';
  for(const c of chosen)enqueueEffect(s,s.active,{uid:c.uid,incarnation:c.incarnation,source:c.source,effect:'extended',task:extra.task('g34_Sequence',s.active,c.source,{uid:c.uid,incarnation:c.incarnation,defs:c.defs})});

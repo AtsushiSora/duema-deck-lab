@@ -1,16 +1,16 @@
 {
   "checkedAt": "2026-11-09",
   "catalogueNames": 11829,
-  "supportedNames": 6006,
-  "pendingNames": 5823,
-  "phase": 722,
-  "added": 5,
+  "supportedNames": 6010,
+  "pendingNames": 5819,
+  "phase": 723,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
     {
       "ability": "G・ゼロ",
-      "pendingNames": 35,
+      "pendingNames": 34,
       "examples": [
         {
           "id": "dmex15-b028",
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3499,
+    "クリーチャー": 3495,
     "NEOクリーチャー": 153,
     "呪文": 826,
     "GRクリーチャー": 159,
@@ -226,8 +226,8 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1263,
-    "未対応の能力文": 4282,
-    "未対応のG・ゼロ条件": 26,
+    "未対応の能力文": 4280,
+    "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
     "既存名の別表記": 8,
@@ -236,7 +236,7 @@
     "複雑な進化条件": 18,
     "未対応のスリリング・スリー効果": 2,
     "未対応のメタモーフ能力": 1,
-    "未対応の非ブロック時能力": 7,
+    "未対応の非ブロック時能力": 6,
     "未対応のスーパー・S・トリガー能力": 15,
     "再録サバイバーの共有処理が未対応": 5,
     "未対応の選択能力": 24,
@@ -7116,42 +7116,104 @@
           "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
         }
       ]
+    },
+    {
+      "phase": 723,
+      "cards": [
+        {
+          "id": "dm19-005",
+          "name": "封魔ソウル・アヴァルス"
+        },
+        {
+          "id": "dm19-039",
+          "name": "強襲の長(アサルト・チャンピオン)"
+        },
+        {
+          "id": "dm10-033",
+          "name": "緑神龍クスダルフ"
+        },
+        {
+          "id": "dm16-031",
+          "name": "ブラザー・リザード"
+        }
+      ],
+      "supportedNames": 6010,
+      "pendingNames": 5819,
+      "printAliases": [],
+      "verification": {
+        "focusedPassed": 9,
+        "regressionPassed": 324,
+        "regressionFailed": 1,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 4,
+        "scope": "初出4種類の公式本文全体・基本情報・マナ数・JPEG画像・殿堂一覧を照合。非ブロック時の選択復元とW・ブレイカー、種族への一時強化、通常の開始時アンタップと他効果との競合、両陣営の同名参照を検証。ブラザー・リザードのカード名参照は公式HTMLとJPEGで確認し、詳細データの該当する本文1箇所だけを修正。回帰はphase 364・396・482・722、dark-mado、champion-junior、card-info、printed-mana。全体のnpm testは中断・合否未確認。",
+        "runtimeNote": "テストとnpm run checkは各最大10分。関連回帰から長時間のCPU対戦シミュレーションを除外した。dark-madoの静的バージョン検査1件は0.77を期待するが、変更前コミットのworker.jsも既に0.721.0を参照しており、今回の差分とは無関係。"
+      },
+      "deferred": [
+        {
+          "id": "dm19-s08",
+          "name": "オメガ・クライシス・ドラグーン",
+          "reason": "初出版の公式本文を確認。双方が自分の対象を選ぶ順序、両方の破壊・置換の順序、対象がない側、種族が複数ある場合を一貫して検証できるまで保留。"
+        },
+        {
+          "id": "dm10-066",
+          "name": "不屈のウレックス",
+          "reason": "公式本文と旧QA 35288の多色判定を確認。相手の効果によるタップを止めながら、自分の効果・攻撃・ブロック・タップして出る処理を区別できるよう、効果の使用者が渡る経路を検証するまで保留。"
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "対戦データにサイキック・クリーチャーの対象例がなく、対象判定と超次元への移動を実戦経路で検証できないため保留。"
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 722,
-    "nextPhase": 723,
+    "lastVerifiedPhase": 723,
+    "nextPhase": 724,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm19-005",
-        "name": "封魔ソウル・アヴァルス",
-        "check": "プレイヤー攻撃がブロックされなかった時の任意蘇生とW・ブレイカーを照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-005"
+        "id": "dm19-044",
+        "name": "霊騎レングストン",
+        "check": "味方クリーチャー数による公開枚数と、呪文回収・残りの山札上の順序を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-044"
+      },
+      {
+        "id": "dm19-064",
+        "name": "クリムゾン・コミューン",
+        "check": "種族選択とブロッカーの任意破壊を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-064"
+      },
+      {
+        "id": "dm19-016",
+        "name": "ソーラー・コミューン",
+        "check": "種族選択と相手への任意タップを照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-016"
+      },
+      {
+        "id": "dm19-028",
+        "name": "トラップ・コミューン",
+        "check": "任意の味方破壊と実際に破壊した枚数を参照する相手側の破壊を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-028"
+      },
+      {
+        "id": "dm16-002",
+        "name": "ガイアクラッシュ・クロウラー",
+        "check": "自分のマナゾーンの呪文をアンタップできない範囲とW・ブレイカーを照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-002"
       },
       {
         "id": "dm19-s08",
         "name": "オメガ・クライシス・ドラグーン",
-        "check": "ティラノ・ドレイクの登場後、両者が条件に合う自分のクリーチャーを選ぶ処理を照合する。",
+        "check": "初出版の公式本文を確認。双方が自分の対象を選ぶ順序、両方の破壊・置換の順序、対象がない側、種族が複数ある場合を一貫して検証できるまで保留。",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-s08"
-      },
-      {
-        "id": "dm19-039",
-        "name": "強襲の長(アサルト・チャンピオン)",
-        "check": "味方の対象種族への一時強化と発生源の除外範囲を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-039"
-      },
-      {
-        "id": "dm10-033",
-        "name": "緑神龍クスダルフ",
-        "check": "ターン開始時の自分のマナのアンタップ禁止と攻撃時の強化を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-033"
-      },
-      {
-        "id": "dm16-031",
-        "name": "ブラザー・リザード",
-        "check": "G・ゼロの指定カード名を公式画像と本文で確定し、既存条件に対応できるか確認する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-031"
       },
       {
         "id": "dm10-066",

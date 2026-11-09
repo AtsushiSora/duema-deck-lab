@@ -1,0 +1,206 @@
+{
+  "phase": 723,
+  "checkedAt": "2026-11-09",
+  "baseCount": 6006,
+  "description": "ブロックされなかった攻撃時の蘇生、種族を参照する一時強化、ターン開始時のマナのアンタップ禁止、同名クリーチャー参照のG・ゼロを実装。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/38647/",
+    "https://dm.takaratomy.co.jp/rule/qa/39628/"
+  ],
+  "cards": [
+    {
+      "id": "dm19-005",
+      "name": "封魔ソウル・アヴァルス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-005",
+      "faces": [
+        {
+          "name": "封魔ソウル・アヴァルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、グランド・デビルまたはディープ・マリーンを１体、自分の墓地からバトルゾーンに出してもよい。ただし、進化クリーチャーは選べない。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "グランド・デビル",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g482Unblocked": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "raceAny": [
+                "グランド・デビル",
+                "ディープ・マリーン"
+              ]
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "011f67d7e2af39b327f6a73f6a1325a184e1ba3d7f9ca9284c438f807400e658",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-039",
+      "name": "強襲の長(アサルト・チャンピオン)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-039",
+      "faces": [
+        {
+          "name": "強襲の長(アサルト・チャンピオン)",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、そのターンの終わりまで、バトルゾーンにある自分のアーク・セラフィムと自分の他のビーストフォークすべてのパワーは+3000され、「W・ブレイカー」を得る。(「W・ブレイカー」を得たクリーチャーは、シールドを２枚ブレイクする)",
+          "race": "ビーストフォーク",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "owner": "self",
+            "other": true,
+            "otherUnlessRace": "アーク・セラフィム",
+            "filter": {
+              "creature": true,
+              "raceAny": [
+                "アーク・セラフィム",
+                "ビーストフォーク"
+              ]
+            },
+            "power": 3000
+          },
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "other": true,
+            "otherUnlessRace": "アーク・セラフィム",
+            "filter": {
+              "creature": true,
+              "raceAny": [
+                "アーク・セラフィム",
+                "ビーストフォーク"
+              ]
+            },
+            "grant": {
+              "g313Breaker": 2
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "31a28958102aa51e31ff0cfefad364b70bdf7167da405173037280cbabec9172",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-033",
+      "name": "緑神龍クスダルフ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-033",
+      "faces": [
+        {
+          "name": "緑神龍クスダルフ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "W・ブレイカー\nパワーアタッカー+4000(攻撃中、このクリーチャーのパワーは+4000される)\n自分のターンのはじめに、自分のマナゾーンにあるカードをアンタップできない。",
+          "race": "アース・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "attackBonus": 4000,
+        "g723NoStartManaUntap": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "506cc9188453eed9ce3e4f75a90d823fc921bf0e051721b4ac087a1cfb8238c1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-031",
+      "name": "ブラザー・リザード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-031",
+      "faces": [
+        {
+          "name": "ブラザー・リザード",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "G・ゼロ-バトルゾーンに《ブラザー・リザード》が１体でもあれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+          "race": "メルト・ウォリアー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "g334Both": true,
+              "creature": true,
+              "g201ExactName": "ブラザー・リザード"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "3fe1e3c9a8319cccf0ba5a2e39e9af6415193cd54c81f22bd21c2a44c90e10be",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm19-005": 4,
+      "dm19-039": 4,
+      "dm10-033": 4,
+      "dm16-031": 4
+    }
+  }
+}

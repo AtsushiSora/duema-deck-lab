@@ -31,6 +31,6 @@ export function createJuniorChampionRules(api){
  tapped(s,p,x){if(card(x).g43Razel&&!api.ignored(s,x))on(s,p,x);},
  snapshot(s,rows){return rows.flatMap(r=>{const x=s.players[r.player].battle.find(x=>x.uid===r.uid);return x&&card(x).g43Razel&&!api.ignored(s,x)?[x.uid]:[];});},
  leaving(s,p,x,snapshot){if(snapshot?.includes(x.uid))on(s,p,x);},
- beforeUntap(s,p){const limits=(s.g43UntapLimits||[]).filter(x=>x.p===p&&x.turns<s.players[p].turns);if(!limits.length)return false;s.g43UntapLimits=(s.g43UntapLimits||[]).filter(x=>!limits.includes(x));const uids=s.players[p].mana.filter(x=>x.tapped&&!x.skipUntap&&api.canUntap(x)).map(x=>x.uid);if(uids.length)put(s,task('g4_Untap',p,limits[0].source,{uids,selected:[]}));return true;},
+ beforeUntap(s,p,preventMana){const limits=(s.g43UntapLimits||[]).filter(x=>x.p===p&&x.turns<s.players[p].turns);if(!limits.length)return false;s.g43UntapLimits=(s.g43UntapLimits||[]).filter(x=>!limits.includes(x));if(preventMana)return true;const uids=s.players[p].mana.filter(x=>x.tapped&&!x.skipUntap&&api.canUntap(x)).map(x=>x.uid);if(uids.length)put(s,task('g4_Untap',p,limits[0].source,{uids,selected:[]}));return true;},
  };
 }

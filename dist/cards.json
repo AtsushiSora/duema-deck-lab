@@ -173466,22 +173466,155 @@
       "g135PowerBreaker": true,
       "supportBatch": "phase-722",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm19-005",
+      "name": "封魔ソウル・アヴァルス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 6000,
+      "race": "グランド・デビル",
+      "text": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、グランド・デビルまたはディープ・マリーンを１体、自分の墓地からバトルゾーンに出してもよい。ただし、進化クリーチャーは選べない。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-005",
+      "limit": 4,
+      "breaker": 2,
+      "g482Unblocked": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "raceAny": [
+              "グランド・デビル",
+              "ディープ・マリーン"
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-723",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-039",
+      "name": "強襲の長(アサルト・チャンピオン)",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "ビーストフォーク",
+      "text": "このクリーチャーをバトルゾーンに出した時、そのターンの終わりまで、バトルゾーンにある自分のアーク・セラフィムと自分の他のビーストフォークすべてのパワーは+3000され、「W・ブレイカー」を得る。(「W・ブレイカー」を得たクリーチャーは、シールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-039",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupPower",
+          "owner": "self",
+          "other": true,
+          "otherUnlessRace": "アーク・セラフィム",
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "アーク・セラフィム",
+              "ビーストフォーク"
+            ]
+          },
+          "power": 3000
+        },
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "other": true,
+          "otherUnlessRace": "アーク・セラフィム",
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "アーク・セラフィム",
+              "ビーストフォーク"
+            ]
+          },
+          "grant": {
+            "g313Breaker": 2
+          }
+        }
+      ],
+      "supportBatch": "phase-723",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm10-033",
+      "name": "緑神龍クスダルフ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "アース・ドラゴン",
+      "text": "W・ブレイカー\nパワーアタッカー+4000(攻撃中、このクリーチャーのパワーは+4000される)\n自分のターンのはじめに、自分のマナゾーンにあるカードをアンタップできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-033",
+      "limit": 4,
+      "breaker": 2,
+      "attackBonus": 4000,
+      "g723NoStartManaUntap": true,
+      "supportBatch": "phase-723",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm16-031",
+      "name": "ブラザー・リザード",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "メルト・ウォリアー",
+      "text": "G・ゼロ-バトルゾーンに《ブラザー・リザード》が１体でもあれば、このクリーチャーをコストを支払わずに召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-031",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "g334Both": true,
+            "creature": true,
+            "g201ExactName": "ブラザー・リザード"
+          }
+        ]
+      },
+      "supportBatch": "phase-723",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 722,
+    "phase": 723,
     "checkedAt": "2026-11-09",
-    "baseCount": 6001,
-    "newEffectCards": 5,
+    "baseCount": 6006,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6006,
+    "totalCount": 6010,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34844/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35178/",
-      "https://dm.takaratomy.co.jp/rule/qa/43464/",
-      "https://dm.takaratomy.co.jp/rule/qa/43460/"
+      "https://dm.takaratomy.co.jp/rule/qa/38647/",
+      "https://dm.takaratomy.co.jp/rule/qa/39628/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -185966,6 +186099,25 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35358/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35422/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35423/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 722,
+        "checkedAt": "2026-11-09",
+        "baseCount": 6001,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 6006,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34844/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35178/",
+          "https://dm.takaratomy.co.jp/rule/qa/43464/",
+          "https://dm.takaratomy.co.jp/rule/qa/43460/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
