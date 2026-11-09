@@ -1,0 +1,148 @@
+{
+  "phase": 738,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6057,
+  "description": "ガーディアン・ゴーストの登場誘発と、同名クリーチャーがいる場合の墓地行き置換に対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35145/"
+  ],
+  "cards": [
+    {
+      "id": "dm09-007",
+      "name": "予言者ミキュート",
+      "faces": [
+        {
+          "name": "予言者ミキュート",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンにある間、自分のガーディアンがバトルゾーンに出たとき、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。",
+          "race": "ライトブリンガー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-007",
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "race": "ガーディアン"
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "tap": true,
+              "optional": true,
+              "title": "タップする相手のクリーチャーを選ぶ"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "68e6edf2d1a0fb5cbcf3e40bdf143a5d8d4bb8b2cbd9cc87fd28d869733b23e2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-003",
+      "name": "死皇帝アザガースト",
+      "faces": [
+        {
+          "name": "死皇帝アザガースト",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "進化-自分のダークロード１体の上に置く。\nこのクリーチャーがバトルゾーンにある間、自分のゴーストがバトルゾーンに出たとき、バトルゾーンにある相手のタップされていないクリーチャーを１体選び、持ち主の墓地に置いてもよい。\nW・ブレイカー",
+          "race": "ダークロード",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-003",
+      "spec": {
+        "evolution": {
+          "race": "ダークロード"
+        },
+        "breaker": 2,
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "race": "ゴースト"
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "untapped": true
+              },
+              "optional": true,
+              "title": "破壊するアンタップ状態の相手クリーチャーを選ぶ"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "176060321810751916f6e1178dc8c17013d1dd2067c3bd5b7f1652f44ec0e06d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-038",
+      "name": "双光の使徒カリュート",
+      "faces": [
+        {
+          "name": "双光の使徒カリュート",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンから自分の墓地に置かれるとき、バトルゾーンに双光の使徒カリュートが他に１体でもあれば、このクリーチャーを墓地に置くかわりに自分の手札に戻す。",
+          "race": "イニシエート",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-038",
+      "spec": {
+        "g738GraveToHandWithName": "双光の使徒カリュート"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "56ef83ef5cb37cf5373691f49ee2be31b77c7d66bccf5c8c910b16e02fafb9f5",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm09-007": 4,
+      "dm09-003": 4,
+      "dm09-038": 4
+    }
+  }
+}

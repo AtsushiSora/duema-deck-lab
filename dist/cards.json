@@ -175000,25 +175000,109 @@
       ],
       "supportBatch": "phase-737",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm09-007",
+      "name": "予言者ミキュート",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ライトブリンガー",
+      "text": "このクリーチャーがバトルゾーンにある間、自分のガーディアンがバトルゾーンに出たとき、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-007",
+      "limit": 4,
+      "g251EntryDraw": {
+        "filter": {
+          "creature": true,
+          "race": "ガーディアン"
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true,
+            "title": "タップする相手のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-738",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm09-003",
+      "name": "死皇帝アザガースト",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "ダークロード",
+      "text": "進化-自分のダークロード１体の上に置く。\nこのクリーチャーがバトルゾーンにある間、自分のゴーストがバトルゾーンに出たとき、バトルゾーンにある相手のタップされていないクリーチャーを１体選び、持ち主の墓地に置いてもよい。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-003",
+      "limit": 4,
+      "evolution": {
+        "race": "ダークロード"
+      },
+      "breaker": 2,
+      "g251EntryDraw": {
+        "filter": {
+          "creature": true,
+          "race": "ゴースト"
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "untapped": true
+            },
+            "optional": true,
+            "title": "破壊するアンタップ状態の相手クリーチャーを選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-738",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm09-038",
+      "name": "双光の使徒カリュート",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "イニシエート",
+      "text": "このクリーチャーがバトルゾーンから自分の墓地に置かれるとき、バトルゾーンに双光の使徒カリュートが他に１体でもあれば、このクリーチャーを墓地に置くかわりに自分の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-038",
+      "limit": 4,
+      "g738GraveToHandWithName": "双光の使徒カリュート",
+      "supportBatch": "phase-738",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 737,
+    "phase": 738,
     "checkedAt": "2026-11-10",
-    "baseCount": 6053,
-    "newEffectCards": 4,
+    "baseCount": 6057,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6057,
+    "totalCount": 6060,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/42400/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35476/",
-      "https://dm.takaratomy.co.jp/rule/qa/43044/",
-      "https://dm.takaratomy.co.jp/rule/qa/47495/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
-      "https://dm.takaratomy.co.jp/rule/qa/41471/",
-      "https://dm.takaratomy.co.jp/rule/qa/31678/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35145/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -187786,6 +187870,28 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35159/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35823/",
           "https://dm.takaratomy.co.jp/rule/qa/42947/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 737,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6053,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6057,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/42400/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35476/",
+          "https://dm.takaratomy.co.jp/rule/qa/43044/",
+          "https://dm.takaratomy.co.jp/rule/qa/47495/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
+          "https://dm.takaratomy.co.jp/rule/qa/41471/",
+          "https://dm.takaratomy.co.jp/rule/qa/31678/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

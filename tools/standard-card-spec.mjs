@@ -2564,6 +2564,14 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=738){
+  if(f.typeText==='クリーチャー'&&compact363==='このクリーチャーがバトルゾーンにある間自分のガーディアンがバトルゾーンに出たときバトルゾーンにある相手のクリーチャーを1体選びタップしてもよい。')
+   return {g251EntryDraw:{filter:{creature:true,race:'ガーディアン'},defs:[{op:'Target',tap:true,optional:true,title:'タップする相手のクリーチャーを選ぶ'}]}};
+  if(f.typeText==='進化クリーチャー'&&compact363==='進化-自分のダークロード1体の上に置く。このクリーチャーがバトルゾーンにある間自分のゴーストがバトルゾーンに出たときバトルゾーンにある相手のタップされていないクリーチャーを1体選び持ち主の墓地に置いてもよい。W・ブレイカー')
+   return {evolution:{race:'ダークロード'},breaker:2,g251EntryDraw:{filter:{creature:true,race:'ゴースト'},defs:[{op:'Target',to:'grave',filter:{untapped:true},optional:true,title:'破壊するアンタップ状態の相手クリーチャーを選ぶ'}]}};
+  if(f.typeText==='クリーチャー'&&compact363==='このクリーチャーがバトルゾーンから自分の墓地に置かれるときバトルゾーンに双光の使徒カリュートが他に1体でもあればこのクリーチャーを墓地に置くかわりに自分の手札に戻す。')
+   return {g738GraveToHandWithName:'双光の使徒カリュート'};
+ }
  if(phase>=737){
   if(f.typeText==='呪文'&&compact363==='種族を1つ選ぶ。このターンその種族のクリーチャーはアンタップされているクリーチャーを攻撃することができクリーチャーを攻撃するときブロックされない。')
    return {effect:'sixPhoto',g34Tasks:[{op:'ChooseRace724',g735Grant:{attackUntapped:true,g737CreatureAttackUnblockable:true}}]};
