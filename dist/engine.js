@@ -1419,12 +1419,14 @@ function canSilent496(s,x){const c=effectiveCard(x,s);return !!(isCreature(s,x)&
 function finishStartUntap496(s,chosen=[]){
  const p=s.players[s.active],kept=new Set(chosen.map(c=>c.uid));
  const preventMana=p.battle.some(x=>!x.sealed&&isCreature(s,x)&&effectiveCard(x,s).g723NoStartManaUntap);
+ // QA39142: the tapped condition looks at the card before turn-start untapping.
+ const tappedBefore=new Set(p.battle.filter(x=>x.tapped).map(x=>x.uid));
  const limited=extra.beforeUntap(s,s.active,preventMana)||preventMana;
  for(const c of [...p.mana,...p.battle]){const wasTapped=c.tapped;if(!kept.has(c.uid)&&(!limited||p.battle.includes(c))&&!skipsStartUntap(s,c)&&!(p.battle.includes(c)&&(effectiveCard(c,s).g26Zaze||effectiveCard(c,s).g40StartNoUntap))&&canUntap(c))c.tapped=false;delete c.skipUntap;for(const layer of layers(c))delete layer.g170StartFreeze;if(wasTapped&&!c.tapped&&p.battle.includes(c))extra.six.untapped(s,s.active,c,true);}
  p.entryLimitThisTurn=!!p.entryLimitNextTurn;p.entryLimitNextTurn=false;
  log(s,s.active,'turn',`${p.name}の${displayTurn(s)}ターン目`);s.startStep={player:s.active};s.phase='start';
  for(const c of chosen)enqueueEffect(s,s.active,{uid:c.uid,incarnation:c.incarnation,source:c.source,effect:'extended',task:extra.task('g34_Sequence',s.active,c.source,{uid:c.uid,incarnation:c.incarnation,defs:c.defs})});
- for(const e of extra.start(s,s.active))enqueueEffect(s,e.player??s.active,e);advanceStart(s);
+ for(const e of extra.start(s,s.active,tappedBefore))enqueueEffect(s,e.player??s.active,e);advanceStart(s);
 }
 function advanceStart(s){if(s.lossEvent)return;if(!s.startStep||s.decision||s.extTasks?.length||s.pendingEffects?.length||s.triggers||s.leaving||s.battleResolution||s.winner!==null)return;
  if(s.startStep.stage==='silent496'){while(s.startStep.remaining.length){const ref=s.startStep.remaining[0],x=s.players[s.active].battle.find(c=>c.uid===ref.uid&&(c.incarnation||0)===ref.incarnation);if(x&&canSilent496(s,x)){s.decision={type:'silent496',player:s.active,uid:x.uid,source:x.cardId,title:'サイレントスキルを使いますか？'};return;}s.startStep.remaining.shift();}const chosen=s.startStep.chosen;delete s.startStep;finishStartUntap496(s,chosen);return;}

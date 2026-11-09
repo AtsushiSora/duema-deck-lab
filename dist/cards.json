@@ -176901,26 +176901,131 @@
       ],
       "supportBatch": "phase-753",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-068",
+      "name": "海底歩き カグッツ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ムートピア",
+      "text": "自分が呪文を唱えた時、次の自分のターンのはじめまで、このクリーチャーは攻撃もブロックもされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-068",
+      "limit": 4,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "SelfGrant754",
+            "g521UntilStart": true,
+            "grant": {
+              "cannotBeAttacked": true,
+              "unblockable": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-754",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23-004",
+      "name": "闘龍騎リューガライザー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "アーマード・ドラゴン/ティラノ・ドレイク",
+      "text": "相手が呪文を唱えた時、このクリーチャーをバトルゾーンから自分の手札に戻す。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-004",
+      "limit": 4,
+      "breaker": 2,
+      "g204SpellWatch": {
+        "who": "opponent",
+        "defs": [
+          {
+            "op": "SelfHand299"
+          }
+        ]
+      },
+      "supportBatch": "phase-754",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-093",
+      "name": "球遊者 イドコロガワリ",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "ムートピア/美孔麗王国",
+      "text": "自分のターンのはじめに、このクリーチャーがタップしていれば、このクリーチャーを破壊し、カードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-093",
+      "limit": 4,
+      "g754StartTapped": true,
+      "g174Start": [
+        {
+          "op": "SelfDestroy"
+        },
+        {
+          "op": "Draw",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-754",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex4-099",
+      "name": "ビワ入道",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "デモニオ",
+      "text": "自分のターンのはじめに、自分のマナゾーンに闇と火文明があれば、このクリーチャーを自分の墓地から手札に戻してもよい。\nスピードアタッカー（このクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-099",
+      "limit": 4,
+      "speedAttacker": true,
+      "g754GraveStartColors": [
+        "闇",
+        "火"
+      ],
+      "supportBatch": "phase-754",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 753,
+    "phase": 754,
     "checkedAt": "2026-11-10",
-    "baseCount": 6106,
-    "newEffectCards": 1,
+    "baseCount": 6107,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6107,
+    "totalCount": 6111,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/46600/",
-      "https://dm.takaratomy.co.jp/rule/qa/46601/",
-      "https://dm.takaratomy.co.jp/rule/qa/46602/",
-      "https://dm.takaratomy.co.jp/rule/qa/46817/",
-      "https://dm.takaratomy.co.jp/rule/qa/47478/",
-      "https://dm.takaratomy.co.jp/rule/qa/39038/",
-      "https://dm.takaratomy.co.jp/rule/qa/31776/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316676/"
+      "https://dm.takaratomy.co.jp/rule/qa/39142/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35514/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -190003,6 +190108,29 @@
           "https://dm.takaratomy.co.jp/rule/qa/44318/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
           "https://dm.takaratomy.co.jp/rule/qa/31825/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 753,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6106,
+        "newEffectCards": 1,
+        "newVanillaCards": 0,
+        "totalCount": 6107,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/46600/",
+          "https://dm.takaratomy.co.jp/rule/qa/46601/",
+          "https://dm.takaratomy.co.jp/rule/qa/46602/",
+          "https://dm.takaratomy.co.jp/rule/qa/46817/",
+          "https://dm.takaratomy.co.jp/rule/qa/47478/",
+          "https://dm.takaratomy.co.jp/rule/qa/39038/",
+          "https://dm.takaratomy.co.jp/rule/qa/31776/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316676/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

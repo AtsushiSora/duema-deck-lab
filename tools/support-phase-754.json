@@ -1,0 +1,183 @@
+{
+  "phase": 754,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6107,
+  "description": "呪文を唱えた時の攻撃・ブロック耐性と自己バウンス、ターン開始時の自壊とドロー、マナ文明を条件とする墓地回収に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/39142/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35514/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp05-068",
+      "name": "海底歩き カグッツ",
+      "faces": [
+        {
+          "name": "海底歩き カグッツ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分が呪文を唱えた時、次の自分のターンのはじめまで、このクリーチャーは攻撃もブロックもされない。",
+          "race": "ムートピア",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-068",
+      "spec": {
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "SelfGrant754",
+              "g521UntilStart": true,
+              "grant": {
+                "cannotBeAttacked": true,
+                "unblockable": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-068.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "6f27fc1d6febcc33eb915e708b031c2988b4dc6f5c3804d186523d68a3d4f320",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23-004",
+      "name": "闘龍騎リューガライザー",
+      "faces": [
+        {
+          "name": "闘龍騎リューガライザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手が呪文を唱えた時、このクリーチャーをバトルゾーンから自分の手札に戻す。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン/ティラノ・ドレイク",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-004",
+      "spec": {
+        "breaker": 2,
+        "g204SpellWatch": {
+          "who": "opponent",
+          "defs": [
+            {
+              "op": "SelfHand299"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "7cc435332c397c8ec58c94f6e2eca9d3785b8ff462e68090cb938e1056c8f878",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-093",
+      "name": "球遊者 イドコロガワリ",
+      "faces": [
+        {
+          "name": "球遊者 イドコロガワリ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のターンのはじめに、このクリーチャーがタップしていれば、このクリーチャーを破壊し、カードを２枚引く。",
+          "race": "ムートピア/美孔麗王国",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-093",
+      "spec": {
+        "g754StartTapped": true,
+        "g174Start": [
+          {
+            "op": "SelfDestroy"
+          },
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-093.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "01600bbc5208e4155595fd7f89f2e9e127bf21c8ca912a20595014a29f59441c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex4-099",
+      "name": "ビワ入道",
+      "faces": [
+        {
+          "name": "ビワ入道",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターンのはじめに、自分のマナゾーンに闇と火文明があれば、このクリーチャーを自分の墓地から手札に戻してもよい。\nスピードアタッカー（このクリーチャーは召喚酔いしない）",
+          "race": "デモニオ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-099",
+      "spec": {
+        "speedAttacker": true,
+        "g754GraveStartColors": [
+          "闇",
+          "火"
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-099.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "1b5da3945fef2ed51fbe1fe291d07126e0f5cc7a307af5a1b1dcc2e00d5b5876",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp05-068": 4,
+      "dm23-004": 4,
+      "dmrp16-093": 4,
+      "dm26ex4-099": 4
+    }
+  }
+}

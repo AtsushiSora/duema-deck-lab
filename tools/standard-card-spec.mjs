@@ -2564,6 +2564,16 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=754&&f.typeText==='クリーチャー'){
+  if(compact363==='自分が呪文を唱えた時次の自分のターンのはじめまでこのクリーチャーは攻撃もブロックもされない。')
+   return {g204SpellWatch:{who:'self',defs:[{op:'SelfGrant754',g521UntilStart:true,grant:{cannotBeAttacked:true,unblockable:true}}]}};
+  if(compact363==='相手が呪文を唱えた時このクリーチャーをバトルゾーンから自分の手札に戻す。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g204SpellWatch:{who:'opponent',defs:[{op:'SelfHand299'}]}};
+  if(compact363==='自分のターンのはじめにこのクリーチャーがタップしていればこのクリーチャーを破壊しカードを2枚引く。')
+   return {g754StartTapped:true,g174Start:[{op:'SelfDestroy'},{op:'Draw',n:2}]};
+  if(compact363==='自分のターンのはじめに自分のマナゾーンに闇と火文明があればこのクリーチャーを自分の墓地から手札に戻してもよい。スピードアタッカー(このクリーチャーは召喚酔いしない)')
+   return {speedAttacker:true,g754GraveStartColors:['闇','火']};
+ }
  if(phase>=753&&f.typeText==='クリーチャー'){
   const sympathy='シンパシー:相手のマナゾーンにあるカード';
   const oldHelp='(相手のマナゾーンにあるカード1枚につきこのクリーチャーの召喚コストを1少なくする。ただしコストは0以下にはならない)';
