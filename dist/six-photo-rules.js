@@ -1268,12 +1268,14 @@ export function createSixPhotoRules(api){
  }
  case'g34_FightPair586':{
   const owners=t.who==='both'?[t.p,1-t.p]:[t.who==='opponent'?1-t.p:t.p],rows=fightPairRows586(s,t,owners);
-  if(rows.length)choice(s,t,'バトルする1体目を選ぶ',rows.map(o=>{
+  const options=rows.flatMap(o=>{
    const ref=o.value,a=fightUnit240(s,ref.player,ref);
    const seconds=fightPairRows586(s,{...t,first:ref,p:t.opponentPicks?1-t.p:t.p},t.opponentPicks?[1-t.p]:owners);
    const scores=seconds.map(r=>fightPairScore586(s,t,a,fightUnit240(s,r.value.player,r.value),ref.player,r.value.player));
-   return {...o,score:scores.length?(t.opponentPicks?Math.min(...scores):Math.max(...scores)):0};
-  }));
+   if(t.optional&&!scores.length)return [];
+   return [{...o,score:scores.length?(t.opponentPicks?Math.min(...scores):Math.max(...scores)):0}];
+  });
+  if(options.length)choice(s,t,'バトルする1体目を選ぶ',[...options,...(t.optional?[skip()]:[])]);
   break;
  }
  case'g34_FightPairSecond586':{
@@ -1331,7 +1333,7 @@ export function createSixPhotoRules(api){
  case'g34_Break278':{
   const host=t.requiresCreature&&sourceHost474(s,t);
   if(t.requiresCreature&&(!host||!api.isCreature(s,host.x)))break;
-  if(opp.shields.length)choice(s,t,'ブレイクする相手のシールドを1つ選ぶ',opp.shields.map((x,i)=>opt('シールド'+(i+1),x.uid,10)));break;
+  if(opp.shields.length)choice(s,t,'ブレイクする相手のシールドを1つ選ぶ',[...opp.shields.map((x,i)=>opt('シールド'+(i+1),x.uid,10)),...(t.optional?[skip()]:[])]);break;
  }
  case'g34_AfterBreak278':break;
  case'g34_Peek585':{
@@ -1415,7 +1417,7 @@ export function createSixPhotoRules(api){
  case'g34_RevealTop514':{const ids=look(s,{...t,n:1,public:true}),y=own.deck.find(y=>y.uid===ids[0]);if(!y){api.deckCheck(s,t.p);break;}const matched=matches(s,t.p,y,t.filter),to=matched?t.to:t.elseTo,moveDef=to?{op:'RevealMove514',target:y.uid,to}:null,defs=moveDef?[moveDef]:[];if(matched&&t.optional&&to==='battle'&&canPut(s,t.p,y,'deck'))start(s,t,[{op:'Offer',title:card(y).name+'をバトルゾーンに出す？',score:own.deck.length<=1?-1000:20+Math.min(20,cost(card(y))),defs}, {op:'RevealRelease514',ids}]);else start(s,t,[...defs,{op:'RevealRelease514',ids}]);break;}
  case'g34_RevealMove514':if(t.to==='battle')put(s,{...t,op:'g34_Put',origin:'deck'});else zoneMove(s,t.p,'deck',t.target,t.to,t);break;
  case'g34_RevealRelease514':for(const uid of t.ids)release(s,t.p,uid);api.deckCheck(s,t.p);break;
- case'g34_LookDeploy530':{const ids=look(s,t.g201Search?{...t,n:own.deck.length}:t);put(s,{...t,op:'g34_Select',origin:'deck',g530Ids:ids,deploy:true,n:t.limit??'all',optional:true,title:'確認したカードから出すクリーチャーを選ぶ',after:[{op:'LookRest530',ids,rest:t.rest||'top'}]});break;}
+ case'g34_LookDeploy530':{const ids=look(s,t.g201Search?{...t,n:own.deck.length}:t);put(s,{...t,op:'g34_Select',origin:'deck',g530Ids:ids,deploy:true,n:t.limit??'all',optional:!t.g749Required,title:'確認したカードから出すクリーチャーを選ぶ',after:[{op:'LookRest530',ids,rest:t.rest||'top'}]});break;}
  case'g34_LookRest530':put(s,{...t,op:'g34_Order',rest:t.rest||'top',g259OrderTop:true,ordered:[]});break;
  case'g34_Marianna728':{
   const ids=look(s,{...t,n:own.deck.length});

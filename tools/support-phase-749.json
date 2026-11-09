@@ -1,0 +1,189 @@
+{
+  "phase": 749,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6092,
+  "description": "勝利時の公開とドラゴンの展開、味方へのマッハファイター付与、登場時の任意バトルと盾のブレイク数に応じた自壊に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/40495/",
+    "https://dm.takaratomy.co.jp/rule/qa/39553/",
+    "https://dm.takaratomy.co.jp/rule/qa/44319/",
+    "https://dm.takaratomy.co.jp/rule/qa/40827/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31624/"
+  ],
+  "cards": [
+    {
+      "id": "dmx16-002",
+      "name": "ジャックポット・バトライザー",
+      "faces": [
+        {
+          "name": "ジャックポット・バトライザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nこのクリーチャーがバトルに勝った時、自分の山札の上から３枚をすべてのプレイヤーに見せてもよい。その中から進化ではないドラゴンを１体バトルゾーンに出し、その後、残りを墓地に置く。",
+          "race": "レッド・コマンド・ドラゴン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-002",
+      "spec": {
+        "effect": "sixPhoto",
+        "speedAttacker": true,
+        "breaker": 2,
+        "g189BattleWin": [
+          {
+            "op": "Offer",
+            "g359RevealAll": true,
+            "title": "山札の上3枚を公開して非進化ドラゴンを出す？",
+            "defs": [
+              {
+                "op": "LookDeploy530",
+                "n": 3,
+                "limit": 1,
+                "public": true,
+                "g749Required": true,
+                "rest": "grave",
+                "filter": {
+                  "creature": true,
+                  "race": "ドラゴン",
+                  "nonEvolution": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx16-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "c75cb4875b2b7e70b7ab7e779b6f3f60c57dcd911b27c93fd3a5afb31e252784",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-s11",
+      "name": "偽爆電融 ゾルネードシヴァ",
+      "faces": [
+        {
+          "name": "偽爆電融 ゾルネードシヴァ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火/自然",
+          "civilizations": [
+            "水",
+            "火",
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nQ・ブレイカー\n自分のクリーチャーすべてに「マッハファイター」を与える。\n自分のクリーチャーがバトルに勝った時、カードを１枚引く。その後、相手のシールドを１つブレイクしてもよい。",
+          "race": "ディスペクター/アンノウン/フレイム・コマンド",
+          "powerText": "23000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-s11",
+      "spec": {
+        "effect": "sixPhoto",
+        "exLife": true,
+        "breaker": 4,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "machFighter": true
+            }
+          }
+        ],
+        "g252WinWatch": {
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            },
+            {
+              "op": "Break278",
+              "optional": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-s11.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "363b1ea00dc4c926ffa90872809abcbc010d546eacb22fa212a66a34d0d26d75",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-019",
+      "name": "紅唱龍マグマイッピツ",
+      "faces": [
+        {
+          "name": "紅唱龍マグマイッピツ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nW・ブレイカー\nこのクリーチャーが出た時、クリーチャーを２体選んでもよい。その２体をバトルさせる。\nこのクリーチャーがバトルに勝った時、カードを１枚引く。\n相手のターン中に、このクリーチャーが出た時、このターンに２つ以上自分のシールドがブレイクされていなければ、このクリーチャーを破壊する。",
+          "race": "マジック・ボルケーノ・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-019",
+      "spec": {
+        "effect": "sixPhoto",
+        "trigger": true,
+        "breaker": 2,
+        "cobra": true,
+        "g34Tasks": [
+          {
+            "op": "FightPair586",
+            "who": "both",
+            "optional": true
+          }
+        ],
+        "g189BattleWin": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "e456558b09ad25433497fbd1c9d9b79d99432b97ccade20145a548386d3ebd88",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmx16-002": 4,
+      "dmrp18-s11": 4,
+      "dm23rp4-019": 4
+    }
+  }
+}

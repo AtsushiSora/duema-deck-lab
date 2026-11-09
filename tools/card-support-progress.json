@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-09",
   "catalogueNames": 11828,
-  "supportedNames": 6092,
-  "pendingNames": 5736,
-  "phase": 748,
+  "supportedNames": 6095,
+  "pendingNames": 5733,
+  "phase": 749,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3434,
+    "クリーチャー": 3431,
     "NEOクリーチャー": 152,
     "呪文": 813,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4208,
+    "未対応の能力文": 4205,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -8728,30 +8728,101 @@
           "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
         }
       ]
+    },
+    {
+      "phase": 749,
+      "cards": [
+        {
+          "id": "dmx16-002",
+          "name": "ジャックポット・バトライザー"
+        },
+        {
+          "id": "dmrp18-s11",
+          "name": "偽爆電融 ゾルネードシヴァ"
+        },
+        {
+          "id": "dm23rp4-019",
+          "name": "紅唱龍マグマイッピツ"
+        }
+      ],
+      "supportedNames": 6095,
+      "pendingNames": 5733,
+      "verification": {
+        "focusedPassed": 10,
+        "regressionPassed": 290,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "公式の全能力文・基本情報・マナ・JPEG画像・殿堂区分を照合。公式同名検索は各1版。公開したカードの出す処理と残りの墓地移動、EXライフで参照する山札の位置、ヤドックの置換、味方への常在付与、勝利後のドローと対象シールド選択、実際にブレイクした盾の数による自壊と誘発順、保存復元を検証。既存カード定義は基点と一致。",
+        "runtimeNote": "強制終了込み各最大10分。初回の関連回帰はNo07の長時間シミュレーションが対象に残ったため中断。これを除外した最終実行で関連回帰290件が成功（約6秒）。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dmrp01-s08",
+          "name": "ドープ“DBL”ボーダー",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-s08",
+          "reason": "公式QA 31546で加算後に倍化を確認。複数回の倍化、後から加わるパワー修整、破壊置換の併用と、DMEX07再録の照合を検証するまで保留。"
+        },
+        {
+          "id": "dm31-s03",
+          "name": "薩摩の超人",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-s03",
+          "reason": "公式本文と総合ルール507.1を確認。攻撃側ジャイアントへの強制ブロックを守備側の強制ブロックやガードマンと区別し、合法なブロッカーがいない場合を検証するまで保留。"
+        },
+        {
+          "id": "dmr09-036",
+          "name": "驚愕の存在 カニス",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-036",
+          "reason": "Phase 747でクリーチャー自身の効果ブレイクに追加枚数を反映する経路をイーグルで検証済み。カニスは表向きシールド中の常在付与の適用・消失と他の付与元との加算、他カードの効果ブレイクへの適用を検証するまで保留。"
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "対戦データにサイキック・クリーチャーの対象例がなく、対象判定と超次元への移動を実戦経路で検証できないため保留。"
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 748,
-    "nextPhase": 749,
+    "lastVerifiedPhase": 749,
+    "nextPhase": 750,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmx16-002",
-        "name": "ジャックポット・バトライザー",
-        "check": "勝利時の任意公開、非進化ドラゴン1体の選択、出す処理と残りを墓地に置く順序を確認する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-002"
+        "id": "dmr05-007",
+        "name": "偽りの名 バザガジー・ラゴン",
+        "check": "登場時の自身への付与と、勝利時に場にいる味方だけへの付与を区別し、ターン内に後から出た個体を確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-007"
       },
       {
-        "id": "dmrp18-s11",
-        "name": "偽爆電融 ゾルネードシヴァ",
-        "check": "EXライフ、常在マッハファイター付与、勝利時の強制ドローと任意ブレイクを確認する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-s11"
+        "id": "dmrp14-004",
+        "name": "ロビンソン・ジャングルーソ",
+        "check": "キリフダッシュの火4マナと、バトル勝利時のアンタップおよび効果ブレイクを確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-004"
       },
       {
-        "id": "dm23rp4-019",
-        "name": "紅唱龍マグマイッピツ",
-        "check": "任意の2体バトルと勝利ドロー、相手ターン中のシールドブレイク数による独立した登場時誘発を確認する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-019"
+        "id": "dmrp05-s10",
+        "name": "ボントボルト",
+        "check": "双方の場にあるクリーチャー数に基づく召喚軽減と、勝利後の次のターンのプレイヤー攻撃禁止を確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-s10"
+      },
+      {
+        "id": "dmbd03-002",
+        "name": "ヴァーニング・ヒーター",
+        "check": "J・O・Eとバトル勝利時のアンタップ・効果ブレイクに加え、相手効果による手札破棄だけで誘発するパワー合計選択を確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd03-002"
+      },
+      {
+        "id": "dmrp01-s08",
+        "name": "ドープ“DBL”ボーダー",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-s08",
+        "check": "公式QA 31546で加算後に倍化を確認。複数回の倍化、後から加わるパワー修整、破壊置換の併用と、DMEX07再録の照合を検証するまで保留。"
       },
       {
         "id": "dm31-s03",

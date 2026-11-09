@@ -176291,21 +176291,149 @@
       },
       "supportBatch": "phase-748",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx16-002",
+      "name": "ジャックポット・バトライザー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "レッド・コマンド・ドラゴン",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nこのクリーチャーがバトルに勝った時、自分の山札の上から３枚をすべてのプレイヤーに見せてもよい。その中から進化ではないドラゴンを１体バトルゾーンに出し、その後、残りを墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-002",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "speedAttacker": true,
+      "breaker": 2,
+      "g189BattleWin": [
+        {
+          "op": "Offer",
+          "g359RevealAll": true,
+          "title": "山札の上3枚を公開して非進化ドラゴンを出す？",
+          "defs": [
+            {
+              "op": "LookDeploy530",
+              "n": 3,
+              "limit": 1,
+              "public": true,
+              "g749Required": true,
+              "rest": "grave",
+              "filter": {
+                "creature": true,
+                "race": "ドラゴン",
+                "nonEvolution": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-749",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp18-s11",
+      "name": "偽爆電融 ゾルネードシヴァ",
+      "civ": "水/火/自然",
+      "civilizations": [
+        "水",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 23000,
+      "race": "ディスペクター/アンノウン/フレイム・コマンド",
+      "text": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nQ・ブレイカー\n自分のクリーチャーすべてに「マッハファイター」を与える。\n自分のクリーチャーがバトルに勝った時、カードを１枚引く。その後、相手のシールドを１つブレイクしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-s11",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "exLife": true,
+      "breaker": 4,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "machFighter": true
+          }
+        }
+      ],
+      "g252WinWatch": {
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Break278",
+            "optional": true
+          }
+        ]
+      },
+      "supportBatch": "phase-749",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-019",
+      "name": "紅唱龍マグマイッピツ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 9000,
+      "race": "マジック・ボルケーノ・ドラゴン",
+      "text": "S・トリガー S・トリガー\nW・ブレイカー\nこのクリーチャーが出た時、クリーチャーを２体選んでもよい。その２体をバトルさせる。\nこのクリーチャーがバトルに勝った時、カードを１枚引く。\n相手のターン中に、このクリーチャーが出た時、このターンに２つ以上自分のシールドがブレイクされていなければ、このクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-019",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "trigger": true,
+      "breaker": 2,
+      "cobra": true,
+      "g34Tasks": [
+        {
+          "op": "FightPair586",
+          "who": "both",
+          "optional": true
+        }
+      ],
+      "g189BattleWin": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-749",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 748,
+    "phase": 749,
     "checkedAt": "2026-11-10",
-    "baseCount": 6089,
+    "baseCount": 6092,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6092,
+    "totalCount": 6095,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/43297/",
-      "https://dm.takaratomy.co.jp/rule/qa/33609/",
-      "https://dm.takaratomy.co.jp/rule/qa/44319/"
+      "https://dm.takaratomy.co.jp/rule/qa/40495/",
+      "https://dm.takaratomy.co.jp/rule/qa/39553/",
+      "https://dm.takaratomy.co.jp/rule/qa/44319/",
+      "https://dm.takaratomy.co.jp/rule/qa/40827/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31624/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -189289,6 +189417,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/44212/",
           "https://dm.takaratomy.co.jp/rule/qa/44319/",
           "https://dm.takaratomy.co.jp/rule/qa/31568/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 748,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6089,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6092,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/43297/",
+          "https://dm.takaratomy.co.jp/rule/qa/33609/",
+          "https://dm.takaratomy.co.jp/rule/qa/44319/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

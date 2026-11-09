@@ -2564,6 +2564,25 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=749&&f.typeText==='クリーチャー'){
+  const speed='スピードアタッカー(このクリーチャーは召喚酔いしない)';
+  const double='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
+  const win='このクリーチャーがバトルに勝った時';
+  const draw={op:'Draw',n:1};
+  if(compact363===speed+double+win+'自分の山札の上から3枚をすべてのプレイヤーに見せてもよい。その中から進化ではないドラゴンを1体バトルゾーンに出しその後残りを墓地に置く。')
+   return {effect:'sixPhoto',speedAttacker:true,breaker:2,g189BattleWin:[
+    {op:'Offer',g359RevealAll:true,title:'山札の上3枚を公開して非進化ドラゴンを出す？',defs:[
+     {op:'LookDeploy530',n:3,limit:1,public:true,g749Required:true,rest:'grave',filter:{creature:true,race:'ドラゴン',nonEvolution:true}}]}]};
+  const life='EXライフ(このクリーチャーを出す時自分の山札の上から1枚目をシールド化する。このクリーチャーが離れる時かわりにそのシールドを墓地に置く)';
+  if(compact363===life+'Q・ブレイカー自分のクリーチャーすべてに「マッハファイター」を与える。自分のクリーチャーがバトルに勝った時カードを1枚引く。その後相手のシールドを1つブレイクしてもよい。')
+   return {effect:'sixPhoto',exLife:true,breaker:4,g208Auras:[{filter:{creature:true},grants:{machFighter:true}}],
+    g252WinWatch:{filter:{creature:true},defs:[draw,{op:'Break278',optional:true}]}};
+  const pair='このクリーチャーが出た時クリーチャーを2体選んでもよい。その2体をバトルさせる。';
+  const die='相手のターン中にこのクリーチャーが出た時このターンに2つ以上自分のシールドがブレイクされていなければこのクリーチャーを破壊する。';
+  if(compact363==='S・トリガーS・トリガーW・ブレイカー'+pair+win+'カードを1枚引く。'+die)
+   return {effect:'sixPhoto',trigger:true,breaker:2,cobra:true,
+    g34Tasks:[{op:'FightPair586',who:'both',optional:true}],g189BattleWin:[draw]};
+ }
  if(phase>=748&&f.typeText==='クリーチャー'){
   const mach='マッハファイター(このクリーチャーはバトルゾーンに出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)';
   const win='このクリーチャーがバトルに勝った時';
