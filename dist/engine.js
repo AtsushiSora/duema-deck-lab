@@ -445,6 +445,10 @@ export function physicalCards(s){const flatten=c=>[c,...[...(c.under||[]),...(c.
 // A Saver belongs to its source and can protect a matching allied element, including itself.
 function saver571(s,row,source){
  const sourceCard=effectiveCard(source,s),rule=sourceCard.g571Saver;
+ if(sourceCard.type==='gear'&&!source.sealed&&!source.faceDown&&row.to==='grave'&&row.destroy!==false&&source.crossedTo?.uid===row.uid){
+  const host=s.players[row.player].battle.find(x=>x.uid===row.uid&&(x.incarnation||0)===source.crossedTo.incarnation);
+  if(host&&card(host).g260Self?.grants?.g729CrossSaver&&effectiveCard(host,s).g729CrossSaver)return true;
+ }
  if(!rule||source.sealed||rule.other&&row.uid===source.uid)return false;
  if(!rule.ultra&&(row.to!=='grave'||row.destroy===false&&!rule.graveMove))return false;
  const target=s.players[row.player].battle.find(x=>x.uid===row.uid);
@@ -1342,7 +1346,13 @@ function finishStartUntap496(s,chosen=[]){
 }
 function advanceStart(s){if(s.lossEvent)return;if(!s.startStep||s.decision||s.extTasks?.length||s.pendingEffects?.length||s.triggers||s.leaving||s.battleResolution||s.winner!==null)return;
  if(s.startStep.stage==='silent496'){while(s.startStep.remaining.length){const ref=s.startStep.remaining[0],x=s.players[s.active].battle.find(c=>c.uid===ref.uid&&(c.incarnation||0)===ref.incarnation);if(x&&canSilent496(s,x)){s.decision={type:'silent496',player:s.active,uid:x.uid,source:x.cardId,title:'サイレントスキルを使いますか？'};return;}s.startStep.remaining.shift();}const chosen=s.startStep.chosen;delete s.startStep;finishStartUntap496(s,chosen);return;}
- const p=s.startStep.player;delete s.startStep;s.phase='charge';draw(s,p,1);}
+ const p=s.startStep.player;
+ delete s.startStep;
+ s.phase='charge';
+ const sources=s.players[p].battle.filter(x=>card(x).g729ExtraStartDraw&&isCreature(s,x)&&effectiveCard(x,s).g729ExtraStartDraw).map(x=>x.cardId);
+ if(sources.length)extra.put(s,extra.task('g34_StartDraw729',p,sources[0],{sources,n:1}));
+ else draw(s,p,1);
+}
 function beginEnd(s){
  const untappers=s.players[s.active].battle.filter(c=>effectiveCard(c,s).g166EndUntap||effectiveCard(c,s).endUntap&&c.tapped&&canUntap(c)),deferred=[...extra.end(s),...untappers.map(x=>({uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:effectiveCard(x,s).g166EndUntap?'g166EndUntap':'endUntap',uids:[x.uid]}))],p=1-s.active;s.endStep={player:p,stage:'declare',deferred,remaining:s.players[p].hand.filter(x=>card(x).gaia||card(x).endMirage).map(x=>x.uid),declared:[],untap:[]};extra.beforeEnd(s);advanceEnd(s);
 }
@@ -1403,6 +1413,10 @@ export function getLegalActions(s){
    if(v.tappedMana)out.push(option('replaceYamata',name+'をかわりにタップしてマナゾーンに置く',{tapped:true}));
    for(const x of v.ultra){
     const source=effectiveCard(x,s);
+    if(source.type==='gear'){
+     out.push(option('replaceUltra',name+'を残し、'+source.name+'をかわりに墓地へ置く',{uid:x.uid,cardId:x.cardId}));
+     continue;
+    }
     if(source.g571Saver?.to==='mana'){
      out.push(option('replaceUltra',`${name}を残し、${source.name}をかわりにマナゾーンへ置く`,{uid:x.uid,cardId:x.cardId,to:'mana'}));
      continue;

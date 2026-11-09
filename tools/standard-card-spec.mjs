@@ -2557,6 +2557,13 @@ export function standardCardSpec(d,{phase=165}={}){
  const compact363=phase>=363?normalize(f.abilityText):'',whole363=phase>=363&&(modal363(compact363)||compact363==='自分の水と闇を両方持つクリーチャーがバトルゾーンに出た時次のうちいずれか1つを選ぶ。▼カードを1枚引く。▼相手は自身の手札を1枚選び捨てる。');
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?abilityText.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):abilityText).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=729&&f.typeText==='進化クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(text==='進化ー自分のゴースト1体の上に置く。このクリーチャーがバトルゾーンにある間バトルゾーンにある自分のゴーストはそれぞれ「スレイヤー」を得る。(そのクリーチャーとバトルした相手クリーチャーは勝っても持ち主の墓地に置かれる)')
+   return {evolution:{race:'ゴースト'},g208Auras:[{filter:{creature:true,race:'ゴースト'},grants:{slayer:true}}]};
+  if(text==='進化-自分のサイバー・ウイルス1体の上に置く。このクリーチャーがバトルゾーンにある間自分のターンのはじめにカードを1枚引くときもう1枚余分に引いてもよい。')
+   return {evolution:{race:'サイバー・ウイルス'},g729ExtraStartDraw:true};
+ }
  if(phase>=727&&f.typeText==='進化クリーチャー'){
   const text=normalize(f.abilityText);
   const attack='このクリーチャーが攻撃する時';
@@ -3612,6 +3619,9 @@ export function standardCardSpec(d,{phase=165}={}){
   if(at>=0){
    if(lines.filter(isMarker).length!==1||at===lines.length-1)throw Error('未対応のアクセル構成');
    const rawBody=normalize(lines.slice(at+1).join('')),body=normalize(lines[at])===modern?rawBody.replace(/^a(?=このクリーチャー)/,''):rawBody,race=body.match(/^このクリーチャーのパワーは\+3000され種族に(サイバー・ムーン|デーモン・コマンド|アース・ドラゴン|エンジェル・コマンド|ボルケーノ・ドラゴン)を追加する。$/),grants=race?{power:3000,raceAdd:[race[1]]}:{
+    ...(phase>=729?{
+     'このクリーチャーはブロックされない。このクリーチャーが破壊される時かわりにこのクリーチャーにクロスしてあるクロスギアを1枚墓地に置いてもよい。':{unblockable:true,g729CrossSaver:true}
+    }:{}),
     ...(phase>=728?{
      'このクリーチャーが攻撃する時自分の山札を見る。その中から「S・トリガー」付き呪文を1枚選び山札をシャッフルした後その呪文をコストを支払わずに唱えてもよい。':{g34Attack:[{op:'Marianna728'}]},
      'このクリーチャーが破壊された時このクリーチャーにクロスされていたクロスギアの数と同じ枚数カードを引いてもよい。':{g172Death:[{op:'CrossedDeathDraw728'}]}

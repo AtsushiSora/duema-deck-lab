@@ -1334,6 +1334,13 @@ export function createSixPhotoRules(api){
  case'g34_RampMatch516':{const y=api.takeTop(s,t.p);if(!y){api.deckCheck(s,t.p);break;}const dest=api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana';clear(y,dest);if(dest==='mana')y.tapped=true;api.addZone(s,t.p,dest,y);const matched=matches(s,t.p,y,t.filter);api.deckCheck(s,t.p);if(s.winner===null)start(s,t,[...(matched?[{op:'Ramp',n:1,tapped:true}]:t.elseDraw?[{op:'Draw',n:1}]:[]),...(t.after||[])]);break;}
  case'g34_Ramp':if(t.optional)choice(s,t,'山札からマナに置く枚数を選ぶ',Array.from({length:Math.min(t.n,own.deck.length)+1},(_,n)=>opt(n+'枚',n,n<own.deck.length?n*5:-100)));else ramp(s,t,t.n);break;
  case'g34_DrawUpTo':if(t.n>0)choice(s,t,'あと'+t.n+'枚まで引けます。1枚引く？',[opt('1枚引く',true,t.g203Draw&&own.deck.length<=1&&creatures(s,t.p).some(y=>effective(y,s).shako)?1000:own.deck.length>1?10:-100),skip()]);break;
+ case'g34_StartDraw729':{
+  if(!t.sources.length){api.draw(s,t.p,t.n);break;}
+  choice(s,t,card(t.source).name+'でターン開始のドローを1枚増やす？',[
+   opt('1枚多く引く',true,own.deck.length>t.n+1?10:-100,t.source),skip()
+  ]);
+  break;
+ }
  case'g34_Draw':if(t.optional)choice(s,t,'カードを'+t.n+'枚まで引く',Array.from({length:t.n+1},(_,n)=>opt(n+'枚',n,n<own.deck.length?n*5:-100)));else api.draw(s,t.owner==='opponent'?1-t.p:t.p,t.n);break;
  // Use the same physical top-card selector as normal milling.
  case'g34_MillMatch520':{const y=api.takeTop(s,t.p);if(!y){api.deckCheck(s,t.p);break;}clear(y);api.addZone(s,t.p,'grave',y);const matched=matches(s,t.p,y,t.filter);api.deckCheck(s,t.p);if(s.winner!==null||!matched)break;const host=sourceHost474(s,t);if(!host)break;const unit=host.x;if(t.untap){if(api.canUntap(unit)){const was=unit.tapped;unit.tapped=false;if(was)combined.untapped(s,host.p,unit);}}else{if(t.powerAttacker)(unit.powerModifiers??=[]).push({amount:t.powerAttacker,expires:'end',who:s.active,attackOnly:true,grantedAbility:true});if(t.breaker||t.unblockable||t.speedAttacker)(unit.g34Grants??=[]).push({turn:s.turn,...(t.breaker?{g313Breaker:t.breaker}:{}),...(t.unblockable?{unblockable:true}:{}),...(t.speedAttacker?{speedAttacker:true}:{})});}break;}
@@ -1729,6 +1736,11 @@ export function createSixPhotoRules(api){
  case'g34_Order':put(s,{...t,ids:t.ids.filter(uid=>uid!==v),ordered:[...(t.ordered||[]),v]});break;
  case'g34_Ramp':ramp(s,t,v);break;
  case'g34_DrawUpTo':if(v){api.draw(s,t.p,1);if(s.winner===null&&t.n>1)put(s,{...t,n:t.n-1});}break;
+ case'g34_StartDraw729':{
+  const sources=t.sources.slice(1);
+  put(s,{...t,source:sources[0]||t.source,sources,n:t.n+Number(!!v)});
+  break;
+ }
  case'g34_Draw':api.draw(s,t.p,v);break;
  case'g34_HandFollow584':{const x=own.hand.find(y=>y.uid===v);if(x)discardFollow584(s,t,x);break;}
  case'g34_DiscardMatch517':{const y=own.hand.find(y=>y.uid===v);if(y)api.discardSelected(s,t.p,[y.uid],t.source,t.p,null,{op:'g34_DrawAfterDiscard517',p:t.p,source:t.source,matches:matches(s,t.p,y,t.filter)});else api.draw(s,t.p,1);break;}
