@@ -271,6 +271,12 @@ export function createSixPhotoRules(api){
   const owner=1-p,prior=s.players[owner].turns-Number(s.active===owner);
   return (s.g618ShieldTurns?.[owner]||[]).includes(prior);
  }
+ function ownShieldGraveOptions(s,p){
+  const shields=s.players[p].shields;
+  return shields.flatMap((x,i)=>api.shieldCards(x).some(y=>!y.g37ShieldHeld)
+   ?[opt('シールド '+(i+1)+(x.faceUp?'：'+card(x).name:''),x.uid,10,x.faceUp?x.cardId:undefined)]
+   :[]);
+ }
  function finishShieldMove588(s,t){
   if(!t.selected?.length)return;
   const to=t.to==='mana'?'mana':'grave',zone=to==='mana'?'マナゾーン':'墓地';
@@ -425,7 +431,7 @@ export function createSixPhotoRules(api){
    const hasColor=(x,color)=>matches(s,t.p,x,{g228Face:{type:'creature',color}});
    if(first)candidates=candidates.filter(({x})=>hasColor(first,one)&&hasColor(x,other)||hasColor(first,other)&&hasColor(x,one));
   }
-  const eligible=t.g173Targets?new Set(targetOptions(s,t.p,candidates.map(r=>r.x)).map(o=>o.value)):null,rows=eligible?candidates.filter(r=>eligible.has(r.x.uid)):candidates,n=t.n==='all'?Infinity:t.n??1;if((t.selected?.length||0)>=n||!rows.length){if(t.selected?.length)finishSelect(s,t);else if(t.after)start(s,t,t.after);return;}const scores550=t.g550CostBudget===undefined?null:budgetScores550(s,t,rows,n);choice(s,t,t.title||('カードを'+n+'枚'+(t.optional?'まで':'')+'選ぶ'),[...rows.map(({x,origin,p})=>opt((t.anyOwner?(p===t.p?'自分：':'相手：'):'')+(t.zones?.length>1?({mana:'マナ：',grave:'墓地：',hand:'手札：'}[origin]||''):'')+(x.faceDown?'裏向きのカード':card(x).name)+(t.g210ManaUntap?(x.tapped?(api.canUntap(x)?'（タップ中）':'（タップ中・アンタップ不可）'):'（アンタップ）'):''),{uid:x.uid,origin,p,...(scores550?{cost550:cost(api.zoneCard(s,p,x,origin)),serial550:x.zoneSerial||0}:{})},scores550?scores550.get(x.uid):t.g583DrawMoved?contractScore583(s.players[p],x,t.selected.length):t.g405Search&&origin==='deck'&&s.players[t.p].deck.length<=1?-1000:t.g210ManaUntap?(x.tapped&&api.canUntap(x)?25:-1):x.faceDown?15:t.g530Ids&&origin==='deck'&&(t.selected?.length||0)+1>=s.players[t.p].deck.length?-1000:t.score??(t.g193Select?selectedBattleScore(s,t,x,candidates,n):t.g187OwnPick?-cost(card(x))-api.power(x,false,s)/10000:t.g182HandMana||t.g183Return||t.g184ManaLoss?15-cost(card(x)):t.to==='grave'?-cost(card(x)):15+cost(card(x))),x.faceDown?null:x.cardId)),...(t.optional&&(!t.g626DistinctEvolution||!t.selected.length)?[opt(t.g626DistinctEvolution?'戻さない':'ここまでで確定',null,0)]:[])]);}
+  const eligible=t.g173Targets?new Set(targetOptions(s,t.p,candidates.map(r=>r.x)).map(o=>o.value)):null,rows=eligible?candidates.filter(r=>eligible.has(r.x.uid)):candidates,n=t.n==='all'?Infinity:t.n??1;if((t.selected?.length||0)>=n||!rows.length){if(t.selected?.length)finishSelect(s,t);else if(t.after)start(s,t,t.after);return;}const scores550=t.g550CostBudget===undefined?null:budgetScores550(s,t,rows,n);choice(s,t,t.title||('カードを'+n+'枚'+(t.optional?'まで':'')+'選ぶ'),[...rows.map(({x,origin,p})=>opt((t.anyOwner?(p===t.p?'自分：':'相手：'):'')+(t.zones?.length>1?({mana:'マナ：',grave:'墓地：',hand:'手札：'}[origin]||''):'')+(x.faceDown?'裏向きのカード':card(x).name)+(t.g210ManaUntap?(x.tapped?(api.canUntap(x)?'（タップ中）':'（タップ中・アンタップ不可）'):'（アンタップ）'):''),{uid:x.uid,origin,p,...(scores550?{cost550:cost(api.zoneCard(s,p,x,origin)),serial550:x.zoneSerial||0}:{})},scores550?scores550.get(x.uid):t.g583DrawMoved?contractScore583(s.players[p],x,t.selected.length):t.g405Search&&origin==='deck'&&s.players[t.p].deck.length<=1?-1000:t.g210ManaUntap?(x.tapped&&api.canUntap(x)?25:-1):x.faceDown?15:t.g530Ids&&origin==='deck'&&(t.selected?.length||0)+1>=s.players[t.p].deck.length?-1000:t.score??(t.g193Select?selectedBattleScore(s,t,x,candidates,n):t.g187OwnPick?-cost(card(x))-api.power(x,false,s)/10000:t.g182HandMana||t.g183Return||t.g184ManaLoss?15-cost(card(x)):t.to==='grave'?-cost(card(x)):15+cost(card(x))),x.faceDown?null:x.cardId)),...(t.optional&&t.selected.length>=(t.minimum??0)&&(!t.g626DistinctEvolution||!t.selected.length)?[opt(t.g626DistinctEvolution?'戻さない':'ここまでで確定',null,0)]:[])]);}
  function freeze(s,t,p,y){if(!y||y.sealed)return;for(const kind of ['attack','block'])(s.extLimits??=[]).push({kind,g190Freeze:true,player:p,uid:y.uid,incarnation:y.incarnation||0,controller:t.controller??t.p,expires:t.g190Freeze==='end'?'end':'start',who:t.g190Freeze==='end'?s.active:t.g190Freeze==='opponent'?1-t.p:t.p,...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});}
  function stopPlayerAttack567(s,t,y){
   (s.extLimits??=[]).push({kind:'g567PlayerStop',ref:{uid:y.uid,incarnation:y.incarnation||0},controller:t.p,expires:t.g567PlayerStop,who:t.g567PlayerStop==='start'?t.p:s.active,spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});
@@ -1058,7 +1064,23 @@ export function createSixPhotoRules(api){
  case'g34_FightBuff241':{const enemies=fightRows240(s,t.p,1-t.p),allies=fightRows240(s,t.p,t.p);if(allies.length)choice(s,t,'このターン、パワーを+'+t.power+'する自分のクリーチャーを1体選ぶ',allies.map(o=>{const a=own.battle.find(y=>y.uid===o.value),boosted={...a,powerModifiers:[...(a.powerModifiers||[]),{amount:t.power,spellSource:t.spell?t.source:undefined,spellCost:t.spell?cost(card(t.source)):undefined}]},scores=enemies.map(o=>fightScore240(s,boosted,s.players[1-t.p].battle.find(y=>y.uid===o.value)));return{...o,value:{uid:a.uid,incarnation:a.incarnation||0},score:scores.length?Math.max(...scores):5+cost(card(a))};}));break;}
  case'g34_Fight240':{const enemies=fightRows240(s,t.p,1-t.p,t.enemyFilter);if(!enemies.length)break;if(t.self){if(x&&api.isCreature(s,x)&&!x.sealed)put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:x.uid,incarnation:x.incarnation||0}});}else{const allies=fightRows240(s,t.p,t.p).filter(o=>!t.g419FightFilter||matches(s,t.p,own.battle.find(y=>y.uid===o.value),t.g419FightFilter));if(allies.length)choice(s,t,'バトルする自分のクリーチャーを1体選ぶ',[...allies.map(o=>{const a=own.battle.find(y=>y.uid===o.value);return{...o,value:{uid:a.uid,incarnation:a.incarnation||0},score:Math.max(...enemies.map(o=>fightScore240(s,a,s.players[1-t.p].battle.find(y=>y.uid===o.value))))};}),...(t.optional?[skip()]:[])]);}break;}
  case'g34_FightEnemy240':{const a=fightUnit240(s,t.fighterOwner??t.p,t.fighter);if(a){const rows=fightRows240(s,t.p,1-t.p,t.enemyFilter).filter(o=>o.value!==a.uid);if(rows.length)choice(s,t,'バトルする相手のクリーチャーを1体選ぶ',[...rows.map(o=>{const b=s.players[1-t.p].battle.find(y=>y.uid===o.value);return{...o,value:{uid:b.uid,incarnation:b.incarnation||0},score:fightScore240(s,a,b)};}),...(t.optional?[skip()]:[])]);}break;}
- case'g34_ShieldGrave':{const rows=own.shields.filter(x=>api.shieldCards(x).some(y=>!y.g37ShieldHeld));if(rows.length)choice(s,t,'墓地に置く自分のシールドを1つ選ぶ',rows.map(x=>opt('シールド '+(own.shields.indexOf(x)+1)+(x.faceUp?'：'+card(x).name:''),x.uid,10,x.faceUp?x.cardId:undefined)));break;}
+ case'g34_ShieldGrave':choice(s,t,'墓地に置く自分のシールドを1つ選ぶ',ownShieldGraveOptions(s,t.p));break;
+ case'g34_OwnShieldGraves697':{
+  const most=Math.max(...s.players.map(p=>p.shields.length));
+  const owners=t.owners??[s.active,1-s.active].filter(p=>!t.moreOnly||s.players[p].shields.length===most);
+  const [owner,...rest]=owners;
+  if(owner===undefined){
+   for(const {owner,uid} of t.picks||[]){
+    const moved=api.moveShield(s,owner,uid,'grave');
+    if(moved.length)api.log(s,owner,'shieldGrave',card(t.source).name+'：シールド1つ（カード'+moved.length+'枚）を墓地に置いた',{cardId:t.source});
+   }
+   break;
+  }
+  const options=ownShieldGraveOptions(s,owner),next={...t,owners:rest};
+  if(options.length)choice(s,{...next,chooser:owner},'墓地に置く自分のシールドを1つ選ぶ',options,owner);
+  else put(s,next);
+  break;
+ }
  case'g34_Break497':{
   const self=t.owner==='self',owner=self?t.p:1-t.p,shields=s.players[owner].shields,chooser=t.ownerChooses?owner:t.p;
   const selected=(t.selected||[]).filter(uid=>shields.some(y=>y.uid===uid)),n=Math.min(t.n,shields.length);
@@ -1128,6 +1150,14 @@ export function createSixPhotoRules(api){
  }
  case'g34_OpponentSelect':put(s,{...t,op:'g34_Select',p:1-t.p,controller:t.controller??t.p,origin:'battle',filter:{creature:true,...t.filter},g187OwnPick:true,title:t.title||(t.tap?'タップする':t.to==='grave'?'破壊する':t.to==='hand'?'手札に戻す':'マナに置く')+'自分のクリーチャーを'+(t.n??1)+'体選ぶ'});break;
  case'g34_OpponentManaLoss478':put(s,{...t,op:'g34_Select',p:1-t.p,controller:t.controller??t.p,origin:'mana',to:'grave',n:1,g184ManaLoss:true,title:'墓地に置く自分のマナを1枚選ぶ'});break;
+ case'g34_CloneCrush697':{
+  const name=exactName(card(t.source).name);
+  const copies=s.players.reduce((n,p,owner)=>n+p.grave.filter(x=>!x.faceDown&&exactName(api.zoneCard(s,owner,x,'grave').name)===name).length,0);
+  const title='破壊するパワー3000以下の相手クリーチャーを'+(copies?'最大'+(1+copies)+'体選ぶ（1体目は必須）':'1体選ぶ');
+  start(s,t,[{op:'Select',owner:'opponent',origin:'battle',to:'grave',filter:t.filter,n:1+copies,
+   optional:true,minimum:1,g173Targets:true,g193Select:true,title}]);
+  break;
+ }
  case'g34_Select':selection(s,{selected:[],rows:[],...t});break;
  case'g34_Put':{const y=s.players[t.owner??t.p][t.origin]?.find(x=>x.uid===t.target);if(!y)break;const c=faces(card(y))[t.face||0];if(t.execution&&c.type==='spell'){doPut(s,t);break;}if(!canPut(s,t.p,y,t.origin,!!t.execution))break;if(c.g213Mars||c.g31Evolution?.minCards){doPut(s,t);break;}if(c.evolution||c.neoEvolution&&!t.noEvolve)choice(s,t,'出すクリーチャーの進化元を選ぶ',[...(c.neoEvolution?[opt('進化させずに出す',null,1)]:[]),...api.evolutionBases(s,t.p,c).filter(b=>b.uid!==y.uid).map(b=>opt(card(b).name,b.uid,10,b.cardId))]);else doPut(s,t);break;}
  case'g34_ManaDown426':{const rows=own.mana.filter(y=>!y.faceDown);if(rows.length)choice(s,t,'裏向きにする自分のマナを1枚選ぶ（任意）',[...rows.map(y=>opt(card(y).name,{uid:y.uid,serial:y.zoneSerial||0},manaDownScore426(s,t,y),y.cardId)),skip()]);break;}
@@ -1425,6 +1455,7 @@ export function createSixPhotoRules(api){
   if(t.remaining>1){const {g585Peek,shieldUid,...next}=t;put(s,{...next,op:'g34_Peek585',remaining:t.remaining-1});}
   break;
  case'g34_ShieldExchange446':{const y=v&&own.hand.find(y=>y.uid===v);if(y)zoneMove(s,t.p,'hand',y.uid,'shields',t);if(!t.optional||y)put(s,{...t,op:'g34_ShieldHand',g238ShieldHand:true});break;}
+ case'g34_OwnShieldGraves697':put(s,{...t,picks:[...(t.picks||[]),{owner:t.chooser,uid:v}]});break;
  case'g34_ShieldGrave':if(v){const moved=api.moveShield(s,t.p,v,'grave');api.log(s,t.p,'shieldGrave',card(t.source).name+'：シールド1つ（カード'+moved.length+'枚）を墓地に置いた',{cardId:t.source});}break;
  case'g34_BlindHandMana675':{
   const y=s.players[1-t.p].hand[v];

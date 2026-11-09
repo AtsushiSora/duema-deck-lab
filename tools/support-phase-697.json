@@ -1,0 +1,183 @@
+{
+  "phase": 697,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5920,
+  "description": "シールド数に応じた墓地送り、破壊時のシールド交換、墓地の同名呪文を数える除去。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/39076/",
+    "https://dm.takaratomy.co.jp/rule/qa/39077/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316639/"
+  ],
+  "cards": [
+    {
+      "id": "dm19-006",
+      "name": "リベンギオス・ドラグーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-006",
+      "faces": [
+        {
+          "name": "リベンギオス・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、シールドを多く持っている方のプレイヤーは自分自身のシールドを１枚選び、墓地に置く。両プレイヤーのシールドが同じ枚数であれば、それぞれが自分自身のシールドを１枚ずつ選び、持ち主の墓地に置く。",
+          "race": "ティラノ・ドレイク",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OwnShieldGraves697",
+            "moreOnly": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "0432c03dcf3dac9cb73e189da61c0bc7b84b2512f9cb709605abe5ddf1a3da8b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-032",
+      "name": "悪魔霊騎グエム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-032",
+      "faces": [
+        {
+          "name": "悪魔霊騎グエム",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが破壊された時、自分の山札の上から１枚目を、裏向きのままシールドに加える。その後、相手のシールドを１枚選び、持ち主の墓地に置く。",
+          "race": "アーク・セラフィム/デーモン・コマンド",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g172Death": [
+          {
+            "op": "ShieldTop"
+          },
+          {
+            "op": "ShieldGrave588",
+            "n": 1,
+            "required": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "0a0d9fb72edf173a0e266e8d35a3ab4566e48e2adc51039ee22b8aadd767a456",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-012",
+      "name": "死鬼者デスワルツ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-012",
+      "faces": [
+        {
+          "name": "死鬼者デスワルツ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化-自分のガーゴイル１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、各プレイヤーは自分自身のシールドを１枚ずつ選び、持ち主の墓地に置く。",
+          "race": "ガーゴイル",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "ガーゴイル"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OwnShieldGraves697"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "0fbd02dc979b0c29b9cf6d0eb8b6e4e7acae740dfd510895cfb4c4545f1695ac",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm12-028",
+      "name": "クローン・クラッシュ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-028",
+      "faces": [
+        {
+          "name": "クローン・クラッシュ",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンにある相手のパワー3000以下のクリーチャーを１体選ぶ。その後、すべての墓地にある《クローン・クラッシュ》１枚につき、バトルゾーンにある相手の他のパワー3000以下のクリーチャーを１体選んでもよい。選んだクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CloneCrush697",
+            "filter": {
+              "creature": true,
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "0c02c694722abf1e806db3dea98b2d76fa0ecc7b4d35bc0ae615dd1669b7ca44",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm19-006": 4,
+      "dm24-032": 4,
+      "dm16-012": 4,
+      "dm12-028": 4
+    }
+  }
+}

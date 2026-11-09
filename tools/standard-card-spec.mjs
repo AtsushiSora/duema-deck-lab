@@ -2476,6 +2476,21 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=697){
+  const text=normalize(f.abilityText);
+  if(creature&&text==='このクリーチャーをバトルゾーンに出した時シールドを多く持っている方のプレイヤーは自分自身のシールドを1枚選び墓地に置く。両プレイヤーのシールドが同じ枚数であればそれぞれが自分自身のシールドを1枚ずつ選び持ち主の墓地に置く。'){
+   return {effect:'sixPhoto',g34Tasks:[{op:'OwnShieldGraves697',moreOnly:true}]};
+  }
+  if(evolution&&text==='進化-自分のガーゴイル1体の上に置く。このクリーチャーをバトルゾーンに出した時各プレイヤーは自分自身のシールドを1枚ずつ選び持ち主の墓地に置く。'){
+   return {evolution:{race:'ガーゴイル'},effect:'sixPhoto',g34Tasks:[{op:'OwnShieldGraves697'}]};
+  }
+  if(creature&&f.civilizations.length>1&&text==='マナゾーンに置く時このカードはタップして置く。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)このクリーチャーが破壊された時自分の山札の上から1枚目を裏向きのままシールドに加える。その後相手のシールドを1枚選び持ち主の墓地に置く。'){
+   return {breaker:2,g172Death:[{op:'ShieldTop'},{op:'ShieldGrave588',n:1,required:true}]};
+  }
+  if(f.typeText==='呪文'&&text==='バトルゾーンにある相手のパワー3000以下のクリーチャーを1体選ぶ。その後すべての墓地にある《クローン・クラッシュ》1枚につきバトルゾーンにある相手の他のパワー3000以下のクリーチャーを1体選んでもよい。選んだクリーチャーをすべて破壊する。'){
+   return {effect:'sixPhoto',g34Tasks:[{op:'CloneCrush697',filter:{creature:true,maxPower:3000,g199Power:true}}]};
+  }
+ }
  if(phase>=696){
   const text=normalize(f.abilityText);
   const blocker='ブロッカー',manaTap='マナゾーンに置く時このカードはタップして置く。';

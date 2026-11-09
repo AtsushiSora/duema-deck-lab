@@ -170605,23 +170605,132 @@
       ],
       "supportBatch": "phase-696",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm19-006",
+      "name": "リベンギオス・ドラグーン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ティラノ・ドレイク",
+      "text": "このクリーチャーをバトルゾーンに出した時、シールドを多く持っている方のプレイヤーは自分自身のシールドを１枚選び、墓地に置く。両プレイヤーのシールドが同じ枚数であれば、それぞれが自分自身のシールドを１枚ずつ選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-006",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "OwnShieldGraves697",
+          "moreOnly": true
+        }
+      ],
+      "supportBatch": "phase-697",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24-032",
+      "name": "悪魔霊騎グエム",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "アーク・セラフィム/デーモン・コマンド",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが破壊された時、自分の山札の上から１枚目を、裏向きのままシールドに加える。その後、相手のシールドを１枚選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-032",
+      "limit": 4,
+      "breaker": 2,
+      "g172Death": [
+        {
+          "op": "ShieldTop"
+        },
+        {
+          "op": "ShieldGrave588",
+          "n": 1,
+          "required": true
+        }
+      ],
+      "supportBatch": "phase-697",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm16-012",
+      "name": "死鬼者デスワルツ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ガーゴイル",
+      "text": "進化-自分のガーゴイル１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、各プレイヤーは自分自身のシールドを１枚ずつ選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-012",
+      "limit": 4,
+      "evolution": {
+        "race": "ガーゴイル"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "OwnShieldGraves697"
+        }
+      ],
+      "supportBatch": "phase-697",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm12-028",
+      "name": "クローン・クラッシュ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある相手のパワー3000以下のクリーチャーを１体選ぶ。その後、すべての墓地にある《クローン・クラッシュ》１枚につき、バトルゾーンにある相手の他のパワー3000以下のクリーチャーを１体選んでもよい。選んだクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-028",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CloneCrush697",
+          "filter": {
+            "creature": true,
+            "maxPower": 3000,
+            "g199Power": true
+          }
+        }
+      ],
+      "supportBatch": "phase-697",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 696,
+    "phase": 697,
     "checkedAt": "2026-11-09",
-    "baseCount": 5917,
-    "newEffectCards": 3,
+    "baseCount": 5920,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 5920,
+    "totalCount": 5924,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35245/",
       "https://dm.takaratomy.co.jp/rule/qa/39076/",
-      "https://dm.takaratomy.co.jp/rule/qa/42392/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31650/"
+      "https://dm.takaratomy.co.jp/rule/qa/39077/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316639/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -182614,6 +182723,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/42392/",
           "https://dm.takaratomy.co.jp/rule/qa/48919/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31636/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 696,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5917,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5920,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35245/",
+          "https://dm.takaratomy.co.jp/rule/qa/39076/",
+          "https://dm.takaratomy.co.jp/rule/qa/42392/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31650/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
