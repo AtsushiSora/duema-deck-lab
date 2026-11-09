@@ -1,0 +1,177 @@
+{
+  "phase": 748,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6089,
+  "description": "バトル勝利時のマナからの展開・勝者のアンタップ・任意ドローと、味方アウトレイジの登場時バトルに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/43297/",
+    "https://dm.takaratomy.co.jp/rule/qa/33609/",
+    "https://dm.takaratomy.co.jp/rule/qa/44319/"
+  ],
+  "cards": [
+    {
+      "id": "dmsd05-003",
+      "name": "リ・ハナッキ・パンツァー",
+      "faces": [
+        {
+          "name": "リ・ハナッキ・パンツァー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーがバトルに勝った時、自然のコスト６以下の、進化ではないクリーチャーを１体、自分のマナゾーンからバトルゾーンに置いてもよい。",
+          "race": "グランセクト",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd05-003",
+      "spec": {
+        "effect": "sixPhoto",
+        "machFighter": true,
+        "breaker": 3,
+        "g189BattleWin": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "faceUp": true,
+              "color": "自然",
+              "max": 6,
+              "nonEvolution": true
+            },
+            "title": "自然のコスト6以下の進化ではないクリーチャーをマナから出す？"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd05-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "5168fffc4f8cbe9ce505aef84f14742fd5cf820497269f4d7bcad9f602ca71d6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm20-022",
+      "name": "キャプテン・ジャイロ",
+      "faces": [
+        {
+          "name": "キャプテン・ジャイロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のグレートメカオーがバトルに勝った時、このクリーチャーをタップしてもよい。そうした場合、その勝ったグレートメカオーをアンタップする。",
+          "race": "キカイヒーロー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-022",
+      "spec": {
+        "effect": "sixPhoto",
+        "g252WinWatch": {
+          "filter": {
+            "creature": true,
+            "race": "グレートメカオー"
+          },
+          "winner": true,
+          "defs": [
+            {
+              "op": "TapToUntap748"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "c5ad5c6484f98846f230af6718a6952e39ee51707f6845d32ae86baf9d21743c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx15-s08",
+      "name": "偽りなし ゾルゲXIII",
+      "faces": [
+        {
+          "name": "偽りなし ゾルゲXIII",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火/自然",
+          "civilizations": [
+            "水",
+            "火",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーまたは自分の他のアウトレイジをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選んでもよい。そうした場合、その２体はバトルする。\n自分のアウトレイジがバトルに勝った時、カードを１枚引いてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アウトレイジMAX",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-s08",
+      "spec": {
+        "effect": "sixPhoto",
+        "breaker": 2,
+        "g468EntryWatch": {
+          "filter": {
+            "creature": true,
+            "race": "アウトレイジ"
+          },
+          "mode": "fight"
+        },
+        "g252WinWatch": {
+          "filter": {
+            "creature": true,
+            "race": "アウトレイジ"
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx15-s08.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "62f0f3aa022f94943de6924d8d59468df326d0494fe1988f1a955d89a83f0456",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmsd05-003": 4,
+      "dm20-022": 4,
+      "dmx15-s08": 4
+    }
+  }
+}

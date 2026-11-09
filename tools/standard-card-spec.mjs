@@ -2564,6 +2564,22 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=748&&f.typeText==='クリーチャー'){
+  const mach='マッハファイター(このクリーチャーはバトルゾーンに出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)';
+  const win='このクリーチャーがバトルに勝った時';
+  if(compact363===mach+'T・ブレイカー(このクリーチャーはシールドを3つブレイクする)'+win+'自然のコスト6以下の進化ではないクリーチャーを1体自分のマナゾーンからバトルゾーンに置いてもよい。')
+   return {effect:'sixPhoto',machFighter:true,breaker:3,g189BattleWin:[{op:'Select',origin:'mana',n:1,deploy:true,optional:true,
+    filter:{creature:true,faceUp:true,color:'自然',max:6,nonEvolution:true},title:'自然のコスト6以下の進化ではないクリーチャーをマナから出す？'}]};
+  if(compact363==='自分のグレートメカオーがバトルに勝った時このクリーチャーをタップしてもよい。そうした場合その勝ったグレートメカオーをアンタップする。')
+   return {effect:'sixPhoto',g252WinWatch:{filter:{creature:true,race:'グレートメカオー'},winner:true,defs:[{op:'TapToUntap748'}]}};
+  const entry='このクリーチャーまたは自分の他のアウトレイジをバトルゾーンに出した時バトルゾーンにある相手のクリーチャーを1体選んでもよい。そうした場合その2体はバトルする。';
+  const draw='自分のアウトレイジがバトルに勝った時カードを1枚引いてもよい。';
+  if(f.civilizations.length>1&&compact363==='マナゾーンに置く時このカードはタップして置く。'+entry+draw+'W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)'){
+   const filter={creature:true,race:'アウトレイジ'};
+   return {effect:'sixPhoto',breaker:2,g468EntryWatch:{filter,mode:'fight'},
+    g252WinWatch:{filter,defs:[{op:'Offer',title:'カードを1枚引く？',defs:[{op:'Draw',n:1}]}]}};
+  }
+ }
  if(phase>=747&&f.typeText==='クリーチャー'){
   const fight='各ターンに一度自分のドラゴンが攻撃する時相手のクリーチャーを1体選んでもよい。その2体をバトルさせる。';
   const untap='自分のドラゴンがバトルに勝った時そのクリーチャーをアンタップする。';

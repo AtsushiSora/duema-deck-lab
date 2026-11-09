@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-09",
   "catalogueNames": 11828,
-  "supportedNames": 6089,
-  "pendingNames": 5739,
-  "phase": 747,
+  "supportedNames": 6092,
+  "pendingNames": 5736,
+  "phase": 748,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3437,
+    "クリーチャー": 3434,
     "NEOクリーチャー": 152,
     "呪文": 813,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4211,
+    "未対応の能力文": 4208,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -8675,30 +8675,89 @@
           "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
         }
       ]
+    },
+    {
+      "phase": 748,
+      "cards": [
+        {
+          "id": "dmsd05-003",
+          "name": "リ・ハナッキ・パンツァー"
+        },
+        {
+          "id": "dm20-022",
+          "name": "キャプテン・ジャイロ"
+        },
+        {
+          "id": "dmx15-s08",
+          "name": "偽りなし ゾルゲXIII"
+        }
+      ],
+      "supportedNames": 6092,
+      "pendingNames": 5736,
+      "verification": {
+        "focusedPassed": 10,
+        "regressionPassed": 262,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "公式カード名検索と全能力文・基本情報・マナ・JPEG画像・殿堂区分を照合し、3種類とも同名は各1版。マッハファイターとマナの選択条件、NEO進化、勝者の識別とタップ支払い・保存復元、登場個体を使うバトル、任意ドローとスレイヤーとの順序を検証。既存カード定義は基点と一致。",
+        "runtimeNote": "各実行は強制終了込み最大10分。Phase 240・252・468・523・588・746・747の関連回帰262件が成功（約9秒）。長時間対戦シミュレーションは限定実行から除外。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dm31-s03",
+          "name": "薩摩の超人",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-s03",
+          "reason": "公式本文と総合ルール507.1を確認。攻撃側ジャイアントへの強制ブロックを守備側の強制ブロックやガードマンと区別し、合法なブロッカーがいない場合を検証するまで保留。"
+        },
+        {
+          "id": "dmr09-036",
+          "name": "驚愕の存在 カニス",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-036",
+          "reason": "Phase 747でクリーチャー自身の効果ブレイクに追加枚数を反映する経路をイーグルで検証済み。カニスは表向きシールド中の常在付与の適用・消失と他の付与元との加算、他カードの効果ブレイクへの適用を検証するまで保留。"
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "対戦データにサイキック・クリーチャーの対象例がなく、対象判定と超次元への移動を実戦経路で検証できないため保留。"
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 747,
-    "nextPhase": 748,
+    "lastVerifiedPhase": 748,
+    "nextPhase": 749,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmsd05-003",
-        "name": "リ・ハナッキ・パンツァー",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd05-003",
-        "check": "バトル勝利時に自然・コスト6以下・非進化の条件でマナから任意展開できるか、既存の選択処理を確認する。"
+        "id": "dmx16-002",
+        "name": "ジャックポット・バトライザー",
+        "check": "勝利時の任意公開、非進化ドラゴン1体の選択、出す処理と残りを墓地に置く順序を確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-002"
       },
       {
-        "id": "dm20-022",
-        "name": "キャプテン・ジャイロ",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-022",
-        "check": "味方のグレートメカオーの勝利時、自身を実際にタップできた場合だけ勝者をアンタップする。既存のタップ選択と勝者参照を確認する。"
+        "id": "dmrp18-s11",
+        "name": "偽爆電融 ゾルネードシヴァ",
+        "check": "EXライフ、常在マッハファイター付与、勝利時の強制ドローと任意ブレイクを確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-s11"
       },
       {
-        "id": "dmx15-s08",
-        "name": "偽りなし ゾルゲXIII",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-s08",
-        "check": "自身または他の味方アウトレイジの登場時に、実際に登場した個体と相手をバトルさせる。勝利時の種族フィルター付き任意ドローも確認する。"
+        "id": "dm23rp4-019",
+        "name": "紅唱龍マグマイッピツ",
+        "check": "任意の2体バトルと勝利ドロー、相手ターン中のシールドブレイク数による独立した登場時誘発を確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-019"
+      },
+      {
+        "id": "dm31-s03",
+        "name": "薩摩の超人",
+        "check": "味方ジャイアントへの強制ブロックと、ガードマンやブロック不能がある場合の優先関係を先に確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-s03"
       },
       {
         "id": "dmrp05-025",

@@ -176175,21 +176175,137 @@
       ],
       "supportBatch": "phase-747",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmsd05-003",
+      "name": "リ・ハナッキ・パンツァー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 12000,
+      "race": "グランセクト",
+      "text": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーがバトルに勝った時、自然のコスト６以下の、進化ではないクリーチャーを１体、自分のマナゾーンからバトルゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd05-003",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "machFighter": true,
+      "breaker": 3,
+      "g189BattleWin": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "faceUp": true,
+            "color": "自然",
+            "max": 6,
+            "nonEvolution": true
+          },
+          "title": "自然のコスト6以下の進化ではないクリーチャーをマナから出す？"
+        }
+      ],
+      "supportBatch": "phase-748",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm20-022",
+      "name": "キャプテン・ジャイロ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "キカイヒーロー",
+      "text": "自分のグレートメカオーがバトルに勝った時、このクリーチャーをタップしてもよい。そうした場合、その勝ったグレートメカオーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-022",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g252WinWatch": {
+        "filter": {
+          "creature": true,
+          "race": "グレートメカオー"
+        },
+        "winner": true,
+        "defs": [
+          {
+            "op": "TapToUntap748"
+          }
+        ]
+      },
+      "supportBatch": "phase-748",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx15-s08",
+      "name": "偽りなし ゾルゲXIII",
+      "civ": "水/火/自然",
+      "civilizations": [
+        "水",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "アウトレイジMAX",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーまたは自分の他のアウトレイジをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選んでもよい。そうした場合、その２体はバトルする。\n自分のアウトレイジがバトルに勝った時、カードを１枚引いてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-s08",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "breaker": 2,
+      "g468EntryWatch": {
+        "filter": {
+          "creature": true,
+          "race": "アウトレイジ"
+        },
+        "mode": "fight"
+      },
+      "g252WinWatch": {
+        "filter": {
+          "creature": true,
+          "race": "アウトレイジ"
+        },
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "カードを1枚引く？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-748",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 747,
+    "phase": 748,
     "checkedAt": "2026-11-10",
-    "baseCount": 6086,
+    "baseCount": 6089,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6089,
+    "totalCount": 6092,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/44212/",
-      "https://dm.takaratomy.co.jp/rule/qa/44319/",
-      "https://dm.takaratomy.co.jp/rule/qa/31568/"
+      "https://dm.takaratomy.co.jp/rule/qa/43297/",
+      "https://dm.takaratomy.co.jp/rule/qa/33609/",
+      "https://dm.takaratomy.co.jp/rule/qa/44319/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -189155,6 +189271,24 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/qa/44319/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 747,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6086,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6089,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/44212/",
+          "https://dm.takaratomy.co.jp/rule/qa/44319/",
+          "https://dm.takaratomy.co.jp/rule/qa/31568/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
