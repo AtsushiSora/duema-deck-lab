@@ -2564,6 +2564,17 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=756&&f.typeText==='クリーチャー'){
+  if(['自分の無色クリーチャーの召喚コストを最大2少なくしてもよい。','自分の無色クリーチャーの召喚コストを最大2少なくする。'].includes(compact363))
+   return {g349SummonAuras:[{filter:{g756Colorless:true},amount:2,g560Optional:true,g756ZeroFloor:true}]};
+  const turbo='ターボラッシュ(自分の他のクリーチャーがシールドをブレイクした';
+  const suffix='そのターンが終わるまでこのクリーチャーは次の能力を得る)';
+  if(compact363===turbo+'あと'+suffix+'このクリーチャーはブロックされない。')
+   return {g756TurboRush:'unblockable'};
+  if([turbo+'後'+suffix+'このクリーチャーが攻撃するとき相手は自分自身の手札をすべて持ち主の墓地に置く。',
+      'ターボラッシュ(このターン中に自分の他のクリーチャーがシールドをブレイクしていればこのターンこのクリーチャーに次の{r}能力を与える){r}このクリーチャーが攻撃する時相手は自身の手札をすべて捨てる。'].includes(compact363))
+   return {g756TurboRush:'discard'};
+ }
  if(phase>=755&&f.typeText==='クリーチャー'){
   if(compact363==='このクリーチャーは自分の手札が2枚以下なら召喚できる。W・ブレイカー(このクリーチャーはシールドを2つブレイクする)')
    return {g755SummonHandMax:2,breaker:2};

@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6114,
-  "pendingNames": 5713,
-  "phase": 755,
+  "supportedNames": 6117,
+  "pendingNames": 5710,
+  "phase": 756,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3411,
+    "クリーチャー": 3408,
     "NEOクリーチャー": 152,
     "呪文": 813,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4186,
+    "未対応の能力文": 4183,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -9114,11 +9114,48 @@
           "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-s08"
         }
       ]
+    },
+    {
+      "phase": 756,
+      "cards": [
+        {
+          "id": "dmx13-034",
+          "name": "ゼロ・ルピア"
+        },
+        {
+          "id": "dm08-040",
+          "name": "イリュージョン・フィッシュ"
+        },
+        {
+          "id": "dm08-044",
+          "name": "ギガクローズ"
+        }
+      ],
+      "supportedNames": 6117,
+      "pendingNames": 5710,
+      "verification": {
+        "focusedPassed": 7,
+        "regressionPassed": 117,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 6,
+        "scope": "3種類と再録・プロモ3版の公式本文、基本情報、マナ、画像、殿堂区分を照合。無色に限る任意の召喚軽減、0マナと既存下限の併用、実際に割れた味方クリーチャーのブレイクと呪文・置換・自身の区別、ブレイク後に出た個体、ブロック前の全手札破棄、保存復元を検証。既存カード定義は基点と一致。",
+        "runtimeNote": "強制終了込み各最大10分。Phase 560・633・747・750・753・755の関連回帰117件が成功。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dm25-024",
+          "name": "プリズム・ブレイン",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-024",
+          "check": "公式の初出本文と旧QA 35545を確認。多色が2枚でも追加は1枚。ドロー置換で別に引いたカードや、その場で手札から移動したカードを公開対象と混同しないよう、実際にこの呪文で引いたカードのUIDを検証するまで保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 755,
-    "nextPhase": 756,
+    "lastVerifiedPhase": 756,
+    "nextPhase": 757,
     "workInProgress": [],
     "nextCandidates": [
       {
@@ -9282,18 +9319,6 @@
         "name": "ウェーブ・クロウラー",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-003",
         "check": "相手が自身のクリーチャーを手札に戻せた場合にだけ自己バウンスする。対象が移動できない場合や置換された場合と、戻す選択を辞退した場合を区別できる処理を確認するまで保留。"
-      },
-      {
-        "id": "dm08-040",
-        "name": "イリュージョン・フィッシュ",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-040",
-        "check": "公式本文とQA 37329を確認。攻撃と能力のブレイクを区別せず、ブレイクした側・個体と実際に割れたシールドを識別し、自身によるブレイクやブレイク置換を除く処理の検証が必要。"
-      },
-      {
-        "id": "dm08-044",
-        "name": "ギガクローズ",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-044",
-        "check": "公式QA 48037ではブレイク後に登場した個体でも条件を満たす。場の個体だけに付与する方法では再現できないため、ターン内のブレイク履歴の検証まで保留。"
       },
       {
         "id": "dm13-037",
@@ -9510,6 +9535,12 @@
         "name": "ドドド・ドーピードープ",
         "check": "初出の公式本文と再録商品（DMEX05・DMBD22）を確認。超GRゾーンとGR召喚の実装後に、再録と攻撃時の2枚破棄を検証するまで保留。",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-s08"
+      },
+      {
+        "id": "dm25-024",
+        "name": "プリズム・ブレイン",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-024",
+        "check": "公式の初出本文と旧QA 35545を確認。多色が2枚でも追加は1枚。ドロー置換で別に引いたカードや、その場で手札から移動したカードを公開対象と混同しないよう、実際にこの呪文で引いたカードのUIDを検証するまで保留。"
       }
     ],
     "steps": [

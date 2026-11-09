@@ -703,9 +703,13 @@ function baseSummonCost297(s,p,c){
  const base=c.g29BT?Math.max(3,costValue(c)+tax-s.players.reduce((n,p)=>n+p.battle.filter(x=>isCreature(s,x)).length,0)):c.graveSpellReduction?Math.max(2,costValue(c)+tax-s.players[p].grave.filter(x=>playFaces(card(x)).some(c=>c.type==='spell')).length):extra.golgy.baseCost(s,p,c)+tax;
  const rupias=extra.utilityTop.rupias(s,p,c);
  const beforeMinimum=extra.six.floorCost500(s,p,c,base)-2*rupias-(c.g40Reduction||0)-(c.g39Reduction||0)-extra.six.discount(s,p,c)-extra.shieldPhoto.discount(s,p,c)-extra.phoenix.discount(s,p,c)-extra.mado.discount(s,p,c)-(c.g29Arc&&s.players[p].battle.some(x=>isCreature(s,x)&&String(effectiveCard(x,s).race).includes('アーマード'))?1:0)-(c.type==='creature'&&String(c.race).includes('ドラゴン')?s.players[p].battle.filter(x=>effectiveCard(x,s).g29Bird).length:0)-extra.golgy.discount(s,p,c)-extra.virideDiscount(s,p,c)-graveReduction-creatureSympathy-(c.madoMomo&&s.players[p].grave.filter(x=>card(x).type!=='creature').length>=4?90:0)-(c.type==='spell'?s.players[p].battle.filter(x=>effectiveCard(x,s).kurokami).length:0)-(c.opponentCreatureReduction?s.players[1-p].battle.filter(x=>isCreature(s,x)).length:0)-(c.manaSympathy?s.players[p].mana.length:0)-extra.abyssDiscount(s,p,c)-extra.samuraiDiscount(s,p,c)-extra.giantDiscount(s,p,c)-extra.hunterDiscount(s,p,c)-extra.armoredDiscount(s,p,c)-extra.magicDiscount(s,p,c)-extra.mechaDiscount(s,p,c)-extra.granDiscount(s,p,c)-(c.gio?c.gioRevealCount||0:0)-(c.gggReduction&&s.players[p].hand.length<=1?c.gggReduction:0)-extra.raceDiscount(s,p,c)-(c.type==='creature'?extra.nextDiscount(s,p):0)-(reduce?3:0)-gaia-(c.costReduction==='allCreatures'?s.players.reduce((n,p)=>n+p.battle.filter(x=>isCreature(s,x)).length,0):0);
- const laterReduction=extra.six.sympathyDiscount211(s,p,c)+extra.six.countDiscount212(s,p,c)+extra.six.conditionalDiscount261(s,p,c)+extra.utilityControl.firstSpellDiscount(s,p,c)+extra.six.summonAuraDiscount290(s,p,c)+extra.six.firstSummonDiscount463(s,p,c)+extra.six.onceDiscount464(s,p,c)+extra.six.spellDiscount467(s,p,c)+extra.six.useDiscount468(s,p,c)+extra.six.revealDiscount470(s,p,c)+extra.six.untapDiscount472(s,p,c);
+ const aura=extra.six.summonAuraDiscount290(s,p,c);
+ const laterReduction=extra.six.sympathyDiscount211(s,p,c)+extra.six.countDiscount212(s,p,c)+extra.six.conditionalDiscount261(s,p,c)+extra.utilityControl.firstSpellDiscount(s,p,c)+aura.amount+extra.six.firstSummonDiscount463(s,p,c)+extra.six.onceDiscount464(s,p,c)+extra.six.spellDiscount467(s,p,c)+extra.six.useDiscount468(s,p,c)+extra.six.revealDiscount470(s,p,c)+extra.six.untapDiscount472(s,p,c);
  // A printed zero costs nothing until a reduction with a positive minimum applies (QA40378).
  if(costValue(c)===0&&base===0&&beforeMinimum===0&&laterReduction===0)return 0;
+ // A minimum from another applied reduction still applies (QA39980).
+ if(aura.zeroAmount>0&&beforeMinimum===base&&laterReduction===aura.zeroAmount)
+  return Math.max(0,base-aura.zeroAmount);
  const reduced=Math.max(rupias||c.graveSpellReduction?2:1,beforeMinimum);
  return Math.max(c.g212CountDiscount?.minimum===0?0:1,reduced-laterReduction);
 }
@@ -1291,6 +1295,8 @@ function resolveAttack(s,blockUid){
 // Rule 509.5: selected shields leave together. Declare every trigger before executing any.
 function breakShields(s,defender,uids){
  uids=uids.filter(uid=>findShield(s.players[defender],uid));if(!uids.length){s.breakContext=null;return;}
+ if(s.breakContext&&s.breakContext.g756Breaker===undefined)
+  s.breakContext.g756Breaker=extra.six.breakerRefs756(s,s.breakContext);
  if(extra.beforeBreak(s,defender,uids))return;
  // Rule 609.8: the attacking player's replacement takes priority over a Shield Saver.
  if(!s.breakContext?.burn&&!s.breakContext?.reverse&&!qqBreakSource(s,defender)&&(shieldGuardSources(s,defender).length||shieldSaverSources(s,defender).length)){s.shieldBreak={player:defender,uids:[...uids],protections:[]};s.decision={type:'shieldGuard',player:defender};return;}
@@ -1327,6 +1333,7 @@ function commitShieldBreak(s,defender,uids){
  const pendingBreak={defender,remaining};
  const eligibleFaces=Object.fromEntries(all.flatMap(x=>{if(shieldLeavesToGrave(x)&&!breakContext?.replacementBreak)return [];const faces=!breakContext?.noST&&extra.triggersAllowed(s,defender)?playFaces(card(x)).flatMap((c,face)=>(c.g26Viride&&s.players[1-defender].battle.filter(x=>isCreature(s,x)).length>=3||extra.six.shieldTrigger(s,defender,x,c)||extra.requested393J.shieldTrigger(s,defender,x,c)||c.trigger||c.triggerPlus||c.superTrigger||c.graveTotalTrigger&&s.players.reduce((n,p)=>n+p.grave.length,0)>=c.graveTotalTrigger||c.rev2Trigger&&s.players[defender].shields.length-count<=2||x.g19ShieldST!==undefined||c.type==='spell'&&extra.spellShieldTrigger(s,defender)||c.shieldConditionalTrigger&&s.players[defender].grave.filter(x=>playFaces(card(x)).some(c=>c.type==='spell')).length>=2)&&extra.triggersAllowed(s,defender,c)&&!extra.triggerLocked597(s,defender,c,remaining,breaker)&&canCastSpell(s,defender,c)&&(extra.spellPermission(s,defender,c)||extra.six.allowsNonLightSpells687(s,c,pendingBreak))?[face]:[]):[];return faces.length?[[x.uid,faces]]:[];})),eligible=Object.keys(eligibleFaces);
  const broken=[];for(const uid of uids){const root=removeShield(s,defender,uid);for(const x of shieldCards(root)){const toGrave=shieldLeavesToGrave(x)&&!breakContext?.replacementBreak;clearBattleState(x,'hand');if(toGrave)addZone(s,s.players[defender],'grave',x);else broken.push(x);}}
+ extra.six.recordBreak756(s,breakContext,count);
  extra.broken(s,breakContext,count);s.players[defender].hand.push(...broken);s.players[defender].brokenThisTurn=(s.players[defender].brokenThisTurn||0)+count;s.metrics[controller].breaks+=count;
  for(const x of broken){if(card(x).triggerPlus)x.triggerPlus=defender!==s.active&&s.players[defender].brokenThisTurn>=2;if(playFaces(card(x)).some(c=>c.superTrigger))x.superTrigger=s.players[defender].shields.length===0;}
  log(s,controller,'break',`シールド${count}つ（カード${broken.length}枚）を同時にブレイク（残り${s.players[defender].shields.length}つ）`);
