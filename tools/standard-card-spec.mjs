@@ -2564,6 +2564,21 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=741){
+  if(f.typeText==='クリーチャー'){
+   if(compact363==='このクリーチャーが出た時次の自分のターンのはじめまで自分が攻撃される時相手は自身のパワーが一番小さいクリーチャーを1体選び破壊する。')
+    return {effect:'sixPhoto',g34Tasks:[{op:'PlayerAttackResponse741',defs:[{op:'Custom',name:'opponentExtreme',extreme:'min',to:'grave',g740Power:true}]}]};
+   const start='このクリーチャーをバトルゾーンに出した時バトルゾーンにある相手の';
+   const lock='次の相手のターンのはじめにそのクリーチャーはアンタップされない。';
+   if(compact363===start+'パワーが一番小さいタップされているクリーチャーを1体選ぶ。2体以上あればどちらか好きなほうを選ぶ。'+lock)
+    return {effect:'sixPhoto',g34Tasks:[{op:'Target',filter:{tapped:true},g741MinPower:true,lock:true,title:'タップされている相手の最低パワーのクリーチャーを選ぶ'}]};
+   if(compact363===start+'タップされているクリーチャーを1体選ぶ。'+lock)
+    return {effect:'sixPhoto',g34Tasks:[{op:'Target',filter:{tapped:true},lock:true,title:'タップされている相手のクリーチャーを選ぶ'}]};
+  }
+  if(f.typeText==='進化クリーチャー'&&compact363==='進化:サバイバー1体の上に置く。W・ブレイカー(このクリーチャーはシールドを2つブレイクする)このクリーチャーが攻撃する時進化ではないクリーチャーを1体自分の墓地から出す。自分の他のサバイバーが破壊された時相手のパワーが一番小さいクリーチャーを1体選び破壊する。')
+   return {evolution:{race:'サバイバー'},breaker:2,g34Attack:[{op:'Select',origin:'grave',n:1,deploy:true,filter:{creature:true,nonEvolution:true}}],
+    g303DeathWatch:{race:'サバイバー',g725RemainInBattle:true,defs:[{op:'Target',to:'grave',g741MinPower:true,title:'破壊する相手の最低パワーのクリーチャーを選ぶ'}]}};
+ }
  if(phase>=740&&f.typeText==='クリーチャー'){
   const trigger='S・トリガーS・トリガー';
   const extreme=(which,untapped=false)=>({op:'Custom',name:'opponentExtreme',extreme:which,to:'grave',g740Power:true,...(untapped?{untapped}:{})});

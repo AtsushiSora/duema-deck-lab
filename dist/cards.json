@@ -175318,22 +175318,176 @@
       },
       "supportBatch": "phase-740",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-021",
+      "name": "バーチカル・ワイバーン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "アーマード・ワイバーン",
+      "text": "{STP} S・トリガー・プラス（このクリーチャーを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい。それが相手のターンで、そのターン中に自分のシールドが２つ以上ブレイクされていれば、このクリーチャーに{x+}能力を与える）\n{x+}このクリーチャーが出た時、相手のパワー12000以下のクリーチャーを１体選び、破壊する。\nこのクリーチャーが出た時、次の自分のターンのはじめまで、自分が攻撃される時、相手は自身のパワーが一番小さいクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-021",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "PlayerAttackResponse741",
+          "defs": [
+            {
+              "op": "Custom",
+              "name": "opponentExtreme",
+              "extreme": "min",
+              "to": "grave",
+              "g740Power": true
+            }
+          ]
+        }
+      ],
+      "triggerPlus": true,
+      "g34Plus": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 12000,
+            "g199Power": true
+          }
+        }
+      ],
+      "supportBatch": "phase-741",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex2-048",
+      "name": "イプシロン・トゥレイト",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "サバイバー",
+      "text": "進化：サバイバー１体の上に置く。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、進化ではないクリーチャーを１体、自分の墓地から出す。\n自分の他のサバイバーが破壊された時、相手のパワーが一番小さいクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-048",
+      "limit": 4,
+      "evolution": {
+        "race": "サバイバー"
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          }
+        }
+      ],
+      "g303DeathWatch": {
+        "race": "サバイバー",
+        "g725RemainInBattle": true,
+        "defs": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "g741MinPower": true,
+            "title": "破壊する相手の最低パワーのクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-741",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-014",
+      "name": "白騎士の精霊グラビテウス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4500,
+      "race": "エンジェル・コマンド",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手の、パワーが一番小さいタップされているクリーチャーを１体選ぶ。２体以上あれば、どちらか好きなほうを選ぶ。次の相手のターンのはじめに、そのクリーチャーはアンタップされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-014",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "filter": {
+            "tapped": true
+          },
+          "g741MinPower": true,
+          "lock": true,
+          "title": "タップされている相手の最低パワーのクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-741",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm28-015",
+      "name": "遊撃鉄人アザース",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "グレートメカオー",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のタップされているクリーチャーを１体選ぶ。次の相手のターンのはじめに、そのクリーチャーはアンタップされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-015",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "filter": {
+            "tapped": true
+          },
+          "lock": true,
+          "title": "タップされている相手のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-741",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 740,
+    "phase": 741,
     "checkedAt": "2026-11-10",
-    "baseCount": 6063,
-    "newEffectCards": 3,
+    "baseCount": 6066,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6066,
+    "totalCount": 6070,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/45223/",
-      "https://dm.takaratomy.co.jp/rule/qa/42949/",
+      "https://dm.takaratomy.co.jp/rule/qa/43058/",
+      "https://dm.takaratomy.co.jp/rule/qa/43057/",
+      "https://dm.takaratomy.co.jp/rule/qa/43334/",
       "https://dm.takaratomy.co.jp/rule/qa/43335/",
-      "https://dm.takaratomy.co.jp/rule/qa/41457/"
+      "https://dm.takaratomy.co.jp/rule/qa/43290/",
+      "https://dm.takaratomy.co.jp/rule/qa/31530/",
+      "https://dm.takaratomy.co.jp/rule/qa/44661/",
+      "https://dm.takaratomy.co.jp/rule/qa/45223/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36517/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -188157,6 +188311,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/45223/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37943/",
           "https://dm.takaratomy.co.jp/rule/qa/42947/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 740,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6063,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6066,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/45223/",
+          "https://dm.takaratomy.co.jp/rule/qa/42949/",
+          "https://dm.takaratomy.co.jp/rule/qa/43335/",
+          "https://dm.takaratomy.co.jp/rule/qa/41457/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
