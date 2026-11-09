@@ -2476,6 +2476,21 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=687&&creature){
+  const text=normalize(f.abilityText);
+  if(text==='自分の光と自然を両方持つクリーチャーがバトルゾーンに出た時自分の山札の上から1枚目をマナゾーンに置いてもよい。'){
+   return {g251EntryDraw:{
+    filter:{creature:true,colorsAll:['光','自然']},
+    defs:[{op:'Ramp',n:1,optional:true}]
+   }};
+  }
+  if(text==='自分のクリーチャーの数が自分のシールドの数以上ならこのクリーチャーに「スピードアタッカー」を与える。(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)'){
+   return {g260Self:{filter:{g687CreatureCountAtLeastShields:true},grants:{speedAttacker:true}}};
+  }
+  if(text==='ブロッカーブロッカーT・ブレイカー相手のシールドが2つ以下なら誰も光以外の呪文を唱えられない。'){
+   return {blocker:true,breaker:3,g687OnlyLightSpells:2};
+  }
+ }
  if(phase>=686){
   const text=normalize(f.abilityText);
   const trigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';

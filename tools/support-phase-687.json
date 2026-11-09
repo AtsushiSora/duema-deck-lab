@@ -1,0 +1,141 @@
+{
+  "phase": 687,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5887,
+  "description": "光と自然の登場監視、場のクリーチャーとシールドの数による速攻、両プレイヤーの呪文制限。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37245/",
+    "https://dm.takaratomy.co.jp/rule/qa/44581/",
+    "https://dm.takaratomy.co.jp/rule/qa/48474/"
+  ],
+  "cards": [
+    {
+      "id": "dmr23-038",
+      "name": "求愛の面 フレガータ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-038",
+      "faces": [
+        {
+          "name": "求愛の面 フレガータ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の光と自然を両方持つクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+          "race": "ビーストフォーク號",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "colorsAll": [
+              "光",
+              "自然"
+            ]
+          },
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "aeafdc903064b8960425106527f6b1dfd7f463c49a6ea1450e29c865dee61daf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr20-064",
+      "name": "爆音MC ナレ太",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-064",
+      "faces": [
+        {
+          "name": "爆音MC ナレ太",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のクリーチャーの数が自分のシールドの数以上なら、このクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "ヒューマノイド爆",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g687CreatureCountAtLeastShields": true
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr20-064.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "3b5042adf22289a468609fde1eb48ca56d708d52e9d358690ae0ee433d6a6f09",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr17-s02",
+      "name": "九極 デュエンジェル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-s02",
+      "faces": [
+        {
+          "name": "九極 デュエンジェル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "ブロッカー ブロッカー\nT・ブレイカー\n相手のシールドが２つ以下なら、誰も光以外の呪文を唱えられない。",
+          "race": "エンジェル・コマンド/侵略者",
+          "powerText": "13500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 3,
+        "g687OnlyLightSpells": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "09725878e01352eface451cbca1040e3cb3ea8efd492977fe59fd55dff46a8c3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr23-038": 4,
+      "dmr20-064": 4,
+      "dmr17-s02": 4
+    }
+  }
+}

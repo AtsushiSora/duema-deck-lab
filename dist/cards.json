@@ -169719,19 +169719,102 @@
       ],
       "supportBatch": "phase-686",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-038",
+      "name": "求愛の面 フレガータ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ビーストフォーク號",
+      "text": "自分の光と自然を両方持つクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-038",
+      "limit": 4,
+      "g251EntryDraw": {
+        "filter": {
+          "creature": true,
+          "colorsAll": [
+            "光",
+            "自然"
+          ]
+        },
+        "defs": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "supportBatch": "phase-687",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr20-064",
+      "name": "爆音MC ナレ太",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ヒューマノイド爆",
+      "text": "自分のクリーチャーの数が自分のシールドの数以上なら、このクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-064",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "g687CreatureCountAtLeastShields": true
+        },
+        "grants": {
+          "speedAttacker": true
+        }
+      },
+      "supportBatch": "phase-687",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-s02",
+      "name": "九極 デュエンジェル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 13500,
+      "race": "エンジェル・コマンド/侵略者",
+      "text": "ブロッカー ブロッカー\nT・ブレイカー\n相手のシールドが２つ以下なら、誰も光以外の呪文を唱えられない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-s02",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 3,
+      "g687OnlyLightSpells": 2,
+      "supportBatch": "phase-687",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 686,
+    "phase": 687,
     "checkedAt": "2026-11-09",
-    "baseCount": 5884,
+    "baseCount": 5887,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5887,
+    "totalCount": 5890,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/40177/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37245/",
+      "https://dm.takaratomy.co.jp/rule/qa/44581/",
+      "https://dm.takaratomy.co.jp/rule/qa/48474/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -181542,6 +181625,22 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/38674/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 686,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5884,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5887,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/40177/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
