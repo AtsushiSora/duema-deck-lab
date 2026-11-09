@@ -70,7 +70,9 @@ export function effectiveCard(inst,context,forPower=false){
  if(owner==null||owner<0){if(context)for(const p of [0,1]){const c=zoneCard(context,p,inst);if(c!==base)return c;}return base;}
  base=zoneCard(context,owner,inst,'battle');
  if(abilitiesIgnored(context,inst)){const {id,name,type,civ,civilizations,manaValue,cost,power,race,limit,sMax,starEvolution}=base;return externalBlockState(context,owner,inst,extra.utilityNatureSupport.decorate(context,owner,inst,{id,name,type,civ,civilizations,manaValue,cost,...(inst.g40Reckless?.turn===context.turn||extra.six.forced546(context,owner,inst)?{mustAttack:true}:{}),...(sMax?{sMax:true}:{}),...(starEvolution?{starEvolution:true}:{}),power:base.hyperTap&&inst.hyperActive?base.hyper.power:power,race,limit}));}
- let c=inheritSoul404(base.hyper&&inst.hyperActive?{...base,...base.hyper}:base,inst,card,layers);if(base.natureAce4&&!isCreature(context,inst))c={...c,type:'seed',power:0};
+ // Track ordinary Blocker grants separately from the printed Dragon Blocker.
+ const printed=base.g716DragonBlock?{...base,blocker:false}:base;
+ let c=inheritSoul404(base.hyper&&inst.hyperActive?{...printed,...base.hyper}:printed,inst,card,layers);if(base.natureAce4&&!isCreature(context,inst))c={...c,type:'seed',power:0};
  if(c.type==='creature'&&c.g662ShieldGoStats){
   const count=extra.shieldPhoto.shieldGoCount(context,owner);
   if(count)c={...c,power:numeric(c.power)+count*c.g662ShieldGoStats,extraBreak:(c.extraBreak||0)+count};
@@ -157,6 +159,7 @@ export function effectiveCard(inst,context,forPower=false){
   c={...c,breaker:count==='∞'||c.breaker==='∞'?'∞':Math.max(Number(c.breaker)||1,count)};
  }
  if(breakerChoices)c={...c,g633BreakerChoices:[...new Set([2,...breakerChoices])]};
+ if(c.g716DragonBlock)c={...c,blocker:true,g716DragonBlockOnly:!c.blocker};
  return c;
 }
 export const playFaces=c=>c.g393JWDFaces?c.g393JWDFaces.map(f=>({id:c.id,limit:c.limit,...f})):c.spellFace?[c,{id:c.id,limit:c.limit,...c.spellFace}]:[c];
@@ -1022,6 +1025,7 @@ function attackTargetAllowed(s,attacker,target){
 // Check the current characteristics before declaring a blocker. Battle-only
 // bonuses (including Hunting) have not started; attack and continuous bonuses have.
 function blockAttackerAllowed(s,attacker,blocker){
+ if(card(blocker).g716DragonBlock&&effectiveCard(blocker,s).g716DragonBlockOnly&&!isDragon(effectiveCard(attacker,s)))return false;
  if(unblockedNow(s,attacker)||(effectiveCard(attacker,s).g408LessPowerBlock||(attacker.g34Grants||[]).some(g=>g.turn===s.turn&&g.g408LessPowerBlock))&&power(blocker,false,s)<power(attacker,true,s))return false;
  if(extra.six.weakerBlock569(s,attacker,blocker))return false;
  const f=effectiveCard(attacker,s).g206NoBlock;if(!f)return true;

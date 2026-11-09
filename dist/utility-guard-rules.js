@@ -15,6 +15,6 @@ export function createUtilityGuardRules(api){
  default:throw Error('未実装の光の防御補助選択：'+t.op);
  }return true;}
  return{run,chosen,effect(s,p,c,uid){if(!c.g81Effect)return false;put(s,task('g81_'+c.g81Effect,p,c.id,{uid}));return true;},
- decorate(s,p,x,c){if(c.type!=='creature'||!c.blocker||x.sealed)return c;const n=living(s,p).filter(y=>y.uid!==x.uid&&card(y).g81Muru&&!api.ignored(s,y)).length;return n?{...c,power:c.power+3000*n}:c;},
+ decorate(s,p,x,c){if(c.type!=='creature'||(!c.blocker&&!c.g716DragonBlock)||x.sealed)return c;const n=living(s,p).filter(y=>y.uid!==x.uid&&card(y).g81Muru&&!api.ignored(s,y)).length;return n?{...c,power:c.power+3000*n}:c;},
  mainActions(s,p){if(![0,1].some(q=>living(s,q).some(x=>/エンジェル・コマンド/.test(api.effective(x,s).race||''))))return[];return s.players[p].hand.filter(x=>card(x).g81Webius&&api.canCast(s,p,card(x),'hand')&&api.canEnter(s,p,card(x),{origin:'hand',execution:true})).map(x=>({kind:'play',uid:x.uid,cardId:x.cardId,cost:0,freeSummon:'G・ゼロ',label:card(x).name+'をG・ゼロで召喚'}));}};
 }

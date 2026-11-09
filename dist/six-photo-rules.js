@@ -343,6 +343,7 @@ export function createSixPhotoRules(api){
  }
  function battlePower209(s,x,y,c){
   const t=c.g209BattlePower;if(!t||!s)return 0;const p=s.players.findIndex(p=>p.battle.some(z=>z.uid===x.uid));if(p<0)return 0;
+  if(t.opponentDragon&&(!y||!race(effective(y,s),'ドラゴン')))return 0;
   if(t.opponentColors&&(!y||!t.opponentColors.some(q=>colors(effective(y,s)).includes(q))))return 0;
   if(t.vsBlocker&&(!y||!effective(y,s).blocker)||t.opponentMaxCost!=null&&(!y||cost(effective(y,s))>t.opponentMaxCost)||t.handMax!=null&&s.players[p].hand.length>t.handMax||t.opponentTurn&&s.active===p)return 0;
   return t.amount*(t.graveFire?s.players[p].grave.filter(z=>faces(card(z)).some(f=>colors(f).includes('火'))).length:1);
@@ -1013,6 +1014,17 @@ export function createSixPhotoRules(api){
  case'g34_CountDraw':{const n=countDraw(s,t.p,t);if(n)start(s,t,[t.optional==='each'?{op:'DrawUpTo',n,g203Draw:true}:t.optional==='all'?{op:'Offer',title:'カードを'+n+'枚まとめて引く？',defs:[{op:'Draw',n}]}:{op:'Draw',n}]);break;}
  // Choose the entry order as well as the cards: a newly entered creature may be an evolution base.
  // Keep entry triggers pending until the whole army is placed; never include subsequently recycled cards.
+ case'g34_OpponentHandArmy716':
+  put(s,{...t,op:'g34_HandArmy716',p:1-t.p});
+  break;
+ case'g34_HandArmy716':{
+  const rows=t.n>0?list(s,{...t,origin:'hand',deploy:true,filter:{g228Face:{type:'creature'}}}):[];
+  if(!rows.length){put(s,task('g34_Custom',t.p,t.source,{name:'finishBatch'}));break;}
+  choice(s,t,'自分の手札から出すクリーチャーを選ぶ（あと'+t.n+'体まで）',[
+   ...rows.map(({x})=>opt(card(x).name,x.uid,15+cost(card(x)),x.cardId)),opt('ここまでで確定',null,0)
+  ]);
+  break;
+ }
  case'g34_GraveArmy':{const ids=t.ids??own.grave.map(y=>y.uid),selected=t.selected||[],rows=list(s,{...t,origin:'grave',deploy:true,selected}).filter(r=>ids.includes(r.x.uid));if(selected.length>=t.n||!rows.length){put(s,task('g34_Custom',t.p,t.source,{name:'finishBatch'}));break;}s.g34DeployBatch=true;choice(s,{...t,ids,selected},'墓地から出す闇のクリーチャーを選ぶ（'+selected.length+'/'+t.n+'体）',[...rows.map(({x})=>opt(card(x).name,{uid:x.uid,origin:'grave',p:t.p},15+cost(card(x)),x.cardId)),opt('ここまでで確定',null,0)]);break;}
  // A resolved delayed move follows the same creature through evolution and control changes.
  case'g34_DelayedMove532':{const host=sourceHost474(s,t);if(host)move(s,[{player:host.p,uid:host.x.uid,to:t.to,destroy:t.to==='grave',controller:t.controller??t.p}]);break;}
@@ -1266,7 +1278,15 @@ export function createSixPhotoRules(api){
  case'g34_ManaDeploy523':{const max=own.mana.length;start(s,t,[t.summon?{op:'Execute',origin:'hand',creatureOnly:true,max,optional:t.optional}:{op:'Select',origin:t.origin,n:1,deploy:true,optional:t.optional,filter:{...t.filter,max}}]);break;}
  case'g34_PowerSweep696':choice(s,t,t.max+'以下の数字を選ぶ',powerSweepOptions696(s,t));break;
  case'g34_CostSweep596':choice(s,t,'一掃する相手クリーチャーのコストを選ぶ',costSweepOptions(s,t));break;
- case'g34_Sweep':{const rows=[0,1].filter(p=>t.both||p!==t.p).flatMap(p=>s.players[p].battle.filter(y=>matches(s,p,y,t.filter)).filter(y=>!t.excludeUid||y.uid!==t.excludeUid).map(y=>({player:p,uid:y.uid,to:t.to||'grave',destroy:(t.to||'grave')==='grave'})));if(rows.length)move(s,rows);break;}
+ case'g34_Sweep':{
+  const players=t.owner==='self'?[t.p]:t.both?[0,1]:[1-t.p];
+  const to=t.to||'grave';
+  const rows=players.flatMap(p=>s.players[p].battle
+   .filter(y=>matches(s,p,y,t.filter)&&y.uid!==t.excludeUid&&(!t.g179Other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))))
+   .map(y=>({player:p,uid:y.uid,to,destroy:to==='grave'})));
+  if(rows.length)move(s,rows);
+  break;
+ }
  case'g34_TapState235':{const y=s.players[t.target.p].battle.find(y=>y.uid===t.target.uid&&(y.incarnation||0)===t.target.incarnation);if(y)choice(s,t,'「'+card(y).name+'」をどうする？',[opt('タップする',true,tapStateScore235(s,t,t.target.p,y,true)),opt('アンタップする',false,tapStateScore235(s,t,t.target.p,y,false))]);break;}
  case'g34_ManaChoose582':
   if(t.who==='choose')choice(s,t,'マナからカードを選ぶプレイヤーを決める',[opt('自分',t.p,0),opt('相手',1-t.p,Math.min(t.n,manaRows582(s,1-t.p,t).length)*10)]);
@@ -1568,6 +1588,12 @@ export function createSixPhotoRules(api){
  case'g34_DiscardFor248':{const y=own.hand.find(y=>y.uid===v);if(y&&matches(s,t.p,y,t.g488DiscardFilter))api.discardSelected(s,t.p,[y.uid],t.source,t.p,{...t,op:'g34_Sequence',defs:discardDefs248(s,t,y)});break;}
  case'g34_DiscardCost655':if(t.costs.includes(v))start(s,t,[destroyBelowCost655(v)]);break;
  case'g34_DiscardDraw':if(v&&own.hand.some(y=>y.uid===v&&(!t.filter||matches(s,t.p,y,t.filter)))){put(s,task('draw',t.p,t.source,{n:t.n}));api.discardSelected(s,t.p,[v],t.source,t.p);}break;
+ case'g34_HandArmy716':
+  if(v){
+   s.g34DeployBatch=true;
+   put(s,{...t,op:'g34_Put',origin:'hand',owner:t.p,target:v,execution:false},{...t,n:t.n-1});
+  }else put(s,task('g34_Custom',t.p,t.source,{name:'finishBatch'}));
+  break;
  case'g34_GraveArmy':if(v)put(s,{...t,op:'g34_Put',origin:'grave',owner:t.p,target:v.uid,execution:false},{...t,selected:[...t.selected,v.uid]});else put(s,task('g34_Custom',t.p,t.source,{name:'finishBatch'}));break;
  case'g34_RampCost411':start(s,t,[{op:'Sweep',both:true,to:'mana',filter:{creature:true,...(v==='∞'?{}:{max:v})}}]);break;
  case'g34_AttackOtherMana409':if(v){const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation);if(y&&y!==attackHost408(s,t)){move(s,[{player:t.p,uid:y.uid,to:'mana'}]);start(s,t,[{op:'OpponentSelect',n:1,to:'mana'}]);}}break;

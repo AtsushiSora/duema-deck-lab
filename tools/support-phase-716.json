@@ -1,0 +1,189 @@
+{
+  "phase": 716,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5981,
+  "description": "ドラゴン・ブロッカーとドラゴン戦の強化、相手の手札からの順次登場、自分の他のクリーチャーの一斉破壊を実装。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35125/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35291/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35160/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+  ],
+  "cards": [
+    {
+      "id": "dm08-006",
+      "name": "光器サーシャ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-006",
+      "faces": [
+        {
+          "name": "光器サーシャ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ドラゴン・ブロッカー(相手のドラゴンが攻撃するとき、このクリーチャーをタップして、その攻撃を阻止してよい。 その後、そのドラゴンとバトルする)\nドラゴンとバトルするとき、このクリーチャーのパワーは+6000される。\nW(ダブル)・ブレイカー",
+          "race": "メカ・デル・ソル",
+          "powerText": "9500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "blocker": true,
+        "g716DragonBlock": true,
+        "g209BattlePower": {
+          "amount": 6000,
+          "opponentDragon": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm08-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "373bcc9c1b97e259244805e8a2e1d0b6dcca9930edd2c8e096ff042253559866",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-s05",
+      "name": "驚天の超人",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-s05",
+      "faces": [
+        {
+          "name": "驚天の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、相手は自分自身の手札からクリーチャーを２体まで選び、バトルゾーンに出してもよい。\nT・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "ジャイアント",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OpponentHandArmy716",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-s05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "a8cbb46f3ddffb5790680c3f59aeb0cc75deb0b4b97b8e061cd0fb2fb08c5138",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm05-s03",
+      "name": "殺戮の羅刹デス・クルーザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-s03",
+      "faces": [
+        {
+          "name": "殺戮の羅刹デス・クルーザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、バトルゾーンにある自分の他のクリーチャーすべてを、自分の墓地に置く。\nT(トリプル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "デーモン・コマンド",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "owner": "self",
+            "g179Other": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm05-s03.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "1794e5d21f28648c27f1be4f10e0dbadc98d8f1c8a1fc33b4139fca5b25eb569",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx19-s25",
+      "name": "殺戮の羅刹デス・クルーザー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx19-s25",
+      "faces": [
+        {
+          "name": "殺戮の羅刹デス・クルーザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の他のクリーチャーをすべて破壊する。\nT・ブレイカー",
+          "race": "デーモン・コマンド",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "owner": "self",
+            "g179Other": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "canonicalId": "dm05-s03",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx19-s25.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "174010ef54f84b31a4061b8d474e3b172d7dfeb5e4d4968365cd5bb2cc4f23ab",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm08-006": 4,
+      "dm09-s05": 4,
+      "dm05-s03": 4,
+      "dmx19-s25": 4
+    }
+  }
+}
