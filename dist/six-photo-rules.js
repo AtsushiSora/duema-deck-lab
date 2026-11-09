@@ -1883,6 +1883,12 @@ export function createSixPhotoRules(api){
   return moves;
  },
  destroyToHand390(s,p,x){return !x.sealed&&creatures(s,p).some(y=>{const rule=!y.sealed&&effective(y,s).g390DestroyToHand;return rule&&matches(s,p,x,rule.filter);});},
+ optionalDestroyToHand720(s,p,x){
+  return creatures(s,p).some(source=>{
+   const filter=!source.sealed&&effective(source,s).g720OptionalDestroyToHand;
+   return filter&&matches(s,p,x,filter);
+  });
+ },
  noLose(s,p){return(s.extLimits||[]).some(l=>l.kind==='g34NoLose'&&l.player===p)||active(s,p,'valhalla').some(()=>s.players[p].mana.filter(x=>api.manaColors(card(x),s,p).includes('光')).length>=9);},
  lossOptions(s,p){return s.players[p].mana.length>=8?active(s,p,'minogami').map(x=>opt(card(x).name+'：マナ8枚を山札の下に置く',{kind:'g34Mino',uid:x.uid},60,x.cardId)):[];},
  beginLoss(s,p,uid){const x=s.players[p].battle.find(x=>x.uid===uid);if(x)minoLoss(s,{op:'g34_Custom',name:'minoLoss',p,source:x.cardId,uid,selected:[]});},

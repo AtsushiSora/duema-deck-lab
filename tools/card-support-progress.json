@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-09",
   "catalogueNames": 11829,
-  "supportedNames": 5994,
-  "pendingNames": 5835,
-  "phase": 719,
+  "supportedNames": 5998,
+  "pendingNames": 5831,
+  "phase": 720,
   "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3511,
+    "クリーチャー": 3507,
     "NEOクリーチャー": 153,
     "呪文": 826,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1263,
-    "未対応の能力文": 4293,
+    "未対応の能力文": 4289,
     "未対応のG・ゼロ条件": 27,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -6933,36 +6933,114 @@
           "reason": "公式本文を確認。ベンゾと同様、シールドを割らずに手札に加えた際の汎用S・トリガー宣言とシールドの束の扱いを検証するまで保留。"
         }
       ]
+    },
+    {
+      "phase": 720,
+      "cards": [
+        {
+          "id": "dm19-011",
+          "name": "霊騎ラファーム"
+        },
+        {
+          "id": "dm19-051",
+          "name": "メディカル・アルナイル"
+        },
+        {
+          "id": "dm16-047",
+          "name": "緊縛の影バインド・シャドウ"
+        },
+        {
+          "id": "dm35-010",
+          "name": "スベンガリィ・クロウラー"
+        }
+      ],
+      "supportedNames": 5998,
+      "pendingNames": 5831,
+      "printAliases": [
+        {
+          "id": "dm25ex2-Cho049",
+          "canonicalId": "dm16-047",
+          "name": "緊縛の影バインド・シャドウ"
+        },
+        {
+          "id": "dmx12b-102",
+          "canonicalId": "dm16-047",
+          "name": "緊縛の影バインド・シャドウ"
+        }
+      ],
+      "verification": {
+        "focusedPassed": 10,
+        "regressionPassed": 202,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 6,
+        "scope": "初出4種類・再録2版の公式本文全体・基本情報・マナ数・JPEG画像・現行の殿堂一覧を照合。登場時のタップを両陣営・多色・無償登場・進化で確認。攻撃制限とブロック、任意破壊置換の選択途中の復元と同時破壊を検証。回帰はphase 295・390・432・609・708・716・719。全体のnpm testは中断・合否未確認。",
+        "runtimeNote": "個別と関連回帰、npm run checkは各最大10分。関連回帰では長時間の対戦シミュレーションを対象外とした。"
+      },
+      "deferred": [
+        {
+          "id": "dm13-006",
+          "name": "宣凶師ドロシア",
+          "reason": "公式旧QA 35247で相手ターン中の自分の効果による破棄も対象と確認。複数枚を同時に捨てた際の誘発と枚数の保持、捨てるかわりの置換を同じ経路で検証できるまで保留。"
+        },
+        {
+          "id": "dm19-023",
+          "name": "封魔ガルプルス",
+          "reason": "初出とプロモ版の公式本文を確認。双方が自分の手札を選ぶ順序、選択後の破棄、マッドネスとの競合、手札が空の側を含む処理を検証できるまで保留。"
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "対戦データにサイキック・クリーチャーの対象例がなく、対象判定と超次元への移動を実戦経路で検証できないため保留。"
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 719,
-    "nextPhase": 720,
+    "lastVerifiedPhase": 720,
+    "nextPhase": 721,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm19-011",
-        "name": "霊騎ラファーム",
-        "check": "火または自然を持つ相手のクリーチャーのタップイン。通常召喚・効果による登場・多色を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-011"
+        "id": "dm16-033",
+        "name": "式神シャーマン",
+        "check": "クロスを契機とするマナ追加の適用条件とタップ状態を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-033"
       },
       {
-        "id": "dm19-051",
-        "name": "メディカル・アルナイル",
-        "check": "味方グランド・デビルの任意破壊置換。能力の発生源との同時破壊、他の置換との競合を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-051"
+        "id": "dm10-066",
+        "name": "不屈のウレックス",
+        "check": "相手からのタップ制限の適用範囲を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-066"
       },
       {
-        "id": "dm19-023",
-        "name": "封魔ガルプルス",
-        "check": "どちらのグランド・デビルの攻撃でも誘発する手札破棄。双方の選択順・捨てる順番・マッドネスを照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-023"
+        "id": "dm19-092",
+        "name": "光線人形ストリウム",
+        "check": "攻撃制限の適用時点と、後から出たクリーチャーを照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-092"
+      },
+      {
+        "id": "dm19-081",
+        "name": "アクア・スクリュー",
+        "check": "他の該当種族が進化した際の誘発条件を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-081"
       },
       {
         "id": "dm13-006",
         "name": "宣凶師ドロシア",
-        "check": "相手ターン中に自分が捨てた枚数に応じてドローする。1枚・複数枚と捨てる代わりの置換を照合する。",
+        "check": "公式旧QA 35247で相手ターン中の自分の効果による破棄も対象と確認。複数枚を同時に捨てた際の誘発と枚数の保持、捨てるかわりの置換を同じ経路で検証できるまで保留。",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-006"
+      },
+      {
+        "id": "dm19-023",
+        "name": "封魔ガルプルス",
+        "check": "初出とプロモ版の公式本文を確認。双方が自分の手札を選ぶ順序、選択後の破棄、マッドネスとの競合、手札が空の側を含む処理を検証できるまで保留。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-023"
       },
       {
         "id": "dm15-010",
