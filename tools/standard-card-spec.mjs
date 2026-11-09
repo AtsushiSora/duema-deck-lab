@@ -2564,6 +2564,16 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=739&&f.typeText==='クリーチャー'){
+  const dragonEntry='このクリーチャーがバトルゾーンにある間自分のドラゴンまたはドラゴノイドがバトルゾーンに出たとき';
+  const filter={creature:true,raceAny:['ドラゴン','ドラゴノイド']};
+  if(compact363===dragonEntry+'自分の山札の上から1枚目を自分のマナゾーンに置く。')
+   return {g251EntryDraw:{filter,defs:[{op:'Ramp',n:1}]}};
+  if(compact363===dragonEntry+'バトルゾーンにあるパワーの一番小さいクリーチャーを1体選び持ち主の墓地に置く。')
+   return {g251EntryDraw:{filter,defs:[{op:'LowestPower739'}]}};
+  if(compact363==='自分の他のクリーチャーがバトルゾーンに出たときこのクリーチャーを自分の墓地に置く。')
+   return {g250EntryDraw:{filter:{creature:true},self:false,defs:[{op:'SelfDestroy'}]}};
+ }
  if(phase>=738){
   if(f.typeText==='クリーチャー'&&compact363==='このクリーチャーがバトルゾーンにある間自分のガーディアンがバトルゾーンに出たときバトルゾーンにある相手のクリーチャーを1体選びタップしてもよい。')
    return {g251EntryDraw:{filter:{creature:true,race:'ガーディアン'},defs:[{op:'Target',tap:true,optional:true,title:'タップする相手のクリーチャーを選ぶ'}]}};

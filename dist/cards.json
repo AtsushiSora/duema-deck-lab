@@ -175090,19 +175090,115 @@
       "g738GraveToHandWithName": "双光の使徒カリュート",
       "supportBatch": "phase-738",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm08-054",
+      "name": "沈黙するバックラー・ホーン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ホーン・ビースト",
+      "text": "このクリーチャーがバトルゾーンにある間、自分のドラゴンまたはドラゴノイドがバトルゾーンに出たとき、自分の山札の上から１枚目を自分のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-054",
+      "limit": 4,
+      "g251EntryDraw": {
+        "filter": {
+          "creature": true,
+          "raceAny": [
+            "ドラゴン",
+            "ドラゴノイド"
+          ]
+        },
+        "defs": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-739",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm08-013",
+      "name": "恐怖の影スクリーム・アサシン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "ゴースト",
+      "text": "このクリーチャーがバトルゾーンにある間、自分のドラゴンまたはドラゴノイドがバトルゾーンに出たとき、バトルゾーンにあるパワーの一番小さいクリーチャーを１体選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-013",
+      "limit": 4,
+      "g251EntryDraw": {
+        "filter": {
+          "creature": true,
+          "raceAny": [
+            "ドラゴン",
+            "ドラゴノイド"
+          ]
+        },
+        "defs": [
+          {
+            "op": "LowestPower739"
+          }
+        ]
+      },
+      "supportBatch": "phase-739",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm08-046",
+      "name": "暴虐虫タイラント・ワーム",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 2000,
+      "race": "パラサイトワーム",
+      "text": "自分の他のクリーチャーがバトルゾーンに出たとき、このクリーチャーを自分の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-046",
+      "limit": 4,
+      "g250EntryDraw": {
+        "filter": {
+          "creature": true
+        },
+        "self": false,
+        "defs": [
+          {
+            "op": "SelfDestroy"
+          }
+        ]
+      },
+      "supportBatch": "phase-739",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 738,
+    "phase": 739,
     "checkedAt": "2026-11-10",
-    "baseCount": 6057,
+    "baseCount": 6060,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6060,
+    "totalCount": 6063,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35145/"
+      "https://dm.takaratomy.co.jp/rule/qa/45223/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37943/",
+      "https://dm.takaratomy.co.jp/rule/qa/42947/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -187892,6 +187988,22 @@
           "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
           "https://dm.takaratomy.co.jp/rule/qa/41471/",
           "https://dm.takaratomy.co.jp/rule/qa/31678/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 738,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6057,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6060,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35145/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

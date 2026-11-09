@@ -1173,6 +1173,7 @@ export function createSixPhotoRules(api){
   move(s,[{player:host.p,uid:host.x.uid,to:'deck',controller:t.controller??t.p}]);
   break;
  }
+ case'g34_LowestPower739':put(s,{...t,op:'g61_Bronx'});break;
  case'g34_SelfDestroy':{const host=sourceHost474(s,t);if(host)move(s,[{player:host.p,uid:host.x.uid,to:'grave',destroy:true,controller:t.controller??t.p}]);break;}
  case'g34_IfMana':if(own.mana.filter(y=>{const cs=api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,t.p);return t.multi?cs.length>1:cs.includes(t.color);}).length>=t.n)start(s,t,t.defs);break;
  case'g34_IfOwnPower':if(creatures(s,t.p).some(y=>api.power(y,y.uid===s.attack?.attacker||y.uid===s.attackLifecycle?.uid&&(y.incarnation||0)===(s.attackLifecycle.incarnation||0),s)>=t.minPower))start(s,t,t.defs);break;

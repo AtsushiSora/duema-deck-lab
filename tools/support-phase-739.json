@@ -1,0 +1,154 @@
+{
+  "phase": 739,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6060,
+  "description": "ドラゴンまたはドラゴノイドの登場誘発によるマナ加速・最低パワーの破壊と、味方の登場に反応する自己破壊に対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/45223/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37943/",
+    "https://dm.takaratomy.co.jp/rule/qa/42947/"
+  ],
+  "cards": [
+    {
+      "id": "dm08-054",
+      "name": "沈黙するバックラー・ホーン",
+      "faces": [
+        {
+          "name": "沈黙するバックラー・ホーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンにある間、自分のドラゴンまたはドラゴノイドがバトルゾーンに出たとき、自分の山札の上から１枚目を自分のマナゾーンに置く。",
+          "race": "ホーン・ビースト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-054",
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "ドラゴン",
+              "ドラゴノイド"
+            ]
+          },
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm08-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "fff09b1e974ca1b60277fd4fcd7e6c028e68012708c15ebc34a6708bbbcea3c1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm08-013",
+      "name": "恐怖の影スクリーム・アサシン",
+      "faces": [
+        {
+          "name": "恐怖の影スクリーム・アサシン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーがバトルゾーンにある間、自分のドラゴンまたはドラゴノイドがバトルゾーンに出たとき、バトルゾーンにあるパワーの一番小さいクリーチャーを１体選び、持ち主の墓地に置く。",
+          "race": "ゴースト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-013",
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "ドラゴン",
+              "ドラゴノイド"
+            ]
+          },
+          "defs": [
+            {
+              "op": "LowestPower739"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm08-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "aa52880ae710fc91b2f95a57e54be7f906077a6c201ef683421d3aaf8f93355a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm08-046",
+      "name": "暴虐虫タイラント・ワーム",
+      "faces": [
+        {
+          "name": "暴虐虫タイラント・ワーム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分の他のクリーチャーがバトルゾーンに出たとき、このクリーチャーを自分の墓地に置く。",
+          "race": "パラサイトワーム",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-046",
+      "spec": {
+        "g250EntryDraw": {
+          "filter": {
+            "creature": true
+          },
+          "self": false,
+          "defs": [
+            {
+              "op": "SelfDestroy"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm08-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "e6254d7365cf9e571bc636178d71e3fd434efcfb9abf7169cc5a894aebc8e5e0",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm08-054": 4,
+      "dm08-013": 4,
+      "dm08-046": 4
+    }
+  }
+}
