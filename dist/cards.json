@@ -174891,23 +174891,134 @@
       ],
       "supportBatch": "phase-736",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm09-028",
+      "name": "毒牙虫ベノム・ワーム",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "パラサイトワーム",
+      "text": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n種族を１つ選ぶ。このターンが終わるまで、その種族のクリーチャーは「スレイヤー」を得る。(「スレイヤー」を持つクリーチャーとバトルした相手クリーチャーは、勝っても持ち主の墓地に置かれる)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-028",
+      "limit": 4,
+      "g736AttackInstead": true,
+      "g439Tap": [
+        {
+          "op": "ChooseRace724",
+          "g737FromCreature": true,
+          "g735Grant": {
+            "slayer": true
+          }
+        }
+      ],
+      "supportBatch": "phase-737",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm09-033",
+      "name": "夢蒼の剛剣",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ビーストフォーク",
+      "text": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n種族を１つ選ぶ。このターン、その種族のクリーチャーは、パワー3000以下のクリーチャーにブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-033",
+      "limit": 4,
+      "g736AttackInstead": true,
+      "g439Tap": [
+        {
+          "op": "ChooseRace724",
+          "g737FromCreature": true,
+          "g735Grant": {
+            "g725NoBlockMaxPower": 3000
+          }
+        }
+      ],
+      "supportBatch": "phase-737",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm09-051",
+      "name": "フル・コマンド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "種族を１つ選ぶ。このターン、その種族のクリーチャーは、アンタップされているクリーチャーを攻撃することができ、クリーチャーを攻撃するときブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-051",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ChooseRace724",
+          "g735Grant": {
+            "attackUntapped": true,
+            "g737CreatureAttackUnblockable": true
+          }
+        }
+      ],
+      "supportBatch": "phase-737",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp1-071",
+      "name": "カート・ビートル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ジャイアント・インセクト",
+      "text": "このクリーチャーが出た時、種族を１つ選び、その後、自分の山札の上から２枚を表向きにする。その中から、選んだ種族を持つカードをすべて手札に加え、残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-071",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ChooseRace724",
+          "g737RevealRace": true
+        }
+      ],
+      "supportBatch": "phase-737",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 736,
+    "phase": 737,
     "checkedAt": "2026-11-10",
-    "baseCount": 6050,
-    "newEffectCards": 3,
+    "baseCount": 6053,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6053,
+    "totalCount": 6057,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
       "https://dm.takaratomy.co.jp/rule/qa/42400/",
       "https://dm.takaratomy.co.jp/rule/qa_old/35476/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35159/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35823/",
-      "https://dm.takaratomy.co.jp/rule/qa/42947/"
+      "https://dm.takaratomy.co.jp/rule/qa/43044/",
+      "https://dm.takaratomy.co.jp/rule/qa/47495/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
+      "https://dm.takaratomy.co.jp/rule/qa/41471/",
+      "https://dm.takaratomy.co.jp/rule/qa/31678/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -187655,6 +187766,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/42400/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35476/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31395/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 736,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6050,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6053,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/42400/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35476/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35159/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35823/",
+          "https://dm.takaratomy.co.jp/rule/qa/42947/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

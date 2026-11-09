@@ -2564,6 +2564,20 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=737){
+  if(f.typeText==='呪文'&&compact363==='種族を1つ選ぶ。このターンその種族のクリーチャーはアンタップされているクリーチャーを攻撃することができクリーチャーを攻撃するときブロックされない。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'ChooseRace724',g735Grant:{attackUntapped:true,g737CreatureAttackUnblockable:true}}]};
+  if(f.typeText==='クリーチャー'){
+   const tapHeader='このクリーチャーで攻撃するかわりにタップして次の能力を使ってもよい。種族を1つ選ぶ。';
+   const body=compact363.startsWith(tapHeader)?compact363.slice(tapHeader.length):null;
+   if(body==='このターンが終わるまでその種族のクリーチャーは「スレイヤー」を得る。(「スレイヤー」を持つクリーチャーとバトルした相手クリーチャーは勝っても持ち主の墓地に置かれる)')
+    return {g736AttackInstead:true,g439Tap:[{op:'ChooseRace724',g737FromCreature:true,g735Grant:{slayer:true}}]};
+   if(body==='このターンその種族のクリーチャーはパワー3000以下のクリーチャーにブロックされない。')
+    return {g736AttackInstead:true,g439Tap:[{op:'ChooseRace724',g737FromCreature:true,g735Grant:{g725NoBlockMaxPower:3000}}]};
+   if(compact363==='このクリーチャーが出た時種族を1つ選びその後自分の山札の上から2枚を表向きにする。その中から選んだ種族を持つカードをすべて手札に加え残りを好きな順序で山札の下に置く。')
+    return {effect:'sixPhoto',g34Tasks:[{op:'ChooseRace724',g737RevealRace:true}]};
+  }
+ }
  if(phase>=736){
   if(f.typeText==='呪文'&&compact363==='種族を1つ選ぶ。その種族のクリーチャーを自分の手札から好きな枚数選び自分のマナゾーンに置いてもよい。')
    return {effect:'sixPhoto',g34Tasks:[{op:'ChooseRace724',g736HandMana:true}]};

@@ -1037,25 +1037,27 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_Lengston724':{
-  const n=creatures(s,t.p).filter(y=>!y.sealed).length;
+  const n=t.g737Race?2:creatures(s,t.p).filter(y=>!y.sealed).length;
   const ids=look(s,{...t,n,public:true});
   if(!api.canMoveZone(s,t.p,'deck')){
    for(const uid of ids)release(s,t.p,uid);
    break;
   }
-  const spells=[],rest=[];
+  const raceName=t.g737Race;
+  const eligible=face=>raceName==='ドラゴン'?race(face,raceName):raceName?exactRaces(face).includes(raceName):face.type==='spell';
+  const taken=[],rest=[];
   for(const uid of ids){
    const y=own.deck.find(y=>y.uid===uid);
    if(!y)continue;
-   if(faces(card(y)).some(face=>face.type==='spell')){
+   if(faces(card(y)).some(eligible)){
     remove(own.deck,uid);
     release(s,t.p,uid);
     clear(y,'hand');
-    spells.push(y);
+    taken.push(y);
    }else rest.push(uid);
   }
-  if(spells.length)api.addZone(s,t.p,'hand',...spells);
-  put(s,{...t,op:'g34_Order',ids:rest,rest:'top',g259OrderTop:true,ordered:[]});
+  if(taken.length)api.addZone(s,t.p,'hand',...taken);
+  put(s,{...t,op:'g34_Order',ids:rest,rest:raceName?'bottom':'top',g259OrderTop:!raceName,ordered:[]});
   break;
  }
  case'g34_ChooseRaceUntap713':{
@@ -1793,9 +1795,11 @@ export function createSixPhotoRules(api){
   // Dragon is a legal declaration and refers to the category (QA42400).
   const chosen=v==='ドラゴン'?{creature:true,race:v}:filter;
   if(t.g735Grant)
-   start(s,t,[{op:'GroupGrant364',owner:'both',filter:chosen,spell:true,grant:t.g735Grant,g521UntilStart:t.g521UntilStart}]);
+   start(s,t,[{op:'GroupGrant364',owner:'both',filter:chosen,spell:!t.g737FromCreature,grant:t.g735Grant,g521UntilStart:t.g521UntilStart}]);
   else if(t.g736ForceAttack)
    start(s,t,[{op:'GroupGrant364',owner:'both',filter:chosen,g736ForceAttack:true,grant:{attackBonus:4000,g736ForcedAttack:true}}]);
+  else if(t.g737RevealRace)
+   start(s,t,[{op:'Lengston724',g737Race:v}]);
   else if(t.g736HandMana)
    start(s,t,[select('hand','mana','all',chosen,{optional:true,g583Group:true,title:'マナに置く手札を好きな枚数選ぶ'})]);
   else if(t.g725Tribal){

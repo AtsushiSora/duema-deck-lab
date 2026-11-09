@@ -1,0 +1,185 @@
+{
+  "phase": 737,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6053,
+  "description": "種族指定によるスレイヤーとブロック制限、アンタップ状態への攻撃、種族での山札回収に対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/42400/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35476/",
+    "https://dm.takaratomy.co.jp/rule/qa/43044/",
+    "https://dm.takaratomy.co.jp/rule/qa/47495/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
+    "https://dm.takaratomy.co.jp/rule/qa/41471/",
+    "https://dm.takaratomy.co.jp/rule/qa/31678/"
+  ],
+  "cards": [
+    {
+      "id": "dm09-028",
+      "name": "毒牙虫ベノム・ワーム",
+      "faces": [
+        {
+          "name": "毒牙虫ベノム・ワーム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n種族を１つ選ぶ。このターンが終わるまで、その種族のクリーチャーは「スレイヤー」を得る。(「スレイヤー」を持つクリーチャーとバトルした相手クリーチャーは、勝っても持ち主の墓地に置かれる)",
+          "race": "パラサイトワーム",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-028",
+      "spec": {
+        "g736AttackInstead": true,
+        "g439Tap": [
+          {
+            "op": "ChooseRace724",
+            "g737FromCreature": true,
+            "g735Grant": {
+              "slayer": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "e869ca3f331c28dfec7ce1b29967b212d68fc7f81b465334aa2ab229da88c8dc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-033",
+      "name": "夢蒼の剛剣",
+      "faces": [
+        {
+          "name": "夢蒼の剛剣",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n種族を１つ選ぶ。このターン、その種族のクリーチャーは、パワー3000以下のクリーチャーにブロックされない。",
+          "race": "ビーストフォーク",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-033",
+      "spec": {
+        "g736AttackInstead": true,
+        "g439Tap": [
+          {
+            "op": "ChooseRace724",
+            "g737FromCreature": true,
+            "g735Grant": {
+              "g725NoBlockMaxPower": 3000
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "b6a1ba48dcb295f879cefac0d984b523919c3dab3277bd55c85b5b367c8286f5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-051",
+      "name": "フル・コマンド",
+      "faces": [
+        {
+          "name": "フル・コマンド",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "種族を１つ選ぶ。このターン、その種族のクリーチャーは、アンタップされているクリーチャーを攻撃することができ、クリーチャーを攻撃するときブロックされない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-051",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ChooseRace724",
+            "g735Grant": {
+              "attackUntapped": true,
+              "g737CreatureAttackUnblockable": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "3f17b39883b7eb6f0266fc3f01b2cc9b2e1ebcdd2082fcb0ae110b6ebceb75ba",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp1-071",
+      "name": "カート・ビートル",
+      "faces": [
+        {
+          "name": "カート・ビートル",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、種族を１つ選び、その後、自分の山札の上から２枚を表向きにする。その中から、選んだ種族を持つカードをすべて手札に加え、残りを好きな順序で山札の下に置く。",
+          "race": "ジャイアント・インセクト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-071",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ChooseRace724",
+            "g737RevealRace": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-071.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "78f316dda7cb42fa682f937191cd63cead87978bbf9e0467eb3be7a6786efae3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm09-028": 4,
+      "dm09-033": 4,
+      "dm09-051": 4,
+      "dm23rp1-071": 4
+    }
+  }
+}
