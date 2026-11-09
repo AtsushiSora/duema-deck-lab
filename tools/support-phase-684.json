@@ -1,0 +1,278 @@
+{
+  "phase": 684,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5880,
+  "description": "D2フィールドのスレイヤー付与、攻撃中の多色手札廃棄とアンタップ、ツインパクト呪文の任意ドローと必須廃棄。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/34203/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36536/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36537/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
+  ],
+  "cards": [
+    {
+      "id": "dmr21-040",
+      "name": "オーバーキル・グレイブヤード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-040",
+      "faces": [
+        {
+          "name": "オーバーキル・グレイブヤード",
+          "typeText": "D2フィールド",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のクリーチャーすべてに「スレイヤー」を与える。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "d2Field": true,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "slayer": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "2e5dec4437a8b65aae42686493a2f7615d63d0a620466334b7842181a6b43968",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr04-042",
+      "name": "牙神兵ガンガン・マンモス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-042",
+      "faces": [
+        {
+          "name": "牙神兵ガンガン・マンモス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、多色カードを１枚、自分の手札から捨ててもよい。そうした場合、このクリーチャーをアンタップする。",
+          "race": "アーマロイド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "DiscardFor248",
+            "g488DiscardFilter": {
+              "g223Multicolor": true
+            },
+            "title": "多色カードを1枚捨てて、このクリーチャーをアンタップする？",
+            "defs": [
+              {
+                "op": "Untap",
+                "g191First": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr04-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "1ec8a218f078b6013d192f57419c6aa68d8aaf1784782b1a936623aa821696ba",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22ex1-128",
+      "name": "牙神兵ガンガン・マンモス / ブレイン・タイフーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-128",
+      "faces": [
+        {
+          "name": "牙神兵ガンガン・マンモス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、多色カードを１枚、自分の手札から捨ててもよい。そうしたら、このクリーチャーをアンタップする。",
+          "race": "アーマロイド",
+          "powerText": "5000",
+          "missingFields": []
+        },
+        {
+          "name": "ブレイン・タイフーン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "カードを３枚まで引く。その後、自分の手札を１枚捨てる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "DiscardFor248",
+            "g488DiscardFilter": {
+              "g223Multicolor": true
+            },
+            "title": "多色カードを1枚捨てて、このクリーチャーをアンタップする？",
+            "defs": [
+              {
+                "op": "Untap",
+                "g191First": true
+              }
+            ]
+          }
+        ],
+        "spellFace": {
+          "name": "ブレイン・タイフーン",
+          "type": "spell",
+          "cost": 4,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "DrawUpTo",
+              "n": 3
+            },
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-128a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "b4312693ed161adc17f0b7af627690f827250afacda1207dca028dd763038050",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx23-040",
+      "name": "オーバーキル・グレイブヤード",
+      "canonicalId": "dmr21-040",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx23-040",
+      "faces": [
+        {
+          "name": "オーバーキル・グレイブヤード",
+          "typeText": "D2フィールド",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のクリーチャーすべてに「スレイヤー」を与える。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "d2Field": true,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "slayer": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx23-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "4c9d2a645a1423dbe74a1046aac8434bcd4b10b638f4cec58832d5d285a7e943",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex03-055",
+      "name": "オーバーキル・グレイブヤード",
+      "canonicalId": "dmr21-040",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-055",
+      "faces": [
+        {
+          "name": "オーバーキル・グレイブヤード",
+          "typeText": "D2フィールド",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のクリーチャーすべてに「スレイヤー」を与える。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "d2Field": true,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "slayer": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex03-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "278ea7c4676d8662ccbeb6b873be3de6616cbd38e36381f0b837de1ddf3363f7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr21-040": 4,
+      "dmr04-042": 4,
+      "dm22ex1-128": 4,
+      "dmx23-040": 4,
+      "dmex03-055": 4
+    }
+  }
+}

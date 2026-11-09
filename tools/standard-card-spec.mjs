@@ -2405,11 +2405,13 @@ export function standardCardSpec(d,{phase=165}={}){
   );
   const rampOrSweep=phase>=612&&frontText==='自分のパワー6000以上のクリーチャーを召喚するコストは1少なくなる。ただしコストは0以下にならない。'&&
    spellText==='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)相手のパワー4000以下のクリーチャーをすべて持ち主のマナゾーンに置く。';
+  const mammoth=phase>=684&&frontText==='このクリーチャーが攻撃する時多色カードを1枚自分の手札から捨ててもよい。そうしたらこのクリーチャーをアンタップする。'&&
+   spellText==='カードを3枚まで引く。その後自分の手札を1枚捨てる。';
   const speedOrSweep=phase>=613&&frontText==='このクリーチャーがバトルゾーンに出た時または攻撃する時そのターン自分の他のクリーチャー1体に「スピードアタッカー」を与える。(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)'&&
    spellText==='相手の「ブロッカー」を持つクリーチャーをすべて破壊する。';
   const capOrShield=phase>=616&&frontText==='相手のターン中相手はクリーチャーを2体までしか出せない。'&&
    spellText===replicaAuction616;
-  if(entryStop||rushSweep||blockerCharger||bounceOrRemove||discardOrRemove||rampOrSweep||speedOrSweep||capOrShield){
+  if(entryStop||rushSweep||blockerCharger||bounceOrRemove||discardOrRemove||rampOrSweep||speedOrSweep||capOrShield||mammoth){
    const creature=standardCardSpec({...d,faces:[front]},{phase}),body=standardCardSpec({...d,faces:[spell]},{phase});
    if(entryStop&&(!body.crystalCharger||body.g34Tasks?.length!==1||!body.g34Tasks[0].g593OverMana))throw Error('未対応の水晶チャージャーの構成');
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
@@ -2433,6 +2435,9 @@ export function standardCardSpec(d,{phase=165}={}){
    '(他のD2フィールドが出た時このD2フィールドを墓地に置く)'
   ].some(suffix=>text==='自分のターンの終わりに自分のクリーチャーをすべてアンタップする。'+suffix)){
    return {d2Field:true,g174End:[{op:'GroupUntap',filter:{creature:true}}]};
+  }
+  if(phase>=684&&text==='自分のクリーチャーすべてに「スレイヤー」を与える。(「スレイヤー」を持つクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)'+reminder){
+   return {d2Field:true,g208Auras:[{filter:{creature:true},grants:{slayer:true}}]};
   }
   throw Error('未対応のD2フィールド能力');
  }
@@ -2470,6 +2475,9 @@ export function standardCardSpec(d,{phase=165}={}){
   if(f.typeText==='呪文'&&text==='相手の手札を1枚見ないで選び捨てさせる。その後自分のシールドゾーンに表向きである「シールド・ゴー」を持つカード1枚につき相手の手札を1枚見ないで選び捨てさせる。'){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
+ }
+ if(phase>=684&&creature&&/^このクリーチャーが攻撃する時多色カードを1枚自分の手札から捨ててもよい。そうした(?:場合|ら)このクリーチャーをアンタップする。$/.test(normalize(f.abilityText))){
+  return {g34Attack:[{op:'DiscardFor248',g488DiscardFilter:{g223Multicolor:true},title:'多色カードを1枚捨てて、このクリーチャーをアンタップする？',defs:[{op:'Untap',g191First:true}]}]};
  }
  if(phase>=683&&f.typeText==='呪文'){
   const text=normalize(f.abilityText);

@@ -169463,20 +169463,139 @@
       ],
       "supportBatch": "phase-683",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-040",
+      "name": "オーバーキル・グレイブヤード",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "自分のクリーチャーすべてに「スレイヤー」を与える。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-040",
+      "limit": 4,
+      "d2Field": true,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "slayer": true
+          }
+        }
+      ],
+      "supportBatch": "phase-684",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr04-042",
+      "name": "牙神兵ガンガン・マンモス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "アーマロイド",
+      "text": "このクリーチャーが攻撃する時、多色カードを１枚、自分の手札から捨ててもよい。そうした場合、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-042",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "DiscardFor248",
+          "g488DiscardFilter": {
+            "g223Multicolor": true
+          },
+          "title": "多色カードを1枚捨てて、このクリーチャーをアンタップする？",
+          "defs": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-684",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-128",
+      "name": "牙神兵ガンガン・マンモス / ブレイン・タイフーン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "アーマロイド",
+      "text": "このクリーチャーが攻撃する時、多色カードを１枚、自分の手札から捨ててもよい。そうしたら、このクリーチャーをアンタップする。\n【呪文面】\nカードを３枚まで引く。その後、自分の手札を１枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-128",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "DiscardFor248",
+          "g488DiscardFilter": {
+            "g223Multicolor": true
+          },
+          "title": "多色カードを1枚捨てて、このクリーチャーをアンタップする？",
+          "defs": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        }
+      ],
+      "spellFace": {
+        "name": "ブレイン・タイフーン",
+        "type": "spell",
+        "cost": 4,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DrawUpTo",
+            "n": 3
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-684",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 683,
+    "phase": 684,
     "checkedAt": "2026-11-09",
-    "baseCount": 5877,
+    "baseCount": 5880,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5880,
+    "totalCount": 5883,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/47896/",
-      "https://dm.takaratomy.co.jp/rule/qa/39668/"
+      "https://dm.takaratomy.co.jp/rule/qa/34203/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36536/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36537/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -181235,6 +181354,23 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
           "https://dm.takaratomy.co.jp/rule/qa/47896/",
           "https://dm.takaratomy.co.jp/rule/qa/43369/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 683,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5877,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5880,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/47896/",
+          "https://dm.takaratomy.co.jp/rule/qa/39668/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
