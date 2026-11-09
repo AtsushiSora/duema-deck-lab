@@ -401,7 +401,8 @@ export function createSixPhotoRules(api){
   if(t.hand)seen.push(...s.players[1-t.p].hand.map(x=>({id:x.cardId,label:'相手の手札'})));
   if(!seen.length)return;
   const uid=t.swap?rows[0]?.x.uid:null,swap=uid&&api.canSwapShield585(s,t.p,uid);
-  api.log(s,t.p,'look',card(t.source).name+'で'+(t.hand?'手札とシールド':'シールド')+'を確認（内容は非公開）',{cardId:t.source});
+  const zone=t.opponentDeckTop?'相手の山札の上':t.hand?'手札とシールド':'シールド';
+  api.log(s,t.p,'look',card(t.source).name+'で'+zone+'を確認（内容は非公開）',{cardId:t.source});
   choice(s,{...t,op:'g34_PeekRead585',g585Peek:seen,shieldUid:uid},swap?'確認したカードを山札の上のカードと入れ替えますか？':'確認したカード',[
    ...(swap?[opt('入れ替える',true,seen.some(r=>faces(card(r.id)).some(c=>c.trigger))?-10:6)]:[]),
    opt(swap?'入れ替えずに確認を終える':'確認を終える',null,0)
@@ -1046,12 +1047,17 @@ export function createSixPhotoRules(api){
  }
  case'g34_AfterBreak278':break;
  case'g34_Peek585':{
+  if(t.opponentDeckTop){
+   const held=reserved(opp),top=opp.deck.find(x=>!held.has(x.uid));
+   if(top)showPeek585(s,t,[{seen:[top],label:'相手の山札の上'}]);
+   break;
+  }
   const rows=peekRows585(s,t);
   if(t.all){showPeek585(s,t,rows);break;}
   if(!rows.length)break;
   choice(s,t,t.cardOnly?'確認するシールドカードを1枚選ぶ':'確認するシールドを1つ選ぶ',[
    ...rows.map(({x,p,label,seen})=>opt(label+(x.faceUp?'：'+card(x).name:''),{uid:x.uid,player:p,origin:'shields'},t.viewed?.includes(x.uid)?-5:seen.some(y=>!y.faceUp)?5:1,x.faceUp?x.cardId:undefined)),
-   ...(t.viewed?.length?[opt('これ以上選ばない',null,0)]:[])
+   ...(t.viewed?.length?[opt('これ以上選ばない',null,0)]:t.optional?[opt('見ない',null,0)]:[])
   ]);
   break;
  }

@@ -2476,6 +2476,15 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=690&&creature){
+  const text=normalize(f.abilityText);
+  if(/^このクリーチャーが攻撃するとき相手のシールドを1枚見て(?:も)?よい。その後そのシールドを元の場所に戻す。$/.test(text)){
+   return {g34Attack:[{op:'Peek585',who:'opponent',optional:true}]};
+  }
+  if(text==='このクリーチャーをバトルゾーンに出した時相手の山札の上から1枚目を見る。その後それを元に戻す。'){
+   return {effect:'sixPhoto',g34Tasks:[{op:'Peek585',opponentDeckTop:true}]};
+  }
+ }
  if(phase>=689){
   const text=normalize(f.abilityText);
   if(creature&&text==='相手がバトルゾーンのクリーチャーを選ぶ時自分のドラゴンを選ぶことはできない。(ただし自分のドラゴンを攻撃またはブロックしてもよい)'){
