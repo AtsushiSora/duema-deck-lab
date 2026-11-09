@@ -1,0 +1,181 @@
+{
+  "phase": 728,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6022,
+  "description": "アクセルの山札からの呪文詠唱、破壊直前のクロス枚数に応じた任意ドロー、登場と同時の無料クロスと条件付きパワー加算を実装。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/44087/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35426/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34832/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37504/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31641/"
+  ],
+  "cards": [
+    {
+      "id": "dm15-001",
+      "name": "光器マリアンナ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-001",
+      "faces": [
+        {
+          "name": "光器マリアンナ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nアクセル(このクリーチャーにクロスギアがクロスされている時、このクリーチャーは次の能力を得る)\nこのクリーチャーが攻撃する時、自分の山札を見る。その中から｢S・トリガー｣付き呪文を１枚選び、山札をシャッフルした後、その呪文をコストを支払わずに唱えてもよい。",
+          "race": "メカ・デル・ソル",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g260Self": {
+          "filter": {
+            "g436Crossed": true
+          },
+          "grants": {
+            "g34Attack": [
+              {
+                "op": "Marianna728"
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm15-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ef2fac92b63c0f93cfe75b73fbbaa6b53e2549e28c83a6e5024c56e778788359",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm17-037",
+      "name": "巡霊者サーフィー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-037",
+      "faces": [
+        {
+          "name": "巡霊者サーフィー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "アクセル(このクリーチャーにクロスギアがクロスされている時、このクリーチャーは次の能力を得る)\nこのクリーチャーが破壊された時、このクリーチャーにクロスされていたクロスギアの数と同じ枚数、カードを引いてもよい。",
+          "race": "コスモ・ウォーカー",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g436Crossed": true
+          },
+          "grants": {
+            "g172Death": [
+              {
+                "op": "CrossedDeathDraw728"
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm17-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "1e2f9927b6ec919670052c7ccee7d58abcc2e6554a898e8eb51eaac159ce1888",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex2-065",
+      "name": "試作品 クロコギア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-065",
+      "faces": [
+        {
+          "name": "試作品 クロコギア",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 0,
+          "costText": "0",
+          "abilityText": "（パワー０以下のクリーチャーは破壊される）\nこのクリーチャーを出す時、自分のクロスギアを好きな枚数これにクロスする。\nアクセル（このクリーチャーにクロスギアがクロスされている時、このクリーチャーは次の a 能力を得る）\na このクリーチャーのパワーは、+500される。",
+          "race": "アーマード・ヘドリアン/サムライ",
+          "powerText": "0",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g728CrossOnEntry": true,
+        "g260Self": {
+          "filter": {
+            "g436Crossed": true
+          },
+          "grants": {
+            "power": 500
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex2-065.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "c5985ed71a04158d1fe65b1bf257248ae3cd865a33599e7451cb012f08c36fd6",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy4-032",
+      "name": "巡霊者サーフィー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy4-032",
+      "faces": [
+        {
+          "name": "巡霊者サーフィー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "アクセル（このクリーチャーにクロスギアがクロスされている時、このクリーチャーは次の a 能力を得る） a このクリーチャーが破壊された時、このクリーチャーにクロスされていたクロスギアの数と同じ枚数、カードを引いてもよい。",
+          "race": "コスモ・ウォーカー",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "canonicalId": "dm17-037",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy4-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "f38203ece16c35f14cf2d4c02f60f884b1157afab3a5f09106663197befb0c83",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm15-001": 4,
+      "dm17-037": 4,
+      "dm23ex2-065": 4,
+      "promoy4-032": 4
+    }
+  }
+}

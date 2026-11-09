@@ -2506,6 +2506,8 @@ export function standardCardSpec(d,{phase=165}={}){
   if([cross+power+'される。',cross+power+'させる。'].includes(normalize(f.abilityText)))return {type:'gear',g726CrossRacePower:2000};
  }
  if(d?.status!=='complete'||d.faces.length!==1||!['クリーチャー','進化クリーチャー','タマシード','呪文',...(phase>=166?['NEOクリーチャー']:[]),...(phase>=273?['スター進化クリーチャー']:[]),...(phase>=619?['G-NEOクリーチャー']:[]),...(phase>=657?['G城']:[]),...(phase>=682?['D2フィールド']:[]),...(phase>=700?['進化クリーチャー(進化V)','進化クリーチャー（進化V）']:[])].includes(f.typeText))throw Error('複数面・特殊カードタイプまたは情報不足');
+ if(phase>=728&&f.typeText==='クリーチャー'&&f.cost===0&&f.powerText==='0'&&f.civilizations.length===1&&f.civilizations[0]==='無色'&&normalize(f.abilityText)==='(パワー0以下のクリーチャーは破壊される)このクリーチャーを出す時自分のクロスギアを好きな枚数これにクロスする。アクセル(このクリーチャーにクロスギアがクロスされている時このクリーチャーは次のa能力を得る)aこのクリーチャーのパワーは+500される。')
+  return {g728CrossOnEntry:true,g260Self:{filter:{g436Crossed:true},grants:{power:500}}};
  if(!Number.isInteger(f.cost)||f.cost<1||!f.civilizations.length||f.civilizations.some(c=>!colors.includes(c)&&c!=='無色')||new Set(f.civilizations).size!==f.civilizations.length)throw Error('コスト・文明の個別処理が必要');
  if(f.civilizations.includes('無色')&&f.civilizations.length!==1)throw Error('無色の複合文明');
  if(f.typeText==='D2フィールド'){
@@ -2563,6 +2565,11 @@ export function standardCardSpec(d,{phase=165}={}){
   if([original,reprint].includes(text)){
    return {evolution:{race:'サムライ'},samuraiGenerate:true,breaker:2,g260Self:{filter:{g436Crossed:true},grants:{g34Attack:[{op:'Target',to:'mana',optional:true}]}}};
   }
+ }
+ if(phase>=728&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(text==='アクセル(このクリーチャーにクロスギアがクロスされている時このクリーチャーは次のa能力を得る)aこのクリーチャーが破壊された時このクリーチャーにクロスされていたクロスギアの数と同じ枚数カードを引いてもよい。')
+   return {g260Self:{filter:{g436Crossed:true},grants:{g172Death:[{op:'CrossedDeathDraw728'}]}}};
  }
  if(phase>=726&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
@@ -3605,6 +3612,10 @@ export function standardCardSpec(d,{phase=165}={}){
   if(at>=0){
    if(lines.filter(isMarker).length!==1||at===lines.length-1)throw Error('未対応のアクセル構成');
    const rawBody=normalize(lines.slice(at+1).join('')),body=normalize(lines[at])===modern?rawBody.replace(/^a(?=このクリーチャー)/,''):rawBody,race=body.match(/^このクリーチャーのパワーは\+3000され種族に(サイバー・ムーン|デーモン・コマンド|アース・ドラゴン|エンジェル・コマンド|ボルケーノ・ドラゴン)を追加する。$/),grants=race?{power:3000,raceAdd:[race[1]]}:{
+    ...(phase>=728?{
+     'このクリーチャーが攻撃する時自分の山札を見る。その中から「S・トリガー」付き呪文を1枚選び山札をシャッフルした後その呪文をコストを支払わずに唱えてもよい。':{g34Attack:[{op:'Marianna728'}]},
+     'このクリーチャーが破壊された時このクリーチャーにクロスされていたクロスギアの数と同じ枚数カードを引いてもよい。':{g172Death:[{op:'CrossedDeathDraw728'}]}
+    }:{}),
     ...(phase>=727?{
      'このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時このクリーチャーよりパワーの小さいクリーチャーを1体バトルゾーンから持ち主の手札に戻してもよい。':{g482Unblocked:[{op:'TargetBelowSource692',to:'hand',optional:true,anyOwner:true,g179Other:true}]}
     }:{}),
