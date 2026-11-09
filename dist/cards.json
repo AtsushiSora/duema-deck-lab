@@ -173056,21 +173056,134 @@
       ],
       "supportBatch": "phase-718",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm16-036",
+      "name": "宣凶師ゼメキス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "グラディエーター",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクロスギアを１枚選び、持ち主の墓地に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-036",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "element": true,
+          "filter": {
+            "g201Gear": true
+          },
+          "to": "grave",
+          "optional": true,
+          "title": "墓地に置く相手のクロスギアを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-719",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-013",
+      "name": "霊騎ロウム",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5500,
+      "race": "アーク・セラフィム",
+      "text": "自分の他のアーク・セラフィムをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-013",
+      "limit": 4,
+      "g314OtherEntry": {
+        "who": "self",
+        "filter": {
+          "race": "アーク・セラフィム"
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true,
+            "title": "タップする相手のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-719",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-080",
+      "name": "封魔ゼレス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "グランド・デビル",
+      "text": "このクリーチャーが破壊される時、バトルゾーンに自分のディープ・マリーンが１体でもあれば、このクリーチャーを墓地に置くかわりに自分の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-080",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "creature": true,
+          "race": "ディープ・マリーン"
+        },
+        "grants": {
+          "destroyToHand": true
+        }
+      },
+      "supportBatch": "phase-719",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm17-012",
+      "name": "魔后メイガス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ダークロード",
+      "text": "このクリーチャーをバトルゾーンに出した時、クリーチャーにクロスしてあるクロスギアをすべて、クリーチャーから外す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-012",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Uncross719"
+        }
+      ],
+      "supportBatch": "phase-719",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 718,
+    "phase": 719,
     "checkedAt": "2026-11-09",
-    "baseCount": 5987,
-    "newEffectCards": 3,
+    "baseCount": 5990,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 5990,
+    "totalCount": 5994,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35116/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35380/",
-      "https://dm.takaratomy.co.jp/rule/qa/48479/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35385/",
+      "https://dm.takaratomy.co.jp/rule/qa/43460/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -185485,6 +185598,24 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35113/",
           "https://dm.takaratomy.co.jp/rule/qa/39513/",
           "https://dm.takaratomy.co.jp/rule/qa/48480/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 718,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5987,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5990,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35116/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35380/",
+          "https://dm.takaratomy.co.jp/rule/qa/48479/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
