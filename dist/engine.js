@@ -898,7 +898,10 @@ function completeExecution(s,p,inst,c,{ruleOrigin,origin,free,freeReason,alterna
  if(c.g129Role==='cannon'||c.g129Role==='punish')c.g129Metamorph=s.players[p].mana.length>=7;
  if(card(inst.cardId).g393JWDFaces)inst.g393JWDBack=face===1;if(c.type==='creature')inst.summonedTurn=s.turn;extra.played(s,p,free?{...c,snowReducers:[],magicReducers:[],g7Payment:{reducers:[]},g26Reducers:[],g464Reducers:[]}:alternativeCost?.fixedPayment?{...c,fixedPayment:true,g464Reducers:[]}:c,inst,ruleOrigin,permit);if(c.type==='creature')extra.summoned(s,p,inst);delete inst.g5Origin;
  if(ownGraveCast&&origin==='grave'&&c.graveCast)inst.finishTo='deck';
- const met=s.metrics[p];met.played[c.id]=(met.played[c.id]||0)+1;if(s.players[p].turns<=3)met.earlyPlayed[c.id]=true;if(free&&freeReason==='S・トリガー')met.triggers++;
+ const met=s.metrics[p];met.played[c.id]=(met.played[c.id]||0)+1;if(s.players[p].turns<=3)met.earlyPlayed[c.id]=true;if(free&&freeReason==='S・トリガー'){
+  met.triggers++;
+  if(s.triggers?.player===p&&!s.triggers.sbDeclared?.includes(inst.uid))extra.six.opponentShieldTrigger699(s,p);
+ }
  if(!paidMana)(s.noManaUse??=[false,false])[p]=true;
  log(s,p,free?(freeReason==='S・トリガー'?'trigger':'gaiaSummon'):'play',`${c.name}を${free?freeReason+'で':''}${c.type==='creature'?'召喚':c.type==='gear'?'ジェネレート':'使用'}${!free&&cost!==c.cost?`（支払い${cost}マナ / 元のコスト${c.cost}）`:''}`,{cardId:c.id});
  // QA40182: using a creature from a locked zone still pays its costs, but the
@@ -1133,8 +1136,9 @@ function resolveAttack(s,blockUid){
   recordCombat(s,other);
   const b=s.players[other].battle.find(x=>x.uid===blockUid);
   s.attack.g484Blocked=true;s.attack.g209BlockingUid=blockUid;s.attack.blockUid=blockUid;s.attack.stage='blockedEffects';
-  if(effectiveCard(b,s).g695UntapAfterBlock){
-   s.attack.g695BlockUntap={controller:other,source:b.cardId,g695Untap:true,selfRefs:layers(b).map(x=>({uid:x.uid,incarnation:x.incarnation||0}))};
+  const blocker=effectiveCard(b,s);
+  if(blocker.g695UntapAfterBlock||blocker.g699DestroyAfterBlock){
+   s.attack.g695BlockUntap={controller:other,source:b.cardId,g695Untap:!!blocker.g695UntapAfterBlock,selfRefs:layers(b).map(x=>({uid:x.uid,incarnation:x.incarnation||0}))};
   }
   tapCard(s,other,b);extra.block(s,other,b);
   log(s,other,'block',`${card(b).name}でブロック`,{cardId:b.cardId});

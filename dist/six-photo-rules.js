@@ -1775,6 +1775,12 @@ export function createSixPhotoRules(api){
  },
  played(s,p,c,x,origin,permit){if(c.type==='creature')useBlockers524(s,p);for(const y of selectedOnce464(s,p,c))y.g464UsedTurn=s.turn;recordSummon463(s,p,c);if(c.type==='creature')consumeReduction456(s,p,c);if(c.type==='creature'&&['mana','grave'].includes(origin)&&typeof permit==='string'&&permit.startsWith('g450:'))((s.g450ZoneUses??=[{},{}])[p]??={})[permit]=s.turn;if(c.type!=='spell')noncreatureUse448(s,p,c);if(c.type==='creature'){countExecution(s,p,c);if(colors(c).includes('自然')&&Number(c.power)>=12000)s.g34Discounts=(s.g34Discounts||[]).filter(y=>y.p!==p||y.turn!==s.turn);}},
  spellCast(s,p,c){useBlockers524(s,p);consumeReduction456(s,p,c);noncreatureUse448(s,p,c);countExecution(s,p,c);for(const {owner,x,watch}of spellWatches(s,p,c))queue(s,owner,x,watch.defs.map(d=>d.op==='CastCostDeploy595'?{...d,castCost:c.cost}:d));},
+ opponentShieldTrigger699(s,p){
+  for(const watcher of creatures(s,1-p)){
+   const defs=!watcher.sealed&&effective(watcher,s).g699OpponentShieldTrigger;
+   if(defs)queue(s,1-p,watcher,defs);
+  }
+ },
  entry(s,p,y,options){const c=card(y),creature=api.isCreature(s,y);
   for(const {x,defs}of seedWatches548(s,p,y,options))queue(s,p,x,defs);
   if(c.g414ShieldPlus&&creature&&!y.sealed&&!options.selfMuted&&!api.selfStopped(s,p)&&!api.ignored(s,y))queue(s,p,y,[{op:'ShieldPlus414'}]);

@@ -1,0 +1,180 @@
+{
+  "phase": 699,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5927,
+  "description": "ブロック後の自己破壊と、相手がシールドから使用したS・トリガーを解決した後の探索・ドロー。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/42392/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35238/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37438/",
+    "https://dm.takaratomy.co.jp/rule/qa/45603/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34816/"
+  ],
+  "cards": [
+    {
+      "id": "dm12-003",
+      "name": "黒神龍ジャグラヴィーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-003",
+      "faces": [
+        {
+          "name": "黒神龍ジャグラヴィーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーがブロックした時、バトルの後でこのクリーチャーを破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ドラゴン・ゾンビ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g699DestroyAfterBlock": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "97a57b4551c34045d0a3f6c8c1526583dc5e631133535f9cd1ad4a85bf2da840",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm08-s02",
+      "name": "エンペラー・アクア",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-s02",
+      "faces": [
+        {
+          "name": "エンペラー・アクア",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカー\n進化-自分のサイバーロード１体の上に置く。\nこのクリーチャーがバトルゾーンにある間、相手が「S(シールド)・トリガー」を使ったとき、カードを２枚まで引く。",
+          "race": "サイバーロード",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "evolution": {
+          "race": "サイバーロード"
+        },
+        "g699OpponentShieldTrigger": [
+          {
+            "op": "DrawUpTo",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm08-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "1047b078102d13d0fc355dba6de094993a554b142ee5e9b534877cecabe7ef30",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm12-053",
+      "name": "召集するタートル・ホーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-053",
+      "faces": [
+        {
+          "name": "召集するタートル・ホーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手が自分自身のシールドの「S・トリガー」を使った時、自分の山札を見る。その中からクリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "ホーン・ビースト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g699OpponentShieldTrigger": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm12-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "208fba0c6d156ede7ec111df05686d97c7ea00770a4eebb6a2685a1ee20d18c6",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc44-017",
+      "name": "黒神龍ジャグラヴィーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc44-017",
+      "faces": [
+        {
+          "name": "黒神龍ジャグラヴィーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーがブロックした時、バトルの後でこのクリーチャーを破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ドラゴン・ゾンビ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "canonicalId": "dm12-003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc44-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "49faa8a0db78158099bbfa506e8fb5efcc3cce5415ed8e74154d670e7df1e3f5",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm12-003": 4,
+      "dm08-s02": 4,
+      "dm12-053": 4,
+      "dmc44-017": 4
+    }
+  }
+}

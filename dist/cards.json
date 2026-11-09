@@ -170790,23 +170790,110 @@
       "g698EndDrawDiscard": 2,
       "supportBatch": "phase-698",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm12-003",
+      "name": "黒神龍ジャグラヴィーン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ドラゴン・ゾンビ",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーがブロックした時、バトルの後でこのクリーチャーを破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-003",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g699DestroyAfterBlock": true,
+      "supportBatch": "phase-699",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm08-s02",
+      "name": "エンペラー・アクア",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "サイバーロード",
+      "text": "ブロッカー\n進化-自分のサイバーロード１体の上に置く。\nこのクリーチャーがバトルゾーンにある間、相手が「S(シールド)・トリガー」を使ったとき、カードを２枚まで引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-s02",
+      "limit": 4,
+      "blocker": true,
+      "evolution": {
+        "race": "サイバーロード"
+      },
+      "g699OpponentShieldTrigger": [
+        {
+          "op": "DrawUpTo",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-699",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm12-053",
+      "name": "召集するタートル・ホーン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ホーン・ビースト",
+      "text": "相手が自分自身のシールドの「S・トリガー」を使った時、自分の山札を見る。その中からクリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm12-053",
+      "limit": 4,
+      "g699OpponentShieldTrigger": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g200Search": true,
+          "n": "all",
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "creature": true
+              },
+              "reveal": true,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-699",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 698,
+    "phase": 699,
     "checkedAt": "2026-11-09",
-    "baseCount": 5924,
+    "baseCount": 5927,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5927,
+    "totalCount": 5930,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35591/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36017/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35233/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35234/",
-      "https://dm.takaratomy.co.jp/rule/qa/39076/"
+      "https://dm.takaratomy.co.jp/rule/qa/42392/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35238/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37438/",
+      "https://dm.takaratomy.co.jp/rule/qa/45603/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/34816/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -182837,6 +182924,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/39076/",
           "https://dm.takaratomy.co.jp/rule/qa/39077/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316639/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 698,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5924,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5927,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35591/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36017/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35233/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35234/",
+          "https://dm.takaratomy.co.jp/rule/qa/39076/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

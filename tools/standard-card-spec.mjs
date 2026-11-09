@@ -2476,6 +2476,17 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=699){
+  const text=normalize(f.abilityText);
+  if(creature&&text==='ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)このクリーチャーがブロックした時バトルの後でこのクリーチャーを破壊する。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)'){
+   return {blocker:true,breaker:2,g699DestroyAfterBlock:true};
+  }
+  if(evolution&&text==='ブロッカー進化-自分のサイバーロード1体の上に置く。このクリーチャーがバトルゾーンにある間相手が「S(シールド)・トリガー」を使ったときカードを2枚まで引く。'){
+   return {blocker:true,evolution:{race:'サイバーロード'},g699OpponentShieldTrigger:[{op:'DrawUpTo',n:2}]};
+  }
+  const turtleSearch='自分の山札を見る。その中からクリーチャーを1体選び相手に見せてから自分の手札に加えてもよい。その後山札をシャッフルする。';
+  if(creature&&text==='相手が自分自身のシールドの「S・トリガー」を使った時'+turtleSearch)return {g699OpponentShieldTrigger:[search201(turtleSearch)]};
+ }
  if(phase>=698&&creature){
   const text=normalize(f.abilityText);
   if(text==='このクリーチャーのパワーはすべての墓地にある《伝承するクローン・ホーン》1枚につき+3000される。このクリーチャーはパワーが6000以上の時「W・ブレイカー」を得る。(このクリーチャーはシールドを2枚ブレイクする)'){
