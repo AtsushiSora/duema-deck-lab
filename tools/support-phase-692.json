@@ -1,0 +1,181 @@
+{
+  "phase": 692,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5902,
+  "description": "攻撃時の呪文探索、ブロッカー限定攻撃、発生源より低いパワーを参照する攻撃時能力。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35097/",
+    "https://dm.takaratomy.co.jp/rule/qa/45925/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37323/",
+    "https://dm.takaratomy.co.jp/rule/qa/47379/"
+  ],
+  "cards": [
+    {
+      "id": "dm02-007",
+      "name": "閃光の伝道師ラグナ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-007",
+      "faces": [
+        {
+          "name": "閃光の伝道師ラグナ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃するとき、自分の山札から呪文を１枚さがして相手に見せ、自分の手札に加えてよい。そのあと、山札をシャッフルする。",
+          "race": "バーサーカー",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "spell": true
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm02-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "011a0d6b97c34c929b1b480c4be998c8f7f2514a7bed7db5b640390e7c29e56d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-054",
+      "name": "戦男",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-054",
+      "faces": [
+        {
+          "name": "戦男",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーは、「ブロッカー」を持つクリーチャーだけを攻撃できる。\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+          "race": "ヘドリアン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g692AttackOnlyBlockers": true,
+        "noPlayerAttack": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "ee097276e204d7b6fe40d033ec0db13f334798d5fd365310e519d82972184fee",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-048",
+      "name": "ノスタルジア・フィッシュ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-048",
+      "faces": [
+        {
+          "name": "ノスタルジア・フィッシュ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが攻撃する時、バトルゾーンにある、パワーがこのクリーチャーより小さい相手のクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+          "race": "ゲル・フィッシュ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "TargetBelowSource692",
+            "to": "hand",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "dcf460bdc5fcc2db2d82a35572b75ffebe37ed91187e12e1dc86b9a3e9d47611",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm15-015",
+      "name": "強撃砲士モービィー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-015",
+      "faces": [
+        {
+          "name": "強撃砲士モービィー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが攻撃する時、パワーがこのクリーチャーより小さい相手のクリーチャーを１体破壊する。",
+          "race": "ヒューマノイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "TargetBelowSource692",
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm15-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "0264f65c22a23c1e092b9d2ab77b8defc94c3f6f2713f23a1dce346cc8aa3393",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm02-007": 4,
+      "dm06-054": 4,
+      "dm14-048": 4,
+      "dm15-015": 4
+    }
+  }
+}

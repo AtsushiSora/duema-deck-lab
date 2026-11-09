@@ -2476,6 +2476,21 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=692&&creature){
+  const text=normalize(f.abilityText);
+  if(text==='このクリーチャーが攻撃するとき自分の山札から呪文を1枚さがして相手に見せ自分の手札に加えてよい。そのあと山札をシャッフルする。'){
+   return {g34Attack:[search201('自分の山札を見る。その中から呪文を1枚選び相手に見せ自分の手札に加えてよい。その後山札をシャッフルする。')]};
+  }
+  if(text==='このクリーチャーは「ブロッカー」を持つクリーチャーだけを攻撃できる。このクリーチャーは相手プレイヤーを攻撃できない。'){
+   return {g692AttackOnlyBlockers:true,noPlayerAttack:true};
+  }
+  if(text==='このクリーチャーが攻撃する時バトルゾーンにあるパワーがこのクリーチャーより小さい相手のクリーチャーを1体選び持ち主の手札に戻してもよい。'){
+   return {g34Attack:[{op:'TargetBelowSource692',to:'hand',optional:true}]};
+  }
+  if(text==='このクリーチャーが攻撃する時パワーがこのクリーチャーより小さい相手のクリーチャーを1体破壊する。'){
+   return {g34Attack:[{op:'TargetBelowSource692',to:'grave'}]};
+  }
+ }
  if(phase>=691&&creature){
   const text=normalize(f.abilityText);
   if(text==='このクリーチャーがクリーチャーを攻撃する時そのターンこのクリーチャーのパワーは+4000される。'){

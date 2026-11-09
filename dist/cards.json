@@ -170137,21 +170137,130 @@
       },
       "supportBatch": "phase-691",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm02-007",
+      "name": "閃光の伝道師ラグナ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2500,
+      "race": "バーサーカー",
+      "text": "このクリーチャーが攻撃するとき、自分の山札から呪文を１枚さがして相手に見せ、自分の手札に加えてよい。そのあと、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-007",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g200Search": true,
+          "n": "all",
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "spell": true
+              },
+              "reveal": true,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-692",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm06-054",
+      "name": "戦男",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 8000,
+      "race": "ヘドリアン",
+      "text": "このクリーチャーは、「ブロッカー」を持つクリーチャーだけを攻撃できる。\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-054",
+      "limit": 4,
+      "g692AttackOnlyBlockers": true,
+      "noPlayerAttack": true,
+      "supportBatch": "phase-692",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm14-048",
+      "name": "ノスタルジア・フィッシュ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ゲル・フィッシュ",
+      "text": "このクリーチャーが攻撃する時、バトルゾーンにある、パワーがこのクリーチャーより小さい相手のクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-048",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "TargetBelowSource692",
+          "to": "hand",
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-692",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm15-015",
+      "name": "強撃砲士モービィー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ヒューマノイド",
+      "text": "このクリーチャーが攻撃する時、パワーがこのクリーチャーより小さい相手のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-015",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "TargetBelowSource692",
+          "to": "grave"
+        }
+      ],
+      "supportBatch": "phase-692",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 691,
+    "phase": 692,
     "checkedAt": "2026-11-09",
-    "baseCount": 5899,
-    "newEffectCards": 3,
+    "baseCount": 5902,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 5902,
+    "totalCount": 5906,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/47061/",
-      "https://dm.takaratomy.co.jp/rule/qa/45909/",
-      "https://dm.takaratomy.co.jp/rule/qa/40177/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35097/",
+      "https://dm.takaratomy.co.jp/rule/qa/45925/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37323/",
+      "https://dm.takaratomy.co.jp/rule/qa/47379/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -182046,6 +182155,24 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
           "https://dm.takaratomy.co.jp/rule/qa_old/35030/",
           "https://dm.takaratomy.co.jp/rule/qa/31786/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 691,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5899,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5902,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/47061/",
+          "https://dm.takaratomy.co.jp/rule/qa/45909/",
+          "https://dm.takaratomy.co.jp/rule/qa/40177/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
