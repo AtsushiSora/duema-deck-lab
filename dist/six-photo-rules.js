@@ -239,6 +239,12 @@ export function createSixPhotoRules(api){
    const count=host?(!host.x.sealed&&api.isCreature(s,host.x)?api.allLayers(host.x).length:0):lastKnownCount;
    return count>=f.g650SourceCards;
   }
+  if(f.g688DistinctCreaturePair){
+   const [first,second]=f.g688DistinctCreaturePair;
+   const allies=creatures(s,p).filter(x=>!x.sealed);
+   const candidates=allies.filter(x=>colors(effective(x,s)).includes(first));
+   return allies.some(x=>colors(effective(x,s)).includes(second)&&candidates.some(y=>y.uid!==x.uid));
+  }
   if(f.g687CreatureCountAtLeastShields){
    const shields=s.players[p].shields;
    return creatures(s,p).filter(x=>!x.sealed).length>=(typeof shields==='number'?shields:shields.length);
@@ -849,7 +855,13 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ManaTurn297':(s.extLimits??=[]).push({kind:'g297ManaTurn',player:t.p,controller:t.p,turn:s.turn,who:s.active,expires:'end'});break;
- case'g34_SelfMana297':if(x&&(!t.unlessOtherDragon||!own.battle.some(y=>y.uid!==x.uid&&!y.sealed&&race(effective(y,s),'ドラゴン'))))move(s,[{player:t.p,uid:x.uid,to:'mana',tapped:!!t.tapped,controller:t.controller??t.p}]);break;
+ case'g34_SelfMana297':{
+  const host=t.g536Source?sourceHost474(s,t):x?{p:t.p,x}:null;
+  if(!host||host.x.sealed&&t.g536Source)break;
+  if(t.unlessOtherDragon&&s.players[host.p].battle.some(y=>y.uid!==host.x.uid&&!y.sealed&&race(effective(y,s),'ドラゴン')))break;
+  move(s,[{player:host.p,uid:host.x.uid,to:'mana',tapped:!!t.tapped,controller:t.controller??t.p}]);
+  break;
+ }
  case'g34_BlindHandMana675':
   if(opp.hand.length&&api.canMoveZone(s,1-t.p,'hand')){
    choice(s,t,'マナに置く相手の手札を裏向きのまま1枚選ぶ',opp.hand.map((_,i)=>opt('裏向きの手札 '+(i+1),i,0)));

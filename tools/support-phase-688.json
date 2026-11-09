@@ -1,0 +1,138 @@
+{
+  "phase": 688,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5890,
+  "description": "異なる2体による光・火の自己強化、被攻撃時の自己破壊、相手のクリーチャー登場時のマナ移動。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35554/",
+    "https://dm.takaratomy.co.jp/rule/qa/39094/"
+  ],
+  "cards": [
+    {
+      "id": "dm25-054",
+      "name": "閃火の両腕",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-054",
+      "faces": [
+        {
+          "name": "閃火の両腕",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "バトルゾーンに自分の光のクリーチャーと火のクリーチャーが少なくとも１体ずつある時、このクリーチャーのパワーは+5000される。",
+          "race": "ビーストフォーク",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g688DistinctCreaturePair": [
+              "光",
+              "火"
+            ]
+          },
+          "grants": {
+            "power": 5000
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "81116c1bf9cde5c9774bc4b7763c39ec8ec8736f71d309d16ce79789961a49fb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm30-017",
+      "name": "ソフトナックル・ドラグーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-017",
+      "faces": [
+        {
+          "name": "ソフトナックル・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手のクリーチャーがこのクリーチャーを攻撃した時、このクリーチャーを破壊する。",
+          "race": "ティラノ・ドレイク",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g447Attacked": [
+          {
+            "op": "SelfDestroy"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm30-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "766b468cf5555af38f548a3a95ee1832c2ab59a2a6ac217fce6724fcc230e6c2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-107",
+      "name": "キセル・カイワレ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-107",
+      "faces": [
+        {
+          "name": "キセル・カイワレ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手がバトルゾーンに自身のクリーチャーを出した時、このクリーチャーを自分のマナゾーンに置く。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g314OtherEntry": {
+          "who": "opponent",
+          "defs": [
+            {
+              "op": "SelfMana297",
+              "g536Source": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-107.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "33f0213b2218a12e44d24e5904212daadddce535869c07eb4928bb930b624286",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm25-054": 4,
+      "dm30-017": 4,
+      "dm36-107": 4
+    }
+  }
+}

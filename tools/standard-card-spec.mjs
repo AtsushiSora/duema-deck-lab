@@ -2476,6 +2476,18 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=688&&creature){
+  const text=normalize(f.abilityText);
+  if(text==='バトルゾーンに自分の光のクリーチャーと火のクリーチャーが少なくとも1体ずつある時このクリーチャーのパワーは+5000される。'){
+   return {g260Self:{filter:{g688DistinctCreaturePair:['光','火']},grants:{power:5000}}};
+  }
+  if(text==='相手のクリーチャーがこのクリーチャーを攻撃した時このクリーチャーを破壊する。'){
+   return {g447Attacked:[{op:'SelfDestroy'}]};
+  }
+  if(text==='相手がバトルゾーンに自身のクリーチャーを出した時このクリーチャーを自分のマナゾーンに置く。'){
+   return {g314OtherEntry:{who:'opponent',defs:[{op:'SelfMana297',g536Source:true}]}};
+  }
+ }
  if(phase>=687&&creature){
   const text=normalize(f.abilityText);
   if(text==='自分の光と自然を両方持つクリーチャーがバトルゾーンに出た時自分の山札の上から1枚目をマナゾーンに置いてもよい。'){
