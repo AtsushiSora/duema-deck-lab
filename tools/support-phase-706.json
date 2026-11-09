@@ -1,0 +1,220 @@
+{
+  "phase": 706,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5950,
+  "description": "シールド枚数による攻撃制限、条件付きブロッカー、攻撃時の手札破棄、非ブロック時の相手自身による破壊を実装。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/38652/"
+  ],
+  "cards": [
+    {
+      "id": "dm13-055",
+      "name": "勇猛妖魔アニマトレイン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-055",
+      "faces": [
+        {
+          "name": "勇猛妖魔アニマトレイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分のシールドが相手のシールドより多ければ、このクリーチャーは攻撃することができない。",
+          "race": "ヘドリアン/ホーン・ビースト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g225AttackRequires": {
+          "kind": "shieldsAtMostOpponent"
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "a4f98c5ef9010d21fe8e9583d7b0d4caa18338b59fff5a27dc21cb65a6b10be2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm07-s01",
+      "name": "栄光の精霊アイリス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-s01",
+      "faces": [
+        {
+          "name": "栄光の精霊アイリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W(ダブル)・ブレイカー\n自分のシールドが１枚もなければ、このクリーチャーは「ブロッカー」を得る。\n自分のターンが終わるとき、自分のシールドが１枚もなければ、 バトルゾーンにあるこのクリーチャーをアンタップしてもよい。",
+          "race": "エンジェル・コマンド",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g260Self": {
+          "filter": {
+            "g265ShieldsMax": 0
+          },
+          "grants": {
+            "blocker": true
+          }
+        },
+        "g174End": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g265ShieldsMax": 0
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "このクリーチャーをアンタップする？",
+                "defs": [
+                  {
+                    "op": "Untap",
+                    "g191First": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm07-s01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "b1842bc7e4e90d3c4354bb8d4ee6a1ad04cf2a8724303a21fb68c4f3d9022a8c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm02-003",
+      "name": "暗黒巨兵マギン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-003",
+      "faces": [
+        {
+          "name": "暗黒巨兵マギン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃するとき、相手の手札からカードを１枚見ないで選び、相手はそれを持ち主の墓地に置く。",
+          "race": "デーモン・コマンド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Discard",
+            "n": 1,
+            "random": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm02-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "046208cca0638955c2d1b2ddeb58c2253507b8d5b5dff9ae4202029298b095e5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-045",
+      "name": "悪戯人形ハロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-045",
+      "faces": [
+        {
+          "name": "悪戯人形ハロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかったとき、相手はバトルゾーンにある自分自身のクリーチャーを１体選び、持ち主の墓地に置く。",
+          "race": "デスパペット",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g482Unblocked": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "954599b292fe95100d3282718cd93a3aef3e23d02da92c16730e541473b32f96",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc34-045",
+      "name": "悪戯人形ハロ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc34-045",
+      "faces": [
+        {
+          "name": "悪戯人形ハロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、相手は自分自身のクリーチャーを１体選び、破壊する。",
+          "race": "デスパペット",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "canonicalId": "dm09-045",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc34-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "941b2f238b9a2f1b4fb775bfe2fd47e6dd565fcf24ebcd2582b23238dd216c19",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm13-055": 4,
+      "dm07-s01": 4,
+      "dm02-003": 4,
+      "dm09-045": 4,
+      "dmc34-045": 4
+    }
+  }
+}

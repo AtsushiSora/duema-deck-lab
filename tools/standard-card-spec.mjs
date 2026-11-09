@@ -2523,6 +2523,26 @@ export function standardCardSpec(d,{phase=165}={}){
  const compact363=phase>=363?normalize(f.abilityText):'',whole363=phase>=363&&(modal363(compact363)||compact363==='自分の水と闇を両方持つクリーチャーがバトルゾーンに出た時次のうちいずれか1つを選ぶ。▼カードを1枚引く。▼相手は自身の手札を1枚選び捨てる。');
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?abilityText.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):abilityText).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=706&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(f.civilizations.length>1&&text==='マナゾーンに置く時このカードはタップして置く。自分のシールドが相手のシールドより多ければこのクリーチャーは攻撃することができない。'){
+   return {g225AttackRequires:{kind:'shieldsAtMostOpponent'}};
+  }
+  if(text==='W(ダブル)・ブレイカー自分のシールドが1枚もなければこのクリーチャーは「ブロッカー」を得る。自分のターンが終わるとき自分のシールドが1枚もなければバトルゾーンにあるこのクリーチャーをアンタップしてもよい。'){
+   const noShields={g265ShieldsMax:0};
+   return {breaker:2,g260Self:{filter:noShields,grants:{blocker:true}},g174End:[
+    {op:'IfOwn',filter:noShields,defs:[{op:'Offer',title:'このクリーチャーをアンタップする？',defs:[{op:'Untap',g191First:true}]}]}
+   ]};
+  }
+  if(text==='このクリーチャーが攻撃するとき相手の手札からカードを1枚見ないで選び相手はそれを持ち主の墓地に置く。'){
+   return {g34Attack:[{op:'Discard',n:1,random:true}]};
+  }
+  const unblocked=text.match(/^このクリーチャーが相手プレイヤーを攻撃してブロックされなかった(?:時|とき)(.+)$/);
+  if(unblocked&&[
+   '相手はバトルゾーンにある自分自身のクリーチャーを1体選び持ち主の墓地に置く。',
+   '相手は自分自身のクリーチャーを1体選び破壊する。'
+  ].includes(unblocked[1]))return {g482Unblocked:[{op:'OpponentSelect',n:1,to:'grave'}]};
+ }
  if(phase>=663){
   const text=normalize(f.abilityText);
   if(creature&&text==='パワーアタッカー+3000(攻撃中このクリーチャーのパワーは+3000される)「シールド・ゴー」を持つカードが自分のシールドゾーンに表向きであればこのクリーチャーはタップされていないクリーチャーを攻撃できる。'){

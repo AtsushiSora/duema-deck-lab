@@ -171900,29 +171900,138 @@
       ],
       "supportBatch": "phase-705",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm13-055",
+      "name": "勇猛妖魔アニマトレイン",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 4000,
+      "race": "ヘドリアン/ホーン・ビースト",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n自分のシールドが相手のシールドより多ければ、このクリーチャーは攻撃することができない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-055",
+      "limit": 4,
+      "g225AttackRequires": {
+        "kind": "shieldsAtMostOpponent"
+      },
+      "supportBatch": "phase-706",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm07-s01",
+      "name": "栄光の精霊アイリス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "エンジェル・コマンド",
+      "text": "W(ダブル)・ブレイカー\n自分のシールドが１枚もなければ、このクリーチャーは「ブロッカー」を得る。\n自分のターンが終わるとき、自分のシールドが１枚もなければ、 バトルゾーンにあるこのクリーチャーをアンタップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm07-s01",
+      "limit": 4,
+      "breaker": 2,
+      "g260Self": {
+        "filter": {
+          "g265ShieldsMax": 0
+        },
+        "grants": {
+          "blocker": true
+        }
+      },
+      "g174End": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g265ShieldsMax": 0
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "このクリーチャーをアンタップする？",
+              "defs": [
+                {
+                  "op": "Untap",
+                  "g191First": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-706",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm02-003",
+      "name": "暗黒巨兵マギン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "デーモン・コマンド",
+      "text": "このクリーチャーが攻撃するとき、相手の手札からカードを１枚見ないで選び、相手はそれを持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-003",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Discard",
+          "n": 1,
+          "random": true
+        }
+      ],
+      "supportBatch": "phase-706",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm09-045",
+      "name": "悪戯人形ハロ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "デスパペット",
+      "text": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかったとき、相手はバトルゾーンにある自分自身のクリーチャーを１体選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-045",
+      "limit": 4,
+      "g482Unblocked": [
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "to": "grave"
+        }
+      ],
+      "supportBatch": "phase-706",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 705,
+    "phase": 706,
     "checkedAt": "2026-11-09",
-    "baseCount": 5946,
+    "baseCount": 5950,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 5950,
+    "totalCount": 5954,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37609/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35081/",
-      "https://dm.takaratomy.co.jp/rule/qa/33393/",
-      "https://dm.takaratomy.co.jp/rule/qa/41664/",
-      "https://dm.takaratomy.co.jp/rule/qa/38746/",
-      "https://dm.takaratomy.co.jp/rule/qa/33420/",
-      "https://dm.takaratomy.co.jp/rule/qa/31690/",
-      "https://dm.takaratomy.co.jp/rule/qa/31691/",
-      "https://dm.takaratomy.co.jp/rule/qa/43928/",
-      "https://dm.takaratomy.co.jp/rule/qa/34243/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31627/"
+      "https://dm.takaratomy.co.jp/rule/qa/38652/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -184088,6 +184197,32 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35081/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35188/",
           "https://dm.takaratomy.co.jp/rule/qa/43928/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 705,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5946,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 5950,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37609/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35081/",
+          "https://dm.takaratomy.co.jp/rule/qa/33393/",
+          "https://dm.takaratomy.co.jp/rule/qa/41664/",
+          "https://dm.takaratomy.co.jp/rule/qa/38746/",
+          "https://dm.takaratomy.co.jp/rule/qa/33420/",
+          "https://dm.takaratomy.co.jp/rule/qa/31690/",
+          "https://dm.takaratomy.co.jp/rule/qa/31691/",
+          "https://dm.takaratomy.co.jp/rule/qa/43928/",
+          "https://dm.takaratomy.co.jp/rule/qa/34243/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31627/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

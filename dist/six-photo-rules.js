@@ -392,6 +392,7 @@ export function createSixPhotoRules(api){
    case'bigCreature':return bodies().some(y=>cost(card(y))>=rule.minCost);
    case'untappedMana':return !own.mana.some(y=>y.tapped);
    case'enemyShield':return s.players[1-p].shields.length>0;
+   case'shieldsAtMostOpponent':return own.shields.length<=s.players[1-p].shields.length;
    case'evolution':return bodies().some(y=>api.isEvolution(y));
    case'faceDownMana':return own.mana.filter(y=>y.faceDown).length>=rule.min;
    case'tappedCreatures':return bodies().filter(y=>y.tapped).length>=rule.min;
