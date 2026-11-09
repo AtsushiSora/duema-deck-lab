@@ -482,7 +482,7 @@ export function createSixPhotoRules(api){
  function recoveryScore326(s,t){const rows=list(s,{...t,selected:[]}),returnedMana=rows.filter(r=>r.origin==='mana').length,remaining=s.players[t.p].mana.length-returnedMana;if(!rows.length)return -1;return rows.reduce((n,r)=>n+(r.origin==='grave'?10+Math.min(6,cost(card(r.x))/2):r.x.tapped?2:remaining<3?-8:-3),0);}
  function spellScore555(s,t,c){const n=s.players[t.p].deck?.length??s.players[t.p].deckCount??0,draw={draw2:2,magicDraw:1,ramp1:1,ramp2:2}[c.effect]||0;if(!api.spellIgnored(s,c)&&draw>=n&&draw>0&&!(c.effect==='draw2'&&creatures(s,t.p).some(y=>effective(y,s).shako)))return-1000;return 20+cost(c)+(api.spellIgnored(s,c)?0:modeScore(s,{...t,source:c.id},c.g34Tasks||[]));}
  // Delayed spell effects survive their card leaving the graveyard. Selected refs keep incarnation identity.
- function scheduleUntap562(s,t,defs){const source=faces(card(t.source)).find(c=>c.type==='spell')||card(t.source);(s.g501EndDelays??=[]).push({p:t.p,source:t.source,uid:t.uid,incarnation:t.incarnation||0,ownEnd:!!t.ownEnd,defs:structuredClone(defs),spellCost:cost(source)});}
+ function scheduleUntap562(s,t,defs){const source=faces(card(t.source)).find(c=>c.type==='spell')||card(t.source);(s.g501EndDelays??=[]).push({p:t.p,source:t.source,uid:t.uid,incarnation:t.incarnation||0,ownEnd:!!t.ownEnd,defs:structuredClone(defs),...(!t.creatureSource?{spellCost:cost(source)}:{})});}
  function finishUntap562(s,t){const defs=(t.refs||[]).map(ref=>({op:'AttackUntap408',g399Attacker:ref,g562Creature:true}));if(!defs.length)return;if(t.delay)scheduleUntap562(s,t,t.optionalUntap?defs.map(d=>({op:'Offer',title:'選んだクリーチャーをアンタップする？',defs:[d]})):defs);else start(s,t,defs);}
  function countedPowerDefs561(s,t,d){const rows=s.players[t.p][d.zone]||[],n=d.zone==='hand'?rows.length:d.zone==='battle'?creatures(s,t.p).filter(y=>!y.sealed&&matches(s,t.p,y,d.filter)).length:rows.filter(y=>!d.filter.color||api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,t.p).includes(d.filter.color)).length;return(d.defs||[]).map(def=>def.g561Scale?{...def,power:n*d.amount}:def);}
  function lockSpells589(s,t,color){
@@ -932,8 +932,12 @@ export function createSixPhotoRules(api){
  }
  case'g34_EndUntap562':scheduleUntap562(s,t,t.defs);break;
  case'g34_ChooseUntap562':{const refs=t.refs||[],rows=creatures(s,t.p).filter(y=>!y.sealed&&!refs.some(r=>r.uid===y.uid&&(y.incarnation||0)===r.incarnation));if(refs.length>=t.n||!rows.length){finishUntap562(s,t);break;}choice(s,t,t.delay?'ターン終了時にアンタップするクリーチャーを選ぶ':'アンタップするクリーチャーを選ぶ',[...targetOptions(s,t.p,rows).map(o=>{const y=rows.find(y=>y.uid===o.value);return{...o,value:{uid:y.uid,incarnation:y.incarnation||0},score:y.tapped&&api.canUntap(y)?10+Number(!!effective(y,s).blocker)*5:0};}),...(t.optional?[skip()]:[])]);break;}
- case'g34_ChooseEndUntap501':{const rows=creatures(s,t.p).filter(y=>!y.sealed);choice(s,t,t.power?'パワーを+'+t.power+'し、ターン終了時にアンタップするクリーチャーを選ぶ':'ターン終了時にアンタップするクリーチャーを選ぶ',targetOptions(s,t.p,rows).map(o=>{const y=rows.find(y=>y.uid===o.value);return{...o,value:{uid:y.uid,incarnation:y.incarnation||0},score:(api.isEvolution(y)&&own.deck.length>1?25:0)+(effective(y,s).blocker?10:0)+Math.min(20,cost(effective(y,s)))};}));break;}
- case'g34_ResolveEnd501':if(!api.spellIgnored(s,{type:'spell',cost:t.spellCost,spellSource:t.source}))start(s,t,t.defs);break;
+ case'g34_ChooseEndUntap501':{
+  const rows=creatures(s,t.p).filter(y=>!y.sealed&&(!t.other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))));
+  choice(s,t,t.power?'パワーを+'+t.power+'し、ターン終了時にアンタップするクリーチャーを選ぶ':'ターン終了時にアンタップするクリーチャーを選ぶ',targetOptions(s,t.p,rows).map(o=>{const y=rows.find(y=>y.uid===o.value);return{...o,value:{uid:y.uid,incarnation:y.incarnation||0},score:(api.isEvolution(y)&&own.deck.length>1?25:0)+(effective(y,s).blocker?10:0)+Math.min(20,cost(effective(y,s)))};}));
+  break;
+ }
+ case'g34_ResolveEnd501':if(t.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:t.spellCost,spellSource:t.source}))start(s,t,t.defs);break;
  case'g34_AfterAttack542':if(s.attackLifecycle)(s.attackLifecycle.g542After??=[]).push({p:t.p,source:t.source,uid:t.uid,incarnation:t.incarnation||0,defs:structuredClone(t.defs)});break;
  case'g34_Schedule537':(s.g537Delays??=[]).push({p:t.p,source:t.source,uid:t.uid,incarnation:t.incarnation||0,turn:s.turn,when:t.when,defs:structuredClone(t.defs)});break;
  case'g34_ResolveDelay537':start(s,t,t.defs);break;
@@ -1413,8 +1417,8 @@ export function createSixPhotoRules(api){
   const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation);
   if(y){
    const source=faces(card(t.source)).find(c=>c.type==='spell')||card(t.source),ref={uid:y.uid,incarnation:y.incarnation||0};
-   if(t.power)(y.powerModifiers??=[]).push({amount:t.power,expires:'end',who:s.active,spellSource:t.source,spellCost:cost(source)});
-   scheduleUntap562(s,{...t,ownEnd:!t.thisTurn},[{op:'AttackUntap408',g399Attacker:ref}]);
+   if(t.power)(y.powerModifiers??=[]).push({amount:t.power,expires:'end',who:s.active,...(!t.creatureSource?{spellSource:t.source,spellCost:cost(source)}:{})});
+   scheduleUntap562(s,{...t,ownEnd:!t.thisTurn},[{op:'AttackUntap408',g399Attacker:ref,...(t.creatureSource?{g562Creature:true}:{})}]);
    if(t.evolutionDraw&&api.isEvolution(y))start(s,t,[{op:'Offer',title:'進化クリーチャーを選んだので1枚引く？',defs:[{op:'Draw',n:1}]}]);
   }
  }break;

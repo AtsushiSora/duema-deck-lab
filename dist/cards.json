@@ -169608,19 +169608,130 @@
       ],
       "supportBatch": "phase-685",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr18-046",
+      "name": "挟撃の翼 キャンサム",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ジャスティス・ウイング",
+      "text": "このクリーチャーがバトルゾーンに出た時、そのターン、自分の他のクリーチャー１体のパワーを+1000し、ターンの終わりにアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-046",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ChooseEndUntap501",
+          "other": true,
+          "power": 1000,
+          "thisTurn": true,
+          "creatureSource": true
+        }
+      ],
+      "supportBatch": "phase-686",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr15-033",
+      "name": "チャケの応援",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nこのターン、クリーチャーはプレイヤーを攻撃できない。\nこのターン、バトルゾーンにある自分のクリーチャーすべてのパワーは+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-033",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "PlayerStop567",
+          "owner": "self",
+          "g567PlayerStop": "end",
+          "spell": true
+        },
+        {
+          "op": "PlayerStop567",
+          "owner": "opponent",
+          "g567PlayerStop": "end",
+          "spell": true
+        },
+        {
+          "op": "GroupPower",
+          "owner": "self",
+          "power": 2000,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-686",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-018",
+      "name": "天守閣 龍帝武陣",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のコスト３以下のクリーチャーを１体、破壊する。\nマナ武装 ４：自分のマナゾーンに多色カードが４枚以上あれば、さらに相手のコスト９以下のクリーチャーを１体、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-018",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "max": 3
+          }
+        },
+        {
+          "op": "IfMana",
+          "n": 4,
+          "multi": true,
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "max": 9
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-686",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 685,
+    "phase": 686,
     "checkedAt": "2026-11-09",
-    "baseCount": 5883,
-    "newEffectCards": 1,
+    "baseCount": 5884,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5884,
+    "totalCount": 5887,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/38674/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+      "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+      "https://dm.takaratomy.co.jp/rule/qa/40177/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -181415,6 +181526,22 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36536/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36537/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 685,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5883,
+        "newEffectCards": 1,
+        "newVanillaCards": 0,
+        "totalCount": 5884,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/38674/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

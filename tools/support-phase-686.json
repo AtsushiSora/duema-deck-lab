@@ -1,0 +1,169 @@
+{
+  "phase": 686,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5884,
+  "description": "選んだ味方のターン末アンタップ、両プレイヤーへの攻撃制限、多色マナ武装による追加破壊。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/40177/"
+  ],
+  "cards": [
+    {
+      "id": "dmr18-046",
+      "name": "挟撃の翼 キャンサム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-046",
+      "faces": [
+        {
+          "name": "挟撃の翼 キャンサム",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、そのターン、自分の他のクリーチャー１体のパワーを+1000し、ターンの終わりにアンタップする。",
+          "race": "ジャスティス・ウイング",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ChooseEndUntap501",
+            "other": true,
+            "power": 1000,
+            "thisTurn": true,
+            "creatureSource": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "ec2ef34215ad402930fb82356d93cd715ddcc0312b50fc802cb2b0e93558ace1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr15-033",
+      "name": "チャケの応援",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-033",
+      "faces": [
+        {
+          "name": "チャケの応援",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nこのターン、クリーチャーはプレイヤーを攻撃できない。\nこのターン、バトルゾーンにある自分のクリーチャーすべてのパワーは+2000される。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "PlayerStop567",
+            "owner": "self",
+            "g567PlayerStop": "end",
+            "spell": true
+          },
+          {
+            "op": "PlayerStop567",
+            "owner": "opponent",
+            "g567PlayerStop": "end",
+            "spell": true
+          },
+          {
+            "op": "GroupPower",
+            "owner": "self",
+            "power": 2000,
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "57532abcb3b2c3ccfb42800e6a97d2110f62f89b197afe95f23560e8d4f6f00b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr22-018",
+      "name": "天守閣 龍帝武陣",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-018",
+      "faces": [
+        {
+          "name": "天守閣 龍帝武陣",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のコスト３以下のクリーチャーを１体、破壊する。\nマナ武装 ４：自分のマナゾーンに多色カードが４枚以上あれば、さらに相手のコスト９以下のクリーチャーを１体、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "max": 3
+            }
+          },
+          {
+            "op": "IfMana",
+            "n": 4,
+            "multi": true,
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "max": 9
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "785d3622054a72b2fc6654f30440e26dd77883990e8e4d30659fe4150a1679bd",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr18-046": 4,
+      "dmr15-033": 4,
+      "dmr22-018": 4
+    }
+  }
+}

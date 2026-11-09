@@ -2476,6 +2476,26 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=686){
+  const text=normalize(f.abilityText);
+  const trigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  if(creature&&text==='このクリーチャーがバトルゾーンに出た時そのターン自分の他のクリーチャー1体のパワーを+1000しターンの終わりにアンタップする。'){
+   return {effect:'sixPhoto',g34Tasks:[{op:'ChooseEndUntap501',other:true,power:1000,thisTurn:true,creatureSource:true}]};
+  }
+  if(f.typeText==='呪文'&&text===trigger+'このターンクリーチャーはプレイヤーを攻撃できない。このターンバトルゾーンにある自分のクリーチャーすべてのパワーは+2000される。'){
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[
+    {op:'PlayerStop567',owner:'self',g567PlayerStop:'end',spell:true},
+    {op:'PlayerStop567',owner:'opponent',g567PlayerStop:'end',spell:true},
+    {op:'GroupPower',owner:'self',power:2000,spell:true}
+   ]};
+  }
+  if(f.typeText==='呪文'&&text===trigger+'相手のコスト3以下のクリーチャーを1体破壊する。マナ武装4:自分のマナゾーンに多色カードが4枚以上あればさらに相手のコスト9以下のクリーチャーを1体破壊する。'){
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Target',to:'grave',filter:{max:3}},
+    {op:'IfMana',n:4,multi:true,defs:[{op:'Target',to:'grave',filter:{max:9}}]}
+   ]};
+  }
+ }
  if(phase>=685&&creature){
   const text=normalize(f.abilityText);
   const match=text.match(/^Q・ブレイカー(?:\(このクリーチャーはシールドを4つブレイクする\))?(相手は呪文を唱えたりフィールドを展開できない。|相手は呪文またはフィールドを実行できない。)このクリーチャーがバトルに勝った時相手のシールドを3つまで選び持ち主のマナゾーンに置く。$/);
