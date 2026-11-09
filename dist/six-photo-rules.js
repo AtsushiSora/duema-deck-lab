@@ -957,6 +957,50 @@ export function createSixPhotoRules(api){
    choice(s,t,'マナに置く相手の手札を裏向きのまま1枚選ぶ',opp.hand.map((_,i)=>opt('裏向きの手札 '+(i+1),i,0)));
   }
   break;
+ case'g34_Nocturne732':{
+  const names=new Map();
+  for(const c of api.allCards().filter(c=>c.type!=='seal'&&c.type!=='unknown'))for(const face of faces(c)){
+   const name=creatureFaceName(face);
+   if(!names.has(exactName(name)))names.set(exactName(name),opt(name,name,0,c.id));
+  }
+  const seen=new Set([...opp.battle,...opp.grave.filter(y=>!y.faceDown)].flatMap(y=>faces(card(y)).map(face=>exactName(creatureFaceName(face)))));
+  const options=[...names].map(([name,option])=>({...option,score:seen.has(name)?10:0}));
+  choice(s,t,'宣言するカード名を選ぶ',options);
+  break;
+ }
+ case'g34_Roulette732':put(s,task('g9Number',t.p,t.source,{family:'roulette732'}));break;
+ case'g34_RouletteReveal732':{
+  const who=t.opponent?1-t.p:t.p,hand=s.players[who].hand;
+  api.log(s,who,'reveal','手札を公開：'+(hand.map(y=>card(y).name).join('・')||'なし'),{cardId:t.source});
+  const number=t.number==='∞'?Infinity:t.number;
+  const matching=hand.filter(y=>faces(card(y)).some(face=>cost(face)===number)).map(y=>y.uid);
+  const next=t.opponent?null:{...t,opponent:true};
+  api.discardSelected(s,who,matching,t.source,t.p,null,next);
+  break;
+ }
+ case'g34_Barrage732':{
+  if(api.deckLocked(s,t.p))break;
+  const ids=[],skipIds=reserved(own),limit=api.lookCount(s,t.p,own.deck.length);
+  let threshold;
+  for(const y of own.deck){
+   if(ids.length===limit)break;
+   if(skipIds.has(y.uid))continue;
+   ids.push(y.uid);
+   api.log(s,t.p,'reveal',card(t.source).name+'で山札から公開：'+card(y).name,{cardId:y.cardId,source:t.source});
+   const base=card(y),face=faces(base).find(f=>f.type==='creature');
+   if(face){
+    threshold=base.g321Katsu?api.revealedPower(y,s):face.power==='∞'?Infinity:Number(face.power);
+    break;
+   }
+  }
+  (own.g34Protected??=[]).push(...ids);
+  put(s,{...t,op:'g34_Order',ids,rest:'grave'});
+  if(threshold!==undefined){
+   const victims=[0,1].flatMap(p=>creatures(s,p).filter(y=>!y.sealed&&currentPower506(s,y)<threshold).map(y=>({player:p,uid:y.uid,to:'grave',destroy:true})));
+   if(victims.length)move(s,victims);
+  }
+  break;
+ }
  case'g34_InspectHand':{
   const hand=opp.hand;
   if(!hand.length){api.log(s,t.p,'look',card(t.source).name+'：相手の手札はありません',{cardId:t.source});break;}
@@ -966,7 +1010,7 @@ export function createSixPhotoRules(api){
    choice(s,{...t,seen:hand.map(y=>y.cardId)},'マナに置く相手の手札を1枚まで選ぶ',[...options,opt('マナに置かない',null,0)]);
    break;
   }
-  const eligible=t.discard?hand.filter(y=>matches(s,1-t.p,y,t.filter)):[];
+  const eligible=t.discard?hand.filter(y=>t.g732Name?faces(card(y)).some(face=>exactName(creatureFaceName(face))===t.g732Name):matches(s,1-t.p,y,t.filter)):[];
   const ids=eligible.map(y=>y.uid),seen=hand.map(y=>y.cardId);
   api.log(s,t.p,t.reveal?'reveal':'look',t.reveal?'相手の手札を公開：'+hand.map(y=>card(y).name).join('・'):card(t.source).name+'で相手の手札を確認',{cardId:t.source});
   const options=t.chooseOne&&ids.length?eligible.map(y=>opt(card(y).name+'を捨てさせる',y.uid,10+cost(card(y))*3,y.cardId)):
@@ -1662,6 +1706,10 @@ export function createSixPhotoRules(api){
   }
   break;
  }
+ case'g34_Nocturne732':
+  api.log(s,t.p,'declare',v+'を宣言',{cardId:t.source});
+  start(s,t,[{op:'InspectHand',discard:true,g223Inspect:true,g732Name:exactName(v)}]);
+  break;
  case'g34_InspectHand':
   if(t.g714ToMana){
    const opponent=s.players[1-t.p],y=opponent.hand.find(x=>x.uid===v);

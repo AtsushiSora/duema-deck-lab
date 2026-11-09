@@ -2557,6 +2557,15 @@ export function standardCardSpec(d,{phase=165}={}){
  const compact363=phase>=363?normalize(f.abilityText):'',whole363=phase>=363&&(modal363(compact363)||compact363==='自分の水と闇を両方持つクリーチャーがバトルゾーンに出た時次のうちいずれか1つを選ぶ。▼カードを1枚引く。▼相手は自身の手札を1枚選び捨てる。');
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?abilityText.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):abilityText).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=732){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='クリーチャー'&&text==='このクリーチャーをバトルゾーンに出した時カード名をひとつ選んで言う。その後相手の手札を見る。相手はその中から選ばれたカードと同じ名前のカードをすべて捨てる。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Nocturne732'}]};
+  if(f.typeText==='呪文'&&text==='S・トリガー数字をひとつ選ぶ。自分の手札を相手に見せその中から選んだ数字と同じコストのカードをすべて捨てる。その後相手は自分自身の手札を見せその中から選んだ数字と同じコストのカードをすべて捨てる。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Roulette732'}]};
+  if(f.typeText==='呪文'&&text==='マナゾーンに置く時このカードはタップして置く。自分の山札の上からクリーチャーが出るまでカードを表向きにする。そのクリーチャーよりパワーの小さいクリーチャーをすべて破壊する。表向きにしたカードをすべて自分の墓地に置く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Barrage732'}]};
+ }
  if(phase>=731&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(text==='このクリーチャーのパワーはバトルゾーンにある文明1つにつき+2000される。このクリーチャーはパワーが6000以上の時「W・ブレイカー」を得る。(このクリーチャーはシールドを2枚ブレイクする)')
