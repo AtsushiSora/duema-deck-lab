@@ -50,16 +50,18 @@ export function createSamuraiRules(api){
  case'g18_FreeCross':if(v){const g=own.battle.find(x=>x.uid===t.gear&&(x.incarnation||0)===t.gearInc),x=own.battle.find(x=>x.uid===v);if(g&&x&&api.isCreature(s,x))cross(s,t.p,g,x);}break;
  default:throw Error('未実装のサムライ選択：'+t.op);
  }return true;}
+ function sharesCrossedRace(s,p,gear,c){
+  const host=live(s,p,gear);
+  if(!c.race||!host||host.sealed||!active(s,gear))return false;
+  const races=String(c.race).split('/');
+  return String(effective(host,s,true).race||'').split('/').some(r=>r&&races.includes(r));
+ }
  function crossedRacePower(s,c){
   if(!c.race)return 0;
-  const races=String(c.race).split('/');
   let total=0;
   for(const p of [0,1])for(const gear of gears(s,p)){
    const bonus=card(gear).g726CrossRacePower;
-   if(!bonus||!active(s,gear))continue;
-   const host=live(s,p,gear);
-   if(!host||host.sealed)continue;
-   if(String(effective(host,s,true).race||'').split('/').some(r=>r&&races.includes(r)))total+=bonus;
+   if(bonus&&sharesCrossedRace(s,p,gear,c))total+=bonus;
   }
   return total;
  }
@@ -73,7 +75,18 @@ export function createSamuraiRules(api){
  speed(s,p,x){const c=card(x);return c.type==='creature'&&(samurai(c)&&creatures(s,p).some(y=>!api.ignored(s,y)&&card(y).samuraiSpeed)||(dragon(c)||samurai(c))&&gears(s,p).some(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((q)=>dragon(q)||samurai(q))(card(live(s,p,g)))));},
  power(s,p,x,c){if(p<0||!api.isCreature(s,x))return 0;return (x.sealed?0:crossedRacePower(s,c))+attached(s,p,x).filter(g=>active(s,g)).reduce((n,g)=>n+(card(g).g123CrossPower||0),0)+attached(s,p,x).filter(g=>card(g).takion&&active(s,g)).length*1000+((dragon(card(x))||samurai(card(x)))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((c)=>dragon(c)||samurai(c))(card(live(s,p,g)))).length*2000:0);},
  entry(s,p,x,options){const c=card(x);if(!options.selfMuted&&!api.selfStopped(s,p)&&!api.ignored(s,x)){if(c.samuraiGenerate)on(s,p,x,'g18_Generate');if(c.shiroLock&&options.revolution)on(s,p,x,'g18_ShiraLock');}},
- attack(s,p,x){if(!api.selfStopped(s,p)){const c=effective(x,s);if(c.samuraiBui)on(s,p,x,'g18_Bui');if(c.samuraiMusashi)on(s,p,x,'g18_MusashiUse');}for(const g of attached(s,p,x))if(card(g).doss&&active(s,g))on(s,p,g,'g18_Mekraid');},
+ attack(s,p,x){
+  if(!api.selfStopped(s,p)){
+   const c=effective(x,s);
+   if(c.samuraiBui)on(s,p,x,'g18_Bui');
+   if(c.samuraiMusashi)on(s,p,x,'g18_MusashiUse');
+  }
+  for(const g of attached(s,p,x))if(card(g).doss&&active(s,g))on(s,p,g,'g18_Mekraid');
+  for(const owner of [p,1-p])for(const gear of gears(s,owner)){
+   if(!card(gear).g727CrossRaceDraw||!sharesCrossedRace(s,owner,gear,effective(x,s,true)))continue;
+   on(s,owner,gear,'g34_Offer',{title:'カードを1枚引く？',defs:[{op:'Draw',n:1}]});
+  }
+ },
  end(s,p){return creatures(s,p).filter(x=>effective(x,s).samuraiEndUntap).map(x=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g18_EndUntap',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})}));},
  start(s,p){return creatures(s,p).filter(x=>effective(x,s).maroku&&attached(s,p,x).length).map(x=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g18_Maroku',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})}));},
  mainActions(s,p){const out=[];for(const g of gears(s,p))for(const x of creatures(s,p)){if(live(s,p,g)?.uid===x.uid)continue;const free=active(s,g)&&freeCross(card(g),card(x)),c={...card(g),crossing:true},n=free?0:api.summonCost(s,p,c);if(!free&&!api.canPay(s,p,c))continue;const existing=!!live(s,p,g),score=card(g).g125CrossUnblock?(existing?-30:attached(s,p,x).some(y=>card(y).g125CrossUnblock&&active(s,y))?5:35)+(x.tapped?-10:0):card(g).g119Petro?(existing||attached(s,p,x).some(y=>card(y).g119Petro&&active(s,y))?-30:40+Math.min(cost(card(x)),12)*3):existing?-30:card(g).zangeki&&(dragon(card(x))||samurai(card(x)))?70:card(g).doss?30:10;out.push({kind:'crossGear',uid:g.uid,cardId:g.cardId,target:x.uid,cost:n,free,score:score+(!existing&&x.entered<s.turn&&!x.tapped?4:0),label:card(g).name+' → '+card(x).name+'にクロス（'+(free?'無料':n+'マナ')+'）'});}return out;},

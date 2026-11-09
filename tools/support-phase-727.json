@@ -1,0 +1,204 @@
+{
+  "phase": 727,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6019,
+  "description": "共通種族の継続強化と任意ドロー、クロス中の非ブロック時の手札戻し、進化・侍流ジェネレートとクロス中のマナ送りを実装。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35362/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37504/",
+    "https://dm.takaratomy.co.jp/rule/qa/43464/"
+  ],
+  "cards": [
+    {
+      "id": "dm16-026",
+      "name": "コマンド・デバイス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-026",
+      "faces": [
+        {
+          "name": "コマンド・デバイス",
+          "typeText": "クロスギア",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "クロスギア\nバトルゾーンにある、これをクロスしたクリーチャーと同じ種族のクリーチャーすべてのパワーは+1000される。\nこれをクロスしたクリーチャーと同じ種族のクリーチャーが攻撃する時、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "type": "gear",
+        "g726CrossRacePower": 1000,
+        "g727CrossRaceDraw": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "90042e95c2ec469882b050b54c9164f03ac16e827a83bebef0a0fd27bc35061c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-083",
+      "name": "シンカイドウザン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-083",
+      "faces": [
+        {
+          "name": "シンカイドウザン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "アクセル(このクリーチャーにクロスギアがクロスされている時、このクリーチャーは次の能力を得る)\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、このクリーチャーよりパワーの小さいクリーチャーを１体、バトルゾーンから持ち主の手札に戻してもよい。",
+          "race": "ブルー・モンスター/サムライ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g436Crossed": true
+          },
+          "grants": {
+            "g482Unblocked": [
+              {
+                "op": "TargetBelowSource692",
+                "to": "hand",
+                "optional": true,
+                "anyOwner": true,
+                "g179Other": true
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-083.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "d5264bb240e9b8e4fb97fb464fd407569081d6d218ac99aa57005070c8a49987",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm30-s05",
+      "name": "大神秘ハルサ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-s05",
+      "faces": [
+        {
+          "name": "大神秘ハルサ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分のサムライ・クリーチャー１体の上に置く。\n侍流ジェネレート(このクリーチャーをバトルゾーンに出した時、自分の手札にあるクロスギアを１枚、コストを支払わずにジェネレートしてもよい)\nアクセル(このクリーチャーにクロスギアがクロスされている時、このクリーチャーは次の能力を得る)\nこのクリーチャーが攻撃する時、バトルゾーンにある相手のクリーチャーを１体選び、持ち主のマナゾーンに置いてもよい。\nW・ブレイカー",
+          "race": "ジャイアント/サムライ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "サムライ"
+        },
+        "samuraiGenerate": true,
+        "breaker": 2,
+        "g260Self": {
+          "filter": {
+            "g436Crossed": true
+          },
+          "grants": {
+            "g34Attack": [
+              {
+                "op": "Target",
+                "to": "mana",
+                "optional": true
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm30-s05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "933cecef3b1a71e12c6b87eaaddcf2a7d964b318b66bbe4b591b3f50211d9f8d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmpcd02-a04",
+      "canonicalId": "dm30-s05",
+      "name": "大神秘ハルサ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmpcd02-a04",
+      "faces": [
+        {
+          "name": "大神秘ハルサ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化：サムライ１体の上に置く。\n侍流ジェネレート（このクリーチャーが出た時、クロスギアを１枚、自分の手札からコストを支払わずにジェネレートしてもよい）\nアクセル（このクリーチャーにクロスギアがクロスされている時、このクリーチャーに次の a能力を与える）\naこのクリーチャーが攻撃する時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置いてもよい。\nW・ブレイカー",
+          "race": "ジャイアント/サムライ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "race": "サムライ"
+        },
+        "samuraiGenerate": true,
+        "breaker": 2,
+        "g260Self": {
+          "filter": {
+            "g436Crossed": true
+          },
+          "grants": {
+            "g34Attack": [
+              {
+                "op": "Target",
+                "to": "mana",
+                "optional": true
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmpcd02-a04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "cc0670552b7f672bdec5c5b47a7bcbf352c05a4a70f73d5def3a06a1b7880d43",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm16-026": 4,
+      "dm28-083": 4,
+      "dm30-s05": 4,
+      "dmpcd02-a04": 4
+    }
+  }
+}

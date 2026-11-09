@@ -1386,7 +1386,7 @@ export function createSixPhotoRules(api){
  case'g34_TargetBelowSource692':{
   const host=sourceHost474(s,t);
   const current=host&&!host.x.sealed&&api.isCreature(s,host.x)?currentPower506(s,host.x):t.g692LastPower;
-  if(current!==undefined&&current!==-Infinity&&current!=='-∞')start(s,t,[{op:'Target',to:t.to,optional:t.optional,filter:{belowPower:current===Infinity?'∞':current}}]);
+  if(current!==undefined&&current!==-Infinity&&current!=='-∞')start(s,t,[{op:'Target',to:t.to,optional:t.optional,...(t.anyOwner?{anyOwner:true}:{}),...(t.g179Other?{g179Other:true}:{}),filter:{belowPower:current===Infinity?'∞':current}}]);
   break;
  }
  case'g34_TargetByOwnCount655':

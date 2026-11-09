@@ -2497,6 +2497,9 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=727&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クロスギア'&&normalize(f.abilityText)==='クロスギアバトルゾーンにあるこれをクロスしたクリーチャーと同じ種族のクリーチャーすべてのパワーは+1000される。これをクロスしたクリーチャーと同じ種族のクリーチャーが攻撃する時カードを1枚引いてもよい。'){
+  return {type:'gear',g726CrossRacePower:1000,g727CrossRaceDraw:true};
+ }
  if(phase>=726&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クロスギア'){
   const cross='クロスギア:このカードをバトルゾーンに置く。クリーチャーにクロスするにはこのカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れてもこのカードはバトルゾーンに残る。';
   const power='バトルゾーンにあるこれをクロスしたクリーチャーと同じ種族のクリーチャーすべてのパワーは+2000';
@@ -2552,6 +2555,15 @@ export function standardCardSpec(d,{phase=165}={}){
  const compact363=phase>=363?normalize(f.abilityText):'',whole363=phase>=363&&(modal363(compact363)||compact363==='自分の水と闇を両方持つクリーチャーがバトルゾーンに出た時次のうちいずれか1つを選ぶ。▼カードを1枚引く。▼相手は自身の手札を1枚選び捨てる。');
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?abilityText.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):abilityText).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=727&&f.typeText==='進化クリーチャー'){
+  const text=normalize(f.abilityText);
+  const attack='このクリーチャーが攻撃する時';
+  const original='進化-自分のサムライ・クリーチャー1体の上に置く。侍流ジェネレート(このクリーチャーをバトルゾーンに出した時自分の手札にあるクロスギアを1枚コストを支払わずにジェネレートしてもよい)アクセル(このクリーチャーにクロスギアがクロスされている時このクリーチャーは次の能力を得る)'+attack+'バトルゾーンにある相手のクリーチャーを1体選び持ち主のマナゾーンに置いてもよい。W・ブレイカー';
+  const reprint='進化:サムライ1体の上に置く。侍流ジェネレート(このクリーチャーが出た時クロスギアを1枚自分の手札からコストを支払わずにジェネレートしてもよい)アクセル(このクリーチャーにクロスギアがクロスされている時このクリーチャーに次のa能力を与える)a'+attack+'相手のクリーチャーを1体選び持ち主のマナゾーンに置いてもよい。W・ブレイカー';
+  if([original,reprint].includes(text)){
+   return {evolution:{race:'サムライ'},samuraiGenerate:true,breaker:2,g260Self:{filter:{g436Crossed:true},grants:{g34Attack:[{op:'Target',to:'mana',optional:true}]}}};
+  }
+ }
  if(phase>=726&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const blocker='ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)';
@@ -3593,6 +3605,9 @@ export function standardCardSpec(d,{phase=165}={}){
   if(at>=0){
    if(lines.filter(isMarker).length!==1||at===lines.length-1)throw Error('未対応のアクセル構成');
    const rawBody=normalize(lines.slice(at+1).join('')),body=normalize(lines[at])===modern?rawBody.replace(/^a(?=このクリーチャー)/,''):rawBody,race=body.match(/^このクリーチャーのパワーは\+3000され種族に(サイバー・ムーン|デーモン・コマンド|アース・ドラゴン|エンジェル・コマンド|ボルケーノ・ドラゴン)を追加する。$/),grants=race?{power:3000,raceAdd:[race[1]]}:{
+    ...(phase>=727?{
+     'このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時このクリーチャーよりパワーの小さいクリーチャーを1体バトルゾーンから持ち主の手札に戻してもよい。':{g482Unblocked:[{op:'TargetBelowSource692',to:'hand',optional:true,anyOwner:true,g179Other:true}]}
+    }:{}),
     ...(phase>=542?{'このクリーチャーがこのターンはじめて攻撃する時攻撃の後このクリーチャーをアンタップする。':{g540FirstAttack:[{op:'AfterAttack542',defs:[{op:'Untap',g191First:true}]}]}}:{}),
     ...(phase>=442?{
      'このクリーチャーが攻撃する時カードを1枚引く。':{g34Attack:[{op:'Draw',n:1}]},
