@@ -1,0 +1,187 @@
+{
+  "phase": 736,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6050,
+  "description": "種族を宣言する手札からのマナ加速と攻撃強制、登場を参照するビーストフォークの強化に対応。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/42400/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35476/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35159/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35823/",
+    "https://dm.takaratomy.co.jp/rule/qa/42947/"
+  ],
+  "cards": [
+    {
+      "id": "dm09-055",
+      "name": "強欲の開拓",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-055",
+      "faces": [
+        {
+          "name": "強欲の開拓",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "種族を１つ選ぶ。その種族のクリーチャーを自分の手札から好きな枚数選び、自分のマナゾーンに置いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ChooseRace724",
+            "g736HandMana": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "a2d3bbbd4c6fcbddf3512bb067e9b1a559e1b30d9c07eb6fec0fdb15f64f7a69",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-005",
+      "name": "鼓舞の化身",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-005",
+      "faces": [
+        {
+          "name": "鼓舞の化身",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンにある間、自分の他のクリーチャーがバトルゾーンに出るたび、このターンの終わりまで、バトルゾーンにあるビーストフォークのパワーは+2000され、「W・ブレイカー」を得る。",
+          "race": "ミステリー・トーテム",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g314OtherEntry": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "GroupPower",
+              "owner": "both",
+              "filter": {
+                "creature": true,
+                "race": "ビーストフォーク"
+              },
+              "power": 2000
+            },
+            {
+              "op": "GroupGrant364",
+              "owner": "both",
+              "filter": {
+                "creature": true,
+                "race": "ビーストフォーク"
+              },
+              "grant": {
+                "g313Breaker": 2,
+                "g633DoubleBreaker": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "c7a528aca9bcd5ef7137245bdbc9b9e86331ac86052cbf1eb7be3de6cf762377",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-031",
+      "name": "ジージョのトンカチ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-031",
+      "faces": [
+        {
+          "name": "ジージョのトンカチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n種族を１つ選ぶ。このターン、その種族のクリーチャーは、可能であれば攻撃し、「パワーアタッカー+4000」を得る。",
+          "race": "ゼノパーツ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g736AttackInstead": true,
+        "g439Tap": [
+          {
+            "op": "ChooseRace724",
+            "g736ForceAttack": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "77150738283b8c64b7275b01fab0ef18cd35a30a080366c2dabb9011ed6afd08",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm09-055": 4,
+      "dm09-005": 4,
+      "dm09-031": 4,
+      "dm18-015": 4
+    }
+  },
+  "printAliases": [
+    {
+      "id": "dm18-015",
+      "canonicalId": "dm09-005",
+      "name": "鼓舞の化身(ダンシング・トーテム)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm18-015",
+      "faces": [
+        {
+          "name": "鼓舞の化身(ダンシング・トーテム)",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の他のクリーチャーをバトルゾーンに出した時、そのターンの終わりまで、バトルゾーンにあるビーストフォークのパワーは+2000され、「W・ブレイカー」を得る。(「W・ブレイカー」を得たクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ミステリー・トーテム",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm18-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "9e7383e47091c5d05b708d7af2e3cee4f9c6a32c857320d79bcfc94032ae1987",
+        "facesMatched": true
+      }
+    }
+  ]
+}

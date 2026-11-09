@@ -174797,24 +174797,117 @@
       ],
       "supportBatch": "phase-735",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm09-055",
+      "name": "強欲の開拓",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "種族を１つ選ぶ。その種族のクリーチャーを自分の手札から好きな枚数選び、自分のマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-055",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ChooseRace724",
+          "g736HandMana": true
+        }
+      ],
+      "supportBatch": "phase-736",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm09-005",
+      "name": "鼓舞の化身",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ミステリー・トーテム",
+      "text": "このクリーチャーがバトルゾーンにある間、自分の他のクリーチャーがバトルゾーンに出るたび、このターンの終わりまで、バトルゾーンにあるビーストフォークのパワーは+2000され、「W・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-005",
+      "limit": 4,
+      "g314OtherEntry": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "GroupPower",
+            "owner": "both",
+            "filter": {
+              "creature": true,
+              "race": "ビーストフォーク"
+            },
+            "power": 2000
+          },
+          {
+            "op": "GroupGrant364",
+            "owner": "both",
+            "filter": {
+              "creature": true,
+              "race": "ビーストフォーク"
+            },
+            "grant": {
+              "g313Breaker": 2,
+              "g633DoubleBreaker": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-736",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm09-031",
+      "name": "ジージョのトンカチ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ゼノパーツ",
+      "text": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n種族を１つ選ぶ。このターン、その種族のクリーチャーは、可能であれば攻撃し、「パワーアタッカー+4000」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-031",
+      "limit": 4,
+      "g736AttackInstead": true,
+      "g439Tap": [
+        {
+          "op": "ChooseRace724",
+          "g736ForceAttack": true
+        }
+      ],
+      "supportBatch": "phase-736",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 735,
+    "phase": 736,
     "checkedAt": "2026-11-10",
-    "baseCount": 6047,
+    "baseCount": 6050,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6050,
+    "totalCount": 6053,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/44618/",
-      "https://dm.takaratomy.co.jp/rule/qa/44603/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35256/",
       "https://dm.takaratomy.co.jp/rule/qa/42400/",
       "https://dm.takaratomy.co.jp/rule/qa_old/35476/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31395/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35159/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35823/",
+      "https://dm.takaratomy.co.jp/rule/qa/42947/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -187541,6 +187634,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/43471/",
           "https://dm.takaratomy.co.jp/rule/qa/41285/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31650/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 735,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6047,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6050,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/44618/",
+          "https://dm.takaratomy.co.jp/rule/qa/44603/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35256/",
+          "https://dm.takaratomy.co.jp/rule/qa/42400/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35476/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31395/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

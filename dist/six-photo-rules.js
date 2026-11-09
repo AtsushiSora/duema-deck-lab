@@ -472,11 +472,12 @@ export function createSixPhotoRules(api){
  // Publish the complete movement before its zone triggers or matching draw.
  function moveZoneSelection583(s,t,rows){
   if(!api.canMoveZone(s,t.p,t.origin))return;
-  const dest=t.to==='mana'&&api.manaRedirect(s,t.p)?'grave':t.to;
+  const dest=t.to==='mana'&&t.origin!=='hand'&&api.manaRedirect(s,t.p)?'grave':t.to;
   if(dest===t.origin)return;
   const origin=s.players[t.p][t.origin],moved=rows.map(r=>remove(origin,r.uid)).filter(Boolean);
   for(const x of moved)clear(x,dest);
   api.addZone(s,t.p,dest,...moved);
+  if(t.origin==='hand'&&dest==='mana')for(const x of moved)api.handMana(s,t.p,x);
   if(t.g583DrawMoved&&moved.length)start(s,t,[{op:'Draw',n:moved.length}]);
  }
  function graveSpellOptions594(s,t){
@@ -1092,7 +1093,12 @@ export function createSixPhotoRules(api){
  case'g34_DiscardDraw':{const rows=own.hand.filter(y=>!t.filter||matches(s,t.p,y,t.filter));if(rows.length){const last=t.n>=own.deck.length,win=last&&creatures(s,t.p).some(y=>effective(y,s).shako);choice(s,t,'手札を1枚捨てて'+t.n+'枚引く？',[...rows.map(y=>opt(card(y).name+'を捨てる',y.uid,last?(win?1000:-1000):12+t.n*5-cost(card(y)),y.cardId)),skip()]);}break;}
  case'g34_ResolveSpell207':api.resumeCastSpell(s,t.p,t.uid);break;
  case'g34_GroupLasting412':for(const {p,y}of groupPowerRows(s,t))(s.extLimits??=[]).push({kind:t.destroySafe?'g409AttackEffect':'g412ExtraBreak',player:p,ref:{uid:y.uid,incarnation:y.incarnation||0},source:t.source,...(t.destroySafe?{effect:'destroySafe',expires:t.untilEnd?'end':'start',who:t.untilEnd?s.active:t.p}:{amount:t.extraBreak,expires:'end',who:s.active})});break;
- case'g34_GroupGrant364':for(const {y}of groupPowerRows(s,t))applyGrant(s,t,y);break;
+ case'g34_GroupGrant364':
+  for(const {p,y}of groupPowerRows(s,t)){
+   if(t.g736ForceAttack)force546(s,{...t,when:'end'},p,y);
+   applyGrant(s,t,y);
+  }
+  break;
  case'g34_CountPower561':start(s,t,countedPowerDefs561(s,t,t));break;
  case'g34_GroupPower':for(const {p,y}of groupPowerRows(s,t))(y.powerModifiers??=[]).push({amount:t.g561DarkMana?0:p===t.p&&t.ownPower!==undefined?t.ownPower:t.power,...(t.g561DarkMana?{g561DarkMana:t.p}:{}),expires:'end',who:s.active,...(t.g561AttackOnly?{attackOnly:true}:{}),...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});break;
  case'g34_SelfExtraBreak444':if(own.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))))(s.extLimits??=[]).push({kind:'g412ExtraBreak',player:t.p,ref:{uid:t.uid,incarnation:t.incarnation||0},source:t.source,amount:t.amount,expires:'end',who:s.active});break;
@@ -1784,11 +1790,15 @@ export function createSixPhotoRules(api){
  }
  case'g34_ChooseRace724':{
   const filter={creature:true,g724ExactRace:v};
-  if(t.g735Grant){
-   // Dragon is a legal declaration and refers to the category (QA42400).
-   const chosen=v==='ドラゴン'?{creature:true,race:v}:filter;
+  // Dragon is a legal declaration and refers to the category (QA42400).
+  const chosen=v==='ドラゴン'?{creature:true,race:v}:filter;
+  if(t.g735Grant)
    start(s,t,[{op:'GroupGrant364',owner:'both',filter:chosen,spell:true,grant:t.g735Grant,g521UntilStart:t.g521UntilStart}]);
-  }else if(t.g725Tribal){
+  else if(t.g736ForceAttack)
+   start(s,t,[{op:'GroupGrant364',owner:'both',filter:chosen,g736ForceAttack:true,grant:{attackBonus:4000,g736ForcedAttack:true}}]);
+  else if(t.g736HandMana)
+   start(s,t,[select('hand','mana','all',chosen,{optional:true,g583Group:true,title:'マナに置く手札を好きな枚数選ぶ'})]);
+  else if(t.g725Tribal){
    const group={owner:'self',filter,spell:true};
    start(s,t,[{op:'GroupPower',...group,power:4000},{op:'GroupGrant364',...group,grant:{g725NoBlockMaxPower:5000}}]);
   }else start(s,t,[{op:'CountOwn538',filter,mode:'select',def:t.def}]);
