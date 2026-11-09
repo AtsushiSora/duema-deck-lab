@@ -1,0 +1,172 @@
+{
+  "phase": 758,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6120,
+  "description": "相手のS・トリガー使用後の任意ドローとマナ加速、味方の攻撃時の任意タップとアンタップに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35517/"
+  ],
+  "cards": [
+    {
+      "id": "dm23-010",
+      "name": "封魔ガリエフ・イルゾール",
+      "faces": [
+        {
+          "name": "封魔ガリエフ・イルゾール",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手が「S・トリガー」を使った時、カードを２枚まで引いてもよい。",
+          "race": "グランド・デビル",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-010",
+      "spec": {
+        "g699OpponentShieldTrigger": [
+          {
+            "op": "DrawUpTo",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "5e1c80df76a871dcf3be4464fee374a2f021ba5b699b1c78d9c834dd99d39e42",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23-020",
+      "name": "霊騎ドゥール・カリオン",
+      "faces": [
+        {
+          "name": "霊騎ドゥール・カリオン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手が「S・トリガー」を使った時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+          "race": "アーク・セラフィム",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-020",
+      "spec": {
+        "g699OpponentShieldTrigger": [
+          {
+            "op": "Offer",
+            "title": "山札の上から1枚をマナに置く？",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "147e918ffd641fb2e388a2edb53bcde344e4fb9af5b0504070fafd9574ecd047",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy16-048",
+      "name": "チョクシン・ゴー",
+      "faces": [
+        {
+          "name": "チョクシン・ゴー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の他のクリーチャーが攻撃する時、このクリーチャーをタップしてもよい。そうしたら、その攻撃クリーチャーをアンタップする。",
+          "race": "ジョーカーズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-048",
+      "spec": {
+        "g252AttackWatch": {
+          "who": "self",
+          "other": true,
+          "g399Attacker": true,
+          "defs": [
+            {
+              "op": "TapToUntap748",
+              "g758Attack": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "6a798838c36be1400c148d460c6b49757bc175fcd51019f0f3b160f71d18177d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmrp03-049",
+      "canonicalId": "promoy16-048",
+      "name": "チョクシン・ゴー",
+      "faces": [
+        {
+          "name": "チョクシン・ゴー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の他のクリーチャーが攻撃する時、このクリーチャーをタップしてもよい。そうしたら、その攻撃クリーチャーをアンタップする。",
+          "race": "ジョーカーズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-049",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "0ff62b2ba6622b1f281f11c7f57801cab094a2af29b978c73c792459d81849af",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23-010": 4,
+      "dm23-020": 4,
+      "promoy16-048": 4,
+      "dmrp03-049": 4
+    }
+  }
+}

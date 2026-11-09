@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6120,
-  "pendingNames": 5707,
-  "phase": 757,
+  "supportedNames": 6123,
+  "pendingNames": 5704,
+  "phase": 758,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3405,
+    "クリーチャー": 3402,
     "NEOクリーチャー": 152,
     "呪文": 813,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4180,
+    "未対応の能力文": 4177,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -9188,35 +9188,54 @@
           "check": "初出の公式本文とDMSD07収録を確認。公式QA 39978・31797の同条件に従い、既存シールドの束への追加、表向きの紋章、城などもカード単位で誘発する。イカリノ裁徒と共通で、追加経路の通知を重複なく検証するまで保留。"
         }
       ]
+    },
+    {
+      "phase": 758,
+      "cards": [
+        {
+          "id": "dm23-010",
+          "name": "封魔ガリエフ・イルゾール"
+        },
+        {
+          "id": "dm23-020",
+          "name": "霊騎ドゥール・カリオン"
+        },
+        {
+          "id": "promoy16-048",
+          "name": "チョクシン・ゴー"
+        }
+      ],
+      "supportedNames": 6123,
+      "pendingNames": 5704,
+      "verification": {
+        "focusedPassed": 7,
+        "regressionPassed": 24,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 4,
+        "scope": "3種類4版の公式本文、基本情報、マナ、画像、殿堂区分と同名商品を照合。相手のS・トリガー使用後の任意ドロー・マナ加速、呪文とクリーチャーの解決順、別の味方の攻撃時の任意タップ・アンタップ、選択途中の保存復元を検証。既存カード定義は基点と一致。",
+        "runtimeNote": "強制終了込み各最大10分。Phase 252・699・748・757から関連回帰24件が成功。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dmrp06-s10",
+          "name": "ドルツヴァイ・アステリオ",
+          "check": "初出の公式本文とQA 31744を確認。マナ加速は数えた枚数すべてをタップして置くか、置かないかの二択。パワー12000以上では類似QA 44837に従いW・Tのどちらを使うか選べる必要がある。DMEX13・DM23-BD5再録とブレイカー選択を検証するまで保留。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-s10"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 757,
-    "nextPhase": 758,
+    "lastVerifiedPhase": 758,
+    "nextPhase": 759,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm23-010",
-        "name": "封魔ガリエフ・イルゾール",
-        "check": "相手のS・トリガー使用時に任意で最大2枚引く能力を、既存の使用監視で扱えるか公式本文と再録を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-010"
-      },
-      {
-        "id": "dm23-020",
-        "name": "霊騎ドゥール・カリオン",
-        "check": "相手のS・トリガー使用時に任意で山札の上をマナに置く能力と、同名版・裁定を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-020"
-      },
-      {
-        "id": "promoy16-048",
-        "name": "チョクシン・ゴー",
-        "check": "味方攻撃の監視、タップを支払えた場合だけ攻撃クリーチャーをアンタップする処理、再録を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-048"
-      },
-      {
         "id": "dmrp06-s10",
         "name": "ドルツヴァイ・アステリオ",
-        "check": "初出の公式本文とQA 31744を確認。マナ加速は数えた枚数をすべてタップして置くか、置かないかの二択。パワー12000以上でW・Tの両方を持つ場合の選択と、DMEX13・DM23-BD5再録を確認するまで保留。",
+        "check": "初出の公式本文とQA 31744を確認。マナ加速は数えた枚数すべてをタップして置くか、置かないかの二択。パワー12000以上では類似QA 44837に従いW・Tのどちらを使うか選べる必要がある。DMEX13・DM23-BD5再録とブレイカー選択を検証するまで保留。",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-s10"
       },
       {

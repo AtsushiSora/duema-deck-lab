@@ -2564,6 +2564,14 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=758&&f.typeText==='クリーチャー'){
+  if(compact363==='相手が「S・トリガー」を使った時カードを2枚まで引いてもよい。')
+   return {g699OpponentShieldTrigger:[{op:'DrawUpTo',n:2}]};
+  if(compact363==='相手が「S・トリガー」を使った時自分の山札の上から1枚目をマナゾーンに置いてもよい。')
+   return {g699OpponentShieldTrigger:[{op:'Offer',title:'山札の上から1枚をマナに置く？',defs:[{op:'Ramp',n:1}]}]};
+  if(compact363==='自分の他のクリーチャーが攻撃する時このクリーチャーをタップしてもよい。そうしたらその攻撃クリーチャーをアンタップする。')
+   return {g252AttackWatch:{who:'self',other:true,g399Attacker:true,defs:[{op:'TapToUntap748',g758Attack:true}]}};
+ }
  if(phase>=757&&f.typeText==='クリーチャー'){
   if(compact363==='スピードアタッカー(このクリーチャーは召喚酔いしない)自分の他のクリーチャーが攻撃する時このクリーチャーを自分の手札に戻す。')
    return {speedAttacker:true,g252AttackWatch:{who:'self',other:true,defs:[{op:'SelfHand299'}]}};

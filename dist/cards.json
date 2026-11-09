@@ -177221,18 +177221,102 @@
       ],
       "supportBatch": "phase-757",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23-010",
+      "name": "封魔ガリエフ・イルゾール",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "グランド・デビル",
+      "text": "相手が「S・トリガー」を使った時、カードを２枚まで引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-010",
+      "limit": 4,
+      "g699OpponentShieldTrigger": [
+        {
+          "op": "DrawUpTo",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-758",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23-020",
+      "name": "霊騎ドゥール・カリオン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "アーク・セラフィム",
+      "text": "相手が「S・トリガー」を使った時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-020",
+      "limit": 4,
+      "g699OpponentShieldTrigger": [
+        {
+          "op": "Offer",
+          "title": "山札の上から1枚をマナに置く？",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-758",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy16-048",
+      "name": "チョクシン・ゴー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ジョーカーズ",
+      "text": "自分の他のクリーチャーが攻撃する時、このクリーチャーをタップしてもよい。そうしたら、その攻撃クリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-048",
+      "limit": 4,
+      "g252AttackWatch": {
+        "who": "self",
+        "other": true,
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "TapToUntap748",
+            "g758Attack": true
+          }
+        ]
+      },
+      "supportBatch": "phase-758",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 757,
+    "phase": 758,
     "checkedAt": "2026-11-10",
-    "baseCount": 6117,
+    "baseCount": 6120,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6120,
+    "totalCount": 6123,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35517/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -190393,6 +190477,21 @@
           "https://dm.takaratomy.co.jp/rule/qa/47898/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37329/",
           "https://dm.takaratomy.co.jp/rule/qa/48037/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 757,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6117,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6120,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

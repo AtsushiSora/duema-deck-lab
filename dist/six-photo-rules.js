@@ -961,8 +961,9 @@ export function createSixPhotoRules(api){
  case'g34_AttackUntap408':{const y=attackHost408(s,t);if(y&&(!t.g562Creature||!y.sealed&&api.isCreature(s,y))&&api.canUntap(y)){const was=y.tapped;y.tapped=false;if(was)combined.untapped(s,t.p,y);}break;}
  case'g34_TapToUntap748':{
   if(!tapSource748(s,t))break;
-  const winner=attackHost408(s,t),score=winner?.tapped&&api.canUntap(winner)&&!winner.sealed?20:-10;
-  choice(s,t,'このクリーチャーをタップしてバトルに勝ったグレートメカオーをアンタップする？',[opt('タップする',true,score),skip()]);
+  const target=attackHost408(s,t),score=target?.tapped&&api.canUntap(target)&&!target.sealed?20:-10;
+  const subject=t.g758Attack?'攻撃クリーチャー':'バトルに勝ったグレートメカオー';
+  choice(s,t,'このクリーチャーをタップして'+subject+'をアンタップする？',[opt('タップする',true,score),skip()]);
   break;
  }
  case'g34_AttackFight408':{if(t.g747Once&&parottaUsed747(s,t))break;const y=attackHost408(s,t);if(y&&api.isCreature(s,y)&&!y.sealed)put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:y.uid,incarnation:y.incarnation||0},optional:true});break;}
