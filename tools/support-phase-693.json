@@ -1,0 +1,228 @@
+{
+  "phase": 693,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5906,
+  "description": "対クリーチャー攻撃時のパワー上昇、味方登場時の自己バウンス、強制ブロック、他のクリーチャーの墓地移動によるドロー。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/47061/",
+    "https://dm.takaratomy.co.jp/rule/qa/45909/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31637/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/%E5%A4%89%E6%9B%B4%E7%82%B92026-07-23/"
+  ],
+  "cards": [
+    {
+      "id": "dm11-052",
+      "name": "闘気の棘",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-052",
+      "faces": [
+        {
+          "name": "闘気の棘",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがクリーチャーを攻撃する時、そのターンの終わりまで、このクリーチャーのパワーは+3000される。",
+          "race": "ビーストフォーク",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g691AttackCreature": [
+          {
+            "op": "SelfBoost313",
+            "power": 3000,
+            "g536Source": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm11-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "0037ab02441f7ae3a9dfca9174b5ced7145d95a4661b97c118f884924d63a1b9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-041",
+      "name": "スカウト・クラスター",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-041",
+      "faces": [
+        {
+          "name": "スカウト・クラスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー\nこのクリーチャーがバトルゾーンにある間、自分の他のクリーチャーがバトルゾーンに出たとき、このクリーチャーをバトルゾーンから自分の手札に戻す。",
+          "race": "サイバー・クラスター",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "g250EntryDraw": {
+          "filter": {
+            "creature": true
+          },
+          "self": false,
+          "defs": [
+            {
+              "op": "SelfHand299"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "b3231586a9a55d16826b6726f6e8dbb60622e338d1bc98b81be9842417ff14bd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-074",
+      "name": "雲海の守護者メッサ・バーナ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-074",
+      "faces": [
+        {
+          "name": "雲海の守護者メッサ・バーナ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n相手のクリーチャーが攻撃する時、このクリーチャーは可能ならブロックする。",
+          "race": "ガーディアン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "mustBlock": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-074.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "b3454a04ef23222892d590a479fa9224f71989b29d8500668174c47aa42106de",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm04-028",
+      "name": "屑男",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-028",
+      "faces": [
+        {
+          "name": "屑男",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンにある間、他のクリーチャーがバトルゾーンから墓地に置かれるたびに、カードを１枚引いてもよい。",
+          "race": "ヘドリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g693OtherCreatureGraveDraw": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm04-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "e9f19257354fac780dca7cdcf259b6daa5bbe5b46aec139ce09b620a09f64e94",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc34-036",
+      "name": "雲海の守護者メッサ・バーナ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc34-036",
+      "faces": [
+        {
+          "name": "雲海の守護者メッサ・バーナ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n相手のクリーチャーが攻撃する時、このクリーチャーは可能ならブロックする。",
+          "race": "ガーディアン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "canonicalId": "dm10-074",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc34-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "de14f885e7c77a4da3a3c77148013b611ae0e0ade15c0995c5b5fe85e5f19f2f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc27-027",
+      "name": "屑男",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc27-027",
+      "faces": [
+        {
+          "name": "屑男",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "他のクリーチャーが破壊された時、カードを１枚引いてもよい。",
+          "race": "ヘドリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "canonicalId": "dm04-028",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc27-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "b6d28ed1946988efbb1cf9d093b7bdde6841caf20a1861dd05079dc7a1a3b46f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm11-052": 4,
+      "dm09-041": 4,
+      "dm10-074": 4,
+      "dm04-028": 4,
+      "dmc34-036": 4,
+      "dmc27-027": 4
+    }
+  }
+}

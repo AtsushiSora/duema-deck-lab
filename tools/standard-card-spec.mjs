@@ -2476,6 +2476,22 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=693&&creature){
+  const text=normalize(f.abilityText);
+  if(text==='このクリーチャーがクリーチャーを攻撃する時そのターンの終わりまでこのクリーチャーのパワーは+3000される。'){
+   return {g691AttackCreature:[{op:'SelfBoost313',power:3000,g536Source:true}]};
+  }
+  if(text==='ブロッカーこのクリーチャーがバトルゾーンにある間自分の他のクリーチャーがバトルゾーンに出たときこのクリーチャーをバトルゾーンから自分の手札に戻す。'){
+   return {blocker:true,g250EntryDraw:{filter:{creature:true},self:false,defs:[{op:'SelfHand299'}]}};
+  }
+  if(text==='ブロッカーこのクリーチャーは相手プレイヤーを攻撃できない。相手のクリーチャーが攻撃する時このクリーチャーは可能ならブロックする。'){
+   return {blocker:true,noPlayerAttack:true,mustBlock:true};
+  }
+  if(text==='このクリーチャーがバトルゾーンにある間他のクリーチャーがバトルゾーンから墓地に置かれるたびにカードを1枚引いてもよい。'||
+     text==='他のクリーチャーが破壊された時カードを1枚引いてもよい。'&&f.name==='屑男'){
+   return {g693OtherCreatureGraveDraw:true};
+  }
+ }
  if(phase>=692&&creature){
   const text=normalize(f.abilityText);
   if(text==='このクリーチャーが攻撃するとき自分の山札から呪文を1枚さがして相手に見せ自分の手札に加えてよい。そのあと山札をシャッフルする。'){

@@ -170244,23 +170244,117 @@
       ],
       "supportBatch": "phase-692",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm11-052",
+      "name": "闘気の棘",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ビーストフォーク",
+      "text": "このクリーチャーがクリーチャーを攻撃する時、そのターンの終わりまで、このクリーチャーのパワーは+3000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm11-052",
+      "limit": 4,
+      "g691AttackCreature": [
+        {
+          "op": "SelfBoost313",
+          "power": 3000,
+          "g536Source": true
+        }
+      ],
+      "supportBatch": "phase-693",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm09-041",
+      "name": "スカウト・クラスター",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "サイバー・クラスター",
+      "text": "ブロッカー\nこのクリーチャーがバトルゾーンにある間、自分の他のクリーチャーがバトルゾーンに出たとき、このクリーチャーをバトルゾーンから自分の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-041",
+      "limit": 4,
+      "blocker": true,
+      "g250EntryDraw": {
+        "filter": {
+          "creature": true
+        },
+        "self": false,
+        "defs": [
+          {
+            "op": "SelfHand299"
+          }
+        ]
+      },
+      "supportBatch": "phase-693",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm10-074",
+      "name": "雲海の守護者メッサ・バーナ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5000,
+      "race": "ガーディアン",
+      "text": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n相手のクリーチャーが攻撃する時、このクリーチャーは可能ならブロックする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-074",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "mustBlock": true,
+      "supportBatch": "phase-693",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm04-028",
+      "name": "屑男",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "ヘドリアン",
+      "text": "このクリーチャーがバトルゾーンにある間、他のクリーチャーがバトルゾーンから墓地に置かれるたびに、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-028",
+      "limit": 4,
+      "g693OtherCreatureGraveDraw": true,
+      "supportBatch": "phase-693",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 692,
+    "phase": 693,
     "checkedAt": "2026-11-09",
-    "baseCount": 5902,
+    "baseCount": 5906,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 5906,
+    "totalCount": 5910,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35097/",
-      "https://dm.takaratomy.co.jp/rule/qa/45925/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37323/",
-      "https://dm.takaratomy.co.jp/rule/qa/47379/"
+      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+      "https://dm.takaratomy.co.jp/rule/qa/47061/",
+      "https://dm.takaratomy.co.jp/rule/qa/45909/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31637/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/%E5%A4%89%E6%9B%B4%E7%82%B92026-07-23/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -182173,6 +182267,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/47061/",
           "https://dm.takaratomy.co.jp/rule/qa/45909/",
           "https://dm.takaratomy.co.jp/rule/qa/40177/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 692,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5902,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 5906,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35097/",
+          "https://dm.takaratomy.co.jp/rule/qa/45925/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37323/",
+          "https://dm.takaratomy.co.jp/rule/qa/47379/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
