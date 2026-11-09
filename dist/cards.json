@@ -173601,20 +173601,121 @@
       },
       "supportBatch": "phase-723",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm19-044",
+      "name": "霊騎レングストン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "アーク・セラフィム",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のクリーチャーの数と同じ枚数のカードを自分の山札の上から表向きにする。その中から呪文をすべて手札に加え、それ以外のカードをすべて好きな順番で山札の上に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-044",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Lengston724"
+        }
+      ],
+      "supportBatch": "phase-724",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-064",
+      "name": "クリムゾン・コミューン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n種族をひとつ選ぶ。バトルゾーンにある、選んだ種族の自分のクリーチャー１体につき、相手の「ブロッカー」を持つクリーチャーを１体、破壊してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-064",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ChooseRace724",
+          "def": {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "optional": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "blocker": true
+            },
+            "title": "破壊する相手のブロッカーを選ぶ"
+          }
+        }
+      ],
+      "supportBatch": "phase-724",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-016",
+      "name": "ソーラー・コミューン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n種族をひとつ選ぶ。バトルゾーンにある、選んだ種族の自分のクリーチャー１体につき、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-016",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ChooseRace724",
+          "def": {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "optional": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "filter": {
+              "creature": true
+            },
+            "title": "タップする相手のクリーチャーを選ぶ"
+          }
+        }
+      ],
+      "supportBatch": "phase-724",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 723,
+    "phase": 724,
     "checkedAt": "2026-11-09",
-    "baseCount": 6006,
-    "newEffectCards": 4,
+    "baseCount": 6010,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6010,
+    "totalCount": 6013,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/38647/",
-      "https://dm.takaratomy.co.jp/rule/qa/39628/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35437/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35417/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -186118,6 +186219,23 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35178/",
           "https://dm.takaratomy.co.jp/rule/qa/43464/",
           "https://dm.takaratomy.co.jp/rule/qa/43460/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 723,
+        "checkedAt": "2026-11-09",
+        "baseCount": 6006,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6010,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/38647/",
+          "https://dm.takaratomy.co.jp/rule/qa/39628/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

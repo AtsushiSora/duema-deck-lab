@@ -5,6 +5,7 @@ import {RECOVERY_RACES} from './utility-recovery-races.js?v=0.119.0';
 export function createSixPhotoRules(api){
  const{card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,enter,cast,move,targetOptions}=api;
  const attackConditionReading481=new WeakSet(),playerStopReading567=new WeakSet();
+ const exactRaces=c=>String(c.race||'').split('/').filter(Boolean);
  const race=(c,q)=>String(c.race).includes(q),mecha=c=>race(c,'メカ'),ninja=c=>race(c,'シノビ'),demon=c=>race(c,'デーモン・コマンド'),angel=c=>race(c,'エンジェル・コマンド');
  // A restricted origin permission belongs to one incarnation of its provider.
  function zonePermits450(s,p,x,c,origin){if(s.active!==p||c.type!=='creature'||origin==='mana'&&x.faceDown||!api.canMoveZone(s,p,origin))return[];return creatures(s,p).flatMap(y=>{const r=!y.sealed&&effective(y,s).g450ZoneSummon,k='g450:'+y.uid+'@'+(y.incarnation||0);return r&&r.origin===origin&&s.g450ZoneUses?.[p]?.[k]!==s.turn&&(r.anyShieldsMax===undefined||s.players.some(w=>w.shields.length<=r.anyShieldsMax))&&(!r.filter.evolution||api.isEvolution(x)||!!c.g48HandEvolution)&&matches(s,p,x,r.filter.evolution?{...r.filter,evolution:false}:r.filter)?[k]:[];});}
@@ -116,7 +117,7 @@ export function createSixPhotoRules(api){
  const attackHost408=(s,t)=>t.g399Attacker&&s.players[t.p].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.g399Attacker.uid&&(z.incarnation||0)===t.g399Attacker.incarnation));
  // Hand-evolution GV is an evolution card even before its bases are attached; NEO requires a base.
  const livePower199=(s,x,inCombat)=>api.power(x,!!inCombat&&(x.uid===s.attack?.attacker||x.uid===s.attackLifecycle?.uid&&(x.incarnation||0)===(s.attackLifecycle.incarnation||0)),s);
- function matches(s,p,x,f={}){const c=api.zoneCard(s,p,x),d=s.players[p].battle.includes(x)?effective(x,s):c;return (!f.g670Guardman||d.guardman)&&(!f.g661ShieldGo||d.shieldGo)&&(!f.g614GraveCreatureName||graveCreatureName614(s,p,d))&&(!f.g600OverMana||cost(d)>s.players[p].mana.length)&&(!f.g596EnteredThisTurn||(x.originalEntryTurn??x.entered)===s.turn)&&(!f.g587PowerEnding500||currentPower506(s,x)%1000===500)&&(!f.faceUp||!x.faceDown)&&(!f.g556Neo||!!c.neoEvolution)&&(!f.g539JokerCard||faces(c).some(c=>race(c,'ジョーカーズ')))&&(!f.g415Mugen||faces(c).some(c=>c.mugenCrime>0))&&(!f.g412ExceptName||faces(c).every(face=>String(face.name||'').normalize('NFKC').replace(/\s/g,'')!==f.g412ExceptName.normalize('NFKC').replace(/\s/g,'')))&&(!f.g295Tamaseed||c.type==='seed'||!!c.seedCreature||!!c.natureAce4)&&(!f.g228Face||faces(c).some(face=>face.type===f.g228Face.type&&(!f.g228Face.multicolor||colors(face).length>1)&&(!f.g228Face.color||colors(face).includes(f.g228Face.color))&&(!f.g228Face.exceptColor||!colors(face).includes(f.g228Face.exceptColor))&&(!f.g228Face.colorsAll||f.g228Face.colorsAll.every(color=>colors(face).includes(color)))&&(!f.g228Face.raceAll||f.g228Face.raceAll.every(q=>race(face,q)))&&(!f.g228Face.d2||face.d2Field===true)&&(!f.g228Face.nameAny||f.g228Face.nameAny.some(name=>face.name.includes(name)))&&(f.g228Face.max===undefined||cost(face)<=f.g228Face.max)&&(f.g228Face.minPower===undefined||face.power==='∞'||Number(face.power)>=f.g228Face.minPower)))&&(!f.g584MonoCard||new Set(faces(c).flatMap(colors)).size<=1)&&(!f.g223Multicolor||new Set(faces(c).flatMap(colors)).size>1)&&(!f.g220NameAny||f.g220NameAny.some(q=>faces(c).some(c=>c.name.includes(q))))&&(!f.g218Colored||colors(d).length>0)&&(!f.g217Colorless||faces(c).some(c=>colors(c).length===0))&&(!f.g217SpellColor||faces(c).some(c=>c.type==='spell'&&colors(c).includes(f.g217SpellColor)))&&(!f.g201Gear||c.type==='gear')&&(!f.g201ExactName||faces(c).some(y=>String(y.name||'').normalize('NFKC').replace(/\s/g,'')===f.g201ExactName.normalize('NFKC').replace(/\s/g,'')))&&(!f.g200Colorless||faces(c).every(c=>colors(c).length===0))&&(!f.anyFaceColor||faces(c).some(c=>colors(c).includes(f.anyFaceColor)))&&(f.anyFaceMinCost===undefined||faces(c).some(c=>cost(c)>=f.anyFaceMinCost))&&(!f.colorsAll||f.colorsAll.every(q=>colors(d).includes(q)))&&(!f.any||f.any.some(q=>matches(s,p,x,q)))&&(!f.seed||c.type==='seed')&&(!f.creature||d.type==='creature')&&(!f.nonCreature||faces(c).every(face=>face.type!=='creature'))&&(!f.nonCreatureElement||!api.isCreature(s,x))&&(!f.element||['creature','seed','gear','field'].includes(c.type))&&(!f.nonEvolution||!api.isEvolution(x)&&!c.g48HandEvolution)&&(!f.evolution||api.isEvolution(x))&&(!f.blocker||d.blocker)&&(!f.noColor||colors(d).length===0)&&(!f.creatureOrSeed||['creature','seed'].includes(c.type))&&(f.belowCost===undefined||cost(d)<(f.belowCost==='∞'?Infinity:f.belowCost))&&(!f.notRace||!race(d,f.notRace))&&(!f.race||race(d,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(d,q)))&&(!f.name||c.name.includes(f.name))&&(!f.exactId||c.id===f.exactId)&&(!f.exactUid||x.uid===f.exactUid)&&(f.exactCost===undefined||cost(c)===(f.exactCost==='∞'?Infinity:f.exactCost))&&(f.belowPower===undefined||api.power(x,false,s)<(f.belowPower==='∞'?Infinity:f.belowPower))&&(!f.color||colors(d).includes(f.color))&&(!f.notColor||!colors(d).includes(f.notColor))&&(!f.multi||colors(d).length>1)&&(!f.g510NonMulticolor||colors(d).length<=1)&&(!f.anyFaceRace||faces(c).some(c=>race(c,f.anyFaceRace)))&&(!f.spell||faces(c).some(c=>c.type==='spell'))&&(!f.aura||c.type==='aura')&&(!f.twin||!!c.spellFace)&&(f.min===undefined||cost(d)>=f.min)&&(f.max===undefined||cost(d)<=f.max)&&(f.minPower===undefined||livePower199(s,x,f.g199Power)>=f.minPower)&&(f.maxPower===undefined||livePower199(s,x,f.g199Power)<=f.maxPower)&&(!f.untapped||!x.tapped)&&(!f.tapped||x.tapped);}
+ function matches(s,p,x,f={}){const c=api.zoneCard(s,p,x),d=s.players[p].battle.includes(x)?effective(x,s):c;return (!f.g724ExactRace||exactRaces(d).includes(f.g724ExactRace))&&(!f.g670Guardman||d.guardman)&&(!f.g661ShieldGo||d.shieldGo)&&(!f.g614GraveCreatureName||graveCreatureName614(s,p,d))&&(!f.g600OverMana||cost(d)>s.players[p].mana.length)&&(!f.g596EnteredThisTurn||(x.originalEntryTurn??x.entered)===s.turn)&&(!f.g587PowerEnding500||currentPower506(s,x)%1000===500)&&(!f.faceUp||!x.faceDown)&&(!f.g556Neo||!!c.neoEvolution)&&(!f.g539JokerCard||faces(c).some(c=>race(c,'ジョーカーズ')))&&(!f.g415Mugen||faces(c).some(c=>c.mugenCrime>0))&&(!f.g412ExceptName||faces(c).every(face=>String(face.name||'').normalize('NFKC').replace(/\s/g,'')!==f.g412ExceptName.normalize('NFKC').replace(/\s/g,'')))&&(!f.g295Tamaseed||c.type==='seed'||!!c.seedCreature||!!c.natureAce4)&&(!f.g228Face||faces(c).some(face=>face.type===f.g228Face.type&&(!f.g228Face.multicolor||colors(face).length>1)&&(!f.g228Face.color||colors(face).includes(f.g228Face.color))&&(!f.g228Face.exceptColor||!colors(face).includes(f.g228Face.exceptColor))&&(!f.g228Face.colorsAll||f.g228Face.colorsAll.every(color=>colors(face).includes(color)))&&(!f.g228Face.raceAll||f.g228Face.raceAll.every(q=>race(face,q)))&&(!f.g228Face.d2||face.d2Field===true)&&(!f.g228Face.nameAny||f.g228Face.nameAny.some(name=>face.name.includes(name)))&&(f.g228Face.max===undefined||cost(face)<=f.g228Face.max)&&(f.g228Face.minPower===undefined||face.power==='∞'||Number(face.power)>=f.g228Face.minPower)))&&(!f.g584MonoCard||new Set(faces(c).flatMap(colors)).size<=1)&&(!f.g223Multicolor||new Set(faces(c).flatMap(colors)).size>1)&&(!f.g220NameAny||f.g220NameAny.some(q=>faces(c).some(c=>c.name.includes(q))))&&(!f.g218Colored||colors(d).length>0)&&(!f.g217Colorless||faces(c).some(c=>colors(c).length===0))&&(!f.g217SpellColor||faces(c).some(c=>c.type==='spell'&&colors(c).includes(f.g217SpellColor)))&&(!f.g201Gear||c.type==='gear')&&(!f.g201ExactName||faces(c).some(y=>String(y.name||'').normalize('NFKC').replace(/\s/g,'')===f.g201ExactName.normalize('NFKC').replace(/\s/g,'')))&&(!f.g200Colorless||faces(c).every(c=>colors(c).length===0))&&(!f.anyFaceColor||faces(c).some(c=>colors(c).includes(f.anyFaceColor)))&&(f.anyFaceMinCost===undefined||faces(c).some(c=>cost(c)>=f.anyFaceMinCost))&&(!f.colorsAll||f.colorsAll.every(q=>colors(d).includes(q)))&&(!f.any||f.any.some(q=>matches(s,p,x,q)))&&(!f.seed||c.type==='seed')&&(!f.creature||d.type==='creature')&&(!f.nonCreature||faces(c).every(face=>face.type!=='creature'))&&(!f.nonCreatureElement||!api.isCreature(s,x))&&(!f.element||['creature','seed','gear','field'].includes(c.type))&&(!f.nonEvolution||!api.isEvolution(x)&&!c.g48HandEvolution)&&(!f.evolution||api.isEvolution(x))&&(!f.blocker||d.blocker)&&(!f.noColor||colors(d).length===0)&&(!f.creatureOrSeed||['creature','seed'].includes(c.type))&&(f.belowCost===undefined||cost(d)<(f.belowCost==='∞'?Infinity:f.belowCost))&&(!f.notRace||!race(d,f.notRace))&&(!f.race||race(d,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(d,q)))&&(!f.name||c.name.includes(f.name))&&(!f.exactId||c.id===f.exactId)&&(!f.exactUid||x.uid===f.exactUid)&&(f.exactCost===undefined||cost(c)===(f.exactCost==='∞'?Infinity:f.exactCost))&&(f.belowPower===undefined||api.power(x,false,s)<(f.belowPower==='∞'?Infinity:f.belowPower))&&(!f.color||colors(d).includes(f.color))&&(!f.notColor||!colors(d).includes(f.notColor))&&(!f.multi||colors(d).length>1)&&(!f.g510NonMulticolor||colors(d).length<=1)&&(!f.anyFaceRace||faces(c).some(c=>race(c,f.anyFaceRace)))&&(!f.spell||faces(c).some(c=>c.type==='spell'))&&(!f.aura||c.type==='aura')&&(!f.twin||!!c.spellFace)&&(f.min===undefined||cost(d)>=f.min)&&(f.max===undefined||cost(d)<=f.max)&&(f.minPower===undefined||livePower199(s,x,f.g199Power)>=f.minPower)&&(f.maxPower===undefined||livePower199(s,x,f.g199Power)<=f.maxPower)&&(!f.untapped||!x.tapped)&&(!f.tapped||x.tapped);}
  // Effect battles use the normal battle pipeline; choices retain physical incarnation.
  const fightRows240=(s,p,owner,filter)=>targetOptions(s,p,creatures(s,owner).filter(x=>!x.sealed&&(!filter||matches(s,owner,x,filter))));
  const fightUnit240=(s,p,r)=>r&&creatures(s,p).find(x=>x.uid===r.uid&&(x.incarnation||0)===r.incarnation&&!x.sealed);
@@ -969,6 +970,38 @@ export function createSixPhotoRules(api){
  case'g34_Freeze262':for(const y of creatures(s,1-t.p))if(!y.sealed&&matches(s,1-t.p,y,t.filter))freeze(s,t,1-t.p,y);break;
  case'g34_Refill261':if(own.hand.length<=t.max)api.draw(s,t.p,Math.max(0,t.n-own.hand.length));break;
  case'g34_InspectOne258':put(s,task('s6Inspect',t.p,t.source));break;
+ case'g34_ChooseRace724':{
+  const scores=new Map();
+  for(const y of creatures(s,t.p)){
+   if(y.sealed)continue;
+   for(const name of new Set(exactRaces(effective(y,s))))scores.set(name,(scores.get(name)||0)+1);
+  }
+  const names=[...new Set([...RECOVERY_RACES,...scores.keys()])];
+  choice(s,t,'種族を1つ選ぶ',names.map(name=>opt(name,name,scores.get(name)||0)).sort((a,b)=>b.score-a.score));
+  break;
+ }
+ case'g34_Lengston724':{
+  const n=creatures(s,t.p).filter(y=>!y.sealed).length;
+  const ids=look(s,{...t,n,public:true});
+  if(!api.canMoveZone(s,t.p,'deck')){
+   for(const uid of ids)release(s,t.p,uid);
+   break;
+  }
+  const spells=[],rest=[];
+  for(const uid of ids){
+   const y=own.deck.find(y=>y.uid===uid);
+   if(!y)continue;
+   if(faces(card(y)).some(face=>face.type==='spell')){
+    remove(own.deck,uid);
+    release(s,t.p,uid);
+    clear(y,'hand');
+    spells.push(y);
+   }else rest.push(uid);
+  }
+  if(spells.length)api.addZone(s,t.p,'hand',...spells);
+  put(s,{...t,op:'g34_Order',ids:rest,rest:'top',g259OrderTop:true,ordered:[]});
+  break;
+ }
  case'g34_ChooseRaceUntap713':{
   const scores=new Map();
   for(const p of [t.p,1-t.p])for(const y of creatures(s,p)){
@@ -1639,6 +1672,9 @@ export function createSixPhotoRules(api){
   });
   break;
  }
+ case'g34_ChooseRace724':
+  start(s,t,[{op:'CountOwn538',filter:{creature:true,g724ExactRace:v},mode:'select',def:t.def}]);
+  break;
  case'g34_ChooseRaceUntap713':
   start(s,t,[{op:'Schedule537',when:'turnEnd',defs:[{op:'GroupUntap',owner:'both',g713ExactRace:v,filter:{creature:true}}]}]);
   break;

@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-09",
   "catalogueNames": 11829,
-  "supportedNames": 6010,
-  "pendingNames": 5819,
-  "phase": 723,
-  "added": 4,
+  "supportedNames": 6013,
+  "pendingNames": 5816,
+  "phase": 724,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3495,
+    "クリーチャー": 3494,
     "NEOクリーチャー": 153,
-    "呪文": 826,
+    "呪文": 824,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 60,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1263,
-    "未対応の能力文": 4280,
+    "未対応の能力文": 4277,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -7172,42 +7172,106 @@
           "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
         }
       ]
+    },
+    {
+      "phase": 724,
+      "cards": [
+        {
+          "id": "dm19-044",
+          "name": "霊騎レングストン"
+        },
+        {
+          "id": "dm19-064",
+          "name": "クリムゾン・コミューン"
+        },
+        {
+          "id": "dm19-016",
+          "name": "ソーラー・コミューン"
+        }
+      ],
+      "supportedNames": 6013,
+      "pendingNames": 5816,
+      "printAliases": [
+        {
+          "id": "promoy5-014",
+          "canonicalId": "dm19-044",
+          "name": "霊騎レングストン"
+        }
+      ],
+      "verification": {
+        "focusedPassed": 9,
+        "regressionPassed": 171,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 4,
+        "scope": "初出3種類とレングストンのプロモ1版の公式本文全体・基本情報・マナ数・JPEG画像・殿堂一覧を照合。呪文面を含むカードの一括回収、公開と山札上の順序、種族の完全一致、対象の任意選択、S・トリガーと選択中のJSON復元を検証。回帰はphase 255・259・538・713・722・723。",
+        "runtimeNote": "各テストとnpm run checkは強制終了込みで最大10分。回帰から長時間のCPU対戦シミュレーション6件を名前で除外。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dm19-028",
+          "name": "トラップ・コミューン",
+          "reason": "初出の本文と旧QA 35433を確認。DMX08再録の照合、味方の破壊が置換された場合の枚数、両段階の解決順を確認するまで保留。"
+        },
+        {
+          "id": "dm16-002",
+          "name": "ガイアクラッシュ・クロウラー",
+          "reason": "初出の本文と旧QA 35345を確認。両陣営のマナの呪文を通常の開始時と効果によるアンタップの両方で止め、ツインパクト・裏向きの扱いを確認するまで保留。"
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "対戦データにサイキック・クリーチャーの対象例がなく、対象判定と超次元への移動を実戦経路で検証できないため保留。"
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 723,
-    "nextPhase": 724,
+    "lastVerifiedPhase": 724,
+    "nextPhase": 725,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm19-044",
-        "name": "霊騎レングストン",
-        "check": "味方クリーチャー数による公開枚数と、呪文回収・残りの山札上の順序を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-044"
+        "id": "dm19-040",
+        "name": "トライバル・コミューン",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-040",
+        "check": "今回の種族選択を再利用し、味方の一時強化とパワー5000以下からのブロック制限を照合する。"
       },
       {
-        "id": "dm19-064",
-        "name": "クリムゾン・コミューン",
-        "check": "種族選択とブロッカーの任意破壊を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-064"
+        "id": "dm19-052",
+        "name": "ハイドロ・コミューン",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-052",
+        "check": "同じ種族選択を再利用し、味方と相手を別々に選ぶ順序、実際に手札へ戻った数と置換を確認する。"
       },
       {
-        "id": "dm19-016",
-        "name": "ソーラー・コミューン",
-        "check": "種族選択と相手への任意タップを照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-016"
+        "id": "dm16-021",
+        "name": "光器スヴェータ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-021",
+        "check": "既存のバトル中パワー補正を利用できるか、デーモン・コマンドと種族名にドラゴンを含む対象を公式本文と照合する。"
+      },
+      {
+        "id": "dm19-043",
+        "name": "光粒の守護者バル・パース",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-043",
+        "check": "相手の闇または火のクリーチャーが破壊された時の任意アンタップを、破壊時の文明と複数体破壊を含めて照合する。"
       },
       {
         "id": "dm19-028",
         "name": "トラップ・コミューン",
-        "check": "任意の味方破壊と実際に破壊した枚数を参照する相手側の破壊を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-028"
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-028",
+        "check": "初出の本文と旧QA 35433を確認。DMX08再録の照合、味方の破壊が置換された場合の枚数、両段階の解決順を確認するまで保留。"
       },
       {
         "id": "dm16-002",
         "name": "ガイアクラッシュ・クロウラー",
-        "check": "自分のマナゾーンの呪文をアンタップできない範囲とW・ブレイカーを照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-002"
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-002",
+        "check": "初出の本文と旧QA 35345を確認。両陣営のマナの呪文を通常の開始時と効果によるアンタップの両方で止め、ツインパクト・裏向きの扱いを確認するまで保留。"
       },
       {
         "id": "dm19-s08",

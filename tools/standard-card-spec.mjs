@@ -2547,6 +2547,23 @@ export function standardCardSpec(d,{phase=165}={}){
  const compact363=phase>=363?normalize(f.abilityText):'',whole363=phase>=363&&(modal363(compact363)||compact363==='自分の水と闇を両方持つクリーチャーがバトルゾーンに出た時次のうちいずれか1つを選ぶ。▼カードを1枚引く。▼相手は自身の手札を1枚選び捨てる。');
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?abilityText.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):abilityText).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=724){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='クリーチャー'&&text==='このクリーチャーをバトルゾーンに出した時バトルゾーンにある自分のクリーチャーの数と同じ枚数のカードを自分の山札の上から表向きにする。その中から呪文をすべて手札に加えそれ以外のカードをすべて好きな順番で山札の上に戻す。'){
+   return {effect:'sixPhoto',g34Tasks:[{op:'Lengston724'}]};
+  }
+  const prefix='S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)種族をひとつ選ぶ。バトルゾーンにある選んだ種族の自分のクリーチャー1体につき';
+  if(f.typeText==='呪文'&&text.startsWith(prefix)){
+   const targets={op:'Select',origin:'battle',owner:'opponent',optional:true,g173Targets:true,g193Select:true};
+   const effect=text.slice(prefix.length);
+   if(effect==='相手の「ブロッカー」を持つクリーチャーを1体破壊してもよい。'){
+    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'ChooseRace724',def:{...targets,to:'grave',filter:{creature:true,blocker:true},title:'破壊する相手のブロッカーを選ぶ'}}]};
+   }
+   if(effect==='バトルゾーンにある相手のクリーチャーを1体選びタップしてもよい。'){
+    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'ChooseRace724',def:{...targets,g193Tap:true,filter:{creature:true},title:'タップする相手のクリーチャーを選ぶ'}}]};
+   }
+  }
+ }
  if(phase>=723&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(text==='このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時グランド・デビルまたはディープ・マリーンを1体自分の墓地からバトルゾーンに出してもよい。ただし進化クリーチャーは選べない。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)'){
