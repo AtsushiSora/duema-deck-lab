@@ -2562,7 +2562,8 @@ export function standardCardSpec(d,{phase=165}={}){
  const spec={},entry=[],attack=[],block=[],death=[],leave=[],turnStart=[],turnEnd=[],opponentStart=[],opponentEnd=[],tapped=[],battleWin=[];let powerBonus=false,nativeEntry=null;
  const compact363=phase>=363?normalize(f.abilityText):'',whole363=phase>=363&&(modal363(compact363)||compact363==='自分の水と闇を両方持つクリーチャーがバトルゾーンに出た時次のうちいずれか1つを選ぶ。▼カードを1枚引く。▼相手は自身の手札を1枚選び捨てる。');
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
- const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?abilityText.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):abilityText).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
+ const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
  if(phase>=733){
   if(f.typeText==='クリーチャー'&&compact363==='Q・ブレイカー(このクリーチャーはシールドを4つブレイクする)このクリーチャーが破壊される時墓地に置くかわりに山札に加えてシャッフルする。')
    return {breaker:4,g731DestroyShuffle:true};
@@ -3934,7 +3935,13 @@ export function standardCardSpec(d,{phase=165}={}){
     '自分の山札の上から1枚目を裏向きのまま新しいシールドとして自分のシールドゾーンに置く。':[{op:'ShieldTop',n:1}],
     '自分の山札の上から1枚目をマナゾーンに置く。':[{op:'Ramp',n:1}],
     '相手のパワー3000以下のクリーチャーを1体破壊する。':[{op:'Target',to:'grave',filter:{maxPower:3000,g199Power:true}}],
-    '自分の手札をすべて捨ててもよい。そうしたらカードを3枚引く。':[{op:'DiscardAll244',draw:3,optional:true}]
+    '自分の手札をすべて捨ててもよい。そうしたらカードを3枚引く。':[{op:'DiscardAll244',draw:3,optional:true}],
+    ...(phase>=734?{
+     'このクリーチャーを山札の下に置く。':[{op:'SelfBottom734'}],
+     'このクリーチャーを自分のマナゾーンに置く。':[{op:'SelfMana297',g536Source:true}],
+     '自分のクリーチャーを2体破壊する。':[{op:'Select',origin:'battle',owner:'self',to:'grave',n:2,filter:{creature:true},g187OwnPick:true,g173Targets:true,g193Select:true,title:'破壊する自分のクリーチャーを2体選ぶ'}],
+     'このクリーチャーを破壊する。その後カードを2枚引く。':[{op:'SelfDestroy'},{op:'Draw',n:2}]
+    }:{})
    }[end[1]];
    if(defs){if(spec.g474AttackEnd)throw Error('重複する攻撃終了時能力');spec.g474AttackEnd=defs;continue;}
    if(line==='このクリーチャーが破壊された時墓地から手札に戻す。'){if(death.length)throw Error('独立した誘発能力の順序対応が必要');death.push({op:'SelfGraveHand476'});continue;}

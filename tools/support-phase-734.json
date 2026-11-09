@@ -1,0 +1,263 @@
+{
+  "phase": 734,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6042,
+  "description": "攻撃終了時の山札・マナへの移動、味方2体の破壊、自身の破壊とドローを実装。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/43471/",
+    "https://dm.takaratomy.co.jp/rule/qa/41285/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31650/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp1-063",
+      "name": "ハリート＝ハイホ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp1-063",
+      "faces": [
+        {
+          "name": "ハリート＝ハイホ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーの攻撃の終わりに、このクリーチャーを山札の下に置く。",
+          "race": "アビスロイヤル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g474AttackEnd": [
+          {
+            "op": "SelfBottom734"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp1-063.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "d94eacb5b72c8b46e949867b47a91718f5234648badf48a6b602dc52befee1f1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-055",
+      "name": "ゼクゼーミ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-055",
+      "faces": [
+        {
+          "name": "ゼクゼーミ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーの攻撃の終わりに、このクリーチャーを自分のマナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "noPlayerAttack": true,
+        "g474AttackEnd": [
+          {
+            "op": "SelfMana297",
+            "g536Source": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ffa941f20664068b3f6b25e7180226794c98f802b38ffbca7a0c9fecfdf9f47a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex1-019",
+      "name": "撞仇 ビリヤード=ヤドロンド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-019",
+      "faces": [
+        {
+          "name": "撞仇 ビリヤード=ヤドロンド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "T・ブレイカー\nこのクリーチャーの攻撃の終わりに、自分のクリーチャーを２体破壊する。",
+          "race": "アビスロイヤル",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 3,
+        "g474AttackEnd": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "self",
+            "to": "grave",
+            "n": 2,
+            "filter": {
+              "creature": true
+            },
+            "g187OwnPick": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "title": "破壊する自分のクリーチャーを2体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex1-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "43feb1210f1e21099be28f7970b225ab7316b74817f7fd396b83e12b40816757",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp21-019",
+      "name": "ダチッコ ＜エグゼ.Star＞",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-019",
+      "faces": [
+        {
+          "name": "ダチッコ ＜エグゼ.Star＞",
+          "typeText": "スター進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スター進化：レクスターズまたは火のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーの攻撃の終わりに、このクリーチャーを破壊する。その後、カードを２枚引く。",
+          "race": "ビートジョッキー/ドラゴノイド/レクスターズ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "レクスターズ"
+            },
+            {
+              "civilization": "火"
+            }
+          ]
+        },
+        "starEvolution": true,
+        "breaker": 2,
+        "g474AttackEnd": [
+          {
+            "op": "SelfDestroy"
+          },
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "3ff90a67b0689988cbfd4e02c1db6fac1bee3f0a003c793b1d3ebec3c13ff818",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-040",
+      "name": "禁忌 ドルブロ-１",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-040",
+      "faces": [
+        {
+          "name": "禁忌 ドルブロ-１",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーの攻撃の終わりに、\nこのクリーチャーを破壊する。\nササゲール１（ディスペクターを召喚する時、コストを１少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "イニシャルズX/ディスタス",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "g474AttackEnd": [
+          {
+            "op": "SelfDestroy"
+          }
+        ],
+        "sasage": 1
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "71bca10683731e90f558dcf79e18c803ffcbf960c7fe63a1fba604c16bd8f903",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy22-spd1005",
+      "canonicalId": "dm23rp1-063",
+      "name": "ハリート＝ハイホ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy22-spd1005",
+      "faces": [
+        {
+          "name": "ハリート＝ハイホ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーの攻撃の終わりに、このクリーチャーを山札の下に置く。",
+          "race": "アビスロイヤル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy22-spd1005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "febd10c3440c7f32fe2d4dbc24a949aaafd50f5a269eb69c449dcee0866e7565",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp1-063": 4,
+      "dmrp04s-055": 4,
+      "dm23ex1-019": 4,
+      "dmrp21-019": 4,
+      "dmrp17-040": 4,
+      "promoy22-spd1005": 4
+    }
+  }
+}
