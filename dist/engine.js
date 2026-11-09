@@ -770,6 +770,18 @@ function typedTapOnEntry720(s,p,c){
   return rule&&(who!==p||rule.both)&&rule.colors.some(color=>colors.includes(color));
  }));
 }
+// Watchers stay face up after evolution, while each base supplies its pre-evolution race.
+function evolutionWatch721(s,p,entrant,baseRaces){
+ for(const source of s.players[p].battle){
+  if(source===entrant||source.sealed||!isCreature(s,source))continue;
+  const races=effectiveCard(source,s).g721EvolutionWatch;
+  if(!races)continue;
+  for(const base of entrant.under||[]){
+   if(!races.some(race=>baseRaces.get(base.uid)?.includes(race)))continue;
+   enqueueEffect(s,p,{uid:source.uid,source:source.cardId,effect:'extended',task:extra.task('g34_Draw',p,source.cardId,{n:1,optional:true})});
+  }
+ }
+}
 // Check all entry triggers after the new top card has entered (603.5a).
 function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  delete inst.g39GraveColors;if(extra.saga.beginMDeck(s,p,inst,baseUid,entryOptions))return;if(extra.cyber.beforeEnter(s,p,inst,baseUid,entryOptions))return;
@@ -781,6 +793,10 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  const baseWasCreature=!!baseUid&&s.players[p].battle.some(x=>x.uid===baseUid&&isCreature(s,x)),baseWasEvolution=!!baseUid&&s.players[p].battle.some(x=>x.uid===baseUid&&isEvolution(x));
  const c=card(inst);if(c.triggerPlus)inst.triggerPlus=!!entryOptions.plus;delete inst.g11Sideways;if(extra.replaceEntry(s,p,inst,baseUid,entryOptions))return;
  const typedTap=typedTapOnEntry720(s,p,c);
+ const baseIds=Array.isArray(baseUid)?baseUid:[baseUid];
+ const baseRaces=baseUid?new Map(s.players[p].battle
+  .filter(x=>baseIds.includes(x.uid)&&isCreature(s,x))
+  .map(x=>[x.uid,String(effectiveCard(x,s,true).race||'')])):null;
  if(c.g432EntryTap&&extra.six.optionalEntry432(s,p,inst,baseUid,entryOptions,!!(entryOptions.tapped||typedTap||extra.tapEntry(s,p)||speedTapOnEntry(s,p,c,isEvolution(inst)||!!(c.neoEvolution&&baseUid))||s.players[1-p].battle.some(x=>effectiveCard(x,s).opponentTapEntry||effectiveCard(x,s).g35Venom)||s.players[p].battle.some(x=>(Array.isArray(baseUid)?baseUid.includes(x.uid):x.uid===baseUid)&&x.tapped))))return;
  if(entryOptions.mugenBases)attachMugenBases(s,p,inst,entryOptions.mugenBases);delete inst.g22ManaAllowed;delete inst.originalEntryTurn;inst.entered=s.turn;inst.tapped=c.type==='creature'&&(entryOptions.tapped||typedTap||c.g295EnterTapped&&!abilitiesIgnored(s,inst)||c.g32Complex&&!abilitiesIgnored(s,inst)||c.g26Zaze&&!abilitiesIgnored(s,inst)||extra.tapEntry(s,p)||s.players[1-p].battle.some(x=>effectiveCard(x,s).opponentTapEntry||effectiveCard(x,s).g35Venom));inst.incarnation=(inst.incarnation||0)+1;
  if(entryOptions.g31Force||extra.phoenix.complex(s,p,c,entryOptions))extra.phoenix.attach(s,p,inst,baseUid,entryOptions);
@@ -797,6 +813,7 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  if(!inst.tapped&&speedTapOnEntry(s,p,c,isEvolution(inst)))inst.tapped=true;
  if(c.natureAce4&&genmuActive(s))inst.aceIgnored=true;s.players[p].battle.push(inst);extra.history.d2Entry(s,p,inst);inst=extra.phoenix.link(s,p,inst,entryOptions);inst=extra.saga.linkM(s,p,inst,entryOptions);if(c.balchuris)(s.g23BalEntered??=[null,null])[p]=s.turn;if(c.type==='creature')(s.g7Entries??=[0,0])[p]++;refreshDynamicTypes(s);if(isCreature(s,inst)&&s.metrics[p].firstCreature===null)s.metrics[p].firstCreature=s.players[p].turns;
  if(isCreature(s,inst)){s.players[p].enteredThisTurn=(s.players[p].enteredThisTurn||0)+1;s.creaturesEntered=(s.creaturesEntered||0)+1;}
+ if(baseRaces?.size)evolutionWatch721(s,p,inst,baseRaces);
  extra.viride.entry(s,p,inst,!!entryOptions.ignoreEntry);
  const graveMuted=isCreature(s,inst)&&s.players[1-p].battle.some(x=>effectiveCard(x,s).entrySilence);if(graveMuted)s.g24EntryMute=p;
  if(isCreature(s,inst))s.g1Entering={player:p,uid:inst.uid,cardId:inst.cardId};

@@ -2547,6 +2547,21 @@ export function standardCardSpec(d,{phase=165}={}){
  const compact363=phase>=363?normalize(f.abilityText):'',whole363=phase>=363&&(modal363(compact363)||compact363==='自分の水と闇を両方持つクリーチャーがバトルゾーンに出た時次のうちいずれか1つを選ぶ。▼カードを1枚引く。▼相手は自身の手札を1枚選び捨てる。');
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?abilityText.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):abilityText).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=721&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(text==='このクリーチャーにクロスギアをクロスする時自分の山札の上から1枚目をタップして自分のマナゾーンに置く。'){
+   return {g721CrossRamp:true};
+  }
+  if(text==='自分の他のリキッド・ピープルまたはグランド・デビルが進化した時カードを1枚引いてもよい。'){
+   return {g721EvolutionWatch:['リキッド・ピープル','グランド・デビル']};
+  }
+  if([
+   'このクリーチャーが攻撃する時自分の他のクリーチャーはこのターン中攻撃することができない。',
+   'このクリーチャーが攻撃する時そのターン自分の他のクリーチャーは攻撃することができない。'
+  ].includes(text)){
+   return {g34Attack:[{op:'OnlyAttacker677',own:true}]};
+  }
+ }
  if(phase>=720&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(text==='相手は火または自然のクリーチャーをバトルゾーンに出す時そのクリーチャーをタップして置く。'){

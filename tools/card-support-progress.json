@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-09",
   "catalogueNames": 11829,
-  "supportedNames": 5998,
-  "pendingNames": 5831,
-  "phase": 720,
-  "added": 4,
+  "supportedNames": 6001,
+  "pendingNames": 5828,
+  "phase": 721,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3507,
+    "クリーチャー": 3504,
     "NEOクリーチャー": 153,
     "呪文": 826,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1263,
-    "未対応の能力文": 4289,
+    "未対応の能力文": 4286,
     "未対応のG・ゼロ条件": 27,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -6999,36 +6999,100 @@
           "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
         }
       ]
+    },
+    {
+      "phase": 721,
+      "cards": [
+        {
+          "id": "dm16-033",
+          "name": "式神シャーマン"
+        },
+        {
+          "id": "dm19-081",
+          "name": "アクア・スクリュー"
+        },
+        {
+          "id": "dm19-092",
+          "name": "光線人形ストリウム"
+        }
+      ],
+      "supportedNames": 6001,
+      "pendingNames": 5828,
+      "printAliases": [
+        {
+          "id": "dmd02-015",
+          "canonicalId": "dm19-092",
+          "name": "光線人形ストリウム"
+        }
+      ],
+      "verification": {
+        "focusedPassed": 8,
+        "regressionPassed": 149,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 4,
+        "scope": "初出3種類・再録1版の公式本文全体・基本情報・マナ数・JPEG画像・殿堂一覧を照合。通常クロスと効果による無料クロス、QA 35358・35422・35423、進化元ごとの任意ドローと選択の復元、攻撃制限の継続・解除を検証。複数進化元は既存のGV経路にテスト専用カードを通して検証。回帰はphase 677・701・719・720、utility119・123・125、samurai効果。全体のnpm testは中断・合否未確認。",
+        "runtimeNote": "個別・関連回帰・npm run checkは各最大10分。最初の関連回帰は既存の460試合シミュレーションを含んだため中断・合否未確認。対象を絞った回帰で、変更前の5998件でも成立しない1796件固定の既存No18件数アサーションを確認し、その1件を除いて149件通過。"
+      },
+      "deferred": [
+        {
+          "id": "dm10-066",
+          "name": "不屈のウレックス",
+          "reason": "公式本文と旧QA 35288の多色判定を確認。相手の効果によるタップを止めながら、自分の効果・攻撃・ブロック・タップして出る処理を区別できるよう、効果の使用者が渡る経路を検証するまで保留。"
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "対戦データにサイキック・クリーチャーの対象例がなく、対象判定と超次元への移動を実戦経路で検証できないため保留。"
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 720,
-    "nextPhase": 721,
+    "lastVerifiedPhase": 721,
+    "nextPhase": 722,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm16-033",
-        "name": "式神シャーマン",
-        "check": "クロスを契機とするマナ追加の適用条件とタップ状態を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-033"
+        "id": "dm19-025",
+        "name": "封魔ガルマジアス",
+        "check": "ストリウムと同じ攻撃制限とW・ブレイカーを照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-025"
+      },
+      {
+        "id": "dm19-056",
+        "name": "封魔ラウーム",
+        "check": "ストリウムと同じ攻撃制限とスレイヤーを照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-056"
+      },
+      {
+        "id": "dm16-052",
+        "name": "微笑妖精レイリン",
+        "check": "クロスギアの登場を条件にした任意のマナ回収を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-052"
+      },
+      {
+        "id": "dm16-022",
+        "name": "銀河の守護者グラン・シリス",
+        "check": "クロス中のクリーチャーを参照するG・ゼロとパワー加算を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-022"
+      },
+      {
+        "id": "dm10-040",
+        "name": "反発のタグタップ",
+        "check": "相手の水マナ枚数によるパワーとW・ブレイカーを照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-040"
       },
       {
         "id": "dm10-066",
         "name": "不屈のウレックス",
-        "check": "相手からのタップ制限の適用範囲を照合する。",
+        "check": "公式本文と旧QA 35288の多色判定を確認。相手の効果によるタップを止めながら、自分の効果・攻撃・ブロック・タップして出る処理を区別できるよう、効果の使用者が渡る経路を検証するまで保留。",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-066"
-      },
-      {
-        "id": "dm19-092",
-        "name": "光線人形ストリウム",
-        "check": "攻撃制限の適用時点と、後から出たクリーチャーを照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-092"
-      },
-      {
-        "id": "dm19-081",
-        "name": "アクア・スクリュー",
-        "check": "他の該当種族が進化した際の誘発条件を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-081"
       },
       {
         "id": "dm13-006",
