@@ -2427,6 +2427,13 @@ export function standardCardSpec(d,{phase=165}={}){
   if(text==='自分のクリーチャーはブロックされない。'+reminder){
    return {d2Field:true,g682FieldUnblockable:true};
   }
+  if(phase>=683&&[
+   reminder,
+   '(他のD2フィールドがバトルゾーンに出た時このD2フィールドを墓地に置く)',
+   '(他のD2フィールドが出た時このD2フィールドを墓地に置く)'
+  ].some(suffix=>text==='自分のターンの終わりに自分のクリーチャーをすべてアンタップする。'+suffix)){
+   return {d2Field:true,g174End:[{op:'GroupUntap',filter:{creature:true}}]};
+  }
   throw Error('未対応のD2フィールド能力');
  }
  if(f.typeText==='G城'){
@@ -2462,6 +2469,17 @@ export function standardCardSpec(d,{phase=165}={}){
   }
   if(f.typeText==='呪文'&&text==='相手の手札を1枚見ないで選び捨てさせる。その後自分のシールドゾーンに表向きである「シールド・ゴー」を持つカード1枚につき相手の手札を1枚見ないで選び捨てさせる。'){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
+  }
+ }
+ if(phase>=683&&f.typeText==='呪文'){
+  const text=normalize(f.abilityText);
+  const trigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  // The artwork confirms the minus sign missing from the official HTML.
+  if(d.id==='dmr18-061'&&d.name==='ポイズン・ティー'&&text===trigger+'相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを?4000する。(パワー0以下のクリーチャーは破壊される)'){
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',power:-4000,g242PowerMinus:true,spell:true}]};
+  }
+  if(text===trigger+'相手のクリーチャーを1体選び持ち主の手札に戻す。その後クリーチャーを1体自分の手札に戻す。'){
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'hand'},{op:'Target',owner:'self',to:'hand'}]};
   }
  }
  // The official artwork confirms the minus sign missing from this print's HTML.

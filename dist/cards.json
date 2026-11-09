@@ -169377,20 +169377,106 @@
       ],
       "supportBatch": "phase-682",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-033",
+      "name": "シャイニング・近未来・シティ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "field",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "自分のターンの終わりに、自分のクリーチャーをすべてアンタップする。（他のD２フィールドがバトルゾーンに出た時、このD２フィールドを自分の墓地に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-033",
+      "limit": 4,
+      "d2Field": true,
+      "g174End": [
+        {
+          "op": "GroupUntap",
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-683",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr18-061",
+      "name": "ポイズン・ティー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを?4000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-061",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -4000,
+          "g242PowerMinus": true,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-683",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-068",
+      "name": "レスキュー・タイム",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、持ち主の手札に戻す。その後、クリーチャーを１体、自分の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-068",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "hand"
+        },
+        {
+          "op": "Target",
+          "owner": "self",
+          "to": "hand"
+        }
+      ],
+      "supportBatch": "phase-683",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 682,
+    "phase": 683,
     "checkedAt": "2026-11-09",
-    "baseCount": 5874,
+    "baseCount": 5877,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5877,
+    "totalCount": 5880,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
       "https://dm.takaratomy.co.jp/rule/qa/47896/",
-      "https://dm.takaratomy.co.jp/rule/qa/43369/"
+      "https://dm.takaratomy.co.jp/rule/qa/39668/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -181132,6 +181218,23 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36635/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36742/",
           "https://dm.takaratomy.co.jp/rule/qa/44188/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 682,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5874,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5877,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/47896/",
+          "https://dm.takaratomy.co.jp/rule/qa/43369/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
