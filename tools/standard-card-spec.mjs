@@ -2564,6 +2564,25 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=750&&f.typeText==='クリーチャー'){
+  const speed='スピードアタッカー(このクリーチャーは召喚酔いしない)';
+  const double='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
+  const win='このクリーチャーがバトルに勝った時';
+  if(compact363===speed+'このクリーチャーをバトルゾーンに出した時そのターンこのクリーチャーはタップされていないクリーチャーを攻撃できる。'+win+'そのターンバトルゾーンにある自分のクリーチャーすべてはタップされていないクリーチャーを攻撃できる。'+double){
+   const grant={attackUntapped:true};
+   return {effect:'sixPhoto',speedAttacker:true,breaker:2,g34Tasks:[{op:'ShinkaGrant397',grant}],
+    g189BattleWin:[{op:'GroupGrant364',owner:'self',filter:{creature:true},grant}]};
+  }
+  const dash='キリフダッシュ[ff04](自分のクリーチャーの攻撃の終わりにそのクリーチャーがその攻撃中にシールドをブレイクしていればこのクリーチャーを[ff04]支払って召喚してもよい)';
+  if(compact363===dash+'スピードアタッカーW・ブレイカー'+win+'このクリーチャーをアンタップし相手のシールドを1つブレイクする。')
+   return {effect:'sixPhoto',speedAttacker:true,breaker:2,kirifudaDash:4,g402DashColors:['火'],
+    g189BattleWin:[{op:'Untap',g191First:true},{op:'Break497',n:1,g747CreatureBreak:true}]};
+  const discount='このクリーチャーの召喚コストをバトルゾーンにあるクリーチャー1体につき1少なくする。ただしコストは0以下にならない。';
+  const mach='マッハファイター(このクリーチャーはバトルゾーンに出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)';
+  if(compact363===discount+mach+'T・ブレイカー自分のターン中に'+win+'次のターン自分は攻撃されない。')
+   return {effect:'sixPhoto',machFighter:true,breaker:3,
+    g212CountDiscount:{zone:'battle',owner:'both',filter:{creature:true},amount:1},g189BattleWin:[{op:'PlayerGuard750'}]};
+ }
  if(phase>=749&&f.typeText==='クリーチャー'){
   const speed='スピードアタッカー(このクリーチャーは召喚酔いしない)';
   const double='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';

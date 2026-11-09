@@ -176417,23 +176417,135 @@
       ],
       "supportBatch": "phase-749",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-007",
+      "name": "偽りの名 バザガジー・ラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "アーマード・ドラゴン/アンノウン",
+      "text": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nこのクリーチャーをバトルゾーンに出した時、そのターン、このクリーチャーはタップされていないクリーチャーを攻撃できる。\nこのクリーチャーがバトルに勝った時、そのターン、バトルゾーンにある自分のクリーチャーすべてはタップされていないクリーチャーを攻撃できる。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-007",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "speedAttacker": true,
+      "breaker": 2,
+      "g34Tasks": [
+        {
+          "op": "ShinkaGrant397",
+          "grant": {
+            "attackUntapped": true
+          }
+        }
+      ],
+      "g189BattleWin": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "grant": {
+            "attackUntapped": true
+          }
+        }
+      ],
+      "supportBatch": "phase-750",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-004",
+      "name": "ロビンソン・ジャングルーソ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [ff04]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーを[ff04]支払って召喚してもよい）\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーがバトルに勝った時、このクリーチャーをアンタップし、相手のシールドを１つブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-004",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "speedAttacker": true,
+      "breaker": 2,
+      "kirifudaDash": 4,
+      "g402DashColors": [
+        "火"
+      ],
+      "g189BattleWin": [
+        {
+          "op": "Untap",
+          "g191First": true
+        },
+        {
+          "op": "Break497",
+          "n": 1,
+          "g747CreatureBreak": true
+        }
+      ],
+      "supportBatch": "phase-750",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-s10",
+      "name": "ボントボルト",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 12,
+      "power": 16000,
+      "race": "グランセクト",
+      "text": "このクリーチャーの召喚コストを、バトルゾーンにあるクリーチャー１体につき１少なくする。ただし、コストは０以下にならない。\nマッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nT・ブレイカー\n自分のターン中に、このクリーチャーがバトルに勝った時、次のターン、自分は攻撃されない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-s10",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "machFighter": true,
+      "breaker": 3,
+      "g212CountDiscount": {
+        "zone": "battle",
+        "owner": "both",
+        "filter": {
+          "creature": true
+        },
+        "amount": 1
+      },
+      "g189BattleWin": [
+        {
+          "op": "PlayerGuard750"
+        }
+      ],
+      "supportBatch": "phase-750",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 749,
+    "phase": 750,
     "checkedAt": "2026-11-10",
-    "baseCount": 6092,
+    "baseCount": 6095,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6095,
+    "totalCount": 6098,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/40495/",
-      "https://dm.takaratomy.co.jp/rule/qa/39553/",
-      "https://dm.takaratomy.co.jp/rule/qa/44319/",
-      "https://dm.takaratomy.co.jp/rule/qa/40827/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31624/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/34978/",
+      "https://dm.takaratomy.co.jp/rule/qa/31703/",
+      "https://dm.takaratomy.co.jp/rule/qa/31704/",
+      "https://dm.takaratomy.co.jp/rule/qa/33428/",
+      "https://dm.takaratomy.co.jp/rule/qa/39660/",
+      "https://dm.takaratomy.co.jp/rule/qa/33420/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -189435,6 +189547,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/43297/",
           "https://dm.takaratomy.co.jp/rule/qa/33609/",
           "https://dm.takaratomy.co.jp/rule/qa/44319/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 749,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6092,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6095,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/40495/",
+          "https://dm.takaratomy.co.jp/rule/qa/39553/",
+          "https://dm.takaratomy.co.jp/rule/qa/44319/",
+          "https://dm.takaratomy.co.jp/rule/qa/40827/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31624/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
