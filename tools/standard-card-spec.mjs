@@ -2476,6 +2476,18 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=698&&creature){
+  const text=normalize(f.abilityText);
+  if(text==='このクリーチャーのパワーはすべての墓地にある《伝承するクローン・ホーン》1枚につき+3000される。このクリーチャーはパワーが6000以上の時「W・ブレイカー」を得る。(このクリーチャーはシールドを2枚ブレイクする)'){
+   return {g207CountPower:{zone:'grave',both:true,graveName:'伝承するクローン・ホーン',amount:3000},g135PowerBreaker:true};
+  }
+  if(f.civilizations.length>1&&text==='マナゾーンに置く時このカードはタップして置く。このクリーチャーが攻撃する時自分のマナゾーンにあるタップされていない闇火自然のカードを1枚ずつタップしてもよい。そうした場合各プレイヤーは自分自身のシールドを1枚選び持ち主のマナゾーンに置く。'){
+   return {g34Attack:[{op:'TapManaColors698',colors:['闇','火','自然']}]};
+  }
+  if(text==='相手プレイヤーはカードを2枚以上引いたターンの終わりに自分自身の手札をすべて捨てる。'){
+   return {g698EndDrawDiscard:2};
+  }
+ }
  if(phase>=697){
   const text=normalize(f.abilityText);
   if(creature&&text==='このクリーチャーをバトルゾーンに出した時シールドを多く持っている方のプレイヤーは自分自身のシールドを1枚選び墓地に置く。両プレイヤーのシールドが同じ枚数であればそれぞれが自分自身のシールドを1枚ずつ選び持ち主の墓地に置く。'){
