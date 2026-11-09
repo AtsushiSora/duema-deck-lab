@@ -2476,6 +2476,24 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=689){
+  const text=normalize(f.abilityText);
+  if(creature&&text==='相手がバトルゾーンのクリーチャーを選ぶ時自分のドラゴンを選ぶことはできない。(ただし自分のドラゴンを攻撃またはブロックしてもよい)'){
+   return {g608Protect:{race:'ドラゴン'}};
+  }
+  if(creature&&text==='このクリーチャーがバトルゾーンに出たとき自分の山札から呪文を1枚さがして相手に見せ自分の手札に加える。そのあと山札をシャッフルする。'){
+   return {effect:'sixPhoto',g34Tasks:[{
+    op:'Look',g201Search:true,g200Search:true,n:'all',rest:'shuffle',
+    stages:[{n:1,to:'hand',filter:{spell:true},reveal:true}]
+   }]};
+  }
+  if(f.typeText==='呪文'&&text==='相手のクリーチャーを1体破壊する。バトルゾーンに自分の名前に《死神》とあるクリーチャーがあれば相手は自身の手札を1枚選び捨てる。'){
+   return {effect:'sixPhoto',g34Tasks:[
+    {op:'Target',to:'grave'},
+    {op:'IfOwn',filter:{creature:true,g228Face:{type:'creature',nameAny:['死神']}},defs:[{op:'Discard',n:1}]}
+   ]};
+  }
+ }
  if(phase>=688&&creature){
   const text=normalize(f.abilityText);
   if(text==='バトルゾーンに自分の光のクリーチャーと火のクリーチャーが少なくとも1体ずつある時このクリーチャーのパワーは+5000される。'){

@@ -169879,20 +169879,121 @@
       },
       "supportBatch": "phase-688",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22-007",
+      "name": "ポッピ・ラッキー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ファイアー・バード",
+      "text": "相手がバトルゾーンのクリーチャーを選ぶ時、自分のドラゴンを選ぶことはできない。(ただし、自分のドラゴンを攻撃またはブロックしてもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-007",
+      "limit": 4,
+      "g608Protect": {
+        "race": "ドラゴン"
+      },
+      "supportBatch": "phase-689",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm01-002",
+      "name": "真理の伝道師レイーラ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 3000,
+      "race": "バーサーカー",
+      "text": "このクリーチャーがバトルゾーンに出たとき、自分の山札から呪文を１枚さがして相手に見せ、自分の手札に加える。そのあと、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm01-002",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g200Search": true,
+          "n": "all",
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "spell": true
+              },
+              "reveal": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-689",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm34-047",
+      "name": "死神ハンド",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "相手のクリーチャーを１体破壊する。\nバトルゾーンに自分の、名前に《死神》とあるクリーチャーがあれば、相手は自身の手札を１枚選び、捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-047",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave"
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "g228Face": {
+              "type": "creature",
+              "nameAny": [
+                "死神"
+              ]
+            }
+          },
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-689",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 688,
+    "phase": 689,
     "checkedAt": "2026-11-09",
-    "baseCount": 5890,
+    "baseCount": 5893,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5893,
+    "totalCount": 5896,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35554/",
-      "https://dm.takaratomy.co.jp/rule/qa/39094/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35398/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -181737,6 +181838,23 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37245/",
           "https://dm.takaratomy.co.jp/rule/qa/44581/",
           "https://dm.takaratomy.co.jp/rule/qa/48474/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 688,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5890,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5893,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35554/",
+          "https://dm.takaratomy.co.jp/rule/qa/39094/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
