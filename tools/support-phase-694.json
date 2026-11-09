@@ -1,0 +1,242 @@
+{
+  "phase": 694,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5910,
+  "description": "他のクリーチャーの登場と被攻撃時のパワー上昇、ブロック後のバトル中止。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35132/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35133/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35293/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37778/",
+    "https://dm.takaratomy.co.jp/rule/qa/45068/"
+  ],
+  "cards": [
+    {
+      "id": "dm08-055",
+      "name": "怒髪の豪腕",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-055",
+      "faces": [
+        {
+          "name": "怒髪の豪腕",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "他のクリーチャーがバトルゾーンに置かれた場合、そのターンが終わるまで、このクリーチャーのパワーは+3000される。",
+          "race": "ビーストフォーク",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g314OtherEntry": {
+          "who": "both",
+          "defs": [
+            {
+              "op": "SelfBoost313",
+              "power": 3000,
+              "g536Source": true,
+              "g694ClearOnSeal": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm08-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "1b73f4981be57dccdc8ecf156b2b4920261ee08673ecac13881f719050f3fa8e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm13-021",
+      "name": "予言者ポラリス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-021",
+      "faces": [
+        {
+          "name": "予言者ポラリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のクリーチャーが攻撃された時、そのクリーチャーのパワーは+2000される。",
+          "race": "ライトブリンガー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g694DefenderWatch": [
+          {
+            "op": "DefenderBoost694",
+            "power": 2000,
+            "persistent": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "f461b5b0028126c701974f3a5b5dccd929639b978f77e4b088f287c367e39fd9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-034",
+      "name": "エコロバルーン・ビートル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-034",
+      "faces": [
+        {
+          "name": "エコロバルーン・ビートル",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のクリーチャーが攻撃された時、自分の手札を１枚捨ててもよい。そうした場合、そのターンの終わりまで、そのクリーチャーのパワーは+3000される。",
+          "race": "ジャイアント・インセクト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g694DefenderWatch": [
+          {
+            "op": "DiscardFor248",
+            "defs": [
+              {
+                "op": "DefenderBoost694",
+                "power": 3000
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "22ee917a82e0827a286bd806c4dd343e89608c5036fa3e5dc7b48d44a6ef1ac7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-072",
+      "name": "不屈の使徒チーキ・クーレ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-072",
+      "faces": [
+        {
+          "name": "不屈の使徒チーキ・クーレ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカー\nこのクリーチャーが攻撃をブロックしたとき、バトルは行われない。ただし、両クリーチャーはタップしたままである。\nこのクリーチャーは攻撃することができない。",
+          "race": "イニシエート",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g178Block": [
+          {
+            "op": "SkipBlockedBattle694"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-072.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "6ca5a2e5edd86479f47189777607e7aa79a2ad8b834bb90320c66cd376d1214b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc39-033",
+      "name": "怒髪の豪腕",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc39-033",
+      "faces": [
+        {
+          "name": "怒髪の豪腕",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "他のクリーチャーがバトルゾーンに出た時、そのターン、このクリーチャーのパワーは+3000される。",
+          "race": "ビーストフォーク",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "canonicalId": "dm08-055",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc39-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "9c839dbdf01bc2c9a0b7e7c8b002548add551a08775afc33403726474ccc401f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc42-086",
+      "name": "怒髪の豪腕",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc42-086",
+      "faces": [
+        {
+          "name": "怒髪の豪腕",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "他のクリーチャーがバトルゾーンに出た時、そのターン、このクリーチャーのパワーは+3000される。",
+          "race": "ビーストフォーク",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "canonicalId": "dm08-055",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc42-086.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "e27b4886e480d1c5956f4f8832d5436a131ebd5342aadc8e7956e0b35e1de04c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm08-055": 4,
+      "dm13-021": 4,
+      "dm10-034": 4,
+      "dm06-072": 4,
+      "dmc39-033": 4,
+      "dmc42-086": 4
+    }
+  }
+}

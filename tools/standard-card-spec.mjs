@@ -2476,6 +2476,22 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=694&&creature){
+  const text=normalize(f.abilityText);
+  if(text==='他のクリーチャーがバトルゾーンに置かれた場合そのターンが終わるまでこのクリーチャーのパワーは+3000される。'||
+     text==='他のクリーチャーがバトルゾーンに出た時そのターンこのクリーチャーのパワーは+3000される。'&&f.name==='怒髪の豪腕'){
+   return {g314OtherEntry:{who:'both',defs:[{op:'SelfBoost313',power:3000,g536Source:true,g694ClearOnSeal:true}]}};
+  }
+  if(text==='自分のクリーチャーが攻撃された時そのクリーチャーのパワーは+2000される。'){
+   return {g694DefenderWatch:[{op:'DefenderBoost694',power:2000,persistent:true}]};
+  }
+  if(text==='自分のクリーチャーが攻撃された時自分の手札を1枚捨ててもよい。そうした場合そのターンの終わりまでそのクリーチャーのパワーは+3000される。'){
+   return {g694DefenderWatch:[{op:'DiscardFor248',defs:[{op:'DefenderBoost694',power:3000}]}]};
+  }
+  if(text==='ブロッカーこのクリーチャーが攻撃をブロックしたときバトルは行われない。ただし両クリーチャーはタップしたままである。このクリーチャーは攻撃することができない。'){
+   return {blocker:true,noAttack:true,g178Block:[{op:'SkipBlockedBattle694'}]};
+  }
+ }
  if(phase>=693&&creature){
   const text=normalize(f.abilityText);
   if(text==='このクリーチャーがクリーチャーを攻撃する時そのターンの終わりまでこのクリーチャーのパワーは+3000される。'){

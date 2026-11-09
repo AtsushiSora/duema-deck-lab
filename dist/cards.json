@@ -170339,22 +170339,131 @@
       "g693OtherCreatureGraveDraw": true,
       "supportBatch": "phase-693",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm08-055",
+      "name": "怒髪の豪腕",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ビーストフォーク",
+      "text": "他のクリーチャーがバトルゾーンに置かれた場合、そのターンが終わるまで、このクリーチャーのパワーは+3000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-055",
+      "limit": 4,
+      "g314OtherEntry": {
+        "who": "both",
+        "defs": [
+          {
+            "op": "SelfBoost313",
+            "power": 3000,
+            "g536Source": true,
+            "g694ClearOnSeal": true
+          }
+        ]
+      },
+      "supportBatch": "phase-694",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm13-021",
+      "name": "予言者ポラリス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ライトブリンガー",
+      "text": "自分のクリーチャーが攻撃された時、そのクリーチャーのパワーは+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-021",
+      "limit": 4,
+      "g694DefenderWatch": [
+        {
+          "op": "DefenderBoost694",
+          "power": 2000,
+          "persistent": true
+        }
+      ],
+      "supportBatch": "phase-694",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm10-034",
+      "name": "エコロバルーン・ビートル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ジャイアント・インセクト",
+      "text": "自分のクリーチャーが攻撃された時、自分の手札を１枚捨ててもよい。そうした場合、そのターンの終わりまで、そのクリーチャーのパワーは+3000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-034",
+      "limit": 4,
+      "g694DefenderWatch": [
+        {
+          "op": "DiscardFor248",
+          "defs": [
+            {
+              "op": "DefenderBoost694",
+              "power": 3000
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-694",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm06-072",
+      "name": "不屈の使徒チーキ・クーレ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 1000,
+      "race": "イニシエート",
+      "text": "ブロッカー\nこのクリーチャーが攻撃をブロックしたとき、バトルは行われない。ただし、両クリーチャーはタップしたままである。\nこのクリーチャーは攻撃することができない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-072",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g178Block": [
+        {
+          "op": "SkipBlockedBattle694"
+        }
+      ],
+      "supportBatch": "phase-694",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 693,
+    "phase": 694,
     "checkedAt": "2026-11-09",
-    "baseCount": 5906,
+    "baseCount": 5910,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 5910,
+    "totalCount": 5914,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/47061/",
-      "https://dm.takaratomy.co.jp/rule/qa/45909/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31637/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/%E5%A4%89%E6%9B%B4%E7%82%B92026-07-23/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35132/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35133/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35293/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37778/",
+      "https://dm.takaratomy.co.jp/rule/qa/45068/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -182287,6 +182396,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/45925/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37323/",
           "https://dm.takaratomy.co.jp/rule/qa/47379/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 693,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5906,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 5910,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/47061/",
+          "https://dm.takaratomy.co.jp/rule/qa/45909/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31637/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/%E5%A4%89%E6%9B%B4%E7%82%B92026-07-23/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
