@@ -2357,9 +2357,29 @@ function chance419(line){
  const named=line.match(/^アタック・チャンス[:―-]名前に《(ジョニー|ドギラゴン)》とあるクリーチャー\(名前に《\1》とある自分のクリーチャーが攻撃する時この呪文をコストを支払わずに唱えてもよい\)$/);
  return named?{name:named[1]}:null;
 }
+const legacyWaveMarker='ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に2体以上あればこのクリーチャーは次の能力を得る)';
 const waveMarker702='ウェーブストライカー(「ウェーブストライカー」を持つクリーチャーが他に2体以上あればこのクリーチャーに次のw能力を与える)';
 const waveKirstein702=waveMarker702+'w自分のクリーチャーすべてのパワーを+5000し「ブロッカー」と「W・ブレイカー」を与える。';
 const waveLameer702=waveMarker702+'w自分のクリーチャーすべてのパワーを+1000する。';
+
+const waveTriggerSpell703='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+const waveTwinFaces703=[
+ {
+  front:'このクリーチャーのパワーは+4000されパワー5000以下のクリーチャーにブロックされない。',
+  legacy:'このクリーチャーのパワーは+4000され、パワー5000以下のクリーチャーにブロックされない。',
+  spell:'このターン自分のクリーチャー1体のパワーを+4000する。'
+ },
+ {
+  front:'このクリーチャーのパワーを+4000し「ブロッカー」を与える。',
+  legacy:'このクリーチャーのパワーは+4000され、「ブロッカー」を得る。',
+  spell:waveTriggerSpell703+'相手のマナゾーンのカードが自分のより多ければ自分の山札の上から1枚目をマナゾーンに置く。'
+ },
+ {
+  front:'このクリーチャーが出た時パワー2000以下のクリーチャーをすべて破壊する。',
+  legacy:'このクリーチャーをバトルゾーンに出した時、パワー2000以下のクリーチャーをすべて破壊する。',
+  spell:waveTriggerSpell703+'相手のパワー3000以下のクリーチャーをすべて破壊する。自分のパワー6000以上のクリーチャーがあればカードを1枚引く。'
+ }
+];
 
 export function standardCardSpec(d,{phase=165}={}){
  // Repair only the complete formatting variants pinned to these official prints.
@@ -2419,8 +2439,10 @@ export function standardCardSpec(d,{phase=165}={}){
    frontText===waveKirstein702&&spellText==='自分の山札の上から2枚をタップしてマナゾーンに置く。その後カードを1枚自分のマナゾーンから墓地に置く。'||
    frontText===waveLameer702&&spellText==='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)相手のクリーチャーをすべてタップする。カードを1枚引く。'
   );
-  if(entryStop||rushSweep||blockerCharger||bounceOrRemove||discardOrRemove||rampOrSweep||speedOrSweep||capOrShield||mammoth||waveTwin){
-   const creature=standardCardSpec({...d,faces:[front]},{phase}),body=standardCardSpec({...d,faces:[spell]},{phase});
+  const waveTwin703=phase>=703&&waveTwinFaces703.find(pair=>frontText===waveMarker702+'w'+pair.front&&spellText===pair.spell);
+  if(entryStop||rushSweep||blockerCharger||bounceOrRemove||discardOrRemove||rampOrSweep||speedOrSweep||capOrShield||mammoth||waveTwin||waveTwin703){
+   const creatureFace=waveTwin703?{...front,abilityText:legacyWaveMarker+'\n'+waveTwin703.legacy}:front;
+   const creature=standardCardSpec({...d,faces:[creatureFace]},{phase}),body=standardCardSpec({...d,faces:[spell]},{phase});
    if(entryStop&&(!body.crystalCharger||body.g34Tasks?.length!==1||!body.g34Tasks[0].g593OverMana))throw Error('未対応の水晶チャージャーの構成');
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
@@ -3273,7 +3295,7 @@ export function standardCardSpec(d,{phase=165}={}){
   }
  }
  if(phase>=400&&creature){
-  const marker='ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に2体以上あればこのクリーチャーは次の能力を得る)',at=lines.findIndex(l=>normalize(l)===marker);
+  const marker=legacyWaveMarker,at=lines.findIndex(l=>normalize(l)===marker);
   if(at>=0){
    if(lines.filter(l=>normalize(l)===marker).length!==1||at===lines.length-1)throw Error('未対応のウェーブストライカー構成');
    const prefix=structuredClone(d),suffix=structuredClone(d);prefix.faces[0].abilityText=lines.slice(0,at).join('\n');suffix.faces[0].abilityText=lines.slice(at+1).join('\n');

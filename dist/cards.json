@@ -171397,25 +171397,201 @@
       ],
       "supportBatch": "phase-702",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-119",
+      "name": "ニンジャ・パンプキン / グローリー・マッスル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ワイルド・ベジーズ",
+      "text": "ウェーブストライカー（「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーに次のw能力を与える）\nwこのクリーチャーのパワーは+4000され、パワー5000以下のクリーチャーにブロックされない。\n【呪文面】\nこのターン、自分のクリーチャー１体のパワーを+4000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-119",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "power": 4000,
+          "g206NoBlock": {
+            "maxPower": 5000
+          }
+        }
+      },
+      "spellFace": {
+        "name": "グローリー・マッスル",
+        "type": "spell",
+        "cost": 1,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 4000,
+            "title": "パワーを+4000する自分のクリーチャーを1体選ぶ",
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-703",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-101",
+      "name": "堅防の使徒アースラ / グローリー・ストーン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "イニシエート",
+      "text": "ウェーブストライカー（「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーに次のw能力を与える）\nwこのクリーチャーのパワーを+4000し\n、「ブロッカー」を与える。\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のマナゾーンのカードが自分のより多ければ、自分の山札の上から１枚目をマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-101",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "power": 4000,
+          "blocker": true
+        }
+      },
+      "spellFace": {
+        "name": "グローリー・ストーン",
+        "type": "spell",
+        "cost": 1,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "mana",
+                "lessThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-703",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-088",
+      "name": "斬神兵グランドルメス / バースト・ワンショット",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "アーマロイド",
+      "text": "ウェーブストライカー（「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーに次のw能力を与える）\nwこのクリーチャーが出た時、パワー2000以下のクリーチャーをすべて破壊する。\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー3000以下のクリーチャーをすべて破壊する。\n自分のパワー6000以上のクリーチャーがあれば、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-088",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Sweep",
+              "both": true,
+              "to": "grave",
+              "filter": {
+                "creature": true,
+                "maxPower": 2000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      },
+      "spellFace": {
+        "name": "バースト・ワンショット",
+        "type": "spell",
+        "cost": 5,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "IfOwnPower",
+            "minPower": 6000,
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-703",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 702,
+    "phase": 703,
     "checkedAt": "2026-11-09",
-    "baseCount": 5936,
-    "newEffectCards": 4,
+    "baseCount": 5940,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5940,
+    "totalCount": 5943,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
       "https://dm.takaratomy.co.jp/rule/qa_old/37609/",
       "https://dm.takaratomy.co.jp/rule/qa_old/35189/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35221/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35222/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31641/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316689/",
-      "https://dm.takaratomy.co.jp/rule/qa/46526/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35190/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -183521,6 +183697,28 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35225/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35222/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316639/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 702,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5936,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 5940,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37609/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35189/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35221/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35222/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31641/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316689/",
+          "https://dm.takaratomy.co.jp/rule/qa/46526/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

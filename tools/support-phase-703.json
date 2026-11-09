@@ -1,0 +1,282 @@
+{
+  "phase": 703,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5940,
+  "description": "ウェーブストライカーのツインパクト3種を既存の単面処理と呪文処理で再現。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37609/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35189/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35190/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
+  ],
+  "cards": [
+    {
+      "id": "dm22ex1-119",
+      "name": "ニンジャ・パンプキン / グローリー・マッスル",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-119",
+      "faces": [
+        {
+          "name": "ニンジャ・パンプキン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ウェーブストライカー（「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーに次のw能力を与える）\nwこのクリーチャーのパワーは+4000され、パワー5000以下のクリーチャーにブロックされない。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "グローリー・マッスル",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このターン、自分のクリーチャー１体のパワーを+4000する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "power": 4000,
+            "g206NoBlock": {
+              "maxPower": 5000
+            }
+          }
+        },
+        "spellFace": {
+          "name": "グローリー・マッスル",
+          "type": "spell",
+          "cost": 1,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "owner": "self",
+              "power": 4000,
+              "title": "パワーを+4000する自分のクリーチャーを1体選ぶ",
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-119a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "9026455cdcc0207641e94900470aea1446fe5781c6fa8fa30b9c432e74d07c85",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22ex1-101",
+      "name": "堅防の使徒アースラ / グローリー・ストーン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-101",
+      "faces": [
+        {
+          "name": "堅防の使徒アースラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ウェーブストライカー（「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーに次のw能力を与える）\nwこのクリーチャーのパワーを+4000し\n、「ブロッカー」を与える。",
+          "race": "イニシエート",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "グローリー・ストーン",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のマナゾーンのカードが自分のより多ければ、自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "power": 4000,
+            "blocker": true
+          }
+        },
+        "spellFace": {
+          "name": "グローリー・ストーン",
+          "type": "spell",
+          "cost": 1,
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g334ZoneCount": {
+                  "zone": "mana",
+                  "lessThanOpponent": true
+                }
+              },
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-101a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "bc5e862822d0c9dc70927af329ee320213d86bd38e56899dc466c3caab896a87",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22ex1-088",
+      "name": "斬神兵グランドルメス / バースト・ワンショット",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-088",
+      "faces": [
+        {
+          "name": "斬神兵グランドルメス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ウェーブストライカー（「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーに次のw能力を与える）\nwこのクリーチャーが出た時、パワー2000以下のクリーチャーをすべて破壊する。",
+          "race": "アーマロイド",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "バースト・ワンショット",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー3000以下のクリーチャーをすべて破壊する。\n自分のパワー6000以上のクリーチャーがあれば、カードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "effect": "sixPhoto",
+            "g34Tasks": [
+              {
+                "op": "Sweep",
+                "both": true,
+                "to": "grave",
+                "filter": {
+                  "creature": true,
+                  "maxPower": 2000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        },
+        "spellFace": {
+          "name": "バースト・ワンショット",
+          "type": "spell",
+          "cost": 5,
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Sweep",
+              "to": "grave",
+              "filter": {
+                "creature": true,
+                "maxPower": 3000,
+                "g199Power": true
+              }
+            },
+            {
+              "op": "IfOwnPower",
+              "minPower": 6000,
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-088a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "d43906c51b00c213cba9213156f9ac4160332c33979becd2194df8afee4ad424",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22ex1-119": 4,
+      "dm22ex1-101": 4,
+      "dm22ex1-088": 4
+    }
+  }
+}
