@@ -1,0 +1,189 @@
+{
+  "phase": 681,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5871,
+  "description": "期限付きの一括ブロッカー付与、相手のタップに対する任意アンタップ、ハンターの検索と山札下の並べ替え。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36634/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36635/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36742/",
+    "https://dm.takaratomy.co.jp/rule/qa/44188/"
+  ],
+  "cards": [
+    {
+      "id": "dmr05-078",
+      "name": "ビックリ・ガード",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-078",
+      "faces": [
+        {
+          "name": "ビックリ・ガード",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n次の自分のターンのはじめまで、バトルゾーンにある自分のクリーチャーはすべて「ブロッカー」を得る。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "grant": {
+              "blocker": true
+            },
+            "g521UntilStart": true,
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-078.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "64ab1c684343fa05485cfc2386569d8945ef1bd73e53e1e9228cbe6ad47aef60",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr06-006",
+      "name": "偽りの羅刹 アリバイ・トリック",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-006",
+      "faces": [
+        {
+          "name": "偽りの羅刹 アリバイ・トリック",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "バトルゾーンにある相手のクリーチャーがタップされた時、バトルゾーンにある自分のクリーチャーを１体アンタップしてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "デーモン・コマンド/アンノウン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g681OpponentTapAnyTurn": true,
+        "g678OpponentTap": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "untap": true,
+            "optional": true
+          }
+        ]
+      },
+      "currentPrint": {
+        "id": "dmex08-053",
+        "name": "偽りの羅刹 アリバイ・トリック",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-053",
+        "faces": [
+          {
+            "name": "偽りの羅刹 アリバイ・トリック",
+            "typeText": "クリーチャー",
+            "civilizationText": "光",
+            "civilizations": [
+              "光"
+            ],
+            "cost": 8,
+            "costText": "8",
+            "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n相手のクリーチャーがタップした時、自分のクリーチャーを１体アンタップしてもよい。",
+            "race": "デーモン・コマンド/アンノウン",
+            "powerText": "8000",
+            "missingFields": []
+          }
+        ],
+        "verification": {
+          "checkedAt": "2026-11-09",
+          "sha256": "0a98cee9e9866f1b1569a2576c4dbf80295a8703db01776109a4e4755ac87c94",
+          "facesMatched": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "23490c4432961bfdf02866710b62c36425c112452441f13397d8c14faf03aa82",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-070",
+      "name": "番長大号令",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-070",
+      "faces": [
+        {
+          "name": "番長大号令",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n自分の山札の上から５枚を見る。その中からハンターを１体選んで相手に見せ、自分の手札に加えてもよい。その後、残りを好きな順序で山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g185Search": true,
+            "n": 5,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "race": "ハンター"
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "82314dd9a3f8cc0488b397fce9633f52764131af811f2241c51f824954f72544",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr05-078": 4,
+      "dmr06-006": 4,
+      "dmr01-070": 4
+    }
+  }
+}

@@ -1677,9 +1677,9 @@ export function createSixPhotoRules(api){
  battleWins(s,p,w){const x=s.players[p].battle.find(x=>x.uid===w?.uid),c=x&&effective(x,s),defs=c&&(!c.g588FirstSelfWin||w.g588FirstForUnit)&&c.g189BattleWin;return [...(defs?[{player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Sequence',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs})}]:[]),...winWatches252(s,p,w)];},
  mugenTapped415(s,p,x){const c=effective(x,s);if(!x.sealed&&c.g415MugenTapped)queue(s,p,x,c.g415MugenTapped);},
  tapped(s,p,x){
-  if(s.active===1-p&&api.isCreature(s,x))for(const y of s.players[1-p].battle){
-   const defs=card(y).g678OpponentTap;
-   if(defs&&!y.sealed&&!api.ignored(s,y)&&api.isCreature(s,y))queue(s,1-p,y,defs);
+  if(api.isCreature(s,x))for(const y of s.players[1-p].battle){
+   const {g678OpponentTap,g681OpponentTapAnyTurn}=card(y);
+   if(g678OpponentTap&&(s.active===1-p||g681OpponentTapAnyTurn)&&!y.sealed&&!api.ignored(s,y)&&api.isCreature(s,y))queue(s,1-p,y,g678OpponentTap);
   }
   const c=effective(x,s),first=!used(s,'g191Tapped',x);mark(s,'g191Tapped',x);if(first&&c.g219FirstTap)queue(s,p,x,c.g219FirstTap);if(first&&c.g191FirstTapUntap)queue(s,p,x,[E('Untap',{g191First:true})]);if(c.g188Tapped)queue(s,p,x,c.g188Tapped);if(c.g34Role==='fourJustice')queue(s,p,x,[C('justiceBreak')]);if(ninja(effective(x,s)))for(const y of active(s,p,'mukade'))if(!used(s,'g34FirstTap',y)){mark(s,'g34FirstTap',y);queue(s,p,y,[E('Draw',{n:1,optional:true})]);}},
  // Remember the physical incarnation at the break, then follow later evolution at turn end.

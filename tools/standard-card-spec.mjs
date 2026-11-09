@@ -2453,6 +2453,21 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,random:true},{op:'Discard',g584Count:'faceUpShieldGo',random:true}]};
   }
  }
+ if(phase>=681){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='呪文'&&text==='S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)次の自分のターンのはじめまでバトルゾーンにある自分のクリーチャーはすべて「ブロッカー」を得る。'){
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'GroupGrant364',owner:'self',filter:{creature:true},grant:{blocker:true},g521UntilStart:true,spell:true}]};
+  }
+  if(creature&&[
+   'バトルゾーンにある相手のクリーチャーがタップされた時バトルゾーンにある自分のクリーチャーを1体アンタップしてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)',
+   'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)相手のクリーチャーがタップした時自分のクリーチャーを1体アンタップしてもよい。'
+  ].includes(text)){
+   return {breaker:2,g681OpponentTapAnyTurn:true,g678OpponentTap:[{op:'Target',owner:'self',untap:true,optional:true}]};
+  }
+  if(f.typeText==='呪文'&&text==='S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)自分の山札の上から5枚を見る。その中からハンターを1体選んで相手に見せ自分の手札に加えてもよい。その後残りを好きな順序で山札の一番下に置く。'){
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Look',g185Search:true,n:5,rest:'bottom',stages:[{n:1,to:'hand',filter:{creature:true,race:'ハンター'},reveal:true,optional:true}]}]};
+  }
+ }
  if(phase>=680){
   const text=normalize(f.abilityText);
   if(f.typeText==='呪文'&&text==='このターン自分のクリーチャーが攻撃する時カードを1枚引いてもよい。'){
