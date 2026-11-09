@@ -239,6 +239,7 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g722CrossedAny)return [p,1-p].some(owner=>ownCondition(s,owner,{g442CrossedAlly:true}));
   if(f.g666FaceUpShieldGo)return api.shieldGoCount(s,p)>0;
   if(f.g650SourceCards){
    const host=sourceHost474(s,{uid:sourceUid,incarnation:sourceIncarnation});
@@ -303,7 +304,7 @@ export function createSixPhotoRules(api){
  function useBlockers524(s,caster){for(const x of creatures(s,1-caster))if(!x.sealed&&effective(x,s).g524OpponentUseBlocker)queue(s,1-caster,x,[{op:'UseBlocker524'}]);}
  const spellWatches=(s,caster,c)=>[s.active,1-s.active].flatMap(owner=>creatures(s,owner).filter(x=>!x.sealed).flatMap(x=>{const watch=effective(x,s).g204SpellWatch;return watch&&(watch.who==='both'||(watch.who==='self'?owner===caster:owner!==caster))&&(!watch.opponentTurn||s.active!==owner)&&(!watch.color||colors(c).includes(watch.color))&&(!watch.colorsAny||watch.colorsAny.some(color=>colors(c).includes(color)))&&(!watch.race||race(c,watch.race))?[{owner,x,watch}]:[];}));
  // Use the already decorated target stats and suppress breaker calculation on sources to avoid power recursion.
- function auraPower(s,x,c){const owner=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));if(owner<0||x.sealed||c.type!=='creature')return 0;const fits=f=>(!f.creature||c.type==='creature')&&(!f.color||colors(c).includes(f.color))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.g220NameAny||f.g220NameAny.some(q=>String(c.name).normalize('NFKC').includes(q.normalize('NFKC'))))&&(!f.any||f.any.some(fits))&&(!f.evolution||api.isEvolution(x))&&(!f.tapped||x.tapped);let bonus=0;for(const sourceOwner of[0,1])for(const source of s.players[sourceOwner].battle){const raw=api.zoneCard(s,sourceOwner,source);if(source.sealed||(!raw.g205Aura&&!raw.g260Self?.grants?.g205Aura&&!raw.g268ManaGrants?.some(r=>r.grants?.g205Aura))||!api.isCreature(s,source)&&!(raw.type==='field'&&raw.d2Field))continue;const aura=effective(source,s,true).g205Aura;if(!aura||!aura.both&&owner!==(aura.opponent?1-sourceOwner:sourceOwner)||aura.other&&source.uid===x.uid||aura.turn==='own'&&s.active!==sourceOwner||aura.turn==='opponent'&&s.active===sourceOwner||!fits(aura.filter))continue;bonus+=aura.power;}return bonus;}
+ function auraPower(s,x,c){const owner=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));if(owner<0||x.sealed||c.type!=='creature')return 0;const fits=f=>(!f.creature||c.type==='creature')&&(!f.color||colors(c).includes(f.color))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.g220NameAny||f.g220NameAny.some(q=>String(c.name).normalize('NFKC').includes(q.normalize('NFKC'))))&&(!f.any||f.any.some(fits))&&(!f.evolution||api.isEvolution(x))&&(!f.tapped||x.tapped)&&(!f.g436Crossed||ownCondition(s,owner,{g436Crossed:true},x.uid));let bonus=0;for(const sourceOwner of[0,1])for(const source of s.players[sourceOwner].battle){const raw=api.zoneCard(s,sourceOwner,source);if(source.sealed||(!raw.g205Aura&&!raw.g260Self?.grants?.g205Aura&&!raw.g268ManaGrants?.some(r=>r.grants?.g205Aura))||!api.isCreature(s,source)&&!(raw.type==='field'&&raw.d2Field))continue;const aura=effective(source,s,true).g205Aura;if(!aura||!aura.both&&owner!==(aura.opponent?1-sourceOwner:sourceOwner)||aura.other&&source.uid===x.uid||aura.turn==='own'&&s.active!==sourceOwner||aura.turn==='opponent'&&s.active===sourceOwner||!fits(aura.filter))continue;bonus+=aura.power;}return bonus;}
  // Counting characteristics must not calculate power/breakers on the counted cards.
  function countPower(s,x,c,attacking=false){
   const t=c.g207CountPower;if(!t)return 0;const owner=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));
@@ -312,6 +313,7 @@ export function createSixPhotoRules(api){
   if(t.graveName)return t.amount*graveNameCount698(s,owners,t.graveName);
   if(t.zone==='shields')return t.amount*owners.reduce((n,p)=>n+(typeof s.players[p].shields==='number'?s.players[p].shields:t.g333ShieldCards?s.players[p].shields.reduce((n,x)=>n+api.shieldCards(x).length,0):s.players[p].shields.length),0);
   const rows=owners.flatMap(p=>(s.players[p][t.zone]||[]).map(y=>({p,y}))).filter(({y})=>!t.other||y.uid!==x.uid);
+  if(t.manaColor)return t.amount*rows.filter(({p,y})=>api.manaColors(card(y),s,p,true).includes(t.manaColor)).length;
   if(t.civilizations){
    if(t.g561Battle)return t.amount*countBattleCivilizations(s,rows.map(({y})=>y));
    return t.amount*new Set(rows.flatMap(({p,y})=>api.manaColors(card(y),s,p,true)).filter(q=>['光','水','闇','火','自然'].includes(q))).size;

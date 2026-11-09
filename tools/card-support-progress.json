@@ -1,16 +1,16 @@
 {
   "checkedAt": "2026-11-09",
   "catalogueNames": 11829,
-  "supportedNames": 6001,
-  "pendingNames": 5828,
-  "phase": 721,
-  "added": 3,
+  "supportedNames": 6006,
+  "pendingNames": 5823,
+  "phase": 722,
+  "added": 5,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
     {
       "ability": "G・ゼロ",
-      "pendingNames": 36,
+      "pendingNames": 35,
       "examples": [
         {
           "id": "dmex15-b028",
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3504,
+    "クリーチャー": 3499,
     "NEOクリーチャー": 153,
     "呪文": 826,
     "GRクリーチャー": 159,
@@ -226,8 +226,8 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1263,
-    "未対応の能力文": 4286,
-    "未対応のG・ゼロ条件": 27,
+    "未対応の能力文": 4282,
+    "未対応のG・ゼロ条件": 26,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
     "既存名の別表記": 8,
@@ -7051,42 +7051,107 @@
           "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
         }
       ]
+    },
+    {
+      "phase": 722,
+      "cards": [
+        {
+          "id": "dm19-025",
+          "name": "封魔ガルマジアス"
+        },
+        {
+          "id": "dm19-056",
+          "name": "封魔ラウーム"
+        },
+        {
+          "id": "dm16-052",
+          "name": "微笑妖精レイリン"
+        },
+        {
+          "id": "dm16-022",
+          "name": "銀河の守護者グラン・シリス"
+        },
+        {
+          "id": "dm10-040",
+          "name": "反発のタグタップ"
+        }
+      ],
+      "supportedNames": 6006,
+      "pendingNames": 5823,
+      "printAliases": [
+        {
+          "id": "promoy6-046",
+          "canonicalId": "dm19-025",
+          "name": "封魔ガルマジアス"
+        },
+        {
+          "id": "promoy3-006",
+          "canonicalId": "dm10-040",
+          "name": "反発のタグタップ"
+        }
+      ],
+      "verification": {
+        "focusedPassed": 10,
+        "regressionPassed": 436,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 7,
+        "scope": "初出5種類・再録2版の公式本文全体・基本情報・マナ数・JPEG画像・殿堂一覧を照合。攻撃制限とW・ブレイカーおよびスレイヤー、通常と無償のクロスギア登場、任意マナ回収、両陣営を参照するG・ゼロとパワー加算、進化時のクロス維持、現行の水マナ文明とパワー閾値、選択中の保存・復元を検証。回帰はphase 207・396・412・436・442・633・677・721、utility123。全体のnpm testは中断・合否未確認。",
+        "runtimeNote": "個別・関連回帰・npm run checkは各最大10分。関連回帰から長時間のCPU対戦シミュレーションを除外した。"
+      },
+      "deferred": [
+        {
+          "id": "dm10-066",
+          "name": "不屈のウレックス",
+          "reason": "公式本文と旧QA 35288の多色判定を確認。相手の効果によるタップを止めながら、自分の効果・攻撃・ブロック・タップして出る処理を区別できるよう、効果の使用者が渡る経路を検証するまで保留。"
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "対戦データにサイキック・クリーチャーの対象例がなく、対象判定と超次元への移動を実戦経路で検証できないため保留。"
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 721,
-    "nextPhase": 722,
+    "lastVerifiedPhase": 722,
+    "nextPhase": 723,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm19-025",
-        "name": "封魔ガルマジアス",
-        "check": "ストリウムと同じ攻撃制限とW・ブレイカーを照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-025"
+        "id": "dm19-005",
+        "name": "封魔ソウル・アヴァルス",
+        "check": "プレイヤー攻撃がブロックされなかった時の任意蘇生とW・ブレイカーを照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-005"
       },
       {
-        "id": "dm19-056",
-        "name": "封魔ラウーム",
-        "check": "ストリウムと同じ攻撃制限とスレイヤーを照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-056"
+        "id": "dm19-s08",
+        "name": "オメガ・クライシス・ドラグーン",
+        "check": "ティラノ・ドレイクの登場後、両者が条件に合う自分のクリーチャーを選ぶ処理を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-s08"
       },
       {
-        "id": "dm16-052",
-        "name": "微笑妖精レイリン",
-        "check": "クロスギアの登場を条件にした任意のマナ回収を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-052"
+        "id": "dm19-039",
+        "name": "強襲の長(アサルト・チャンピオン)",
+        "check": "味方の対象種族への一時強化と発生源の除外範囲を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-039"
       },
       {
-        "id": "dm16-022",
-        "name": "銀河の守護者グラン・シリス",
-        "check": "クロス中のクリーチャーを参照するG・ゼロとパワー加算を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-022"
+        "id": "dm10-033",
+        "name": "緑神龍クスダルフ",
+        "check": "ターン開始時の自分のマナのアンタップ禁止と攻撃時の強化を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-033"
       },
       {
-        "id": "dm10-040",
-        "name": "反発のタグタップ",
-        "check": "相手の水マナ枚数によるパワーとW・ブレイカーを照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-040"
+        "id": "dm16-031",
+        "name": "ブラザー・リザード",
+        "check": "G・ゼロの指定カード名を公式画像と本文で確定し、既存条件に対応できるか確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-031"
       },
       {
         "id": "dm10-066",

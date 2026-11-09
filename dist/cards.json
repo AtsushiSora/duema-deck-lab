@@ -173326,21 +173326,162 @@
       ],
       "supportBatch": "phase-721",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm19-025",
+      "name": "封魔ガルマジアス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 8000,
+      "race": "グランド・デビル",
+      "text": "このクリーチャーが攻撃する時、自分の他のクリーチャーはこのターン中、攻撃することができない。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-025",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "OnlyAttacker677",
+          "own": true
+        }
+      ],
+      "breaker": 2,
+      "supportBatch": "phase-722",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-056",
+      "name": "封魔ラウーム",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "グランド・デビル",
+      "text": "このクリーチャーが攻撃する時、自分の他のクリーチャーはこのターン中、攻撃することができない。\nスレイヤー(このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-056",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "OnlyAttacker677",
+          "own": true
+        }
+      ],
+      "slayer": true,
+      "supportBatch": "phase-722",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm16-052",
+      "name": "微笑妖精レイリン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "スノーフェアリー",
+      "text": "クロスギアをバトルゾーンに出した時、カードを１枚、自分のマナゾーンから自分の手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-052",
+      "limit": 4,
+      "g251EntryDraw": {
+        "filter": {
+          "g201Gear": true
+        },
+        "defs": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "supportBatch": "phase-722",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm16-022",
+      "name": "銀河の守護者グラン・シリス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ガーディアン",
+      "text": "G・ゼロ-バトルゾーンにクロスギアをクロスしているクリーチャーが１体でもあれば、このクリーチャーをコストを支払わずに召喚してもよい。\nクロスギアをクロスしているクリーチャーすべてのパワーは+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-022",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "g722CrossedAny": true
+          }
+        ]
+      },
+      "g205Aura": {
+        "both": true,
+        "filter": {
+          "g436Crossed": true
+        },
+        "power": 1000
+      },
+      "supportBatch": "phase-722",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm10-040",
+      "name": "反発のタグタップ",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "スピリット・クォーツ",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーのパワーは、相手のマナゾーンにある水のカード１枚につき+1000される。\nこのクリーチャーは、パワーが6000以上の時、「W・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-040",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "mana",
+        "opponent": true,
+        "manaColor": "水",
+        "amount": 1000
+      },
+      "g135PowerBreaker": true,
+      "supportBatch": "phase-722",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 721,
+    "phase": 722,
     "checkedAt": "2026-11-09",
-    "baseCount": 5998,
-    "newEffectCards": 3,
+    "baseCount": 6001,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 6001,
+    "totalCount": 6006,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35358/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35422/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35423/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/34844/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35178/",
+      "https://dm.takaratomy.co.jp/rule/qa/43464/",
+      "https://dm.takaratomy.co.jp/rule/qa/43460/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -185807,6 +185948,24 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/qa/40912/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35962/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 721,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5998,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6001,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35358/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35422/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35423/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

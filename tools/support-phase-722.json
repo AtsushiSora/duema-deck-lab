@@ -1,0 +1,306 @@
+{
+  "phase": 722,
+  "checkedAt": "2026-11-09",
+  "baseCount": 6001,
+  "description": "味方への攻撃制限、クロスギア登場時のマナ回収、クロス中のクリーチャーを参照するG・ゼロとパワー加算、水マナ枚数に応じたパワーとW・ブレイカーを実装。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34844/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35178/",
+    "https://dm.takaratomy.co.jp/rule/qa/43464/",
+    "https://dm.takaratomy.co.jp/rule/qa/43460/",
+    "https://dm.takaratomy.co.jp/rule/qa/44603/",
+    "https://dm.takaratomy.co.jp/rule/qa/45585/"
+  ],
+  "cards": [
+    {
+      "id": "dm19-025",
+      "name": "封魔ガルマジアス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-025",
+      "faces": [
+        {
+          "name": "封魔ガルマジアス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、自分の他のクリーチャーはこのターン中、攻撃することができない。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "グランド・デビル",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "OnlyAttacker677",
+            "own": true
+          }
+        ],
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "abc5e594396b2b4b4ca8da579ab2beea306a7932a1a2efbfde3fb0a924ac761e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-056",
+      "name": "封魔ラウーム",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-056",
+      "faces": [
+        {
+          "name": "封魔ラウーム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃する時、自分の他のクリーチャーはこのターン中、攻撃することができない。\nスレイヤー(このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)",
+          "race": "グランド・デビル",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "OnlyAttacker677",
+            "own": true
+          }
+        ],
+        "slayer": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-056.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "cbc92da763d13f3ad3abdd0e04f9f27b1cbcb3c9edcafbaaf7b5e29d26d0a39d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-052",
+      "name": "微笑妖精レイリン",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-052",
+      "faces": [
+        {
+          "name": "微笑妖精レイリン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "クロスギアをバトルゾーンに出した時、カードを１枚、自分のマナゾーンから自分の手札に戻してもよい。",
+          "race": "スノーフェアリー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "g201Gear": true
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "to": "hand",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "db00e3eb2adfcdf079854d2d51186bd6a67d364a7504e6c86be6a340e14535b8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-022",
+      "name": "銀河の守護者グラン・シリス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-022",
+      "faces": [
+        {
+          "name": "銀河の守護者グラン・シリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "G・ゼロ-バトルゾーンにクロスギアをクロスしているクリーチャーが１体でもあれば、このクリーチャーをコストを支払わずに召喚してもよい。\nクロスギアをクロスしているクリーチャーすべてのパワーは+1000される。",
+          "race": "ガーディアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "g722CrossedAny": true
+            }
+          ]
+        },
+        "g205Aura": {
+          "both": true,
+          "filter": {
+            "g436Crossed": true
+          },
+          "power": 1000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "ff68f15c2134d0fceb34b328e404c2803c97ffec340fbdece3199cb7ea325c33",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-040",
+      "name": "反発のタグタップ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-040",
+      "faces": [
+        {
+          "name": "反発のタグタップ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーのパワーは、相手のマナゾーンにある水のカード１枚につき+1000される。\nこのクリーチャーは、パワーが6000以上の時、「W・ブレイカー」を得る。",
+          "race": "スピリット・クォーツ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g207CountPower": {
+          "zone": "mana",
+          "opponent": true,
+          "manaColor": "水",
+          "amount": 1000
+        },
+        "g135PowerBreaker": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "f7e6b6ae835dd42365a0c144bdf690f560d8dadca1df263190e7a34ac7bac8ce",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy6-046",
+      "name": "封魔ガルマジアス",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-046",
+      "faces": [
+        {
+          "name": "封魔ガルマジアス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、自分の他のクリーチャーはこのターン中、攻撃することができない。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "グランド・デビル",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "OnlyAttacker677",
+            "own": true
+          }
+        ],
+        "breaker": 2
+      },
+      "canonicalId": "dm19-025",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy6-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "0c6cddd8f8b2de2453c380b97e333a258ece6f56ded1071561965cd87768a1bc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy3-006",
+      "name": "反発のタグタップ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy3-006",
+      "faces": [
+        {
+          "name": "反発のタグタップ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然/火",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーのパワーは、相手のマナゾーンにある水のカード1枚につき+1000される。\nこのクリーチャーは、パワーが6000以上の時、「Ｗ・ブレイカー」を得る。",
+          "race": "スピリット・クォーツ",
+          "powerText": "3000+",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g207CountPower": {
+          "zone": "mana",
+          "opponent": true,
+          "manaColor": "水",
+          "amount": 1000
+        },
+        "g135PowerBreaker": true
+      },
+      "canonicalId": "dm10-040",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy3-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "bd9a74d074faff11849371f596f6bae45b3a83805d7d373bd0bb3f3e1a3797f5",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm19-025": 4,
+      "dm19-056": 4,
+      "dm16-052": 4,
+      "dm16-022": 4,
+      "dm10-040": 4,
+      "promoy6-046": 4,
+      "promoy3-006": 4
+    }
+  }
+}
