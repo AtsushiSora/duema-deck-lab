@@ -2564,6 +2564,14 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=760&&f.typeText==='クリーチャー'){
+  if(compact363==='マナゾーンに置く時このカードはタップして置く。W・ブレイカーこのクリーチャーが召喚されてバトルゾーンに出た時自分のマナゾーンにある闇のカードと火のカードをすべてアンタップする。')
+   return {breaker:2,summonedEntryOnly:true,effect:'sixPhoto',g34Tasks:[{op:'UntapMana',manaColorsAny:['闇','火']}]};
+  if(compact363==='ブロッカー(相手クリーチャーが攻撃するときこのクリーチャーをタップしてその攻撃を阻止してよい。そのあとその相手クリーチャーとバトルする。)このクリーチャーをブロックのためにタップしたときはバトルのあとでアンタップする。')
+   return {blocker:true,g695UntapAfterBlock:true};
+  if(compact363==='ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)このクリーチャーは相手プレイヤーを攻撃できない。このクリーチャーがブロックした時バトルの後このクリーチャーをアンタップする。')
+   return {blocker:true,noPlayerAttack:true,g695UntapAfterBlock:true};
+ }
  if(phase>=759&&f.typeText==='クリーチャー'){
   if(compact363==='このクリーチャーが攻撃する時バトルゾーンにある自分のクリーチャーの数が相手より多ければ相手のクリーチャーを1体選びタップする。')
    return {g34Attack:[{op:'IfOwn',filter:{g413MoreCreatures:true},defs:[{op:'Target',tap:true}]}]};

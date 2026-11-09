@@ -1171,7 +1171,16 @@ export function createSixPhotoRules(api){
    combined.untapped(s,p,y);
   }
   break;
- case'g34_UntapMana':{let n=0;for(const y of own.mana)if(y.tapped&&matches(s,t.p,y,t.filter)&&api.canUntap(y)){y.tapped=false;n++;}api.log(s,t.p,'untapMana',card(t.source).name+'：マナを'+n+'枚アンタップ',{cardId:t.source});break;}
+ case'g34_UntapMana':{
+  let n=0;
+  for(const y of own.mana){
+   if(!y.tapped||!api.canUntap(y)||!matches(s,t.p,y,t.filter))continue;
+   if(t.manaColorsAny&&!api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,t.p).some(c=>t.manaColorsAny.includes(c)))continue;
+   y.tapped=false;n++;
+  }
+  api.log(s,t.p,'untapMana',card(t.source).name+'：マナを'+n+'枚アンタップ',{cardId:t.source});
+  break;
+ }
  case'g34_DiscardAll244':{if(t.optional&&!t.accepted){const last=t.draw>=own.deck.length,shako=creatures(s,t.p).some(y=>effective(y,s).shako),value=last?(shako?1000:-1000):t.draw*10-own.hand.length*5-own.hand.reduce((n,x)=>n+cost(card(x)),0)/3;choice(s,t,'手札をすべて捨てて'+t.draw+'枚引く？',[opt('すべて捨てて引く',true,value),skip()]);}else put(s,task('discard',t.p,t.source,{causedBy:t.p,selfDiscard:true,n:own.hand.length,all:true}),...(t.draw?[task('draw',t.p,t.source,{n:t.draw})]:[]));break;}
  case'g34_DiscardDraw':{const rows=own.hand.filter(y=>!t.filter||matches(s,t.p,y,t.filter));if(rows.length){const last=t.n>=own.deck.length,win=last&&creatures(s,t.p).some(y=>effective(y,s).shako);choice(s,t,'手札を1枚捨てて'+t.n+'枚引く？',[...rows.map(y=>opt(card(y).name+'を捨てる',y.uid,last?(win?1000:-1000):12+t.n*5-cost(card(y)),y.cardId)),skip()]);}break;}
  case'g34_ResolveSpell207':api.resumeCastSpell(s,t.p,t.uid);break;
