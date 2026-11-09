@@ -172590,21 +172590,112 @@
       ],
       "supportBatch": "phase-712",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm05-022",
+      "name": "戦空の伝道士バルスβ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "バーサーカー/サバイバー",
+      "text": "このクリーチャーがバトルゾーンにある間、自分のターンの終わりに、これをアンタップする。\nサバイバー(このクリーチャーがバトルゾーンにある間、自分の他のサバイバーも上の能力を得る)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-022",
+      "limit": 4,
+      "g174End": [
+        {
+          "op": "Untap",
+          "g191First": true
+        }
+      ],
+      "g406Survivor": {
+        "g174End": [
+          {
+            "op": "Untap",
+            "g191First": true
+          }
+        ]
+      },
+      "supportBatch": "phase-713",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm09-021",
+      "name": "月虹の守護者アール・ノアール",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5500,
+      "race": "ガーディアン",
+      "text": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n種族を１つ選ぶ。このターンの終わりに、バトルゾーンにあるその種族のクリーチャーをすべてアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-021",
+      "limit": 4,
+      "g439Tap": [
+        {
+          "op": "ChooseRaceUntap713"
+        }
+      ],
+      "supportBatch": "phase-713",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm10-008",
+      "name": "覚醒のタンザナイト",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "スピリット・クォーツ",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー\nこのクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n自分の墓地からクリーチャーを１体選ぶ。そのクリーチャーと同じ名前のクリーチャーをすべて、自分の墓地から自分の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-008",
+      "limit": 4,
+      "breaker": 2,
+      "g439Tap": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "filter": {
+            "faceUp": true,
+            "g228Face": {
+              "type": "creature"
+            }
+          },
+          "g713SameCreature": true,
+          "title": "墓地から同じ名前のクリーチャーを戻すため、1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-713",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 712,
+    "phase": 713,
     "checkedAt": "2026-11-09",
-    "baseCount": 5969,
+    "baseCount": 5972,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 5972,
+    "totalCount": 5975,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/47061/",
-      "https://dm.takaratomy.co.jp/rule/qa/46493/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37678/"
+      "https://dm.takaratomy.co.jp/rule/rulechange/316652/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316689/",
+      "https://dm.takaratomy.co.jp/rule/qa/40634/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -184905,6 +184996,24 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35112/",
           "https://dm.takaratomy.co.jp/rule/qa/31707/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36239/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 712,
+        "checkedAt": "2026-11-09",
+        "baseCount": 5969,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 5972,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/47061/",
+          "https://dm.takaratomy.co.jp/rule/qa/46493/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37678/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

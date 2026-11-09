@@ -1,0 +1,283 @@
+{
+  "phase": 713,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5972,
+  "description": "サバイバーの共有アンタップ、指定種族のターン終了時アンタップ、同名クリーチャーの墓地回収を実装。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316652/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316689/",
+    "https://dm.takaratomy.co.jp/rule/qa/40634/"
+  ],
+  "cards": [
+    {
+      "id": "dm05-022",
+      "name": "戦空の伝道士バルスβ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-022",
+      "faces": [
+        {
+          "name": "戦空の伝道士バルスβ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンにある間、自分のターンの終わりに、これをアンタップする。\nサバイバー(このクリーチャーがバトルゾーンにある間、自分の他のサバイバーも上の能力を得る)",
+          "race": "バーサーカー/サバイバー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g174End": [
+          {
+            "op": "Untap",
+            "g191First": true
+          }
+        ],
+        "g406Survivor": {
+          "g174End": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm05-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "f23788b771f85fa55eace4d21c827071b41f6a5097725f733d794d8eea3cfeef",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm09-021",
+      "name": "月虹の守護者アール・ノアール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-021",
+      "faces": [
+        {
+          "name": "月虹の守護者アール・ノアール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n種族を１つ選ぶ。このターンの終わりに、バトルゾーンにあるその種族のクリーチャーをすべてアンタップする。",
+          "race": "ガーディアン",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "ChooseRaceUntap713"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "90bcf1c49b1807a5c88b0e0fa7d5cc26b000f00df90570803cb145611ffe225f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-008",
+      "name": "覚醒のタンザナイト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-008",
+      "faces": [
+        {
+          "name": "覚醒のタンザナイト",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー\nこのクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n自分の墓地からクリーチャーを１体選ぶ。そのクリーチャーと同じ名前のクリーチャーをすべて、自分の墓地から自分の手札に戻す。",
+          "race": "スピリット・クォーツ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g439Tap": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "faceUp": true,
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "g713SameCreature": true,
+            "title": "墓地から同じ名前のクリーチャーを戻すため、1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "500df11693822e2fc263f0f9126b84ab0a535dd3611497caff08917f7897f02c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy1-021",
+      "name": "戦空の伝道士バルスβ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy1-021",
+      "faces": [
+        {
+          "name": "戦空の伝道士バルスβ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "oS このクリーチャーがバトルゾーンにある間、自分の各ターンの終わりにこれをアンタップする。\nサバイバー（このクリーチャーがバトルゾーンにある間、自分の他のサバイバーも上のoS 能力を得る）",
+          "race": "バーサーカー/サバイバー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g174End": [
+          {
+            "op": "Untap",
+            "g191First": true
+          }
+        ],
+        "g406Survivor": {
+          "g174End": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        }
+      },
+      "canonicalId": "dm05-022",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy1-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "3330fa26e44d543894eba1fa7ca008ea15f08f8b8e7be4e088dccd4fca963c77",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc34-021",
+      "name": "月虹の守護者アール・ノアール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc34-021",
+      "faces": [
+        {
+          "name": "月虹の守護者アール・ノアール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n種族を１つ選ぶ。このターンの終わりに、バトルゾーンにあるその種族のクリーチャーをすべてアンタップする。",
+          "race": "ガーディアン",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g439Tap": [
+          {
+            "op": "ChooseRaceUntap713"
+          }
+        ]
+      },
+      "canonicalId": "dm09-021",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc34-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "329d8751415734d572e25bc310b23fde5a72a1ada3f103c013985e827c55fc5f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc34-005",
+      "name": "覚醒のタンザナイト",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc34-005",
+      "faces": [
+        {
+          "name": "覚醒のタンザナイト",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー\nこのクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\n自分の墓地からクリーチャーを１体選ぶ。そのクリーチャーと同じ名前のクリーチャーをすべて、自分の墓地から手札に戻す。",
+          "race": "スピリット・クォーツ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 2,
+        "g439Tap": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "faceUp": true,
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "g713SameCreature": true,
+            "title": "墓地から同じ名前のクリーチャーを戻すため、1体選ぶ"
+          }
+        ]
+      },
+      "canonicalId": "dm10-008",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc34-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "0aad16f988833247dab31478b2c9611a1f0bb307555cf54ea14e4914a1359aa7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm05-022": 4,
+      "dm09-021": 4,
+      "dm10-008": 4,
+      "promoy1-021": 4,
+      "dmc34-021": 4,
+      "dmc34-005": 4
+    }
+  }
+}

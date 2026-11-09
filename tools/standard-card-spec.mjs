@@ -675,7 +675,13 @@ function superInstructions437(text,phase){
 }
 // Pinned aliases for older wording, only within an explicitly marked tap ability.
 const tappedPowerAttacker712='このクリーチャーがタップされている間自分の他のクリーチャーは「パワーアタッカー+1500」を得る。';
+const recoverSameCreature713=[{op:'Select',origin:'grave',to:'hand',n:1,filter:{faceUp:true,g228Face:{type:'creature'}},g713SameCreature:true,title:'墓地から同じ名前のクリーチャーを戻すため、1体選ぶ'}];
 function tap440(text,phase){return{
+ ...(phase>=713?{
+  '種族を1つ選ぶ。このターンの終わりにバトルゾーンにあるその種族のクリーチャーをすべてアンタップする。':[{op:'ChooseRaceUntap713'}],
+  '自分の墓地からクリーチャーを1体選ぶ。そのクリーチャーと同じ名前のクリーチャーをすべて自分の墓地から自分の手札に戻す。':recoverSameCreature713,
+  '自分の墓地からクリーチャーを1体選ぶ。そのクリーチャーと同じ名前のクリーチャーをすべて自分の墓地から手札に戻す。':recoverSameCreature713
+ }:{}),
  ...(phase>=712?{
   'このターンの終わりに自分の光のクリーチャーをすべてアンタップする。':[{op:'Schedule537',when:'turnEnd',defs:[{op:'GroupUntap',filter:{creature:true,color:'光'}}]}],
   'このターンバトルゾーンにある自分の自然クリーチャーが相手を攻撃してブロックされたとき相手のシールドが1枚でもあればそのうち1枚をブレイクする。':[{op:'TurnBlockBreak712'}],
@@ -3248,6 +3254,12 @@ export function standardCardSpec(d,{phase=165}={}){
    const earlyDiscard='このクリーチャーが攻撃するとき相手の手札が1枚でもあれば相手はその中から1枚選んで持ち主の墓地に置く。';
    const promoMarker='サバイバー(このクリーチャーがバトルゾーンにある間自分の他のサバイバーも上のoS能力を得る)';
    const laterMarker='サバイバー(自分のサバイバーすべてに上のoS能力を与える)';
+   if(phase>=713&&(
+    ability==='このクリーチャーがバトルゾーンにある間自分のターンの終わりにこれをアンタップする。'&&sharing===marker||
+    ability==='oSこのクリーチャーがバトルゾーンにある間自分の各ターンの終わりにこれをアンタップする。'&&sharing===promoMarker)){
+    const grants={g174End:[{op:'Untap',g191First:true}]};
+    return{...grants,g406Survivor:structuredClone(grants)};
+   }
    if(ability===earlyDiscard&&sharing===marker||
     ability==='oS'+earlyDiscard&&sharing===promoMarker||
     ability==='oSこのクリーチャーが攻撃する時相手は自身の手札を1枚選び捨てる。'&&sharing===laterMarker){
