@@ -2564,6 +2564,16 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=745&&f.typeText==='クリーチャー'){
+  const bad='B・A・D2(このクリーチャーをコストを2少なくして召喚してもよい。そうしたらこのターンの終わりにこのクリーチャーを破壊する)スピードアタッカー';
+  const fast={bad:2,g175Bad:true,speedAttacker:true};
+  if(compact363===bad+'T・ブレイカーこのクリーチャーが攻撃する時このクリーチャーよりパワーが小さいクリーチャーをすべて破壊する。')
+   return {...fast,breaker:3,g34Attack:[{op:'TargetBelowSource692',g745Sweep:true}]};
+  if(compact363===bad+'このクリーチャーが攻撃する時自分の山札の上から2枚を墓地に置く。こうして墓地に置いたビートジョッキー1体につきこのターンこのクリーチャーはシールドをさらに1つブレイクする。')
+   return {...fast,g34Attack:[{op:'MillExtraBreak745',n:2,race:'ビートジョッキー'}]};
+  if(compact363==='マジボンバー3(このクリーチャーが攻撃する時自分の山札の上から1枚目を見る。その後コスト3以下のクリーチャーを1体自分の手札または山札の上からバトルゾーンに出してもよい)自分が「マジボンバー」能力を使ってクリーチャーをバトルゾーンに出した時相手のクリーチャーを1体選んでもよい。その2体をバトルさせる。')
+   return {g34Attack:[{op:'Magibomber321',n:3,g743HoldTop:true}],g745MagibomberFight:true};
+ }
  if(phase>=744&&f.typeText==='クリーチャー'){
   const bomber=(n,top='1枚目')=>'マジボンバー'+n+'(このクリーチャーが攻撃する時自分の山札の上から'+top+'を見る。その後コスト'+n+'以下のクリーチャーを1体自分の手札または山札の上から';
   const attack=n=>[{op:'Magibomber321',n,g743HoldTop:true}];

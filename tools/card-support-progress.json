@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-09",
   "catalogueNames": 11828,
-  "supportedNames": 6080,
-  "pendingNames": 5748,
-  "phase": 744,
-  "added": 4,
+  "supportedNames": 6083,
+  "pendingNames": 5745,
+  "phase": 745,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3446,
+    "クリーチャー": 3443,
     "NEOクリーチャー": 152,
     "呪文": 813,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4220,
+    "未対応の能力文": 4217,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -8510,36 +8510,89 @@
           "reason": "W・マジボンバー6。手札・山札から合計2体まで、残ったカードの順序、EXライフで閲覧中のカードを除外する裁定を検証する。 今回の単体マジボンバーと異なる処理の検証が必要なため保留。"
         }
       ]
+    },
+    {
+      "phase": 745,
+      "cards": [
+        {
+          "id": "dmrp03-s07",
+          "name": "“滅砲”戦車 ヘビーベビィ"
+        },
+        {
+          "id": "dmsp01-005",
+          "name": "\"切駆\"戦車 ネズギアス"
+        },
+        {
+          "id": "dmrp14-020",
+          "name": "砕砕-スプレー"
+        }
+      ],
+      "supportedNames": 6083,
+      "pendingNames": 5745,
+      "verification": {
+        "focusedPassed": 10,
+        "regressionPassed": 358,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "公式の同名検索・全能力文・基本情報・マナ・JPEG画像・殿堂区分を照合し、同名再録なし。B・A・Dの通常・軽減召喚と終了時破壊、ヘビーベビィの両軍一掃と同値・離脱・破壊置換、ネズギアスの墓地送り2枚と加算・失効、スプレーの手札・山札からの登場、任意バトル、対象UID・通常召喚との区別を検証。既存カード定義は基点と一致。",
+        "runtimeNote": "各実行は強制終了込み最大10分。Phase 175・240・321・322・444・624・692・743・744の関連回帰358件が成功。長時間のCPU対戦と既知のPhase 322旧スキャナーテストを除外。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dmrp05-033",
+          "name": "イカリノ裁徒",
+          "reason": "初出とDMSD07再録の公式能力文・マナ・画像を照合。公式QA 39978・31797では通常シールド化のほか、既存の束への追加や城の設置もカード単位で誘発する。現在は一部の経路が共通の通知を通らないため、既存カードの通知を二重にせず全移動経路を検証できるまで保留。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-033"
+        },
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "対戦データにサイキック・クリーチャーの対象例がなく、対象判定と超次元への移動を実戦経路で検証できないため保留。"
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
+        },
+        {
+          "id": "dmrp14-km1",
+          "name": "爆龍皇 ダイナボルト",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-km1",
+          "reason": "W・マジボンバー6。手札・山札から合計2体まで、残ったカードの順序、EXライフで閲覧中のカードを除外する裁定を検証する。 今回の単体マジボンバーと異なる処理の検証が必要なため保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 744,
-    "nextPhase": 745,
+    "lastVerifiedPhase": 745,
+    "nextPhase": 746,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dmrp03-s07",
-        "name": "“滅砲”戦車 ヘビーベビィ",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-s07",
-        "check": "既存のB・A・Dと現在パワーの比較を使い、自軍も含む全体破壊および置換効果を確認する。"
+        "id": "dm22ex1-031",
+        "name": "\"麗片禅\"戦車 バッドラマー",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-031",
+        "check": "B・A・D、登場時の任意バトル、勝利後のドローと手札から出した対象の終了時破壊を確認する。"
       },
       {
-        "id": "dmsp01-005",
-        "name": "\"切駆\"戦車 ネズギアス",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsp01-005",
-        "check": "B・A・Dと墓地に置いたカードの内訳を使い、追加ブレイク数とターン終了時の解除を確認する。"
-      },
-      {
-        "id": "dmrp14-020",
-        "name": "砕砕-スプレー",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-020",
-        "check": "マジボンバーで実際に出たクリーチャーを追跡し、他の登場や出せなかった場合と区別する。"
+        "id": "dmrp05-025",
+        "name": "“真友”チュリス",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-025",
+        "check": "召喚軽減の任意の減額幅と、他のクリーチャーの登場時に任意でスピードアタッカーを与えて終了時に破壊する経路を確認する。"
       },
       {
         "id": "dmrp14-km1",
         "name": "爆龍皇 ダイナボルト",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-km1",
         "check": "W・マジボンバー6。手札・山札から合計2体まで、残ったカードの順序、EXライフで閲覧中のカードを除外する裁定を検証する。"
+      },
+      {
+        "id": "dmex14-s03",
+        "name": "超救命主 タイヨー",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-s03",
+        "check": "マジボンバー5、手札枚数で変わる光・火のスピードアタッカー付与、表向きシールド化への破壊置換を確認する。"
       },
       {
         "id": "dm19-018",
