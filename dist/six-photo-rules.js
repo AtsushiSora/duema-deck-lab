@@ -1405,9 +1405,13 @@ export function createSixPhotoRules(api){
   const players=t.owner==='self'?[t.p]:t.both?[0,1]:[1-t.p];
   const to=t.to||'grave';
   const rows=players.flatMap(p=>s.players[p].battle
-   .filter(y=>matches(s,p,y,t.filter)&&y.uid!==t.excludeUid&&(!t.g179Other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))))
+   .filter(y=>(!t.g733DrawPerAttempt||!y.sealed&&api.isCreature(s,y))&&matches(s,p,y,t.filter)&&y.uid!==t.excludeUid&&(!t.g179Other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))))
    .map(y=>({player:p,uid:y.uid,to,destroy:to==='grave'})));
-  if(rows.length)move(s,rows);
+  if(rows.length){
+   // The direct destruction attempts count even when replaced (QA34333/34334).
+   if(t.g733DrawPerAttempt)start(s,t,[{op:'DrawUpTo',n:rows.length,g203Draw:true}]);
+   move(s,rows);
+  }
   break;
  }
  case'g34_TapState235':{const y=s.players[t.target.p].battle.find(y=>y.uid===t.target.uid&&(y.incarnation||0)===t.target.incarnation);if(y)choice(s,t,'「'+card(y).name+'」をどうする？',[opt('タップする',true,tapStateScore235(s,t,t.target.p,y,true)),opt('アンタップする',false,tapStateScore235(s,t,t.target.p,y,false))]);break;}

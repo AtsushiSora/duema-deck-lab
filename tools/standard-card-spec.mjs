@@ -2490,7 +2490,13 @@ export function standardCardSpec(d,{phase=165}={}){
   );
   const matchesWavePair=pair=>frontText===waveMarker702+'w'+pair.front&&spellText===pair.spell;
   const wavePair=phase>=704&&waveTwinFaces704.find(matchesWavePair)||phase>=703&&waveTwinFaces703.find(matchesWavePair);
-  if(entryStop||rushSweep||blockerCharger||bounceOrRemove||discardOrRemove||rampOrSweep||speedOrSweep||capOrShield||mammoth||waveTwin||wavePair){
+  const classicSweep733=phase>=733&&(
+   frontText==='Q・ブレイカー(このクリーチャーはシールドを4つブレイクする)このクリーチャーが破壊される時墓地に置くかわりに山札に加えてシャッフルする。'&&
+   spellText==='自分の山札の上からクリーチャーが出るまでカードを表向きにする。そのクリーチャーよりパワーが小さいクリーチャーをすべて破壊する。表向きにしたカードをすべて墓地に置く。'||
+   frontText==='このクリーチャーが出た時自分の山札の上から1枚をマナゾーンに置く。'&&
+   spellText==='パワー3000以下のクリーチャーをすべて破壊する。その後こうして破壊したクリーチャー1体につきカードを1枚引いてもよい。'
+  );
+  if(entryStop||rushSweep||blockerCharger||bounceOrRemove||discardOrRemove||rampOrSweep||speedOrSweep||capOrShield||mammoth||waveTwin||wavePair||classicSweep733){
    const creatureFace=wavePair?{...front,abilityText:legacyWaveMarker+'\n'+wavePair.legacy}:front;
    const creature=standardCardSpec({...d,faces:[creatureFace]},{phase}),body=standardCardSpec({...d,faces:[spell]},{phase});
    if(entryStop&&(!body.crystalCharger||body.g34Tasks?.length!==1||!body.g34Tasks[0].g593OverMana))throw Error('未対応の水晶チャージャーの構成');
@@ -2557,6 +2563,21 @@ export function standardCardSpec(d,{phase=165}={}){
  const compact363=phase>=363?normalize(f.abilityText):'',whole363=phase>=363&&(modal363(compact363)||compact363==='自分の水と闇を両方持つクリーチャーがバトルゾーンに出た時次のうちいずれか1つを選ぶ。▼カードを1枚引く。▼相手は自身の手札を1枚選び捨てる。');
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?abilityText.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):abilityText).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=733){
+  if(f.typeText==='クリーチャー'&&compact363==='Q・ブレイカー(このクリーチャーはシールドを4つブレイクする)このクリーチャーが破壊される時墓地に置くかわりに山札に加えてシャッフルする。')
+   return {breaker:4,g731DestroyShuffle:true};
+  if(f.typeText==='呪文'){
+   if(compact363==='自分の山札の上からクリーチャーが出るまでカードを表向きにする。そのクリーチャーよりパワーが小さいクリーチャーをすべて破壊する。表向きにしたカードをすべて墓地に置く。')
+    return {effect:'sixPhoto',g34Tasks:[{op:'Barrage732'}]};
+   const manaPrefix='マナゾーンに置く時このカードはタップして置く。';
+   const triggerPrefix='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+   const body=compact363.startsWith(manaPrefix)?compact363.slice(manaPrefix.length):compact363;
+   const trigger=body.startsWith(triggerPrefix);
+   const sweep=trigger?body.slice(triggerPrefix.length):body;
+   const match=sweep.match(/^(相手の)?パワー3000以下のクリーチャーをすべて破壊する。その後(?:こうして|このようにして)?破壊したクリーチャー1体につき(?:1枚カードを|カードを1枚)引いてもよい。$/);
+   if(match)return {...(trigger?{trigger:true}:{}),effect:'sixPhoto',g34Tasks:[{op:'Sweep',both:!match[1],filter:{creature:true,maxPower:3000,g199Power:true},g733DrawPerAttempt:true}]};
+  }
+ }
  if(phase>=732){
   const text=normalize(f.abilityText);
   if(f.typeText==='クリーチャー'&&text==='このクリーチャーをバトルゾーンに出した時カード名をひとつ選んで言う。その後相手の手札を見る。相手はその中から選ばれたカードと同じ名前のカードをすべて捨てる。')

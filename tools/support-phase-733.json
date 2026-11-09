@@ -1,0 +1,395 @@
+{
+  "phase": 733,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6037,
+  "description": "山札公開と破壊置換のツインパクト、全体除去と破壊の試行数に応じた任意ドローを実装。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+    "https://dm.takaratomy.co.jp/rule/qa/34333/",
+    "https://dm.takaratomy.co.jp/rule/qa/34334/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34828/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35282/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35283/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35284/",
+    "https://dm.takaratomy.co.jp/rule/qa/31782/",
+    "https://dm.takaratomy.co.jp/rule/qa/47495/"
+  ],
+  "cards": [
+    {
+      "id": "dm22ex1-070",
+      "name": "緑神龍ディルガベジーダ / 偶発と弾幕の要塞",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-070",
+      "faces": [
+        {
+          "name": "緑神龍ディルガベジーダ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "Q・ブレイカー（このクリーチャーはシールドを４つブレイクする）\nこのクリーチャーが破壊される時、墓地に置くかわりに山札に加えてシャッフルする。",
+          "race": "アース・ドラゴン",
+          "powerText": "23000",
+          "missingFields": []
+        },
+        {
+          "name": "偶発と弾幕の要塞",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の山札の上から、クリーチャーが出るまでカードを表向きにする。そのクリーチャーよりパワーが小さいクリーチャーをすべて破壊する。表向きにしたカードをすべて墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "breaker": 4,
+        "g731DestroyShuffle": true,
+        "spellFace": {
+          "name": "偶発と弾幕の要塞",
+          "type": "spell",
+          "cost": 5,
+          "civ": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Barrage732"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-070a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "851e73a086557d9403f4e3cd485c4f082c9f60f1348bd6d0524480f034441c82",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm13-031",
+      "name": "炎槍と水剣の裁",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-031",
+      "faces": [
+        {
+          "name": "炎槍と水剣の裁",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nパワー3000以下のクリーチャーをすべて破壊する。その後、破壊したクリーチャー１体につき１枚カードを引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "filter": {
+              "creature": true,
+              "maxPower": 3000,
+              "g199Power": true
+            },
+            "g733DrawPerAttempt": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "0ea8641c7c72b76727a0979816a90758d1da299f852bdd756d7a2dfb14c75ece",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex4-079",
+      "name": "青銅の鎧 / 炎槍と水剣の裁",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-079",
+      "faces": [
+        {
+          "name": "青銅の鎧",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から１枚をマナゾーンに置く。",
+          "race": "ビーストフォーク",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "炎槍と水剣の裁",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "パワー3000以下のクリーチャーをすべて破壊する。その後、こうして破壊したクリーチャー１体につき、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ],
+        "spellFace": {
+          "name": "炎槍と水剣の裁",
+          "type": "spell",
+          "cost": 6,
+          "civ": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Sweep",
+              "both": true,
+              "filter": {
+                "creature": true,
+                "maxPower": 3000,
+                "g199Power": true
+              },
+              "g733DrawPerAttempt": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-079a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "80ad02ff50ea6bd83f71aec98827624829229befadd65f3a5f698959fa8ad1bb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx15-018",
+      "name": "演奏と真剣のLIVE",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx15-018",
+      "faces": [
+        {
+          "name": "演奏と真剣のLIVE",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n相手のパワー3000以下のクリーチャーをすべて破壊する。その後、こうして破壊したクリーチャー１体につき１枚、カードを引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": false,
+            "filter": {
+              "creature": true,
+              "maxPower": 3000,
+              "g199Power": true
+            },
+            "g733DrawPerAttempt": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx15-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "c0956f2594cdabb0f845e85077afacc941a1d018b97b6478e757ef4c49d56fe4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmbd01-007",
+      "name": "炎乱と水幻の裁",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd01-007",
+      "faces": [
+        {
+          "name": "炎乱と水幻の裁",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー3000以下のクリーチャーをすべて破壊する。その後、こうして破壊したクリーチャー１体につき、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": false,
+            "filter": {
+              "creature": true,
+              "maxPower": 3000,
+              "g199Power": true
+            },
+            "g733DrawPerAttempt": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd01-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "baea2353e73deee6425d810ca6be40f1818678b97a7cd13329d59153c528165f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx22b-138",
+      "canonicalId": "dm13-031",
+      "name": "炎槍と水剣の裁",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-138",
+      "faces": [
+        {
+          "name": "炎槍と水剣の裁",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nパワー3000以下のクリーチャーをすべて破壊する。その後、破壊したクリーチャー１体につき１枚、カードを引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22b-138.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "c8f0f23184759bc424060b23e45e6aa0ea742fef19deb9be6daa61301a32f8b9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex17-w03",
+      "canonicalId": "dm13-031",
+      "name": "炎槍と水剣の裁",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-w03",
+      "faces": [
+        {
+          "name": "炎槍と水剣の裁",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nパワー3000以下のクリーチャーをすべて破壊する。その後、こうして破壊したクリーチャー１体につき、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-w03.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "e83883b5061dfe35476f16b598bb8f3cf7aac7471d476d1a66ca8fb2d74da10d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex13-028",
+      "canonicalId": "dmbd01-007",
+      "name": "炎乱と水幻の裁",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-028",
+      "faces": [
+        {
+          "name": "炎乱と水幻の裁",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のパワー3000以下のクリーチャーをすべて破壊する。その後、このようにして破壊したクリーチャー１体につき、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "4fb59933588973623c7b867dbf1df733d0aa14f9a4efe15e5e030323ede4bfdf",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22ex1-070": 4,
+      "dm13-031": 4,
+      "dm26ex4-079": 4,
+      "dmx15-018": 4,
+      "dmbd01-007": 4,
+      "dmx22b-138": 4,
+      "dmex17-w03": 4,
+      "dmex13-028": 4
+    }
+  }
+}
