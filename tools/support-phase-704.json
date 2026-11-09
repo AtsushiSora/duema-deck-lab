@@ -1,0 +1,305 @@
+{
+  "phase": 704,
+  "checkedAt": "2026-11-09",
+  "baseCount": 5943,
+  "description": "ウェーブストライカーのツインパクト3種に、単面版と既存の呪文処理を再利用する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37609/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35081/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35188/",
+    "https://dm.takaratomy.co.jp/rule/qa/43928/"
+  ],
+  "cards": [
+    {
+      "id": "dm22ex1-082",
+      "name": "骨折人形トロンボ / デビル・ハンド",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-082",
+      "faces": [
+        {
+          "name": "骨折人形トロンボ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ウェーブストライカー（「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーに次のw能力を与える）\nwこのクリーチャーが出た時、クリーチャーを１体、自分の墓地から手札に戻してもよい。",
+          "race": "デスパペット",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "デビル・ハンド",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体破壊する。\n自分の山札の上から３枚を墓地に置いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "effect": "sixPhoto",
+            "g34Tasks": [
+              {
+                "op": "Select",
+                "g228Recovery": true,
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "g228Face": {
+                    "type": "creature"
+                  }
+                },
+                "optional": true,
+                "title": "手札に戻す墓地のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        },
+        "spellFace": {
+          "name": "デビル・ハンド",
+          "type": "spell",
+          "cost": 7,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "owner": "opponent",
+              "origin": "battle",
+              "n": 1,
+              "filter": {
+                "creature": true
+              },
+              "g173Targets": true,
+              "g193Select": true,
+              "to": "grave",
+              "title": "破壊する相手のクリーチャーを1体選ぶ"
+            },
+            {
+              "op": "Mill",
+              "n": 3,
+              "optional": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-082a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "74962e9b7683d7f3e61001c76c68f508c97caa1036f1d611d4107ed8294f1e07",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22ex1-093",
+      "name": "アラーム・ラディッシュ / ナチュラトゥルー・トラップ",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-093",
+      "faces": [
+        {
+          "name": "アラーム・ラディッシュ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ウェーブストライカー（「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーに次のw能力を与える）\nwこのクリーチャーを出した時、自分の山札の上から１枚目をマナゾーンに置く。その後、クリーチャーを１体、自分のマナゾーンから手札に戻す。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "ナチュラトゥルー・トラップ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\nカードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "effect": "sixPhoto",
+            "g34Tasks": [
+              {
+                "op": "Ramp",
+                "n": 1
+              },
+              {
+                "op": "Select",
+                "g220ManaReturn": true,
+                "origin": "mana",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "creature": true
+                },
+                "title": "手札に戻すマナのクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        },
+        "spellFace": {
+          "name": "ナチュラトゥルー・トラップ",
+          "type": "spell",
+          "cost": 7,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "",
+          "trigger": true,
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Select",
+              "owner": "opponent",
+              "origin": "battle",
+              "n": 1,
+              "filter": {
+                "creature": true
+              },
+              "g173Targets": true,
+              "g193Select": true,
+              "to": "mana",
+              "title": "マナに置く相手のクリーチャーを1体選ぶ"
+            },
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-093a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "479d7241d447558b891b951209926af79eff898117e6466299464ce5415efee1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22ex1-109",
+      "name": "薔薇公爵ハザリア / ファントム・ベール",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-109",
+      "faces": [
+        {
+          "name": "薔薇公爵ハザリア",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ウェーブストライカー（「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーに次のw能力を与える）\nwこのクリーチャーが出た時、相手は自身のクリーチャーを１体選んで破壊する。",
+          "race": "ダークロード",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "ファントム・ベール",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "次の相手のターン中、相手のクリーチャーはすべて、可能なら攻撃する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "effect": "sixPhoto",
+            "g34Tasks": [
+              {
+                "op": "OpponentSelect",
+                "n": 1,
+                "to": "grave"
+              }
+            ]
+          }
+        },
+        "spellFace": {
+          "name": "ファントム・ベール",
+          "type": "spell",
+          "cost": 1,
+          "civ": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "ForceGroup546",
+              "when": "nextOpponent",
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-109a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-09",
+        "sha256": "72a6a8caaf4e8899ccafc4ae16583c8dc2fcab8cb7900170da4fc8944c1117a7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-09",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22ex1-082": 4,
+      "dm22ex1-093": 4,
+      "dm22ex1-109": 4
+    }
+  }
+}

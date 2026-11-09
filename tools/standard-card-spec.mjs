@@ -2381,6 +2381,25 @@ const waveTwinFaces703=[
  }
 ];
 
+const phantomVeil704='次の相手のターン中相手のクリーチャーはすべて可能なら攻撃する。';
+const waveTwinFaces704=[
+ {
+  front:'このクリーチャーが出た時クリーチャーを1体自分の墓地から手札に戻してもよい。',
+  legacy:'このクリーチャーをバトルゾーンに出した時、クリーチャーを１体、自分の墓地から自分の手札に戻してもよい。',
+  spell:waveTriggerSpell703+'相手のクリーチャーを1体破壊する。自分の山札の上から3枚を墓地に置いてもよい。'
+ },
+ {
+  front:'このクリーチャーを出した時自分の山札の上から1枚目をマナゾーンに置く。その後クリーチャーを1体自分のマナゾーンから手札に戻す。',
+  legacy:'このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を自分のマナゾーンに置く。その後、クリーチャーを１体、自分のマナゾーンから自分の手札に戻す。',
+  spell:'S・トリガーS・トリガー相手のクリーチャーを1体選び持ち主のマナゾーンに置く。カードを1枚引く。'
+ },
+ {
+  front:'このクリーチャーが出た時相手は自身のクリーチャーを1体選んで破壊する。',
+  legacy:'このクリーチャーをバトルゾーンに出した時、相手は自分自身のクリーチャーを１体破壊する。',
+  spell:phantomVeil704
+ }
+];
+
 export function standardCardSpec(d,{phase=165}={}){
  // Repair only the complete formatting variants pinned to these official prints.
  if(phase>=533&&d?.faces?.length===1){
@@ -2439,9 +2458,10 @@ export function standardCardSpec(d,{phase=165}={}){
    frontText===waveKirstein702&&spellText==='自分の山札の上から2枚をタップしてマナゾーンに置く。その後カードを1枚自分のマナゾーンから墓地に置く。'||
    frontText===waveLameer702&&spellText==='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)相手のクリーチャーをすべてタップする。カードを1枚引く。'
   );
-  const waveTwin703=phase>=703&&waveTwinFaces703.find(pair=>frontText===waveMarker702+'w'+pair.front&&spellText===pair.spell);
-  if(entryStop||rushSweep||blockerCharger||bounceOrRemove||discardOrRemove||rampOrSweep||speedOrSweep||capOrShield||mammoth||waveTwin||waveTwin703){
-   const creatureFace=waveTwin703?{...front,abilityText:legacyWaveMarker+'\n'+waveTwin703.legacy}:front;
+  const matchesWavePair=pair=>frontText===waveMarker702+'w'+pair.front&&spellText===pair.spell;
+  const wavePair=phase>=704&&waveTwinFaces704.find(matchesWavePair)||phase>=703&&waveTwinFaces703.find(matchesWavePair);
+  if(entryStop||rushSweep||blockerCharger||bounceOrRemove||discardOrRemove||rampOrSweep||speedOrSweep||capOrShield||mammoth||waveTwin||wavePair){
+   const creatureFace=wavePair?{...front,abilityText:legacyWaveMarker+'\n'+wavePair.legacy}:front;
    const creature=standardCardSpec({...d,faces:[creatureFace]},{phase}),body=standardCardSpec({...d,faces:[spell]},{phase});
    if(entryStop&&(!body.crystalCharger||body.g34Tasks?.length!==1||!body.g34Tasks[0].g593OverMana))throw Error('未対応の水晶チャージャーの構成');
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
@@ -3074,6 +3094,7 @@ export function standardCardSpec(d,{phase=165}={}){
    if(base.g34Tasks||base.effect)throw Error('独立した登場能力の順序対応が必要');return{...base,...(souls.length?{g558Souls:souls.map(m=>m[1])}:{}),effect:'sixPhoto',g34Tasks:[{op:'MarshalTouch558',defs}]};
   }
  }
+ if(phase>=704&&f.typeText==='呪文'&&lines.length===1&&normalize(lines[0])===phantomVeil704)return{effect:'sixPhoto',g34Tasks:[{op:'ForceGroup546',when:'nextOpponent',spell:true}]};
  if(phase>=546&&!creature&&!seed&&lines.length===2&&normalize(lines[0])==='相手のクリーチャーを1体選ぶ。次の相手のターンそのクリーチャーは可能なら攻撃する。'&&normalize(lines[1])==='G・G・G:自分の手札が1枚以下なら相手のクリーチャーは1体のかわりにすべて次の相手のターンに可能なら攻撃する。')return{effect:'sixPhoto',g34Tasks:[{op:'IfOwn',filter:{g334ZoneCount:{zone:'hand',max:1}},defs:[{op:'ForceGroup546',when:'nextOpponent',spell:true}],elseDefs:[{op:'Target',g546Force:'nextOpponent',spell:true}]}]};
  if(phase>=445&&creature){
   const at=lines.findIndex(line=>normalize(line)==='シンカパワー:このクリーチャーが進化する時次のうちいずれか1つを選ぶ。');
