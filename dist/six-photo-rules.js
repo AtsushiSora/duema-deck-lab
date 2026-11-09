@@ -1475,6 +1475,9 @@ export function createSixPhotoRules(api){
   if(host&&!host.x.sealed)(s.extLimits??=[]).push({kind:'g627Stay',ref:{uid:host.x.uid,incarnation:host.x.incarnation||0},expires:'start',who:t.p});
   break;
  }
+ case'g34_LockAttacks726':
+  for(const player of [0,1])(s.extLimits??=[]).push({kind:'attack',player,controller:t.p,who:s.active,expires:'end'});
+  break;
  case'g34_Lock':(s.extLimits??=[]).push({...t.limit,player:t.limit.player??1-t.p,who:t.limit.who??t.p,expires:'start'});break;
  case'g34_Untap':{const owner=t.g191First?s.players.findIndex(p=>p.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))):t.p,y=t.g191First&&owner>=0?s.players[owner].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))):t.g404Carrier?own.battle.find(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)):x;if(y&&api.canUntap(y)){const was=y.tapped;y.tapped=false;if(was)combined.untapped(s,owner,y);}break;}
  case'g34_Execute':{const origins=t.zones||[t.origin||'hand'],rows=origins.flatMap(origin=>(!t.g555FinishTo||api.canMoveZone(s,t.p,origin)?own[origin]:[]).flatMap(y=>faces(card(y)).flatMap((c,face)=>matches(s,t.p,{...y,cardId:y.cardId},t.filter)&&(!t.spellOnly||c.type==='spell')&&(!t.g556SpellColor||colors(c).includes(t.g556SpellColor))&&(!t.spellColorsAny||colors(c).some(color=>t.spellColorsAny.includes(color)))&&(!t.creatureOnly||c.type==='creature')&&(!t.nonCreature||c.type!=='creature')&&(t.max===undefined||cost(c)<=t.max)&&(!t.trigger||c.trigger||c.triggerPlus||c.superTrigger)&&api.canCast(s,t.p,c,origin)&&(c.type!=='creature'||api.canEnter(s,t.p,c,{origin,execution:true})&&(!c.evolution||api.evolutionBases(s,t.p,c).length))?[opt((t.zones?.length>1?(origin==='hand'?'手札：':'墓地：'):'')+c.name,{uid:y.uid,face,origin,...(t.g555FinishTo?{serial555:y.zoneSerial||0}:{})},t.g555FinishTo?spellScore555(s,t,c):20+cost(c),y.cardId)]:[])));choice(s,t,t.title||'コストを支払わず実行するカードを選ぶ',[...rows,...(t.optional===false?[]:[t.g408Decline?{...skip(),score:modeScore(s,t,t.g408Decline)}:skip()])]);break;}
@@ -2043,6 +2046,12 @@ export function createSixPhotoRules(api){
    const races=effective(source,s).g701UnblockedMana;
    if(!races?.some(name=>race(attacker,name)))continue;
    queue(s,p,source,[{op:'OpponentManaLoss478'}]);
+   triggered=true;
+  }
+  if(!s.attack.g484Blocked)for(const source of creatures(s,1-p)){
+   const defs=!source.sealed&&effective(source,s).g726DefenderUnblocked;
+   if(!defs)continue;
+   queue(s,1-p,source,defs);
    triggered=true;
   }
   return triggered;

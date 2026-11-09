@@ -2497,6 +2497,11 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=726&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クロスギア'){
+  const cross='クロスギア:このカードをバトルゾーンに置く。クリーチャーにクロスするにはこのカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れてもこのカードはバトルゾーンに残る。';
+  const power='バトルゾーンにあるこれをクロスしたクリーチャーと同じ種族のクリーチャーすべてのパワーは+2000';
+  if([cross+power+'される。',cross+power+'させる。'].includes(normalize(f.abilityText)))return {type:'gear',g726CrossRacePower:2000};
+ }
  if(d?.status!=='complete'||d.faces.length!==1||!['クリーチャー','進化クリーチャー','タマシード','呪文',...(phase>=166?['NEOクリーチャー']:[]),...(phase>=273?['スター進化クリーチャー']:[]),...(phase>=619?['G-NEOクリーチャー']:[]),...(phase>=657?['G城']:[]),...(phase>=682?['D2フィールド']:[]),...(phase>=700?['進化クリーチャー(進化V)','進化クリーチャー（進化V）']:[])].includes(f.typeText))throw Error('複数面・特殊カードタイプまたは情報不足');
  if(!Number.isInteger(f.cost)||f.cost<1||!f.civilizations.length||f.civilizations.some(c=>!colors.includes(c)&&c!=='無色')||new Set(f.civilizations).size!==f.civilizations.length)throw Error('コスト・文明の個別処理が必要');
  if(f.civilizations.includes('無色')&&f.civilizations.length!==1)throw Error('無色の複合文明');
@@ -2547,6 +2552,17 @@ export function standardCardSpec(d,{phase=165}={}){
  const compact363=phase>=363?normalize(f.abilityText):'',whole363=phase>=363&&(modal363(compact363)||compact363==='自分の水と闇を両方持つクリーチャーがバトルゾーンに出た時次のうちいずれか1つを選ぶ。▼カードを1枚引く。▼相手は自身の手札を1枚選び捨てる。');
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?abilityText.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):abilityText).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=726&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const blocker='ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)';
+  if(text===blocker+'このクリーチャーは攻撃することができない。相手のクリーチャーが自分を攻撃してブロックされなかった時このクリーチャーを破壊する。'){
+   return {blocker:true,noAttack:true,g726DefenderUnblocked:[{op:'SelfDestroy'}]};
+  }
+  const death=blocker+'このクリーチャーは相手プレイヤーを攻撃できない。このクリーチャーが破壊された時そのターン';
+  if([death+'中クリーチャーは攻撃することができない。',death+'クリーチャーは攻撃することができない。'].includes(text)){
+   return {blocker:true,noPlayerAttack:true,g172Death:[{op:'LockAttacks726'}]};
+  }
+ }
  if(phase>=725){
   const text=normalize(f.abilityText);
   const trigger='S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';

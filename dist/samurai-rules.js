@@ -50,6 +50,19 @@ export function createSamuraiRules(api){
  case'g18_FreeCross':if(v){const g=own.battle.find(x=>x.uid===t.gear&&(x.incarnation||0)===t.gearInc),x=own.battle.find(x=>x.uid===v);if(g&&x&&api.isCreature(s,x))cross(s,t.p,g,x);}break;
  default:throw Error('未実装のサムライ選択：'+t.op);
  }return true;}
+ function crossedRacePower(s,c){
+  if(!c.race)return 0;
+  const races=String(c.race).split('/');
+  let total=0;
+  for(const p of [0,1])for(const gear of gears(s,p)){
+   const bonus=card(gear).g726CrossRacePower;
+   if(!bonus||!active(s,gear))continue;
+   const host=live(s,p,gear);
+   if(!host||host.sealed)continue;
+   if(String(effective(host,s,true).race||'').split('/').some(r=>r&&races.includes(r)))total+=bonus;
+  }
+  return total;
+ }
  return {run,chosen,
  unblocked(s,p,x,c=card(x)){if(p<0||x.sealed||c.type!=='creature'||!api.isCreature(s,x))return false;if(attached(s,p,x).some(g=>card(g).g125CrossUnblock&&active(s,g)))return true;const vs=colors(c);return s.players[p].battle.some(y=>!y.sealed&&(card(y).g128WaterAura||card(y).g128LightDarkAura)&&api.isCreature(s,y)&&active(s,y)&&(card(y).g128WaterAura&&y.uid!==x.uid&&vs.includes('水')||card(y).g128LightDarkAura&&vs.some(v=>v==='光'||v==='闇')));},
  protected(s,p,x){return api.isCreature(s,x)&&attached(s,p,x).some(g=>card(g).g119Petro&&active(s,g));},
@@ -58,7 +71,7 @@ export function createSamuraiRules(api){
  inherit(s,base,x){if(base.g18Blocker)x.g18Blocker=structuredClone(base.g18Blocker);for(const p of[0,1])for(const g of attached(s,p,base))g.crossedTo={uid:x.uid,incarnation:x.incarnation||0};},
  discount(s,p,c){const all=gears(s,p).filter(x=>active(s,x));return all.filter(x=>card(x).takion&&(c.type==='gear'||c.type==='creature'&&samurai(c))).length+Math.min(optionalReducers(s,p,c),c.g18Reducers??Infinity);},
  speed(s,p,x){const c=card(x);return c.type==='creature'&&(samurai(c)&&creatures(s,p).some(y=>!api.ignored(s,y)&&card(y).samuraiSpeed)||(dragon(c)||samurai(c))&&gears(s,p).some(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((q)=>dragon(q)||samurai(q))(card(live(s,p,g)))));},
- power(s,p,x){if(p<0||!api.isCreature(s,x))return 0;return attached(s,p,x).filter(g=>active(s,g)).reduce((n,g)=>n+(card(g).g123CrossPower||0),0)+attached(s,p,x).filter(g=>card(g).takion&&active(s,g)).length*1000+((dragon(card(x))||samurai(card(x)))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((c)=>dragon(c)||samurai(c))(card(live(s,p,g)))).length*2000:0);},
+ power(s,p,x,c){if(p<0||!api.isCreature(s,x))return 0;return (x.sealed?0:crossedRacePower(s,c))+attached(s,p,x).filter(g=>active(s,g)).reduce((n,g)=>n+(card(g).g123CrossPower||0),0)+attached(s,p,x).filter(g=>card(g).takion&&active(s,g)).length*1000+((dragon(card(x))||samurai(card(x)))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((c)=>dragon(c)||samurai(c))(card(live(s,p,g)))).length*2000:0);},
  entry(s,p,x,options){const c=card(x);if(!options.selfMuted&&!api.selfStopped(s,p)&&!api.ignored(s,x)){if(c.samuraiGenerate)on(s,p,x,'g18_Generate');if(c.shiroLock&&options.revolution)on(s,p,x,'g18_ShiraLock');}},
  attack(s,p,x){if(!api.selfStopped(s,p)){const c=effective(x,s);if(c.samuraiBui)on(s,p,x,'g18_Bui');if(c.samuraiMusashi)on(s,p,x,'g18_MusashiUse');}for(const g of attached(s,p,x))if(card(g).doss&&active(s,g))on(s,p,g,'g18_Mekraid');},
  end(s,p){return creatures(s,p).filter(x=>effective(x,s).samuraiEndUntap).map(x=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g18_EndUntap',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})}));},
