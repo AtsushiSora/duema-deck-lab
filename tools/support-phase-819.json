@@ -1,0 +1,167 @@
+{
+  "phase": 819,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6311,
+  "description": "名前によるスレイヤー付与、進化・G・リンクを条件とする自己破壊、手札公開による自己破壊の回避に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/%E5%A4%89%E6%9B%B4%E7%82%B92026-07-23/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31626/",
+    "https://dm.takaratomy.co.jp/rule/qa/49605/",
+    "https://dm.takaratomy.co.jp/rule/qa/31531/",
+    "https://dm.takaratomy.co.jp/rule/qa/31530/",
+    "https://dm.takaratomy.co.jp/rule/qa/42392/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm33-047",
+      "name": "死神の影デスプルーフ",
+      "faces": [
+        {
+          "name": "死神の影デスプルーフ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "バトルゾーンにある自分の他の、名前に《死神》とあるクリーチャーはすべて「スレイヤー」を得る。(「スレイヤー」を得たクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)",
+          "race": "ゴースト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm33-047",
+      "spec": {
+        "g208Auras": [
+          {
+            "filter": {
+              "g819CreatureNameIncludes": "死神"
+            },
+            "other": true,
+            "grants": {
+              "slayer": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm33-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "c46636aaad20f7234b41c36a61fb83822f7abe4d8e7fd56aac7fec08c3d8e38e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm35-035",
+      "name": "ペドナネイチャー",
+      "faces": [
+        {
+          "name": "ペドナネイチャー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンに自分の進化クリーチャーまたはリンクしているゴッドがなければ、このクリーチャーを破壊する。",
+          "race": "エメラルド・モンスター",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-035",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g508EvolutionOrLink": true
+            },
+            "defs": [],
+            "elseDefs": [
+              {
+                "op": "SelfDestroy"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm35-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "cb320ce6ac67f71c69b96f85be0ee97b704874b595e36e2efae290167d67c342",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm31-038",
+      "name": "予言者キビダンボーラー",
+      "faces": [
+        {
+          "name": "予言者キビダンボーラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の手札からサムライまたはクロスギアを１枚選び、見せる。そうしない場合、このクリーチャーを破壊する。",
+          "race": "ライトブリンガー/サムライ",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-038",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandReveal462",
+            "max": 1,
+            "filter": {
+              "faceUp": true,
+              "any": [
+                {
+                  "g819AnyFaceRace": "サムライ"
+                },
+                {
+                  "g201Gear": true
+                }
+              ]
+            },
+            "elseDefs": [
+              {
+                "op": "SelfDestroy"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "420f2af1ace21034f779a30a5d77449e337bd03e4c73cd9103f4c1892014b785",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm33-047": 4,
+      "dm35-035": 4,
+      "dm31-038": 4
+    }
+  }
+}

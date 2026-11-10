@@ -2507,6 +2507,16 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=819&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(text==='バトルゾーンにある自分の他の名前に《死神》とあるクリーチャーはすべて「スレイヤー」を得る。(「スレイヤー」を得たクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)')
+   return {g208Auras:[{filter:{g819CreatureNameIncludes:'死神'},other:true,grants:{slayer:true}}]};
+  if(text==='このクリーチャーをバトルゾーンに出した時バトルゾーンに自分の進化クリーチャーまたはリンクしているゴッドがなければこのクリーチャーを破壊する。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'IfOwn',filter:{g508EvolutionOrLink:true},defs:[],elseDefs:[{op:'SelfDestroy'}]}]};
+  if(text==='このクリーチャーをバトルゾーンに出した時自分の手札からサムライまたはクロスギアを1枚選び見せる。そうしない場合このクリーチャーを破壊する。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'HandReveal462',max:1,filter:{faceUp:true,any:[{g819AnyFaceRace:'サムライ'},{g201Gear:true}]},
+    elseDefs:[{op:'SelfDestroy'}]}]};
+ }
  if(phase>=818&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='クリーチャー'&&text==='自分の進化クリーチャーを召喚した時カードを1枚引いてもよい。そうした場合自分の手札を1枚山札の一番下に置く。')

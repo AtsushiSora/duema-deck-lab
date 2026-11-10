@@ -183964,28 +183964,126 @@
       ],
       "supportBatch": "phase-818",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm33-047",
+      "name": "死神の影デスプルーフ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ゴースト",
+      "text": "バトルゾーンにある自分の他の、名前に《死神》とあるクリーチャーはすべて「スレイヤー」を得る。(「スレイヤー」を得たクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm33-047",
+      "limit": 4,
+      "g208Auras": [
+        {
+          "filter": {
+            "g819CreatureNameIncludes": "死神"
+          },
+          "other": true,
+          "grants": {
+            "slayer": true
+          }
+        }
+      ],
+      "supportBatch": "phase-819",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm35-035",
+      "name": "ペドナネイチャー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 4000,
+      "race": "エメラルド・モンスター",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンに自分の進化クリーチャーまたはリンクしているゴッドがなければ、このクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-035",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g508EvolutionOrLink": true
+          },
+          "defs": [],
+          "elseDefs": [
+            {
+              "op": "SelfDestroy"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-819",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm31-038",
+      "name": "予言者キビダンボーラー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3500,
+      "race": "ライトブリンガー/サムライ",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の手札からサムライまたはクロスギアを１枚選び、見せる。そうしない場合、このクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-038",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "HandReveal462",
+          "max": 1,
+          "filter": {
+            "faceUp": true,
+            "any": [
+              {
+                "g819AnyFaceRace": "サムライ"
+              },
+              {
+                "g201Gear": true
+              }
+            ]
+          },
+          "elseDefs": [
+            {
+              "op": "SelfDestroy"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-819",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 818,
+    "phase": 819,
     "checkedAt": "2026-11-10",
-    "baseCount": 6308,
+    "baseCount": 6311,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6311,
+    "totalCount": 6314,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35808/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35956/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34907/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34908/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35812/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37521/",
-      "https://dm.takaratomy.co.jp/rule/qa/40393/",
-      "https://dm.takaratomy.co.jp/rule/qa/40400/",
-      "https://dm.takaratomy.co.jp/rule/qa/44837/",
-      "https://dm.takaratomy.co.jp/rule/qa/47367/",
-      "https://dm.takaratomy.co.jp/rule/qa/47894/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/%E5%A4%89%E6%9B%B4%E7%82%B92026-07-23/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31626/",
+      "https://dm.takaratomy.co.jp/rule/qa/49605/",
+      "https://dm.takaratomy.co.jp/rule/qa/31531/",
+      "https://dm.takaratomy.co.jp/rule/qa/31530/",
+      "https://dm.takaratomy.co.jp/rule/qa/42392/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -198349,6 +198447,32 @@
           "https://dm.takaratomy.co.jp/rule/qa/48922/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316654/",
           "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-109",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 818,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6308,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6311,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35808/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35956/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34907/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34908/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35812/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37521/",
+          "https://dm.takaratomy.co.jp/rule/qa/40393/",
+          "https://dm.takaratomy.co.jp/rule/qa/40400/",
+          "https://dm.takaratomy.co.jp/rule/qa/44837/",
+          "https://dm.takaratomy.co.jp/rule/qa/47367/",
+          "https://dm.takaratomy.co.jp/rule/qa/47894/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [
