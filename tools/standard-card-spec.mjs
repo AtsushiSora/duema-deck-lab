@@ -2507,6 +2507,16 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=815&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(text==='S・トリガーこのクリーチャーをバトルゾーンに出した時自分の山札を見る。その中から自分のマナゾーンにある文明の数以下のコストを持つクリーチャーを1体選び相手に見せてから自分の手札に加えてもよい。その後山札をシャッフルする。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Look',n:'all',g201Search:true,g200Search:true,
+    stages:[{n:1,to:'hand',optional:true,reveal:true,filter:{g228Face:{type:'creature',g815ManaCivilCost:true}}}],rest:'shuffle'}]};
+  if(text==='このクリーチャーをバトルゾーンに出した時バトルゾーンにあるクロスギアをすべて持ち主の墓地に置く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Sweep',both:true,to:'grave',filter:{g201Gear:true,faceUp:true},g815PutInGrave:true}]};
+  if(text==='自分の墓地に呪文が1枚でもあればこのクリーチャーは「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)')
+   return {g260Self:{filter:{g273Grave:{n:1,filter:{spell:true,faceUp:true}}},grants:{speedAttacker:true}}};
+ }
  if(phase>=814&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(text==='S・トリガーブロッカーこのクリーチャーをバトルゾーンに出した時バトルゾーンにある相手のクロスギアを1枚選び持ち主の墓地に置いてもよい。このクリーチャーは相手プレイヤーを攻撃できない。')

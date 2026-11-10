@@ -1,0 +1,173 @@
+{
+  "phase": 815,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6299,
+  "description": "マナの文明数による山札探索、両者のクロスギア一掃、墓地の呪文によるスピードアタッカーに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37480/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37498/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37947/",
+    "https://dm.takaratomy.co.jp/rule/qa/31690/",
+    "https://dm.takaratomy.co.jp/rule/qa/44618/",
+    "https://dm.takaratomy.co.jp/rule/qa/45589/",
+    "https://dm.takaratomy.co.jp/rule/qa/47059/",
+    "https://dm.takaratomy.co.jp/rule/qa/47495/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm27-029",
+      "name": "森の飛忍モモンガジロウ",
+      "faces": [
+        {
+          "name": "森の飛忍モモンガジロウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー\nこのクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中から、自分のマナゾーンにある文明の数以下のコストを持つクリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "ドリームメイト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-029",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": "all",
+            "g201Search": true,
+            "g200Search": true,
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "g228Face": {
+                    "type": "creature",
+                    "g815ManaCivilCost": true
+                  }
+                }
+              }
+            ],
+            "rest": "shuffle"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm27-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "66c2ebd0224544add3d7a39c9b25c9dbf57cb9705dc152ed158d175f8a43c486",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm32-013",
+      "name": "龍聖賢者グラン・ゼメキス",
+      "faces": [
+        {
+          "name": "龍聖賢者グラン・ゼメキス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにあるクロスギアをすべて、持ち主の墓地に置く。",
+          "race": "アポロニア・ドラゴン/グラディエーター",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-013",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "grave",
+            "filter": {
+              "g201Gear": true,
+              "faceUp": true
+            },
+            "g815PutInGrave": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "3ffeb15bddd1b330fb12eadffa4850182301dab9aab891a23e952402a5013916",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm31-049",
+      "name": "爆獣マグヌスグレンオー",
+      "faces": [
+        {
+          "name": "爆獣マグヌスグレンオー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の墓地に呪文が１枚でもあれば、このクリーチャーは「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)",
+          "race": "フレイム・モンスター/ナイト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-049",
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g273Grave": {
+              "n": 1,
+              "filter": {
+                "spell": true,
+                "faceUp": true
+              }
+            }
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "b54636c2ce8c0a2e0bb51d318f2b9436fdc8b7c0916603ef9d4bbe0f32051681",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm27-029": 4,
+      "dm32-013": 4,
+      "dm31-049": 4
+    }
+  }
+}

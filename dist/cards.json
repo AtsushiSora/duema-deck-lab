@@ -183566,24 +183566,132 @@
       "g814OneAttackBreak": true,
       "supportBatch": "phase-814",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm27-029",
+      "name": "森の飛忍モモンガジロウ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 1000,
+      "race": "ドリームメイト",
+      "text": "S・トリガー\nこのクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中から、自分のマナゾーンにある文明の数以下のコストを持つクリーチャーを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-029",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": "all",
+          "g201Search": true,
+          "g200Search": true,
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "g228Face": {
+                  "type": "creature",
+                  "g815ManaCivilCost": true
+                }
+              }
+            }
+          ],
+          "rest": "shuffle"
+        }
+      ],
+      "supportBatch": "phase-815",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-013",
+      "name": "龍聖賢者グラン・ゼメキス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5500,
+      "race": "アポロニア・ドラゴン/グラディエーター",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにあるクロスギアをすべて、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-013",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "grave",
+          "filter": {
+            "g201Gear": true,
+            "faceUp": true
+          },
+          "g815PutInGrave": true
+        }
+      ],
+      "supportBatch": "phase-815",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm31-049",
+      "name": "爆獣マグヌスグレンオー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "フレイム・モンスター/ナイト",
+      "text": "自分の墓地に呪文が１枚でもあれば、このクリーチャーは「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-049",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "g273Grave": {
+            "n": 1,
+            "filter": {
+              "spell": true,
+              "faceUp": true
+            }
+          }
+        },
+        "grants": {
+          "speedAttacker": true
+        }
+      },
+      "supportBatch": "phase-815",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 814,
+    "phase": 815,
     "checkedAt": "2026-11-10",
-    "baseCount": 6295,
-    "newEffectCards": 4,
+    "baseCount": 6299,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6299,
+    "totalCount": 6302,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35629/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35673/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35676/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35734/",
-      "https://dm.takaratomy.co.jp/rule/qa/43069/",
-      "https://dm.takaratomy.co.jp/rule/qa/43225/",
-      "https://dm.takaratomy.co.jp/rule/qa/43226/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37480/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37498/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37947/",
+      "https://dm.takaratomy.co.jp/rule/qa/31690/",
+      "https://dm.takaratomy.co.jp/rule/qa/44618/",
+      "https://dm.takaratomy.co.jp/rule/qa/45589/",
+      "https://dm.takaratomy.co.jp/rule/qa/47059/",
+      "https://dm.takaratomy.co.jp/rule/qa/47495/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -197859,6 +197967,28 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35650/",
           "https://dm.takaratomy.co.jp/rule/qa_old/34950/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31409/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 814,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6295,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6299,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35629/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35673/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35676/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35734/",
+          "https://dm.takaratomy.co.jp/rule/qa/43069/",
+          "https://dm.takaratomy.co.jp/rule/qa/43225/",
+          "https://dm.takaratomy.co.jp/rule/qa/43226/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [
