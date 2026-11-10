@@ -178256,25 +178256,143 @@
       ],
       "supportBatch": "phase-768",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-067",
+      "name": "パーレン・煙・イエッピ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "アーマード・ファイアー・バード",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\n自分のターンの終わりに、このターン中にシールドが３つ以上ブレイクされていれば、アーマード・メクレイド８する。（アーマード・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のアーマードを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-067",
+      "limit": 4,
+      "speedAttacker": true,
+      "g769ShieldBreakRaid": 3,
+      "supportBatch": "phase-769",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-035",
+      "name": "音愛楽団 ブリーチ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "マジック・マーメイド",
+      "text": "このクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nこのクリーチャーがアンタップした時、このターン、次に自分が唱える呪文のコストを最大３少なくする。（ただし、コストは０以下にはならない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-035",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "g190Freeze": "self",
+          "title": "次の自分のターンまで攻撃とブロックを止める相手のクリーチャーを選ぶ"
+        }
+      ],
+      "g299Untapped": [
+        {
+          "op": "NextReduction456",
+          "type": "spell",
+          "amount": 3,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-769",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp3-066",
+      "name": "振卓！ザザームvs.強振",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "ジャイアント/アビスロイヤル",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、このクリーチャーをタップしてもよい。\n相手のクリーチャーが攻撃する時、可能ならこのクリーチャーを攻撃する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-066",
+      "limit": 4,
+      "trigger": true,
+      "g431AttackMe": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "このクリーチャーをタップする？",
+          "defs": [
+            {
+              "op": "SelfTap314"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-769",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp3-017",
+      "name": "信眼！ジェンゲガーvs.シェケダン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "アビスロイヤル/メカ・デル・ディネロ",
+      "text": "このクリーチャーが出た時、自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない。\n自分のシールドゾーンのカードが離れた時、カードを１枚、自分の墓地から手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-017",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldHand",
+          "g238ShieldHand": true,
+          "g535Count": 1,
+          "optional": true
+        }
+      ],
+      "g536ShieldLeft": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-769",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 768,
+    "phase": 769,
     "checkedAt": "2026-11-10",
-    "baseCount": 6151,
-    "newEffectCards": 5,
+    "baseCount": 6156,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6156,
+    "totalCount": 6160,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/39644/",
-      "https://dm.takaratomy.co.jp/rule/qa/39643/",
-      "https://dm.takaratomy.co.jp/rule/qa/38688/",
       "https://dm.takaratomy.co.jp/rule/qa/42975/",
-      "https://dm.takaratomy.co.jp/rule/qa/39409/",
-      "https://dm.takaratomy.co.jp/rule/qa/45070/",
-      "https://dm.takaratomy.co.jp/rule/qa/45589/"
+      "https://dm.takaratomy.co.jp/rule/qa/44344/",
+      "https://dm.takaratomy.co.jp/rule/qa/44216/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36978/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -191630,6 +191748,28 @@
           "https://dm.takaratomy.co.jp/rule/qa/39644/",
           "https://dm.takaratomy.co.jp/rule/qa/39643/",
           "https://dm.takaratomy.co.jp/rule/qa/44212/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 768,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6151,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 6156,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/39644/",
+          "https://dm.takaratomy.co.jp/rule/qa/39643/",
+          "https://dm.takaratomy.co.jp/rule/qa/38688/",
+          "https://dm.takaratomy.co.jp/rule/qa/42975/",
+          "https://dm.takaratomy.co.jp/rule/qa/39409/",
+          "https://dm.takaratomy.co.jp/rule/qa/45070/",
+          "https://dm.takaratomy.co.jp/rule/qa/45589/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -2564,6 +2564,20 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=769&&f.typeText==='クリーチャー'){
+  if(compact363==='スピードアタッカー(このクリーチャーは召喚酔いしない)自分のターンの終わりにこのターン中にシールドが3つ以上ブレイクされていればアーマード・メクレイド8する。(アーマード・メクレイド8:自分の山札の上から3枚を見る。その中からコスト8以下のアーマードを1枚コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く)')
+   return {speedAttacker:true,g769ShieldBreakRaid:3};
+  if(compact363==='このクリーチャーが攻撃する時相手のクリーチャーを1体選ぶ。次の自分のターンのはじめまでそのクリーチャーは攻撃もブロックもできない。このクリーチャーがアンタップした時このターン次に自分が唱える呪文のコストを最大3少なくする。(ただしコストは0以下にはならない)')
+   return {g34Attack:[{op:'Target',g190Freeze:'self',title:'次の自分のターンまで攻撃とブロックを止める相手のクリーチャーを選ぶ'}],
+    g299Untapped:[{op:'NextReduction456',type:'spell',amount:3,optional:true}]};
+  if(compact363==='S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)このクリーチャーが出た時このクリーチャーをタップしてもよい。相手のクリーチャーが攻撃する時可能ならこのクリーチャーを攻撃する。')
+   return {trigger:true,g431AttackMe:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Offer',title:'このクリーチャーをタップする？',defs:[{op:'SelfTap314'}]}
+   ]};
+  if(compact363==='このクリーチャーが出た時自分のシールドを1つ手札に加えてもよい。ただしその「S・トリガー」は使えない。自分のシールドゾーンのカードが離れた時カードを1枚自分の墓地から手札に戻してもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'ShieldHand',g238ShieldHand:true,g535Count:1,optional:true}],
+    g536ShieldLeft:[{op:'Select',origin:'grave',to:'hand',n:1,optional:true}]};
+ }
  if(phase>=768){
   const armoredRaid='アーマード・メクレイド5する。(アーマード・メクレイド5:自分の山札の上から3枚を見る。その中からコスト5以下のアーマードを1枚コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く)';
   const raid={op:'Raid767',race:'アーマード',max:5};

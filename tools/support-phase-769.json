@@ -1,0 +1,257 @@
+{
+  "phase": 769,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6156,
+  "description": "シールドのブレイク数と離脱カード数、アンタップによる呪文軽減、S・トリガーからの攻撃先指定に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/42975/",
+    "https://dm.takaratomy.co.jp/rule/qa/44344/",
+    "https://dm.takaratomy.co.jp/rule/qa/44216/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36978/",
+    "https://dm.takaratomy.co.jp/rule/qa/38756/",
+    "https://dm.takaratomy.co.jp/rule/qa/34205/",
+    "https://dm.takaratomy.co.jp/rule/qa/33334/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp2-067",
+      "name": "パーレン・煙・イエッピ",
+      "faces": [
+        {
+          "name": "パーレン・煙・イエッピ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\n自分のターンの終わりに、このターン中にシールドが３つ以上ブレイクされていれば、アーマード・メクレイド８する。（アーマード・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のアーマードを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "アーマード・ファイアー・バード",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-067",
+      "spec": {
+        "speedAttacker": true,
+        "g769ShieldBreakRaid": 3
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-067.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "601303566df6b684f938f404f3585efc98e56c5213154a492362d9554ecd1ab1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2-035",
+      "name": "音愛楽団 ブリーチ",
+      "faces": [
+        {
+          "name": "音愛楽団 ブリーチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nこのクリーチャーがアンタップした時、このターン、次に自分が唱える呪文のコストを最大３少なくする。（ただし、コストは０以下にはならない）",
+          "race": "マジック・マーメイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-035",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "title": "次の自分のターンまで攻撃とブロックを止める相手のクリーチャーを選ぶ"
+          }
+        ],
+        "g299Untapped": [
+          {
+            "op": "NextReduction456",
+            "type": "spell",
+            "amount": 3,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "8bb62301dec8b9dca80196496174db0cbaa62d15c0519f525c389c2dd2c472d3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-066",
+      "name": "振卓！ザザームvs.強振",
+      "faces": [
+        {
+          "name": "振卓！ザザームvs.強振",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、このクリーチャーをタップしてもよい。\n相手のクリーチャーが攻撃する時、可能ならこのクリーチャーを攻撃する。",
+          "race": "ジャイアント/アビスロイヤル",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-066",
+      "spec": {
+        "trigger": true,
+        "g431AttackMe": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "title": "このクリーチャーをタップする？",
+            "defs": [
+              {
+                "op": "SelfTap314"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-066.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "052f881035c5d6702af19c990a2906b41a56550d499b80eaed892273defdbdcf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-017",
+      "name": "信眼！ジェンゲガーvs.シェケダン",
+      "faces": [
+        {
+          "name": "信眼！ジェンゲガーvs.シェケダン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが出た時、自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない。\n自分のシールドゾーンのカードが離れた時、カードを１枚、自分の墓地から手札に戻してもよい。",
+          "race": "アビスロイヤル/メカ・デル・ディネロ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-017",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true,
+            "g535Count": 1,
+            "optional": true
+          }
+        ],
+        "g536ShieldLeft": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "5a14bd1c34de82293f2d2f9b9b024916637ecc5a5de54b869b7f5310c978bb8b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23rp2x-067",
+      "canonicalId": "dm23rp2-067",
+      "name": "パーレン・煙・イエッピ",
+      "faces": [
+        {
+          "name": "パーレン・煙・イエッピ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\n自分のターンの終わりに、このターン中にシールドが３つ以上ブレイクされていれば、アーマード・メクレイド８する。（アーマード・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のアーマードを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "アーマード・ファイアー・バード",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-067",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-067.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "28acf68a5362038b9a7aaf68f26c0ad19cee009d766c738bde1ee49a4d8618fe",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2x-035",
+      "canonicalId": "dm23rp2-035",
+      "name": "音愛楽団 ブリーチ",
+      "faces": [
+        {
+          "name": "音愛楽団 ブリーチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nこのクリーチャーがアンタップした時、このターン、次に自分が唱える呪文のコストを最大３少なくする。（ただし、コストは０以下にはならない）",
+          "race": "マジック・マーメイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-035",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "49e7776f8a668b839f95f1c748f523e81b202025f22c660940645f00412ea245",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp2-067": 4,
+      "dm23rp2-035": 4,
+      "dm23rp3-066": 4,
+      "dm23rp3-017": 4,
+      "dm23rp2x-067": 4,
+      "dm23rp2x-035": 4
+    }
+  }
+}
