@@ -2507,6 +2507,27 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=796&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='タマシード'){
+  const front=normalize(f.abilityText).replaceAll('▶︎','▶')
+   .replace('シンカライズ(このタマシードがクリーチャーであるかのようにこの上に進化クリーチャーを置いてもよい)','シンカライズ:このタマシードがクリーチャーであるかのようにこの上に進化クリーチャーを置いてもよい。')
+   .replace('山札の上から1枚を見る','山札の上から1枚目を見る')
+   .replace('次の中から1回選ぶ。','次のうちいずれか1つを選ぶ。')
+   .replace('プレイヤー1人の墓地にあるカード','プレイヤー1人の墓地のカード')
+   .replace('自身の山札の上から1枚をマナゾーンに置く','自身の山札の上から1枚目をマナゾーンに置く');
+  const base={gStrike:true,shinkalize:true,runeUntap:true,effect:'sixPhoto'};
+  const gs='{GS}G・ストライク',shinkalize='シンカライズ',reminder=':このタマシードがクリーチャーであるかのようにこの上に進化クリーチャーを置いてもよい。';
+  const untap='このカードを自分の手札からマナゾーンに置いた時アンタップする。';
+  const entry='このタマシードが出た時';
+  if(front===gs+shinkalize+reminder+entry+'自分の山札の上から1枚目を見る。それをシールド化するか手札に加えるかあるいはマナゾーンに置く。'+untap)
+   return {...base,g34Tasks:[{op:'Look',n:1,stages:[{n:1,g467Destinations:['shields','hand','mana']}],rest:'top'}]};
+  if(front===gs+shinkalize+reminder+entry+'カードを1枚引く。その後コスト3以下のコマンドを1つ自分の手札またはマナゾーンから出してもよい。'+untap)
+   return {...base,g34Tasks:[{op:'Draw',n:1},{op:'Select',zones:['hand','mana'],n:1,deploy:true,optional:true,filter:{element:true,race:'コマンド',max:3}}]};
+  const claw=entry+'次のうちいずれか1つを選ぶ。▶プレイヤー1人の墓地のカードを好きな枚数選ぶ。その持ち主はそれらのカードをシャッフルし山札の下に置く。▶コスト4以下のエレメントを1つまたはマナゾーンにあるカードを1枚選び持ち主の山札の下に置く。そのカードの持ち主は自身の山札の上から1枚目をマナゾーンに置く。';
+  if(front===gs+shinkalize+claw+untap)return {...base,g34Tasks:[{op:'Choose',g184Modes:true,modes:[
+   {label:'選んだ墓地のカードをシャッフルして山札の下に置く',defs:[{op:'GravePick598',mode:'shuffleBottom'}]},
+   {label:'エレメントまたはマナを山札の下に置き、持ち主がマナを置く',defs:[{op:'ElementOrMana796',max:4}]}
+  ]}]};
+ }
  if(phase>=795&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const front=normalize(f.abilityText),blocker='ブロッカーブロッカー';
   const interstellar=blocker+'ジャストダイバーW・ブレイカーこのクリーチャーが出た時水または闇のコスト7以下の呪文を1枚自分の手札または墓地からコストを支払わずに唱えてもよい。そうしたらそれを唱えた後墓地のかわりに自分の超次元ゾーンに置く。このクリーチャーが攻撃する時呪文を1枚自分の超次元ゾーンからコストを支払わずに唱えてもよい。そうしたらそれを唱えた後墓地のかわりに山札の下に置く。';

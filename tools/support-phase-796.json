@@ -1,0 +1,477 @@
+{
+  "phase": 796,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6241,
+  "description": "魔法陣3種のG・ストライク、シンカライズ、手札由来のマナアンタップとそれぞれの登場時能力に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/45919/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260213%E2%80%972.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/41075/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35234/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp4-008",
+      "name": "邪眼の魔法陣",
+      "faces": [
+        {
+          "name": "邪眼の魔法陣",
+          "typeText": "タマシード",
+          "civilizationText": "光/水/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク\nシンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、自分の山札の上から１枚目を見る。それをシールド化するか、手札に加えるか、あるいは、マナゾーンに置く。\nこのカードを自分の手札からマナゾーンに置いた時、アンタップする。",
+          "race": "デーモン・コマンド",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-008",
+      "spec": {
+        "gStrike": true,
+        "shinkalize": true,
+        "runeUntap": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 1,
+            "stages": [
+              {
+                "n": 1,
+                "g467Destinations": [
+                  "shields",
+                  "hand",
+                  "mana"
+                ]
+              }
+            ],
+            "rest": "top"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "dce2b5078eea05e5de83c7a752cdf286e057fd15630dd85cbf288d39ca0db4e5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-009",
+      "name": "邪尾の魔法陣",
+      "faces": [
+        {
+          "name": "邪尾の魔法陣",
+          "typeText": "タマシード",
+          "civilizationText": "光/火/自然",
+          "civilizations": [
+            "光",
+            "火",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{GS} G・ストライク\nシンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、カードを１枚引く。その後、コスト３以下のコマンドを１つ、自分の手札またはマナゾーンから出してもよい。\nこのカードを自分の手札からマナゾーンに置いた時、アンタップする。",
+          "race": "デーモン・コマンド",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-009",
+      "spec": {
+        "gStrike": true,
+        "shinkalize": true,
+        "runeUntap": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "zones": [
+              "hand",
+              "mana"
+            ],
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "element": true,
+              "race": "コマンド",
+              "max": 3
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "39f9e1e31599ee90ae5bc0ad8445b24348b1e923e6e5618b822185e45b2f9bae",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-010",
+      "name": "邪爪の魔法陣",
+      "faces": [
+        {
+          "name": "邪爪の魔法陣",
+          "typeText": "タマシード",
+          "civilizationText": "闇/火/自然",
+          "civilizations": [
+            "闇",
+            "火",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク\nシンカライズ\nこのタマシードが出た時、次のうちいずれか１つを選ぶ。\n▶プレイヤー１人の墓地のカードを好きな枚数選ぶ。その持ち主は、それらのカードをシャッフルし、山札の下に置く。\n▶コスト４以下のエレメントを１つ、またはマナゾーンにあるカードを１枚選び、持ち主の山札の下に置く。そのカードの持ち主は、自身の山札の上から１枚目をマナゾーンに置く。\nこのカードを自分の手札からマナゾーンに置いた時、アンタップする。",
+          "race": "デーモン・コマンド",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-010",
+      "spec": {
+        "gStrike": true,
+        "shinkalize": true,
+        "runeUntap": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "選んだ墓地のカードをシャッフルして山札の下に置く",
+                "defs": [
+                  {
+                    "op": "GravePick598",
+                    "mode": "shuffleBottom"
+                  }
+                ]
+              },
+              {
+                "label": "エレメントまたはマナを山札の下に置き、持ち主がマナを置く",
+                "defs": [
+                  {
+                    "op": "ElementOrMana796",
+                    "max": 4
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "105b76a8a7ea0b50f831ee90391970ecace0c07261ca37259e622e5462634b1b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex3-rp4008",
+      "canonicalId": "dm24rp4-008",
+      "name": "邪眼の魔法陣",
+      "faces": [
+        {
+          "name": "邪眼の魔法陣",
+          "typeText": "タマシード",
+          "civilizationText": "光/水/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク\nシンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、自分の山札の上から１枚目を見る。それをシールド化するか、手札に加えるか、あるいは、マナゾーンに置く。\nこのカードを自分の手札からマナゾーンに置いた時、アンタップする。",
+          "race": "デーモン・コマンド",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp4008",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp4008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "e2e347a271906526050777db7a9f31a1b34a1ac464eaa6bc0b0a7d958caaa433",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-Sec19",
+      "canonicalId": "dm24rp4-008",
+      "name": "邪眼の魔法陣",
+      "faces": [
+        {
+          "name": "邪眼の魔法陣",
+          "typeText": "タマシード",
+          "civilizationText": "光/水/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク\nシンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、自分の山札の上から１枚目を見る。それをシールド化するか、手札に加えるか、あるいは、マナゾーンに置く。\nこのカードを自分の手札からマナゾーンに置いた時、アンタップする。",
+          "race": "デーモン・コマンド",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-Sec19",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-Sec19.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "a0b6402556598d9470db55c216040a09070d6b27007faaf7f143818386effa98",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex1-048",
+      "canonicalId": "dm24rp4-008",
+      "name": "邪眼の魔法陣",
+      "faces": [
+        {
+          "name": "邪眼の魔法陣",
+          "typeText": "タマシード",
+          "civilizationText": "光/水/自然",
+          "civilizations": [
+            "光",
+            "水",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク\nシンカライズ（このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい）\nこのタマシードが出た時、自分の山札の上から１枚を見る。それをシールド化するか、手札に加えるか、あるいはマナゾーンに置く。\nこのカードを自分の手札からマナゾーンに置いた時、アンタップする。",
+          "race": "デーモン・コマンド",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-048",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex1-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "1e37c792b66d9de86b634ef43b2336af9bcead3212530354a5f15be9adeb962a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-rp4009",
+      "canonicalId": "dm24rp4-009",
+      "name": "邪尾の魔法陣",
+      "faces": [
+        {
+          "name": "邪尾の魔法陣",
+          "typeText": "タマシード",
+          "civilizationText": "光/火/自然",
+          "civilizations": [
+            "光",
+            "火",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{GS} G・ストライク\nシンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、カードを１枚引く。その後、コスト３以下のコマンドを１つ、自分の手札またはマナゾーンから出してもよい。\nこのカードを自分の手札からマナゾーンに置いた時、アンタップする。",
+          "race": "デーモン・コマンド",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp4009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp4009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "2a5946e3d4fba14d8d7c919ec6d7b9ca0b586958d764c32b6ae4a83e8af1d6ca",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-Sec20",
+      "canonicalId": "dm24rp4-009",
+      "name": "邪尾の魔法陣",
+      "faces": [
+        {
+          "name": "邪尾の魔法陣",
+          "typeText": "タマシード",
+          "civilizationText": "光/火/自然",
+          "civilizations": [
+            "光",
+            "火",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{GS} G・ストライク\nシンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、カードを１枚引く。その後、コスト３以下のコマンドを１つ、自分の手札またはマナゾーンから出してもよい。\nこのカードを自分の手札からマナゾーンに置いた時、アンタップする。",
+          "race": "デーモン・コマンド",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-Sec20",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-Sec20.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "80b2098a7ef19e67228d579d1a71c1977b4916c832c97926d1f1e545b01082b4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex1-049",
+      "canonicalId": "dm24rp4-009",
+      "name": "邪尾の魔法陣",
+      "faces": [
+        {
+          "name": "邪尾の魔法陣",
+          "typeText": "タマシード",
+          "civilizationText": "光/火/自然",
+          "civilizations": [
+            "光",
+            "火",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{GS} G・ストライク\nシンカライズ（このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい）\nこのタマシードが出た時、カードを１枚引く。その後、コスト３以下のコマンドを１つ、自分の手札またはマナゾーンから出してもよい。\nこのカードを自分の手札からマナゾーンに置いた時、アンタップする。",
+          "race": "デーモン・コマンド",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-049",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex1-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "564f64e8d4509772ac79eae7ee054abd50ab71beb6f5c5720c8b3624977abb9e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-rp4010",
+      "canonicalId": "dm24rp4-010",
+      "name": "邪爪の魔法陣",
+      "faces": [
+        {
+          "name": "邪爪の魔法陣",
+          "typeText": "タマシード",
+          "civilizationText": "闇/火/自然",
+          "civilizations": [
+            "闇",
+            "火",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク\nシンカライズ\nこのタマシードが出た時、次のうちいずれか１つを選ぶ。\n▶プレイヤー１人の墓地のカードを好きな枚数選ぶ。その持ち主は、それらのカードをシャッフルし、山札の下に置く。\n▶コスト４以下のエレメントを１つ、またはマナゾーンにあるカードを１枚選び、持ち主の山札の下に置く。そのカードの持ち主は、自身の山札の上から１枚目をマナゾーンに置く。\nこのカードを自分の手札からマナゾーンに置いた時、アンタップする。",
+          "race": "デーモン・コマンド",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp4010",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp4010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ce17be0a6a39c4cb5759f6406635aeda712c77337da0a5ec37dc596e8ebb7ec5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-Sec18",
+      "canonicalId": "dm24rp4-010",
+      "name": "邪爪の魔法陣",
+      "faces": [
+        {
+          "name": "邪爪の魔法陣",
+          "typeText": "タマシード",
+          "civilizationText": "闇/火/自然",
+          "civilizations": [
+            "闇",
+            "火",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク\nシンカライズ\nこのタマシードが出た時、次のうちいずれか１つを選ぶ。\n▶プレイヤー１人の墓地のカードを好きな枚数選ぶ。その持ち主は、それらのカードをシャッフルし、山札の下に置く。\n▶コスト４以下のエレメントを１つ、またはマナゾーンにあるカードを１枚選び、持ち主の山札の下に置く。そのカードの持ち主は、自身の山札の上から１枚目をマナゾーンに置く。\nこのカードを自分の手札からマナゾーンに置いた時、アンタップする。",
+          "race": "デーモン・コマンド",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-Sec18",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-Sec18.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "bfa5b1358d7487e1d5765b1ebe41df484de1206abfb463f583c2069a56add0bb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex1-050",
+      "canonicalId": "dm24rp4-010",
+      "name": "邪爪の魔法陣",
+      "faces": [
+        {
+          "name": "邪爪の魔法陣",
+          "typeText": "タマシード",
+          "civilizationText": "闇/火/自然",
+          "civilizations": [
+            "闇",
+            "火",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "{GS} G・ストライク\nシンカライズ\nこのタマシードが出た時、次の中から１回選ぶ。\n▶︎プレイヤー１人の墓地にあるカードを好きな枚数選ぶ。その持ち主は、それらのカードをシャッフルし、山札の下に置く。\n▶コスト４以下のエレメントを１つ、またはマナゾーンにあるカードを１枚選び、持ち主の山札の下に置く。そのカードの持ち主は、自身の山札の上から１枚をマナゾーンに置く。\nこのカードを自分の手札からマナゾーンに置いた時、アンタップする。",
+          "race": "デーモン・コマンド",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-050",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex1-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ca7de295e0fcd7225bcabe155715bd15b185c84ae4479316dae959d9a7c7a3bf",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp4-008": 4,
+      "dm24rp4-009": 4,
+      "dm24rp4-010": 4,
+      "dm24ex3-rp4008": 4,
+      "dm24ex3-Sec19": 4,
+      "dm26ex1-048": 4,
+      "dm24ex3-rp4009": 4,
+      "dm24ex3-Sec20": 4,
+      "dm26ex1-049": 4,
+      "dm24ex3-rp4010": 4,
+      "dm24ex3-Sec18": 4,
+      "dm26ex1-050": 4
+    }
+  }
+}

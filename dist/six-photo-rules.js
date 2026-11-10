@@ -221,6 +221,19 @@ export function createSixPhotoRules(api){
   if(t.owner===undefined){put(s,{...t,owner:1-t.p,ownUid:uid});return;}
   for(const [p,id] of [[t.p,t.ownUid],[1-t.p,uid]])if(id)zoneMove(s,p,'mana',id,'deckTop',{...t,g183Return:true});
  }
+ function elementOrManaOptions796(s,t,max=t.max){
+  const rows=new Map(s.players.flatMap((own,p)=>own.battle.filter(x=>!x.sealed&&cost(effective(x,s))<=max).map(x=>[x.uid,{p,x}])));
+  const elements=targetOptions(s,t.p,[...rows.values()].map(({x})=>x)).map(o=>{
+   const {p,x}=rows.get(o.value);
+   return opt((p===t.p?'自分':'相手')+'の場：'+o.label,{p,uid:x.uid,origin:'battle',serial:x.incarnation||0},
+    p===t.p?-o.score:Math.max(1,o.score-4),o.cardId);
+  });
+  const mana=s.players.flatMap((own,p)=>own.mana.map((x,i)=>{
+   const label=(p===t.p?'自分':'相手')+'のマナ：'+(x.faceDown?'裏向きのカード '+(i+1):card(x).name);
+   return opt(label,{p,uid:x.uid,origin:'mana',serial:x.zoneSerial||0},p===t.p?-5:api.canMoveZone(s,p,'mana')?1:-12,x.faceDown?null:x.cardId);
+  }));
+  return [...elements,...mana];
+ }
  function manaRows582(s,p,t){
   if(!api.canMoveZone(s,p,'mana'))return[];
   return s.players[p].mana.filter(x=>!t.exceptColor||x.faceDown||!api.manaColors(api.zoneCard(s,p,x,'mana'),s,p).includes(t.exceptColor));
@@ -719,6 +732,10 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
    if(selected.length)api.shuffleLibrary(s,owner,moved,t.source);
    return;
   }
+  if(t.mode==='shuffleBottom'){
+   if(moved.length)api.addZone(s,owner,'deck',...api.shuffled(moved,Math.floor(api.random(s)*4294967296)));
+   return;
+  }
   api.addZone(s,owner,'deck',...moved);
   if(t.mode==='draw'&&selected.length)start(s,t,[{op:'Draw',n:1}]);
   if(t.mode==='destroy'){
@@ -868,6 +885,8 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
    continue;
   }
   if(d.op==='OverManaBottom590'){score+=creatures(s,1-t.p).filter(y=>!y.sealed&&cost(effective(y,s))>opp.mana.length).length*18;continue;}
+  if(d.op==='GravePick598'&&d.mode==='shuffleBottom'){score+=api.canMoveZone(s,1-t.p,'grave')?opp.grave.length*4:0;continue;}
+  if(d.op==='ElementOrMana796'){score+=elementOrManaOptions796(s,t,d.max).reduce((best,o)=>Math.max(best,o.score),0);continue;}
   if(d.op==='GraveBottom589'){score+=api.canMoveZone(s,1-t.p,'grave')?opp.grave.length*5:0;continue;}
   if(d.op==='RecoverAll326'){score+=recoveryScore326(s,{...t,...d});continue;}
   if(d.op==='Draw'||d.op==='Ramp'){drainCount+=d.n||0;if(drainCount>=deckCount)return d.op==='Draw'&&creatures(s,t.p).some(y=>effective(y,s).shako)?1000:-1000;score+=(d.n||0)*(d.op==='Draw'?(own.hand.length<3?12:8):(own.mana.length<6?16:7));}
@@ -975,7 +994,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
   const seen=new Set(shown.flatMap(x=>faces(card(x)).flatMap(colors)));if(t.needColors&&!t.needColors.every(c=>seen.has(c)))return;
   if(t.drawEach)start(s,t,[{op:'Draw',n:shown.length}]);else if(t.rampEach)start(s,t,[{op:'Ramp',n:shown.length,tapped:true}]);else if(t.powerEach)start(s,t,[{op:'GroupPower',owner:'self',filter:{creature:true},power:t.powerEach*shown.length}]);else start(s,t,t.defs);
  }
- const destinationName467={hand:'手札に加える',mana:'マナゾーンに置く',grave:'墓地に置く',deckTop:'山札の上に置く',deck:'山札の下に置く'};
+ const destinationName467={shields:'シールド化する',hand:'手札に加える',mana:'マナゾーンに置く',grave:'墓地に置く',deckTop:'山札の上に置く',deck:'山札の下に置く'};
  function lookDestination467(s,t){const stage=t.stages[t.stage],own=s.players[t.p],y=own.deck.find(x=>x.uid===t.chosen[0]);if(!y){put(s,{...t,op:'g34_LookPick',chosen:[]});return;}choice(s,t,'選んだカードをどこに置く？',stage.g467Destinations.map(to=>opt(destinationName467[to],to,to==='hand'?(own.hand.length<3?20:12):to==='mana'?(own.mana.length<6?18:8):3,t.g467Blind?undefined:y.cardId)));}
  function targetDestination467(s,t){const r=t.target,y=s.players[r.p].battle.find(x=>x.uid===r.uid&&(x.incarnation||0)===r.incarnation&&!x.sealed);if(!y){if(t.after)start(s,t,t.after);return;}const controller=t.g472OwnerDestination?{...t,p:r.p,g472EffectPlayer:t.p}:t;choice(s,controller,'選んだクリーチャーをどこに置く？',t.g467Destinations.map(to=>opt(destinationName467[to],to,to==='grave'?(hooks.destroySafe409(s,y)?-5:30+cost(card(y))):to==='hand'?15:to==='deckTop'?20:10,y.cardId)));}
  function run(s,t){if(fifteen.run(s,t))return true;if(!t.op.startsWith('g34_'))return false;const own=s.players[t.p],opp=s.players[1-t.p],x=live(s,t);switch(t.op){
@@ -1932,6 +1951,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
   break;
  }
  case'g34_GraveSpell594':choice(s,t,'コスト'+t.max+'以下の呪文をどちらかの墓地から唱える',graveSpellOptions594(s,t));break;
+ case'g34_ElementOrMana796':choice(s,t,'山札の下に置くエレメントかマナのカードを選ぶ',elementOrManaOptions796(s,t));break;
  case'g34_GravePick598':{
   if(t.owner===undefined){
    const options=[t.p,1-t.p].filter(p=>s.players[p].grave.length).map(p=>opt(p===t.p?'自分の墓地':'相手の墓地',p,gravePickPlayerScore598(s,t,p)));
@@ -1942,6 +1962,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
   const rows=s.players[t.owner].grave.filter(x=>!t.selected.includes(x.uid));
   if(!rows.length||t.n!==undefined&&t.selected.length>=t.n){finishGravePick598(s,t);break;}
   const options=rows.map(x=>opt(card(x).name,x.uid,10+(t.owner===t.p?-1:1)*Math.min(9,cost(card(x))),x.cardId));
+  if(t.mode==='shuffleBottom')options.push(opt('選んだ'+t.selected.length+'枚で進む',null,t.owner===t.p?20:0));
   if(t.mode==='destroy'){
    const target=gravePickRemovalCost598(s,t,t.selected.length+rows.length);
    const stop=t.owner===t.p&&t.selected.length>=target?20:0;
@@ -2041,6 +2062,14 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  case'g34_Scorpion614':
   put(s,t.blocker===undefined?{...t,blocker:v,selected:[]}:{...t,selected:[...t.selected,v]});
   break;
+ case'g34_ElementOrMana796':if(v){
+  const x=s.players[v.p][v.origin].find(x=>x.uid===v.uid&&
+   (v.origin==='battle'?x.incarnation||0:x.zoneSerial||0)===v.serial);
+  if(x){
+   zoneMove(s,v.p,v.origin,x.uid,'deck',{controller:t.p});
+   start(s,{...t,p:x.cardOwner??v.p,controller:t.p},[{op:'Ramp',n:1}]);
+  }
+ }break;
  case'g34_GravePick598':
   if(t.owner===undefined){if(v===0||v===1)put(s,{...t,owner:v,selected:[]});}
   else if(v===null)finishGravePick598(s,t);

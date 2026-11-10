@@ -181682,25 +181682,157 @@
       ],
       "supportBatch": "phase-795",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-008",
+      "name": "邪眼の魔法陣",
+      "civ": "光/水/自然",
+      "civilizations": [
+        "光",
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 3,
+      "power": 0,
+      "race": "デーモン・コマンド",
+      "text": "{GS} G・ストライク\nシンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、自分の山札の上から１枚目を見る。それをシールド化するか、手札に加えるか、あるいは、マナゾーンに置く。\nこのカードを自分の手札からマナゾーンに置いた時、アンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-008",
+      "limit": 4,
+      "gStrike": true,
+      "shinkalize": true,
+      "runeUntap": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 1,
+          "stages": [
+            {
+              "n": 1,
+              "g467Destinations": [
+                "shields",
+                "hand",
+                "mana"
+              ]
+            }
+          ],
+          "rest": "top"
+        }
+      ],
+      "supportBatch": "phase-796",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-009",
+      "name": "邪尾の魔法陣",
+      "civ": "光/火/自然",
+      "civilizations": [
+        "光",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 4,
+      "power": 0,
+      "race": "デーモン・コマンド",
+      "text": "{GS} G・ストライク\nシンカライズ：このタマシードがクリーチャーであるかのように、この上に進化クリーチャーを置いてもよい。\nこのタマシードが出た時、カードを１枚引く。その後、コスト３以下のコマンドを１つ、自分の手札またはマナゾーンから出してもよい。\nこのカードを自分の手札からマナゾーンに置いた時、アンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-009",
+      "limit": 4,
+      "gStrike": true,
+      "shinkalize": true,
+      "runeUntap": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "zones": [
+            "hand",
+            "mana"
+          ],
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "element": true,
+            "race": "コマンド",
+            "max": 3
+          }
+        }
+      ],
+      "supportBatch": "phase-796",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-010",
+      "name": "邪爪の魔法陣",
+      "civ": "闇/火/自然",
+      "civilizations": [
+        "闇",
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "seed",
+      "cost": 3,
+      "power": 0,
+      "race": "デーモン・コマンド",
+      "text": "{GS} G・ストライク\nシンカライズ\nこのタマシードが出た時、次のうちいずれか１つを選ぶ。\n▶プレイヤー１人の墓地のカードを好きな枚数選ぶ。その持ち主は、それらのカードをシャッフルし、山札の下に置く。\n▶コスト４以下のエレメントを１つ、またはマナゾーンにあるカードを１枚選び、持ち主の山札の下に置く。そのカードの持ち主は、自身の山札の上から１枚目をマナゾーンに置く。\nこのカードを自分の手札からマナゾーンに置いた時、アンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-010",
+      "limit": 4,
+      "gStrike": true,
+      "shinkalize": true,
+      "runeUntap": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "選んだ墓地のカードをシャッフルして山札の下に置く",
+              "defs": [
+                {
+                  "op": "GravePick598",
+                  "mode": "shuffleBottom"
+                }
+              ]
+            },
+            {
+              "label": "エレメントまたはマナを山札の下に置き、持ち主がマナを置く",
+              "defs": [
+                {
+                  "op": "ElementOrMana796",
+                  "max": 4
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-796",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 795,
+    "phase": 796,
     "checkedAt": "2026-11-10",
-    "baseCount": 6238,
+    "baseCount": 6241,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6241,
+    "totalCount": 6244,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/46248/",
-      "https://dm.takaratomy.co.jp/rule/qa/46249/",
-      "https://dm.takaratomy.co.jp/rule/qa/46250/",
-      "https://dm.takaratomy.co.jp/rule/qa/46243/",
-      "https://dm.takaratomy.co.jp/rule/qa/33611/",
-      "https://dm.takaratomy.co.jp/rule/qa/40025/",
-      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck04/",
-      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck05/"
+      "https://dm.takaratomy.co.jp/rule/qa/45919/",
+      "https://dm.takaratomy.co.jp/img/dm_rule_20260213%E2%80%972.pdf",
+      "https://dm.takaratomy.co.jp/rule/qa/41075/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35234/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -195599,6 +195731,28 @@
           "https://dm.takaratomy.co.jp/rule/qa/39652/",
           "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck02/",
           "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck04/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 795,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6238,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6241,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/46248/",
+          "https://dm.takaratomy.co.jp/rule/qa/46249/",
+          "https://dm.takaratomy.co.jp/rule/qa/46250/",
+          "https://dm.takaratomy.co.jp/rule/qa/46243/",
+          "https://dm.takaratomy.co.jp/rule/qa/33611/",
+          "https://dm.takaratomy.co.jp/rule/qa/40025/",
+          "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck04/",
+          "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck05/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
