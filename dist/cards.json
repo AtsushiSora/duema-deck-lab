@@ -184067,23 +184067,120 @@
       ],
       "supportBatch": "phase-819",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm33-027",
+      "name": "死神の邪剣デスライオス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "デーモン・コマンド",
+      "text": "このクリーチャーをバトルゾーンに出した時、名前に《死神》とある自分のクリーチャーを１体破壊してもよい。そうした場合、相手は自身のクリーチャーを１体選んで破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm33-027",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SacrificeAlly413",
+          "filter": {
+            "g819CreatureNameIncludes": "死神"
+          },
+          "defs": [
+            {
+              "op": "OpponentSelect",
+              "n": 1,
+              "to": "grave"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-820",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm33-022",
+      "name": "白騎士の守護者ステリオス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3500,
+      "race": "ガーディアン",
+      "text": "このクリーチャーが攻撃する時、自分の山札の上から１枚目を表向きにする。そのカードの名前に《白騎士》とあれば、そのカードを裏向きにし、新しいシールドとして自分のシールドゾーンに加えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm33-022",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "RevealTop514",
+          "filter": {
+            "g220NameAny": [
+              "白騎士"
+            ]
+          },
+          "to": "shields",
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-820",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-088",
+      "name": "鬼面妖蟲ワーム・ゴワルスキー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 4000,
+      "race": "パラサイトワーム/デビルマスク",
+      "text": "墓地進化-闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーが破壊された時、相手の手札を１枚見ないで選び、捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-088",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "grave",
+        "conditions": [
+          {
+            "civilization": "闇"
+          }
+        ]
+      },
+      "g172Death": [
+        {
+          "op": "BlindDiscard773"
+        }
+      ],
+      "supportBatch": "phase-820",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 819,
+    "phase": 820,
     "checkedAt": "2026-11-10",
-    "baseCount": 6311,
+    "baseCount": 6314,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6314,
+    "totalCount": 6317,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/%E5%A4%89%E6%9B%B4%E7%82%B92026-07-23/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31626/",
+      "https://dm.takaratomy.co.jp/rule/qa/42955/",
+      "https://dm.takaratomy.co.jp/rule/qa/39123/",
+      "https://dm.takaratomy.co.jp/rule/qa/48906/",
       "https://dm.takaratomy.co.jp/rule/qa/49605/",
-      "https://dm.takaratomy.co.jp/rule/qa/31531/",
-      "https://dm.takaratomy.co.jp/rule/qa/31530/",
-      "https://dm.takaratomy.co.jp/rule/qa/42392/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37378/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -198473,6 +198570,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/44837/",
           "https://dm.takaratomy.co.jp/rule/qa/47367/",
           "https://dm.takaratomy.co.jp/rule/qa/47894/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 819,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6311,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6314,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/%E5%A4%89%E6%9B%B4%E7%82%B92026-07-23/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31626/",
+          "https://dm.takaratomy.co.jp/rule/qa/49605/",
+          "https://dm.takaratomy.co.jp/rule/qa/31531/",
+          "https://dm.takaratomy.co.jp/rule/qa/31530/",
+          "https://dm.takaratomy.co.jp/rule/qa/42392/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

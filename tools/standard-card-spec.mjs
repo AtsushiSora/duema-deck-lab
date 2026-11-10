@@ -2507,6 +2507,19 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=820&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='クリーチャー'){
+   if(/^このクリーチャー(?:をバトルゾーンに出した|が(?:バトルゾーンに)?出た)時名前に《死神》とある自分のクリーチャーを1体破壊してもよい。そうし(?:た場合|たら)相手は自身のクリーチャーを1体(?:選んで)?破壊する。$/.test(text))
+    return {effect:'sixPhoto',g34Tasks:[{op:'SacrificeAlly413',filter:{g819CreatureNameIncludes:'死神'},
+     defs:[{op:'OpponentSelect',n:1,to:'grave'}]}]};
+   if(text==='このクリーチャーが攻撃する時自分の山札の上から1枚目を表向きにする。そのカードの名前に《白騎士》とあればそのカードを裏向きにし新しいシールドとして自分のシールドゾーンに加えてもよい。')
+    return {g34Attack:[{op:'RevealTop514',filter:{g220NameAny:['白騎士']},to:'shields',optional:true}]};
+  }
+  if(/^進化クリーチャー(?:\(墓地進化\))?$/.test(normalize(f.typeText))&&
+    /^墓地進化[-:]闇のクリーチャーを1体自分の墓地から選びこのクリーチャーをその上に重ねつつ(?:バトルゾーンに)?出す。このクリーチャーが破壊された時相手の手札を1枚見ないで選び捨てさせる。$/.test(text))
+   return {evolution:{g31:true},g31Evolution:{zone:'grave',conditions:[{civilization:'闇'}]},g172Death:[{op:'BlindDiscard773'}]};
+ }
  if(phase>=819&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(text==='バトルゾーンにある自分の他の名前に《死神》とあるクリーチャーはすべて「スレイヤー」を得る。(「スレイヤー」を得たクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)')

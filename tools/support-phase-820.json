@@ -1,0 +1,336 @@
+{
+  "phase": 820,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6314,
+  "description": "死神の任意破壊と相手の選択、公開した白騎士のシールド化、墓地進化と破壊時の手札破棄に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/42955/",
+    "https://dm.takaratomy.co.jp/rule/qa/39123/",
+    "https://dm.takaratomy.co.jp/rule/qa/48906/",
+    "https://dm.takaratomy.co.jp/rule/qa/49605/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37378/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm33-027",
+      "name": "死神の邪剣デスライオス",
+      "faces": [
+        {
+          "name": "死神の邪剣デスライオス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、名前に《死神》とある自分のクリーチャーを１体破壊してもよい。そうした場合、相手は自身のクリーチャーを１体選んで破壊する。",
+          "race": "デーモン・コマンド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm33-027",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SacrificeAlly413",
+            "filter": {
+              "g819CreatureNameIncludes": "死神"
+            },
+            "defs": [
+              {
+                "op": "OpponentSelect",
+                "n": 1,
+                "to": "grave"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm33-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "d5d6dbb8ec74de7c1c84a731ff3604ea377fe13d03cbca5359988883cb3fbe13",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm33-022",
+      "name": "白騎士の守護者ステリオス",
+      "faces": [
+        {
+          "name": "白騎士の守護者ステリオス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが攻撃する時、自分の山札の上から１枚目を表向きにする。そのカードの名前に《白騎士》とあれば、そのカードを裏向きにし、新しいシールドとして自分のシールドゾーンに加えてもよい。",
+          "race": "ガーディアン",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm33-022",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "g220NameAny": [
+                "白騎士"
+              ]
+            },
+            "to": "shields",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm33-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "05ba8c4018cea646872cc8c856ddebebd7e59b99238ca848519528a13c4b6e6a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm32-088",
+      "name": "鬼面妖蟲ワーム・ゴワルスキー",
+      "faces": [
+        {
+          "name": "鬼面妖蟲ワーム・ゴワルスキー",
+          "typeText": "進化クリーチャー(墓地進化)",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "墓地進化-闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーが破壊された時、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "パラサイトワーム/デビルマスク",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-088",
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "grave",
+          "conditions": [
+            {
+              "civilization": "闇"
+            }
+          ]
+        },
+        "g172Death": [
+          {
+            "op": "BlindDiscard773"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-088.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "6b9ad4082f6a6e0bf8b4f58362b0bbc61109e4d9bf3f01c1d5090902cd4873e9",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmd33-016",
+      "canonicalId": "dm33-027",
+      "name": "死神の邪剣デスライオス",
+      "faces": [
+        {
+          "name": "死神の邪剣デスライオス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、名前に《死神》とある自分のクリーチャーを１体、破壊してもよい。そうしたら、相手は自身のクリーチャーを１体破壊する。",
+          "race": "デーモン・コマンド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd33-016",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd33-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "af8dcf83b57a789e8a7576b8f2cf89c953fc22656f29fa137d1270c8e6cb1124",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc60-008",
+      "canonicalId": "dm33-027",
+      "name": "死神の邪剣デスライオス",
+      "faces": [
+        {
+          "name": "死神の邪剣デスライオス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、名前に《死神》とある自分のクリーチャーを１体破壊してもよい。そうした場合、相手は自身のクリーチャーを１体選んで破壊する。",
+          "race": "デーモン・コマンド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc60-008",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc60-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "c55b5a039ce9ff970a79153fa396efcf08e681a2bc2975b64a19d3979febf517",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc64-040",
+      "canonicalId": "dm32-088",
+      "name": "鬼面妖蟲ワーム・ゴワルスキー",
+      "faces": [
+        {
+          "name": "鬼面妖蟲ワーム・ゴワルスキー",
+          "typeText": "進化クリーチャー(墓地進化)",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "墓地進化-闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーが破壊された時、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "パラサイトワーム/デビルマスク",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc64-040",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc64-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "380a59df210bfc0519b1d9c41ff6ff95932fdefa9d18a20c65fd61a744daea8a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp1-TF18",
+      "canonicalId": "dm32-088",
+      "name": "鬼面妖蟲ワーム・ゴワルスキー",
+      "faces": [
+        {
+          "name": "鬼面妖蟲ワーム・ゴワルスキー",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "墓地進化：闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつ出す。\nこのクリーチャーが破壊された時、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "パラサイトワーム/デビルマスク",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp1-TF18",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp1-TF18.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "6c3fed3c6df8cd3fb9d5c0b35ea1529ab3457c64cfdc4a9677c6897f871121c2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-TF18",
+      "canonicalId": "dm32-088",
+      "name": "鬼面妖蟲ワーム・ゴワルスキー",
+      "faces": [
+        {
+          "name": "鬼面妖蟲ワーム・ゴワルスキー",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "墓地進化：闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつ出す。\nこのクリーチャーが破壊された時、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "パラサイトワーム/デビルマスク",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-TF18",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-TF18.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "4b4c07c17efd40e8ac32b1f6ce58e155ab8899a1d13554979d265925fe66af0a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2x-TF18",
+      "canonicalId": "dm32-088",
+      "name": "鬼面妖蟲ワーム・ゴワルスキー",
+      "faces": [
+        {
+          "name": "鬼面妖蟲ワーム・ゴワルスキー",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "墓地進化：闇のクリーチャーを１体自分の墓地から選び、このクリーチャーをその上に重ねつつ出す。\nこのクリーチャーが破壊された時、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "パラサイトワーム/デビルマスク",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2x-TF18",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2x-TF18.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "4fb91e3ec2a3066b6ef4de945afae19278110f0411b4b8a191fbb1169595491d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm33-027": 4,
+      "dm33-022": 4,
+      "dm32-088": 4,
+      "dmd33-016": 4,
+      "dmc60-008": 4,
+      "dmc64-040": 4,
+      "dm22rp1-TF18": 4,
+      "dm22rp2-TF18": 4,
+      "dm22rp2x-TF18": 4
+    }
+  }
+}
