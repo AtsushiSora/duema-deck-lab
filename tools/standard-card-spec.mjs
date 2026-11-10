@@ -3433,6 +3433,23 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=873&&f.typeText==='クリーチャー'){
+  const judge='相手とガチンコ・ジャッジする。自分が勝ったら';
+  const reminder='(ガチンコ・ジャッジ:各プレイヤーは自身の山札の上から1枚目を見せそれを一番下に置く。そのカードのコストが相手以上であれば自分の勝ちとする)';
+  if(d.id==='dmr06-023'&&compact363==='このクリーチャーをバトルゾーンに出した時'+judge+
+   'バトルゾーンにあるクリーチャーを2体まで選び持ち主の手札に戻す。'+reminder)
+   return {effect:'sixPhoto',g34Tasks:[{op:'Judge318',defs:[
+    {op:'Select',anyOwner:true,origin:'battle',n:2,optional:true,to:'hand',filter:{creature:true},
+     g173Targets:true,g193Select:true,title:'手札に戻すクリーチャーを2体まで選ぶ'}
+   ]}]};
+  if(d.id==='dmr05-s05'&&compact363==='このクリーチャーが攻撃する時'+judge+
+   'バトルゾーンにある相手のコスト6以下のクリーチャーをすべて持ち主の手札に戻す。'+reminder+
+   'ガチンコ・ジャッジ中自分が見せるカードのコストを3多くする。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g873JudgeBonus:3,g34Attack:[{op:'Judge318',defs:[{op:'Sweep',to:'hand',filter:{creature:true,max:6}}]}]};
+  if(d.id==='dmr05-090'&&compact363===
+   'ハンティング(バトル中このクリーチャーのパワーはバトルゾーンにある自分のハンター1体につき+1000される)コスト6以下の呪文によって相手がバトルゾーンにあるクリーチャーを選ぶ時このクリーチャーを選ぶことはできない。')
+   return {g166Hunting:true,g873SpellTargetMax:6};
+ }
  if(phase>=872&&f.typeText==='呪文'){
   const nonEvolution={creature:true,nonEvolution:true};
   const shieldTarget={op:'Target',to:'shields',filter:nonEvolution,title:'シールド化する相手の進化ではないクリーチャーを選ぶ'};

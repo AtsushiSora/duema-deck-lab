@@ -189575,22 +189575,119 @@
       ],
       "supportBatch": "phase-872",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr06-023",
+      "name": "コボルン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "サイバーロード/ハンター",
+      "text": "このクリーチャーをバトルゾーンに出した時、相手とガチンコ・ジャッジする。自分が勝ったら、バトルゾーンにあるクリーチャーを２体まで選び、持ち主の手札に戻す。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-023",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Judge318",
+          "defs": [
+            {
+              "op": "Select",
+              "anyOwner": true,
+              "origin": "battle",
+              "n": 2,
+              "optional": true,
+              "to": "hand",
+              "filter": {
+                "creature": true
+              },
+              "g173Targets": true,
+              "g193Select": true,
+              "title": "手札に戻すクリーチャーを2体まで選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-873",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-090",
+      "name": "エラッピ・ジナン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ファイアー・バード/ハンター",
+      "text": "ハンティング(バトル中、このクリーチャーのパワーは、バトルゾーンにある自分のハンター１体につき+1000される)\nコスト６以下の呪文によって、相手がバトルゾーンにあるクリーチャーを選ぶ時、このクリーチャーを選ぶことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-090",
+      "limit": 4,
+      "g166Hunting": true,
+      "g873SpellTargetMax": 6,
+      "supportBatch": "phase-873",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-s05",
+      "name": "アクア・インテリジェンス 3rd G",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "リキッド・ピープル/ハンター",
+      "text": "このクリーチャーが攻撃する時、相手とガチンコ・ジャッジする。自分が勝ったら、バトルゾーンにある相手のコスト６以下のクリーチャーをすべて、持ち主の手札に戻す。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)\nガチンコ・ジャッジ中、自分が見せるカードのコストを３多くする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-s05",
+      "limit": 4,
+      "breaker": 2,
+      "g873JudgeBonus": 3,
+      "g34Attack": [
+        {
+          "op": "Judge318",
+          "defs": [
+            {
+              "op": "Sweep",
+              "to": "hand",
+              "filter": {
+                "creature": true,
+                "max": 6
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-873",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 872,
+    "phase": 873,
     "checkedAt": "2026-11-11",
-    "baseCount": 6480,
+    "baseCount": 6483,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6483,
+    "totalCount": 6486,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36592/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36593/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36594/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36636/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36643/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36578/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36579/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37679/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37680/",
+      "https://dm.takaratomy.co.jp/rule/qa/43489/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -205082,6 +205179,25 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36310/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
           "https://dm.takaratomy.co.jp/rule/qa/44104/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 872,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6480,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6483,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36592/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36593/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36594/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36636/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -752,7 +752,7 @@ export function power(c,attacking=false,context=null){
 // Called only while a library card is publicly revealed (official QA48920).
 export function revealedPower(x,s){return card(x).g321Katsu&&s.players.some(p=>p.deck.some(y=>y.uid===x.uid))?Infinity:power(x,false,s);}
 // Conditional power against a particular opponent does not affect power outside that battle.
-function huntingPower(x,s){if(!s||!effectiveCard(x,s).g166Hunting)return 0;const p=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));return p<0?0:s.players[p].battle.filter(y=>isCreature(s,y)&&String(effectiveCard(y,s).race).includes('ハンター')).length*1000;}
+function huntingPower(x,s){if(!s||!effectiveCard(x,s).g166Hunting)return 0;const p=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));return p<0?0:s.players[p].battle.filter(y=>!y.sealed&&isCreature(s,y)&&String(effectiveCard(y,s).race).includes('ハンター')).length*1000;}
 // Conditional blocker bonuses apply after a block is declared, or in an explicit block preview.
 function blockPower570(s,x,c,y=null){const r=c.g570BlockPower;if(!s||!r||x.sealed)return 0;const p=s.players.findIndex(v=>v.battle.some(z=>z.uid===x.uid));if(p<0||r.shieldsMax!==undefined&&s.players[p].shields.length>r.shieldsMax||r.evolution&&!isEvolution(x))return 0;if(r.opponentNonEvolution){y??=s.players[1-p].battle.find(z=>z.uid===s.attack?.attacker);if(!y||!isCreature(s,y)||isEvolution(y))return 0;}return r.amount;}
 function poweredBlockerActive(s,x){return !!s?.attack&&s.attack.g209BlockingUid===x.uid&&(s.attack.target===x.uid||s.attack.stage==='blockedEffects'&&s.attack.blockUid===x.uid);}
@@ -1269,8 +1269,15 @@ function advanceJudgeCosts(s){
  for(const who of [s.active,1-s.active])if(j.costs[who]===null){s.decision={type:'judgeCost',player:who,source:j.revealed[who].cardId};return;}
  // The two cards rotate directly within their libraries; a one-card library never becomes empty.
  for(const who of [0,1]){if(j.revealed[who]){const x=s.players[who].deck.shift();if(x)s.players[who].deck.push(x);}}
- const won=j.costs[j.player]==='no-card'?j.costs[1-j.player]==='no-card'&&!j.prohibited.some(Boolean):j.costs[1-j.player]==='no-card'||numeric(j.costs[j.player])>=numeric(j.costs[1-j.player]);
- log(s,j.player,'judgeResult',`ガチンコ・ジャッジ：${j.costs[j.player]} 対 ${j.costs[1-j.player]}、${won?'勝ち':'負け'}`,{cardId:j.source});
+ const compared=j.costs.map((printed,p)=>{
+  if(printed==='no-card'||printed==='∞')return printed;
+  const bonus=s.players[p].battle.reduce((sum,x)=>sum+(!x.sealed&&isCreature(s,x)?effectiveCard(x,s).g873JudgeBonus||0:0),0);
+  return bonus?numeric(printed)+bonus:printed;
+ });
+ const [ownCost,opponentCost]=[compared[j.player],compared[1-j.player]];
+ const won=ownCost==='no-card'?opponentCost==='no-card'&&!j.prohibited.some(Boolean):
+  opponentCost==='no-card'||numeric(ownCost)>=numeric(opponentCost);
+ log(s,j.player,'judgeResult',`ガチンコ・ジャッジ：${ownCost} 対 ${opponentCost}、${won?'勝ち':'負け'}`,{cardId:j.source});
  s.decision=null;
  if(j.mode==='single'){s.judge=j.parent||null;if(won&&j.onWin)extra.put(s,j.onWin);return;}
  if(j.mode==='spell'){s.judge=j.parent||null;if(won){extra.put(s,extra.task('finishJudgeCharger',j.player,j.source));draw(s,j.player,1);}else finishCharger(s);return;}

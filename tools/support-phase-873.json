@@ -1,0 +1,159 @@
+{
+  "phase": 873,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6483,
+  "description": "ガチンコ・ジャッジのコスト修整と手札戻し、ハンティングと選択・ブロック制限に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36643/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36578/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36579/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37679/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37680/",
+    "https://dm.takaratomy.co.jp/rule/qa/43489/"
+  ],
+  "cards": [
+    {
+      "id": "dmr06-023",
+      "name": "コボルン",
+      "faces": [
+        {
+          "name": "コボルン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、相手とガチンコ・ジャッジする。自分が勝ったら、バトルゾーンにあるクリーチャーを２体まで選び、持ち主の手札に戻す。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)",
+          "race": "サイバーロード/ハンター",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-023",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Select",
+                "anyOwner": true,
+                "origin": "battle",
+                "n": 2,
+                "optional": true,
+                "to": "hand",
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true,
+                "title": "手札に戻すクリーチャーを2体まで選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "644bf2a7dd4d454c389f5c6fd6f7942d6bf8916d85a72b12030bae4856810f13",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-090",
+      "name": "エラッピ・ジナン",
+      "faces": [
+        {
+          "name": "エラッピ・ジナン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ハンティング(バトル中、このクリーチャーのパワーは、バトルゾーンにある自分のハンター１体につき+1000される)\nコスト６以下の呪文によって、相手がバトルゾーンにあるクリーチャーを選ぶ時、このクリーチャーを選ぶことはできない。",
+          "race": "ファイアー・バード/ハンター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-090",
+      "spec": {
+        "g166Hunting": true,
+        "g873SpellTargetMax": 6
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-090.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "c75880aeff4ead490a2999a47d6935c3b00d0391d53548f4e6c87e6e2e274799",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-s05",
+      "name": "アクア・インテリジェンス 3rd G",
+      "faces": [
+        {
+          "name": "アクア・インテリジェンス 3rd G",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーが攻撃する時、相手とガチンコ・ジャッジする。自分が勝ったら、バトルゾーンにある相手のコスト６以下のクリーチャーをすべて、持ち主の手札に戻す。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)\nガチンコ・ジャッジ中、自分が見せるカードのコストを３多くする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "リキッド・ピープル/ハンター",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-s05",
+      "spec": {
+        "breaker": 2,
+        "g873JudgeBonus": 3,
+        "g34Attack": [
+          {
+            "op": "Judge318",
+            "defs": [
+              {
+                "op": "Sweep",
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "max": 6
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-s05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "1dedc92cb1a2b8fcf5ebc0b239aac59301d4431dd56e523d76a0057526f21d29",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr06-023": 4,
+      "dmr05-090": 4,
+      "dmr05-s05": 4
+    }
+  }
+}

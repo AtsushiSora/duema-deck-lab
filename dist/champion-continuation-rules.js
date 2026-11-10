@@ -56,7 +56,16 @@ export function createChampionContinuationRules(api){
  discount(s,p,c){return c.type==='creature'&&beat(c)?creatures(s,p).filter(x=>effective(x,s).g40Chuchu).length+(s.g40Dachi||[]).filter(x=>x.p===p&&x.turn===s.turn).reduce((n,x)=>n+x.n,0):0;},
  summoned(s,p,x){const c=card(x);(s.g40Summons??=[]).push({p,turn:s.turn,fire:fire(c)});if(beat(c))s.g40Dachi=(s.g40Dachi||[]).filter(x=>x.p!==p||x.turn!==s.turn);},
  decorate(s,p,x,c){if(c.g40Kotatsu&&s.players[p].mana.filter(x=>card(x).type==='creature'&&(faces(card(x)).some(c=>fire(c))||s.players[p].battle.some(y=>(card(y).casablanca||card(y).g51Courtney)&&!api.ignored(s,y)))).length>=4)c={...c,attackBonus:(c.attackBonus||0)+4000,breaker:2};if(c.g40Kangoku&&s.players.reduce((n,p)=>n+p.shields.length,0)<=6)c={...c,power:c.power+3000};if(c.type==='creature'&&fire(c)&&s.players[p].battle.some(y=>card(y).g40FireSpeed&&!api.ignored(s,y)))c={...c,speedAttacker:true};if(x.g40Reckless?.turn===s.turn)c={...c,mustAttack:true};return c;},
- targetable(s,p,owner,x){if(p===owner)return true;const c=effective(x,s);if(String(c.race).includes('ドリームメイト')&&creatures(s,owner).some(y=>y.uid!==x.uid&&effective(y,s).g40Fiona))return false;if(c.g40Brella){const id=s.g35ChoosingSource||s.resolvingSpell?.source||s.extSpells?.at(-1)?.spell?.id,spell=s.extSpells?.findLast(f=>f.spell.id===id)?.spell;if(spell?.type==='spell'&&cost(spell)<=4)return false;}return true;},
+ targetable(s,p,owner,x){
+  if(p===owner)return true;
+  const c=effective(x,s);
+  if(String(c.race).includes('ドリームメイト')&&creatures(s,owner).some(y=>y.uid!==x.uid&&effective(y,s).g40Fiona))return false;
+  const max=c.g873SpellTargetMax??(c.g40Brella?4:undefined);
+  if(max===undefined)return true;
+  const id=s.g35ChoosingSource||s.resolvingSpell?.source||s.extSpells?.at(-1)?.spell?.id;
+  const spell=s.extSpells?.findLast(f=>f.spell.id===id)?.spell;
+  return !(spell?.type==='spell'&&cost(spell)<=max);
+ },
  attack(s,p,x){const c=effective(x,s);if(c.g40Kotatsu)x.skipUntap=true;if(api.selfStopped(s,p))return;if(c.g40Kumitate){on(s,p,x,'Kumitate');if(s.players[p].battle.filter(y=>['creature','seed'].includes(effective(y,s).type)&&fire(effective(y,s))).length>=3)api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('draw',p,x.cardId,{n:1})});}if(c.g40Sonkun)on(s,p,x,'Sonkun');},
  attackStart(s,p,x){if(x.g40Reckless?.turn===s.turn&&s.attackLifecycle)s.attackLifecycle.g40Reckless={ids:api.layers(x).map(x=>({uid:x.uid,incarnation:x.incarnation||0})),n:x.g40Reckless.n,source:x.cardId};},
  attackEnd(s,a){if(a.g40Reckless)for(let i=0;i<a.g40Reckless.n;i++)api.enqueue(s,a.player,{source:a.g40Reckless.source,effect:'extended',task:task('g40_RecklessDeath',a.player,a.g40Reckless.source,{ids:a.g40Reckless.ids})});},
