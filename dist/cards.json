@@ -179837,22 +179837,113 @@
       },
       "supportBatch": "phase-781",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-041",
+      "name": "霊淵 アガルーム＝プルーフ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 1000,
+      "race": "アビスロイヤル/超化獣",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分の墓地にカードが５枚以上なければ、このクリーチャーは攻撃できない。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\n【ハイパーモード】\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分の墓地にカードが５枚以上なければ、このクリーチャーは攻撃できない。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\n自分のターンの終わりに、自分のタップしているクリーチャー１体につき１枚、自分の山札の上から墓地に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-041",
+      "limit": 4,
+      "blocker": true,
+      "g225AttackRequires": {
+        "kind": "graveCards",
+        "min": 5
+      },
+      "hyperTap": true,
+      "hyper": {
+        "power": 4000,
+        "g174End": [
+          {
+            "op": "MillTapped782"
+          }
+        ]
+      },
+      "supportBatch": "phase-782",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-049",
+      "name": "森翠月 ダイダイ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "ジャイアント・スノーフェアリー/超化獣",
+      "text": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\n【ハイパーモード】\nガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-049",
+      "limit": 4,
+      "guardman": true,
+      "hyperTap": true,
+      "hyper": {
+        "power": 14000,
+        "noPlayerAttack": true
+      },
+      "supportBatch": "phase-782",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-024",
+      "name": "森翠月 アカネ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ジャイアント・スノーフェアリー/超化獣",
+      "text": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\n【ハイパーモード】\nS・トリガー S・トリガー\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー\nこのクリーチャーは、このクリーチャーよりパワーが小さいクリーチャーにブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-024",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "mana"
+        }
+      ],
+      "hyperTap": true,
+      "hyper": {
+        "power": 9000,
+        "breaker": 2,
+        "g206NoBlock": {
+          "lessPower": true
+        }
+      },
+      "supportBatch": "phase-782",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 781,
+    "phase": 782,
     "checkedAt": "2026-11-10",
-    "baseCount": 6196,
+    "baseCount": 6199,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6199,
+    "totalCount": 6202,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/44820/",
-      "https://dm.takaratomy.co.jp/rule/qa/45136/",
-      "https://dm.takaratomy.co.jp/rule/qa/45144/",
-      "https://dm.takaratomy.co.jp/rule/qa/44188/"
+      "https://dm.takaratomy.co.jp/rule/qa/46570/",
+      "https://dm.takaratomy.co.jp/rule/qa/46571/",
+      "https://dm.takaratomy.co.jp/rule/qa/45579/",
+      "https://dm.takaratomy.co.jp/rule/qa/40102/",
+      "https://dm.takaratomy.co.jp/rule/qa/44836/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -193475,6 +193566,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/44834/",
           "https://dm.takaratomy.co.jp/rule/qa/44836/",
           "https://dm.takaratomy.co.jp/rule/qa/47380/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 781,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6196,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6199,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/44820/",
+          "https://dm.takaratomy.co.jp/rule/qa/45136/",
+          "https://dm.takaratomy.co.jp/rule/qa/45144/",
+          "https://dm.takaratomy.co.jp/rule/qa/44188/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

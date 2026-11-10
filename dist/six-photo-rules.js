@@ -455,6 +455,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
    case'otherAttack':{const refs=new Set(x?api.allLayers(x).map(y=>y.uid+'@'+(y.incarnation||0)):[]);return s.g481Attackers?.turn===s.turn&&s.g481Attackers.events.some(event=>(!rule.own||event.p===p)&&!event.refs.some(ref=>refs.has(ref)));}
    case'handCount':return own.hand.length<=rule.max;
    case'seed':return own.battle.some(y=>!y.sealed&&(card(y).type==='seed'||card(y).seedCreature||card(y).natureAce4));
+   case'graveCards':return own.grave.length>=rule.min;
    case'graveCreatures':return own.grave.filter(y=>!y.faceDown&&faces(card(y)).some(c=>c.type==='creature')).length>=rule.min;
    case'bigCreature':return bodies().some(y=>cost(card(y))>=rule.minCost);
    case'untappedMana':return !own.mana.some(y=>y.tapped);
@@ -1686,6 +1687,12 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
   if(amount)start(s,t,[{op:'SelfExtraBreak444',amount}]);
   break;
  }
+ case'g34_MillTapped782':{
+  const n=Math.min(own.deck.length,creatures(s,t.p).filter(y=>!y.sealed&&y.tapped).length);
+  if(n)choice(s,t,'山札の上から墓地に置く枚数を選ぶ',
+   Array.from({length:n+1},(_,count)=>opt(count+'枚',count,count===own.deck.length?-100:count)));
+  break;
+ }
  case'g34_Mill':{
   const p=t.owner??t.p,n=t.n==='∞'?s.players[p].deck.length:t.n;
   if(t.optional)choice(s,t,t.n==='∞'?'山札をすべて墓地に置く？':'山札の上'+n+'枚を墓地に置く？',[opt('置く',true,own.deck.length>n?10:-100),skip()]);
@@ -2219,6 +2226,20 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  case'g34_Draw':api.draw(s,t.p,v);break;
  case'g34_HandFollow584':{const x=own.hand.find(y=>y.uid===v);if(x)discardFollow584(s,t,x);break;}
  case'g34_DiscardMatch517':{const y=own.hand.find(y=>y.uid===v);if(y)api.discardSelected(s,t.p,[y.uid],t.source,t.p,null,{op:'g34_DrawAfterDiscard517',p:t.p,source:t.source,matches:matches(s,t.p,y,t.filter)});else api.draw(s,t.p,1);break;}
+ case'g34_MillTapped782':{
+  if(!v)break;
+  const cards=[];
+  for(let i=0;i<v;i++){
+   const x=api.takeTop(s,t.p);
+   if(!x)break;
+   clear(x);
+   cards.push(x);
+  }
+  // QA 46570: commit the complete group before notifying graveyard watchers.
+  api.addZone(s,t.p,'grave',...cards);
+  api.deckCheck(s,t.p);
+  break;
+ }
  case'g34_Mill':if(v)api.mill(s,t.owner??t.p,t.n==='∞'?s.players[t.owner??t.p].deck.length:t.n);break;
  case'g34_ChooseUntap562':if(v){const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation);put(s,{...t,refs:[...(t.refs||[]),...(y?[v]:[])]});}else finishUntap562(s,t);break;
  case'g34_ChooseEndUntap501':if(v){

@@ -2456,6 +2456,21 @@ export function standardCardSpec(d,{phase=165}={}){
  }
  const f=d?.faces?.[0];
  if(aliasNames.has(d?.name)||phase>=250&&d?.name==='アイドルマスターレオ')throw Error('既存名の別表記');
+ if(phase>=782&&d?.status==='complete'&&d.faces.length===2&&d.faces.every(face=>face.typeText==='クリーチャー')){
+  const front=normalize(f.abilityText),active=d.faces[1],back=normalize(active.abilityText);
+  const hyper='ハイパー化:自分の他のクリーチャーを1体タップする。(自分のメインステップ中にハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く)';
+  const guard='ガードマン(このクリーチャーをタップして相手クリーチャーの攻撃先を自分の他のクリーチャーからこのクリーチャーに変更してもよい)';
+  const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+  const agaloom=blocker+'自分の墓地にカードが5枚以上なければこのクリーチャーは攻撃できない。'+hyper;
+  if(front===agaloom&&back===front+'自分のターンの終わりに自分のタップしているクリーチャー1体につき1枚自分の山札の上から墓地に置いてもよい。'&&f.powerText==='1000'&&active.powerText==='4000')
+   return {blocker:true,g225AttackRequires:{kind:'graveCards',min:5},hyperTap:true,hyper:{power:4000,g174End:[{op:'MillTapped782'}]}};
+  if(front===guard+hyper&&back===front+'このクリーチャーは相手プレイヤーを攻撃できない。'&&f.powerText==='3000'&&active.powerText==='14000')
+   return {guardman:true,hyperTap:true,hyper:{power:14000,noPlayerAttack:true}};
+  const akane='S・トリガーS・トリガーこのクリーチャーが出た時相手のクリーチャーを1体選び持ち主のマナゾーンに置く。'+hyper;
+  if(front===akane&&back===front+'W・ブレイカーこのクリーチャーはこのクリーチャーよりパワーが小さいクリーチャーにブロックされない。'&&f.powerText==='4000'&&active.powerText==='9000')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
+    hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
+ }
  if(phase>=781&&d?.status==='complete'&&d.faces.length===2&&d.faces.every(face=>face.typeText==='クリーチャー')){
   const normal='マッハファイターW・ブレイカー自分の超化獣クリーチャーの召喚コストを3少なくする。ただしコストは0以下にはならない。'+
    'ハイパー化:自分の他のクリーチャーを1体タップする。(自分のメインステップ中にハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く)';
