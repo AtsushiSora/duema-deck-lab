@@ -373,7 +373,11 @@ export function createSixPhotoRules(api){
    seen[p]=true;
   }
   for(const owner of[s.active,1-s.active])for(const x of watchSources252(s,owner)){const c=effective(x,s),watches=[...(c.g252AttackWatch?[c.g252AttackWatch]:[]),...(c.g253AttackWatches||[])];
-   for(const watch of watches)if((watch.who==='both'||(watch.who==='self'?owner===p:owner!==p))&&!(x.uid===attacker.uid&&(watch.other||api.selfStopped(s,p)))&&(!watch.first||first)&&(!watch.g768AttackNumber||watch.g768AttackNumber===number)&&(!watch.g764FirstCostSix||firstCostSix)&&(!watch.entryTurn||attacker.entered===s.turn)&&(!watch.playerAttack||s.attack?.target==='player')&&(!watch.g799FirstPlayer||firstPlayer)&&(!watch.defs.some(d=>d.g747Once)||!parottaUsed747(s,x))&&!used792(s,x,watch.defs[0])&&matches(s,p,attacker,watch.filter)){if(watch.g399Attacker)send(s,owner,x,'Sequence',{defs:watch.defs,g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0,...(watch.g677Layers?{refs:api.allLayers(attacker).map(key)}:{}),...(watch.defs.some(d=>d.op==='AttackDeploy409'||d.op==='AttackHandDeploy798')?{cost:cost(effective(attacker,s))===Infinity?'∞':cost(effective(attacker,s))}: {})}});else queue(s,owner,x,watch.defs);}
+   for(const watch of watches){
+    if(watch.g814CreatureTarget&&!s.players[owner].battle.some(y=>y.uid===s.attack?.target&&api.isCreature(s,y)))continue;
+    if(watch.g814ShieldBroken&&!s.players[owner].brokenThisTurn)continue;
+    if((watch.who==='both'||(watch.who==='self'?owner===p:owner!==p))&&!(x.uid===attacker.uid&&(watch.other||api.selfStopped(s,p)))&&(!watch.first||first)&&(!watch.g768AttackNumber||watch.g768AttackNumber===number)&&(!watch.g764FirstCostSix||firstCostSix)&&(!watch.entryTurn||attacker.entered===s.turn)&&(!watch.playerAttack||s.attack?.target==='player')&&(!watch.g799FirstPlayer||firstPlayer)&&(!watch.defs.some(d=>d.g747Once)||!parottaUsed747(s,x))&&!used792(s,x,watch.defs[0])&&matches(s,p,attacker,watch.filter)){if(watch.g399Attacker)send(s,owner,x,'Sequence',{defs:watch.defs,g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0,...(watch.g677Layers?{refs:api.allLayers(attacker).map(key)}:{}),...(watch.defs.some(d=>d.op==='AttackDeploy409'||d.op==='AttackHandDeploy798')?{cost:cost(effective(attacker,s))===Infinity?'∞':cost(effective(attacker,s))}: {})}});else queue(s,owner,x,watch.defs);}
+   }
   }
  }
  function opponentAddedShields618(s,p){
@@ -1219,6 +1223,12 @@ export function createSixPhotoRules(api){
  case'g34_RecoverAll326':{const rows=list(s,{...t,selected:[]}),before=new Set(own.hand.map(y=>y.uid));for(const r of rows)zoneMove(s,r.p,r.origin,r.x.uid,'hand',t);const n=rows.filter(r=>own.hand.some(y=>y.uid===r.x.uid)&&!before.has(r.x.uid)).length;api.log(s,t.p,'recover',card(t.source).name+'：条件に合うカード'+n+'枚を手札に戻した',{cardId:t.source});if(t.after)start(s,t,t.after);break;}
  case'g34_BreakDelay484':(s.g484BreakEnds??=[]).push({p:t.p,uid:t.uid,incarnation:t.incarnation||0,source:t.source,turn:s.turn});break;
  case'g34_BreakReturn484':{const host=sourceHost474(s,t);if(host&&!host.x.sealed)start(s,t,[E('SelfHand299')]);break;}
+ case'g34_BlockForAttack814':{
+  const host=sourceHost474(s,t),attack=s.attackLifecycle;
+  if(attack&&s.attack&&host&&!host.x.sealed&&api.isCreature(s,host.x))
+   (attack.g814Blockers??=[]).push({uid:t.uid,incarnation:t.incarnation||0});
+  break;
+ }
  case'g34_SelfGrant754':{const host=sourceHost474(s,t);if(host&&(!t.g770LiveCreature||!host.x.sealed&&api.isCreature(s,host.x)))applyGrant(s,t,host.x);break;}
  case'g34_GraveReturn754':{
   const y=own.grave.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);

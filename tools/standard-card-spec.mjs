@@ -2507,6 +2507,22 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=814&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(text==='S・トリガーブロッカーこのクリーチャーをバトルゾーンに出した時バトルゾーンにある相手のクロスギアを1枚選び持ち主の墓地に置いてもよい。このクリーチャーは相手プレイヤーを攻撃できない。')
+   return {trigger:true,blocker:true,noPlayerAttack:true,effect:'sixPhoto',
+    g34Tasks:[{op:'Target',element:true,filter:{g201Gear:true},to:'grave',optional:true,title:'墓地に置く相手のクロスギアを選ぶ'}]};
+  if(text==='このクリーチャーをバトルゾーンに出した時バトルゾーンにある相手のクリーチャーを1体選びタップしてもよい。相手が自分のクリーチャーを攻撃する時その攻撃の終わりまでこのクリーチャーは「ブロッカー」を得る。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',tap:true,optional:true}],
+    g252AttackWatch:{who:'opponent',g814CreatureTarget:true,defs:[{op:'BlockForAttack814'}]}};
+  if(text==='相手のクリーチャーが攻撃する時そのターンすでに自分のシールドが1枚でもブレイクされていればこのクリーチャーをアンタップする。そのターンこのクリーチャーのパワーは+5000され「ブロッカー」を得る。')
+   return {g252AttackWatch:{who:'opponent',g814ShieldBroken:true,defs:[
+    {op:'Untap',g191First:true},{op:'SelfBoost313',power:5000,g536Source:true},
+    {op:'SelfGrant754',grant:{blocker:true}}
+   ]}};
+  if(text==='ブロッカーこのクリーチャーは相手プレイヤーを攻撃できない。相手のクリーチャーは攻撃1回につきシールドを1枚しかブレイクできない。')
+   return {blocker:true,noPlayerAttack:true,g814OneAttackBreak:true};
+ }
  if(phase>=813&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(text==='自分が呪文を唱えた時バトルゾーンにある進化以外のカードを1枚持ち主の手札に戻してもよい。')

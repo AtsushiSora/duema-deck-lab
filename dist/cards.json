@@ -183437,20 +183437,153 @@
       ],
       "supportBatch": "phase-813",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm29-021",
+      "name": "超電磁工兵バ・キーン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 1500,
+      "race": "グレートメカオー",
+      "text": "S・トリガー\nブロッカー\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクロスギアを１枚選び、持ち主の墓地に置いてもよい。\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-021",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "element": true,
+          "filter": {
+            "g201Gear": true
+          },
+          "to": "grave",
+          "optional": true,
+          "title": "墓地に置く相手のクロスギアを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-814",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm28-070",
+      "name": "霊壁の使徒ミルース",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4500,
+      "race": "イニシエート",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。\n相手が自分のクリーチャーを攻撃する時、その攻撃の終わりまで、このクリーチャーは「ブロッカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-070",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "optional": true
+        }
+      ],
+      "g252AttackWatch": {
+        "who": "opponent",
+        "g814CreatureTarget": true,
+        "defs": [
+          {
+            "op": "BlockForAttack814"
+          }
+        ]
+      },
+      "supportBatch": "phase-814",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm29-023",
+      "name": "紅玉の守護者リオ・レンティス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ガーディアン",
+      "text": "相手のクリーチャーが攻撃する時、そのターンすでに自分のシールドが１枚でもブレイクされていれば、このクリーチャーをアンタップする。そのターン、このクリーチャーのパワーは+5000され、「ブロッカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-023",
+      "limit": 4,
+      "g252AttackWatch": {
+        "who": "opponent",
+        "g814ShieldBroken": true,
+        "defs": [
+          {
+            "op": "Untap",
+            "g191First": true
+          },
+          {
+            "op": "SelfBoost313",
+            "power": 5000,
+            "g536Source": true
+          },
+          {
+            "op": "SelfGrant754",
+            "grant": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-814",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm29-001",
+      "name": "光神龍ラル・アブゾーバー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "アポロニア・ドラゴン",
+      "text": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n相手のクリーチャーは、攻撃１回につきシールドを１枚しかブレイクできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-001",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g814OneAttackBreak": true,
+      "supportBatch": "phase-814",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 813,
+    "phase": 814,
     "checkedAt": "2026-11-10",
-    "baseCount": 6292,
-    "newEffectCards": 3,
+    "baseCount": 6295,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6295,
+    "totalCount": 6299,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35650/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34950/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31409/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35629/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35673/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35676/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35734/",
+      "https://dm.takaratomy.co.jp/rule/qa/43069/",
+      "https://dm.takaratomy.co.jp/rule/qa/43225/",
+      "https://dm.takaratomy.co.jp/rule/qa/43226/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -197708,6 +197841,24 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37423/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37424/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37427/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 813,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6292,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6295,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35650/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34950/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31409/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [
