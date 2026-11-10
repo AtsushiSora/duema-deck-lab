@@ -1,0 +1,284 @@
+{
+  "phase": 840,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6381,
+  "description": "文明に応じたパワー低下、コマンドによる攻撃条件、返霊2、墓地回収と任意ドローに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36153/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37629/",
+    "https://dm.takaratomy.co.jp/rule/qa/40371/",
+    "https://dm.takaratomy.co.jp/rule/qa/43454/",
+    "https://dm.takaratomy.co.jp/rule/qa/45214/",
+    "https://dm.takaratomy.co.jp/rule/qa/49529/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
+  ],
+  "cards": [
+    {
+      "id": "dmr02-026",
+      "name": "溶岩流の手",
+      "faces": [
+        {
+          "name": "溶岩流の手",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー\nバトルゾーンにある相手のクリーチャーを１体選ぶ。バトルゾーンに自分の水または火のクリーチャーがあれば、このターン、選んだクリーチャーのパワーは-4000される。なければ、そのパワーは-2000される。(パワー０以下のクリーチャーは破壊される)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-026",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "any": [
+                {
+                  "color": "水"
+                },
+                {
+                  "color": "火"
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "g242PowerMinus": true,
+                "spell": true,
+                "power": -4000
+              }
+            ],
+            "elseDefs": [
+              {
+                "op": "Target",
+                "g242PowerMinus": true,
+                "spell": true,
+                "power": -2000
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr02-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "03747a5cb698269ded24c2588e2cfce748225e50a93234e38ce26381b4e31a70",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm38-020",
+      "name": "奇跡の予言者ラッキー・クルト",
+      "faces": [
+        {
+          "name": "奇跡の予言者ラッキー・クルト",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "ブロッカー\nこのクリーチャーは、バトルゾーンに自分のエンジェル・コマンドまたはデーモン・コマンドがあれば、相手プレイヤーを攻撃できる。",
+          "race": "ライトブリンガー",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-020",
+      "spec": {
+        "blocker": true,
+        "g558Souls": [
+          "H",
+          "E"
+        ],
+        "g840PlayerAttackRequires": {
+          "creature": true,
+          "raceAny": [
+            "エンジェル・コマンド",
+            "デーモン・コマンド"
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "8328e1ceb36dddf63e315c8d31afc69ace56827b8be4427a3fd26cdf0ba60150",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm38-044",
+      "name": "黒輝死爵クローズZ",
+      "faces": [
+        {
+          "name": "黒輝死爵クローズZ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "返霊２(このクリーチャーが攻撃する時、自分の墓地からカードを２枚、好きな順序で山札の一番下に置いてもよい。そうした場合、このクリーチャーの能力を使う)\n相手の闇以外のクリーチャーを１体、破壊する。",
+          "race": "ダークロード",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-044",
+      "spec": {
+        "g558Souls": [
+          "E"
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "deck",
+            "n": 2,
+            "optional": true,
+            "g837Reikon": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "notColor": "闇"
+                }
+              }
+            ],
+            "title": "返霊2：山札の下に置く順に墓地のカードを2枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "0156a024f2b09800b91e304e356cbccaa6010684a9dc490bd458c68e2c782c2f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr03-041",
+      "name": "どんどん掘るナウ",
+      "faces": [
+        {
+          "name": "どんどん掘るナウ",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nクリーチャーを１体、自分の墓地から手札に戻す。このようにして戻したカードが光または自然のクリーチャーであれば、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-041",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "g654MovedFilter": {
+              "any": [
+                {
+                  "g228Face": {
+                    "type": "creature",
+                    "color": "光"
+                  }
+                },
+                {
+                  "g228Face": {
+                    "type": "creature",
+                    "color": "自然"
+                  }
+                }
+              ]
+            },
+            "g583OnMove": [
+              {
+                "op": "Draw",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ecbf17123291ccc35d93662f516cf841679ea8c07459ec99142b985634492cea",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmd10-014",
+      "canonicalId": "dmr03-041",
+      "name": "どんどん掘るナウ",
+      "faces": [
+        {
+          "name": "どんどん掘るナウ",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nクリーチャーを１体、自分の墓地から手札に戻す。このようにして戻したカードが光または自然のクリーチャーであれば、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd10-014",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd10-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "02936b0eee6425aee4aab36ddf6e806d059c2fc28501586d1b2bb2101c6b357b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr02-026": 4,
+      "dm38-020": 4,
+      "dm38-044": 4,
+      "dmr03-041": 4,
+      "dmd10-014": 4
+    }
+  }
+}

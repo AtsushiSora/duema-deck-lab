@@ -186134,22 +186134,201 @@
       ],
       "supportBatch": "phase-839",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr02-026",
+      "name": "溶岩流の手",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー\nバトルゾーンにある相手のクリーチャーを１体選ぶ。バトルゾーンに自分の水または火のクリーチャーがあれば、このターン、選んだクリーチャーのパワーは-4000される。なければ、そのパワーは-2000される。(パワー０以下のクリーチャーは破壊される)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-026",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "color": "水"
+              },
+              {
+                "color": "火"
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "g242PowerMinus": true,
+              "spell": true,
+              "power": -4000
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "Target",
+              "g242PowerMinus": true,
+              "spell": true,
+              "power": -2000
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-840",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm38-020",
+      "name": "奇跡の予言者ラッキー・クルト",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 1500,
+      "race": "ライトブリンガー",
+      "text": "ブロッカー\nこのクリーチャーは、バトルゾーンに自分のエンジェル・コマンドまたはデーモン・コマンドがあれば、相手プレイヤーを攻撃できる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-020",
+      "limit": 4,
+      "blocker": true,
+      "g558Souls": [
+        "H",
+        "E"
+      ],
+      "g840PlayerAttackRequires": {
+        "creature": true,
+        "raceAny": [
+          "エンジェル・コマンド",
+          "デーモン・コマンド"
+        ]
+      },
+      "supportBatch": "phase-840",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm38-044",
+      "name": "黒輝死爵クローズZ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ダークロード",
+      "text": "返霊２(このクリーチャーが攻撃する時、自分の墓地からカードを２枚、好きな順序で山札の一番下に置いてもよい。そうした場合、このクリーチャーの能力を使う)\n相手の闇以外のクリーチャーを１体、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-044",
+      "limit": 4,
+      "g558Souls": [
+        "E"
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "deck",
+          "n": 2,
+          "optional": true,
+          "g837Reikon": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "notColor": "闇"
+              }
+            }
+          ],
+          "title": "返霊2：山札の下に置く順に墓地のカードを2枚選ぶ"
+        }
+      ],
+      "supportBatch": "phase-840",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr03-041",
+      "name": "どんどん掘るナウ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nクリーチャーを１体、自分の墓地から手札に戻す。このようにして戻したカードが光または自然のクリーチャーであれば、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-041",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "filter": {
+            "g228Face": {
+              "type": "creature"
+            }
+          },
+          "g654MovedFilter": {
+            "any": [
+              {
+                "g228Face": {
+                  "type": "creature",
+                  "color": "光"
+                }
+              },
+              {
+                "g228Face": {
+                  "type": "creature",
+                  "color": "自然"
+                }
+              }
+            ]
+          },
+          "g583OnMove": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-840",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 839,
+    "phase": 840,
     "checkedAt": "2026-11-10",
-    "baseCount": 6378,
-    "newEffectCards": 3,
+    "baseCount": 6381,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6381,
+    "totalCount": 6385,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36337/",
-      "https://dm.takaratomy.co.jp/rule/qa/33416/",
-      "https://dm.takaratomy.co.jp/rule/qa/42947/",
-      "https://dm.takaratomy.co.jp/rule/qa/41124/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35754/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36153/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37629/",
+      "https://dm.takaratomy.co.jp/rule/qa/40371/",
+      "https://dm.takaratomy.co.jp/rule/qa/43454/",
+      "https://dm.takaratomy.co.jp/rule/qa/45214/",
+      "https://dm.takaratomy.co.jp/rule/qa/49529/",
       "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
     ],
     "next": [
@@ -200979,6 +201158,26 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37511/",
           "https://dm.takaratomy.co.jp/rule/qa/33416/",
           "https://dm.takaratomy.co.jp/rule/qa/42947/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 839,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6378,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6381,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36337/",
+          "https://dm.takaratomy.co.jp/rule/qa/33416/",
+          "https://dm.takaratomy.co.jp/rule/qa/42947/",
+          "https://dm.takaratomy.co.jp/rule/qa/41124/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35754/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
         ],
         "next": [

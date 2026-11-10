@@ -2511,6 +2511,28 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=840&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='呪文'&&text==='S・トリガーバトルゾーンにある相手のクリーチャーを1体選ぶ。バトルゾーンに自分の水または火のクリーチャーがあればこのターン選んだクリーチャーのパワーは-4000される。なければそのパワーは-2000される。(パワー0以下のクリーチャーは破壊される)'){
+   const minus={op:'Target',g242PowerMinus:true,spell:true};
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[
+    {op:'IfOwn',filter:{creature:true,any:[{color:'水'},{color:'火'}]},defs:[{...minus,power:-4000}],elseDefs:[{...minus,power:-2000}]}
+   ]};
+  }
+  if(f.typeText==='クリーチャー'&&text==='ブロッカーこのクリーチャーはバトルゾーンに自分のエンジェル・コマンドまたはデーモン・コマンドがあれば相手プレイヤーを攻撃できる。')
+   return {blocker:true,g558Souls:['H','E'],g840PlayerAttackRequires:{creature:true,raceAny:['エンジェル・コマンド','デーモン・コマンド']}};
+  if(f.typeText==='クリーチャー'&&text==='返霊2(このクリーチャーが攻撃する時自分の墓地からカードを2枚好きな順序で山札の一番下に置いてもよい。そうした場合このクリーチャーの能力を使う)相手の闇以外のクリーチャーを1体破壊する。')
+   return {g558Souls:['E'],g34Attack:[{op:'Select',origin:'grave',to:'deck',n:2,optional:true,
+    g837Reikon:[{op:'Target',to:'grave',filter:{notColor:'闇'}}],title:'返霊2：山札の下に置く順に墓地のカードを2枚選ぶ'}]};
+  if(f.typeText==='呪文'&&[
+    'S・トリガー',
+    'S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)',
+    'S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)'
+   ].some(trigger=>text===trigger+'クリーチャーを1体自分の墓地から手札に戻す。このようにして戻したカードが光または自然のクリーチャーであればカードを1枚引いてもよい。'))
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'grave',to:'hand',n:1,
+    filter:{g228Face:{type:'creature'}},g654MovedFilter:{any:[{g228Face:{type:'creature',color:'光'}},{g228Face:{type:'creature',color:'自然'}}]},
+    g583OnMove:[{op:'Draw',n:1,optional:true}]}]};
+ }
  if(phase>=839&&d?.status==='complete'&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText),spell=d.faces[1];
   if(d.faces.length===2&&spell.typeText==='呪文'&&
