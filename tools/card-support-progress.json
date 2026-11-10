@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6229,
-  "pendingNames": 5598,
-  "phase": 791,
+  "supportedNames": 6232,
+  "pendingNames": 5595,
+  "phase": 792,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3314,
+    "クリーチャー": 3312,
     "NEOクリーチャー": 152,
     "呪文": 795,
     "GRクリーチャー": 159,
@@ -162,7 +162,7 @@
     "タマシード": 60,
     "デュエルメイト呪文": 10,
     "S-MAX進化クリーチャー": 10,
-    "進化クリーチャー": 332,
+    "進化クリーチャー": 331,
     "スター進化クリーチャー": 71,
     "進化クリーチャー(超無限進化・Ω)": 1,
     "ギガ・オレガ・オーラ": 2,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1241,
-    "未対応の能力文": 4096,
+    "未対応の能力文": 4093,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -11225,30 +11225,82 @@
           "reason": "固定の代替コストでは他の召喚コスト軽減との重なりを再現できない。任意の1軽減を選んだ召喚にだけ自身によるシールドブレイクを結び付け、通常召喚・非召喚・登場置換と区別する経路を検証するまで保留。"
         }
       ]
+    },
+    {
+      "phase": 792,
+      "cards": [
+        {
+          "id": "dm24ex4-016",
+          "name": "聖霊龍王 メルヴェイユ"
+        },
+        {
+          "id": "dm24ex4-033",
+          "name": "大地の精霊龍 ボンボヤージュ"
+        },
+        {
+          "id": "dm24ex4-023",
+          "name": "ミリオンブレイブ・カイザー"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm24ex4-Sec004",
+          "canonicalId": "dm24ex4-016",
+          "name": "聖霊龍王 メルヴェイユ"
+        },
+        {
+          "id": "dm24ex4-Sec010",
+          "canonicalId": "dm24ex4-023",
+          "name": "ミリオンブレイブ・カイザー"
+        },
+        {
+          "id": "dm25rp4-TR6",
+          "canonicalId": "dm24ex4-023",
+          "name": "ミリオンブレイブ・カイザー"
+        },
+        {
+          "id": "dm25ex3-rp4TR6",
+          "canonicalId": "dm24ex4-023",
+          "name": "ミリオンブレイブ・カイザー"
+        }
+      ],
+      "supportedNames": 6232,
+      "pendingNames": 5595,
+      "verification": {
+        "focusedPassed": 11,
+        "regressionPassed": 284,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 7,
+        "scope": "通常版3点と再録4点の全能力、基本情報、画像、殿堂制限なしを公式照合。メルヴェイユのマナ進化召喚、光・自然の進化元、任意のシールド化、他の味方のパワーとパワード・ブレイカーを検証。ボンボヤージュは見送っても後の機会に使えること、ドロー・攻撃時能力の独立した回数と次ターンでの再使用、マナ置換後の展開、相手ターンと複数体を検証。カイザーのG・G・G、バトルだけの自ターンパワー増加、最初の攻撃に限る合法な攻撃先制限を検証。既存対戦定義6,229件を変更していないことを確認。",
+        "runtimeNote": "各最大10分。Phase 396・411・431・701・791とアビスの関連回帰を実施。長時間のCPU対戦、全カードを走査する既存の能力コピー試験、旧アビスの固定件数試験をテスト名で除外。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": []
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 791,
-    "nextPhase": 792,
+    "lastVerifiedPhase": 792,
+    "nextPhase": 793,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm24ex4-016",
-        "name": "聖霊龍王 メルヴェイユ",
-        "check": "マナからの召喚、光または自然の進化元、任意のエレメントのシールド化、他の味方のパワーとパワード・ブレイカー付与を公式照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-016"
+        "id": "dm24ex4-059",
+        "name": "冥土の絆",
+        "check": "S・トリガー、任意の両陣営へのパワーとブレイカー付与、独立した相手へのパワー減少を公式照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-059"
       },
       {
-        "id": "dm24ex4-033",
-        "name": "大地の精霊龍 ボンボヤージュ",
-        "check": "他の味方が出た時と味方が攻撃した時を別々に各ターン一度とし、任意のドロー・マナ追加・マナからの展開を公式照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-033"
+        "id": "dm24ex4-051",
+        "name": "熱血の絆",
+        "check": "選択モードの破壊と全タップ、展開したドラゴンへの期限付きブロッカー付与と任意バトルを公式照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-051"
       },
       {
-        "id": "dm24ex4-023",
-        "name": "ミリオンブレイブ・カイザー",
-        "check": "G・G・Gの手札枚数と同名制限、自分のターンのバトル限定パワー上昇、相手の最初の攻撃先の強制を公式照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-023"
+        "id": "dm24ex4-020",
+        "name": "守護地龍 ザノウハウ",
+        "check": "スノーフェアリーのシンパシー、任意ドロー、スノーフェアリーへのセイバー付与と破壊置換を公式照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-020"
       },
       {
         "id": "dm24ex4-073",

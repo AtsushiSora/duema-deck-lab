@@ -281,6 +281,7 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g792AbsentAlly)return !s.players[p].battle.some(x=>!x.sealed&&!x.faceDown&&api.isCreature(s,x)&&effective(x,s).name===f.g792AbsentAlly);
   if(f.g791ExtraSpell)return (s.players[p].extra||[]).some(x=>!x.faceDown&&faces(card(x)).some(c=>c.type==='spell'));
   if(f.g790MinDraws!==undefined)return (s.players[p].drawsThisTurn||0)>=f.g790MinDraws;
   if(f.g722CrossedAny)return [p,1-p].some(owner=>ownCondition(s,owner,{g442CrossedAlly:true}));
@@ -329,7 +330,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
    seen[p]=true;
   }
   for(const owner of[s.active,1-s.active])for(const x of watchSources252(s,owner)){const c=effective(x,s),watches=[...(c.g252AttackWatch?[c.g252AttackWatch]:[]),...(c.g253AttackWatches||[])];
-   for(const watch of watches)if((watch.who==='self'?owner===p:owner!==p)&&!(x.uid===attacker.uid&&(watch.other||api.selfStopped(s,p)))&&(!watch.first||first)&&(!watch.g768AttackNumber||watch.g768AttackNumber===number)&&(!watch.g764FirstCostSix||firstCostSix)&&(!watch.entryTurn||attacker.entered===s.turn)&&(!watch.playerAttack||s.attack?.target==='player')&&(!watch.defs.some(d=>d.g747Once)||!parottaUsed747(s,x))&&matches(s,p,attacker,watch.filter)){if(watch.g399Attacker)send(s,owner,x,'Sequence',{defs:watch.defs,g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0,...(watch.g677Layers?{refs:api.allLayers(attacker).map(key)}:{}),...(watch.defs.some(d=>d.op==='AttackDeploy409')?{cost:cost(effective(attacker,s))===Infinity?'∞':cost(effective(attacker,s))}: {})}});else queue(s,owner,x,watch.defs);}
+   for(const watch of watches)if((watch.who==='self'?owner===p:owner!==p)&&!(x.uid===attacker.uid&&(watch.other||api.selfStopped(s,p)))&&(!watch.first||first)&&(!watch.g768AttackNumber||watch.g768AttackNumber===number)&&(!watch.g764FirstCostSix||firstCostSix)&&(!watch.entryTurn||attacker.entered===s.turn)&&(!watch.playerAttack||s.attack?.target==='player')&&(!watch.defs.some(d=>d.g747Once)||!parottaUsed747(s,x))&&!used792(s,x,watch.defs[0])&&matches(s,p,attacker,watch.filter)){if(watch.g399Attacker)send(s,owner,x,'Sequence',{defs:watch.defs,g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0,...(watch.g677Layers?{refs:api.allLayers(attacker).map(key)}:{}),...(watch.defs.some(d=>d.op==='AttackDeploy409')?{cost:cost(effective(attacker,s))===Infinity?'∞':cost(effective(attacker,s))}: {})}});else queue(s,owner,x,watch.defs);}
   }
  }
  function opponentAddedShields618(s,p){
@@ -404,6 +405,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  }
  function battlePower209(s,x,y,c){
   const t=c.g209BattlePower;if(!t||!s)return 0;const p=s.players.findIndex(p=>p.battle.some(z=>z.uid===x.uid));if(p<0)return 0;
+  if(t.ownTurn&&s.active!==p)return 0;
   if(t.opponentRaces&&(!y||!t.opponentRaces.some(q=>race(effective(y,s),q))))return 0;
   if(t.opponentDragon&&(!y||!race(effective(y,s),'ドラゴン')))return 0;
   if(t.opponentColors&&(!y||!t.opponentColors.some(q=>colors(effective(y,s)).includes(q))))return 0;
@@ -1608,6 +1610,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  }
  case'g34_AfterAttackDestroy':if(s.attackLifecycle)(s.attackLifecycle.g176Deaths??=[]).push({p:t.p,uid:t.uid,incarnation:t.incarnation||0,source:t.source});break;
  case'g34_Offer':{
+  if(t.g792Once&&(used792(s,t,t)||!own.deck.length))break;
   if(t.g790CreatureBreak){
    const host=sourceHost474(s,t)?.x;
    if(!host||host.sealed||!api.isCreature(s,host)||!opp.shields.length)break;
@@ -2209,7 +2212,13 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  case'g34_SacrificeAlly413':if(v){const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation&&!y.sealed&&(t.g547Seed?matches(s,t.p,y,{g295Tamaseed:true}):api.isCreature(s,y)));if(y&&(!t.other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))){move(s,[{player:t.p,uid:y.uid,to:'grave',destroy:true,controller:t.controller??t.p}]);start(s,t,t.defs);}}break;
  case'g34_SelfSacrifice407':if(v){const present=s.players.some(p=>p.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))));if(present)start(s,t,[{op:'SelfDestroy'},...(t.defs||[])]);}break;
  case'g34_Chance417':if(v){const y=own.hand.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial),c=y&&faces(card(y))[t.face];if(c?.g417Chance&&!api.spellIgnored(s,c)&&api.canCast(s,t.p,c,'hand'))cast(s,t.p,y.uid,true,null,t.face,null,'hand','アタック・チャンス');}break;
- case'g34_Offer':if(v)start(s,t,t.defs);break;
+ case'g34_Offer':if(v){
+  if(t.g792Once){
+   if(used792(s,t,t))break;
+   (s.once??={})[onceKey792(t,t)]=s.turn;
+  }
+  start(s,t,t.defs);
+ }break;
  case'g34_Break497':put(s,{...t,selected:[...(t.selected||[]),v]});break;
  case'g34_ShieldMana557':if(s.players[1-t.p].shields.some(x=>x.uid===v)){const moved=api.moveShields(s,1-t.p,[v],'mana');api.log(s,t.p,'shieldMana',card(t.source).name+'：相手のシールドを1つマナへ置いた（カード'+moved.length+'枚）',{cardId:t.source});}break;
  case'g34_Break278':{
@@ -2374,6 +2383,8 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  const buff=(s,x,n)=>{(x.powerModifiers??=[]).push({amount:n,expires:'end',who:s.active});};
  const sourceDefs=(s,t,defs)=>start(s,t,defs),queue=(s,p,x,defs,source=x.cardId)=>send(s,p,source===x.cardId?x:{...x,cardId:source},'Sequence',{defs});
  const used=(s,slot,x)=>s[slot]?.[key(x)]===s.turn,mark=(s,slot,x)=>{(s[slot]??={})[key(x)]=s.turn;};
+ const onceKey792=(x,d)=>'g792:'+d.g792Once+':'+key(x);
+ const used792=(s,x,d)=>!!d?.g792Once&&s.once?.[onceKey792(x,d)]===s.turn;
  const parottaKey747=x=>'parotta:'+key(x),parottaUsed747=(s,x)=>s.once?.[parottaKey747(x)]===s.turn;
  function custom(s,t){const own=s.players[t.p],opp=s.players[1-t.p],x=live(s,t);switch(t.name){
  case'finishBatch':delete s.g34DeployBatch;delete own.g34ManaHeld;break;
@@ -2726,7 +2737,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
    if(!creature&&!card(x).g314OtherEntry?.g765Element)continue;
    const watch=effective(x,s).g314OtherEntry;
    if(!watch||!creature&&!watch.g765Element||x.sealed||x.uid===y.uid||watch.who!=='both'&&owner!==(watch.who==='opponent'?1-p:p))continue;
-   if(watch.filter&&!matches(s,p,y,watch.filter))continue;
+   if(used792(s,x,watch.defs?.[0])||watch.filter&&!matches(s,p,y,watch.filter))continue;
    if(watch.g778OverMana&&cost(effective(y,s))<=s.players[owner].mana.length)continue;
    if(watch.g755EntrantPower)send(s,owner,x,'EntryBoost755',{
     subject:{uid:y.uid,incarnation:y.incarnation||0},power:watch.g755EntrantPower

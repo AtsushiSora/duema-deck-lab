@@ -181114,23 +181114,199 @@
       },
       "supportBatch": "phase-791",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-016",
+      "name": "聖霊龍王 メルヴェイユ",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 12000,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "このクリーチャーを、自分のマナゾーンから召喚してもよい。\n進化：光または自然のクリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーが出た時、エレメントを１つ選び、シールド化してもよい。\n自分の他のクリーチャーすべてのパワーを＋6000し、「パワード・ブレイカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-016",
+      "limit": 4,
+      "manaSummon": true,
+      "evolution": {
+        "any": [
+          {
+            "civilization": "光"
+          },
+          {
+            "civilization": "自然"
+          }
+        ]
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "element": true,
+          "to": "shields",
+          "optional": true
+        }
+      ],
+      "g205Aura": {
+        "filter": {
+          "creature": true
+        },
+        "other": true,
+        "power": 6000
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "other": true,
+          "grants": {
+            "poweredBreaker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-792",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-033",
+      "name": "大地の精霊龍 ボンボヤージュ",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5500,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "ブロッカー ブロッカー\n各ターンに一度、自分の他のクリーチャーが出た時、カードを１枚引いてもよい。\n各ターンに一度、自分のクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置いてもよい。そうしたら、光または自然の、コスト３以下のクリーチャーを１体、自分のマナゾーンから出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-033",
+      "limit": 4,
+      "blocker": true,
+      "g314OtherEntry": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "Offer",
+            "g792Once": "draw",
+            "title": "カードを1枚引く？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Offer",
+            "g792Once": "ramp",
+            "title": "山札の上1枚をマナに置く？",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1,
+                "after": [
+                  {
+                    "op": "Select",
+                    "origin": "mana",
+                    "deploy": true,
+                    "n": 1,
+                    "optional": true,
+                    "filter": {
+                      "creature": true,
+                      "max": 3,
+                      "any": [
+                        {
+                          "color": "光"
+                        },
+                        {
+                          "color": "自然"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-792",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-023",
+      "name": "ミリオンブレイブ・カイザー",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 10000,
+      "race": "レッド・コマンド・ドラゴン",
+      "text": "G・G・G：自分の手札が１枚以下で、自分の《ミリオンブレイブ・カイザー》がなければ、このクリーチャーをコストを支払わずに召喚してもよい。\nスピードアタッカー\nW・ブレイカー\n自分のターンのバトル中、このクリーチャーのパワーを+1000000する。\n各ターン、相手のクリーチャーがはじめて攻撃する時、可能ならこのクリーチャーを攻撃する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-023",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g209BattlePower": {
+        "amount": 1000000,
+        "ownTurn": true
+      },
+      "g792FirstAttackTarget": true,
+      "g396Zero": {
+        "label": "G・G・G",
+        "all": [
+          {
+            "g334ZoneCount": {
+              "zone": "hand",
+              "max": 1
+            }
+          },
+          {
+            "g792AbsentAlly": "ミリオンブレイブ・カイザー"
+          }
+        ]
+      },
+      "supportBatch": "phase-792",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 791,
+    "phase": 792,
     "checkedAt": "2026-11-10",
-    "baseCount": 6226,
+    "baseCount": 6229,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6229,
+    "totalCount": 6232,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/31530/",
-      "https://dm.takaratomy.co.jp/rule/qa/31608/",
-      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck04/",
-      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck07/",
-      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck10/"
+      "https://dm.takaratomy.co.jp/rule/qa/44212/",
+      "https://dm.takaratomy.co.jp/rule/qa/39986/",
+      "https://dm.takaratomy.co.jp/rule/qa/40270/",
+      "https://dm.takaratomy.co.jp/rule/qa/42657/",
+      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck06/",
+      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck07/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -194946,6 +195122,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/46245/",
           "https://dm.takaratomy.co.jp/rule/qa/46246/",
           "https://dm.takaratomy.co.jp/rule/qa/33425/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 791,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6226,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6229,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/31530/",
+          "https://dm.takaratomy.co.jp/rule/qa/31608/",
+          "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck04/",
+          "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck07/",
+          "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck10/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

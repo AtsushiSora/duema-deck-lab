@@ -2507,6 +2507,22 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=792&&d?.status==='complete'&&d.faces.length===1){
+  const front=normalize(f.abilityText),lightNature=['光','自然'];
+  const anyCivilization=lightNature.map(color=>({color}));
+  if(f.typeText==='進化クリーチャー'&&front==='このクリーチャーを自分のマナゾーンから召喚してもよい。進化:光または自然のクリーチャー1体の上に置く。T・ブレイカーこのクリーチャーが出た時エレメントを1つ選びシールド化してもよい。自分の他のクリーチャーすべてのパワーを+6000し「パワード・ブレイカー」を与える。')
+   return {manaSummon:true,evolution:{any:lightNature.map(civilization=>({civilization}))},breaker:3,effect:'sixPhoto',
+    g34Tasks:[{op:'Target',anyOwner:true,element:true,to:'shields',optional:true}],
+    g205Aura:{filter:{creature:true},other:true,power:6000},
+    g208Auras:[{filter:{creature:true},other:true,grants:{poweredBreaker:true}}]};
+  if(f.typeText==='クリーチャー'&&front==='ブロッカーブロッカー各ターンに一度自分の他のクリーチャーが出た時カードを1枚引いてもよい。各ターンに一度自分のクリーチャーが攻撃する時自分の山札の上から1枚目をマナゾーンに置いてもよい。そうしたら光または自然のコスト3以下のクリーチャーを1体自分のマナゾーンから出してもよい。')
+   return {blocker:true,g314OtherEntry:{who:'self',defs:[{op:'Offer',g792Once:'draw',title:'カードを1枚引く？',defs:[{op:'Draw',n:1}]}]},
+    g252AttackWatch:{who:'self',filter:{creature:true},defs:[{op:'Offer',g792Once:'ramp',title:'山札の上1枚をマナに置く？',
+     defs:[{op:'Ramp',n:1,after:[{op:'Select',origin:'mana',deploy:true,n:1,optional:true,filter:{creature:true,max:3,any:anyCivilization}}]}]}]}};
+  if(f.typeText==='クリーチャー'&&front==='G・G・G:自分の手札が1枚以下で自分の《ミリオンブレイブ・カイザー》がなければこのクリーチャーをコストを支払わずに召喚してもよい。スピードアタッカーW・ブレイカー自分のターンのバトル中このクリーチャーのパワーを+1000000する。各ターン相手のクリーチャーがはじめて攻撃する時可能ならこのクリーチャーを攻撃する。')
+   return {speedAttacker:true,breaker:2,g209BattlePower:{amount:1000000,ownTurn:true},g792FirstAttackTarget:true,
+    g396Zero:{label:'G・G・G',all:[{g334ZoneCount:{zone:'hand',max:1}},{g792AbsentAlly:'ミリオンブレイブ・カイザー'}]}};
+ }
  if(phase>=791&&d?.status==='complete'){
   const front=normalize(f.abilityText),trigger='S・トリガーS・トリガー';
   const handCreature={op:'Select',origin:'hand',deploy:true,n:1,optional:true};

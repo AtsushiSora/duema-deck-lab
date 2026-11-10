@@ -1,0 +1,360 @@
+{
+  "phase": 792,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6229,
+  "description": "マナからの進化召喚と味方の継続強化、各ターン一度の独立した能力、G・G・Gと最初の攻撃先の制約に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/44212/",
+    "https://dm.takaratomy.co.jp/rule/qa/39986/",
+    "https://dm.takaratomy.co.jp/rule/qa/40270/",
+    "https://dm.takaratomy.co.jp/rule/qa/42657/",
+    "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck06/",
+    "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck07/"
+  ],
+  "cards": [
+    {
+      "id": "dm24ex4-016",
+      "name": "聖霊龍王 メルヴェイユ",
+      "faces": [
+        {
+          "name": "聖霊龍王 メルヴェイユ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーを、自分のマナゾーンから召喚してもよい。\n進化：光または自然のクリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーが出た時、エレメントを１つ選び、シールド化してもよい。\n自分の他のクリーチャーすべてのパワーを＋6000し、「パワード・ブレイカー」を与える。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-016",
+      "spec": {
+        "manaSummon": true,
+        "evolution": {
+          "any": [
+            {
+              "civilization": "光"
+            },
+            {
+              "civilization": "自然"
+            }
+          ]
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "element": true,
+            "to": "shields",
+            "optional": true
+          }
+        ],
+        "g205Aura": {
+          "filter": {
+            "creature": true
+          },
+          "other": true,
+          "power": 6000
+        },
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "other": true,
+            "grants": {
+              "poweredBreaker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "d7f8ff87446b6e17c64031398d76c7db3a2b1bf2cb343290d74cb37ac39e7009",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-033",
+      "name": "大地の精霊龍 ボンボヤージュ",
+      "faces": [
+        {
+          "name": "大地の精霊龍 ボンボヤージュ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー\n各ターンに一度、自分の他のクリーチャーが出た時、カードを１枚引いてもよい。\n各ターンに一度、自分のクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置いてもよい。そうしたら、光または自然の、コスト３以下のクリーチャーを１体、自分のマナゾーンから出してもよい。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-033",
+      "spec": {
+        "blocker": true,
+        "g314OtherEntry": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Offer",
+              "g792Once": "draw",
+              "title": "カードを1枚引く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        },
+        "g252AttackWatch": {
+          "who": "self",
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "g792Once": "ramp",
+              "title": "山札の上1枚をマナに置く？",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1,
+                  "after": [
+                    {
+                      "op": "Select",
+                      "origin": "mana",
+                      "deploy": true,
+                      "n": 1,
+                      "optional": true,
+                      "filter": {
+                        "creature": true,
+                        "max": 3,
+                        "any": [
+                          {
+                            "color": "光"
+                          },
+                          {
+                            "color": "自然"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "564562f844aad35c49669981ac864634a855fa68fc187f063fbfcff5700bbad9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-023",
+      "name": "ミリオンブレイブ・カイザー",
+      "faces": [
+        {
+          "name": "ミリオンブレイブ・カイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "G・G・G：自分の手札が１枚以下で、自分の《ミリオンブレイブ・カイザー》がなければ、このクリーチャーをコストを支払わずに召喚してもよい。\nスピードアタッカー\nW・ブレイカー\n自分のターンのバトル中、このクリーチャーのパワーを+1000000する。\n各ターン、相手のクリーチャーがはじめて攻撃する時、可能ならこのクリーチャーを攻撃する。",
+          "race": "レッド・コマンド・ドラゴン",
+          "powerText": "10000+",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-023",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g209BattlePower": {
+          "amount": 1000000,
+          "ownTurn": true
+        },
+        "g792FirstAttackTarget": true,
+        "g396Zero": {
+          "label": "G・G・G",
+          "all": [
+            {
+              "g334ZoneCount": {
+                "zone": "hand",
+                "max": 1
+              }
+            },
+            {
+              "g792AbsentAlly": "ミリオンブレイブ・カイザー"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "30d139f2527d6862c2075598a6b73710abee11ee6dbc088b53f256d6080c9afd",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex4-Sec004",
+      "canonicalId": "dm24ex4-016",
+      "name": "聖霊龍王 メルヴェイユ",
+      "faces": [
+        {
+          "name": "聖霊龍王 メルヴェイユ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーを、自分のマナゾーンから召喚してもよい。\n進化：光または自然のクリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーが出た時、エレメントを１つ選び、シールド化してもよい。\n自分の他のクリーチャーすべてのパワーを＋6000し、「パワード・ブレイカー」を与える。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-Sec004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-Sec004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "d0e96d36bc1072b72947cc8d697a75787f7ab07687cf9148df72538cbc586393",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-Sec010",
+      "canonicalId": "dm24ex4-023",
+      "name": "ミリオンブレイブ・カイザー",
+      "faces": [
+        {
+          "name": "ミリオンブレイブ・カイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "G・G・G：自分の手札が１枚以下で、自分の《ミリオンブレイブ・カイザー》がなければ、このクリーチャーをコストを支払わずに召喚してもよい。\nスピードアタッカー\nW・ブレイカー\n自分のターンのバトル中、このクリーチャーのパワーを+1000000する。\n各ターン、相手のクリーチャーがはじめて攻撃する時、可能ならこのクリーチャーを攻撃する。",
+          "race": "レッド・コマンド・ドラゴン",
+          "powerText": "10000+",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-Sec010",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-Sec010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "44d44906091ec4e05b22cab600a4bfe5f8953aa5b474426a45d6a1acd56a1732",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp4-TR6",
+      "canonicalId": "dm24ex4-023",
+      "name": "ミリオンブレイブ・カイザー",
+      "faces": [
+        {
+          "name": "ミリオンブレイブ・カイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "G・G・G：自分の手札が１枚以下で、自分の《ミリオンブレイブ・カイザー》がなければ、このクリーチャーをコストを支払わずに召喚してもよい。\nスピードアタッカー\nW・ブレイカー\n自分のターンのバトル中、このクリーチャーのパワーを+1000000する。\n各ターン、相手のクリーチャーがはじめて攻撃する時、可能ならこのクリーチャーを攻撃する。",
+          "race": "レッド・コマンド・ドラゴン",
+          "powerText": "10000+",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-TR6",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-TR6.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "d73bbde81711c133bf981a5aca8851109954fbe99ce692e8662df442cc088031",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex3-rp4TR6",
+      "canonicalId": "dm24ex4-023",
+      "name": "ミリオンブレイブ・カイザー",
+      "faces": [
+        {
+          "name": "ミリオンブレイブ・カイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "G・G・G：自分の手札が１枚以下で、自分の《ミリオンブレイブ・カイザー》がなければ、このクリーチャーをコストを支払わずに召喚してもよい。\nスピードアタッカー\nW・ブレイカー\n自分のターンのバトル中、このクリーチャーのパワーを+1000000する。\n各ターン、相手のクリーチャーがはじめて攻撃する時、可能ならこのクリーチャーを攻撃する。",
+          "race": "レッド・コマンド・ドラゴン",
+          "powerText": "10000+",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp4TR6",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-rp4TR6.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "e532b39be515eac7718445127fefbab0fc3c0e0667163a4d7d6846b0162ba065",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24ex4-016": 4,
+      "dm24ex4-033": 4,
+      "dm24ex4-023": 4,
+      "dm24ex4-Sec004": 4,
+      "dm24ex4-Sec010": 4,
+      "dm25rp4-TR6": 4,
+      "dm25ex3-rp4TR6": 4
+    }
+  }
+}
