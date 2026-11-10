@@ -179729,22 +179729,130 @@
       ],
       "supportBatch": "phase-780",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-013",
+      "name": "ハイパー・エントリー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー\nコスト７以下の超化獣クリーチャーを１体、自分の手札から出してもよい。次の自分のターンのはじめまで、そのクリーチャーのハイパーモードを解放し、「ブロッカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-013",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "g724ExactRace": "超化獣",
+            "max": 7
+          },
+          "g781HyperEntry": true,
+          "title": "手札から出すコスト7以下の超化獣を選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-781",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-S09",
+      "name": "森翠月 ゴルファンタジスタ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "ジャイアント・ドラゴン/超化獣",
+      "text": "マッハファイター\nW・ブレイカー\n自分の超化獣クリーチャーの召喚コストを３少なくする。ただし、コストは０以下にはならない。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\n【ハイパーモード】\nマッハファイター\nW・ブレイカー\n自分の超化獣クリーチャーの召喚コストを３少なくする。ただし、コストは０以下にはならない。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nこのクリーチャーが攻撃する時、次の自分のターンのはじめまで、自分の超化獣クリーチャーすべてのハイパーモードを解放する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-S09",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 2,
+      "g290SummonAura": {
+        "race": "超化獣",
+        "amount": 3
+      },
+      "hyperTap": true,
+      "hyper": {
+        "power": 11000,
+        "g781ReleaseAll": true
+      },
+      "supportBatch": "phase-781",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-025",
+      "name": "ルナコバルト アサギ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ジャイアント・スノーフェアリー",
+      "text": "このクリーチャーが出た時、自分の山札の上から２枚を見る。そのうちの１枚をマナゾーンに置き、もう１枚を手札に加える。\n自分のターンに一度、超化獣クリーチャーを１体、自分のマナゾーンから召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-025",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "stages": [
+            {
+              "n": 1,
+              "to": "mana"
+            },
+            {
+              "n": 1,
+              "to": "hand"
+            }
+          ],
+          "rest": "top"
+        }
+      ],
+      "g450ZoneSummon": {
+        "origin": "mana",
+        "filter": {
+          "creature": true,
+          "g724ExactRace": "超化獣"
+        }
+      },
+      "supportBatch": "phase-781",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 780,
+    "phase": 781,
     "checkedAt": "2026-11-10",
-    "baseCount": 6193,
+    "baseCount": 6196,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6196,
+    "totalCount": 6199,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
       "https://dm.takaratomy.co.jp/rule/qa/44820/",
-      "https://dm.takaratomy.co.jp/rule/qa/44834/",
-      "https://dm.takaratomy.co.jp/rule/qa/44836/",
-      "https://dm.takaratomy.co.jp/rule/qa/47380/"
+      "https://dm.takaratomy.co.jp/rule/qa/45136/",
+      "https://dm.takaratomy.co.jp/rule/qa/45144/",
+      "https://dm.takaratomy.co.jp/rule/qa/44188/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -193348,6 +193456,25 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/qa/45461/",
           "https://dm.takaratomy.co.jp/rule/qa/45462/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 780,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6193,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6196,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/44820/",
+          "https://dm.takaratomy.co.jp/rule/qa/44834/",
+          "https://dm.takaratomy.co.jp/rule/qa/44836/",
+          "https://dm.takaratomy.co.jp/rule/qa/47380/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

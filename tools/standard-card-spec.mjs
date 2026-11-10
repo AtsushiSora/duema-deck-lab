@@ -2456,6 +2456,14 @@ export function standardCardSpec(d,{phase=165}={}){
  }
  const f=d?.faces?.[0];
  if(aliasNames.has(d?.name)||phase>=250&&d?.name==='アイドルマスターレオ')throw Error('既存名の別表記');
+ if(phase>=781&&d?.status==='complete'&&d.faces.length===2&&d.faces.every(face=>face.typeText==='クリーチャー')){
+  const normal='マッハファイターW・ブレイカー自分の超化獣クリーチャーの召喚コストを3少なくする。ただしコストは0以下にはならない。'+
+   'ハイパー化:自分の他のクリーチャーを1体タップする。(自分のメインステップ中にハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く)';
+  const active=d.faces[1],attack='このクリーチャーが攻撃する時次の自分のターンのはじめまで自分の超化獣クリーチャーすべてのハイパーモードを解放する。';
+  if(f.powerText==='6000'&&active.powerText==='11000'&&normalize(f.abilityText)===normal&&normalize(active.abilityText)===normal+attack)
+   return {machFighter:true,breaker:2,g290SummonAura:{race:'超化獣',amount:3},hyperTap:true,
+    hyper:{power:11000,g781ReleaseAll:true}};
+ }
  if(phase>=593&&d?.status==='complete'&&d.faces.length===2&&f.typeText==='クリーチャー'&&d.faces[1].typeText==='呪文'){
   const [front,spell]=d.faces,frontText=normalize(front.abilityText);
   const entryStop=frontText==='相手のクリーチャーが出た時そのターンそのクリーチャーは攻撃できない。';
@@ -2564,6 +2572,15 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=781){
+  const race={creature:true,g724ExactRace:'超化獣'};
+  if(f.typeText==='呪文'&&compact363==='S・トリガーS・トリガーコスト7以下の超化獣クリーチャーを1体自分の手札から出してもよい。次の自分のターンのはじめまでそのクリーチャーのハイパーモードを解放し「ブロッカー」を与える。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'hand',deploy:true,n:1,optional:true,
+    filter:{...race,max:7},g781HyperEntry:true,title:'手札から出すコスト7以下の超化獣を選ぶ（任意）'}]};
+  if(f.typeText==='クリーチャー'&&compact363==='このクリーチャーが出た時自分の山札の上から2枚を見る。そのうちの1枚をマナゾーンに置きもう1枚を手札に加える。自分のターンに一度超化獣クリーチャーを1体自分のマナゾーンから召喚してもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Look',n:2,stages:[{n:1,to:'mana'},{n:1,to:'hand'}],rest:'top'}],
+    g450ZoneSummon:{origin:'mana',filter:race}};
+ }
  if(phase>=780&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const releaseText='次の自分のターンのはじめまで自分の超化獣クリーチャー1体のハイパーモードを解放する。';
   const release={op:'Target',owner:'self',filter:{g724ExactRace:'超化獣'},g780ReleaseHyper:true,

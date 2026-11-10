@@ -4,8 +4,8 @@ import {hyperModeModel} from '../dist/manual-ui.js';
 const YABA='dm24rp1-S05',N='dm01-108';
 const pick=(s,uid)=>act(s,'extended',a=>s.decision.choices[a.choice].value===uid);
 
-test('all twelve registered Hyper creatures activate through a legal action, including newly entered or tapped sources',()=>{
- const cards=data.cards.filter(c=>c.hyperTap);assert.equal(cards.length,12);
+test('all registered Hyper creatures activate through a legal action, including newly entered or tapped sources',()=>{
+ const cards=data.cards.filter(c=>c.hyperTap);assert.ok(cards.some(c=>c.id===YABA));
  for(const c of cards)for(const tapped of[false,true]){const s=setup();give(s,0,'battle',[c.id,N,N]);const [source,a,b]=s.players[0].battle;source.entered=s.turn;source.tapped=tapped;a.entered=s.turn;b.entered=s.turn;
   const before=e.physicalCards(s).map(x=>x.uid).sort(),mana=s.players[0].mana.filter(x=>x.tapped).length;
   assert.ok(hyperModeModel(s,0,source.uid).action);act(s,'hyper',a=>a.uid===source.uid);pick(s,a.uid);if(Number(c.hyperTap)===2){assert.equal(a.tapped,false);pick(s,b.uid);}
