@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6286,
-  "pendingNames": 5541,
-  "phase": 810,
+  "supportedNames": 6289,
+  "pendingNames": 5538,
+  "phase": 811,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3272,
+    "クリーチャー": 3269,
     "NEOクリーチャー": 152,
     "呪文": 785,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1241,
-    "未対応の能力文": 4041,
+    "未対応の能力文": 4038,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -12312,30 +12312,72 @@
           "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
         }
       ]
+    },
+    {
+      "phase": 811,
+      "cards": [
+        {
+          "id": "dm28-014",
+          "name": "地脈の守護者ラグ・マルタス"
+        },
+        {
+          "id": "dm28-038",
+          "name": "暖氷妖精カオルン"
+        },
+        {
+          "id": "dm28-s10",
+          "name": "動脈の超人"
+        }
+      ],
+      "printAliases": [],
+      "supportedNames": 6289,
+      "pendingNames": 5538,
+      "verification": {
+        "focusedPassed": 11,
+        "regressionPassed": 129,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "公式初出3点の全能力・基本情報・650×909の公式JPEG・使用制限なしを照合。公式の同名収録欄とカタログを照合し、重複・再録なし。QA 35633・35663・35664・35668・35669・42944・44837を参照し、同時離脱1枚ごとの誘発、マナ召喚・マナ進化元の移動とタップ支払いの区別、アプルによる移動阻止、両ターンの持ち主別判定、後から出た個体、カオルンの任意マナ追加、動脈の超人のW・T選択と公開対戦情報、ターン更新とJSON再開を検証。既存対戦定義6,286件と既存カタログの完全一致を確認。",
+        "runtimeNote": "各最大10分。Champion Seed・Phase 230/633/807–810の129件が通過。除外を意図した名前パターンでPhase 230のCPU対戦2件も選択されたが、両件を含む回帰が約58秒で完了し、再実行なし。Phase 810で中断したGateの長時間項目と全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "対戦データにサイキック・クリーチャーの対象例がなく、対象判定と超次元への移動を実戦経路で検証できないため保留。"
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 810,
-    "nextPhase": 811,
+    "lastVerifiedPhase": 811,
+    "nextPhase": 812,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm28-038",
-        "name": "暖氷妖精カオルン",
-        "check": "各プレイヤーのターンに自分のマナが離れた事実と、そのターンの終わりの任意マナ追加を、同一ゾーンへの復帰と区別して照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-038"
+        "id": "dm27-042",
+        "name": "パナオン",
+        "check": "ブロッカーと攻撃不可に加え、ブロックしたバトルの後のバウンスを、パナオンの破壊・バトル不成立・対象の移動と区別して照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-042"
       },
       {
-        "id": "dm28-014",
-        "name": "地脈の守護者ラグ・マルタス",
-        "check": "自分のマナを離れるカードの枚数と効果の誘発回数、パワー加算の期限、同時移動と置換時の裁定を確認する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-014"
+        "id": "dm28-042",
+        "name": "天雷の使徒ロドミア",
+        "check": "サムライとのバトル時にだけ発生する呪文検索とシャッフルを、検索制限・バトルのタイミングも含めて照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-042"
       },
       {
-        "id": "dm28-s10",
-        "name": "動脈の超人",
-        "check": "自分のマナが離れたターンの常在パワー上昇とT・ブレイカー付与、元のW・ブレイカーとの選択を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-s10"
+        "id": "dm28-059",
+        "name": "エッジアーム・頼光・ドラグーン",
+        "check": "ナイトとバトルする時の任意クロスギア検索とシャッフルを、検索制限・バトルのタイミングも含めて照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-059"
       },
       {
         "id": "dm24ex4-073",

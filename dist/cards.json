@@ -183209,22 +183209,103 @@
       "escape": true,
       "supportBatch": "phase-810",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm28-014",
+      "name": "地脈の守護者ラグ・マルタス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ガーディアン",
+      "text": "自分のマナゾーンからカードが離れる時、そのターン、このクリーチャーのパワーは+4000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-014",
+      "limit": 4,
+      "g811ManaDeparture": [
+        {
+          "op": "SelfBoost313",
+          "power": 4000,
+          "g536Source": true
+        }
+      ],
+      "supportBatch": "phase-811",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm28-038",
+      "name": "暖氷妖精カオルン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "スノーフェアリー",
+      "text": "ターン中に自分のマナゾーンからカードが１枚でも離れていれば、そのターンの終わりに、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-038",
+      "limit": 4,
+      "g811ManaLeftEnd": [
+        {
+          "op": "Ramp",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-811",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm28-s10",
+      "name": "動脈の超人",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ジャイアント",
+      "text": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのターン、自分のマナゾーンから１枚でもカードが離れていれば、このクリーチャーのパワーは+7000され、「T・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-s10",
+      "limit": 4,
+      "breaker": 2,
+      "g260Self": {
+        "filter": {
+          "g811ManaLeft": true
+        },
+        "grants": {
+          "power": 7000,
+          "breaker": 3,
+          "g633DoubleBreaker": true
+        }
+      },
+      "supportBatch": "phase-811",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 810,
+    "phase": 811,
     "checkedAt": "2026-11-10",
-    "baseCount": 6283,
+    "baseCount": 6286,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6286,
+    "totalCount": 6289,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/31783/",
-      "https://dm.takaratomy.co.jp/rule/qa/42363/",
-      "https://dm.takaratomy.co.jp/rule/qa/42523/",
-      "https://dm.takaratomy.co.jp/rule/qa/48491/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35655/",
+      "https://dm.takaratomy.co.jp/rule/qa/42944/",
+      "https://dm.takaratomy.co.jp/rule/qa/44837/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35633/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35663/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35664/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35668/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35669/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -197422,6 +197503,26 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35586/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37735/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 810,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6283,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6286,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/31783/",
+          "https://dm.takaratomy.co.jp/rule/qa/42363/",
+          "https://dm.takaratomy.co.jp/rule/qa/42523/",
+          "https://dm.takaratomy.co.jp/rule/qa/48491/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35655/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

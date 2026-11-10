@@ -2507,6 +2507,15 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=811&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(text==='自分のマナゾーンからカードが離れる時そのターンこのクリーチャーのパワーは+4000される。')
+   return {g811ManaDeparture:[{op:'SelfBoost313',power:4000,g536Source:true}]};
+  if(text==='ターン中に自分のマナゾーンからカードが1枚でも離れていればそのターンの終わりに自分の山札の上から1枚目をマナゾーンに置いてもよい。')
+   return {g811ManaLeftEnd:[{op:'Ramp',n:1,optional:true}]};
+  if(text==='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)このターン自分のマナゾーンから1枚でもカードが離れていればこのクリーチャーのパワーは+7000され「T・ブレイカー」を得る。')
+   return {breaker:2,g260Self:{filter:{g811ManaLeft:true},grants:{power:7000,breaker:3,g633DoubleBreaker:true}}};
+ }
  if(phase>=810&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='クリーチャー'){
