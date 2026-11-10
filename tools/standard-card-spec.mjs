@@ -2507,6 +2507,19 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=795&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const front=normalize(f.abilityText),blocker='ブロッカーブロッカー';
+  const interstellar=blocker+'ジャストダイバーW・ブレイカーこのクリーチャーが出た時水または闇のコスト7以下の呪文を1枚自分の手札または墓地からコストを支払わずに唱えてもよい。そうしたらそれを唱えた後墓地のかわりに自分の超次元ゾーンに置く。このクリーチャーが攻撃する時呪文を1枚自分の超次元ゾーンからコストを支払わずに唱えてもよい。そうしたらそれを唱えた後墓地のかわりに山札の下に置く。';
+  if(front===interstellar||front===interstellar.replace('墓地のかわりに自分の超次元ゾーン','墓地のかわりに超次元ゾーン'))return {blocker:true,justDiver:true,breaker:2,effect:'sixPhoto',
+   g34Tasks:[{op:'Execute',zones:['hand','grave'],spellOnly:true,max:7,spellColorsAny:['水','闇'],g555FinishTo:'extra'}],
+   g34Attack:[{op:'Execute',origin:'extra',spellOnly:true,g555FinishTo:'deck'}]};
+  const revenge='リベンジ・チャンス:各ターンの終わりに相手のコスト9以上またはパワー15000以上のクリーチャーがあればこのクリーチャーをコストを支払わずに召喚してもよい。';
+  if(front===revenge+blocker+'W・ブレイカーこのクリーチャーがタップした時相手のクリーチャーを1体選び破壊する。その後その選んだクリーチャー以下のコストの進化ではないクリーチャーを1体自分の墓地から出してもよい。')
+   return {blocker:true,breaker:2,g795Revenge:{any:[{min:9},{minPower:15000}],g199Power:true},g188Tapped:[{op:'Target',g786ReviveAtCost:true,g795OptionalNonEvolution:true}]};
+  const hyper='ハイパーエナジー(このクリーチャーを召喚する時コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー1体につきこのクリーチャーの召喚コストを2少なくする。ただしコストは0以下にはならない)';
+  if(front===hyper+'マッハファイターT・ブレイカーこのクリーチャーが出た時相手のシールドを1つ選び持ち主のマナゾーンに置く。その後こうしてマナゾーンに置いたカードのいずれかよりコストが小さいクリーチャーを1体自分のマナゾーンから出してもよい。')
+   return {hyperEnergy:true,machFighter:true,breaker:3,effect:'sixPhoto',g34Tasks:[{op:'ShieldMana557',g795DeployBelow:true}]};
+ }
  if(phase>=794&&d?.status==='complete'&&d.faces.length===1){
   const front=normalize(f.abilityText);
   const gs='{GS}G・ストライク(この呪文を自分のシールドゾーンから手札に加える時表向きにし相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)';

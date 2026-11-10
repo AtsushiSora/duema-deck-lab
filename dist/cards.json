@@ -181568,23 +181568,139 @@
       ],
       "supportBatch": "phase-794",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-017",
+      "name": "偽りの月 インターステラ",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "サイバー・ムーン・コマンド/アンノウン",
+      "text": "ブロッカー ブロッカー\nジャストダイバー\nW・ブレイカー\nこのクリーチャーが出た時、水または闇の、コスト７以下の呪文を１枚、自分の手札または墓地からコストを支払わずに唱えてもよい。そうしたら、それを唱えた後、墓地のかわりに自分の超次元ゾーンに置く。\nこのクリーチャーが攻撃する時、呪文を１枚、自分の超次元ゾーンからコストを支払わずに唱えてもよい。そうしたら、それを唱えた後、墓地のかわりに山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-017",
+      "limit": 4,
+      "blocker": true,
+      "justDiver": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Execute",
+          "zones": [
+            "hand",
+            "grave"
+          ],
+          "spellOnly": true,
+          "max": 7,
+          "spellColorsAny": [
+            "水",
+            "闇"
+          ],
+          "g555FinishTo": "extra"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Execute",
+          "origin": "extra",
+          "spellOnly": true,
+          "g555FinishTo": "deck"
+        }
+      ],
+      "supportBatch": "phase-795",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-022",
+      "name": "地雷冥土The World Is Mine",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 9000,
+      "race": "デーモン・コマンド/アウトレイジ",
+      "text": "リベンジ・チャンス：各ターンの終わりに、相手の、コスト９以上またはパワー15000以上のクリーチャーがあれば、このクリーチャーをコストを支払わずに召喚してもよい。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーがタップした時、相手のクリーチャーを１体選び、破壊する。その後、その選んだクリーチャー以下のコストの、進化ではないクリーチャーを１体、自分の墓地から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-022",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g795Revenge": {
+        "any": [
+          {
+            "min": 9
+          },
+          {
+            "minPower": 15000
+          }
+        ],
+        "g199Power": true
+      },
+      "g188Tapped": [
+        {
+          "op": "Target",
+          "g786ReviveAtCost": true,
+          "g795OptionalNonEvolution": true
+        }
+      ],
+      "supportBatch": "phase-795",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-006",
+      "name": "エツナブ・ナワル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 11,
+      "power": 16000,
+      "race": "ミステリー・トーテム/ツォルキン",
+      "text": "ハイパーエナジー（このクリーチャーを召喚する時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない）\nマッハファイター\nT・ブレイカー\nこのクリーチャーが出た時、相手のシールドを１つ選び、持ち主のマナゾーンに置く。その後、こうしてマナゾーンに置いたカードのいずれかよりコストが小さいクリーチャーを１体、自分のマナゾーンから出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-006",
+      "limit": 4,
+      "hyperEnergy": true,
+      "machFighter": true,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldMana557",
+          "g795DeployBelow": true
+        }
+      ],
+      "supportBatch": "phase-795",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 794,
+    "phase": 795,
     "checkedAt": "2026-11-10",
-    "baseCount": 6235,
+    "baseCount": 6238,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6238,
+    "totalCount": 6241,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/46235/",
-      "https://dm.takaratomy.co.jp/rule/qa/46251/",
-      "https://dm.takaratomy.co.jp/rule/qa/39652/",
-      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck02/",
-      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck04/"
+      "https://dm.takaratomy.co.jp/rule/qa/46248/",
+      "https://dm.takaratomy.co.jp/rule/qa/46249/",
+      "https://dm.takaratomy.co.jp/rule/qa/46250/",
+      "https://dm.takaratomy.co.jp/rule/qa/46243/",
+      "https://dm.takaratomy.co.jp/rule/qa/33611/",
+      "https://dm.takaratomy.co.jp/rule/qa/40025/",
+      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck04/",
+      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck05/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -195463,6 +195579,26 @@
           "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck02/",
           "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck05/",
           "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck08/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 794,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6235,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6238,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/46235/",
+          "https://dm.takaratomy.co.jp/rule/qa/46251/",
+          "https://dm.takaratomy.co.jp/rule/qa/39652/",
+          "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck02/",
+          "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck04/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

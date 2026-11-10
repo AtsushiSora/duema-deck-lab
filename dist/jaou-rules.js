@@ -51,7 +51,10 @@ export function createJaouRules(api){
  attackStart(s,p,x){const serial=s.g3AttackSerial=(s.g3AttackSerial||0)+1;s.g3Window={serial,p:1-p,target:s.attack.target,done:false};declarations(s,p,serial,s.attack.target);},
  beforeNonActive(s){const w=s.g3Window;if(!w||w.done||s.decision||s.extTasks?.length||s.attackDeclarations||s.leaving||s.battleResolution||s.judge)return false;w.done=true;return declarations(s,w.p,w.serial,w.target);},
  start(s,p){const rows=(s.g3Debts||[]).filter(x=>x.p===p);s.g3Debts=(s.g3Debts||[]).filter(x=>x.p!==p);return rows.map(x=>({source:x.source,effect:'extended',task:task('g3_Debt',p,x.source)}));},
- spellCast(s,p,c,inst,origin,face){if(!inst||c.type!=='spell')return;const list=creatures(s,p).filter(x=>effective(x,s).cycle);if(origin==='grave'&&list.length)inst.finishTo='deck';if(origin==='hand')for(const x of list)if(s.g3CycleUsed?.[key(x)]!==s.turn)on(s,p,x,'g3_CycleRepeat',{key:key(x),spell:inst.uid,serial:inst.zoneSerial||0,face});},
+ spellCast(s,p,c,inst,origin,face){if(!inst||c.type!=='spell')return;const list=creatures(s,p).filter(x=>effective(x,s).cycle);if(origin==='grave'&&list.length){
+  if(inst.finishTo==='extra')inst.g795CycleFinish=true;
+  else inst.finishTo='deck';
+ }if(origin==='hand')for(const x of list)if(s.g3CycleUsed?.[key(x)]!==s.turn)on(s,p,x,'g3_CycleRepeat',{key:key(x),spell:inst.uid,serial:inst.zoneSerial||0,face});},
  lossOptions(s,p){return s.active!==p&&mana(s,p)?s.players[p].hand.filter(x=>card(x).babaLoss).map(x=>opt(card(x).name+'を見せ、山札の下へ置いて敗北を回避',{kind:'baba',uid:x.uid},50,x.cardId)):[];},
  };
 }

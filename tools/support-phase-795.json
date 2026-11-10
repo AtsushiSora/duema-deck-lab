@@ -1,0 +1,359 @@
+{
+  "phase": 795,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6238,
+  "description": "超次元を経由する呪文と競合置換、リベンジ・チャンスとタップ時効果、ハイパーエナジーと移動したシールドに応じた展開に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/46248/",
+    "https://dm.takaratomy.co.jp/rule/qa/46249/",
+    "https://dm.takaratomy.co.jp/rule/qa/46250/",
+    "https://dm.takaratomy.co.jp/rule/qa/46243/",
+    "https://dm.takaratomy.co.jp/rule/qa/33611/",
+    "https://dm.takaratomy.co.jp/rule/qa/40025/",
+    "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck04/",
+    "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck05/"
+  ],
+  "cards": [
+    {
+      "id": "dm24ex4-017",
+      "name": "偽りの月 インターステラ",
+      "faces": [
+        {
+          "name": "偽りの月 インターステラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー ブロッカー\nジャストダイバー\nW・ブレイカー\nこのクリーチャーが出た時、水または闇の、コスト７以下の呪文を１枚、自分の手札または墓地からコストを支払わずに唱えてもよい。そうしたら、それを唱えた後、墓地のかわりに自分の超次元ゾーンに置く。\nこのクリーチャーが攻撃する時、呪文を１枚、自分の超次元ゾーンからコストを支払わずに唱えてもよい。そうしたら、それを唱えた後、墓地のかわりに山札の下に置く。",
+          "race": "サイバー・ムーン・コマンド/アンノウン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-017",
+      "spec": {
+        "blocker": true,
+        "justDiver": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Execute",
+            "zones": [
+              "hand",
+              "grave"
+            ],
+            "spellOnly": true,
+            "max": 7,
+            "spellColorsAny": [
+              "水",
+              "闇"
+            ],
+            "g555FinishTo": "extra"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Execute",
+            "origin": "extra",
+            "spellOnly": true,
+            "g555FinishTo": "deck"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "df2c586631989be3a50c142542ccdf4a4814feef20163a6c4e6295f10a0a14dc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-022",
+      "name": "地雷冥土The World Is Mine",
+      "faces": [
+        {
+          "name": "地雷冥土The World Is Mine",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "リベンジ・チャンス：各ターンの終わりに、相手の、コスト９以上またはパワー15000以上のクリーチャーがあれば、このクリーチャーをコストを支払わずに召喚してもよい。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーがタップした時、相手のクリーチャーを１体選び、破壊する。その後、その選んだクリーチャー以下のコストの、進化ではないクリーチャーを１体、自分の墓地から出してもよい。",
+          "race": "デーモン・コマンド/アウトレイジ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-022",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g795Revenge": {
+          "any": [
+            {
+              "min": 9
+            },
+            {
+              "minPower": 15000
+            }
+          ],
+          "g199Power": true
+        },
+        "g188Tapped": [
+          {
+            "op": "Target",
+            "g786ReviveAtCost": true,
+            "g795OptionalNonEvolution": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "5893e498774d2e4bdecaee969b9d0d77bff35169078d2b8cfda793f49428b544",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-006",
+      "name": "エツナブ・ナワル",
+      "faces": [
+        {
+          "name": "エツナブ・ナワル",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 11,
+          "costText": "11",
+          "abilityText": "ハイパーエナジー（このクリーチャーを召喚する時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない）\nマッハファイター\nT・ブレイカー\nこのクリーチャーが出た時、相手のシールドを１つ選び、持ち主のマナゾーンに置く。その後、こうしてマナゾーンに置いたカードのいずれかよりコストが小さいクリーチャーを１体、自分のマナゾーンから出してもよい。",
+          "race": "ミステリー・トーテム/ツォルキン",
+          "powerText": "16000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-006",
+      "spec": {
+        "hyperEnergy": true,
+        "machFighter": true,
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldMana557",
+            "g795DeployBelow": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "d3dd8eca1013350d569e9f266c15dc30bd0397543cf4da5866bcdeaabe22cb1f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex4-Sec005",
+      "canonicalId": "dm24ex4-017",
+      "name": "偽りの月 インターステラ",
+      "faces": [
+        {
+          "name": "偽りの月 インターステラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー ブロッカー\nジャストダイバー\nW・ブレイカー\nこのクリーチャーが出た時、水または闇の、コスト７以下の呪文を１枚、自分の手札または墓地からコストを支払わずに唱えてもよい。そうしたら、それを唱えた後、墓地のかわりに自分の超次元ゾーンに置く。\nこのクリーチャーが攻撃する時、呪文を１枚、自分の超次元ゾーンからコストを支払わずに唱えてもよい。そうしたら、それを唱えた後、墓地のかわりに山札の下に置く。",
+          "race": "サイバー・ムーン・コマンド/アンノウン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-Sec005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-Sec005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "02b41a1aceac743617b01a6e033dbb2ddd7f3bc7602f48f8c6c88c4da3a9608f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-ChoSec005",
+      "canonicalId": "dm24ex4-017",
+      "name": "偽りの月 インターステラ",
+      "faces": [
+        {
+          "name": "偽りの月 インターステラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー ブロッカー\nジャストダイバー\nW・ブレイカー\nこのクリーチャーが出た時、水または闇の、コスト７以下の呪文を１枚、自分の手札または墓地からコストを支払わずに唱えてもよい。そうしたら、それを唱えた後、墓地のかわりに自分の超次元ゾーンに置く。\nこのクリーチャーが攻撃する時、呪文を１枚、自分の超次元ゾーンからコストを支払わずに唱えてもよい。そうしたら、それを唱えた後、墓地のかわりに山札の下に置く。",
+          "race": "サイバー・ムーン・コマンド/アンノウン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-ChoSec005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-ChoSec005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "329ecd789065cba8f2c6033a58a0c424127a742d56b8d415966980b9140d0b5a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex4-TR11",
+      "canonicalId": "dm24ex4-017",
+      "name": "偽りの月 インターステラ",
+      "faces": [
+        {
+          "name": "偽りの月 インターステラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー ブロッカー\nジャストダイバー\nW・ブレイカー\nこのクリーチャーが出た時、水または闇の、コスト７以下の呪文を１枚、自分の手札または墓地からコストを支払わずに唱えてもよい。そうしたら、それを唱えた後、墓地のかわりに超次元ゾーンに置く。\nこのクリーチャーが攻撃する時、呪文を１枚、自分の超次元ゾーンからコストを支払わずに唱えてもよい。そうしたら、それを唱えた後、墓地のかわりに山札の下に置く。",
+          "race": "サイバー・ムーン・コマンド/アンノウン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-TR11",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex4-TR11.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "8258ac99bbed196bf197e52b513dc6d4e501f1ba6cae43ea08457348708c7790",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-Sec009",
+      "canonicalId": "dm24ex4-022",
+      "name": "地雷冥土The World Is Mine",
+      "faces": [
+        {
+          "name": "地雷冥土The World Is Mine",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "リベンジ・チャンス：各ターンの終わりに、相手の、コスト９以上またはパワー15000以上のクリーチャーがあれば、このクリーチャーをコストを支払わずに召喚してもよい。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーがタップした時、相手のクリーチャーを１体選び、破壊する。その後、その選んだクリーチャー以下のコストの、進化ではないクリーチャーを１体、自分の墓地から出してもよい。",
+          "race": "デーモン・コマンド/アウトレイジ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-Sec009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-Sec009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "296ea4790e55803e3e0971333dcbb5731c2273cda093b9865b63cd0c502b7a62",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-ChoSec009",
+      "canonicalId": "dm24ex4-022",
+      "name": "地雷冥土The World Is Mine",
+      "faces": [
+        {
+          "name": "地雷冥土The World Is Mine",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "リベンジ・チャンス：各ターンの終わりに、相手の、コスト９以上またはパワー15000以上のクリーチャーがあれば、このクリーチャーをコストを支払わずに召喚してもよい。\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーがタップした時、相手のクリーチャーを１体選び、破壊する。その後、その選んだクリーチャー以下のコストの、進化ではないクリーチャーを１体、自分の墓地から出してもよい。",
+          "race": "デーモン・コマンド/アウトレイジ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-ChoSec009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-ChoSec009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "36f5ee123978f7f01075d992b3817b33388dac0540c275c326500fc0e6b53195",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-rp4Sec14",
+      "canonicalId": "dm24rp4-006",
+      "name": "エツナブ・ナワル",
+      "faces": [
+        {
+          "name": "エツナブ・ナワル",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 11,
+          "costText": "11",
+          "abilityText": "ハイパーエナジー（このクリーチャーを召喚する時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない）\nマッハファイター\nT・ブレイカー\nこのクリーチャーが出た時、相手のシールドを１つ選び、持ち主のマナゾーンに置く。その後、こうしてマナゾーンに置いたカードのいずれかよりコストが小さいクリーチャーを１体、自分のマナゾーンから出してもよい。",
+          "race": "ミステリー・トーテム/ツォルキン",
+          "powerText": "16000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp4Sec14",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp4Sec14.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "65936674f37812e87d1d97961803a437d82f8687c5d13399a1045a48465f7bae",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24ex4-017": 4,
+      "dm24ex4-022": 4,
+      "dm24rp4-006": 4,
+      "dm24ex4-Sec005": 4,
+      "dm24ex4-ChoSec005": 4,
+      "dm25ex4-TR11": 4,
+      "dm24ex4-Sec009": 4,
+      "dm24ex4-ChoSec009": 4,
+      "dm24ex3-rp4Sec14": 4
+    }
+  }
+}

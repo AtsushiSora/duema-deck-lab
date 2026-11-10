@@ -138,6 +138,12 @@ export function createSixPhotoRules(api){
   for(const [p,y] of rows)api.tap(s,p,y);
  }
 
+ function revengeCard795(s,t){return s.players[t.p].hand.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial&&card(y).g795Revenge&&!api.handAbilityIgnored(s,y));}
+ function revengeReady795(s,p,x){
+  const c=card(x),filter=c.g795Revenge;
+  return creatures(s,1-p).some(y=>!y.sealed&&matches(s,1-p,y,filter))&&
+   api.canCast(s,p,c,'hand')&&api.canEnter(s,p,c,{origin:'hand',execution:true});
+ }
  function chanceMatches419(s,p,x,w){const name=creatureFaceName(effective(x,s));return(!w.name||name.includes(w.name))&&(!w.g201ExactName||exactName(name)===exactName(w.g201ExactName))&&matches(s,p,x,{...w,g199Power:true});}
  function graveCreatureName614(s,p,c){
   const name=exactName(creatureFaceName(c));
@@ -1342,6 +1348,18 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  case'g34_SelfExtraBreak444':if(own.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))))(s.extLimits??=[]).push({kind:'g412ExtraBreak',player:t.p,ref:{uid:t.uid,incarnation:t.incarnation||0},source:t.source,amount:t.amount,expires:'end',who:s.active});break;
  case'g34_SelfBoost313':{const y=t.g536Source?sourceHost474(s,t)?.x:x;if(y&&(!t.g694ClearOnSeal||!y.sealed&&api.isCreature(s,y))){(y.powerModifiers??=[]).push({amount:t.power,expires:'end',who:s.active,...(t.g694ClearOnSeal?{g694ClearOnSeal:true}:{}),...(t.g337PowerAttacker?{attackOnly:true,grantedAbility:true}:{})});if(t.breaker)(y.g34Grants??=[]).push({turn:s.turn,g313Breaker:t.breaker});}break;}
  case'g34_SelfTap314':if(x)api.tap(s,t.p,x);break;
+ case'g34_RevengeDeclare795':{
+  const y=revengeCard795(s,t);
+  if(y)choice(s,t,card(y).name+'のリベンジ・チャンスを宣言する？',
+   [opt('宣言する',true,revengeReady795(s,t.p,y)?25:-5,y.cardId),skip()]);
+  break;
+ }
+ case'g34_RevengeSummon795':{
+  const y=revengeCard795(s,t);
+  if(y&&revengeReady795(s,t.p,y))choice(s,t,card(y).name+'をリベンジ・チャンスで召喚する？',
+   [opt('コストを支払わずに召喚する',true,25,y.cardId),skip()]);
+  break;
+ }
  case'g34_Chance417':{const y=own.hand.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial),c=y&&faces(card(y))[t.face];if(c?.g417Chance&&!api.spellIgnored(s,c)&&api.canCast(s,t.p,c,'hand'))choice(s,t,'アタック・チャンス：'+c.name+'を唱える？',[opt('コストを支払わずに唱える',true,20+modeScore(s,t,c.g34Tasks||[]),y.cardId),skip()]);break;}
  case'g34_SpellFinish416':{const frame=(s.extSpells||[]).find(f=>f.inst.uid===t.uid&&f.caster===t.p&&(!f.virtual||f.shieldCast));if(frame){frame.to=t.to;frame.g416SelfFinish=true;if(frame.shieldCast)frame.inst.finishTo=t.to;}break;}
  case'g34_Judge318':api.singleJudge(s,t.p,t.source,t.uid,{...t,op:'g34_Sequence',defs:t.defs});break;
@@ -2217,6 +2235,17 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  case'g34_MarshalTouch558':if(v){const y=marshalRows558(s,t).find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation);if(y){const defs=marshalDefs558(t,cost(effective(y,s)));move(s,[{player:t.p,uid:y.uid,to:'hand',controller:t.controller??t.p}]);start(s,t,defs);}}break;
  case'g34_SacrificeAlly413':if(v){const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation&&!y.sealed&&(t.g547Seed?matches(s,t.p,y,{g295Tamaseed:true}):api.isCreature(s,y)));if(y&&(!t.other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))){move(s,[{player:t.p,uid:y.uid,to:'grave',destroy:true,controller:t.controller??t.p}]);start(s,t,t.defs);}}break;
  case'g34_SelfSacrifice407':if(v){const present=s.players.some(p=>p.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))));if(present)start(s,t,[{op:'SelfDestroy'},...(t.defs||[])]);}break;
+ case'g34_RevengeDeclare795':if(v){
+  const y=revengeCard795(s,t);
+  if(y&&s.endStep){
+   api.log(s,t.p,'reveal',card(y).name+'のリベンジ・チャンスを宣言',{cardId:y.cardId});
+   s.endStep.deferred.push({player:t.p,uid:y.uid,source:y.cardId,effect:'extended',task:{...t,op:'g34_RevengeSummon795'}});
+  }
+ }break;
+ case'g34_RevengeSummon795':if(v){
+  const y=revengeCard795(s,t);
+  if(y&&revengeReady795(s,t.p,y))cast(s,t.p,y.uid,true,null,0,null,'hand','リベンジ・チャンス');
+ }break;
  case'g34_Chance417':if(v){const y=own.hand.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial),c=y&&faces(card(y))[t.face];if(c?.g417Chance&&!api.spellIgnored(s,c)&&api.canCast(s,t.p,c,'hand'))cast(s,t.p,y.uid,true,null,t.face,null,'hand','アタック・チャンス');}break;
  case'g34_Offer':if(v){
   if(t.g792Once){
@@ -2226,7 +2255,19 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
   start(s,t,t.defs);
  }break;
  case'g34_Break497':if(v)put(s,{...t,selected:[...(t.selected||[]),v]});break;
- case'g34_ShieldMana557':if(s.players[1-t.p].shields.some(x=>x.uid===v)){const moved=api.moveShields(s,1-t.p,[v],'mana');api.log(s,t.p,'shieldMana',card(t.source).name+'：相手のシールドを1つマナへ置いた（カード'+moved.length+'枚）',{cardId:t.source});}break;
+ case'g34_ShieldMana557':{
+  const opp=s.players[1-t.p];
+  if(!opp.shields.some(x=>x.uid===v))break;
+  const moved=api.moveShields(s,1-t.p,[v],'mana');
+  api.log(s,t.p,'shieldMana',card(t.source).name+'：相手のシールドを1つマナへ置いた（カード'+moved.length+'枚）',{cardId:t.source});
+  if(t.g795DeployBelow){
+   const movedToMana=moved.filter(y=>opp.mana.includes(y));
+   if(movedToMana.length){
+    const limit=Math.max(...movedToMana.flatMap(y=>faces(card(y)).map(cost)));
+    start(s,t,[{op:'Select',origin:'mana',n:1,deploy:true,optional:true,filter:{creature:true,belowCost:limit===Infinity?'∞':limit}}]);
+   }
+  }
+ }break;
  case'g34_Break278':{
   const host=t.requiresCreature&&sourceHost474(s,t);
   if(t.requiresCreature&&(!host||!api.isCreature(s,host.x)))break;
@@ -2373,11 +2414,12 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
    if(!y)break;
    const max=cost(effective(y,s));
    move(s,[{player:v.p,uid:y.uid,to:'grave',destroy:true,controller:t.p}]);
-   start(s,t,[{op:'Select',origin:'grave',n:1,deploy:true,filter:{creature:true,...(max===Infinity?{}:{max})}}]);
+   start(s,t,[{op:'Select',origin:'grave',n:1,deploy:true,optional:!!t.g795OptionalNonEvolution,
+    filter:{creature:true,...(max===Infinity?{}:{max}),...(t.g795OptionalNonEvolution?{nonEvolution:true}:{})}}]);
    break;
   }
   if(v){const y=s.players[v.p].battle.find(y=>y.uid===v.uid);if(y){if(t.g503Stack){start(s,t,[{op:t.g503Stack==='draw'?'DrawUpTo':'Ramp',n:api.allLayers(y).length},...(t.after||[])]);break;}if(t.g467Destinations){put(s,{...t,op:'g34_TargetDestination467',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g235TapOrUntap){put(s,{...t,op:'g34_TapState235',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g565AttackLock)(y.g35NoAttack??=[]).push({turn:s.turn});if(t.g569WeakerBlock)(s.extLimits??=[]).push({kind:'g569WeakerBlock',ref:{uid:y.uid,incarnation:y.incarnation||0},spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1)),expires:'end',who:s.active});if(t.g567PlayerStop)stopPlayerAttack567(s,t,y);if(t.g190Freeze)freeze(s,t,v.p,y);if(t.g546Force)force546(s,t,v.p,y);if(t.g547OwnerShield)put(s,task('g34_ShieldTop',v.p,t.source,{n:1,controller:t.controller??t.p}));if(t.g631MillCost){const amount=cost(effective(y,s));start(s,t,[{op:'Mill',n:Number.isFinite(amount)?amount:'∞',...(t.g638OptionalMill?{optional:true}:{})}]);}if(t.to)move(s,[{player:v.p,uid:v.uid,to:t.to,destroy:t.to==='grave',tapped:!!t.tapped,...(t.faceUp?{faceUp:true}:{})}]);if(t.tap)api.tap(s,v.p,y);if(t.g676TapNames)tapNames676(s,y);if(t.g291UntapUntilSelf)(y.tapLocks??=[]).push(t.p);if(t.untap&&api.canUntap(y)){const was=y.tapped;y.tapped=false;if(was)combined.untapped(s,v.p,y);}if(t.lock){if(t.spell)(y.g170StartFreeze??=[]).push({spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});else y.skipUntap=true;}if(t.power)(y.powerModifiers??=[]).push({amount:t.power,expires:t.g521UntilStart?'start':'end',who:t.g521UntilStart?t.p:s.active,...(t.g337PowerAttacker?{attackOnly:true,grantedAbility:true}:{}),spellSource:t.spell? t.source:undefined,spellCost:t.spell?cost(faces(card(t.source)).at(-1)):undefined});if(t.grant)applyGrant(s,t,y);if(t.g465DestroySafe)(s.extLimits??=[]).push({kind:'g409AttackEffect',player:v.p,ref:{uid:y.uid,incarnation:y.incarnation||0},source:t.source,effect:'destroySafe',expires:t.g465DestroySafe,who:t.g465DestroySafe==='start'?t.p:s.active});if(t.g455ExtraBreak)(s.extLimits??=[]).push({kind:'g412ExtraBreak',player:v.p,ref:{uid:y.uid,incarnation:y.incarnation||0},source:t.source,amount:t.g455ExtraBreak,expires:'end',who:s.active});if(t.seal)api.seal(s,v.p,[y.uid]);if(t.g587AfterSelection)start(s,t,t.after);}}if(t.after&&!t.g587AfterSelection)start(s,t,t.after);break;
- case'g34_Execute':if(v){const y=own[v.origin].find(x=>x.uid===v.uid);if(t.g555FinishTo&&(!y||(y.zoneSerial||0)!==(v.serial555||0)||!api.canMoveZone(s,t.p,v.origin)))break;const c=faces(card(y))[v.face];if(t.g555FinishTo){if(!c||c.type!=='spell'||cost(c)>t.max||t.g556SpellColor&&!colors(c).includes(t.g556SpellColor)||!api.canCast(s,t.p,c,v.origin))break;y.finishTo=t.g555FinishTo;}if(c.evolution||c.neoEvolution)put(s,{...t,op:'g34_Put',target:v.uid,origin:v.origin,execution:true,face:v.face});else cast(s,t.p,v.uid,true,null,v.face,null,v.origin,'カードの能力');}else if(t.g408Decline)start(s,t,t.g408Decline);break;
+ case'g34_Execute':if(v){const y=own[v.origin].find(x=>x.uid===v.uid);if(t.g555FinishTo&&(!y||(y.zoneSerial||0)!==(v.serial555||0)||!api.canMoveZone(s,t.p,v.origin)))break;const c=faces(card(y))[v.face];if(t.g555FinishTo){if(!c||c.type!=='spell'||cost(c)>t.max||t.spellColorsAny&&!colors(c).some(color=>t.spellColorsAny.includes(color))||t.g556SpellColor&&!colors(c).includes(t.g556SpellColor)||!api.canCast(s,t.p,c,v.origin))break;y.finishTo=t.g555FinishTo;}if(c.evolution||c.neoEvolution)put(s,{...t,op:'g34_Put',target:v.uid,origin:v.origin,execution:true,face:v.face});else cast(s,t.p,v.uid,true,null,v.face,null,v.origin,'カードの能力');}else if(t.g408Decline)start(s,t,t.g408Decline);break;
  case'g34_Choose':put(s,...tasks(t.p,t.source,t.modes[v].defs,{uid:t.uid,incarnation:t.incarnation}),...(t.repeat>1?[{...t,repeat:t.repeat-1}]:[]));break;
  case'g34_Custom':customChosen(s,t,v);break;
  default:throw Error('未実装の6デッキ選択：'+t.op);
@@ -2900,6 +2942,11 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
     });
    if(defs.length)queue(s,p,x,defs);
   }if(effective(x,s).g34Role==='dragonOrb')queue(s,p,x,[C('orbDeploy')]);if(ninja(effective(x,s)))for(const y of(snapshot?.dororon?.[p]||active(s,p,'dororon')))queue(s,p,y,[E('Draw',{n:1,optional:true})]);}},
+ revengeEnd795(s){
+  const declarations=[s.active,1-s.active].flatMap(p=>s.players[p].hand.filter(y=>card(y).g795Revenge&&!api.handAbilityIgnored(s,y))
+   .map(y=>task('g34_RevengeDeclare795',p,y.cardId,{uid:y.uid,serial:y.zoneSerial||0})));
+  if(declarations.length)put(s,...declarations);
+ },
  end(s){if(s.extLimits)s.extLimits=s.extLimits.filter(l=>!(l.kind==='g546Force'&&l.when==='nextOpponent'&&s.active===1-l.controller&&s.turn>l.turn));const out=collect537(s,'turnEnd',s.active);const remaining501=[];for(const r of s.g501EndDelays||[])if(!r.ownEnd||r.p===s.active)out.push({player:r.p,source:r.source,effect:'extended',task:task('g34_ResolveEnd501',r.p,r.source,{...r})});else remaining501.push(r);s.g501EndDelays=remaining501;for(const t of s.g484BreakEnds||[])if(t.turn===s.turn)out.push({player:t.p,source:t.source,uid:t.uid,effect:'extended',task:task('g34_Sequence',t.p,t.source,{uid:t.uid,incarnation:t.incarnation,defs:[E('BreakReturn484')]})});s.g484BreakEnds=[];for(const t of s.g408EndUntaps||[])if(t.turn===s.turn)out.push({player:t.p,source:t.source,uid:t.g399Attacker.uid,effect:'extended',task:task('g34_AttackUntap408',t.p,t.source,{g399Attacker:t.g399Attacker})});s.g408EndUntaps=[];for(const p of[0,1]){const add=(x,defs,source=x.cardId)=>out.push({player:p,uid:x.uid,source,effect:'extended',task:task('g34_Sequence',p,source,{uid:x.uid,incarnation:x.incarnation||0,defs})});for(const x of s.players[p].battle){if(x.g34Delayed?.turn===s.turn){const d=x.g34Delayed,controller=d.controller??p,source=d.source||x.cardId;out.push({player:controller,uid:x.uid,source,effect:'extended',task:task('g34_DelayedMove532',controller,source,{uid:x.uid,incarnation:x.incarnation||0,to:d.to})});}if(api.ignored(s,x))continue;const r=card(x).g34Role;if(!x.sealed&&effective(x,s).g474AnyEnd)add(x,effective(x,s).g474AnyEnd);
   const breakThreshold=card(x).g769ShieldBreakRaid;
   if(s.active===p&&!x.sealed&&breakThreshold&&effective(x,s).g769ShieldBreakRaid&&
