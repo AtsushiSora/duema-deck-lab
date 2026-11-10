@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6283,
-  "pendingNames": 5544,
-  "phase": 809,
+  "supportedNames": 6286,
+  "pendingNames": 5541,
+  "phase": 810,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3274,
+    "クリーチャー": 3272,
     "NEOクリーチャー": 152,
-    "呪文": 786,
+    "呪文": 785,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 57,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1241,
-    "未対応の能力文": 4044,
+    "未対応の能力文": 4041,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -12264,30 +12264,78 @@
           "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
         }
       ]
+    },
+    {
+      "phase": 810,
+      "cards": [
+        {
+          "id": "dm29-s05",
+          "name": "緑神龍ディルガベジーダ"
+        },
+        {
+          "id": "dm27-028",
+          "name": "武者ザンゲキ剣"
+        },
+        {
+          "id": "dm28-012",
+          "name": "ピュアユニコーン"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dmc64-011",
+          "canonicalId": "dm29-s05",
+          "name": "緑神龍ディルガベジーダ"
+        }
+      ],
+      "supportedNames": 6286,
+      "pendingNames": 5541,
+      "verification": {
+        "focusedPassed": 19,
+        "regressionPassed": 132,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 4,
+        "scope": "初出3点とディルガベジーダのDMC64再録1点の全能力、基本情報、公式JPEG、使用制限なしを照合し、再録を初出IDへ統合。ディルガベジーダのQ・ブレイク、破壊時の山札シャッフル、バウンスとの区別、QA 31783に沿うQX下の挿入、マナ送り置換との選択とJSON再開を検証。武者ザンゲキ剣は5000の境界、同名の味方と同名の相手・類似名・封印の区別、追加対象の順序、置換で残った個体とQA 42363に沿う再構築された個体の除外、S・トリガーを確認。ピュアユニコーンは破壊置換の任意選択、シールド不足、バウンス、S・トリガーを使わない回収を検証。既存対戦定義6,283件と既存カタログIDの一致を確認。",
+        "runtimeNote": "各最大10分。Phase 480・731・733・808・809の127件と、Gateの関連5件が通過。Phase 480のCPU対戦2件を除外。Gateを含む初回と続く絞り込みで長時間の対戦・ワーカー検証が残っていたため、今回の子プロセスだけを中断した。GateはEscape・Hades・EXライフの関連5件のみ再確認し、長時間の3項目とその他の未完了項目は未確認。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "対戦データにサイキック・クリーチャーの対象例がなく、対象判定と超次元への移動を実戦経路で検証できないため保留。"
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 809,
-    "nextPhase": 810,
+    "lastVerifiedPhase": 810,
+    "nextPhase": 811,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm29-s05",
-        "name": "緑神龍ディルガベジーダ",
-        "check": "Q・ブレイカーと破壊のかわりに山札へ戻してシャッフルする処理を、他の置換と進化元も含めて照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-s05"
+        "id": "dm28-038",
+        "name": "暖氷妖精カオルン",
+        "check": "各プレイヤーのターンに自分のマナが離れた事実と、そのターンの終わりの任意マナ追加を、同一ゾーンへの復帰と区別して照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-038"
       },
       {
-        "id": "dm27-028",
-        "name": "武者ザンゲキ剣",
-        "check": "S・トリガーとパワー5000以下の破壊、武者・ドラゴンの正確な名前に応じた追加破壊の順序を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-028"
+        "id": "dm28-014",
+        "name": "地脈の守護者ラグ・マルタス",
+        "check": "自分のマナを離れるカードの枚数と効果の誘発回数、パワー加算の期限、同時移動と置換時の裁定を確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-014"
       },
       {
-        "id": "dm28-012",
-        "name": "ピュアユニコーン",
-        "check": "破壊置換でシールドを手札へ加える際にS・トリガーが使えないこと、任意選択、シールドがない場合、複数の置換候補を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-012"
+        "id": "dm28-s10",
+        "name": "動脈の超人",
+        "check": "自分のマナが離れたターンの常在パワー上昇とT・ブレイカー付与、元のW・ブレイカーとの選択を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-s10"
       },
       {
         "id": "dm24ex4-073",

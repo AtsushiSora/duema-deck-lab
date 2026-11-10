@@ -2507,6 +2507,17 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=810&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='クリーチャー'){
+   if(/^Q・ブレイカー\(このクリーチャーはシールドを4枚ブレイクする\)このクリーチャーが破壊される時墓地に置くかわりに山札に(?:入れて|加えて)シャッフルする。$/.test(text))
+    return {breaker:4,g731DestroyShuffle:true};
+   if(text==='このクリーチャーが破壊される時このクリーチャーを墓地に置くかわりに自分のシールドを1枚選び手札に加えてもよい。ただしその「S・トリガー」は使えない。')
+    return {escape:true};
+  }
+  if(f.typeText==='呪文'&&text==='S・トリガー相手のパワー5000以下のクリーチャーを1体破壊する。バトルゾーンに自分の《ボルメテウス・武者・ドラゴン》が1体でもあれば相手のパワー5000以下のクリーチャーをもう1体破壊する。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'grave',filter:{maxPower:5000,g199Power:true},g810AnotherWith:'ボルメテウス・武者・ドラゴン'}]};
+ }
  if(phase>=809&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
   const text=normalize(f.abilityText).replace(/^S・トリガーS・トリガー/,'S・トリガー');
   const trigger=/^S・トリガー(?:\(この(?:呪文|カード)をシールドゾーンから手札に加える時コストを支払わずにすぐ(?:唱えて|実行して)もよい\))?/;
