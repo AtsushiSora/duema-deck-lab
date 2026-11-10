@@ -57,7 +57,7 @@ export function createZardRules(api){
  function invade(s,t){const own=s.players[t.p],x=own[t.origin].find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial),base=own.battle.find(x=>x.uid===t.base);if(!x||!base||x===base)return;
   if(t.origin==='battle'){
    const index=own.battle.indexOf(x),[under,...rest]=x.under||[];if(under){if(rest.length)(under.under??=[]).push(...rest);inherited(s,x,under);under.tapped=x.tapped;own.battle[index]=under;}else own.battle.splice(index,1);delete x.under;delete x.g18Blocker;api.gearCleanup(s);
-   remove(own.battle,base.uid);x.under=[base];inherited(s,base,x);x.tapped=base.tapped;own.battle.push(x);s.attack.attacker=x.uid;
+   remove(own.battle,base.uid);x.under=[base];inherited(s,base,x);x.tapped=base.tapped;own.battle.push(x);s.attack.attacker=x.uid;if(api.isCreature(s,base))api.evolutionPlaced849(s,t.p,x);
    if(!api.ignored(s,x))on(s,t.p,x,'g2_Damd');
   }else{remove(own[t.origin],x.uid);enter(s,t.p,x,base.uid,{origin:t.origin,execution:false});}
   api.log(s,t.p,'invasion','SSS級侵略で'+card(x).name+'を攻撃中のクリーチャーに重ねる',{cardId:x.cardId});

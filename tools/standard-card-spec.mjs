@@ -6177,6 +6177,20 @@ export function standardCardSpec(d,{phase=165}={}){
     continue;
    }
   }
+  if(phase>=849&&creature){
+   if(line==='このクリーチャーが攻撃する時相手の山札の上から1枚目と手札を見てもよい。'){
+    attack.push({op:'Offer',title:'相手の山札の上と手札を確認する？',defs:[{op:'Peek585',opponentDeckTop:true,hand:true}]});
+    continue;
+   }
+   if(line==='自分の進化クリーチャーを他のクリーチャーの上に置いた時カードを1枚引く。'){
+    spec.g849EvolutionPlaced='draw';
+    continue;
+   }
+   if(line==='自分の進化クリーチャーを他のクリーチャーの上に置いた時相手は自身の手札を1枚選んで捨てる。'){
+    spec.g849EvolutionPlaced='discard';
+    continue;
+   }
+  }
   if(phase>=848&&creature){
    if(line==='自分の手札を捨てた時相手にも自身の手札を1枚選んで捨てさせる。'){
     spec.g848DiscardWatch='opponentDiscard';

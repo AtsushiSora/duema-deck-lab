@@ -1,0 +1,131 @@
+{
+  "phase": 849,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6410,
+  "description": "攻撃時の非公開閲覧と、クリーチャーの上に進化クリーチャーを置いた時の能力に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37786/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37378/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37950/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31639/"
+  ],
+  "cards": [
+    {
+      "id": "dm08-024",
+      "name": "ラリシウス",
+      "faces": [
+        {
+          "name": "ラリシウス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃するとき、相手の山札の上から１枚目と手札を見てもよい。",
+          "race": "シー・ハッカー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-024",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Offer",
+            "title": "相手の山札の上と手札を確認する？",
+            "defs": [
+              {
+                "op": "Peek585",
+                "opponentDeckTop": true,
+                "hand": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm08-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "8006a247209b79b630c891d2ef51d7be9c284f72feadee7aab3d73365d6f512c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-030",
+      "name": "宇宙 ステイション",
+      "faces": [
+        {
+          "name": "宇宙 ステイション",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の進化クリーチャーを他のクリーチャーの上に置いた時、カードを１枚引く。",
+          "race": "マジック・コマンド/侵略者",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-030",
+      "spec": {
+        "g849EvolutionPlaced": "draw"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "b69dc6d3d6a1a25bc86f7d1fef800bf42e148ac1375b4c4b6f5b6e1bebd16a3f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-036",
+      "name": "不死 カンオッケ",
+      "faces": [
+        {
+          "name": "不死 カンオッケ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の進化クリーチャーを他のクリーチャーの上に置いた時、相手は自身の手札を１枚選んで捨てる。",
+          "race": "ファンキー・ナイトメア/侵略者",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-036",
+      "spec": {
+        "g849EvolutionPlaced": "discard"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "8826f577b2ee9e5cee751aee3c46d85d63377097906a003f37a723b133a43e95",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm08-024": 4,
+      "dmr19-030": 4,
+      "dmr19-036": 4
+    }
+  }
+}
