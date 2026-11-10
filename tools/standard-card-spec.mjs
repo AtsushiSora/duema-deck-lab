@@ -6177,6 +6177,16 @@ export function standardCardSpec(d,{phase=165}={}){
     continue;
    }
   }
+  if(phase>=845&&creature){
+   if(line==='このクリーチャーが破壊される時墓地に置くかわりに光のクリーチャーを1体自分の手札から捨ててもよい。'){
+    spec.g845LightDiscard=true;
+    continue;
+   }
+   if(line==='このクリーチャーは可能なら各ターン2度攻撃する。'){
+    spec.g845RequiredAttacks=2;
+    continue;
+   }
+  }
   if(phase>=575&&creature){
    if(/^このクリーチャーが破壊される時墓地(?:のかわり|に置くかわり)に(?:自分の)?マナゾーンに置いてもよい。$/.test(line)){
     spec.g575OptionalMana=true;
@@ -6187,6 +6197,7 @@ export function standardCardSpec(d,{phase=165}={}){
     continue;
    }
    const mana={
+    ...(phase>=845?{'自分のハンターが破壊される時墓地に置くかわりにマナゾーンに置く。':{filter:{race:'ハンター'}}}:{}),
     '自分のジョーカーズが破壊される時墓地に置くかわりにマナゾーンに置く。':{filter:{race:'ジョーカーズ'}},
     'このクリーチャーまたは自分の他のコマンド・ドラゴンが破壊される時墓地に置くかわりに自分のマナゾーンに置く。':{filter:{race:'コマンド・ドラゴン'},self:true},
     '自分の水または自然のクリーチャーが破壊される時墓地に置くかわりにタップしてマナゾーンに置く。':{filter:{creature:true,any:[{color:'水'},{color:'自然'}]},tapped:true},
