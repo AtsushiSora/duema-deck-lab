@@ -186312,24 +186312,116 @@
       ],
       "supportBatch": "phase-840",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr03-s02",
+      "name": "蒼の潮流スーパー・スペル・グレートブルー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "ポセイディア・ドラゴン/ハンター",
+      "text": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、自分の山札の上から１枚目を見る。それが呪文であれば、コストを支払わずに唱えてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-s02",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookSpell841"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "LookSpell841"
+        }
+      ],
+      "supportBatch": "phase-841",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm38-001",
+      "name": "龍聖黙示プラネット・フィスタシオ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6500,
+      "race": "アポロニア・ドラゴン/ライトブリンガー",
+      "text": "このクリーチャーが攻撃する時、自分の山札を見る。その中からコストが３以下の進化ではないライト・ブリンガーを２体まで選び、バトルゾーンに出す。その後、山札をシャッフルする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-001",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "LookDeploy530",
+          "g201Search": true,
+          "g841DeckPeek": true,
+          "limit": 2,
+          "rest": "shuffle",
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "race": "ライトブリンガー",
+            "max": 3
+          }
+        }
+      ],
+      "supportBatch": "phase-841",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr02-013",
+      "name": "狩猟のガイア・エッグ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "エッグ",
+      "text": "自分のターンのはじめに、自分の山札の上から１枚目を墓地に置く。そのカードが進化ではないハンター・クリーチャーであれば、このクリーチャーを破壊して、そのハンターをバトルゾーンに出す。\nこのクリーチャーは攻撃することができない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-013",
+      "limit": 4,
+      "noAttack": true,
+      "g174Start": [
+        {
+          "op": "MillHatch841",
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "race": "ハンター"
+          }
+        }
+      ],
+      "supportBatch": "phase-841",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 840,
+    "phase": 841,
     "checkedAt": "2026-11-10",
-    "baseCount": 6381,
-    "newEffectCards": 4,
+    "baseCount": 6385,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6385,
+    "totalCount": 6388,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36153/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37629/",
-      "https://dm.takaratomy.co.jp/rule/qa/40371/",
-      "https://dm.takaratomy.co.jp/rule/qa/43454/",
-      "https://dm.takaratomy.co.jp/rule/qa/45214/",
-      "https://dm.takaratomy.co.jp/rule/qa/49529/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
+      "https://dm.takaratomy.co.jp/rule/qa/43078/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36161/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36375/",
+      "https://dm.takaratomy.co.jp/rule/qa/31530/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
+      "https://dm.takaratomy.co.jp/rule/qa/40498/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -201178,6 +201270,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/42947/",
           "https://dm.takaratomy.co.jp/rule/qa/41124/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35754/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 840,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6381,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6385,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36153/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37629/",
+          "https://dm.takaratomy.co.jp/rule/qa/40371/",
+          "https://dm.takaratomy.co.jp/rule/qa/43454/",
+          "https://dm.takaratomy.co.jp/rule/qa/45214/",
+          "https://dm.takaratomy.co.jp/rule/qa/49529/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
         ],
         "next": [

@@ -730,7 +730,7 @@ export function matchupPower(x,y,attacking=false,s=null,otherAttacking=y?.uid===
 export function attackLocked(s,p,c){return !!s&&!!c&&!c.sealed&&effectiveCard(c,s).type==='creature'&&extra.locked(s,p,c,'attack');}
 export const canCreatureAttack=(s,p,c)=>canAttack(s,p,c);
 function canAttack(s,p,c,allowFreshUntapped=false){const d=effectiveCard(c,s);return d.type==='creature'&&extra.history.canAttack(s,p,c)&&extra.six.fifteen.canAttack(s,p,c)&&(!d.twoTappedAttack||s.players[p].battle.filter(x=>isCreature(s,x)&&x.tapped).length>=2)&&!c.tapped&&!d.noAttack&&(!d.needsBigAttack||s.g16BigAttack?.[p]===s.turn)&&!extra.locked(s,p,c,'attack')&&!extra.six.attackPower593(s,p,c,false)&&!(c.entered===s.turn&&s.players[1-p].battle.some(x=>{const guard=effectiveCard(x,s);return guard.stopEntryAttack||guard.g475StopNonEvolutionEntryAttack&&!isEvolution(c);})&&!s.players[p].battle.some(x=>effectiveCard(x,s).ignoreAttackLocks))&&(c.entered<s.turn||d.speedAttacker||isEvolution(c)||d.machFighter||d.entryPlayerAttack||extra.abyssPlayer(s,c)||allowFreshUntapped&&d.g838FreshUntapped);}
-function canAttackPlayer(s,c,rule){
+function canAttackPlayer(s,c,rule=effectiveCard(c,s)){
  const p=s.players.findIndex(x=>x.battle.some(y=>y.uid===c.uid));
  const requires=rule.g840PlayerAttackRequires;
  if(requires&&!extra.six.ownCondition(s,p,requires,c.uid))return false;
@@ -1131,16 +1131,31 @@ function completeExecution(s,p,inst,c,{ruleOrigin,origin,free,freeReason,alterna
  // QA40182: using a creature from a locked zone still pays its costs, but the
  // creature stays in that zone and has no battlefield entry event.
  if(originBlocked402){delete inst.summonedTurn;s.players[p][origin].splice(originIndex402<0?s.players[p][origin].length:originIndex402,0,inst);const zone=origin==='grave'?'墓地':'マナゾーン';log(s,p,'entryPrevented',`${c.name}は${zone}から移動できず、${zone}に残る`,{cardId:c.id});return;}
+ const checkDeckSpell=ruleOrigin==='deck'&&freeReason==='スーパー・スペル・グレートブルー'&&!s.players[p].deck.length;
  if(c.type==='spell')extra.spellCast(s,p,c,inst,ruleOrigin,face);
  if(c.type==='castle'){inst.faceUp=true;s.players[p].shields.push(inst);extra.shieldAdded(s,p,inst);if(free)(s.noManaUse??=[false,false])[p]=true;}
  else if(['creature','seed','gear','field'].includes(c.type)){enterCreature(s,p,inst,baseUid,{origin:ruleOrigin,execution:true,committed:true,paidMana,costPaid:!free&&cost>0,effectController:free||alternativeCost!==null?p:null,plus:!!c.triggerPlus&&free&&freeReason==='S・トリガー'&&!!inst.triggerPlus,super:!!c.superTrigger&&free&&(freeReason==='S・トリガー'&&!!inst.superTrigger||grantedSuper),ddd:freeReason==='D・D・D',...(alternativeCost?.g777AltEntry?{g777AltEntry:true}:{}),...(c.mugenGate&&Array.isArray(baseUid)?{mugenBases:baseUid}:{})});if(ruleOrigin==='deck')deckCheck(s,p);}
- else if(c.charger&&!spellIgnored(s,c)){s.resolvingSpell={player:p,inst,source:c.id,face,origin:'hand'};powerCleanup(s);if(s.decision||s.leaving||s.lossEvent)(s.extTasks??=[]).unshift(extra.task('g34_ResolveSpell207',p,c.id,{uid:inst.uid}));else startJudge(s,p,c.id,inst.uid,'spell');}
- else{c.triggerPlusActive=!!c.triggerPlus&&free&&freeReason==='S・トリガー'&&!!inst.triggerPlus;c.superTriggerActive=!!c.superTrigger&&free&&(freeReason==='S・トリガー'&&!!inst.superTrigger||grantedSuper);if(c.crystalCharger&&!spellIgnored(s,c))inst.crystalFinish=true;if(c.normalCharger&&!spellIgnored(s,c))inst.normalFinish=true;extra.finishSpell(s,p,inst,c);if(!extra.beforeSpell(s,p,c,inst))resolveSpell(s,p,inst.uid);}
+ else if(c.charger&&!spellIgnored(s,c)){s.resolvingSpell={player:p,inst,source:c.id,face,origin:'hand'};if(checkDeckSpell&&checkDeckSpell841(s,p,c,inst))return;powerCleanup(s);if(s.decision||s.leaving||s.lossEvent)(s.extTasks??=[]).unshift(extra.task('g34_ResolveSpell207',p,c.id,{uid:inst.uid}));else startJudge(s,p,c.id,inst.uid,'spell');}
+ else{c.triggerPlusActive=!!c.triggerPlus&&free&&freeReason==='S・トリガー'&&!!inst.triggerPlus;c.superTriggerActive=!!c.superTrigger&&free&&(freeReason==='S・トリガー'&&!!inst.superTrigger||grantedSuper);if(c.crystalCharger&&!spellIgnored(s,c))inst.crystalFinish=true;if(c.normalCharger&&!spellIgnored(s,c))inst.normalFinish=true;extra.finishSpell(s,p,inst,c);if(checkDeckSpell&&checkDeckSpell841(s,p,c,inst))return;if(!extra.beforeSpell(s,p,c,inst))resolveSpell(s,p,inst.uid);}
 }
 // Executing the spell side may be replaced even when its physical card stays in battle (QA46947).
 function canReplaceExecution(s,p,uid,to='grave'){const top=s.players[p].battle.find(x=>layers(x).some(y=>y.uid===uid));return top?extra.canLeave(s,p,top)&&!s.g26Extreme?.[p]&&!(to==='mana'&&shevaProtection(s,p)):s.players[p].shields.flatMap(shieldCards).some(x=>x.uid===uid&&!x.g37ShieldHeld)||['hand','deck','mana','grave','extra'].some(z=>s.players[p][z].some(x=>x.uid===uid));}
 function replaceExecutionCard(s,p,uid,to='grave'){const own=s.players[p],top=own.battle.find(x=>layers(x).some(y=>y.uid===uid));if(!canReplaceExecution(s,p,uid,to))return false;const shield=own.shields.flatMap(shieldCards).find(x=>x.uid===uid&&!x.g37ShieldHeld);if(shield){moveShield(s,p,uid,to,{cardOnly:true});return true;}if(top){if(top.uid===uid)moveCreatures(s,[{player:p,uid,to,destroy:false,cardOnly:true,replacement:true}]);else moveBattleCard(s,p,uid,to);return !own.battle.some(x=>layers(x).some(y=>y.uid===uid));}for(const zone of['hand','deck','mana','grave','extra']){const x=own[zone].find(x=>x.uid===uid);if(!x)continue;if(zone!==to){remove(own[zone],uid);clearBattleState(x,to);addZone(s,p,to,x);}return true;}return false;}
-function resumeCastSpell(s,p,uid){const f=s.resolvingSpell;if(f?.inst.uid===uid&&!f.shieldCast)startJudge(s,p,f.source,uid,'spell');else resolveSpell(s,p,uid);}
+// QA43078: the spell leaves the deck before it resolves.
+function checkDeckSpell841(s,p,c,inst){
+ deckCheck(s,p);
+ if(s.lossEvent)(s.extTasks??=[]).unshift(extra.task('g34_ContinueDeckSpell841',p,c.id,{uid:inst.uid}));
+ return s.winner!==null||!!s.lossEvent;
+}
+function resumeCastSpell(s,p,uid,beforeSpell=false){
+ const f=s.resolvingSpell;
+ if(f?.inst.uid===uid&&!f.shieldCast){startJudge(s,p,f.source,uid,'spell');return;}
+ if(beforeSpell){
+  const frame=s.extSpells?.find(x=>x.inst.uid===uid);
+  if(!frame||extra.beforeSpell(s,p,frame.spell,frame.inst))return;
+ }
+ resolveSpell(s,p,uid);
+}
 function resolveSpell(s,p,uid){const f=s.extSpells?.find(x=>x.inst.uid===uid);if(!f)return;
  // A cast card is no longer counted in its original zone (rule 409.1c).
  // Keep the spell in its existing physical frame while zero-power replacements resolve.

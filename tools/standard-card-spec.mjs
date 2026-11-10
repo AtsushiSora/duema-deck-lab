@@ -2511,6 +2511,15 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=841&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText),breaker='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
+  if(text==='このクリーチャーをバトルゾーンに出した時またはこのクリーチャーが攻撃する時自分の山札の上から1枚目を見る。それが呪文であればコストを支払わずに唱えてもよい。'+breaker)
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'LookSpell841'}],g34Attack:[{op:'LookSpell841'}]};
+  if(text==='このクリーチャーが攻撃する時自分の山札を見る。その中からコストが3以下の進化ではないライト・ブリンガーを2体まで選びバトルゾーンに出す。その後山札をシャッフルする。'+breaker)
+   return {breaker:2,g34Attack:[{op:'LookDeploy530',g201Search:true,g841DeckPeek:true,limit:2,rest:'shuffle',filter:{creature:true,nonEvolution:true,race:'ライトブリンガー',max:3}}]};
+  if(text==='自分のターンのはじめに自分の山札の上から1枚目を墓地に置く。そのカードが進化ではないハンター・クリーチャーであればこのクリーチャーを破壊してそのハンターをバトルゾーンに出す。このクリーチャーは攻撃することができない。')
+   return {noAttack:true,g174Start:[{op:'MillHatch841',filter:{creature:true,nonEvolution:true,race:'ハンター'}}]};
+ }
  if(phase>=840&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='呪文'&&text==='S・トリガーバトルゾーンにある相手のクリーチャーを1体選ぶ。バトルゾーンに自分の水または火のクリーチャーがあればこのターン選んだクリーチャーのパワーは-4000される。なければそのパワーは-2000される。(パワー0以下のクリーチャーは破壊される)'){

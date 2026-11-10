@@ -643,7 +643,12 @@ export function createSixPhotoRules(api){
    const hasColor=(x,color)=>matches(s,t.p,x,{g228Face:{type:'creature',color}});
    if(first)candidates=candidates.filter(({x})=>hasColor(first,one)&&hasColor(x,other)||hasColor(first,other)&&hasColor(x,one));
   }
-  const eligible=t.g173Targets?new Set(targetOptions(s,t.p,candidates.map(r=>r.x)).map(o=>o.value)):null,rows=eligible?candidates.filter(r=>eligible.has(r.x.uid)):candidates,n=t.n==='all'?Infinity:t.n??1;if((t.selected?.length||0)>=n||!rows.length){if(t.selected?.length)finishSelect(s,t);else if(t.after)start(s,t,t.after);return;}const scores550=t.g550CostBudget===undefined?null:budgetScores550(s,t,rows,n);choice(s,t,t.title||('カードを'+n+'枚'+(t.optional?'まで':'')+'選ぶ'),[...rows.map(({x,origin,p})=>opt((t.anyOwner?(p===t.p?'自分：':'相手：'):'')+(t.zones?.length>1?({mana:'マナ：',grave:'墓地：',hand:'手札：'}[origin]||''):'')+(x.faceDown?'裏向きのカード':card(x).name)+((t.g210ManaUntap||t.g806MultiUntap)?(x.tapped?(api.canUntap(x)?'（タップ中）':'（タップ中・アンタップ不可）'):'（アンタップ）'):''),{uid:x.uid,origin,p,...(scores550?{cost550:cost(api.zoneCard(s,p,x,origin)),serial550:x.zoneSerial||0}:{})},scores550?scores550.get(x.uid):t.g583DrawMoved?contractScore583(s.players[p],x,t.selected.length):t.g405Search&&origin==='deck'&&s.players[t.p].deck.length<=1?-1000:(t.g210ManaUntap||t.g806MultiUntap)?(x.tapped&&api.canUntap(x)?25:-1):x.faceDown?15:t.g530Ids&&origin==='deck'&&(t.selected?.length||0)+1>=s.players[t.p].deck.length?-1000:t.score??(t.g193Select?selectedBattleScore(s,t,x,candidates,n):t.g187OwnPick?-cost(card(x))-api.power(x,false,s)/10000:t.g182HandMana||t.g183Return||t.g184ManaLoss?15-cost(card(x)):t.to==='grave'?-cost(card(x)):15+cost(card(x))),x.faceDown?null:x.cardId)),...(t.optional&&t.selected.length>=(t.minimum??0)&&(!t.g626DistinctEvolution||!t.selected.length)?[opt(t.g837Reikon&&n>1?'返霊を使わない':t.g626DistinctEvolution?'戻さない':'ここまでで確定',null,0)]:[])]);}
+  const eligible=t.g173Targets?new Set(targetOptions(s,t.p,candidates.map(r=>r.x)).map(o=>o.value)):null,rows=eligible?candidates.filter(r=>eligible.has(r.x.uid)):candidates,n=t.n==='all'?Infinity:t.n??1;
+  if(!rows.length&&t.g585Peek?.length&&!t.selected.length){
+   choice(s,t,'確認したカード',[opt('確認を終える',null,0)]);
+   return;
+  }
+  if((t.selected?.length||0)>=n||!rows.length){if(t.selected?.length)finishSelect(s,t);else if(t.after)start(s,t,t.after);return;}const scores550=t.g550CostBudget===undefined?null:budgetScores550(s,t,rows,n);choice(s,t,t.title||('カードを'+n+'枚'+(t.optional?'まで':'')+'選ぶ'),[...rows.map(({x,origin,p})=>opt((t.anyOwner?(p===t.p?'自分：':'相手：'):'')+(t.zones?.length>1?({mana:'マナ：',grave:'墓地：',hand:'手札：'}[origin]||''):'')+(x.faceDown?'裏向きのカード':card(x).name)+((t.g210ManaUntap||t.g806MultiUntap)?(x.tapped?(api.canUntap(x)?'（タップ中）':'（タップ中・アンタップ不可）'):'（アンタップ）'):''),{uid:x.uid,origin,p,...(scores550?{cost550:cost(api.zoneCard(s,p,x,origin)),serial550:x.zoneSerial||0}:{})},scores550?scores550.get(x.uid):t.g583DrawMoved?contractScore583(s.players[p],x,t.selected.length):t.g405Search&&origin==='deck'&&s.players[t.p].deck.length<=1?-1000:(t.g210ManaUntap||t.g806MultiUntap)?(x.tapped&&api.canUntap(x)?25:-1):x.faceDown?15:t.g530Ids&&origin==='deck'&&(t.selected?.length||0)+1>=s.players[t.p].deck.length?-1000:t.score??(t.g193Select?selectedBattleScore(s,t,x,candidates,n):t.g187OwnPick?-cost(card(x))-api.power(x,false,s)/10000:t.g182HandMana||t.g183Return||t.g184ManaLoss?15-cost(card(x)):t.to==='grave'?-cost(card(x)):15+cost(card(x))),x.faceDown?null:x.cardId)),...(t.optional&&t.selected.length>=(t.minimum??0)&&(!t.g626DistinctEvolution||!t.selected.length)?[opt(t.g837Reikon&&n>1?'返霊を使わない':t.g626DistinctEvolution?'戻さない':'ここまでで確定',null,0)]:[])]);}
  function freeze(s,t,p,y){if(!y||y.sealed)return;for(const kind of ['attack','block'])(s.extLimits??=[]).push({kind,g190Freeze:true,player:p,uid:y.uid,incarnation:y.incarnation||0,controller:t.controller??t.p,expires:t.g190Freeze==='end'?'end':'start',who:t.g190Freeze==='end'?s.active:t.g190Freeze==='opponent'?1-t.p:t.p,...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});}
  function stopPlayerAttack567(s,t,y){
   (s.extLimits??=[]).push({kind:'g567PlayerStop',ref:{uid:y.uid,incarnation:y.incarnation||0},controller:t.p,expires:t.g567PlayerStop,who:t.g567PlayerStop==='start'?t.p:s.active,spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});
@@ -703,7 +708,7 @@ export function createSixPhotoRules(api){
   const rows=grave.filter(x=>name(x)===selectedName).map(({uid})=>({uid}));
   moveZoneSelection583(s,t,rows);
  }
- function finishSelect(s,t){
+ function finishSelect(s,{g585Peek,...t}){
   if(t.g829InspectDiscard){
    const uids=(t.rows||[]).map(row=>row.uid);
    if(uids.length)api.discardSelected(s,1-t.p,uids,t.source,t.controller??t.p);
@@ -2064,6 +2069,32 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
   break;
  }
+ case'g34_ContinueDeckSpell841':api.resumeCastSpell(s,t.p,t.uid,true);break;
+ case'g34_LookSpell841':{
+  const [uid]=look(s,{...t,n:1}),y=own.deck.find(x=>x.uid===uid);
+  if(!y)break;
+  release(s,t.p,y.uid);
+  const options=faces(api.zoneCard(s,t.p,y,'deck')).flatMap((c,face)=>c.type==='spell'&&api.canCast(s,t.p,c,'deck')
+   ?[opt(c.name+'を唱える',{uid,face,serial:y.zoneSerial||0},own.deck.length===1?-1000:spellScore555(s,t,c),y.cardId)]:[]);
+  const peek={...t,g585Peek:[{id:y.cardId,label:'自分の山札の上'}]};
+  if(options.length)choice(s,peek,'確認したカードの呪文を唱える？',[...options,skip()]);
+  else choice(s,peek,'確認したカード',[opt('確認を終える',null,0)]);
+  break;
+ }
+ case'g34_MillHatch841':{
+  const y=api.takeTop(s,t.p);
+  if(y){clear(y,'grave');api.addZone(s,t.p,'grave',y);}
+  api.deckCheck(s,t.p);
+  if(y&&s.winner===null&&matches(s,t.p,y,t.filter))start(s,t,[
+   {op:'SelfDestroy'},{op:'HatchHunter841',target:y.uid,serial:y.zoneSerial||0}
+  ]);
+  break;
+ }
+ case'g34_HatchHunter841':{
+  const y=own.grave.find(x=>x.uid===t.target&&(x.zoneSerial||0)===t.serial);
+  if(y&&canPut(s,t.p,y,'grave'))put(s,{...t,op:'g34_Put',origin:'grave'});
+  break;
+ }
  case'g34_LookDeploy530':{
   const ids=look(s,t.g201Search?{...t,n:own.deck.length}:t);
   let eligible=ids;
@@ -2072,7 +2103,8 @@ export function createSixPhotoRules(api){
    eligible=own.deck.filter(x=>ids.includes(x.uid)&&matches(s,t.p,x,{creature:true,max:t.g798DifferentCost})&&!costs.has(cost(api.zoneCard(s,t.p,x,'deck')))).map(x=>x.uid);
   }
   const rest=t.g798DifferentCost!==undefined?{op:'Distribute255',ids,rest:'grave'}:{op:'LookRest530',ids,rest:t.rest||'top'};
-  put(s,{...t,op:'g34_Select',origin:'deck',g530Ids:eligible,deploy:true,n:t.limit??'all',optional:!t.g749Required,
+  const inspection=t.g841DeckPeek?{g585Peek:own.deck.filter(x=>ids.includes(x.uid)).map(x=>({id:x.cardId,label:'自分の山札'}))}:{};
+  put(s,{...t,...inspection,op:'g34_Select',origin:'deck',g530Ids:eligible,deploy:true,n:t.limit??'all',optional:!t.g749Required,
    title:'確認したカードから出すクリーチャーを選ぶ',after:[rest]});
   break;
  }
@@ -2425,6 +2457,12 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
  }
  function chosen(s,t,v){if(fifteen.chosen(s,t,v))return true;if(!t.op.startsWith('g34_'))return false;const own=s.players[t.p],x=live(s,t);switch(t.op){
+ case'g34_LookSpell841':{
+  const y=v&&own.deck.find(x=>x.uid===v.uid&&(x.zoneSerial||0)===v.serial);
+  const c=y&&faces(api.zoneCard(s,t.p,y,'deck'))[v.face];
+  if(c?.type==='spell'&&api.canCast(s,t.p,c,'deck'))cast(s,t.p,y.uid,true,null,v.face,null,'deck','スーパー・スペル・グレートブルー');
+  break;
+ }
  case'g34_SelfGraveBottom839':
   if(v&&ownGraveSource839(own,t)&&zoneMove(s,t.p,'grave',t.uid,'deck',t))start(s,t,t.after);
   break;
