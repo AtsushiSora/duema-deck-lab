@@ -185627,24 +185627,177 @@
       ],
       "supportBatch": "phase-835",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm38-004",
+      "name": "大神秘ハンニャ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 11000,
+      "race": "ジャイアント/サムライ",
+      "text": "進化-自分のジャイアント１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、パワー6000以下のクリーチャーをすべて、バトルゾーンから持ち主のマナゾーンに置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-004",
+      "limit": 4,
+      "evolution": {
+        "race": "ジャイアント"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "mana",
+          "filter": {
+            "creature": true,
+            "maxPower": 6000,
+            "g199Power": true
+          }
+        }
+      ],
+      "supportBatch": "phase-836",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm37-032",
+      "name": "爆翔イーグル・アイニー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ファイアー・バード/フレイム・モンスター",
+      "text": "自分の、名前に《XX》とあるクリーチャーの召喚コストを１少なくしてもよい。ただし、コストは１より少なくならない。\nバトルゾーンにある自分のフレイム・コマンドはすべて「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-032",
+      "limit": 4,
+      "g558Souls": [
+        "K"
+      ],
+      "g349SummonAuras": [
+        {
+          "filter": {
+            "g836NameIds": [
+              "dm24rp4-040",
+              "dm24rp4-004",
+              "dm38-003",
+              "dmd08-018",
+              "dm38-048",
+              "dm24rp4-019"
+            ]
+          },
+          "amount": 1,
+          "g560Optional": true
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "race": "フレイム・コマンド"
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-836",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm36-030",
+      "name": "爆裂マグマキラウェア",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "フレイム・コマンド",
+      "text": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n自分のターンの終わりに、自分のクリーチャーを１体、バトルゾーンから手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-030",
+      "limit": 4,
+      "g558Souls": [
+        "K"
+      ],
+      "speedAttacker": true,
+      "breaker": 2,
+      "g174End": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-836",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm37-002",
+      "name": "死滅恐皇グラヴィッツZ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "ダークロード/ドラゴン・ゾンビ",
+      "text": "相手がバトルゾーンに、そのターン最初のクリーチャーを出した時、相手は自身のクリーチャーを１体破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-002",
+      "limit": 4,
+      "g558Souls": [
+        "E"
+      ],
+      "breaker": 2,
+      "g314OtherEntry": {
+        "who": "opponent",
+        "entryCount": 1,
+        "defs": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          }
+        ]
+      },
+      "supportBatch": "phase-836",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 835,
+    "phase": 836,
     "checkedAt": "2026-11-10",
-    "baseCount": 6364,
-    "newEffectCards": 3,
+    "baseCount": 6367,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6367,
+    "totalCount": 6371,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36105/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36270/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36271/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36272/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36246/",
-      "https://dm.takaratomy.co.jp/rule/qa/45465/",
-      "https://dm.takaratomy.co.jp/rule/qa/48497/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37532/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35516/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/34950/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37344/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36061/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36106/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36107/",
+      "https://dm.takaratomy.co.jp/rule/qa/31581/",
+      "https://dm.takaratomy.co.jp/rule/qa/42475/",
       "https://dm.takaratomy.co.jp/rule/rulechange/"
     ],
     "next": [
@@ -200380,6 +200533,28 @@
           "https://dm.takaratomy.co.jp/rule/qa/31530/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31662/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 835,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6364,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6367,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36105/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36270/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36271/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36272/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36246/",
+          "https://dm.takaratomy.co.jp/rule/qa/45465/",
+          "https://dm.takaratomy.co.jp/rule/qa/48497/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

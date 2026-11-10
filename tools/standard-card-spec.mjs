@@ -2507,6 +2507,25 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=836&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText).replace(/^【K・ソウル】/,'');
+  if(f.typeText==='進化クリーチャー'&&text==='進化-自分のジャイアント1体の上に置く。このクリーチャーをバトルゾーンに出した時パワー6000以下のクリーチャーをすべてバトルゾーンから持ち主のマナゾーンに置く。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {evolution:{race:'ジャイアント'},breaker:2,effect:'sixPhoto',g34Tasks:[
+    {op:'Sweep',both:true,to:'mana',filter:{creature:true,maxPower:6000,g199Power:true}}
+   ]};
+  if(f.typeText==='クリーチャー'&&text==='自分の名前に《XX》とあるクリーチャーの召喚コストを1少なくしてもよい。ただしコストは1より少なくならない。バトルゾーンにある自分のフレイム・コマンドはすべて「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)')
+   // The printed name must include XX with the reading ダブルクロス (202.3a).
+   return {g558Souls:['K'],g349SummonAuras:[{filter:{g836NameIds:[
+    'dm24rp4-040','dm24rp4-004','dm38-003','dmd08-018','dm38-048','dm24rp4-019'
+   ]},amount:1,g560Optional:true}],
+    g208Auras:[{filter:{creature:true,race:'フレイム・コマンド'},grants:{speedAttacker:true}}]};
+  if(f.typeText==='クリーチャー'&&text==='スピードアタッカー(このクリーチャーは召喚酔いしない)W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)自分のターンの終わりに自分のクリーチャーを1体バトルゾーンから手札に戻してもよい。')
+   return {g558Souls:['K'],speedAttacker:true,breaker:2,g174End:[
+    {op:'Select',origin:'battle',to:'hand',n:1,optional:true,filter:{creature:true}}
+   ]};
+  if(f.typeText==='クリーチャー'&&text==='相手がバトルゾーンにそのターン最初のクリーチャーを出した時相手は自身のクリーチャーを1体破壊する。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {g558Souls:['E'],breaker:2,g314OtherEntry:{who:'opponent',entryCount:1,defs:[{op:'OpponentSelect',n:1,to:'grave'}]}};
+ }
  if(phase>=835&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(text==='このクリーチャーを召喚してバトルゾーンに出した時パワー7000以下のクリーチャーを1体自分の墓地からバトルゾーンに出してもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')

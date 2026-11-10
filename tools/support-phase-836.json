@@ -1,0 +1,318 @@
+{
+  "phase": 836,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6367,
+  "description": "ジャイアント進化と全体マナ送り、任意の召喚軽減と攻撃許可、ターン終了時の任意バウンス、相手の初回登場時の破壊に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37532/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35516/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34950/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37344/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36061/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36106/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36107/",
+    "https://dm.takaratomy.co.jp/rule/qa/31581/",
+    "https://dm.takaratomy.co.jp/rule/qa/42475/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dm38-004",
+      "name": "大神秘ハンニャ",
+      "faces": [
+        {
+          "name": "大神秘ハンニャ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "進化-自分のジャイアント１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、パワー6000以下のクリーチャーをすべて、バトルゾーンから持ち主のマナゾーンに置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ジャイアント/サムライ",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-004",
+      "spec": {
+        "evolution": {
+          "race": "ジャイアント"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "mana",
+            "filter": {
+              "creature": true,
+              "maxPower": 6000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ad3345ea0c863bb1da27546d5d1bdd7088803f30dba709de5b90f8a4b548333b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm37-032",
+      "name": "爆翔イーグル・アイニー",
+      "faces": [
+        {
+          "name": "爆翔イーグル・アイニー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の、名前に《XX》とあるクリーチャーの召喚コストを１少なくしてもよい。ただし、コストは１より少なくならない。\nバトルゾーンにある自分のフレイム・コマンドはすべて「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)",
+          "race": "ファイアー・バード/フレイム・モンスター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-032",
+      "spec": {
+        "g558Souls": [
+          "K"
+        ],
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "g836NameIds": [
+                "dm24rp4-040",
+                "dm24rp4-004",
+                "dm38-003",
+                "dmd08-018",
+                "dm38-048",
+                "dm24rp4-019"
+              ]
+            },
+            "amount": 1,
+            "g560Optional": true
+          }
+        ],
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "race": "フレイム・コマンド"
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "0d3f1d9eae4aff0c6971e5c07740a20d52ee75085ef72a7d0a3b1f9199712a6f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-030",
+      "name": "爆裂マグマキラウェア",
+      "faces": [
+        {
+          "name": "爆裂マグマキラウェア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n自分のターンの終わりに、自分のクリーチャーを１体、バトルゾーンから手札に戻してもよい。",
+          "race": "フレイム・コマンド",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-030",
+      "spec": {
+        "g558Souls": [
+          "K"
+        ],
+        "speedAttacker": true,
+        "breaker": 2,
+        "g174End": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "6bfe6222626586158fd43ce85ce55226c6b2b464cbd3d964ee61ce52703232bd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm37-002",
+      "name": "死滅恐皇グラヴィッツZ",
+      "faces": [
+        {
+          "name": "死滅恐皇グラヴィッツZ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "相手がバトルゾーンに、そのターン最初のクリーチャーを出した時、相手は自身のクリーチャーを１体破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ダークロード/ドラゴン・ゾンビ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-002",
+      "spec": {
+        "g558Souls": [
+          "E"
+        ],
+        "breaker": 2,
+        "g314OtherEntry": {
+          "who": "opponent",
+          "entryCount": 1,
+          "defs": [
+            {
+              "op": "OpponentSelect",
+              "n": 1,
+              "to": "grave"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "1cc3bf9474e1892a3219318cb4003701008c0c1d3152b8b82f3f04fb6e57cc0c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc67-010",
+      "canonicalId": "dm37-032",
+      "name": "爆翔イーグル・アイニー",
+      "faces": [
+        {
+          "name": "爆翔イーグル・アイニー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の、名前に《XX》とあるクリーチャーの召喚コストを１少なくしてもよい。ただし、コストは１より少なくならない。\nバトルゾーンにある自分のフレイム・コマンドはすべて「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)",
+          "race": "ファイアー・バード/フレイム・モンスター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc67-010",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc67-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "4fc53b128b3ad0944f46a54192bfdb345a624d4fa5366386bee014237f004dfd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm37-032VC",
+      "canonicalId": "dm37-032",
+      "name": "爆翔イーグル・アイニー",
+      "faces": [
+        {
+          "name": "爆翔イーグル・アイニー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "【K・ソウル】\n自分の、名前に《XX》とあるクリーチャーの召喚コストを１少なくしてもよい。ただし、コストは１より少なくならない。\nバトルゾーンにある自分のフレイム・コマンドはすべて「スピードアタッカー」を得る。（「スピードアタッカー」を得たクリーチャーは召喚酔いしない）",
+          "race": "ファイアー・バード/フレイム・モンスター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-032VC",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-032VC.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "81fc0502848db4747a9183e5c5d265642260330ab934583d3011b68521c20637",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-030VC",
+      "canonicalId": "dm36-030",
+      "name": "爆裂マグマキラウェア",
+      "faces": [
+        {
+          "name": "爆裂マグマキラウェア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "【K・ソウル】\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n自分のターンの終わりに、自分のクリーチャーを１体、バトルゾーンから手札に戻してもよい。",
+          "race": "フレイム・コマンド",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-030VC",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-030VC.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ba90300d44ac62189b5f01f68ead6027b4911ab9bba8ff26b3c706b532f7fd94",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm38-004": 4,
+      "dm37-032": 4,
+      "dm36-030": 4,
+      "dm37-002": 4,
+      "dmc67-010": 4,
+      "dm37-032VC": 4,
+      "dm36-030VC": 4
+    }
+  }
+}
