@@ -3433,6 +3433,21 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=881&&f.typeText==='クリーチャー'){
+  if(['dmr09-069','promoy12-050'].includes(d.id)&&compact363===
+   'このクリーチャーがバトルゾーンにあれば自分のマナゾーンにあるかのようにこのカードをタップしてマナを生み出してもよい。(このクリーチャーをバトルゾーンに出したターンにこの能力を使ってもよい)')
+   return {manaBird:'ownColors'};
+  if(d.id==='dmr09-023'&&compact363===
+   'このクリーチャーがどこからでも墓地に置かれた時自分のマナゾーンに闇のカードが3枚以上あればバトルゾーンにある相手のクリーチャーを1体選ぶ。そのターンそのクリーチャーのパワーは-2000される。(パワー0以下のクリーチャーは破壊される)W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g675GraveEntry:[{op:'IfOwn',filter:{g267Mana:{n:3,color:'闇'}},
+    defs:[{op:'Target',power:-2000,g242PowerMinus:true}]}]};
+  if(d.id==='dmr08-018'&&compact363===
+   '自分のターンのはじめにバトルゾーンに他のどのクリーチャーよりもパワーが大きい自分のクリーチャーがあれば自分の山札の上から2枚を見てそのうちの1枚を自分の手札に加えもう1枚をマナゾーンに置いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g174Start:[{op:'IfOwn',filter:{g881HighestPower:true},defs:[
+    {op:'Offer',title:'山札の上2枚を見て、手札とマナに1枚ずつ置く？',g359RevealAll:true,
+     defs:[{op:'Look',n:2,g255Distribute:true,stages:[{n:1,to:'hand'},{n:1,to:'mana',allMatches:true}]}]}
+   ]}]};
+ }
  if(phase>=880){
   if(d.id==='dmr09-110'&&f.typeText==='呪文'&&compact363===
    'バトルゾーンにある自分のクリーチャー1体は次の自分のターンのはじめまで「ガードマン」を得る。(自分の他のクリーチャーが攻撃される時「ガードマン」を得たクリーチャーをタップしてもよい。そうした場合攻撃クリーチャーはかわりにそのクリーチャーを攻撃する)カードを1枚引く。')

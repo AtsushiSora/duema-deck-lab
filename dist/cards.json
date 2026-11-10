@@ -190361,24 +190361,132 @@
       "attackJudge": "draw",
       "supportBatch": "phase-880",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-069",
+      "name": "蛙跳び フロッグ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "アウトレイジ",
+      "text": "このクリーチャーがバトルゾーンにあれば、自分のマナゾーンにあるかのようにこのカードをタップしてマナを生み出してもよい。（このクリーチャーをバトルゾーンに出したターンに、この能力を使ってもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-069",
+      "limit": 4,
+      "manaBird": "ownColors",
+      "supportBatch": "phase-881",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-023",
+      "name": "吸血男爵 シャドウ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "アウトレイジ",
+      "text": "このクリーチャーが、どこからでも墓地に置かれた時、自分のマナゾーンに闇のカードが３枚以上あれば、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-2000される。（パワー０以下のクリーチャーは破壊される）\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-023",
+      "limit": 4,
+      "breaker": 2,
+      "g675GraveEntry": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g267Mana": {
+              "n": 3,
+              "color": "闇"
+            }
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "power": -2000,
+              "g242PowerMinus": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-881",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr08-018",
+      "name": "ビッグ・パン・ダディ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ドリームメイト",
+      "text": "自分のターンのはじめに、バトルゾーンに他のどのクリーチャーよりもパワーが大きい自分のクリーチャーがあれば、自分の山札の上から２枚を見て、そのうちの１枚を自分の手札に加え、もう１枚をマナゾーンに置いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-018",
+      "limit": 4,
+      "breaker": 2,
+      "g174Start": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g881HighestPower": true
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "山札の上2枚を見て、手札とマナに1枚ずつ置く？",
+              "g359RevealAll": true,
+              "defs": [
+                {
+                  "op": "Look",
+                  "n": 2,
+                  "g255Distribute": true,
+                  "stages": [
+                    {
+                      "n": 1,
+                      "to": "hand"
+                    },
+                    {
+                      "n": 1,
+                      "to": "mana",
+                      "allMatches": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-881",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 880,
+    "phase": 881,
     "checkedAt": "2026-11-11",
-    "baseCount": 6505,
+    "baseCount": 6508,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6508,
+    "totalCount": 6511,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36792/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36793/",
-      "https://dm.takaratomy.co.jp/rule/qa/38589/",
-      "https://dm.takaratomy.co.jp/rule/qa/40102/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
-      "https://dm.takaratomy.co.jp/rule/qa/43246/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37347/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36851/",
+      "https://dm.takaratomy.co.jp/rule/qa/42136/",
+      "https://dm.takaratomy.co.jp/rule/qa/43061/",
+      "https://dm.takaratomy.co.jp/rule/qa/40024/",
+      "https://dm.takaratomy.co.jp/rule/qa/40025/",
+      "https://dm.takaratomy.co.jp/rule/qa/31623/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36795/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -206037,6 +206145,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/46616/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36710/",
           "https://dm.takaratomy.co.jp/rule/qa/45095/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 880,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6505,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6508,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36792/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36793/",
+          "https://dm.takaratomy.co.jp/rule/qa/38589/",
+          "https://dm.takaratomy.co.jp/rule/qa/40102/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
+          "https://dm.takaratomy.co.jp/rule/qa/43246/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37347/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

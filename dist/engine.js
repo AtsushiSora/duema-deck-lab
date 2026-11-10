@@ -786,14 +786,15 @@ function targets(s,p,effect){
  else ts=opp.battle.filter(x=>isCreature(s,x)).filter(x=>effect!=='destroyUntapped'||!x.tapped).filter(x=>effect!=='destroySmall'||power(x,x.uid===s.attack?.attacker,s)<=2000).map(x=>({player:1-p,uid:x.uid}));
  return ts.filter(t=>extra.targetable(s,p,t.player,s.players[t.player].battle.find(x=>layers(x).some(y=>y.uid===t.uid))));
 }
+const paymentColors=x=>x.paymentColors??(x.paymentBird||x.paymentAllColors?['光','水','闇','火','自然']:manaCivilizations(card(x)));
 // One distinct mana card per required civilization; five-color mana has value zero.
 export function manaPayment(mana,c){
  const pool=mana.filter(x=>!x.tapped),colors=c.g568PaymentColors??civilizations(c),goal=(1<<colors.length)-1,cost=costValue(c);
  const exact=mana.some(x=>x.paymentExact423),max=exact?Math.max(cost,2*colors.length):cost;
  if(pool.reduce((n,x)=>n+(x.paymentValue??manaValue(card(x))),0)<cost)return null;
- if(colors.length===1&&pool.every(x=>(x.paymentValue??manaValue(card(x)))===1)){const same=pool.find(x=>(x.paymentBird||x.paymentAllColors?['光','水','闇','火','自然']:manaCivilizations(card(x))).includes(colors[0]));return same?[same,...pool.filter(x=>x!==same).slice(0,Math.max(0,cost-1))].map(x=>x.uid):null;}
+ if(colors.length===1&&pool.every(x=>(x.paymentValue??manaValue(card(x)))===1)){const same=pool.find(x=>paymentColors(x).includes(colors[0]));return same?[same,...pool.filter(x=>x!==same).slice(0,Math.max(0,cost-1))].map(x=>x.uid):null;}
  let states=new Map([['0:0',{mask:0,amount:0,ids:[]}]]);
- for(const x of pool){const next=new Map(states),value=x.paymentValue??manaValue(card(x)),bits=[0,...colors.flatMap((v,i)=>(x.paymentBird||x.paymentAllColors?['光','水','闇','火','自然']:manaCivilizations(card(x))).includes(v)?[1<<i]:[])];
+ for(const x of pool){const next=new Map(states),value=x.paymentValue??manaValue(card(x)),bits=[0,...colors.flatMap((v,i)=>paymentColors(x).includes(v)?[1<<i]:[])];
   for(const st of states.values())for(const bit of bits){const amount=exact?st.amount+value:Math.min(cost,st.amount+value);if(amount>max)continue;const mask=st.mask|bit,key=mask+':'+amount,ids=[...st.ids,x.uid],old=next.get(key);if(!old||ids.length<old.ids.length)next.set(key,{mask,amount,ids});}
   states=next;
  }
@@ -838,7 +839,12 @@ export function paymentPool(s,p,exclude=[],c=null){
  const zero=(s.g35ZeroMana||[]).some(l=>l.p===p),origin=c?.type==='creature'&&c.g423OriginMana||c?.type==='spell'&&c.g826OriginSpellMana,crystal=c?.type==='creature'&&c.g434CrystalSoul,all=s.players[p].battle.some(x=>effectiveCard(x,s).casablanca||effectiveCard(x,s).g51Courtney||String(c?.race).includes('生徒会組')&&effectiveCard(x,s).g28Gyai);
  // Printed mana stays unchanged. Crystal Soul applies only to face-down mana
  // for this summon, and overrides a prior zero-mana effect (official Q&A 45912).
- return [...s.players[p].mana.map(x=>{const value=zero?0:manaValue(card(x)),boost=crystal&&x.faceDown,double=origin&&value===1&&String(card(x).race||'').split('/').includes('オリジン');return zero||origin||crystal||all?{...x,...(zero||double||boost?{paymentValue:boost?crystal:double?2:0}:{}),...(origin?{paymentExact423:true}:{}),...(crystal?{paymentCrystal434:true}:{}),...(all?{paymentAllColors:true}:{})}:x;}),...s.players[p].battle.filter(x=>effectiveCard(x,s).manaBird).map(x=>({...x,paymentBird:true,...(origin?{paymentExact423:true}:{}),...(crystal?{paymentCrystal434:true}:{})}))].filter(x=>!exclude.includes(x.uid));
+ return [...s.players[p].mana.map(x=>{const value=zero?0:manaValue(card(x)),boost=crystal&&x.faceDown,double=origin&&value===1&&String(card(x).race||'').split('/').includes('オリジン');return zero||origin||crystal||all?{...x,...(zero||double||boost?{paymentValue:boost?crystal:double?2:0}:{}),...(origin?{paymentExact423:true}:{}),...(crystal?{paymentCrystal434:true}:{}),...(all?{paymentAllColors:true}:{})}:x;}),...s.players[p].battle.flatMap(x=>{
+  const data=effectiveCard(x,s);
+  if(!data.manaBird)return [];
+  return [{...x,paymentBird:true,...(data.manaBird==='ownColors'?{paymentColors:civilizations(data)}:{}),
+   ...(origin?{paymentExact423:true}:{}),...(crystal?{paymentCrystal434:true}:{})}];
+ })].filter(x=>!exclude.includes(x.uid));
 }
 function freeSpell(s,p,c){return c.type==='spell'&&(c.g261Free&&extra.six.ownCondition(s,p,c.g261Free.filter)||s.players[p].battle.some(x=>card(x).g40Acashic&&!abilitiesIgnored(s,x)));}
 function freeSpellReason(s,p,c){return c.g261Free&&extra.six.ownCondition(s,p,c.g261Free.filter)?c.g261Free.label:'アカシック3';}
@@ -850,7 +856,7 @@ class ManaSelectionRequired extends Error{constructor(request){super('支払う�
 export function manaSelectionStatus(d){
  const selected=d.pool.filter(x=>d.selected.includes(x.uid)),amount=selected.reduce((n,x)=>n+(x.paymentValue??manaValue(card(x))),0),colors=d.colors;
  // A multicolor physical card can satisfy only one required civilization.
- let masks=new Set([0]);for(const x of selected){const next=new Set(masks),available=x.paymentBird||x.paymentAllColors?['光','水','闇','火','自然']:manaCivilizations(card(x));for(const mask of masks)for(let i=0;i<colors.length;i++)if(available.includes(colors[i]))next.add(mask|1<<i);masks=next;}
+ let masks=new Set([0]);for(const x of selected){const next=new Set(masks),available=paymentColors(x);for(const mask of masks)for(let i=0;i<colors.length;i++)if(available.includes(colors[i]))next.add(mask|1<<i);masks=next;}
  const goal=(1<<colors.length)-1,best=[...masks].sort((a,b)=>b.toString(2).replaceAll('0','').length-a.toString(2).replaceAll('0','').length)[0];
  const exact=d.pool.some(x=>x.paymentExact423),amountValid=amount>=d.cost&&(!exact||amount===d.cost||d.cost<colors.length&&selected.length===colors.length);
  const status={amount,cost:d.cost,colors:colors.map((name,i)=>({name,paid:!!(best&1<<i)})),valid:new Set(d.selected).size===d.selected.length&&selected.length===d.selected.length&&selected.every(x=>!x.tapped)&&amountValid&&masks.has(goal)};

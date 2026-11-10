@@ -343,6 +343,11 @@ export function createSixPhotoRules(api){
    const history=s.g463Summons?.[p];
    return (history?.turn===s.turn?history.n:0)+1===f.g876SummonNumber;
   }
+  if(f.g881HighestPower){
+   const powers=s.players.map((_,who)=>creatures(s,who).filter(x=>!x.sealed).map(x=>api.power(x,false,s)));
+   const highest=Math.max(...powers.flat());
+   return powers[p].filter(n=>n===highest).length===1&&!powers[1-p].includes(highest);
+  }
   if(f.g837NoManaAdded)return s.g837ManaAddedTurn?.[p]!==s.turn;
   if(f.g834AnyEmptyHand)return s.players.some(player=>player.hand.length===0);
   if(f.g811ManaLeft)return s.g47ManaLeft?.[p]===s.turn;

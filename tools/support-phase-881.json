@@ -1,0 +1,202 @@
+{
+  "phase": 881,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6508,
+  "description": "バトルゾーンからのマナ支払い、墓地に置かれた時の闇マナ条件とパワー低下、ターン開始時の単独最大パワーを条件にした山札の振り分けに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36851/",
+    "https://dm.takaratomy.co.jp/rule/qa/42136/",
+    "https://dm.takaratomy.co.jp/rule/qa/43061/",
+    "https://dm.takaratomy.co.jp/rule/qa/40024/",
+    "https://dm.takaratomy.co.jp/rule/qa/40025/",
+    "https://dm.takaratomy.co.jp/rule/qa/31623/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36795/"
+  ],
+  "cards": [
+    {
+      "id": "dmr09-069",
+      "name": "蛙跳び フロッグ",
+      "faces": [
+        {
+          "name": "蛙跳び フロッグ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンにあれば、自分のマナゾーンにあるかのようにこのカードをタップしてマナを生み出してもよい。（このクリーチャーをバトルゾーンに出したターンに、この能力を使ってもよい）",
+          "race": "アウトレイジ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-069",
+      "spec": {
+        "manaBird": "ownColors"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-069.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "e0bf7e3e93871cc3b7eea300a310a520034d47a2d9106ea045fde8c00068c165",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr09-023",
+      "name": "吸血男爵 シャドウ",
+      "faces": [
+        {
+          "name": "吸血男爵 シャドウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーが、どこからでも墓地に置かれた時、自分のマナゾーンに闇のカードが３枚以上あれば、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは-2000される。（パワー０以下のクリーチャーは破壊される）\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アウトレイジ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-023",
+      "spec": {
+        "breaker": 2,
+        "g675GraveEntry": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g267Mana": {
+                "n": 3,
+                "color": "闇"
+              }
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "power": -2000,
+                "g242PowerMinus": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "7c077ab6469247ffd5d758503e3f3eb5f16b6f0512f4953d02a0b7da2bf11281",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr08-018",
+      "name": "ビッグ・パン・ダディ",
+      "faces": [
+        {
+          "name": "ビッグ・パン・ダディ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分のターンのはじめに、バトルゾーンに他のどのクリーチャーよりもパワーが大きい自分のクリーチャーがあれば、自分の山札の上から２枚を見て、そのうちの１枚を自分の手札に加え、もう１枚をマナゾーンに置いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ドリームメイト",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-018",
+      "spec": {
+        "breaker": 2,
+        "g174Start": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g881HighestPower": true
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "山札の上2枚を見て、手札とマナに1枚ずつ置く？",
+                "g359RevealAll": true,
+                "defs": [
+                  {
+                    "op": "Look",
+                    "n": 2,
+                    "g255Distribute": true,
+                    "stages": [
+                      {
+                        "n": 1,
+                        "to": "hand"
+                      },
+                      {
+                        "n": 1,
+                        "to": "mana",
+                        "allMatches": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "9798f7416ff52615edec3391ad397831d43dd80ba90b6c11fb2eccfe291f1643",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy12-050",
+      "canonicalId": "dmr09-069",
+      "name": "蛙跳び フロッグ",
+      "faces": [
+        {
+          "name": "蛙跳び フロッグ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンにあれば、自分のマナゾーンにあるかのようにこのカードをタップしてマナを生み出してもよい。（このクリーチャーをバトルゾーンに出したターンに、この能力を使ってもよい）",
+          "race": "アウトレイジ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy12-050",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy12-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "7a9bf82fb331f3b834ae5aab0085ced4b2d25ae7fe8b16c6bbfcf6fc07661a57",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr09-069": 4,
+      "dmr09-023": 4,
+      "dmr08-018": 4,
+      "promoy12-050": 4
+    }
+  }
+}
