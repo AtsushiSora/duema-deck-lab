@@ -1,0 +1,152 @@
+{
+  "phase": 826,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6335,
+  "description": "進化・リンク条件の追加タップ、構成カード枚数によるパワー修整、オリジンのマナ数字変更と山札操作に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37468/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37469/",
+    "https://dm.takaratomy.co.jp/rule/qa/45129/",
+    "https://dm.takaratomy.co.jp/rule/qa/39038/",
+    "https://dm.takaratomy.co.jp/rule/qa/45800/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm35-039",
+      "name": "ソーラー・グレース",
+      "faces": [
+        {
+          "name": "ソーラー・グレース",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンにある相手のクリーチャーを１体選び、タップする。バトルゾーンに自分の進化クリーチャーまたはリンクしているゴッドがあれば、バトルゾーンにある相手のクリーチャーをもう１体選び、タップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-039",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "g826TapAnother": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm35-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "5e3af4315b1417def1f8e6534a5386cc7398a63c19f5619b04966ed909c6a64a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm35-027",
+      "name": "骸醒虫バルマンティス・ワーム",
+      "faces": [
+        {
+          "name": "骸醒虫バルマンティス・ワーム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分と相手のクリーチャーを１体ずつ選ぶ。そのターン、その自分のクリーチャーに含まれるカード１枚につき、選んだ相手クリーチャーのパワーは-2000される。(パワーが０以下のクリーチャーは破壊される)",
+          "race": "パラサイトワーム/オリジン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-027",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g503Stack": "opponentMinus",
+            "title": "構成カードを数える自分のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm35-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "2b61a9bf80f0c404eb21151f3541b33e116218ecdfdd6ed49e5a1b599a0a2727",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm34-043",
+      "name": "オリジナル・ブレイン",
+      "faces": [
+        {
+          "name": "オリジナル・ブレイン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "この呪文を唱える時、自分のマナゾーンにあるオリジンのマナの数字は、１のかわりに２になる。\n自分の山札の上から４枚を見る。そのうちの２枚までを手札に加える。残りを好きな順序で自分の山札の一番下に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-043",
+      "spec": {
+        "g826OriginSpellMana": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 4,
+            "rest": "bottom",
+            "g200Search": true,
+            "stages": [
+              {
+                "n": 2,
+                "to": "hand",
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm34-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "746b288afebfff6042fd2aafb06c9db649f66321563f4af1b4b5232f963d4935",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm35-039": 4,
+      "dm35-027": 4,
+      "dm34-043": 4
+    }
+  }
+}

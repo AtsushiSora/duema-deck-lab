@@ -184656,23 +184656,111 @@
       ],
       "supportBatch": "phase-825",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm35-039",
+      "name": "ソーラー・グレース",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンにある相手のクリーチャーを１体選び、タップする。バトルゾーンに自分の進化クリーチャーまたはリンクしているゴッドがあれば、バトルゾーンにある相手のクリーチャーをもう１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-039",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "g826TapAnother": true
+        }
+      ],
+      "supportBatch": "phase-826",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm35-027",
+      "name": "骸醒虫バルマンティス・ワーム",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "パラサイトワーム/オリジン",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分と相手のクリーチャーを１体ずつ選ぶ。そのターン、その自分のクリーチャーに含まれるカード１枚につき、選んだ相手クリーチャーのパワーは-2000される。(パワーが０以下のクリーチャーは破壊される)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-027",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g503Stack": "opponentMinus",
+          "title": "構成カードを数える自分のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-826",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm34-043",
+      "name": "オリジナル・ブレイン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "この呪文を唱える時、自分のマナゾーンにあるオリジンのマナの数字は、１のかわりに２になる。\n自分の山札の上から４枚を見る。そのうちの２枚までを手札に加える。残りを好きな順序で自分の山札の一番下に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-043",
+      "limit": 4,
+      "g826OriginSpellMana": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 4,
+          "rest": "bottom",
+          "g200Search": true,
+          "stages": [
+            {
+              "n": 2,
+              "to": "hand",
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-826",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 825,
+    "phase": 826,
     "checkedAt": "2026-11-10",
-    "baseCount": 6331,
-    "newEffectCards": 4,
+    "baseCount": 6335,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6335,
+    "totalCount": 6338,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35919/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37358/",
-      "https://dm.takaratomy.co.jp/rule/qa/43745/",
-      "https://dm.takaratomy.co.jp/rule/qa/42937/",
-      "https://dm.takaratomy.co.jp/rule/qa/47060/",
-      "https://dm.takaratomy.co.jp/rule/qa/46840/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37468/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37469/",
+      "https://dm.takaratomy.co.jp/rule/qa/45129/",
+      "https://dm.takaratomy.co.jp/rule/qa/39038/",
+      "https://dm.takaratomy.co.jp/rule/qa/45800/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -199187,6 +199275,27 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36870/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37725/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31637/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 825,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6331,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6335,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35919/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37358/",
+          "https://dm.takaratomy.co.jp/rule/qa/43745/",
+          "https://dm.takaratomy.co.jp/rule/qa/42937/",
+          "https://dm.takaratomy.co.jp/rule/qa/47060/",
+          "https://dm.takaratomy.co.jp/rule/qa/46840/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

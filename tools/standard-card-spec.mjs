@@ -2507,6 +2507,18 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=826&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const trigger='S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  if(f.typeText==='呪文'){
+   if(text===trigger+'バトルゾーンにある相手のクリーチャーを1体選びタップする。バトルゾーンに自分の進化クリーチャーまたはリンクしているゴッドがあればバトルゾーンにある相手のクリーチャーをもう1体選びタップする。')
+    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',tap:true,g826TapAnother:true}]};
+   if(text==='この呪文を唱える時自分のマナゾーンにあるオリジンのマナの数字は1のかわりに2になる。自分の山札の上から4枚を見る。そのうちの2枚までを手札に加える。残りを好きな順序で自分の山札の一番下に戻す。')
+    return {g826OriginSpellMana:true,effect:'sixPhoto',g34Tasks:[{op:'Look',n:4,rest:'bottom',g200Search:true,stages:[{n:2,to:'hand',optional:true}]}]};
+  }
+  if(f.typeText==='クリーチャー'&&text==='このクリーチャーをバトルゾーンに出した時バトルゾーンにある自分と相手のクリーチャーを1体ずつ選ぶ。そのターンその自分のクリーチャーに含まれるカード1枚につき選んだ相手クリーチャーのパワーは-2000される。(パワーが0以下のクリーチャーは破壊される)')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',g503Stack:'opponentMinus',title:'構成カードを数える自分のクリーチャーを1体選ぶ'}]};
+ }
  if(phase>=825&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const meteor='メテオバーン-このクリーチャーが攻撃する時このクリーチャーの下にあるカードを1枚選び墓地に置いてもよい。そうした場合';
