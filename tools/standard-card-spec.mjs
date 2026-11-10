@@ -2507,6 +2507,17 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=812&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText),keyword='シールド・プラス-';
+  const plus='自分の山札の上から1枚目を裏向きのまま自分のシールドいずれかの下に置いてもよい。(こうして重ねたカードの束を1枚のシールドとみなす)';
+  const defs=[{op:'ShieldPlus414'}];
+  if(text===keyword+'このクリーチャーが攻撃する時'+plus+'W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g34Attack:defs};
+  if(text===keyword+'このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時'+plus)
+   return {g482Unblocked:defs};
+  if(text==='ブロッカーこのクリーチャーは相手プレイヤーを攻撃できない。'+keyword+'このクリーチャーが破壊された時'+plus)
+   return {blocker:true,noPlayerAttack:true,g172Death:defs};
+ }
  if(phase>=811&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(text==='自分のマナゾーンからカードが離れる時そのターンこのクリーチャーのパワーは+4000される。')
