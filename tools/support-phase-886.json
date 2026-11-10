@@ -1,0 +1,151 @@
+{
+  "phase": 886,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6523,
+  "description": "オシオキムーンの任意ドロー、任意の墓地肥やし、相手1体の期限付き攻撃義務と、破壊時に他の墓地カードを表向きシールドにする能力に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/38756/",
+    "https://dm.takaratomy.co.jp/rule/qa/46566/",
+    "https://dm.takaratomy.co.jp/rule/qa/34205/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316678/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp16-086",
+      "name": "終わり無き月々のトリヒキ",
+      "faces": [
+        {
+          "name": "終わり無き月々のトリヒキ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nオシオキムーン：カードが自分のシールドゾーンを離れた時、カードを１枚引いてもよい。",
+          "race": "デビルマスク/月光王国",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-086",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g536ShieldLeft": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-086.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "672203143884856ae430182f2afe2011ca89cb56b5d7a4abd1b1a44728140d1c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-049",
+      "name": "月を閉じ込めたヒバナ",
+      "faces": [
+        {
+          "name": "月を閉じ込めたヒバナ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが破壊された時、他のカードを１枚、自分の墓地から表向きのまま、新しいシールドとしてシールドゾーンに置く。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、自分の山札の上から３枚を墓地に置いてもよい。",
+          "race": "デビルマスク/月光王国",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-049",
+      "spec": {
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "shields",
+            "n": 1,
+            "g186Other": true,
+            "g657FaceUp": true
+          }
+        ],
+        "g536ShieldLeft": [
+          {
+            "op": "Mill",
+            "n": 3,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "fc5e14e94709485c3dafa7eda02eb506a4eb51f33646989fd22ee6d9cb864db1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-048",
+      "name": "月に宛てたテガミ",
+      "faces": [
+        {
+          "name": "月に宛てたテガミ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nオシオキムーン：カードが自分のシールドゾーンを離れた時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは可能なら攻撃する。",
+          "race": "デビルマスク/月光王国",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-048",
+      "spec": {
+        "blocker": true,
+        "g536ShieldLeft": [
+          {
+            "op": "Target",
+            "g546Force": "untilOwnStart"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "7877fe391cccd43a6376c5c5a2d0e80aab69addfb6ece20f00c41340989eacd8",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp16-086": 4,
+      "dmrp16-049": 4,
+      "dmrp16-048": 4
+    }
+  }
+}

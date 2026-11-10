@@ -190880,23 +190880,111 @@
       ],
       "supportBatch": "phase-885",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-086",
+      "name": "終わり無き月々のトリヒキ",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "デビルマスク/月光王国",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nオシオキムーン：カードが自分のシールドゾーンを離れた時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-086",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g536ShieldLeft": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-886",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-049",
+      "name": "月を閉じ込めたヒバナ",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "デビルマスク/月光王国",
+      "text": "このクリーチャーが破壊された時、他のカードを１枚、自分の墓地から表向きのまま、新しいシールドとしてシールドゾーンに置く。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、自分の山札の上から３枚を墓地に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-049",
+      "limit": 4,
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "shields",
+          "n": 1,
+          "g186Other": true,
+          "g657FaceUp": true
+        }
+      ],
+      "g536ShieldLeft": [
+        {
+          "op": "Mill",
+          "n": 3,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-886",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-048",
+      "name": "月に宛てたテガミ",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "デビルマスク/月光王国",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nオシオキムーン：カードが自分のシールドゾーンを離れた時、相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは可能なら攻撃する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-048",
+      "limit": 4,
+      "blocker": true,
+      "g536ShieldLeft": [
+        {
+          "op": "Target",
+          "g546Force": "untilOwnStart"
+        }
+      ],
+      "supportBatch": "phase-886",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 885,
+    "phase": 886,
     "checkedAt": "2026-11-11",
-    "baseCount": 6520,
+    "baseCount": 6523,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6523,
+    "totalCount": 6526,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/49028/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
       "https://dm.takaratomy.co.jp/rule/qa/38756/",
       "https://dm.takaratomy.co.jp/rule/qa/46566/",
-      "https://dm.takaratomy.co.jp/rule/qa/34205/"
+      "https://dm.takaratomy.co.jp/rule/qa/34205/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316678/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -206657,6 +206745,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/39668/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316661/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 885,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6520,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6523,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/49028/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
+          "https://dm.takaratomy.co.jp/rule/qa/38756/",
+          "https://dm.takaratomy.co.jp/rule/qa/46566/",
+          "https://dm.takaratomy.co.jp/rule/qa/34205/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

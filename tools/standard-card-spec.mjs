@@ -3445,6 +3445,18 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=886&&creature){
+  if(d.id==='dmrp16-086'&&compact363===
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)W・ブレイカー(このクリーチャーはシールドを2つブレイクする)オシオキムーン:カードが自分のシールドゾーンを離れた時カードを1枚引いてもよい。')
+   return {blocker:true,breaker:2,g536ShieldLeft:[{op:'Draw',n:1,optional:true}]};
+  if(d.id==='dmrp16-049'&&compact363===
+   'このクリーチャーが破壊された時他のカードを1枚自分の墓地から表向きのまま新しいシールドとしてシールドゾーンに置く。オシオキムーン:カードが自分のシールドゾーンを離れた時自分の山札の上から3枚を墓地に置いてもよい。')
+   return {g172Death:[{op:'Select',origin:'grave',to:'shields',n:1,g186Other:true,g657FaceUp:true}],
+    g536ShieldLeft:[{op:'Mill',n:3,optional:true}]};
+  if(d.id==='dmrp16-048'&&compact363===
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)オシオキムーン:カードが自分のシールドゾーンを離れた時相手のクリーチャーを1体選ぶ。次の自分のターンのはじめまでそのクリーチャーは可能なら攻撃する。')
+   return {blocker:true,g536ShieldLeft:[{op:'Target',g546Force:'untilOwnStart'}]};
+ }
  if(phase>=885){
   if(d.id==='dmrp14-075'&&f.typeText==='クリーチャー'&&compact363===
    'S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)このクリーチャーがバトルゾーンに出た時自分の闇のクリーチャーがバトルゾーンにあれば相手のクリーチャーを1体選ぶ。そのターンそのクリーチャーのパワーを-4000する。(パワー0以下のクリーチャーは破壊される)')
