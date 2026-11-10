@@ -189445,21 +189445,152 @@
       ],
       "supportBatch": "phase-871",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-015",
+      "name": "パニック・ルーム",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンにある相手の進化ではないクリーチャーを１体選び、裏向きにし、新しいシールドとして持ち主のシールドゾーンに加える。その後、相手のシールドをひとつ選び、相手はそれを手札に加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-015",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "shields",
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          },
+          "title": "シールド化する相手の進化ではないクリーチャーを選ぶ"
+        },
+        {
+          "op": "TappedShieldPick842",
+          "n": 1,
+          "picked": []
+        }
+      ],
+      "supportBatch": "phase-872",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr06-008",
+      "name": "トゥルー・ヘブンズ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー\nバトルゾーンにある相手の進化ではないクリーチャーを１体選ぶ。バトルゾーンに自分のエンジェル・コマンドが５体以上あれば、バトルゾーンにある相手の進化ではないクリーチャーをかわりに３体まで選ぶ。相手はその選ばれたクリーチャーを新しいシールドとして持ち主のシールドゾーンに裏向きにして加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-008",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "race": "エンジェル・コマンド"
+              },
+              "min": 5
+            }
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "owner": "opponent",
+              "origin": "battle",
+              "to": "shields",
+              "filter": {
+                "creature": true,
+                "nonEvolution": true
+              },
+              "n": 3,
+              "optional": true,
+              "g173Targets": true,
+              "g193Select": true,
+              "title": "シールド化する相手の進化ではないクリーチャーを3体まで選ぶ"
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "Target",
+              "to": "shields",
+              "filter": {
+                "creature": true,
+                "nonEvolution": true
+              },
+              "title": "シールド化する相手の進化ではないクリーチャーを選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-872",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-016",
+      "name": "ライオネル・ウインド",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにあるパワー2000以下の、進化ではないクリーチャーをすべて、新しいシールドとして持ち主のシールドゾーンに裏向きにして加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-016",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "shields",
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "maxPower": 2000,
+            "g199Power": true
+          }
+        }
+      ],
+      "supportBatch": "phase-872",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 871,
+    "phase": 872,
     "checkedAt": "2026-11-11",
-    "baseCount": 6477,
+    "baseCount": 6480,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6480,
+    "totalCount": 6483,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36310/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
-      "https://dm.takaratomy.co.jp/rule/qa/44104/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36592/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36593/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36594/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36636/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -204933,6 +205064,24 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35911/",
           "https://dm.takaratomy.co.jp/rule/qa/42937/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36452/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 871,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6477,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6480,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36310/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+          "https://dm.takaratomy.co.jp/rule/qa/44104/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

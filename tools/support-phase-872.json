@@ -1,0 +1,251 @@
+{
+  "phase": 872,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6480,
+  "description": "対象選択、同時シールド化、ブレイクを伴わないシールド回収に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36592/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36593/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36594/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36636/"
+  ],
+  "cards": [
+    {
+      "id": "dmr05-015",
+      "name": "パニック・ルーム",
+      "faces": [
+        {
+          "name": "パニック・ルーム",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンにある相手の進化ではないクリーチャーを１体選び、裏向きにし、新しいシールドとして持ち主のシールドゾーンに加える。その後、相手のシールドをひとつ選び、相手はそれを手札に加える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-015",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "shields",
+            "filter": {
+              "creature": true,
+              "nonEvolution": true
+            },
+            "title": "シールド化する相手の進化ではないクリーチャーを選ぶ"
+          },
+          {
+            "op": "TappedShieldPick842",
+            "n": 1,
+            "picked": []
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "2e5e5f0fa8b28bc86be79560e7be1f007e0d01b279466be775875c8d165607bb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr06-008",
+      "name": "トゥルー・ヘブンズ",
+      "faces": [
+        {
+          "name": "トゥルー・ヘブンズ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー\nバトルゾーンにある相手の進化ではないクリーチャーを１体選ぶ。バトルゾーンに自分のエンジェル・コマンドが５体以上あれば、バトルゾーンにある相手の進化ではないクリーチャーをかわりに３体まで選ぶ。相手はその選ばれたクリーチャーを新しいシールドとして持ち主のシールドゾーンに裏向きにして加える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-008",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "filter": {
+                  "creature": true,
+                  "race": "エンジェル・コマンド"
+                },
+                "min": 5
+              }
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "owner": "opponent",
+                "origin": "battle",
+                "to": "shields",
+                "filter": {
+                  "creature": true,
+                  "nonEvolution": true
+                },
+                "n": 3,
+                "optional": true,
+                "g173Targets": true,
+                "g193Select": true,
+                "title": "シールド化する相手の進化ではないクリーチャーを3体まで選ぶ"
+              }
+            ],
+            "elseDefs": [
+              {
+                "op": "Target",
+                "to": "shields",
+                "filter": {
+                  "creature": true,
+                  "nonEvolution": true
+                },
+                "title": "シールド化する相手の進化ではないクリーチャーを選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "f385f8d2a9b7bd9f2a951f5deaf1c345395cc885c39b49bb6900efbed24973ce",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-016",
+      "name": "ライオネル・ウインド",
+      "faces": [
+        {
+          "name": "ライオネル・ウインド",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトルゾーンにあるパワー2000以下の、進化ではないクリーチャーをすべて、新しいシールドとして持ち主のシールドゾーンに裏向きにして加える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-016",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "shields",
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "maxPower": 2000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "081ed0f771c29103da2a3db7f6899af38624bb37b38bdeb6683b2cd3fabd20a5",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx16-013",
+      "canonicalId": "dmr06-008",
+      "name": "トゥルー・ヘブンズ",
+      "faces": [
+        {
+          "name": "トゥルー・ヘブンズ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\nバトルゾーンにある相手の進化ではないクリーチャーを１体選ぶ。バトルゾーンに自分のエンジェル・コマンドが５体以上あれば、バトルゾーンにある相手の進化ではないクリーチャーをかわりに３体まで選ぶ。相手はその選ばれたクリーチャーを新しいシールドとして自身のシールドゾーンに裏向きにして加える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-013",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx16-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "f105fb69b4edc6974a977e2832af467cc253b97ca906f64124d79fd261f52611",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex07-010",
+      "canonicalId": "dmr05-016",
+      "name": "ライオネル・ウインド",
+      "faces": [
+        {
+          "name": "ライオネル・ウインド",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトルゾーンにあるパワー2000以下の、進化ではないクリーチャーをすべて、新しいシールドとして持ち主のシールドゾーンに裏向きにして加える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex07-010",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex07-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "128acaa5af336da6554dec0ca8c2dc99d4ff01a0a3e7110644fbf51d46ffb8f9",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr05-015": 4,
+      "dmr06-008": 4,
+      "dmr05-016": 4,
+      "dmx16-013": 4,
+      "dmex07-010": 4
+    }
+  }
+}

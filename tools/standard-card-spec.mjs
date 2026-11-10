@@ -3433,6 +3433,24 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=872&&f.typeText==='呪文'){
+  const nonEvolution={creature:true,nonEvolution:true};
+  const shieldTarget={op:'Target',to:'shields',filter:nonEvolution,title:'シールド化する相手の進化ではないクリーチャーを選ぶ'};
+  if(d.id==='dmr05-015'&&compact363===
+   'S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)バトルゾーンにある相手の進化ではないクリーチャーを1体選び裏向きにし新しいシールドとして持ち主のシールドゾーンに加える。その後相手のシールドをひとつ選び相手はそれを手札に加える。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[shieldTarget,{op:'TappedShieldPick842',n:1,picked:[]}]};
+  const heavens='バトルゾーンにある相手の進化ではないクリーチャーを1体選ぶ。バトルゾーンに自分のエンジェル・コマンドが5体以上あればバトルゾーンにある相手の進化ではないクリーチャーをかわりに3体まで選ぶ。相手はその選ばれたクリーチャーを新しいシールドとして';
+  if(d.id==='dmr06-008'&&compact363==='S・トリガー'+heavens+'持ち主のシールドゾーンに裏向きにして加える。'||
+     d.id==='dmx16-013'&&compact363==='S・トリガーS・トリガー'+heavens+'自身のシールドゾーンに裏向きにして加える。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'IfOwn',
+    filter:{g370BattleCount:{filter:{creature:true,race:'エンジェル・コマンド'},min:5}},
+    defs:[{op:'Select',owner:'opponent',origin:'battle',to:'shields',filter:nonEvolution,n:3,optional:true,
+     g173Targets:true,g193Select:true,title:'シールド化する相手の進化ではないクリーチャーを3体まで選ぶ'}],
+    elseDefs:[shieldTarget]}]};
+  const wind='バトルゾーンにあるパワー2000以下の進化ではないクリーチャーをすべて新しいシールドとして持ち主のシールドゾーンに裏向きにして';
+  if(['dmr05-016','dmex07-010'].includes(d.id)&&[wind+'加える。',wind+'置く。'].includes(compact363))
+   return {effect:'sixPhoto',g34Tasks:[{op:'Sweep',both:true,to:'shields',filter:{...nonEvolution,maxPower:2000,g199Power:true}}]};
+ }
  if(phase>=871){
   const quartet='自分のターンのはじめにバトルゾーンに自分の《ケロヨン・カルテット》が4体あれば自分はゲームに勝利する。このクリーチャーが破壊される時墓地に置くかわりに手札に戻す。';
   if(f.typeText==='クリーチャー'&&(
