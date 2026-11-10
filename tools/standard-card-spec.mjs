@@ -2507,6 +2507,21 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=832&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const mach=[
+   '自分の名前に《NEX》とあるクリーチャーを召喚するコストを1少なくしてもよい。ただしコストは1より少なくならない。バトルゾーンにある自分のアーマード・ドラゴンはすべて「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)自分のターンの終わりにこのターンにバトルゾーンに出した自分の進化ではないアーマード・ドラゴンをすべて手札に戻す。',
+   '自分の名前に《NEX》とあるクリーチャーの召喚コストを1少なくしてもよい。ただしコストは0以下にならない。自分のアーマード・ドラゴンすべてに「スピードアタッカー」を与える。(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)自分のターンの終わりにこのターンにバトルゾーンに出した自分の進化ではないアーマード・ドラゴンをすべて手札に戻す。'
+  ];
+  if(f.typeText==='クリーチャー'&&mach.includes(text))
+   return {g349SummonAuras:[{filter:{g832NameIncludes:'NEX'},amount:1,g560Optional:true}],
+    g208Auras:[{filter:{creature:true,race:'アーマード・ドラゴン'},grants:{speedAttacker:true}}],
+    g174End:[{op:'ReturnRecentDragons832'}]};
+  if(f.typeText==='呪文'&&text==='S・トリガー自分の手札を1枚裏向きにして新しいシールドとしてシールドゾーンに加えてもよい。そうした場合自分のシールドを1枚手札に加える。ただしそのシールドの「S・トリガー」能力は使えない。相手の手札を見てその中から1枚選ぶ。そのカードを裏向きにし新しいシールドとして持ち主のシールドゾーンに加えてもよい。そうした場合相手のシールドを1枚選び相手はそれを自身の手札に加える。ただしそのシールドの「S・トリガー」能力は使えない。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'HandShield832'},{op:'HandShield832',owner:'opponent'}]};
+  if(f.typeText==='クリーチャー'&&text.replace('1枚目をすべてのプレイヤーに見せる。','1枚目を表向きにする。')==='このクリーチャーが攻撃する時自分の山札の上から1枚目を表向きにする。それがファイアー・バードであればバトルゾーンに出してもよい。それがドラゴンであれば相手のパワー4000以下のクリーチャーを1体破壊する。それが《超竜サンバースト・NEX》であればバトルゾーンにあるこのクリーチャーの上に置いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g34Attack:[{op:'Soulburn832'}]};
+ }
  if(phase>=831&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='クリーチャー'&&text==='自分の他の名前に《死神》とあるクリーチャーをバトルゾーンに出した時自分の墓地からそのクリーチャーよりコストが小さく名前に《死神》とあるクリーチャーを1体選んでもよい。その選んだクリーチャーを手札に戻す。')

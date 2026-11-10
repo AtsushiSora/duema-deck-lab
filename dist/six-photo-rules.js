@@ -85,7 +85,7 @@ export function createSixPhotoRules(api){
  function nextReduction456(s,p,c){const r=reductionRange456(s,p,c);return c.g456Reduction===undefined?r.max:Math.min(r.max,Math.max(r.min,c.g456Reduction));}
  function consumeReduction456(s,p,c){if(!s.extLimits?.some(r=>r.kind==='g456NextReduction'))return;s.extLimits=(s.extLimits||[]).filter(r=>!(r.kind==='g456NextReduction'&&r.player===p&&r.turn===s.turn&&reductionMatches456(c,r)));}
  // New optional auras choose their combined reduction independently for each summon.
- function summonAuras560(s,p,c){const out={mandatory:0,optional:0,zeroOptional:0};if(c.type!=='creature'||c.crossing)return out;const fits=f=>(!f.g756Colorless||colors(c).length===0)&&(!f.any||f.any.some(fits))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.color||colors(c).includes(f.color))&&(!f.evolution||api.isEvolution({cardId:c.id})||!!c.neoEvolution&&!!c.g27BaseUid)&&(f.minPower===undefined||c.power==='∞'||Number(c.power)>=f.minPower)&&(f.min===undefined||cost({...c,cost:c.printedCost??c.cost})>=f.min)&&(f.max===undefined||cost({...c,cost:c.printedCost??c.cost})<=f.max);
+ function summonAuras560(s,p,c){const out={mandatory:0,optional:0,zeroOptional:0};if(c.type!=='creature'||c.crossing)return out;const fits=f=>(!f.g832NameIncludes||exactName(creatureFaceName(c)).includes(f.g832NameIncludes))&&(!f.g756Colorless||colors(c).length===0)&&(!f.any||f.any.some(fits))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.color||colors(c).includes(f.color))&&(!f.evolution||api.isEvolution({cardId:c.id})||!!c.neoEvolution&&!!c.g27BaseUid)&&(f.minPower===undefined||c.power==='∞'||Number(c.power)>=f.minPower)&&(f.min===undefined||cost({...c,cost:c.printedCost??c.cost})>=f.min)&&(f.max===undefined||cost({...c,cost:c.printedCost??c.cost})<=f.max);
   for(const who of[p,1-p])for(const x of s.players[who].battle){if(x.sealed)continue;const d=effective(x,s);for(const r of[...(d.g290SummonAura?[d.g290SummonAura]:[]),...(d.g349SummonAuras||[])]){if(!api.isCreature(s,x)&&!(r.g560Element&&d.type==='seed')||who!==p&&!r.both)continue;const match=r.filter?fits(r.filter):r.neo?!!c.neoEvolution:r.color?colors(c).includes(r.color):race(c,r.race);if(!match)continue;let state=s;if(r.g560InUse&&who===p&&(c.summonOrigin||'hand')==='hand'){const uid=c.executionUid??s.players[p].hand.find(y=>y.cardId===c.id)?.uid;state={...s,players:s.players.map((v,q)=>q===p?{...v,hand:v.hand.filter(y=>y.uid!==uid)}:v)};}if(r.condition&&!ownCondition(state,who,r.condition))continue;out[r.g560Optional?'optional':'mandatory']+=r.amount;if(r.g756ZeroFloor)out.zeroOptional+=r.amount;}}
   return out;
  }
@@ -1193,6 +1193,45 @@ export function createSixPhotoRules(api){
  }
  case'g34_AttackFight408':{if(t.g747Once&&parottaUsed747(s,t))break;const y=attackHost408(s,t);if(y&&api.isCreature(s,y)&&!y.sealed)put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:y.uid,incarnation:y.incarnation||0},optional:true});break;}
  case'g34_AttackExtraBreak511':{const ref=t.g399Attacker;if(ref)start(s,{...t,uid:ref.uid,incarnation:ref.incarnation},[{op:'SelfExtraBreak444',amount:t.amount}]);break;}
+ case'g34_ReturnRecentDragons832':{
+  const rows=creatures(s,t.p).filter(x=>!x.sealed&&(x.originalEntryTurn??x.entered)===s.turn&&
+   !api.isEvolution(x)&&race(effective(x,s),'アーマード・ドラゴン'));
+  if(rows.length)move(s,rows.map(x=>({player:t.p,uid:x.uid,to:'hand',destroy:false,controller:t.p})));
+  break;
+ }
+ case'g34_HandShield832':{
+  const opponent=t.owner==='opponent',owner=opponent?1-t.p:t.p;
+  const rows=s.players[owner].hand;
+  if(rows.length&&(opponent||api.canAddShield(s,owner)))
+   choice(s,t,(opponent?'相手':'自分')+'の手札からシールドに置くカードを選ぶ（任意）',[
+    ...rows.map(x=>opt(card(x).name,x.uid,opponent?cost(card(x)):5-cost(card(x)),x.cardId)),skip()
+   ]);
+  break;
+ }
+ case'g34_Soulburn832':{
+  const [uid]=look(s,{...t,n:1,public:true});
+  const x=own.deck.find(x=>x.uid===uid);
+  if(!x)break;
+  const c=card(x),bird=faces(c).some(f=>race(f,'ファイアー・バード'));
+  const next={...t,op:'g34_SoulburnDragon832',target:uid,dragon:faces(c).some(f=>race(f,'ドラゴン')),
+   sunburst:c.name==='超竜サンバースト・NEX'};
+  if(bird&&canPut(s,t.p,x,'deck'))
+   choice(s,{...next,op:'g34_SoulburnBird832'},'公開したファイアー・バードを出す？',[opt(c.name,uid,15,c.id),skip()]);
+  else put(s,next);
+  break;
+ }
+ case'g34_SoulburnDragon832':{
+  const last={...t,op:'g34_SoulburnFinish832'};
+  put(s,t.dragon?{...t,op:'g34_Target',to:'grave',filter:{maxPower:4000,g199Power:true}}:null,last);
+  break;
+ }
+ case'g34_SoulburnFinish832':{
+  const x=own.deck.find(x=>x.uid===t.target),base=own.battle.find(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)&&!y.sealed);
+  if(t.sunburst&&x&&base&&canPut(s,t.p,x,'deck')&&api.evolutionBases(s,t.p,card(x)).includes(base))
+   choice(s,t,'ソウルバーン・ドラゴンの上に進化させる？',[opt(card(x).name,base.uid,20,x.cardId),skip()]);
+  else release(s,t.p,t.target);
+  break;
+ }
  case'g34_DeathRecovery831':{
   const ref=t.g831Subject;
   const subject=own.battle.find(x=>x.uid===ref.uid&&(x.incarnation||0)===ref.incarnation&&!x.sealed);
@@ -2440,6 +2479,19 @@ export function createSixPhotoRules(api){
  case'g34_PeekRead585':
   if(v&&api.swapShield585(s,t.p,t.shieldUid))api.log(s,t.p,'shieldSwap',card(t.source).name+'：確認したカードと山札の上を入れ替えた',{cardId:t.source});
   if(t.remaining>1){const {g585Peek,shieldUid,...next}=t;put(s,{...next,op:'g34_Peek585',remaining:t.remaining-1});}
+  break;
+ case'g34_HandShield832':{
+  const owner=t.owner==='opponent'?1-t.p:t.p;
+  if(v&&zoneMove(s,owner,'hand',v,'shields',t))
+   put(s,{...t,op:'g55_ShieldHand',g238ShieldHand:true,g832ShieldOwner:owner});
+  break;
+ }
+ case'g34_SoulburnBird832':
+  put(s,v?{...t,op:'g34_Put',origin:'deck',owner:t.p}:null,{...t,op:'g34_SoulburnDragon832'});
+  break;
+ case'g34_SoulburnFinish832':
+  release(s,t.p,t.target);
+  if(v)doPut(s,{...t,origin:'deck'},v);
   break;
  case'g34_ShieldExchange446':{const y=v&&own.hand.find(y=>y.uid===v);if(y)zoneMove(s,t.p,'hand',y.uid,'shields',t);if(!t.optional||y)put(s,{...t,op:'g34_ShieldHand',g238ShieldHand:true});break;}
  case'g34_ChooseCivilization805':

@@ -185217,28 +185217,123 @@
       "g831Sunshine": true,
       "supportBatch": "phase-831",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm34-049",
+      "name": "マッハ・ルピア",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ファイアー・バード",
+      "text": "自分の、名前に《NEX》とあるクリーチャーを召喚するコストを１少なくしてもよい。ただし、コストは１より少なくならない。\nバトルゾーンにある自分のアーマード・ドラゴンはすべて「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)\n自分のターンの終わりに、このターンにバトルゾーンに出した自分の進化ではないアーマード・ドラゴンをすべて手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-049",
+      "limit": 4,
+      "g349SummonAuras": [
+        {
+          "filter": {
+            "g832NameIncludes": "NEX"
+          },
+          "amount": 1,
+          "g560Optional": true
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "race": "アーマード・ドラゴン"
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "g174End": [
+        {
+          "op": "ReturnRecentDragons832"
+        }
+      ],
+      "supportBatch": "phase-832",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm33-011",
+      "name": "サイキック・ユー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー\n自分の手札を１枚、裏向きにして、新しいシールドとしてシールドゾーンに加えてもよい。そうした場合、自分のシールドを１枚、手札に加える。ただし、そのシールドの「S・トリガー」能力は使えない。\n相手の手札を見て、その中から１枚選ぶ。そのカードを裏向きにし、新しいシールドとして持ち主のシールドゾーンに加えてもよい。そうした場合、相手のシールドを１枚選び、相手はそれを自身の手札に加える。ただし、そのシールドの「S・トリガー」能力は使えない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm33-011",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "HandShield832"
+        },
+        {
+          "op": "HandShield832",
+          "owner": "opponent"
+        }
+      ],
+      "supportBatch": "phase-832",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm35-015",
+      "name": "ソウルバーン・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "アーマード・ドラゴン",
+      "text": "このクリーチャーが攻撃する時、自分の山札の上から１枚目を表向きにする。それがファイアー・バードであれば、バトルゾーンに出してもよい。それがドラゴンであれば、相手のパワー4000以下のクリーチャーを１体破壊する。それが《超竜サンバースト・NEX》であれば、バトルゾーンにあるこのクリーチャーの上に置いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-015",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Soulburn832"
+        }
+      ],
+      "supportBatch": "phase-832",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 831,
+    "phase": 832,
     "checkedAt": "2026-11-10",
-    "baseCount": 6351,
+    "baseCount": 6354,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6354,
+    "totalCount": 6357,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35978/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35979/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35980/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37385/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37386/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37387/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37388/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37389/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37390/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37391/",
-      "https://dm.takaratomy.co.jp/rule/qa/43935/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/34906/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35868/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35869/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35915/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35916/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35917/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35981/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35982/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35983/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35984/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -199879,6 +199974,32 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35859/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35906/",
           "https://dm.takaratomy.co.jp/rule/qa/31803/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 831,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6351,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6354,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35978/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35979/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35980/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37385/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37386/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37387/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37388/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37389/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37390/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37391/",
+          "https://dm.takaratomy.co.jp/rule/qa/43935/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

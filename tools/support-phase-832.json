@@ -1,0 +1,252 @@
+{
+  "phase": 832,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6354,
+  "description": "NEXの召喚軽減とドラゴンの支援、手札とシールドの交換、攻撃時の山札公開と進化に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34906/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35868/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35869/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35915/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35916/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35917/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35981/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35982/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35983/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35984/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm34-049",
+      "name": "マッハ・ルピア",
+      "faces": [
+        {
+          "name": "マッハ・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の、名前に《NEX》とあるクリーチャーを召喚するコストを１少なくしてもよい。ただし、コストは１より少なくならない。\nバトルゾーンにある自分のアーマード・ドラゴンはすべて「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)\n自分のターンの終わりに、このターンにバトルゾーンに出した自分の進化ではないアーマード・ドラゴンをすべて手札に戻す。",
+          "race": "ファイアー・バード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-049",
+      "spec": {
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "g832NameIncludes": "NEX"
+            },
+            "amount": 1,
+            "g560Optional": true
+          }
+        ],
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "race": "アーマード・ドラゴン"
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ],
+        "g174End": [
+          {
+            "op": "ReturnRecentDragons832"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm34-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "b1682184180d1d735ff5e819eaf9aa6e868e70f323321715d51f3509db8e7c93",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm33-011",
+      "name": "サイキック・ユー",
+      "faces": [
+        {
+          "name": "サイキック・ユー",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー\n自分の手札を１枚、裏向きにして、新しいシールドとしてシールドゾーンに加えてもよい。そうした場合、自分のシールドを１枚、手札に加える。ただし、そのシールドの「S・トリガー」能力は使えない。\n相手の手札を見て、その中から１枚選ぶ。そのカードを裏向きにし、新しいシールドとして持ち主のシールドゾーンに加えてもよい。そうした場合、相手のシールドを１枚選び、相手はそれを自身の手札に加える。ただし、そのシールドの「S・トリガー」能力は使えない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm33-011",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandShield832"
+          },
+          {
+            "op": "HandShield832",
+            "owner": "opponent"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm33-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "b9ebdc4244a488d5654e07f34dbb935faf365903227d9aa29595d93c33806e57",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm35-015",
+      "name": "ソウルバーン・ドラゴン",
+      "faces": [
+        {
+          "name": "ソウルバーン・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーが攻撃する時、自分の山札の上から１枚目を表向きにする。それがファイアー・バードであれば、バトルゾーンに出してもよい。それがドラゴンであれば、相手のパワー4000以下のクリーチャーを１体破壊する。それが《超竜サンバースト・NEX》であれば、バトルゾーンにあるこのクリーチャーの上に置いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-015",
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Soulburn832"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm35-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "1a8c05dad94c5fb347c25a627a28f39522b3e0b8f080a8ed33032132584a63f3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc62-018",
+      "canonicalId": "dm34-049",
+      "name": "マッハ・ルピア",
+      "faces": [
+        {
+          "name": "マッハ・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の、名前に《NEX》とあるクリーチャーを召喚するコストを１少なくしてもよい。ただし、コストは１より少なくならない。\nバトルゾーンにある自分のアーマード・ドラゴンはすべて「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)\n自分のターンの終わりに、このターンにバトルゾーンに出した自分の進化ではないアーマード・ドラゴンをすべて手札に戻す。",
+          "race": "ファイアー・バード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc62-018",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc62-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "8cca2f3200bf1c592b6a5c088b2137cc6e9b907a24bcf0c6ee9f181f255711e8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx21-007",
+      "canonicalId": "dm34-049",
+      "name": "マッハ・ルピア",
+      "faces": [
+        {
+          "name": "マッハ・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の、名前に《NEX》とあるクリーチャーの召喚コストを１少なくしてもよい。ただし、コストは０以下にならない。\n自分のアーマード・ドラゴンすべてに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）\n自分のターンの終わりに、このターンにバトルゾーンに出した自分の、進化ではないアーマード・ドラゴンをすべて手札に戻す。",
+          "race": "ファイアー・バード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-007",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx21-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "d166f88b80557ed4dd99fba4b6221a409d3d31a825a701fb06757a84f86c0e6a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc67-006",
+      "canonicalId": "dm35-015",
+      "name": "ソウルバーン・ドラゴン",
+      "faces": [
+        {
+          "name": "ソウルバーン・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーが攻撃する時、自分の山札の上から１枚目をすべてのプレイヤーに見せる。それがファイアー・バードであれば、バトルゾーンに出してもよい。それがドラゴンであれば、相手のパワー4000以下のクリーチャーを１体破壊する。それが《超竜サンバースト・NEX》であれば、バトルゾーンにあるこのクリーチャーの上に置いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc67-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc67-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "82ccedfc6a200cd034a00d81f535c2de9953774ec6c12b705950fd0772076d37",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm34-049": 4,
+      "dm33-011": 4,
+      "dm35-015": 4,
+      "dmc62-018": 4,
+      "dmx21-007": 4,
+      "dmc67-006": 4
+    }
+  }
+}
