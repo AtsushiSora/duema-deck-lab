@@ -190790,24 +190790,113 @@
       ],
       "supportBatch": "phase-884",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-075",
+      "name": "クラヤミ変怪",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "デモニオ/鬼札王国",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の闇のクリーチャーがバトルゾーンにあれば、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－4000 する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-075",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "color": "闇"
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "power": -4000,
+              "g242PowerMinus": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-885",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp17-087",
+      "name": "二刀流Re:トレーニング",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "ジョーカーズ",
+      "text": "{GS} G・ストライク（この呪文を自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーがはじめてタップした時、アンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-087",
+      "limit": 4,
+      "gStrike": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g885FirstTap": true,
+          "title": "このターン最初のタップでアンタップする自分のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-885",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-003",
+      "name": "偽りの月を盗むファントム",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "デーモン・コマンド/月光王国",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\nオシオキムーン：カードが自分のシールドゾーンを離れた時、相手は自身の手札を２枚選び、捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-003",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g536ShieldLeft": [
+        {
+          "op": "Discard",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-885",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 884,
+    "phase": 885,
     "checkedAt": "2026-11-11",
-    "baseCount": 6517,
+    "baseCount": 6520,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6520,
+    "totalCount": 6523,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/40495/",
-      "https://dm.takaratomy.co.jp/rule/qa/39685/",
-      "https://dm.takaratomy.co.jp/rule/qa/42650/",
-      "https://dm.takaratomy.co.jp/rule/qa/42651/",
-      "https://dm.takaratomy.co.jp/rule/qa/39668/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316661/"
+      "https://dm.takaratomy.co.jp/rule/qa/49028/",
+      "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
+      "https://dm.takaratomy.co.jp/rule/qa/38756/",
+      "https://dm.takaratomy.co.jp/rule/qa/46566/",
+      "https://dm.takaratomy.co.jp/rule/qa/34205/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -206547,6 +206636,27 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36638/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 884,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6517,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6520,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/40495/",
+          "https://dm.takaratomy.co.jp/rule/qa/39685/",
+          "https://dm.takaratomy.co.jp/rule/qa/42650/",
+          "https://dm.takaratomy.co.jp/rule/qa/42651/",
+          "https://dm.takaratomy.co.jp/rule/qa/39668/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316661/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -3445,6 +3445,19 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=885){
+  if(d.id==='dmrp14-075'&&f.typeText==='クリーチャー'&&compact363===
+   'S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)このクリーチャーがバトルゾーンに出た時自分の闇のクリーチャーがバトルゾーンにあれば相手のクリーチャーを1体選ぶ。そのターンそのクリーチャーのパワーを-4000する。(パワー0以下のクリーチャーは破壊される)')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'IfOwn',filter:{creature:true,color:'闇'},
+    defs:[{op:'Target',power:-4000,g242PowerMinus:true}]}]};
+  if(d.id==='dmrp17-087'&&f.typeText==='呪文'&&compact363===
+   '{GS}G・ストライク(この呪文を自分のシールドゾーンから手札に加える時相手に見せ相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)自分のクリーチャーを1体選ぶ。このターンそのクリーチャーがはじめてタップした時アンタップする。')
+   return {gStrike:true,effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',g885FirstTap:true,
+    title:'このターン最初のタップでアンタップする自分のクリーチャーを選ぶ'}]};
+  if(d.id==='dmrp15-003'&&f.typeText==='クリーチャー'&&compact363===
+   'ブロッカーブロッカーW・ブレイカーオシオキムーン:カードが自分のシールドゾーンを離れた時相手は自身の手札を2枚選び捨てる。')
+   return {blocker:true,breaker:2,g536ShieldLeft:[{op:'Discard',n:2}]};
+ }
  if(phase>=884){
   if(d.id==='dmrp17-009'&&f.typeText==='クリーチャー'&&compact363.replaceAll('▶︎','▶')===
    'EXライフ(このクリーチャーを出す時自分の山札の上から1枚目をシールド化する。このクリーチャーが離れる時かわりにそのシールドを墓地に置く)スピードアタッカーW・ブレイカーカードが自分のシールドゾーンから墓地に置かれた時次のうちいずれか1つを選ぶ。▶カードを1枚引く。▶相手は自身の手札を1枚選んで捨てる。▶相手のクリーチャーを1体選びタップする。')

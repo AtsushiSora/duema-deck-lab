@@ -3168,6 +3168,12 @@ export function createSixPhotoRules(api){
  }break;
  case'g34_ManaExchangeBase753':api.beginManaExchange753(s,t,v);break;
  case'g34_Target':
+  if(t.g885FirstTap){
+   const y=v&&own.battle.find(x=>x.uid===v.uid);
+   if(y)(s.extLimits??=[]).push({kind:'g885FirstTap',ref:{uid:y.uid,incarnation:y.incarnation||0},
+    player:t.p,source:t.source,expires:'end',who:s.active});
+   break;
+  }
   if(t.g882DeployBelowCost){
    const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid);
    if(!y)break;
@@ -3741,6 +3747,15 @@ export function createSixPhotoRules(api){
   if(api.isCreature(s,x))for(const y of s.players[1-p].battle){
    const {g678OpponentTap,g681OpponentTapAnyTurn}=card(y);
    if(g678OpponentTap&&(s.active===1-p||g681OpponentTapAnyTurn)&&!y.sealed&&!api.ignored(s,y)&&api.isCreature(s,y))queue(s,1-p,y,g678OpponentTap);
+  }
+  if(s.extLimits?.some(r=>r.kind==='g885FirstTap')){
+   const refs=api.allLayers(x).map(key);
+   s.extLimits=s.extLimits.filter(r=>{
+    if(r.kind!=='g885FirstTap'||!refs.includes(key(r.ref)))return true;
+    api.enqueue(s,r.player,{...r.ref,source:r.source,effect:'extended',
+     task:task('g34_Untap',r.player,r.source,{...r.ref,g191First:true})});
+    return false;
+   });
   }
   const c=effective(x,s),first=!used(s,'g191Tapped',x);mark(s,'g191Tapped',x);if(first&&c.g219FirstTap)queue(s,p,x,c.g219FirstTap);if(first&&c.g191FirstTapUntap)queue(s,p,x,[E('Untap',{g191First:true})]);if(c.g188Tapped)queue(s,p,x,c.g188Tapped);if(c.g34Role==='fourJustice')queue(s,p,x,[C('justiceBreak')]);if(ninja(effective(x,s)))for(const y of active(s,p,'mukade'))if(!used(s,'g34FirstTap',y)){mark(s,'g34FirstTap',y);queue(s,p,y,[E('Draw',{n:1,optional:true})]);}},
  // Capture the creature before shield replacement windows can move it.

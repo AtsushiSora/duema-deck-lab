@@ -1,0 +1,153 @@
+{
+  "phase": 885,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6520,
+  "description": "闇の味方を条件とするS・トリガーとパワー低下、G・ストライクと最初のタップ時のアンタップ、オシオキムーンによる相手選択の手札破棄に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/49028/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
+    "https://dm.takaratomy.co.jp/rule/qa/38756/",
+    "https://dm.takaratomy.co.jp/rule/qa/46566/",
+    "https://dm.takaratomy.co.jp/rule/qa/34205/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp14-075",
+      "name": "クラヤミ変怪",
+      "faces": [
+        {
+          "name": "クラヤミ変怪",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の闇のクリーチャーがバトルゾーンにあれば、相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーを－4000 する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-075",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "color": "闇"
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "power": -4000,
+                "g242PowerMinus": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-075.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "b3724cd5759204260acf80271d0791a5da041590f9b9090b154fc07a631c1073",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-087",
+      "name": "二刀流Re:トレーニング",
+      "faces": [
+        {
+          "name": "二刀流Re:トレーニング",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク（この呪文を自分のシールドゾーンから手札に加える時、相手に見せ、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーがはじめてタップした時、アンタップする。",
+          "race": "ジョーカーズ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-087",
+      "spec": {
+        "gStrike": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g885FirstTap": true,
+            "title": "このターン最初のタップでアンタップする自分のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-087.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "6511e43a7713d3a03328408bf60ac64510033af999f4f1b0ca41d8d810a17c2c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp15-003",
+      "name": "偽りの月を盗むファントム",
+      "faces": [
+        {
+          "name": "偽りの月を盗むファントム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nオシオキムーン：カードが自分のシールドゾーンを離れた時、相手は自身の手札を２枚選び、捨てる。",
+          "race": "デーモン・コマンド/月光王国",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-003",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g536ShieldLeft": [
+          {
+            "op": "Discard",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "82f617743f84537025db598fed75a0da93935618bd8971683afb64efceb802c3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp14-075": 4,
+      "dmrp17-087": 4,
+      "dmrp15-003": 4
+    }
+  }
+}
