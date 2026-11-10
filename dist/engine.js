@@ -1225,6 +1225,8 @@ function attackTargetAllowed(s,attacker,target){
  if(sharesProtectedCivilization806(s,target,attacker,d))return false;
  // This restriction belongs to the protecting creature, even if the target's abilities are ignored.
  const owner=1-s.active,allies=s.players[owner].battle;
+ if(allies.some(x=>card(x).g824EvolutionAttackProtection&&!x.sealed&&effectiveCard(x,s).g824EvolutionAttackProtection)&&
+    allies.some(x=>!x.sealed&&isCreature(s,x)&&isEvolution(x))&&power(target,false,s)<=3000)return false;
  for(const source of allies){
   if(!card(source).g691AttackProtection||source.sealed||!isCreature(s,source))continue;
   const rule=effectiveCard(source,s).g691AttackProtection;

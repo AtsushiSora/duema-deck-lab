@@ -2507,6 +2507,17 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=824&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='クリーチャー'){
+   if(text==='自分の進化クリーチャーがバトルゾーンにある時バトルゾーンにある自分のパワー3000以下のクリーチャーは攻撃されない。')
+    return {g824EvolutionAttackProtection:true};
+   if(text==='このクリーチャーが破壊された時バトルゾーンにある進化ではないクリーチャー1体またはリンクしていないゴッドを1体選び持ち主の手札に戻してもよい。')
+    return {g172Death:[{op:'Target',anyOwner:true,optional:true,to:'hand',g824Panya:true}]};
+  }
+  if(f.typeText==='呪文'&&text==='ゴッドを2体まで自分のマナゾーンからバトルゾーンに出す。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'mana',n:2,deploy:true,optional:true,filter:{creature:true,race:'ゴッド'}}]};
+ }
  if(phase>=823&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const draw='このカードが墓地に置かれた時それが墓地に置かれる直前に進化クリーチャーの下にあった場合カードを1枚引いてもよい。';
