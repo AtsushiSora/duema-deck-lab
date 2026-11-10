@@ -3433,6 +3433,19 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=880){
+  if(d.id==='dmr09-110'&&f.typeText==='呪文'&&compact363===
+   'バトルゾーンにある自分のクリーチャー1体は次の自分のターンのはじめまで「ガードマン」を得る。(自分の他のクリーチャーが攻撃される時「ガードマン」を得たクリーチャーをタップしてもよい。そうした場合攻撃クリーチャーはかわりにそのクリーチャーを攻撃する)カードを1枚引く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',grant:{guardman:true},g521UntilStart:true,spell:true},{op:'Draw',n:1}]};
+  if(d.id==='dmr08-003'&&f.typeText==='進化クリーチャー'&&compact363===
+   '進化-自分のグレートメカオー1体の上に置く。このクリーチャーが攻撃する時グレートメカオーを1体手札から捨ててもよい。そうした場合バトルゾーンにある相手のクリーチャーを1体選び相手の山札の一番上に置く。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {evolution:{race:'グレートメカオー'},breaker:2,g34Attack:[{op:'DiscardFor248',
+    g488DiscardFilter:{g228Face:{type:'creature',raceAll:['グレートメカオー']}},g770DiscardAttempt:true,
+    title:'手札から捨てるグレートメカオーを1体選ぶ（任意）',defs:[{op:'Target',to:'deckTop'}]}]};
+  if(d.id==='dmr08-012'&&f.typeText==='クリーチャー'&&compact363===
+   'このクリーチャーが攻撃する時自分が負けるか中止するまで相手とガチンコ・ジャッジする。その後こうして自分が勝った数カードを1枚引いてもよい。(ガチンコ・ジャッジ:各プレイヤーは自身の山札の上から1枚目を見せそれを一番下に置く。そのカードのコストが相手以上であれば自分の勝ちとする)')
+   return {attackJudge:'draw'};
+ }
  if(phase>=879){
   if(f.typeText==='クリーチャー'){
    const judge='このクリーチャーが攻撃する時自分が負けるか中止するまで相手とガチンコ・ジャッジする。その後こうして自分がガチンコ・ジャッジに勝った回数このクリーチャーは相手のシールドを';

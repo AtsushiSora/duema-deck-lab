@@ -1,0 +1,160 @@
+{
+  "phase": 880,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6505,
+  "description": "期限付きのガードマン付与とドロー、グレートメカオー進化と攻撃時の山札上への移動、反復ジャッジ後の任意ドローに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36792/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36793/",
+    "https://dm.takaratomy.co.jp/rule/qa/38589/",
+    "https://dm.takaratomy.co.jp/rule/qa/40102/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
+    "https://dm.takaratomy.co.jp/rule/qa/43246/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37347/"
+  ],
+  "cards": [
+    {
+      "id": "dmr09-110",
+      "name": "ガードレッスン ～初級編～",
+      "faces": [
+        {
+          "name": "ガードレッスン ～初級編～",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "バトルゾーンにある自分のクリーチャー１体は、次の自分のターンのはじめまで「ガードマン」を得る。（自分の他のクリーチャーが攻撃される時、「ガードマン」を得たクリーチャーをタップしてもよい。そうした場合、攻撃クリーチャーはかわりにそのクリーチャーを攻撃する）\nカードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-110",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "guardman": true
+            },
+            "g521UntilStart": true,
+            "spell": true
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-110.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "c19a10c6d1ef30fc69f6ba2afa1a7db6c4f9625d1f5c04727f2308011199048b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr08-003",
+      "name": "真実の巨兵 サンダーバードRe:",
+      "faces": [
+        {
+          "name": "真実の巨兵 サンダーバードRe:",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "進化-自分のグレートメカオー１体の上に置く。\nこのクリーチャーが攻撃する時、グレートメカオーを１体、手札から捨ててもよい。そうした場合、バトルゾーンにある相手のクリーチャーを１体選び、相手の山札の一番上に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "グレートメカオー/アンノウン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-003",
+      "spec": {
+        "evolution": {
+          "race": "グレートメカオー"
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "DiscardFor248",
+            "g488DiscardFilter": {
+              "g228Face": {
+                "type": "creature",
+                "raceAll": [
+                  "グレートメカオー"
+                ]
+              }
+            },
+            "g770DiscardAttempt": true,
+            "title": "手札から捨てるグレートメカオーを1体選ぶ（任意）",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "deckTop"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "a96786bb560277bf2f42b92536be46ce1c232cb9d79ed59e96d3ff8514a5c806",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr08-012",
+      "name": "アクア・PTA",
+      "faces": [
+        {
+          "name": "アクア・PTA",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、自分が負けるか中止するまで、相手とガチンコ・ジャッジする。その後、こうして自分が勝った数、カードを１枚引いてもよい。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)",
+          "race": "リキッド・ピープル",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-012",
+      "spec": {
+        "attackJudge": "draw"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "e666adbd5b9b836d711388cafa85118b3639e35f57fbdf4bf108dc88e9856cb0",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr09-110": 4,
+      "dmr08-003": 4,
+      "dmr08-012": 4
+    }
+  }
+}

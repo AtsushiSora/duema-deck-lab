@@ -190265,27 +190265,120 @@
       ],
       "supportBatch": "phase-879",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-110",
+      "name": "ガードレッスン ～初級編～",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある自分のクリーチャー１体は、次の自分のターンのはじめまで「ガードマン」を得る。（自分の他のクリーチャーが攻撃される時、「ガードマン」を得たクリーチャーをタップしてもよい。そうした場合、攻撃クリーチャーはかわりにそのクリーチャーを攻撃する）\nカードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-110",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "grant": {
+            "guardman": true
+          },
+          "g521UntilStart": true,
+          "spell": true
+        },
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-880",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr08-003",
+      "name": "真実の巨兵 サンダーバードRe:",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "グレートメカオー/アンノウン",
+      "text": "進化-自分のグレートメカオー１体の上に置く。\nこのクリーチャーが攻撃する時、グレートメカオーを１体、手札から捨ててもよい。そうした場合、バトルゾーンにある相手のクリーチャーを１体選び、相手の山札の一番上に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-003",
+      "limit": 4,
+      "evolution": {
+        "race": "グレートメカオー"
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "DiscardFor248",
+          "g488DiscardFilter": {
+            "g228Face": {
+              "type": "creature",
+              "raceAll": [
+                "グレートメカオー"
+              ]
+            }
+          },
+          "g770DiscardAttempt": true,
+          "title": "手札から捨てるグレートメカオーを1体選ぶ（任意）",
+          "defs": [
+            {
+              "op": "Target",
+              "to": "deckTop"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-880",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr08-012",
+      "name": "アクア・PTA",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "リキッド・ピープル",
+      "text": "このクリーチャーが攻撃する時、自分が負けるか中止するまで、相手とガチンコ・ジャッジする。その後、こうして自分が勝った数、カードを１枚引いてもよい。(ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-012",
+      "limit": 4,
+      "attackJudge": "draw",
+      "supportBatch": "phase-880",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 879,
+    "phase": 880,
     "checkedAt": "2026-11-11",
-    "baseCount": 6502,
+    "baseCount": 6505,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6505,
+    "totalCount": 6508,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36792/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36793/",
       "https://dm.takaratomy.co.jp/rule/qa/38589/",
-      "https://dm.takaratomy.co.jp/rule/qa/42893/",
-      "https://dm.takaratomy.co.jp/rule/qa/42524/",
-      "https://dm.takaratomy.co.jp/rule/qa/43222/",
-      "https://dm.takaratomy.co.jp/rule/qa/43223/",
-      "https://dm.takaratomy.co.jp/rule/qa/45561/",
-      "https://dm.takaratomy.co.jp/rule/qa/46616/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36710/",
-      "https://dm.takaratomy.co.jp/rule/qa/45095/"
+      "https://dm.takaratomy.co.jp/rule/qa/40102/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31636/",
+      "https://dm.takaratomy.co.jp/rule/qa/43246/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37347/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -205920,6 +206013,30 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36833/",
           "https://dm.takaratomy.co.jp/rule/qa/43078/",
           "https://dm.takaratomy.co.jp/archive/dmex02/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 879,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6502,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6505,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/38589/",
+          "https://dm.takaratomy.co.jp/rule/qa/42893/",
+          "https://dm.takaratomy.co.jp/rule/qa/42524/",
+          "https://dm.takaratomy.co.jp/rule/qa/43222/",
+          "https://dm.takaratomy.co.jp/rule/qa/43223/",
+          "https://dm.takaratomy.co.jp/rule/qa/45561/",
+          "https://dm.takaratomy.co.jp/rule/qa/46616/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36710/",
+          "https://dm.takaratomy.co.jp/rule/qa/45095/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
