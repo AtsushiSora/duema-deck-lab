@@ -2133,7 +2133,8 @@ export function createSixPhotoRules(api){
  case'g34_RevealTop514':{
   const ids=look(s,{...t,n:1,public:true}),y=own.deck.find(y=>y.uid===ids[0]);
   if(!y){api.deckCheck(s,t.p);break;}
-  const matched=matches(s,t.p,y,t.filter),to=matched?t.to:t.elseTo;
+  const filter=t.g746OwnManaCost?{...t.filter,max:own.mana.length}:t.filter;
+  const matched=matches(s,t.p,y,filter),to=matched?t.to:t.elseTo;
   const defs=to?[{op:'RevealMove514',target:y.uid,to,...(t.g774Banky?{g774Banky:true}:{})}]:matched?[]:t.elseDefs||[];
   const release={op:'RevealRelease514',ids};
   if(matched&&t.optional&&to==='battle'&&canPut(s,t.p,y,'deck'))

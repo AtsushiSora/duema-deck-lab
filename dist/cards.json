@@ -191523,21 +191523,115 @@
       },
       "supportBatch": "phase-891",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-059",
+      "name": "寸寸-ビート",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "メカサンダー/チームボンバー",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n各ターン、このクリーチャーがはじめてタップした時、自分の火のクリーチャーがバトルゾーンにあれば、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-059",
+      "limit": 4,
+      "blocker": true,
+      "g219FirstTap": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "color": "火"
+          },
+          "defs": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-892",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-071",
+      "name": "操樹人形スレイヴン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "デスパペット/不死樹王国",
+      "text": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーが破壊される時、バトルゾーンに自分の自然のクリーチャーがあれば、墓地に置くかわりにマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-071",
+      "limit": 4,
+      "slayer": true,
+      "g260Self": {
+        "filter": {
+          "creature": true,
+          "color": "自然"
+        },
+        "grants": {
+          "destroyToMana": true
+        }
+      },
+      "supportBatch": "phase-892",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-094",
+      "name": "樹彫の占者",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "ビーストフォーク/不死樹王国",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を表向きにする。それが、自分のマナゾーンにあるカードの枚数以下のコストを持つクリーチャーなら、手札に加える。そうでなければ墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-094",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "RevealTop514",
+          "filter": {
+            "creature": true
+          },
+          "g746OwnManaCost": true,
+          "to": "hand",
+          "elseTo": "grave"
+        }
+      ],
+      "supportBatch": "phase-892",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 891,
+    "phase": 892,
     "checkedAt": "2026-11-11",
-    "baseCount": 6538,
+    "baseCount": 6541,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6541,
+    "totalCount": 6544,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/33607/",
-      "https://dm.takaratomy.co.jp/rule/qa/33591/",
-      "https://dm.takaratomy.co.jp/rule/qa/39437/",
-      "https://dm.takaratomy.co.jp/rule/qa/39442/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36400/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37192/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35145/",
+      "https://dm.takaratomy.co.jp/rule/qa/39667/",
+      "https://dm.takaratomy.co.jp/rule/qa/40463/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -207411,6 +207505,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/46566/",
           "https://dm.takaratomy.co.jp/rule/qa/34238/",
           "https://dm.takaratomy.co.jp/rule/qa/41457/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 891,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6538,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6541,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/33607/",
+          "https://dm.takaratomy.co.jp/rule/qa/33591/",
+          "https://dm.takaratomy.co.jp/rule/qa/39437/",
+          "https://dm.takaratomy.co.jp/rule/qa/39442/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

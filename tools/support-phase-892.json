@@ -1,0 +1,155 @@
+{
+  "phase": 892,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6541,
+  "description": "ブロッカーと最初のタップ時の自軍火条件、スレイヤーと自軍自然条件の破壊時マナ置換、登場時の山札公開とマナ数以下のクリーチャー回収に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36400/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37192/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35145/",
+    "https://dm.takaratomy.co.jp/rule/qa/39667/",
+    "https://dm.takaratomy.co.jp/rule/qa/40463/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp14-059",
+      "name": "寸寸-ビート",
+      "faces": [
+        {
+          "name": "寸寸-ビート",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n各ターン、このクリーチャーがはじめてタップした時、自分の火のクリーチャーがバトルゾーンにあれば、このクリーチャーをアンタップする。",
+          "race": "メカサンダー/チームボンバー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-059",
+      "spec": {
+        "blocker": true,
+        "g219FirstTap": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "color": "火"
+            },
+            "defs": [
+              {
+                "op": "Untap",
+                "g191First": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-059.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "fba98366a58fdbaf261032a29a668b441e88ceb2c68f05fc569f1c9719c09476",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp14-071",
+      "name": "操樹人形スレイヴン",
+      "faces": [
+        {
+          "name": "操樹人形スレイヴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーが破壊される時、バトルゾーンに自分の自然のクリーチャーがあれば、墓地に置くかわりにマナゾーンに置く。",
+          "race": "デスパペット/不死樹王国",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-071",
+      "spec": {
+        "slayer": true,
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "color": "自然"
+          },
+          "grants": {
+            "destroyToMana": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-071.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "955e1476c03dfb8a0d09a36d50491e8e0025b9cff7c4ca18f05d8e98babbab08",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp14-094",
+      "name": "樹彫の占者",
+      "faces": [
+        {
+          "name": "樹彫の占者",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を表向きにする。それが、自分のマナゾーンにあるカードの枚数以下のコストを持つクリーチャーなら、手札に加える。そうでなければ墓地に置く。",
+          "race": "ビーストフォーク/不死樹王国",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-094",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "creature": true
+            },
+            "g746OwnManaCost": true,
+            "to": "hand",
+            "elseTo": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-094.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "599c4375fb6fb31dc8d0cfdcee3ff000ae7a5490013400bffb21bed3a805458d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp14-059": 4,
+      "dmrp14-071": 4,
+      "dmrp14-094": 4
+    }
+  }
+}

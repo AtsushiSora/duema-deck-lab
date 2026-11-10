@@ -3445,6 +3445,17 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=892&&creature){
+  if(d.id==='dmrp14-059'&&compact363===
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)各ターンこのクリーチャーがはじめてタップした時自分の火のクリーチャーがバトルゾーンにあればこのクリーチャーをアンタップする。')
+   return {blocker:true,g219FirstTap:[{op:'IfOwn',filter:{creature:true,color:'火'},defs:[{op:'Untap',g191First:true}]}]};
+  if(d.id==='dmrp14-071'&&compact363===
+   'スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)このクリーチャーが破壊される時バトルゾーンに自分の自然のクリーチャーがあれば墓地に置くかわりにマナゾーンに置く。')
+   return {slayer:true,g260Self:{filter:{creature:true,color:'自然'},grants:{destroyToMana:true}}};
+  if(d.id==='dmrp14-094'&&compact363===
+   'このクリーチャーがバトルゾーンに出た時自分の山札の上から1枚目を表向きにする。それが自分のマナゾーンにあるカードの枚数以下のコストを持つクリーチャーなら手札に加える。そうでなければ墓地に置く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'RevealTop514',filter:{creature:true},g746OwnManaCost:true,to:'hand',elseTo:'grave'}]};
+ }
  if(phase>=891){
   if(d.id==='dmrp14-037'&&f.typeText==='呪文'&&compact363===
    'S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)相手のクリーチャーを1体選ぶ。その後自分のクリーチャーを1体選んでもよい。それらを持ち主の手札に戻す。')
