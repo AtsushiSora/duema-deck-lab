@@ -2507,6 +2507,16 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=809&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'){
+  const text=normalize(f.abilityText).replace(/^S・トリガーS・トリガー/,'S・トリガー');
+  const trigger=/^S・トリガー(?:\(この(?:呪文|カード)をシールドゾーンから手札に加える時コストを支払わずにすぐ(?:唱えて|実行して)もよい\))?/;
+  const body=text.replace(trigger,'');
+  if(body!==text&&(/^自分の山札を見る。その中からゴッドを1体選び相手に見せてもよい。その後山札をシャッフルし(?:て)?選んだカードを山札の一番上に置く。$/.test(body)||
+     body==='自分の山札を見る。その中からゴッド・クリーチャーを1体表向きにしてもよい。その後山札をシャッフルしそのカードを山札の上に置く。'))
+   return {trigger:true,effect:'champion',g54Effect:'GodSignal'};
+  if(body!==text&&body==='自分のクリーチャーを1体破壊する。その後そのクリーチャーが持っていた文明の数だけ自分の山札の上からカードをマナゾーンに置く。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',g809RampByCivilizations:true}]};
+ }
  if(phase>=808&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const lines=f.abilityText.split('\n').map(normalize);
   const attack=lines.find(text=>/^このクリーチャーが攻撃する時自分のシールドを(?:1枚|1つ|ひとつ)墓地に置いてもよい。そうした(?:場合|ら)相手のパワー6000以下のクリーチャーを1体破壊する。$/.test(text));
@@ -6733,7 +6743,7 @@ export function standardCardSpec(d,{phase=165}={}){
    spec.g249OtherEntry={filter:{race:'アビス'},defs};continue;
   }
   if(phase>=230&&creature){
-   if(line==='このクリーチャーをマナゾーンから召喚してもよい。'){spec.manaSummon=true;continue;}
+   if(line==='このクリーチャーをマナゾーンから召喚してもよい。'||phase>=809&&line==='このクリーチャーは自分のマナゾーンから召喚してもよい。'){spec.manaSummon=true;continue;}
    if(line==='自分のマナゾーンにあるカードをすべての文明のカードとして扱う。'){spec.g51Courtney=true;continue;}
   }
   if(phase>=223&&creature&&(m=line.match(/^このクリーチャーがバトルゾーンに出たとき(相手の手札を見る。)$/))){if(entry.length||nativeEntry)throw Error('独立した誘発能力の順序対応が必要');entry.push(instruction(m[1],phase));continue;}

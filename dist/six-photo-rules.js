@@ -2190,18 +2190,22 @@ export function createSixPhotoRules(api){
  default:throw Error('未実装の6デッキ効果：'+t.op);
  }return true;}
  function ramp(s,t,n){
+  const batch=t.g809Together?[]:null;
+  const destTogether=batch?(api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana'):null;
   for(let i=0;i<n;i++){
    const y=api.takeTop(s,t.p);
    if(!y)break;
-   const dest=api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana';
+   const dest=destTogether||(api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana');
    clear(y,dest);
    if(dest==='mana'){
     if(t.faceDown){y.faceDown=true;y.tapped=!!t.tapped;}
     else if(t.tapped)y.tapped=true;
    }
+   if(batch){batch.push(y);continue;}
    api.addZone(s,t.p,dest,y);
    if(dest==='mana'&&t.g603Draw&&matches(s,t.p,y,t.g603Draw.filter))start(s,t,[{op:'Draw',n:1,optional:!!t.g603Draw.optional}]);
   }
+  if(batch?.length)api.addZone(s,t.p,destTogether,...batch);
   if(t.after)start(s,t,t.after);
   api.deckCheck(s,t.p);
  }
@@ -2645,6 +2649,15 @@ export function createSixPhotoRules(api){
   if(t.g780ReleaseHyper){
    const y=v&&own.battle.find(y=>y.uid===v.uid);
    if(y)releaseHyper781(s,t.p,y);
+   break;
+  }
+  if(t.g809RampByCivilizations){
+   const y=v&&own.battle.find(y=>y.uid===v.uid);
+   if(!y)break;
+   // Count the selected creature's last known civilizations, even if destruction is replaced.
+   const n=colors(effective(y,s,true)).filter(color=>civilizations805.includes(color)).length;
+   move(s,[{player:t.p,uid:y.uid,to:'grave',destroy:true,controller:t.controller??t.p}]);
+   if(n)start(s,t,[{op:'Ramp',n,g809Together:true}]);
    break;
   }
   if(t.g786ReviveAtCost){

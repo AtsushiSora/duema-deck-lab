@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6280,
-  "pendingNames": 5547,
-  "phase": 808,
+  "supportedNames": 6283,
+  "pendingNames": 5544,
+  "phase": 809,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -156,13 +156,13 @@
   "pendingByType": {
     "クリーチャー": 3274,
     "NEOクリーチャー": 152,
-    "呪文": 788,
+    "呪文": 786,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 57,
     "デュエルメイト呪文": 10,
     "S-MAX進化クリーチャー": 10,
-    "進化クリーチャー": 331,
+    "進化クリーチャー": 330,
     "スター進化クリーチャー": 71,
     "進化クリーチャー(超無限進化・Ω)": 1,
     "ギガ・オレガ・オーラ": 2,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1241,
-    "未対応の能力文": 4047,
+    "未対応の能力文": 4044,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -12196,30 +12196,98 @@
           "reason": "公式本文とQA 41196（https://dm.takaratomy.co.jp/rule/qa/41196/）を確認。多色をアンタップして置く置換と、グーゴル等の状態定義効果、手札以外からの移動先を変える置換が競合する。現行処理は複数経路で移動先を先に確定するため、置換の優先・非連鎖と裏向きマナを一体で検証できるまで保留。"
         }
       ]
+    },
+    {
+      "phase": 809,
+      "cards": [
+        {
+          "id": "dm25-009",
+          "name": "ゴッド・シグナル"
+        },
+        {
+          "id": "dm24-110",
+          "name": "生魂転霊"
+        },
+        {
+          "id": "dm26-028",
+          "name": "無双海王ソウル・ドルジ"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dmc55-035",
+          "canonicalId": "dm25-009",
+          "name": "ゴッド・シグナル"
+        },
+        {
+          "id": "dm26ex2-MC015",
+          "canonicalId": "dm25-009",
+          "name": "ゴッド・シグナル"
+        },
+        {
+          "id": "dmex15-b099",
+          "canonicalId": "dm24-110",
+          "name": "生魂転霊"
+        },
+        {
+          "id": "promoy24-026",
+          "canonicalId": "dm24-110",
+          "name": "生魂転霊"
+        },
+        {
+          "id": "promoy6-031",
+          "canonicalId": "dm26-028",
+          "name": "無双海王ソウル・ドルジ"
+        }
+      ],
+      "supportedNames": 6283,
+      "pendingNames": 5544,
+      "verification": {
+        "focusedPassed": 20,
+        "regressionPassed": 235,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 8,
+        "scope": "初出3点と再録・プロモ5点の全能力、基本情報、公式JPEG、使用制限なしを照合し、再録を各初出IDへ統合。ゴッド・シグナルは総合ルール701.11bとQA 35412・37735に沿うゴッド・クリーチャー検索、選ばない場合のシャッフル、非公開情報、曲通風とQX、S・トリガーを検証。生魂転霊はQA 35531・40592・42529と裁定変更31661に沿う破壊前の文明数、無色、ツインパクト、ヴェルデ、EXライフ、マナへの一括移動、S・トリガーを検証。ドルジはQA 35585・35586に沿う手札・マナからの通常支払い、タップ状態、使用するカード自身での支払い、進化元の文明と封印、T・ブレイク、JSON再開を検証。既存対戦定義6,280件と既存カタログIDの一致を確認。",
+        "runtimeNote": "各最大10分。Utility 66とPhase 230・407・444・449・805・808の関連回帰235件に成功。Phase 230・407・444・449の長時間CPU対戦8件をテスト名で除外。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dmr05-062",
+          "name": "鬼姫モエル",
+          "reason": "対戦データにサイキック・クリーチャーの対象例がなく、対象判定と超次元への移動を実戦経路で検証できないため保留。"
+        },
+        {
+          "id": "dmr09-102",
+          "name": "戦場のロックンロール",
+          "reason": "公式QA 36858に沿って、選んだ1体に対してだけ召喚酔いとアンタップ状態の攻撃条件を緩和する必要がある。現行の攻撃候補判定の変更範囲を確認する。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 808,
-    "nextPhase": 809,
+    "lastVerifiedPhase": 809,
+    "nextPhase": 810,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm25-009",
-        "name": "ゴッド・シグナル",
-        "check": "S・トリガーと山札からゴッドを任意で公開し、山札をシャッフルして選んだカードを一番上に置く処理を公式本文と照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-009"
+        "id": "dm29-s05",
+        "name": "緑神龍ディルガベジーダ",
+        "check": "Q・ブレイカーと破壊のかわりに山札へ戻してシャッフルする処理を、他の置換と進化元も含めて照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-s05"
       },
       {
-        "id": "dm24-110",
-        "name": "生魂転霊",
-        "check": "自分のクリーチャー破壊と破壊前に持っていた文明の数に応じたマナ追加を、破壊置換と同時移動も含めて照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-110"
+        "id": "dm27-028",
+        "name": "武者ザンゲキ剣",
+        "check": "S・トリガーとパワー5000以下の破壊、武者・ドラゴンの正確な名前に応じた追加破壊の順序を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-028"
       },
       {
-        "id": "dm26-028",
-        "name": "無双海王ソウル・ドルジ",
-        "check": "多色の進化元、ツインパクト、マナからの召喚、T・ブレイカーを、実際の進化・マナ支払い経路で照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-028"
+        "id": "dm28-012",
+        "name": "ピュアユニコーン",
+        "check": "破壊置換でシールドを手札へ加える際にS・トリガーが使えないこと、任意選択、シールドがない場合、複数の置換候補を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-012"
       },
       {
         "id": "dm24ex4-073",
