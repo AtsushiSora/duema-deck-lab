@@ -1,0 +1,286 @@
+{
+  "phase": 779,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6190,
+  "description": "別コスト召喚2種類と、タップ状態ごとに最大1体を戻すS・トリガーを対戦に追加する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/45461/",
+    "https://dm.takaratomy.co.jp/rule/qa/45462/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp3-030",
+      "name": "新星姫 マルシアス",
+      "faces": [
+        {
+          "name": "新星姫 マルシアス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーを、{ll02}を支払って召喚してもよい。そうしたら、このクリーチャーが出た時、相手はコスト３以下のクリーチャーを１体、自身の手札から出してもよい。\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "メカ・デル・ステラ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-030",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g568Alt": {
+          "cost": 2,
+          "paymentColors": [
+            "光"
+          ],
+          "entry": [
+            {
+              "op": "OpponentDeploy779",
+              "title": "自分の手札から出すコスト3以下のクリーチャーを選ぶ（任意）"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "8c4f83c6052c9a6f9635025f0a1f21d40703847c9037e60a09dc031078c79841",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp3-S08",
+      "name": "疾駆竜 ボルシャック・アッシュ・レイダー",
+      "faces": [
+        {
+          "name": "疾駆竜 ボルシャック・アッシュ・レイダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーを、{ff04}を支払って召喚してもよい。そうしたら、このクリーチャーが出た時、相手は自身の山札の上から２枚をシールド化してもよい。\nスピードアタッカー\nW・ブレイカー\n自分のクリーチャーがシールドをブレイクした時、カードを１枚引いてもよい。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-S08",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g779AllyBreakDraw": true,
+        "g568Alt": {
+          "cost": 4,
+          "paymentColors": [
+            "火"
+          ],
+          "entry": [
+            {
+              "op": "OpponentOffer777",
+              "title": "自分の山札の上から2枚をシールド化する？",
+              "defs": [
+                {
+                  "op": "ShieldTop",
+                  "n": 2,
+                  "g779Simultaneous": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-S08.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "08e514c6ae2409f0db9bbaf778464214989e6c914685932e2621df085c4923e9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-036",
+      "name": "♪言葉すら もう必要ない ×××××",
+      "faces": [
+        {
+          "name": "♪言葉すら もう必要ない ×××××",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nタップしているクリーチャーとアンタップしているクリーチャーを最大１体ずつ選び、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-036",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "anyOwner": true,
+            "to": "hand",
+            "n": 2,
+            "optional": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "g779DistinctTapState": true,
+            "filter": {
+              "creature": true
+            },
+            "title": "手札に戻すタップ・アンタップのクリーチャーを各1体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "72d0d9fc3b737fae1ad85baa6141e1e5378601ce34c30b73c65e4a376c1e837f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex3-046",
+      "canonicalId": "dm24rp3-030",
+      "name": "新星姫 マルシアス",
+      "faces": [
+        {
+          "name": "新星姫 マルシアス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーを、{ll02}を支払って召喚してもよい。そうしたら、このクリーチャーが出た時、相手はコスト３以下のクリーチャーを１体、自身の手札から出してもよい。\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "メカ・デル・ステラ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-046",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "4adefb83103937fab261a6512abe482580060b187422917a2d263dab6c72c12a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp3-Sec009",
+      "canonicalId": "dm24rp3-S08",
+      "name": "疾駆竜 ボルシャック・アッシュ・レイダー",
+      "faces": [
+        {
+          "name": "疾駆竜 ボルシャック・アッシュ・レイダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーを、{ff04}を支払って召喚してもよい。そうしたら、このクリーチャーが出た時、相手は自身の山札の上から２枚をシールド化してもよい。\nスピードアタッカー\nW・ブレイカー\n自分のクリーチャーがシールドをブレイクした時、カードを１枚引いてもよい。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-Sec009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-Sec009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ef12c919324e89b825bf79589ab9b4b0540e64eb43cd729587e522ba6ea81219",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-rp3S08",
+      "canonicalId": "dm24rp3-S08",
+      "name": "疾駆竜 ボルシャック・アッシュ・レイダー",
+      "faces": [
+        {
+          "name": "疾駆竜 ボルシャック・アッシュ・レイダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーを、{ff04}を支払って召喚してもよい。そうしたら、このクリーチャーが出た時、相手は自身の山札の上から２枚をシールド化してもよい。\nスピードアタッカー\nW・ブレイカー\n自分のクリーチャーがシールドをブレイクした時、カードを１枚引いてもよい。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp3S08",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp3S08.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "13c88c17a0cd2fb3844b7863387e78c6355ffbe7c0d2f563a0bba7301b9b0075",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-rp3Sec09",
+      "canonicalId": "dm24rp3-S08",
+      "name": "疾駆竜 ボルシャック・アッシュ・レイダー",
+      "faces": [
+        {
+          "name": "疾駆竜 ボルシャック・アッシュ・レイダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーを、{ff04}を支払って召喚してもよい。そうしたら、このクリーチャーが出た時、相手は自身の山札の上から２枚をシールド化してもよい。\nスピードアタッカー\nW・ブレイカー\n自分のクリーチャーがシールドをブレイクした時、カードを１枚引いてもよい。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp3Sec09",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp3Sec09.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "9e976c1c854cd7451641bbffe163b0c91ad0d78455b2db666ef2b4a4b34fda49",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp3-030": 4,
+      "dm24rp3-S08": 4,
+      "dm24rp2-036": 4,
+      "dm24ex3-046": 4,
+      "dm24rp3-Sec009": 4,
+      "dm24ex3-rp3S08": 4,
+      "dm24ex3-rp3Sec09": 4
+    }
+  }
+}

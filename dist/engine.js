@@ -394,20 +394,33 @@ function sendBattleCardToShield(s,p,uid,shield){if(!canAddShield(s,p))return;if(
 
 function deckRedirect(s,p=null){return (p!==null&&extra.manaRedirect(s,p))|| s.players.some(p=>p.battle.some(x=>effectiveCard(x,s).deckRedirect));}
 export function canAddShield(s,p){return s.active!==p||!s.players[1-p].battle.some(x=>effectiveCard(x,s).g39Fuujin);}
-function shieldTop(s,p,source,exLifeSource=null,{uid=null,faceUp=false}={}){
+function shieldTop(s,p,source,exLifeSource=null,{uid=null,faceUp=false,count=1}={}){
  if(!canAddShield(s,p))return null;
  const own=s.players[p];
- const index=uid===null
-  ?own.deck.findIndex(x=>![...(own.g39Protected||[]),...(own.g38Protected||[]),...(own.g36Protected||[]),...(own.g34Protected||[]),...(own.g33Protected||[]),...(own.g29Protected||[]),...(own.g28Protected||[]),...(own.g27Protected||[]),...(own.g13Protected||[]),...(own.g4Protected||[]),...(own.g8Protected||[]),...(own.g14Protected||[]),...(own.g25Protected||[]),...(own.g18Protected||[]),...(own.g10Protected||[]),...(own.g17Protected||[]),...(own.g3Protected||[]),...(own.g2Protected||[]),...(own.g21Protected||[]),...(own.g19Reveals||[]),...(own.g7Reveals||[]),...(own.g12Reveals||[])].includes(x.uid))
-  :own.deck.findIndex(x=>x.uid===uid);
- const shield=index<0?null:own.deck.splice(index,1)[0];
- if(shield&&s.players.some(p=>p.battle.some(x=>effectiveCard(x,s).deckRedirect))){clearBattleState(shield);addZone(s,own,'grave',shield);log(s,p,'deckReplace','カレイコの黒像でシールドのかわりに墓地へ置く',{cardId:shield.cardId});deckCheck(s,p);return;}
- if(shield){clearBattleState(shield,'shields');if(faceUp)shield.faceUp=true;addZone(s,p,'shields',shield);if(exLifeSource){if(card(exLifeSource).extraExLife)(exLifeSource.exLifeShieldUids??=[]).push(shield.uid);else exLifeSource.exLifeShieldUid=shield.uid;}
+ const available=x=>![...(own.g39Protected||[]),...(own.g38Protected||[]),...(own.g36Protected||[]),...(own.g34Protected||[]),...(own.g33Protected||[]),...(own.g29Protected||[]),...(own.g28Protected||[]),...(own.g27Protected||[]),...(own.g13Protected||[]),...(own.g4Protected||[]),...(own.g8Protected||[]),...(own.g14Protected||[]),...(own.g25Protected||[]),...(own.g18Protected||[]),...(own.g10Protected||[]),...(own.g17Protected||[]),...(own.g3Protected||[]),...(own.g2Protected||[]),...(own.g21Protected||[]),...(own.g19Reveals||[]),...(own.g7Reveals||[]),...(own.g12Reveals||[])].includes(x.uid);
+ const shields=[];
+ for(let i=0;i<count;i++){
+  const index=own.deck.findIndex(uid===null?available:x=>x.uid===uid);
+  if(index<0)break;
+  shields.push(own.deck.splice(index,1)[0]);
+ }
+ if(shields.length&&s.players.some(p=>p.battle.some(x=>effectiveCard(x,s).deckRedirect))){
+  for(const shield of shields){
+   clearBattleState(shield);addZone(s,own,'grave',shield);
+   log(s,p,'deckReplace','カレイコの黒像でシールドのかわりに墓地へ置く',{cardId:shield.cardId});
+  }
+  deckCheck(s,p);return;
+ }
+ for(const shield of shields){
+  clearBattleState(shield,'shields');if(faceUp)shield.faceUp=true;addZone(s,p,'shields',shield);
+  if(exLifeSource){if(card(exLifeSource).extraExLife)(exLifeSource.exLifeShieldUids??=[]).push(shield.uid);else exLifeSource.exLifeShieldUid=shield.uid;}
+ }
+ for(const shield of shields){
   log(s,p,exLifeSource?'exLifeAdd':'shieldAdd',faceUp?`${source.name}で${card(shield).name}を表向きでシールド化`:`${source.name}${exLifeSource?'のEXライフ':''}で山札の上から1枚をシールド化（内容は非公開）`,{cardId:source.id});
   extra.shieldAdded(s,p,shield);
   for(const c of own.battle)if(effectiveCard(c,s).shieldEntryTapLock)enqueueEffect(s,p,{uid:c.uid,source:c.cardId,effect:'shieldEntryTapLock'});
  }
- deckCheck(s,p);return shield;
+ deckCheck(s,p);return shields[0]??null;
 }
 function creatureCapReached616(s,p,c,pendingEntries=0){
  if((s.players[p].enteredThisTurn||0)+pendingEntries<2)return false;
@@ -1348,6 +1361,7 @@ function commitShieldBreak(s,defender,uids){
  const eligibleFaces=Object.fromEntries(all.flatMap(x=>{if(shieldLeavesToGrave(x)&&!breakContext?.replacementBreak)return [];const faces=!breakContext?.noST&&extra.triggersAllowed(s,defender)?playFaces(card(x)).flatMap((c,face)=>(c.g26Viride&&s.players[1-defender].battle.filter(x=>isCreature(s,x)).length>=3||extra.six.shieldTrigger(s,defender,x,c)||extra.requested393J.shieldTrigger(s,defender,x,c)||c.trigger||c.triggerPlus||c.superTrigger||c.graveTotalTrigger&&s.players.reduce((n,p)=>n+p.grave.length,0)>=c.graveTotalTrigger||c.rev2Trigger&&s.players[defender].shields.length-count<=2||x.g19ShieldST!==undefined||c.type==='spell'&&extra.spellShieldTrigger(s,defender)||c.shieldConditionalTrigger&&s.players[defender].grave.filter(x=>playFaces(card(x)).some(c=>c.type==='spell')).length>=2)&&extra.triggersAllowed(s,defender,c)&&!extra.triggerLocked597(s,defender,c,remaining,breaker)&&canCastSpell(s,defender,c)&&(extra.spellPermission(s,defender,c)||extra.six.allowsNonLightSpells687(s,c,pendingBreak))?[face]:[]):[];return faces.length?[[x.uid,faces]]:[];})),eligible=Object.keys(eligibleFaces);
  const broken=[];for(const uid of uids){const root=removeShield(s,defender,uid);for(const x of shieldCards(root)){const toGrave=shieldLeavesToGrave(x)&&!breakContext?.replacementBreak;clearBattleState(x,'hand');if(toGrave)addZone(s,s.players[defender],'grave',x);else broken.push(x);}}
  extra.six.recordBreak756(s,breakContext,count);
+ extra.six.allyBreakDraw779(s,breakContext,count);
  extra.broken(s,breakContext,count);s.players[defender].hand.push(...broken);s.players[defender].brokenThisTurn=(s.players[defender].brokenThisTurn||0)+count;s.metrics[controller].breaks+=count;
  for(const x of broken){if(card(x).triggerPlus)x.triggerPlus=defender!==s.active&&s.players[defender].brokenThisTurn>=2;if(playFaces(card(x)).some(c=>c.superTrigger))x.superTrigger=s.players[defender].shields.length===0;}
  log(s,controller,'break',`シールド${count}つ（カード${broken.length}枚）を同時にブレイク（残り${s.players[defender].shields.length}つ）`);

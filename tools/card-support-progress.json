@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6190,
-  "pendingNames": 5637,
-  "phase": 778,
-  "added": 4,
+  "supportedNames": 6193,
+  "pendingNames": 5634,
+  "phase": 779,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3344,
+    "クリーチャー": 3342,
     "NEOクリーチャー": 152,
-    "呪文": 804,
+    "呪文": 803,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 60,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4116,
+    "未対応の能力文": 4113,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -10402,35 +10402,106 @@
           "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-065"
         }
       ]
+    },
+    {
+      "phase": 779,
+      "cards": [
+        {
+          "id": "dm24rp3-030",
+          "name": "新星姫 マルシアス"
+        },
+        {
+          "id": "dm24rp3-S08",
+          "name": "疾駆竜 ボルシャック・アッシュ・レイダー"
+        },
+        {
+          "id": "dm24rp2-036",
+          "name": "♪言葉すら もう必要ない ×××××"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm24ex3-046",
+          "canonicalId": "dm24rp3-030",
+          "name": "新星姫 マルシアス"
+        },
+        {
+          "id": "dm24rp3-Sec009",
+          "canonicalId": "dm24rp3-S08",
+          "name": "疾駆竜 ボルシャック・アッシュ・レイダー"
+        },
+        {
+          "id": "dm24ex3-rp3S08",
+          "canonicalId": "dm24rp3-S08",
+          "name": "疾駆竜 ボルシャック・アッシュ・レイダー"
+        },
+        {
+          "id": "dm24ex3-rp3Sec09",
+          "canonicalId": "dm24rp3-S08",
+          "name": "疾駆竜 ボルシャック・アッシュ・レイダー"
+        }
+      ],
+      "supportedNames": 6193,
+      "pendingNames": 5634,
+      "verification": {
+        "focusedPassed": 10,
+        "regressionPassed": 556,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 7,
+        "scope": "3種類と再録4版を公式照合し、7点の画像がJPEGであることと殿堂制限なしを確認。別コストと通常召喚、相手による任意選択、2枚同時のシールド化と山札切れ、クリーチャーと呪文のブレイクの区別、S・トリガーとの順序、タップ状態別の同時バウンス、選択中のJSON復元と再録IDからのデッキ解決を検証。",
+        "runtimeNote": "各最大10分。Phase 193・239・545・564・568・600・628・630・697・747・756・775・776・777・778を回帰検証。初回と再選定時はNodeの否定先読み式がファイル名にも一致してCPU対戦が実行されたため、該当プロセスだけを中断しログを保存。短い再現で確認した --test-skip-pattern で長時間CPU対戦を明示除外した。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dm24rp3-038",
+          "name": "♪楽楽楽 楽楽楽楽 楽楽楽",
+          "check": "公式QA 45443により、手札の使用宣言は召喚時の待機中の能力より前。召喚時にそのカードが既に手札にあることを確認し、同時に生じる登場時能力との順序と保存復元を検証するまで保留。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-038"
+        },
+        {
+          "id": "dm24rp4-025",
+          "name": "魂晶海嶺ポセイドライト",
+          "check": "初出の公式本文を確認。コストの下限は2（1以下にならない）。捨てる枚数の選択、破棄の置換が絡む軽減、文明を満たす支払いの組み合わせを検証するまで保留。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-025"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 778,
-    "nextPhase": 779,
+    "lastVerifiedPhase": 779,
+    "nextPhase": 780,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm24rp3-030",
-        "name": "新星姫 マルシアス",
-        "check": "別コストの召喚後、相手が自身の手札からコスト3以下を任意で出す。展開制限、進化元、ブロッカーを確認する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-030"
+        "id": "dm24rp1-013",
+        "name": "真空の求道者マオ",
+        "check": "初出の公式本文とDM24-EX3への同名収録を確認。盾の束、城、EXライフを含め、置かれる・離れるそれぞれのカード単位の誘発とアンタップを確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-013"
       },
       {
-        "id": "dm24rp3-S08",
-        "name": "疾駆竜 ボルシャック・アッシュ・レイダー",
-        "check": "別コスト時の相手任意シールド化、味方のブレイク時の任意ドローと束・同時ブレイクの誘発回数を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-S08"
+        "id": "dm24rp2-047",
+        "name": "ヨメイサンビョウダケ",
+        "check": "味方のタップ中クリーチャーを数えるプレイヤー攻撃制限を既存の攻撃合法性処理で再現できるか確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-047"
+      },
+      {
+        "id": "dm24rp2-046",
+        "name": "ルナサンライト コハク",
+        "check": "登場時のハイパーモードの解放、次の自分のターン開始までの期限、タップ時のマナ加速を既存処理と照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-046"
       },
       {
         "id": "dm24rp3-038",
         "name": "♪楽楽楽 楽楽楽楽 楽楽楽",
-        "check": "コスト6以上の召喚による手札の呪文宣言、S・トリガーと相手による山札の上下選択を照合する。",
+        "check": "公式QA 45443により、手札の使用宣言は召喚時の待機中の能力より前。召喚時にそのカードが既に手札にあることを確認し、同時に生じる登場時能力との順序と保存復元を検証するまで保留。",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-038"
       },
       {
         "id": "dm24rp4-025",
         "name": "魂晶海嶺ポセイドライト",
-        "check": "手札破棄を伴う軽減と最低コスト1、破棄の置換、ブロッカー・登場時ドローを照合する。",
+        "check": "初出の公式本文を確認。コストの下限は2（1以下にならない）。捨てる枚数の選択、破棄の置換が絡む軽減、文明を満たす支払いの組み合わせを検証するまで保留。",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-025"
       },
       {
@@ -10899,7 +10970,7 @@
     "steps": [
       "git statusとAGENTS.mdを確認し、カードID・正規名・再録・能力文全体・基本情報・画像・使用制限・関連裁定を照合する。",
       "新たな条件は既存カードの挙動と保存形式を維持して追加し、公式確認や効果全体の再現ができない場合は保留する。",
-      "個別・関連回帰は各最大10分。対戦シミュレーションを含むファイルは対象テスト名を明示し、全体のnpm testは中断・合否未確認のままとする。",
+      "個別・関連回帰は各最大10分。長時間のCPU対戦は --test-skip-pattern でテスト名を明示して除外する。全体のnpm testは中断・合否未確認のままとする。",
       "実データで再集計し、検証内容と保留理由をbatchHistoryに残して、検証済み差分のみローカルコミットする。"
     ],
     "knownIssues": [

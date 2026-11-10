@@ -535,6 +535,10 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  }
  function selection(s,t){
   let candidates=t.anyOwner?[...list(s,{...t,owner:'opponent'}),...list(s,{...t,owner:'self'})]:list(s,t);
+  if(t.g779DistinctTapState&&t.selected.length){
+   const first=s.players[t.rows[0].p].battle.find(x=>x.uid===t.selected[0]);
+   if(first)candidates=candidates.filter(({x})=>!!x.tapped!==!!first.tapped);
+  }
   if(t.g626DistinctEvolution&&t.selected.length){
    const first=s.players[t.p].grave.find(x=>x.uid===t.selected[0]);
    if(first)candidates=candidates.filter(r=>api.isEvolution(r.x)!==api.isEvolution(first));
@@ -1551,7 +1555,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  }
  case'g34_ShieldTop':
   if(t.faceUp)put(s,{...t,op:'g33_FaceTop'});
-  else api.shieldTop(s,t.p,card(t.source));
+  else api.shieldTop(s,t.p,card(t.source),null,t.g779Simultaneous?{count:t.n}:undefined);
   break;
  case'g34_OnShieldMove654':{
   const x=own.shields.find(y=>y.uid===t.placed);
@@ -1571,6 +1575,8 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
    rows.map(y=>opt(card(y).name,y.uid,hand?20-Math.min(20,cost(card(y))):cost(effective(y,s))*2+api.power(y,false,s)/2000,y.cardId)));
   break;
  }
+ case'g34_OpponentDeploy779':put(s,{...t,op:'g34_Select',p:1-t.p,controller:t.controller??t.p,
+  origin:'hand',deploy:true,n:1,optional:true,filter:{creature:true,max:3}});break;
  case'g34_OpponentOffer777':put(s,{...t,op:'g34_Offer',p:1-t.p});break;
  case'g34_OpponentSelect':put(s,{...t,op:'g34_Select',p:1-t.p,controller:t.controller??t.p,origin:'battle',filter:{creature:true,...t.filter},g187OwnPick:true,title:t.title||(t.tap?'タップする':t.to==='grave'?'破壊する':t.to==='hand'?'手札に戻す':'マナに置く')+'自分のクリーチャーを'+(t.n??1)+'体選ぶ'});break;
  case'g34_OpponentManaLoss478':put(s,{...t,op:'g34_Select',p:1-t.p,controller:t.controller??t.p,origin:'mana',to:'grave',n:1,g184ManaLoss:true,title:'墓地に置く自分のマナを1枚選ぶ'});break;
@@ -2650,6 +2656,11 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
   if(s.g756Breaks?.turn!==s.turn)s.g756Breaks={turn:s.turn,players:[[],[]]};
   const breaks=s.g756Breaks.players[context.player];
   if(!breaks.some(prior=>prior.length===refs.length&&prior.every((r,i)=>r===refs[i])))breaks.push(refs);
+ },
+ allyBreakDraw779(s,context,count){
+  if(!count||!context?.g756Breaker?.length)return;
+  for(const x of creatures(s,context.player))if(!x.sealed&&effective(x,s).g779AllyBreakDraw)
+   queue(s,context.player,x,[E('Offer',{title:'カードを1枚引く？',defs:[E('Draw',{n:1})]})]);
  },
  // Remember the physical incarnation at the break, then follow later evolution at turn end.
  broken484(s,context,n){if(!n||!context||context.reverse||context.burn)return;const p=context.player,x=s.players[p]?.battle.find(x=>x.uid===context.sourceUid&&(context.incarnation===undefined||(x.incarnation||0)===context.incarnation));if(x&&!x.sealed&&effective(x,s).g484BreakEndReturn)queue(s,p,x,[E('BreakDelay484')]);},

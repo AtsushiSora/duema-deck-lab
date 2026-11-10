@@ -179535,26 +179535,129 @@
       },
       "supportBatch": "phase-778",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp3-030",
+      "name": "新星姫 マルシアス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "メカ・デル・ステラ",
+      "text": "このクリーチャーを、{ll02}を支払って召喚してもよい。そうしたら、このクリーチャーが出た時、相手はコスト３以下のクリーチャーを１体、自身の手札から出してもよい。\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-030",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g568Alt": {
+        "cost": 2,
+        "paymentColors": [
+          "光"
+        ],
+        "entry": [
+          {
+            "op": "OpponentDeploy779",
+            "title": "自分の手札から出すコスト3以下のクリーチャーを選ぶ（任意）"
+          }
+        ]
+      },
+      "supportBatch": "phase-779",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp3-S08",
+      "name": "疾駆竜 ボルシャック・アッシュ・レイダー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アーマード・ドラゴン",
+      "text": "このクリーチャーを、{ff04}を支払って召喚してもよい。そうしたら、このクリーチャーが出た時、相手は自身の山札の上から２枚をシールド化してもよい。\nスピードアタッカー\nW・ブレイカー\n自分のクリーチャーがシールドをブレイクした時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-S08",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g779AllyBreakDraw": true,
+      "g568Alt": {
+        "cost": 4,
+        "paymentColors": [
+          "火"
+        ],
+        "entry": [
+          {
+            "op": "OpponentOffer777",
+            "title": "自分の山札の上から2枚をシールド化する？",
+            "defs": [
+              {
+                "op": "ShieldTop",
+                "n": 2,
+                "g779Simultaneous": true
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-779",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-036",
+      "name": "♪言葉すら もう必要ない ×××××",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nタップしているクリーチャーとアンタップしているクリーチャーを最大１体ずつ選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-036",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "anyOwner": true,
+          "to": "hand",
+          "n": 2,
+          "optional": true,
+          "g173Targets": true,
+          "g193Select": true,
+          "g779DistinctTapState": true,
+          "filter": {
+            "creature": true
+          },
+          "title": "手札に戻すタップ・アンタップのクリーチャーを各1体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-779",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 778,
+    "phase": 779,
     "checkedAt": "2026-11-10",
-    "baseCount": 6186,
-    "newEffectCards": 4,
+    "baseCount": 6190,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6190,
+    "totalCount": 6193,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
       "https://dm.takaratomy.co.jp/rule/qa/45461/",
-      "https://dm.takaratomy.co.jp/rule/qa/45468/",
-      "https://dm.takaratomy.co.jp/rule/qa/45473/",
-      "https://dm.takaratomy.co.jp/rule/qa/42956/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37947/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37424/",
-      "https://dm.takaratomy.co.jp/rule/qa/39516/",
-      "https://dm.takaratomy.co.jp/rule/qa/46815/"
+      "https://dm.takaratomy.co.jp/rule/qa/45462/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -193118,6 +193221,29 @@
           "https://dm.takaratomy.co.jp/rule/qa/45563/",
           "https://dm.takaratomy.co.jp/rule/qa/43792/",
           "https://dm.takaratomy.co.jp/rule/qa/48123/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 778,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6186,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6190,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/45461/",
+          "https://dm.takaratomy.co.jp/rule/qa/45468/",
+          "https://dm.takaratomy.co.jp/rule/qa/45473/",
+          "https://dm.takaratomy.co.jp/rule/qa/42956/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37947/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37424/",
+          "https://dm.takaratomy.co.jp/rule/qa/39516/",
+          "https://dm.takaratomy.co.jp/rule/qa/46815/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

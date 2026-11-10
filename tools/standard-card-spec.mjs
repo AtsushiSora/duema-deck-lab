@@ -2564,6 +2564,24 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=779&&d.faces.length===1){
+  const paid=(symbol,body)=>'このクリーチャーを{'+symbol+'}を支払って召喚してもよい。そうしたらこのクリーチャーが出た時相手は'+body;
+  const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+  const wb='W・ブレイカー';
+  if(f.typeText==='クリーチャー'&&compact363===paid('ll02','コスト3以下のクリーチャーを1体自身の手札から出してもよい。')+blocker+wb+'(このクリーチャーはシールドを2つブレイクする)')
+   return {blocker:true,breaker:2,g568Alt:{cost:2,paymentColors:['光'],entry:[
+    {op:'OpponentDeploy779',title:'自分の手札から出すコスト3以下のクリーチャーを選ぶ（任意）'}
+   ]}};
+  const breakDraw='自分のクリーチャーがシールドをブレイクした時カードを1枚引いてもよい。';
+  if(f.typeText==='クリーチャー'&&compact363===paid('ff04','自身の山札の上から2枚をシールド化してもよい。')+'スピードアタッカー'+wb+breakDraw)
+   return {speedAttacker:true,breaker:2,g779AllyBreakDraw:true,g568Alt:{cost:4,paymentColors:['火'],entry:[
+    {op:'OpponentOffer777',title:'自分の山札の上から2枚をシールド化する？',defs:[{op:'ShieldTop',n:2,g779Simultaneous:true}]}
+   ]}};
+  const trigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  if(f.typeText==='呪文'&&compact363===trigger+'タップしているクリーチャーとアンタップしているクリーチャーを最大1体ずつ選び持ち主の手札に戻す。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'battle',anyOwner:true,to:'hand',n:2,optional:true,
+    g173Targets:true,g193Select:true,g779DistinctTapState:true,filter:{creature:true},title:'手札に戻すタップ・アンタップのクリーチャーを各1体まで選ぶ'}]};
+ }
  if(phase>=778&&d.faces.length===1){
   const breaker='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';
   const paid=(symbol,body)=>'このクリーチャーを{'+symbol+'}を支払って召喚してもよい。そうしたらこのクリーチャーが出た時'+body+breaker;
