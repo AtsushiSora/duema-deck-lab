@@ -180509,22 +180509,194 @@
       ],
       "supportBatch": "phase-787",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-061",
+      "name": "審議の精霊フォースオーダー / サイレンス・チャージャー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "エンジェル・コマンド",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚を見る。そのうちの１枚をシールド化し、もう１枚を手札に加える。\n【呪文面】\n相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-061",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "stages": [
+            {
+              "n": 1,
+              "to": "shields"
+            },
+            {
+              "n": 1,
+              "to": "hand"
+            }
+          ],
+          "rest": "top"
+        }
+      ],
+      "spellFace": {
+        "name": "サイレンス・チャージャー",
+        "type": "spell",
+        "cost": 3,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "normalCharger": true,
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "lock": true,
+            "g210TapLock": true,
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-788",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-065",
+      "name": "忘手人形ラビソング / たったひとつの冴えた歌",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "デスパペット",
+      "text": "このクリーチャーが出た時、カードを２枚引き、その後、自分の手札を１枚、超次元ゾーンに置く。\n【呪文面】\nS・トリガー S・トリガー\nエレメントを１つ選び、持ち主の手札に戻してもよい。\n相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-065",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "extra",
+          "n": 1,
+          "title": "超次元ゾーンに置く手札を1枚選ぶ"
+        }
+      ],
+      "spellFace": {
+        "name": "たったひとつの冴えた歌",
+        "type": "spell",
+        "cost": 6,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "element": true,
+            "optional": true,
+            "to": "hand"
+          },
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "spell": true
+          }
+        ]
+      },
+      "supportBatch": "phase-788",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-097",
+      "name": "分析妖精レモングラス / グラス・トラップ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "スノーフェアリー",
+      "text": "このクリーチャーが出た時、自分の手札からスノーフェアリーを１枚マナゾーンに置いてもよい。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）\n【呪文面】\n相手のコスト５以下のエレメントを１つ選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-097",
+      "limit": 4,
+      "g40LastBurst": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "mana",
+          "n": 1,
+          "optional": true,
+          "g182HandMana": true,
+          "filter": {
+            "race": "スノーフェアリー"
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "グラス・トラップ",
+        "type": "spell",
+        "cost": 3,
+        "civ": "自然",
+        "civilizations": [
+          "自然"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "to": "mana",
+            "filter": {
+              "max": 5
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-788",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 787,
+    "phase": 788,
     "checkedAt": "2026-11-10",
-    "baseCount": 6214,
+    "baseCount": 6217,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6217,
+    "totalCount": 6220,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck03/",
-      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck09/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37022/",
-      "https://dm.takaratomy.co.jp/news/other/39167/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37512/",
+      "https://dm.takaratomy.co.jp/rule/qa/42947/",
+      "https://dm.takaratomy.co.jp/rule/qa/48125/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37943/",
+      "https://dm.takaratomy.co.jp/rule/qa/48502/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -194262,6 +194434,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/49146/",
           "https://dm.takaratomy.co.jp/rule/qa/42947/",
           "https://dm.takaratomy.co.jp/rule/qa/46525/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 787,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6214,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6217,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck03/",
+          "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck09/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37022/",
+          "https://dm.takaratomy.co.jp/news/other/39167/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

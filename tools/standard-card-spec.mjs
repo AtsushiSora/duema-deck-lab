@@ -2507,6 +2507,25 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=788&&d?.status==='complete'&&d.faces.length===2&&f.typeText==='クリーチャー'&&d.faces[1].typeText==='呪文'){
+  const spell=d.faces[1],frontText=normalize(f.abilityText),spellText=normalize(spell.abilityText);
+  const spellFace={name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,effect:'sixPhoto'};
+  const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+  const charger='チャージャー(この呪文を唱えた後墓地のかわりにマナゾーンに置く)';
+  if(frontText===blocker+'W・ブレイカーこのクリーチャーが出た時自分の山札の上から2枚を見る。そのうちの1枚をシールド化しもう1枚を手札に加える。'&&
+     spellText==='相手のクリーチャーを1体選びタップする。次の相手のターンのはじめにそのクリーチャーはアンタップしない。'+charger)
+   return {blocker:true,breaker:2,effect:'sixPhoto',
+    g34Tasks:[{op:'Look',n:2,stages:[{n:1,to:'shields'},{n:1,to:'hand'}],rest:'top'}],
+    spellFace:{...spellFace,normalCharger:true,g34Tasks:[{op:'Target',tap:true,lock:true,g210TapLock:true,spell:true}]}};
+  if(frontText==='このクリーチャーが出た時カードを2枚引きその後自分の手札を1枚超次元ゾーンに置く。'&&
+     spellText==='S・トリガーS・トリガーエレメントを1つ選び持ち主の手札に戻してもよい。相手のクリーチャーを1体選ぶ。次の自分のターンのはじめまでそのクリーチャーは攻撃もブロックもできない。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Draw',n:2},{op:'Select',origin:'hand',to:'extra',n:1,title:'超次元ゾーンに置く手札を1枚選ぶ'}],
+    spellFace:{...spellFace,trigger:true,g34Tasks:[{op:'Target',anyOwner:true,element:true,optional:true,to:'hand'},{op:'Target',g190Freeze:'self',spell:true}]}};
+  if(frontText==='このクリーチャーが出た時自分の手札からスノーフェアリーを1枚マナゾーンに置いてもよい。ラスト・バースト(このクリーチャーが破壊された時このカードの呪文側をコストを支払わずに唱えてもよい)'&&
+     spellText==='相手のコスト5以下のエレメントを1つ選び持ち主のマナゾーンに置く。')
+   return {g40LastBurst:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'hand',to:'mana',n:1,optional:true,g182HandMana:true,filter:{race:'スノーフェアリー'}}],
+    spellFace:{...spellFace,g34Tasks:[{op:'Target',element:true,to:'mana',filter:{max:5}}]}};
+ }
  if(phase>=787&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const trigger='S・トリガーS・トリガー';

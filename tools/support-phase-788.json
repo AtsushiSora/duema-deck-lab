@@ -1,0 +1,492 @@
+{
+  "phase": 788,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6217,
+  "description": "ツインパクト3種類について、シールド化・チャージャー、手札から超次元ゾーンへの移動と攻撃・ブロックの制限、ラスト・バーストに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37512/",
+    "https://dm.takaratomy.co.jp/rule/qa/42947/",
+    "https://dm.takaratomy.co.jp/rule/qa/48125/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37943/",
+    "https://dm.takaratomy.co.jp/rule/qa/48502/"
+  ],
+  "cards": [
+    {
+      "id": "dm24ex4-061",
+      "name": "審議の精霊フォースオーダー / サイレンス・チャージャー",
+      "faces": [
+        {
+          "name": "審議の精霊フォースオーダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚を見る。そのうちの１枚をシールド化し、もう１枚を手札に加える。",
+          "race": "エンジェル・コマンド",
+          "powerText": "7000",
+          "missingFields": []
+        },
+        {
+          "name": "サイレンス・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-061",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 2,
+            "stages": [
+              {
+                "n": 1,
+                "to": "shields"
+              },
+              {
+                "n": 1,
+                "to": "hand"
+              }
+            ],
+            "rest": "top"
+          }
+        ],
+        "spellFace": {
+          "name": "サイレンス・チャージャー",
+          "type": "spell",
+          "cost": 3,
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "normalCharger": true,
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "tap": true,
+              "lock": true,
+              "g210TapLock": true,
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-061a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "949e667d4f8b24f2fa904561f1dbf67abc5e7075ded8cb1dc8a2bcb834a42fff",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-065",
+      "name": "忘手人形ラビソング / たったひとつの冴えた歌",
+      "faces": [
+        {
+          "name": "忘手人形ラビソング",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、カードを２枚引き、その後、自分の手札を１枚、超次元ゾーンに置く。",
+          "race": "デスパペット",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "たったひとつの冴えた歌",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nエレメントを１つ選び、持ち主の手札に戻してもよい。\n相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-065",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "extra",
+            "n": 1,
+            "title": "超次元ゾーンに置く手札を1枚選ぶ"
+          }
+        ],
+        "spellFace": {
+          "name": "たったひとつの冴えた歌",
+          "type": "spell",
+          "cost": 6,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "trigger": true,
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "anyOwner": true,
+              "element": true,
+              "optional": true,
+              "to": "hand"
+            },
+            {
+              "op": "Target",
+              "g190Freeze": "self",
+              "spell": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-065a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "8a2846bc87217d65c9cedc7c768977cfc1cc8a66bc3d7d88cd3040ff42e599ea",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-097",
+      "name": "分析妖精レモングラス / グラス・トラップ",
+      "faces": [
+        {
+          "name": "分析妖精レモングラス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分の手札からスノーフェアリーを１枚マナゾーンに置いてもよい。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+          "race": "スノーフェアリー",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "グラス・トラップ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のコスト５以下のエレメントを１つ選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-097",
+      "spec": {
+        "g40LastBurst": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "mana",
+            "n": 1,
+            "optional": true,
+            "g182HandMana": true,
+            "filter": {
+              "race": "スノーフェアリー"
+            }
+          }
+        ],
+        "spellFace": {
+          "name": "グラス・トラップ",
+          "type": "spell",
+          "cost": 3,
+          "civ": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "element": true,
+              "to": "mana",
+              "filter": {
+                "max": 5
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-097a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "40b2cf1738ac8144727f646b7519155b8669f3a51a4df1c6b404744f33a14380",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex4-PR021",
+      "canonicalId": "dm24ex4-061",
+      "name": "審議の精霊フォースオーダー / サイレンス・チャージャー",
+      "faces": [
+        {
+          "name": "審議の精霊フォースオーダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚を見る。そのうちの１枚をシールド化し、もう１枚を手札に加える。",
+          "race": "エンジェル・コマンド",
+          "powerText": "7000",
+          "missingFields": []
+        },
+        {
+          "name": "サイレンス・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-PR021",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-PR021a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "1f7238a60e7caf8554b3fcfbc4e5054e0f5f1f17e3cddba136ea5b8e927f17f4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy23-120",
+      "canonicalId": "dm24ex4-061",
+      "name": "審議の精霊フォースオーダー / サイレンス・チャージャー",
+      "faces": [
+        {
+          "name": "審議の精霊フォースオーダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚を見る。そのうちの１枚をシールド化し、もう１枚を手札に加える。",
+          "race": "エンジェル・コマンド",
+          "powerText": "7000",
+          "missingFields": []
+        },
+        {
+          "name": "サイレンス・チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。\nチャージャー（この呪文を唱えた後、墓地のかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy23-120",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy23-120a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "47161db798ffa8952896195fcd2580cbb5f5c34215c1a1b3e4eb3ebc5d3c4268",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-PR025",
+      "canonicalId": "dm24ex4-065",
+      "name": "忘手人形ラビソング / たったひとつの冴えた歌",
+      "faces": [
+        {
+          "name": "忘手人形ラビソング",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、カードを２枚引き、その後、自分の手札を１枚、超次元ゾーンに置く。",
+          "race": "デスパペット",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "たったひとつの冴えた歌",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nエレメントを１つ選び、持ち主の手札に戻してもよい。\n相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。",
+          "race": "",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-PR025",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-PR025a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "6873b54f0c85fb2289933e0d286333dfb2f3e609222217f3351a332bfc0de3ec",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-PR057",
+      "canonicalId": "dm24ex4-097",
+      "name": "分析妖精レモングラス / グラス・トラップ",
+      "faces": [
+        {
+          "name": "分析妖精レモングラス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分の手札からスノーフェアリーを１枚マナゾーンに置いてもよい。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+          "race": "スノーフェアリー",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "グラス・トラップ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のコスト５以下のエレメントを１つ選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-PR057",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-PR057a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "02a344da13c722b6c3e3372968fd13851903ab2953a5b8cd411ac74d87d7df5f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy23-121",
+      "canonicalId": "dm24ex4-097",
+      "name": "分析妖精レモングラス / グラス・トラップ",
+      "faces": [
+        {
+          "name": "分析妖精レモングラス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分の手札からスノーフェアリーを１枚マナゾーンに置いてもよい。\nラスト・バースト（このクリーチャーが破壊された時、このカードの呪文側をコストを支払わずに唱えてもよい）",
+          "race": "スノーフェアリー",
+          "powerText": "1000",
+          "missingFields": []
+        },
+        {
+          "name": "グラス・トラップ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のコスト５以下のエレメントを１つ選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy23-121",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy23-121a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "6b3c133e3640dfa27e1e539273480cb06183c0d7e45a98ad175f0c68ed91c3da",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24ex4-061": 4,
+      "dm24ex4-065": 4,
+      "dm24ex4-097": 4,
+      "dm24ex4-PR021": 4,
+      "promoy23-120": 4,
+      "dm24ex4-PR025": 4,
+      "dm24ex4-PR057": 4,
+      "promoy23-121": 4
+    }
+  }
+}
