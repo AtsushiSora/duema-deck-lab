@@ -6177,6 +6177,21 @@ export function standardCardSpec(d,{phase=165}={}){
     continue;
    }
   }
+  if(phase>=848&&creature){
+   if(line==='自分の手札を捨てた時相手にも自身の手札を1枚選んで捨てさせる。'){
+    spec.g848DiscardWatch='opponentDiscard';
+    continue;
+   }
+   if(line==='相手のターン中自分の手札を捨てた時捨てた枚数と同じ数のカードを引く。'){
+    spec.g848DiscardWatch='draw';
+    continue;
+   }
+   if(line==='グランド・デビルが攻撃する時各プレイヤーは自分自身の手札を1枚選び捨てる。'){
+    spec.g252AttackWatch={who:'both',filter:{creature:true,race:'グランド・デビル'},
+     defs:[{op:'EachPlayer459',origin:'hand',to:'grave',discard:true}]};
+    continue;
+   }
+  }
   if(phase>=847&&creature){
    if(line==='自分が呪文を唱えた時このクリーチャーを自分の墓地から手札に戻してもよい。'){
     spec.g847SpellGraveReturn=true;

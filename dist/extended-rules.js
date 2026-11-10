@@ -260,13 +260,13 @@ export function createExtendedRules(api){
    case 'optionalDrawOne':choice(s,t,'カードを1枚引きますか？',[opt('1枚引く',true,own.deck.length>1?10:-10),skip()]);break;
    case 'optionalLoot':choice(s,t,`カードを${t.n}枚引いて、1枚捨てますか？`,[opt('引いてから1枚捨てる',true,own.deck.length>t.n?20:-10),skip()]);break;
    case 'discardSelect':{const available=own.hand.filter(x=>!t.selected.includes(x.uid));if(t.selected.length>=t.n||!available.length){beginDiscardBatch(s,t,t.selected);break;}choice(s,t,'捨てる手札を選ぶ（'+t.selected.length+'枚選択済み）',[...available.map(x=>opt(card(x).name,x.uid,t.selfDiscard?-cost(card(x)):cost(card(x)),x.cardId)),...(t.optional?[opt('ここまでで確定',null,0)]:[])]);break;}
-   case 'discardBatch':{const b=s.extDiscardBatches[t.batchId];if(!b)break;if(!b.uids.length){delete s.extDiscardBatches[t.batchId];if(b.actual&&t.afterDiscard248)put(s,t.afterDiscard248);if(t.afterDiscard321)put(s,{...t.afterDiscard321,discarded:!!b.actual});if(b.randomDiscardAfter&&b.actual)put(s,task('discard',1-b.p,b.source,{causedBy:b.p,n:b.actual,random:true}));break;}const [uid,...rest]=b.uids;b.uids=rest;if(own.hand.some(x=>x.uid===uid))put(s,{...t,op:'discardChosen',uid,n:1});else put(s,t);break;}
+   case 'discardBatch':{const b=s.extDiscardBatches[t.batchId];if(!b)break;if(!b.uids.length){delete s.extDiscardBatches[t.batchId];notifyDiscard848(s,b.p,b.g848Watchers,b.actual);if(b.actual&&t.afterDiscard248)put(s,t.afterDiscard248);if(t.afterDiscard321)put(s,{...t.afterDiscard321,discarded:!!b.actual});if(b.randomDiscardAfter&&b.actual)put(s,task('discard',1-b.p,b.source,{causedBy:b.p,n:b.actual,random:true}));break;}const [uid,...rest]=b.uids;b.uids=rest;if(own.hand.some(x=>x.uid===uid))put(s,{...t,op:'discardChosen',uid,n:1});else put(s,t);break;}
    case 'discard':{
     if(handProtected(s,t)){if(t.afterDiscard321)put(s,{...t.afterDiscard321,discarded:false});break;}
     if(t.n>1&&!t.all){if(t.random){const available=[...own.hand],chosen=[];while(chosen.length<t.n&&available.length)chosen.push(available.splice(Math.floor(random(s)*available.length),1)[0].uid);beginDiscardBatch(s,t,chosen);}else put(s,{...t,op:'discardSelect',selected:[]});break;}
     if(t.all&&own.hand.some(x=>discardMode(s,t,x))){beginDiscardBatch(s,t,own.hand.map(x=>x.uid));break;}
     if(!t.n||!own.hand.length){if(t.randomDiscardAfter&&t.discarded)put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:t.discarded,random:true}));break;}
-    if(t.all){const all=[...own.hand];for(const x of all){remove(own.hand,x.uid);clear(x);api.addZone(s,own,'grave',x);afterDiscard(s,{...t,n:1},x,true);}log(s,t.p,'discard',`手札${all.length}枚をすべて捨てる`,{cardId:t.source});break;}
+    if(t.all){const all=[...own.hand],watchers=discardWatchers848(s,t.p);for(const x of all){remove(own.hand,x.uid);clear(x);api.addZone(s,own,'grave',x);afterDiscard(s,{...t,n:1,g848Grouped:true},x,true);}notifyDiscard848(s,t.p,watchers,all.length);log(s,t.p,'discard',`手札${all.length}枚をすべて捨てる`,{cardId:t.source});break;}
     const candidates=t.random?[own.hand[Math.floor(random(s)*own.hand.length)]]:own.hand;
     if(t.random){const x=candidates[0];put(s,{...t,op:'discardChosen',uid:x.uid});}
     else choice(s,t,`${t.n}枚${t.optional?'まで':''}手札を捨てる${t.discarded?'（'+t.discarded+'枚選択済み）':''}`, [...candidates.map(x=>opt(card(x).name,x.uid,(t.selfDiscard?-1:1)*Math.min(20,cost(card(x))),x.cardId)),...(t.optional?[opt('ここまでで確定',null,own.hand.length>4?-1:0)]:[])]);
@@ -363,7 +363,23 @@ export function createExtendedRules(api){
  function revOrigin486(own,x,serial){return serial===undefined||own.hand.includes(x)&&(x.zoneSerial||0)===serial;}
  function revMatches(s,x,c){const r=c.rev,d=r?.g486Current?effective(x,s):card(x);return !!r&&api.isCreature(s,x)&&(r.any|| (r.categories?r.categories.some(q=>String(d.race).includes(q)):r.race?String(d.race).includes(r.race):d.race.includes('ドラゴン')))&&(!r.nameIncludes||d.name.includes(r.nameIncludes))&&(!r.multicolor||colors(d).length>1)&&(!r.powerMin||power(x,x.uid===s.attack?.attacker,s)>=r.powerMin)&&cost(d)>=(r.min||0)&&(!r.colors||colors(d).some(v=>r.colors.includes(v)));}
  function startSwap(s,t,uid,revolution){const own=s.players[t.p],incoming=revCard(s,t.p,t.uid),origin=incoming&&own.hand.includes(incoming)?'hand':'shields';if(incoming&&galaxy.entryWouldReplace(s,t.p,card(incoming),origin,false)){log(s,t.p,'swapFailed','登場の置き換えにより入れ替えは実行されない',{cardId:t.source});return;}const old=nowCreature(s,t.p,uid);if(!old||!incoming||!revOrigin486(own,incoming,t.g486Serial))return;if(card(old).starEvolution&&old.under?.length){log(s,t.p,'swapFailed','スター進化の構成カードすべては戻せないため入れ替えできない',{cardId:t.source});return;}const attack=s.attack&&[s.attack.attacker,s.attack.target,s.attack.blockUid].includes(uid)?structuredClone(s.attack):null;put(s,{...t,op:'swapFinish',old:uid,tapped:old.tapped,attack,revolution,origin});move(s,[{player:t.p,uid,exchange:true,to:origin==='hand'?'hand':'shields',...(origin==='shields'?{shieldAttach:api.shieldGroup(own.shields.find(root=>api.shieldCards(root).some(y=>y.uid===incoming.uid)))}:{}),destroy:false}]);}
- function beginDiscardBatch(s,t,uids){if(handProtected(s,t))uids=[];const batchId=String(s.extDiscardSerial=(s.extDiscardSerial||0)+1);(s.extDiscardBatches??={})[batchId]={p:t.p,source:t.source,uids:[...uids],actual:0,randomDiscardAfter:t.randomDiscardAfter};put(s,{...t,op:'discardBatch',batchId,n:1,randomDiscardAfter:false});}
+ function discardWatchers848(s,p){
+  return s.players[p].battle.flatMap(x=>{
+   if(!card(x).g848DiscardWatch||x.sealed||!api.isCreature(s,x))return [];
+   const mode=effective(x,s).g848DiscardWatch;
+   return mode==='opponentDiscard'||mode==='draw'&&s.active!==p?
+    [{uid:x.uid,cardId:x.cardId,mode}]:[];
+  });
+ }
+ function notifyDiscard848(s,p,watchers,n){
+  if(!n)return;
+  for(const {uid,cardId,mode} of watchers||[]){
+   const tasks=mode==='draw'?[task('draw',p,cardId,{n})]:
+    Array.from({length:n},()=>task('discard',1-p,cardId,{n:1,causedBy:p}));
+   for(const effect of tasks)enqueue(s,p,{uid,source:cardId,effect:'extended',task:effect});
+  }
+ }
+ function beginDiscardBatch(s,t,uids){if(handProtected(s,t))uids=[];const batchId=String(s.extDiscardSerial=(s.extDiscardSerial||0)+1);(s.extDiscardBatches??={})[batchId]={p:t.p,source:t.source,uids:[...uids],actual:0,randomDiscardAfter:t.randomDiscardAfter};const watchers=discardWatchers848(s,t.p);if(watchers.length)s.extDiscardBatches[batchId].g848Watchers=watchers;put(s,{...t,op:'discardBatch',batchId,n:1,randomDiscardAfter:false});}
  function replaceDiscard(s,t,x){
   const c=card(x);
   remove(s.players[t.p].hand,x.uid);
@@ -388,6 +404,7 @@ export function createExtendedRules(api){
   travel.discarded(s,t,x,discarded);zard.discarded(s,t,x,discarded);magic.discarded(s,t,x,discarded);galaxy.discarded(s,t,x,discarded);gospel.discarded(s,t,x,discarded);photo160.discarded(s,t,x,discarded);
   const count=(t.discarded||0)+(discarded?1:0);if(t.batchId&&s.extDiscardBatches?.[t.batchId])s.extDiscardBatches[t.batchId].actual+=discarded?1:0;
   if(discarded){
+   if(!t.batchId&&!t.g848Grouped)notifyDiscard848(s,t.p,discardWatchers848(s,t.p),1);
    six.discarded472(s,t.p);
    abyss.discarded(s,t.p);starter.discarded(s,t.p);
    if(t.costLock)put(s,task('tensaiCost',t.p,t.source,{discardId:x.cardId}));
@@ -449,13 +466,16 @@ export function createExtendedRules(api){
  return {
   entryWouldReplace753:(s,p,c)=>galaxy.entryWouldReplace(s,p,c,'mana',false),swapped753:magic.swapped,
   requested393C,requested393D,requested393J,requested393P,photo160,photo159,utilityLightControl,utilityTwinSupport,utilityRaid,utilityGraveKnights,utilityRomano,utilityNatureSupport,utilityGuard,utilityDragon,utilityTide,utilityTop,utilityControl,spellTax:utilityControl.spellTax,utilityExpansion,utilityWater,utilityNature,utilityDark,saga,control,seed,cyber,firebird,combat,junior,history,revisions,continuation,original,environment,recommended,six,photo,golgy,viride,originAllowed:viride.originAllowed,everSaver:viride.everSaver,virideDiscount:viride.discount,
+  notifyHandDiscard848(s,p){notifyDiscard848(s,p,discardWatchers848(s,p),1);},
   abyss,abyssDiscount:abyss.discount,abyssPlayer:abyss.playerPermission,hasSB:(s,p,a)=>abyss.hasSB(s,p,a),beginSB:(s,p,a,w)=>abyss.beginSB(s,p,a,w),forcedDiscard(s,p,uids,source,{allowTurnReplacement=false}={}){
-   const event={p,source,n:1,causedBy:p};
+   const event={p,source,n:1,causedBy:p,g848Grouped:true},watchers=discardWatchers848(s,p);
+   let actual=0;
    for(const uid of uids){
     const x=s.players[p].hand.find(x=>x.uid===uid);if(!x)continue;
     if(allowTurnReplacement&&discardMode(s,event,x)==='mandatory'&&canEnter(s,p,card(x),{origin:'hand',execution:false}))replaceDiscard(s,event,x);
-    else discardCard(s,event,x);
+    else{discardCard(s,event,x);actual++;}
    }
+   notifyDiscard848(s,p,watchers,actual);
   },
   shieldPhoto,phoenix,bolshack,redzone,manaTap:(s,p)=>utilityExpansion.manaTap(s,p)||redzone.manaTap(s,p),extraAdded:(s,p,x)=>redzone.extraAdded(s,p,x),command:(s,p,x)=>redzone.command(s,p,x),pandora:(s,p,a)=>redzone.pandora(s,p,a),gsAllowed,
   mado,spellPermission:(s,p,c)=>mado.spellPermission(s,p,c),beforeSpell:(s,p,c,x)=>mado.beforeSpell(s,p,c,x),beforeEnd(s){mado.beforeEnd(s);six.revengeEnd795(s);},beforeUntap(s,p,preventMana){const limit=junior.takeUntapLimit(s,p);return !preventMana&&mado.beforeUntap(s,p,limit);},graveAdded(s,p,all,snapshot){photo160.graveAdded(s,p,all,snapshot);photo159.graveAdded(s,p,all,snapshot);saga.graveAdded(s,p,all);cyber.graveAdded(s,p,all);mado.graveAdded(s,p,all,snapshot);six.graveAdded(s,p,all);},block(s,p,x){utilityBlock.block(s,p,x);mado.block(s,p,x);six.block(s,p,x);six.fifteen.block(s,p,x);},

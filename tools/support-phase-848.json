@@ -1,0 +1,162 @@
+{
+  "phase": 848,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6407,
+  "description": "手札破棄に反応する能力とグランド・デビルの攻撃時の双方の手札破棄に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35247/",
+    "https://dm.takaratomy.co.jp/rule/qa/34342/",
+    "https://dm.takaratomy.co.jp/rule/qa/42963/"
+  ],
+  "cards": [
+    {
+      "id": "dmr17-042",
+      "name": "復讐 ヘルクロー",
+      "faces": [
+        {
+          "name": "復讐 ヘルクロー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の手札を捨てた時、相手にも自身の手札を１枚選んで捨てさせる。",
+          "race": "デーモン・コマンド/侵略者",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-042",
+      "spec": {
+        "g848DiscardWatch": "opponentDiscard"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "fd015cd6268a997998ed632cb7496271407dcaa53e601edc22084473e77124c4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm13-006",
+      "name": "宣凶師ドロシア",
+      "faces": [
+        {
+          "name": "宣凶師ドロシア",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手のターン中、自分の手札を捨てた時、捨てた枚数と同じ数のカードを引く。",
+          "race": "グラディエーター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-006",
+      "spec": {
+        "g848DiscardWatch": "draw"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "16e2d04efad561cdf1b93a8cb45d717dbbaafc3c53792d627fbc298e4cfdc6c6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-023",
+      "name": "封魔ガルプルス",
+      "faces": [
+        {
+          "name": "封魔ガルプルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "グランド・デビルが攻撃する時、各プレイヤーは自分自身の手札を１枚選び、捨てる。",
+          "race": "グランド・デビル",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-023",
+      "spec": {
+        "g252AttackWatch": {
+          "who": "both",
+          "filter": {
+            "creature": true,
+            "race": "グランド・デビル"
+          },
+          "defs": [
+            {
+              "op": "EachPlayer459",
+              "origin": "hand",
+              "to": "grave",
+              "discard": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "3d81fd0ad17dde3ddcf24df9bff7280ab7cd3a9b33ad764b2151cd0c377674b9",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy5-004",
+      "canonicalId": "dm19-023",
+      "name": "封魔ガルプルス",
+      "faces": [
+        {
+          "name": "封魔ガルプルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "グランド・デビルが攻撃する時、各プレイヤーは自分自身の手札を１枚選び、捨てる。",
+          "race": "グランド・デビル",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy5-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy5-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "80be35a34802487353bf2682f4ab6a46ebfc4adaf79a781bc24bc4b8da6f5d8c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr17-042": 4,
+      "dm13-006": 4,
+      "dm19-023": 4,
+      "promoy5-004": 4
+    }
+  }
+}
