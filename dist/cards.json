@@ -190670,24 +190670,144 @@
       },
       "supportBatch": "phase-883",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp17-009",
+      "name": "魔帝連結 ガイゼキアール",
+      "civ": "光/闇/火",
+      "civilizations": [
+        "光",
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 9000,
+      "race": "ディスペクター/デーモン・コマンド/レッド・コマンド・ドラゴン",
+      "text": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nスピードアタッカー\nW・ブレイカー\nカードが自分のシールドゾーンから墓地に置かれた時、次のうちいずれか１つを選ぶ。\n▶︎カードを１枚引く。\n▶︎相手は自身の手札を１枚選んで捨てる。\n▶︎相手のクリーチャーを１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-009",
+      "limit": 4,
+      "exLife": true,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g159ShieldRole": "gaizeki",
+      "g884ShieldGraveModes": [
+        {
+          "label": "カードを1枚引く",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        },
+        {
+          "label": "相手が手札を1枚選んで捨てる",
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1
+            }
+          ]
+        },
+        {
+          "label": "相手のクリーチャーを1体タップする",
+          "defs": [
+            {
+              "op": "Target",
+              "tap": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-884",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp17-034",
+      "name": "アブソリアス・ガード",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを１体選び、表向きにシールド化する。その後、相手のクリーチャーを１体選び、表向きにシールド化する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-034",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "shields",
+          "faceUp": true,
+          "owner": "self",
+          "title": "表向きにシールド化する自分のクリーチャーを選ぶ"
+        },
+        {
+          "op": "Target",
+          "to": "shields",
+          "faceUp": true,
+          "title": "表向きにシールド化する相手のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-884",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-013",
+      "name": "善悪を超えたハンザイ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "月光王国",
+      "text": "自分の山札の上から２枚を裏向きのまま、それぞれ新しいシールドとしてシールドゾーンに置く。その後、自分のシールドを１つ手札に加える。（その「S・トリガー」を使ってもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-013",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "n": 2,
+          "g779Simultaneous": true
+        },
+        {
+          "op": "TappedShieldPick842",
+          "owner": "self",
+          "n": 1,
+          "picked": []
+        }
+      ],
+      "supportBatch": "phase-884",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 883,
+    "phase": 884,
     "checkedAt": "2026-11-11",
-    "baseCount": 6514,
+    "baseCount": 6517,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6517,
+    "totalCount": 6520,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/48503/",
+      "https://dm.takaratomy.co.jp/rule/qa/40495/",
+      "https://dm.takaratomy.co.jp/rule/qa/39685/",
       "https://dm.takaratomy.co.jp/rule/qa/42650/",
       "https://dm.takaratomy.co.jp/rule/qa/42651/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37424/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36638/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
+      "https://dm.takaratomy.co.jp/rule/qa/39668/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316661/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -206406,6 +206526,27 @@
           "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
           "https://dm.takaratomy.co.jp/rule/qa/48935/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37174/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 883,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6514,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6517,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/48503/",
+          "https://dm.takaratomy.co.jp/rule/qa/42650/",
+          "https://dm.takaratomy.co.jp/rule/qa/42651/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37424/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36638/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

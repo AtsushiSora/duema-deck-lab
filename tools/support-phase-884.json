@@ -1,0 +1,184 @@
+{
+  "phase": 884,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6517,
+  "description": "EXライフとシールド墓地移動時の三択、双方の表向きシールド化、山札からの同時シールド化とS・トリガーを使える回収に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/40495/",
+    "https://dm.takaratomy.co.jp/rule/qa/39685/",
+    "https://dm.takaratomy.co.jp/rule/qa/42650/",
+    "https://dm.takaratomy.co.jp/rule/qa/42651/",
+    "https://dm.takaratomy.co.jp/rule/qa/39668/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316661/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp17-009",
+      "name": "魔帝連結 ガイゼキアール",
+      "faces": [
+        {
+          "name": "魔帝連結 ガイゼキアール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇/火",
+          "civilizations": [
+            "光",
+            "闇",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "EXライフ（このクリーチャーを出す時、自分の山札の上から１枚目をシールド化する。このクリーチャーが離れる時、かわりにそのシールドを墓地に置く）\nスピードアタッカー\nW・ブレイカー\nカードが自分のシールドゾーンから墓地に置かれた時、次のうちいずれか１つを選ぶ。\n▶︎カードを１枚引く。\n▶︎相手は自身の手札を１枚選んで捨てる。\n▶︎相手のクリーチャーを１体選び、タップする。",
+          "race": "ディスペクター/デーモン・コマンド/レッド・コマンド・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-009",
+      "spec": {
+        "exLife": true,
+        "speedAttacker": true,
+        "breaker": 2,
+        "g159ShieldRole": "gaizeki",
+        "g884ShieldGraveModes": [
+          {
+            "label": "カードを1枚引く",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          },
+          {
+            "label": "相手が手札を1枚選んで捨てる",
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 1
+              }
+            ]
+          },
+          {
+            "label": "相手のクリーチャーを1体タップする",
+            "defs": [
+              {
+                "op": "Target",
+                "tap": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "60662c8ca4509716a3b4966d5cdffc0caa6ec9ca04757dd1dd58b1b5173ed993",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-034",
+      "name": "アブソリアス・ガード",
+      "faces": [
+        {
+          "name": "アブソリアス・ガード",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを１体選び、表向きにシールド化する。その後、相手のクリーチャーを１体選び、表向きにシールド化する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-034",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "shields",
+            "faceUp": true,
+            "owner": "self",
+            "title": "表向きにシールド化する自分のクリーチャーを選ぶ"
+          },
+          {
+            "op": "Target",
+            "to": "shields",
+            "faceUp": true,
+            "title": "表向きにシールド化する相手のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "f5b18dcea3f93487927dc10bbb2fda5c7ab4bd26e238ccdf236ba80ea2fef359",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-013",
+      "name": "善悪を超えたハンザイ",
+      "faces": [
+        {
+          "name": "善悪を超えたハンザイ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の山札の上から２枚を裏向きのまま、それぞれ新しいシールドとしてシールドゾーンに置く。その後、自分のシールドを１つ手札に加える。（その「S・トリガー」を使ってもよい）",
+          "race": "月光王国",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-013",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 2,
+            "g779Simultaneous": true
+          },
+          {
+            "op": "TappedShieldPick842",
+            "owner": "self",
+            "n": 1,
+            "picked": []
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "0196a54986951e403735c7accbefb09bb2c773ea0d681a1cba40993fe2bb7954",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp17-009": 4,
+      "dmrp17-034": 4,
+      "dmrp16-013": 4
+    }
+  }
+}

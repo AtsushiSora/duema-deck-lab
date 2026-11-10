@@ -4,6 +4,7 @@ export function createPhoto159ShieldRules(api){
  const living=(s,p)=>api.creatures(s,p).filter(x=>!x.sealed);
  const role=(s,x)=>api.effective(x,s).g159ShieldRole;
  const active=(s,p,r)=>living(s,p).filter(x=>role(s,x)===r);
+ const shieldGraveOps={ashiga:'Ashiga',gaizeki:'Gaizeki'};
  const key=x=>x.uid+'@'+(x.incarnation||0);
  const zagaanSources=(s,p,x)=>{const record=s.g159HandEntries?.[p];if(record?.turn!==s.turn)return[];return living(s,p).filter(w=>w.uid!==x.uid&&card(w).g159ShieldRole==='zagaan'&&!api.ignored(s,w)&&key(record.entries.find(r=>r.uid!==w.uid)||{})===key(x));};
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g159S_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
@@ -40,6 +41,8 @@ export function createPhoto159ShieldRules(api){
  case'g159S_ChristyPick':{const root=api.findShield(own,t.target),rows=root?api.shieldCards(root).filter(x=>!x.g37ShieldHeld):[];choice(s,t,seen(rows)+'出す進化ではない光のデーモン・コマンドを1体まで選ぶ',[...shieldDemons(s,t.p,rows,true).map(x=>opt(card(x).name,x.uid,20+Math.min(cost(card(x)),20),x.cardId)),opt('出さない',null,0)]);break;}
  case'g159S_Watchdog':put(s,task('g34_Draw',t.p,t.source,{n:1}));break;
  case'g159S_Ashiga':api.shieldTop(s,t.p,card(t.source));break;
+ case'g159S_Gaizeki':put(s,task('g34_Choose',t.p,t.source,{uid:t.uid,incarnation:t.incarnation,
+  g184Modes:true,modes:card(t.source).g884ShieldGraveModes}));break;
  case'g159S_Perfect':{const x=api.canMoveZone(s,t.p,'grave')&&own.grave.find(x=>x.uid===t.target&&(x.zoneSerial||0)===t.serial);if(!x)break;const c=card(x),deploy=String(c.race).match(/ディスタス|ディスペクター/)&&cost(c)<=own.mana.length;if(deploy)put(s,task('g34_Put',t.p,t.source,{origin:'grave',target:x.uid}));else{api.remove(own.grave,x.uid);api.clear(x,'hand');api.addZone(s,t.p,'hand',x);api.log(s,t.p,'reveal',card(t.source).name+'：'+card(x).name+'を墓地から手札へ',{cardId:x.cardId});}break;}
  default:throw Error('未実装の写真159シールド効果：'+t.op);
  }return true;}
@@ -75,8 +78,10 @@ export function createPhoto159ShieldRules(api){
   if(!batch)return;
   shieldBatches.delete(moves);
   for(const p of batch.placed)for(const watcher of active(s,p,'watchdog'))on(s,p,watcher,'Watchdog');
-  for(const p of [0,1])if(batch.buried[p])for(const watcher of active(s,p,'ashiga'))
-   for(let i=0;i<batch.buried[p];i++)on(s,p,watcher,'Ashiga');
+  for(const p of [0,1])if(batch.buried[p])for(const watcher of living(s,p)){
+   const op=shieldGraveOps[role(s,watcher)];
+   if(op)for(let i=0;i<batch.buried[p];i++)on(s,p,watcher,op);
+  }
  },
  shieldLeft(s,p,x){
   for(const w of active(s,p,'moon'))on(s,p,w,'MoonEnemy');
@@ -84,8 +89,9 @@ export function createPhoto159ShieldRules(api){
   if(batch)batch.departed.set(x,{p,serial});
   const watchers=living(s,p).flatMap(w=>{
    const kind=role(s,w);
-   if(kind!=='perfect'&&(kind!=='ashiga'||batch))return [];
-   return [{uid:w.uid,incarnation:w.incarnation||0,cardId:w.cardId,...(kind==='ashiga'?{op:'Ashiga'}:{})}];
+   const op=shieldGraveOps[kind];
+   if(kind!=='perfect'&&(!op||batch))return [];
+   return [{uid:w.uid,incarnation:w.incarnation||0,cardId:w.cardId,...(op?{op}:{})}];
   });
   if(watchers.length)(s.g159ShieldDepartures??=[]).push({p,target:x.uid,serial,watchers});
  },

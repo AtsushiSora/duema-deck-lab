@@ -3445,6 +3445,24 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=884){
+  if(d.id==='dmrp17-009'&&f.typeText==='クリーチャー'&&compact363.replaceAll('▶︎','▶')===
+   'EXライフ(このクリーチャーを出す時自分の山札の上から1枚目をシールド化する。このクリーチャーが離れる時かわりにそのシールドを墓地に置く)スピードアタッカーW・ブレイカーカードが自分のシールドゾーンから墓地に置かれた時次のうちいずれか1つを選ぶ。▶カードを1枚引く。▶相手は自身の手札を1枚選んで捨てる。▶相手のクリーチャーを1体選びタップする。')
+   return {exLife:true,speedAttacker:true,breaker:2,g159ShieldRole:'gaizeki',g884ShieldGraveModes:[
+    {label:'カードを1枚引く',defs:[{op:'Draw',n:1}]},
+    {label:'相手が手札を1枚選んで捨てる',defs:[{op:'Discard',n:1}]},
+    {label:'相手のクリーチャーを1体タップする',defs:[{op:'Target',tap:true}]}
+   ]};
+  if(d.id==='dmrp17-034'&&f.typeText==='呪文'&&compact363===waveTriggerSpell703+
+   '自分のクリーチャーを1体選び表向きにシールド化する。その後相手のクリーチャーを1体選び表向きにシールド化する。'){
+   const shield={op:'Target',to:'shields',faceUp:true};
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{...shield,owner:'self',title:'表向きにシールド化する自分のクリーチャーを選ぶ'},
+    {...shield,title:'表向きにシールド化する相手のクリーチャーを選ぶ'}]};
+  }
+  if(d.id==='dmrp16-013'&&f.typeText==='呪文'&&compact363===
+   '自分の山札の上から2枚を裏向きのままそれぞれ新しいシールドとしてシールドゾーンに置く。その後自分のシールドを1つ手札に加える。(その「S・トリガー」を使ってもよい)')
+   return {effect:'sixPhoto',g34Tasks:[{op:'ShieldTop',n:2,g779Simultaneous:true},{op:'TappedShieldPick842',owner:'self',n:1,picked:[]}]};
+ }
  if(phase>=883&&f.typeText==='クリーチャー'){
   if(d.id==='dmrp14-087'&&compact363==='各ターンはじめてカードが自分のシールドゾーンに置かれた時カードを1枚引く。')
    return {g159ShieldRole:'watchdog'};

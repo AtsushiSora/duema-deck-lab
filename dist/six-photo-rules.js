@@ -2186,11 +2186,11 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_TappedShieldPick842':{
-  const defender=1-t.p,shields=s.players[defender].shields;
+  const defender=t.owner==='self'?t.p:1-t.p,shields=s.players[defender].shields;
   const options=shields.flatMap((x,i)=>api.shieldCards(x).some(y=>!y.g37ShieldHeld)
    ?[opt('シールド '+(i+1)+(x.faceUp?'：'+card(x).name:''),x.uid,t.picked.includes(x.uid)?0:10,x.faceUp?x.cardId:undefined)]:[]);
   // Rule 601.1h: a choice for each creature may name the same shield again.
-  if(options.length&&t.picked.length<t.n)choice(s,t,'相手が手札に加えるシールドを選ぶ（'+t.picked.length+'/'+t.n+'）',options);
+  if(options.length&&t.picked.length<t.n)choice(s,t,(t.owner==='self'?'自分が':'相手が')+'手札に加えるシールドを選ぶ（'+t.picked.length+'/'+t.n+'）',options);
   else if(t.picked.length)api.interruptBreak(s,defender,[...new Set(t.picked)],task('g34_Sequence',t.p,t.source,{defs:[]}),{g842Hand:true,controller:t.p,source:t.source});
   break;
  }
