@@ -188215,26 +188215,146 @@
       ],
       "supportBatch": "phase-862",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm36-055",
+      "name": "封魔ベールゼブブ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "グランド・デビル",
+      "text": "返霊３(このクリーチャーが攻撃する時、自分の墓地からカードを３枚、好きな順序で山札の一番下に置いてもよい。そうした場合、このクリーチャーの能力を使う)\nコスト５以下の(E・ソウル)クリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-055",
+      "limit": 4,
+      "g558Souls": [
+        "E"
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "deck",
+          "n": 3,
+          "optional": true,
+          "g837Reikon": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "deploy": true,
+              "g236GraveDeploy": true,
+              "n": 1,
+              "filter": {
+                "creature": true,
+                "g853Soul": "E",
+                "max": 5
+              },
+              "title": "墓地から出すコスト5以下のE・ソウルクリーチャーを1体選ぶ"
+            }
+          ],
+          "title": "返霊3：山札の下に置く順に墓地のカードを3枚選ぶ"
+        }
+      ],
+      "supportBatch": "phase-863",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm36-019",
+      "name": "クール・ビューティー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "スプラッシュ・クイーン",
+      "text": "【M・ソウル】\nS・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある進化クリーチャーまたはリンクしているゴッドを１体選び、持ち主の手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-019",
+      "limit": 4,
+      "g558Souls": [
+        "M"
+      ],
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "filter": {
+            "creature": true,
+            "g508EvolutionOrLink": true
+          },
+          "to": "hand",
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-863",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm37-027",
+      "name": "凶奪の伯爵プロベンツ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ダークロード",
+      "text": "ノー・チョイス(手札を１枚も持っていないプレイヤーがひとりでもいれば、このクリーチャーは次の能力を得る) このクリーチャーが攻撃する時、そのターン、バトルゾーンにある相手のクリーチャーすべてのパワーは-2000される。(パワー０以下のクリーチャーは破壊される)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-027",
+      "limit": 4,
+      "g558Souls": [
+        "B"
+      ],
+      "g260Self": {
+        "filter": {
+          "g834AnyEmptyHand": true
+        },
+        "grants": {
+          "g34Attack": [
+            {
+              "op": "GroupPower",
+              "owner": "opponent",
+              "filter": {
+                "creature": true
+              },
+              "power": -2000,
+              "g214GroupPower": true
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-863",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 862,
+    "phase": 863,
     "checkedAt": "2026-11-11",
-    "baseCount": 6450,
+    "baseCount": 6453,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6453,
+    "totalCount": 6456,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37634/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36062/",
-      "https://dm.takaratomy.co.jp/rule/qa/43290/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37627/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36031/",
+      "https://dm.takaratomy.co.jp/rule/qa/40371/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37629/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37630/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37631/",
-      "https://dm.takaratomy.co.jp/rule/qa/40371/"
+      "https://dm.takaratomy.co.jp/rule/qa/40397/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37636/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37637/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36244/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -203523,6 +203643,29 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36094/",
           "https://dm.takaratomy.co.jp/rule/qa_old/34944/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35044/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 862,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6450,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6453,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37634/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36062/",
+          "https://dm.takaratomy.co.jp/rule/qa/43290/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37627/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37629/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37630/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37631/",
+          "https://dm.takaratomy.co.jp/rule/qa/40371/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

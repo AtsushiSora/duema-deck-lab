@@ -1,0 +1,245 @@
+{
+  "phase": 863,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6453,
+  "description": "返霊3によるE・ソウルの墓地からの登場、進化・リンク中のゴッドの手札戻し、ノー・チョイスの攻撃時全体パワー低下に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36031/",
+    "https://dm.takaratomy.co.jp/rule/qa/40371/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37629/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37631/",
+    "https://dm.takaratomy.co.jp/rule/qa/40397/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37636/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37637/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36244/"
+  ],
+  "cards": [
+    {
+      "id": "dm36-055",
+      "name": "封魔ベールゼブブ",
+      "faces": [
+        {
+          "name": "封魔ベールゼブブ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "返霊３(このクリーチャーが攻撃する時、自分の墓地からカードを３枚、好きな順序で山札の一番下に置いてもよい。そうした場合、このクリーチャーの能力を使う)\nコスト５以下の(E・ソウル)クリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+          "race": "グランド・デビル",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-055",
+      "spec": {
+        "g558Souls": [
+          "E"
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "deck",
+            "n": 3,
+            "optional": true,
+            "g837Reikon": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "deploy": true,
+                "g236GraveDeploy": true,
+                "n": 1,
+                "filter": {
+                  "creature": true,
+                  "g853Soul": "E",
+                  "max": 5
+                },
+                "title": "墓地から出すコスト5以下のE・ソウルクリーチャーを1体選ぶ"
+              }
+            ],
+            "title": "返霊3：山札の下に置く順に墓地のカードを3枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "2cb8fccd7c3d2398d77cdd5a419403c4d8d81339df2fbd5e520d0663eb3ea3d5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-019",
+      "name": "クール・ビューティー",
+      "faces": [
+        {
+          "name": "クール・ビューティー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "【M・ソウル】\nS・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある進化クリーチャーまたはリンクしているゴッドを１体選び、持ち主の手札に戻してもよい。",
+          "race": "スプラッシュ・クイーン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-019",
+      "spec": {
+        "g558Souls": [
+          "M"
+        ],
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "filter": {
+              "creature": true,
+              "g508EvolutionOrLink": true
+            },
+            "to": "hand",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "bf956019be97957bcea4f7fd32f7e861338bf60087080c97ed6856a0dfab8f5c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm37-027",
+      "name": "凶奪の伯爵プロベンツ",
+      "faces": [
+        {
+          "name": "凶奪の伯爵プロベンツ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ノー・チョイス(手札を１枚も持っていないプレイヤーがひとりでもいれば、このクリーチャーは次の能力を得る) このクリーチャーが攻撃する時、そのターン、バトルゾーンにある相手のクリーチャーすべてのパワーは-2000される。(パワー０以下のクリーチャーは破壊される)",
+          "race": "ダークロード",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-027",
+      "spec": {
+        "g558Souls": [
+          "B"
+        ],
+        "g260Self": {
+          "filter": {
+            "g834AnyEmptyHand": true
+          },
+          "grants": {
+            "g34Attack": [
+              {
+                "op": "GroupPower",
+                "owner": "opponent",
+                "filter": {
+                  "creature": true
+                },
+                "power": -2000,
+                "g214GroupPower": true
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "3498b5bc188e6a2acfe35a91bb423ed4821669670bcf48475ca4f75f41c7d7ad",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm36-055VC",
+      "canonicalId": "dm36-055",
+      "name": "封魔ベールゼブブ",
+      "faces": [
+        {
+          "name": "封魔ベールゼブブ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "【E・ソウル】\n返霊３（このクリーチャーが攻撃する時、自分の墓地からカードを３枚、好きな順序で山札の一番下に置いてもよい。そうした場合、このクリーチャーの d 能力を使う） d コスト５以下の {E Souls icon}(E・ソウル)クリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+          "race": "グランド・デビル",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-055VC",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-055VC.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "37f12bc44ff92eef14cec8682a28819d096cf5220ea0132f02c58051aa27760e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy21-074",
+      "canonicalId": "dm36-019",
+      "name": "クール・ビューティー",
+      "faces": [
+        {
+          "name": "クール・ビューティー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "【M・ソウル】\nS・トリガーS・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、進化クリーチャーまたはリンクしているゴッドを１体選び、持ち主の手札に戻してもよい。",
+          "race": "スプラッシュ・クイーン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy21-074",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy21-074.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "6530d7ba6528ee83ec5f4213f44fc694481c9bee5a7b60da9d81cec50ed44ff7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm36-055": 4,
+      "dm36-019": 4,
+      "dm37-027": 4,
+      "dm36-055VC": 4,
+      "promoy21-074": 4
+    }
+  }
+}

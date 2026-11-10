@@ -3433,6 +3433,26 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=863&&f.typeText==='クリーチャー'){
+  if(['dm36-055','dm36-055VC'].includes(d.id)&&
+   compact363.replace(/^【E・ソウル】/,'').replace('このクリーチャーのd能力を使う)d','このクリーチャーの能力を使う)').replace('{ESoulsicon}','')===
+   '返霊3(このクリーチャーが攻撃する時自分の墓地からカードを3枚好きな順序で山札の一番下に置いてもよい。そうした場合このクリーチャーの能力を使う)コスト5以下の(E・ソウル)クリーチャーを1体自分の墓地からバトルゾーンに出す。')
+   return {g558Souls:['E'],g34Attack:[{op:'Select',origin:'grave',to:'deck',n:3,optional:true,
+    g837Reikon:[{op:'Select',origin:'grave',deploy:true,g236GraveDeploy:true,n:1,filter:{creature:true,g853Soul:'E',max:5},
+     title:'墓地から出すコスト5以下のE・ソウルクリーチャーを1体選ぶ'}],
+    title:'返霊3：山札の下に置く順に墓地のカードを3枚選ぶ'}]};
+  if(['dm36-019','promoy21-074'].includes(d.id)&&
+   compact363.replace('S・トリガーS・トリガー','S・トリガー').replace('このクリーチャーが出た時進化','このクリーチャーをバトルゾーンに出した時バトルゾーンにある進化')===
+   '【M・ソウル】S・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)このクリーチャーをバトルゾーンに出した時バトルゾーンにある進化クリーチャーまたはリンクしているゴッドを1体選び持ち主の手札に戻してもよい。')
+   return {g558Souls:['M'],trigger:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Target',anyOwner:true,filter:{creature:true,g508EvolutionOrLink:true},to:'hand',optional:true}
+   ]};
+  if(d.id==='dm37-027'&&compact363===
+   'ノー・チョイス(手札を1枚も持っていないプレイヤーがひとりでもいればこのクリーチャーは次の能力を得る)このクリーチャーが攻撃する時そのターンバトルゾーンにある相手のクリーチャーすべてのパワーは-2000される。(パワー0以下のクリーチャーは破壊される)')
+   return {g558Souls:['B'],g260Self:{filter:{g834AnyEmptyHand:true},grants:{
+    g34Attack:[{op:'GroupPower',owner:'opponent',filter:{creature:true},power:-2000,g214GroupPower:true}]
+   }}};
+ }
  if(phase>=862){
   if(d.id==='dm36-029'&&f.typeText==='進化クリーチャー'&&compact363===
    '進化-自分の(K・ソウル)クリーチャー1体の上に置く。このクリーチャーをバトルゾーンに出した時バトルゾーンにある自分の(K・ソウル)クリーチャーを1体選ぶ。そのターンそのクリーチャーのパワーは+3000され「W・ブレイカー」を得る。')
