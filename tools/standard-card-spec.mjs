@@ -3445,6 +3445,22 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=890){
+  if(d.id==='dmrp15-071'&&creature&&compact363===
+   "ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)このクリーチャーが攻撃する時攻撃の後このクリーチャーを破壊する。オシオキムーン:カードが自分のシールドゾーンを離れた時そのターンこのクリーチャーに「スレイヤー」を与える。(「スレイヤー」を持つクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)")
+   return {blocker:true,g34Attack:[{op:'AfterAttack542',defs:[{op:'SelfDestroy'}]}],
+    g536ShieldLeft:[{op:'ShinkaGrant397',grant:{slayer:true}}]};
+  if(['promoy19-056','dmrp15-048','promoy21-013'].includes(d.id)&&creature&&
+   compact363.replace('このクリーチャーが出た時','このクリーチャーがバトルゾーンに出た時')===
+   "ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)このクリーチャーがバトルゾーンに出た時自分のシールドを1つ墓地に置く。オシオキムーン:カードが自分のシールドゾーンを離れた時相手は自身のクリーチャーを1体選び破壊する。")
+   return {blocker:true,effect:'sixPhoto',g34Tasks:[{op:'ShieldGrave',g239ShieldGrave:true}],
+    g536ShieldLeft:[{op:'OpponentSelect',n:1,to:'grave'}]};
+  if(d.id==='dmrp13-036'&&f.typeText==='呪文'&&compact363===
+   "S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)パワー4000以下のクリーチャーを2体まで選び持ち主の手札に戻す。")
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'battle',anyOwner:true,to:'hand',n:2,optional:true,
+    g173Targets:true,g193Select:true,filter:{creature:true,maxPower:4000,g199Power:true},
+    title:'手札に戻すパワー4000以下のクリーチャーを2体まで選ぶ'}]};
+ }
  if(phase>=889&&creature){
   if(['dmex13-023','dmex19-035'].includes(d.id)&&compact363.replace('このクリーチャーが出た時','このクリーチャーがバトルゾーンに出た時')===
    "ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)W・ブレイカー(このクリーチャーはシールドを2つブレイクする)このクリーチャーがバトルゾーンに出た時コスト4以下の呪文を1枚自分の手札からコストを支払わずに唱えてもよい。オシオキムーン:カードが自分のシールドゾーンを離れた時呪文を1枚自分の墓地から手札に戻す。")

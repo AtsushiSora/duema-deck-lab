@@ -1,0 +1,231 @@
+{
+  "phase": 890,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6535,
+  "description": "攻撃後の自己破壊とオシオキムーンの期間限定スレイヤー、強制の盾墓地送りと相手選択破壊、両軍の現在パワー4000以下から2体まで戻すSトリガーに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/38756/",
+    "https://dm.takaratomy.co.jp/rule/qa/46566/",
+    "https://dm.takaratomy.co.jp/rule/qa/34238/",
+    "https://dm.takaratomy.co.jp/rule/qa/41457/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp15-071",
+      "name": "街に届かぬ月のアカリ",
+      "faces": [
+        {
+          "name": "街に届かぬ月のアカリ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが攻撃する時、攻撃の後、このクリーチャーを破壊する。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、そのターン、このクリーチャーに「スレイヤー」を与える。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+          "race": "デビルマスク/月光王国",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-071",
+      "spec": {
+        "blocker": true,
+        "g34Attack": [
+          {
+            "op": "AfterAttack542",
+            "defs": [
+              {
+                "op": "SelfDestroy"
+              }
+            ]
+          }
+        ],
+        "g536ShieldLeft": [
+          {
+            "op": "ShinkaGrant397",
+            "grant": {
+              "slayer": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-071.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "f3b6fc60149943b1e18ee329ed88b4f5b02910c4b6564fbfb9585d7b42bf1c73",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy19-056",
+      "name": "月の魔法ツカイ",
+      "faces": [
+        {
+          "name": "月の魔法ツカイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分のシールドを１つ墓地に置く。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、相手は自身のクリーチャーを１体選び、破壊する。",
+          "race": "デビルマスク/月光王国",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy19-056",
+      "spec": {
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldGrave",
+            "g239ShieldGrave": true
+          }
+        ],
+        "g536ShieldLeft": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy19-056.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "bf15c18ac7da0faae1fe9ff2e3c9f8dd56d8e9afdc57a489abd0b387e91b5540",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp13-036",
+      "name": "スパイシー・スパイラル",
+      "faces": [
+        {
+          "name": "スパイシー・スパイラル",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nパワー4000以下のクリーチャーを２体まで選び、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-036",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "anyOwner": true,
+            "to": "hand",
+            "n": 2,
+            "optional": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "filter": {
+              "creature": true,
+              "maxPower": 4000,
+              "g199Power": true
+            },
+            "title": "手札に戻すパワー4000以下のクリーチャーを2体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp13-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "4407b833e47673b6b156b001e93b65978a4c409b6b0975d04357988bdaca1215",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmrp15-048",
+      "canonicalId": "promoy19-056",
+      "name": "月の魔法ツカイ",
+      "faces": [
+        {
+          "name": "月の魔法ツカイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分のシールドを１つ墓地に置く。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、相手は自身のクリーチャーを１体選び、破壊する。",
+          "race": "デビルマスク/月光王国",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-048",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "9aeaca836b961d0d5b69ab7468d6791d4aa639621280c0e9ec5c1eb567260f8d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy21-013",
+      "canonicalId": "promoy19-056",
+      "name": "月の魔法ツカイ",
+      "faces": [
+        {
+          "name": "月の魔法ツカイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、自分のシールドを１つ墓地に置く。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、相手は自身のクリーチャーを１体選び、破壊する。",
+          "race": "デビルマスク/月光王国",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy21-013",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy21-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "29792972f81c035689ba3cd36513f9e4753c593f8a89c67228ff46407b941b12",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp15-071": 4,
+      "promoy19-056": 4,
+      "dmrp13-036": 4,
+      "dmrp15-048": 4,
+      "promoy21-013": 4
+    }
+  }
+}

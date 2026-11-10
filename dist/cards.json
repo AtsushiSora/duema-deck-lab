@@ -191311,22 +191311,130 @@
       ],
       "supportBatch": "phase-889",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-071",
+      "name": "街に届かぬ月のアカリ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "デビルマスク/月光王国",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが攻撃する時、攻撃の後、このクリーチャーを破壊する。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、そのターン、このクリーチャーに「スレイヤー」を与える。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-071",
+      "limit": 4,
+      "blocker": true,
+      "g34Attack": [
+        {
+          "op": "AfterAttack542",
+          "defs": [
+            {
+              "op": "SelfDestroy"
+            }
+          ]
+        }
+      ],
+      "g536ShieldLeft": [
+        {
+          "op": "ShinkaGrant397",
+          "grant": {
+            "slayer": true
+          }
+        }
+      ],
+      "supportBatch": "phase-890",
+      "supportKind": "effect"
+    },
+    {
+      "id": "promoy19-056",
+      "name": "月の魔法ツカイ",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5500,
+      "race": "デビルマスク/月光王国",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分のシールドを１つ墓地に置く。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、相手は自身のクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy19-056",
+      "limit": 4,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldGrave",
+          "g239ShieldGrave": true
+        }
+      ],
+      "g536ShieldLeft": [
+        {
+          "op": "OpponentSelect",
+          "n": 1,
+          "to": "grave"
+        }
+      ],
+      "supportBatch": "phase-890",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-036",
+      "name": "スパイシー・スパイラル",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nパワー4000以下のクリーチャーを２体まで選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-036",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "anyOwner": true,
+          "to": "hand",
+          "n": 2,
+          "optional": true,
+          "g173Targets": true,
+          "g193Select": true,
+          "filter": {
+            "creature": true,
+            "maxPower": 4000,
+            "g199Power": true
+          },
+          "title": "手札に戻すパワー4000以下のクリーチャーを2体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-890",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 889,
+    "phase": 890,
     "checkedAt": "2026-11-11",
-    "baseCount": 6532,
+    "baseCount": 6535,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6535,
+    "totalCount": 6538,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/rule/qa/38756/",
       "https://dm.takaratomy.co.jp/rule/qa/46566/",
-      "https://dm.takaratomy.co.jp/rule/qa/34328/",
-      "https://dm.takaratomy.co.jp/rule/qa/39074/",
-      "https://dm.takaratomy.co.jp/rule/qa/39105/"
+      "https://dm.takaratomy.co.jp/rule/qa/34238/",
+      "https://dm.takaratomy.co.jp/rule/qa/41457/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -207163,6 +207271,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/46566/",
           "https://dm.takaratomy.co.jp/rule/qa/34205/",
           "https://dm.takaratomy.co.jp/rule/qa/39428/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 889,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6532,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6535,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/38756/",
+          "https://dm.takaratomy.co.jp/rule/qa/46566/",
+          "https://dm.takaratomy.co.jp/rule/qa/34328/",
+          "https://dm.takaratomy.co.jp/rule/qa/39074/",
+          "https://dm.takaratomy.co.jp/rule/qa/39105/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
