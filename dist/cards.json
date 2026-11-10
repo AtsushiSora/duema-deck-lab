@@ -177774,21 +177774,103 @@
       ],
       "supportBatch": "phase-763",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-068",
+      "name": "炎怒音像アンゲロス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "アーマード・ガーゴイル",
+      "text": "各ターン、はじめて自分のコスト６以上のクリーチャーが攻撃する時、そのクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-068",
+      "limit": 4,
+      "g252AttackWatch": {
+        "who": "self",
+        "g764FirstCostSix": true,
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "AttackUntap408",
+            "g562Creature": true,
+            "g764FollowControl": true
+          }
+        ]
+      },
+      "supportBatch": "phase-764",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-073",
+      "name": "幕間の妖精",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 6000,
+      "race": "ジャイアント・スノーフェアリー",
+      "text": "このクリーチャーが相手プレイヤーを攻撃する時、このクリーチャーをマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-073",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "DelayedMove532",
+          "to": "mana",
+          "g764PlayerAttack": true
+        }
+      ],
+      "supportBatch": "phase-764",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-014",
+      "name": "Kl’avia Mondo",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "マジック・コマンド",
+      "text": "ジャストダイバー（このクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは相手に選ばれず、攻撃されない）\n自分のターンのはじめに、カードを１枚引いてもよい。\n各ターンの終わりに、このターン中に自分が呪文を唱え、クリーチャーを召喚していれば、マジック・メクレイド８する。（マジック・メクレイド８：自分の山札の上から３枚を見る。その中から、コスト８以下のマジックを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-014",
+      "limit": 4,
+      "justDiver": true,
+      "g174Start": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "g764MondoEnd": true,
+      "supportBatch": "phase-764",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 763,
+    "phase": 764,
     "checkedAt": "2026-11-10",
-    "baseCount": 6136,
+    "baseCount": 6139,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6139,
+    "totalCount": 6142,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35256/",
-      "https://dm.takaratomy.co.jp/rule/qa/44603/",
-      "https://dm.takaratomy.co.jp/rule/qa/41277/"
+      "https://dm.takaratomy.co.jp/rule/qa/49402/",
+      "https://dm.takaratomy.co.jp/rule/qa/46823/",
+      "https://dm.takaratomy.co.jp/rule/qa/43588/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -191050,6 +191132,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/42498/",
           "https://dm.takaratomy.co.jp/rule/qa/42499/",
           "https://dm.takaratomy.co.jp/rule/qa/40676/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 763,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6136,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6139,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35256/",
+          "https://dm.takaratomy.co.jp/rule/qa/44603/",
+          "https://dm.takaratomy.co.jp/rule/qa/41277/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

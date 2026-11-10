@@ -2564,6 +2564,14 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=764&&f.typeText==='クリーチャー'){
+  if(compact363==='各ターンはじめて自分のコスト6以上のクリーチャーが攻撃する時そのクリーチャーをアンタップする。')
+   return {g252AttackWatch:{who:'self',g764FirstCostSix:true,g399Attacker:true,defs:[{op:'AttackUntap408',g562Creature:true,g764FollowControl:true}]}};
+  if(compact363==='このクリーチャーが相手プレイヤーを攻撃する時このクリーチャーをマナゾーンに置く。')
+   return {g34Attack:[{op:'DelayedMove532',to:'mana',g764PlayerAttack:true}]};
+  if(compact363==='ジャストダイバー(このクリーチャーが出た時次の自分のターンのはじめまでこのクリーチャーは相手に選ばれず攻撃されない)自分のターンのはじめにカードを1枚引いてもよい。各ターンの終わりにこのターン中に自分が呪文を唱えクリーチャーを召喚していればマジック・メクレイド8する。(マジック・メクレイド8:自分の山札の上から3枚を見る。その中からコスト8以下のマジックを1枚コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く)')
+   return {justDiver:true,g174Start:[{op:'Draw',n:1,optional:true}],g764MondoEnd:true};
+ }
  if(phase>=763&&f.typeText==='クリーチャー'){
   if(compact363==='S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)このクリーチャーが出た時クリーチャーを2体まで選びそれぞれタップまたはアンタップする。')
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'battle',anyOwner:true,n:2,optional:true,g173Targets:true,g193Select:true,g763TapOrUntap:true,filter:{creature:true},title:'タップまたはアンタップするクリーチャーを2体まで選ぶ'}]};

@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6139,
-  "pendingNames": 5688,
-  "phase": 763,
+  "supportedNames": 6142,
+  "pendingNames": 5685,
+  "phase": 764,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -82,7 +82,7 @@
     },
     {
       "ability": "メクレイド",
-      "pendingNames": 48,
+      "pendingNames": 47,
       "examples": [
         {
           "id": "dm23rp1-033",
@@ -93,8 +93,8 @@
           "name": "Go! 韻句 Steady"
         },
         {
-          "id": "dm23rp2-014",
-          "name": "Kl’avia Mondo"
+          "id": "dm23rp2-017",
+          "name": "ガ:ナテハ"
         }
       ]
     },
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3386,
+    "クリーチャー": 3383,
     "NEOクリーチャー": 152,
     "呪文": 813,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4161,
+    "未対応の能力文": 4158,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -9418,30 +9418,85 @@
         "runtimeNote": "強制終了込み各最大10分。Phase 193・235・314・449・454・542・760・761の関連テストを名前指定で実行。全体のnpm testは中断・合否未確認。"
       },
       "deferred": []
+    },
+    {
+      "phase": 764,
+      "cards": [
+        {
+          "id": "dm24rp4-068",
+          "name": "炎怒音像アンゲロス"
+        },
+        {
+          "id": "dm23rp2-073",
+          "name": "幕間の妖精"
+        },
+        {
+          "id": "dm23rp2-014",
+          "name": "Kl’avia Mondo"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm23rp2X-073",
+          "canonicalId": "dm23rp2-073",
+          "name": "幕間の妖精"
+        },
+        {
+          "id": "dm23rp2X-014",
+          "canonicalId": "dm23rp2-014",
+          "name": "Kl’avia Mondo"
+        }
+      ],
+      "supportedNames": 6142,
+      "pendingNames": 5685,
+      "verification": {
+        "focusedPassed": 11,
+        "regressionPassed": 271,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 5,
+        "scope": "3種類5版の公式本文・基本情報・マナ・画像・同名商品・使用制限を照合。コスト6以上の初回宣言、ブロック前のアンタップ、プレイヤー攻撃時の自己マナ送り、両ターンの呪文と召喚、ツインパクトの面選択・非公開情報・山札下の順序・保存復元を検証。既存カード定義は基点と一致。",
+        "runtimeNote": "強制終了込み各最大10分。関連回帰261件とPhase 481の攻撃履歴10件が成功。Phase 481の最初の実行は否定だけの名前条件がファイル名に一致してCPU対戦まで対象となり、ログが進まないため今回起動分だけ停止。CPU対戦は合否未確認で、攻撃履歴だけを肯定条件で再検証した。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dm24rp4-070",
+          "name": "ライラ・理・アイニー",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-070",
+          "check": "通常版の公式本文と同名商品を確認。現行総合ルール701.13b〜dではバトル結果に由来する効果の連鎖が終わるまでバトル中。敗北による破壊だけを拾うと漏れ、攻撃中の破壊を全て拾うと攻撃時効果やバトル後のスレイヤーも誤検知する。通常バトルと効果バトル、置換と連鎖を区別して検証するまで保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 763,
-    "nextPhase": 764,
+    "lastVerifiedPhase": 764,
+    "nextPhase": 765,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm24rp4-068",
-        "name": "炎怒音像アンゲロス",
-        "check": "Phase 638の保留候補。既存の攻撃監視を参考に、全攻撃の初回とコスト条件を初めて満たした攻撃を分けて検証する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-068"
-      },
-      {
         "id": "dm24rp4-070",
         "name": "ライラ・理・アイニー",
-        "check": "Phase 638の保留候補。攻撃でのバトルと効果バトルの両方について、バトル中の破壊を通常の効果破壊と区別できるか再確認する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-070"
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-070",
+        "check": "通常版の公式本文と同名商品を確認。現行総合ルール701.13b〜dではバトル結果に由来する効果の連鎖が終わるまでバトル中。敗北による破壊だけを拾うと漏れ、攻撃中の破壊を全て拾うと攻撃時効果やバトル後のスレイヤーも誤検知する。通常バトルと効果バトル、置換と連鎖を区別して検証するまで保留。"
       },
       {
-        "id": "dm23rp2-014",
-        "name": "Kl’avia Mondo",
-        "check": "未対応一覧からの候補。公式の同名収録・本文を照合し、既存のメクレイドと手札操作で全体を再現できるか確認する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-014"
+        "id": "dm24rp4-045",
+        "name": "ブルーアイズ・ドラゴンフライ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-045",
+        "check": "公式本文・同名商品とパワード・ブレイカーの裁定を照合。コスト6以上の味方の登場に反応する既存の監視を参考に、参照するパワーと期限を検証する。"
+      },
+      {
+        "id": "dm23rp2-022",
+        "name": "パロッタ・夜・ミエッピ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-022",
+        "check": "公式本文・再録を照合し、ドラゴンの登場時ドローと、タップしているドラゴンがいる間の味方ファイアー・バードへの攻撃耐性を検証する。"
+      },
+      {
+        "id": "dm23rp2-047",
+        "name": "推出の超人",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-047",
+        "check": "公式本文・再録を照合。マナへの2枚目の移動を同時移動も含めて数え、ジャイアント・メクレイド5の既存処理を確認する。"
       },
       {
         "id": "promoy17-033",
