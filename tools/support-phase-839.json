@@ -1,0 +1,221 @@
+{
+  "phase": 839,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6378,
+  "description": "ツインパクト両面、破壊時の自己山札下送りと死神の蘇生、相手が公開する手札からの破棄に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36337/",
+    "https://dm.takaratomy.co.jp/rule/qa/33416/",
+    "https://dm.takaratomy.co.jp/rule/qa/42947/",
+    "https://dm.takaratomy.co.jp/rule/qa/41124/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35754/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
+  ],
+  "cards": [
+    {
+      "id": "dm23ex2-098",
+      "name": "爆獣ダキテー・ドラグーン / 勝負だ！チャージャー",
+      "faces": [
+        {
+          "name": "爆獣ダキテー・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、相手のパワー3000以下のクリーチャーを１体選び、破壊する。",
+          "race": "ティラノ・ドレイク/ナイト",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "勝負だ！チャージャー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このターン、自分のクリーチャー１体は、タップされていないクリーチャーを攻撃できる。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-098",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ],
+        "spellFace": {
+          "name": "勝負だ！チャージャー",
+          "type": "spell",
+          "cost": 3,
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "normalCharger": true,
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "owner": "self",
+              "grant": {
+                "attackUntapped": true,
+                "g838FreshUntapped": true
+              },
+              "spell": true,
+              "title": "アンタップしているクリーチャーを攻撃できるようにする自分のクリーチャーを選ぶ"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex2-098a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "7880c99454e3c1d2bcfb085f2d24ce8a3f669ddbf6243aba6b0e51cfa6f746f3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm39-028",
+      "name": "死神人形ベルベル",
+      "faces": [
+        {
+          "name": "死神人形ベルベル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが破壊された時、墓地から自分の山札の一番下に置いてもよい。そうした場合、名前に《死神》とある、進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+          "race": "デスパペット",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-028",
+      "spec": {
+        "g172Death": [
+          {
+            "op": "SelfGraveBottom839",
+            "after": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "deploy": true,
+                "n": 1,
+                "filter": {
+                  "creature": true,
+                  "nonEvolution": true,
+                  "g819CreatureNameIncludes": "死神"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "025b4e186975b8b617ff9624447a18e890892c54bbbe8a1eefee5e1c206bc118",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-090",
+      "name": "呪いのシカバネ・キタロウ",
+      "faces": [
+        {
+          "name": "呪いのシカバネ・キタロウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、相手は自身の手札から２枚カードを選び、すべてのプレイヤーに見せる。そのうちの１枚を選び、相手に捨てさせる。",
+          "race": "ゴースト/ハンター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-090",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RevealDiscard839"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-090.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ffae40b357d205bbd571a2e9968086a3127af0406ca075d7d8e8cd48f8b0d317",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmr01-090M",
+      "canonicalId": "dmr01-090",
+      "name": "呪いのシカバネ・キタロウ",
+      "faces": [
+        {
+          "name": "呪いのシカバネ・キタロウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、相手は自身の手札から２枚カードを選び、すべてのプレイヤーに見せる。そのうちの１枚を選び、相手に捨てさせる。",
+          "race": "ゴースト/ハンター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-090M",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-090.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "8f873bf7745c0101514d61d379bfd70077efe9abf1def1fd7aedacde75d8a6a1",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23ex2-098": 4,
+      "dm39-028": 4,
+      "dmr01-090": 4,
+      "dmr01-090M": 4
+    }
+  }
+}

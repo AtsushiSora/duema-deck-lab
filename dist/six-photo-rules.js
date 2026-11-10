@@ -1105,6 +1105,22 @@ export function createSixPhotoRules(api){
  const destinationName467={shields:'シールド化する',hand:'手札に加える',mana:'マナゾーンに置く',grave:'墓地に置く',deckTop:'山札の上に置く',deck:'山札の下に置く'};
  function lookDestination467(s,t){const stage=t.stages[t.stage],own=s.players[t.p],y=own.deck.find(x=>x.uid===t.chosen[0]);if(!y){put(s,{...t,op:'g34_LookPick',chosen:[]});return;}choice(s,t,'選んだカードをどこに置く？',stage.g467Destinations.map(to=>opt(destinationName467[to],to,to==='hand'?(own.hand.length<3?20:12):to==='mana'?(own.mana.length<6?18:8):3,t.g467Blind?undefined:y.cardId)));}
  function targetDestination467(s,t){const r=t.target,y=s.players[r.p].battle.find(x=>x.uid===r.uid&&(x.incarnation||0)===r.incarnation&&!x.sealed);if(!y){if(t.after)start(s,t,t.after);return;}const controller=t.g472OwnerDestination?{...t,p:r.p,g472EffectPlayer:t.p}:t;choice(s,controller,'選んだクリーチャーをどこに置く？',t.g467Destinations.map(to=>opt(destinationName467[to],to,to==='grave'?(hooks.destroySafe409(s,y)?-5:30+cost(card(y))):to==='hand'?15:to==='deckTop'?20:10,y.cardId)));}
+ function revealDiscard839(s,t){
+  const owner=1-t.p,hand=s.players[owner].hand,selected=t.selected||[];
+  const remaining=hand.filter(x=>!selected.includes(x.uid));
+  const needed=2-selected.length;
+  if(remaining.length>needed&&needed){
+   choice(s,{...t,selected},'見せる手札を2枚選ぶ（'+selected.length+'枚選択済み）',
+    remaining.map(x=>opt(card(x).name,x.uid,-cost(card(x)),x.cardId)),owner);
+   return;
+  }
+  const shown=hand.filter(x=>selected.includes(x.uid)||remaining.length<=needed);
+  for(const x of shown)api.log(s,owner,'reveal',card(t.source).name+'で手札公開：'+card(x).name,{cardId:x.cardId,source:t.source});
+  if(shown.length===1)api.discardSelected(s,owner,[shown[0].uid],t.source,t.p);
+  if(shown.length===2)choice(s,{...t,shown:shown.map(x=>x.uid)},'公開された手札から捨てさせるカードを選ぶ',
+   shown.map(x=>opt(card(x).name,x.uid,cost(card(x)),x.cardId)));
+ }
+ const ownGraveSource839=(own,t)=>own.grave.find(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)&&(y.zoneSerial||0)===t.serial);
  function run(s,t){if(fifteen.run(s,t))return true;if(!t.op.startsWith('g34_'))return false;const own=s.players[t.p],opp=s.players[1-t.p],x=live(s,t);switch(t.op){
  // Evo Charger continues after the physical spell has completed its move to mana.
  case'g34_EvoCharge566':{const hosts=creatures(s,t.p).filter(y=>!y.sealed&&api.isEvolution(y)),rows=own.mana.filter(y=>!y.faceDown&&faces(card(y)).some(c=>c.type==='creature'));if(!api.canMoveZone(s,t.p,'mana')||!hosts.length||!rows.length)break;if(!t.host)choice(s,t,'進化元を追加する自分の進化クリーチャーを選ぶ（任意）',[...hosts.map(y=>opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},8,y.cardId)),skip()]);else if(hosts.some(y=>key(y)===key(t.host)))choice(s,t,'進化元に追加するマナのクリーチャーを選ぶ（任意）',[...rows.map(y=>opt(card(y).name,{uid:y.uid,serial:y.zoneSerial||0},6-cost(card(y)),y.cardId)),skip()]);break;}
@@ -1377,6 +1393,13 @@ export function createSixPhotoRules(api){
   if(y&&api.canMoveZone(s,t.p,'grave')&&canPut(s,t.p,y,'grave'))doPut(s,{...t,owner:t.p,origin:'grave',target:y.uid});
   break;
  }
+ case'g34_SelfGraveBottom839':{
+  const y=ownGraveSource839(own,t);
+  if(y&&api.canMoveZone(s,t.p,'grave'))choice(s,t,'このクリーチャーを墓地から山札の下に置く？',
+   [opt('山札の下に置く',true,20,y.cardId),skip()]);
+  break;
+ }
+ case'g34_RevealDiscard839':revealDiscard839(s,t);break;
  case'g34_SelfGraveHand476':{const y=own.grave.find(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)&&(y.zoneSerial||0)===t.serial);if(y)zoneMove(s,t.p,'grave',y.uid,'hand',t);break;}
  case'g34_SelfGraveShield659':{
   const y=own.grave.find(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)&&(y.zoneSerial||0)===t.serial);
@@ -2401,6 +2424,14 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
  }
  function chosen(s,t,v){if(fifteen.chosen(s,t,v))return true;if(!t.op.startsWith('g34_'))return false;const own=s.players[t.p],x=live(s,t);switch(t.op){
+ case'g34_SelfGraveBottom839':
+  if(v&&ownGraveSource839(own,t)&&zoneMove(s,t.p,'grave',t.uid,'deck',t))start(s,t,t.after);
+  break;
+ case'g34_RevealDiscard839':
+  if(t.shown){
+   if(t.shown.includes(v))api.discardSelected(s,1-t.p,[v],t.source,t.p);
+  }else put(s,{...t,selected:[...t.selected,v]});
+  break;
  case'g34_LookDestination467':put(s,{...t,op:'g34_LookPick',stages:t.stages.map((q,i)=>i===t.stage?{...q,to:v,g467Chosen:true}:q)});break;
  case'g34_PowerSweep696':start(s,t,[{op:'Sweep',both:true,to:'grave',filter:{creature:true,...(v>0?{minPower:v}:{}),maxPower:v,g199Power:true}}]);break;
  case'g34_CostSweep596':start(s,t,[{op:'Sweep',to:'grave',filter:{creature:true,min:v,max:v}}]);break;
@@ -3513,7 +3544,7 @@ export function createSixPhotoRules(api){
       const n=prior.crossedCount728;
       return n?[{op:'Offer',title:'カードを'+n+'枚引く？',defs:[{op:'Draw',n}]}]:[];
      }
-     return [['SelfGraveHand476','ScheduleGraveReturn644','SelfGraveShield659'].includes(d.op)?{...d,serial:(x.zoneSerial||0)+1}:d];
+     return [['SelfGraveHand476','ScheduleGraveReturn644','SelfGraveShield659','SelfGraveBottom839'].includes(d.op)?{...d,serial:(x.zoneSerial||0)+1}:d];
     });
    if(defs.length)queue(s,p,x,defs);
   }if(effective(x,s).g34Role==='dragonOrb')queue(s,p,x,[C('orbDeploy')]);if(ninja(effective(x,s)))for(const y of(snapshot?.dororon?.[p]||active(s,p,'dororon')))queue(s,p,y,[E('Draw',{n:1,optional:true})]);}},

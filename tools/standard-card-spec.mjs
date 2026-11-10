@@ -2430,6 +2430,10 @@ const waveGrants705={
  'wこのクリーチャーに「マッハファイター」を与える。(このクリーチャーは出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)':{machFighter:true}
 };
 
+const shobuChargerTasks=()=>[
+ {op:'Target',owner:'self',grant:{attackUntapped:true,g838FreshUntapped:true},spell:true,title:'アンタップしているクリーチャーを攻撃できるようにする自分のクリーチャーを選ぶ'}
+];
+
 export function standardCardSpec(d,{phase=165}={}){
  // Repair only the complete formatting variants pinned to these official prints.
  if(phase>=533&&d?.faces?.length===1){
@@ -2507,12 +2511,25 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=839&&d?.status==='complete'&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText),spell=d.faces[1];
+  if(d.faces.length===2&&spell.typeText==='呪文'&&
+     text==='S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)このクリーチャーが出た時相手のパワー3000以下のクリーチャーを1体選び破壊する。'&&
+     normalize(spell.abilityText)==='このターン自分のクリーチャー1体はタップされていないクリーチャーを攻撃できる。チャージャー(この呪文を唱えた後墓地に置くかわりにマナゾーンに置く)')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'grave',filter:{maxPower:3000,g199Power:true}}],
+    spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,
+     effect:'sixPhoto',normalCharger:true,g34Tasks:shobuChargerTasks()}};
+  if(d.faces.length===1&&text==='このクリーチャーが破壊された時墓地から自分の山札の一番下に置いてもよい。そうした場合名前に《死神》とある進化ではないクリーチャーを1体自分の墓地からバトルゾーンに出す。')
+   return {g172Death:[{op:'SelfGraveBottom839',after:[
+    {op:'Select',origin:'grave',deploy:true,n:1,filter:{creature:true,nonEvolution:true,g819CreatureNameIncludes:'死神'}}
+   ]}]};
+  if(d.faces.length===1&&text==='このクリーチャーをバトルゾーンに出した時相手は自身の手札から2枚カードを選びすべてのプレイヤーに見せる。そのうちの1枚を選び相手に捨てさせる。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'RevealDiscard839'}]};
+ }
  if(phase>=838&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='呪文'&&text==='このターンバトルゾーンにある自分のクリーチャー1体はタップされていないクリーチャーを攻撃できる。チャージャー(この呪文を唱えた後墓地に置くかわりに自分のマナゾーンに置く)')
-   return {normalCharger:true,effect:'sixPhoto',g34Tasks:[
-    {op:'Target',owner:'self',grant:{attackUntapped:true,g838FreshUntapped:true},spell:true,title:'アンタップしているクリーチャーを攻撃できるようにする自分のクリーチャーを選ぶ'}
-   ]};
+   return {normalCharger:true,effect:'sixPhoto',g34Tasks:shobuChargerTasks()};
   if(f.typeText==='呪文'&&text==='相手のクリーチャーを1体破壊しそのクリーチャーと同じ名前を持つ相手のクリーチャーをすべて破壊する。')
    return {effect:'sixPhoto',g34Tasks:[{op:'ChainDestroy838'}]};
   if(f.typeText==='クリーチャー'&&text==='いずれかの墓地にカードが置かれた時そのターンバトルゾーンにある自分のコスト2以下のクリーチャーはすべて「スレイヤー」を得る。(「スレイヤー」を得たクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)')

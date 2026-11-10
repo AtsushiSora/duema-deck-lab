@@ -186020,27 +186020,136 @@
       ],
       "supportBatch": "phase-838",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex2-098",
+      "name": "爆獣ダキテー・ドラグーン / 勝負だ！チャージャー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 3000,
+      "race": "ティラノ・ドレイク/ナイト",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、相手のパワー3000以下のクリーチャーを１体選び、破壊する。\n【呪文面】\nこのターン、自分のクリーチャー１体は、タップされていないクリーチャーを攻撃できる。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-098",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 3000,
+            "g199Power": true
+          }
+        }
+      ],
+      "spellFace": {
+        "name": "勝負だ！チャージャー",
+        "type": "spell",
+        "cost": 3,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "normalCharger": true,
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "attackUntapped": true,
+              "g838FreshUntapped": true
+            },
+            "spell": true,
+            "title": "アンタップしているクリーチャーを攻撃できるようにする自分のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-839",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm39-028",
+      "name": "死神人形ベルベル",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "デスパペット",
+      "text": "このクリーチャーが破壊された時、墓地から自分の山札の一番下に置いてもよい。そうした場合、名前に《死神》とある、進化ではないクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-028",
+      "limit": 4,
+      "g172Death": [
+        {
+          "op": "SelfGraveBottom839",
+          "after": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "deploy": true,
+              "n": 1,
+              "filter": {
+                "creature": true,
+                "nonEvolution": true,
+                "g819CreatureNameIncludes": "死神"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-839",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-090",
+      "name": "呪いのシカバネ・キタロウ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ゴースト/ハンター",
+      "text": "このクリーチャーをバトルゾーンに出した時、相手は自身の手札から２枚カードを選び、すべてのプレイヤーに見せる。そのうちの１枚を選び、相手に捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-090",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "RevealDiscard839"
+        }
+      ],
+      "supportBatch": "phase-839",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 838,
+    "phase": 839,
     "checkedAt": "2026-11-10",
-    "baseCount": 6375,
+    "baseCount": 6378,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6378,
+    "totalCount": 6381,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35187/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36103/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36104/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36340/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36341/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36342/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36343/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37511/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36337/",
       "https://dm.takaratomy.co.jp/rule/qa/33416/",
       "https://dm.takaratomy.co.jp/rule/qa/42947/",
+      "https://dm.takaratomy.co.jp/rule/qa/41124/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35754/",
       "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
     ],
     "next": [
@@ -200846,6 +200955,31 @@
           "https://dm.takaratomy.co.jp/rule/qa/45214/",
           "https://dm.takaratomy.co.jp/rule/rulechange/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31652/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 838,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6375,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6378,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35187/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36103/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36104/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36340/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36341/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36342/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36343/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37511/",
+          "https://dm.takaratomy.co.jp/rule/qa/33416/",
+          "https://dm.takaratomy.co.jp/rule/qa/42947/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
