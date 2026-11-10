@@ -1,0 +1,154 @@
+{
+  "phase": 857,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6435,
+  "description": "ワイルド・ベジーズのマナ配置による強化、H・ソウルの登場を参照する攻撃制限、K・ソウルを手札に戻した時のアンタップに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35443/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35997/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35998/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35999/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36000/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36059/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36060/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+  ],
+  "cards": [
+    {
+      "id": "dm20-054",
+      "name": "バンダム・オレンジ",
+      "faces": [
+        {
+          "name": "バンダム・オレンジ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のワイルド・ベジーズをマナゾーンに置いた時、そのターンの終わりまでこのクリーチャーのパワーは+2000される。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-054",
+      "spec": {
+        "g857ManaEntryRace": "ワイルド・ベジーズ",
+        "g807ManaEntry": [
+          {
+            "op": "SelfBoost313",
+            "power": 2000,
+            "g536Source": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "aad324232416630c0a80b7f4f5ae3fba1412c653d9e553cd1b5b34b0f21dfc84",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-044",
+      "name": "ピュアカパーラ",
+      "faces": [
+        {
+          "name": "ピュアカパーラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー\nこのターン、自分の(H・ソウル)クリーチャーをバトルゾーンに出していなければ、このクリーチャーは相手プレイヤーを攻撃できない。",
+          "race": "シャイン・モンスター",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-044",
+      "spec": {
+        "g558Souls": [
+          "H"
+        ],
+        "blocker": true,
+        "g840PlayerAttackRequires": {
+          "g857LightSoulEntered": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "b33cfdaaf136fe759c415a2525265289a6717c1a2527141873b9e3e1f6126c28",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-032",
+      "name": "突風の拳士ウィラポン",
+      "faces": [
+        {
+          "name": "突風の拳士ウィラポン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、自分の他の(K・ソウル)クリーチャーを１体、バトルゾーンから自分の手札に戻してもよい。そうした場合、このクリーチャーをアンタップする。",
+          "race": "フェザーノイド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-032",
+      "spec": {
+        "g558Souls": [
+          "K"
+        ],
+        "g34Attack": [
+          {
+            "op": "MarshalTouch558",
+            "filter": {
+              "g853Soul": "K"
+            },
+            "g857ReturnRequired": true,
+            "title": "手札に戻す自分の他のK・ソウルクリーチャーを1体選ぶ（任意）",
+            "defs": [
+              {
+                "op": "Untap",
+                "g191First": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "8efd40d08f16077982400c213d13b1d352a67ff1a694953377589ea34f7609a5",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm20-054": 4,
+      "dm36-044": 4,
+      "dm36-032": 4
+    }
+  }
+}

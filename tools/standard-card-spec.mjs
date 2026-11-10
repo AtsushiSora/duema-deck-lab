@@ -3433,6 +3433,15 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=857&&f.typeText==='クリーチャー'){
+  if(compact363==='自分のワイルド・ベジーズをマナゾーンに置いた時そのターンの終わりまでこのクリーチャーのパワーは+2000される。')
+   return {g857ManaEntryRace:'ワイルド・ベジーズ',g807ManaEntry:[{op:'SelfBoost313',power:2000,g536Source:true}]};
+  if(d.id==='dm36-044'&&compact363==='ブロッカーこのターン自分の(H・ソウル)クリーチャーをバトルゾーンに出していなければこのクリーチャーは相手プレイヤーを攻撃できない。')
+   return {g558Souls:['H'],blocker:true,g840PlayerAttackRequires:{g857LightSoulEntered:true}};
+  if(d.id==='dm36-032'&&compact363==='このクリーチャーが攻撃する時自分の他の(K・ソウル)クリーチャーを1体バトルゾーンから自分の手札に戻してもよい。そうした場合このクリーチャーをアンタップする。')
+   return {g558Souls:['K'],g34Attack:[{op:'MarshalTouch558',filter:{g853Soul:'K'},g857ReturnRequired:true,
+    title:'手札に戻す自分の他のK・ソウルクリーチャーを1体選ぶ（任意）',defs:[{op:'Untap',g191First:true}]}]};
+ }
  if(phase>=856&&f.typeText==='クリーチャー'){
   if(compact363==='自分のクロスギアをジェネレートまたはクロスする時支払うコストは1少なくなる。ただしコストは1より少なくならない。')
    return {g856GearDiscount:true};

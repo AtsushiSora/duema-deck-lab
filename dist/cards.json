@@ -187619,22 +187619,114 @@
       ],
       "supportBatch": "phase-856",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm20-054",
+      "name": "バンダム・オレンジ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ワイルド・ベジーズ",
+      "text": "自分のワイルド・ベジーズをマナゾーンに置いた時、そのターンの終わりまでこのクリーチャーのパワーは+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-054",
+      "limit": 4,
+      "g857ManaEntryRace": "ワイルド・ベジーズ",
+      "g807ManaEntry": [
+        {
+          "op": "SelfBoost313",
+          "power": 2000,
+          "g536Source": true
+        }
+      ],
+      "supportBatch": "phase-857",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm36-044",
+      "name": "ピュアカパーラ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "シャイン・モンスター",
+      "text": "ブロッカー\nこのターン、自分の(H・ソウル)クリーチャーをバトルゾーンに出していなければ、このクリーチャーは相手プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-044",
+      "limit": 4,
+      "g558Souls": [
+        "H"
+      ],
+      "blocker": true,
+      "g840PlayerAttackRequires": {
+        "g857LightSoulEntered": true
+      },
+      "supportBatch": "phase-857",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm36-032",
+      "name": "突風の拳士ウィラポン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "フェザーノイド",
+      "text": "このクリーチャーが攻撃する時、自分の他の(K・ソウル)クリーチャーを１体、バトルゾーンから自分の手札に戻してもよい。そうした場合、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-032",
+      "limit": 4,
+      "g558Souls": [
+        "K"
+      ],
+      "g34Attack": [
+        {
+          "op": "MarshalTouch558",
+          "filter": {
+            "g853Soul": "K"
+          },
+          "g857ReturnRequired": true,
+          "title": "手札に戻す自分の他のK・ソウルクリーチャーを1体選ぶ（任意）",
+          "defs": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-857",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 856,
+    "phase": 857,
     "checkedAt": "2026-11-11",
-    "baseCount": 6432,
+    "baseCount": 6435,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6435,
+    "totalCount": 6438,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35327/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37633/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36126/",
-      "https://dm.takaratomy.co.jp/rule/qa/43486/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35443/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35997/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35998/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35999/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36000/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36059/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36060/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -202797,6 +202889,25 @@
           "https://dm.takaratomy.co.jp/rule/rulechange/31654/",
           "https://dm.takaratomy.co.jp/rule/qa/47495/",
           "https://dm.takaratomy.co.jp/rule/qa/42392/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 856,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6432,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6435,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35327/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37633/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36126/",
+          "https://dm.takaratomy.co.jp/rule/qa/43486/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

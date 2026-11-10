@@ -344,6 +344,7 @@ export function createSixPhotoRules(api){
   if(f.g792AbsentAlly)return !s.players[p].battle.some(x=>!x.sealed&&!x.faceDown&&api.isCreature(s,x)&&effective(x,s).name===f.g792AbsentAlly);
   if(f.g791ExtraSpell)return (s.players[p].extra||[]).some(x=>!x.faceDown&&faces(card(x)).some(c=>c.type==='spell'));
   if(f.g790MinDraws!==undefined)return (s.players[p].drawsThisTurn||0)>=f.g790MinDraws;
+  if(f.g857LightSoulEntered)return s.g857LightSoulEnteredTurn?.[p]===s.turn;
   if(f.g722CrossedAny)return [p,1-p].some(owner=>ownCondition(s,owner,{g442CrossedAlly:true}));
   if(f.g666FaceUpShieldGo)return api.shieldGoCount(s,p)>0;
   if(f.g757FaceUpShield)return s.players[p].shields.some(group=>api.shieldCards(group).some(x=>x.faceUp));
@@ -1048,7 +1049,7 @@ export function createSixPhotoRules(api){
  }return score;}
  // Marshall Touch snapshots the selected creature's visible cost before movement.
  const marshalDefs558=(t,n)=>(t.defs||[]).map(d=>d.g558ReturnedCost?{...d,filter:{...d.filter,...(n===Infinity?{}:{max:n})}}:d);
- function marshalRows558(s,t){const rows=creatures(s,t.p).filter(y=>!y.sealed&&!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))),legal=new Set(targetOptions(s,t.p,rows).map(o=>o.value));return rows.filter(y=>legal.has(y.uid));}
+ function marshalRows558(s,t){const rows=creatures(s,t.p).filter(y=>!y.sealed&&!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))&&(!t.filter||matches(s,t.p,y,t.filter))),legal=new Set(targetOptions(s,t.p,rows).map(o=>o.value));return rows.filter(y=>legal.has(y.uid));}
  function marshalValue558(s,t,y){const c=effective(y,s),defs=marshalDefs558(t,cost(c)),leaves=api.canLeave(s,t.p,y),penalty=leaves?4+Math.min(24,cost(c)*2)+Math.min(8,api.power(y,false,s)/3000):0,projected=leaves?{...s,players:s.players.map((v,p)=>p===t.p?{...v,battle:v.battle.filter(x=>x!==y)}:v)}:s;let score=modeScore(projected,t,defs);for(const d of defs){if(d.op==='ShinkaGrant397'){const host=sourceHost474(projected,t);if(host&&host.p===t.p&&s.active===t.p&&!host.x.tapped&&!effective(host.x,s).noAttack)score+=d.grant?.speedAttacker&&host.x.entered===s.turn?18+cost(effective(host.x,s)):4;}if(d.op==='Sweep'&&d.both)score-=creatures(projected,t.p).filter(x=>!x.sealed&&matches(projected,t.p,x,d.filter)&&api.canLeave(s,t.p,x)&&!hooks.destroySafe409(s,x)).reduce((n,x)=>n+12+cost(effective(x,s))*2+api.power(x,false,s)/3000,0);}return Math.max(-1000,Math.min(1000,score-penalty+(y.tapped?4:0)));}
  // Sacrifice is optional; use only public enemy information to value the payoff.
  function seedReviveValue547(s,t,v,canDie){const d=t.defs?.[0];if(!d||!api.canMoveZone(s,t.p,'grave'))return-1000;const rows=list(s,{...t,...d,selected:[]}).map(r=>r.x);if(canDie&&matches(s,t.p,v,d.filter)&&canPut(s,t.p,v,'grave'))rows.push(v);if(!rows.length)return-1000;return Math.max(...rows.map(y=>{const c=card(y),entry=modeScore(s,{...t,source:y.cardId},c.g34Tasks||[]);return entry<=-900?-1000:10+cost(c)*3+entry;}));}
@@ -1740,6 +1741,9 @@ export function createSixPhotoRules(api){
  }
  case'g34_ShieldPlus414':put(s,{...t,op:'g71_Plus',optional:true});break;
  case'g34_CountTap413':{const n=creatures(s,t.p).filter(y=>!y.sealed).length;if(n)start(s,t,[{op:'Select',owner:'opponent',origin:'battle',n,filter:{creature:true},g173Targets:true,g193Tap:true,g193Select:true,title:'タップする相手のクリーチャーを'+n+'体選ぶ'}]);break;}
+ case'g34_ConfirmHandReturn857':
+  if(own.hand.some(y=>y.uid===t.returned&&(y.zoneSerial||0)===t.serial))start(s,t,t.defs);
+  break;
  case'g34_MarshalTouch558':{const rows=marshalRows558(s,t);if(rows.length)choice(s,t,t.title||'マーシャル・タッチ：戻す自分の他のクリーチャーを1体選ぶ（任意）',[...rows.map(y=>opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},marshalValue558(s,t,y),y.cardId)),skip()]);break;}
  case'g34_SacrificeAlly413':{const rows=(t.g547Seed?own.battle.filter(y=>matches(s,t.p,y,{g295Tamaseed:true})):creatures(s,t.p)).filter(y=>!y.sealed&&(!t.other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))&&(!t.filter||matches(s,t.p,y,t.filter))),legal=new Set(targetOptions(s,t.p,rows).map(o=>o.value)),payoff=sacrificeValue413(s,t,t.defs||[]);if(rows.some(y=>legal.has(y.uid)))choice(s,t,t.g547Seed?'破壊して効果を使う自分のタマシードを1枚選ぶ（任意）':'破壊して効果を使う自分のクリーチャーを1体選ぶ（任意）',[...rows.filter(y=>legal.has(y.uid)).map(y=>{const c=effective(y,s),canDie=api.canLeave(s,t.p,y)&&!hooks.destroySafe409(s,y),penalty=canDie?Math.min(30,6+cost(c)*2+api.power(y,false,s)/2000):0;return opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},Math.max(-1000,Math.min(1000,(t.g547Seed&&t.defs?.[0]?.deploy?seedReviveValue547(s,t,y,canDie):payoff)+(canDie?modeScore(s,t,c.g172Death||[]):0)-penalty)),y.cardId);}),skip()]);break;}
  case'g34_SelfSacrifice407':{const owner=s.players.findIndex(p=>p.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))),y=owner>=0?s.players[owner].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))):null;if(!y)break;const c=effective(y,s),penalty=api.canLeave(s,owner,y)?Math.min(25,6+cost(c)*2+api.power(y,false,s)/2000):0,score=modeScore(s,t,t.defs||[])+(t.defs||[]).filter(d=>d.op==='Choose').reduce((n,d)=>n+Math.max(0,...d.modes.map(m=>modeScore(s,t,m.defs))),0)+modeScore(s,t,c.g172Death||[])-penalty;choice(s,t,'このクリーチャーを破壊して能力を使う？',[opt('破壊する',true,score,y.cardId),skip()]);break;}
@@ -2865,7 +2869,15 @@ export function createSixPhotoRules(api){
  case'g34_GraveArmy':if(v)put(s,{...t,op:'g34_Put',origin:'grave',owner:t.p,target:v.uid,execution:false},{...t,selected:[...t.selected,v.uid]});else put(s,task('g34_Custom',t.p,t.source,{name:'finishBatch'}));break;
  case'g34_RampCost411':start(s,t,[{op:'Sweep',both:true,to:'mana',filter:{creature:true,...(v==='∞'?{}:{max:v})}}]);break;
  case'g34_AttackOtherMana409':if(v){const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation);if(y&&y!==attackHost408(s,t)){move(s,[{player:t.p,uid:y.uid,to:'mana'}]);start(s,t,[{op:'OpponentSelect',n:1,to:'mana'}]);}}break;
- case'g34_MarshalTouch558':if(v){const y=marshalRows558(s,t).find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation);if(y){const defs=marshalDefs558(t,cost(effective(y,s)));move(s,[{player:t.p,uid:y.uid,to:'hand',controller:t.controller??t.p}]);start(s,t,defs);}}break;
+ case'g34_MarshalTouch558':{
+  const y=v&&marshalRows558(s,t).find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation);
+  if(!y)break;
+  const defs=marshalDefs558(t,cost(effective(y,s)));
+  if(t.g857ReturnRequired)put(s,{...t,op:'g34_ConfirmHandReturn857',returned:y.uid,serial:(y.zoneSerial||0)+1,defs});
+  move(s,[{player:t.p,uid:y.uid,to:'hand',controller:t.controller??t.p}]);
+  if(!t.g857ReturnRequired)start(s,t,defs);
+  break;
+ }
  case'g34_SacrificeAlly413':if(v){const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation&&!y.sealed&&(t.g547Seed?matches(s,t.p,y,{g295Tamaseed:true}):api.isCreature(s,y))&&(!t.filter||matches(s,t.p,y,t.filter)));if(y&&(!t.other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))){move(s,[{player:t.p,uid:y.uid,to:'grave',destroy:true,controller:t.controller??t.p}]);start(s,t,t.defs);}}break;
  case'g34_SelfSacrifice407':if(v){const present=s.players.some(p=>p.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))));if(present)start(s,t,[{op:'SelfDestroy'},...(t.defs||[])]);}break;
  case'g34_RevengeDeclare795':if(v){
@@ -3395,14 +3407,15 @@ export function createSixPhotoRules(api){
   if(s.active===p)(s.g837ManaAddedTurn??=[null,null])[p]=s.turn;
   const sources=creatures(s,p).flatMap(x=>{
    if(x.sealed)return [];
-   const {g454Space:rules,g763MultiManaUntap:untap,g807ManaEntry:defs}=effective(x,s);
-   return rules||untap||defs?[{x,rules:rules||[],untap,defs}]:[];
+   const {g454Space:rules,g763MultiManaUntap:untap,g807ManaEntry:defs,g857ManaEntryRace:entryRace}=effective(x,s);
+   return rules||untap||defs?[{x,rules:rules||[],untap,defs,entryRace}]:[];
   });
   for(const x of cards){
    if(!x.faceDown&&api.zoneCard(s,p,x).g449ManaReveal)send(s,p,x,'ManaReveal449',{serial:x.zoneSerial||0});
-   const actual=api.manaColors(x.faceDown?{civilizations:[],civ:'ゼロ',manaValue:1}:api.zoneCard(s,p,x,'mana'),s,p);
+   const manaCard=x.faceDown?{civilizations:[],civ:'ゼロ',manaValue:1}:api.zoneCard(s,p,x,'mana');
+   const actual=api.manaColors(manaCard,s,p);
    for(const source of sources){
-    if(source.defs)queue(s,p,source.x,source.defs);
+    if(source.defs&&(!source.entryRace||faces(manaCard).some(c=>race(c,source.entryRace))))queue(s,p,source.x,source.defs);
     const rules=source.rules.filter(r=>actual.includes(r.color));
     if(rules.length)send(s,p,source.x,'SpaceCharge454',{rules:structuredClone(rules)});
     if(source.untap&&actual.length>1)api.enqueue(s,p,{uid:source.x.uid,incarnation:source.x.incarnation||0,
@@ -3432,7 +3445,9 @@ export function createSixPhotoRules(api){
    if(defs)queue(s,1-p,watcher,defs);
   }
  },
- opponentEntry767(s,p,y,options){
+ observedEntry(s,p,y,options){
+  if(!y.sealed&&hasSoul(card(y),'H')&&api.isCreature(s,y))
+   (s.g857LightSoulEnteredTurn??=[null,null])[p]=s.turn;
   if(!y.sealed)for(const watcher of creatures(s,1-p)){
    if(watcher.sealed||api.ignored(s,watcher))continue;
    const {g767SecondEnemy,g767UnpaidRaid,g768UnpaidRamp}=effective(watcher,s);

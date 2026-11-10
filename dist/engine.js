@@ -1044,8 +1044,8 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  const graveMuted=isCreature(s,inst)&&s.players[1-p].battle.some(x=>effectiveCard(x,s).entrySilence);if(graveMuted)s.g24EntryMute=p;
  if(isCreature(s,inst))s.g1Entering={player:p,uid:inst.uid,cardId:inst.cardId};
  const selfMuted=graveMuted||isCreature(s,inst)&&(selfTriggersStopped(s,p)||extra.muteEntry(s,p));
- // Opposing watchers still see entries that suppress the entering card's abilities.
- extra.six.opponentEntry767(s,p,inst,entryOptions);
+ // Entry history and opposing watchers also see entries that suppress the entering card's abilities.
+ extra.six.observedEntry(s,p,inst,entryOptions);
  if(!entryOptions.ignoreEntry){extra.entry(s,p,inst,{...entryOptions,selfMuted});extra.command(s,p,inst);}
  if(!entryOptions.paidMana)(s.noManaUse??=[false,false])[p]=true;
  if(effectiveCard(inst,s).exLife){for(let n=0;n<(c.extraExLife?2:1)&&s.winner===null;n++)shieldTop(s,p,c,inst);if(s.winner!==null){delete s.g24EntryMute;delete s.g1Entering;return;}}
