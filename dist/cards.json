@@ -178595,25 +178595,171 @@
       ],
       "supportBatch": "phase-771",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp3-038",
+      "name": "ボルシャック・サイン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "アーマード・アーツ",
+      "text": "コスト７以下の進化ではないアーマード・クリーチャーを１体、自分の手札から出す。このターン、そのクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）\n自分のエレメントを１つ破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-038",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "race": "アーマード",
+            "max": 7
+          },
+          "g771DeploySpeed": true
+        },
+        {
+          "op": "Select",
+          "origin": "battle",
+          "n": 1,
+          "filter": {
+            "faceUp": true
+          },
+          "to": "grave",
+          "title": "破壊する自分のエレメントを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-772",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-041",
+      "name": "ボルシャック・ジャガルザー",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "アーマード・ドラゴン",
+      "text": "自分のシールドの数が相手以上なら、このクリーチャーの召喚コストを２少なくする。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分の他のアーマードがあれば、このクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-041",
+      "limit": 4,
+      "g261Discount": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "atLeastOpponent": true
+          }
+        },
+        "amount": 2
+      },
+      "blocker": true,
+      "breaker": 2,
+      "g260Self": {
+        "filter": {
+          "race": "アーマード",
+          "faceUp": true,
+          "g334Other": true
+        },
+        "grants": {
+          "speedAttacker": true
+        }
+      },
+      "supportBatch": "phase-772",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-043",
+      "name": "芸魔香車 マンカラダイル",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "マジック・ドラゴン/ゲーム・コマンド",
+      "text": "革命チェンジ：コスト５以上のマジック（自分のコスト５以上のマジックが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、またはクリーチャーが攻撃する時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-043",
+      "limit": 4,
+      "rev": {
+        "race": "マジック",
+        "min": 5,
+        "g486Current": true
+      },
+      "speedAttacker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "g253AttackWatches": [
+        {
+          "who": "self",
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        },
+        {
+          "who": "opponent",
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-772",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 771,
+    "phase": 772,
     "checkedAt": "2026-11-10",
-    "baseCount": 6164,
+    "baseCount": 6167,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6167,
+    "totalCount": 6170,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/43051/",
-      "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-033",
-      "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-042",
+      "https://dm.takaratomy.co.jp/rule/qa/31530/",
       "https://dm.takaratomy.co.jp/rule/qa/32348/",
       "https://dm.takaratomy.co.jp/rule/qa/48922/",
       "https://dm.takaratomy.co.jp/rule/qa/33527/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37511/"
+      "https://dm.takaratomy.co.jp/rule/qa/44747/",
+      "https://dm.takaratomy.co.jp/rule/qa/48150/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37810/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -192029,6 +192175,28 @@
           "https://dm.takaratomy.co.jp/rule/qa/42955/",
           "https://dm.takaratomy.co.jp/rule/qa/45543/",
           "https://dm.takaratomy.co.jp/rule/qa/39785/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 771,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6164,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6167,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/43051/",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-033",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-042",
+          "https://dm.takaratomy.co.jp/rule/qa/32348/",
+          "https://dm.takaratomy.co.jp/rule/qa/48922/",
+          "https://dm.takaratomy.co.jp/rule/qa/33527/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37511/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

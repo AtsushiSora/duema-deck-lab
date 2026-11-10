@@ -1,0 +1,450 @@
+{
+  "phase": 772,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6167,
+  "description": "アーマード展開とエレメント破壊、シールド比較による召喚軽減、両者の攻撃時ドローに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/31530/",
+    "https://dm.takaratomy.co.jp/rule/qa/32348/",
+    "https://dm.takaratomy.co.jp/rule/qa/48922/",
+    "https://dm.takaratomy.co.jp/rule/qa/33527/",
+    "https://dm.takaratomy.co.jp/rule/qa/44747/",
+    "https://dm.takaratomy.co.jp/rule/qa/48150/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37810/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp3-038",
+      "name": "ボルシャック・サイン",
+      "faces": [
+        {
+          "name": "ボルシャック・サイン",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "コスト７以下の進化ではないアーマード・クリーチャーを１体、自分の手札から出す。このターン、そのクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）\n自分のエレメントを１つ破壊する。",
+          "race": "アーマード・アーツ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-038",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "アーマード",
+              "max": 7
+            },
+            "g771DeploySpeed": true
+          },
+          {
+            "op": "Select",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "faceUp": true
+            },
+            "to": "grave",
+            "title": "破壊する自分のエレメントを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "b45198aca07145c5a9ab5c1e45fe19e7fc881ecc1bd0f9a7073536ffba690185",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-041",
+      "name": "ボルシャック・ジャガルザー",
+      "faces": [
+        {
+          "name": "ボルシャック・ジャガルザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分のシールドの数が相手以上なら、このクリーチャーの召喚コストを２少なくする。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分の他のアーマードがあれば、このクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-041",
+      "spec": {
+        "g261Discount": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "atLeastOpponent": true
+            }
+          },
+          "amount": 2
+        },
+        "blocker": true,
+        "breaker": 2,
+        "g260Self": {
+          "filter": {
+            "race": "アーマード",
+            "faceUp": true,
+            "g334Other": true
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "7f61d607ae7351a6a6c3cc10c88c59a0f068d21954190f227e926fc68103ddbf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-043",
+      "name": "芸魔香車 マンカラダイル",
+      "faces": [
+        {
+          "name": "芸魔香車 マンカラダイル",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "革命チェンジ：コスト５以上のマジック（自分のコスト５以上のマジックが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、またはクリーチャーが攻撃する時、カードを１枚引いてもよい。",
+          "race": "マジック・ドラゴン/ゲーム・コマンド",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-043",
+      "spec": {
+        "rev": {
+          "race": "マジック",
+          "min": 5,
+          "g486Current": true
+        },
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ],
+        "g253AttackWatches": [
+          {
+            "who": "self",
+            "filter": {
+              "creature": true
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          },
+          {
+            "who": "opponent",
+            "filter": {
+              "creature": true
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "adc01bd108851654ab498ae67942134404f8c4d9c621374e0c2446ca4fbab054",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23rp3-16A",
+      "canonicalId": "dm23rp3-038",
+      "name": "ボルシャック・サイン",
+      "faces": [
+        {
+          "name": "ボルシャック・サイン",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "コスト７以下の進化ではないアーマード・クリーチャーを１体、自分の手札から出す。このターン、そのクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）\n自分のエレメントを１つ破壊する。",
+          "race": "アーマード・アーツ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-16A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-16A.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "bdb0e78c50323d387d9584a334215e66eb7c2096f731b3715cf262864c9c6705",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-18B",
+      "canonicalId": "dm23rp3-038",
+      "name": "ボルシャック・サイン",
+      "faces": [
+        {
+          "name": "ボルシャック・サイン",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "コスト７以下の進化ではないアーマード・クリーチャーを１体、自分の手札から出す。このターン、そのクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）\n自分のエレメントを１つ破壊する。",
+          "race": "アーマード・アーツ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-18B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-18B.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "36391f729de0887b4e297e9c5198ce2cdd540dc32f38236fd8b5cd5cb1dc9f56",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4x-041",
+      "canonicalId": "dm23rp4-041",
+      "name": "ボルシャック・ジャガルザー",
+      "faces": [
+        {
+          "name": "ボルシャック・ジャガルザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分のシールドの数が相手以上なら、このクリーチャーの召喚コストを２少なくする。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分の他のアーマードがあれば、このクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-041",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "bd4f73f34b52248040c61eace161054c536ff24513536d59f5eedc6670c0d4ad",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-17A",
+      "canonicalId": "dm23rp4-041",
+      "name": "ボルシャック・ジャガルザー",
+      "faces": [
+        {
+          "name": "ボルシャック・ジャガルザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分のシールドの数が相手以上なら、このクリーチャーの召喚コストを２少なくする。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分の他のアーマードがあれば、このクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-17A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-17A.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "7780d8925e02487863fcc16f3fcbe653f66d78e6348e3b482c876ab85f3e7555",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4x-17A",
+      "canonicalId": "dm23rp4-041",
+      "name": "ボルシャック・ジャガルザー",
+      "faces": [
+        {
+          "name": "ボルシャック・ジャガルザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分のシールドの数が相手以上なら、このクリーチャーの召喚コストを２少なくする。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分の他のアーマードがあれば、このクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-17A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-17A.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "92561ee822474e5d9331c3e2e0af1c091367ce32da636dee70ca3037e4da0997",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-19B",
+      "canonicalId": "dm23rp4-041",
+      "name": "ボルシャック・ジャガルザー",
+      "faces": [
+        {
+          "name": "ボルシャック・ジャガルザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分のシールドの数が相手以上なら、このクリーチャーの召喚コストを２少なくする。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分の他のアーマードがあれば、このクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-19B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-19B.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "caa8fdf4d71efc5dc09bf7212540da92594eda78adfaef1ed710e3496d20860a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4x-19B",
+      "canonicalId": "dm23rp4-041",
+      "name": "ボルシャック・ジャガルザー",
+      "faces": [
+        {
+          "name": "ボルシャック・ジャガルザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分のシールドの数が相手以上なら、このクリーチャーの召喚コストを２少なくする。\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分の他のアーマードがあれば、このクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-19B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-19B.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "23e6b1ca1e2656086224ac6fe66ae0282fdbe53bb9bac3a663caaef143e90c26",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4x-043",
+      "canonicalId": "dm23rp4-043",
+      "name": "芸魔香車 マンカラダイル",
+      "faces": [
+        {
+          "name": "芸魔香車 マンカラダイル",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "革命チェンジ：コスト５以上のマジック（自分のコスト５以上のマジックが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、またはクリーチャーが攻撃する時、カードを１枚引いてもよい。",
+          "race": "マジック・ドラゴン/ゲーム・コマンド",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-043",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "25986a49efd80c41b9451ff081aae9cdafdc85a53eb020468b7bc9ee86453fae",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp3-038": 4,
+      "dm23rp4-041": 4,
+      "dm23rp4-043": 4,
+      "dm23rp3-16A": 4,
+      "dm23rp3-18B": 4,
+      "dm23rp4x-041": 4,
+      "dm23rp4-17A": 4,
+      "dm23rp4x-17A": 4,
+      "dm23rp4-19B": 4,
+      "dm23rp4x-19B": 4,
+      "dm23rp4x-043": 4
+    }
+  }
+}

@@ -2564,6 +2564,21 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=772){
+  if(f.typeText==='呪文'&&compact363==='コスト7以下の進化ではないアーマード・クリーチャーを1体自分の手札から出す。このターンそのクリーチャーに「スピードアタッカー」を与える。(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)自分のエレメントを1つ破壊する。')
+   return {effect:'sixPhoto',g34Tasks:[
+    {op:'Select',origin:'hand',deploy:true,n:1,filter:{creature:true,nonEvolution:true,race:'アーマード',max:7},g771DeploySpeed:true},
+    {op:'Select',origin:'battle',n:1,filter:{faceUp:true},to:'grave',title:'破壊する自分のエレメントを選ぶ'}
+   ]};
+  if(f.typeText==='クリーチャー'&&compact363==='自分のシールドの数が相手以上ならこのクリーチャーの召喚コストを2少なくする。ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)W・ブレイカー(このクリーチャーはシールドを2つブレイクする)自分の他のアーマードがあればこのクリーチャーに「スピードアタッカー」を与える。(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)')
+   return {g261Discount:{filter:{g334ZoneCount:{zone:'shields',atLeastOpponent:true}},amount:2},blocker:true,breaker:2,
+    g260Self:{filter:{race:'アーマード',faceUp:true,g334Other:true},grants:{speedAttacker:true}}};
+  if(f.typeText==='クリーチャー'&&compact363==='革命チェンジ:コスト5以上のマジック(自分のコスト5以上のマジックが攻撃する時そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい)スピードアタッカー(このクリーチャーは召喚酔いしない)W・ブレイカー(このクリーチャーはシールドを2つブレイクする)このクリーチャーが出た時またはクリーチャーが攻撃する時カードを1枚引いてもよい。'){
+   const draw={op:'Draw',n:1,optional:true};
+   return {rev:{race:'マジック',min:5,g486Current:true},speedAttacker:true,breaker:2,effect:'sixPhoto',g34Tasks:[draw],
+    g253AttackWatches:['self','opponent'].map(who=>({who,filter:{creature:true},defs:[draw]}))};
+  }
+ }
  if(phase>=771){
   if(f.typeText==='クリーチャー'&&compact363==='自分のクリーチャーが相手のより多ければこのクリーチャーの召喚コストを3少なくする。ブロッカーブロッカーW・ブレイカー自分のクリーチャーがタップした時カードを1枚引いてもよい。自分の他のクリーチャーが離れた時このクリーチャーをアンタップしてもよい。')
    return {g261Discount:{filter:{g413MoreCreatures:true},amount:3},blocker:true,breaker:2,g771Wing:true};
