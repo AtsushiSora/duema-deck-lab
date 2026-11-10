@@ -141,6 +141,15 @@ export function createSixPhotoRules(api){
  }
  // A linked God has each component's name, while an evolution uses its top card.
  const battleNames676=x=>x.godLinks?.length?[x,...x.godLinks].map(y=>exactName(creatureFaceName(card(y.cardId)))):[exactName(creatureFaceName(card(x)))];
+ function chainMatches838(rows,chosen){
+  const names=new Set(battleNames676(chosen));
+  return [chosen,...rows.filter(y=>y!==chosen&&battleNames676(y).some(name=>names.has(name)))];
+ }
+ function chainOptions838(s,p){
+  const rows=creatures(s,1-p).filter(y=>!y.sealed);
+  return targetOptions(s,p,rows).map(o=>({...o,score:chainMatches838(rows,rows.find(y=>y.uid===o.value))
+   .reduce((n,y)=>n+10+cost(effective(y,s))*2+api.power(y,false,s)/3000,0)}));
+ }
  function tapNames676(s,target){
   const names=new Set(battleNames676(target));
   const rows=[0,1].flatMap(p=>creatures(s,p).filter(y=>!y.sealed&&battleNames676(y).some(n=>names.has(n))).map(y=>[p,y]));
@@ -983,6 +992,7 @@ export function createSixPhotoRules(api){
    continue;
   }
   if(d.op==='OverManaBottom590'){score+=creatures(s,1-t.p).filter(y=>!y.sealed&&cost(effective(y,s))>opp.mana.length).length*18;continue;}
+  if(d.op==='ChainDestroy838'){score+=Math.max(0,...chainOptions838(s,t.p).map(o=>o.score));continue;}
   if(d.op==='GravePick598'&&d.mode==='shuffleBottom'){score+=api.canMoveZone(s,1-t.p,'grave')?opp.grave.length*4:0;continue;}
   if(d.op==='ElementOrMana796'){score+=elementOrManaOptions796(s,t,d.max).reduce((best,o)=>Math.max(best,o.score),0);continue;}
   if(d.op==='GraveBottom589'){score+=api.canMoveZone(s,1-t.p,'grave')?opp.grave.length*5:0;continue;}
@@ -1563,6 +1573,10 @@ export function createSixPhotoRules(api){
  case'g34_DiscardDraw':{const rows=own.hand.filter(y=>!t.filter||matches(s,t.p,y,t.filter));if(rows.length){const last=t.n>=own.deck.length,win=last&&creatures(s,t.p).some(y=>effective(y,s).shako);choice(s,t,'手札を1枚捨てて'+t.n+'枚引く？',[...rows.map(y=>opt(card(y).name+'を捨てる',y.uid,last?(win?1000:-1000):12+t.n*5-cost(card(y)),y.cardId)),skip()]);}break;}
  case'g34_ResolveSpell207':api.resumeCastSpell(s,t.p,t.uid);break;
  case'g34_GroupLasting412':for(const {p,y}of groupPowerRows(s,t))(s.extLimits??=[]).push({kind:t.destroySafe?'g409AttackEffect':'g412ExtraBreak',player:p,ref:{uid:y.uid,incarnation:y.incarnation||0},source:t.source,...(t.destroySafe?{effect:'destroySafe',expires:t.untilEnd?'end':'start',who:t.untilEnd?s.active:t.p}:{amount:t.extraBreak,expires:'end',who:s.active})});break;
+ case'g34_ChainDestroy838':{
+  choice(s,t,'破壊する相手のクリーチャーを選ぶ',chainOptions838(s,t.p));
+  break;
+ }
  case'g34_GroupGrant364':
   for(const {p,y}of groupPowerRows(s,t)){
    if(t.g736ForceAttack)force546(s,{...t,when:'end'},p,y);
@@ -2431,6 +2445,11 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_GraveBottom589':if(v===0||v===1)put(s,{...t,choosePlayer:false,self:v===t.p});break;
+ case'g34_ChainDestroy838':{
+  const owner=1-t.p,rows=creatures(s,owner).filter(y=>!y.sealed),chosen=rows.find(y=>y.uid===v);
+  if(chosen)move(s,chainMatches838(rows,chosen).map(y=>({player:owner,uid:y.uid,to:'grave',destroy:true,controller:t.p})));
+  break;
+ }
  case'g34_TargetDestination467':{const r=t.target,y=s.players[r.p].battle.find(x=>x.uid===r.uid&&(x.incarnation||0)===r.incarnation&&!x.sealed),controller=t.g472EffectPlayer??t.p;if(y)move(s,[{player:r.p,uid:r.uid,to:v,destroy:v==='grave',controller}]);if(t.after)start(s,{...t,p:controller},t.after);break;}
  case'g34_NullBreaker471':if(s.attack?.attacker===t.uid){s.attack.g471Breaker=v;api.resolveAttack(s,null);}break;
  case'g34_GrantedBreaker633':if(s.attack?.attacker===t.uid){s.attack.g633Breaker=v;api.resolveAttack(s,null);}break;
@@ -2941,6 +2960,14 @@ export function createSixPhotoRules(api){
  const E=(op,more={})=>({op,...more}),C=(name,more={})=>E('Custom',{name,...more});
  const exec=(origin,max,more={})=>E('Execute',{origin,max,...more}),select=(origin,to,n,filter={},more={})=>E('Select',{origin,to,n,filter,...more});
  const buff=(s,x,n)=>{(x.powerModifiers??=[]).push({amount:n,expires:'end',who:s.active});};
+ function flushGrave838(s,count){
+  if(!count)return;
+  for(const p of [0,1])for(const x of s.players[p].battle){
+   if(x.sealed||!card(x).g838AnyGrave)continue;
+   const defs=effective(x,s).g838AnyGrave;
+   if(defs)for(let i=0;i<count;i++)queue(s,p,x,defs);
+  }
+ }
  const sourceDefs=(s,t,defs)=>start(s,t,defs),queue=(s,p,x,defs,source=x.cardId)=>send(s,p,source===x.cardId?x:{...x,cardId:source},'Sequence',{defs});
  const used=(s,slot,x)=>s[slot]?.[key(x)]===s.turn,mark=(s,slot,x)=>{(s[slot]??={})[key(x)]=s.turn;};
  const onceKey792=(x,d)=>'g792:'+d.g792Once+':'+key(x);
@@ -3445,6 +3472,8 @@ export function createSixPhotoRules(api){
  graveAdded(s,p,all){
   if(s.g767GraveEntries?.turn!==s.turn)s.g767GraveEntries={turn:s.turn,counts:[0,0]};
   s.g767GraveEntries.counts[p]+=all.length;
+  if(s.g20LeavingUids&&s.leaving)s.leaving.g838GraveCount=(s.leaving.g838GraveCount||0)+all.length;
+  else flushGrave838(s,all.length);
   for(const y of all)if(card(y).g590SelfGraveBottom)queue(s,p,y,[{op:'GraveBottom589',self:true}]);
   // Cards with grave-entry abilities trigger from the new zone (QA46841).
   for(const y of all)if(card(y).g675GraveEntry)queue(s,p,y,card(y).g675GraveEntry);
@@ -3454,8 +3483,15 @@ export function createSixPhotoRules(api){
    for(const x of graveWatchers)for(const y of newCreatures)if(y.uid!==x.uid)queue(s,p,x,card(x).g677AllyGrave);
   }
   const watchers=s.leaving?.snapshot?.six?.scarlet?.[p]||active(s,p,'scarlet').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0}));for(const x of watchers)if(!used(s,'g34Scarlet',x))for(const y of all)if(card(y).type==='creature'&&cost(card(y))<=5)queue(s,p,x,[C('scarletRevive',{target:y.uid,targetSerial:y.zoneSerial||0})]);},
- snapshot(s,leaving=[]){return{leave320:s.players.flatMap((own,p)=>own.battle.map(x=>({p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:!x.sealed&&api.isCreature(s,x),race:effective(x,s).race,watch:!x.sealed&&!!effective(x,s).g320Jave}))),death303:s.players.flatMap((own,p)=>own.battle.map(x=>{const c=effective(x,s);return{p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:api.isCreature(s,x),race:c.race,name:c.name,colors:colors(c),element:!x.sealed&&!x.faceDown,elementDraw:!!c.g617OpponentElementLeaves&&!x.sealed&&!x.faceDown&&!api.ignored(s,x),...(c.g693OtherCreatureGraveDraw&&!x.sealed&&!x.faceDown&&!api.ignored(s,x)&&api.isCreature(s,x)?{graveDraw:true}:{}),watch:!x.sealed&&!api.ignored(s,x)&&(!c.g303DeathWatch?.g725RemainInBattle||!leaving.some(row=>row.player===p&&row.uid===x.uid))?c.g303DeathWatch:undefined};})),selfLeaves:s.players.flatMap((own,p)=>own.battle.flatMap(x=>{const c=effective(x,s);return c.g172Death||c.g172Leave?[{p,uid:x.uid,incarnation:x.incarnation||0,g172Death:c.g172Death,...(c.g172Death?.some(d=>d.op==='CrossedDeathDraw728')?{crossedCount728:crossedCount728(s,x)}:{}),g172Leave:c.g172Leave,g601OpponentLeave:c.g601OpponentLeave}]:[];})),scarlet:[0,1].map(p=>active(s,p,'scarlet').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0}))),dororon:[0,1].map(p=>active(s,p,'dororon').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0})))};},
+ flushGrave838,
+ snapshot(s,leaving=[]){return{g838SelfGrave:leaving.flatMap(({player,uid})=>{
+  const x=s.players[player]?.battle.find(x=>x.uid===uid);
+  return x&&!x.sealed&&card(x).g838AnyGrave&&!api.ignored(s,x)?[key(x)]:[];
+ }),leave320:s.players.flatMap((own,p)=>own.battle.map(x=>({p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:!x.sealed&&api.isCreature(s,x),race:effective(x,s).race,watch:!x.sealed&&!!effective(x,s).g320Jave}))),death303:s.players.flatMap((own,p)=>own.battle.map(x=>{const c=effective(x,s);return{p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:api.isCreature(s,x),race:c.race,name:c.name,colors:colors(c),element:!x.sealed&&!x.faceDown,elementDraw:!!c.g617OpponentElementLeaves&&!x.sealed&&!x.faceDown&&!api.ignored(s,x),...(c.g693OtherCreatureGraveDraw&&!x.sealed&&!x.faceDown&&!api.ignored(s,x)&&api.isCreature(s,x)?{graveDraw:true}:{}),watch:!x.sealed&&!api.ignored(s,x)&&(!c.g303DeathWatch?.g725RemainInBattle||!leaving.some(row=>row.player===p&&row.uid===x.uid))?c.g303DeathWatch:undefined};})),selfLeaves:s.players.flatMap((own,p)=>own.battle.flatMap(x=>{const c=effective(x,s);return c.g172Death||c.g172Leave?[{p,uid:x.uid,incarnation:x.incarnation||0,g172Death:c.g172Death,...(c.g172Death?.some(d=>d.op==='CrossedDeathDraw728')?{crossedCount728:crossedCount728(s,x)}:{}),g172Leave:c.g172Leave,g601OpponentLeave:c.g601OpponentLeave}]:[];})),scarlet:[0,1].map(p=>active(s,p,'scarlet').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0}))),dororon:[0,1].map(p=>active(s,p,'dororon').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0})))};},
  leaving(s,p,x,snapshot,to,destroy){
+  // An ability that sees its own move to the graveyard looks back only for its own card.
+  const graveDefs=card(x).g838AnyGrave;
+  if(to==='grave'&&graveDefs&&(snapshot?.g838SelfGrave?.includes(key(x))??!api.ignored(s,x)))queue(s,p,x,graveDefs);
   const before=snapshot?.death303;
   const victim=before?.find(y=>y.p===p&&y.element&&key(y)===key(x));
   if(victim){

@@ -2507,6 +2507,17 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=838&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='呪文'&&text==='このターンバトルゾーンにある自分のクリーチャー1体はタップされていないクリーチャーを攻撃できる。チャージャー(この呪文を唱えた後墓地に置くかわりに自分のマナゾーンに置く)')
+   return {normalCharger:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Target',owner:'self',grant:{attackUntapped:true,g838FreshUntapped:true},spell:true,title:'アンタップしているクリーチャーを攻撃できるようにする自分のクリーチャーを選ぶ'}
+   ]};
+  if(f.typeText==='呪文'&&text==='相手のクリーチャーを1体破壊しそのクリーチャーと同じ名前を持つ相手のクリーチャーをすべて破壊する。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'ChainDestroy838'}]};
+  if(f.typeText==='クリーチャー'&&text==='いずれかの墓地にカードが置かれた時そのターンバトルゾーンにある自分のコスト2以下のクリーチャーはすべて「スレイヤー」を得る。(「スレイヤー」を得たクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)')
+   return {g558Souls:['B'],g838AnyGrave:[{op:'GroupGrant364',owner:'self',filter:{creature:true,max:2},grant:{slayer:true}}]};
+ }
  if(phase>=837&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='呪文'&&text==='S・トリガーバトルゾーンにある相手のクリーチャーを1体選びタップする。その後バトルゾーンにある自分のハンター1体につきバトルゾーンにある相手のクリーチャーを1体選びタップする。'){

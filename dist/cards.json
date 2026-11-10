@@ -185930,27 +185930,118 @@
       ],
       "supportBatch": "phase-837",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr03-013",
+      "name": "勝負だ！チャージャー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "このターン、バトルゾーンにある自分のクリーチャー１体は、タップされていないクリーチャーを攻撃できる。\nチャージャー（この呪文を唱えた後、墓地に置くかわりに自分のマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-013",
+      "limit": 4,
+      "normalCharger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "grant": {
+            "attackUntapped": true,
+            "g838FreshUntapped": true
+          },
+          "spell": true,
+          "title": "アンタップしているクリーチャーを攻撃できるようにする自分のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-838",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-058",
+      "name": "スーパー・チェイン・スラッシュ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "相手のクリーチャーを１体破壊し、そのクリーチャーと同じ名前を持つ相手のクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-058",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ChainDestroy838"
+        }
+      ],
+      "supportBatch": "phase-838",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm37-046",
+      "name": "否男",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ヘドリアン",
+      "text": "いずれかの墓地にカードが置かれた時、そのターン、バトルゾーンにある自分の、コスト２以下のクリーチャーはすべて「スレイヤー」を得る。(「スレイヤー」を得たクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-046",
+      "limit": 4,
+      "g558Souls": [
+        "B"
+      ],
+      "g838AnyGrave": [
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true,
+            "max": 2
+          },
+          "grant": {
+            "slayer": true
+          }
+        }
+      ],
+      "supportBatch": "phase-838",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 837,
+    "phase": 838,
     "checkedAt": "2026-11-10",
-    "baseCount": 6371,
-    "newEffectCards": 4,
+    "baseCount": 6375,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6375,
+    "totalCount": 6378,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36131/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36132/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37627/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37631/",
-      "https://dm.takaratomy.co.jp/rule/qa/33395/",
-      "https://dm.takaratomy.co.jp/rule/qa/39674/",
-      "https://dm.takaratomy.co.jp/rule/qa/40371/",
-      "https://dm.takaratomy.co.jp/rule/qa/45214/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31652/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35187/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36103/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36104/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36340/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36341/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36342/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36343/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37511/",
+      "https://dm.takaratomy.co.jp/rule/qa/33416/",
+      "https://dm.takaratomy.co.jp/rule/qa/42947/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -200731,6 +200822,30 @@
           "https://dm.takaratomy.co.jp/rule/qa/31581/",
           "https://dm.takaratomy.co.jp/rule/qa/42475/",
           "https://dm.takaratomy.co.jp/rule/rulechange/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 837,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6371,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6375,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36131/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36132/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37627/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37631/",
+          "https://dm.takaratomy.co.jp/rule/qa/33395/",
+          "https://dm.takaratomy.co.jp/rule/qa/39674/",
+          "https://dm.takaratomy.co.jp/rule/qa/40371/",
+          "https://dm.takaratomy.co.jp/rule/qa/45214/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31652/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
