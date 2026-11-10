@@ -1,0 +1,179 @@
+{
+  "phase": 888,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6529,
+  "description": "味方の他のクリーチャーへの常在強化とオシオキムーンの相手全体弱体化、ターン終了時の任意シールド回収とコスト1破壊、登場時の任意シールド墓地送りと解決時の手札条件付き破棄に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/38756/",
+    "https://dm.takaratomy.co.jp/rule/qa/46566/",
+    "https://dm.takaratomy.co.jp/rule/qa/34205/",
+    "https://dm.takaratomy.co.jp/rule/qa/39428/"
+  ],
+  "cards": [
+    {
+      "id": "dmex14-s02",
+      "name": "月を象るデスサイズ",
+      "faces": [
+        {
+          "name": "月を象るデスサイズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\n自分の他のクリーチャーすべてのパワーを+2000する。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、このターン、相手のクリーチャーすべてのパワーを－2000する（パワー０以下のクリーチャーは破壊される）",
+          "race": "エンジェル・コマンド/デーモン・コマンド/月光王国",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-s02",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g205Aura": {
+          "power": 2000,
+          "filter": {
+            "creature": true
+          },
+          "other": true
+        },
+        "g536ShieldLeft": [
+          {
+            "op": "GroupPower",
+            "owner": "opponent",
+            "power": -2000,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "7b48e8896cbf3f648b9c4cbe22544430ecc15d1de18075ce9a3b0d6f7271600b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex13-074",
+      "name": "月夜に巣食うマジョ",
+      "faces": [
+        {
+          "name": "月夜に巣食うマジョ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターンの終わりに、自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、相手のコスト１のクリーチャーを１体破壊する。",
+          "race": "デビルマスク/月光王国",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-074",
+      "spec": {
+        "g174End": [
+          {
+            "op": "ShieldHand",
+            "g238ShieldHand": true,
+            "optional": true,
+            "g535Count": 1
+          }
+        ],
+        "g536ShieldLeft": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "min": 1,
+              "max": 1
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-074.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "bd0b4554f1b7eb89f16bb4413ae41da7400aa1e0d55ec16a1e38f302fa6af5dd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-016",
+      "name": "特攻む月からのセンコウ",
+      "faces": [
+        {
+          "name": "特攻む月からのセンコウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分のシールドを１つ、墓地に置いてもよい。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、相手の手札が２枚以上あれば、相手は自身の手札を１枚選び、捨てる。",
+          "race": "デビルマスク/月光王国",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-016",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldGrave",
+            "g239ShieldGrave": true,
+            "optional": true
+          }
+        ],
+        "g536ShieldLeft": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "hand",
+                "opponent": true,
+                "min": 2
+              }
+            },
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "8df282f6e46471a42e392ec345deb499ea922bb0c75c024f34a2bd5f9320c662",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex14-s02": 4,
+      "dmex13-074": 4,
+      "dmex14-016": 4
+    }
+  }
+}

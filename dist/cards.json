@@ -191062,23 +191062,139 @@
       ],
       "supportBatch": "phase-887",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex14-s02",
+      "name": "月を象るデスサイズ",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "エンジェル・コマンド/デーモン・コマンド/月光王国",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\n自分の他のクリーチャーすべてのパワーを+2000する。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、このターン、相手のクリーチャーすべてのパワーを－2000する（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-s02",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g205Aura": {
+        "power": 2000,
+        "filter": {
+          "creature": true
+        },
+        "other": true
+      },
+      "g536ShieldLeft": [
+        {
+          "op": "GroupPower",
+          "owner": "opponent",
+          "power": -2000,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-888",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex13-074",
+      "name": "月夜に巣食うマジョ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "デビルマスク/月光王国",
+      "text": "自分のターンの終わりに、自分のシールドを１つ手札に加えてもよい。ただし、その「S・トリガー」は使えない。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、相手のコスト１のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-074",
+      "limit": 4,
+      "g174End": [
+        {
+          "op": "ShieldHand",
+          "g238ShieldHand": true,
+          "optional": true,
+          "g535Count": 1
+        }
+      ],
+      "g536ShieldLeft": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      ],
+      "supportBatch": "phase-888",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex14-016",
+      "name": "特攻む月からのセンコウ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "デビルマスク/月光王国",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分のシールドを１つ、墓地に置いてもよい。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、相手の手札が２枚以上あれば、相手は自身の手札を１枚選び、捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-016",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldGrave",
+          "g239ShieldGrave": true,
+          "optional": true
+        }
+      ],
+      "g536ShieldLeft": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "hand",
+              "opponent": true,
+              "min": 2
+            }
+          },
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-888",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 887,
+    "phase": 888,
     "checkedAt": "2026-11-11",
-    "baseCount": 6526,
+    "baseCount": 6529,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6529,
+    "totalCount": 6532,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/rule/qa/38756/",
       "https://dm.takaratomy.co.jp/rule/qa/46566/",
       "https://dm.takaratomy.co.jp/rule/qa/34205/",
-      "https://dm.takaratomy.co.jp/rule/qa/34209/",
-      "https://dm.takaratomy.co.jp/rule/qa/44661/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31395/"
+      "https://dm.takaratomy.co.jp/rule/qa/39428/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -206877,6 +206993,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/46566/",
           "https://dm.takaratomy.co.jp/rule/qa/34205/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316678/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 887,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6526,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6529,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/38756/",
+          "https://dm.takaratomy.co.jp/rule/qa/46566/",
+          "https://dm.takaratomy.co.jp/rule/qa/34205/",
+          "https://dm.takaratomy.co.jp/rule/qa/34209/",
+          "https://dm.takaratomy.co.jp/rule/qa/44661/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31395/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -3445,6 +3445,20 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=888&&creature){
+  if(d.id==='dmex14-s02'&&compact363===
+   'ブロッカーブロッカーW・ブレイカー自分の他のクリーチャーすべてのパワーを+2000する。オシオキムーン:カードが自分のシールドゾーンを離れた時このターン相手のクリーチャーすべてのパワーを-2000する(パワー0以下のクリーチャーは破壊される)')
+   return {blocker:true,breaker:2,g205Aura:{power:2000,filter:{creature:true},other:true},
+    g536ShieldLeft:[{op:'GroupPower',owner:'opponent',power:-2000,filter:{creature:true}}]};
+  if(d.id==='dmex13-074'&&compact363===
+   '自分のターンの終わりに自分のシールドを1つ手札に加えてもよい。ただしその「S・トリガー」は使えない。オシオキムーン:カードが自分のシールドゾーンを離れた時相手のコスト1のクリーチャーを1体破壊する。')
+   return {g174End:[{op:'ShieldHand',g238ShieldHand:true,optional:true,g535Count:1}],
+    g536ShieldLeft:[{op:'Target',to:'grave',filter:{min:1,max:1}}]};
+  if(d.id==='dmex14-016'&&compact363===
+   'このクリーチャーがバトルゾーンに出た時自分のシールドを1つ墓地に置いてもよい。オシオキムーン:カードが自分のシールドゾーンを離れた時相手の手札が2枚以上あれば相手は自身の手札を1枚選び捨てる。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'ShieldGrave',g239ShieldGrave:true,optional:true}],
+    g536ShieldLeft:[{op:'IfOwn',filter:{g334ZoneCount:{zone:'hand',opponent:true,min:2}},defs:[{op:'Discard',n:1}]}]};
+ }
  if(phase>=887&&creature){
   if(d.id==='dmrp15-049'&&compact363===
    'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)このクリーチャーは相手プレイヤーを攻撃できない。このクリーチャーがバトルゾーンに出た時自分の山札の上から1枚目を墓地に置く。オシオキムーン:カードが自分のシールドゾーンを離れた時クリーチャーを1体自分の墓地から手札に戻す。')
