@@ -6177,6 +6177,20 @@ export function standardCardSpec(d,{phase=165}={}){
     continue;
    }
   }
+  if(phase>=846&&creature){
+   if(line==='このクリーチャーが破壊される時このクリーチャーを墓地に置くかわりに自分の手札から呪文を1枚捨ててもよい。'){
+    spec.g846SpellDiscard=true;
+    continue;
+   }
+   if(line==='このクリーチャーが破壊される時このクリーチャーを墓地に置くかわりに山札の一番上に置いてもよい。'){
+    spec.g846DestroyToTop=true;
+    continue;
+   }
+   if(line==='自分のマナゾーンにカードを置いた時自分の山札の上から1枚目を墓地に置いてもよい。'){
+    spec.g807ManaEntry=[{op:'Mill',n:1,optional:true}];
+    continue;
+   }
+  }
   if(phase>=845&&creature){
    if(line==='このクリーチャーが破壊される時墓地に置くかわりに光のクリーチャーを1体自分の手札から捨ててもよい。'){
     spec.g845LightDiscard=true;
