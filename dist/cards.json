@@ -191739,19 +191739,145 @@
       },
       "supportBatch": "phase-893",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex14-055",
+      "name": "灰かぶるほどキュート",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "コスト４以下の進化ではないジョーカーズ・クリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\nレインボーナス：バトルゾーンに自分の多色クリーチャーがあれば、相手と自分のクリーチャーを１体ずつ選んでもよい。その２体をバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-055",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "race": "ジョーカーズ",
+            "max": 4
+          }
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "multi": true
+          },
+          "defs": [
+            {
+              "op": "Fight240",
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-894",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-095",
+      "name": "キタカゼマンA",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "キリフダッシュ [cc00]（自分のクリーチャーの攻撃の終わりに、そのクリーチャーがその攻撃中にシールドをブレイクしていれば、このクリーチャーをコストを支払わずに召喚してもよい）\n自分のマナゾーンに火のカードと自然のカードがそれぞれ１枚以上なければ、このクリーチャーは攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-095",
+      "limit": 4,
+      "kirifudaDash": 0,
+      "g402DashColors": [],
+      "noAttack": true,
+      "g260Self": {
+        "filter": {
+          "g568ManaColors": [
+            "火",
+            "自然"
+          ]
+        },
+        "grants": {
+          "noAttack": false
+        }
+      },
+      "supportBatch": "phase-894",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-s09",
+      "name": "「影斬」の鬼 ドクガン竜",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アーマード・ドラゴン/鬼札王国",
+      "text": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－5000する。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、自分のクリーチャーすべてに「ブロッカー」と「スレイヤー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-s09",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "power": -5000,
+          "g242PowerMinus": true
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "grants": {
+            "blocker": true,
+            "slayer": true
+          }
+        }
+      ],
+      "supportBatch": "phase-894",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 893,
+    "phase": 894,
     "checkedAt": "2026-11-11",
-    "baseCount": 6544,
+    "baseCount": 6547,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6547,
+    "totalCount": 6550,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/34236/",
-      "https://dm.takaratomy.co.jp/rule/qa/34259/"
+      "https://dm.takaratomy.co.jp/rule/qa/39406/",
+      "https://dm.takaratomy.co.jp/rule/qa/34240/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -207662,6 +207788,22 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35145/",
           "https://dm.takaratomy.co.jp/rule/qa/39667/",
           "https://dm.takaratomy.co.jp/rule/qa/40463/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 893,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6544,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6547,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/34236/",
+          "https://dm.takaratomy.co.jp/rule/qa/34259/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

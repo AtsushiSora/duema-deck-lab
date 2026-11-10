@@ -14,7 +14,7 @@ export function createTravelRules(api){
  function dashReady402(s,t){
   const x=s.players[t.p][t.origin]?.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);if(!x)return null;
   const c=card(x),permits=t.origin==='mana'?dashManaPermits402(s,t.p,x):[null],payment={...c,...dashPayment402(c),printedCost:c.cost,summonOrigin:t.origin};
-  if(!c.kirifudaDash||!permits.length||!api.canCast(s,t.p,c,t.origin)||c.type==='creature'&&(!api.canEnter(s,t.p,c,{origin:t.origin,execution:true,ignoreMovement:t.origin==='mana'})||c.evolution&&!api.evolutionBases(s,t.p,c).length)||!api.canPay(s,t.p,payment))return null;
+  if(c.kirifudaDash===undefined||!permits.length||!api.canCast(s,t.p,c,t.origin)||c.type==='creature'&&(!api.canEnter(s,t.p,c,{origin:t.origin,execution:true,ignoreMovement:t.origin==='mana'})||c.evolution&&!api.evolutionBases(s,t.p,c).length)||c.kirifudaDash!==0&&!api.canPay(s,t.p,payment))return null;
   return{x,c,permits,payment};
  }
  function run(s,t){if(!t.op.startsWith('g14_'))return false;const own=s.players[t.p],opp=s.players[1-t.p];switch(t.op){
@@ -44,7 +44,7 @@ export function createTravelRules(api){
  // Official QA31592: attempting the delayed bottom move is enough to draw.
  case'g14_AfterJoe':draw(s,t.p,1);break;
  case'g14_DashDeclare':declareDash(s,t);break;
- case'g14_DashResolve':{const ready=dashReady402(s,t);if(ready){const {x,c,permits,payment}=ready,verb=c.type==='spell'?'唱える':'召喚する',blocked=c.type==='creature'&&!api.canMoveZone(s,t.p,t.origin);choice(s,t,'キリフダッシュのコストを支払って'+verb+'？',[...permits.map(permit=>opt(api.summonCost(s,t.p,payment)+'マナで'+verb+(blocked?'（マナに残ります）':''),{permit},blocked?-1000:25,x.cardId)),skip()]);}break;}
+ case'g14_DashResolve':{const ready=dashReady402(s,t);if(ready){const {x,c,permits,payment}=ready,verb=c.type==='spell'?'唱える':'召喚する',blocked=c.type==='creature'&&!api.canMoveZone(s,t.p,t.origin);choice(s,t,'キリフダッシュのコストを支払って'+verb+'？',[...permits.map(permit=>opt((c.kirifudaDash===0?'コストを支払わずに':api.summonCost(s,t.p,payment)+'マナで')+verb+(blocked?'（マナに残ります）':''),{permit},blocked?-1000:25,x.cardId)),skip()]);}break;}
  default:throw Error('未実装の旅路効果：'+t.op);
  }return true;}
  function chooseHand(s,t,max,jokerOnly,seed){choice(s,t,'手札から'+(jokerOnly?'ジョーカーズの':'')+'コスト'+max+'以下を出す？',[...s.players[t.p].hand.filter(x=>(card(x).type==='creature'||seed&&card(x).type==='seed')&&cost(card(x))<=max&&(!jokerOnly||joker(card(x)))&&canPut(s,t.p,x,'hand')).map(x=>opt(card(x).name,x.uid,20+cost(card(x)),x.cardId)),skip()]);}
@@ -65,7 +65,7 @@ export function createTravelRules(api){
  case'g14_Chicken':move(s,[{player:1-t.p,uid:v,to:'grave'}]);break;
  case'g14_MomoShield':if(v){api.shieldTo(s,t.p,v,'hand');}break;
  case'g14_DashDeclare':{const [d,...remaining]=t.remaining;put(s,{...t,remaining,declared:v?[...t.declared,d]:t.declared});break;}
- case'g14_DashResolve':if(v){const ready=dashReady402(s,t);if(ready&&ready.permits.some(p=>p===v.permit))cast(s,t.p,t.uid,false,null,0,dashPayment402(ready.c),t.origin,'キリフダッシュ',false,v.permit);}break;
+ case'g14_DashResolve':if(v){const ready=dashReady402(s,t);if(ready&&ready.permits.some(p=>p===v.permit))cast(s,t.p,t.uid,ready.c.kirifudaDash===0,null,0,ready.c.kirifudaDash===0?null:dashPayment402(ready.c),t.origin,'キリフダッシュ',false,v.permit);}break;
  case'g14_Breaker':s.attack.g14Breaker=v;api.resolveAttack(s,null);break;
  default:throw Error('未実装の旅路選択：'+t.op);
  }return true;}
@@ -85,7 +85,7 @@ export function createTravelRules(api){
  expire(s,when){if(when==='end'){for(const own of s.players){own.g14Spells=0;for(const top of own.battle)for(const x of api.layers(top)){if(x.g14G)x.g14G=x.g14G.filter(g=>g.turn!==s.turn);if(x.g14Joe)x.g14Joe=x.g14Joe.filter(g=>g.turn!==s.turn);}}}},
  selectBreaker(s,p,x){const c=effective(x,s);if(!c.gBreaker||!c.breaker||s.attack.g14Breaker)return false;choice(s,task('g14_Breaker',p,x.cardId),'この攻撃で使うブレイカーを選ぶ',[opt('G・ブレイカー（攻撃の後、自分も全ブレイク）','g',s.players[1-p].shields.length>Number(c.breaker)?30:5),opt(c.worldBreaker?'ワールド・ブレイカー':c.breaker+'枚をブレイクする','normal',15)]);return true;},
  broken(s,context,n){const a=s.attackLifecycle;if(a&&n&&context?.sourceUid===a.uid&&context.player===a.player&&!context.reverse&&!context.burn)a.broken=true;},
- attackEnd(s,a){if(a.g14G)s.g14AfterAttack=a.g14G;if(a.broken){const remaining=['hand','mana'].flatMap(origin=>s.players[a.player][origin].filter(x=>card(x).kirifudaDash&&(origin==='hand'||dashManaPermits402(s,a.player,x).length)).map(x=>({uid:x.uid,source:x.cardId,serial:x.zoneSerial||0,origin})));if(remaining.length)put(s,task('g14_DashDeclare',a.player,remaining[0].source,{remaining,declared:[]}));}},
+ attackEnd(s,a){if(a.g14G)s.g14AfterAttack=a.g14G;if(a.broken){const remaining=['hand','mana'].flatMap(origin=>s.players[a.player][origin].filter(x=>card(x).kirifudaDash!==undefined&&(origin==='hand'||dashManaPermits402(s,a.player,x).length)).map(x=>({uid:x.uid,source:x.cardId,serial:x.zoneSerial||0,origin})));if(remaining.length)put(s,task('g14_DashDeclare',a.player,remaining[0].source,{remaining,declared:[]}));}},
  advanceAfter(s){const a=s.g14AfterAttack;if(!a||s.attackLifecycle||s.attack||s.decision||s.pendingEffects?.length||s.extTasks?.length||s.triggers||s.judge||s.leaving||s.battleResolution||s.g19BreakSequence||s.g19Interrupt||s.breakContext||s.winner!==null)return;delete s.g14AfterAttack;const ids=s.players[a.p].shields.map(x=>x.uid);if(ids.length){s.breakContext={player:a.p,sourceUid:a.uid,source:a.source,g14Self:true};api.breakShields(s,a.p,ids);}},
  mainActions(s,p){if(creatures(s,1-p).some(x=>effective(x,s).noCostReduction))return [];const own=s.players[p],out=[];for(const origin of['hand','mana','deck'])for(const x of own[origin].filter(x=>card(x).joeDiscount)){const c=card(x),permits=origin==='mana'?api.manaPermits(s,p,x):origin==='deck'?(api.peekTop(s,p)?.uid===x.uid?[null]:[]):[null];if(!permits.length||!api.canCast(s,p,c)||!api.canEnter(s,p,c,{origin,execution:true}))continue;const payment={...c,cost:Math.max(1,cost(c)-c.joeDiscount),printedCost:c.cost,summonOrigin:origin};if(api.canPay(s,p,payment))for(const permit of permits)out.push({kind:'play',alternative:'joe',origin,uid:x.uid,cardId:x.cardId,manaPermit:permit,cost:api.summonCost(s,p,payment),label:c.name+'をJ・O・Eで軽減して召喚'});}return out;},
  beginJoe(s,p,a){const x=s.players[p][a.origin].find(x=>x.uid===a.uid);if(!x)return;const c=card(x);(x.g14Joe??=[]).push({turn:s.turn,key:String(s.g14Serial=(s.g14Serial||0)+1),source:x.cardId});cast(s,p,x.uid,false,null,0,{cost:Math.max(1,cost(c)-c.joeDiscount),printedCost:c.cost},a.origin,'J・O・E',false,a.manaPermit);},

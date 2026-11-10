@@ -3445,6 +3445,23 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=894){
+  if(d.id==='dmex14-055'&&f.typeText==='呪文'&&compact363===
+   'コスト4以下の進化ではないジョーカーズ・クリーチャーを1体自分の手札からバトルゾーンに出してもよい。レインボーナス:バトルゾーンに自分の多色クリーチャーがあれば相手と自分のクリーチャーを1体ずつ選んでもよい。その2体をバトルさせる。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'hand',n:1,deploy:true,optional:true,
+    filter:{creature:true,nonEvolution:true,race:'ジョーカーズ',max:4}},
+    {op:'IfOwn',filter:{creature:true,multi:true},defs:[{op:'Fight240',optional:true}]}]};
+  const dashZero='キリフダッシュ[cc00](自分のクリーチャーの攻撃の終わりにそのクリーチャーがその攻撃中にシールドをブレイクしていればこのクリーチャーをコストを支払わずに召喚してもよい)';
+  if(['dmrp15-095','dm24ex2-100'].includes(d.id)&&creature&&[
+   dashZero+'自分のマナゾーンに火のカードと自然のカードがそれぞれ1枚以上なければこのクリーチャーは攻撃できない。',
+   dashZero+'自分のマナゾーンに火と自然の文明がなければこのクリーチャーは攻撃できない。'
+  ].includes(compact363))
+   return {kirifudaDash:0,g402DashColors:[],noAttack:true,g260Self:{filter:{g568ManaColors:['火','自然']},grants:{noAttack:false}}};
+  if(d.id==='dmrp13-s09'&&creature&&compact363===
+   'スピードアタッカーW・ブレイカーこのクリーチャーが攻撃する時相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを-5000する。鬼タイム:自分と相手のシールドの数が合計6つ以下なら自分のクリーチャーすべてに「ブロッカー」と「スレイヤー」を与える。')
+   return {speedAttacker:true,breaker:2,g34Attack:[{op:'Target',power:-5000,g242PowerMinus:true}],
+    g208Auras:[{filter:{creature:true},g557Condition:{g334ZoneCount:{zone:'shields',sumBoth:true,max:6}},grants:{blocker:true,slayer:true}}]};
+ }
  if(phase>=893&&creature){
   const active={g334ZoneCount:{zone:'shields',sumBoth:true,min:7}};
   const oniIgnore='鬼タイム:自分と相手のシールドの数が合計6つ以下なら真上の▪️能力を無視する。';
