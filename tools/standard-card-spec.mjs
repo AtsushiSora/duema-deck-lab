@@ -2507,6 +2507,17 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=822&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='呪文'){
+   if(/^(?:バトルゾーンにある)?自分のクリーチャーを1体選ぶ。そのクリーチャーに含まれるカード1枚につき相手は自身のクリーチャーを1体選んで破壊する。$/.test(text))
+    return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',spell:true,g503Stack:'opponentDestroy',title:'構成カードを数える自分のクリーチャーを1体選ぶ'}]};
+   if(text==='相手の手札を見てその中から1枚選ぶ。相手はそのカードを捨ててもよい。もしそのカードを捨てない場合残りの手札をすべて捨てさせる。')
+    return {effect:'sixPhoto',g34Tasks:[{op:'InspectHand',discard:true,chooseOne:true,g223Inspect:true,g822OpponentDiscardChoice:true}]};
+  }
+  if(f.typeText==='進化クリーチャー(マナ進化)'&&text==='マナ進化-自然のクリーチャーを1体自分のマナゾーンから選びこのクリーチャーをその上に重ねつつバトルゾーンに出す。このクリーチャーが破壊される時墓地に置くかわりに自分のマナゾーンに置く。')
+   return {manaEvolution:true,evolution:{civilization:'自然'},destroyToMana:true};
+ }
  if(phase>=821&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='呪文'&&text==='このターンバトルゾーンにある自分のクリーチャー1体のパワーは+3000されシールドをさらに1枚ブレイクする。そのクリーチャーが進化クリーチャーであればカードを1枚引いてもよい。')

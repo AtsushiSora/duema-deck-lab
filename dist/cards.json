@@ -184257,24 +184257,103 @@
       ],
       "supportBatch": "phase-821",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm35-014",
+      "name": "死神アトミック・デストロイヤー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある自分のクリーチャーを１体選ぶ。そのクリーチャーに含まれるカード１枚につき、相手は自身のクリーチャーを１体選んで破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-014",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "spell": true,
+          "g503Stack": "opponentDestroy",
+          "title": "構成カードを数える自分のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-822",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-105",
+      "name": "大作家ヴィクトル・ユニゴーン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ドリームメイト",
+      "text": "マナ進化-自然のクリーチャーを１体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーが破壊される時、墓地に置くかわりに自分のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-105",
+      "limit": 4,
+      "manaEvolution": true,
+      "evolution": {
+        "civilization": "自然"
+      },
+      "destroyToMana": true,
+      "supportBatch": "phase-822",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm33-015",
+      "name": "ファイナル・アンサー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "相手の手札を見て、その中から１枚選ぶ。相手はそのカードを捨ててもよい。もしそのカードを捨てない場合、残りの手札をすべて捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm33-015",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "InspectHand",
+          "discard": true,
+          "chooseOne": true,
+          "g223Inspect": true,
+          "g822OpponentDiscardChoice": true
+        }
+      ],
+      "supportBatch": "phase-822",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 821,
+    "phase": 822,
     "checkedAt": "2026-11-10",
-    "baseCount": 6317,
+    "baseCount": 6320,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6320,
+    "totalCount": 6323,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/31530/",
-      "https://dm.takaratomy.co.jp/rule/qa/31531/",
-      "https://dm.takaratomy.co.jp/rule/qa/34191/",
-      "https://dm.takaratomy.co.jp/rule/qa/41094/",
-      "https://dm.takaratomy.co.jp/rule/qa/44188/",
-      "https://dm.takaratomy.co.jp/rule/qa/46870/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35316/",
+      "https://dm.takaratomy.co.jp/rule/qa/31674/",
+      "https://dm.takaratomy.co.jp/rule/qa/41445/",
+      "https://dm.takaratomy.co.jp/rule/qa/42984/",
+      "https://dm.takaratomy.co.jp/rule/qa/48483/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35881/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37394/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316682/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -198705,6 +198784,28 @@
           "https://dm.takaratomy.co.jp/rule/qa/48906/",
           "https://dm.takaratomy.co.jp/rule/qa/49605/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37378/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 821,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6317,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6320,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/31530/",
+          "https://dm.takaratomy.co.jp/rule/qa/31531/",
+          "https://dm.takaratomy.co.jp/rule/qa/34191/",
+          "https://dm.takaratomy.co.jp/rule/qa/41094/",
+          "https://dm.takaratomy.co.jp/rule/qa/44188/",
+          "https://dm.takaratomy.co.jp/rule/qa/46870/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35316/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [
