@@ -180925,23 +180925,212 @@
       "g38Ritsui": true,
       "supportBatch": "phase-790",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-049",
+      "name": "審問の絆",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "{GS} G・ストライク（この呪文を自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nカードを２枚引く。\n光または水の、「ブロッカー」を持つ進化ではないクリーチャーを１体、自分の手札から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-049",
+      "limit": 4,
+      "gStrike": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "blocker": true,
+            "any": [
+              {
+                "color": "光"
+              },
+              {
+                "color": "水"
+              }
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-791",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-052",
+      "name": "彼方の絆",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー\n自分の山札の上から３枚を表向きにする。その中から光のクリーチャー、自然のクリーチャーを１体ずつ手札に加えてもよい。残りを好きな順序で山札の下に置く。その後、光または自然の、コスト３以下のクリーチャーを１体、自分の手札から出してもよい。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-052",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "public": true,
+          "rest": "bottom",
+          "g255Distribute": true,
+          "g791OrderRest": true,
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "color": "光"
+              },
+              "title": "光のクリーチャーを1体まで手札に加える"
+            },
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "color": "自然"
+              },
+              "title": "自然のクリーチャーを1体まで手札に加える"
+            }
+          ]
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "max": 3,
+            "any": [
+              {
+                "color": "光"
+              },
+              {
+                "color": "自然"
+              }
+            ]
+          },
+          "g791Grant": {
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-791",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-034",
+      "name": "偽りの月 インデペンデンス / 月を継ぐもの",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "サイバー・ムーン・コマンド/アンノウン",
+      "text": "ブロッカー ブロッカー\nこのクリーチャーが出た時、自分の山札の上から２枚を墓地に置いてもよい。その後、そのうちの１枚を手札に戻してもよい。\n自分の超次元ゾーンに呪文があれば、このクリーチャーに「スレイヤー」を与え、このクリーチャーは、相手に選ばれない。\n【呪文面】\nS・トリガー S・トリガー\n相手のエレメントを１つ選び、持ち主の手札に戻す。その後、相手の手札を１枚見ないで選び、捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-034",
+      "limit": 4,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "g186GraveMill": true,
+          "title": "山札の上2枚を墓地に置く？",
+          "defs": [
+            {
+              "op": "MillRecover791",
+              "n": 2
+            }
+          ]
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g791ExtraSpell": true
+        },
+        "grants": {
+          "slayer": true,
+          "untargetable": true
+        }
+      },
+      "spellFace": {
+        "name": "月を継ぐもの",
+        "type": "spell",
+        "cost": 4,
+        "civ": "水/闇",
+        "civilizations": [
+          "水",
+          "闇"
+        ],
+        "race": "",
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "to": "hand",
+            "spell": true
+          },
+          {
+            "op": "BlindDiscard773"
+          }
+        ]
+      },
+      "supportBatch": "phase-791",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 790,
+    "phase": 791,
     "checkedAt": "2026-11-10",
-    "baseCount": 6223,
+    "baseCount": 6226,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6226,
+    "totalCount": 6229,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/46241/",
-      "https://dm.takaratomy.co.jp/rule/qa/46242/",
-      "https://dm.takaratomy.co.jp/rule/qa/46245/",
-      "https://dm.takaratomy.co.jp/rule/qa/46246/",
-      "https://dm.takaratomy.co.jp/rule/qa/33425/"
+      "https://dm.takaratomy.co.jp/rule/qa/31530/",
+      "https://dm.takaratomy.co.jp/rule/qa/31608/",
+      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck04/",
+      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck07/",
+      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck10/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -194737,6 +194926,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/43748/",
           "https://dm.takaratomy.co.jp/rule/qa/45556/",
           "https://dm.takaratomy.co.jp/rule/qa/42049/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 790,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6223,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6226,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/46241/",
+          "https://dm.takaratomy.co.jp/rule/qa/46242/",
+          "https://dm.takaratomy.co.jp/rule/qa/46245/",
+          "https://dm.takaratomy.co.jp/rule/qa/46246/",
+          "https://dm.takaratomy.co.jp/rule/qa/33425/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

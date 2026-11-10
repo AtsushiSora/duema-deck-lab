@@ -2507,6 +2507,29 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=791&&d?.status==='complete'){
+  const front=normalize(f.abilityText),trigger='S・トリガーS・トリガー';
+  const handCreature={op:'Select',origin:'hand',deploy:true,n:1,optional:true};
+  if(d.faces.length===1&&f.typeText==='呪文'){
+   const strike=/^\{GS\}G・ストライク\(この(?:呪文|カード)を自分のシールドゾーンから手札に加える時表向きにし相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない\)/;
+   if(strike.test(front)&&front.replace(strike,'')==='カードを2枚引く。光または水の「ブロッカー」を持つ進化ではないクリーチャーを1体自分の手札から出してもよい。')
+    return {gStrike:true,effect:'sixPhoto',g34Tasks:[{op:'Draw',n:2},{...handCreature,
+     filter:{creature:true,nonEvolution:true,blocker:true,any:[{color:'光'},{color:'水'}]}}]};
+   if(front===trigger+'自分の山札の上から3枚を表向きにする。その中から光のクリーチャー自然のクリーチャーを1体ずつ手札に加えてもよい。残りを好きな順序で山札の下に置く。その後光または自然のコスト3以下のクリーチャーを1体自分の手札から出してもよい。次の自分のターンのはじめまでそのクリーチャーに「ブロッカー」を与える。')
+    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Look',n:3,public:true,rest:'bottom',g255Distribute:true,g791OrderRest:true,
+     stages:['光','自然'].map(color=>({n:1,to:'hand',optional:true,filter:{creature:true,color},title:color+'のクリーチャーを1体まで手札に加える'}))},
+     {...handCreature,filter:{creature:true,max:3,any:[{color:'光'},{color:'自然'}]},g791Grant:{blocker:true}}]};
+  }
+  if(d.faces.length===2&&f.typeText==='クリーチャー'&&d.faces[1].typeText==='呪文'){
+   const spell=d.faces[1];
+   if(front==='ブロッカーブロッカーこのクリーチャーが出た時自分の山札の上から2枚を墓地に置いてもよい。その後そのうちの1枚を手札に戻してもよい。自分の超次元ゾーンに呪文があればこのクリーチャーに「スレイヤー」を与えこのクリーチャーは相手に選ばれない。'&&
+      normalize(spell.abilityText)===trigger+'相手のエレメントを1つ選び持ち主の手札に戻す。その後相手の手札を1枚見ないで選び捨てさせる。')
+    return {blocker:true,effect:'sixPhoto',g34Tasks:[{op:'Offer',g186GraveMill:true,title:'山札の上2枚を墓地に置く？',defs:[{op:'MillRecover791',n:2}]}],
+     g260Self:{filter:{g791ExtraSpell:true},grants:{slayer:true,untargetable:true}},
+     spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,
+      trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',element:true,to:'hand',spell:true},{op:'BlindDiscard773'}]}};
+  }
+ }
  if(phase>=790&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const frontText=normalize(f.abilityText);
   if(frontText==='スピードアタッカージャストダイバーW・ブレイカーこのクリーチャーが攻撃する時カードを3枚まで引く。このターン自分がカードを7枚以上引いていれば相手のエレメントを2つまで選び持ち主の手札に戻す。その後このクリーチャーは相手のシールドを1つブレイクしてもよい。')
