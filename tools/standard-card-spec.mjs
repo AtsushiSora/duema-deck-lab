@@ -3433,6 +3433,17 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=859&&f.typeText==='クリーチャー'){
+  if(['dm36-043','dm36-043VC'].includes(d.id)&&compact363.replace(/^【H・ソウル】/,'').replace('{HSoulsicon}','')===
+   'バトルゾーンにある自分のクリーチャーを相手が選ぶ時自分の他の(H・ソウル)クリーチャーを選ぶことはできない。(ただし選べないクリーチャーを攻撃またはブロックしてもよい)W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {g558Souls:['H'],breaker:2,g608Protect:{g853Soul:'H',g334Other:true}};
+  if(d.id==='dm36-021'&&compact363==='バトルゾーンにある自分の他の(H・ソウル)(M・ソウル)(E・ソウル)(K・ソウル)(W・ソウル)または(B・ソウル)クリーチャーすべてのパワーは+1000される。'){
+   const souls=['H','M','E','K','W','B'];
+   return {g558Souls:souls,g205Aura:{other:true,filter:{g856Souls:souls},power:1000}};
+  }
+  if(d.id==='dm36-091'&&compact363==='自分のターンの終わりにバトルゾーンに自分の他の(E・ソウル)クリーチャーがなければこのクリーチャーを破壊する。')
+   return {g558Souls:['E'],g174End:[{op:'IfOwn',filter:{creature:true,g853Soul:'E',g334Other:true},defs:[],elseDefs:[{op:'SelfDestroy'}]}]};
+ }
  if(phase>=858&&f.typeText==='クリーチャー'){
   if(d.id==='dm36-067'&&compact363==='自分の他の(W・ソウル)クリーチャーが破壊される時墓地に置くかわりに自分のマナゾーンに置く。')
    return {g558Souls:['W'],g575ManaAura:{other:true,filter:{creature:true,g853Soul:'W'}}};

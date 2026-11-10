@@ -187791,23 +187791,126 @@
       ],
       "supportBatch": "phase-858",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm36-043",
+      "name": "霊騎ペンデラモン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "アーク・セラフィム",
+      "text": "バトルゾーンにある自分のクリーチャーを相手が選ぶ時、自分の他の(H・ソウル)クリーチャーを選ぶことはできない。(ただし、選べないクリーチャーを攻撃またはブロックしてもよい)\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-043",
+      "limit": 4,
+      "g558Souls": [
+        "H"
+      ],
+      "breaker": 2,
+      "g608Protect": {
+        "g853Soul": "H",
+        "g334Other": true
+      },
+      "supportBatch": "phase-859",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm36-021",
+      "name": "アクア・ドッペル",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "リキッド・ピープル",
+      "text": "バトルゾーンにある自分の他の、(H・ソウル)、(M・ソウル)、(E・ソウル)、(K・ソウル)、(W・ソウル)、または(B・ソウル)クリーチャーすべてのパワーは+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-021",
+      "limit": 4,
+      "g558Souls": [
+        "H",
+        "M",
+        "E",
+        "K",
+        "W",
+        "B"
+      ],
+      "g205Aura": {
+        "other": true,
+        "filter": {
+          "g856Souls": [
+            "H",
+            "M",
+            "E",
+            "K",
+            "W",
+            "B"
+          ]
+        },
+        "power": 1000
+      },
+      "supportBatch": "phase-859",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm36-091",
+      "name": "自爆虫バリキン・ワーム",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 4000,
+      "race": "パラサイトワーム",
+      "text": "自分のターンの終わりに、バトルゾーンに自分の他の(E・ソウル)クリーチャーがなければ、このクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-091",
+      "limit": 4,
+      "g558Souls": [
+        "E"
+      ],
+      "g174End": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "g853Soul": "E",
+            "g334Other": true
+          },
+          "defs": [],
+          "elseDefs": [
+            {
+              "op": "SelfDestroy"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-859",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 858,
+    "phase": 859,
     "checkedAt": "2026-11-11",
-    "baseCount": 6438,
+    "baseCount": 6441,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6441,
+    "totalCount": 6444,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36080/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37634/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34918/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37493/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37498/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36002/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36003/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/34915/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37633/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37634/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -203012,6 +203115,26 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36059/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36060/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 858,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6438,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6441,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36080/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37634/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34918/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37493/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37498/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
