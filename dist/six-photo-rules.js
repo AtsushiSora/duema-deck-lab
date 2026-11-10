@@ -954,6 +954,17 @@ export function createSixPhotoRules(api){
   (s.extLimits??=[]).push({kind:'g677OnlyAttacker',player,refs,controller:t.p,expires:'end',who:s.active});
   break;
  }
+ case'g34_AttackerMana762':{
+  const player=1-t.p,attacker=attackHost408(s,{...t,p:player});
+  if(attacker&&!attacker.sealed&&api.isCreature(s,attacker))
+   move(s,[{player,uid:attacker.uid,to:'mana',controller:player}]);
+  break;
+ }
+ case'g34_EntryMach762':{
+  const host=sourceHost474(s,t.subject)?.x;
+  if(host&&!host.sealed&&api.isCreature(s,host))applyGrant(s,{...t,grant:{machFighter:true}},host);
+  break;
+ }
  case'g34_AttackEffect409':{if(attackHost408(s,t))(s.extLimits??=[]).push({kind:'g409AttackEffect',player:t.p,ref:t.g399Attacker,effect:t.kind,expires:'start',who:t.p});break;}
  case'g34_AttackDeploy409':{const host=attackHost408(s,t),budget=host?cost(effective(host,s)):t.g399Attacker?.cost==='∞'?Infinity:t.g399Attacker?.cost;if(budget>0)start(s,t,[{op:'Select',origin:'mana',filter:{creature:true},deploy:true,n:2,optional:true,g409Budget:budget===Infinity?'∞':budget,title:'合計コストが'+(budget===Infinity?'∞':budget)+'未満になるよう2体まで選ぶ'}]);break;}
  case'g34_AttackOtherMana409':{const attacker=attackHost408(s,t),enemies=creatures(s,1-t.p).filter(y=>!y.sealed),rows=creatures(s,t.p).filter(y=>!y.sealed&&y!==attacker);if(rows.length)choice(s,t,t.g399Attacker?'攻撃中のクリーチャー以外をマナに置く？':'マナに置く自分のクリーチャーを1体選ぶ（任意）',[...rows.map(y=>opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},enemies.length?Math.min(...enemies.map(z=>cost(effective(z,s))*3))+4-cost(effective(y,s))*2:-10,y.cardId)),skip()]);break;}
@@ -2366,6 +2377,7 @@ export function createSixPhotoRules(api){
    if(watch.g755EntrantPower)send(s,owner,x,'EntryBoost755',{
     subject:{uid:y.uid,incarnation:y.incarnation||0},power:watch.g755EntrantPower
    });
+   else if(watch.g762EntrantMach)send(s,owner,x,'EntryMach762',{subject:{uid:y.uid,incarnation:y.incarnation||0}});
    else queue(s,owner,x,watch.defs);
   }
   if(creature&&!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g468EntryWatch;if(!x.sealed&&watch&&(!watch.g565Other||x.uid!==y.uid)&&(!(x.uid===y.uid)||!options.selfMuted&&!api.selfStopped(s,p))&&matches(s,p,y,watch.filter))send(s,p,x,'Entry468',{mode:watch.mode,subject:{uid:y.uid,incarnation:y.incarnation||0}});}if(!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g251EntryDraw,self=x.uid===y.uid;if(!x.sealed&&watch&&(!self||!options.selfMuted&&!api.selfStopped(s,p))&&(self&&watch.selfAlways||matches(s,p,y,watch.filter)))queue(s,p,x,watch.defs);}if(!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g250EntryDraw,self=x.uid===y.uid;if(!x.sealed&&watch&&(self?watch.self&&!options.selfMuted&&!api.selfStopped(s,p):matches(s,p,y,watch.filter)))queue(s,p,x,watch.defs);}if(s.active===p&&!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g249OtherEntry;if(!x.sealed&&x.uid!==y.uid&&watch&&matches(s,p,y,watch.filter))queue(s,p,x,watch.defs);}if(creature){const stopped=options.selfMuted||api.selfStopped(s,p);for(const x of active(s,p,'cabbage'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[select('mana',null,1,{creature:true,color:'自然',minPower:12000,exactCost:cost(c)-1},{deploy:true,optional:true})]);if(ninja(effective(y,s)))for(const x of active(s,p,'mukujimmed'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[E('Draw',{n:1,optional:true})]);if(angel(effective(y,s)))for(const x of active(s,p,'everries'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[E('Draw',{n:1,optional:true})]);for(const x of active(s,1-p,'nameko'))if(!options.paidMana)queue(s,1-p,x,[C('nameko',{target:y.uid,targetIncarnation:y.incarnation||0})]);if(options.execution===false)for(const x of active(s,1-p,'oogumo'))queue(s,1-p,x,[E('ExactMove',{to:'grave',target:y.uid,targetIncarnation:y.incarnation||0})]);}if(options.origin!=='hand')for(const x of s.players[1-p].battle.filter(x=>!api.ignored(s,x)))for(const layer of api.layers(x))if(card(layer).g34SoulDock)queue(s,1-p,x,[E('ExactMove',{to:'grave',target:y.uid,targetIncarnation:y.incarnation||0})]);},

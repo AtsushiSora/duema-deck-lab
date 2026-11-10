@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6133,
-  "pendingNames": 5694,
-  "phase": 761,
+  "supportedNames": 6136,
+  "pendingNames": 5691,
+  "phase": 762,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3392,
+    "クリーチャー": 3389,
     "NEOクリーチャー": 152,
     "呪文": 813,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4167,
+    "未対応の能力文": 4164,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -9345,42 +9345,91 @@
           "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-051"
         }
       ]
+    },
+    {
+      "phase": 762,
+      "cards": [
+        {
+          "id": "dm22rp2-023",
+          "name": "試練の大地ダン・ティラン"
+        },
+        {
+          "id": "dm24rp4-073",
+          "name": "哀樹奇面グリッファ"
+        },
+        {
+          "id": "dm24rp2-048",
+          "name": "ムーンベル シアン"
+        }
+      ],
+      "supportedNames": 6136,
+      "pendingNames": 5691,
+      "verification": {
+        "focusedPassed": 8,
+        "regressionPassed": 254,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 4,
+        "scope": "3種類4版の公式本文・基本情報・マナ・画像・同名商品・使用制限を照合。侵略と革命チェンジの区別と保存復元、登場時のコスト境界と付与元の離脱、超化獣への攻撃・防御両側の任意バトル置換を検証。既存カード定義は基点と一致。",
+        "runtimeNote": "強制終了込み各最大10分。Phase 252・393・486・490・588・677の名前指定回帰249件とPhase 755の全5件が成功。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "promoy17-033",
+          "name": "ワ・タンポ－ポ・タンク",
+          "check": "プロモ公式本文は対戦対応済みの通常版 dmrp05-055 と同じ。長音表記違いで別名として残るプロモ版の統合は、既存デッキで使用されたIDと両版の画像参照を確認してから行う。新規対応には数えない。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-033"
+        },
+        {
+          "id": "dmsd05-005",
+          "name": "ナ・ハナキ・リー",
+          "check": "通常版の公式本文を確認。プロモ17期の版IDと、攻撃宣言時から攻撃後まで進化した場合も同じ個体を追う処理を照合するまで保留。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd05-005"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 761,
-    "nextPhase": 762,
+    "lastVerifiedPhase": 762,
+    "nextPhase": 763,
     "workInProgress": [],
     "nextCandidates": [
       {
+        "id": "dm24rp2-051",
+        "name": "粛清者ゴットハルト",
+        "check": "公式本文確認済み。ヴァル・ボルシャックの2体選択と個別の位相指定を参考に、自身も選べる条件、S・トリガー経由、途中保存を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-051"
+      },
+      {
+        "id": "dmr21-008",
+        "name": "虹色類 アミュレックス",
+        "check": "自分の他の多色クリーチャーの登場と、マナゾーンに置いた多色カードのアンタップを照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-008"
+      },
+      {
+        "id": "dmr17-004",
+        "name": "奇天烈 ポーカード",
+        "check": "攻撃時に公開した相手の山札のカードを一番下に移し、コストを判定して攻撃後に自身をアンタップする処理と裁定を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-004"
+      },
+      {
         "id": "promoy17-033",
         "name": "ワ・タンポ－ポ・タンク",
-        "check": "マッハファイターと破壊をマナ移動に置き換える処理を再利用できるか、正規表記・再録・公式裁定を照合する。",
+        "check": "プロモ公式本文は対戦対応済みの通常版 dmrp05-055 と同じ。長音表記違いで別名として残るプロモ版の統合は、既存デッキで使用されたIDと両版の画像参照を確認してから行う。新規対応には数えない。",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-033"
       },
       {
-        "id": "dm22rp2-023",
-        "name": "試練の大地ダン・ティラン",
-        "check": "登場ターンの相手クリーチャーの攻撃に反応する対象と、マナ移動および攻撃中止を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-023"
-      },
-      {
-        "id": "dm24rp2-048",
-        "name": "ムーンベル シアン",
-        "check": "マッハファイターと、自分の超化獣への任意のバトル置換を公式本文と関連裁定に照らして確認する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-048"
+        "id": "dmsd05-005",
+        "name": "ナ・ハナキ・リー",
+        "check": "通常版の公式本文を確認。プロモ17期の版IDと、攻撃宣言時から攻撃後まで進化した場合も同じ個体を追う処理を照合するまで保留。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd05-005"
       },
       {
         "id": "dm36-009",
         "name": "無双大地ナズナグマ",
         "check": "初出の公式本文と、ソウルをバトルゾーン以外でも参照する公式旧QA 37634を確認。公式本文だけではカード自身のソウル標識を取りこぼす版があるため、使用可能なW・ソウルのカード群を印刷面と照合し、登場監視とマナのフィルターを検証するまで保留。",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-009"
-      },
-      {
-        "id": "dm24rp2-051",
-        "name": "粛清者ゴットハルト",
-        "check": "初出の公式本文と同名商品を確認。対象を最大2体重複なく選ぶ段階と、それぞれの位相を指定する段階、処理中の誘発順と保存復元を検証するまで保留。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-051"
       },
       {
         "id": "dm23rp2-030",

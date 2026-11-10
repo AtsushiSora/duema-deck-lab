@@ -14,6 +14,7 @@ export function createRequested393SuperguardRules(api){
    for(const x of creatures(s,p)){
     if(x.sealed||t.rows.some(r=>r.p===p&&r.uid===x.uid))continue;
     const c=effective(x,s),kinds=[...(c.superGuardman&&!x.tapped?['super']:[]),...(giant&&c.galacticBattle?['galactic']:[]),...(fire&&c.g588FireBattleReplace?['fire']:[])];
+    if(originalCard.g762BattleProxyRace&&String(c.race||'').includes(originalCard.g762BattleProxyRace))kinds.push('raceProxy');
     for(const kind of kinds)out.push({row,kind,...ref(p,x),cardId:x.cardId});
    }
   }

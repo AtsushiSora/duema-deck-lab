@@ -2564,6 +2564,15 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=762&&f.typeText==='クリーチャー'){
+  const mach='マッハファイター(このクリーチャーは出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)';
+  if(compact363===mach+'相手のクリーチャーが出たターンに攻撃する時相手はそのクリーチャーを自身のマナゾーンに置く。')
+   return {machFighter:true,g252AttackWatch:{who:'opponent',entryTurn:true,g399Attacker:true,defs:[{op:'AttackerMana762'}]}};
+  if(compact363===mach+'自分のコスト6以上のクリーチャーが出た時そのターンそのクリーチャーに「マッハファイター」を与える。')
+   return {machFighter:true,g314OtherEntry:{who:'self',filter:{min:6},g762EntrantMach:true}};
+  if(compact363===mach+'このクリーチャーがバトルする時かわりに自分の超化獣クリーチャーにバトルさせてもよい。')
+   return {machFighter:true,g762BattleProxyRace:'超化獣'};
+ }
  if(phase>=761&&f.typeText==='クリーチャー'){
   const giantAura=min=>({
    breaker:2,
