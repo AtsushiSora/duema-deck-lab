@@ -689,7 +689,7 @@ function finishManaExchange753(s,t){
 }
 function matchesEvolution(base,condition,context){
  const c=effectiveCard(base,context),races=String(c.race).split('/'),anyRace=!!c.g293AnyEvolutionRace&&context.players.some(p=>p.battle.includes(base));
- if(condition.creature)return isCreature(context,base);if(condition.nonEvolution&&isEvolution(base))return false;if(condition.evolution)return isEvolution(base);
+ if(condition.creature)return isCreature(context,base);if(condition.nonEvolution&&isEvolution(base))return false;if(condition.evolution)return isEvolution(base)&&(!condition.civilization||civilizations(c).includes(condition.civilization));
  if(condition.ultimate)return !!card(base).ultimateEvolution;
  if(condition.any)return condition.any.some(x=>matchesEvolution(base,x,context));
  if(condition.race)return anyRace||races.some(r=>r.includes(condition.race));
@@ -731,7 +731,8 @@ function canAttackPlayer(s,c){
   return min&&!x.sealed&&effectiveCard(x,s).g780TappedPlayerGuard&&
    defenders.filter(y=>y.tapped&&!y.sealed&&isCreature(s,y)).length>=min;
  });
- const guarded=tappedGuard||s.extLimits?.some(l=>l.kind==='g750CannotAttackPlayer'&&l.player===1-p&&l.turn===s.turn);
+ const moonGuard=!s.players[1-p].shields.length&&defenders.some(x=>x.tapped&&!x.sealed&&effectiveCard(x,s).g830MoonGuard);
+ const guarded=tappedGuard||moonGuard||s.extLimits?.some(l=>l.kind==='g750CannotAttackPlayer'&&l.player===1-p&&l.turn===s.turn);
  if(guarded&&!s.players[p].battle.some(x=>effectiveCard(x,s).ignoreAttackLocks))return false;
  return extra.photo160.canAttackPlayer(s,p,c)&&!extra.six.attackPower593(s,p,c,true)&&(s.players[p].battle.some(x=>effectiveCard(x,s).ignoreAttackLocks)||!s.players[1-p].battle.some(x=>effectiveCard(x,s).didaGuard&&power(c,false,s)<power(x,false,s)))&&!(c.entered===s.turn&&s.players[1-p].battle.some(x=>effectiveCard(x,s).gaia||effectiveCard(x,s).g40EntryPlayerStop)&&!s.players[p].battle.some(x=>effectiveCard(x,s).ignoreAttackLocks))&&(c.entered<s.turn||effectiveCard(c,s).speedAttacker||effectiveCard(c,s).entryPlayerAttack||extra.abyssPlayer(s,c)||isEvolution(c));
 }

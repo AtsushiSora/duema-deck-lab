@@ -1751,7 +1751,8 @@ export function createSixPhotoRules(api){
   const self=t.owner==='self',owner=self?t.p:1-t.p,shields=s.players[owner].shields,chooser=t.ownerChooses?owner:t.p;
   const candidate=t.g747CreatureBreak?sourceHost474(s,t)?.x:null;
   const host=candidate&&!candidate.sealed&&api.isCreature(s,candidate)?candidate:null;
-  if(t.g747CreatureBreak&&!host&&!t.g828BattleBreaker)break;
+  const triggeredBreaker=t.g830BlockBreaker??t.g828BattleBreaker;
+  if(t.g747CreatureBreak&&!host&&!triggeredBreaker)break;
   const c=host&&effective(host,s);
   const n=t.n==='all'?shields.length:Math.min(t.n+(c?.extraBreak||0),shields.length);
   const selected=t.n==='all'?shields.map(y=>y.uid):(t.selected||[]).filter(uid=>shields.some(y=>y.uid===uid));
@@ -1759,8 +1760,8 @@ export function createSixPhotoRules(api){
    'ブレイクする'+(chooser===owner?'自分':'相手')+'のシールドを'+n+'つ選ぶ（'+selected.length+'つ選択済み）',
    [...shields.flatMap((y,i)=>selected.includes(y.uid)?[]:[opt('シールド'+(i+1),y.uid,10)]),...(t.optional&&!selected.length?[skip()]:[])],chooser);
   else if(n)api.interruptBreak(s,owner,host?selected.slice(0,n):selected,{...t,op:'g34_AfterBreak278'},
-   {player:t.p,sourceUid:host?.uid??t.uid,source:t.g828BattleBreaker?(host?.cardId??t.g828BattleBreaker):t.source,controller:t.p,g278Effect:true,
-    ...(t.g828BattleBreaker?{incarnation:host?.incarnation??t.incarnation??0}:{}),
+   {player:t.p,sourceUid:host?.uid??t.uid,source:triggeredBreaker?(host?.cardId??triggeredBreaker):t.source,controller:t.p,g278Effect:true,
+    ...(triggeredBreaker?{incarnation:host?.incarnation??t.incarnation??0}:{}),
     ...(host?{incarnation:host.incarnation||0,...(c.g122NoST?{noST:true}:{}),reverse:!!c.reverseBurn,burn:!!c.shieldBurn,...(c.qqLock?{qqBreak:true}:{})}:{})});
   break;
  }
@@ -2902,6 +2903,9 @@ export function createSixPhotoRules(api){
    if(source.sealed)continue;
    const races=effective(source,s).g700BlockDraw;
    if(races?.some(name=>race(blocker,name)))queue(s,p,source,[{op:'Draw',n:1,optional:true}]);
+   if(effective(source,s).g830AllyBlockBreak){
+    send(s,p,source,'Break497',{uid:x.uid,incarnation:x.incarnation||0,n:1,g747CreatureBreak:true,g830BlockBreaker:x.cardId});
+   }
   }
   const owner=1-p,a=s.players[owner].battle.find(y=>y.uid===s.attack?.attacker),blocked=a&&!a.sealed&&effective(a,s).g559Blocked;
   if(blocked)queue(s,owner,a,blocked);

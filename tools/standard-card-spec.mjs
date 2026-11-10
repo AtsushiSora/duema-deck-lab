@@ -2507,6 +2507,15 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=830&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='進化クリーチャー(マナ進化)'&&text==='マナ進化-自然のクリーチャーを1体自分のマナゾーンから選びこのクリーチャーをその上に重ねつつバトルゾーンに出す。自分の自然のクリーチャーを召喚するコストを最大2少なくしてもよい。ただしコストは1より少なくならない。')
+   return {manaEvolution:true,evolution:{civilization:'自然'},g349SummonAuras:[{filter:{color:'自然'},amount:2,g560Optional:true}]};
+  if(f.typeText==='進化クリーチャー'&&text==='ブロッカー進化-自分の「ブロッカー」を持つクリーチャー1体の上に置く。自分のクリーチャーがブロックした時そのクリーチャーは相手のシールドを1枚ブレイクする。')
+   return {blocker:true,evolution:{blocker:true},g830AllyBlockBreak:true};
+  if(['進化クリーチャー(究極進化)','進化クリーチャー'].includes(f.typeText)&&text.replace('W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)','W・ブレイカー')==='究極進化-自分の光の進化クリーチャー1体の上に置く。W・ブレイカーこのクリーチャーがタップされていて自分のシールドが1枚もない時自分はクリーチャーの攻撃を受けない。')
+   return {ultimateEvolution:true,evolution:{evolution:true,civilization:'光'},breaker:2,g830MoonGuard:true};
+ }
  if(phase>=829&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const handEvolution='手札進化-水のクリーチャーを1体自分の手札から選びこのクリーチャーをその上に重ねつつバトルゾーンに出す。';
