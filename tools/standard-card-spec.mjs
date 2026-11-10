@@ -2564,6 +2564,21 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=773&&f.typeText==='クリーチャー'){
+  const change=(condition)=>'革命チェンジ:'+condition+'(自分の'+condition+'が攻撃する時そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい)';
+  const onChange='このクリーチャーが「革命チェンジ」によって出た時';
+  const doubleBreak='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';
+  if(compact363===change('コスト3以上のアビスまたはコスト3以上のメカ')+'W・ブレイカー'+onChange+'相手の手札を1枚見ないで選び捨てさせる。相手のカードはマナゾーンにタップして置かれる。')
+   return {rev:{categories:['アビス','メカ'],min:3,g486Current:true},breaker:2,opponentManaTap:true,g773RevEntry:[{op:'BlindDiscard773'}]};
+  if([doubleBreak,'W・ブレイカー'].some(breaker=>compact363===change('コスト3以上のジャイアントまたはコスト3以上のアビス')+breaker+onChange+'自分の山札の上から1枚目をマナゾーンに置く。その後カードを1枚自分のマナゾーンから手札に戻してもよい。相手のクリーチャーが攻撃する時可能ならこのクリーチャーを攻撃する。'))
+   return {rev:{categories:['ジャイアント','アビス'],min:3,g486Current:true},breaker:2,g431AttackMe:true,
+    g773RevEntry:[{op:'Ramp',n:1},{op:'Select',origin:'mana',to:'hand',n:1,optional:true,g183Return:true}]};
+  if(compact363===change('コスト5以上のメカ')+doubleBreak+'このクリーチャーが出た時相手のエレメント1つと相手のマナゾーンにあるカードを1枚選ぶ。次の相手のターンのはじめにそれらのカードはアンタップしない。')
+   return {rev:{race:'メカ',min:5,g486Current:true},breaker:2,effect:'sixPhoto',g34Tasks:[
+    {op:'Target',element:true,filter:{faceUp:true},lock:true,title:'次のターン開始時にアンタップさせない相手のエレメントを選ぶ'},
+    {op:'StartManaLock773'}
+   ]};
+ }
  if(phase>=772){
   if(f.typeText==='呪文'&&compact363==='コスト7以下の進化ではないアーマード・クリーチャーを1体自分の手札から出す。このターンそのクリーチャーに「スピードアタッカー」を与える。(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)自分のエレメントを1つ破壊する。')
    return {effect:'sixPhoto',g34Tasks:[

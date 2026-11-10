@@ -1116,10 +1116,16 @@ export function createSixPhotoRules(api){
   move(s,[{player:host.p,uid:host.x.uid,to:'mana',tapped:!!t.tapped,controller:t.controller??t.p}]);
   break;
  }
+ case'g34_BlindDiscard773':
  case'g34_BlindHandMana675':
   if(opp.hand.length&&api.canMoveZone(s,1-t.p,'hand')){
-   choice(s,t,'マナに置く相手の手札を裏向きのまま1枚選ぶ',opp.hand.map((_,i)=>opt('裏向きの手札 '+(i+1),i,0)));
+   const title=t.op==='g34_BlindDiscard773'?'捨てさせる相手の手札を裏向きのまま1枚選ぶ':'マナに置く相手の手札を裏向きのまま1枚選ぶ';
+   choice(s,t,title,opp.hand.map((_,i)=>opt('裏向きの手札 '+(i+1),i,0)));
   }
+  break;
+ case'g34_StartManaLock773':
+  choice(s,t,'次のターン開始時にアンタップさせない相手のマナを1枚選ぶ',opp.mana.map((y,i)=>
+   opt(y.faceDown?'裏向きのマナ '+(i+1):card(y).name,y.uid,y.tapped?10:0,y.faceDown?null:y.cardId)));
   break;
  case'g34_Nocturne732':{
   const names=new Map();
@@ -2033,6 +2039,16 @@ export function createSixPhotoRules(api){
  }break;
  case'g34_OwnShieldGraves697':put(s,{...t,picks:[...(t.picks||[]),{owner:t.chooser,uid:v}]});break;
  case'g34_ShieldGrave':if(v){const moved=api.moveShield(s,t.p,v,'grave');api.log(s,t.p,'shieldGrave',card(t.source).name+'：シールド1つ（カード'+moved.length+'枚）を墓地に置いた',{cardId:t.source});}break;
+ case'g34_BlindDiscard773':{
+  const y=s.players[1-t.p].hand[v];
+  if(y)api.discardSelected(s,1-t.p,[y.uid],t.source,t.controller??t.p);
+  break;
+ }
+ case'g34_StartManaLock773':{
+  const y=s.players[1-t.p].mana.find(y=>y.uid===v);
+  if(y)y.skipUntap=true;
+  break;
+ }
  case'g34_BlindHandMana675':{
   const y=s.players[1-t.p].hand[v];
   if(y&&zoneMove(s,1-t.p,'hand',y.uid,'mana',{g182HandMana:true})){
@@ -2494,6 +2510,8 @@ export function createSixPhotoRules(api){
   }
  },
  entry(s,p,y,options){const c=card(y),creature=api.isCreature(s,y);
+  if(c.g773RevEntry&&options.revolution&&creature&&!y.sealed&&!options.selfMuted&&!api.selfStopped(s,p)&&!api.ignored(s,y))
+   queue(s,p,y,c.g773RevEntry);
   if(creature&&!y.sealed&&options.execution===true){
    const enteredCost=cost(effective(y,s));
    for(const x of s.players[p].grave){

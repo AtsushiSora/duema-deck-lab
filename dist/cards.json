@@ -178741,25 +178741,138 @@
       ],
       "supportBatch": "phase-772",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-018",
+      "name": "機深天 クロフェシー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "メカ・アビス・セレス",
+      "text": "革命チェンジ：コスト３以上のアビスまたはコスト３以上のメカ（自分のコスト３以上のアビスまたはコスト３以上のメカが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\nこのクリーチャーが「革命チェンジ」によって出た時、相手の手札を１枚見ないで選び、捨てさせる。\n相手のカードはマナゾーンにタップして置かれる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-018",
+      "limit": 4,
+      "rev": {
+        "categories": [
+          "アビス",
+          "メカ"
+        ],
+        "min": 3,
+        "g486Current": true
+      },
+      "breaker": 2,
+      "opponentManaTap": true,
+      "g773RevEntry": [
+        {
+          "op": "BlindDiscard773"
+        }
+      ],
+      "supportBatch": "phase-773",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-025",
+      "name": "深巨天 ミドフェシー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 8000,
+      "race": "アビス・ジャイアント・セレス",
+      "text": "革命チェンジ：コスト３以上のジャイアントまたはコスト３以上のアビス（自分のコスト３以上のジャイアントまたはコスト３以上のアビスが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\nこのクリーチャーが「革命チェンジ」によって出た時、自分の山札の上から１枚目をマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻してもよい。\n相手のクリーチャーが攻撃する時、可能ならこのクリーチャーを攻撃する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-025",
+      "limit": 4,
+      "rev": {
+        "categories": [
+          "ジャイアント",
+          "アビス"
+        ],
+        "min": 3,
+        "g486Current": true
+      },
+      "breaker": 2,
+      "g431AttackMe": true,
+      "g773RevEntry": [
+        {
+          "op": "Ramp",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "g183Return": true
+        }
+      ],
+      "supportBatch": "phase-773",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-040",
+      "name": "ルベル・ゴル・ゲルス",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9500,
+      "race": "メカ・エンジェル・コマンド",
+      "text": "革命チェンジ：コスト５以上のメカ（自分のコスト５以上のメカが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手のエレメント１つと、相手のマナゾーンにあるカードを１枚選ぶ。次の相手のターンのはじめに、それらのカードはアンタップしない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-040",
+      "limit": 4,
+      "rev": {
+        "race": "メカ",
+        "min": 5,
+        "g486Current": true
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "element": true,
+          "filter": {
+            "faceUp": true
+          },
+          "lock": true,
+          "title": "次のターン開始時にアンタップさせない相手のエレメントを選ぶ"
+        },
+        {
+          "op": "StartManaLock773"
+        }
+      ],
+      "supportBatch": "phase-773",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 772,
+    "phase": 773,
     "checkedAt": "2026-11-10",
-    "baseCount": 6167,
+    "baseCount": 6170,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6170,
+    "totalCount": 6173,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/31530/",
-      "https://dm.takaratomy.co.jp/rule/qa/32348/",
-      "https://dm.takaratomy.co.jp/rule/qa/48922/",
-      "https://dm.takaratomy.co.jp/rule/qa/33527/",
       "https://dm.takaratomy.co.jp/rule/qa/44747/",
-      "https://dm.takaratomy.co.jp/rule/qa/48150/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37810/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37810/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37815/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35990/",
+      "https://dm.takaratomy.co.jp/rule/qa/44661/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -192197,6 +192310,28 @@
           "https://dm.takaratomy.co.jp/rule/qa/48922/",
           "https://dm.takaratomy.co.jp/rule/qa/33527/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37511/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 772,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6167,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6170,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/31530/",
+          "https://dm.takaratomy.co.jp/rule/qa/32348/",
+          "https://dm.takaratomy.co.jp/rule/qa/48922/",
+          "https://dm.takaratomy.co.jp/rule/qa/33527/",
+          "https://dm.takaratomy.co.jp/rule/qa/44747/",
+          "https://dm.takaratomy.co.jp/rule/qa/48150/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37810/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

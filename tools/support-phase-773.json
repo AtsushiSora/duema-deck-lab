@@ -1,0 +1,383 @@
+{
+  "phase": 773,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6170,
+  "description": "革命チェンジ時の伏せた手札選択・マナ回収、攻撃先の強制、相手のマナとエレメントの開始時アンタップ制限に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/44747/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37810/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37815/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35990/",
+    "https://dm.takaratomy.co.jp/rule/qa/44661/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp4-018",
+      "name": "機深天 クロフェシー",
+      "faces": [
+        {
+          "name": "機深天 クロフェシー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "革命チェンジ：コスト３以上のアビスまたはコスト３以上のメカ（自分のコスト３以上のアビスまたはコスト３以上のメカが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\nこのクリーチャーが「革命チェンジ」によって出た時、相手の手札を１枚見ないで選び、捨てさせる。\n相手のカードはマナゾーンにタップして置かれる。",
+          "race": "メカ・アビス・セレス",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-018",
+      "spec": {
+        "rev": {
+          "categories": [
+            "アビス",
+            "メカ"
+          ],
+          "min": 3,
+          "g486Current": true
+        },
+        "breaker": 2,
+        "opponentManaTap": true,
+        "g773RevEntry": [
+          {
+            "op": "BlindDiscard773"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "e8221cd4635569bdfcf66708f5365b10eb2987bdd0bbf3cc9303c774e2fc46c8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-025",
+      "name": "深巨天 ミドフェシー",
+      "faces": [
+        {
+          "name": "深巨天 ミドフェシー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "革命チェンジ：コスト３以上のジャイアントまたはコスト３以上のアビス（自分のコスト３以上のジャイアントまたはコスト３以上のアビスが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\nこのクリーチャーが「革命チェンジ」によって出た時、自分の山札の上から１枚目をマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻してもよい。\n相手のクリーチャーが攻撃する時、可能ならこのクリーチャーを攻撃する。",
+          "race": "アビス・ジャイアント・セレス",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-025",
+      "spec": {
+        "rev": {
+          "categories": [
+            "ジャイアント",
+            "アビス"
+          ],
+          "min": 3,
+          "g486Current": true
+        },
+        "breaker": 2,
+        "g431AttackMe": true,
+        "g773RevEntry": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "g183Return": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "92dd5721f4c2bfea7464d6e421b7f0e06e7e05e9137eaaf4323c0532e4be68fc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-040",
+      "name": "ルベル・ゴル・ゲルス",
+      "faces": [
+        {
+          "name": "ルベル・ゴル・ゲルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "革命チェンジ：コスト５以上のメカ（自分のコスト５以上のメカが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手のエレメント１つと、相手のマナゾーンにあるカードを１枚選ぶ。次の相手のターンのはじめに、それらのカードはアンタップしない。",
+          "race": "メカ・エンジェル・コマンド",
+          "powerText": "9500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-040",
+      "spec": {
+        "rev": {
+          "race": "メカ",
+          "min": 5,
+          "g486Current": true
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "filter": {
+              "faceUp": true
+            },
+            "lock": true,
+            "title": "次のターン開始時にアンタップさせない相手のエレメントを選ぶ"
+          },
+          {
+            "op": "StartManaLock773"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "78527004ff8287a85989d2c6f043623b4722f13d55d3c6c70a7602a807fba2f9",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23rp4x-018",
+      "canonicalId": "dm23rp4-018",
+      "name": "機深天 クロフェシー",
+      "faces": [
+        {
+          "name": "機深天 クロフェシー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "革命チェンジ：コスト３以上のアビスまたはコスト３以上のメカ（自分のコスト３以上のアビスまたはコスト３以上のメカが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\nこのクリーチャーが「革命チェンジ」によって出た時、相手の手札を１枚見ないで選び、捨てさせる。\n相手のカードはマナゾーンにタップして置かれる。",
+          "race": "メカ・アビス・セレス",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-018",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "2ab329f50aa53300a6a2bf1cc3df802568e5d87d85a3194b1975400f2d1a7b6e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-13A",
+      "canonicalId": "dm23rp4-018",
+      "name": "機深天 クロフェシー",
+      "faces": [
+        {
+          "name": "機深天 クロフェシー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "革命チェンジ：コスト３以上のアビスまたはコスト３以上のメカ（自分のコスト３以上のアビスまたはコスト３以上のメカが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\nこのクリーチャーが「革命チェンジ」によって出た時、相手の手札を１枚見ないで選び、捨てさせる。\n相手のカードはマナゾーンにタップして置かれる。",
+          "race": "メカ・アビス・セレス",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-13A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-13A.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "9d99ecac3069caeecaf7b42425b09f8ac3f09e378b9dcbc2bd9e1150c97599b8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4x-13A",
+      "canonicalId": "dm23rp4-018",
+      "name": "機深天 クロフェシー",
+      "faces": [
+        {
+          "name": "機深天 クロフェシー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "革命チェンジ：コスト３以上のアビスまたはコスト３以上のメカ（自分のコスト３以上のアビスまたはコスト３以上のメカが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\nこのクリーチャーが「革命チェンジ」によって出た時、相手の手札を１枚見ないで選び、捨てさせる。\n相手のカードはマナゾーンにタップして置かれる。",
+          "race": "メカ・アビス・セレス",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-13A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-13A.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "2d083de14e4795d02bacb99b1267c58075658512c1490ce4e1b1235ba10e4beb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-15B",
+      "canonicalId": "dm23rp4-018",
+      "name": "機深天 クロフェシー",
+      "faces": [
+        {
+          "name": "機深天 クロフェシー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "革命チェンジ：コスト３以上のアビスまたはコスト３以上のメカ（自分のコスト３以上のアビスまたはコスト３以上のメカが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\nこのクリーチャーが「革命チェンジ」によって出た時、相手の手札を１枚見ないで選び、捨てさせる。\n相手のカードはマナゾーンにタップして置かれる。",
+          "race": "メカ・アビス・セレス",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-15B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-15B.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "8a0d938215a4b3311810934773e5ffdc0ebc92c755870193e13166451f3483af",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4x-15B",
+      "canonicalId": "dm23rp4-018",
+      "name": "機深天 クロフェシー",
+      "faces": [
+        {
+          "name": "機深天 クロフェシー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "革命チェンジ：コスト３以上のアビスまたはコスト３以上のメカ（自分のコスト３以上のアビスまたはコスト３以上のメカが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\nこのクリーチャーが「革命チェンジ」によって出た時、相手の手札を１枚見ないで選び、捨てさせる。\n相手のカードはマナゾーンにタップして置かれる。",
+          "race": "メカ・アビス・セレス",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-15B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-15B.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "c5e43c0d2056799d34897b389e0ebdb79ae823c46de4b2271c80903b0f2dee78",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4x-025",
+      "canonicalId": "dm23rp4-025",
+      "name": "深巨天 ミドフェシー",
+      "faces": [
+        {
+          "name": "深巨天 ミドフェシー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "革命チェンジ：コスト３以上のジャイアントまたはコスト３以上のアビス（自分のコスト３以上のジャイアントまたはコスト３以上のアビスが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\nこのクリーチャーが「革命チェンジ」によって出た時、自分の山札の上から１枚目をマナゾーンに置く。その後、カードを１枚、自分のマナゾーンから手札に戻してもよい。\n相手のクリーチャーが攻撃する時、可能ならこのクリーチャーを攻撃する。",
+          "race": "アビス・ジャイアント・セレス",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-025",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "550a9d1428da2d2f7b613d8a16fc8434dd372c33c87c89275496d98d891eac68",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4x-040",
+      "canonicalId": "dm23rp4-040",
+      "name": "ルベル・ゴル・ゲルス",
+      "faces": [
+        {
+          "name": "ルベル・ゴル・ゲルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "革命チェンジ：コスト５以上のメカ（自分のコスト５以上のメカが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手のエレメント１つと、相手のマナゾーンにあるカードを１枚選ぶ。次の相手のターンのはじめに、それらのカードはアンタップしない。",
+          "race": "メカ・エンジェル・コマンド",
+          "powerText": "9500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-040",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "d6d6d398c6bfdc8588dea2321f7d2f15238de54d635209e85e706fd8ad23c3db",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp4-018": 4,
+      "dm23rp4-025": 4,
+      "dm23rp4-040": 4,
+      "dm23rp4x-018": 4,
+      "dm23rp4-13A": 4,
+      "dm23rp4x-13A": 4,
+      "dm23rp4-15B": 4,
+      "dm23rp4x-15B": 4,
+      "dm23rp4x-025": 4,
+      "dm23rp4x-040": 4
+    }
+  }
+}

@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6170,
-  "pendingNames": 5657,
-  "phase": 772,
+  "supportedNames": 6173,
+  "pendingNames": 5654,
+  "phase": 773,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -64,7 +64,7 @@
     },
     {
       "ability": "革命チェンジ",
-      "pendingNames": 59,
+      "pendingNames": 56,
       "examples": [
         {
           "id": "dmr21-024",
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3359,
+    "クリーチャー": 3356,
     "NEOクリーチャー": 152,
     "呪文": 809,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4132,
+    "未対応の能力文": 4129,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -9983,30 +9983,122 @@
           "check": "通常版とDM23-RP4X版の公式本文を確認。各側最大1つの選択を確定してから同時に墓地へ送り、選ばれた側だけがシールド化する処理と、置換・山札枯渇の裁定を照合するまで保留。"
         }
       ]
+    },
+    {
+      "phase": 773,
+      "cards": [
+        {
+          "id": "dm23rp4-018",
+          "name": "機深天 クロフェシー"
+        },
+        {
+          "id": "dm23rp4-025",
+          "name": "深巨天 ミドフェシー"
+        },
+        {
+          "id": "dm23rp4-040",
+          "name": "ルベル・ゴル・ゲルス"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm23rp4x-018",
+          "canonicalId": "dm23rp4-018",
+          "name": "機深天 クロフェシー"
+        },
+        {
+          "id": "dm23rp4-13A",
+          "canonicalId": "dm23rp4-018",
+          "name": "機深天 クロフェシー"
+        },
+        {
+          "id": "dm23rp4x-13A",
+          "canonicalId": "dm23rp4-018",
+          "name": "機深天 クロフェシー"
+        },
+        {
+          "id": "dm23rp4-15B",
+          "canonicalId": "dm23rp4-018",
+          "name": "機深天 クロフェシー"
+        },
+        {
+          "id": "dm23rp4x-15B",
+          "canonicalId": "dm23rp4-018",
+          "name": "機深天 クロフェシー"
+        },
+        {
+          "id": "dm23rp4x-025",
+          "canonicalId": "dm23rp4-025",
+          "name": "深巨天 ミドフェシー"
+        },
+        {
+          "id": "dm23rp4x-040",
+          "canonicalId": "dm23rp4-040",
+          "name": "ルベル・ゴル・ゲルス"
+        }
+      ],
+      "supportedNames": 6173,
+      "pendingNames": 5654,
+      "verification": {
+        "focusedPassed": 14,
+        "regressionPassed": 291,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 10,
+        "scope": "3種類10版の公式能力全文、基本情報、画像実体、再録、使用制限を照合。革命チェンジの種族・コスト条件、伏せた手札位置の選択、相手のマナのみタップイン、マナ加速と任意回収、合法な攻撃先の制限、場とマナの次のターン開始時だけのアンタップ制限、選択途中のJSON復元を検証。既存カード定義は基点と一致。",
+        "runtimeNote": "各最大10分。初回のnpm run checkは画像参照の生成前に起動したため失敗し、生成後の検証は成功。初回の回帰は対象外のCPU対戦を含んだため停止し、ログを保持。Phase 210・431・486・582・675・772の関連回帰を長時間CPU対戦抜きで実施。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dm23rp4-021",
+          "name": "魔鎧天 アカフェシー",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-021",
+          "check": "公式QA 46134・48903に沿い、攻撃先が離れる・封印される・バトルが行われない場合も、攻撃終了ステップでドローが誘発する処理を確認する。DM23-RP4X・プロモ22期も照合する。"
+        },
+        {
+          "id": "dm23rp4-012",
+          "name": "星姫械 エルナドンナ",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-012",
+          "check": "通常版とDM23-RP4X版の公式本文を確認。各ターン1回の離脱置換、複数体が同時に離れる場合とシールド回収時のS・トリガー禁止を、既存の置換と併せて検証するまで保留。"
+        },
+        {
+          "id": "dm23rp4-027",
+          "name": "助招！アルデ&パワッチ",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-027",
+          "check": "通常版とDM23-RP4X版の公式本文を確認。召喚時の任意タップを支払いに組み込み、実際にタップできた場合の軽減、エスケープとの独立性を検証するまで保留。"
+        },
+        {
+          "id": "dm23rp4-070",
+          "name": "蓄明呪文「マブシコワ・チャージャー」",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-070",
+          "check": "通常版とDM23-RP4X版の公式本文を確認。各側最大1つの選択を確定してから同時に墓地へ送り、選ばれた側だけがシールド化する処理と、置換・山札枯渇の裁定を照合するまで保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 772,
-    "nextPhase": 773,
+    "lastVerifiedPhase": 773,
+    "nextPhase": 774,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm23rp4-018",
-        "name": "機深天 クロフェシー",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-018",
-        "check": "革命チェンジ元の2種族、非公開の手札選択、相手のマナタップインを確認する。"
+        "id": "dm23rp4-021",
+        "name": "魔鎧天 アカフェシー",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-021",
+        "check": "公式QA 46134・48903に沿い、攻撃先が離れる・封印される・バトルが行われない場合も、攻撃終了ステップでドローが誘発する処理を確認する。DM23-RP4X・プロモ22期も照合する。"
       },
       {
-        "id": "dm23rp4-040",
-        "name": "ルベル・ゴル・ゲルス",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-040",
-        "check": "場のエレメントとマナのカードを1つずつ選び、次の相手ターンにそれぞれアンタップを止める裁定を確認する。"
+        "id": "dm23rp4-026",
+        "name": "バンキシーの魔盤",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-026",
+        "check": "シャッフル、公開したクリーチャーへの速攻付与と次の相手ターン開始時の手札戻しを、進化・置換・同じカードの再登場と区別して検証する。"
       },
       {
-        "id": "dm23rp4-025",
-        "name": "深巨天 ミドフェシー",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-025",
-        "check": "革命チェンジでの登場時のみ行うマナ加速と回収、攻撃先の強制条件を確認する。"
+        "id": "dm23rp4-034",
+        "name": "助招！コッピ&Machine",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-034",
+        "check": "手札破棄による召喚コストの軽減、捨てるかわりに別の処理をする場合、登場時の除去を確認する。"
       },
       {
         "id": "dm23rp4-012",
