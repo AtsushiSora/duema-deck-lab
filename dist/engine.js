@@ -963,9 +963,9 @@ function evolutionPlaced849(s,p,entrant){
   if(x===entrant||x.sealed||x.faceDown||!card(x).g849EvolutionPlaced||!isCreature(s,x))continue;
   const mode=effectiveCard(x,s).g849EvolutionPlaced;
   if(!mode)continue;
-  const op={draw:'draw',discard:'discard',ramp:'g34_Ramp',shield:'g34_ShieldTop'}[mode];
+  const op={draw:'draw',discard:'discard',ramp:'g34_Ramp',shield:'g34_ShieldTop',destroyBlocker:'g34_Target'}[mode];
   const effect=mode==='discard'?extra.task(op,1-p,x.cardId,{n:1,causedBy:p}):
-   extra.task(op,p,x.cardId,{n:1});
+   extra.task(op,p,x.cardId,mode==='destroyBlocker'?{to:'grave',filter:{blocker:true}}:{n:1});
   enqueueEffect(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:effect});
  }
 }

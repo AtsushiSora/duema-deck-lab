@@ -6177,6 +6177,21 @@ export function standardCardSpec(d,{phase=165}={}){
     continue;
    }
   }
+  if(phase>=851&&creature){
+   if(line==='自分の進化クリーチャーを他のクリーチャーの上に置いた時相手の「ブロッカー」を持つクリーチャーを1体破壊する。'){
+    spec.g849EvolutionPlaced='destroyBlocker';
+    continue;
+   }
+   if(/^このクリーチャー(?:をバトルゾーンに出した|がバトルゾーンに出た)時自分の墓地に《爆走戦鬼レッド・ライダーズ》が(?:1枚でも)?あれば相手のマナゾーンからカードを1枚選び持ち主の墓地に置く。$/.test(line)){
+    entry.push({op:'IfOwn',filter:{g273Grave:{n:1,filter:{g201ExactName:'爆走戦鬼レッド・ライダーズ'}}},
+     defs:[{op:'Select',origin:'mana',owner:'opponent',to:'grave',n:1}]});
+    continue;
+   }
+   if(line==='このクリーチャーがバトルゾーンに出た時相手は自身の山札の上から1枚目を見せその後山札の一番下に置く。そのカードのコストが5以上ならカードを3枚引く。'){
+    entry.push({op:'Vegas851'});
+    continue;
+   }
+  }
   if(phase>=850){
    if(creature&&line==='このクリーチャーが攻撃する時相手のシールドを1枚選んで見てよい。そのあとそれを元に戻す。'){
     attack.push({op:'Peek585',optional:true});

@@ -1,0 +1,178 @@
+{
+  "phase": 851,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6417,
+  "description": "進化時のブロッカー破壊、同名の墓地条件によるマナ除去、相手の山札上の公開とコスト参照に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37786/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35326/",
+    "https://dm.takaratomy.co.jp/rule/qa/31742/",
+    "https://dm.takaratomy.co.jp/rule/qa/40947/",
+    "https://dm.takaratomy.co.jp/rule/qa/43489/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31631/"
+  ],
+  "cards": [
+    {
+      "id": "dmr19-045",
+      "name": "音速 サイド",
+      "faces": [
+        {
+          "name": "音速 サイド",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の進化クリーチャーを他のクリーチャーの上に置いた時、相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+          "race": "ヒューマノイド爆/侵略者",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-045",
+      "spec": {
+        "g849EvolutionPlaced": "destroyBlocker"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "e459df6f7fb4faa03680df94b85e6a3e08b446ed2a136dac21fbbd669a9012fd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm15-050",
+      "name": "爆走戦鬼レッド・ライダーズ",
+      "faces": [
+        {
+          "name": "爆走戦鬼レッド・ライダーズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の墓地に《爆走戦鬼レッド・ライダーズ》が１枚でもあれば、相手のマナゾーンからカードを１枚選び、持ち主の墓地に置く。",
+          "race": "ヒューマノイド",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-050",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g273Grave": {
+                "n": 1,
+                "filter": {
+                  "g201ExactName": "爆走戦鬼レッド・ライダーズ"
+                }
+              }
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "mana",
+                "owner": "opponent",
+                "to": "grave",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm15-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "06c665231ebfc213805c11a1d9ad58ecf8f869ee3668a6caec29e0563e0638df",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr17-018",
+      "name": "奇天烈 ベガス",
+      "faces": [
+        {
+          "name": "奇天烈 ベガス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、相手は自身の山札の上から１枚目を見せ、その後、山札の一番下に置く。そのカードのコストが５以上なら、カードを３枚引く。",
+          "race": "マジック・コマンド/侵略者",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-018",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Vegas851"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "d353e1a643ede2858dc75a6350fc2630f378316bcec7bed84f85e68ebfb79d76",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex08-094",
+      "canonicalId": "dm15-050",
+      "name": "爆走戦鬼レッド・ライダーズ",
+      "faces": [
+        {
+          "name": "爆走戦鬼レッド・ライダーズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の墓地に《爆走戦鬼レッド・ライダーズ》があれば、相手のマナゾーンからカードを１枚選び、持ち主の墓地に置く。",
+          "race": "ヒューマノイド",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-094",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-094.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "21facd7008755a6772e9148cc7538ea8074b792714ee91511db1fc1311ba5ae8",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr19-045": 4,
+      "dm15-050": 4,
+      "dmr17-018": 4,
+      "dmex08-094": 4
+    }
+  }
+}

@@ -187097,24 +187097,108 @@
       "g849EvolutionPlaced": "shield",
       "supportBatch": "phase-850",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr19-045",
+      "name": "音速 サイド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ヒューマノイド爆/侵略者",
+      "text": "自分の進化クリーチャーを他のクリーチャーの上に置いた時、相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-045",
+      "limit": 4,
+      "g849EvolutionPlaced": "destroyBlocker",
+      "supportBatch": "phase-851",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm15-050",
+      "name": "爆走戦鬼レッド・ライダーズ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ヒューマノイド",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の墓地に《爆走戦鬼レッド・ライダーズ》が１枚でもあれば、相手のマナゾーンからカードを１枚選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-050",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g273Grave": {
+              "n": 1,
+              "filter": {
+                "g201ExactName": "爆走戦鬼レッド・ライダーズ"
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "owner": "opponent",
+              "to": "grave",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-851",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-018",
+      "name": "奇天烈 ベガス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "マジック・コマンド/侵略者",
+      "text": "このクリーチャーがバトルゾーンに出た時、相手は自身の山札の上から１枚目を見せ、その後、山札の一番下に置く。そのカードのコストが５以上なら、カードを３枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-018",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Vegas851"
+        }
+      ],
+      "supportBatch": "phase-851",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 850,
+    "phase": 851,
     "checkedAt": "2026-11-11",
-    "baseCount": 6413,
-    "newEffectCards": 4,
+    "baseCount": 6417,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6417,
+    "totalCount": 6420,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
       "https://dm.takaratomy.co.jp/rule/qa_old/37786/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37378/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37424/",
-      "https://dm.takaratomy.co.jp/rule/qa/43917/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31639/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35326/",
+      "https://dm.takaratomy.co.jp/rule/qa/31742/",
+      "https://dm.takaratomy.co.jp/rule/qa/40947/",
+      "https://dm.takaratomy.co.jp/rule/qa/43489/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31631/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -202157,6 +202241,27 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37786/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37378/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37950/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31639/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 850,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6413,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6417,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37786/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37378/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37424/",
+          "https://dm.takaratomy.co.jp/rule/qa/43917/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31639/"
         ],
         "next": [

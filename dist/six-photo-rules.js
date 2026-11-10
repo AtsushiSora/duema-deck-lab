@@ -1500,6 +1500,24 @@ export function createSixPhotoRules(api){
   }
   break;
  }
+ case'g34_Vegas851':{
+  const owner=1-t.p;
+  const [uid]=look(s,{...t,p:owner,n:1,public:true});
+  const index=opp.deck.findIndex(x=>x.uid===uid);
+  if(index<0)break;
+  const [top]=opp.deck.splice(index,1);
+  release(s,owner,uid);
+  // Rotate within the same zone, including when this is the library's only card.
+  opp.deck.push(top);
+  const facesByCost=new Map(faces(api.zoneCard(s,owner,top,'deck')).map(c=>[c.type==='cell'?0:c.cost,c]));
+  if(facesByCost.size>1){
+   choice(s,{...t,op:'g34_VegasCost851'},'公開したカードのどちらのコストを参照する？',
+    [...facesByCost].map(([n,c])=>opt(c.name+'（コスト'+n+'）',n,n==='∞'||n>=5?own.deck.length>3?10:-10:0,top.cardId)));
+  }else if([...facesByCost.keys()].some(n=>n==='∞'||n>=5)){
+   start(s,t,[{op:'Draw',n:3}]);
+  }
+  break;
+ }
  case'g34_InspectHand':{
   const hand=opp.hand;
   if(!hand.length){api.log(s,t.p,'look',card(t.source).name+'：相手の手札はありません',{cardId:t.source});break;}
@@ -2782,6 +2800,7 @@ export function createSixPhotoRules(api){
   if(ids.length)api.discardSelected(s,t.p,ids,t.source,t.controller);
   break;
  }
+ case'g34_VegasCost851':if(v==='∞'||v>=5)start(s,t,[{op:'Draw',n:3}]);break;
  case'g34_InspectHand':
   if(t.g714ToMana){
    const opponent=s.players[1-t.p],y=opponent.hand.find(x=>x.uid===v);
