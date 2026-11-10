@@ -187359,23 +187359,114 @@
       ],
       "supportBatch": "phase-853",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm36-089",
+      "name": "墓穴怪人ガンジンメン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "デビルマスク",
+      "text": "このクリーチャーをバトルゾーンに出した時、(E・ソウル)クリーチャーを１体、自分の墓地から手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-089",
+      "limit": 4,
+      "g558Souls": [
+        "E"
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "g853Soul": "E"
+          },
+          "title": "墓地から手札に戻すE・ソウルクリーチャーを選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-854",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23-031",
+      "name": "急所狙いのドン・バット",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "ドリームメイト",
+      "text": "このクリーチャーをバトルゾーンに出した時、コスト３以下のセイント・ヘッド、ディープ・マリーン、ブレイブ・スピリット、キカイヒーローの中から１体を破壊してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-031",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "to": "grave",
+          "optional": true,
+          "filter": {
+            "max": 3,
+            "raceAny": [
+              "セイント・ヘッド",
+              "ディープ・マリーン",
+              "ブレイブ・スピリット",
+              "キカイヒーロー"
+            ]
+          },
+          "title": "破壊するコスト3以下の対象クリーチャーを選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-854",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-012",
+      "name": "虹守の精霊龍 ミランダカー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3500,
+      "race": "エンジェル・ドラゴン",
+      "text": "相手がバトルゾーンにあるクリーチャーを選ぶ時、自分の多色クリーチャーは選べない。（ただし、そのクリーチャーを攻撃またはブロックしてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-012",
+      "limit": 4,
+      "g608Protect": {
+        "multi": true
+      },
+      "supportBatch": "phase-854",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 853,
+    "phase": 854,
     "checkedAt": "2026-11-11",
-    "baseCount": 6423,
+    "baseCount": 6426,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6426,
+    "totalCount": 6429,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36020/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37074/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35682/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37947/",
-      "https://dm.takaratomy.co.jp/rule/qa/46522/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37633/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316640/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -202480,6 +202571,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/42981/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31641/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31637/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 853,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6423,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6426,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36020/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37074/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35682/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37947/",
+          "https://dm.takaratomy.co.jp/rule/qa/46522/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

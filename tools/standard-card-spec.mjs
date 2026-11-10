@@ -3433,6 +3433,17 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=854&&f.typeText==='クリーチャー'){
+  if(d.id==='dm36-089'&&compact363==='このクリーチャーをバトルゾーンに出した時(E・ソウル)クリーチャーを1体自分の墓地から手札に戻してもよい。')
+   return {g558Souls:['E'],effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'grave',to:'hand',n:1,optional:true,
+    filter:{creature:true,g853Soul:'E'},title:'墓地から手札に戻すE・ソウルクリーチャーを選ぶ（任意）'}]};
+  if(compact363==='このクリーチャーをバトルゾーンに出した時コスト3以下のセイント・ヘッドディープ・マリーンブレイブ・スピリットキカイヒーローの中から1体を破壊してもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',anyOwner:true,to:'grave',optional:true,
+    filter:{max:3,raceAny:['セイント・ヘッド','ディープ・マリーン','ブレイブ・スピリット','キカイヒーロー']},
+    title:'破壊するコスト3以下の対象クリーチャーを選ぶ（任意）'}]};
+  if(compact363==='相手がバトルゾーンにあるクリーチャーを選ぶ時自分の多色クリーチャーは選べない。(ただしそのクリーチャーを攻撃またはブロックしてもよい)')
+   return {g608Protect:{multi:true}};
+ }
  if(phase>=853){
   const effect=g34Tasks=>({effect:'sixPhoto',g34Tasks});
   if(f.typeText==='呪文'&&compact363==='自分の手札をすべて山札に加えてシャッフルしカードを4枚引く。その後コスト7以下の進化ではないコマンド・ドラゴンを1体自分の手札からバトルゾーンに出してもよい。')
