@@ -180286,23 +180286,127 @@
       ],
       "supportBatch": "phase-785",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp1-019",
+      "name": "機怪人形ガチャック2",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 2000,
+      "race": "デスパペット",
+      "text": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のアンタップしているクリーチャーを１体選び、破壊する。その後、選んだクリーチャー以下のコストを持つクリーチャーを１体、自分の墓地から出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-019",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "untapped": true
+          },
+          "g786ReviveAtCost": true
+        }
+      ],
+      "supportBatch": "phase-786",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp4-010",
+      "name": "ペテンズ・ゲート",
+      "civ": "光/水/闇",
+      "civilizations": [
+        "光",
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 8,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー\n相手のクリーチャーをすべてタップする。自分はカードを１枚引き、自分のシールドをすべてブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-010",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "TapAll"
+        },
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Break497",
+          "owner": "self",
+          "n": "all"
+        }
+      ],
+      "supportBatch": "phase-786",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp2-076",
+      "name": "ROYAL-減亜5",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ドリームメイト/テクノ・サムライ",
+      "text": "このクリーチャーが出た時、自分の手札を１枚、タップしてマナゾーンに置いてもよい。それがNEOクリーチャーなら、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-076",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "to": "mana",
+          "n": 1,
+          "optional": true,
+          "tapped": true,
+          "g182HandMana": true,
+          "g654MovedFilter": {
+            "g556Neo": true
+          },
+          "g583OnMove": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-786",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 785,
+    "phase": 786,
     "checkedAt": "2026-11-10",
-    "baseCount": 6208,
+    "baseCount": 6211,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6211,
+    "totalCount": 6214,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/45585/",
-      "https://dm.takaratomy.co.jp/rule/qa/45121/",
       "https://dm.takaratomy.co.jp/rule/qa/45122/",
-      "https://dm.takaratomy.co.jp/rule/qa/45123/",
-      "https://dm.takaratomy.co.jp/rule/qa/31530/"
+      "https://dm.takaratomy.co.jp/rule/qa/49146/",
+      "https://dm.takaratomy.co.jp/rule/qa/42947/",
+      "https://dm.takaratomy.co.jp/rule/qa/46525/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -194001,6 +194105,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/44383/",
           "https://dm.takaratomy.co.jp/rule/qa/43056/",
           "https://dm.takaratomy.co.jp/rule/qa/43486/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 785,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6208,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6211,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/45585/",
+          "https://dm.takaratomy.co.jp/rule/qa/45121/",
+          "https://dm.takaratomy.co.jp/rule/qa/45122/",
+          "https://dm.takaratomy.co.jp/rule/qa/45123/",
+          "https://dm.takaratomy.co.jp/rule/qa/31530/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

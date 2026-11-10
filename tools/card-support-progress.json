@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6211,
-  "pendingNames": 5616,
-  "phase": 785,
+  "supportedNames": 6214,
+  "pendingNames": 5613,
+  "phase": 786,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3326,
+    "クリーチャー": 3324,
     "NEOクリーチャー": 152,
-    "呪文": 801,
+    "呪文": 800,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 60,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1247,
-    "未対応の能力文": 4107,
+    "未対応の能力文": 4104,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -10815,29 +10815,134 @@
           ]
         }
       ]
+    },
+    {
+      "phase": 786,
+      "cards": [
+        {
+          "id": "dm24rp1-019",
+          "name": "機怪人形ガチャック2"
+        },
+        {
+          "id": "dm25rp4-010",
+          "name": "ペテンズ・ゲート"
+        },
+        {
+          "id": "dm25rp2-076",
+          "name": "ROYAL-減亜5"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm24ex3-019",
+          "canonicalId": "dm24rp1-019",
+          "name": "機怪人形ガチャック2"
+        },
+        {
+          "id": "dm24ex4-046",
+          "canonicalId": "dm24rp1-019",
+          "name": "機怪人形ガチャック2"
+        },
+        {
+          "id": "dm24ex4-PR006",
+          "canonicalId": "dm24rp1-019",
+          "name": "機怪人形ガチャック2"
+        },
+        {
+          "id": "spdeck13-010",
+          "canonicalId": "dm24rp1-019",
+          "name": "機怪人形ガチャック2"
+        },
+        {
+          "id": "dm25rp4-Sec15",
+          "canonicalId": "dm25rp4-010",
+          "name": "ペテンズ・ゲート"
+        },
+        {
+          "id": "dm25ex3-rp4010",
+          "canonicalId": "dm25rp4-010",
+          "name": "ペテンズ・ゲート"
+        },
+        {
+          "id": "dm25ex3-rp4Sec15",
+          "canonicalId": "dm25rp4-010",
+          "name": "ペテンズ・ゲート"
+        }
+      ],
+      "supportedNames": 6214,
+      "pendingNames": 5613,
+      "verification": {
+        "focusedPassed": 11,
+        "regressionPassed": 199,
+        "regressionFailed": 1,
+        "existingRegressionFailures": [
+          {
+            "test": "UltraSaver protects another Mecha from bounce by destroying the chosen saver and can replace its own bounce",
+            "baseline": "58e552c8",
+            "detail": "手札戻しの置換で replaceUltra が提示されない。同じアサーションの失敗を変更前にも再現。"
+          }
+        ],
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 10,
+        "scope": "3種類と再録7版の能力、画像10点、殿堂制限なしを公式照合。ガチャック2は破壊置換前の対象のコストを参照。ペテンズ・ゲートはシールドを同時にブレイクし、新たなS・トリガーを先に処理。ROYAL-減亜5は手札からのタップマナとNEO・G-NEOの条件付きドローを検証。既存ID・再録の解決、デッキ検証、途中の選択の保存復元も確認。",
+        "runtimeNote": "各最大10分。Phase 278、497、583、654、785およびメカの関連回帰。初回の回帰は長時間のランダム対戦を含んだため中断・合否未確認。対象を絞った回帰では長時間CPU対戦を明示的に除外。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dm24rp1-067",
+          "name": "解盗プーパン",
+          "reason": "シールド回収は登場時の効果ではなく召喚コストの一部。火3マナの支払いと合わせた召喚前の処理、G・ストライクの許可とS・トリガーの禁止、束や移動置換を検証できるまで保留。",
+          "rulings": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-067",
+            "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+          ]
+        },
+        {
+          "id": "dm24rp1-001",
+          "name": "回帰の守護者タテフ・エール",
+          "reason": "このクリーチャーによる各ブレイクをシールド化に置換する。攻撃以外の効果でのブレイク、自分のシールド、置換の優先順とシールド化できない場合を総合ルール609.4・609.8・701.14に沿って検証できるまで保留。",
+          "rulings": [
+            "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-001",
+            "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 785,
-    "nextPhase": 786,
+    "lastVerifiedPhase": 786,
+    "nextPhase": 787,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm24rp1-019",
-        "name": "機怪人形ガチャック2",
-        "check": "アンタップしている相手クリーチャーの破壊と、選んだクリーチャーのコスト以下の墓地展開を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-019"
+        "id": "dm24ex4-038",
+        "name": "轟血鬼 ザ・ヴァンプ",
+        "check": "シールド回収時のS・トリガー禁止、離脱置換、条件付き破壊の既存処理を公式裁定と照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-038"
+      },
+      {
+        "id": "dm24ex4-069",
+        "name": "轟血鬼 ザ・ナイト",
+        "check": "シールドが離れたターンを参照する条件と既存のシールド移動履歴を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-069"
+      },
+      {
+        "id": "dm24ex4-050",
+        "name": "幻双の絆",
+        "check": "光のエンジェル・コマンドと闇のデーモン・コマンドのエレメント展開を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-050"
       },
       {
         "id": "dm24rp1-067",
         "name": "解盗プーパン",
-        "check": "任意のシールド回収と火3マナの支払い順、S・トリガー禁止、関連裁定を既存の代替召喚経路と照合する。",
+        "check": "シールド回収は登場時の効果ではなく召喚コストの一部。火3マナの支払いと合わせた召喚前の処理、G・ストライクの許可とS・トリガーの禁止、束や移動置換を検証できるまで保留。",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-067"
       },
       {
         "id": "dm24rp1-001",
         "name": "回帰の守護者タテフ・エール",
-        "check": "W・ブレイカーのブレイク置換でシールド化する回数と離脱時のシールド化を公式裁定と照合する。",
+        "check": "このクリーチャーによる各ブレイクをシールド化に置換する。攻撃以外の効果でのブレイク、自分のシールド、置換の優先順とシールド化できない場合を総合ルール609.4・609.8・701.14に沿って検証できるまで保留。",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-001"
       },
       {

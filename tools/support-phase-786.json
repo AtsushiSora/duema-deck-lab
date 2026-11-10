@@ -1,0 +1,419 @@
+{
+  "phase": 786,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6211,
+  "description": "アンタップしている相手クリーチャーの破壊とコスト参照、すべての自分のシールドの同時ブレイク、NEOを判定する手札からのタップマナ配置に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/45122/",
+    "https://dm.takaratomy.co.jp/rule/qa/49146/",
+    "https://dm.takaratomy.co.jp/rule/qa/42947/",
+    "https://dm.takaratomy.co.jp/rule/qa/46525/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp1-019",
+      "name": "機怪人形ガチャック2",
+      "faces": [
+        {
+          "name": "機怪人形ガチャック2",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のアンタップしているクリーチャーを１体選び、破壊する。その後、選んだクリーチャー以下のコストを持つクリーチャーを１体、自分の墓地から出す。",
+          "race": "デスパペット",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-019",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "untapped": true
+            },
+            "g786ReviveAtCost": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "7f7b07e1c130d8335ae0febf2cd809671dddf3f9aaa5df614c170a0a1e4d2f81",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp4-010",
+      "name": "ペテンズ・ゲート",
+      "faces": [
+        {
+          "name": "ペテンズ・ゲート",
+          "typeText": "呪文",
+          "civilizationText": "光/水/闇",
+          "civilizations": [
+            "光",
+            "水",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーをすべてタップする。自分はカードを１枚引き、自分のシールドをすべてブレイクする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-010",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Break497",
+            "owner": "self",
+            "n": "all"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "1ae5d00adb15603c71a42c9599e925d3b8a2eb84c4c777b6ca7af2a6be9e291e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp2-076",
+      "name": "ROYAL-減亜5",
+      "faces": [
+        {
+          "name": "ROYAL-減亜5",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分の手札を１枚、タップしてマナゾーンに置いてもよい。それがNEOクリーチャーなら、カードを１枚引く。",
+          "race": "ドリームメイト/テクノ・サムライ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp2-076",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "to": "mana",
+            "n": 1,
+            "optional": true,
+            "tapped": true,
+            "g182HandMana": true,
+            "g654MovedFilter": {
+              "g556Neo": true
+            },
+            "g583OnMove": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp2-076.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "44f98058baef2fd15d1a4be689f61c77a9717dc7b08b36b7dadc09868831c2ae",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex3-019",
+      "canonicalId": "dm24rp1-019",
+      "name": "機怪人形ガチャック2",
+      "faces": [
+        {
+          "name": "機怪人形ガチャック2",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のアンタップしているクリーチャーを１体選び、破壊する。その後、選んだクリーチャー以下のコストのクリーチャーを１体、自分の墓地から出す。",
+          "race": "デスパペット",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-019",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "1913e87fd71b2a96e29a04351abd1f039a8db25cae09c5b980ffdff206e4aacb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-046",
+      "canonicalId": "dm24rp1-019",
+      "name": "機怪人形ガチャック2",
+      "faces": [
+        {
+          "name": "機怪人形ガチャック2",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のアンタップしているクリーチャーを１体選び、破壊する。その後、選んだクリーチャー以下のコストのクリーチャーを１体、自分の墓地から出す。",
+          "race": "デスパペット",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-046",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "01781b85080f0f879b2dd115bb665cd0ac27a83cced6e8a3544ed1dee4b03f73",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-PR006",
+      "canonicalId": "dm24rp1-019",
+      "name": "機怪人形ガチャック2",
+      "faces": [
+        {
+          "name": "機怪人形ガチャック2",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のアンタップしているクリーチャーを１体選び、破壊する。その後、選んだクリーチャー以下のコストのクリーチャーを１体、自分の墓地から出す。",
+          "race": "デスパペット",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-PR006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-PR006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "f8497c7e8e3a9524b86b9a8adda00a0ccd091ffbba9a4ffdd7c8d7519bafa23d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "spdeck13-010",
+      "canonicalId": "dm24rp1-019",
+      "name": "機怪人形ガチャック2",
+      "faces": [
+        {
+          "name": "機怪人形ガチャック2",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（このカードを自分のシールドゾーンから手札に加える時、コストを支払わずにすぐ実行してもよい）\nこのクリーチャーが出た時、相手のアンタップしているクリーチャーを１体選び、破壊する。その後、選んだクリーチャー以下のコストのクリーチャーを１体、自分の墓地から出す。",
+          "race": "デスパペット",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=spdeck13-010",
+      "manaReference": {
+        "id": "dm24rp1-019",
+        "name": "機怪人形ガチャック2",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-019",
+        "faces": [
+          {
+            "name": "機怪人形ガチャック2",
+            "typeText": "クリーチャー",
+            "civilizationText": "闇",
+            "civilizations": [
+              "闇"
+            ],
+            "cost": 6,
+            "costText": "6",
+            "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のアンタップしているクリーチャーを１体選び、破壊する。その後、選んだクリーチャー以下のコストを持つクリーチャーを１体、自分の墓地から出す。",
+            "race": "デスパペット",
+            "powerText": "2000",
+            "missingFields": []
+          }
+        ],
+        "status": "complete",
+        "verification": {
+          "checkedAt": "2026-11-10",
+          "sha256": "7f7b07e1c130d8335ae0febf2cd809671dddf3f9aaa5df614c170a0a1e4d2f81",
+          "facesMatched": true,
+          "manaValue": 1
+        }
+      },
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "untapped": true
+            },
+            "g786ReviveAtCost": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/spdeck13-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "f35651605c6e422e738779b7bedc48091173ef92a47d7010b49ebea42c0ada3c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp4-Sec15",
+      "canonicalId": "dm25rp4-010",
+      "name": "ペテンズ・ゲート",
+      "faces": [
+        {
+          "name": "ペテンズ・ゲート",
+          "typeText": "呪文",
+          "civilizationText": "光/水/闇",
+          "civilizations": [
+            "光",
+            "水",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーをすべてタップする。自分はカードを１枚引き、自分のシールドをすべてブレイクする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-Sec15",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-Sec15.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "22f7d57ce76746f0b941c6c591409373107275520167f449125a36b4bb5dcc71",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex3-rp4010",
+      "canonicalId": "dm25rp4-010",
+      "name": "ペテンズ・ゲート",
+      "faces": [
+        {
+          "name": "ペテンズ・ゲート",
+          "typeText": "呪文",
+          "civilizationText": "光/水/闇",
+          "civilizations": [
+            "光",
+            "水",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーをすべてタップする。自分はカードを１枚引き、自分のシールドをすべてブレイクする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp4010",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-rp4010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "f186728972126c27b2c81cb05cbe5057c42fde9f53a0e447ab8326e7b7208593",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex3-rp4Sec15",
+      "canonicalId": "dm25rp4-010",
+      "name": "ペテンズ・ゲート",
+      "faces": [
+        {
+          "name": "ペテンズ・ゲート",
+          "typeText": "呪文",
+          "civilizationText": "光/水/闇",
+          "civilizations": [
+            "光",
+            "水",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー\n相手のクリーチャーをすべてタップする。自分はカードを１枚引き、自分のシールドをすべてブレイクする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp4Sec15",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-rp4Sec15.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "1456da24be714ca6326ce3cf568915f2cde70d84da1fffafb397ed6dc56c8b16",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp1-019": 4,
+      "dm25rp4-010": 4,
+      "dm25rp2-076": 4,
+      "dm24ex3-019": 4,
+      "dm24ex4-046": 4,
+      "dm24ex4-PR006": 4,
+      "spdeck13-010": 4,
+      "dm25rp4-Sec15": 4,
+      "dm25ex3-rp4010": 4,
+      "dm25ex3-rp4Sec15": 4
+    }
+  }
+}

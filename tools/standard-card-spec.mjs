@@ -2507,6 +2507,22 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=786&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const trigger='S・トリガーS・トリガー';
+  const gacha='このクリーチャーが出た時相手のアンタップしているクリーチャーを1体選び破壊する。その後選んだクリーチャー以下のコスト';
+  if(f.typeText==='クリーチャー'&&[
+   trigger+gacha+'を持つクリーチャーを1体自分の墓地から出す。',
+   trigger+gacha+'のクリーチャーを1体自分の墓地から出す。',
+   trigger+'(このカードを自分のシールドゾーンから手札に加える時コストを支払わずにすぐ実行してもよい)'+gacha+'のクリーチャーを1体自分の墓地から出す。'
+  ].includes(text))
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'grave',filter:{untapped:true},g786ReviveAtCost:true}]};
+  if(f.typeText==='呪文'&&text===trigger+'相手のクリーチャーをすべてタップする。自分はカードを1枚引き自分のシールドをすべてブレイクする。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'TapAll'},{op:'Draw',n:1},{op:'Break497',owner:'self',n:'all'}]};
+  if(f.typeText==='クリーチャー'&&text==='このクリーチャーが出た時自分の手札を1枚タップしてマナゾーンに置いてもよい。それがNEOクリーチャーならカードを1枚引く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'hand',to:'mana',n:1,optional:true,tapped:true,g182HandMana:true,
+    g654MovedFilter:{g556Neo:true},g583OnMove:[{op:'Draw',n:1}]}]};
+ }
  if(phase>=785&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'&&f.abilityText.split('\n').length===2){
   const text=normalize(f.abilityText);
   const draw='S・トリガーS・トリガーカードを1枚引く。その後';

@@ -1520,8 +1520,8 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
   const host=t.g747CreatureBreak?sourceHost474(s,t)?.x:null;
   if(t.g747CreatureBreak&&(!host||host.sealed||!api.isCreature(s,host)))break;
   const c=host&&effective(host,s);
-  const n=Math.min(t.n+(c?.extraBreak||0),shields.length);
-  const selected=(t.selected||[]).filter(uid=>shields.some(y=>y.uid===uid));
+  const n=t.n==='all'?shields.length:Math.min(t.n+(c?.extraBreak||0),shields.length);
+  const selected=t.n==='all'?shields.map(y=>y.uid):(t.selected||[]).filter(uid=>shields.some(y=>y.uid===uid));
   if(selected.length<n)choice(s,{...t,selected},
    'ブレイクする'+(chooser===owner?'自分':'相手')+'のシールドを'+n+'つ選ぶ（'+selected.length+'つ選択済み）',
    shields.flatMap((y,i)=>selected.includes(y.uid)?[]:[opt('シールド'+(i+1),y.uid,10)]),chooser);
@@ -2300,6 +2300,14 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
   if(t.g780ReleaseHyper){
    const y=v&&own.battle.find(y=>y.uid===v.uid);
    if(y)releaseHyper781(s,t.p,y);
+   break;
+  }
+  if(t.g786ReviveAtCost){
+   const y=v&&s.players[v.p].battle.find(y=>y.uid===v.uid);
+   if(!y)break;
+   const max=cost(effective(y,s));
+   move(s,[{player:v.p,uid:y.uid,to:'grave',destroy:true,controller:t.p}]);
+   start(s,t,[{op:'Select',origin:'grave',n:1,deploy:true,filter:{creature:true,...(max===Infinity?{}:{max})}}]);
    break;
   }
   if(v){const y=s.players[v.p].battle.find(y=>y.uid===v.uid);if(y){if(t.g503Stack){start(s,t,[{op:t.g503Stack==='draw'?'DrawUpTo':'Ramp',n:api.allLayers(y).length},...(t.after||[])]);break;}if(t.g467Destinations){put(s,{...t,op:'g34_TargetDestination467',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g235TapOrUntap){put(s,{...t,op:'g34_TapState235',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g565AttackLock)(y.g35NoAttack??=[]).push({turn:s.turn});if(t.g569WeakerBlock)(s.extLimits??=[]).push({kind:'g569WeakerBlock',ref:{uid:y.uid,incarnation:y.incarnation||0},spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1)),expires:'end',who:s.active});if(t.g567PlayerStop)stopPlayerAttack567(s,t,y);if(t.g190Freeze)freeze(s,t,v.p,y);if(t.g546Force)force546(s,t,v.p,y);if(t.g547OwnerShield)put(s,task('g34_ShieldTop',v.p,t.source,{n:1,controller:t.controller??t.p}));if(t.g631MillCost){const amount=cost(effective(y,s));start(s,t,[{op:'Mill',n:Number.isFinite(amount)?amount:'∞',...(t.g638OptionalMill?{optional:true}:{})}]);}if(t.to)move(s,[{player:v.p,uid:v.uid,to:t.to,destroy:t.to==='grave',tapped:!!t.tapped,...(t.faceUp?{faceUp:true}:{})}]);if(t.tap)api.tap(s,v.p,y);if(t.g676TapNames)tapNames676(s,y);if(t.g291UntapUntilSelf)(y.tapLocks??=[]).push(t.p);if(t.untap&&api.canUntap(y)){const was=y.tapped;y.tapped=false;if(was)combined.untapped(s,v.p,y);}if(t.lock){if(t.spell)(y.g170StartFreeze??=[]).push({spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});else y.skipUntap=true;}if(t.power)(y.powerModifiers??=[]).push({amount:t.power,expires:t.g521UntilStart?'start':'end',who:t.g521UntilStart?t.p:s.active,...(t.g337PowerAttacker?{attackOnly:true,grantedAbility:true}:{}),spellSource:t.spell? t.source:undefined,spellCost:t.spell?cost(faces(card(t.source)).at(-1)):undefined});if(t.grant)applyGrant(s,t,y);if(t.g465DestroySafe)(s.extLimits??=[]).push({kind:'g409AttackEffect',player:v.p,ref:{uid:y.uid,incarnation:y.incarnation||0},source:t.source,effect:'destroySafe',expires:t.g465DestroySafe,who:t.g465DestroySafe==='start'?t.p:s.active});if(t.g455ExtraBreak)(s.extLimits??=[]).push({kind:'g412ExtraBreak',player:v.p,ref:{uid:y.uid,incarnation:y.incarnation||0},source:t.source,amount:t.g455ExtraBreak,expires:'end',who:s.active});if(t.seal)api.seal(s,v.p,[y.uid]);if(t.g587AfterSelection)start(s,t,t.after);}}if(t.after&&!t.g587AfterSelection)start(s,t,t.after);break;
