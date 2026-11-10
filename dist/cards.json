@@ -189141,22 +189141,126 @@
       ],
       "supportBatch": "phase-868",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-104",
+      "name": "夢うつつラッコルさん",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ドリームメイト",
+      "text": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにあるクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは+4000され、相手プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-104",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "power": 4000,
+          "g567PlayerStop": "end",
+          "spell": false
+        }
+      ],
+      "supportBatch": "phase-869",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-046",
+      "name": "落雷のステンド・グラス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある相手のクリーチャーを２体まで選び、タップする。その後、自分の手札にあるコスト７以上のクリーチャーを１体見せてもよい。そうした場合、選ばれたクリーチャーは、次の相手のターンのはじめにアンタップされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-046",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g193Tap": true,
+          "g869RevealAfterTap": true,
+          "title": "タップする相手のクリーチャーを2体まで選ぶ",
+          "after": [
+            {
+              "op": "HandReveal462",
+              "max": 1,
+              "filter": {
+                "g228Face": {
+                  "type": "creature",
+                  "min": 7
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-869",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-094",
+      "name": "ブチクダキ・ハンマー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "相手は自身の手札を１枚選んで捨てる。こうして捨てたカードが呪文であれば、自分はこの呪文を唱えた後で、墓地に置くかわりに手札に加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-094",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "n": 1,
+          "g869ReturnOnSpell": true
+        }
+      ],
+      "supportBatch": "phase-869",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 868,
+    "phase": 869,
     "checkedAt": "2026-11-11",
-    "baseCount": 6468,
+    "baseCount": 6471,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6471,
+    "totalCount": 6474,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36530/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37527/",
-      "https://dm.takaratomy.co.jp/rule/qa/34224/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31654/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36624/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36884/",
+      "https://dm.takaratomy.co.jp/rule/qa/42082/",
+      "https://dm.takaratomy.co.jp/rule/qa/31877/",
+      "https://dm.takaratomy.co.jp/rule/qa/45440/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -204573,6 +204677,25 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36527/",
           "https://dm.takaratomy.co.jp/rule/qa/34191/",
           "https://dm.takaratomy.co.jp/rule/qa/41285/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 868,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6468,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6471,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36530/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37527/",
+          "https://dm.takaratomy.co.jp/rule/qa/34224/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31654/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

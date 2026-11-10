@@ -3433,6 +3433,20 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=869){
+  if(d.id==='dmr05-104'&&f.typeText==='クリーチャー'&&compact363===
+   'S・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)このクリーチャーをバトルゾーンに出した時バトルゾーンにあるクリーチャーを1体選ぶ。そのターンそのクリーチャーのパワーは+4000され相手プレイヤーを攻撃できない。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',anyOwner:true,power:4000,g567PlayerStop:'end',spell:false}]};
+  if(d.id==='dmr05-046'&&f.typeText==='呪文'&&compact363===
+   'バトルゾーンにある相手のクリーチャーを2体まで選びタップする。その後自分の手札にあるコスト7以上のクリーチャーを1体見せてもよい。そうした場合選ばれたクリーチャーは次の相手のターンのはじめにアンタップされない。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Select',owner:'opponent',origin:'battle',n:2,optional:true,
+    filter:{creature:true},g173Targets:true,g193Select:true,g193Tap:true,g869RevealAfterTap:true,
+    title:'タップする相手のクリーチャーを2体まで選ぶ',
+    after:[{op:'HandReveal462',max:1,filter:{g228Face:{type:'creature',min:7}}}]}]};
+  if(d.id==='dmr05-094'&&f.typeText==='呪文'&&compact363===
+   '相手は自身の手札を1枚選んで捨てる。こうして捨てたカードが呪文であれば自分はこの呪文を唱えた後で墓地に置くかわりに手札に加える。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Discard',n:1,g869ReturnOnSpell:true}]};
+ }
  if(phase>=868&&f.typeText==='呪文'){
   const prefix='マナゾーンに置く時このカードはタップして置く。次のうちいずれかひとつを選ぶ。バトルゾーンに自分の多色クリーチャーがある場合は両方を選んでもよい。';
   const modal=(first,second)=>({effect:'sixPhoto',g34Tasks:[{op:'Choose',g184Modes:true,modes:[

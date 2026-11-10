@@ -656,7 +656,7 @@ export function createSixPhotoRules(api){
   if((t.selected?.length||0)>=n||!rows.length){if(t.selected?.length)finishSelect(s,t);else if(t.after)start(s,t,t.after);return;}const scores550=t.g550CostBudget===undefined?null:budgetScores550(s,t,rows,n);choice(s,t,t.title||('カードを'+n+'枚'+(t.optional?'まで':'')+'選ぶ'),[...rows.map(({x,origin,p})=>opt((t.anyOwner?(p===t.p?'自分：':'相手：'):'')+(t.zones?.length>1?({mana:'マナ：',grave:'墓地：',hand:'手札：'}[origin]||''):'')+(x.faceDown?'裏向きのカード':card(x).name)+((t.g210ManaUntap||t.g806MultiUntap)?(x.tapped?(api.canUntap(x)?'（タップ中）':'（タップ中・アンタップ不可）'):'（アンタップ）'):''),{uid:x.uid,origin,p,...(scores550?{cost550:cost(api.zoneCard(s,p,x,origin)),serial550:x.zoneSerial||0}:{})},scores550?scores550.get(x.uid):t.g583DrawMoved?contractScore583(s.players[p],x,t.selected.length):t.g405Search&&origin==='deck'&&s.players[t.p].deck.length<=1?-1000:(t.g210ManaUntap||t.g806MultiUntap)?(x.tapped&&api.canUntap(x)?25:-1):x.faceDown?15:t.g530Ids&&origin==='deck'&&(t.selected?.length||0)+1>=s.players[t.p].deck.length?-1000:t.score??(t.g193Select?selectedBattleScore(s,t,x,candidates,n):t.g187OwnPick?-cost(card(x))-api.power(x,false,s)/10000:t.g182HandMana||t.g183Return||t.g184ManaLoss?15-cost(card(x)):t.to==='grave'?-cost(card(x)):15+cost(card(x))),x.faceDown?null:x.cardId)),...(t.optional&&t.selected.length>=(t.minimum??0)&&(!t.g626DistinctEvolution||!t.selected.length)?[opt(t.g837Reikon&&n>1?'返霊を使わない':t.g626DistinctEvolution?'戻さない':'ここまでで確定',null,0)]:[])]);}
  function freeze(s,t,p,y){if(!y||y.sealed)return;for(const kind of ['attack','block'])(s.extLimits??=[]).push({kind,g190Freeze:true,player:p,uid:y.uid,incarnation:y.incarnation||0,controller:t.controller??t.p,expires:t.g190Freeze==='end'?'end':'start',who:t.g190Freeze==='end'?s.active:t.g190Freeze==='opponent'?1-t.p:t.p,...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});}
  function stopPlayerAttack567(s,t,y){
-  (s.extLimits??=[]).push({kind:'g567PlayerStop',ref:{uid:y.uid,incarnation:y.incarnation||0},controller:t.p,expires:t.g567PlayerStop,who:t.g567PlayerStop==='start'?t.p:s.active,spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});
+  (s.extLimits??=[]).push({kind:'g567PlayerStop',ref:{uid:y.uid,incarnation:y.incarnation||0},controller:t.p,expires:t.g567PlayerStop,who:t.g567PlayerStop==='start'?t.p:s.active,...(t.spell===false?{}:{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))})});
  }
  function startUntapLock210(t,y){if(t.spell)(y.g170StartFreeze??=[]).push({spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});else y.skipUntap=true;}
  const timedGrant335=(s,t,grant)=>({turn:s.turn,...grant,...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});
@@ -714,6 +714,14 @@ export function createSixPhotoRules(api){
   moveZoneSelection583(s,t,rows);
  }
  function finishSelect(s,{g585Peek,...t}){
+  if(t.g869RevealAfterTap){
+   const refs=t.rows.flatMap(({p,uid})=>{
+    const y=s.players[p].battle.find(x=>x.uid===uid);
+    return y?[key(y)]:[];
+   });
+   const [reveal]=t.after;
+   t.after=[{...reveal,defs:[{op:'LockUntap606',spell:true,g869Refs:refs}]}];
+  }
   if(t.g829InspectDiscard){
    const uids=(t.rows||[]).map(row=>row.uid);
    if(uids.length)api.discardSelected(s,1-t.p,uids,t.source,t.controller??t.p);
@@ -2401,12 +2409,17 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_Target':{const owner=t.owner==='self'?t.p:t.owner??1-t.p,ps=t.anyOwner?[t.p,1-t.p]:[owner],candidates=ps.flatMap(p=>s.players[p].battle.filter(y=>matches(s,p,y,{creature:!t.element,...t.filter})&&(!t.g824Panya||panyaCanReturn(s,y))&&(!t.g593OverMana||cost(effective(y,s))>opp.mana.length)&&(!t.g179Other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))));const eligible=t.g810Excluded?candidates.filter(y=>!api.allLayers(y).some(z=>t.g810Excluded.includes(key(z)))):candidates;const rows=t.g741MinPower?lowestPower741(s,eligible):eligible;choice(s,t,t.title||'対象を選ぶ',[...targetOptions(s,t.p,rows).map(o=>({...o,score:t.g503Stack?Math.min(api.allLayers(rows.find(y=>y.uid===o.value)).length,Math.max(0,s.players[t.p].deck.length-1))*8:t.g419Boost||t.g465DestroySafe||t.g521UntilStart||t.g797Stay?(s.players[t.p].battle.some(y=>y.uid===o.value)?15+cost(effective(rows.find(y=>y.uid===o.value),s)):-20):t.g242PowerMinus?powerMinusScore242(s,t,rows.find(x=>x.uid===o.value)):t.g235TapOrUntap?(()=>{const y=rows.find(x=>x.uid===o.value),p=s.players.findIndex(p=>p.battle.some(x=>x.uid===o.value));return Math.max(tapStateScore235(s,t,p,y,true),tapStateScore235(s,t,p,y,false));})():t.untap?(()=>{const y=rows.find(x=>x.uid===o.value),own=s.players[t.p].battle.includes(y);return y?.tapped&&api.canUntap(y)?(own?10+Math.abs(o.score):-10-Math.abs(o.score)):0;})():t.g301Grant?((()=>{const y=rows.find(y=>y.uid===o.value);return s.active===t.p&&y.entered===s.turn&&!y.tapped&&!effective(y,s).speedAttacker?25+cost(card(y)):1;})()):t.g177SelfMana||t.g179Return||t.anyOwner&&s.players[t.p].battle.some(x=>x.uid===o.value)?-Math.abs(o.score)-5:o.score,value:{uid:o.value,p:s.players.findIndex(p=>p.battle.some(x=>x.uid===o.value))}})),...(t.optional?[skip()]:[])]);break;}
- case'g34_LockUntap606':for(const y of creatures(s,1-t.p))if(!y.sealed&&matches(s,1-t.p,y,t.filter))startUntapLock210(t,y);break;
+ case'g34_LockUntap606':{
+  const rows=t.g869Refs?opp.battle.filter(y=>api.allLayers(y).some(x=>t.g869Refs.includes(key(x)))):
+   creatures(s,1-t.p).filter(y=>!y.sealed&&matches(s,1-t.p,y,t.filter));
+  for(const y of rows)startUntapLock210(t,y);
+  break;
+ }
  case'g34_TapAll':for(const p of t.both?[0,1]:[1-t.p])for(const y of creatures(s,p))if(!t.g218Tap||matches(s,p,y,t.filter))api.tap(s,p,y);break;
  case'g34_Discard':{
   const n=t.g584Count==='faceUpShieldGo'?api.shieldGoCount(s,t.p):
    t.g585ShieldDeficit?Math.max(0,5-own.shields.length):t.g584Count==='ownShields'?own.shields.length:t.g584Count==='opponentShields'?opp.shields.length:t.g756All?opp.hand.length:t.n??1;
-  if(n)put(s,task('discard',t.owner==='self'?t.p:t.owner??1-t.p,t.source,{causedBy:t.p,n,random:!!t.random,optional:!!t.optional,selfDiscard:t.owner==='self',...(t.g756All?{all:true}:{})}));
+  if(n)put(s,task('discard',t.owner==='self'?t.p:t.owner??1-t.p,t.source,{causedBy:t.p,n,random:!!t.random,optional:!!t.optional,selfDiscard:t.owner==='self',...(t.g756All?{all:true}:{}),...(t.g869ReturnOnSpell?{g869ReturnUid:t.uid}:{})}));
   break;
  }
  case'g34_Scorpion614':scorpion614(s,t);break;
@@ -3857,7 +3870,7 @@ attackPower593(s,p,x,playerOnly){
  const locks=(s.extLimits||[]).filter(l=>l.kind==='g593AttackPower'&&l.playerOnly===playerOnly&&(l.player===null||l.player===p)&&!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}));
  return locks.length>0&&!creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks)&&api.power(x,false,s)<=Math.max(...locks.map(l=>l.max));
 },
-playerStop567(s,p,x){if(playerStopReading567.has(s))return false;const locks=(s.extLimits||[]).filter(l=>l.kind==='g567PlayerStop'&&(l.ref?api.allLayers(x).some(y=>key(y)===key(l.ref)):l.player===p)&&!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}));if(!locks.length)return false;playerStopReading567.add(s);try{return locks.some(l=>l.controller===p||!creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks));}finally{playerStopReading567.delete(s);}},
+playerStop567(s,p,x){if(playerStopReading567.has(s))return false;const locks=(s.extLimits||[]).filter(l=>l.kind==='g567PlayerStop'&&(l.ref?api.allLayers(x).some(y=>key(y)===key(l.ref)):l.player===p)&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})));if(!locks.length)return false;playerStopReading567.add(s);try{return locks.some(l=>l.controller===p||!creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks));}finally{playerStopReading567.delete(s);}},
 protected565:(s,x)=>(s.extLimits||[]).some(l=>l.kind==='g521Grant'&&l.g565External&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)),run,chosen,matches,hasSoul,ownCondition,canPut,countDraw,modeScore,recoveryScore326,spellWatches,attackDraws613,seedWatches548,entryPlan549,auraPower,countPower,grantAuras,send,tasks,start,race,mecha,ninja,angel,demon,key,live,
  crossEntry728(s,p,x,baseUid,entryOptions){
   if(entryOptions.g728CrossIds||!crossGears728(s,p).length)return false;

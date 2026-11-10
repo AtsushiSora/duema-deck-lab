@@ -1,0 +1,166 @@
+{
+  "phase": 869,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6471,
+  "description": "選んだクリーチャーのパワーと攻撃制限、公開で追加するアンタップ制限、破棄した呪文を参照する自己回収に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36624/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36884/",
+    "https://dm.takaratomy.co.jp/rule/qa/42082/",
+    "https://dm.takaratomy.co.jp/rule/qa/31877/",
+    "https://dm.takaratomy.co.jp/rule/qa/45440/"
+  ],
+  "cards": [
+    {
+      "id": "dmr05-104",
+      "name": "夢うつつラッコルさん",
+      "faces": [
+        {
+          "name": "夢うつつラッコルさん",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにあるクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは+4000され、相手プレイヤーを攻撃できない。",
+          "race": "ドリームメイト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-104",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "power": 4000,
+            "g567PlayerStop": "end",
+            "spell": false
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-104.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "b368f9ff9f88282466d830550e0831e62654eaf636aabf836c18b948c7d4d591",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-046",
+      "name": "落雷のステンド・グラス",
+      "faces": [
+        {
+          "name": "落雷のステンド・グラス",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトルゾーンにある相手のクリーチャーを２体まで選び、タップする。その後、自分の手札にあるコスト７以上のクリーチャーを１体見せてもよい。そうした場合、選ばれたクリーチャーは、次の相手のターンのはじめにアンタップされない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-046",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "g869RevealAfterTap": true,
+            "title": "タップする相手のクリーチャーを2体まで選ぶ",
+            "after": [
+              {
+                "op": "HandReveal462",
+                "max": 1,
+                "filter": {
+                  "g228Face": {
+                    "type": "creature",
+                    "min": 7
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "d151085c2871af0d69bed801ac40b4d69d0635158c5d90fda9914e0e8d682909",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-094",
+      "name": "ブチクダキ・ハンマー",
+      "faces": [
+        {
+          "name": "ブチクダキ・ハンマー",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手は自身の手札を１枚選んで捨てる。こうして捨てたカードが呪文であれば、自分はこの呪文を唱えた後で、墓地に置くかわりに手札に加える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-094",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Discard",
+            "n": 1,
+            "g869ReturnOnSpell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-094.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "da6ccfa147dec9ab36a7bd79294c3a2b9f6b741a9e90bddde92c1ff02783bef3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr05-104": 4,
+      "dmr05-046": 4,
+      "dmr05-094": 4
+    }
+  }
+}

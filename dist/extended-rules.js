@@ -408,6 +408,8 @@ export function createExtendedRules(api){
    six.discarded472(s,t.p);
    abyss.discarded(s,t.p);starter.discarded(s,t.p);
    if(t.costLock)put(s,task('tensaiCost',t.p,t.source,{discardId:x.cardId}));
+   if(t.g869ReturnUid&&faces(card(x)).some(c=>c.type==='spell'))
+    put(s,task('g34_SpellFinish416',t.causedBy,t.source,{uid:t.g869ReturnUid,to:'hand'}));
    if(!s.players[t.p].discardedThisTurn){s.players[t.p].discardedThisTurn=true;for(const castle of s.players[t.p].shields.flatMap(api.shieldCards))if(castle.faceUp&&card(castle).id==='dm26rp1-043')enqueue(s,t.p,{uid:castle.uid,source:castle.cardId,effect:'extended',task:task('optionalDrawOne',t.p,castle.cardId)});}
    for(const y of creatures(s,1-t.p))if(effective(y,s).stealDiscardedSpell&&faces(card(x)).some(c=>c.type==='spell'))enqueue(s,1-t.p,{uid:y.uid,source:y.cardId,effect:'extended',task:task('stealSpell',1-t.p,y.cardId,{owner:t.p,uid:x.uid})});
   }
