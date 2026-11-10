@@ -189670,24 +189670,138 @@
       ],
       "supportBatch": "phase-873",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr04-014",
+      "name": "ケロディス・三郎",
+      "civ": "光/水/闇",
+      "civilizations": [
+        "光",
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 3000,
+      "race": "ゲル・フィッシュ/エイリアン",
+      "text": "マナゾーンに置く時、このカードはタップして置く。 ブロッカー ブロッカー\nスペース・チャージ：多色（自分のマナゾーンに多色カードが置かれた時、このクリーチャーの q 能力を使ってもよい）\nq バトルゾーンにある、進化ではないクリーチャーを１体選ぶ。それを破壊するか、持ち主の手札に戻すか、新しいシールドとして持ち主のシールドゾーンに裏向きにして加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-014",
+      "limit": 4,
+      "blocker": true,
+      "g454Space": [
+        {
+          "color": "多色",
+          "defs": [
+            {
+              "op": "Target",
+              "anyOwner": true,
+              "filter": {
+                "nonEvolution": true
+              },
+              "g467Destinations": [
+                "grave",
+                "hand",
+                "shields"
+              ],
+              "title": "破壊・手札戻し・シールド化する進化ではないクリーチャーを選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-874",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr06-010",
+      "name": "偽りの名 iFormula X",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "グレートメカオー/アンノウン",
+      "text": "自分のターンの終わりに、このクリーチャーがタップされていて、自分の手札が10枚以上あれば、自分はゲームに勝利する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-010",
+      "limit": 4,
+      "breaker": 2,
+      "g174End": [
+        {
+          "op": "IfSource541",
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "all": [
+                  {
+                    "g590SourceTapped": true
+                  },
+                  {
+                    "g334ZoneCount": {
+                      "zone": "hand",
+                      "min": 10
+                    }
+                  }
+                ]
+              },
+              "defs": [
+                {
+                  "op": "Win871",
+                  "reason": "タップ中かつ自分の手札が10枚以上で勝利"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-874",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr06-048",
+      "name": "鉄拳制裁オニノブシ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ヒューマノイド/ハンター/エイリアン",
+      "text": "このクリーチャーをバトルゾーンに出した時、このクリーチャーよりパワーの小さい相手のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-048",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "TargetBelowSource692",
+          "to": "grave",
+          "g199Power": true
+        }
+      ],
+      "supportBatch": "phase-874",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 873,
+    "phase": 874,
     "checkedAt": "2026-11-11",
-    "baseCount": 6483,
+    "baseCount": 6486,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6486,
+    "totalCount": 6489,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36643/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36578/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36579/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37679/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37680/",
-      "https://dm.takaratomy.co.jp/rule/qa/43489/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37590/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37591/",
+      "https://dm.takaratomy.co.jp/rule/qa/42944/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36638/",
+      "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -205198,6 +205312,27 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36593/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36594/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36636/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 873,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6483,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6486,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36643/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36578/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36579/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37679/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37680/",
+          "https://dm.takaratomy.co.jp/rule/qa/43489/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

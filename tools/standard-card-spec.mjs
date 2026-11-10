@@ -3433,6 +3433,21 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=874&&f.typeText==='クリーチャー'){
+  if(d.id==='dmr04-014'&&compact363===
+   'マナゾーンに置く時このカードはタップして置く。ブロッカーブロッカースペース・チャージ:多色(自分のマナゾーンに多色カードが置かれた時このクリーチャーのq能力を使ってもよい)qバトルゾーンにある進化ではないクリーチャーを1体選ぶ。それを破壊するか持ち主の手札に戻すか新しいシールドとして持ち主のシールドゾーンに裏向きにして加える。')
+   return {blocker:true,g454Space:[{color:'多色',defs:[{op:'Target',anyOwner:true,filter:{nonEvolution:true},
+    g467Destinations:['grave','hand','shields'],title:'破壊・手札戻し・シールド化する進化ではないクリーチャーを選ぶ'}]}]};
+  const formula='自分のターンの終わりにこのクリーチャーがタップ';
+  if(d.id==='dmr06-010'&&compact363===formula+'されていて自分の手札が10枚以上あれば自分はゲームに勝利する。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)'||
+     d.id==='dmex08-074'&&compact363==='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+formula+'していて自分の手札が10枚以上なら自分はゲームに勝利する。')
+   return {breaker:2,g174End:[{op:'IfSource541',defs:[{op:'IfOwn',
+    filter:{all:[{g590SourceTapped:true},{g334ZoneCount:{zone:'hand',min:10}}]},
+    defs:[{op:'Win871',reason:'タップ中かつ自分の手札が10枚以上で勝利'}]}]}]};
+  if(d.id==='dmr06-048'&&compact363===
+   'このクリーチャーをバトルゾーンに出した時このクリーチャーよりパワーの小さい相手のクリーチャーを1体破壊する。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'TargetBelowSource692',to:'grave',g199Power:true}]};
+ }
  if(phase>=873&&f.typeText==='クリーチャー'){
   const judge='相手とガチンコ・ジャッジする。自分が勝ったら';
   const reminder='(ガチンコ・ジャッジ:各プレイヤーは自身の山札の上から1枚目を見せそれを一番下に置く。そのカードのコストが相手以上であれば自分の勝ちとする)';

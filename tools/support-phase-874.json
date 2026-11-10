@@ -1,0 +1,208 @@
+{
+  "phase": 874,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6486,
+  "description": "多色のスペース・チャージ、ターン終了時の特殊勝利、登場時のパワー比較に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37590/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37591/",
+    "https://dm.takaratomy.co.jp/rule/qa/42944/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36638/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmr04-014",
+      "name": "ケロディス・三郎",
+      "faces": [
+        {
+          "name": "ケロディス・三郎",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水/闇",
+          "civilizations": [
+            "光",
+            "水",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。 ブロッカー ブロッカー\nスペース・チャージ：多色（自分のマナゾーンに多色カードが置かれた時、このクリーチャーの q 能力を使ってもよい）\nq バトルゾーンにある、進化ではないクリーチャーを１体選ぶ。それを破壊するか、持ち主の手札に戻すか、新しいシールドとして持ち主のシールドゾーンに裏向きにして加える。",
+          "race": "ゲル・フィッシュ/エイリアン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-014",
+      "spec": {
+        "blocker": true,
+        "g454Space": [
+          {
+            "color": "多色",
+            "defs": [
+              {
+                "op": "Target",
+                "anyOwner": true,
+                "filter": {
+                  "nonEvolution": true
+                },
+                "g467Destinations": [
+                  "grave",
+                  "hand",
+                  "shields"
+                ],
+                "title": "破壊・手札戻し・シールド化する進化ではないクリーチャーを選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr04-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "4a5b7d04a0029fa89d3d1948a9ba160cd4d480a89f372f764ecf6b3ba8ba6d26",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr06-010",
+      "name": "偽りの名 iFormula X",
+      "faces": [
+        {
+          "name": "偽りの名 iFormula X",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分のターンの終わりに、このクリーチャーがタップされていて、自分の手札が10枚以上あれば、自分はゲームに勝利する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "グレートメカオー/アンノウン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-010",
+      "spec": {
+        "breaker": 2,
+        "g174End": [
+          {
+            "op": "IfSource541",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "all": [
+                    {
+                      "g590SourceTapped": true
+                    },
+                    {
+                      "g334ZoneCount": {
+                        "zone": "hand",
+                        "min": 10
+                      }
+                    }
+                  ]
+                },
+                "defs": [
+                  {
+                    "op": "Win871",
+                    "reason": "タップ中かつ自分の手札が10枚以上で勝利"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "27938645391f3e87ecb540070c3d7ac9262dc906a60efea093d70ef2b84c677b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr06-048",
+      "name": "鉄拳制裁オニノブシ",
+      "faces": [
+        {
+          "name": "鉄拳制裁オニノブシ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、このクリーチャーよりパワーの小さい相手のクリーチャーを１体破壊する。",
+          "race": "ヒューマノイド/ハンター/エイリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-048",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TargetBelowSource692",
+            "to": "grave",
+            "g199Power": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "3442e69cd7ae5d725e4c274345e78c7df58f73a62f9c4308a2ae006b9d0f7da3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex08-074",
+      "canonicalId": "dmr06-010",
+      "name": "偽りの名 iFormula X",
+      "faces": [
+        {
+          "name": "偽りの名 iFormula X",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のターンの終わりに、このクリーチャーがタップしていて、自分の手札が10枚以上なら、自分はゲームに勝利する。",
+          "race": "グレートメカオー/アンノウン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-074",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-074.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "f1dae3c0eb75b52acebdf4d0836b787b42c9dd13fc1ef733b001cfe16f13cd1e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr04-014": 4,
+      "dmr06-010": 4,
+      "dmr06-048": 4,
+      "dmex08-074": 4
+    }
+  }
+}
