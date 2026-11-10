@@ -3433,6 +3433,24 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=866){
+  if(['dmr04-046','dmex12-109'].includes(d.id)&&f.typeText==='クリーチャー'&&[
+   'マナゾーンに置く時このカードはタップして置く。このクリーチャーをバトルゾーンに出した時相手は自身の山札の上から2枚をすべてのプレイヤーに見せる。そのうちの1枚を選び墓地に置かせる。',
+   'このクリーチャーがバトルゾーンに出た時相手は自身の山札の上から2枚を表向きにする。自分はそのうちの1枚を選び墓地に置かせる。'
+  ].includes(compact363))
+   return {effect:'sixPhoto',g34Tasks:[{op:'OpponentTopGrave866'}]};
+  if(d.id==='dm36-090'&&f.typeText==='クリーチャー'&&compact363===
+   '返霊3(このクリーチャーが攻撃する時自分の墓地からカードを3枚好きな順序で山札の一番下に置いてもよい。そうした場合このクリーチャーの能力を使う。)バトルゾーンにある相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーは-3000される。(パワー0以下のクリーチャーは破壊される)')
+   return {g558Souls:['E'],g34Attack:[{op:'Select',origin:'grave',to:'deck',n:3,optional:true,
+    g837Reikon:[{op:'Target',power:-3000,g242PowerMinus:true}],
+    title:'返霊3：山札の下に置く順に墓地のカードを3枚選ぶ'}]};
+  if(d.id==='dmr02-045'&&f.typeText==='呪文'&&compact363===
+   'S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)バトルゾーンに自分の闇または自然のクリーチャーがあれば相手のパワー7000以下のクリーチャーを1体破壊する。なければ相手のパワー4000以下のクリーチャーを1体破壊する。'){
+   const destroy=maxPower=>({op:'Target',to:'grave',filter:{maxPower,g199Power:true}});
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'IfOwn',filter:{creature:true,any:[{color:'闇'},{color:'自然'}]},
+    defs:[destroy(7000)],elseDefs:[destroy(4000)]}]};
+  }
+ }
  if(phase>=865){
   if(d.id==='dm39-041'&&f.typeText==='クリーチャー'&&compact363===
    'シンパシー:(M・ソウル)クリーチャー(このクリーチャーを召喚する時支払うコストはバトルゾーンにある自分の(M・ソウル)クリーチャー1体につき1少なくなる。ただしコストは1より少なくならない)連鎖(このクリーチャーをバトルゾーンに出した時自分の山札の上から1枚目をすべてのプレイヤーに見せる。そのカードがこのクリーチャーよりコストが小さいクリーチャーであればバトルゾーンに出してもよい)')

@@ -1,0 +1,213 @@
+{
+  "phase": 866,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6462,
+  "description": "相手の山札の公開と墓地送り、返霊3からのパワー低下、味方の文明に応じた破壊とS・トリガーに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36540/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36541/",
+    "https://dm.takaratomy.co.jp/rule/qa/31782/",
+    "https://dm.takaratomy.co.jp/rule/qa/43454/",
+    "https://dm.takaratomy.co.jp/rule/qa/49608/"
+  ],
+  "cards": [
+    {
+      "id": "dmr04-046",
+      "name": "腐敗麗姫ベラ",
+      "faces": [
+        {
+          "name": "腐敗麗姫ベラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、相手は自身の山札の上から２枚をすべてのプレイヤーに見せる。そのうちの１枚を選び、墓地に置かせる。",
+          "race": "スプラッシュ・クイーン/ゴースト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-046",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OpponentTopGrave866"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr04-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "db2b3509c364e6f737b736581de615f768bc086451c1db429dc9d893b7700188",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-090",
+      "name": "アレス・ドラグーン",
+      "faces": [
+        {
+          "name": "アレス・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "返霊３(このクリーチャーが攻撃する時、自分の墓地からカードを３枚、好きな順序で山札の一番下に置いてもよい。そうした場合、このクリーチャーの能力を使う。)\nバトルゾーンにある相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーは-3000される。(パワー０以下のクリーチャーは破壊される)",
+          "race": "ティラノ・ドレイク",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-090",
+      "spec": {
+        "g558Souls": [
+          "E"
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "deck",
+            "n": 3,
+            "optional": true,
+            "g837Reikon": [
+              {
+                "op": "Target",
+                "power": -3000,
+                "g242PowerMinus": true
+              }
+            ],
+            "title": "返霊3：山札の下に置く順に墓地のカードを3枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-090.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "f2796c53955cf9378324422d261e804dcbf85c0d955ae7be81a24f58ad0d23c6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr02-045",
+      "name": "霊森の火柱",
+      "faces": [
+        {
+          "name": "霊森の火柱",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンに自分の闇または自然のクリーチャーがあれば、相手のパワー7000以下のクリーチャーを１体破壊する。なければ、相手のパワー4000以下のクリーチャーを１体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-045",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "any": [
+                {
+                  "color": "闇"
+                },
+                {
+                  "color": "自然"
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 7000,
+                  "g199Power": true
+                }
+              }
+            ],
+            "elseDefs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 4000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr02-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "8f93d93fd97bfd3970e39c57387fae9d60c29c0b31a4ec7c6e7d913c33210123",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex12-109",
+      "canonicalId": "dmr04-046",
+      "name": "腐敗麗姫ベラ",
+      "faces": [
+        {
+          "name": "腐敗麗姫ベラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、相手は自身の山札の上から２枚を表向きにする。自分はそのうちの１枚を選び、墓地に置かせる。",
+          "race": "スプラッシュ・クイーン/ゴースト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-109",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-109.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "38067ffbaca1fe49cc612e8d5716abc01e028b54ac85f4922df496f783dde868",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr04-046": 4,
+      "dm36-090": 4,
+      "dmr02-045": 4,
+      "dmex12-109": 4
+    }
+  }
+}

@@ -1215,6 +1215,12 @@ export function createSixPhotoRules(api){
   (s.extLimits??=[]).push({kind:'g677OnlyAttacker',player,refs,controller:t.p,expires:'end',who:s.active});
   break;
  }
+ case'g34_OpponentTopGrave866':{
+  const ids=look(s,{...t,p:1-t.p,n:2,public:true});
+  if(ids.length)choice(s,{...t,ids},'墓地に置く相手の山札のカードを1枚選ぶ',
+   ids.map(uid=>{const y=opp.deck.find(x=>x.uid===uid);return opt(card(y).name,uid,10,y.cardId);}));
+  break;
+ }
  case'g34_Poker763':{
   const opponent=1-t.p,[uid]=look(s,{...t,p:opponent,n:1,public:true});
   const revealed=opp.deck.find(x=>x.uid===uid);
@@ -2989,6 +2995,13 @@ export function createSixPhotoRules(api){
   }
   break;
  case'g34_RaidPick':return raid764.chosen(s,t,v);
+ case'g34_OpponentTopGrave866':{
+  const opponent=1-t.p;
+  zoneMove(s,opponent,'deck',v,'grave');
+  for(const uid of t.ids)release(s,opponent,uid);
+  api.deckCheck(s,opponent);
+  break;
+ }
  case'g34_LookAll424':{const chosen=v?t.g424Ids:[];put(s,{...t,op:'g34_LookPick',chosen,stages:t.stages.map((q,i)=>i===t.stage?{...q,n:chosen.length,optional:false,g424AllOrNone:false}:q)});break;}
  case'g34_ManaDown426':{const y=v&&own.mana.find(y=>y.uid===v.uid&&!y.faceDown&&(y.zoneSerial||0)===v.serial);if(y){const name=card(y).name;y.faceDown=true;api.log(s,t.p,'manaFaceDown',card(t.source).name+'：'+name+'をマナゾーンで裏向きにした',{cardId:y.cardId});}break;}
  case'g34_LookPick':if(v)put(s,{...t,chosen:[...(t.chosen||[]),v]});else put(s,{...t,stages:t.stages.map((q,i)=>i===t.stage?{...q,n:(t.chosen||[]).length}:q)});break;

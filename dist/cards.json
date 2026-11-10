@@ -188590,23 +188590,142 @@
       ],
       "supportBatch": "phase-865",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr04-046",
+      "name": "腐敗麗姫ベラ",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "スプラッシュ・クイーン/ゴースト",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、相手は自身の山札の上から２枚をすべてのプレイヤーに見せる。そのうちの１枚を選び、墓地に置かせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-046",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "OpponentTopGrave866"
+        }
+      ],
+      "supportBatch": "phase-866",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm36-090",
+      "name": "アレス・ドラグーン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ティラノ・ドレイク",
+      "text": "返霊３(このクリーチャーが攻撃する時、自分の墓地からカードを３枚、好きな順序で山札の一番下に置いてもよい。そうした場合、このクリーチャーの能力を使う。)\nバトルゾーンにある相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーは-3000される。(パワー０以下のクリーチャーは破壊される)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-090",
+      "limit": 4,
+      "g558Souls": [
+        "E"
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "deck",
+          "n": 3,
+          "optional": true,
+          "g837Reikon": [
+            {
+              "op": "Target",
+              "power": -3000,
+              "g242PowerMinus": true
+            }
+          ],
+          "title": "返霊3：山札の下に置く順に墓地のカードを3枚選ぶ"
+        }
+      ],
+      "supportBatch": "phase-866",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr02-045",
+      "name": "霊森の火柱",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンに自分の闇または自然のクリーチャーがあれば、相手のパワー7000以下のクリーチャーを１体破壊する。なければ、相手のパワー4000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-045",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "color": "闇"
+              },
+              {
+                "color": "自然"
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 7000,
+                "g199Power": true
+              }
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "maxPower": 4000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-866",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 865,
+    "phase": 866,
     "checkedAt": "2026-11-11",
-    "baseCount": 6459,
+    "baseCount": 6462,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6462,
+    "totalCount": 6465,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34916/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34924/",
-      "https://dm.takaratomy.co.jp/rule/qa/40197/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36224/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37634/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36540/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36541/",
+      "https://dm.takaratomy.co.jp/rule/qa/31782/",
+      "https://dm.takaratomy.co.jp/rule/qa/43454/",
+      "https://dm.takaratomy.co.jp/rule/qa/49608/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -203962,6 +204081,26 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37634/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37636/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36244/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 865,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6459,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6462,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34916/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34924/",
+          "https://dm.takaratomy.co.jp/rule/qa/40197/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36224/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37634/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
