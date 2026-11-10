@@ -3433,6 +3433,14 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=856&&f.typeText==='クリーチャー'){
+  if(compact363==='自分のクロスギアをジェネレートまたはクロスする時支払うコストは1少なくなる。ただしコストは1より少なくならない。')
+   return {g856GearDiscount:true};
+  if(d.id==='dm36-106'&&compact363==='このクリーチャーのパワーはバトルゾーンにある自分の他の(W・ソウル)クリーチャー1体につき+1000される。')
+   return {g558Souls:['W'],g207CountPower:{zone:'battle',other:true,filter:{g853Soul:'W'},amount:1000}};
+  if(d.id==='dm37-016'&&compact363==='バトルゾーンにある自分の(K・ソウル)と(W・ソウル)クリーチャーはすべて「W・ブレイカー」を持つ。')
+   return {g558Souls:['K','W'],g208Auras:[{filter:{g856Souls:['K','W']},grants:{breaker:2,g633DoubleBreaker:true}}]};
+ }
  if(phase>=855){
   if(f.typeText==='呪文'&&compact363==='Ωアタック・チャンス-グレートメカオー(自分のグレートメカオーが攻撃する時この呪文をコストを支払わずに唱えてもよい)カードを2枚引く。')
    return {effect:'sixPhoto',g417Chance:{race:'グレートメカオー'},g34Tasks:[{op:'Draw',n:2}]};

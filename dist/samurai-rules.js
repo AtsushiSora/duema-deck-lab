@@ -71,7 +71,12 @@ export function createSamuraiRules(api){
  effect(s,p,c,uid,entry){const op={samuraiBui:'g18_Bui',samuraiMusashi:'g18_Musashi',samuraiMekraid:'g18_Mekraid',samuraiFlash:'g18_Flash'}[c.effect];if(!op)return false;put(s,task(op,p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;},
  cleanup(s){for(const p of[0,1])for(const g of gears(s,p))if(g.crossedTo&&!live(s,p,g))delete g.crossedTo;},
  inherit(s,base,x){if(base.g18Blocker)x.g18Blocker=structuredClone(base.g18Blocker);for(const p of[0,1])for(const g of attached(s,p,base))g.crossedTo={uid:x.uid,incarnation:x.incarnation||0};},
- discount(s,p,c){const all=gears(s,p).filter(x=>active(s,x));return all.filter(x=>card(x).takion&&(c.type==='gear'||c.type==='creature'&&samurai(c))).length+Math.min(optionalReducers(s,p,c),c.g18Reducers??Infinity);},
+ discount(s,p,c){
+  const all=gears(s,p).filter(x=>active(s,x));
+  const gearReducers=c.type==='gear'?creatures(s,p).filter(x=>card(x).g856GearDiscount&&active(s,x)).length:0;
+  return gearReducers+all.filter(x=>card(x).takion&&(c.type==='gear'||c.type==='creature'&&samurai(c))).length+
+   Math.min(optionalReducers(s,p,c),c.g18Reducers??Infinity);
+ },
  speed(s,p,x){const c=card(x);return c.type==='creature'&&(samurai(c)&&creatures(s,p).some(y=>!api.ignored(s,y)&&card(y).samuraiSpeed)||(dragon(c)||samurai(c))&&gears(s,p).some(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((q)=>dragon(q)||samurai(q))(card(live(s,p,g)))));},
  power(s,p,x,c){if(p<0||!api.isCreature(s,x))return 0;return (x.sealed?0:crossedRacePower(s,c))+attached(s,p,x).filter(g=>active(s,g)).reduce((n,g)=>n+(card(g).g123CrossPower||0),0)+attached(s,p,x).filter(g=>card(g).takion&&active(s,g)).length*1000+((dragon(card(x))||samurai(card(x)))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((c)=>dragon(c)||samurai(c))(card(live(s,p,g)))).length*2000:0);},
  entry(s,p,x,options){const c=card(x);if(!options.selfMuted&&!api.selfStopped(s,p)&&!api.ignored(s,x)){if(c.samuraiGenerate)on(s,p,x,'g18_Generate');if(c.shiroLock&&options.revolution)on(s,p,x,'g18_ShiraLock');}},
