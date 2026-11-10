@@ -3168,6 +3168,26 @@ export function createSixPhotoRules(api){
  }break;
  case'g34_ManaExchangeBase753':api.beginManaExchange753(s,t,v);break;
  case'g34_Target':
+  if(t.g882DeployBelowCost){
+   const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid);
+   if(!y)break;
+   // The chosen creature supplies the cost even if its return is replaced.
+   const limit=cost(effective(y,s));
+   move(s,[{player:v.p,uid:y.uid,to:'hand',destroy:false,controller:t.p}]);
+   start(s,t,[{op:'Select',origin:'hand',n:1,deploy:true,optional:true,
+    filter:{creature:true,belowCost:limit===Infinity?'∞':limit}}]);
+   break;
+  }
+  if(t.g882TapBelowPower){
+   const y=v&&own.battle.find(x=>x.uid===v.uid);
+   if(!y)break;
+   api.tap(s,t.p,y);
+   const limit=livePower199(s,y,true);
+   const filter={belowPower:limit===Infinity?'∞':limit,g199Power:true};
+   const targets=creatures(s,1-t.p).filter(x=>!x.sealed&&matches(s,1-t.p,x,filter));
+   for(const target of targets)api.tap(s,1-t.p,target);
+   break;
+  }
   if(t.g850OwnBounceDraw){
    const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid);
    if(y){

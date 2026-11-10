@@ -3433,6 +3433,20 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=882){
+  const script='そのクリーチャーよりコストが小さいクリーチャーを1体自分の手札から';
+  if(f.typeText==='クリーチャー'&&(
+   d.id==='dmr08-010'&&compact363==='このクリーチャーをバトルゾーンに出した時バトルゾーンにある他のクリーチャーを1体選び持ち主の手札に戻す。その後'+script+'バトルゾーンに出してもよい。'||
+   ['dm22ex1-045','dm25ex1-041'].includes(d.id)&&compact363==='このクリーチャーが出た時他のクリーチャーを1体選び持ち主の手札に戻す。その後'+script+'出してもよい。'))
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',anyOwner:true,g179Other:true,to:'hand',g882DeployBelowCost:true,title:'手札に戻す他のクリーチャーを選ぶ'}]};
+  if(f.typeText==='呪文'&&d.id==='dmrp04s-034'&&compact363===
+   '自分のクリーチャーを1体タップする。その後それよりパワーが小さい相手のクリーチャーをすべてタップする。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',tap:true,g882TapBelowPower:true,title:'タップする自分のクリーチャーを選ぶ'}]};
+  if(f.typeText==='呪文'&&d.id==='dmex15-b017'&&compact363===
+   '相手のパワー14000以下のクリーチャーをすべて破壊する。次の自分のターンのはじめまで自分はゲームに負けず相手は勝たない。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Sweep',to:'grave',filter:{creature:true,maxPower:14000,g199Power:true}},
+    {op:'Lock',g746Self:true,limit:{kind:'g34NoLose'}}]};
+ }
  if(phase>=881&&f.typeText==='クリーチャー'){
   if(['dmr09-069','promoy12-050'].includes(d.id)&&compact363===
    'このクリーチャーがバトルゾーンにあれば自分のマナゾーンにあるかのようにこのカードをタップしてマナを生み出してもよい。(このクリーチャーをバトルゾーンに出したターンにこの能力を使ってもよい)')

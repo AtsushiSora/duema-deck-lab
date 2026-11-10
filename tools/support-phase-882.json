@@ -1,0 +1,215 @@
+{
+  "phase": 882,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6511,
+  "description": "他のクリーチャーの手札戻しとコスト未満の登場、味方をタップして低パワーの相手を一斉にタップ、パワー14000以下の全体破壊と次の自ターン開始までの敗北・相手の勝利防止に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36791/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20251001.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
+    "https://dm.takaratomy.co.jp/rule/qa/48935/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37174/"
+  ],
+  "cards": [
+    {
+      "id": "dmr08-010",
+      "name": "スクリプト",
+      "faces": [
+        {
+          "name": "スクリプト",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある他のクリーチャーを１体選び、持ち主の手札に戻す。その後、そのクリーチャーよりコストが小さいクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "サイバーロード",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-010",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "g179Other": true,
+            "to": "hand",
+          "g882DeployBelowCost": true,
+            "title": "手札に戻す他のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "6405d9b5ac4c05a6fc5d823302e376aab00790a1e3400b9c67e1fb13d8cfbf81",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-034",
+      "name": "クリスティナ・フォール",
+      "faces": [
+        {
+          "name": "クリスティナ・フォール",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分のクリーチャーを１体、タップする。その後、それよりパワーが小さい相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-034",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "tap": true,
+          "g882TapBelowPower": true,
+            "title": "タップする自分のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "a3605ac943dcc7e9139b7c66057796a4a4a683b15a9ad624db479a1f7e6579d6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex15-b017",
+      "name": "ドギラゴン・ファイアー",
+      "faces": [
+        {
+          "name": "ドギラゴン・ファイアー",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "相手のパワー14000以下のクリーチャーをすべて破壊する。\n次の自分のターンのはじめまで、自分はゲームに負けず、相手は勝たない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b017",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "to": "grave",
+            "filter": {
+              "creature": true,
+              "maxPower": 14000,
+              "g199Power": true
+            }
+          },
+          {
+            "op": "Lock",
+            "g746Self": true,
+            "limit": {
+              "kind": "g34NoLose"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-b017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "22122b3920ad117354abfa1e39773751be299a00bdb985a5df00f436189b19fe",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm22ex1-045",
+      "canonicalId": "dmr08-010",
+      "name": "スクリプト",
+      "faces": [
+        {
+          "name": "スクリプト",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーが出た時、他のクリーチャーを１体選び、持ち主の手札に戻す。その後、そのクリーチャーよりコストが小さいクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "サイバーロード",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-045",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "d44dfeb3b3a606f90c2122c38804d5c4a0d7ff20a5654d6961222970d95e7ce1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex1-041",
+      "canonicalId": "dmr08-010",
+      "name": "スクリプト",
+      "faces": [
+        {
+          "name": "スクリプト",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーが出た時、他のクリーチャーを１体選び、持ち主の手札に戻す。その後、そのクリーチャーよりコストが小さいクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "サイバーロード",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-041",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex1-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "efcf97199faeb25d19359c566f048f4d97cec1e5777df53e828d7c5a2ab250df",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr08-010": 4,
+      "dmrp04s-034": 4,
+      "dmex15-b017": 4,
+      "dm22ex1-045": 4,
+      "dm25ex1-041": 4
+    }
+  }
+}
