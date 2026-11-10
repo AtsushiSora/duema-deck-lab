@@ -1582,6 +1582,11 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
    rows.map(y=>opt(card(y).name,y.uid,hand?20-Math.min(20,cost(card(y))):cost(effective(y,s))*2+api.power(y,false,s)/2000,y.cardId)));
   break;
  }
+ case'g34_ReleaseSelfHyper783':{
+  const y=live(s,t);
+  if(y)releaseHyper781(s,t.p,y);
+  break;
+ }
  case'g34_ReleaseAllHyper781':
   for(const y of creatures(s,t.p))if(exactRaces(effective(y,s)).includes('超化獣'))releaseHyper781(s,t.p,y);
   break;

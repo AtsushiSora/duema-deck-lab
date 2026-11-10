@@ -1,0 +1,338 @@
+{
+  "phase": 783,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6202,
+  "description": "ハイパーモード3種類に対応し、登場時の自己解放、召喚コスト軽減、攻撃時の1枚ずつの任意ドローを再現する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/45120/",
+    "https://dm.takaratomy.co.jp/rule/qa/46866/",
+    "https://dm.takaratomy.co.jp/rule/qa/44836/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp2-015",
+      "name": "文藍月 Eine k'Reine",
+      "faces": [
+        {
+          "name": "文藍月 Eine k'Reine",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー\nブロッカーブロッカー\nこのクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーのハイパーモードを解放する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "マジック・スプラッシュ・クイーン/超化獣",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "文藍月 Eine k'Reine",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー\nブロッカーブロッカー\nこのクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーのハイパーモードを解放する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー",
+          "race": "マジック・スプラッシュ・クイーン/超化獣",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-015",
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ReleaseSelfHyper783"
+          }
+        ],
+        "hyperTap": true,
+        "hyper": {
+          "power": 8000,
+          "breaker": 2
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-015a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "d6548d2107409f4683ac203d6776115c57c89c32fb8f407210078b1632324863",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-032",
+      "name": "文藍月 seiWond'Ramar",
+      "faces": [
+        {
+          "name": "文藍月 seiWond'Ramar",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、カードを２枚引き、自分の手札を１枚捨てる。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "マジック・クリスタル・コマンド・ドラゴン/超化獣",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "文藍月 seiWond'Ramar",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、カードを２枚引き、自分の手札を１枚捨てる。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のクリーチャーの召喚コストを１少なくする。ただし、コストは０以下にはならない。",
+          "race": "マジック・クリスタル・コマンド・ドラゴン/超化獣",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-032",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          }
+        ],
+        "hyperTap": true,
+        "hyper": {
+          "power": 9000,
+          "breaker": 2,
+          "g290SummonAura": {
+            "filter": {},
+            "amount": 1
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-032a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "6d56535eb6c739b84f7e2a2f3f1e4a8af362ed42e628de09c2ef3e99b7c6a2da",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-027",
+      "name": "ハイパー・ビグッティーノ",
+      "faces": [
+        {
+          "name": "ハイパー・ビグッティーノ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "メカ・エンジェル・コマンド/超化獣",
+          "powerText": "3500",
+          "missingFields": []
+        },
+        {
+          "name": "ハイパー・ビグッティーノ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分のタップしているクリーチャー１体につき１枚、カードを引いてもよい。",
+          "race": "メカ・エンジェル・コマンド/超化獣",
+          "powerText": "8500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-027",
+      "spec": {
+        "blocker": true,
+        "hyperTap": true,
+        "hyper": {
+          "power": 8500,
+          "breaker": 2,
+          "g34Attack": [
+            {
+              "op": "CountDraw",
+              "zone": "battle",
+              "filter": {
+                "creature": true,
+                "tapped": true
+              },
+              "optional": "each"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-027a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "2d8f5b106f4cfa0a7991dacbec4efbfec641d65a31109320f98bbb6d6e71318c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24rp2-Sec13",
+      "canonicalId": "dm24rp2-015",
+      "name": "文藍月 Eine k'Reine",
+      "faces": [
+        {
+          "name": "文藍月 Eine k'Reine",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー\nブロッカーブロッカー\nこのクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーのハイパーモードを解放する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "マジック・スプラッシュ・クイーン/超化獣",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "文藍月 Eine k'Reine",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー\nブロッカーブロッカー\nこのクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーのハイパーモードを解放する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー",
+          "race": "マジック・スプラッシュ・クイーン/超化獣",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-Sec13",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-Sec13a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "13e080bb6eb7c96e322e25334d0c0f67a1f0a7c4eb32fa60e9f15a58c7f3f9a9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-Sec18",
+      "canonicalId": "dm24rp2-032",
+      "name": "文藍月 seiWond'Ramar",
+      "faces": [
+        {
+          "name": "文藍月 seiWond'Ramar",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、カードを２枚引き、自分の手札を１枚捨てる。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "マジック・クリスタル・コマンド・ドラゴン/超化獣",
+          "powerText": "4000",
+          "missingFields": []
+        },
+        {
+          "name": "文藍月 seiWond'Ramar",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが出た時、カードを２枚引き、自分の手札を１枚捨てる。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のクリーチャーの召喚コストを１少なくする。ただし、コストは０以下にはならない。",
+          "race": "マジック・クリスタル・コマンド・ドラゴン/超化獣",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-Sec18",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-Sec18a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ebf06367f6ca20c132acf06cc2f7fa0d6296bd78b703352274b184b8c5420850",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-Sec17",
+      "canonicalId": "dm24rp2-027",
+      "name": "ハイパー・ビグッティーノ",
+      "faces": [
+        {
+          "name": "ハイパー・ビグッティーノ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "メカ・エンジェル・コマンド/超化獣",
+          "powerText": "3500",
+          "missingFields": []
+        },
+        {
+          "name": "ハイパー・ビグッティーノ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分のタップしているクリーチャー１体につき１枚、カードを引いてもよい。",
+          "race": "メカ・エンジェル・コマンド/超化獣",
+          "powerText": "8500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-Sec17",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-Sec17a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "7bf236cad3a4f7cc9cf8384b5c4809229dcfbf41e304d1790d39733526298639",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp2-015": 4,
+      "dm24rp2-032": 4,
+      "dm24rp2-027": 4,
+      "dm24rp2-Sec13": 4,
+      "dm24rp2-Sec18": 4,
+      "dm24rp2-Sec17": 4
+    }
+  }
+}

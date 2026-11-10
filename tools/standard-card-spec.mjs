@@ -2461,6 +2461,18 @@ export function standardCardSpec(d,{phase=165}={}){
   const hyper='ハイパー化:自分の他のクリーチャーを1体タップする。(自分のメインステップ中にハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く)';
   const guard='ガードマン(このクリーチャーをタップして相手クリーチャーの攻撃先を自分の他のクリーチャーからこのクリーチャーに変更してもよい)';
   const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+  if(phase>=783){
+   const doubleBreaker='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';
+   const eine='S・トリガーS・トリガーブロッカーブロッカーこのクリーチャーが出た時次の自分のターンのはじめまでこのクリーチャーのハイパーモードを解放する。'+hyper;
+   if(front===eine&&back===front+'W・ブレイカー'&&f.powerText==='4000'&&active.powerText==='8000')
+    return {trigger:true,blocker:true,effect:'sixPhoto',g34Tasks:[{op:'ReleaseSelfHyper783'}],hyperTap:true,hyper:{power:8000,breaker:2}};
+   const ramar='このクリーチャーが出た時カードを2枚引き自分の手札を1枚捨てる。'+hyper;
+   if(front===ramar&&back===front+doubleBreaker+'自分のクリーチャーの召喚コストを1少なくする。ただしコストは0以下にはならない。'&&f.powerText==='4000'&&active.powerText==='9000')
+    return {effect:'sixPhoto',g34Tasks:[{op:'Draw',n:2},{op:'Discard',owner:'self',n:1}],hyperTap:true,
+     hyper:{power:9000,breaker:2,g290SummonAura:{filter:{},amount:1}}};
+   if(front===blocker+hyper&&back===front+doubleBreaker+'このクリーチャーが攻撃する時自分のタップしているクリーチャー1体につき1枚カードを引いてもよい。'&&f.powerText==='3500'&&active.powerText==='8500')
+    return {blocker:true,hyperTap:true,hyper:{power:8500,breaker:2,g34Attack:[{op:'CountDraw',zone:'battle',filter:{creature:true,tapped:true},optional:'each'}]}};
+  }
   const agaloom=blocker+'自分の墓地にカードが5枚以上なければこのクリーチャーは攻撃できない。'+hyper;
   if(front===agaloom&&back===front+'自分のターンの終わりに自分のタップしているクリーチャー1体につき1枚自分の山札の上から墓地に置いてもよい。'&&f.powerText==='1000'&&active.powerText==='4000')
    return {blocker:true,g225AttackRequires:{kind:'graveCards',min:5},hyperTap:true,hyper:{power:4000,g174End:[{op:'MillTapped782'}]}};

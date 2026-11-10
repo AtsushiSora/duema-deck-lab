@@ -179927,22 +179927,125 @@
       },
       "supportBatch": "phase-782",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-015",
+      "name": "文藍月 Eine k'Reine",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "マジック・スプラッシュ・クイーン/超化獣",
+      "text": "S・トリガー S・トリガー\nブロッカーブロッカー\nこのクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーのハイパーモードを解放する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\n【ハイパーモード】\nS・トリガー S・トリガー\nブロッカーブロッカー\nこのクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーのハイパーモードを解放する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-015",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ReleaseSelfHyper783"
+        }
+      ],
+      "hyperTap": true,
+      "hyper": {
+        "power": 8000,
+        "breaker": 2
+      },
+      "supportBatch": "phase-783",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-032",
+      "name": "文藍月 seiWond'Ramar",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "マジック・クリスタル・コマンド・ドラゴン/超化獣",
+      "text": "このクリーチャーが出た時、カードを２枚引き、自分の手札を１枚捨てる。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\n【ハイパーモード】\nこのクリーチャーが出た時、カードを２枚引き、自分の手札を１枚捨てる。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のクリーチャーの召喚コストを１少なくする。ただし、コストは０以下にはならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-032",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        },
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1
+        }
+      ],
+      "hyperTap": true,
+      "hyper": {
+        "power": 9000,
+        "breaker": 2,
+        "g290SummonAura": {
+          "filter": {},
+          "amount": 1
+        }
+      },
+      "supportBatch": "phase-783",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-027",
+      "name": "ハイパー・ビグッティーノ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3500,
+      "race": "メカ・エンジェル・コマンド/超化獣",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\n【ハイパーモード】\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分のタップしているクリーチャー１体につき１枚、カードを引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-027",
+      "limit": 4,
+      "blocker": true,
+      "hyperTap": true,
+      "hyper": {
+        "power": 8500,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "tapped": true
+            },
+            "optional": "each"
+          }
+        ]
+      },
+      "supportBatch": "phase-783",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 782,
+    "phase": 783,
     "checkedAt": "2026-11-10",
-    "baseCount": 6199,
+    "baseCount": 6202,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6202,
+    "totalCount": 6205,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/46570/",
-      "https://dm.takaratomy.co.jp/rule/qa/46571/",
-      "https://dm.takaratomy.co.jp/rule/qa/45579/",
-      "https://dm.takaratomy.co.jp/rule/qa/40102/",
+      "https://dm.takaratomy.co.jp/rule/qa/45120/",
+      "https://dm.takaratomy.co.jp/rule/qa/46866/",
       "https://dm.takaratomy.co.jp/rule/qa/44836/"
     ],
     "next": [
@@ -193585,6 +193688,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/45136/",
           "https://dm.takaratomy.co.jp/rule/qa/45144/",
           "https://dm.takaratomy.co.jp/rule/qa/44188/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 782,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6199,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6202,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/46570/",
+          "https://dm.takaratomy.co.jp/rule/qa/46571/",
+          "https://dm.takaratomy.co.jp/rule/qa/45579/",
+          "https://dm.takaratomy.co.jp/rule/qa/40102/",
+          "https://dm.takaratomy.co.jp/rule/qa/44836/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
