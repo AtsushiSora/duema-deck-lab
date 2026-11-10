@@ -179396,24 +179396,165 @@
       },
       "supportBatch": "phase-777",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp3-067",
+      "name": "ボルシャック・デュアルショック",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "アーマード・ドラゴン",
+      "text": "このクリーチャーを、 {ff03}を支払って召喚してもよい。そうしたら、このクリーチャーが出た時、自分のシールドを１つ墓地に置く。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-067",
+      "limit": 4,
+      "breaker": 2,
+      "g568Alt": {
+        "cost": 3,
+        "paymentColors": [
+          "火"
+        ],
+        "entry": [
+          {
+            "op": "ShieldGrave",
+            "g239ShieldGrave": true
+          }
+        ]
+      },
+      "supportBatch": "phase-778",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp3-057",
+      "name": "芸馬猫刄 スゴローニャ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "マジック・モンスター/ゲーム・コマンド",
+      "text": "このクリーチャーを、 {ww03}を支払って召喚してもよい。そうしたら、このクリーチャーが出た時、カードを１枚、自分のマナゾーンから手札に戻す。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-057",
+      "limit": 4,
+      "breaker": 2,
+      "g568Alt": {
+        "cost": 3,
+        "paymentColors": [
+          "水"
+        ],
+        "entry": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "g232ManaReturn": true,
+            "title": "手札に戻すマナを1枚選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-778",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-046",
+      "name": "「ファーーーー！俺様は哀しい!!」",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 11,
+      "power": 0,
+      "race": "",
+      "text": "ハイパーエナジー（この呪文を唱える時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、この呪文のコストを２少なくする。ただし、コストは０以下にはならない）\n自分の墓地を山札に加えてシャッフルし、その後、自分の山札の上から４枚を見る。その中から、クリーチャーを１体出してもよい。残りを好きな順序で山札の下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-046",
+      "limit": 4,
+      "hyperEnergy": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GraveShuffle545",
+          "owner": "self"
+        },
+        {
+          "op": "LookDeploy530",
+          "n": 4,
+          "limit": 1,
+          "rest": "bottom",
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-778",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-029",
+      "name": "加速樹",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2500,
+      "race": "スターライト・ツリー",
+      "text": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分のマナゾーンにあるカードの枚数よりコストが大きい相手のクリーチャーが出た時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-029",
+      "limit": 4,
+      "gStrike": true,
+      "g314OtherEntry": {
+        "who": "opponent",
+        "g778OverMana": true,
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "山札の上から1枚をマナゾーンに置く？",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-778",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 777,
+    "phase": 778,
     "checkedAt": "2026-11-10",
-    "baseCount": 6182,
+    "baseCount": 6186,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6186,
+    "totalCount": 6190,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+      "https://dm.takaratomy.co.jp/rule/qa/45461/",
       "https://dm.takaratomy.co.jp/rule/qa/45468/",
       "https://dm.takaratomy.co.jp/rule/qa/45473/",
-      "https://dm.takaratomy.co.jp/rule/qa/45936/",
-      "https://dm.takaratomy.co.jp/rule/qa/45563/",
-      "https://dm.takaratomy.co.jp/rule/qa/43792/",
-      "https://dm.takaratomy.co.jp/rule/qa/48123/"
+      "https://dm.takaratomy.co.jp/rule/qa/42956/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37947/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37424/",
+      "https://dm.takaratomy.co.jp/rule/qa/39516/",
+      "https://dm.takaratomy.co.jp/rule/qa/46815/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -192956,6 +193097,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/47465/",
           "https://dm.takaratomy.co.jp/rule/qa/47489/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31654/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 777,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6182,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6186,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/45468/",
+          "https://dm.takaratomy.co.jp/rule/qa/45473/",
+          "https://dm.takaratomy.co.jp/rule/qa/45936/",
+          "https://dm.takaratomy.co.jp/rule/qa/45563/",
+          "https://dm.takaratomy.co.jp/rule/qa/43792/",
+          "https://dm.takaratomy.co.jp/rule/qa/48123/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

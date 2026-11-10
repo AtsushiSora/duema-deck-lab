@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6186,
-  "pendingNames": 5641,
-  "phase": 777,
+  "supportedNames": 6190,
+  "pendingNames": 5637,
+  "phase": 778,
   "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3347,
+    "クリーチャー": 3344,
     "NEOクリーチャー": 152,
-    "呪文": 805,
+    "呪文": 804,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 60,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4120,
+    "未対応の能力文": 4116,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -10339,36 +10339,99 @@
           "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-065"
         }
       ]
+    },
+    {
+      "phase": 778,
+      "cards": [
+        {
+          "id": "dm24rp3-067",
+          "name": "ボルシャック・デュアルショック"
+        },
+        {
+          "id": "dm24rp3-057",
+          "name": "芸馬猫刄 スゴローニャ"
+        },
+        {
+          "id": "dm24rp4-046",
+          "name": "「ファーーーー！俺様は哀しい!!」"
+        },
+        {
+          "id": "dm24rp4-029",
+          "name": "加速樹"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm24ex3-077",
+          "canonicalId": "dm24rp4-046",
+          "name": "「ファーーーー！俺様は哀しい!!」"
+        },
+        {
+          "id": "dm24ex3-049",
+          "canonicalId": "dm24rp4-029",
+          "name": "加速樹"
+        },
+        {
+          "id": "promoy23-101",
+          "canonicalId": "dm24rp4-029",
+          "name": "加速樹"
+        },
+        {
+          "id": "dm24ex3-079",
+          "canonicalId": "dm24rp4-050",
+          "name": "魔誕翔天マルピア"
+        }
+      ],
+      "supportedNames": 6190,
+      "pendingNames": 5637,
+      "verification": {
+        "focusedPassed": 17,
+        "regressionPassed": 560,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 8,
+        "scope": "新規4種類7版と既存マルピアの再録1版を公式照合。別コストの支払いと通常召喚との差、盾の束の非ブレイク墓地送り、マナ回収と移動禁止、墓地全体のシャッフルと4枚からの任意展開・残りの順序・閲覧禁止、加速樹の登場時の厳密な比較とG・ストライク、選択中のJSON復元を検証。既存カード定義は基点と一致。",
+        "runtimeNote": "各最大10分。Phase 239・530・545・564・568・600・697・775・777を長時間CPU対戦を除外して回帰検証。公式QA 45461に従い、今回とPhase 777の別コスト召喚4種類はギャイアや黒豆だんしゃくの対象にならないことを確認。別の登場置換の回帰テストはキャディ・ビートルで検証。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dm24rp4-065",
+          "name": "カンテ＝ランタン",
+          "check": "初出の公式本文を確認。現行総合ルール115.2・115.3a・701.13に沿って、バトル比較前のパワー0以下の破壊、比較が行われない場合の勝利誘発、対戦結果による誘発の間の有効期間を、通常バトルと効果バトルの両方で検証するまで保留。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-065"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 777,
-    "nextPhase": 778,
+    "lastVerifiedPhase": 778,
+    "nextPhase": 779,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm24rp3-067",
-        "name": "ボルシャック・デュアルショック",
-        "check": "別コストで出た場合だけ、シールドをブレイクせず墓地へ置く。シールドの束とシールド離脱誘発の処理を確認する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-067"
+        "id": "dm24rp3-030",
+        "name": "新星姫 マルシアス",
+        "check": "別コストの召喚後、相手が自身の手札からコスト3以下を任意で出す。展開制限、進化元、ブロッカーを確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-030"
       },
       {
-        "id": "dm24rp3-057",
-        "name": "芸馬猫刄 スゴローニャ",
-        "check": "別コスト召喚後の必須のマナ回収と通常召喚を区別し、マナの移動禁止や置換を確認する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-057"
+        "id": "dm24rp3-S08",
+        "name": "疾駆竜 ボルシャック・アッシュ・レイダー",
+        "check": "別コスト時の相手任意シールド化、味方のブレイク時の任意ドローと束・同時ブレイクの誘発回数を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-S08"
       },
       {
-        "id": "dm24rp4-046",
-        "name": "「ファーーーー！俺様は哀しい!!」",
-        "check": "ハイパーエナジーの呪文経路と、墓地を戻す処理の後で山札4枚から任意で出す処理を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-046"
+        "id": "dm24rp3-038",
+        "name": "♪楽楽楽 楽楽楽楽 楽楽楽",
+        "check": "コスト6以上の召喚による手札の呪文宣言、S・トリガーと相手による山札の上下選択を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-038"
       },
       {
-        "id": "dm24rp4-029",
-        "name": "加速樹",
-        "check": "G・ストライクと、相手の登場時点のコストを自分のマナ枚数と比べる誘発を既存処理で再現できるか確認する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-029"
+        "id": "dm24rp4-025",
+        "name": "魂晶海嶺ポセイドライト",
+        "check": "手札破棄を伴う軽減と最低コスト1、破棄の置換、ブロッカー・登場時ドローを照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-025"
       },
       {
         "id": "dm24rp4-065",

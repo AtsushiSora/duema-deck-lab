@@ -1084,7 +1084,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  // Resolve Shinka against the evolved unit currently containing the physical base.
  case'g34_ShinkaHost544':{const host=sourceHost474(s,t);if(t.mode==='belowCost'){const n=host?cost(effective(host.x,s)):t.g399Attacker?.cost;if(n!==null&&n!==undefined)start(s,t,[{op:'Target',to:'grave',filter:{belowCost:n===Infinity?'∞':n}}]);}else if(t.mode==='fight'&&host&&!host.x.sealed&&api.isCreature(s,host.x))put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:host.x.uid,incarnation:host.x.incarnation||0},fighterOwner:host.p,optional:true});break;}
  case'g34_ForceGroup546':force546(s,t,1-t.p);break;
- case'g34_GraveShuffle545':put(s,task('g22Shuffle',t.p,t.source,{optional:t.optional}));break;
+ case'g34_GraveShuffle545':put(s,task('g22Shuffle',t.p,t.source,{optional:t.optional,owner:t.owner}));break;
  case'g34_MillRecover545':{const y=api.takeTop(s,t.p);if(!y){api.deckCheck(s,t.p);break;}clear(y);api.addZone(s,t.p,'grave',y);const matched=matches(s,t.p,y,t.filter);api.deckCheck(s,t.p);if(s.winner!==null)break;if(matched)zoneMove(s,t.p,'grave',y.uid,'hand',t);else start(s,t,t.elseDefs);break;}
  case'g34_CountTarget544':start(s,t,[{...t.def,power:(own[t.zone]?.length||0)*t.amount}]);break;
  case'g34_ShinkaDelay543':if(sourceHost474(s,t)){const r={p:t.p,source:t.source,uid:t.uid,incarnation:t.incarnation||0};if(t.when==='end')(s.g537Delays??=[]).push({...r,when:'turnEnd',turn:s.turn,defs:[{op:'Untap',g191First:true}]});else(s.extLimits??=[]).push({kind:'g543Shinka',...r,when:t.when,expires:'end',who:s.active});}break;
@@ -2600,6 +2600,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
    const watch=effective(x,s).g314OtherEntry;
    if(!watch||!creature&&!watch.g765Element||x.sealed||x.uid===y.uid||watch.who!=='both'&&owner!==(watch.who==='opponent'?1-p:p))continue;
    if(watch.filter&&!matches(s,p,y,watch.filter))continue;
+   if(watch.g778OverMana&&cost(effective(y,s))<=s.players[owner].mana.length)continue;
    if(watch.g755EntrantPower)send(s,owner,x,'EntryBoost755',{
     subject:{uid:y.uid,incarnation:y.incarnation||0},power:watch.g755EntrantPower
    });

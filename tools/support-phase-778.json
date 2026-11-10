@@ -1,0 +1,335 @@
+{
+  "phase": 778,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6186,
+  "description": "別コスト召喚2種類、ハイパーエナジーから墓地を戻す呪文、登場時のコストと自分のマナ枚数を比較する誘発に対応する。別コスト召喚のギャイア裁定とマルピアの再録参照も補正する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/45461/",
+    "https://dm.takaratomy.co.jp/rule/qa/45468/",
+    "https://dm.takaratomy.co.jp/rule/qa/45473/",
+    "https://dm.takaratomy.co.jp/rule/qa/42956/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37947/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37424/",
+    "https://dm.takaratomy.co.jp/rule/qa/39516/",
+    "https://dm.takaratomy.co.jp/rule/qa/46815/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp3-067",
+      "name": "ボルシャック・デュアルショック",
+      "faces": [
+        {
+          "name": "ボルシャック・デュアルショック",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーを、 {ff03}を支払って召喚してもよい。そうしたら、このクリーチャーが出た時、自分のシールドを１つ墓地に置く。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-067",
+      "spec": {
+        "breaker": 2,
+        "g568Alt": {
+          "cost": 3,
+          "paymentColors": [
+            "火"
+          ],
+          "entry": [
+            {
+              "op": "ShieldGrave",
+              "g239ShieldGrave": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-067.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "a6c6c2af93823c906e77d231f25f4e912e535f74b2d884afc54aa50fe8c0a899",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp3-057",
+      "name": "芸馬猫刄 スゴローニャ",
+      "faces": [
+        {
+          "name": "芸馬猫刄 スゴローニャ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーを、 {ww03}を支払って召喚してもよい。そうしたら、このクリーチャーが出た時、カードを１枚、自分のマナゾーンから手札に戻す。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+          "race": "マジック・モンスター/ゲーム・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-057",
+      "spec": {
+        "breaker": 2,
+        "g568Alt": {
+          "cost": 3,
+          "paymentColors": [
+            "水"
+          ],
+          "entry": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "to": "hand",
+              "n": 1,
+              "g232ManaReturn": true,
+              "title": "手札に戻すマナを1枚選ぶ"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp3-057.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "bafab2b6e17e2b6de1be6b235782dbfb33a857eb7dfcfa95dab21fd4dbe51596",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-046",
+      "name": "「ファーーーー！俺様は哀しい!!」",
+      "faces": [
+        {
+          "name": "「ファーーーー！俺様は哀しい!!」",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 11,
+          "costText": "11",
+          "abilityText": "ハイパーエナジー（この呪文を唱える時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、この呪文のコストを２少なくする。ただし、コストは０以下にはならない）\n自分の墓地を山札に加えてシャッフルし、その後、自分の山札の上から４枚を見る。その中から、クリーチャーを１体出してもよい。残りを好きな順序で山札の下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-046",
+      "spec": {
+        "hyperEnergy": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GraveShuffle545",
+            "owner": "self"
+          },
+          {
+            "op": "LookDeploy530",
+            "n": 4,
+            "limit": 1,
+            "rest": "bottom",
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "62dd735a75fb180ddb662a42161a5add9ab3fb334111af9bc9b7c829f3636398",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-029",
+      "name": "加速樹",
+      "faces": [
+        {
+          "name": "加速樹",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分のマナゾーンにあるカードの枚数よりコストが大きい相手のクリーチャーが出た時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+          "race": "スターライト・ツリー",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-029",
+      "spec": {
+        "gStrike": true,
+        "g314OtherEntry": {
+          "who": "opponent",
+          "g778OverMana": true,
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "山札の上から1枚をマナゾーンに置く？",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "6578a590c188781002fae23d9063101236462076755ab67c107331fd17fafb1d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex3-077",
+      "canonicalId": "dm24rp4-046",
+      "name": "「ファーーーー！俺様は哀しい!!」",
+      "faces": [
+        {
+          "name": "「ファーーーー！俺様は哀しい!!」",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 11,
+          "costText": "11",
+          "abilityText": "ハイパーエナジー（この呪文を唱える時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、この呪文のコストを２少なくする。ただし、コストは０以下にはならない）\n自分の墓地を山札に加えてシャッフルし、その後、自分の山札の上から４枚を見る。その中から、クリーチャーを１体出してもよい。残りを好きな順序で山札の下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-077",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-077.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "735e6b7ce0ad50125263da0b2c7d9699fc0345c166c09742da8bdf336eebdcae",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-049",
+      "canonicalId": "dm24rp4-029",
+      "name": "加速樹",
+      "faces": [
+        {
+          "name": "加速樹",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分のマナゾーンにあるカードの枚数よりコストが大きい相手のクリーチャーが出た時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+          "race": "スターライト・ツリー",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-049",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "dc14e421e7fd06c587b6a43a21a1a431d1b42ed2bc0b99dfdd97b05e25308d38",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy23-101",
+      "canonicalId": "dm24rp4-029",
+      "name": "加速樹",
+      "faces": [
+        {
+          "name": "加速樹",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n自分のマナゾーンにあるカードの枚数よりコストが大きい相手のクリーチャーが出た時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+          "race": "スターライト・ツリー",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy23-101",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy23-101.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "8e967bc71f723c13b859339bdbc6591ee4426c2b60b5ed39df07969698efa823",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-079",
+      "canonicalId": "dm24rp4-050",
+      "name": "魔誕翔天マルピア",
+      "faces": [
+        {
+          "name": "魔誕翔天マルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、次のうちいずれか１つを選ぶ。\n▶このクリーチャーは、シールドを１つブレイクする。\n▶相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－4000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "デーモン・コマンド/ファイアー・バード",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-079",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-079.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "cec6629b4c73229017eb97ea7748f47cba079005adf04bff6c05a57406e93ebd",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp3-067": 4,
+      "dm24rp3-057": 4,
+      "dm24rp4-046": 4,
+      "dm24rp4-029": 4,
+      "dm24ex3-077": 4,
+      "dm24ex3-049": 4,
+      "promoy23-101": 4,
+      "dm24ex3-079": 4
+    }
+  }
+}

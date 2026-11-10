@@ -2564,6 +2564,26 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=778&&d.faces.length===1){
+  const breaker='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';
+  const paid=(symbol,body)=>'このクリーチャーを{'+symbol+'}を支払って召喚してもよい。そうしたらこのクリーチャーが出た時'+body+breaker;
+  if(f.typeText==='クリーチャー'&&compact363===paid('ff03','自分のシールドを1つ墓地に置く。'))
+   return {breaker:2,g568Alt:{cost:3,paymentColors:['火'],entry:[{op:'ShieldGrave',g239ShieldGrave:true}]}};
+  if(f.typeText==='クリーチャー'&&compact363===paid('ww03','カードを1枚自分のマナゾーンから手札に戻す。'))
+   return {breaker:2,g568Alt:{cost:3,paymentColors:['水'],entry:[
+    {op:'Select',origin:'mana',to:'hand',n:1,g232ManaReturn:true,title:'手札に戻すマナを1枚選ぶ'}
+   ]}};
+  const energy='ハイパーエナジー(この呪文を唱える時コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー1体につきこの呪文のコストを2少なくする。ただしコストは0以下にはならない)';
+  if(f.typeText==='呪文'&&compact363===energy+'自分の墓地を山札に加えてシャッフルしその後自分の山札の上から4枚を見る。その中からクリーチャーを1体出してもよい。残りを好きな順序で山札の下に置く。')
+   return {hyperEnergy:true,effect:'sixPhoto',g34Tasks:[
+    {op:'GraveShuffle545',owner:'self'},{op:'LookDeploy530',n:4,limit:1,rest:'bottom',filter:{creature:true}}
+   ]};
+  const gs='{GS}G・ストライク(このクリーチャーを自分のシールドゾーンから手札に加える時表向きにし相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)';
+  if(f.typeText==='クリーチャー'&&compact363===gs+'自分のマナゾーンにあるカードの枚数よりコストが大きい相手のクリーチャーが出た時自分の山札の上から1枚目をマナゾーンに置いてもよい。')
+   return {gStrike:true,g314OtherEntry:{who:'opponent',g778OverMana:true,filter:{creature:true},defs:[
+    {op:'Offer',title:'山札の上から1枚をマナゾーンに置く？',defs:[{op:'Ramp',n:1}]}
+   ]}};
+ }
  if(phase>=777&&d.faces.length===1){
   const shield={op:'Offer',title:'山札の上から1枚目をシールド化する？',defs:[{op:'ShieldTop',n:1}]};
   if(f.typeText==='クリーチャー'&&compact363==='コストが異なる自分のエレメントが3つ以上あればこのクリーチャーの召喚コストを5少なくする。ただしコストは0以下にはならない。このクリーチャーが出た時またはタップした時自分の山札の上から1枚目をシールド化してもよい。')

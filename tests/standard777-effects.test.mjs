@@ -185,7 +185,10 @@ for(const [id,mana,destination,n] of [[GIANT,BODY,'mana',1],[SKULL,DARK,'hand',2
  test(id+' has no offer after ordinary summoning or after entry is replaced',()=>{
   for(const replaced of [false,true]){
    const s=setup(),x=put(s,0,'hand',id),before=ids(s,1,'deck');
-   if(replaced)put(s,1,'battle','dmrp16-s05');
+   if(replaced){
+    give(s,0,'mana',[FIRE,mana]);
+    put(s,1,'battle','dm22rp1-049');
+   }
    act(s,'play',a=>a.uid===x.uid&&(replaced?a.role==='paidAlt568':!a.alternative&&a.cost===5));
    assert.equal(s.decision,null);
    assert.deepEqual(ids(s,1,'deck'),before);
