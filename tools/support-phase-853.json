@@ -1,0 +1,197 @@
+{
+  "phase": 853,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6423,
+  "description": "M・ソウルの手札戻し、手札を山札に加えてからの展開、公開した呪文の枚数に応じた両者の任意ドローに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36020/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37633/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37074/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35682/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37947/",
+    "https://dm.takaratomy.co.jp/rule/qa/46522/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37949/"
+  ],
+  "cards": [
+    {
+      "id": "dm36-082",
+      "name": "海底機兵シーカイ",
+      "faces": [
+        {
+          "name": "海底機兵シーカイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の(M・ソウル)クリーチャーを１体、バトルゾーンから手札に戻す。",
+          "race": "グレートメカオー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-082",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "to": "hand",
+            "filter": {
+              "g853Soul": "M"
+            },
+            "title": "手札に戻す自分のM・ソウルクリーチャーを選ぶ"
+          }
+        ],
+        "g558Souls": [
+          "M"
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-082.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "3286834460224d74b7cda128da5c3f0ef001999cfa37e89b08bbd7e557f23471",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-021",
+      "name": "龍素解析",
+      "faces": [
+        {
+          "name": "龍素解析",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分の手札をすべて山札に加えてシャッフルし、カードを４枚引く。その後、コスト７以下の進化ではないコマンド・ドラゴンを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-021",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandCycle460",
+            "to": "deck",
+            "shuffle": true,
+            "fixedDraw": 4
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "max": 7,
+              "race": "コマンド・ドラゴン"
+            },
+            "title": "手札から出す進化ではないコスト7以下のコマンド・ドラゴンを選ぶ（任意）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "cf523bda3a84c5e99e35fc8d2e1e0468ab8b02a4f2bb295f416139234c8c953c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm29-010",
+      "name": "氷牙バブル・ヘルマー公",
+      "faces": [
+        {
+          "name": "氷牙バブル・ヘルマー公",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の手札から好きな枚数の呪文を見せてもよい。見せた呪文１枚につきカードを１枚、各プレイヤーは引いてもよい。",
+          "race": "サイバー・ウイルス/ナイト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-010",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandReveal462",
+            "filter": {
+              "spell": true
+            },
+            "g853EachDraw": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm29-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "dfc9c9d2073c3a19ad140bc9a2cf34d19b4bd4f366fc79887e71b54323da94bb",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy13-024",
+      "canonicalId": "dmr13-021",
+      "name": "龍素解析",
+      "faces": [
+        {
+          "name": "龍素解析",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分の手札をすべて山札に加えてシャッフルし、カードを４枚引く。その後、コスト７以下の進化ではないコマンド・ドラゴンを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-024",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy13-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "43c3c1f33b1ea42fdd776a402a55b87a6730ef9685de1b17159c8cdab13100cb",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm36-082": 4,
+      "dmr13-021": 4,
+      "dm29-010": 4,
+      "promoy13-024": 4
+    }
+  }
+}

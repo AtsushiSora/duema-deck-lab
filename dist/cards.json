@@ -187257,22 +187257,125 @@
       ],
       "supportBatch": "phase-852",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm36-082",
+      "name": "海底機兵シーカイ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 5000,
+      "race": "グレートメカオー",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の(M・ソウル)クリーチャーを１体、バトルゾーンから手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-082",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "to": "hand",
+          "filter": {
+            "g853Soul": "M"
+          },
+          "title": "手札に戻す自分のM・ソウルクリーチャーを選ぶ"
+        }
+      ],
+      "g558Souls": [
+        "M"
+      ],
+      "supportBatch": "phase-853",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-021",
+      "name": "龍素解析",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "自分の手札をすべて山札に加えてシャッフルし、カードを４枚引く。その後、コスト７以下の進化ではないコマンド・ドラゴンを１体、自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-021",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "HandCycle460",
+          "to": "deck",
+          "shuffle": true,
+          "fixedDraw": 4
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "max": 7,
+            "race": "コマンド・ドラゴン"
+          },
+          "title": "手札から出す進化ではないコスト7以下のコマンド・ドラゴンを選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-853",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm29-010",
+      "name": "氷牙バブル・ヘルマー公",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "サイバー・ウイルス/ナイト",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の手札から好きな枚数の呪文を見せてもよい。見せた呪文１枚につきカードを１枚、各プレイヤーは引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-010",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "HandReveal462",
+          "filter": {
+            "spell": true
+          },
+          "g853EachDraw": true
+        }
+      ],
+      "supportBatch": "phase-853",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 852,
+    "phase": 853,
     "checkedAt": "2026-11-11",
-    "baseCount": 6420,
+    "baseCount": 6423,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6423,
+    "totalCount": 6426,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35679/",
-      "https://dm.takaratomy.co.jp/rule/qa/42981/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31641/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31637/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36020/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37074/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35682/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37947/",
+      "https://dm.takaratomy.co.jp/rule/qa/46522/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -202358,6 +202461,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/40947/",
           "https://dm.takaratomy.co.jp/rule/qa/43489/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31631/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 852,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6420,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6423,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35679/",
+          "https://dm.takaratomy.co.jp/rule/qa/42981/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31641/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31637/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

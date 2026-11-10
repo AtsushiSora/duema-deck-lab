@@ -3433,6 +3433,19 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=853){
+  const effect=g34Tasks=>({effect:'sixPhoto',g34Tasks});
+  if(f.typeText==='呪文'&&compact363==='自分の手札をすべて山札に加えてシャッフルしカードを4枚引く。その後コスト7以下の進化ではないコマンド・ドラゴンを1体自分の手札からバトルゾーンに出してもよい。')
+   return effect([
+    {op:'HandCycle460',to:'deck',shuffle:true,fixedDraw:4},
+    {op:'Select',origin:'hand',deploy:true,n:1,optional:true,filter:{creature:true,nonEvolution:true,max:7,race:'コマンド・ドラゴン'},
+     title:'手札から出す進化ではないコスト7以下のコマンド・ドラゴンを選ぶ（任意）'}
+   ]);
+  if(f.typeText==='クリーチャー'&&compact363==='このクリーチャーをバトルゾーンに出した時自分の手札から好きな枚数の呪文を見せてもよい。見せた呪文1枚につきカードを1枚各プレイヤーは引いてもよい。')
+   return effect([{op:'HandReveal462',filter:{spell:true},g853EachDraw:true}]);
+  if(d.id==='dm36-082'&&f.typeText==='クリーチャー'&&compact363==='このクリーチャーをバトルゾーンに出した時自分の(M・ソウル)クリーチャーを1体バトルゾーンから手札に戻す。')
+   return {...effect([{op:'Target',owner:'self',to:'hand',filter:{g853Soul:'M'},title:'手札に戻す自分のM・ソウルクリーチャーを選ぶ'}]),g558Souls:['M']};
+ }
  if(phase>=781){
   const race={creature:true,g724ExactRace:'超化獣'};
   if(f.typeText==='呪文'&&compact363==='S・トリガーS・トリガーコスト7以下の超化獣クリーチャーを1体自分の手札から出してもよい。次の自分のターンのはじめまでそのクリーチャーのハイパーモードを解放し「ブロッカー」を与える。')
