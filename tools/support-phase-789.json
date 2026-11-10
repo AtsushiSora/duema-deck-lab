@@ -1,0 +1,381 @@
+{
+  "phase": 789,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6220,
+  "description": "非召喚登場の手札戻しと攻撃回数制限、2枚目のドローでの追加ドロー、手札条件による火・自然の代替コストに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/39835/",
+    "https://dm.takaratomy.co.jp/rule/qa/43748/",
+    "https://dm.takaratomy.co.jp/rule/qa/45556/",
+    "https://dm.takaratomy.co.jp/rule/qa/42049/"
+  ],
+  "cards": [
+    {
+      "id": "dm24ex4-066",
+      "name": "伝達妖精セージ / コンタクト・メッセージ",
+      "faces": [
+        {
+          "name": "伝達妖精セージ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手のクリーチャーが召喚以外の方法で出た時、そのクリーチャーを持ち主の手札に戻してもよい。",
+          "race": "スノーフェアリー",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "コンタクト・メッセージ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次の自分のターンのはじめまで、相手は各ターン２度までしかクリーチャーで攻撃できない。",
+          "race": "",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-066",
+      "spec": {
+        "g621NonSummon": "bounce",
+        "spellFace": {
+          "name": "コンタクト・メッセージ",
+          "type": "spell",
+          "cost": 4,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "trigger": true,
+          "g34Tasks": [
+            {
+              "op": "AttackCap627",
+              "max": 2
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-066a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "e03c5e6176e4886d6207f290eb6c7c7f4f48dcdc83bd09e2cdd6cbaa828b6a4a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-086",
+      "name": "AQreplay / 伝説チャンス",
+      "faces": [
+        {
+          "name": "AQreplay",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n各ターン、自分が２枚目のカードを引いた時、カードを１枚引く。",
+          "race": "マジック・リキッド・ピープル",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "伝説チャンス",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nカードを１枚引く。",
+          "race": "",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-086",
+      "spec": {
+        "blocker": true,
+        "g789SecondDraw": true,
+        "spellFace": {
+          "name": "伝説チャンス",
+          "type": "spell",
+          "cost": 3,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "g190Freeze": "self",
+              "spell": true
+            },
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-086a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "4202f0d61b17b6107687d0e936d1362e6c25e6c98bee6edbd55ba44f19769b26",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-060",
+      "name": "勇気の絆",
+      "faces": [
+        {
+          "name": "勇気の絆",
+          "typeText": "呪文",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の手札がこのカードだけなら、この呪文を[fn02]支払って唱えてもよい。\nS・トリガー S・トリガー\n相手のコスト７以下のクリーチャーを１体選び、破壊する。\n自分の山札の上から１枚目をマナゾーンに置く。その後、クリーチャーを１体、自分のマナゾーンから手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-060",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g568Alt": {
+          "cost": 2,
+          "paymentColors": [
+            "火",
+            "自然"
+          ],
+          "handOnly": true
+        },
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "max": 7
+            }
+          },
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-060.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "f2b65e64266e80a7b3dcb906bd1197a1c5bd40f08dd0b2c7c1b6fa2af9dfa3c3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex4-PR026",
+      "canonicalId": "dm24ex4-066",
+      "name": "伝達妖精セージ / コンタクト・メッセージ",
+      "faces": [
+        {
+          "name": "伝達妖精セージ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手のクリーチャーが召喚以外の方法で出た時、そのクリーチャーを持ち主の手札に戻してもよい。",
+          "race": "スノーフェアリー",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "コンタクト・メッセージ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次の自分のターンのはじめまで、相手は各ターン２度までしかクリーチャーで攻撃できない。",
+          "race": "",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-PR026",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-PR026a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "47f32af3abfae5a296b50a64a43b1fb94541c854d7cecda935bf96a1d5303982",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-PR046",
+      "canonicalId": "dm24ex4-086",
+      "name": "AQreplay / 伝説チャンス",
+      "faces": [
+        {
+          "name": "AQreplay",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n各ターン、自分が２枚目のカードを引いた時、カードを１枚引く。",
+          "race": "マジック・リキッド・ピープル",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "伝説チャンス",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nカードを１枚引く。",
+          "race": "",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-PR046",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-PR046a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "d90688073b0d057504415934fb6b53dfe72fa331e9f0689e067071f495dc7054",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy23-125",
+      "canonicalId": "dm24ex4-086",
+      "name": "AQreplay / 伝説チャンス",
+      "faces": [
+        {
+          "name": "AQreplay",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n各ターン、自分が２枚目のカードを引いた時、カードを１枚引く。",
+          "race": "マジック・リキッド・ピープル",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "伝説チャンス",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nカードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy23-125",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy23-125a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "7215f02cd54621a17e676ea55be7adc01f5cd4524bcc8e4053eb0c1ee6733c38",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-PR020",
+      "canonicalId": "dm24ex4-060",
+      "name": "勇気の絆",
+      "faces": [
+        {
+          "name": "勇気の絆",
+          "typeText": "呪文",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の手札がこのカードだけなら、この呪文を[fn02]支払って唱えてもよい。\nS・トリガー S・トリガー\n相手のコスト７以下のクリーチャーを１体選び、破壊する。\n自分の山札の上から１枚目をマナゾーンに置く。その後、クリーチャーを１体、自分のマナゾーンから手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-PR020",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-PR020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "9307efa58c0d194b1d33ea6e2184ef09932fb6346e7fbb447e8bef25d8e03f0d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24ex4-066": 4,
+      "dm24ex4-086": 4,
+      "dm24ex4-060": 4,
+      "dm24ex4-PR026": 4,
+      "dm24ex4-PR046": 4,
+      "promoy23-125": 4,
+      "dm24ex4-PR020": 4
+    }
+  }
+}

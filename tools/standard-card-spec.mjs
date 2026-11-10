@@ -2507,6 +2507,25 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=789&&d?.status==='complete'){
+  const frontText=normalize(f.abilityText);
+  const trigger='S・トリガーS・トリガー';
+  if(d.faces.length===2&&f.typeText==='クリーチャー'&&d.faces[1].typeText==='呪文'){
+   const spell=d.faces[1],spellText=normalize(spell.abilityText);
+   const spellFace={name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,effect:'sixPhoto'};
+   if(frontText==='相手のクリーチャーが召喚以外の方法で出た時そのクリーチャーを持ち主の手札に戻してもよい。'&&
+      spellText===trigger+'(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)次の自分のターンのはじめまで相手は各ターン2度までしかクリーチャーで攻撃できない。')
+    return {g621NonSummon:'bounce',spellFace:{...spellFace,trigger:true,g34Tasks:[{op:'AttackCap627',max:2}]}};
+   const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+   if(frontText===blocker+'各ターン自分が2枚目のカードを引いた時カードを1枚引く。'&&
+      spellText==='相手のクリーチャーを1体選ぶ。次の自分のターンのはじめまでそのクリーチャーは攻撃もブロックもできない。カードを1枚引く。')
+    return {blocker:true,g789SecondDraw:true,spellFace:{...spellFace,g34Tasks:[{op:'Target',g190Freeze:'self',spell:true},{op:'Draw',n:1}]}};
+  }
+  if(d.faces.length===1&&f.typeText==='呪文'&&
+     frontText==='自分の手札がこのカードだけならこの呪文を[fn02]支払って唱えてもよい。'+trigger+'相手のコスト7以下のクリーチャーを1体選び破壊する。自分の山札の上から1枚目をマナゾーンに置く。その後クリーチャーを1体自分のマナゾーンから手札に戻してもよい。')
+   return {trigger:true,effect:'sixPhoto',g568Alt:{cost:2,paymentColors:['火','自然'],handOnly:true},
+    g34Tasks:[{op:'Target',to:'grave',filter:{max:7}},{op:'Ramp',n:1},{op:'Select',origin:'mana',to:'hand',n:1,optional:true,filter:{creature:true}}]};
+ }
  if(phase>=788&&d?.status==='complete'&&d.faces.length===2&&f.typeText==='クリーチャー'&&d.faces[1].typeText==='呪文'){
   const spell=d.faces[1],frontText=normalize(f.abilityText),spellText=normalize(spell.abilityText);
   const spellFace={name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,effect:'sixPhoto'};

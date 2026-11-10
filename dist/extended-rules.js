@@ -123,9 +123,11 @@ export function createExtendedRules(api){
  const nowCreature=(s,p,uid)=>s.players[p].battle.find(x=>x.uid===uid);
  const lock=(s,p,more)=>{(s.extLimits??=[]).push({controller:p,expires:'start',who:p,...more});};
  const locked=(s,p,x,kind)=>{
-  if(kind==='attack'&&s.g481Attackers?.turn===s.turn&&s.g481Attackers.events.some(event=>event.p===p)&&
+  if(kind==='attack'&&s.g481Attackers?.turn===s.turn&&
    (s.extLimits||[]).some(l=>l.kind==='g627AttackCap'&&l.player===p&&l.active&&
-    !api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})))return true;
+    s.g481Attackers.events.filter(event=>event.p===p).length>=(l.max??1)&&
+    !api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})&&
+    (l.max===undefined||!creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks))))return true;
   if(kind==='attack'&&(s.extLimits||[]).some(l=>l.kind==='g677OnlyAttacker'&&l.player===p&&
    !api.allLayers(x).some(y=>l.refs.includes(y.uid+'@'+(y.incarnation||0)))))return true;
   if(kind==='attack'&&creatures(s,p).some(y=>effective(y,s).ignoreAttackLocks))return false;

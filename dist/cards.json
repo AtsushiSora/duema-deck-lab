@@ -180680,23 +180680,153 @@
       },
       "supportBatch": "phase-788",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-066",
+      "name": "伝達妖精セージ / コンタクト・メッセージ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "スノーフェアリー",
+      "text": "相手のクリーチャーが召喚以外の方法で出た時、そのクリーチャーを持ち主の手札に戻してもよい。\n【呪文面】\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次の自分のターンのはじめまで、相手は各ターン２度までしかクリーチャーで攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-066",
+      "limit": 4,
+      "g621NonSummon": "bounce",
+      "spellFace": {
+        "name": "コンタクト・メッセージ",
+        "type": "spell",
+        "cost": 4,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "trigger": true,
+        "g34Tasks": [
+          {
+            "op": "AttackCap627",
+            "max": 2
+          }
+        ]
+      },
+      "supportBatch": "phase-789",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-086",
+      "name": "AQreplay / 伝説チャンス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "マジック・リキッド・ピープル",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n各ターン、自分が２枚目のカードを引いた時、カードを１枚引く。\n【呪文面】\n相手のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは攻撃もブロックもできない。\nカードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-086",
+      "limit": 4,
+      "blocker": true,
+      "g789SecondDraw": true,
+      "spellFace": {
+        "name": "伝説チャンス",
+        "type": "spell",
+        "cost": 3,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g190Freeze": "self",
+            "spell": true
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-789",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-060",
+      "name": "勇気の絆",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "自分の手札がこのカードだけなら、この呪文を[fn02]支払って唱えてもよい。\nS・トリガー S・トリガー\n相手のコスト７以下のクリーチャーを１体選び、破壊する。\n自分の山札の上から１枚目をマナゾーンに置く。その後、クリーチャーを１体、自分のマナゾーンから手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-060",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g568Alt": {
+        "cost": 2,
+        "paymentColors": [
+          "火",
+          "自然"
+        ],
+        "handOnly": true
+      },
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "max": 7
+          }
+        },
+        {
+          "op": "Ramp",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-789",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 788,
+    "phase": 789,
     "checkedAt": "2026-11-10",
-    "baseCount": 6217,
+    "baseCount": 6220,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6220,
+    "totalCount": 6223,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37512/",
-      "https://dm.takaratomy.co.jp/rule/qa/42947/",
-      "https://dm.takaratomy.co.jp/rule/qa/48125/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37943/",
-      "https://dm.takaratomy.co.jp/rule/qa/48502/"
+      "https://dm.takaratomy.co.jp/rule/qa/39835/",
+      "https://dm.takaratomy.co.jp/rule/qa/43748/",
+      "https://dm.takaratomy.co.jp/rule/qa/45556/",
+      "https://dm.takaratomy.co.jp/rule/qa/42049/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -194453,6 +194583,26 @@
           "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck09/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37022/",
           "https://dm.takaratomy.co.jp/news/other/39167/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 788,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6217,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6220,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37512/",
+          "https://dm.takaratomy.co.jp/rule/qa/42947/",
+          "https://dm.takaratomy.co.jp/rule/qa/48125/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37943/",
+          "https://dm.takaratomy.co.jp/rule/qa/48502/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

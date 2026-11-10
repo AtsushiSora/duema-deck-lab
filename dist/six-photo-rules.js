@@ -1376,7 +1376,12 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  case'g34_DelayedMove532':{const host=sourceHost474(s,t);if(host&&(!t.g774Banky||!host.x.sealed))move(s,[{player:host.p,uid:host.x.uid,to:t.to,destroy:t.to==='grave',controller:t.controller??t.p}]);break;}
  case'g34_ExactMove':{
   const owner=t.owner??1-t.p;
-  const y=s.players[owner].battle.find(y=>t.g403Refs?(t.filter?.g600OverMana||t.followEvolution?api.allLayers(y):[y,...(y.godLinks||[])]).some(z=>t.g403Refs.some(r=>r.uid===z.uid&&r.incarnation===(z.incarnation||0))):y.uid===t.target&&(t.targetIncarnation===undefined||(y.incarnation||0)===t.targetIncarnation));
+  const y=s.players[owner].battle.find(y=>{
+   if(!t.g403Refs)return y.uid===t.target&&(t.targetIncarnation===undefined||(y.incarnation||0)===t.targetIncarnation);
+   const follow=t.followEvolution==='evolutionOnly'?api.isEvolution(y):t.followEvolution;
+   const layers=t.filter?.g600OverMana||follow?api.allLayers(y):[y,...(y.godLinks||[])];
+   return layers.some(z=>t.g403Refs.some(r=>r.uid===z.uid&&r.incarnation===(z.incarnation||0)));
+  });
   if(!y||y.sealed&&(t.filter||t.followEvolution)||t.filter&&!matches(s,owner,y,t.filter))break;
   if(t.tap){api.tap(s,owner,y);break;}
   if(t.optional){
@@ -1927,7 +1932,9 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  case'g34_SpellLock489':(s.extLimits??=[]).push({kind:t.max===undefined?'cast':'spellCostLock',player:1-t.p,controller:t.p,expires:t.expires,who:t.expires==='end'?s.active:t.p,...(t.max===undefined?{}:{max:t.max})});break;
  case'g34_AttackCap627':{
   const player=1-t.p;
-  (s.extLimits??=[]).push({kind:'g627AttackCap',player,startsPlayer:player,active:false,expires:'end',who:player,
+  const duration=t.max===undefined?{startsPlayer:player,active:false,expires:'end',who:player}:
+   {max:t.max,active:true,expires:'start',who:t.p};
+  (s.extLimits??=[]).push({kind:'g627AttackCap',player,...duration,
    spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});
   break;
  }
@@ -2681,6 +2688,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
    if(offHand)queue(s,1-p,watcher,[{...exact,to:'mana'}]);
    if(shieldWithoutMana)queue(s,1-p,watcher,[{...exact,to:'shields',optional:true,followEvolution:true}]);
    if(nonSummon==='bottom')queue(s,1-p,watcher,[{...exact,to:'deck'}]);
+   if(nonSummon==='bounce')queue(s,1-p,watcher,[{...exact,to:'hand',optional:true,followEvolution:'evolutionOnly',filter:{creature:true}}]);
    if(nonSummon==='skip')queue(s,1-p,watcher,[{
     op:'Offer',title:'今のターンの残りを飛ばしますか？',score:s.active===p?50:-10,
     defs:[{op:'Custom',name:'endTurn'}]
@@ -2801,6 +2809,9 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  flushShield536(s){if(s.leaving)return;const departed=s.g536ShieldDepartures||[];delete s.g536ShieldDepartures;for(const p of departed)shieldDeparture536(s,p);},
  drawn676(s,p,n,before){
   if(!n)return;
+  if(before<2&&before+n>=2)for(const y of creatures(s,p)){
+   if(!y.sealed&&effective(y,s).g789SecondDraw)queue(s,p,y,[E('Draw',{n:1})]);
+  }
   for(const y of s.players[1-p].battle){
    const {g676OppDraw,g678LaterOppDraw}=card(y);
    if(!(g676OppDraw||g678LaterOppDraw)||y.sealed||api.ignored(s,y)||!api.isCreature(s,y))continue;
@@ -2888,10 +2899,10 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  mainActions(s,p){const own=s.players[p],out=[];
   // Alternative payment changes neither printed civilizations nor zone permissions.
   for(const origin of['hand','mana','grave'])for(const x of own[origin]){
-   const c=api.zoneCard(s,p,x,origin),r=c.g568Alt;if(x.faceDown||!r||r.condition&&!ownCondition(s,p,r.condition)||!api.canMoveZone(s,p,origin)||!api.canCast(s,p,c,origin)||!api.canEnter(s,p,c,{origin,execution:true}))continue;
+   const c=api.zoneCard(s,p,x,origin),r=c.g568Alt;if(x.faceDown||!hasAltPayment568(s,p,origin,r)||!api.canMoveZone(s,p,origin)||!api.canCast(s,p,c,origin)||c.type==='creature'&&!api.canEnter(s,p,c,{origin,execution:true}))continue;
    for(const permit of new Set(api.costAltPermits568(s,p,x,c,origin)))for(const base of[c.neoEvolution?null:undefined,...(c.neoEvolution?api.evolutionBases(s,p,c):[])])for(const snowReducers of[undefined,...api.snowVariants(s,p,c)]){
     const payment={...c,...(origin==='mana'?{civilizations:api.manaColors(c,s,p)}:{}),cost:r.cost,printedCost:c.cost,g568PaymentColors:r.paymentColors,g27BaseUid:base?.uid??null,summonOrigin:origin,executionUid:x.uid,...(snowReducers?{snowReducers}:{})};
-    if(api.canPay(s,p,payment))out.push({kind:'play',alternative:'sixPhoto',role:'paidAlt568',uid:x.uid,cardId:x.cardId,origin,manaPermit:permit,baseUid:base?.uid??null,...(snowReducers?{snowReducers}:{}),cost:api.summonCost(s,p,payment),label:c.name+(r.condition?'を条件付きの別コストで':'を別コストで')+(origin==='hand'?'':origin==='mana'?'マナから':'墓地から')+'召喚'+(base?'・'+card(base).name+'の上にNEO進化':c.neoEvolution?'・進化させず':'')});
+    if(api.canPay(s,p,payment))out.push({kind:'play',alternative:'sixPhoto',role:'paidAlt568',uid:x.uid,cardId:x.cardId,origin,manaPermit:permit,baseUid:base?.uid??null,...(snowReducers?{snowReducers}:{}),cost:api.summonCost(s,p,payment),label:c.name+(r.condition||r.handOnly?'を条件付きの別コストで':'を別コストで')+(origin==='hand'?'':origin==='mana'?'マナから':'墓地から')+(c.type==='spell'?'唱える':'召喚')+(base?'・'+card(base).name+'の上にNEO進化':c.neoEvolution?'・進化させず':'')});
    }
   }
 
@@ -2909,8 +2920,11 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
    for(const permit of permits)out.push({kind:'play',uid:x.uid,cardId:x.cardId,face,origin:'grave',manaPermit:permit,cost:api.summonCost(s,p,payment),label:c.name+'を墓地から召喚する'});
   }
 for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand')||c.type==='creature'&&!api.canEnter(s,p,c,{origin:'hand',execution:true}))continue;let okay=false;if(r==='sirius')okay=creatures(s,p).filter(y=>angel(effective(y,s))&&!y.tapped&&api.canUntap(y)).length>=5;if(r==='zero')okay=own.hand.filter(y=>y!==x&&colors(card(y)).includes('闇')).length>=3&&creatures(s,p).filter(y=>colors(effective(y,s)).includes('闇')&&api.canLeave(s,p,y)).length>=3;if(r==='reiai')okay=own.battle.filter(y=>api.canLeave(s,p,y)).length>=2&&api.canPay(s,p,{cost:5,civilizations:['光','闇','自然'],fixedPayment:true});if(okay)out.push({kind:'play',alternative:'sixPhoto',uid:x.uid,cardId:x.cardId,role:r,label:c.name+'を代替コストで使う',cost:r==='reiai'?5:0});}return out;},
- alternative(s,p,a){if(a.role==='paidAlt568'){const origin=a.origin||'hand',x=s.players[p][origin].find(x=>x.uid===a.uid),c=x&&api.zoneCard(s,p,x,origin),r=c?.g568Alt;if(!r||r.condition&&!ownCondition(s,p,r.condition)||!api.costAltPermits568(s,p,x,c,origin).includes(a.manaPermit))throw Error('別コストの召喚条件を満たしていません');cast(s,p,a.uid,false,a.baseUid??null,0,{cost:r.cost,g568PaymentColors:r.paymentColors,...(r.entry?{g777AltEntry:true}:{}),...(origin==='mana'?{civilizations:api.manaColors(c,s,p)}:{})},origin,'条件付き別コスト',false,a.manaPermit,a.snowReducers??null);return;}if(a.role==='recycle416'){const c=card(a.cardId);if(c.g416RecycleCost)cast(s,p,a.uid,false,null,a.face||0,{cost:c.g416RecycleCost,g40PayNormally:true},'grave','リサイクル',true);return;}if(a.role==='manaBirth296'){cast(s,p,a.uid,false,null,0,{cost:card(a.cardId).g296ManaBirth},'mana','マナ爆誕',false,null,a.snowReducers??null);return;}put(s,task('g34_Custom',p,a.cardId,{name:'alternative',uid:a.uid,role:a.role,selected:[]}));},
+ alternative(s,p,a){if(a.role==='paidAlt568'){const origin=a.origin||'hand',x=s.players[p][origin].find(x=>x.uid===a.uid),c=x&&api.zoneCard(s,p,x,origin),r=c?.g568Alt;if(!hasAltPayment568(s,p,origin,r)||!api.costAltPermits568(s,p,x,c,origin).includes(a.manaPermit))throw Error('別コストの使用条件を満たしていません');cast(s,p,a.uid,false,a.baseUid??null,0,{cost:r.cost,g568PaymentColors:r.paymentColors,...(r.entry?{g777AltEntry:true}:{}),...(origin==='mana'?{civilizations:api.manaColors(c,s,p)}:{})},origin,'条件付き別コスト',false,a.manaPermit,a.snowReducers??null);return;}if(a.role==='recycle416'){const c=card(a.cardId);if(c.g416RecycleCost)cast(s,p,a.uid,false,null,a.face||0,{cost:c.g416RecycleCost,g40PayNormally:true},'grave','リサイクル',true);return;}if(a.role==='manaBirth296'){cast(s,p,a.uid,false,null,0,{cost:card(a.cardId).g296ManaBirth},'mana','マナ爆誕',false,null,a.snowReducers??null);return;}put(s,task('g34_Custom',p,a.cardId,{name:'alternative',uid:a.uid,role:a.role,selected:[]}));},
  };
+ function hasAltPayment568(s,p,origin,r){
+  return !!r&&(!r.handOnly||origin==='hand'&&s.players[p].hand.length===1)&&(!r.condition||ownCondition(s,p,r.condition));
+ }
  function noncreatureUse448(s,p,c){if(c.type==='creature')return;const prev=s.g448NoncreatureUses?.[p];(s.g448NoncreatureUses??=[null,null])[p]={turn:s.turn,n:prev?.turn===s.turn?prev.n+1:1};}
  function countExecution(s,p,c){const prev=s.g34Executions?.[p];(s.g34Executions??=[null,null])[p]={turn:s.turn,n:prev?.turn===s.turn?prev.n+1:1};if(s.active===p&&cost(c)<=9)for(const x of active(s,1-p,'dokindante'))queue(s,1-p,x,[E('Draw',{n:1,optional:true}),exec('hand',9,{spellOnly:true})]);}
 
