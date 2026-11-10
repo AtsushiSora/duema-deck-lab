@@ -190168,25 +190168,124 @@
       ],
       "supportBatch": "phase-878",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr08-004",
+      "name": "R.S.F.K.",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "レッド・コマンド・ドラゴン/ハンター/エイリアン",
+      "text": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nこのクリーチャーが攻撃する時、自分が負けるか中止するまで、相手とガチンコ・ジャッジする。その後、こうして自分がガチンコ・ジャッジに勝った回数、このクリーチャーは相手のシールドを１枚ブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-004",
+      "limit": 4,
+      "speedAttacker": true,
+      "attackJudge": true,
+      "supportBatch": "phase-879",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr07-005",
+      "name": "お目覚めメイ様",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 1000,
+      "race": "ドリームメイト/ハンター",
+      "text": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、バトルゾーンに自分のドリームメイトが７体以上あれば、自分はゲームに勝つ。そうでなければ、その攻撃を中止する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-005",
+      "limit": 1,
+      "g482Unblocked": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "race": "ドリームメイト"
+              },
+              "min": 7
+            }
+          },
+          "defs": [
+            {
+              "op": "Win871",
+              "reason": "自分のドリームメイトが7体以上で勝利"
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "Custom",
+              "name": "stopAttack"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-879",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-052",
+      "name": "慈悲と自愛のアシスト",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次の自分のターンのはじめまで、バトルゾーンにある自分のクリーチャー１体のパワーは+3000され、「ブロッカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-052",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "power": 3000,
+          "grant": {
+            "blocker": true
+          },
+          "g521UntilStart": true,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-879",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 878,
+    "phase": 879,
     "checkedAt": "2026-11-11",
-    "baseCount": 6499,
+    "baseCount": 6502,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6502,
+    "totalCount": 6505,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
-      "https://dm.takaratomy.co.jp/archive/capture/volweeklydash08/",
-      "https://dm.takaratomy.co.jp/rule/qa/48940/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36603/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36833/",
-      "https://dm.takaratomy.co.jp/rule/qa/43078/",
-      "https://dm.takaratomy.co.jp/archive/dmex02/"
+      "https://dm.takaratomy.co.jp/rule/qa/38589/",
+      "https://dm.takaratomy.co.jp/rule/qa/42893/",
+      "https://dm.takaratomy.co.jp/rule/qa/42524/",
+      "https://dm.takaratomy.co.jp/rule/qa/43222/",
+      "https://dm.takaratomy.co.jp/rule/qa/43223/",
+      "https://dm.takaratomy.co.jp/rule/qa/45561/",
+      "https://dm.takaratomy.co.jp/rule/qa/46616/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36710/",
+      "https://dm.takaratomy.co.jp/rule/qa/45095/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -205799,6 +205898,28 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35564/",
           "https://dm.takaratomy.co.jp/rule/qa/45562/",
           "https://dm.takaratomy.co.jp/rule/qa/46147/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 878,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6499,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6502,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+          "https://dm.takaratomy.co.jp/archive/capture/volweeklydash08/",
+          "https://dm.takaratomy.co.jp/rule/qa/48940/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36603/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36833/",
+          "https://dm.takaratomy.co.jp/rule/qa/43078/",
+          "https://dm.takaratomy.co.jp/archive/dmex02/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

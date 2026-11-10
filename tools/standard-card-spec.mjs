@@ -3433,6 +3433,26 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=879){
+  if(f.typeText==='クリーチャー'){
+   const judge='このクリーチャーが攻撃する時自分が負けるか中止するまで相手とガチンコ・ジャッジする。その後こうして自分がガチンコ・ジャッジに勝った回数このクリーチャーは相手のシールドを';
+   const rsfk={
+    'dmr08-004':'スピードアタッカー(このクリーチャーは召喚酔いしない)'+judge+'1枚ブレイクする。',
+    'dmex12-009':'スピードアタッカー'+judge+'1枚ブレイクする。(ガチンコ・ジャッジ:各プレイヤーは自身の山札の上から1枚目を見せそれを一番下に置く。そのカードのコストが相手以上であれば自分の勝ちとする)',
+    'dmx22b-079':'スピードアタッカー'+judge+'ひとつブレイクする。'
+   };
+   if(compact363===rsfk[d.id])return {speedAttacker:true,attackJudge:true};
+   if(['dmr07-005','dm24ex1-024','dmex08-187','dmx25-011'].includes(d.id)){
+    const dreammates=d.id==='dm24ex1-024'?'自分のドリームメイト・クリーチャー':'バトルゾーンに自分のドリームメイト';
+    if(compact363==='このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時'+dreammates+'が7体以上あれば自分はゲームに勝つ。そうでなければその攻撃を中止する。')
+     return {g482Unblocked:[{op:'IfOwn',filter:{g370BattleCount:{filter:{creature:true,race:'ドリームメイト'},min:7}},
+      defs:[{op:'Win871',reason:'自分のドリームメイトが7体以上で勝利'}],elseDefs:[{op:'Custom',name:'stopAttack'}]}]};
+   }
+  }
+  if(d.id==='dmr10-052'&&f.typeText==='呪文'&&compact363===
+   'マナゾーンに置く時このカードはタップして置く。S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)次の自分のターンのはじめまでバトルゾーンにある自分のクリーチャー1体のパワーは+3000され「ブロッカー」を得る。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',power:3000,grant:{blocker:true},g521UntilStart:true,spell:true}]};
+ }
  if(phase>=878&&f.typeText==='クリーチャー'){
   if(d.id==='dmr05-037'&&compact363===
    'ガチンコ・ジャッジで見せたカードを自分の山札の一番下に置くかわりにマナゾーンに置いてもよい。自分のターンの終わりに自然のカードを1枚自分のマナゾーンから手札に戻してもよい。')

@@ -1,0 +1,310 @@
+{
+  "phase": 879,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6502,
+  "description": "攻撃時の反復ガチンコ・ジャッジ、ブロックされなかった時の特殊勝利と攻撃中止、次の自分のターンまでのパワーとブロッカー付与に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/38589/",
+    "https://dm.takaratomy.co.jp/rule/qa/42893/",
+    "https://dm.takaratomy.co.jp/rule/qa/42524/",
+    "https://dm.takaratomy.co.jp/rule/qa/43222/",
+    "https://dm.takaratomy.co.jp/rule/qa/43223/",
+    "https://dm.takaratomy.co.jp/rule/qa/45561/",
+    "https://dm.takaratomy.co.jp/rule/qa/46616/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36710/",
+    "https://dm.takaratomy.co.jp/rule/qa/45095/"
+  ],
+  "cards": [
+    {
+      "id": "dmr08-004",
+      "name": "R.S.F.K.",
+      "faces": [
+        {
+          "name": "R.S.F.K.",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nこのクリーチャーが攻撃する時、自分が負けるか中止するまで、相手とガチンコ・ジャッジする。その後、こうして自分がガチンコ・ジャッジに勝った回数、このクリーチャーは相手のシールドを１枚ブレイクする。",
+          "race": "レッド・コマンド・ドラゴン/ハンター/エイリアン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr08-004",
+      "spec": {
+        "speedAttacker": true,
+        "attackJudge": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr08-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "a3ac6072ca77f3b56c6038ca0dc27d7a4288aedf44b64f7408b7b910046f5233",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr07-005",
+      "name": "お目覚めメイ様",
+      "faces": [
+        {
+          "name": "お目覚めメイ様",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、バトルゾーンに自分のドリームメイトが７体以上あれば、自分はゲームに勝つ。そうでなければ、その攻撃を中止する。",
+          "race": "ドリームメイト/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-005",
+      "spec": {
+        "g482Unblocked": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "filter": {
+                  "creature": true,
+                  "race": "ドリームメイト"
+                },
+                "min": 7
+              }
+            },
+            "defs": [
+              {
+                "op": "Win871",
+                "reason": "自分のドリームメイトが7体以上で勝利"
+              }
+            ],
+            "elseDefs": [
+              {
+                "op": "Custom",
+                "name": "stopAttack"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "afd24841e41dd0ff90641a5abbaa3ad678e9e39ec6c9573ff00211c3cccb9be2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr10-052",
+      "name": "慈悲と自愛のアシスト",
+      "faces": [
+        {
+          "name": "慈悲と自愛のアシスト",
+          "typeText": "呪文",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n次の自分のターンのはじめまで、バトルゾーンにある自分のクリーチャー１体のパワーは+3000され、「ブロッカー」を得る。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-052",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 3000,
+            "grant": {
+              "blocker": true
+            },
+            "g521UntilStart": true,
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "78b020173ecdf548787f58142e85e5a4d5d0b269ae645cbeea9a4d320fb1a8f4",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex12-009",
+      "canonicalId": "dmr08-004",
+      "name": "R.S.F.K.",
+      "faces": [
+        {
+          "name": "R.S.F.K.",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スピードアタッカー\nこのクリーチャーが攻撃する時、自分が負けるか中止するまで、相手とガチンコ・ジャッジする。その後、こうして自分がガチンコ・ジャッジに勝った回数、このクリーチャーは相手のシールドを１枚ブレイクする。（ガチンコ・ジャッジ：各プレイヤーは自身の山札の上から１枚目を見せ、それを一番下に置く。そのカードのコストが相手以上であれば、自分の勝ちとする）",
+          "race": "レッド・コマンド・ドラゴン/ハンター/エイリアン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "96594165f7488bb8b653def631a6596ef90c688f99f4e8e31f5295673d8c6879",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx22b-079",
+      "canonicalId": "dmr08-004",
+      "name": "R.S.F.K.",
+      "faces": [
+        {
+          "name": "R.S.F.K.",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スピードアタッカー\nこのクリーチャーが攻撃する時、自分が負けるか中止するまで、相手とガチンコ・ジャッジする。その後、こうして自分がガチンコ・ジャッジに勝った回数、このクリーチャーは相手のシールドをひとつブレイクする。",
+          "race": "レッド・コマンド・ドラゴン/ハンター/エイリアン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-079",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22b-079.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "ef83d0a983c6262a05790fec60b7d19329a6dbae72639e7baec893a315e0e91f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex1-024",
+      "canonicalId": "dmr07-005",
+      "name": "お目覚めメイ様",
+      "faces": [
+        {
+          "name": "お目覚めメイ様",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、自分のドリームメイト・クリーチャーが７体以上あれば、自分はゲームに勝つ。そうでなければ、その攻撃を中止する。",
+          "race": "ドリームメイト/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-024",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex1-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "91201e57159782a6b15b4112eb7020f5be16e594399a73608561f9c8b65a9988",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex08-187",
+      "canonicalId": "dmr07-005",
+      "name": "お目覚めメイ様",
+      "faces": [
+        {
+          "name": "お目覚めメイ様",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、バトルゾーンに自分のドリームメイトが７体以上あれば、自分はゲームに勝つ。そうでなければ、その攻撃を中止する。",
+          "race": "ドリームメイト/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-187",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-187.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "9e78223ace491f1e44bf5c55b5bceb008d7ab2f2b8966bd810677f6436f5c353",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx25-011",
+      "canonicalId": "dmr07-005",
+      "name": "お目覚めメイ様",
+      "faces": [
+        {
+          "name": "お目覚めメイ様",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、バトルゾーンに自分のドリームメイトが７体以上あれば、自分はゲームに勝つ。そうでなければ、その攻撃を中止する。",
+          "race": "ドリームメイト/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx25-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx25-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "ffd0d3221a01a2753863e7d2ac3b4741a393c5cab18417317bd6673b201c35cb",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr08-004": 4,
+      "dmr07-005": 1,
+      "dmr10-052": 4,
+      "dmex12-009": 4,
+      "dmx22b-079": 4,
+      "dm24ex1-024": 1,
+      "dmex08-187": 1,
+      "dmx25-011": 1
+    }
+  }
+}
