@@ -2507,6 +2507,25 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=837&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='呪文'&&text==='S・トリガーバトルゾーンにある相手のクリーチャーを1体選びタップする。その後バトルゾーンにある自分のハンター1体につきバトルゾーンにある相手のクリーチャーを1体選びタップする。'){
+   const tap={op:'Select',owner:'opponent',origin:'battle',n:1,filter:{creature:true},
+    g173Targets:true,g193Select:true,g193Tap:true,title:'タップする相手のクリーチャーを1体選ぶ'};
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[tap,
+    {op:'CountOwn538',filter:{race:'ハンター'},mode:'repeat',def:tap}]};
+  }
+  if(f.typeText==='クリーチャー'&&[
+   'このクリーチャーをバトルゾーンに出した時',
+   'このクリーチャーがバトルゾーンに出た時'
+  ].some(prefix=>text===prefix+'カードを1枚いずれかのプレイヤーの墓地から選び持ち主の山札の一番上か一番下に置いてもよい。'))
+   return {effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'grave',anyOwner:true,n:1,optional:true,g837DeckEnds:true}]};
+  if(f.typeText==='クリーチャー'&&text==='返霊1(このクリーチャーが攻撃する時自分の墓地からカードを1枚好きな順序で山札の一番下に置いてもよい。そうした場合このクリーチャーの能力を使う)相手の手札を1枚見ないで選び捨てさせる。')
+   return {g558Souls:['E'],g34Attack:[{op:'Select',origin:'grave',to:'deck',n:1,optional:true,
+    g837Reikon:[{op:'BlindDiscard773'}],title:'返霊1：山札の下に置く墓地のカードを選ぶ'}]};
+  if(f.typeText==='クリーチャー'&&text==='自分のターン中にカードを1枚も自分のマナゾーンに置いていなければそのターンの終わりにこのクリーチャーを自分の手札に戻す。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g174End:[{op:'IfOwn',filter:{g837NoManaAdded:true},defs:[{op:'SelfHand299'}]}]};
+ }
  if(phase>=836&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText).replace(/^【K・ソウル】/,'');
   if(f.typeText==='進化クリーチャー'&&text==='進化-自分のジャイアント1体の上に置く。このクリーチャーをバトルゾーンに出した時パワー6000以下のクリーチャーをすべてバトルゾーンから持ち主のマナゾーンに置く。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')

@@ -1,0 +1,261 @@
+{
+  "phase": 837,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6371,
+  "description": "ハンター数に応じた追加タップ、両者の墓地から山札への移動、返霊1、マナを置いていないターンの終了時の自己回収に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36131/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36132/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37627/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37631/",
+    "https://dm.takaratomy.co.jp/rule/qa/33395/",
+    "https://dm.takaratomy.co.jp/rule/qa/39674/",
+    "https://dm.takaratomy.co.jp/rule/qa/40371/",
+    "https://dm.takaratomy.co.jp/rule/qa/45214/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31652/"
+  ],
+  "cards": [
+    {
+      "id": "dmr03-036",
+      "name": "ホーリー・投げる・バナナ",
+      "faces": [
+        {
+          "name": "ホーリー・投げる・バナナ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー\nバトルゾーンにある相手のクリーチャーを１体選び、タップする。その後、バトルゾーンにある自分のハンター１体につき、バトルゾーンにある相手のクリーチャーを１体選び、タップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-036",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "title": "タップする相手のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "CountOwn538",
+            "filter": {
+              "race": "ハンター"
+            },
+            "mode": "repeat",
+            "def": {
+              "op": "Select",
+              "owner": "opponent",
+              "origin": "battle",
+              "n": 1,
+              "filter": {
+                "creature": true
+              },
+              "g173Targets": true,
+              "g193Select": true,
+              "g193Tap": true,
+              "title": "タップする相手のクリーチャーを1体選ぶ"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "f2da5eb80131f79cddae70dbedd742599df0b7508520d8de46d79bd3b8834e22",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-057",
+      "name": "悪臭怪人ゴキーン",
+      "faces": [
+        {
+          "name": "悪臭怪人ゴキーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、カードを１枚、いずれかのプレイヤーの墓地から選び、持ち主の山札の一番上か一番下に置いてもよい。",
+          "race": "デビルマスク",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-057",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "anyOwner": true,
+            "n": 1,
+            "optional": true,
+            "g837DeckEnds": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-057.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "82fa94599bfdb3541fce74fb494a4826758dfdb67b7a56160b82b68942402eb3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm38-047",
+      "name": "落書き人形トロール",
+      "faces": [
+        {
+          "name": "落書き人形トロール",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "返霊１(このクリーチャーが攻撃する時、自分の墓地からカードを１枚、好きな順序で山札の一番下に置いてもよい。そうした場合、このクリーチャーの能力を使う)\n相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "デスパペット",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-047",
+      "spec": {
+        "g558Souls": [
+          "E"
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "deck",
+            "n": 1,
+            "optional": true,
+            "g837Reikon": [
+              {
+                "op": "BlindDiscard773"
+              }
+            ],
+            "title": "返霊1：山札の下に置く墓地のカードを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "fdd1f91536815c346807d1db69d1c5e6a5daaeac37deb4ce75f1a907aa5570d8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm37-034",
+      "name": "剛撃鎧冑カマキリ・ソード",
+      "faces": [
+        {
+          "name": "剛撃鎧冑カマキリ・ソード",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のターン中にカードを１枚も自分のマナゾーンに置いていなければ、そのターンの終わりに、このクリーチャーを自分の手札に戻す。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ジャイアント/ジャイアント・インセクト",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-034",
+      "spec": {
+        "breaker": 2,
+        "g174End": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g837NoManaAdded": true
+            },
+            "defs": [
+              {
+                "op": "SelfHand299"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "0d0055c9a0ccdf30e3719e7763171f27ec4b84b59cb877ca6bc382f29fe348f9",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex04-014",
+      "canonicalId": "dmr01-057",
+      "name": "悪臭怪人ゴキーン",
+      "faces": [
+        {
+          "name": "悪臭怪人ゴキーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、カードを１枚、いずれかのプレイヤーの墓地から選び、持ち主の山札の一番上か一番下に置いてもよい。",
+          "race": "デビルマスク",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-014",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ea4403afb5c77852b6f57adac7058a8fa0e0fefc3e24b73702f04da47b1c8c13",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr03-036": 4,
+      "dmr01-057": 4,
+      "dm38-047": 4,
+      "dm37-034": 4,
+      "dmex04-014": 4
+    }
+  }
+}

@@ -326,6 +326,7 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g837NoManaAdded)return s.g837ManaAddedTurn?.[p]!==s.turn;
   if(f.g834AnyEmptyHand)return s.players.some(player=>player.hand.length===0);
   if(f.g811ManaLeft)return s.g47ManaLeft?.[p]===s.turn;
   if(f.g792AbsentAlly)return !s.players[p].battle.some(x=>!x.sealed&&!x.faceDown&&api.isCreature(s,x)&&effective(x,s).name===f.g792AbsentAlly);
@@ -516,7 +517,7 @@ export function createSixPhotoRules(api){
   const cs=origin==='mana'?api.manaColors(x.faceDown?{civilizations:[],civ:'ゼロ'}:api.zoneCard(s,p,x,'mana'),s,p):colors(effective(x,s,true));
   return cs.filter(color=>color!=='ゼロ').length>1;
  }
- function list(s,t){const p=t.owner==='self'?t.p:t.owner==='opponent'?1-t.p:t.owner??t.p,own=s.players[p];return(t.zones||[t.origin||'hand']).flatMap(origin=>((t.g210ManaUntap||t.g806MultiUntap||t.g803DeployForOwner||api.canMoveZone(s,p,origin))?own[origin]||[]:[]).filter(x=>!(t.selected||[]).includes(x.uid)&&(!t.g187OwnPick||!x.sealed)&&(!t.g186Other||x.uid!==t.uid)&&matches(s,p,x,t.filter)&&(!t.g806MultiUntap||multicolorUntap806(s,p,x,origin))).filter(x=>t.g409Budget===undefined||!x.faceDown&&(t.rows||[]).reduce((n,r)=>n+cost(card(s.players[r.p][r.origin].find(y=>y.uid===r.uid))),0)+cost(api.zoneCard(s,p,x))<(t.g409Budget==='∞'?Infinity:t.g409Budget)).filter(x=>(!t.g530Ids||t.g530Ids.includes(x.uid))&&fitsPower506(s,t,x)&&fitsCost513(s,t,x)&&fitsCost550(s,t,x,p,origin)).filter(x=>!t.deploy||canPut(deploymentState550(s,t),p,x,origin,!!t.execution)).filter(x=>origin!=='battle'||!api.targetable||api.targetable(s,t.p,p,x)).map(x=>({x,origin,p})));}
+ function list(s,t){const p=t.owner==='self'?t.p:t.owner==='opponent'?1-t.p:t.owner??t.p,own=s.players[p];return(t.zones||[t.origin||'hand']).flatMap(origin=>((t.g210ManaUntap||t.g806MultiUntap||t.g803DeployForOwner||t.g837Reikon||api.canMoveZone(s,p,origin))?own[origin]||[]:[]).filter(x=>!(t.selected||[]).includes(x.uid)&&(!t.g187OwnPick||!x.sealed)&&(!t.g186Other||x.uid!==t.uid)&&matches(s,p,x,t.filter)&&(!t.g806MultiUntap||multicolorUntap806(s,p,x,origin))).filter(x=>t.g409Budget===undefined||!x.faceDown&&(t.rows||[]).reduce((n,r)=>n+cost(card(s.players[r.p][r.origin].find(y=>y.uid===r.uid))),0)+cost(api.zoneCard(s,p,x))<(t.g409Budget==='∞'?Infinity:t.g409Budget)).filter(x=>(!t.g530Ids||t.g530Ids.includes(x.uid))&&fitsPower506(s,t,x)&&fitsCost513(s,t,x)&&fitsCost550(s,t,x,p,origin)).filter(x=>!t.deploy||canPut(deploymentState550(s,t),p,x,origin,!!t.execution)).filter(x=>origin!=='battle'||!api.targetable||api.targetable(s,t.p,p,x)).map(x=>({x,origin,p})));}
  function scryScore323(s,t,x){const c=card(x),magi=card(t.source).g34Attack?.find(d=>d.op==='Magibomber321');return api.isCreature(s,x)&&cost(c)<=(magi?.n||0)||cost(c)<=s.players[t.p].mana.length+1?-5:5;}
  function selectedBattleScore(s,t,x,candidates,n){
   if(t.anyOwner&&t.to==='hand'&&(s.players[t.p].battle.includes(x)||!api.canLeave(s,1-t.p,x)))return -10;
@@ -740,6 +741,19 @@ export function createSixPhotoRules(api){
    });
    move(s,rows.map(row=>({player:row.p,uid:row.uid,to:'deck',destroy:false,controller:t.controller??t.p})));
    put(s,task('g34_ShuffleOnMove673',t.p,t.source,{opponent,uids}));
+   return;
+  }
+  if(t.g837DeckEnds){
+   if(t.rows?.length)put(s,{...t,op:'g34_GraveDeckEnd837'});
+   return;
+  }
+  if(t.g837Reikon){
+   const [row]=t.rows;
+   if(row&&s.players[row.p].grave.some(x=>x.uid===row.uid)){
+    zoneMove(s,row.p,'grave',row.uid,'deck',t);
+    // A replacement or prohibition on leaving the graveyard does not cancel reikon (QA 40371).
+    start(s,t,t.g837Reikon);
+   }
    return;
   }
   if(t.g583OnMove){
@@ -2290,6 +2304,14 @@ export function createSixPhotoRules(api){
   choice(s,t,t.mode==='draw'?'山札の下に置く順に選ぶ（'+t.selected.length+' / 2）':'山札に戻すカードを選ぶ',options);
   break;
  }
+ case'g34_GraveDeckEnd837':{
+  const [row]=t.rows;
+  choice(s,t,'選んだカードを山札のどちらに置く？',[
+   opt('山札の一番上','deckTop',row.p===t.p?15:10),
+   opt('山札の一番下','deck',row.p===t.p?10:15)
+  ]);
+  break;
+ }
  case'g34_GraveBottom589':{
   if(t.choosePlayer){
    const size=p=>api.canMoveZone(s,p,'grave')?s.players[p].grave.length:0;
@@ -2401,6 +2423,11 @@ export function createSixPhotoRules(api){
   if(!rest.length)break;
   if(hand)api.discardSelected(s,t.p,rest.map(y=>y.uid),t.source,t.controller);
   else move(s,rest.map(y=>({player:t.p,uid:y.uid,to:'grave',destroy:true,controller:t.controller})));
+  break;
+ }
+ case'g34_GraveDeckEnd837':{
+  const [row]=t.rows;
+  if(v==='deckTop'||v==='deck')zoneMove(s,row.p,'grave',row.uid,v,{...t,g183Return:true});
   break;
  }
  case'g34_GraveBottom589':if(v===0||v===1)put(s,{...t,choosePlayer:false,self:v===t.p});break;
@@ -3160,6 +3187,7 @@ export function createSixPhotoRules(api){
  shieldTrigger(s,p,x,c){if(race(c,'ドラゴン')&&s.players[p].battle.some(y=>!y.sealed&&card(y).g794DragonShieldTrigger&&cost(c)<=effective(y,s).g794DragonShieldTrigger))return true;if(c.type==='creature'&&mecha(c)&&cost(c)<=8&&active(s,p,'kuusoku').length)return true;const root=s.players[p].shields.find(r=>api.shieldCards(r).some(y=>y.uid===x.uid)),group=root&&api.shieldGroup(root);if(root&&c.type==='creature'&&c.g433SeedTrigger&&s.players[p].battle.some(y=>!y.sealed&&matches(s,p,y,{g295Tamaseed:true})))return true;return active(s,p,'fourJustice').length>0&&s.players[p].battle.some(y=>api.layers(y).some(z=>(z.exLifeShieldUids||[z.exLifeShieldUid]).includes(group)));},
  // Mana entry is independent of casting or battlefield entry (QA39403/39404).
  manaAdded449(s,p,cards){
+  if(s.active===p)(s.g837ManaAddedTurn??=[null,null])[p]=s.turn;
   const sources=creatures(s,p).flatMap(x=>{
    if(x.sealed)return [];
    const {g454Space:rules,g763MultiManaUntap:untap,g807ManaEntry:defs}=effective(x,s);
