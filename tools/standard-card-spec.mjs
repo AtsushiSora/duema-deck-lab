@@ -2507,6 +2507,13 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=823&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const draw='このカードが墓地に置かれた時それが墓地に置かれる直前に進化クリーチャーの下にあった場合カードを1枚引いてもよい。';
+  if(text===draw)return {g823EvolutionGraveDraw:true};
+  if(text==='ブロッカーこのクリーチャーは相手プレイヤーを攻撃できない。'+draw)
+   return {blocker:true,noPlayerAttack:true,g823EvolutionGraveDraw:true};
+ }
  if(phase>=822&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='呪文'){
