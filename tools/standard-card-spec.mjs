@@ -2564,6 +2564,14 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=765){
+  if(f.typeText==='クリーチャー'&&compact363==='パワード・ブレイカー(このクリーチャーはそのパワー6000ごとにシールドをさらに1つブレイクする)自分のコスト6以上のクリーチャーが出た時次の自分のターンのはじめまでそのクリーチャーのパワーをこのクリーチャーのパワーに加える。')
+   return {poweredBreaker:true,g314OtherEntry:{who:'self',filter:{min:6},g765CopyPower:true}};
+  if(f.typeText==='クリーチャー'&&compact363==='自分のドラゴンが出た時カードを1枚引く。自分のタップしているドラゴン・クリーチャーがあれば自分のファイアー・バードは攻撃されない。')
+   return {g314OtherEntry:{who:'self',filter:{race:'ドラゴン'},g765Element:true,defs:[{op:'Draw',n:1}]},g691AttackProtection:{requires:'ドラゴン',tapped:true,races:['ファイアー・バード']}};
+  if(f.typeText==='呪文'&&compact363==='ヨビニオン(自分の山札の上からこの呪文よりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし山札の下に置く)自分の山札の上から自分のクリーチャーの数だけマナゾーンに置く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Yobi398'},{op:'CreatureCountRamp765'}]};
+ }
  if(phase>=764&&f.typeText==='クリーチャー'){
   if(compact363==='各ターンはじめて自分のコスト6以上のクリーチャーが攻撃する時そのクリーチャーをアンタップする。')
    return {g252AttackWatch:{who:'self',g764FirstCostSix:true,g399Attacker:true,defs:[{op:'AttackUntap408',g562Creature:true,g764FollowControl:true}]}};

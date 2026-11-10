@@ -301,15 +301,18 @@ function shieldSaverChoices(s){const b=s.shieldBreak;return shieldSaverSources(s
 // Preserve only pending relative-power comparisons when their source leaves or is sealed.
 function rememberComparisonPower(s,owner,host,leaving){
  const pending=[...(s.pendingEffects||[]),...(s.triggers?.entries||[]),...(s.judge?.deferredEffects||[])];
- const tasks=[...pending.map(e=>e.task),...(s.extTasks||[])].filter(task=>task?.p===owner&&
-  (task.op==='g34_TargetBelowSource692'||task.defs?.some(def=>def.op==='TargetBelowSource692'))&&
-  leaving.some(card=>card.uid===task.uid&&(card.incarnation||0)===(task.incarnation||0)));
- if(!tasks.length||host.sealed)return;
+ const all=[...pending.map(e=>e.task),...(s.extTasks||[])].filter(Boolean);
+ const departs=ref=>leaving.some(card=>card.uid===ref.uid&&(card.incarnation||0)===(ref.incarnation||0));
+ const tasks=all.filter(task=>task.p===owner&&
+  (task.op==='g34_TargetBelowSource692'||task.defs?.some(def=>def.op==='TargetBelowSource692'))&&departs(task));
+ const copies=all.filter(task=>task.g765Subject&&departs(task.g765Subject));
+ if(!tasks.length&&!copies.length||host.sealed)return;
  const attack=s.attackLifecycle;
  const attacking=host.uid===s.attack?.attacker||host.uid===attack?.uid&&(host.incarnation||0)===(attack.incarnation||0);
  const current=power(host,attacking,s);
  const savedPower=current===Infinity?'∞':current===-Infinity?'-∞':current;
  for(const task of tasks)task.g692LastPower=savedPower;
+ for(const task of copies)task.g765LastPower=savedPower;
 }
 function recordLastPower(s,p,c,leaving){extra.cyber.recordBattleCards(s,p,leaving);
  rememberComparisonPower(s,p,c,leaving);
@@ -636,7 +639,7 @@ export function isEvolution(inst){return !!(card(inst).g45MDeck||card(inst).g50F
 export function selfTriggersStopped(s,p){return s.players[1-p].battle.some(x=>effectiveCard(x,s).stopSelfEntryAttack&&isEvolution(x));}
 export function power(c,attacking=false,context=null){
  if(context&&c.g393JZero?.turn===context.turn)return 0;
- const modifiers=(c.powerModifiers||[]).filter(x=>(!x.attackOnly||attacking)&&(!x.grantedAbility||!context||!abilitiesIgnored(context,c))&&(x.spellCost===undefined||!spellIgnored(context,{type:'spell',cost:x.spellCost,spellSource:x.spellSource})));if(modifiers.some(x=>x.amount==='-infinity'))return -Infinity;
+ const modifiers=(c.powerModifiers||[]).filter(x=>(!x.attackOnly||attacking)&&(!x.grantedAbility||!context||!abilitiesIgnored(context,c))&&(x.spellCost===undefined||!spellIgnored(context,{type:'spell',cost:x.spellCost,spellSource:x.spellSource})));if(modifiers.some(x=>x.amount==='-infinity'))return -Infinity;if(modifiers.some(x=>x.amount==='∞'))return Infinity;
  const data=effectiveCard(c,context,true),owner=data.ownTurnBonus&&context?context.players.findIndex(p=>p.battle.some(x=>x.uid===c.uid)):-1;
  const darkOwner=context&&data.g137DarkAllyPower?context.players.findIndex(p=>p.battle.some(x=>x.uid===c.uid)):-1,darkAllies=darkOwner>=0?context.players[darkOwner].battle.filter(x=>x.uid!==c.uid&&!x.sealed&&isCreature(context,x)&&civilizations(effectiveCard(x,context,true)).includes('闇')).length:0;
  const gobaOwner=context&&data.g155Goba?context.players.findIndex(p=>p.battle.some(x=>x.uid===c.uid)):-1,gobaBonus=gobaOwner>=0&&context.players[gobaOwner].battle.some(x=>!x.sealed&&isCreature(context,x)&&String(effectiveCard(x,context,true).race).includes('ティラノ・ドレイク'))?2000:0;
@@ -1132,7 +1135,7 @@ function attackTargetAllowed(s,attacker,target){
  for(const source of allies){
   if(!card(source).g691AttackProtection||source.sealed||!isCreature(s,source))continue;
   const rule=effectiveCard(source,s).g691AttackProtection;
-  if(rule?.races.some(r=>String(d.race||'').includes(r))&&allies.some(x=>!x.sealed&&isCreature(s,x)&&String(effectiveCard(x,s).race||'').includes(rule.requires)))return false;
+  if(rule?.races.some(r=>String(d.race||'').includes(r))&&allies.some(x=>!x.sealed&&(!rule.tapped||x.tapped)&&isCreature(s,x)&&String(effectiveCard(x,s).race||'').includes(rule.requires)))return false;
  }
  return !f||!(f.maxCost!==undefined&&costValue(a)<=f.maxCost||f.nonEvolution&&!isEvolution(attacker)||f.race&&String(a.race||'').includes(f.race)||f.exceptRace&&!String(a.race||'').includes(f.exceptRace));
 }

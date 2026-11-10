@@ -177856,21 +177856,112 @@
       "g764MondoEnd": true,
       "supportBatch": "phase-764",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-045",
+      "name": "ブルーアイズ・ドラゴンフライ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ジャイアント・インセクト",
+      "text": "パワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n自分のコスト６以上のクリーチャーが出た時、次の自分のターンのはじめまで、そのクリーチャーのパワーをこのクリーチャーのパワーに加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-045",
+      "limit": 4,
+      "poweredBreaker": true,
+      "g314OtherEntry": {
+        "who": "self",
+        "filter": {
+          "min": 6
+        },
+        "g765CopyPower": true
+      },
+      "supportBatch": "phase-765",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-022",
+      "name": "パロッタ・夜・ミエッピ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "アーマード・ファイアー・バード",
+      "text": "自分のドラゴンが出た時、カードを１枚引く。\n自分のタップしているドラゴン・クリーチャーがあれば、自分のファイアー・バードは攻撃されない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-022",
+      "limit": 4,
+      "g314OtherEntry": {
+        "who": "self",
+        "filter": {
+          "race": "ドラゴン"
+        },
+        "g765Element": true,
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "g691AttackProtection": {
+        "requires": "ドラゴン",
+        "tapped": true,
+        "races": [
+          "ファイアー・バード"
+        ]
+      },
+      "supportBatch": "phase-765",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-022",
+      "name": "悪魔世界の豊潤",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "ヨビニオン（自分の山札の上から、この呪文よりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\n自分の山札の上から、自分のクリーチャーの数だけマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-022",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Yobi398"
+        },
+        {
+          "op": "CreatureCountRamp765"
+        }
+      ],
+      "supportBatch": "phase-765",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 764,
+    "phase": 765,
     "checkedAt": "2026-11-10",
-    "baseCount": 6139,
+    "baseCount": 6142,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6142,
+    "totalCount": 6145,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/49402/",
-      "https://dm.takaratomy.co.jp/rule/qa/46823/",
-      "https://dm.takaratomy.co.jp/rule/qa/43588/"
+      "https://dm.takaratomy.co.jp/rule/qa/42059/",
+      "https://dm.takaratomy.co.jp/rule/qa/45265/",
+      "https://dm.takaratomy.co.jp/rule/qa/43486/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -191150,6 +191241,24 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35256/",
           "https://dm.takaratomy.co.jp/rule/qa/44603/",
           "https://dm.takaratomy.co.jp/rule/qa/41277/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 764,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6139,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6142,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/49402/",
+          "https://dm.takaratomy.co.jp/rule/qa/46823/",
+          "https://dm.takaratomy.co.jp/rule/qa/43588/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
