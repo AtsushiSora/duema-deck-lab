@@ -3433,6 +3433,15 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=860&&f.typeText==='クリーチャー'){
+  if(d.id==='dm36-036'&&compact363==='バトル中このクリーチャーのパワーはバトルゾーンにある自分の他の(W・ソウル)クリーチャー1体につき+2000される。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {g558Souls:['W'],breaker:2,g860BattleCountPower:{zone:'battle',other:true,filter:{g853Soul:'W'},amount:2000}};
+  if(['dm36-025','dm36-025VC'].includes(d.id)&&compact363.replace(/^【E・ソウル】/,'').replace('{ESoulsicon}','')===
+   '自分の他の(E・ソウル)クリーチャーが破壊された時相手は自身のクリーチャーを1体選び破壊する。')
+   return {g558Souls:['E'],g303DeathWatch:{g860EvilSoul:true,defs:[{op:'OpponentSelect',to:'grave',n:1}]}};
+  if(d.id==='dm36-100'&&compact363==='バトルゾーンに自分の他の(K・ソウル)クリーチャーがあればこのクリーチャーは「パワーアタッカー+2000」を得る。(攻撃中「パワーアタッカー+2000」を得たクリーチャーのパワーは+2000される)')
+   return {g558Souls:['K'],g260Self:{filter:{creature:true,g853Soul:'K',g334Other:true},grants:{attackBonus:2000}}};
+ }
  if(phase>=859&&f.typeText==='クリーチャー'){
   if(['dm36-043','dm36-043VC'].includes(d.id)&&compact363.replace(/^【H・ソウル】/,'').replace('{HSoulsicon}','')===
    'バトルゾーンにある自分のクリーチャーを相手が選ぶ時自分の他の(H・ソウル)クリーチャーを選ぶことはできない。(ただし選べないクリーチャーを攻撃またはブロックしてもよい)W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')

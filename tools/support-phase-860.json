@@ -1,0 +1,185 @@
+{
+  "phase": 860,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6444,
+  "description": "W・ソウルを数えるバトル中の強化、E・ソウルの破壊時能力、K・ソウルを条件とするパワーアタッカーに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36041/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34917/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36048/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37633/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37634/"
+  ],
+  "cards": [
+    {
+      "id": "dm36-025",
+      "name": "妖魔伯爵アンヴィル",
+      "faces": [
+        {
+          "name": "妖魔伯爵アンヴィル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分の他の(E・ソウル)クリーチャーが破壊された時、相手は自身のクリーチャーを１体選び破壊する。",
+          "race": "ダークロード",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-025",
+      "spec": {
+        "g558Souls": [
+          "E"
+        ],
+        "g303DeathWatch": {
+          "g860EvilSoul": true,
+          "defs": [
+            {
+              "op": "OpponentSelect",
+              "to": "grave",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "9636c084dcc90fb3f2ecd35e6236d8370907f7d9a9c592e938142610bb6d2c90",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-036",
+      "name": "緑神龍レンジン",
+      "faces": [
+        {
+          "name": "緑神龍レンジン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "バトル中、このクリーチャーのパワーは、バトルゾーンにある自分の他の(W・ソウル)クリーチャー１体につき+2000される。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アース・ドラゴン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-036",
+      "spec": {
+        "g558Souls": [
+          "W"
+        ],
+        "breaker": 2,
+        "g860BattleCountPower": {
+          "zone": "battle",
+          "other": true,
+          "filter": {
+            "g853Soul": "W"
+          },
+          "amount": 2000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "c8890c6d47ff29ae3c50bc54acc06917ce5b9db855b367a70c44392a68eabc33",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-100",
+      "name": "百足兵アインラッド",
+      "faces": [
+        {
+          "name": "百足兵アインラッド",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "バトルゾーンに自分の他の(K・ソウル)クリーチャーがあれば、このクリーチャーは「パワーアタッカー+2000」を得る。(攻撃中、「パワーアタッカー+2000」を得たクリーチャーのパワーは+2000される)",
+          "race": "アーマロイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-100",
+      "spec": {
+        "g558Souls": [
+          "K"
+        ],
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "g853Soul": "K",
+            "g334Other": true
+          },
+          "grants": {
+            "attackBonus": 2000
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-100.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "15ac0c5246129baf017541155f62d5fb7aac29c6bb0f5f8feae1adf27291c5f3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm36-025VC",
+      "canonicalId": "dm36-025",
+      "name": "妖魔伯爵アンヴィル",
+      "faces": [
+        {
+          "name": "妖魔伯爵アンヴィル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "【E・ソウル】\n自分の他の {E Souls icon}(E・ソウル)クリーチャーが破壊された時、相手は自身のクリーチャーを１体選び破壊する。",
+          "race": "ダークロード",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-025VC",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-025VC.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "0fc756c7360fcbf72b7a8766521d28f3e81ed0ef2f039ba2c338c9232c815075",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm36-025": 4,
+      "dm36-036": 4,
+      "dm36-100": 4,
+      "dm36-025VC": 4
+    }
+  }
+}

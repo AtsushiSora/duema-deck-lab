@@ -187894,21 +187894,113 @@
       ],
       "supportBatch": "phase-859",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm36-025",
+      "name": "妖魔伯爵アンヴィル",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "ダークロード",
+      "text": "自分の他の(E・ソウル)クリーチャーが破壊された時、相手は自身のクリーチャーを１体選び破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-025",
+      "limit": 4,
+      "g558Souls": [
+        "E"
+      ],
+      "g303DeathWatch": {
+        "g860EvilSoul": true,
+        "defs": [
+          {
+            "op": "OpponentSelect",
+            "to": "grave",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-860",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm36-036",
+      "name": "緑神龍レンジン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "アース・ドラゴン",
+      "text": "バトル中、このクリーチャーのパワーは、バトルゾーンにある自分の他の(W・ソウル)クリーチャー１体につき+2000される。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-036",
+      "limit": 4,
+      "g558Souls": [
+        "W"
+      ],
+      "breaker": 2,
+      "g860BattleCountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "g853Soul": "W"
+        },
+        "amount": 2000
+      },
+      "supportBatch": "phase-860",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm36-100",
+      "name": "百足兵アインラッド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "アーマロイド",
+      "text": "バトルゾーンに自分の他の(K・ソウル)クリーチャーがあれば、このクリーチャーは「パワーアタッカー+2000」を得る。(攻撃中、「パワーアタッカー+2000」を得たクリーチャーのパワーは+2000される)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-100",
+      "limit": 4,
+      "g558Souls": [
+        "K"
+      ],
+      "g260Self": {
+        "filter": {
+          "creature": true,
+          "g853Soul": "K",
+          "g334Other": true
+        },
+        "grants": {
+          "attackBonus": 2000
+        }
+      },
+      "supportBatch": "phase-860",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 859,
+    "phase": 860,
     "checkedAt": "2026-11-11",
-    "baseCount": 6441,
+    "baseCount": 6444,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6444,
+    "totalCount": 6447,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36002/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36003/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34915/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36041/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/34917/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36048/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37633/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37634/"
     ],
@@ -203135,6 +203227,26 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/34918/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37493/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37498/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 859,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6441,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6444,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36002/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36003/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34915/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37633/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37634/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
