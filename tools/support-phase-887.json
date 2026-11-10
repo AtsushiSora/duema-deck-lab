@@ -1,0 +1,155 @@
+{
+  "phase": 887,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6526,
+  "description": "オシオキムーンによる強制の墓地クリーチャー回収と自身のアンタップ、登場時の墓地肥やし、タップ登場とターン開始時のアンタップ制限に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/38756/",
+    "https://dm.takaratomy.co.jp/rule/qa/46566/",
+    "https://dm.takaratomy.co.jp/rule/qa/34205/",
+    "https://dm.takaratomy.co.jp/rule/qa/34209/",
+    "https://dm.takaratomy.co.jp/rule/qa/44661/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31395/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp15-049",
+      "name": "月明かりに沈むニンギョ",
+      "faces": [
+        {
+          "name": "月明かりに沈むニンギョ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目を墓地に置く。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、クリーチャーを１体、自分の墓地から手札に戻す。",
+          "race": "デビルマスク/月光王国",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-049",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 1
+          }
+        ],
+        "g536ShieldLeft": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "fcaaccd4cb1a31cdc1f34d8e21c2c285cd2362dddedad2aebb46429677131197",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-059",
+      "name": "月面を目指したユメ",
+      "faces": [
+        {
+          "name": "月面を目指したユメ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、このクリーチャーをアンタップする。",
+          "race": "ガーディアン/月光王国",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-059",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g536ShieldLeft": [
+          {
+            "op": "Untap",
+            "g191First": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-059.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "db090812cce9c8a9d0fbdb5b13d7207b2579fdc1f501826a86fed777471afde6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp15-012",
+      "name": "定めの月を待つセイジャ",
+      "faces": [
+        {
+          "name": "定めの月を待つセイジャ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーはタップしてバトルゾーンに置かれ、自分のターンのはじめにアンタップしない。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、このクリーチャーをアンタップする。",
+          "race": "セイント・ヘッド/月光王国",
+          "powerText": "8500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-012",
+      "spec": {
+        "breaker": 2,
+        "g295EnterTapped": true,
+        "g40StartNoUntap": true,
+        "g536ShieldLeft": [
+          {
+            "op": "Untap",
+            "g191First": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "60fa4bd3cc30aad2bcd6f6b06e9821a731438bd84e78ebb11ee0f8d7ac054349",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp15-049": 4,
+      "dmrp16-059": 4,
+      "dmrp15-012": 4
+    }
+  }
+}

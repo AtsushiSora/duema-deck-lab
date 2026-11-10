@@ -3445,6 +3445,18 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=887&&creature){
+  if(d.id==='dmrp15-049'&&compact363===
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)このクリーチャーは相手プレイヤーを攻撃できない。このクリーチャーがバトルゾーンに出た時自分の山札の上から1枚目を墓地に置く。オシオキムーン:カードが自分のシールドゾーンを離れた時クリーチャーを1体自分の墓地から手札に戻す。')
+   return {blocker:true,noPlayerAttack:true,effect:'sixPhoto',g34Tasks:[{op:'Mill',n:1}],
+    g536ShieldLeft:[{op:'Select',origin:'grave',to:'hand',n:1,filter:{creature:true}}]};
+  if(d.id==='dmrp16-059'&&compact363===
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)このクリーチャーは相手プレイヤーを攻撃できない。オシオキムーン:カードが自分のシールドゾーンを離れた時このクリーチャーをアンタップする。')
+   return {blocker:true,noPlayerAttack:true,g536ShieldLeft:[{op:'Untap',g191First:true}]};
+  if(d.id==='dmrp15-012'&&compact363===
+   'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)このクリーチャーはタップしてバトルゾーンに置かれ自分のターンのはじめにアンタップしない。オシオキムーン:カードが自分のシールドゾーンを離れた時このクリーチャーをアンタップする。')
+   return {breaker:2,g295EnterTapped:true,g40StartNoUntap:true,g536ShieldLeft:[{op:'Untap',g191First:true}]};
+ }
  if(phase>=886&&creature){
   if(d.id==='dmrp16-086'&&compact363===
    'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)W・ブレイカー(このクリーチャーはシールドを2つブレイクする)オシオキムーン:カードが自分のシールドゾーンを離れた時カードを1枚引いてもよい。')
