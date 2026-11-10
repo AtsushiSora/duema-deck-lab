@@ -184511,21 +184511,168 @@
       ],
       "supportBatch": "phase-824",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm34-016",
+      "name": "火ノ鳥カゲキリ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 4000,
+      "race": "ファイアー・バード/オリジン",
+      "text": "進化 - 自分のファイアー・バードまたはオリジン１体の上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-016",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "ファイアー・バード"
+          },
+          {
+            "race": "オリジン"
+          }
+        ]
+      },
+      "g825Meteor": "untap",
+      "supportBatch": "phase-825",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm34-011",
+      "name": "エンペラー・マリベル",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "サイバーロード/オリジン",
+      "text": "進化 - 自分の「サイバー」と種族にあるクリーチャーまたはオリジン１体の上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-011",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "サイバー"
+          },
+          {
+            "race": "オリジン"
+          }
+        ]
+      },
+      "g825Meteor": "bounce",
+      "supportBatch": "phase-825",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm33-019",
+      "name": "ダイヤモンド・クラック",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "スノーフェアリー",
+      "text": "マナ進化-自然のクリーチャーを１体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\n自分のターンの終わりに、相手のマナゾーンのカードが自分より多ければ、自分の山札の上から２枚をマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm33-019",
+      "limit": 4,
+      "manaEvolution": true,
+      "evolution": {
+        "civilization": "自然"
+      },
+      "g174End": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "mana",
+              "lessThanOpponent": true
+            }
+          },
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 2,
+              "g809Together": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-825",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-066",
+      "name": "禁門の超人",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ジャイアント/サムライ",
+      "text": "このクリーチャーが攻撃する時、次のうちいずれかひとつを選ぶ。\nバトルゾーンにある相手の、コスト４以下の進化ではないクリーチャーを１体選び、持ち主のマナゾーンに置く。\n相手の手札を１枚見ないで選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-066",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "相手のコスト4以下の進化ではないクリーチャーをマナに置く",
+              "defs": [
+                {
+                  "op": "Target",
+                  "filter": {
+                    "nonEvolution": true,
+                    "max": 4
+                  },
+                  "to": "mana"
+                }
+              ]
+            },
+            {
+              "label": "相手の手札を見ないで1枚選びマナに置く",
+              "defs": [
+                {
+                  "op": "BlindHandMana675"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-825",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 824,
+    "phase": 825,
     "checkedAt": "2026-11-10",
-    "baseCount": 6328,
-    "newEffectCards": 3,
+    "baseCount": 6331,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6331,
+    "totalCount": 6335,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35836/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36870/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37725/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31637/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35919/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37358/",
+      "https://dm.takaratomy.co.jp/rule/qa/43745/",
+      "https://dm.takaratomy.co.jp/rule/qa/42937/",
+      "https://dm.takaratomy.co.jp/rule/qa/47060/",
+      "https://dm.takaratomy.co.jp/rule/qa/46840/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -199021,6 +199168,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/41573/",
           "https://dm.takaratomy.co.jp/rule/qa/42984/",
           "https://dm.takaratomy.co.jp/rule/qa/46524/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 824,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6328,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6331,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35836/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36870/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37725/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31637/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

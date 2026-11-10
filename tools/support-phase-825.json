@@ -1,0 +1,280 @@
+{
+  "phase": 825,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6331,
+  "description": "攻撃時のメテオバーンと選択効果、マナ進化とターン終了時のマナ加速に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35919/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37358/",
+    "https://dm.takaratomy.co.jp/rule/qa/43745/",
+    "https://dm.takaratomy.co.jp/rule/qa/42937/",
+    "https://dm.takaratomy.co.jp/rule/qa/47060/",
+    "https://dm.takaratomy.co.jp/rule/qa/46840/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm34-016",
+      "name": "火ノ鳥カゲキリ",
+      "faces": [
+        {
+          "name": "火ノ鳥カゲキリ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "進化 - 自分のファイアー・バードまたはオリジン１体の上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、このクリーチャーをアンタップする。",
+          "race": "ファイアー・バード/オリジン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-016",
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "ファイアー・バード"
+            },
+            {
+              "race": "オリジン"
+            }
+          ]
+        },
+        "g825Meteor": "untap"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm34-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "26ac85848080e00828bd882482165d13f666e22523929f80139416f801fb2cb2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm34-011",
+      "name": "エンペラー・マリベル",
+      "faces": [
+        {
+          "name": "エンペラー・マリベル",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "進化 - 自分の「サイバー」と種族にあるクリーチャーまたはオリジン１体の上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "サイバーロード/オリジン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-011",
+      "spec": {
+        "evolution": {
+          "any": [
+            {
+              "race": "サイバー"
+            },
+            {
+              "race": "オリジン"
+            }
+          ]
+        },
+        "g825Meteor": "bounce"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm34-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "c661ab4cd61cae1e558c5e7b0f68e490742dda474da3914c04afbf8ad3d74f79",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm33-019",
+      "name": "ダイヤモンド・クラック",
+      "faces": [
+        {
+          "name": "ダイヤモンド・クラック",
+          "typeText": "進化クリーチャー(マナ進化)",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナ進化-自然のクリーチャーを１体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\n自分のターンの終わりに、相手のマナゾーンのカードが自分より多ければ、自分の山札の上から２枚をマナゾーンに置く。",
+          "race": "スノーフェアリー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm33-019",
+      "spec": {
+        "manaEvolution": true,
+        "evolution": {
+          "civilization": "自然"
+        },
+        "g174End": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "mana",
+                "lessThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 2,
+                "g809Together": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm33-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "f52ae92d5c066bfe74e8de13de0e60a69e19a68bac1d31c8ac9469fa6a3c54a8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm32-066",
+      "name": "禁門の超人",
+      "faces": [
+        {
+          "name": "禁門の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、次のうちいずれかひとつを選ぶ。\nバトルゾーンにある相手の、コスト４以下の進化ではないクリーチャーを１体選び、持ち主のマナゾーンに置く。\n相手の手札を１枚見ないで選び、持ち主のマナゾーンに置く。",
+          "race": "ジャイアント/サムライ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-066",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のコスト4以下の進化ではないクリーチャーをマナに置く",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "filter": {
+                      "nonEvolution": true,
+                      "max": 4
+                    },
+                    "to": "mana"
+                  }
+                ]
+              },
+              {
+                "label": "相手の手札を見ないで1枚選びマナに置く",
+                "defs": [
+                  {
+                    "op": "BlindHandMana675"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-066.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "1ceed54e5eb6929c14c4b634c12f6456b2992b64e75336ada2aec90a8eb9f7b5",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx09-016",
+      "canonicalId": "dm34-016",
+      "name": "火ノ鳥カゲキリ",
+      "faces": [
+        {
+          "name": "火ノ鳥カゲキリ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "進化-自分のファイアー・バードまたはオリジン１体の上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、このクリーチャーをアンタップする。",
+          "race": "ファイアー・バード/オリジン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx09-016",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx09-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "c823961de8a5beffb772f7fadd783637d481266a9b7474f2e9106021fc29aad4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx10-021",
+      "canonicalId": "dm34-011",
+      "name": "エンペラー・マリベル",
+      "faces": [
+        {
+          "name": "エンペラー・マリベル",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "進化-自分の「サイバー」と種族にあるクリーチャーまたはオリジン１体の上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "サイバーロード/オリジン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx10-021",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx10-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "7e0be6cfd51067c293065aae48c20d7ee5004763ac01c992588f18dfe8a73ff1",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm34-016": 4,
+      "dm34-011": 4,
+      "dm33-019": 4,
+      "dm32-066": 4,
+      "dmx09-016": 4,
+      "dmx10-021": 4
+    }
+  }
+}

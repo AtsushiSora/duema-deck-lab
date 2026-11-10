@@ -34,6 +34,12 @@ export function createPhoenixRules(api){
  x.tapped=x.tapped||field.some(b=>b.tapped);x.buff=field.reduce((n,b)=>n+(b.buff||0),0);x.powerModifiers=field.flatMap(b=>structuredClone(b.powerModifiers||[]));x.tapLocks=field.flatMap(b=>b.tapLocks||[]);x.unblocked=field.some(b=>b.unblocked);x.buffSources=field.flatMap(b=>structuredClone(b.buffSources||[]));for(const key of ['justDiverActive','skipUntap','g19Protected'])if(field.some(b=>b[key]))x[key]=true;if(field.some(b=>b.gospelSpeed===s.turn))x.gospelSpeed=s.turn;for(const b of field)if(b.g19Blocker!==undefined)x.g19Blocker=b.g19Blocker;for(const r of rows){remove(own[r.zone],r.x.uid);if(r.zone==='grave')clear(r.x,'battle');}api.log(s,p,'evolve',rows.length+'体から'+c.name+'へ進化',{cardId:c.id});
  }
  function detach(s,p,x,uid){const parent=api.layers(x).find(y=>y.under?.some(z=>z.uid===uid));if(!parent)return false;const y=parent.under.find(z=>z.uid===uid);api.rememberEvolutionGraveSources?.(x,[y]);remove(parent.under,uid);parent.under.push(...(y.under||[]));clear(y,'grave');api.addZone(s,s.players[p],'grave',y);return true;}
+ function finishMeteor825(s,t,x,uid,to){
+  if(!x||!api.layers(x).some(y=>y.under?.some(z=>z.uid===uid)))return;
+  api.moveBattleCard(s,t.p,uid,to,{controller:t.p});
+  if(t.follow825==='untap')api.untap(s,t.p,x);
+  else put(s,task('g34_Target',t.p,t.source,{anyOwner:true,to:'hand'}));
+ }
  function marsCount(s,p){const fits=c=>/ファイアー・バード|フェニックス/.test(String(c.race));return s.players[p].mana.filter(x=>!x.faceDown&&faces(api.zoneCard(s,p,x,'mana')).some(fits)).length+s.players[p].battle.filter(x=>!x.sealed&&['creature','seed','gear','field','aura'].includes(card(x).type)&&fits(effective(x,s))).length;}
  function marsActions(s,p){return marsCount(s,p)>=5?s.players[p].hand.filter(x=>card(x).g213Mars&&bases(s,p,card(x)).length&&api.canCast(s,p,card(x),'hand')&&api.canEnter(s,p,card(x),{origin:'hand',execution:true})&&api.canPay(s,p,{...card(x),cost:3,printedCost:5,civilizations:['火']})).map(x=>({kind:'play',uid:x.uid,cardId:x.cardId,cost:api.summonCost(s,p,{...card(x),cost:3,printedCost:5,civilizations:['火']}),alternative:'phoenixMars',label:card(x).name+'を代替コスト（火を含む3マナ・軽減可）で召喚'})):[];}
  function zeroCanRise(s,p,x){
@@ -120,7 +126,26 @@ export function createPhoenixRules(api){
  case'g31_Metal':if(v)put(s,task('g31_ManaTrash',t.p,t.source,{max:1}),task('g31_NonCreature',t.p,t.source));break;
  case'g31_ManaTrash':if(v)put(s,{...t,selected:[...t.selected,v]});else{for(const uid of t.selected){const x=policyRemove(s,1-t.p,'mana',uid,api);if(x){clear(x,'grave');api.addZone(s,s.players[1-t.p],'grave',x);}}}break;
  case'g31_Oni':api.moveShield(s,t.p,v,'hand',{replacement:true});put(s,task('g31_OniDiscount',t.p,t.source));break;
- case'g31_Meteor':{const x=live(s,t);if(!x)break;if(v&&detach(s,t.p,x,v)){if(t.kind==='apollo')put(s,{...t,count:(t.count||0)+1});else if(t.kind==='pluto')put(s,task('mill',t.p,t.source,{n:3}),task('destroyPower',t.p,t.source,{max:'∞'}));else put(s,task('g31_GodRevive',t.p,t.source));}else if(t.kind==='apollo'&&t.count)apolloMinus(s,t);break;}
+ case'g31_Meteor':{
+  const x=live(s,t);
+  if(!x)break;
+  if(t.follow825){
+   if(!v)break;
+   const replacements=api.stratoReplacements(s,t.p);
+   if(replacements.length){
+    const options=replacements.map(r=>opt(card(r.cardId).name+'を使う',r.uid,10,r.cardId));
+    choice(s,{...t,op:'g31_Meteor825Dest',selected:v},'進化元をかわりにマナに置く？',[...options,skip()],1-t.p);
+   }else finishMeteor825(s,t,x,v,'grave');
+   break;
+  }
+  if(v&&detach(s,t.p,x,v)){
+   if(t.kind==='apollo')put(s,{...t,count:(t.count||0)+1});
+   else if(t.kind==='pluto')put(s,task('mill',t.p,t.source,{n:3}),task('destroyPower',t.p,t.source,{max:'∞'}));
+   else put(s,task('g31_GodRevive',t.p,t.source));
+  }else if(t.kind==='apollo'&&t.count)apolloMinus(s,t);
+  break;
+ }
+ case'g31_Meteor825Dest':finishMeteor825(s,t,live(s,t),t.selected,v?'mana':'grave');break;
  case'g31_GodRevive':{const x=policyRemove(s,t.p,'grave',v,api);if(x)enter(s,t.p,x,null,{origin:'grave',execution:false});break;}
  case'g31_ApolloShields':put(s,{...t,selected:[...t.selected,v]});break;
  case'g31_Xeno':if(v){const base=live(s,t),x=remove(own.hand,v);if(x&&base){enter(s,t.p,x,base.uid,{origin:'hand',execution:false,g31Force:true});const top=own.battle.find(y=>api.layers(y).some(z=>z.uid===x.uid));if(top)(top.g31EndDeath??=[]).push({turn:s.turn,uid:x.uid,incarnation:x.incarnation||0});}}break;
@@ -134,7 +159,7 @@ export function createPhoenixRules(api){
  beginLink(s,p,x,base,options){if(!card(x).g31God||options.g31Linked||!linkCandidates(s,p,card(x)).length)return false;(s.players[p].g31Holding??=[]).push(x);put(s,task('g31_Link',p,x.cardId,{uid:x.uid,base,options}));return true;},
  link(s,p,x,options){if(!options.g31Partner)return x;const own=s.players[p],base=own.battle.find(y=>y.uid===options.g31Partner);if(!base||base.godLinks?.length)return x;remove(own.battle,x.uid);base.godLinks=[x];api.log(s,p,'godLink',card(base.cardId).name+'と'+card(x).name+'をG・リンク',{cardId:x.cardId});return base;},
  effect(s,p,c,uid,entry){if(!c.effect?.startsWith('phoenix'))return false;put(s,task('g31_'+c.effect.slice(7),p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;},
- attack(s,p,x){if(api.selfStopped(s,p))return;const c=effective(x,s);if(c.g213Mars)on(s,p,x,'MarsOffer');if(c.g31Apollo)on(s,p,x,'Meteor',{kind:'apollo',count:0});if(c.g31Pluto)on(s,p,x,'Meteor',{kind:'pluto'});if(c.g31Destroy)on(s,p,x,'Meteor',{kind:'destroy'});},
+ attack(s,p,x){if(api.selfStopped(s,p))return;const c=effective(x,s);if(c.g213Mars)on(s,p,x,'MarsOffer');if(c.g31Apollo)on(s,p,x,'Meteor',{kind:'apollo',count:0});if(c.g31Pluto)on(s,p,x,'Meteor',{kind:'pluto'});if(c.g31Destroy)on(s,p,x,'Meteor',{kind:'destroy'});if(c.g825Meteor)on(s,p,x,'Meteor',{follow825:c.g825Meteor});},
  snapshot(s,rows){return rows.map(r=>{const x=s.players[r.player].battle.find(x=>x.uid===r.uid);return{p:r.player,uid:r.uid,c:x&&effective(x,s)};});},
  leaving(s,p,x,snapshot,to,destroy){const c=snapshot?.find(r=>r.p===p&&r.uid===x.uid)?.c||effective(x,s);if(c.g31King)api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('discard',1-p,x.cardId,{n:1,all:true,causedBy:p})});if(c.g31Zero)api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g31_ZeroLeave',p,x.cardId)});if(c.g31Fel&&to==='grave'&&destroy&&!s.g31ExtraTurn)api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g5ExtraTurn',p,x.cardId)});},
  start(s,p){return s.players[p].grave.filter(x=>card(x).g31Xeno||card(x).g31ZeroRise).map(x=>({uid:x.uid,source:x.cardId,effect:'extended',task:task(card(x).g31ZeroRise?'g31_ZeroRise':'g31_XenoReturn',p,x.cardId,{uid:x.uid,serial:x.zoneSerial||0})}));},

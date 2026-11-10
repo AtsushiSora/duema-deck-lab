@@ -2507,6 +2507,23 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=825&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const meteor='メテオバーン-このクリーチャーが攻撃する時このクリーチャーの下にあるカードを1枚選び墓地に置いてもよい。そうした場合';
+  if(f.typeText==='進化クリーチャー'){
+   if(text==='進化-自分のファイアー・バードまたはオリジン1体の上に置く。'+meteor+'このクリーチャーをアンタップする。')
+    return {evolution:{any:[{race:'ファイアー・バード'},{race:'オリジン'}]},g825Meteor:'untap'};
+   if(text==='進化-自分の「サイバー」と種族にあるクリーチャーまたはオリジン1体の上に置く。'+meteor+'バトルゾーンにあるクリーチャーを1体選び持ち主の手札に戻す。')
+    return {evolution:{any:[{race:'サイバー'},{race:'オリジン'}]},g825Meteor:'bounce'};
+  }
+  if(f.typeText==='進化クリーチャー(マナ進化)'&&text==='マナ進化-自然のクリーチャーを1体自分のマナゾーンから選びこのクリーチャーをその上に重ねつつバトルゾーンに出す。自分のターンの終わりに相手のマナゾーンのカードが自分より多ければ自分の山札の上から2枚をマナゾーンに置く。')
+   return {manaEvolution:true,evolution:{civilization:'自然'},g174End:[{op:'IfOwn',filter:{g334ZoneCount:{zone:'mana',lessThanOpponent:true}},defs:[{op:'Ramp',n:2,g809Together:true}]}]};
+  if(f.typeText==='クリーチャー'&&text==='このクリーチャーが攻撃する時次のうちいずれかひとつを選ぶ。バトルゾーンにある相手のコスト4以下の進化ではないクリーチャーを1体選び持ち主のマナゾーンに置く。相手の手札を1枚見ないで選び持ち主のマナゾーンに置く。')
+   return {g34Attack:[{op:'Choose',g184Modes:true,modes:[
+    {label:'相手のコスト4以下の進化ではないクリーチャーをマナに置く',defs:[{op:'Target',filter:{nonEvolution:true,max:4},to:'mana'}]},
+    {label:'相手の手札を見ないで1枚選びマナに置く',defs:[{op:'BlindHandMana675'}]}
+   ]}]};
+ }
  if(phase>=824&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='クリーチャー'){

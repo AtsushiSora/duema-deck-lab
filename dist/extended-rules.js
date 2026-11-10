@@ -170,7 +170,7 @@ export function createExtendedRules(api){
  const shieldPhoto=createShieldPhotoRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const photo=createKenjiPhotoRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const bolshack=createBolshackRules({...api,creatures,put,task,choice,opt,skip,targetOptions,targetable,lock});
- const phoenix=createPhoenixRules({...api,creatures,put,task,choice,opt,skip,targetOptions,evolutionBase:(s,p,x)=>bande.evolutionBase(s,p,x),inherit:(s,b,x)=>{thisInherit(s,b,x);viride.inherit(s,b,x);hachi.inherit(s,b,x);travel.inherit(s,b,x);lionel.inherit(s,b,x);samurai.inherit(s,b,x);zard.inherit(s,b,x);armored.inherit(s,b,x);magic.inherit(s,b,x);}});
+ const phoenix=createPhoenixRules({...api,creatures,put,task,choice,opt,skip,targetOptions,stratoReplacements:seed.stratoReplacements,evolutionBase:(s,p,x)=>bande.evolutionBase(s,p,x),inherit:(s,b,x)=>{thisInherit(s,b,x);viride.inherit(s,b,x);hachi.inherit(s,b,x);travel.inherit(s,b,x);lionel.inherit(s,b,x);samurai.inherit(s,b,x);zard.inherit(s,b,x);armored.inherit(s,b,x);magic.inherit(s,b,x);}});
  function thisInherit(s,b,x){if(b.g170StartFreeze)x.g170StartFreeze=[...new Map([...(x.g170StartFreeze||[]),...b.g170StartFreeze].map(e=>[JSON.stringify(e),structuredClone(e)])).values()];if(b.g31EndDeath)(x.g31EndDeath??=[]).push(...structuredClone(b.g31EndDeath));}
  const starter=createStarterRules({...api,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo});
  const gospel=createGospelRules({...api,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo,targetable,lock});
