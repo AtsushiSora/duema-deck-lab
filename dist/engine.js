@@ -863,6 +863,9 @@ function evolutionWatch721(s,p,entrant,baseRaces){
  }
 }
 // Check all entry triggers after the new top card has entered (603.5a).
+function entryBreakShort770(s,p,c){
+ return c.g770EntryBreakMin!==undefined&&p!==s.active&&(s.players[p].brokenThisTurn||0)<c.g770EntryBreakMin;
+}
 function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  delete inst.g39GraveColors;if(extra.saga.beginMDeck(s,p,inst,baseUid,entryOptions))return;if(extra.cyber.beforeEnter(s,p,inst,baseUid,entryOptions))return;
  if(!entryOptions.g753Swap&&!canEnterCreature(s,p,card(inst),{...entryOptions,committed:true}))throw Error('このクリーチャーは現在出せません');
@@ -921,6 +924,8 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  if(c.triggerPlus&&inst.triggerPlus&&!stopped&&c.g34Plus)enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,source:c.id,effect:'extended',task:extra.task('g34_Sequence',p,c.id,{uid:inst.uid,incarnation:inst.incarnation,defs:c.g34Plus})});
  if(c.triggerPlus&&inst.triggerPlus&&!stopped&&!c.g34Plus)enqueueEffect(s,p,{uid:inst.uid,source:c.id,effect:'extended',task:extra.task('muteAttackLock',p,c.id)});
  if(c.effect&&!(c.effect==='sixPhoto'&&!c.g34Tasks?.length)&&!stopped&&(!c.evolvedEntryOnly||isEvolution(inst))&&(!c.stackOnlyEntry||baseWasCreature)&&(!c.nonEvolutionBase||baseWasCreature&&!baseWasEvolution)&&(!c.summonedEntryOnly||entryOptions.execution!==false))enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,lastKnownPower:power(inst,false,s),lastKnownCost:effectiveCard(inst,s).cost,source:c.id,lastKnownCount:layers(inst).length,super:!!entryOptions.super,effect:'entry'});
+ if(!stopped&&entryBreakShort770(s,p,c))enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,source:c.id,
+  label:'シールド条件による自壊',effect:'extended',task:extra.task('g34_SelfDestroy',p,c.id,{uid:inst.uid,incarnation:inst.incarnation})});
  if(!stopped)for(const ability of c.g527ExtraEntry||[])enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,source:c.id,label:ability.label,effect:'extended',task:extra.task('g34_Sequence',p,c.id,{uid:inst.uid,incarnation:inst.incarnation,defs:ability.defs})});
  if(!entryOptions.ignoreEntry&&isDragon(c))for(const x of s.players[p].battle)if(effectiveCard(x,s).dragonEntryTap&&(!stopped||x.uid!==inst.uid)){const key=x.uid+'@'+(x.incarnation||0);if(s.once?.[key]!==s.turn)enqueueEffect(s,p,{uid:x.uid,source:x.cardId,effect:'dragonEntryTap',key});}
  if(!entryOptions.ignoreEntry&&!selfMuted&&isDragon(c))for(const x of s.players[p].battle)if(effectiveCard(x,s).g142Rip)enqueueEffect(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:extra.task('g34_Draw',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,n:1,optional:true})});
@@ -958,6 +963,7 @@ export function entryAbilities(s,p,original,reference){
  if(c.secondEntryLook)extended('2体目登場時の手札・マナ追加','g1_Look');
  if(c.secondEntrySacrifice)extended('2体目登場時の破壊','g24_Timp');
  if(c.abyssJaga)extended('山札から登場時のアビス展開','g13_JagaRevive',{key,max:costValue(card(reference.source))});
+ if(entryBreakShort770(s,p,c))extended('シールド条件による自壊','g34_SelfDestroy');
  if(c.cobra&&p!==s.active&&(s.players[p].brokenThisTurn||0)<2)extended('シールド条件による自壊','g19CobraDie');
  if(c.tryshot&&p!==s.active)extended('相手ターン登場時の自壊','g8_TryDie');
  if(c.prisonZero&&!s.players[p].shields.length)extended('シールド0枚での登場時能力','g14_RevZero');

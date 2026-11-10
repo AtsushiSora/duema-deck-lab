@@ -1,0 +1,295 @@
+{
+  "phase": 770,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6160,
+  "description": "ブレイク条件付き自壊、攻撃時の任意ドローと終了時のアンタップ、連続バトル、任意の手札破棄による速攻付与に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/44212/",
+    "https://dm.takaratomy.co.jp/rule/qa/42955/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35465/",
+    "https://dm.takaratomy.co.jp/rule/qa/45543/",
+    "https://dm.takaratomy.co.jp/rule/qa/39785/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp4-023",
+      "name": "ア:モグチッツ",
+      "faces": [
+        {
+          "name": "ア:モグチッツ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nW・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。その後、自分の山札の上から１枚目をマナゾーンに置く。\n相手のターン中に、このクリーチャーが出た時、このターンに２つ以上自分のシールドがブレイクされていなければ、このクリーチャーを破壊する。",
+          "race": "ヴェールアビス",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-023",
+      "spec": {
+        "trigger": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "mana"
+          },
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ],
+        "g770EntryBreakMin": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "1cda8e34105698dae1b3a17c1e273f214f748e7c7eac8626273d75f2df610552",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-054",
+      "name": "鎧撃の支え 仲接",
+      "faces": [
+        {
+          "name": "鎧撃の支え 仲接",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n各ターンに一度、自分のクリーチャーが攻撃する時、カードを１枚引いてもよい。\n自分のターンの終わりに、自分のクリーチャーを１体アンタップする。",
+          "race": "アーマード・メタリカ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-054",
+      "spec": {
+        "blocker": true,
+        "g252AttackWatch": {
+          "who": "self",
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "AttackDraw770"
+            }
+          ]
+        },
+        "g174End": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "untap": true,
+            "title": "アンタップする自分のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "3cf5102d021d10e50bd8af7ea42d29a0cdb985c8fb0e5ab72406225e82918da7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-040",
+      "name": "舞頭の超人",
+      "faces": [
+        {
+          "name": "舞頭の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、次の能力を２回行う。\n▶自分と相手のクリーチャーを１体ずつ選ぶ。その２体をバトルさせる。",
+          "race": "ジャイアント",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-040",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Fight240"
+          },
+          {
+            "op": "Fight240"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "c20b5a9646aff09b63b79c797612622a007de9e3d78c084600d1bd824791c935",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-065",
+      "name": "卯年の園上者 アルラパン",
+      "faces": [
+        {
+          "name": "卯年の園上者 アルラパン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分の手札を１枚捨ててもよい。そうしたら、このターン、このクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "マジック・アウトレイジ",
+          "powerText": "2023",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-065",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DiscardFor248",
+            "defs": [
+              {
+                "op": "SelfGrant754",
+                "grant": {
+                  "speedAttacker": true
+                },
+                "g770LiveCreature": true
+              }
+            ],
+            "g770DiscardAttempt": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-065.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "8c8a89046af5b471ddd7ad1c378627d5532f9ce05e524ad91bb1b7f3d9b4b273",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23rp4x-023",
+      "canonicalId": "dm23rp4-023",
+      "name": "ア:モグチッツ",
+      "faces": [
+        {
+          "name": "ア:モグチッツ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nW・ブレイカー\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。その後、自分の山札の上から１枚目をマナゾーンに置く。\n相手のターン中に、このクリーチャーが出た時、このターンに２つ以上自分のシールドがブレイクされていなければ、このクリーチャーを破壊する。",
+          "race": "ヴェールアビス",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-023",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ca70587f0b030356657daf389c6334a7459df63a73538e036e79874b9ce442ad",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4x-054",
+      "canonicalId": "dm23rp4-054",
+      "name": "鎧撃の支え 仲接",
+      "faces": [
+        {
+          "name": "鎧撃の支え 仲接",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n各ターンに一度、自分のクリーチャーが攻撃する時、カードを１枚引いてもよい。\n自分のターンの終わりに、自分のクリーチャーを１体アンタップする。",
+          "race": "アーマード・メタリカ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-054",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "b0eed6b6c9d39876251e130f00e2571a2d0d6803f046393019da8233b1b7bb77",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4x-065",
+      "canonicalId": "dm23rp4-065",
+      "name": "卯年の園上者 アルラパン",
+      "faces": [
+        {
+          "name": "卯年の園上者 アルラパン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分の手札を１枚捨ててもよい。そうしたら、このターン、このクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "マジック・アウトレイジ",
+          "powerText": "2023",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-065",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-065.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "847dc374535a5820db4de9f0af24415518478c1e34ebf470693ecbe132f91bbf",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp4-023": 4,
+      "dm23rp4-054": 4,
+      "dm23rp3-040": 4,
+      "dm23rp4-065": 4,
+      "dm23rp4x-023": 4,
+      "dm23rp4x-054": 4,
+      "dm23rp4x-065": 4
+    }
+  }
+}

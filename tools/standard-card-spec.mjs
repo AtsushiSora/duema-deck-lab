@@ -2564,6 +2564,19 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=770&&f.typeText==='クリーチャー'){
+  const trigger='S・トリガーS・トリガー';
+  const summon='(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)';
+  if(compact363===trigger+'W・ブレイカーこのクリーチャーが出た時相手のクリーチャーを1体選び持ち主のマナゾーンに置く。その後自分の山札の上から1枚目をマナゾーンに置く。相手のターン中にこのクリーチャーが出た時このターンに2つ以上自分のシールドがブレイクされていなければこのクリーチャーを破壊する。')
+   return {trigger:true,breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'},{op:'Ramp',n:1}],g770EntryBreakMin:2};
+  if(compact363==='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)各ターンに一度自分のクリーチャーが攻撃する時カードを1枚引いてもよい。自分のターンの終わりに自分のクリーチャーを1体アンタップする。')
+   return {blocker:true,g252AttackWatch:{who:'self',filter:{creature:true},defs:[{op:'AttackDraw770'}]},
+    g174End:[{op:'Target',owner:'self',untap:true,title:'アンタップする自分のクリーチャーを1体選ぶ'}]};
+  if(compact363===trigger+summon+'このクリーチャーが出た時次の能力を2回行う。▶自分と相手のクリーチャーを1体ずつ選ぶ。その2体をバトルさせる。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Fight240'},{op:'Fight240'}]};
+  if(compact363==='このクリーチャーが出た時自分の手札を1枚捨ててもよい。そうしたらこのターンこのクリーチャーに「スピードアタッカー」を与える。(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)')
+   return {effect:'sixPhoto',g34Tasks:[{op:'DiscardFor248',g770DiscardAttempt:true,defs:[{op:'SelfGrant754',g770LiveCreature:true,grant:{speedAttacker:true}}]}]};
+ }
  if(phase>=769&&f.typeText==='クリーチャー'){
   if(compact363==='スピードアタッカー(このクリーチャーは召喚酔いしない)自分のターンの終わりにこのターン中にシールドが3つ以上ブレイクされていればアーマード・メクレイド8する。(アーマード・メクレイド8:自分の山札の上から3枚を見る。その中からコスト8以下のアーマードを1枚コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く)')
    return {speedAttacker:true,g769ShieldBreakRaid:3};
