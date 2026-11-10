@@ -39,6 +39,7 @@ export function createPhoenixRules(api){
   api.moveBattleCard(s,t.p,uid,to,{controller:t.p});
   if(t.follow825==='untap')api.untap(s,t.p,x);
   else if(t.follow825==='ramp')put(s,task('g34_Ramp',t.p,t.source,{n:1}));
+  else if(t.follow825==='destroyBlocker')put(s,task('g34_Target',t.p,t.source,{to:'grave',filter:{blocker:true}}));
   else put(s,task('g34_Target',t.p,t.source,{anyOwner:true,to:'hand'}));
  }
  function marsCount(s,p){const fits=c=>/ファイアー・バード|フェニックス/.test(String(c.race));return s.players[p].mana.filter(x=>!x.faceDown&&faces(api.zoneCard(s,p,x,'mana')).some(fits)).length+s.players[p].battle.filter(x=>!x.sealed&&['creature','seed','gear','field','aura'].includes(card(x).type)&&fits(effective(x,s))).length;}

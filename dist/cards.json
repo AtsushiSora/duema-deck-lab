@@ -189244,23 +189244,130 @@
       ],
       "supportBatch": "phase-869",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-s07",
+      "name": "スーパー大番長「四つ牙」",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 9000,
+      "race": "ビーストフォーク/ハンター",
+      "text": "進化ー自分のビーストフォーク１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から２枚を自分のマナゾーンに置いてもよい。\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目を自分のマナゾーンに置いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-s07",
+      "limit": 4,
+      "evolution": {
+        "race": "ビーストフォーク"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "山札の上から2枚をマナゾーンに置く？",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 2,
+              "g809Together": true
+            }
+          ]
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Offer",
+          "title": "山札の上から1枚をマナゾーンに置く？",
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1,
+              "g809Together": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-870",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm34-027",
+      "name": "魔星蟲オルディオン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "パラサイトワーム/オリジン",
+      "text": "進化 - 自分のパラサイトワームまたはオリジン１体の上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-027",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "パラサイトワーム"
+          },
+          {
+            "race": "オリジン"
+          }
+        ]
+      },
+      "g825Meteor": "destroyBlocker",
+      "supportBatch": "phase-870",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr03-007",
+      "name": "不屈の精霊ラーゼス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5500,
+      "race": "エンジェル・コマンド/ハンター",
+      "text": "ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\n相手のクリーチャーが攻撃してブロックされなかった時、その攻撃の後、このクリーチャーをアンタップする。\nブロック中、このクリーチャーのパワーは+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-007",
+      "limit": 4,
+      "blocker": true,
+      "g209PoweredBlocker": 2000,
+      "g870DefenderUnblocked": [
+        {
+          "op": "AfterAttack542",
+          "defs": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-870",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 869,
+    "phase": 870,
     "checkedAt": "2026-11-11",
-    "baseCount": 6471,
+    "baseCount": 6474,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6474,
+    "totalCount": 6477,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36624/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36884/",
-      "https://dm.takaratomy.co.jp/rule/qa/42082/",
-      "https://dm.takaratomy.co.jp/rule/qa/31877/",
-      "https://dm.takaratomy.co.jp/rule/qa/45440/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35911/",
+      "https://dm.takaratomy.co.jp/rule/qa/42937/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36452/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -204696,6 +204803,26 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37527/",
           "https://dm.takaratomy.co.jp/rule/qa/34224/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31654/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 869,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6471,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6474,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36624/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36884/",
+          "https://dm.takaratomy.co.jp/rule/qa/42082/",
+          "https://dm.takaratomy.co.jp/rule/qa/31877/",
+          "https://dm.takaratomy.co.jp/rule/qa/45440/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

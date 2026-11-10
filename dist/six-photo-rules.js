@@ -3665,9 +3665,12 @@ export function createSixPhotoRules(api){
     triggered=true;
    }
   }
-  if(playerAttack&&!s.attack.g484Blocked)for(const source of creatures(s,1-p)){
-   const defs=!source.sealed&&effective(source,s).g726DefenderUnblocked;
-   if(!defs)continue;
+  if(!s.attack.g484Blocked)for(const source of creatures(s,1-p)){
+   if(source.sealed)continue;
+   const c=effective(source,s);
+   const defs=playerAttack&&c.g726DefenderUnblocked?
+    [...c.g726DefenderUnblocked,...(c.g870DefenderUnblocked||[])]:c.g870DefenderUnblocked;
+   if(!defs?.length)continue;
    queue(s,1-p,source,defs);
    triggered=true;
   }

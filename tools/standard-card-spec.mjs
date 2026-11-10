@@ -3433,6 +3433,21 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=870){
+  if(['dmr01-s07','dmx19-s41'].includes(d.id)&&f.typeText==='進化クリーチャー'&&[
+   '進化ー自分のビーストフォーク1体の上に置く。このクリーチャーをバトルゾーンに出した時自分の山札の上から2枚を自分のマナゾーンに置いてもよい。このクリーチャーが攻撃する時自分の山札の上から1枚目を自分のマナゾーンに置いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)',
+   '進化ー自分のビーストフォーク1体の上に置く。このクリーチャーをバトルゾーンに出した時自分の山札の上から2枚をマナゾーンに置いてもよい。このクリーチャーが攻撃する時自分の山札の上から1枚をマナゾーンに置いてもよい。W・ブレイカー'
+  ].includes(compact363)){
+   const ramp=n=>({op:'Offer',title:'山札の上から'+n+'枚をマナゾーンに置く？',defs:[{op:'Ramp',n,g809Together:true}]});
+   return {evolution:{race:'ビーストフォーク'},breaker:2,effect:'sixPhoto',g34Tasks:[ramp(2)],g34Attack:[ramp(1)]};
+  }
+  if(d.id==='dm34-027'&&f.typeText==='進化クリーチャー'&&compact363===
+   '進化-自分のパラサイトワームまたはオリジン1体の上に置く。メテオバーン-このクリーチャーが攻撃する時このクリーチャーの下にあるカードを1枚選び墓地に置いてもよい。そうした場合相手の「ブロッカー」を持つクリーチャーを1体破壊する。')
+   return {evolution:{any:[{race:'パラサイトワーム'},{race:'オリジン'}]},g825Meteor:'destroyBlocker'};
+  if(d.id==='dmr03-007'&&f.typeText==='クリーチャー'&&compact363===
+   'ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)相手のクリーチャーが攻撃してブロックされなかった時その攻撃の後このクリーチャーをアンタップする。ブロック中このクリーチャーのパワーは+2000される。')
+   return {blocker:true,g209PoweredBlocker:2000,g870DefenderUnblocked:[{op:'AfterAttack542',defs:[{op:'Untap',g191First:true}]}]};
+ }
  if(phase>=869){
   if(d.id==='dmr05-104'&&f.typeText==='クリーチャー'&&compact363===
    'S・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)このクリーチャーをバトルゾーンに出した時バトルゾーンにあるクリーチャーを1体選ぶ。そのターンそのクリーチャーのパワーは+4000され相手プレイヤーを攻撃できない。')
