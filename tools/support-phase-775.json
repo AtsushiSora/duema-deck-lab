@@ -1,0 +1,277 @@
+{
+  "phase": 775,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6176,
+  "description": "公開した山札からクリーチャーを手札かマナに振り分け、残りを一括で墓地へ置く能力と、S・トリガークリーチャー2種類の登場時モードに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/43789/",
+    "https://dm.takaratomy.co.jp/rule/qa/41471/",
+    "https://dm.takaratomy.co.jp/rule/qa/44661/",
+    "https://dm.takaratomy.co.jp/rule/qa/31568/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31654/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp3-008",
+      "name": "フォック＝ザ＝ダーティ",
+      "faces": [
+        {
+          "name": "フォック＝ザ＝ダーティ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\n革命チェンジ：アビス（自分のアビスが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nこのクリーチャーが出た時、自分の山札の上から４枚を表向きにする。その中からクリーチャーを１体、手札に加えるかマナゾーンに置く。残りを墓地に置く。",
+          "race": "アビスロイヤル",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-008",
+      "spec": {
+        "abyssRush": true,
+        "rev": {
+          "race": "アビス",
+          "g486Current": true
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 4,
+            "public": true,
+            "g255Distribute": true,
+            "stages": [
+              {
+                "n": 1,
+                "filter": {
+                  "g228Face": {
+                    "type": "creature"
+                  }
+                },
+                "g467Destinations": [
+                  "hand",
+                  "mana"
+                ]
+              }
+            ],
+            "rest": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "a54aeefee101648b09e6c69d6b638ee7c2dc76d2dd72714ca2438f156361645f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-047",
+      "name": "魔誕麗姫ピカドール",
+      "faces": [
+        {
+          "name": "魔誕麗姫ピカドール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、次のうちいずれか１つを選ぶ。\n▶相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。\n▶自分の山札の上から２枚を見て、そのうちの１枚を手札に加える。",
+          "race": "デーモン・コマンド/スプラッシュ・クイーン",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-047",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のクリーチャーをタップして次のターン開始時にアンタップさせない",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "tap": true,
+                    "lock": true,
+                    "g210TapLock": true
+                  }
+                ]
+              },
+              {
+                "label": "山札の上2枚を見て1枚を手札に加える",
+                "defs": [
+                  {
+                    "op": "Look",
+                    "n": 2,
+                    "stages": [
+                      {
+                        "n": 1,
+                        "to": "hand"
+                      }
+                    ],
+                    "rest": "top"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ab730ac68382d0d6e285ff4d6c029957afba89f8af08c8a9f4bebd3710aab595",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-050",
+      "name": "魔誕翔天マルピア",
+      "faces": [
+        {
+          "name": "魔誕翔天マルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、次のうちいずれか１つを選ぶ。\n▶このクリーチャーは、シールドを１つブレイクする。\n▶相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－4000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "デーモン・コマンド/ファイアー・バード",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-050",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "このクリーチャーでシールドを1つブレイクする",
+                "defs": [
+                  {
+                    "op": "Break497",
+                    "n": 1,
+                    "g747CreatureBreak": true
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャー1体のパワーをこのターン-4000する",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "power": -4000,
+                    "g242PowerMinus": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "3b0a92ccb51a7eb884467b44e4c3b23f9ff922b12bec0a8af5c761b654f0631a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm26ex1-046",
+      "canonicalId": "dm23rp3-008",
+      "name": "フォック＝ザ＝ダーティ",
+      "faces": [
+        {
+          "name": "フォック＝ザ＝ダーティ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "アビスラッシュ（このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、このターンの終わりに山札の下に置かれる）\n革命チェンジ：アビス（自分の指定のクリーチャーが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nこのクリーチャーが出た時、自分の山札の上から４枚を表向きにする。その中からクリーチャーを１体、手札に加えるかマナゾーンに置く。残りを墓地に置く。",
+          "race": "アビスロイヤル",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-046",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex1-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ec32326c32220aa7704b528c5fa11c3bf4eef191a3b97bc8d0347d7e8419d852",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-Sec20",
+      "canonicalId": "dm24rp4-047",
+      "name": "魔誕麗姫ピカドール",
+      "faces": [
+        {
+          "name": "魔誕麗姫ピカドール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、次のうちいずれか１つを選ぶ。\n▶相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。\n▶自分の山札の上から２枚を見て、そのうちの１枚を手札に加える。",
+          "race": "デーモン・コマンド/スプラッシュ・クイーン",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-Sec20",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-Sec20.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "7542b42276194aeacf1639e4c03a50b3035d5b19a2db15b526d359b384c98780",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp3-008": 4,
+      "dm24rp4-047": 4,
+      "dm24rp4-050": 4,
+      "dm26ex1-046": 4,
+      "dm24rp4-Sec20": 4
+    }
+  }
+}

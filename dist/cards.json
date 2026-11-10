@@ -178966,24 +178966,176 @@
       ],
       "supportBatch": "phase-774",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp3-008",
+      "name": "フォック＝ザ＝ダーティ",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "アビスロイヤル",
+      "text": "アビスラッシュ：このクリーチャーを自分の墓地から召喚してもよい。そうしたら、このターン、このクリーチャーはプレイヤーを攻撃でき、ターンの終わりに山札の下に置かれる。\n革命チェンジ：アビス（自分のアビスが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nこのクリーチャーが出た時、自分の山札の上から４枚を表向きにする。その中からクリーチャーを１体、手札に加えるかマナゾーンに置く。残りを墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-008",
+      "limit": 4,
+      "abyssRush": true,
+      "rev": {
+        "race": "アビス",
+        "g486Current": true
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 4,
+          "public": true,
+          "g255Distribute": true,
+          "stages": [
+            {
+              "n": 1,
+              "filter": {
+                "g228Face": {
+                  "type": "creature"
+                }
+              },
+              "g467Destinations": [
+                "hand",
+                "mana"
+              ]
+            }
+          ],
+          "rest": "grave"
+        }
+      ],
+      "supportBatch": "phase-775",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-047",
+      "name": "魔誕麗姫ピカドール",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3500,
+      "race": "デーモン・コマンド/スプラッシュ・クイーン",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、次のうちいずれか１つを選ぶ。\n▶相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。\n▶自分の山札の上から２枚を見て、そのうちの１枚を手札に加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-047",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "相手のクリーチャーをタップして次のターン開始時にアンタップさせない",
+              "defs": [
+                {
+                  "op": "Target",
+                  "tap": true,
+                  "lock": true,
+                  "g210TapLock": true
+                }
+              ]
+            },
+            {
+              "label": "山札の上2枚を見て1枚を手札に加える",
+              "defs": [
+                {
+                  "op": "Look",
+                  "n": 2,
+                  "stages": [
+                    {
+                      "n": 1,
+                      "to": "hand"
+                    }
+                  ],
+                  "rest": "top"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-775",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-050",
+      "name": "魔誕翔天マルピア",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "デーモン・コマンド/ファイアー・バード",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、次のうちいずれか１つを選ぶ。\n▶このクリーチャーは、シールドを１つブレイクする。\n▶相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－4000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-050",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "このクリーチャーでシールドを1つブレイクする",
+              "defs": [
+                {
+                  "op": "Break497",
+                  "n": 1,
+                  "g747CreatureBreak": true
+                }
+              ]
+            },
+            {
+              "label": "相手のクリーチャー1体のパワーをこのターン-4000する",
+              "defs": [
+                {
+                  "op": "Target",
+                  "power": -4000,
+                  "g242PowerMinus": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-775",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 774,
+    "phase": 775,
     "checkedAt": "2026-11-10",
-    "baseCount": 6173,
+    "baseCount": 6176,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6176,
+    "totalCount": 6179,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/44747/",
-      "https://dm.takaratomy.co.jp/rule/qa/46134/",
-      "https://dm.takaratomy.co.jp/rule/qa/48903/",
-      "https://dm.takaratomy.co.jp/rule/qa/44188/",
-      "https://dm.takaratomy.co.jp/rule/qa/48922/",
-      "https://dm.takaratomy.co.jp/rule/qa/33527/"
+      "https://dm.takaratomy.co.jp/rule/qa/43789/",
+      "https://dm.takaratomy.co.jp/rule/qa/41471/",
+      "https://dm.takaratomy.co.jp/rule/qa/44661/",
+      "https://dm.takaratomy.co.jp/rule/qa/31568/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31654/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -192463,6 +192615,27 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37815/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35990/",
           "https://dm.takaratomy.co.jp/rule/qa/44661/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 774,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6173,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6176,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/44747/",
+          "https://dm.takaratomy.co.jp/rule/qa/46134/",
+          "https://dm.takaratomy.co.jp/rule/qa/48903/",
+          "https://dm.takaratomy.co.jp/rule/qa/44188/",
+          "https://dm.takaratomy.co.jp/rule/qa/48922/",
+          "https://dm.takaratomy.co.jp/rule/qa/33527/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

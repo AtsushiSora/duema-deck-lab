@@ -2564,6 +2564,27 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=775&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const abyssRush='アビスラッシュ:このクリーチャーを自分の墓地から召喚してもよい。そうしたらこのターンこのクリーチャーはプレイヤーを攻撃できターンの終わりに山札の下に置かれる。';
+  const reprintRush='アビスラッシュ(このクリーチャーを自分の墓地から召喚してもよい。そうしたらこのターンこのクリーチャーはプレイヤーを攻撃できこのターンの終わりに山札の下に置かれる)';
+  const change=race=>'革命チェンジ:アビス(自分の'+race+'が攻撃する時そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい)';
+  const reveal='このクリーチャーが出た時自分の山札の上から4枚を表向きにする。その中からクリーチャーを1体手札に加えるかマナゾーンに置く。残りを墓地に置く。';
+  if([abyssRush+change('アビス'),reprintRush+change('指定のクリーチャー')].some(prefix=>compact363===prefix+reveal))
+   return {abyssRush:true,rev:{race:'アビス',g486Current:true},effect:'sixPhoto',g34Tasks:[
+    {op:'Look',n:4,public:true,g255Distribute:true,stages:[{n:1,filter:{g228Face:{type:'creature'}},g467Destinations:['hand','mana']}],rest:'grave'}
+   ]};
+  const modal='S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)このクリーチャーが出た時次のうちいずれか1つを選ぶ。';
+  if(compact363===modal+'▶相手のクリーチャーを1体選びタップする。次の相手のターンのはじめにそのクリーチャーはアンタップしない。▶自分の山札の上から2枚を見てそのうちの1枚を手札に加える。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Choose',g184Modes:true,modes:[
+    {label:'相手のクリーチャーをタップして次のターン開始時にアンタップさせない',defs:[{op:'Target',tap:true,lock:true,g210TapLock:true}]},
+    {label:'山札の上2枚を見て1枚を手札に加える',defs:[{op:'Look',n:2,stages:[{n:1,to:'hand'}],rest:'top'}]}
+   ]}]};
+  if(compact363===modal+'▶このクリーチャーはシールドを1つブレイクする。▶相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを-4000する。(パワー0以下のクリーチャーは破壊される)')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Choose',g184Modes:true,modes:[
+    {label:'このクリーチャーでシールドを1つブレイクする',defs:[{op:'Break497',n:1,g747CreatureBreak:true}]},
+    {label:'相手のクリーチャー1体のパワーをこのターン-4000する',defs:[{op:'Target',power:-4000,g242PowerMinus:true}]}
+   ]}]};
+ }
  if(phase>=774){
   const trigger='S・トリガーS・トリガー';
   if(f.typeText==='呪文'&&compact363.replace('(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)','')===trigger+'自分の山札をシャッフルし上から1枚目を表向きにする。そのカードがクリーチャーでなければ手札に加える。クリーチャーなら出し「スピードアタッカー」を与える。次の相手のターンのはじめにそのクリーチャーを手札に戻す。(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)')
