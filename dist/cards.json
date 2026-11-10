@@ -182692,23 +182692,100 @@
       ],
       "supportBatch": "phase-804",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm25-042",
+      "name": "電影封魔ラルファス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "グランド・デビル/マーフォーク",
+      "text": "このクリーチャーで攻撃するかわりに、タップして次の能力を使ってもよい。\nバトルゾーンにある自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーに、好きな文明をひとつ追加する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-042",
+      "limit": 4,
+      "g736AttackInstead": true,
+      "g439Tap": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g805AddCivilization": true
+        }
+      ],
+      "supportBatch": "phase-805",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24-073",
+      "name": "紅蓮の守護者ラ・バル・プラトーン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ガーディアン",
+      "text": "このクリーチャーをバトルゾーンに出した時、文明をひとつ選ぶ。それ以外の文明を持つクリーチャーをすべてタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-073",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ChooseCivilization805"
+        }
+      ],
+      "supportBatch": "phase-805",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25-037",
+      "name": "芸術機甲サン・オブ・サンダー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "グレートメカオー",
+      "text": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nバトルゾーンに相手の多色カードが１枚もない時、このクリーチャーのパワーは+4000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-037",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g260Self": {
+        "filter": {
+          "g805NoOpponentMulti": true
+        },
+        "grants": {
+          "power": 4000
+        }
+      },
+      "supportBatch": "phase-805",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 804,
+    "phase": 805,
     "checkedAt": "2026-11-10",
-    "baseCount": 6265,
+    "baseCount": 6268,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6268,
+    "totalCount": 6271,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/rule/qa/38762/",
-      "https://dm.takaratomy.co.jp/rule/qa/44618/",
+      "https://dm.takaratomy.co.jp/rule/qa/31824/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37678/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316636/",
       "https://dm.takaratomy.co.jp/rule/qa_old/35352/",
-      "https://dm.takaratomy.co.jp/rule/qa/40865/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
       "https://dm.takaratomy.co.jp/rule/rulechange/"
     ],
@@ -196780,6 +196857,28 @@
           "https://dm.takaratomy.co.jp/rule/qa/46518/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35578/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 804,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6265,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6268,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/38762/",
+          "https://dm.takaratomy.co.jp/rule/qa/44618/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37678/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35352/",
+          "https://dm.takaratomy.co.jp/rule/qa/40865/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/rulechange/"
         ],
         "next": [

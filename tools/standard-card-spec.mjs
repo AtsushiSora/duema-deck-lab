@@ -2507,6 +2507,15 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=805&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(text==='このクリーチャーで攻撃するかわりにタップして次の能力を使ってもよい。バトルゾーンにある自分のクリーチャーを1体選ぶ。このターンそのクリーチャーに好きな文明をひとつ追加する。')
+   return {g736AttackInstead:true,g439Tap:[{op:'Target',owner:'self',g805AddCivilization:true}]};
+  if(text==='このクリーチャーをバトルゾーンに出した時文明をひとつ選ぶ。それ以外の文明を持つクリーチャーをすべてタップする。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'ChooseCivilization805'}]};
+  if(text==='ブロッカーこのクリーチャーは相手プレイヤーを攻撃できない。バトルゾーンに相手の多色カードが1枚もない時このクリーチャーのパワーは+4000される。')
+   return {blocker:true,noPlayerAttack:true,g260Self:{filter:{g805NoOpponentMulti:true},grants:{power:4000}}};
+ }
  if(phase>=804&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const ability=text.match(/^(ブロッカー)?このクリーチャーで攻撃するかわりにこのクリーチャーと自分のマナゾーンのタップされていないカード(?:を8枚|8枚を)タップして次の能力を使ってもよい。(.+)$/);

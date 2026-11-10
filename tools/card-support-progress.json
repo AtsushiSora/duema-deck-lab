@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6268,
-  "pendingNames": 5559,
-  "phase": 804,
+  "supportedNames": 6271,
+  "pendingNames": 5556,
+  "phase": 805,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3286,
+    "クリーチャー": 3283,
     "NEOクリーチャー": 152,
     "呪文": 788,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1241,
-    "未対応の能力文": 4059,
+    "未対応の能力文": 4056,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -11970,30 +11970,73 @@
         "runtimeNote": "各最大10分。Phase 182・228・258・439・540・546・698・736・800・803の関連回帰に成功。Phase 182・228・258・439・540・546の長時間CPU対戦は --test-skip-pattern で除外。全体のnpm testは中断・合否未確認。"
       },
       "deferred": []
+    },
+    {
+      "phase": 805,
+      "cards": [
+        {
+          "id": "dm25-042",
+          "name": "電影封魔ラルファス"
+        },
+        {
+          "id": "dm24-073",
+          "name": "紅蓮の守護者ラ・バル・プラトーン"
+        },
+        {
+          "id": "dm25-037",
+          "name": "芸術機甲サン・オブ・サンダー"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "promoy6-004",
+          "canonicalId": "dm24-073",
+          "name": "紅蓮の守護者ラ・バル・プラトーン"
+        }
+      ],
+      "supportedNames": 6271,
+      "pendingNames": 5556,
+      "verification": {
+        "focusedPassed": 12,
+        "regressionPassed": 145,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 4,
+        "scope": "初出3点とラ・バル・プラトーンのプロモ版1点の全能力、基本情報、公式JPEG、使用制限なしを照合。プロモ版は既存の正規ID dm24-073 に解決。ラルファスは攻撃の代替、対象と5文明の選択、無色と同文明、進化後の継続、再登場での消失、ターン終了、単色の能力無視との相互作用を確認。プラトーンは双方の別文明・多色をタップし、指定と同じ単色・無色・封印中や非クリーチャーを対象から外すことを検証。サン・オブ・サンダーはブロッカーと対プレイヤー攻撃制限、相手の多色クリーチャー・クロスギア・一時的な多色化によるパワー変動を確認。既存対戦定義6,268件の一致を確認。",
+        "runtimeNote": "各最大10分。Phase 205・260・439・641・698・736・804の関連回帰に成功。Phase 205・260・439の長時間CPU対戦は --test-skip-pattern で除外。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dm24-025",
+          "name": "染風の宮司カーズ",
+          "reason": "初出の公式本文を確認。文明の常在追加と、その追加で多色になった時の能力無視、他の文明追加への依存、複数体の火パワー加算の適用順を一体で検証するまで保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 804,
-    "nextPhase": 805,
+    "lastVerifiedPhase": 805,
+    "nextPhase": 806,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm25-042",
-        "name": "電影封魔ラルファス",
-        "check": "攻撃の代わりの起動と、自分のクリーチャー1体への好きな文明の追加、ターン終了時の解除を公式照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-042"
+        "id": "dm25-031",
+        "name": "霊王機ブルファリオン",
+        "check": "攻撃する側またはブロックする側と共有する文明を現在の特性で判定し、W・ブレイカーと多色マナも確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-031"
       },
       {
-        "id": "dm24-073",
-        "name": "紅蓮の守護者ラ・バル・プラトーン",
-        "check": "登場時に選んだ文明以外を持つクリーチャーの範囲を、多色・無色や双方のバトルゾーンを含めて公式照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-073"
+        "id": "dm25-041",
+        "name": "封魔カメレオス",
+        "check": "自分のクリーチャー全体が持つ文明の集合を参照する攻撃・ブロック制限と、文明追加や場を離れた時の反映を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-041"
       },
       {
-        "id": "dm24-025",
-        "name": "染風の宮司カーズ",
-        "check": "闇・自然に火の文明を追加する継続効果と、他の火のクリーチャーのパワー+1000を照合する。複数体や文明追加の重なりも検証する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-025"
+        "id": "dm25-048",
+        "name": "黒雲のリンバウシャ",
+        "check": "闇または自然のクリーチャーの登場時に誘発する強化を、同時登場・多色・自身の登場・能力の重なりを含め公式照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-048"
       },
       {
         "id": "dm24ex4-073",
@@ -12564,6 +12607,12 @@
         "name": "スカル・チェーンソー",
         "check": "公式本文を確認。捨てられなかった場合と捨てる処理が置換された場合の扱い、相手が自分のクリーチャー破壊とマナの墓地送りを選ぶ手順を検証するまで保留。",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-094"
+      },
+      {
+        "id": "dm24-025",
+        "name": "染風の宮司カーズ",
+        "check": "初出の公式本文を確認。文明の常在追加と、その追加で多色になった時の能力無視、他の文明追加への依存、複数体の火パワー加算の適用順を一体で検証するまで保留。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-025"
       }
     ],
     "steps": [

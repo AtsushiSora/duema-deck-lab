@@ -41,15 +41,27 @@ function rawSixNamed(s,x){if(!s||!rawSixCreature(s,x))return false;const monoMas
 export function momoActive(s){return !!s?.players.some(p=>p.battle.some(x=>card(x).g32Momo&&!rawNumberIgnored(s,x)&&!rawTravelIgnored(s,x)&&!rawSixMute(s,x)&&!rawSixNamed(s,x)));}
 export function genmuActive(s){return !!s?.players.some(p=>p.battle.some(x=>card(x).ignoreSmall&&!rawNumberIgnored(s,x)&&!rawTravelIgnored(s,x)));}
 export function numberIgnored(s,x){return rawNumberIgnored(s,x)&&!genmuActive(s);}
-export function natureElements(s,p){return s.players[p].battle.filter(x=>['creature','seed'].includes(card(x).type)&&civilizations(card(x)).includes('自然')).length;}
+function battleCivilizations805(s,x,c=card(x)){
+ const additions=(s.extLimits||[]).filter(r=>r.kind==='g805BattleColor'&&r.turn===s.turn);
+ if(!additions.length||x.sealed||x.faceDown)return civilizations(c);
+ const refs=layers(x);
+ const added=additions.filter(r=>refs.some(y=>y.uid===r.uid&&(y.incarnation||0)===r.incarnation)).map(r=>r.color);
+ return added.length?[...new Set([...civilizations(c).filter(color=>color!=='ゼロ'),...added])]:civilizations(c);
+}
+export function natureElements(s,p){return s.players[p].battle.filter(x=>['creature','seed'].includes(card(x).type)&&battleCivilizations805(s,x).includes('自然')).length;}
 export function isCreature(s,x){const c=card(x);if(c.type!=='creature')return false;if(!c.natureAce4)return true;const p=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));return p<0||numberIgnored(s,x)||travelIgnored(s,x)||!!x.aceIgnored||natureElements(s,p)>=4;}
 function refreshDynamicTypes(s){refreshSeals(s);const g=genmuActive(s);for(const p of[0,1])for(const x of s.players[p].battle)if(card(x).natureAce4){if(!g&&!numberIgnored(s,x)&&!travelIgnored(s,x)&&!rawSixMute(s,x)&&!rawSixNamed(s,x))delete x.aceIgnored;else if(numberIgnored(s,x)||travelIgnored(s,x)||rawSixMute(s,x)||rawSixNamed(s,x)||natureElements(s,p)>=4)x.aceIgnored=true;}extra.gearCleanup(s);for(const own of s.players)for(const x of own.battle)if(card(x).g32Complex||x.g32NoUntap)x.g32NoUntap=extra.photo.noUntap(s,x);for(const own of s.players)for(const x of own.battle)x.g34NoUntap=extra.six.noUntap(s,x);}
-export function abilitiesIgnored(s,c){return c.g35Ignored===s?.turn||!!c.sealed||rawSixMute(s,c)||rawSixNamed(s,c)||travelIgnored(s,c)||numberIgnored(s,c)||isCreature(s,c)&&(genmuActive(s)&&costValue(card(c))<=5||momoActive(s)&&civilizations(card(c)).length<=1);}
+export function abilitiesIgnored(s,c){return c.g35Ignored===s?.turn||!!c.sealed||rawSixMute(s,c)||rawSixNamed(s,c)||travelIgnored(s,c)||numberIgnored(s,c)||isCreature(s,c)&&(genmuActive(s)&&costValue(card(c))<=5||momoActive(s)&&battleCivilizations805(s,c).length<=1);}
 // Continuous race changes follow the physical card's current zone, including
 // evolution sources. Definitions and hidden/face-down characteristics stay intact.
 export function zoneCard(s,p,inst,zone=null,definition=card(inst)){
- const c=definition;if(!c||!s?.players?.[p]||typeof inst==='string'||inst.faceDown||inst.sealed)return c;
- const own=s.players[p];if(!own.battle.some(x=>!x.faceDown&&!x.sealed&&card(x).g395Rapia&&!abilitiesIgnored(s,x)))return c;
+ let c=definition;if(!c||!s?.players?.[p]||typeof inst==='string'||inst.faceDown||inst.sealed)return c;
+ const own=s.players[p];
+ if((s.extLimits||[]).some(r=>r.kind==='g805BattleColor')&&(zone==='battle'||!zone&&own.battle.includes(inst))){
+  const cs=battleCivilizations805(s,inst,c);
+  if(cs.join('/')!==civilizations(c).join('/'))c={...c,civilizations:cs,civ:cs.join('/')};
+ }
+ if(!own.battle.some(x=>!x.faceDown&&!x.sealed&&card(x).g395Rapia&&!abilitiesIgnored(s,x)))return c;
  const covered=['mana','deck','grave','battle'];
  if(zone?!covered.includes(zone):!covered.some(z=>(own[z]||[]).some(x=>z==='battle'?layers(x).some(y=>y.uid===inst.uid):x.uid===inst.uid)))return c;
  const grant=face=>({...face,race:[...new Set([...String(face.race||'').split('/').filter(Boolean),'フェニックス'])].join('/')});
@@ -1640,10 +1652,11 @@ export function getLegalActions(s){
   const attackers=new Set(out.filter(a=>a.kind==='attack').map(a=>a.uid));
   for(const x of own.battle){
    const c=effectiveCard(x,s),canDeclareAttack=attackers.has(x.uid);
+   const requiresUnforcedAttack=c.g804ManaTapCost||c.g439Tap?.some(d=>d.g805AddCivilization);
    if(c.g439Tap&&canAttack(s,p,x)&&(x.entered<s.turn||c.speedAttacker||isEvolution(x))&&!(c.noPlayerAttack&&c.noCreatureAttack)
     &&(!c.g736AttackInstead||canDeclareAttack)&&!(c.g736ForcedAttack&&canDeclareAttack)
-    &&(!c.g804ManaTapCost||!c.mustAttack&&own.mana.filter(y=>!y.tapped).length>=c.g804ManaTapCost))
-    out.push(option('tapAbility',`${c.name}のタップ能力を使う`,{uid:x.uid,cardId:x.cardId,...(c.g804ManaTapCost?{g804ManaTapCost:c.g804ManaTapCost}:{})}));
+    &&(!requiresUnforcedAttack||!c.mustAttack)&&(!c.g804ManaTapCost||own.mana.filter(y=>!y.tapped).length>=c.g804ManaTapCost))
+    out.push(option('tapAbility',`${c.name}のタップ能力を使う`,{uid:x.uid,cardId:x.cardId,...(requiresUnforcedAttack?{requiresUnforcedAttack:true}:{})}));
   }
   if(!out.some(a=>a.kind==='attack'&&effectiveCard(own.battle.find(c=>c.uid===a.uid),s).mustAttack))out.push(option('endTurn','ターン終了'));
  }
@@ -1653,7 +1666,7 @@ export function getLegalActions(s){
   // Check the available creature targets after all other attack restrictions.
   const attackers=new Set(out.filter(a=>a.kind==='attack'&&a.target!=='player').map(a=>a.uid));
   const forced=new Set(own.battle.filter(x=>attackers.has(x.uid)&&power(x,false,s)<=6000).map(x=>x.uid));
-  if(forced.size)out=out.filter(a=>a.kind!=='endTurn'&&(!forced.has(a.uid)||!a.g804ManaTapCost&&(a.kind!=='attack'||a.target!=='player')));
+  if(forced.size)out=out.filter(a=>a.kind!=='endTurn'&&(!forced.has(a.uid)||!a.requiresUnforcedAttack&&(a.kind!=='attack'||a.target!=='player')));
  }
  return out.map((a,i)=>({...a,...(a.kind==='play'&&typeof a.manaPermit==='string'&&a.manaPermit.startsWith('g450:')?{label:a.label+extra.six.permitLabel450(s,p,a.manaPermit)}:{}),id:i,player:p}));
 }
