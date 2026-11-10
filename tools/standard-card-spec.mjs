@@ -2507,6 +2507,30 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=793&&d?.status==='complete'&&d.faces.length===1){
+  const front=normalize(f.abilityText),trigger='S・トリガーS・トリガー';
+  if(f.typeText==='呪文'){
+   if(front===trigger+'クリーチャーを1体選んでもよい。このターンそのクリーチャーのパワーを+6000し「パワード・ブレイカー」を与える。(「パワード・ブレイカー」を持つクリーチャーはそのパワー6000ごとにシールドをさらに1つブレイクする)相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーのパワーを-6000する。(パワーが0以下のクリーチャーは破壊される)')
+    return {trigger:true,effect:'sixPhoto',g34Tasks:[
+     {op:'Target',anyOwner:true,optional:true,power:6000,g301Grant:true,grant:{poweredBreaker:true},spell:true},
+     {op:'Target',optional:true,power:-6000,spell:true}
+    ]};
+   if(front===trigger+'次のうちいずれか1つを選ぶ。▶相手のパワー6000以下のクリーチャーを1体選び破壊する。その後相手のクリーチャーをすべてタップする。▶光または火のコスト7以下のドラゴン・クリーチャーを1体自分の手札から出す。次の自分のターンのはじめまでそのクリーチャーに「ブロッカー」を与える。その後相手のクリーチャーを1体選んでもよい。その2体をバトルさせる。')
+    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Choose',g184Modes:true,modes:[
+     {label:'パワー6000以下の相手1体を破壊し、相手のクリーチャーをすべてタップ',defs:[
+      {op:'Target',to:'grave',filter:{maxPower:6000,g199Power:true}},{op:'TapAll'}
+     ]},
+     {label:'光または火のドラゴンを出し、ブロッカーを与えてバトル',defs:[{
+      op:'Select',origin:'hand',deploy:true,n:1,filter:{creature:true,max:7,race:'ドラゴン',any:[{color:'光'},{color:'火'}]},
+      g791Grant:{blocker:true},g793FightOnEntry:true
+     }]}
+    ]}]};
+  }
+  if(f.typeText==='クリーチャー'&&front==='シンパシー:スノーフェアリー(自分のスノーフェアリー1つにつきこのクリーチャーの召喚コストを1少なくする。ただしコストは0以下にはならない)マッハファイターT・ブレイカーこのクリーチャーが出た時カードを3枚まで引く。自分のスノーフェアリー・クリーチャーすべてに「セイバー:スノーフェアリー」を与える。(自分のスノーフェアリーが破壊される時「セイバー:スノーフェアリー」を持つクリーチャーをかわりに破壊してもよい)')
+   return {machFighter:true,breaker:3,effect:'sixPhoto',g34Tasks:[{op:'DrawUpTo',n:3}],
+    g211Sympathy:{amount:1,minimum:1,elements:true,filter:{race:'スノーフェアリー'}},
+    g208Auras:[{filter:{creature:true,race:'スノーフェアリー'},grants:{g793SnowSaver:true}}]};
+ }
  if(phase>=792&&d?.status==='complete'&&d.faces.length===1){
   const front=normalize(f.abilityText),lightNature=['光','自然'];
   const anyCivilization=lightNature.map(color=>({color}));

@@ -468,8 +468,8 @@ export const manaValue=c=>c.manaValue??(civilizations(c).length===5?0:1);
 export const isDragon=c=>c.type==='creature'&&String(c.race).includes('ドラゴン');
 export function physicalCards(s){const flatten=c=>[c,...[...(c.under||[]),...(c.shieldStack||[]),...(c.godLinks||[])].flatMap(flatten)];return [...s.players.flatMap(p=>['deck','hand','shields','mana','battle','grave','extra','seals'].flatMap(z=>(p[z]||[]).flatMap(flatten))),...s.players.flatMap(p=>[...(p.g34Holding||[]),...(p.g31Holding||[]),...(p.g29Holding||[]),...(p.g29Reviving||[]),...(p.g24Holding||[]),...(p.g5Holding||[]),...(p.g20Holding||[]),...(p.g21Holding||[]),...(p.g21ManaPending||[]),...(p.g19Holding||[]),...(p.g7Holding||[])].flatMap(flatten)),...(s.g33Executions||[]).filter(x=>!x.options.virtualArgs).flatMap(x=>flatten(x.inst)),...(s.g22Entry?flatten(s.g22Entry.inst):[]),...(s.g22Entries||[]).flatMap(e=>flatten(e.inst)),...(s.resolvingSpell&&!s.resolvingSpell.shieldCast?flatten(s.resolvingSpell.inst):[]),...(s.extSpells||[]).filter(f=>!f.virtual).flatMap(f=>flatten(f.inst))];}
 // A Saver belongs to its source and can protect a matching allied element, including itself.
-function saver571(s,row,source){
- const sourceCard=effectiveCard(source,s),rule=sourceCard.g571Saver;
+function saver571(s,row,source,override=null){
+ const sourceCard=effectiveCard(source,s),rule=override??sourceCard.g571Saver;
  if(sourceCard.type==='gear'&&!source.sealed&&!source.faceDown&&row.to==='grave'&&row.destroy!==false&&source.crossedTo?.uid===row.uid){
   const host=s.players[row.player].battle.find(x=>x.uid===row.uid&&(x.incarnation||0)===source.crossedTo.incarnation);
   if(host&&card(host).g260Self?.grants?.g729CrossSaver&&effectiveCard(host,s).g729CrossSaver)return true;
@@ -486,6 +486,10 @@ function saver571(s,row,source){
   &&!extra.six.zeroSafe(s,source)&&!extra.six.destroySafe409(s,source)
   &&!(sourceCard.caddy&&shevaProtection(s,row.player));
 }
+const snowSaverRule793={filter:{race:'スノーフェアリー',faceUp:true},graveMove:true};
+function snowSaver793(s,row,source,definition=effectiveCard(source,s)){
+ return !!definition.g793SnowSaver&&saver571(s,row,source,snowSaverRule793);
+}
 // Hand-return replacements share a movement plan, with their own mandatory or optional choice.
 function paneskoSacrifice785(s,p,x){
  return !x.sealed&&extra.canLeave(s,p,x,{skip577Stay:true})&&!extra.six.zeroSafe(s,x)&&!extra.six.destroySafe409(s,x);
@@ -493,11 +497,12 @@ function paneskoSacrifice785(s,p,x){
 function leaveOptions(s,row){
  const own=s.players[row.player],batch=s.leaving,usedShields=new Set(batch.rows.flatMap(r=>r.plan?.shield?[r.plan.shield]:r.plan?.kind==='ever'?r.plan.shields:[])),usedMana=new Set(batch.rows.flatMap(r=>r.plan?.mana||[]));
  const sacrifices=replacementSacrifices(batch.rows);
+ const snowSavers=own.battle.some(x=>card(x).g208Auras?.some(a=>a.grants.g793SnowSaver));
  if(row.selfDeath||sacrifices.has(row.uid))return {g393J:[],g47:[],g49:[],ever:[],jashin:[],savak:[],ura:[],ex:null,exChoices:[],gneo:false,star:false,ningyo:false,oni:[],escape:[],mana:[],ultra:[],ater:[],g33:[],muku:[],omega:false,hawk:false,yamata:false};
  const usedSavak=new Set(batch.rows.filter(r=>['savak','g33'].includes(r.plan?.kind)).map(r=>r.plan.uid)),available=x=>!usedShields.has(shieldGroup(x))&&!shieldCards(x).some(c=>usedSavak.has(c.uid)),savak=row.savak?[0,1].flatMap(owner=>s.players[owner].shields.filter(x=>!usedShields.has(shieldGroup(x))).flatMap(shieldCards).filter(x=>x.faceUp&&!usedSavak.has(x.uid)).map(x=>({owner,uid:x.uid,cardId:x.cardId}))):[];
  const usedHand=new Set(batch.rows.flatMap(r=>r.plan?.kind==='jashin'?r.plan.cards:[])),exChoices=exLifeShields(s,row.player,own.battle.find(x=>x.uid===row.uid)).filter(available).map(x=>x.uid);
  const usedFlip=new Set(batch.rows.filter(r=>r.plan?.kind==='g33').map(r=>r.plan.uid));
- return {g393J:extra.requested393J.leaveOptions(s,row,batch),g47:extra.seed.leaveOptions(s,row,batch),g49:extra.firebird.leaveOptions(s,row,batch,sacrifices),deathDeck:!!row.destroyToDeck,deathShuffle:!!row.g731DestroyShuffle,deathMana:!!(row.destroyToMana||row.g575TappedMana),tappedMana:row.g575TappedMana,yamata:row.yamata||row.destroyToMana||row.g575OptionalMana,omega:row.omega||row.destroyToHand,optionalHand:row.g708OptionalGraveToHand,muku:(row.muku||[]).filter(x=>!batch.rows.some(r=>r.plan?.kind==='g34Stay'&&r.plan.key===x.key)),g33:row.g33?extra.shieldPhoto.up(s,row.player).filter(x=>!usedFlip.has(x.uid)&&!usedSavak.has(x.uid)&&!usedShields.has(shieldGroup(own.shields.find(r=>shieldCards(r).includes(x))))):[],hawk:row.hawk||row.destroyToDeck,ever:row.ever?own.shields.filter(available):[],jashin:row.jashin?own.hand.filter(x=>!usedHand.has(x.uid)):[],savak,ura:row.ura?extra.uraBelow(own.battle.find(x=>x.uid===row.uid)):[],ningyo:row.to==='mana'&&!row.star&&!row.gneo&&!row.ex&&extra.manaRedirect(s,row.player),oni:row.oni?extra.oniCards(s,row.player,[...sacrifices]):[],ex:exChoices[0]||null,exChoices,gneo:row.gneo,stay577:row.stay577,star:row.star,escape:row.escape?own.shields.filter(available):[],mana:row.manaGuard?own.mana.filter(x=>!usedMana.has(x.uid)&&canMoveZone(s,row.player,'mana')):[],ultra:own.battle.filter(x=>(saver571(s,row,x)||x.uid!==row.uid&&(row.to==='grave'&&row.destroy!==false&&effectiveCard(x,s).g40Saver&&String(card(own.battle.find(y=>y.uid===row.uid)).race).includes('グランセクト')||effectiveCard(x,s).ultraArmored&&String(card(own.battle.find(y=>y.uid===row.uid)).race).includes('アーマード')||effectiveCard(x,s).ultraMecha&&String(card(own.battle.find(y=>y.uid===row.uid)).race).includes('メカ')||effectiveCard(x,s).ultraGiant&&String(card(own.battle.find(y=>y.uid===row.uid)).race).includes('ジャイアント')))&&extra.canLeave(s,row.player,x)&&!sacrifices.has(x.uid)),ater:row.aterGuard?own.battle.filter(x=>isCreature(s,x)&&x.uid!==row.uid&&!sacrifices.has(x.uid)&&(row.aterGuard!=='panesko'||paneskoSacrifice785(s,row.player,x))):[]};
+ return {g393J:extra.requested393J.leaveOptions(s,row,batch),g47:extra.seed.leaveOptions(s,row,batch),g49:extra.firebird.leaveOptions(s,row,batch,sacrifices),deathDeck:!!row.destroyToDeck,deathShuffle:!!row.g731DestroyShuffle,deathMana:!!(row.destroyToMana||row.g575TappedMana),tappedMana:row.g575TappedMana,yamata:row.yamata||row.destroyToMana||row.g575OptionalMana,omega:row.omega||row.destroyToHand,optionalHand:row.g708OptionalGraveToHand,muku:(row.muku||[]).filter(x=>!batch.rows.some(r=>r.plan?.kind==='g34Stay'&&r.plan.key===x.key)),g33:row.g33?extra.shieldPhoto.up(s,row.player).filter(x=>!usedFlip.has(x.uid)&&!usedSavak.has(x.uid)&&!usedShields.has(shieldGroup(own.shields.find(r=>shieldCards(r).includes(x))))):[],hawk:row.hawk||row.destroyToDeck,ever:row.ever?own.shields.filter(available):[],jashin:row.jashin?own.hand.filter(x=>!usedHand.has(x.uid)):[],savak,ura:row.ura?extra.uraBelow(own.battle.find(x=>x.uid===row.uid)):[],ningyo:row.to==='mana'&&!row.star&&!row.gneo&&!row.ex&&extra.manaRedirect(s,row.player),oni:row.oni?extra.oniCards(s,row.player,[...sacrifices]):[],ex:exChoices[0]||null,exChoices,gneo:row.gneo,stay577:row.stay577,star:row.star,escape:row.escape?own.shields.filter(available):[],mana:row.manaGuard?own.mana.filter(x=>!usedMana.has(x.uid)&&canMoveZone(s,row.player,'mana')):[],ultra:own.battle.filter(x=>(saver571(s,row,x)||snowSavers&&snowSaver793(s,row,x)||x.uid!==row.uid&&(row.to==='grave'&&row.destroy!==false&&effectiveCard(x,s).g40Saver&&String(card(own.battle.find(y=>y.uid===row.uid)).race).includes('グランセクト')||effectiveCard(x,s).ultraArmored&&String(card(own.battle.find(y=>y.uid===row.uid)).race).includes('アーマード')||effectiveCard(x,s).ultraMecha&&String(card(own.battle.find(y=>y.uid===row.uid)).race).includes('メカ')||effectiveCard(x,s).ultraGiant&&String(card(own.battle.find(y=>y.uid===row.uid)).race).includes('ジャイアント')))&&extra.canLeave(s,row.player,x)&&!sacrifices.has(x.uid)),ater:row.aterGuard?own.battle.filter(x=>isCreature(s,x)&&x.uid!==row.uid&&!sacrifices.has(x.uid)&&(row.aterGuard!=='panesko'||paneskoSacrifice785(s,row.player,x))):[]};
 }
 function shevaProtection(s,p){const own=s.players[p];return own.battle.some(x=>effectiveCard(x,s).sheva)&&new Set(own.battle.map(x=>costValue(card(x)))).size>=5;}
 function moveCreatures(s,moves,after=null){
@@ -920,7 +925,7 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  }
  if(!inst.tapped&&speedTapOnEntry(s,p,c,isEvolution(inst)))inst.tapped=true;
  if(c.natureAce4&&genmuActive(s))inst.aceIgnored=true;s.players[p].battle.push(inst);if(entryOptions.g728CrossIds?.length)extra.crossOnEntry(s,p,inst,entryOptions.g728CrossIds);extra.history.d2Entry(s,p,inst);inst=extra.phoenix.link(s,p,inst,entryOptions);inst=extra.saga.linkM(s,p,inst,entryOptions);if(c.balchuris)(s.g23BalEntered??=[null,null])[p]=s.turn;if(c.g790AttackDeclare)(s.g790CTEntered??=[null,null])[p]=s.turn;if(c.type==='creature')(s.g7Entries??=[0,0])[p]++;refreshDynamicTypes(s);if(isCreature(s,inst)&&s.metrics[p].firstCreature===null)s.metrics[p].firstCreature=s.players[p].turns;
- if(entryOptions.g791Grant&&!inst.sealed&&isCreature(s,inst))extra.six.deploymentGrant791(s,p,inst,entryOptions.g791Grant,entryOptions.g791Spell);
+ if(entryOptions.g791Grant&&!inst.sealed&&isCreature(s,inst))extra.six.deploymentGrant791(s,p,inst,entryOptions.g791Grant,entryOptions.g791Spell,entryOptions.g793FightOnEntry);
  if(entryOptions.g771SpeedSpell&&!inst.sealed&&isCreature(s,inst))extra.six.deploymentSpeed771(s,p,inst,entryOptions.g771SpeedSpell,entryOptions.g774Banky);
  if(isCreature(s,inst)){s.players[p].enteredThisTurn=(s.players[p].enteredThisTurn||0)+1;s.creaturesEntered=(s.creaturesEntered||0)+1;}
  if(entryOptions.g753Swap){
@@ -1552,11 +1557,12 @@ export function getLegalActions(s){
      out.push(option('replaceUltra',name+'を残し、'+source.name+'をかわりに墓地へ置く',{uid:x.uid,cardId:x.cardId}));
      continue;
     }
+    const snowSaver=snowSaver793(s,row,x,source);
     if(source.g571Saver?.to==='mana'){
-     out.push(option('replaceUltra',`${name}を残し、${source.name}をかわりにマナゾーンへ置く`,{uid:x.uid,cardId:x.cardId,to:'mana'}));
-     continue;
+     if(!snowSaver||saver571(s,row,x))out.push(option('replaceUltra',`${name}を残し、${source.name}をかわりにマナゾーンへ置く`,{uid:x.uid,cardId:x.cardId,to:'mana'}));
+     if(!snowSaver)continue;
     }
-    const keyword=source.g40Saver||source.g571Saver&&!source.g571Saver.ultra?'セイバー':'ウルトラ・セイバー';
+    const keyword=snowSaver||source.g40Saver||source.g571Saver&&!source.g571Saver.ultra?'セイバー':'ウルトラ・セイバー';
     out.push(option('replaceUltra',card(x).name+'を'+keyword+'でかわりに破壊する',{uid:x.uid,cardId:x.cardId}));
    }
    for(const x of v.ater)out.push(option('replaceAter',`${card(x).name}をかわりに破壊して残す`,{uid:x.uid,cardId:x.cardId}));

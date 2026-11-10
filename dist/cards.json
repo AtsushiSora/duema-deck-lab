@@ -181289,24 +181289,185 @@
       },
       "supportBatch": "phase-792",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-059",
+      "name": "冥土の絆",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー\nクリーチャーを１体選んでもよい。このターン、そのクリーチャーのパワーを+6000し、「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーのパワーを－6000する。（パワーが０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-059",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "optional": true,
+          "power": 6000,
+          "g301Grant": true,
+          "grant": {
+            "poweredBreaker": true
+          },
+          "spell": true
+        },
+        {
+          "op": "Target",
+          "optional": true,
+          "power": -6000,
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-793",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-051",
+      "name": "熱血の絆",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー\n次のうちいずれか１つを選ぶ。\n▶相手のパワー6000以下のクリーチャーを１体選び、破壊する。その後、相手のクリーチャーをすべてタップする。\n▶光または火の、コスト７以下のドラゴン・クリーチャーを１体、自分の手札から出す。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-051",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "パワー6000以下の相手1体を破壊し、相手のクリーチャーをすべてタップ",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "maxPower": 6000,
+                    "g199Power": true
+                  }
+                },
+                {
+                  "op": "TapAll"
+                }
+              ]
+            },
+            {
+              "label": "光または火のドラゴンを出し、ブロッカーを与えてバトル",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "hand",
+                  "deploy": true,
+                  "n": 1,
+                  "filter": {
+                    "creature": true,
+                    "max": 7,
+                    "race": "ドラゴン",
+                    "any": [
+                      {
+                        "color": "光"
+                      },
+                      {
+                        "color": "火"
+                      }
+                    ]
+                  },
+                  "g791Grant": {
+                    "blocker": true
+                  },
+                  "g793FightOnEntry": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-793",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-020",
+      "name": "守護地龍 ザノウハウ",
+      "civ": "水/自然",
+      "civilizations": [
+        "水",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 12000,
+      "race": "ジャイアント・ドラゴン/スノーフェアリー",
+      "text": "シンパシー：スノーフェアリー（自分のスノーフェアリー１つにつき、このクリーチャーの召喚コストを１少なくする。ただしコストは０以下にはならない）\nマッハファイター\nT・ブレイカー\nこのクリーチャーが出た時、カードを３枚まで引く。\n自分のスノーフェアリー・クリーチャーすべてに「セイバー：スノーフェアリー」を与える。（自分のスノーフェアリーが破壊される時、「セイバー：スノーフェアリー」を持つクリーチャーをかわりに破壊してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-020",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DrawUpTo",
+          "n": 3
+        }
+      ],
+      "g211Sympathy": {
+        "amount": 1,
+        "minimum": 1,
+        "elements": true,
+        "filter": {
+          "race": "スノーフェアリー"
+        }
+      },
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "race": "スノーフェアリー"
+          },
+          "grants": {
+            "g793SnowSaver": true
+          }
+        }
+      ],
+      "supportBatch": "phase-793",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 792,
+    "phase": 793,
     "checkedAt": "2026-11-10",
-    "baseCount": 6229,
+    "baseCount": 6232,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6232,
+    "totalCount": 6235,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/44212/",
-      "https://dm.takaratomy.co.jp/rule/qa/39986/",
-      "https://dm.takaratomy.co.jp/rule/qa/40270/",
-      "https://dm.takaratomy.co.jp/rule/qa/42657/",
-      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck06/",
-      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck07/"
+      "https://dm.takaratomy.co.jp/rule/qa/46239/",
+      "https://dm.takaratomy.co.jp/rule/qa/48466/",
+      "https://dm.takaratomy.co.jp/rule/qa/41125/",
+      "https://dm.takaratomy.co.jp/rule/qa/39992/",
+      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck02/",
+      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck05/",
+      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck08/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -195142,6 +195303,27 @@
           "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck04/",
           "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck07/",
           "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck10/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 792,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6229,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6232,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/44212/",
+          "https://dm.takaratomy.co.jp/rule/qa/39986/",
+          "https://dm.takaratomy.co.jp/rule/qa/40270/",
+          "https://dm.takaratomy.co.jp/rule/qa/42657/",
+          "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck06/",
+          "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck07/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -1,0 +1,376 @@
+{
+  "phase": 793,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6232,
+  "description": "任意のパワー変化とブレイカー、選択式の破壊・タップまたはドラゴン展開とバトル、種族のシンパシーと付与セイバーに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/46239/",
+    "https://dm.takaratomy.co.jp/rule/qa/48466/",
+    "https://dm.takaratomy.co.jp/rule/qa/41125/",
+    "https://dm.takaratomy.co.jp/rule/qa/39992/",
+    "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck02/",
+    "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck05/",
+    "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck08/"
+  ],
+  "cards": [
+    {
+      "id": "dm24ex4-059",
+      "name": "冥土の絆",
+      "faces": [
+        {
+          "name": "冥土の絆",
+          "typeText": "呪文",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー\nクリーチャーを１体選んでもよい。このターン、そのクリーチャーのパワーを+6000し、「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーのパワーを－6000する。（パワーが０以下のクリーチャーは破壊される）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-059",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "optional": true,
+            "power": 6000,
+            "g301Grant": true,
+            "grant": {
+              "poweredBreaker": true
+            },
+            "spell": true
+          },
+          {
+            "op": "Target",
+            "optional": true,
+            "power": -6000,
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-059.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "d7f7dbe5971a1475e2707d62ca9ae56d99dab92b992c1bcd0fb6f10ba7610bef",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-051",
+      "name": "熱血の絆",
+      "faces": [
+        {
+          "name": "熱血の絆",
+          "typeText": "呪文",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\n次のうちいずれか１つを選ぶ。\n▶相手のパワー6000以下のクリーチャーを１体選び、破壊する。その後、相手のクリーチャーをすべてタップする。\n▶光または火の、コスト７以下のドラゴン・クリーチャーを１体、自分の手札から出す。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-051",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "パワー6000以下の相手1体を破壊し、相手のクリーチャーをすべてタップ",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 6000,
+                      "g199Power": true
+                    }
+                  },
+                  {
+                    "op": "TapAll"
+                  }
+                ]
+              },
+              {
+                "label": "光または火のドラゴンを出し、ブロッカーを与えてバトル",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "hand",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "creature": true,
+                      "max": 7,
+                      "race": "ドラゴン",
+                      "any": [
+                        {
+                          "color": "光"
+                        },
+                        {
+                          "color": "火"
+                        }
+                      ]
+                    },
+                    "g791Grant": {
+                      "blocker": true
+                    },
+                    "g793FightOnEntry": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "5fb93b712c305d5623c468f7abab11ac651c0e3a09561a9a211492c92d0cdd77",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-020",
+      "name": "守護地龍 ザノウハウ",
+      "faces": [
+        {
+          "name": "守護地龍 ザノウハウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "シンパシー：スノーフェアリー（自分のスノーフェアリー１つにつき、このクリーチャーの召喚コストを１少なくする。ただしコストは０以下にはならない）\nマッハファイター\nT・ブレイカー\nこのクリーチャーが出た時、カードを３枚まで引く。\n自分のスノーフェアリー・クリーチャーすべてに「セイバー：スノーフェアリー」を与える。（自分のスノーフェアリーが破壊される時、「セイバー：スノーフェアリー」を持つクリーチャーをかわりに破壊してもよい）",
+          "race": "ジャイアント・ドラゴン/スノーフェアリー",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-020",
+      "spec": {
+        "machFighter": true,
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DrawUpTo",
+            "n": 3
+          }
+        ],
+        "g211Sympathy": {
+          "amount": 1,
+          "minimum": 1,
+          "elements": true,
+          "filter": {
+            "race": "スノーフェアリー"
+          }
+        },
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "race": "スノーフェアリー"
+            },
+            "grants": {
+              "g793SnowSaver": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "d416d0ef115c75a064d5d04203d842652869ed086162c5bfe67690e7c1c5c577",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex4-PR019",
+      "canonicalId": "dm24ex4-059",
+      "name": "冥土の絆",
+      "faces": [
+        {
+          "name": "冥土の絆",
+          "typeText": "呪文",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー\nクリーチャーを１体選んでもよい。このターン、そのクリーチャーのパワーを+6000し、「パワード・ブレイカー」を与える。（「パワード・ブレイカー」を持つクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\n相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーのパワーを－6000する。（パワーが０以下のクリーチャーは破壊される）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-PR019",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-PR019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "815e3a2787b303cd0bb0701948fecb7a7dcee7bb9efebe819a5e9cca1d5e83eb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-PR011",
+      "canonicalId": "dm24ex4-051",
+      "name": "熱血の絆",
+      "faces": [
+        {
+          "name": "熱血の絆",
+          "typeText": "呪文",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\n次のうちいずれか１つを選ぶ。\n▶相手のパワー6000以下のクリーチャーを１体選び、破壊する。その後、相手のクリーチャーをすべてタップする。\n▶光または火の、コスト７以下のドラゴン・クリーチャーを１体、自分の手札から出す。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-PR011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-PR011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "8666eaf73e987554519e27c7ef7c63c8613840763e99f5fc3021192960dff1eb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy23-128",
+      "canonicalId": "dm24ex4-051",
+      "name": "熱血の絆",
+      "faces": [
+        {
+          "name": "熱血の絆",
+          "typeText": "呪文",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー\n次のうちいずれか１つを選ぶ。\n▶相手のパワー6000以下のクリーチャーを１体選び、破壊する。その後、相手のクリーチャーをすべてタップする。\n▶光または火の、コスト７以下のドラゴン・クリーチャーを１体、自分の手札から出す。次の自分のターンのはじめまで、そのクリーチャーに「ブロッカー」を与える。その後、相手のクリーチャーを１体選んでもよい。その２体をバトルさせる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy23-128",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy23-128.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "3f0f819ee8766ea94987656a9b3b65badb5cae44f4bac5f5d32c853e67aa9620",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-Sec007",
+      "canonicalId": "dm24ex4-020",
+      "name": "守護地龍 ザノウハウ",
+      "faces": [
+        {
+          "name": "守護地龍 ザノウハウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "シンパシー：スノーフェアリー（自分のスノーフェアリー１つにつき、このクリーチャーの召喚コストを１少なくする。ただしコストは０以下にはならない）\nマッハファイター\nT・ブレイカー\nこのクリーチャーが出た時、カードを３枚まで引く。\n自分のスノーフェアリー・クリーチャーすべてに「セイバー：スノーフェアリー」を与える。（自分のスノーフェアリーが破壊される時、「セイバー：スノーフェアリー」を持つクリーチャーをかわりに破壊してもよい）",
+          "race": "ジャイアント・ドラゴン/スノーフェアリー",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-Sec007",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-Sec007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "cd3249632d118d383f855409fe6c00f71f3e6fe828c23f8a98a50815e968c15b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-ChoSec007",
+      "canonicalId": "dm24ex4-020",
+      "name": "守護地龍 ザノウハウ",
+      "faces": [
+        {
+          "name": "守護地龍 ザノウハウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/自然",
+          "civilizations": [
+            "水",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "シンパシー：スノーフェアリー（自分のスノーフェアリー１つにつき、このクリーチャーの召喚コストを１少なくする。ただしコストは０以下にはならない）\nマッハファイター\nT・ブレイカー\nこのクリーチャーが出た時、カードを３枚まで引く。\n自分のスノーフェアリー・クリーチャーすべてに「セイバー：スノーフェアリー」を与える。（自分のスノーフェアリーが破壊される時、「セイバー：スノーフェアリー」を持つクリーチャーをかわりに破壊してもよい）",
+          "race": "ジャイアント・ドラゴン/スノーフェアリー",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-ChoSec007",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-ChoSec007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "adf3cb8a4d59409e3c9140bb5f4ad925cc2fde34518ccbab1bc1a24deb74c274",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24ex4-059": 4,
+      "dm24ex4-051": 4,
+      "dm24ex4-020": 4,
+      "dm24ex4-PR019": 4,
+      "dm24ex4-PR011": 4,
+      "promoy23-128": 4,
+      "dm24ex4-Sec007": 4,
+      "dm24ex4-ChoSec007": 4
+    }
+  }
+}
