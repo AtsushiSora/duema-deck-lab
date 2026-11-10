@@ -184975,23 +184975,116 @@
       "g828BattleBreak": true,
       "supportBatch": "phase-828",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm35-040",
+      "name": "魔皇アンドラージ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "グランド・デビル",
+      "text": "手札進化-水のクリーチャーを１体自分の手札から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーをバトルゾーンに出した時、カードを２枚引いてもよい。そうした場合、自分の手札を２枚捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-040",
+      "limit": 4,
+      "g48HandEvolution": true,
+      "g827HandWaterEvolution": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "PlayerDraw461",
+          "n": 2,
+          "optional": true,
+          "discard": 2
+        }
+      ],
+      "supportBatch": "phase-829",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm34-033",
+      "name": "大作家エドガー・オーライオン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "ドリームメイト/オリジン",
+      "text": "進化 - 自分のドリームメイトまたはオリジン１体の上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚選び墓地に置いてもよい。そうした場合、自分の山札の上から１枚目をマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-033",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "ドリームメイト"
+          },
+          {
+            "race": "オリジン"
+          }
+        ]
+      },
+      "g825Meteor": "ramp",
+      "supportBatch": "phase-829",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm35-012",
+      "name": "神羅ダークネス・ロマノフ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 11000,
+      "race": "ダークロード/ルナティック・エンペラー/ナイト",
+      "text": "究極進化-自分の進化クリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、相手の手札を見て、その中から２枚まで選び、捨てさせる。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-012",
+      "limit": 4,
+      "ultimateEvolution": true,
+      "evolution": {
+        "evolution": true
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "hand",
+          "n": 2,
+          "optional": true,
+          "g829InspectDiscard": true,
+          "title": "相手の手札を見て、捨てさせるカードを2枚まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-829",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 828,
+    "phase": 829,
     "checkedAt": "2026-11-10",
-    "baseCount": 6341,
-    "newEffectCards": 4,
+    "baseCount": 6345,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6345,
+    "totalCount": 6348,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34900/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35918/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35969/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35970/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35971/",
-      "https://dm.takaratomy.co.jp/rule/qa/39401/",
+      "https://dm.takaratomy.co.jp/rule/qa/39125/",
+      "https://dm.takaratomy.co.jp/rule/qa/42666/",
+      "https://dm.takaratomy.co.jp/rule/qa/42937/",
+      "https://dm.takaratomy.co.jp/rule/qa/46840/",
+      "https://dm.takaratomy.co.jp/rule/qa/31803/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37370/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -199571,6 +199664,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/45585/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37640/",
           "https://dm.takaratomy.co.jp/rule/qa/45075/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 828,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6341,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6345,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34900/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35918/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35969/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35970/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35971/",
+          "https://dm.takaratomy.co.jp/rule/qa/39401/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

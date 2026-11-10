@@ -2507,6 +2507,22 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=829&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const handEvolution='手札進化-水のクリーチャーを1体自分の手札から選びこのクリーチャーをその上に重ねつつバトルゾーンに出す。';
+  const drawDiscard=instruction584('カードを2枚引いてもよい。そうした場合自分の手札を2枚捨てる。');
+  if(f.typeText==='進化クリーチャー(手札進化)'&&text===handEvolution+'このクリーチャーをバトルゾーンに出した時カードを2枚引いてもよい。そうした場合自分の手札を2枚捨てる。')
+   return {g48HandEvolution:true,g827HandWaterEvolution:true,effect:'sixPhoto',g34Tasks:[drawDiscard]};
+  if(f.typeText==='進化クリーチャー'&&text==='進化-自分のドリームメイトまたはオリジン1体の上に置く。メテオバーン-このクリーチャーが攻撃する時このクリーチャーの下にあるカードを1枚選び墓地に置いてもよい。そうした場合自分の山札の上から1枚目をマナゾーンに置く。')
+   return {evolution:{any:[{race:'ドリームメイト'},{race:'オリジン'}]},g825Meteor:'ramp'};
+  const romanov=[
+   '究極進化-自分の進化クリーチャー1体の上に置く。このクリーチャーをバトルゾーンに出した時相手の手札を見てその中から2枚まで選び捨てさせる。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)',
+   '究極進化:進化クリーチャー1体の上に置く。W・ブレイカー(このクリーチャーはシールドを2つブレイクする)このクリーチャーが出た時相手の手札を見て2枚まで選び捨てさせる。'
+  ];
+  if(['進化クリーチャー(究極進化)','進化クリーチャー'].includes(f.typeText)&&romanov.includes(text))
+   return {ultimateEvolution:true,evolution:{evolution:true},breaker:2,effect:'sixPhoto',
+    g34Tasks:[{op:'Select',owner:'opponent',origin:'hand',n:2,optional:true,g829InspectDiscard:true,title:'相手の手札を見て、捨てさせるカードを2枚まで選ぶ'}]};
+ }
  if(phase>=828&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const cascade=[

@@ -679,6 +679,11 @@ export function createSixPhotoRules(api){
   moveZoneSelection583(s,t,rows);
  }
  function finishSelect(s,t){
+  if(t.g829InspectDiscard){
+   const uids=(t.rows||[]).map(row=>row.uid);
+   if(uids.length)api.discardSelected(s,1-t.p,uids,t.source,t.controller??t.p);
+   return;
+  }
   if(t.g806MultiUntap){
    const [r]=t.rows;
    const x=r&&s.players[r.p][r.origin].find(y=>y.uid===r.uid);

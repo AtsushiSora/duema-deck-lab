@@ -174,7 +174,7 @@ export function createExtendedRules(api){
  function thisInherit(s,b,x){if(b.g170StartFreeze)x.g170StartFreeze=[...new Map([...(x.g170StartFreeze||[]),...b.g170StartFreeze].map(e=>[JSON.stringify(e),structuredClone(e)])).values()];if(b.g31EndDeath)(x.g31EndDeath??=[]).push(...structuredClone(b.g31EndDeath));}
  const starter=createStarterRules({...api,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo});
  const gospel=createGospelRules({...api,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo,targetable,lock});
- const galaxy=createGalaxyRules({...api,attachMarsDeck:(s,p,x)=>phoenix.attach(s,p,x,[],{}),fifteen:six.fifteen,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo,targetable,lock});
+ const galaxy=createGalaxyRules({...api,attachMarsDeck:(s,p,x)=>phoenix.attach(s,p,x,[],{}),attachHandEvolution:cyber.attachHandEvolution,fifteen:six.fifteen,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo,targetable,lock});
  const gate=createGateRules({...api,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo,targetable,lock});
  const gran=createGransectRules({...api,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo,targetable,lock});
  const kiyo=createKiyonagaRules({...api,creatures,put,task,choice,opt,skip,targetOptions,nowCreature,shieldTo,targetable,lock});
