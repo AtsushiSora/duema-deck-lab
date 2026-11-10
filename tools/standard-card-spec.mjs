@@ -2507,6 +2507,18 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=808&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const lines=f.abilityText.split('\n').map(normalize);
+  const attack=lines.find(text=>/^このクリーチャーが攻撃する時自分のシールドを(?:1枚|1つ|ひとつ)墓地に置いてもよい。そうした(?:場合|ら)相手のパワー6000以下のクリーチャーを1体破壊する。$/.test(text));
+  if(lines.length===2&&attack&&lines.some(text=>/^W・ブレイカー(?:\(このクリーチャーはシールドを2枚ブレイクする\))?$/.test(text)))
+   return {breaker:2,g34Attack:[{op:'ShieldGrave',optional:true,then:[{op:'Target',to:'grave',filter:{maxPower:6000,g199Power:true}}]}]};
+  let watch;
+  if(lines.length===1&&lines[0]==='自分が多色の呪文を唱えた時または多色クリーチャーを召喚した時カードを1枚引いてもよい。')
+   watch={multicolor:true,defs:[{op:'Draw',n:1,optional:true}]};
+  if(lines.length===1&&lines[0]==='自分の水闇火または自然のクリーチャーを召喚した時あるいは自分の水闇火または自然の呪文を唱えた時そのターンこのクリーチャーのパワーは+2000される。')
+   watch={colorsAny:['水','闇','火','自然'],defs:[{op:'SelfBoost313',power:2000,g536Source:true}]};
+  if(watch)return {g204SpellWatch:{who:'self',...watch},g808SummonWatch:watch};
+ }
  if(phase>=807&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const manaTap='マナゾーンに置く時このカードはタップして置く。';
   const text=normalize(f.abilityText);

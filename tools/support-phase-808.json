@@ -1,0 +1,447 @@
+{
+  "phase": 808,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6277,
+  "description": "攻撃時の任意のシールド墓地送りと、文明を参照する召喚・詠唱誘発を持つ旧弾3種に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/41437/",
+    "https://dm.takaratomy.co.jp/rule/qa/42937/",
+    "https://dm.takaratomy.co.jp/rule/qa/39442/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35575/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm24-s04",
+      "name": "ボルメテウス・武者・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルメテウス・武者・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが攻撃する時、自分のシールドを１枚、墓地に置いてもよい。そうした場合、相手のパワー6000以下のクリーチャーを１体破壊する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-s04",
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "ShieldGrave",
+            "optional": true,
+            "then": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "maxPower": 6000,
+                  "g199Power": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "f262c0a86c8e58231e289364b1d048d201ef31fa7fbd37b24d58a68301881b1a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-s02",
+      "name": "ラスティ・ザ・レインボー",
+      "faces": [
+        {
+          "name": "ラスティ・ザ・レインボー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分が多色の呪文を唱えた時、または、多色クリーチャーを召喚した時、カードを１枚引いてもよい。",
+          "race": "スプラッシュ・クイーン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-s02",
+      "spec": {
+        "g204SpellWatch": {
+          "who": "self",
+          "multicolor": true,
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        },
+        "g808SummonWatch": {
+          "multicolor": true,
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "c49d0b3d17540a9eb67b52b3db4ff75910b5c8f23bb92cb564aa26a564b29d28",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-075",
+      "name": "彩大闘機マックスガイザー",
+      "faces": [
+        {
+          "name": "彩大闘機マックスガイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の水、闇、火、または自然のクリーチャーを召喚した時、あるいは、自分の水、闇、火、または自然の呪文を唱えた時、そのターン、このクリーチャーのパワーは+2000される。",
+          "race": "グレートメカオー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-075",
+      "spec": {
+        "g204SpellWatch": {
+          "who": "self",
+          "colorsAny": [
+            "水",
+            "闇",
+            "火",
+            "自然"
+          ],
+          "defs": [
+            {
+              "op": "SelfBoost313",
+              "power": 2000,
+              "g536Source": true
+            }
+          ]
+        },
+        "g808SummonWatch": {
+          "colorsAny": [
+            "水",
+            "闇",
+            "火",
+            "自然"
+          ],
+          "defs": [
+            {
+              "op": "SelfBoost313",
+              "power": 2000,
+              "g536Source": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-075.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "18cfa92432e0beec8c16fc9a8c8ff00052e729e6b1d3772258b92507084543fd",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "24-S010",
+      "canonicalId": "dm24-s04",
+      "name": "ボルメテウス・武者・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルメテウス・武者・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "Ｗ・ブレイカー\nこのクリーチャーが攻撃する時、自分のシールドを１枚、墓地に置いてもよい。そうした場合、相手のパワー6000以下のクリーチャーを１体破壊する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=24-S010",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/24-S010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "654dbea31fbb03c317a7cc5888a5ff0e64573e3ddb95b66e5b12e39fd97221cf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "27-S004",
+      "canonicalId": "dm24-s04",
+      "name": "ボルメテウス・武者・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルメテウス・武者・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "Ｗ・ブレイカー\nこのクリーチャーが攻撃する時、自分のシールドを１枚、墓地に置いてもよい。そうした場合、相手のパワー6000以下のクリーチャーを１体破壊する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=27-S004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/27-S004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "f25d66b818c238e772ff5a25b2f6f11b59ec99ce4a944df13ecf21a32838a423",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc43-011",
+      "canonicalId": "dm24-s04",
+      "name": "ボルメテウス・武者・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルメテウス・武者・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが攻撃する時、自分のシールドを１枚、墓地に置いてもよい。そうした場合、相手のパワー6000以下のクリーチャーを１体破壊する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc43-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc43-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "bbf48b90c0f63fed2a21a9bd037df3863629a1f24c12f08c5270a0634999daea",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc53-011",
+      "canonicalId": "dm24-s04",
+      "name": "ボルメテウス・武者・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルメテウス・武者・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが攻撃する時、自分のシールドを１枚、墓地に置いてもよい。そうした場合、相手のパワー6000以下のクリーチャーを１体破壊する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc53-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc53-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ad6226ba3bc1ab4b9dd5c48faa7dd98a19a25d85883148592f1c62e160c1c03d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc59-003",
+      "canonicalId": "dm24-s04",
+      "name": "ボルメテウス・武者・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルメテウス・武者・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃する時、自分のシールドを１枚、墓地に置いてもよい。そうした場合、相手のパワー6000以下のクリーチャーを１体破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc59-003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc59-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "d1706d549962127e764469e4f0c5756013639f0aa3f38d065d1850bac62f23b8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx19-s37",
+      "canonicalId": "dm24-s04",
+      "name": "ボルメテウス・武者・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルメテウス・武者・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃する時、自分のシールドを１枚、墓地に置いてもよい。そうした場合、相手のパワー6000以下のクリーチャーを１体破壊する。\nＷ・ブレイカー",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx19-s37",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx19-s37.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "e6ac81e4766df2558e47e5b78f7c84f3d8bd246c35636a27936cc30ecad6f8c8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx21-011",
+      "canonicalId": "dm24-s04",
+      "name": "ボルメテウス・武者・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルメテウス・武者・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "Ｗ・ブレイカー\nこのクリーチャーが攻撃する時、自分のシールドをひとつ、墓地に置いてもよい。そうしたら、相手のパワー6000以下のクリーチャーを１体破壊する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx21-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "f0ce21baa86fe673b41492106bcf8074d7dc1dce8a81e85bbc8bc08306e04b67",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx22b-073",
+      "canonicalId": "dm24-s04",
+      "name": "ボルメテウス・武者・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルメテウス・武者・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "Ｗ・ブレイカー\nこのクリーチャーが攻撃する時、自分のシールドをひとつ、墓地に置いてもよい。そうしたら、相手のパワー6000以下のクリーチャーを１体破壊する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-073",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22b-073.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "fc4a0e55bc8b1c55aa9ca3d1d9535e7057f78f9a733f67868e75678d3ebd38a2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex01-026",
+      "canonicalId": "dm24-s04",
+      "name": "ボルメテウス・武者・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルメテウス・武者・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "Ｗ・ブレイカー\nこのクリーチャーが攻撃する時、自分のシールドを１つ、墓地に置いてもよい。そうしたら、相手のパワー6000以下のクリーチャーを１体破壊する。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex01-026",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex01-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "a1947d1fc26047ef9e3091e4f47e8d4addd69b09ca817c9132a5268279b4792f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24-s04": 4,
+      "dm24-s02": 4,
+      "dm24-075": 4,
+      "24-S010": 4,
+      "27-S004": 4,
+      "dmc43-011": 4,
+      "dmc53-011": 4,
+      "dmc59-003": 4,
+      "dmx19-s37": 4,
+      "dmx21-011": 4,
+      "dmx22b-073": 4,
+      "dmex01-026": 4
+    }
+  }
+}

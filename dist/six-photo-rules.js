@@ -404,7 +404,9 @@ export function createSixPhotoRules(api){
  function winWatches252(s,p,w){const winner=s.players[p].battle.find(x=>x.uid===w?.uid);if(!winner)return[];return watchSources252(s,p).flatMap(x=>{const watch=effective(x,s).g252WinWatch;return watch&&(!watch.first||w.g587First)&&(!watch.other||x.uid!==winner.uid)&&matches(s,p,winner,watch.filter)?[{player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Sequence',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs:watch.defs,...(watch.winner?{g399Attacker:{uid:winner.uid,incarnation:winner.incarnation||0}}:{})})}]:[];});}
  // Use events come from actual summons and spell casts, not arbitrary battlefield entries.
  function useBlockers524(s,caster){for(const x of creatures(s,1-caster))if(!x.sealed&&effective(x,s).g524OpponentUseBlocker)queue(s,1-caster,x,[{op:'UseBlocker524'}]);}
- const spellWatches=(s,caster,c)=>[s.active,1-s.active].flatMap(owner=>creatures(s,owner).filter(x=>!x.sealed).flatMap(x=>{const watch=effective(x,s).g204SpellWatch;return watch&&(watch.who==='both'||(watch.who==='self'?owner===caster:owner!==caster))&&(!watch.opponentTurn||s.active!==owner)&&(!watch.color||colors(c).includes(watch.color))&&(!watch.colorsAny||watch.colorsAny.some(color=>colors(c).includes(color)))&&(!watch.race||race(c,watch.race))&&(!watch.g766Once||!used(s,'g766SpellUse',x))?[{owner,x,watch}]:[];}));
+ const useColorsMatch=(watch,c)=>(!watch.color||colors(c).includes(watch.color))&&
+  (!watch.colorsAny||watch.colorsAny.some(color=>colors(c).includes(color)))&&(!watch.multicolor||colors(c).length>1);
+ const spellWatches=(s,caster,c)=>[s.active,1-s.active].flatMap(owner=>creatures(s,owner).filter(x=>!x.sealed).flatMap(x=>{const watch=effective(x,s).g204SpellWatch;return watch&&(watch.who==='both'||(watch.who==='self'?owner===caster:owner!==caster))&&(!watch.opponentTurn||s.active!==owner)&&useColorsMatch(watch,c)&&(!watch.race||race(c,watch.race))&&(!watch.g766Once||!used(s,'g766SpellUse',x))?[{owner,x,watch}]:[];}));
  // Use the already decorated target stats and suppress breaker calculation on sources to avoid power recursion.
  function auraPower(s,x,c){const owner=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));if(owner<0||x.sealed||c.type!=='creature')return 0;const fits=f=>(!f.creature||c.type==='creature')&&(!f.color||colors(c).includes(f.color))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.g220NameAny||f.g220NameAny.some(q=>String(c.name).normalize('NFKC').includes(q.normalize('NFKC'))))&&(!f.any||f.any.some(fits))&&(!f.evolution||api.isEvolution(x))&&(f.min===undefined||cost(c)>=f.min)&&(!f.tapped||x.tapped)&&(!f.g436Crossed||ownCondition(s,owner,{g436Crossed:true},x.uid));let bonus=0;for(const sourceOwner of[0,1])for(const source of s.players[sourceOwner].battle){const raw=api.zoneCard(s,sourceOwner,source);if(source.sealed||(!raw.g205Aura&&!raw.g260Self?.grants?.g205Aura&&!raw.g268ManaGrants?.some(r=>r.grants?.g205Aura))||!api.isCreature(s,source)&&!(raw.type==='field'&&raw.d2Field))continue;const aura=effective(source,s,true).g205Aura;if(!aura||!aura.both&&owner!==(aura.opponent?1-sourceOwner:sourceOwner)||aura.other&&source.uid===x.uid||aura.turn==='own'&&s.active!==sourceOwner||aura.turn==='opponent'&&s.active===sourceOwner||!fits(aura.filter))continue;bonus+=aura.power;}return bonus;}
  // Counting characteristics must not calculate power/breakers on the counted cards.
@@ -1673,7 +1675,11 @@ export function createSixPhotoRules(api){
   api.discardSelected(s,opponent,s.players[opponent].hand.map(x=>x.uid),t.source,t.p);
   break;
  }
- case'g34_ShieldGrave':choice(s,t,'墓地に置く自分のシールドを1つ選ぶ',ownShieldGraveOptions(s,t.p));break;
+ case'g34_ShieldGrave':{
+  const options=ownShieldGraveOptions(s,t.p);
+  if(options.length)choice(s,t,'墓地に置く自分のシールドを1つ選ぶ',t.optional?[...options,skip()]:options);
+  break;
+ }
  case'g34_OwnShieldGraves697':{
   const most=Math.max(...s.players.map(p=>p.shields.length));
   const owners=t.owners??[s.active,1-s.active].filter(p=>!t.moreOnly||s.players[p].shields.length===most);
@@ -2384,7 +2390,11 @@ export function createSixPhotoRules(api){
  }else if(t.elseDefs)start(s,t,t.elseDefs);
  break;
  case'g34_OwnShieldGraves697':put(s,{...t,picks:[...(t.picks||[]),{owner:t.chooser,uid:v}]});break;
- case'g34_ShieldGrave':if(v){const moved=api.moveShield(s,t.p,v,'grave');api.log(s,t.p,'shieldGrave',card(t.source).name+'：シールド1つ（カード'+moved.length+'枚）を墓地に置いた',{cardId:t.source});}break;
+ case'g34_ShieldGrave':if(v){
+  const moved=api.moveShield(s,t.p,v,'grave');
+  api.log(s,t.p,'shieldGrave',card(t.source).name+'：シールド1つ（カード'+moved.length+'枚）を墓地に置いた',{cardId:t.source});
+  if(moved.length&&t.then)start(s,t,t.then);
+ }break;
  case'g34_BlindReveal803':{
   const y=own.hand[v];
   if(y){
@@ -2917,7 +2927,13 @@ export function createSixPhotoRules(api){
    }
   }
  },
- played(s,p,c,x,origin,permit){if(c.type==='creature')useBlockers524(s,p);for(const y of selectedOnce464(s,p,c))y.g464UsedTurn=s.turn;recordSummon463(s,p,c);if(c.type==='creature')consumeReduction456(s,p,c);if(c.type==='creature'&&['mana','grave'].includes(origin)&&typeof permit==='string'&&permit.startsWith('g450:'))((s.g450ZoneUses??=[{},{}])[p]??={})[permit]=s.turn;if(c.type!=='spell')noncreatureUse448(s,p,c);if(c.type==='creature'){countExecution(s,p,c);if(colors(c).includes('自然')&&Number(c.power)>=12000)s.g34Discounts=(s.g34Discounts||[]).filter(y=>y.p!==p||y.turn!==s.turn);}},
+ played(s,p,c,x,origin,permit){if(c.type==='creature'){
+  useBlockers524(s,p);
+  for(const source of s.players[p].battle){
+   const watch=card(source).g808SummonWatch&&!source.sealed&&api.isCreature(s,source)&&effective(source,s).g808SummonWatch;
+   if(watch&&useColorsMatch(watch,c))queue(s,p,source,watch.defs);
+  }
+ }for(const y of selectedOnce464(s,p,c))y.g464UsedTurn=s.turn;recordSummon463(s,p,c);if(c.type==='creature')consumeReduction456(s,p,c);if(c.type==='creature'&&['mana','grave'].includes(origin)&&typeof permit==='string'&&permit.startsWith('g450:'))((s.g450ZoneUses??=[{},{}])[p]??={})[permit]=s.turn;if(c.type!=='spell')noncreatureUse448(s,p,c);if(c.type==='creature'){countExecution(s,p,c);if(colors(c).includes('自然')&&Number(c.power)>=12000)s.g34Discounts=(s.g34Discounts||[]).filter(y=>y.p!==p||y.turn!==s.turn);}},
  spellCast(s,p,c){useBlockers524(s,p);consumeReduction456(s,p,c);noncreatureUse448(s,p,c);countExecution(s,p,c);for(const {owner,x,watch}of spellWatches(s,p,c))queue(s,owner,x,watch.defs.map(d=>d.op==='CastCostDeploy595'?{...d,castCost:c.cost}:d));},
  opponentShieldTrigger699(s,p){
   for(const watcher of creatures(s,1-p)){
