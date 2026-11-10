@@ -182398,23 +182398,139 @@
       ],
       "supportBatch": "phase-801",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24-049",
+      "name": "封魔デスゲイター",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "グランド・デビル",
+      "text": "スレイヤー(このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)\nこのクリーチャーが攻撃する時、自分のマナゾーンにある水のカードを２枚タップしてもよい。そうした場合、そのターン、このクリーチャーはブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-049",
+      "limit": 4,
+      "slayer": true,
+      "g34Attack": [
+        {
+          "op": "TapManaColors698",
+          "colors": [
+            "水",
+            "水"
+          ],
+          "defs": [
+            {
+              "op": "SelfGrant754",
+              "grant": {
+                "unblockable": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-802",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24-023",
+      "name": "ブレイカブル・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "アーマード・ドラゴン",
+      "text": "このクリーチャーが攻撃する時、自分のマナゾーンの、タップされていない闇または自然のカードを２枚タップしてもよい。そうしない場合、このクリーチャーを破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-023",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "TapManaColors698",
+          "colors": [
+            [
+              "闇",
+              "自然"
+            ],
+            [
+              "闇",
+              "自然"
+            ]
+          ],
+          "defs": [],
+          "elseDefs": [
+            {
+              "op": "SelfDestroy"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-802",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25-021",
+      "name": "神令の精霊ウルテミス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3500,
+      "race": "エンジェル・コマンド",
+      "text": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが破壊された時、自分の山札を見る。その中から「S・トリガー」付き呪文を１枚選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-021",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g172Death": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g200Search": true,
+          "n": "all",
+          "rest": "shuffle",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "filter": {
+                "g228Face": {
+                  "type": "spell",
+                  "shieldTrigger": true
+                }
+              },
+              "reveal": true,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-802",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 801,
+    "phase": 802,
     "checkedAt": "2026-11-10",
-    "baseCount": 6256,
+    "baseCount": 6259,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6259,
+    "totalCount": 6262,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/31572/",
-      "https://dm.takaratomy.co.jp/rule/qa/41284/",
-      "https://dm.takaratomy.co.jp/rule/qa/44205/",
-      "https://dm.takaratomy.co.jp/rule/qa/45450/",
       "https://dm.takaratomy.co.jp/rule/qa/40625/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35581/",
+      "https://dm.takaratomy.co.jp/rule/qa/46518/",
+      "https://dm.takaratomy.co.jp/rule/qa/33716/",
       "https://dm.takaratomy.co.jp/rule/rulechange/"
     ],
     "next": [
@@ -196426,6 +196542,27 @@
         "ruleSource": [
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/40625/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 801,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6256,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6259,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/31572/",
+          "https://dm.takaratomy.co.jp/rule/qa/41284/",
+          "https://dm.takaratomy.co.jp/rule/qa/44205/",
+          "https://dm.takaratomy.co.jp/rule/qa/45450/",
+          "https://dm.takaratomy.co.jp/rule/qa/40625/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35581/",
           "https://dm.takaratomy.co.jp/rule/rulechange/"
         ],
         "next": [

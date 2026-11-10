@@ -2507,6 +2507,19 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=802&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(text==='スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)このクリーチャーが攻撃する時自分のマナゾーンにある水のカードを2枚タップしてもよい。そうした場合そのターンこのクリーチャーはブロックされない。')
+   return {slayer:true,g34Attack:[{op:'TapManaColors698',colors:['水','水'],
+    defs:[{op:'SelfGrant754',grant:{unblockable:true}}]}]};
+  if(text==='このクリーチャーが攻撃する時自分のマナゾーンのタップされていない闇または自然のカードを2枚タップしてもよい。そうしない場合このクリーチャーを破壊する。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)'){
+   const eligible=['闇','自然'];
+   return {breaker:2,g34Attack:[{op:'TapManaColors698',colors:[eligible,eligible],defs:[],elseDefs:[{op:'SelfDestroy'}]}]};
+  }
+  if(text==='ブロッカーこのクリーチャーは相手プレイヤーを攻撃できない。このクリーチャーが破壊された時自分の山札を見る。その中から「S・トリガー」付き呪文を1枚選び相手に見せてから自分の手札に加えてもよい。その後山札をシャッフルする。')
+   return {blocker:true,noPlayerAttack:true,g172Death:[{op:'Look',g201Search:true,g200Search:true,n:'all',rest:'shuffle',
+    stages:[{n:1,to:'hand',filter:{g228Face:{type:'spell',shieldTrigger:true}},reveal:true,optional:true}]}]};
+ }
  if(phase>=801&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const untapAtEnd={op:'Schedule537',when:'turnEnd',defs:[{op:'Untap',g191First:true}]};

@@ -1,0 +1,355 @@
+{
+  "phase": 802,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6259,
+  "description": "旧弾3種の攻撃時マナ支払いと、破壊時のS・トリガー付き呪文の探索に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/40625/",
+    "https://dm.takaratomy.co.jp/rule/qa/46518/",
+    "https://dm.takaratomy.co.jp/rule/qa/33716/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dm24-049",
+      "name": "封魔デスゲイター",
+      "faces": [
+        {
+          "name": "封魔デスゲイター",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スレイヤー(このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)\nこのクリーチャーが攻撃する時、自分のマナゾーンにある水のカードを２枚タップしてもよい。そうした場合、そのターン、このクリーチャーはブロックされない。",
+          "race": "グランド・デビル",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-049",
+      "spec": {
+        "slayer": true,
+        "g34Attack": [
+          {
+            "op": "TapManaColors698",
+            "colors": [
+              "水",
+              "水"
+            ],
+            "defs": [
+              {
+                "op": "SelfGrant754",
+                "grant": {
+                  "unblockable": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "c38f41b7ac968f57b32c11c8847d5f4a736031b9cb336a16d243049503763dac",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-023",
+      "name": "ブレイカブル・ドラゴン",
+      "faces": [
+        {
+          "name": "ブレイカブル・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、自分のマナゾーンの、タップされていない闇または自然のカードを２枚タップしてもよい。そうしない場合、このクリーチャーを破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-023",
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "TapManaColors698",
+            "colors": [
+              [
+                "闇",
+                "自然"
+              ],
+              [
+                "闇",
+                "自然"
+              ]
+            ],
+            "defs": [],
+            "elseDefs": [
+              {
+                "op": "SelfDestroy"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "8d2c85958e6f58e0a6e2193b9282511737ad3e35475e07d54be8132507d38550",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25-021",
+      "name": "神令の精霊ウルテミス",
+      "faces": [
+        {
+          "name": "神令の精霊ウルテミス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが破壊された時、自分の山札を見る。その中から「S・トリガー」付き呪文を１枚選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "エンジェル・コマンド",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-021",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g172Death": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "filter": {
+                  "g228Face": {
+                    "type": "spell",
+                    "shieldTrigger": true
+                  }
+                },
+                "reveal": true,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "42f0524f10cb5914c4277d26fb67e8f4a34a03711a340f06b3b83b898ac0d0f0",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc61-038",
+      "canonicalId": "dm25-021",
+      "name": "神令の精霊ウルテミス",
+      "faces": [
+        {
+          "name": "神令の精霊ウルテミス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが破壊された時、自分の山札を見る。その中から「S・トリガー」付き呪文を１枚選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "エンジェル・コマンド",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc61-038",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc61-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "1335637259a90d51acb10051a5c6a2f81285637066379a92e5207491438f9300",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc47-022",
+      "canonicalId": "dm25-021",
+      "name": "神令の精霊ウルテミス",
+      "faces": [
+        {
+          "name": "神令の精霊ウルテミス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが破壊された時、自分の山札を見る。その中から「S・トリガー」付き呪文を１枚選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "エンジェル・コマンド",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc47-022",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc47-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "8dc1ac84f6b410d60ef9857e15d8ffb1296ec7caefaffb5d01dde1ca47a2efae",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx02-018",
+      "canonicalId": "dm25-021",
+      "name": "神令の精霊ウルテミス",
+      "faces": [
+        {
+          "name": "神令の精霊ウルテミス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが破壊された時、自分の山札を見る。その中から「S・トリガー」付き呪文を１枚選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "エンジェル・コマンド",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx02-018",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx02-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "8cf7bbaf13aabd6642997d1e52d6e9a054092712543ebcc7eaa938cd00249495",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc50-023",
+      "canonicalId": "dm25-021",
+      "name": "神令の精霊ウルテミス",
+      "faces": [
+        {
+          "name": "神令の精霊ウルテミス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが破壊された時、自分の山札を見る。その中から「S・トリガー」付き呪文を１枚選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "エンジェル・コマンド",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc50-023",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc50-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "84b50e17ba4295f08df72b4e794ca526eea7802fb1f1bd8a0c733053370d9279",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc43-032",
+      "canonicalId": "dm25-021",
+      "name": "神令の精霊ウルテミス",
+      "faces": [
+        {
+          "name": "神令の精霊ウルテミス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが破壊された時、自分の山札を見る。その中から「S・トリガー」付き呪文を１枚選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "エンジェル・コマンド",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc43-032",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc43-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "9b6e536b562624b05a9fb91a6c5ddb32ff4b18560fcc68d97361e4df8a95c1a8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy6-019",
+      "canonicalId": "dm25-021",
+      "name": "神令の精霊ウルテミス",
+      "faces": [
+        {
+          "name": "神令の精霊ウルテミス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが破壊された時、自分の山札を見る。その中から「S・トリガー」付き呪文を１枚選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "エンジェル・コマンド",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy6-019",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy6-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "50b4214bb087f7e76c8d5626cbc316ea8e25faa5ffc8788da984ba8b6844ed27",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24-049": 4,
+      "dm24-023": 4,
+      "dm25-021": 4,
+      "dmc61-038": 4,
+      "dmc47-022": 4,
+      "dmx02-018": 4,
+      "dmc50-023": 4,
+      "dmc43-032": 4,
+      "promoy6-019": 4
+    }
+  }
+}

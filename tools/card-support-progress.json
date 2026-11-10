@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6259,
-  "pendingNames": 5568,
-  "phase": 801,
+  "supportedNames": 6262,
+  "pendingNames": 5565,
+  "phase": 802,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3293,
+    "クリーチャー": 3290,
     "NEOクリーチャー": 152,
     "呪文": 790,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1241,
-    "未対応の能力文": 4068,
+    "未対応の能力文": 4065,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -11814,30 +11814,108 @@
         "runtimeNote": "各最大10分。Phase 185・537・627・641・698・800の関連回帰155件に成功。Phase 185・537の長時間CPU対戦を除外する意図で指定した否定パターンが実行環境で機能せず、該当3テストも約98秒で完了した回帰に含まれた。次回は実動作を確認した --test-skip-pattern を使う。全体のnpm testは中断・合否未確認。"
       },
       "deferred": []
+    },
+    {
+      "phase": 802,
+      "cards": [
+        {
+          "id": "dm24-049",
+          "name": "封魔デスゲイター"
+        },
+        {
+          "id": "dm24-023",
+          "name": "ブレイカブル・ドラゴン"
+        },
+        {
+          "id": "dm25-021",
+          "name": "神令の精霊ウルテミス"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dmc61-038",
+          "canonicalId": "dm25-021",
+          "name": "神令の精霊ウルテミス"
+        },
+        {
+          "id": "dmc47-022",
+          "canonicalId": "dm25-021",
+          "name": "神令の精霊ウルテミス"
+        },
+        {
+          "id": "dmx02-018",
+          "canonicalId": "dm25-021",
+          "name": "神令の精霊ウルテミス"
+        },
+        {
+          "id": "dmc50-023",
+          "canonicalId": "dm25-021",
+          "name": "神令の精霊ウルテミス"
+        },
+        {
+          "id": "dmc43-032",
+          "canonicalId": "dm25-021",
+          "name": "神令の精霊ウルテミス"
+        },
+        {
+          "id": "promoy6-019",
+          "canonicalId": "dm25-021",
+          "name": "神令の精霊ウルテミス"
+        }
+      ],
+      "supportedNames": 6262,
+      "pendingNames": 5565,
+      "verification": {
+        "focusedPassed": 15,
+        "regressionPassed": 148,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 9,
+        "scope": "通常版3点とウルテミスの再録・プロモ6点の全能力、基本情報、公式JPEG、使用制限なしを照合。再録はすべて既存の正規ID dm25-021 に解決。デスゲイターの水マナ支払い、ターン内のブロック不可、辞退してブロックされた場合のスレイヤーを検証。ブレイカブルは闇と自然の混在・同文明2枚・多色、支払い辞退と不足による攻撃中の自壊、W・ブレイクを検証。ウルテミスは攻撃制限・ブロッカー、破壊とバウンスの区別、ツインパクトの呪文側のS・トリガー、公開、辞退・対象なしのシャッフルと保存再開を検証。既存対戦定義6,259件の一致を確認。",
+        "runtimeNote": "各最大10分。Phase 172・201・228・698・784・800・801の関連回帰148件に成功。Phase 172・201・228の長時間CPU対戦を --test-skip-pattern で除外。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dm25-024",
+          "name": "プリズム・ブレイン",
+          "reason": "公式本文を確認。ドロー置換が複数回発生した場合に、この効果で実際に引いたカードだけを識別し、追加分と置換分の公開範囲を裁定に沿って検証するまで保留。"
+        },
+        {
+          "id": "dm25-039",
+          "name": "ブレード・サークル",
+          "reason": "公式QA 35539（https://dm.takaratomy.co.jp/rule/qa_old/35539/）により、3体以上でリンクしたゴッドの途中のカードを破壊しても、残りが再リンクした場合は攻撃が継続する。選ぶ構成カードと攻撃の引き継ぎを検証するまで保留。"
+        },
+        {
+          "id": "dm24-094",
+          "name": "スカル・チェーンソー",
+          "reason": "公式本文を確認。捨てられなかった場合と捨てる処理が置換された場合の扱い、相手が自分のクリーチャー破壊とマナの墓地送りを選ぶ手順を検証するまで保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 801,
-    "nextPhase": 802,
+    "lastVerifiedPhase": 802,
+    "nextPhase": 803,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm25-024",
-        "name": "プリズム・ブレイン",
-        "check": "引いた2枚の公開と多色の判定を照合し、追加で引いたカードの公開範囲とドロー置換を検証する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-024"
+        "id": "dm26-011",
+        "name": "リアルとデスの大逆転",
+        "check": "破壊後の相手墓地から唱えた側が選び、相手のバトルゾーンに出す。DMX-12再録と、破壊対象がない場合の「その後」を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-011"
       },
       {
-        "id": "dm25-039",
-        "name": "ブレード・サークル",
-        "check": "次の相手のターンに攻撃した光以外の最初のクリーチャーと、攻撃宣言時の文明を公式照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-039"
+        "id": "dm24-039",
+        "name": "呪術と脈動の刃",
+        "check": "マナゾーンからS・トリガー付き呪文を任意で唱える。ツインパクトの該当面と元のゾーンからの使用制限を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-039"
       },
       {
-        "id": "dm24-094",
-        "name": "スカル・チェーンソー",
-        "check": "手札を捨てられない場合に限る、相手によるクリーチャー破壊またはマナの墓地送りを公式照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-094"
+        "id": "dm25-050",
+        "name": "超速レーサー・パラリラ",
+        "check": "相手に自分の非公開手札を1枚選ばせ、選んだカードの公開と多色の場合のみ付くスピードアタッカーを照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-050"
       },
       {
         "id": "dm24ex4-073",
@@ -12390,6 +12468,24 @@
         "name": "怒流牙 モチヅキ・ダルク",
         "check": "公式本文を確認。サイキックとデュエルメイトを識別し、超次元から出た実データで両方の条件を検証できるまで保留。",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-044"
+      },
+      {
+        "id": "dm25-024",
+        "name": "プリズム・ブレイン",
+        "check": "公式本文を確認。ドロー置換が複数回発生した場合に、この効果で実際に引いたカードだけを識別し、追加分と置換分の公開範囲を裁定に沿って検証するまで保留。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-024"
+      },
+      {
+        "id": "dm25-039",
+        "name": "ブレード・サークル",
+        "check": "公式QA 35539（https://dm.takaratomy.co.jp/rule/qa_old/35539/）により、3体以上でリンクしたゴッドの途中のカードを破壊しても、残りが再リンクした場合は攻撃が継続する。選ぶ構成カードと攻撃の引き継ぎを検証するまで保留。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-039"
+      },
+      {
+        "id": "dm24-094",
+        "name": "スカル・チェーンソー",
+        "check": "公式本文を確認。捨てられなかった場合と捨てる処理が置換された場合の扱い、相手が自分のクリーチャー破壊とマナの墓地送りを選ぶ手順を検証するまで保留。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-094"
       }
     ],
     "steps": [
