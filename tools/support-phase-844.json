@@ -1,0 +1,327 @@
+{
+  "phase": 844,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6394,
+  "description": "登場時のマナ条件、ブロッカーを参照した召喚軽減、ドラゴンを出すターン開始時能力に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37056/"
+  ],
+  "cards": [
+    {
+      "id": "dmr01-039",
+      "name": "緑神龍ドラピ",
+      "faces": [
+        {
+          "name": "緑神龍ドラピ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分のマナゾーンにカードが９枚以上なければ、このクリーチャーを破壊する。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "アース・ドラゴン",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-039",
+      "spec": {
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g272ManaCount": 9
+            },
+            "elseDefs": [
+              {
+                "op": "SelfDestroy"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "e07d08ee02bed3f943202f527f42a7d1b8f14be591e5874e188bece8295482b2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-097",
+      "name": "突風のゴーマッハ・スワン",
+      "faces": [
+        {
+          "name": "突風のゴーマッハ・スワン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトルゾーンに相手の「ブロッカー」を持つクリーチャーがあれば、このクリーチャーを召喚するコストは最大３少なくなる。ただしコストは１より少なくならない)\nスピードアタッカー(このクリーチャーは召喚酔いしない)",
+          "race": "フェザーノイド/ハンター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-097",
+      "spec": {
+        "speedAttacker": true,
+        "g212CountDiscount": {
+          "zone": "battle",
+          "owner": "opponent",
+          "filter": {
+            "creature": true,
+            "blocker": true
+          },
+          "amount": 3,
+          "max": 3,
+          "optional": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-097.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "9de2122ce8467c0e67ae106fa4b44c4465a6351a41f93be044140ec54aa7b3c2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-032",
+      "name": "竜のフレア・エッグ",
+      "faces": [
+        {
+          "name": "竜のフレア・エッグ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターンのはじめに、自分の山札の上から１枚目を墓地に置く。そのカードが進化ではないドラゴンであれば、このクリーチャーを破壊してもよい。そうした場合、そのドラゴンをバトルゾーンに出す。\nこのクリーチャーは攻撃することができない。",
+          "race": "エッグ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-032",
+      "spec": {
+        "noAttack": true,
+        "g174Start": [
+          {
+            "op": "MillHatch841",
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "ドラゴン"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "48f9a8f41a6b9f2864ca40eda9681d028582b46170bb02babf0cb8d0af53123a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx16-041",
+      "canonicalId": "dmr01-039",
+      "name": "緑神龍ドラピ",
+      "faces": [
+        {
+          "name": "緑神龍ドラピ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分のマナゾーンにカードが９枚以上なければ、このクリーチャーを破壊する。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+          "race": "アース・ドラゴン",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-041",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx16-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "bb310ba16cc5523b74a7f1cade5222a4b2159f3ac03af7bc9339c1062fdbea2d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd05-015",
+      "canonicalId": "dmr01-097",
+      "name": "突風のゴーマッハ・スワン",
+      "faces": [
+        {
+          "name": "突風のゴーマッハ・スワン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトルゾーンに相手の「ブロッカー」を持つクリーチャーがあれば、このクリーチャーを召喚するコストは最大３少なくなる。ただしコストは１より少なくならない。\nスピードアタッカー(このクリーチャーは召喚酔いしない)",
+          "race": "フェザーノイド/ハンター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd05-015",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd05-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "e73706033c2603fb4e2009c923d194b1a10524112900425db441f0a620242f25",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-T10",
+      "canonicalId": "dmr01-032",
+      "name": "竜のフレア・エッグ",
+      "faces": [
+        {
+          "name": "竜のフレア・エッグ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターンのはじめに、自分の山札の上から１枚目を墓地に置く。そのカードが進化ではないドラゴンなら、このクリーチャーを破壊してもよい。そうしたら、そのドラゴンを出す。\nこのクリーチャーは攻撃できない。",
+          "race": "エッグ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-T10",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-T10.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "db4139f8861b693270625d368421ab4d1adda6a682d60cb80b77fc08447a4c17",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22rp2-TF10",
+      "canonicalId": "dmr01-032",
+      "name": "竜のフレア・エッグ",
+      "faces": [
+        {
+          "name": "竜のフレア・エッグ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターンのはじめに、自分の山札の上から１枚目を墓地に置く。そのカードが進化ではないドラゴンなら、このクリーチャーを破壊してもよい。そうしたら、そのドラゴンを出す。\nこのクリーチャーは攻撃できない。",
+          "race": "エッグ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22rp2-TF10",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22rp2-TF10.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "fdaf32f269a26272430f1f1f359cb88b20727dfc7300f38482cc7030016cb8f8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23bd4-033",
+      "canonicalId": "dmr01-032",
+      "name": "竜のフレア・エッグ",
+      "faces": [
+        {
+          "name": "竜のフレア・エッグ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターンのはじめに、自分の山札の上から１枚目を墓地に置く。そのカードが進化ではないドラゴンなら、このクリーチャーを破壊してもよい。そうしたら、そのドラゴンを出す。\nこのクリーチャーは攻撃できない。",
+          "race": "エッグ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-033",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd4-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "d03f31ac2d06e28a682e43758f19a31ddaf9a42a8fab65cf037422bbdaceefc1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex5-DP013",
+      "canonicalId": "dmr01-032",
+      "name": "竜のフレア・エッグ",
+      "faces": [
+        {
+          "name": "竜のフレア・エッグ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターンのはじめに、自分の山札の上から１枚を墓地に置く。それが進化ではないドラゴンなら、このクリーチャーを破壊してもよい。そうしたら、そのドラゴンを出す。\nこのクリーチャーは攻撃できない。",
+          "race": "エッグ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-DP013",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-DP013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "13766e733f176d9caf80f433221ea2c810d06cf56d7d3406d0c5bdb98838adac",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr01-039": 4,
+      "dmr01-097": 4,
+      "dmr01-032": 4,
+      "dmx16-041": 4,
+      "dmd05-015": 4,
+      "dm22rp2-T10": 4,
+      "dm22rp2-TF10": 4,
+      "dm23bd4-033": 4,
+      "dm26ex5-DP013": 4
+    }
+  }
+}

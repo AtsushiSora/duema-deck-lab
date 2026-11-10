@@ -186571,20 +186571,112 @@
       ],
       "supportBatch": "phase-843",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-039",
+      "name": "緑神龍ドラピ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 15000,
+      "race": "アース・ドラゴン",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分のマナゾーンにカードが９枚以上なければ、このクリーチャーを破壊する。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-039",
+      "limit": 4,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g272ManaCount": 9
+          },
+          "elseDefs": [
+            {
+              "op": "SelfDestroy"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-844",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-097",
+      "name": "突風のゴーマッハ・スワン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "フェザーノイド/ハンター",
+      "text": "バトルゾーンに相手の「ブロッカー」を持つクリーチャーがあれば、このクリーチャーを召喚するコストは最大３少なくなる。ただしコストは１より少なくならない)\nスピードアタッカー(このクリーチャーは召喚酔いしない)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-097",
+      "limit": 4,
+      "speedAttacker": true,
+      "g212CountDiscount": {
+        "zone": "battle",
+        "owner": "opponent",
+        "filter": {
+          "creature": true,
+          "blocker": true
+        },
+        "amount": 3,
+        "max": 3,
+        "optional": true
+      },
+      "supportBatch": "phase-844",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-032",
+      "name": "竜のフレア・エッグ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "エッグ",
+      "text": "自分のターンのはじめに、自分の山札の上から１枚目を墓地に置く。そのカードが進化ではないドラゴンであれば、このクリーチャーを破壊してもよい。そうした場合、そのドラゴンをバトルゾーンに出す。\nこのクリーチャーは攻撃することができない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-032",
+      "limit": 4,
+      "noAttack": true,
+      "g174Start": [
+        {
+          "op": "MillHatch841",
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "race": "ドラゴン"
+          }
+        }
+      ],
+      "supportBatch": "phase-844",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 843,
+    "phase": 844,
     "checkedAt": "2026-11-10",
-    "baseCount": 6391,
+    "baseCount": 6394,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6394,
+    "totalCount": 6397,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36368/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36394/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37056/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -201494,6 +201586,23 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36388/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36235/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36236/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 843,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6391,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6394,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36368/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36394/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

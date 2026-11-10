@@ -2511,6 +2511,20 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=844&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(text==='このクリーチャーをバトルゾーンに出した時自分のマナゾーンにカードが9枚以上なければこのクリーチャーを破壊する。T・ブレイカー(このクリーチャーはシールドを3枚ブレイクする)')
+   return {breaker:3,effect:'sixPhoto',g34Tasks:[{op:'IfOwn',filter:{g272ManaCount:9},elseDefs:[{op:'SelfDestroy'}]}]};
+  const swan='バトルゾーンに相手の「ブロッカー」を持つクリーチャーがあればこのクリーチャーを召喚するコストは最大3少なくなる。ただしコストは1より少なくならない';
+  if([swan+')',swan+'。'].some(rule=>text===rule+'スピードアタッカー(このクリーチャーは召喚酔いしない)'))
+   return {speedAttacker:true,g212CountDiscount:{zone:'battle',owner:'opponent',filter:{creature:true,blocker:true},amount:3,max:3,optional:true}};
+  const egg='自分のターンのはじめに自分の山札の上から';
+  if([
+   egg+'1枚目を墓地に置く。そのカードが進化ではないドラゴンであればこのクリーチャーを破壊してもよい。そうした場合そのドラゴンをバトルゾーンに出す。このクリーチャーは攻撃することができない。',
+   egg+'1枚目を墓地に置く。そのカードが進化ではないドラゴンならこのクリーチャーを破壊してもよい。そうしたらそのドラゴンを出す。このクリーチャーは攻撃できない。',
+   egg+'1枚を墓地に置く。それが進化ではないドラゴンならこのクリーチャーを破壊してもよい。そうしたらそのドラゴンを出す。このクリーチャーは攻撃できない。'
+  ].includes(text))return {noAttack:true,g174Start:[{op:'MillHatch841',optional:true,filter:{creature:true,nonEvolution:true,race:'ドラゴン'}}]};
+ }
  if(phase>=843&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='クリーチャー'&&text==='マナゾーンに置く時このカードはタップして置く。バトルゾーンにある自分の他のエイリアンはすべて「スピードアタッカー」と「スレイヤー」を得る。相手の呪文の効果または相手のクリーチャーの能力によってこのクリーチャーが自分の手札から捨てられる時墓地に置くかわりに自分のマナゾーンに置いてもよい。')

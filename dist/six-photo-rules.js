@@ -103,7 +103,7 @@ export function createSixPhotoRules(api){
   if(t.zone==='draws')return(s.players[owner].drawsThisTurn||0)*t.amount;
   if(t.zone==='shields'){const shields=s.players[owner].shields;return(typeof shields==='number'?shields:shields.length)*t.amount;}
   const count=owner=>(s.players[owner][t.zone]||[]).filter(x=>!x.faceDown&&!((t.excludeExecutingCard||t.optional||t.minimum===2||t.minimum===0)&&owner===p&&c.summonOrigin===t.zone&&x.uid===c.executionUid)&&(t.zone!=='battle'||!x.sealed&&(t.g557Elements?!x.faceDown&&['creature','seed','gear','field','aura'].includes(api.zoneCard(s,owner,x).type):api.isCreature(s,x)))&&matches(s,owner,x,t.filter)).length;
-  return (t.owner==='both'?count(p)+count(1-p):count(owner))*t.amount;
+  return Math.min(t.max??Infinity,(t.owner==='both'?count(p)+count(1-p):count(owner))*t.amount);
  }
  function payCount499(s,t){const choices=[],max=countDiscountMax499(s,t.p,t.c);for(let amount=max;amount>=0;amount--){const c={...t.c,g499Handled:true,g499Reduction:amount};if(api.canPay(s,t.p,c)){const n=api.summonCost(s,t.p,c);choices.push(opt((amount?amount+'軽減する':'軽減しない')+'（'+n+'マナ）',amount,100-n*5,t.source));}}choice(s,t,'召喚の軽減量を選ぶ',[...choices,opt('召喚をやめる',false,-1000)]);}
  // Apply higher floors before the independent one-mana-floor reductions.
@@ -905,6 +905,10 @@ export function createSixPhotoRules(api){
   return options;
  }
  function modeScore(s,t,defs){const own=s.players[t.p],opp=s.players[1-t.p],deckCount=own.deck?.length??own.deckCount??0;let score=0,drainCount=0;for(const d of defs){
+  if(d.op==='HatchHunter841'){
+   const x=own.grave.find(y=>y.uid===d.target&&(y.zoneSerial||0)===d.serial);
+   if(x&&canPut(s,t.p,x,'grave'))score+=8+2*cost(card(x));
+  }
   if(card(t.source)?.supportBatch==='phase-627'){
    if(d.op==='ShieldTop'){
     if(api.canAddShield(s,t.p)&&!api.deckLocked(s,t.p))score+=deckCount<=1?-1000:20;
@@ -2112,9 +2116,10 @@ export function createSixPhotoRules(api){
   const y=api.takeTop(s,t.p);
   if(y){clear(y,'grave');api.addZone(s,t.p,'grave',y);}
   api.deckCheck(s,t.p);
-  if(y&&s.winner===null&&matches(s,t.p,y,t.filter))start(s,t,[
-   {op:'SelfDestroy'},{op:'HatchHunter841',target:y.uid,serial:y.zoneSerial||0}
-  ]);
+  if(y&&s.winner===null&&matches(s,t.p,y,t.filter)){
+   const hatch={op:'HatchHunter841',target:y.uid,serial:y.zoneSerial||0};
+   start(s,t,t.optional?[{op:'SelfSacrifice407',defs:[hatch]}]:[{op:'SelfDestroy'},hatch]);
+  }
   break;
  }
  case'g34_HatchHunter841':{
