@@ -316,9 +316,13 @@ function rememberEvolutionGraveSources(host,cards){
  for(const x of watchers)if(under.includes(x))evolutionGraveSources.add(x);
 }
 function addZone(s,player,zone,...cards){if(!cards.length)return;for(const x of cards){if(zone==='grave'&&card(x.cardId)?.g39Verde)x.g39GraveColors=true;else delete x.g39GraveColors;}const p=typeof player==='number'?player:s.players.indexOf(player);if(p<0)throw Error('移動先のプレイヤーを確認できません');if(zone==='mana'&&(extra.manaTap(s,p)||s.players[1-p].battle.some(x=>effectiveCard(x,s).g35Venom)))for(const x of cards)x.tapped=true;if(zone==='deckFourth'){for(const x of cards)x.g11Sideways=true;s.players[p].deck.splice(Math.min(3,s.players[p].deck.length),0,...cards);return;}if(zone!=='deck')for(const x of cards){if(x.g11Sideways&&zone==='hand')x.g11FromSideways=true;delete x.g11Sideways;}const list=s.players[p][zone];list.push(...cards);
- if(zone==='shields'&&s.active===p){
-  const turn=s.players[p].turns,history=(s.g618ShieldTurns??=[[],[]])[p];
-  if(history.at(-1)!==turn)s.g618ShieldTurns[p]=[...history.slice(-1),turn];
+ if(zone==='shields'){
+  if(s.active===p){
+   const turn=s.players[p].turns,history=(s.g618ShieldTurns??=[[],[]])[p];
+   if(history.at(-1)!==turn)s.g618ShieldTurns[p]=[...history.slice(-1),turn];
+  }
+  // Every committed placement counts, including moves without other shield notifications.
+  extra.photo159.shieldAdded(s,p);
  }if(zone==='hand')checkSidewaysHand(s,p);if(zone==='grave'){
   extra.graveAdded(s,p,cards,s.leaving?.snapshot?.mado);
   for(const x of cards)if(evolutionGraveSources.delete(x))enqueueEffect(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:extra.task('optionalDrawOne',p,x.cardId)});
@@ -668,7 +672,7 @@ function advanceLeaving(s){if(s.lossEvent)return;
   if(shuffled.length)shuffleLibrary(s,p,shuffled);
   if(keepOrder&&rows.length>1)orders.push(extra.task('g78_TopOrder',p,rows[0].cardId,{rows,ordered:[]}));
  }
- s.leaving=null;if(orders.length)extra.put(s,...orders.sort((a,b)=>Number(b.p===s.active)-Number(a.p===s.active)));for(const row of fourth){const uids=row.uids.filter(uid=>s.players[row.p].deck.some(x=>x.uid===uid&&x.g11Sideways));if(uids.length>1)extra.put(s,extra.task('g11_FourthOrder',row.p,'dmrp07-m01',{uids,selected:[]}));}delete s.g20LeavingUids;refreshDynamicTypes(s);extra.six.flushGrave838(s,batch.g838GraveCount);extra.six.flushElementLeaves617(s,batch.g617Draws);extra.six.flushShield536(s);
+ s.leaving=null;if(orders.length)extra.put(s,...orders.sort((a,b)=>Number(b.p===s.active)-Number(a.p===s.active)));for(const row of fourth){const uids=row.uids.filter(uid=>s.players[row.p].deck.some(x=>x.uid===uid&&x.g11Sideways));if(uids.length>1)extra.put(s,extra.task('g11_FourthOrder',row.p,'dmrp07-m01',{uids,selected:[]}));}delete s.g20LeavingUids;refreshDynamicTypes(s);extra.photo159.flushShieldBatch(s,batch);extra.six.flushGrave838(s,batch.g838GraveCount);extra.six.flushElementLeaves617(s,batch.g617Draws);extra.six.flushShield536(s);
  if(batch.after?.kind==='manaExchange753')finishManaExchange753(s,batch.after);
  if(batch.after?.kind==='g394Cut')extra.requested394.finishZones(s,batch.after);
  if(batch.after?.kind==='shieldSaverBreak401'){log(s,batch.after.player,'shieldSaver',`シールド・セイバーでシールド${batch.rows.length}つを残す`);if(batch.after.uids.length)commitBreakReplacements401(s,batch.after.player,batch.after.uids);else s.breakContext=null;}

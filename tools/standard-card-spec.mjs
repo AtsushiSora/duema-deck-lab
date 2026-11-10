@@ -4,6 +4,10 @@ const colors=['光','水','闇','火','自然'];
 const aliasNames=new Set(['炎のたてがみ(バーニング・ヘアー)','青銅の鎧(ブロンズ・アーム・トライブ)','無敵の咆哮(マイティ・シャウター)','紅玉草(ルビー・グラス)','ワ・タンポ－ポ・タンク','【問２】ノロン&#x2934','怪力の化身(マイティ・トーテム)']);
 const normalize=s=>s.normalize('NFKC').replace(/\s|■/g,'').replaceAll('、','');
 const keyword=(line,name)=>new RegExp('^(?:'+name+'){1,2}(?:\\([^()]*\\))?$').test(line);
+const christinaFall=()=>({op:'Target',owner:'self',tap:true,g882TapBelowPower:true,title:'タップする自分のクリーチャーを選ぶ'});
+const formulaVictory=()=>({breaker:2,g174End:[{op:'IfSource541',defs:[{op:'IfOwn',
+ filter:{all:[{g590SourceTapped:true},{g334ZoneCount:{zone:'hand',min:10}}]},
+ defs:[{op:'Win871',reason:'タップ中かつ自分の手札が10枚以上で勝利'}]}]}]});
 const replicaAuction616='自分の山札の上から3枚を見る。そのうちの1枚をシールド化しその後残りを好きな順序で山札の下に置く。';
 function instruction655(text){
  if(text==='相手のクリーチャーをパワーの合計が5000以下になるように好きな数選び破壊してもよい。')
@@ -3256,6 +3260,14 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g568Alt:{cost:2,paymentColors:['火','自然'],handOnly:true},
     g34Tasks:[{op:'Target',to:'grave',filter:{max:7}},{op:'Ramp',n:1},{op:'Select',origin:'mana',to:'hand',n:1,optional:true,filter:{creature:true}}]};
  }
+ if(phase>=883&&d?.status==='complete'&&d.id==='dm22ex1-059'&&d.faces.length===2&&f.typeText==='クリーチャー'){
+  const spell=d.faces[1];
+  if(spell.typeText==='呪文'&&normalize(f.abilityText)===
+   'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)自分のターンの終わりにこのクリーチャーがタップしていて自分の手札が10枚以上あれば自分はゲームに勝つ。'&&
+   normalize(spell.abilityText)==='自分のクリーチャーを1体タップする。その後それよりパワーが小さい相手のクリーチャーをすべてタップする。')
+   return {...formulaVictory(),spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,
+    civilizations:spell.civilizations,race:spell.race,effect:'sixPhoto',g34Tasks:[christinaFall()]}};
+ }
  if(phase>=788&&d?.status==='complete'&&d.faces.length===2&&f.typeText==='クリーチャー'&&d.faces[1].typeText==='呪文'){
   const spell=d.faces[1],frontText=normalize(f.abilityText),spellText=normalize(spell.abilityText);
   const spellFace={name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,effect:'sixPhoto'};
@@ -3433,6 +3445,12 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=883&&f.typeText==='クリーチャー'){
+  if(d.id==='dmrp14-087'&&compact363==='各ターンはじめてカードが自分のシールドゾーンに置かれた時カードを1枚引く。')
+   return {g159ShieldRole:'watchdog'};
+  if(d.id==='dm23ex1-065'&&compact363==='カードが自分のシールドゾーンから墓地に置かれた時自分の山札の上から1枚目をシールド化する。')
+   return {g159ShieldRole:'ashiga'};
+ }
  if(phase>=882){
   const script='そのクリーチャーよりコストが小さいクリーチャーを1体自分の手札から';
   if(f.typeText==='クリーチャー'&&(
@@ -3441,7 +3459,7 @@ export function standardCardSpec(d,{phase=165}={}){
    return {effect:'sixPhoto',g34Tasks:[{op:'Target',anyOwner:true,g179Other:true,to:'hand',g882DeployBelowCost:true,title:'手札に戻す他のクリーチャーを選ぶ'}]};
   if(f.typeText==='呪文'&&d.id==='dmrp04s-034'&&compact363===
    '自分のクリーチャーを1体タップする。その後それよりパワーが小さい相手のクリーチャーをすべてタップする。')
-   return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',tap:true,g882TapBelowPower:true,title:'タップする自分のクリーチャーを選ぶ'}]};
+   return {effect:'sixPhoto',g34Tasks:[christinaFall()]};
   if(f.typeText==='呪文'&&d.id==='dmex15-b017'&&compact363===
    '相手のパワー14000以下のクリーチャーをすべて破壊する。次の自分のターンのはじめまで自分はゲームに負けず相手は勝たない。')
    return {effect:'sixPhoto',g34Tasks:[{op:'Sweep',to:'grave',filter:{creature:true,maxPower:14000,g199Power:true}},
@@ -3559,9 +3577,7 @@ export function standardCardSpec(d,{phase=165}={}){
   const formula='自分のターンの終わりにこのクリーチャーがタップ';
   if(d.id==='dmr06-010'&&compact363===formula+'されていて自分の手札が10枚以上あれば自分はゲームに勝利する。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)'||
      d.id==='dmex08-074'&&compact363==='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+formula+'していて自分の手札が10枚以上なら自分はゲームに勝利する。')
-   return {breaker:2,g174End:[{op:'IfSource541',defs:[{op:'IfOwn',
-    filter:{all:[{g590SourceTapped:true},{g334ZoneCount:{zone:'hand',min:10}}]},
-    defs:[{op:'Win871',reason:'タップ中かつ自分の手札が10枚以上で勝利'}]}]}]};
+   return formulaVictory();
   if(d.id==='dmr06-048'&&compact363===
    'このクリーチャーをバトルゾーンに出した時このクリーチャーよりパワーの小さい相手のクリーチャーを1体破壊する。')
    return {effect:'sixPhoto',g34Tasks:[{op:'TargetBelowSource692',to:'grave',g199Power:true}]};

@@ -1,0 +1,186 @@
+{
+  "phase": 883,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6514,
+  "description": "各ターン最初のシールドへのカード配置、シールドから墓地への実カード単位の移動、ツインパクトの終了時勝利条件とパワー比較タップに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/48503/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/42650/",
+    "https://dm.takaratomy.co.jp/rule/qa/42651/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37424/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36638/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp14-087",
+      "name": "「機械の番犬」",
+      "faces": [
+        {
+          "name": "「機械の番犬」",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "各ターン、はじめてカードが自分のシールドゾーンに置かれた時、カードを１枚引く。",
+          "race": "メタリカ/チーム銀河",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-087",
+      "spec": {
+        "g159ShieldRole": "watchdog"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-087.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "8f4ca0a41cfc9abd89cafab8e18217a187f7290cf89a56d1171f26a0e3b8eb7e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex1-065",
+      "name": "アシガ・ルピア",
+      "faces": [
+        {
+          "name": "アシガ・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "カードが自分のシールドゾーンから墓地に置かれた時、自分の山札の上から１枚目をシールド化する。",
+          "race": "ファイアー・バード/サムライ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-065",
+      "spec": {
+        "g159ShieldRole": "ashiga"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex1-065.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "ab35ee56d60d02a842d5ac26057fee80f6870c9321ad53832b4a9a7ef7e8d86a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22ex1-059",
+      "name": "偽りの名 iFormula X / クリスティナ・フォール",
+      "faces": [
+        {
+          "name": "偽りの名 iFormula X",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のターンの終わりに、このクリーチャーがタップしていて、自分の手札が10枚以上あれば、自分はゲームに勝つ。",
+          "race": "グレートメカオー/アンノウン",
+          "powerText": "6000",
+          "missingFields": []
+        },
+        {
+          "name": "クリスティナ・フォール",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分のクリーチャーを１体、タップする。その後、それよりパワーが小さい相手のクリーチャーをすべてタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-059",
+      "spec": {
+        "breaker": 2,
+        "g174End": [
+          {
+            "op": "IfSource541",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "all": [
+                    {
+                      "g590SourceTapped": true
+                    },
+                    {
+                      "g334ZoneCount": {
+                        "zone": "hand",
+                        "min": 10
+                      }
+                    }
+                  ]
+                },
+                "defs": [
+                  {
+                    "op": "Win871",
+                    "reason": "タップ中かつ自分の手札が10枚以上で勝利"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "spellFace": {
+          "name": "クリスティナ・フォール",
+          "type": "spell",
+          "cost": 1,
+          "civ": "光",
+          "civilizations": [
+            "光"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "owner": "self",
+              "tap": true,
+              "g882TapBelowPower": true,
+              "title": "タップする自分のクリーチャーを選ぶ"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-059a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "2dab92ef371ba626df9e04847adbb3c489fab0c13fb3f81047d5572c22373556",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp14-087": 4,
+      "dm23ex1-065": 4,
+      "dm22ex1-059": 4
+    }
+  }
+}

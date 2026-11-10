@@ -8,6 +8,14 @@ export function createPhoto159ShieldRules(api){
  const zagaanSources=(s,p,x)=>{const record=s.g159HandEntries?.[p];if(record?.turn!==s.turn)return[];return living(s,p).filter(w=>w.uid!==x.uid&&card(w).g159ShieldRole==='zagaan'&&!api.ignored(s,w)&&key(record.entries.find(r=>r.uid!==w.uid)||{})===key(x));};
  const on=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g159S_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  const queued=(p,x,op,more={})=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g159S_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
+ // The leave engine applies a simultaneous group one physical move at a time.
+ const shieldBatches=new WeakMap();
+ function shieldBatch(s){
+  if(!s.leaving)return null;
+  let batch=shieldBatches.get(s.leaving);
+  if(!batch){batch={placed:new Set(),departed:new Map(),buried:[0,0]};shieldBatches.set(s.leaving,batch);}
+  return batch;
+ }
  const live=(s,t)=>s.players[t.p].battle.find(x=>key(x)===key(t));
  const spells=(s,p,origin,trigger=false)=>(api.canMoveZone(s,p,origin)?s.players[p][origin]:[]).flatMap(x=>faces(card(x)).flatMap((c,face)=>c.type==='spell'&&(!trigger||c.trigger||c.triggerPlus||c.superTrigger)&&api.canCast(s,p,c,origin)?[{x,c,face}]:[]));
  const shieldRows=(s,p)=>s.players[p].shields.flatMap(api.shieldCards).filter(x=>!x.g37ShieldHeld);
@@ -30,6 +38,8 @@ export function createPhoto159ShieldRules(api){
  case'g159S_AgasaSpell':{const rows=shieldRows(s,t.p);api.log(s,t.p,'look',card(t.source).name+'：自分のすべてのシールドを確認',{cardId:t.source});choice(s,t,seen(rows)+'無料で唱える呪文を1枚まで選ぶ',[...rows.flatMap(x=>faces(card(x)).flatMap((c,face)=>c.type==='spell'&&api.canCast(s,t.p,c,'shields')?[opt(c.name,{uid:x.uid,face},20+Math.min(cost(c),20),x.cardId)]:[])),opt('唱えない',null,0)]);break;}
  case'g159S_Christy':if(own.shields.length)choice(s,t,'見る自分のシールドを1つ選ぶ',own.shields.map((x,i)=>opt('シールド '+(i+1),x.uid,10)));else put(s,task('g34_Draw',t.p,t.source,{n:1}));break;
  case'g159S_ChristyPick':{const root=api.findShield(own,t.target),rows=root?api.shieldCards(root).filter(x=>!x.g37ShieldHeld):[];choice(s,t,seen(rows)+'出す進化ではない光のデーモン・コマンドを1体まで選ぶ',[...shieldDemons(s,t.p,rows,true).map(x=>opt(card(x).name,x.uid,20+Math.min(cost(card(x)),20),x.cardId)),opt('出さない',null,0)]);break;}
+ case'g159S_Watchdog':put(s,task('g34_Draw',t.p,t.source,{n:1}));break;
+ case'g159S_Ashiga':api.shieldTop(s,t.p,card(t.source));break;
  case'g159S_Perfect':{const x=api.canMoveZone(s,t.p,'grave')&&own.grave.find(x=>x.uid===t.target&&(x.zoneSerial||0)===t.serial);if(!x)break;const c=card(x),deploy=String(c.race).match(/ディスタス|ディスペクター/)&&cost(c)<=own.mana.length;if(deploy)put(s,task('g34_Put',t.p,t.source,{origin:'grave',target:x.uid}));else{api.remove(own.grave,x.uid);api.clear(x,'hand');api.addZone(s,t.p,'hand',x);api.log(s,t.p,'reveal',card(t.source).name+'：'+card(x).name+'を墓地から手札へ',{cardId:x.cardId});}break;}
  default:throw Error('未実装の写真159シールド効果：'+t.op);
  }return true;}
@@ -52,9 +62,45 @@ export function createPhoto159ShieldRules(api){
  attack(s,p,x){if(api.selfStopped(s,p))return;const r=role(s,x);if(r==='yes')on(s,p,x,'Yes');if(r==='elbolom')on(s,p,x,'Elbolom');},
  end(s){const out=[];for(const p of[0,1])for(const x of living(s,p)){const r=role(s,x);if(p===s.active&&r==='moon')out.push(queued(p,x,'MoonOwn'));if(r==='elbolom'&&x.hyperActive&&s.g159ShieldAddedTurns?.[p]===s.turn)out.push(queued(p,x,'ElbolomEnd'));}return out;},
  spellCast(s,p,c){for(const w of active(s,p,'yes'))on(s,p,w,'YesDestroy',{max:cost(c)});for(const w of active(s,1-p,'agasa'))on(s,1-p,w,'AgasaSpell');},
- shieldAdded(s,p){(s.g159ShieldAddedTurns??=[])[p]=s.turn;},
- shieldLeft(s,p,x){for(const w of active(s,p,'moon'))on(s,p,w,'MoonEnemy');const watchers=active(s,p,'perfect').map(w=>({uid:w.uid,incarnation:w.incarnation||0,cardId:w.cardId}));if(watchers.length)(s.g159ShieldDepartures??=[]).push({p,target:x.uid,serial:(x.zoneSerial||0)+1,watchers});},
- graveAdded(s,p,xs){const pending=s.g159ShieldDepartures||[];for(const x of xs){const records=pending.filter(r=>r.p===p&&r.target===x.uid&&r.serial===(x.zoneSerial||0));for(const r of records)for(const w of r.watchers)on(s,p,w,'Perfect',{target:x.uid,serial:x.zoneSerial||0});}s.g159ShieldDepartures=pending.filter(r=>!xs.some(x=>x.uid===r.target));},
+ shieldAdded(s,p){
+  const turns=(s.g159ShieldAddedTurns??=[]);
+  if(turns[p]===s.turn)return;
+  turns[p]=s.turn;
+  const batch=shieldBatch(s);
+  if(batch)batch.placed.add(p);
+  else for(const watcher of active(s,p,'watchdog'))on(s,p,watcher,'Watchdog');
+ },
+ flushShieldBatch(s,moves){
+  const batch=shieldBatches.get(moves);
+  if(!batch)return;
+  shieldBatches.delete(moves);
+  for(const p of batch.placed)for(const watcher of active(s,p,'watchdog'))on(s,p,watcher,'Watchdog');
+  for(const p of [0,1])if(batch.buried[p])for(const watcher of active(s,p,'ashiga'))
+   for(let i=0;i<batch.buried[p];i++)on(s,p,watcher,'Ashiga');
+ },
+ shieldLeft(s,p,x){
+  for(const w of active(s,p,'moon'))on(s,p,w,'MoonEnemy');
+  const serial=(x.zoneSerial||0)+1,batch=shieldBatch(s);
+  if(batch)batch.departed.set(x,{p,serial});
+  const watchers=living(s,p).flatMap(w=>{
+   const kind=role(s,w);
+   if(kind!=='perfect'&&(kind!=='ashiga'||batch))return [];
+   return [{uid:w.uid,incarnation:w.incarnation||0,cardId:w.cardId,...(kind==='ashiga'?{op:'Ashiga'}:{})}];
+  });
+  if(watchers.length)(s.g159ShieldDepartures??=[]).push({p,target:x.uid,serial,watchers});
+ },
+ graveAdded(s,p,xs){
+  const pending=s.g159ShieldDepartures||[],batch=s.leaving&&shieldBatches.get(s.leaving);
+  for(const x of xs){
+   const serial=x.zoneSerial||0,departure=batch?.departed.get(x);
+   if(departure?.p===p&&departure.serial===serial){batch.departed.delete(x);batch.buried[p]++;}
+   for(const r of pending){
+    if(r.p!==p||r.target!==x.uid||r.serial!==serial)continue;
+    for(const w of r.watchers)on(s,p,w,w.op||'Perfect',{target:x.uid,serial});
+   }
+  }
+  s.g159ShieldDepartures=pending.filter(r=>!xs.some(x=>x.uid===r.target));
+ },
  decorate(s,p,x,c){const own=s.players[p],sources=own.battle.filter(w=>!w.sealed&&!api.ignored(s,w)),zao=sources.some(w=>card(w).g159ShieldRole==='zao');if(c.type==='creature'&&zao){if(colors(c).includes('光')&&String(c.race).includes('エンジェル・コマンド'))c={...c,escape:true};if(colors(c).includes('闇')&&String(c.race).includes('デーモン・コマンド'))c={...c,slayer:true};}if(c.type==='creature'&&zagaanSources(s,p,x).length)c={...c,yobinion:true};if(c.type==='creature'&&sources.some(w=>w.uid!==x.uid&&card(w).g159ShieldRole==='perfect'))c={...c,sasage:Math.max(c.sasage||0,2)};return c;}
  };
 }

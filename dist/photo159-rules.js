@@ -9,7 +9,7 @@ export function createPhoto159Rules(api){
  const collect=(name,...args)=>modules.flatMap(m=>m[name]?.(...args)||[]);
  const consume=(name,...args)=>modules.some(m=>m[name]?.(...args));
  const out={run:(...a)=>consume('run',...a),chosen:(...a)=>consume('chosen',...a),effect:(...a)=>consume('effect',...a),beforeBreak:(...a)=>consume('beforeBreak',...a),decorate(s,p,x,c){for(const m of modules)if(m.decorate)c=m.decorate(s,p,x,c);return c;}};
- for(const name of['entry','attack','attackEnd','broken','spellCast','played','shieldLeft','shieldAdded','graveAdded','manaAdded','alternative','expire'])out[name]=(...args)=>call(name,...args);
+ for(const name of['entry','attack','attackEnd','broken','spellCast','played','shieldLeft','shieldAdded','flushShieldBatch','graveAdded','manaAdded','alternative','expire'])out[name]=(...args)=>call(name,...args);
  for(const name of['start','end','battleWins','mainActions'])out[name]=(...args)=>collect(name,...args);
  return out;
 }

@@ -190563,21 +190563,131 @@
       ],
       "supportBatch": "phase-882",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-087",
+      "name": "「機械の番犬」",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2500,
+      "race": "メタリカ/チーム銀河",
+      "text": "各ターン、はじめてカードが自分のシールドゾーンに置かれた時、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-087",
+      "limit": 4,
+      "g159ShieldRole": "watchdog",
+      "supportBatch": "phase-883",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex1-065",
+      "name": "アシガ・ルピア",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ファイアー・バード/サムライ",
+      "text": "カードが自分のシールドゾーンから墓地に置かれた時、自分の山札の上から１枚目をシールド化する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex1-065",
+      "limit": 4,
+      "g159ShieldRole": "ashiga",
+      "supportBatch": "phase-883",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-059",
+      "name": "偽りの名 iFormula X / クリスティナ・フォール",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "グレートメカオー/アンノウン",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のターンの終わりに、このクリーチャーがタップしていて、自分の手札が10枚以上あれば、自分はゲームに勝つ。\n【呪文面】\n自分のクリーチャーを１体、タップする。その後、それよりパワーが小さい相手のクリーチャーをすべてタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-059",
+      "limit": 4,
+      "breaker": 2,
+      "g174End": [
+        {
+          "op": "IfSource541",
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "all": [
+                  {
+                    "g590SourceTapped": true
+                  },
+                  {
+                    "g334ZoneCount": {
+                      "zone": "hand",
+                      "min": 10
+                    }
+                  }
+                ]
+              },
+              "defs": [
+                {
+                  "op": "Win871",
+                  "reason": "タップ中かつ自分の手札が10枚以上で勝利"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "spellFace": {
+        "name": "クリスティナ・フォール",
+        "type": "spell",
+        "cost": 1,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "tap": true,
+            "g882TapBelowPower": true,
+            "title": "タップする自分のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-883",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 882,
+    "phase": 883,
     "checkedAt": "2026-11-11",
-    "baseCount": 6511,
+    "baseCount": 6514,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6514,
+    "totalCount": 6517,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36791/",
+      "https://dm.takaratomy.co.jp/rule/qa/48503/",
+      "https://dm.takaratomy.co.jp/rule/qa/42650/",
+      "https://dm.takaratomy.co.jp/rule/qa/42651/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37424/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36638/",
       "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
-      "https://dm.takaratomy.co.jp/rule/qa/48935/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37174/"
+      "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -206278,6 +206388,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/40025/",
           "https://dm.takaratomy.co.jp/rule/qa/31623/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36795/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 882,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6511,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6514,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36791/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
+          "https://dm.takaratomy.co.jp/rule/qa/48935/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37174/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
