@@ -3445,6 +3445,22 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=889&&creature){
+  if(['dmex13-023','dmex19-035'].includes(d.id)&&compact363.replace('このクリーチャーが出た時','このクリーチャーがバトルゾーンに出た時')===
+   "ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)W・ブレイカー(このクリーチャーはシールドを2つブレイクする)このクリーチャーがバトルゾーンに出た時コスト4以下の呪文を1枚自分の手札からコストを支払わずに唱えてもよい。オシオキムーン:カードが自分のシールドゾーンを離れた時呪文を1枚自分の墓地から手札に戻す。")
+   return {blocker:true,slayer:true,breaker:2,effect:'sixPhoto',
+    g34Tasks:[{op:'Execute',origin:'hand',spellOnly:true,max:4,optional:true}],
+    g536ShieldLeft:[{op:'Select',origin:'grave',to:'hand',n:1,filter:{g228Face:{type:'spell'}}}]};
+  if(d.id==='dmrp16-001'&&compact363===
+   "シンパシー:クリーチャー(このクリーチャーの召喚コストはバトルゾーンにある自分のクリーチャー1体につき1少なくなる。ただしコストは0以下にはならない)ブロッカーブロッカーW・ブレイカーこのクリーチャーがバトルゾーンに出た時カードを1枚引く。オシオキムーン:カードが自分のシールドゾーンを離れた時光または闇のコスト3以下のクリーチャーを1体自分の手札からバトルゾーンに出してもよい。")
+   return {g211Sympathy:{amount:1,filter:{creature:true}},blocker:true,breaker:2,effect:'sixPhoto',
+    g34Tasks:[{op:'Draw',n:1}],g536ShieldLeft:[{op:'Select',origin:'hand',deploy:true,n:1,optional:true,
+     filter:{creature:true,max:3,any:[{color:'光'},{color:'闇'}]}}]};
+  if(d.id==='dmrp16-072'&&compact363===
+   "ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)このクリーチャーは攻撃できない。オシオキムーン:カードが自分のシールドゾーンを離れた時《死してなお蜜月のゲンショク》を1体自分の墓地からバトルゾーンに出す。")
+   return {blocker:true,noAttack:true,g536ShieldLeft:[{op:'Select',origin:'grave',deploy:true,n:1,
+    filter:{creature:true,g201ExactName:'死してなお蜜月のゲンショク'}}]};
+ }
  if(phase>=888&&creature){
   if(d.id==='dmex14-s02'&&compact363===
    'ブロッカーブロッカーW・ブレイカー自分の他のクリーチャーすべてのパワーを+2000する。オシオキムーン:カードが自分のシールドゾーンを離れた時このターン相手のクリーチャーすべてのパワーを-2000する(パワー0以下のクリーチャーは破壊される)')

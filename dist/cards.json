@@ -191180,21 +191180,153 @@
       ],
       "supportBatch": "phase-888",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmex13-023",
+      "name": "月から来た科学のウラガワ",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8500,
+      "race": "デビルマスク/月光王国",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、コスト４以下の呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、呪文を１枚、自分の墓地から手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-023",
+      "limit": 4,
+      "blocker": true,
+      "slayer": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "spellOnly": true,
+          "max": 4,
+          "optional": true
+        }
+      ],
+      "g536ShieldLeft": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "filter": {
+            "g228Face": {
+              "type": "spell"
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-889",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-001",
+      "name": "三日月を謡うオラトリオ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "エンジェル・コマンド/月光王国",
+      "text": "シンパシー：クリーチャー（このクリーチャーの召喚コストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にはならない）\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、カードを１枚引く。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、光または闇のコスト３以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-001",
+      "limit": 4,
+      "g211Sympathy": {
+        "amount": 1,
+        "filter": {
+          "creature": true
+        }
+      },
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "g536ShieldLeft": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "max": 3,
+            "any": [
+              {
+                "color": "光"
+              },
+              {
+                "color": "闇"
+              }
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-889",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-072",
+      "name": "死してなお蜜月のゲンショク",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ヘドリアン/月光王国",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、《死してなお蜜月のゲンショク》を１体、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-072",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g536ShieldLeft": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "deploy": true,
+          "n": 1,
+          "filter": {
+            "creature": true,
+            "g201ExactName": "死してなお蜜月のゲンショク"
+          }
+        }
+      ],
+      "supportBatch": "phase-889",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 888,
+    "phase": 889,
     "checkedAt": "2026-11-11",
-    "baseCount": 6529,
+    "baseCount": 6532,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6532,
+    "totalCount": 6535,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/rule/qa/38756/",
       "https://dm.takaratomy.co.jp/rule/qa/46566/",
-      "https://dm.takaratomy.co.jp/rule/qa/34205/",
-      "https://dm.takaratomy.co.jp/rule/qa/39428/"
+      "https://dm.takaratomy.co.jp/rule/qa/34328/",
+      "https://dm.takaratomy.co.jp/rule/qa/39074/",
+      "https://dm.takaratomy.co.jp/rule/qa/39105/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -207013,6 +207145,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/34209/",
           "https://dm.takaratomy.co.jp/rule/qa/44661/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31395/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 888,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6529,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6532,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/38756/",
+          "https://dm.takaratomy.co.jp/rule/qa/46566/",
+          "https://dm.takaratomy.co.jp/rule/qa/34205/",
+          "https://dm.takaratomy.co.jp/rule/qa/39428/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

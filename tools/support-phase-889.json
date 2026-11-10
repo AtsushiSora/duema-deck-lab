@@ -1,0 +1,224 @@
+{
+  "phase": 889,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6532,
+  "description": "オシオキムーンによる呪文回収、光または闇の小型クリーチャーの手札登場、同名クリーチャーの墓地登場と、登場時の無料詠唱・シンパシー・ドローに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/38756/",
+    "https://dm.takaratomy.co.jp/rule/qa/46566/",
+    "https://dm.takaratomy.co.jp/rule/qa/34328/",
+    "https://dm.takaratomy.co.jp/rule/qa/39074/",
+    "https://dm.takaratomy.co.jp/rule/qa/39105/"
+  ],
+  "cards": [
+    {
+      "id": "dmex13-023",
+      "name": "月から来た科学のウラガワ",
+      "faces": [
+        {
+          "name": "月から来た科学のウラガワ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、コスト４以下の呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、呪文を１枚、自分の墓地から手札に戻す。",
+          "race": "デビルマスク/月光王国",
+          "powerText": "8500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-023",
+      "spec": {
+        "blocker": true,
+        "slayer": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "spellOnly": true,
+            "max": 4,
+            "optional": true
+          }
+        ],
+        "g536ShieldLeft": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "g228Face": {
+                "type": "spell"
+              }
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "56dfeb3a784cc6f77c243e5dc79b9d55873cb1c4a3647419c9868d1ae1e7ea01",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-001",
+      "name": "三日月を謡うオラトリオ",
+      "faces": [
+        {
+          "name": "三日月を謡うオラトリオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "シンパシー：クリーチャー（このクリーチャーの召喚コストは、バトルゾーンにある自分のクリーチャー１体につき１少なくなる。ただしコストは０以下にはならない）\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、カードを１枚引く。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、光または闇のコスト３以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "エンジェル・コマンド/月光王国",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-001",
+      "spec": {
+        "g211Sympathy": {
+          "amount": 1,
+          "filter": {
+            "creature": true
+          }
+        },
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ],
+        "g536ShieldLeft": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 3,
+              "any": [
+                {
+                  "color": "光"
+                },
+                {
+                  "color": "闇"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "f4af675371d0e4f5f40e3171aca67a213532a6576e04f9a041d1ee7080ab1b5c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-072",
+      "name": "死してなお蜜月のゲンショク",
+      "faces": [
+        {
+          "name": "死してなお蜜月のゲンショク",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、《死してなお蜜月のゲンショク》を１体、自分の墓地からバトルゾーンに出す。",
+          "race": "ヘドリアン/月光王国",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-072",
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g536ShieldLeft": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "deploy": true,
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "g201ExactName": "死してなお蜜月のゲンショク"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-072.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "89e0f12a0c9a0fc8817b51c726e2f178a63abe08e3d09f458aa9e0f230ff1d06",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex19-035",
+      "canonicalId": "dmex13-023",
+      "name": "月から来た科学のウラガワ",
+      "faces": [
+        {
+          "name": "月から来た科学のウラガワ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、コスト４以下の呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。\nオシオキムーン：カードが自分のシールドゾーンを離れた時、呪文を１枚、自分の墓地から手札に戻す。",
+          "race": "デビルマスク/月光王国",
+          "powerText": "8500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex19-035",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex19-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "4ecff72d961adce614e6302c53b0175684f478b1934c3882884b8d1c868f5deb",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmex13-023": 4,
+      "dmrp16-001": 4,
+      "dmrp16-072": 4,
+      "dmex19-035": 4
+    }
+  }
+}
