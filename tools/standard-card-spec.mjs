@@ -2507,6 +2507,19 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=804&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const ability=text.match(/^(ブロッカー)?このクリーチャーで攻撃するかわりにこのクリーチャーと自分のマナゾーンのタップされていないカード(?:を8枚|8枚を)タップして次の能力を使ってもよい。(.+)$/);
+  if(ability){
+   const [,blocker,body]=ability;
+   const effects={
+    '相手の手札を見てその中から1枚選び捨てさせる。':{op:'InspectOne258'},
+    '呪文を1枚自分の墓地から手札に戻す。':{op:'Select',origin:'grave',to:'hand',n:1,filter:{g228Face:{type:'spell'}}},
+    'カードを1枚マナゾーンから持ち主の手札に戻す。':{op:'Select',anyOwner:true,origin:'mana',to:'hand',n:1}
+   };
+   if(effects[body])return {...(blocker?{blocker:true}:{}),g736AttackInstead:true,g804ManaTapCost:8,g439Tap:[effects[body]]};
+  }
+ }
  if(phase>=803&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='呪文'){

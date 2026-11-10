@@ -1641,8 +1641,9 @@ export function getLegalActions(s){
   for(const x of own.battle){
    const c=effectiveCard(x,s),canDeclareAttack=attackers.has(x.uid);
    if(c.g439Tap&&canAttack(s,p,x)&&(x.entered<s.turn||c.speedAttacker||isEvolution(x))&&!(c.noPlayerAttack&&c.noCreatureAttack)
-    &&(!c.g736AttackInstead||canDeclareAttack)&&!(c.g736ForcedAttack&&canDeclareAttack))
-    out.push(option('tapAbility',`${c.name}のタップ能力を使う`,{uid:x.uid,cardId:x.cardId}));
+    &&(!c.g736AttackInstead||canDeclareAttack)&&!(c.g736ForcedAttack&&canDeclareAttack)
+    &&(!c.g804ManaTapCost||!c.mustAttack&&own.mana.filter(y=>!y.tapped).length>=c.g804ManaTapCost))
+    out.push(option('tapAbility',`${c.name}のタップ能力を使う`,{uid:x.uid,cardId:x.cardId,...(c.g804ManaTapCost?{g804ManaTapCost:c.g804ManaTapCost}:{})}));
   }
   if(!out.some(a=>a.kind==='attack'&&effectiveCard(own.battle.find(c=>c.uid===a.uid),s).mustAttack))out.push(option('endTurn','ターン終了'));
  }
@@ -1652,7 +1653,7 @@ export function getLegalActions(s){
   // Check the available creature targets after all other attack restrictions.
   const attackers=new Set(out.filter(a=>a.kind==='attack'&&a.target!=='player').map(a=>a.uid));
   const forced=new Set(own.battle.filter(x=>attackers.has(x.uid)&&power(x,false,s)<=6000).map(x=>x.uid));
-  if(forced.size)out=out.filter(a=>a.kind!=='endTurn'&&(a.kind!=='attack'||a.target!=='player'||!forced.has(a.uid)));
+  if(forced.size)out=out.filter(a=>a.kind!=='endTurn'&&(!forced.has(a.uid)||!a.g804ManaTapCost&&(a.kind!=='attack'||a.target!=='player')));
  }
  return out.map((a,i)=>({...a,...(a.kind==='play'&&typeof a.manaPermit==='string'&&a.manaPermit.startsWith('g450:')?{label:a.label+extra.six.permitLabel450(s,p,a.manaPermit)}:{}),id:i,player:p}));
 }
@@ -1733,7 +1734,14 @@ function stepCore(s,action){
  if(a.kind==='cancelEvolution')s.decision=null;
  if(a.kind==='toAttack'){s.phase='attack';log(s,p,'phase','攻撃ステップへ');}
  if(a.kind==='tapAbility'){
-  const x=s.players[p].battle.find(x=>x.uid===a.uid),c=effectiveCard(x,s),defs=structuredClone(c.g439Tap);tapCard(s,p,x);extra.put(s,extra.task('g34_Sequence',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs}));log(s,p,'ability',`${c.name}のタップ能力を使った`,{cardId:x.cardId});
+  const x=s.players[p].battle.find(x=>x.uid===a.uid),c=effectiveCard(x,s);
+  const context={uid:x.uid,incarnation:x.incarnation||0,defs:structuredClone(c.g439Tap)};
+  if(c.g804ManaTapCost)extra.put(s,extra.task('g34_TapAbilityMana804',p,x.cardId,{...context,n:c.g804ManaTapCost}));
+  else{
+   tapCard(s,p,x);
+   extra.put(s,extra.task('g34_Sequence',p,x.cardId,context));
+   log(s,p,'ability',`${c.name}のタップ能力を使った`,{cardId:x.cardId});
+  }
  }
  if(a.kind==='attack'){
   recordCombat(s,p);const c=s.players[p].battle.find(x=>x.uid===a.uid),data=effectiveCard(c,s),stopped=selfTriggersStopped(s,p);s.attack={attacker:a.uid,target:a.target,shield:a.shield,stage:'effects'};if(power(c,true,s)>=12000)(s.g16BigAttack??={})[p]=s.turn;tapCard(s,p,c);extra.attackStart(s,p,c);extra.attackTriggers(s,p,c);log(s,p,'attack',a.label,{cardId:c.cardId});

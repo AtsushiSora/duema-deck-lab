@@ -1617,6 +1617,17 @@ export function createSixPhotoRules(api){
  case'g34_FightBuff241':{const enemies=fightRows240(s,t.p,1-t.p),allies=fightRows240(s,t.p,t.p);if(allies.length)choice(s,t,'このターン、パワーを+'+t.power+'する自分のクリーチャーを1体選ぶ',allies.map(o=>{const a=own.battle.find(y=>y.uid===o.value),boosted={...a,powerModifiers:[...(a.powerModifiers||[]),{amount:t.power,spellSource:t.spell?t.source:undefined,spellCost:t.spell?cost(card(t.source)):undefined}]},scores=enemies.map(o=>fightScore240(s,boosted,s.players[1-t.p].battle.find(y=>y.uid===o.value)));return{...o,value:{uid:a.uid,incarnation:a.incarnation||0},score:scores.length?Math.max(...scores):5+cost(card(a))};}));break;}
  case'g34_Fight240':{const enemies=fightRows240(s,t.p,1-t.p,t.enemyFilter);if(!enemies.length)break;if(t.self){if(x&&api.isCreature(s,x)&&!x.sealed)put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:x.uid,incarnation:x.incarnation||0}});}else{const allies=fightRows240(s,t.p,t.p).filter(o=>!t.g419FightFilter||matches(s,t.p,own.battle.find(y=>y.uid===o.value),t.g419FightFilter));if(allies.length)choice(s,t,'バトルする自分のクリーチャーを1体選ぶ',[...allies.map(o=>{const a=own.battle.find(y=>y.uid===o.value);return{...o,value:{uid:a.uid,incarnation:a.incarnation||0},score:Math.max(...enemies.map(o=>fightScore240(s,a,s.players[1-t.p].battle.find(y=>y.uid===o.value))))};}),...(t.optional?[skip()]:[])]);}break;}
  case'g34_FightEnemy240':{const a=fightUnit240(s,t.fighterOwner??t.p,t.fighter,t.g745FollowFighter);if(a){const rows=fightRows240(s,t.p,1-t.p,t.enemyFilter).filter(o=>o.value!==a.uid);if(rows.length)choice(s,t,'バトルする相手のクリーチャーを1体選ぶ',[...rows.map(o=>{const b=s.players[1-t.p].battle.find(y=>y.uid===o.value);return{...o,value:{uid:b.uid,incarnation:b.incarnation||0},score:fightScore240(s,a,b)};}),...(t.optional?[skip()]:[])]);}break;}
+ case'g34_TapAbilityMana804':{
+  const host=sourceHost474(s,t),selected=t.selected||[];
+  const pool=own.mana.filter(y=>!y.tapped&&!selected.includes(y.uid));
+  if(host?.p===t.p&&!host.x.tapped&&!host.x.sealed&&pool.length>=t.n-selected.length){
+   choice(s,t,'タップするマナを選ぶ（'+selected.length+'/'+t.n+'枚選択済み）',[
+    ...pool.map((y,i)=>opt(y.faceDown?'裏向きのマナ '+(i+1):card(y).name,y.uid,1,y.faceDown?null:y.cardId)),
+    opt('能力を使わない',null,0)
+   ]);
+  }
+  break;
+ }
  case'g34_TapManaColors698':{
   const selected=t.selected||[],options=manaColorOptions698(s,t);
   const color=t.colors[selected.length];
@@ -2309,6 +2320,18 @@ export function createSixPhotoRules(api){
   if(t.remaining>1){const {g585Peek,shieldUid,...next}=t;put(s,{...next,op:'g34_Peek585',remaining:t.remaining-1});}
   break;
  case'g34_ShieldExchange446':{const y=v&&own.hand.find(y=>y.uid===v);if(y)zoneMove(s,t.p,'hand',y.uid,'shields',t);if(!t.optional||y)put(s,{...t,op:'g34_ShieldHand',g238ShieldHand:true});break;}
+ case'g34_TapAbilityMana804':{
+  if(!v)break;
+  const selected=[...(t.selected||[]),v];
+  if(selected.length<t.n){put(s,{...t,selected});break;}
+  const host=sourceHost474(s,t),mana=own.mana.filter(y=>!y.tapped&&selected.includes(y.uid));
+  if(host?.p!==t.p||host.x.tapped||host.x.sealed||mana.length!==t.n)break;
+  for(const y of mana)y.tapped=true;
+  api.tap(s,t.p,host.x);
+  api.log(s,t.p,'ability',card(t.source).name+'のタップ能力を使った',{cardId:t.source});
+  start(s,t,t.defs);
+  break;
+ }
  case'g34_TapManaColors698':if(v){
   const selected=[...(t.selected||[]),v];
   if(selected.length<t.colors.length){put(s,{...t,selected});break;}
