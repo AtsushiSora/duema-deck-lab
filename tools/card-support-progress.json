@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6208,
-  "pendingNames": 5619,
-  "phase": 784,
+  "supportedNames": 6211,
+  "pendingNames": 5616,
+  "phase": 785,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3328,
+    "クリーチャー": 3326,
     "NEOクリーチャー": 152,
-    "呪文": 802,
+    "呪文": 801,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 60,
@@ -225,8 +225,8 @@
     "ルナティック・フィールド": 1
   },
   "reasons": {
-    "複数面・特殊カードタイプまたは情報不足": 1249,
-    "未対応の能力文": 4108,
+    "複数面・特殊カードタイプまたは情報不足": 1247,
+    "未対応の能力文": 4107,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -10746,29 +10746,104 @@
         "runtimeNote": "各最大10分。既存ハイパー化とPhase 210、255、399、409、506、633、768、782、783の関連回帰。長時間のCPU対戦は --test-skip-pattern で除外。全体のnpm testは中断・合否未確認。"
       },
       "deferred": []
+    },
+    {
+      "phase": 785,
+      "cards": [
+        {
+          "id": "dm24rp2-018",
+          "name": "霊淵 ヒドアノッカ＝ノアドッカ"
+        },
+        {
+          "id": "dm24rp2-009",
+          "name": "超霊淵 パネスコ＝テレス"
+        },
+        {
+          "id": "dm24rp1-017",
+          "name": "未ダ識ラヌ事象コソ我ノ楽シミゾ"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm24rp2-Sec14",
+          "canonicalId": "dm24rp2-018",
+          "name": "霊淵 ヒドアノッカ＝ノアドッカ"
+        },
+        {
+          "id": "promoy23-047",
+          "canonicalId": "dm24rp2-018",
+          "name": "霊淵 ヒドアノッカ＝ノアドッカ"
+        },
+        {
+          "id": "dm24ex3-rp2009",
+          "canonicalId": "dm24rp2-009",
+          "name": "超霊淵 パネスコ＝テレス"
+        },
+        {
+          "id": "dm24ex3-015",
+          "canonicalId": "dm24rp1-017",
+          "name": "未ダ識ラヌ事象コソ我ノ楽シミゾ"
+        }
+      ],
+      "supportedNames": 6211,
+      "pendingNames": 5616,
+      "verification": {
+        "focusedPassed": 11,
+        "regressionPassed": 497,
+        "regressionFailed": 1,
+        "existingRegressionFailures": [
+          {
+            "test": "Phase 315 candidate scanner reuses full text and separates unsupported named search dependencies",
+            "baseline": "ffa74086",
+            "detail": "対応済みの真実の名 ワクワク・チャップルン（dmr07-001）を未対応と期待する既存のアサーション。変更前の同一テストでも同じ失敗を再現。"
+          }
+        ],
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 7,
+        "scope": "3種類と再録4版の能力、画像7点、殿堂制限なしを公式照合。S・トリガー破壊、解放時スレイヤー、離脱置換、召喚と非召喚登場の区別、ドロー後に最大2体を展開する効果とターン終了時の一括手札戻し、NEO進化、個体識別と保存復元を検証。",
+        "runtimeNote": "各最大10分。既存ハイパー化とPhase 240、315、532、537、550、551、599、621、784およびAterの関連回帰。長時間CPU対戦は明示的に除外。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dm24rp2-S06",
+          "name": "邪魂龍 ジャビビルブラッド",
+          "reason": "QA45141・45142では、先に墓地から出た個体や墓地進化元から再構築された個体にも常在型の攻撃許可が及ぶ。墓地からバトルゾーンへの移動を個体・ターン別に追跡し、保存や対戦履歴との互換性と最初のアビス攻撃の判定を検証するまで保留。",
+          "rulings": [
+            "https://dm.takaratomy.co.jp/rule/qa/45141/",
+            "https://dm.takaratomy.co.jp/rule/qa/45142/"
+          ]
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 784,
-    "nextPhase": 785,
+    "lastVerifiedPhase": 785,
+    "nextPhase": 786,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm24rp2-018",
-        "name": "霊淵 ヒドアノッカ＝ノアドッカ",
-        "check": "通常時のS・トリガーと登場時破壊、解放中のスレイヤー、通常版と再録の効果を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-018"
+        "id": "dm24rp1-019",
+        "name": "機怪人形ガチャック2",
+        "check": "アンタップしている相手クリーチャーの破壊と、選んだクリーチャーのコスト以下の墓地展開を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-019"
       },
       {
-        "id": "dm24rp2-009",
-        "name": "超霊淵 パネスコ＝テレス",
-        "check": "離脱置換で味方を破壊する処理と、解放中だけの相手の非召喚登場に対する破壊を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-009"
+        "id": "dm24rp1-067",
+        "name": "解盗プーパン",
+        "check": "任意のシールド回収と火3マナの支払い順、S・トリガー禁止、関連裁定を既存の代替召喚経路と照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-067"
+      },
+      {
+        "id": "dm24rp1-001",
+        "name": "回帰の守護者タテフ・エール",
+        "check": "W・ブレイカーのブレイク置換でシールド化する回数と離脱時のシールド化を公式裁定と照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-001"
       },
       {
         "id": "dm24rp2-S06",
         "name": "邪魂龍 ジャビビルブラッド",
-        "check": "墓地から出たクリーチャーの攻撃許可と、解放中の最初のアビスの攻撃時に行う墓地肥やし・展開を照合する。",
+        "check": "QA45141・45142では、先に墓地から出た個体や墓地進化元から再構築された個体にも常在型の攻撃許可が及ぶ。墓地からバトルゾーンへの移動を個体・ターン別に追跡し、保存や対戦履歴との互換性と最初のアビス攻撃の判定を検証するまで保留。",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-S06"
       },
       {

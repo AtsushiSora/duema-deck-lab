@@ -180188,22 +180188,121 @@
       },
       "supportBatch": "phase-784",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-018",
+      "name": "霊淵 ヒドアノッカ＝ノアドッカ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "アビスロイヤル/超化獣",
+      "text": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、破壊する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\n【ハイパーモード】\nS・トリガー S・トリガー\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、破壊する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-018",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave"
+        }
+      ],
+      "hyperTap": true,
+      "hyper": {
+        "power": 6000,
+        "breaker": 2,
+        "slayer": true
+      },
+      "supportBatch": "phase-785",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-009",
+      "name": "超霊淵 パネスコ＝テレス",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "アビスロイヤル/超化獣",
+      "text": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーが離れる時、かわりに自分の他のクリーチャーを１体破壊してもよい。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\n【ハイパーモード】\nスピードアタッカー\nW・ブレイカー\nこのクリーチャーが離れる時、かわりに自分の他のクリーチャーを１体破壊してもよい。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\n相手のクリーチャーが召喚以外の方法で出た時、そのクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-009",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "aterGuard": "panesko",
+      "hyperTap": true,
+      "hyper": {
+        "power": 11000,
+        "g403Bloom": "eitherTurn"
+      },
+      "supportBatch": "phase-785",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp1-017",
+      "name": "未ダ識ラヌ事象コソ我ノ楽シミゾ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー\nカードを１枚引く。その後、進化でないコスト３以下のクリーチャーを２体まで、自分の手札から出す。このターンの終わりに、それらのクリーチャーを手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-017",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 2,
+          "optional": true,
+          "g785ReturnGroup": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "max": 3
+          }
+        }
+      ],
+      "supportBatch": "phase-785",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 784,
+    "phase": 785,
     "checkedAt": "2026-11-10",
-    "baseCount": 6205,
+    "baseCount": 6208,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6208,
+    "totalCount": 6211,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/49402/",
-      "https://dm.takaratomy.co.jp/rule/qa/44383/",
-      "https://dm.takaratomy.co.jp/rule/qa/43056/",
-      "https://dm.takaratomy.co.jp/rule/qa/43486/"
+      "https://dm.takaratomy.co.jp/rule/qa/45585/",
+      "https://dm.takaratomy.co.jp/rule/qa/45121/",
+      "https://dm.takaratomy.co.jp/rule/qa/45122/",
+      "https://dm.takaratomy.co.jp/rule/qa/45123/",
+      "https://dm.takaratomy.co.jp/rule/qa/31530/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -193883,6 +193982,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/45120/",
           "https://dm.takaratomy.co.jp/rule/qa/46866/",
           "https://dm.takaratomy.co.jp/rule/qa/44836/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 784,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6205,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6208,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/49402/",
+          "https://dm.takaratomy.co.jp/rule/qa/44383/",
+          "https://dm.takaratomy.co.jp/rule/qa/43056/",
+          "https://dm.takaratomy.co.jp/rule/qa/43486/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

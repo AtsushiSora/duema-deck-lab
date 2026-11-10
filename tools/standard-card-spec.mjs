@@ -2461,6 +2461,14 @@ export function standardCardSpec(d,{phase=165}={}){
   const hyper='ハイパー化:自分の他のクリーチャーを1体タップする。(自分のメインステップ中にハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く)';
   const guard='ガードマン(このクリーチャーをタップして相手クリーチャーの攻撃先を自分の他のクリーチャーからこのクリーチャーに変更してもよい)';
   const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+  if(phase>=785){
+   const hido='S・トリガーS・トリガーこのクリーチャーが出た時相手のクリーチャーを1体選び破壊する。'+hyper;
+   if(front===hido&&back===front+'スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)W・ブレイカー'&&f.powerText==='2000'&&active.powerText==='6000')
+    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'grave'}],hyperTap:true,hyper:{power:6000,breaker:2,slayer:true}};
+   const panesko='スピードアタッカーW・ブレイカーこのクリーチャーが離れる時かわりに自分の他のクリーチャーを1体破壊してもよい。'+hyper;
+   if(front===panesko&&back===front+'相手のクリーチャーが召喚以外の方法で出た時そのクリーチャーを破壊する。'&&f.powerText==='7000'&&active.powerText==='11000')
+    return {speedAttacker:true,breaker:2,aterGuard:'panesko',hyperTap:true,hyper:{power:11000,g403Bloom:'eitherTurn'}};
+  }
   if(phase>=784){
    const tri='S・トリガーS・トリガーこのクリーチャーが出た時相手のクリーチャーを1体選びシールド化する。'+hyper;
    if(front===tri&&back===front+'W・ブレイカー各ターンはじめて自分のクリーチャーが攻撃する時相手のクリーチャーを1体選びタップする。次の相手のターンのはじめにそのクリーチャーはアンタップしない。'&&f.powerText==='4500'&&active.powerText==='8500')
@@ -2498,6 +2506,14 @@ export function standardCardSpec(d,{phase=165}={}){
   if(front===akane&&back===front+'W・ブレイカーこのクリーチャーはこのクリーチャーよりパワーが小さいクリーチャーにブロックされない。'&&f.powerText==='4000'&&active.powerText==='9000')
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
+ }
+ if(phase>=785&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='呪文'&&f.abilityText.split('\n').length===2){
+  const text=normalize(f.abilityText);
+  const draw='S・トリガーS・トリガーカードを1枚引く。その後';
+  const deploy='コスト3以下のクリーチャーを2体まで自分の手札から出す。このターンの終わりにそれらのクリーチャーを手札に戻す。';
+  if(text===draw+'進化でない'+deploy||text===draw+'コスト3以下の進化ではない'+deploy.slice('コスト3以下の'.length))
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Draw',n:1},
+    {op:'Select',origin:'hand',deploy:true,n:2,optional:true,g785ReturnGroup:true,filter:{creature:true,nonEvolution:true,max:3}}]};
  }
  if(phase>=781&&d?.status==='complete'&&d.faces.length===2&&d.faces.every(face=>face.typeText==='クリーチャー')){
   const normal='マッハファイターW・ブレイカー自分の超化獣クリーチャーの召喚コストを3少なくする。ただしコストは0以下にはならない。'+
