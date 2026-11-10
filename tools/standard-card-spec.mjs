@@ -2507,6 +2507,16 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=816&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(text==='自分が呪文を唱えた時バトルゾーンにある相手の「ブロッカー」を持つクリーチャーを1体選ぶ。そのクリーチャーはこのターンブロックできない。')
+   return {g204SpellWatch:{who:'self',defs:[{op:'Target',filter:{blocker:true},g816BlockOnly:true,title:'このターン、ブロックを止める相手クリーチャーを選ぶ'}]}};
+  if(text==='自分の進化クリーチャーを召喚した時コスト3以下のクリーチャーを1体コストを支払わずに自分の手札からバトルゾーンに出してもよい。')
+   return {g808SummonWatch:{g816Evolution:true,defs:[{op:'Select',origin:'hand',deploy:true,n:1,optional:true,filter:{g228Face:{type:'creature',max:3}}}]}};
+  if(text==='このクリーチャーが攻撃する時自分のクロスギアを1枚バトルゾーンから墓地に置いてもよい。そうした場合カードを2枚まで引いてもよい。')
+   return {g34Attack:[{op:'Target',owner:'self',element:true,filter:{g201Gear:true,faceUp:true},optional:true,
+    g816GearDraw:true,title:'墓地に置く自分のクロスギアを選ぶ'}]};
+ }
  if(phase>=815&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(text==='S・トリガーこのクリーチャーをバトルゾーンに出した時自分の山札を見る。その中から自分のマナゾーンにある文明の数以下のコストを持つクリーチャーを1体選び相手に見せてから自分の手札に加えてもよい。その後山札をシャッフルする。')

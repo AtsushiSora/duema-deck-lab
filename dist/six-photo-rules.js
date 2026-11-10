@@ -1944,6 +1944,9 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_Ramp':if(t.optional)choice(s,t,'山札からマナに置く枚数を選ぶ',Array.from({length:Math.min(t.n,own.deck.length)+1},(_,n)=>opt(n+'枚',n,n<own.deck.length?n*5:-100)));else ramp(s,t,t.n);break;
+ case'g34_DrawAfterGear816':
+  if(own.grave.some(y=>y.uid===t.target))start(s,t,[{op:'DrawUpTo',n:2}]);
+  break;
  case'g34_DrawUpTo':if(t.n>0)choice(s,t,'あと'+t.n+'枚まで引けます。1枚引く？',[opt('1枚引く',true,t.g203Draw&&own.deck.length<=1&&creatures(s,t.p).some(y=>effective(y,s).shako)?1000:own.deck.length>1?10:-100),skip()]);break;
  case'g34_StartDraw729':{
   if(!t.sources.length){api.draw(s,t.p,t.n);break;}
@@ -2658,6 +2661,20 @@ export function createSixPhotoRules(api){
  }break;
  case'g34_ManaExchangeBase753':api.beginManaExchange753(s,t,v);break;
  case'g34_Target':
+  if(t.g816BlockOnly){
+   const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid&&!x.sealed);
+   if(y)for(const part of [y,...(y.godLinks||[])])
+    (s.extLimits??=[]).push({kind:'block',g190Freeze:true,player:v.p,uid:part.uid,incarnation:part.incarnation||0,controller:t.p,expires:'end',who:s.active});
+   break;
+  }
+  if(t.g816GearDraw){
+   const y=v&&own.battle.find(x=>x.uid===v.uid&&!x.sealed);
+   if(y){
+    move(s,[{player:t.p,uid:y.uid,to:'grave',destroy:false,controller:t.p}]);
+    start(s,t,[{op:'DrawAfterGear816',target:y.uid}]);
+   }
+   break;
+  }
   if(t.g797Stay){
    stayUntilStart627(s,t,v&&s.players[v.p].battle.find(y=>y.uid===v.uid));
    break;
@@ -2969,7 +2986,10 @@ export function createSixPhotoRules(api){
   useBlockers524(s,p);
   for(const source of s.players[p].battle){
    const watch=card(source).g808SummonWatch&&!source.sealed&&api.isCreature(s,source)&&effective(source,s).g808SummonWatch;
-   if(watch&&useColorsMatch(watch,c))queue(s,p,source,watch.defs);
+   if(!watch||!useColorsMatch(watch,c))continue;
+   // A NEO summon counts only when it was declared with an evolution base.
+   if(watch.g816Evolution&&!api.isEvolution(x)&&!((c.neoEvolution||c.g48HandEvolution)&&c.g27BaseUid))continue;
+   queue(s,p,source,watch.defs);
   }
  }for(const y of selectedOnce464(s,p,c))y.g464UsedTurn=s.turn;recordSummon463(s,p,c);if(c.type==='creature')consumeReduction456(s,p,c);if(c.type==='creature'&&['mana','grave'].includes(origin)&&typeof permit==='string'&&permit.startsWith('g450:'))((s.g450ZoneUses??=[{},{}])[p]??={})[permit]=s.turn;if(c.type!=='spell')noncreatureUse448(s,p,c);if(c.type==='creature'){countExecution(s,p,c);if(colors(c).includes('自然')&&Number(c.power)>=12000)s.g34Discounts=(s.g34Discounts||[]).filter(y=>y.p!==p||y.turn!==s.turn);}},
  spellCast(s,p,c){useBlockers524(s,p);consumeReduction456(s,p,c);noncreatureUse448(s,p,c);countExecution(s,p,c);for(const {owner,x,watch}of spellWatches(s,p,c))queue(s,owner,x,watch.defs.map(d=>d.op==='CastCostDeploy595'?{...d,castCost:c.cost}:d));},

@@ -183672,26 +183672,122 @@
       },
       "supportBatch": "phase-815",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm31-031",
+      "name": "爆獣パプラ・プーラプラ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ファイアー・バード/ナイト",
+      "text": "自分が呪文を唱えた時、バトルゾーンにある相手の「ブロッカー」を持つクリーチャーを１体選ぶ。そのクリーチャーはこのターン、ブロックできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-031",
+      "limit": 4,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "Target",
+            "filter": {
+              "blocker": true
+            },
+            "g816BlockOnly": true,
+            "title": "このターン、ブロックを止める相手クリーチャーを選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-816",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-067",
+      "name": "化召の術士",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ビーストフォーク/オリジン",
+      "text": "自分の進化クリーチャーを召喚した時、コスト３以下のクリーチャーを１体、コストを支払わずに自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-067",
+      "limit": 4,
+      "g808SummonWatch": {
+        "g816Evolution": true,
+        "defs": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "max": 3
+              }
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-816",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm31-045",
+      "name": "鉄甲虫ミカヅキ・ワーム",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "パラサイトワーム/サムライ",
+      "text": "このクリーチャーが攻撃する時、自分のクロスギアを１枚、バトルゾーンから墓地に置いてもよい。そうした場合、カードを２枚まで引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-045",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "element": true,
+          "filter": {
+            "g201Gear": true,
+            "faceUp": true
+          },
+          "optional": true,
+          "g816GearDraw": true,
+          "title": "墓地に置く自分のクロスギアを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-816",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 815,
+    "phase": 816,
     "checkedAt": "2026-11-10",
-    "baseCount": 6299,
+    "baseCount": 6302,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6302,
+    "totalCount": 6305,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35841/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37480/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37498/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37947/",
-      "https://dm.takaratomy.co.jp/rule/qa/31690/",
-      "https://dm.takaratomy.co.jp/rule/qa/44618/",
-      "https://dm.takaratomy.co.jp/rule/qa/45589/",
-      "https://dm.takaratomy.co.jp/rule/qa/47059/",
-      "https://dm.takaratomy.co.jp/rule/qa/47495/",
+      "https://dm.takaratomy.co.jp/rule/qa/31531/",
+      "https://dm.takaratomy.co.jp/rule/qa/40102/",
+      "https://dm.takaratomy.co.jp/rule/qa/47894/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -197989,6 +198085,30 @@
           "https://dm.takaratomy.co.jp/rule/qa/43069/",
           "https://dm.takaratomy.co.jp/rule/qa/43225/",
           "https://dm.takaratomy.co.jp/rule/qa/43226/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 815,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6299,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6302,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37480/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37498/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37947/",
+          "https://dm.takaratomy.co.jp/rule/qa/31690/",
+          "https://dm.takaratomy.co.jp/rule/qa/44618/",
+          "https://dm.takaratomy.co.jp/rule/qa/45589/",
+          "https://dm.takaratomy.co.jp/rule/qa/47059/",
+          "https://dm.takaratomy.co.jp/rule/qa/47495/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [
