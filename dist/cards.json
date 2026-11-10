@@ -185523,27 +185523,129 @@
       ],
       "supportBatch": "phase-834",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm37-011",
+      "name": "死神の蘇生者シュタイナー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "デーモン・コマンド",
+      "text": "このクリーチャーを召喚してバトルゾーンに出した時、パワー7000以下のクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-011",
+      "limit": 4,
+      "breaker": 2,
+      "summonedEntryOnly": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "maxPower": 7000
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-835",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm39-033",
+      "name": "不知火の超人",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "ジャイアント/サムライ",
+      "text": "自分のターン中、他のクリーチャーがバトルゾーンに出た時、そのターン、このクリーチャーは「パワーアタッカー+6000」を得、シールドをさらに１枚ブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-033",
+      "limit": 4,
+      "g314OtherEntry": {
+        "who": "both",
+        "ownTurn": true,
+        "defs": [
+          {
+            "op": "SelfBoost313",
+            "power": 6000,
+            "g337PowerAttacker": true,
+            "g536Source": true
+          },
+          {
+            "op": "SelfExtraBreak444",
+            "amount": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-835",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm39-012",
+      "name": "毒針の暗殺者アンタレス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 4000,
+      "race": "デーモン・コマンド/エイリアン",
+      "text": "自分のターンの終わりに、クリーチャーを１体、自分の手札から捨ててもよい。そうした場合、そのクリーチャーよりコストが小さい相手のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-012",
+      "limit": 4,
+      "g174End": [
+        {
+          "op": "DiscardFor248",
+          "g488DiscardFilter": {
+            "g228Face": {
+              "type": "creature"
+            }
+          },
+          "defs": [
+            {
+              "op": "DiscardCost655",
+              "g835Creature": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-835",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 834,
+    "phase": 835,
     "checkedAt": "2026-11-10",
-    "baseCount": 6360,
-    "newEffectCards": 4,
+    "baseCount": 6364,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6364,
+    "totalCount": 6367,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34916/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36162/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37636/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37637/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36244/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36217/",
-      "https://dm.takaratomy.co.jp/rule/qa/31786/",
-      "https://dm.takaratomy.co.jp/rule/qa/31530/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31662/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36105/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36270/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36271/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36272/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36246/",
+      "https://dm.takaratomy.co.jp/rule/qa/45465/",
+      "https://dm.takaratomy.co.jp/rule/qa/48497/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -200253,6 +200355,30 @@
           "https://dm.takaratomy.co.jp/rule/qa/31786/",
           "https://dm.takaratomy.co.jp/rule/qa/45064/",
           "https://dm.takaratomy.co.jp/rule/qa/45920/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 834,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6360,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6364,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34916/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36162/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37636/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37637/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36244/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36217/",
+          "https://dm.takaratomy.co.jp/rule/qa/31786/",
+          "https://dm.takaratomy.co.jp/rule/qa/31530/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31662/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

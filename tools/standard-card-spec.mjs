@@ -2507,6 +2507,22 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=835&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(text==='このクリーチャーを召喚してバトルゾーンに出した時パワー7000以下のクリーチャーを1体自分の墓地からバトルゾーンに出してもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,summonedEntryOnly:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Select',origin:'grave',deploy:true,n:1,optional:true,filter:{g228Face:{type:'creature',maxPower:7000}}}
+   ]};
+  if(text==='自分のターン中他のクリーチャーがバトルゾーンに出た時そのターンこのクリーチャーは「パワーアタッカー+6000」を得シールドをさらに1枚ブレイクする。')
+   return {g314OtherEntry:{who:'both',ownTurn:true,defs:[
+    {op:'SelfBoost313',power:6000,g337PowerAttacker:true,g536Source:true},
+    {op:'SelfExtraBreak444',amount:1}
+   ]}};
+  if(text==='自分のターンの終わりにクリーチャーを1体自分の手札から捨ててもよい。そうした場合そのクリーチャーよりコストが小さい相手のクリーチャーを1体破壊する。')
+   return {g174End:[{op:'DiscardFor248',g488DiscardFilter:{g228Face:{type:'creature'}},
+    defs:[{op:'DiscardCost655',g835Creature:true}]
+   }]};
+ }
  if(phase>=834&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='呪文'&&text==='いずれかのプレイヤーの山札の上から3枚を見る。その後それを好きな順序で元に戻す。')

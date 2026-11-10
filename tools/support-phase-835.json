@@ -1,0 +1,169 @@
+{
+  "phase": 835,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6364,
+  "description": "召喚時の墓地からの展開、登場ごとに重なる攻撃強化、ターン終了時のクリーチャー破棄とコスト参照破壊に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36105/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36270/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36271/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36272/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36246/",
+    "https://dm.takaratomy.co.jp/rule/qa/45465/",
+    "https://dm.takaratomy.co.jp/rule/qa/48497/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dm37-011",
+      "name": "死神の蘇生者シュタイナー",
+      "faces": [
+        {
+          "name": "死神の蘇生者シュタイナー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーを召喚してバトルゾーンに出した時、パワー7000以下のクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "デーモン・コマンド",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-011",
+      "spec": {
+        "breaker": 2,
+        "summonedEntryOnly": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "maxPower": 7000
+              }
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "6d94a630a1c1ce23a20179339c2be53c232b04b4b2cd72200bf1b58ea9ac1202",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm39-033",
+      "name": "不知火の超人",
+      "faces": [
+        {
+          "name": "不知火の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のターン中、他のクリーチャーがバトルゾーンに出た時、そのターン、このクリーチャーは「パワーアタッカー+6000」を得、シールドをさらに１枚ブレイクする。",
+          "race": "ジャイアント/サムライ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-033",
+      "spec": {
+        "g314OtherEntry": {
+          "who": "both",
+          "ownTurn": true,
+          "defs": [
+            {
+              "op": "SelfBoost313",
+              "power": 6000,
+              "g337PowerAttacker": true,
+              "g536Source": true
+            },
+            {
+              "op": "SelfExtraBreak444",
+              "amount": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "0bb1c2d9175653f6dbeebedddf89aae1f3815b389db76ba7b1932294ff53fb16",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm39-012",
+      "name": "毒針の暗殺者アンタレス",
+      "faces": [
+        {
+          "name": "毒針の暗殺者アンタレス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分のターンの終わりに、クリーチャーを１体、自分の手札から捨ててもよい。そうした場合、そのクリーチャーよりコストが小さい相手のクリーチャーを１体破壊する。",
+          "race": "デーモン・コマンド/エイリアン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-012",
+      "spec": {
+        "g174End": [
+          {
+            "op": "DiscardFor248",
+            "g488DiscardFilter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "defs": [
+              {
+                "op": "DiscardCost655",
+                "g835Creature": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "fc85e335d69c29fcc8e405c63d0f04ccf17704ef9afe95c5fe379b6b24ccd03e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm37-011": 4,
+      "dm39-033": 4,
+      "dm39-012": 4
+    }
+  }
+}

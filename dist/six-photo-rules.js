@@ -293,13 +293,14 @@ export function createSixPhotoRules(api){
  function powerMinusScore242(s,t,y){const attacking=y.uid===s.attack?.attacker||y.uid===s.attackLifecycle?.uid&&(y.incarnation||0)===(s.attackLifecycle.incarnation||0),before=api.power(y,attacking,s),after=api.power({...y,powerModifiers:[...(y.powerModifiers||[]),{amount:t.power,spellSource:t.spell?t.source:undefined,spellCost:t.spell?cost(faces(card(t.source)).at(-1)):undefined}]},attacking,s);if(after>=before)return -5;return after<=0&&!effective(y,s).g34AlwaysWinAtZero?40+cost(card(y))*4+before/1000:5+Math.min(-t.power,before)/1000+cost(card(y));}
  function discardColors248(x){return new Set(faces(card(x)).flatMap(colors)).size;}
  function selfUntapValue542(s,t){const host=sourceHost474(s,t);if(!host||host.p!==t.p||s.active!==t.p||!api.isCreature(s,host.x)||!host.x.tapped||!api.canUntap(host.x)||effective(host.x,s).noAttack)return -100;const c=effective(host.x,s);return 24+Math.min(12,api.power(host.x,true,s)/3000)+Math.max(0,(Number(c.breaker)||1)-1)*5;}
- function discardCosts655(s,p,x){
-  return [...new Set(faces(api.zoneCard(s,p,x,'hand')).map(c=>cost(c)===Infinity?'∞':cost(c)))];
+ function discardCosts655(s,p,x,creatureOnly){
+  const options=faces(api.zoneCard(s,p,x,'hand')).filter(c=>!creatureOnly||c.type==='creature');
+  return [...new Set(options.map(c=>cost(c)===Infinity?'∞':cost(c)))];
  }
- const destroyBelowCost655=belowCost=>({op:'Target',element:true,to:'grave',filter:{belowCost}});
+ const destroyBelowCost655=(belowCost,creatureOnly)=>({op:'Target',element:!creatureOnly,to:'grave',filter:{belowCost}});
  function discardDefs248(s,t,y){
   return t.defs.map(d=>d.op==='DrawColors248'?{op:'Draw',n:discardColors248(y)}:
-   d.op==='DiscardCost655'?{...d,costs:discardCosts655(s,t.p,y)}:d);
+   d.op==='DiscardCost655'?{...d,costs:discardCosts655(s,t.p,y,d.g835Creature)}:d);
  }
  function discardScore248(s,t,y){const own=s.players[t.p],enemy=creatures(s,1-t.p).filter(x=>!x.sealed),d=t.defs[0];
   if(d.op==='ShieldTop')return api.canAddShield(s,t.p)&&own.deck.length>1?12-cost(card(y)):-100;
@@ -308,7 +309,7 @@ export function createSixPhotoRules(api){
    const c=host&&effective(host,s);
    return host&&s.active===t.p&&host.entered===s.turn&&!host.tapped&&!c.speedAttacker&&!c.noAttack?12-cost(card(y)):-100;
   }
-  if(d.op==='DiscardCost655'){const costs=discardCosts655(s,t.p,y),rows=targetOptions(s,t.p,s.players[1-t.p].battle.filter(x=>costs.some(max=>matches(s,1-t.p,x,{belowCost:max}))));return rows.length?22+Math.max(...rows.map(x=>x.score))-cost(card(y)):-100;}if(d.op==='Draw')return modeScore(s,t,[d])-cost(card(y));if(d.op==='Untap'&&d.g191First)return selfUntapValue542(s,t)-cost(card(y));if(d.op==='SelfBoost313'){const x=own.battle.find(x=>x.uid===t.uid);if(!x)return -100;const c=effective(x,s),victim=enemy.find(z=>z.uid===s.attack?.target),before=api.power(x,true,s),battle=victim&&before<api.power(victim,false,s)&&before+d.power>=api.power(victim,false,s)?18:0,breaks=s.attack?.target==='player'&&s.players[1-t.p].shields.length>1&&Number(c.breaker||1)<(d.breaker||1)?12:0;return battle+breaks-cost(card(y));}if(d.op==='DrawColors248'){const n=discardColors248(y);if(n>=own.deck.length&&n)return creatures(s,t.p).some(x=>effective(x,s).shako)?1000:-1000;return(n?12+n*5:-10)-cost(card(y));}if(d.op==='Select'&&d.origin==='grave'&&d.to==='hand'){const rows=[...own.grave,y].filter(x=>matches(s,t.p,x,d.filter));return rows.length?Math.max(...rows.map(x=>cost(card(x))-cost(card(y))+(x.uid===y.uid?-10:4))):-100;}if(d.op==='Look'&&d.g201Search){if(api.deckLocked(s,t.p)||own.deck.length<=1)return -100;const f=d.stages[0].filter;return(own.deck.some(x=>matches(s,t.p,x,f))?14:-10)-cost(card(y));}if(d.op==='Discard')return(s.players[1-t.p].hand.length?12:-10)-cost(card(y));if(d.op==='OpponentSelect')return(enemy.length?10+Math.min(...enemy.map(x=>cost(card(x))*4+api.power(x,false,s)/2000)):-10)-cost(card(y));if(d.op==='Target'){const rows=targetOptions(s,t.p,enemy.filter(x=>matches(s,1-t.p,x,d.filter)));return(rows.length?Math.max(...rows.map(r=>{const x=enemy.find(x=>x.uid===r.value);return d.power?powerMinusScore242(s,{...t,...d},x):10+cost(card(x))*4;})):-10)-cost(card(y));}return -100;}
+  if(d.op==='DiscardCost655'){const costs=discardCosts655(s,t.p,y,d.g835Creature),rows=targetOptions(s,t.p,s.players[1-t.p].battle.filter(x=>costs.some(max=>matches(s,1-t.p,x,{belowCost:max,creature:d.g835Creature}))));return rows.length?22+Math.max(...rows.map(x=>x.score))-cost(card(y)):-100;}if(d.op==='Draw')return modeScore(s,t,[d])-cost(card(y));if(d.op==='Untap'&&d.g191First)return selfUntapValue542(s,t)-cost(card(y));if(d.op==='SelfBoost313'){const x=own.battle.find(x=>x.uid===t.uid);if(!x)return -100;const c=effective(x,s),victim=enemy.find(z=>z.uid===s.attack?.target),before=api.power(x,true,s),battle=victim&&before<api.power(victim,false,s)&&before+d.power>=api.power(victim,false,s)?18:0,breaks=s.attack?.target==='player'&&s.players[1-t.p].shields.length>1&&Number(c.breaker||1)<(d.breaker||1)?12:0;return battle+breaks-cost(card(y));}if(d.op==='DrawColors248'){const n=discardColors248(y);if(n>=own.deck.length&&n)return creatures(s,t.p).some(x=>effective(x,s).shako)?1000:-1000;return(n?12+n*5:-10)-cost(card(y));}if(d.op==='Select'&&d.origin==='grave'&&d.to==='hand'){const rows=[...own.grave,y].filter(x=>matches(s,t.p,x,d.filter));return rows.length?Math.max(...rows.map(x=>cost(card(x))-cost(card(y))+(x.uid===y.uid?-10:4))):-100;}if(d.op==='Look'&&d.g201Search){if(api.deckLocked(s,t.p)||own.deck.length<=1)return -100;const f=d.stages[0].filter;return(own.deck.some(x=>matches(s,t.p,x,f))?14:-10)-cost(card(y));}if(d.op==='Discard')return(s.players[1-t.p].hand.length?12:-10)-cost(card(y));if(d.op==='OpponentSelect')return(enemy.length?10+Math.min(...enemy.map(x=>cost(card(x))*4+api.power(x,false,s)/2000)):-10)-cost(card(y));if(d.op==='Target'){const rows=targetOptions(s,t.p,enemy.filter(x=>matches(s,1-t.p,x,d.filter)));return(rows.length?Math.max(...rows.map(r=>{const x=enemy.find(x=>x.uid===r.value);return d.power?powerMinusScore242(s,{...t,...d},x):10+cost(card(x))*4;})):-10)-cost(card(y));}return -100;}
  // A tamaseed/creature is one element, even while it has both card types.
  const manaCondition267=(s,p,f)=>s.players[p].mana.filter(y=>{const cs=api.manaColors(card(y),s,p);return f.multi?cs.length>1:cs.includes(f.color);}).length>=f.n;
  function manaCivilizationCount(s,p){
@@ -2197,7 +2198,7 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_DiscardCost655':
-  if(t.costs.length===1)start(s,t,[destroyBelowCost655(t.costs[0])]);
+  if(t.costs.length===1)start(s,t,[destroyBelowCost655(t.costs[0],t.g835Creature)]);
   else if(t.costs.length>1)choice(s,t,'捨てたカードの参照するコストを選ぶ',t.costs.map(n=>opt('コスト '+n,n,n==='∞'?100:n)));
   break;
  case'g34_TargetBelowSource692':{
@@ -2655,7 +2656,7 @@ export function createSixPhotoRules(api){
   }
   break;
  }
- case'g34_DiscardCost655':if(t.costs.includes(v))start(s,t,[destroyBelowCost655(v)]);break;
+ case'g34_DiscardCost655':if(t.costs.includes(v))start(s,t,[destroyBelowCost655(v,t.g835Creature)]);break;
  case'g34_DiscardDraw':if(v&&own.hand.some(y=>y.uid===v&&(!t.filter||matches(s,t.p,y,t.filter)))){put(s,task('draw',t.p,t.source,{n:t.n}));api.discardSelected(s,t.p,[v],t.source,t.p);}break;
  case'g34_HandArmy716':
   if(v){
@@ -3282,7 +3283,7 @@ export function createSixPhotoRules(api){
    if(!creature&&!card(x).g314OtherEntry?.g765Element)continue;
    const watch=effective(x,s).g314OtherEntry;
    if(!watch||!creature&&!watch.g765Element||x.sealed||x.uid===y.uid||watch.who!=='both'&&owner!==(watch.who==='opponent'?1-p:p))continue;
-   if(used792(s,x,watch.defs?.[0])||watch.filter&&!matches(s,p,y,watch.filter))continue;
+   if(watch.ownTurn&&owner!==s.active||used792(s,x,watch.defs?.[0])||watch.filter&&!matches(s,p,y,watch.filter))continue;
    if(watch.g778OverMana&&cost(effective(y,s))<=s.players[owner].mana.length)continue;
    if(watch.g755EntrantPower)send(s,owner,x,'EntryBoost755',{
     subject:{uid:y.uid,incarnation:y.incarnation||0},power:watch.g755EntrantPower
