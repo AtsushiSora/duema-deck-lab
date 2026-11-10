@@ -2507,6 +2507,26 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=797&&d?.status==='complete'&&d.faces.length===1){
+  const creatureHyper='ハイパーエナジー(このクリーチャーを召喚する時コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー1体につきこのクリーチャーの召喚コストを2少なくする。ただしコストは0以下にはならない)';
+  const spellHyper='ハイパーエナジー(この呪文を唱える時コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー1体につきこの呪文のコストを2少なくする。ただしコストは0以下にはならない)';
+  const text=normalize(f.abilityText),hyper='ハイパーエナジー';
+  const body=text.replace(creatureHyper,hyper).replace(spellHyper,hyper).replace('(パワー0以下のクリーチャーは破壊される)','');
+  const block=hyper+'ブロッカーブロッカー';
+  if(f.typeText==='呪文'&&body===hyper+'自分の山札の上から5枚を墓地に置いてもよい。そうしたら相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを自分の墓地にあるカード1枚につき-1000する。')
+   return {hyperEnergy:true,effect:'sixPhoto',g34Tasks:[{op:'Offer',g186GraveMill:true,title:'山札の上5枚を墓地に置く？',defs:[
+    {op:'Mill',n:5},{op:'CountPower561',zone:'grave',filter:{},amount:-1000,defs:[{op:'Target',g242PowerMinus:true,g561Scale:true,power:1,spell:true}]}
+   ]}]};
+  if(f.typeText==='クリーチャー'&&body===block+'W・ブレイカーこのクリーチャーが出た時または攻撃する時自分の他のクリーチャーを1体選んでもよい。次の自分のターンのはじめまでそのクリーチャーは離れない。'){
+   const protect={op:'Target',owner:'self',g179Other:true,optional:true,g797Stay:true,title:'次の自分のターンのはじめまで離れなくするクリーチャーを選ぶ'};
+   return {hyperEnergy:true,blocker:true,breaker:2,effect:'sixPhoto',g34Tasks:[protect],g34Attack:[protect]};
+  }
+  if(f.typeText==='クリーチャー'&&body===block+'パワード・ブレイカー(このクリーチャーはそのパワー6000ごとにシールドをさらに1つブレイクする)このクリーチャーがタップした時このターン自分の他のタップしているクリーチャー1体につきこのクリーチャーのパワーを+3000する。')
+   return {hyperEnergy:true,blocker:true,poweredBreaker:true,g188Tapped:[{
+    op:'CountPower561',zone:'battle',filter:{tapped:true},g179Other:true,amount:3000,
+    defs:[{op:'SelfBoost313',g536Source:true,g561Scale:true,power:1}]
+   }]};
+ }
  if(phase>=796&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='タマシード'){
   const front=normalize(f.abilityText).replaceAll('▶︎','▶')
    .replace('シンカライズ(このタマシードがクリーチャーであるかのようにこの上に進化クリーチャーを置いてもよい)','シンカライズ:このタマシードがクリーチャーであるかのようにこの上に進化クリーチャーを置いてもよい。')

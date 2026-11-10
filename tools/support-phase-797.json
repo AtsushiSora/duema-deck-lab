@@ -1,0 +1,336 @@
+{
+  "phase": 797,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6244,
+  "description": "ハイパーエナジー3種の墓地枚数によるパワー低下、味方の離脱防止、タップ中の味方に応じた自己強化に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/46627/",
+    "https://dm.takaratomy.co.jp/rule/qa/45437/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp4-038",
+      "name": "影邪盗霊",
+      "faces": [
+        {
+          "name": "影邪盗霊",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ハイパーエナジー（この呪文を唱える時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、この呪文のコストを２少なくする。ただし、コストは０以下にはならない）\n自分の山札の上から５枚を墓地に置いてもよい。そうしたら、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを、自分の墓地にあるカード１枚につき、－1000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-038",
+      "spec": {
+        "hyperEnergy": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g186GraveMill": true,
+            "title": "山札の上5枚を墓地に置く？",
+            "defs": [
+              {
+                "op": "Mill",
+                "n": 5
+              },
+              {
+                "op": "CountPower561",
+                "zone": "grave",
+                "filter": {},
+                "amount": -1000,
+                "defs": [
+                  {
+                    "op": "Target",
+                    "g242PowerMinus": true,
+                    "g561Scale": true,
+                    "power": 1,
+                    "spell": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "8f1d88549de88ea7be0c4f782f4a3504bb29b9b2435d8fb296985fa950d75502",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-013",
+      "name": "金天使 エン・ゴルギーニ",
+      "faces": [
+        {
+          "name": "金天使 エン・ゴルギーニ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ハイパーエナジー（このクリーチャーを召喚する時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない）\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時または攻撃する時、自分の他のクリーチャーを１体選んでもよい。次の自分のターンのはじめまで、そのクリーチャーは離れない。",
+          "race": "メカ・エンジェル・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-013",
+      "spec": {
+        "hyperEnergy": true,
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g179Other": true,
+            "optional": true,
+            "g797Stay": true,
+            "title": "次の自分のターンのはじめまで離れなくするクリーチャーを選ぶ"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g179Other": true,
+            "optional": true,
+            "g797Stay": true,
+            "title": "次の自分のターンのはじめまで離れなくするクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "a37e28cbf881a166593d62f47bcbb6db13a1eab1d9e9a065472237d9915ddf2f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-012",
+      "name": "金天使 ウォン・ゴルギーニ",
+      "faces": [
+        {
+          "name": "金天使 ウォン・ゴルギーニ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ハイパーエナジー（このクリーチャーを召喚する時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない）\nブロッカー ブロッカー\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこのクリーチャーがタップした時、このターン、自分の他のタップしているクリーチャー１体につき、このクリーチャーのパワーを+3000する。",
+          "race": "メカ・エンジェル・コマンド",
+          "powerText": "6000+",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-012",
+      "spec": {
+        "hyperEnergy": true,
+        "blocker": true,
+        "poweredBreaker": true,
+        "g188Tapped": [
+          {
+            "op": "CountPower561",
+            "zone": "battle",
+            "filter": {
+              "tapped": true
+            },
+            "g179Other": true,
+            "amount": 3000,
+            "defs": [
+              {
+                "op": "SelfBoost313",
+                "g536Source": true,
+                "g561Scale": true,
+                "power": 1
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "e43ec4b8f28abdaddc80f274f9d09c259fb7d9feb3de25225aa054e8ccf9d639",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25rp4-TD4",
+      "canonicalId": "dm24rp4-038",
+      "name": "影邪盗霊",
+      "faces": [
+        {
+          "name": "影邪盗霊",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ハイパーエナジー\n自分の山札の上から５枚を墓地に置いてもよい。そうしたら、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを、自分の墓地にあるカード１枚につき－1000する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-TD4",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-TD4.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "e6671d955429977d9887acb0678328bb137eaa06a885c80e147df8e36d849973",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-006",
+      "canonicalId": "dm24rp4-013",
+      "name": "金天使 エン・ゴルギーニ",
+      "faces": [
+        {
+          "name": "金天使 エン・ゴルギーニ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ハイパーエナジー（このクリーチャーを召喚する時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない）\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時または攻撃する時、自分の他のクリーチャーを１体選んでもよい。次の自分のターンのはじめまで、そのクリーチャーは離れない。",
+          "race": "メカ・エンジェル・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "3640f6ee6fdd5ac2cd8531b242696633f509282c70bdde37a6fc9b93d0bbdaa8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy25-034",
+      "canonicalId": "dm24rp4-013",
+      "name": "金天使 エン・ゴルギーニ",
+      "faces": [
+        {
+          "name": "金天使 エン・ゴルギーニ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ハイパーエナジー（このクリーチャーを召喚する時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない）\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時または攻撃する時、自分の他のクリーチャーを１体選んでもよい。次の自分のターンのはじめまで、そのクリーチャーは離れない。",
+          "race": "メカ・エンジェル・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy25-034",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy25-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "e1aae28877cb7be05a3ca54dd129c2e0fedbd99153552cadda2da5ead14cc0c3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex4-CHO032",
+      "canonicalId": "dm24rp4-013",
+      "name": "金天使 エン・ゴルギーニ",
+      "faces": [
+        {
+          "name": "金天使 エン・ゴルギーニ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ハイパーエナジー\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時または攻撃する時、自分の他のクリーチャーを１体選んでもよい。次の自分のターンのはじめまで、そのクリーチャーは離れない。",
+          "race": "メカ・エンジェル・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex4-CHO032",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex4-CHO032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "56121bd17bc7c46990f13a49f3125680054a6260caae9b15b1c851c770ae3aed",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-002",
+      "canonicalId": "dm24rp4-012",
+      "name": "金天使 ウォン・ゴルギーニ",
+      "faces": [
+        {
+          "name": "金天使 ウォン・ゴルギーニ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ハイパーエナジー（このクリーチャーを召喚する時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない）\nブロッカー ブロッカー\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこのクリーチャーがタップした時、このターン、自分の他のタップしているクリーチャー１体につき、このクリーチャーのパワーを+3000する。",
+          "race": "メカ・エンジェル・コマンド",
+          "powerText": "6000+",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-002",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "b97c4bb001c4068e19138b6e764cbac4e9547d091b4e15716e9394a5f3c6aef9",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp4-038": 4,
+      "dm24rp4-013": 4,
+      "dm24rp4-012": 4,
+      "dm25rp4-TD4": 4,
+      "dm24ex3-006": 4,
+      "promoy25-034": 4,
+      "dm26ex4-CHO032": 4,
+      "dm24ex3-002": 4
+    }
+  }
+}

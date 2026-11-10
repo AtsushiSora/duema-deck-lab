@@ -181818,21 +181818,150 @@
       ],
       "supportBatch": "phase-796",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-038",
+      "name": "影邪盗霊",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "ハイパーエナジー（この呪文を唱える時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、この呪文のコストを２少なくする。ただし、コストは０以下にはならない）\n自分の山札の上から５枚を墓地に置いてもよい。そうしたら、相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを、自分の墓地にあるカード１枚につき、－1000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-038",
+      "limit": 4,
+      "hyperEnergy": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "g186GraveMill": true,
+          "title": "山札の上5枚を墓地に置く？",
+          "defs": [
+            {
+              "op": "Mill",
+              "n": 5
+            },
+            {
+              "op": "CountPower561",
+              "zone": "grave",
+              "filter": {},
+              "amount": -1000,
+              "defs": [
+                {
+                  "op": "Target",
+                  "g242PowerMinus": true,
+                  "g561Scale": true,
+                  "power": 1,
+                  "spell": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-797",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-013",
+      "name": "金天使 エン・ゴルギーニ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "メカ・エンジェル・コマンド",
+      "text": "ハイパーエナジー（このクリーチャーを召喚する時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない）\nブロッカー ブロッカー\nW・ブレイカー\nこのクリーチャーが出た時または攻撃する時、自分の他のクリーチャーを１体選んでもよい。次の自分のターンのはじめまで、そのクリーチャーは離れない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-013",
+      "limit": 4,
+      "hyperEnergy": true,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g179Other": true,
+          "optional": true,
+          "g797Stay": true,
+          "title": "次の自分のターンのはじめまで離れなくするクリーチャーを選ぶ"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g179Other": true,
+          "optional": true,
+          "g797Stay": true,
+          "title": "次の自分のターンのはじめまで離れなくするクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-797",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-012",
+      "name": "金天使 ウォン・ゴルギーニ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "メカ・エンジェル・コマンド",
+      "text": "ハイパーエナジー（このクリーチャーを召喚する時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない）\nブロッカー ブロッカー\nパワード・ブレイカー（このクリーチャーは、そのパワー6000ごとにシールドをさらに１つブレイクする）\nこのクリーチャーがタップした時、このターン、自分の他のタップしているクリーチャー１体につき、このクリーチャーのパワーを+3000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-012",
+      "limit": 4,
+      "hyperEnergy": true,
+      "blocker": true,
+      "poweredBreaker": true,
+      "g188Tapped": [
+        {
+          "op": "CountPower561",
+          "zone": "battle",
+          "filter": {
+            "tapped": true
+          },
+          "g179Other": true,
+          "amount": 3000,
+          "defs": [
+            {
+              "op": "SelfBoost313",
+              "g536Source": true,
+              "g561Scale": true,
+              "power": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-797",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 796,
+    "phase": 797,
     "checkedAt": "2026-11-10",
-    "baseCount": 6241,
+    "baseCount": 6244,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6244,
+    "totalCount": 6247,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/45919/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20260213%E2%80%972.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/41075/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35234/"
+      "https://dm.takaratomy.co.jp/rule/qa/46627/",
+      "https://dm.takaratomy.co.jp/rule/qa/45437/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -195753,6 +195882,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/40025/",
           "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck04/",
           "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck05/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 796,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6241,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6244,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/45919/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260213%E2%80%972.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/41075/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35234/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
