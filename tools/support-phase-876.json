@@ -1,0 +1,187 @@
+{
+  "phase": 876,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6492,
+  "description": "同名によるパワーとブレイクの追加、両者の墓地の呪文を山札に戻す効果、無色条件のS・トリガー、3番目の召喚コスト軽減に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36831/",
+    "https://dm.takaratomy.co.jp/rule/qa/44100/",
+    "https://dm.takaratomy.co.jp/rule/qa/45589/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm06-029",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36722/"
+  ],
+  "cards": [
+    {
+      "id": "dmr05-027",
+      "name": "跳箱男",
+      "faces": [
+        {
+          "name": "跳箱男",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーのパワーは、バトルゾーンにある自分の他の《跳箱男》１体につき+3000され、シールドをさらに１枚ブレイクする。",
+          "race": "ヘドリアン/エイリアン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-027",
+      "spec": {
+        "g207CountPower": {
+          "zone": "battle",
+          "other": true,
+          "filter": {
+            "g876BattleName": "跳箱男"
+          },
+          "amount": 3000
+        },
+        "g876BreakPerCount": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "e75eea06f4764b204eb7964a13fd6db8ea0de80eb70b6ff56b6c5ff8680a6a2c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr06-025",
+      "name": "黒神龍アンヤク・アンヤト",
+      "faces": [
+        {
+          "name": "黒神龍アンヤク・アンヤト",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、いずれかのプレイヤーの墓地から呪文を１枚選び、持ち主の山札の一番上か一番下に置いてもよい。",
+          "race": "ドラゴン・ゾンビ/アンノイズ",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-025",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "anyOwner": true,
+            "n": 1,
+            "optional": true,
+            "g837DeckEnds": true,
+            "filter": {
+              "spell": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "434a6db1206cb1ff16155c643bef96edcbe6b226af19bc6a7ee621ed33a0f8aa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr09-015",
+      "name": "旋風のサトリ フリース",
+      "faces": [
+        {
+          "name": "旋風のサトリ フリース",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "バトルゾーンに自分の無色クリーチャーがあれば、このクリーチャーは「S・トリガー」を得る。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーをすべてタップする。",
+          "race": "オラクル",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-015",
+      "spec": {
+        "g876ShieldTriggerCondition": {
+          "creature": true,
+          "noColor": true
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TapAll"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "f4fafdc2a0f5a3c892e140f1a464e79efbb7799e50e29f29ae2721f7e3cfc102",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr07-018",
+      "name": "剛勇妖精フレッシュ・レモン",
+      "faces": [
+        {
+          "name": "剛勇妖精フレッシュ・レモン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "各ターン、３番目に召喚する自分のクリーチャーの召喚コストを最大３少なくしてもよい。ただし、コストは１より少なくならない。",
+          "race": "ワイルド・ベジーズ/スノーフェアリー",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-018",
+      "spec": {
+        "g290SummonAura": {
+          "filter": {},
+          "condition": {
+            "g876SummonNumber": 3
+          },
+          "amount": 3,
+          "g560Optional": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr07-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "cfda3b51616897f07eba496c855fc2f55e81ec76acb8bf0a86523d76729ecffe",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr05-027": 4,
+      "dmr06-025": 4,
+      "dmr09-015": 4,
+      "dmr07-018": 4
+    }
+  }
+}

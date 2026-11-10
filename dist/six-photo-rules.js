@@ -339,6 +339,10 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g876SummonNumber!==undefined){
+   const history=s.g463Summons?.[p];
+   return (history?.turn===s.turn?history.n:0)+1===f.g876SummonNumber;
+  }
   if(f.g837NoManaAdded)return s.g837ManaAddedTurn?.[p]!==s.turn;
   if(f.g834AnyEmptyHand)return s.players.some(player=>player.hand.length===0);
   if(f.g811ManaLeft)return s.g47ManaLeft?.[p]===s.turn;
@@ -454,8 +458,10 @@ export function createSixPhotoRules(api){
    if(t.g561Battle)return t.amount*countBattleCivilizations(s,rows.map(({y})=>y));
    return t.amount*new Set(rows.flatMap(({p,y})=>api.manaColors(card(y),s,p,true)).filter(q=>['光','水','闇','火','自然'].includes(q))).size;
   }
-  const f=t.filter||{},fits=({p,y})=>{
+  const {g876BattleName,...f}=t.filter||{};
+  const fits=({p,y})=>{
    if(t.zone==='battle'&&(y.sealed||y.faceDown||!t.g561Elements&&!api.isCreature(s,y)))return false;
+   if(g876BattleName&&!battleNames676(y).includes(exactName(g876BattleName)))return false;
    if(f.g853Soul&&!hasSoul(card(y),f.g853Soul))return false;
    if(!Object.keys(f).length)return true;
    const d=t.zone==='battle'?effective(y,s,true):card(y),printed=t.zone==='battle'?[d]:faces(d);
@@ -3454,7 +3460,7 @@ export function createSixPhotoRules(api){
   const r=card(y).g557BreakAura;
   if(!r||y.sealed||r.other&&x.uid===y.uid||r.min!==undefined&&cost(c)<r.min||!api.isCreature(s,y)||api.ignored(s,y))return n;
   return n+((r.multi?colors(c).length>1:race(c,r.race))?r.amount:0);
- },0),
+ },c.g876BreakPerCount?countPower(s,x,c,false,{...c.g207CountPower,amount:1}):0),
  extraBreak412:(s,p,x)=>(s.extLimits||[]).filter(l=>l.kind==='g412ExtraBreak'&&l.player===p&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.source}))&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)).reduce((n,l)=>n+l.amount,0),
  winBattle(s,x){
   const c=effective(x,s);
@@ -3493,7 +3499,9 @@ export function createSixPhotoRules(api){
  beginLoss(s,p,uid){const x=s.players[p].battle.find(x=>x.uid===uid);if(x)minoLoss(s,{op:'g34_Custom',name:'minoLoss',p,source:x.cardId,uid,selected:[]});},
  muku(s,p,x){return ninja(effective(x,s))?active(s,p,'mukujimmed').filter(y=>!used(s,'g34Muku',y)).map(y=>({uid:y.uid,key:key(y),cardId:y.cardId})):[];},
  useMuku(s,p,k){(s.g34Muku??={})[k]=s.turn;},
- shieldTrigger(s,p,x,c){if(race(c,'ドラゴン')&&s.players[p].battle.some(y=>!y.sealed&&card(y).g794DragonShieldTrigger&&cost(c)<=effective(y,s).g794DragonShieldTrigger))return true;if(c.type==='creature'&&mecha(c)&&cost(c)<=8&&active(s,p,'kuusoku').length)return true;const root=s.players[p].shields.find(r=>api.shieldCards(r).some(y=>y.uid===x.uid)),group=root&&api.shieldGroup(root);if(root&&c.type==='creature'&&c.g433SeedTrigger&&s.players[p].battle.some(y=>!y.sealed&&matches(s,p,y,{g295Tamaseed:true})))return true;return active(s,p,'fourJustice').length>0&&s.players[p].battle.some(y=>api.layers(y).some(z=>(z.exLifeShieldUids||[z.exLifeShieldUid]).includes(group)));},
+ shieldTrigger(s,p,x,c){if(race(c,'ドラゴン')&&s.players[p].battle.some(y=>!y.sealed&&card(y).g794DragonShieldTrigger&&cost(c)<=effective(y,s).g794DragonShieldTrigger))return true;if(c.type==='creature'&&mecha(c)&&cost(c)<=8&&active(s,p,'kuusoku').length)return true;const root=s.players[p].shields.find(r=>api.shieldCards(r).some(y=>y.uid===x.uid)),group=root&&api.shieldGroup(root);
+  if(root&&c.g876ShieldTriggerCondition&&ownCondition(s,p,c.g876ShieldTriggerCondition))return true;
+  if(root&&c.type==='creature'&&c.g433SeedTrigger&&s.players[p].battle.some(y=>!y.sealed&&matches(s,p,y,{g295Tamaseed:true})))return true;return active(s,p,'fourJustice').length>0&&s.players[p].battle.some(y=>api.layers(y).some(z=>(z.exLifeShieldUids||[z.exLifeShieldUid]).includes(group)));},
  // Mana entry is independent of casting or battlefield entry (QA39403/39404).
  manaAdded449(s,p,cards){
   if(s.active===p)(s.g837ManaAddedTurn??=[null,null])[p]=s.turn;

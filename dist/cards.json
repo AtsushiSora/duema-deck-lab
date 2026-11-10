@@ -189891,23 +189891,135 @@
       ],
       "supportBatch": "phase-875",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-027",
+      "name": "跳箱男",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ヘドリアン/エイリアン",
+      "text": "このクリーチャーのパワーは、バトルゾーンにある自分の他の《跳箱男》１体につき+3000され、シールドをさらに１枚ブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-027",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "g876BattleName": "跳箱男"
+        },
+        "amount": 3000
+      },
+      "g876BreakPerCount": true,
+      "supportBatch": "phase-876",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr06-025",
+      "name": "黒神龍アンヤク・アンヤト",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ドラゴン・ゾンビ/アンノイズ",
+      "text": "このクリーチャーが攻撃する時、いずれかのプレイヤーの墓地から呪文を１枚選び、持ち主の山札の一番上か一番下に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-025",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "anyOwner": true,
+          "n": 1,
+          "optional": true,
+          "g837DeckEnds": true,
+          "filter": {
+            "spell": true
+          }
+        }
+      ],
+      "supportBatch": "phase-876",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-015",
+      "name": "旋風のサトリ フリース",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 4000,
+      "race": "オラクル",
+      "text": "バトルゾーンに自分の無色クリーチャーがあれば、このクリーチャーは「S・トリガー」を得る。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーをすべてタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-015",
+      "limit": 4,
+      "g876ShieldTriggerCondition": {
+        "creature": true,
+        "noColor": true
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "TapAll"
+        }
+      ],
+      "supportBatch": "phase-876",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr07-018",
+      "name": "剛勇妖精フレッシュ・レモン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ワイルド・ベジーズ/スノーフェアリー",
+      "text": "各ターン、３番目に召喚する自分のクリーチャーの召喚コストを最大３少なくしてもよい。ただし、コストは１より少なくならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr07-018",
+      "limit": 4,
+      "g290SummonAura": {
+        "filter": {},
+        "condition": {
+          "g876SummonNumber": 3
+        },
+        "amount": 3,
+        "g560Optional": true
+      },
+      "supportBatch": "phase-876",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 875,
+    "phase": 876,
     "checkedAt": "2026-11-11",
-    "baseCount": 6489,
-    "newEffectCards": 3,
+    "baseCount": 6492,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6492,
+    "totalCount": 6496,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/42955/",
-      "https://dm.takaratomy.co.jp/rule/qa/33425/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37269/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37270/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36606/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36831/",
+      "https://dm.takaratomy.co.jp/rule/qa/44100/",
+      "https://dm.takaratomy.co.jp/rule/qa/45589/",
+      "https://dm.takaratomy.co.jp/card/detail/?id=dm06-029",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36722/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -205459,6 +205571,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/42944/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36638/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 875,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6489,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6492,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/42955/",
+          "https://dm.takaratomy.co.jp/rule/qa/33425/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37269/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37270/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36606/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

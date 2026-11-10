@@ -3433,6 +3433,20 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=876&&f.typeText==='クリーチャー'){
+  if(d.id==='dmr05-027'&&compact363===
+   'このクリーチャーのパワーはバトルゾーンにある自分の他の《跳箱男》1体につき+3000されシールドをさらに1枚ブレイクする。')
+   return {g207CountPower:{zone:'battle',other:true,filter:{g876BattleName:'跳箱男'},amount:3000},g876BreakPerCount:true};
+  if(d.id==='dmr06-025'&&compact363===
+   'このクリーチャーが攻撃する時いずれかのプレイヤーの墓地から呪文を1枚選び持ち主の山札の一番上か一番下に置いてもよい。')
+   return {g34Attack:[{op:'Select',origin:'grave',anyOwner:true,n:1,optional:true,g837DeckEnds:true,filter:{spell:true}}]};
+  if(d.id==='dmr07-018'&&compact363===
+   '各ターン3番目に召喚する自分のクリーチャーの召喚コストを最大3少なくしてもよい。ただしコストは1より少なくならない。')
+   return {g290SummonAura:{filter:{},condition:{g876SummonNumber:3},amount:3,g560Optional:true}};
+  if(d.id==='dmr09-015'&&compact363===
+   'バトルゾーンに自分の無色クリーチャーがあればこのクリーチャーは「S・トリガー」を得る。このクリーチャーをバトルゾーンに出した時バトルゾーンにある相手のクリーチャーをすべてタップする。')
+   return {g876ShieldTriggerCondition:{creature:true,noColor:true},effect:'sixPhoto',g34Tasks:[{op:'TapAll'}]};
+ }
  if(phase>=875&&f.typeText==='クリーチャー'){
   if(d.id==='dmr06-044'&&compact363===
    '自分のアンノウンをバトルゾーンに出した時このクリーチャーを破壊してもよい。そうした場合相手のタップされているクリーチャーを1体破壊する。')
