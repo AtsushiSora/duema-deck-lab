@@ -1,0 +1,413 @@
+{
+  "phase": 774,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6173,
+  "description": "攻撃終了時の任意ドロー、シャッフル後の公開と展開・遅延帰還、手札破棄と攻撃・ブロック後の自壊に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/44747/",
+    "https://dm.takaratomy.co.jp/rule/qa/46134/",
+    "https://dm.takaratomy.co.jp/rule/qa/48903/",
+    "https://dm.takaratomy.co.jp/rule/qa/44188/",
+    "https://dm.takaratomy.co.jp/rule/qa/48922/",
+    "https://dm.takaratomy.co.jp/rule/qa/33527/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp4-021",
+      "name": "魔鎧天 アカフェシー",
+      "faces": [
+        {
+          "name": "魔鎧天 アカフェシー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "革命チェンジ：コスト３以上のアーマードまたはコスト３以上のマジック（自分のコスト３以上のアーマードまたはコスト３以上のマジックが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\nこのクリーチャーが「革命チェンジ」によって出た時、相手のパワー3000以下のクリーチャーを１体選び、破壊する。\n自分のクリーチャーの攻撃の終わりに、カードを１枚引いてもよい。",
+          "race": "マジック・アーマード・セレス",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-021",
+      "spec": {
+        "rev": {
+          "categories": [
+            "アーマード",
+            "マジック"
+          ],
+          "min": 3,
+          "g486Current": true
+        },
+        "breaker": 2,
+        "g773RevEntry": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 3000,
+              "g199Power": true
+            }
+          }
+        ],
+        "g774AllyAttackEnd": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "d314e98dfba0565391327577fd8774cc3044241cb7ac82fb18f447925fe8c456",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-026",
+      "name": "バンキシーの魔盤",
+      "faces": [
+        {
+          "name": "バンキシーの魔盤",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\n自分の山札をシャッフルし、上から１枚目を表向きにする。そのカードがクリーチャーでなければ手札に加える。クリーチャーなら出し、「スピードアタッカー」を与える。次の相手のターンのはじめに、そのクリーチャーを手札に戻す。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-026",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Shuffle405"
+          },
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "creature": true
+            },
+            "to": "battle",
+            "elseTo": "hand",
+            "g774Banky": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "e4359db3f826b03d44488d6f93e30a8beb9081faa09a176c119282ed3a26af12",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-018",
+      "name": "ヴァイオシロン-C6",
+      "faces": [
+        {
+          "name": "ヴァイオシロン-C6",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手の手札を１枚見ないで選び、捨てさせる。\nこのクリーチャーが攻撃する時またはブロックした時、その攻撃の後、このクリーチャーを破壊する。",
+          "race": "メカ・デル・ディネロ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-018",
+      "spec": {
+        "trigger": true,
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BlindDiscard773"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "AfterAttackDestroy"
+          }
+        ],
+        "g178Block": [
+          {
+            "op": "AfterAttackDestroy"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "92cfebfa637e4e1814e148f40f51861fbe7bc16ecfc79c9bf8dcf00a2734c9c1",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23rp4x-021",
+      "canonicalId": "dm23rp4-021",
+      "name": "魔鎧天 アカフェシー",
+      "faces": [
+        {
+          "name": "魔鎧天 アカフェシー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "革命チェンジ：コスト３以上のアーマードまたはコスト３以上のマジック（自分のコスト３以上のアーマードまたはコスト３以上のマジックが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\nこのクリーチャーが「革命チェンジ」によって出た時、相手のパワー3000以下のクリーチャーを１体選び、破壊する。\n自分のクリーチャーの攻撃の終わりに、カードを１枚引いてもよい。",
+          "race": "マジック・アーマード・セレス",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-021",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "f65ed25481efcf45dd69df10335f11f1f5e3344ddd24a313a35ec7f297fe60c8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy22-063",
+      "canonicalId": "dm23rp4-021",
+      "name": "魔鎧天 アカフェシー",
+      "faces": [
+        {
+          "name": "魔鎧天 アカフェシー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "革命チェンジ：コスト３以上のアーマードまたはコスト３以上のマジック（自分のコスト３以上のアーマードまたはコスト３以上のマジックが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\nこのクリーチャーが「革命チェンジ」によって出た時、相手のパワー3000以下のクリーチャーを１体選び、破壊する。\n自分のクリーチャーの攻撃の終わりに、カードを１枚引いてもよい。",
+          "race": "マジック・アーマード・セレス",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy22-063",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy22-063.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "20e601d6f120375e0944272be3a668e0222c3cdd4f5a6c93bb589e3262c2ede8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4x-026",
+      "canonicalId": "dm23rp4-026",
+      "name": "バンキシーの魔盤",
+      "faces": [
+        {
+          "name": "バンキシーの魔盤",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\n自分の山札をシャッフルし、上から１枚目を表向きにする。そのカードがクリーチャーでなければ手札に加える。クリーチャーなら出し、「スピードアタッカー」を与える。次の相手のターンのはじめに、そのクリーチャーを手札に戻す。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-026",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "5bbfd4e6af2216c1c34827ed238ed4d15c22e4a97000f684272b97853776e516",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-14A",
+      "canonicalId": "dm23rp4-026",
+      "name": "バンキシーの魔盤",
+      "faces": [
+        {
+          "name": "バンキシーの魔盤",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\n自分の山札をシャッフルし、上から１枚目を表向きにする。そのカードがクリーチャーでなければ手札に加える。クリーチャーなら出し、「スピードアタッカー」を与える。次の相手のターンのはじめに、そのクリーチャーを手札に戻す。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-14A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-14A.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "14f0b015a31bb54eaadcaa17e8cc7a982220cc7c0998257d024b177c6b587f71",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4x-14A",
+      "canonicalId": "dm23rp4-026",
+      "name": "バンキシーの魔盤",
+      "faces": [
+        {
+          "name": "バンキシーの魔盤",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\n自分の山札をシャッフルし、上から１枚目を表向きにする。そのカードがクリーチャーでなければ手札に加える。クリーチャーなら出し、「スピードアタッカー」を与える。次の相手のターンのはじめに、そのクリーチャーを手札に戻す。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-14A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-14A.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "0e3d0ceab27f9e9d9f0f098e61bde5ce8de689769226c36d65f4bd77d7005860",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-16B",
+      "canonicalId": "dm23rp4-026",
+      "name": "バンキシーの魔盤",
+      "faces": [
+        {
+          "name": "バンキシーの魔盤",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\n自分の山札をシャッフルし、上から１枚目を表向きにする。そのカードがクリーチャーでなければ手札に加える。クリーチャーなら出し、「スピードアタッカー」を与える。次の相手のターンのはじめに、そのクリーチャーを手札に戻す。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-16B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-16B.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "202a1cb626dacad7693a7f41cc4652a6bea68afef28e3684d4195e1808859167",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4x-16B",
+      "canonicalId": "dm23rp4-026",
+      "name": "バンキシーの魔盤",
+      "faces": [
+        {
+          "name": "バンキシーの魔盤",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\n自分の山札をシャッフルし、上から１枚目を表向きにする。そのカードがクリーチャーでなければ手札に加える。クリーチャーなら出し、「スピードアタッカー」を与える。次の相手のターンのはじめに、そのクリーチャーを手札に戻す。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-16B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-16B.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "62ab5b13a27a931d02483a033efdae44186ba9e7b4c7f7fd409c23135b37efea",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy22-072",
+      "canonicalId": "dm23rp4-026",
+      "name": "バンキシーの魔盤",
+      "faces": [
+        {
+          "name": "バンキシーの魔盤",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札をシャッフルし、上から１枚目を表向きにする。そのカードがクリーチャーでなければ手札に加える。クリーチャーなら出し、「スピードアタッカー」を与える。次の相手のターンのはじめに、そのクリーチャーを手札に戻す。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "マジック・ソング",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy22-072",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy22-072.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "540d6983cec8658ff43f57849cbaedf991fe3e34e6de877eadc7b3a8faaa0f81",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp4-021": 4,
+      "dm23rp4-026": 4,
+      "dm23rp3-018": 4,
+      "dm23rp4x-021": 4,
+      "promoy22-063": 4,
+      "dm23rp4x-026": 4,
+      "dm23rp4-14A": 4,
+      "dm23rp4x-14A": 4,
+      "dm23rp4-16B": 4,
+      "dm23rp4x-16B": 4,
+      "promoy22-072": 4
+    }
+  }
+}

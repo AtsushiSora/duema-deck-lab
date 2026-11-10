@@ -2564,6 +2564,20 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=774){
+  const trigger='S・トリガーS・トリガー';
+  if(f.typeText==='呪文'&&compact363.replace('(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)','')===trigger+'自分の山札をシャッフルし上から1枚目を表向きにする。そのカードがクリーチャーでなければ手札に加える。クリーチャーなら出し「スピードアタッカー」を与える。次の相手のターンのはじめにそのクリーチャーを手札に戻す。(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Shuffle405'},{op:'RevealTop514',filter:{creature:true},to:'battle',elseTo:'hand',g774Banky:true}]};
+  if(f.typeText==='クリーチャー'){
+   const condition='コスト3以上のアーマードまたはコスト3以上のマジック';
+   if(compact363==='革命チェンジ:'+condition+'(自分の'+condition+'が攻撃する時そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい)W・ブレイカーこのクリーチャーが「革命チェンジ」によって出た時相手のパワー3000以下のクリーチャーを1体選び破壊する。自分のクリーチャーの攻撃の終わりにカードを1枚引いてもよい。')
+    return {rev:{categories:['アーマード','マジック'],min:3,g486Current:true},breaker:2,
+     g773RevEntry:[{op:'Target',to:'grave',filter:{maxPower:3000,g199Power:true}}],g774AllyAttackEnd:true};
+   if(compact363===trigger+'(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよいブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)W・ブレイカー(このクリーチャーはシールドを2つブレイクする)このクリーチャーが出た時相手の手札を1枚見ないで選び捨てさせる。このクリーチャーが攻撃する時またはブロックした時その攻撃の後このクリーチャーを破壊する。')
+    return {trigger:true,blocker:true,breaker:2,effect:'sixPhoto',g34Tasks:[{op:'BlindDiscard773'}],
+     g34Attack:[{op:'AfterAttackDestroy'}],g178Block:[{op:'AfterAttackDestroy'}]};
+  }
+ }
  if(phase>=773&&f.typeText==='クリーチャー'){
   const change=(condition)=>'革命チェンジ:'+condition+'(自分の'+condition+'が攻撃する時そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい)';
   const onChange='このクリーチャーが「革命チェンジ」によって出た時';

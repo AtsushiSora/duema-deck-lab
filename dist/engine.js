@@ -896,7 +896,7 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  }
  if(!inst.tapped&&speedTapOnEntry(s,p,c,isEvolution(inst)))inst.tapped=true;
  if(c.natureAce4&&genmuActive(s))inst.aceIgnored=true;s.players[p].battle.push(inst);if(entryOptions.g728CrossIds?.length)extra.crossOnEntry(s,p,inst,entryOptions.g728CrossIds);extra.history.d2Entry(s,p,inst);inst=extra.phoenix.link(s,p,inst,entryOptions);inst=extra.saga.linkM(s,p,inst,entryOptions);if(c.balchuris)(s.g23BalEntered??=[null,null])[p]=s.turn;if(c.type==='creature')(s.g7Entries??=[0,0])[p]++;refreshDynamicTypes(s);if(isCreature(s,inst)&&s.metrics[p].firstCreature===null)s.metrics[p].firstCreature=s.players[p].turns;
- if(entryOptions.g771SpeedSpell&&!inst.sealed&&isCreature(s,inst))extra.six.deploymentSpeed771(s,p,inst,entryOptions.g771SpeedSpell);
+ if(entryOptions.g771SpeedSpell&&!inst.sealed&&isCreature(s,inst))extra.six.deploymentSpeed771(s,p,inst,entryOptions.g771SpeedSpell,entryOptions.g774Banky);
  if(isCreature(s,inst)){s.players[p].enteredThisTurn=(s.players[p].enteredThisTurn||0)+1;s.creaturesEntered=(s.creaturesEntered||0)+1;}
  if(entryOptions.g753Swap){
   const swap=entryOptions.g753Swap;

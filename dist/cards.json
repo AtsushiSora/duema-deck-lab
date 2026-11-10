@@ -178856,23 +178856,134 @@
       ],
       "supportBatch": "phase-773",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-021",
+      "name": "魔鎧天 アカフェシー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "マジック・アーマード・セレス",
+      "text": "革命チェンジ：コスト３以上のアーマードまたはコスト３以上のマジック（自分のコスト３以上のアーマードまたはコスト３以上のマジックが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\nこのクリーチャーが「革命チェンジ」によって出た時、相手のパワー3000以下のクリーチャーを１体選び、破壊する。\n自分のクリーチャーの攻撃の終わりに、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-021",
+      "limit": 4,
+      "rev": {
+        "categories": [
+          "アーマード",
+          "マジック"
+        ],
+        "min": 3,
+        "g486Current": true
+      },
+      "breaker": 2,
+      "g773RevEntry": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 3000,
+            "g199Power": true
+          }
+        }
+      ],
+      "g774AllyAttackEnd": true,
+      "supportBatch": "phase-774",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp4-026",
+      "name": "バンキシーの魔盤",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "マジック・ソング",
+      "text": "S・トリガー S・トリガー\n自分の山札をシャッフルし、上から１枚目を表向きにする。そのカードがクリーチャーでなければ手札に加える。クリーチャーなら出し、「スピードアタッカー」を与える。次の相手のターンのはじめに、そのクリーチャーを手札に戻す。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-026",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Shuffle405"
+        },
+        {
+          "op": "RevealTop514",
+          "filter": {
+            "creature": true
+          },
+          "to": "battle",
+          "elseTo": "hand",
+          "g774Banky": true
+        }
+      ],
+      "supportBatch": "phase-774",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp3-018",
+      "name": "ヴァイオシロン-C6",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 7000,
+      "race": "メカ・デル・ディネロ",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい\nブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、相手の手札を１枚見ないで選び、捨てさせる。\nこのクリーチャーが攻撃する時またはブロックした時、その攻撃の後、このクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-018",
+      "limit": 4,
+      "trigger": true,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BlindDiscard773"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "AfterAttackDestroy"
+        }
+      ],
+      "g178Block": [
+        {
+          "op": "AfterAttackDestroy"
+        }
+      ],
+      "supportBatch": "phase-774",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 773,
+    "phase": 774,
     "checkedAt": "2026-11-10",
-    "baseCount": 6170,
+    "baseCount": 6173,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6173,
+    "totalCount": 6176,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
       "https://dm.takaratomy.co.jp/rule/qa/44747/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37810/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37815/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35990/",
-      "https://dm.takaratomy.co.jp/rule/qa/44661/"
+      "https://dm.takaratomy.co.jp/rule/qa/46134/",
+      "https://dm.takaratomy.co.jp/rule/qa/48903/",
+      "https://dm.takaratomy.co.jp/rule/qa/44188/",
+      "https://dm.takaratomy.co.jp/rule/qa/48922/",
+      "https://dm.takaratomy.co.jp/rule/qa/33527/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -192332,6 +192443,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/44747/",
           "https://dm.takaratomy.co.jp/rule/qa/48150/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37810/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 773,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6170,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6173,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/44747/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37810/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37815/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35990/",
+          "https://dm.takaratomy.co.jp/rule/qa/44661/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
