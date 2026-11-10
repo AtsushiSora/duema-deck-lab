@@ -302,6 +302,7 @@ export function createSixPhotoRules(api){
    d.op==='DiscardCost655'?{...d,costs:discardCosts655(s,t.p,y)}:d);
  }
  function discardScore248(s,t,y){const own=s.players[t.p],enemy=creatures(s,1-t.p).filter(x=>!x.sealed),d=t.defs[0];
+  if(d.op==='ShieldTop')return api.canAddShield(s,t.p)&&own.deck.length>1?12-cost(card(y)):-100;
   if(d.op==='SelfGrant754'&&d.grant.speedAttacker){
    const host=sourceHost474(s,t)?.x;
    const c=host&&effective(host,s);
@@ -324,6 +325,7 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g834AnyEmptyHand)return s.players.some(player=>player.hand.length===0);
   if(f.g811ManaLeft)return s.g47ManaLeft?.[p]===s.turn;
   if(f.g792AbsentAlly)return !s.players[p].battle.some(x=>!x.sealed&&!x.faceDown&&api.isCreature(s,x)&&effective(x,s).name===f.g792AbsentAlly);
   if(f.g791ExtraSpell)return (s.players[p].extra||[]).some(x=>!x.faceDown&&faces(card(x)).some(c=>c.type==='spell'));
@@ -475,7 +477,18 @@ export function createSixPhotoRules(api){
  function battleAuras466(s,x){if(!s)return[];const p=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));if(p<0)return[];return creatures(s,p).flatMap(source=>{const r=!source.sealed&&effective(source,s).g466BattleAura;return r&&(!r.other||source.uid!==x.uid)&&(!r.sourceTapped||source.tapped)&&(!r.condition||ownCondition(s,p,r.condition,source.uid))&&matches(s,p,x,r.filter)?[r]:[];});}
  function battleSafe466(s,x,y,opponentPower){const c=effective(x,s);return !!c.g34BattleSafe||hooks.destroySafe409(s,x)||!!(c.g466BattleSafe&&y&&opponentPower<=c.g466BattleSafe.maxOpponentPower)||!!(y&&effective(y,s).g466ProtectOpponent)||battleAuras466(s,x).some(r=>r.protect);}
  const reserved=own=>new Set(Object.entries(own).filter(([k,v])=>Array.isArray(v)&&/Protected$|Reveals$/.test(k)).flatMap(([,v])=>v));
- function look(s,t){t={...t,public:t.public||api.lookPublic(s,t.p)};if(api.deckLocked(s,t.p))return[];const own=s.players[t.p],skip=reserved(own),xs=own.deck.filter(x=>!skip.has(x.uid)).slice(0,api.lookCount(s,t.p,t.n??3));(own.g34Protected??=[]).push(...xs.map(x=>x.uid));api.log(s,t.p,t.public?'reveal':'look',card(t.source).name+'：山札の上'+xs.length+'枚'+(t.public?'を公開：'+xs.map(x=>card(x).name).join('・'):'を確認'),{cardId:t.source});return xs.map(x=>x.uid);}
+ function look(s,t,owner=t.p){
+  if(api.deckLocked(s,t.p))return [];
+  const own=s.players[owner],held=reserved(own),ownLibrary=owner===t.p;
+  const n=ownLibrary?api.lookCount(s,t.p,t.n??3):t.n??3;
+  const publicLook=t.public||ownLibrary&&api.lookPublic(s,t.p);
+  const rows=own.deck.filter(x=>!held.has(x.uid)).slice(0,n);
+  const ids=rows.map(x=>x.uid);
+  (own.g34Protected??=[]).push(...ids);
+  api.log(s,t.p,publicLook?'reveal':'look',card(t.source).name+'：山札の上'+ids.length+'枚'+
+   (publicLook?'を公開：'+rows.map(x=>card(x).name).join('・'):'を確認'),{cardId:t.source});
+  return ids;
+ }
  function manaDownScore426(s,t,y){
   const own=s.players[t.p],remaining=new Set([...own.mana.filter(x=>x.uid!==y.uid).flatMap(x=>api.manaColors(card(x),s,t.p)),...api.manaColors({civilizations:[],civ:'ゼロ'},s,t.p)]),lost=api.manaColors(card(y),s,t.p).filter(c=>!remaining.has(c)),rows=[...own.hand,...own.battle,...own.grave].map(card),synergy=rows.some(c=>c.g260Self?.filter?.g286FaceDownMana!==undefined||c.g261Discount?.filter?.g286FaceDownMana!==undefined||c.g34Tasks?.some(d=>d.filter?.g286FaceDownMana!==undefined)),zero=(card(y).manaValue??(colors(card(y)).length===5?0:1))===0&&!(s.g35ZeroMana||[]).some(r=>r.p===t.p);
   return(zero?10:synergy?12:0)-lost.length*30+(synergy&&y.tapped?1:0);
@@ -1193,6 +1206,24 @@ export function createSixPhotoRules(api){
  }
  case'g34_AttackFight408':{if(t.g747Once&&parottaUsed747(s,t))break;const y=attackHost408(s,t);if(y&&api.isCreature(s,y)&&!y.sealed)put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:y.uid,incarnation:y.incarnation||0},optional:true});break;}
  case'g34_AttackExtraBreak511':{const ref=t.g399Attacker;if(ref)start(s,{...t,uid:ref.uid,incarnation:ref.incarnation},[{op:'SelfExtraBreak444',amount:t.amount}]);break;}
+ case'g34_GuardVision834':
+  choice(s,t,'どちらの山札を確認しますか？',[opt('自分の山札',t.p,10),opt('相手の山札',1-t.p,8)]);
+  break;
+ case'g34_GuardOrder834':{
+  const owner=s.players[t.owner],rows=t.ids.map(uid=>owner.deck.find(x=>x.uid===uid)).filter(Boolean);
+  if(rows.length>1||rows.length===1&&!t.ordered.length){
+   choice(s,t,rows.length===1?'山札のカードを確認する':'山札の上から置く順序を選ぶ',
+    rows.map(x=>opt(card(x).name,x.uid,0,x.cardId)));
+   break;
+  }
+  const order=[...t.ordered,...t.ids],selected=new Set(order);
+  const byUid=new Map(owner.deck.filter(x=>selected.has(x.uid)).map(x=>[x.uid,x]));
+  const sorted=order.flatMap(uid=>byUid.has(uid)?[byUid.get(uid)]:[]);
+  let index=0;
+  owner.deck=owner.deck.map(x=>selected.has(x.uid)?sorted[index++]:x);
+  for(const uid of order)release(s,t.owner,uid);
+  break;
+ }
  case'g34_HauntedChoice833':
   choice(s,t,'どちらの山札の一番上を確認しますか？',[
    opt('自分の山札',t.p,10),opt('相手の山札',1-t.p,8)
@@ -2485,6 +2516,11 @@ export function createSixPhotoRules(api){
   if(v&&api.swapShield585(s,t.p,t.shieldUid))api.log(s,t.p,'shieldSwap',card(t.source).name+'：確認したカードと山札の上を入れ替えた',{cardId:t.source});
   if(t.remaining>1){const {g585Peek,shieldUid,...next}=t;put(s,{...next,op:'g34_Peek585',remaining:t.remaining-1});}
   break;
+ case'g34_GuardVision834':{
+  const ids=look(s,{...t,n:3},v);
+  if(ids.length)put(s,{...t,op:'g34_GuardOrder834',owner:v,ids,ordered:[]});
+  break;
+ }
  case'g34_HauntedChoice833':{
   const deck=s.players[v],held=reserved(deck),top=deck.deck.find(x=>!held.has(x.uid));
   if(!top)break;
@@ -2743,6 +2779,7 @@ export function createSixPhotoRules(api){
  case'g34_LookAll424':{const chosen=v?t.g424Ids:[];put(s,{...t,op:'g34_LookPick',chosen,stages:t.stages.map((q,i)=>i===t.stage?{...q,n:chosen.length,optional:false,g424AllOrNone:false}:q)});break;}
  case'g34_ManaDown426':{const y=v&&own.mana.find(y=>y.uid===v.uid&&!y.faceDown&&(y.zoneSerial||0)===v.serial);if(y){const name=card(y).name;y.faceDown=true;api.log(s,t.p,'manaFaceDown',card(t.source).name+'：'+name+'をマナゾーンで裏向きにした',{cardId:y.cardId});}break;}
  case'g34_LookPick':if(v)put(s,{...t,chosen:[...(t.chosen||[]),v]});else put(s,{...t,stages:t.stages.map((q,i)=>i===t.stage?{...q,n:(t.chosen||[]).length}:q)});break;
+ case'g34_GuardOrder834':
  case'g34_Order':put(s,{...t,ids:t.ids.filter(uid=>uid!==v),ordered:[...(t.ordered||[]),v]});break;
  case'g34_Ramp':ramp(s,t,v);break;
  case'g34_DrawUpTo':if(v){api.draw(s,t.p,1);if(s.winner===null&&t.n>1)put(s,{...t,n:t.n-1});}break;

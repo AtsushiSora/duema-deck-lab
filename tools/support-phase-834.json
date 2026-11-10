@@ -1,0 +1,204 @@
+{
+  "phase": 834,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6360,
+  "description": "山札の上3枚の順序変更、味方の登場時の自己破壊、ノー・チョイス、ターン終了時の手札破棄とシールド追加に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34916/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36162/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37636/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37637/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36244/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36217/",
+    "https://dm.takaratomy.co.jp/rule/qa/31786/",
+    "https://dm.takaratomy.co.jp/rule/qa/31530/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31662/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm38-043",
+      "name": "ガード・ビジョン",
+      "faces": [
+        {
+          "name": "ガード・ビジョン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "いずれかのプレイヤーの山札の上から３枚を見る。その後、それを好きな順序で元に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-043",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GuardVision834"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "8fd1b4206116652a570be74b4f148d3cddb671dc237de56987dea04211679fa1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-026",
+      "name": "巨骸の剣王ダーク・マゼラン",
+      "faces": [
+        {
+          "name": "巨骸の剣王ダーク・マゼラン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n自分の他の、進化ではないクリーチャーをバトルゾーンに出した時、このクリーチャーを破壊する。",
+          "race": "デーモン・コマンド",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-026",
+      "spec": {
+        "breaker": 2,
+        "g314OtherEntry": {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "nonEvolution": true
+          },
+          "defs": [
+            {
+              "op": "SelfDestroy"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "a46083376823f0d1f1e83486a4df9fdbc9bf2a5d285f59fc8ce0fcb652568368",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm37-044",
+      "name": "凶気の影スカル・メルディ",
+      "faces": [
+        {
+          "name": "凶気の影スカル・メルディ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ノー・チョイス(手札を１枚も持っていないプレイヤーがひとりでもいれば、このクリーチャーは次の能力を得る) このクリーチャーのパワーは+4000され、「W・ブレイカー」を得る。",
+          "race": "ゴースト",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-044",
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g834AnyEmptyHand": true
+          },
+          "grants": {
+            "power": 4000,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "bf4e7e5ee95bf7a8ed01ec11afb0ae2e05c465c8781d8722204c94a29f61810f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm39-006",
+      "name": "巡霊者ヴィーワイ",
+      "faces": [
+        {
+          "name": "巡霊者ヴィーワイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分のターンの終わりに、自分のシールドが３枚以下であれば、クリーチャーを１体、自分の手札から捨ててもよい。そうした場合、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加える。",
+          "race": "コスモ・ウォーカー/エイリアン",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-006",
+      "spec": {
+        "g174End": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g265ShieldsMax": 3
+            },
+            "defs": [
+              {
+                "op": "DiscardFor248",
+                "g488DiscardFilter": {
+                  "g228Face": {
+                    "type": "creature"
+                  }
+                },
+                "g770DiscardAttempt": true,
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "08254fdac933cfb9fc21317f7143df85b4a25cc3d2f01e80e987458a36d99e73",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm38-043": 4,
+      "dm36-026": 4,
+      "dm37-044": 4,
+      "dm39-006": 4
+    }
+  }
+}

@@ -2507,6 +2507,19 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=834&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='呪文'&&text==='いずれかのプレイヤーの山札の上から3枚を見る。その後それを好きな順序で元に戻す。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'GuardVision834'}]};
+  if(f.typeText==='クリーチャー'&&text==='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)自分の他の進化ではないクリーチャーをバトルゾーンに出した時このクリーチャーを破壊する。')
+   return {breaker:2,g314OtherEntry:{who:'self',filter:{creature:true,nonEvolution:true},defs:[{op:'SelfDestroy'}]}};
+  if(f.typeText==='クリーチャー'&&text==='ノー・チョイス(手札を1枚も持っていないプレイヤーがひとりでもいればこのクリーチャーは次の能力を得る)このクリーチャーのパワーは+4000され「W・ブレイカー」を得る。')
+   return {g260Self:{filter:{g834AnyEmptyHand:true},grants:{power:4000,breaker:2}}};
+  if(f.typeText==='クリーチャー'&&text==='自分のターンの終わりに自分のシールドが3枚以下であればクリーチャーを1体自分の手札から捨ててもよい。そうした場合自分の山札の上から1枚目を裏向きのまま新しいシールドとして自分のシールドゾーンに加える。')
+   return {g174End:[{op:'IfOwn',filter:{g265ShieldsMax:3},defs:[{op:'DiscardFor248',
+    g488DiscardFilter:{g228Face:{type:'creature'}},g770DiscardAttempt:true,defs:[{op:'ShieldTop',n:1}]
+   }]}]};
+ }
  if(phase>=833&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const blocker='ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)';

@@ -185398,21 +185398,151 @@
       ],
       "supportBatch": "phase-833",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm38-043",
+      "name": "ガード・ビジョン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "いずれかのプレイヤーの山札の上から３枚を見る。その後、それを好きな順序で元に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-043",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GuardVision834"
+        }
+      ],
+      "supportBatch": "phase-834",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm36-026",
+      "name": "巨骸の剣王ダーク・マゼラン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 11000,
+      "race": "デーモン・コマンド",
+      "text": "W・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n自分の他の、進化ではないクリーチャーをバトルゾーンに出した時、このクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-026",
+      "limit": 4,
+      "breaker": 2,
+      "g314OtherEntry": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "nonEvolution": true
+        },
+        "defs": [
+          {
+            "op": "SelfDestroy"
+          }
+        ]
+      },
+      "supportBatch": "phase-834",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm37-044",
+      "name": "凶気の影スカル・メルディ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ゴースト",
+      "text": "ノー・チョイス(手札を１枚も持っていないプレイヤーがひとりでもいれば、このクリーチャーは次の能力を得る) このクリーチャーのパワーは+4000され、「W・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-044",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "g834AnyEmptyHand": true
+        },
+        "grants": {
+          "power": 4000,
+          "breaker": 2
+        }
+      },
+      "supportBatch": "phase-834",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm39-006",
+      "name": "巡霊者ヴィーワイ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5500,
+      "race": "コスモ・ウォーカー/エイリアン",
+      "text": "自分のターンの終わりに、自分のシールドが３枚以下であれば、クリーチャーを１体、自分の手札から捨ててもよい。そうした場合、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-006",
+      "limit": 4,
+      "g174End": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g265ShieldsMax": 3
+          },
+          "defs": [
+            {
+              "op": "DiscardFor248",
+              "g488DiscardFilter": {
+                "g228Face": {
+                  "type": "creature"
+                }
+              },
+              "g770DiscardAttempt": true,
+              "defs": [
+                {
+                  "op": "ShieldTop",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-834",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 833,
+    "phase": 834,
     "checkedAt": "2026-11-10",
-    "baseCount": 6357,
-    "newEffectCards": 3,
+    "baseCount": 6360,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6360,
+    "totalCount": 6364,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36251/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/34916/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36162/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37636/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37637/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36244/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36217/",
       "https://dm.takaratomy.co.jp/rule/qa/31786/",
-      "https://dm.takaratomy.co.jp/rule/qa/45064/",
-      "https://dm.takaratomy.co.jp/rule/qa/45920/",
+      "https://dm.takaratomy.co.jp/rule/qa/31530/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31662/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -200104,6 +200234,25 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35982/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35983/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35984/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 833,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6357,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6360,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36251/",
+          "https://dm.takaratomy.co.jp/rule/qa/31786/",
+          "https://dm.takaratomy.co.jp/rule/qa/45064/",
+          "https://dm.takaratomy.co.jp/rule/qa/45920/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [
