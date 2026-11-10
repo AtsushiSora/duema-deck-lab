@@ -312,6 +312,7 @@ export function createSixPhotoRules(api){
    d.op==='DiscardCost655'?{...d,costs:discardCosts655(s,t.p,y,d.g835Creature)}:d);
  }
  function discardScore248(s,t,y){const own=s.players[t.p],enemy=creatures(s,1-t.p).filter(x=>!x.sealed),d=t.defs[0];
+  if(d.op==='Clock842')return own.deck.length>1&&!api.deckLocked(s,t.p)?5-Math.min(cost(card(y)),8):-100;
   if(d.op==='ShieldTop')return api.canAddShield(s,t.p)&&own.deck.length>1?12-cost(card(y)):-100;
   if(d.op==='SelfGrant754'&&d.grant.speedAttacker){
    const host=sourceHost474(s,t)?.x;
@@ -2069,6 +2070,21 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
   break;
  }
+ case'g34_Clock842':put(s,{...t,op:'g61_Clock',g842FixedOrder:true});break;
+ case'g34_TappedShields842':{
+  const n=creatures(s,t.p).filter(x=>!x.sealed&&x.tapped).length;
+  if(n)put(s,{...t,op:'g34_TappedShieldPick842',n,picked:[]});
+  break;
+ }
+ case'g34_TappedShieldPick842':{
+  const defender=1-t.p,shields=s.players[defender].shields;
+  const options=shields.flatMap((x,i)=>api.shieldCards(x).some(y=>!y.g37ShieldHeld)
+   ?[opt('シールド '+(i+1)+(x.faceUp?'：'+card(x).name:''),x.uid,t.picked.includes(x.uid)?0:10,x.faceUp?x.cardId:undefined)]:[]);
+  // Rule 601.1h: a choice for each creature may name the same shield again.
+  if(options.length&&t.picked.length<t.n)choice(s,t,'相手が手札に加えるシールドを選ぶ（'+t.picked.length+'/'+t.n+'）',options);
+  else if(t.picked.length)api.interruptBreak(s,defender,[...new Set(t.picked)],task('g34_Sequence',t.p,t.source,{defs:[]}),{g842Hand:true,controller:t.p,source:t.source});
+  break;
+ }
  case'g34_ContinueDeckSpell841':api.resumeCastSpell(s,t.p,t.uid,true);break;
  case'g34_LookSpell841':{
   const [uid]=look(s,{...t,n:1}),y=own.deck.find(x=>x.uid===uid);
@@ -2457,6 +2473,9 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
  }
  function chosen(s,t,v){if(fifteen.chosen(s,t,v))return true;if(!t.op.startsWith('g34_'))return false;const own=s.players[t.p],x=live(s,t);switch(t.op){
+ case'g34_TappedShieldPick842':
+  put(s,{...t,picked:[...t.picked,v]});
+  break;
  case'g34_LookSpell841':{
   const y=v&&own.deck.find(x=>x.uid===v.uid&&(x.zoneSerial||0)===v.serial);
   const c=y&&faces(api.zoneCard(s,t.p,y,'deck'))[v.face];

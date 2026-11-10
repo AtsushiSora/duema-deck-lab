@@ -2511,6 +2511,15 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=842&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText),breaker='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
+  if(text==='このクリーチャーが攻撃する時バトルゾーンにある自分のタップされているクリーチャー1体につき相手のシールドをひとつ選ぶ。相手は選ばれたシールドを自身の手札に加える。')
+   return {g34Attack:[{op:'TappedShields842'}]};
+  if(text==='マナゾーンに置く時このカードはタップして置く。パワーアタッカー+2000(攻撃中このクリーチャーのパワーは+2000される)このクリーチャーが破壊される時墓地に置くかわりに新しいシールドとして自分のシールドゾーンに加える。')
+   return {attackBonus:2000,g842DestroyShield:true};
+  if(text==='自分のターンの終わりにクリーチャーを1体自分の手札から捨ててもよい。そうした場合自分の山札の上から3枚を見る。その中から1枚を手札に加え1枚を山札の一番下に戻し残りの1枚を山札の一番上に置く。'+breaker)
+   return {breaker:2,g174End:[{op:'DiscardFor248',g488DiscardFilter:{g228Face:{type:'creature'}},g770DiscardAttempt:true,defs:[{op:'Clock842'}]}]};
+ }
  if(phase>=841&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText),breaker='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
   if(text==='このクリーチャーをバトルゾーンに出した時またはこのクリーチャーが攻撃する時自分の山札の上から1枚目を見る。それが呪文であればコストを支払わずに唱えてもよい。'+breaker)

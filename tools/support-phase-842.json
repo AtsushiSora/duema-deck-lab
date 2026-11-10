@@ -1,0 +1,141 @@
+{
+  "phase": 842,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6388,
+  "description": "シールドの手札送り、破壊を置換するシールド化、ターン終了時の山札操作に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36387/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36388/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36235/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36236/"
+  ],
+  "cards": [
+    {
+      "id": "dmr02-027",
+      "name": "神討兵ズバット・リョウダン",
+      "faces": [
+        {
+          "name": "神討兵ズバット・リョウダン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーが攻撃する時、バトルゾーンにある自分のタップされているクリーチャー１体につき、相手のシールドをひとつ選ぶ。相手は選ばれたシールドを自身の手札に加える。",
+          "race": "アーマロイド/ハンター",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-027",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "TappedShields842"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr02-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "58b520d2f77f2e7c2fd7598c68a2e82d8480877daf97ae788beb20fd5019d9fd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr03-031",
+      "name": "護聖勇騎オーバーボーダー",
+      "faces": [
+        {
+          "name": "護聖勇騎オーバーボーダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nパワーアタッカー+2000（攻撃中、このクリーチャーのパワーは+2000される）\nこのクリーチャーが破壊される時、墓地に置くかわりに新しいシールドとして自分のシールドゾーンに加える。",
+          "race": "ガーディアン/ヒューマノイド",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-031",
+      "spec": {
+        "attackBonus": 2000,
+        "g842DestroyShield": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "7ce79b819bfb0403537c5fbf545e0c6b4353efdb8620315f8f850b8abc4ba752",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm39-009",
+      "name": "蒼神龍カノウプス",
+      "faces": [
+        {
+          "name": "蒼神龍カノウプス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分のターンの終わりに、クリーチャーを１体、自分の手札から捨ててもよい。そうした場合、自分の山札の上から３枚を見る。その中から１枚を手札に加え、１枚を山札の一番下に戻し、残りの１枚を山札の一番上に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ポセイディア・ドラゴン/エイリアン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-009",
+      "spec": {
+        "breaker": 2,
+        "g174End": [
+          {
+            "op": "DiscardFor248",
+            "g488DiscardFilter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "g770DiscardAttempt": true,
+            "defs": [
+              {
+                "op": "Clock842"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "af2031f01697872f87def5b98fd22592374ff9b947aa4f980bd8502e9e856274",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr02-027": 4,
+      "dmr03-031": 4,
+      "dm39-009": 4
+    }
+  }
+}

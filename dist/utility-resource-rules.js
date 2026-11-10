@@ -176,7 +176,7 @@ export function createUtilityResourceRules(api){
  case'g61_Piero':{const x=own.battle.find(x=>key(x)===key(t));if(x&&!x.sealed)choice(s,t,'ファル・ピエロを破壊して墓地の呪文を1枚手札へ戻す？',[opt('破壊して回収する',true,api.canMoveZone(s,t.p,'grave')&&own.grave.some(x=>faces(card(x)).some(c=>c.type==='spell'))?30:-10,x.cardId),opt('破壊しない',null,0)]);break;}
  case'g61_Treasure':{const xs=look(s,t,own.deck.length),ids=xs.map(x=>x.uid),hits=xs.filter(x=>faces(card(x)).every(c=>!api.colors(c).includes('自然')));choice(s,{...t,ids},'山札から自然を含まないカードを1枚までマナゾーンへ置く',[...hits.map(x=>opt(card(x).name,x.uid,10+Math.min(cost(card(x)),30),x.cardId)),opt('置かずにシャッフル',null,0)]);break;}
  case'g61_Clock':{const xs=look(s,t,3),ids=xs.map(x=>x.uid);if(xs.length)choice(s,{...t,ids},'上から見たカードのうち、手札に加える1枚を選ぶ',xs.map(x=>opt(card(x).name,x.uid,Math.min(cost(card(x)),30),x.cardId)));else release(s,t.p,ids);break;}
- case'g61_ClockBottom':{const xs=t.ids.map(uid=>own.deck.find(x=>x.uid===uid)).filter(Boolean);if(xs.length)choice(s,t,'山札の一番下に置く1枚を選ぶ',xs.map(x=>opt(card(x).name,x.uid,0,x.cardId)));else release(s,t.p,t.ids);break;}
+ case'g61_ClockBottom':{const xs=t.ids.map(uid=>own.deck.find(x=>x.uid===uid)).filter(Boolean);if(xs.length>(t.g842FixedOrder?1:0))choice(s,t,'山札の一番下に置く1枚を選ぶ',xs.map(x=>opt(card(x).name,x.uid,0,x.cardId)));else release(s,t.p,t.ids);break;}
  default:throw Error('未実装の資源ユーティリティ効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(!t.op.startsWith('g61_'))return false;const own=s.players[t.p];switch(t.op){

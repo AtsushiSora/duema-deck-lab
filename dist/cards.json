@@ -186405,23 +186405,101 @@
       ],
       "supportBatch": "phase-841",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr02-027",
+      "name": "神討兵ズバット・リョウダン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 4000,
+      "race": "アーマロイド/ハンター",
+      "text": "このクリーチャーが攻撃する時、バトルゾーンにある自分のタップされているクリーチャー１体につき、相手のシールドをひとつ選ぶ。相手は選ばれたシールドを自身の手札に加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-027",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "TappedShields842"
+        }
+      ],
+      "supportBatch": "phase-842",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr03-031",
+      "name": "護聖勇騎オーバーボーダー",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ガーディアン/ヒューマノイド",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nパワーアタッカー+2000（攻撃中、このクリーチャーのパワーは+2000される）\nこのクリーチャーが破壊される時、墓地に置くかわりに新しいシールドとして自分のシールドゾーンに加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-031",
+      "limit": 4,
+      "attackBonus": 2000,
+      "g842DestroyShield": true,
+      "supportBatch": "phase-842",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm39-009",
+      "name": "蒼神龍カノウプス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "ポセイディア・ドラゴン/エイリアン",
+      "text": "自分のターンの終わりに、クリーチャーを１体、自分の手札から捨ててもよい。そうした場合、自分の山札の上から３枚を見る。その中から１枚を手札に加え、１枚を山札の一番下に戻し、残りの１枚を山札の一番上に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-009",
+      "limit": 4,
+      "breaker": 2,
+      "g174End": [
+        {
+          "op": "DiscardFor248",
+          "g488DiscardFilter": {
+            "g228Face": {
+              "type": "creature"
+            }
+          },
+          "g770DiscardAttempt": true,
+          "defs": [
+            {
+              "op": "Clock842"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-842",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 841,
+    "phase": 842,
     "checkedAt": "2026-11-10",
-    "baseCount": 6385,
+    "baseCount": 6388,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6388,
+    "totalCount": 6391,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/43078/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36161/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36375/",
-      "https://dm.takaratomy.co.jp/rule/qa/31530/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
-      "https://dm.takaratomy.co.jp/rule/qa/40498/"
+      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36387/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36388/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36235/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36236/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -201292,6 +201370,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/45214/",
           "https://dm.takaratomy.co.jp/rule/qa/49529/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316689/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 841,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6385,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6388,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/43078/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36161/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36375/",
+          "https://dm.takaratomy.co.jp/rule/qa/31530/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
+          "https://dm.takaratomy.co.jp/rule/qa/40498/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
