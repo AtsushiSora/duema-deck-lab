@@ -1,0 +1,209 @@
+{
+  "phase": 864,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6456,
+  "description": "2種のソウル進化と相手の登場時の任意ドロー、公開したソウルクリーチャーの回収、ノー・チョイスによるスレイヤーに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36100/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36225/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36226/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37634/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37636/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36244/"
+  ],
+  "cards": [
+    {
+      "id": "dm37-008",
+      "name": "超電磁カーリー・ミラージュ H",
+      "faces": [
+        {
+          "name": "超電磁カーリー・ミラージュ H",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分の(H・ソウル)または(M・ソウル)クリーチャー１体の上に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n相手がクリーチャーをバトルゾーンに出した時、カードを２枚まで引いてもよい。",
+          "race": "サイバー・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-008",
+      "spec": {
+        "g558Souls": [
+          "H",
+          "M"
+        ],
+        "evolution": {
+          "any": [
+            {
+              "g853Soul": "H"
+            },
+            {
+              "g853Soul": "M"
+            }
+          ]
+        },
+        "breaker": 2,
+        "g314OtherEntry": {
+          "who": "opponent",
+          "defs": [
+            {
+              "op": "DrawUpTo",
+              "n": 2,
+              "g853EachDraw": true,
+              "g203Draw": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "a128d1a40e4137259a341fb9f8ac00b1d59e1e570b92d5869315147cccb9864e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm39-024",
+      "name": "シンカイドッペル",
+      "faces": [
+        {
+          "name": "シンカイドッペル",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚をすべてのプレイヤーに見せてもよい。その中から、このクリーチャーと同じソウルをひとつでも持つクリーチャーをすべて自分の手札に加え、残りを墓地に置く。",
+          "race": "ブルー・モンスター",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-024",
+      "spec": {
+        "g558Souls": [
+          "H",
+          "M",
+          "E",
+          "K",
+          "W",
+          "B"
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Offer",
+            "g359RevealAll": true,
+            "title": "山札の上から3枚を公開する？",
+            "defs": [
+              {
+                "op": "Look",
+                "n": 3,
+                "public": true,
+                "g255Distribute": true,
+                "stages": [
+                  {
+                    "n": "all",
+                    "allMatches": true,
+                    "to": "hand",
+                    "filter": {
+                      "creature": true,
+                      "any": [
+                        {
+                          "g853Soul": "H"
+                        },
+                        {
+                          "g853Soul": "M"
+                        },
+                        {
+                          "g853Soul": "E"
+                        },
+                        {
+                          "g853Soul": "K"
+                        },
+                        {
+                          "g853Soul": "W"
+                        },
+                        {
+                          "g853Soul": "B"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "rest": "grave"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "17dfc3fabff7051c97fe643f903ad1ac05fe9994319dfb1e138fc6dbdcea4952",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm39-047",
+      "name": "輪鈴男",
+      "faces": [
+        {
+          "name": "輪鈴男",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー\nこのクリーチャーは攻撃することができない。\nノー・チョイス(手札を１枚も持っていないプレイヤーがひとりでもいれば、このクリーチャーは次の能力を得る)\nこのクリーチャーは「スレイヤー」を得る。(「スレイヤー」を得たクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)",
+          "race": "ヘドリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-047",
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g260Self": {
+          "filter": {
+            "g834AnyEmptyHand": true
+          },
+          "grants": {
+            "slayer": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "550139cf6ce8024483677116932cbfdd2fc820c7297df9d2fe45bf46b6460dad",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm37-008": 4,
+      "dm39-024": 4,
+      "dm39-047": 4
+    }
+  }
+}

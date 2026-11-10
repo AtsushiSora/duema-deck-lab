@@ -188335,25 +188335,168 @@
       },
       "supportBatch": "phase-863",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm37-008",
+      "name": "超電磁カーリー・ミラージュ H",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "サイバー・コマンド",
+      "text": "進化-自分の(H・ソウル)または(M・ソウル)クリーチャー１体の上に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\n相手がクリーチャーをバトルゾーンに出した時、カードを２枚まで引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-008",
+      "limit": 4,
+      "g558Souls": [
+        "H",
+        "M"
+      ],
+      "evolution": {
+        "any": [
+          {
+            "g853Soul": "H"
+          },
+          {
+            "g853Soul": "M"
+          }
+        ]
+      },
+      "breaker": 2,
+      "g314OtherEntry": {
+        "who": "opponent",
+        "defs": [
+          {
+            "op": "DrawUpTo",
+            "n": 2,
+            "g853EachDraw": true,
+            "g203Draw": true
+          }
+        ]
+      },
+      "supportBatch": "phase-864",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm39-024",
+      "name": "シンカイドッペル",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 3000,
+      "race": "ブルー・モンスター",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚をすべてのプレイヤーに見せてもよい。その中から、このクリーチャーと同じソウルをひとつでも持つクリーチャーをすべて自分の手札に加え、残りを墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-024",
+      "limit": 4,
+      "g558Souls": [
+        "H",
+        "M",
+        "E",
+        "K",
+        "W",
+        "B"
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "g359RevealAll": true,
+          "title": "山札の上から3枚を公開する？",
+          "defs": [
+            {
+              "op": "Look",
+              "n": 3,
+              "public": true,
+              "g255Distribute": true,
+              "stages": [
+                {
+                  "n": "all",
+                  "allMatches": true,
+                  "to": "hand",
+                  "filter": {
+                    "creature": true,
+                    "any": [
+                      {
+                        "g853Soul": "H"
+                      },
+                      {
+                        "g853Soul": "M"
+                      },
+                      {
+                        "g853Soul": "E"
+                      },
+                      {
+                        "g853Soul": "K"
+                      },
+                      {
+                        "g853Soul": "W"
+                      },
+                      {
+                        "g853Soul": "B"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "rest": "grave"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-864",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm39-047",
+      "name": "輪鈴男",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ヘドリアン",
+      "text": "ブロッカー\nこのクリーチャーは攻撃することができない。\nノー・チョイス(手札を１枚も持っていないプレイヤーがひとりでもいれば、このクリーチャーは次の能力を得る)\nこのクリーチャーは「スレイヤー」を得る。(「スレイヤー」を得たクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-047",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g260Self": {
+        "filter": {
+          "g834AnyEmptyHand": true
+        },
+        "grants": {
+          "slayer": true
+        }
+      },
+      "supportBatch": "phase-864",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 863,
+    "phase": 864,
     "checkedAt": "2026-11-11",
-    "baseCount": 6453,
+    "baseCount": 6456,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6456,
+    "totalCount": 6459,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36031/",
-      "https://dm.takaratomy.co.jp/rule/qa/40371/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37629/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37631/",
-      "https://dm.takaratomy.co.jp/rule/qa/40397/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36100/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36225/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36226/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37634/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37636/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37637/",
       "https://dm.takaratomy.co.jp/rule/qa_old/36244/"
     ],
     "next": [
@@ -203666,6 +203809,29 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37630/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37631/",
           "https://dm.takaratomy.co.jp/rule/qa/40371/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 863,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6453,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6456,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36031/",
+          "https://dm.takaratomy.co.jp/rule/qa/40371/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37629/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37631/",
+          "https://dm.takaratomy.co.jp/rule/qa/40397/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37636/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37637/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36244/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -3433,6 +3433,24 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=864){
+  if(d.id==='dm37-008'&&f.typeText==='進化クリーチャー'&&compact363===
+   '進化-自分の(H・ソウル)または(M・ソウル)クリーチャー1体の上に置く。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)相手がクリーチャーをバトルゾーンに出した時カードを2枚まで引いてもよい。')
+   return {g558Souls:['H','M'],evolution:{any:[{g853Soul:'H'},{g853Soul:'M'}]},breaker:2,
+    g314OtherEntry:{who:'opponent',defs:[{op:'DrawUpTo',n:2,g853EachDraw:true,g203Draw:true}]}};
+  if(d.id==='dm39-024'&&f.typeText==='クリーチャー'&&compact363===
+   'このクリーチャーをバトルゾーンに出した時自分の山札の上から3枚をすべてのプレイヤーに見せてもよい。その中からこのクリーチャーと同じソウルをひとつでも持つクリーチャーをすべて自分の手札に加え残りを墓地に置く。'){
+   const souls=['H','M','E','K','W','B'];
+   return {g558Souls:souls,effect:'sixPhoto',g34Tasks:[
+    {op:'Offer',g359RevealAll:true,title:'山札の上から3枚を公開する？',defs:[
+     {op:'Look',n:3,public:true,g255Distribute:true,stages:[{n:'all',allMatches:true,to:'hand',filter:{creature:true,any:souls.map(g853Soul=>({g853Soul}))}}],rest:'grave'}
+    ]}
+   ]};
+  }
+  if(d.id==='dm39-047'&&f.typeText==='クリーチャー'&&compact363===
+   'ブロッカーこのクリーチャーは攻撃することができない。ノー・チョイス(手札を1枚も持っていないプレイヤーがひとりでもいればこのクリーチャーは次の能力を得る)このクリーチャーは「スレイヤー」を得る。(「スレイヤー」を得たクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)')
+   return {blocker:true,noAttack:true,g260Self:{filter:{g834AnyEmptyHand:true},grants:{slayer:true}}};
+ }
  if(phase>=863&&f.typeText==='クリーチャー'){
   if(['dm36-055','dm36-055VC'].includes(d.id)&&
    compact363.replace(/^【E・ソウル】/,'').replace('このクリーチャーのd能力を使う)d','このクリーチャーの能力を使う)').replace('{ESoulsicon}','')===
