@@ -2507,6 +2507,20 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=803&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='呪文'){
+   const body=text.replace(/^マナゾーンに置く時このカードはタップして置く。/,'');
+   if(body==='S・トリガー相手のクリーチャーを1体破壊する。その後相手の墓地からクリーチャーを1体選ぶ。相手はそれをバトルゾーンに出す。')
+    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'grave',spell:true},
+     {op:'Select',owner:'opponent',origin:'grave',n:1,filter:{creature:true},g803DeployForOwner:true}]};
+   if(body==='自分のマナゾーンから「S・トリガー」付きの呪文を1枚選ぶ。その呪文をコストを支払わずに唱えてもよい。'||
+      body==='自分のマナゾーンから「S・トリガー」を持つ呪文を1枚選ぶ。その呪文をコストを支払わずに唱えてもよい。')
+    return {effect:'sixPhoto',g34Tasks:[{op:'ManaTriggerCast803'}]};
+  }
+  if(f.typeText==='クリーチャー'&&text==='このクリーチャーをバトルゾーンに出した時自分の手札を1枚相手に選ばせそれを見せる。それが多色カードの場合そのターンこのクリーチャーは「スピードアタッカー」を得る。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'BlindReveal803'}]};
+ }
  if(phase>=802&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(text==='スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)このクリーチャーが攻撃する時自分のマナゾーンにある水のカードを2枚タップしてもよい。そうした場合そのターンこのクリーチャーはブロックされない。')

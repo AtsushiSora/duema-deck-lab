@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6262,
-  "pendingNames": 5565,
-  "phase": 802,
+  "supportedNames": 6265,
+  "pendingNames": 5562,
+  "phase": 803,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3290,
+    "クリーチャー": 3289,
     "NEOクリーチャー": 152,
-    "呪文": 790,
+    "呪文": 788,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 57,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1241,
-    "未対応の能力文": 4065,
+    "未対応の能力文": 4062,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -11892,30 +11892,77 @@
           "reason": "公式本文を確認。捨てられなかった場合と捨てる処理が置換された場合の扱い、相手が自分のクリーチャー破壊とマナの墓地送りを選ぶ手順を検証するまで保留。"
         }
       ]
+    },
+    {
+      "phase": 803,
+      "cards": [
+        {
+          "id": "dm26-011",
+          "name": "リアルとデスの大逆転"
+        },
+        {
+          "id": "dm24-039",
+          "name": "呪術と脈動の刃"
+        },
+        {
+          "id": "dm25-050",
+          "name": "超速レーサー・パラリラ"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dmx12a-012",
+          "canonicalId": "dm26-011",
+          "name": "リアルとデスの大逆転"
+        },
+        {
+          "id": "dm22ex1-068",
+          "canonicalId": "dm24-039",
+          "name": "呪術と脈動の刃"
+        },
+        {
+          "id": "promoy6-021",
+          "canonicalId": "dm25-050",
+          "name": "超速レーサー・パラリラ"
+        }
+      ],
+      "supportedNames": 6265,
+      "pendingNames": 5562,
+      "verification": {
+        "focusedPassed": 15,
+        "regressionPassed": 223,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 6,
+        "scope": "初出3点と再録・プロモ3点の全能力、基本情報、公式JPEG、使用制限なしを照合。別版はそれぞれ既存正規IDに解決。大逆転はQA 35578に従った破壊対象なしの処理、破壊直後の墓地からの選択、S・トリガー、墓地の移動制限、相手が進化元を選ぶ処理を検証。呪術と脈動の刃はツインパクト呪文面のS・トリガー、裏向きマナの除外、通常の詠唱制限、マナからの無償詠唱と辞退を検証。パラリラは相手による非公開の位置選択、選んだ1枚の公開、単色・多色・異なる文明のツインパクト、手札0枚、ターン終了時の能力消失を検証。既存対戦定義6,262件の一致を確認。",
+        "runtimeNote": "各最大10分。Phase 228・316・555・614・773・802の関連回帰223件に成功。Phase 228・316・555の長時間CPU対戦を --test-skip-pattern で除外。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": []
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 802,
-    "nextPhase": 803,
+    "lastVerifiedPhase": 803,
+    "nextPhase": 804,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm26-011",
-        "name": "リアルとデスの大逆転",
-        "check": "破壊後の相手墓地から唱えた側が選び、相手のバトルゾーンに出す。DMX-12再録と、破壊対象がない場合の「その後」を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-011"
+        "id": "dm24-051",
+        "name": "バイスフレイム・ドラグーン",
+        "check": "攻撃の代わりの使用条件、クリーチャーとアンタップ済みマナ8枚の一括支払い、相手の手札を見て1枚捨てさせる能力を公式照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-051"
       },
       {
-        "id": "dm24-039",
-        "name": "呪術と脈動の刃",
-        "check": "マナゾーンからS・トリガー付き呪文を任意で唱える。ツインパクトの該当面と元のゾーンからの使用制限を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-039"
+        "id": "dm24-042",
+        "name": "巡霊者ソルディアス",
+        "check": "攻撃の代わりの使用条件とマナ8枚の支払いを照合し、自分の墓地から呪文1枚を戻す処理を検証する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-042"
       },
       {
-        "id": "dm25-050",
-        "name": "超速レーサー・パラリラ",
-        "check": "相手に自分の非公開手札を1枚選ばせ、選んだカードの公開と多色の場合のみ付くスピードアタッカーを照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-050"
+        "id": "dm24-046",
+        "name": "封魔オクトアリクス",
+        "check": "ブロッカーと攻撃の代わりのマナ8枚支払い、双方のマナから選べる範囲と手札への移動を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-046"
       },
       {
         "id": "dm24ex4-073",

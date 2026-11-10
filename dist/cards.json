@@ -182517,20 +182517,109 @@
       ],
       "supportBatch": "phase-802",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm26-011",
+      "name": "リアルとデスの大逆転",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー\n相手のクリーチャーを１体破壊する。その後、相手の墓地からクリーチャーを１体選ぶ。相手はそれをバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-011",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "spell": true
+        },
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "grave",
+          "n": 1,
+          "filter": {
+            "creature": true
+          },
+          "g803DeployForOwner": true
+        }
+      ],
+      "supportBatch": "phase-803",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24-039",
+      "name": "呪術と脈動の刃",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n自分のマナゾーンから、「S・トリガー」付きの呪文を１枚選ぶ。その呪文を、コストを支払わずに唱えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-039",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ManaTriggerCast803"
+        }
+      ],
+      "supportBatch": "phase-803",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25-050",
+      "name": "超速レーサー・パラリラ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ドリームメイト",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の手札を１枚相手に選ばせ、それを見せる。それが多色カードの場合、そのターン、このクリーチャーは「スピードアタッカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-050",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BlindReveal803"
+        }
+      ],
+      "supportBatch": "phase-803",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 802,
+    "phase": 803,
     "checkedAt": "2026-11-10",
-    "baseCount": 6259,
+    "baseCount": 6262,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6262,
+    "totalCount": 6265,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/40625/",
+      "https://dm.takaratomy.co.jp/rule/qa/31824/",
+      "https://dm.takaratomy.co.jp/rule/qa/31825/",
       "https://dm.takaratomy.co.jp/rule/qa/46518/",
-      "https://dm.takaratomy.co.jp/rule/qa/33716/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35578/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
       "https://dm.takaratomy.co.jp/rule/rulechange/"
     ],
     "next": [
@@ -196563,6 +196652,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/45450/",
           "https://dm.takaratomy.co.jp/rule/qa/40625/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35581/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 802,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6259,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6262,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/40625/",
+          "https://dm.takaratomy.co.jp/rule/qa/46518/",
+          "https://dm.takaratomy.co.jp/rule/qa/33716/",
           "https://dm.takaratomy.co.jp/rule/rulechange/"
         ],
         "next": [
