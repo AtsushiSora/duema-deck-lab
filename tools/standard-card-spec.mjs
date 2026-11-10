@@ -2507,6 +2507,18 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=833&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const blocker='ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)';
+  // The official listing leaves the power cell blank; the DM39 card image prints 4000.
+  if(d.id==='dm39-042'&&f.typeText==='クリーチャー'&&f.powerText===''&&text===blocker+'このクリーチャーは攻撃することができない。')
+   return {power:4000,blocker:true,noAttack:true};
+  const haunted=text.replace(/^S・トリガー(?=S・トリガー)/,'').replace('どちらかのプレイヤー','いずれかのプレイヤー');
+  if(f.typeText==='呪文'&&haunted==='S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)いずれかのプレイヤーの山札の上から1枚目を見る。そのカードを持ち主の墓地に置いてもよい。カードを1枚引く。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'HauntedChoice833'},{op:'Draw',n:1}]};
+  if(f.typeText==='クリーチャー'&&text==='S・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)このクリーチャーをバトルゾーンに出した時自分の墓地にあるコスト1の呪文を1枚手札に戻してもよい。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'grave',to:'hand',n:1,optional:true,filter:{g228Face:{type:'spell',min:1,max:1}}}]};
+ }
  if(phase>=832&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const mach=[

@@ -185313,27 +185313,106 @@
       ],
       "supportBatch": "phase-832",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm39-042",
+      "name": "シンカイレジスト",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "ブルー・モンスター",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは攻撃することができない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-042",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "supportBatch": "phase-833",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm36-057",
+      "name": "ホーンテッド・チョイス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nいずれかのプレイヤーの山札の上から１枚目を見る。そのカードを持ち主の墓地に置いてもよい。\nカードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-057",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "HauntedChoice833"
+        },
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-833",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm36-073",
+      "name": "天雷機士フィリッポ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1500,
+      "race": "キカイヒーロー/ナイト",
+      "text": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、自分の墓地にあるコスト１の呪文を１枚、手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-073",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "g228Face": {
+              "type": "spell",
+              "min": 1,
+              "max": 1
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-833",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 832,
+    "phase": 833,
     "checkedAt": "2026-11-10",
-    "baseCount": 6354,
+    "baseCount": 6357,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6357,
+    "totalCount": 6360,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34906/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35868/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35869/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35915/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35916/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35917/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35981/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35982/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35983/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35984/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36251/",
+      "https://dm.takaratomy.co.jp/rule/qa/31786/",
+      "https://dm.takaratomy.co.jp/rule/qa/45064/",
+      "https://dm.takaratomy.co.jp/rule/qa/45920/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -200000,6 +200079,31 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37390/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37391/",
           "https://dm.takaratomy.co.jp/rule/qa/43935/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 832,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6354,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6357,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34906/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35868/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35869/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35915/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35916/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35917/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35981/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35982/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35983/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35984/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

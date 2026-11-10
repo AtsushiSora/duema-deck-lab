@@ -1,0 +1,183 @@
+{
+  "phase": 833,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6357,
+  "description": "攻撃できない水のブロッカー、山札上の確認と任意の墓地送り、登場時のコスト1呪文回収に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36251/",
+    "https://dm.takaratomy.co.jp/rule/qa/31786/",
+    "https://dm.takaratomy.co.jp/rule/qa/45064/",
+    "https://dm.takaratomy.co.jp/rule/qa/45920/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm39-042",
+      "name": "シンカイレジスト",
+      "faces": [
+        {
+          "name": "シンカイレジスト",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは攻撃することができない。",
+          "race": "ブルー・モンスター",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-042",
+      "spec": {
+        "power": 4000,
+        "blocker": true,
+        "noAttack": true
+      },
+      "powerReference": {
+        "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-042.jpg",
+        "printedPower": 4000,
+        "note": "公式詳細のパワー欄は空欄。公式カード画像の左下で4000を確認。"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm39-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "7790b79cc3bcf6190b1154d1e5aa8b2ae17704329a934ea7ca6fee50b21ab160",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-057",
+      "name": "ホーンテッド・チョイス",
+      "faces": [
+        {
+          "name": "ホーンテッド・チョイス",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nいずれかのプレイヤーの山札の上から１枚目を見る。そのカードを持ち主の墓地に置いてもよい。\nカードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-057",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HauntedChoice833"
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-057.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "6db54dffcd71889cf6857aec6fe5b6aeafb8e75f7356fbfe39f2965327fdb0f4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-073",
+      "name": "天雷機士フィリッポ",
+      "faces": [
+        {
+          "name": "天雷機士フィリッポ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、自分の墓地にあるコスト１の呪文を１枚、手札に戻してもよい。",
+          "race": "キカイヒーロー/ナイト",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-073",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "g228Face": {
+                "type": "spell",
+                "min": 1,
+                "max": 1
+              }
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-073.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "5cbc6f3a4b3ad3c80c17cf3a51ff2d83352890e7178b4ea00b8314e811de9889",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex08-031",
+      "canonicalId": "dm36-057",
+      "name": "ホーンテッド・チョイス",
+      "faces": [
+        {
+          "name": "ホーンテッド・チョイス",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nどちらかのプレイヤーの山札の上から１枚目を見る。そのカードを持ち主の墓地に置いてもよい。\nカードを１枚引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-031",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ed8bb90422158b559a456858008fd7a280d3de59a72f492502b15dcf1df21058",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm39-042": 4,
+      "dm36-057": 4,
+      "dm36-073": 4,
+      "dmex08-031": 4
+    }
+  }
+}
