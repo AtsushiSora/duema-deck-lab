@@ -1853,6 +1853,23 @@ export function createSixPhotoRules(api){
   else choice(s,t,'残す相手のシールドを3つ選ぶ（'+kept.length+'/3）',rest.map(x=>opt('シールド '+(opp.shields.indexOf(x)+1),x.uid)));
   break;
  }
+ case'g34_Win871':api.finish(s,t.p,card(t.source).name+'：自分の同名クリーチャーが4体揃って勝利');break;
+ case'g34_MeteorReload871':{
+  const host=sourceHost474(s,t);
+  if(host&&!host.x.sealed&&api.isCreature(s,host.x)){
+   const under=(host.x.under||[]).flatMap(api.allLayers);
+   for(const y of under)api.moveBattleCard(s,host.p,y.uid,'hand',{controller:t.p});
+  }
+  const [uid]=look(s,{...t,n:1,public:true}),top=own.deck.find(y=>y.uid===uid);
+  if(!top)break;
+  if(host&&!host.x.sealed&&api.isCreature(s,host.x)&&faces(card(top)).some(f=>f.type==='creature')){
+   const ref={uid:host.x.uid,incarnation:host.x.incarnation||0};
+   choice(s,{...t,target:uid,host:ref},'公開したクリーチャーをこのクリーチャーの下に置く？',[
+    opt(card(top).name+'を下に置く',true,own.deck.length>1?10:-1000,top.cardId),skip()
+   ]);
+  }else release(s,t.p,uid);
+  break;
+ }
  case'g34_StackShieldGrave651':{
   const host=sourceHost474(s,t),under=host&&!host.x.sealed&&api.isCreature(s,host.x)?(host.x.under||[]).flatMap(api.allLayers):[];
   if(under.length)choice(s,t,'下から墓地に置くカードを1枚選ぶ（任意）',[
@@ -2551,6 +2568,16 @@ export function createSixPhotoRules(api){
    if(dest==='mana'&&t.g603Draw&&matches(s,t.p,y,t.g603Draw.filter))start(s,t,[{op:'Draw',n:1,optional:!!t.g603Draw.optional}]);
   }
   if(batch?.length)api.addZone(s,t.p,destTogether,...batch);
+  if(t.g871Civilizations&&destTogether==='mana'&&batch.length){
+   const placed=batch.map(y=>api.manaColors(api.zoneCard(s,t.p,y,'mana'),s,t.p));
+   const light=placed.filter(cs=>cs.includes('光')).length;
+   const fire=placed.filter(cs=>cs.includes('火')).length;
+   const defs=light?[{op:'Select',owner:'opponent',origin:'battle',n:light,filter:{creature:true},
+    g173Targets:true,g193Select:true,g193Tap:true,title:'タップする相手のクリーチャーを'+light+'体選ぶ'}]:[];
+   for(let i=0;i<fire;i++)defs.push({op:'Target',owner:'self',power:2000,g337PowerAttacker:true,spell:true,
+    title:'パワーアタッカー+2000を与える自分のクリーチャーを選ぶ'});
+   if(defs.length)start(s,t,defs);
+  }
   if(t.after)start(s,t,t.after);
   api.deckCheck(s,t.p);
  }
@@ -2698,6 +2725,18 @@ export function createSixPhotoRules(api){
   break;
  }else break;
  case'g34_Harpoon618':put(s,{...t,kept:[...(t.kept||[]),v]});break;
+ case'g34_MeteorReload871':{
+  release(s,t.p,t.target);
+  if(!v)break;
+  const host=sourceHost474(s,t.host);
+  if(!host||host.x.sealed||!api.isCreature(s,host.x))break;
+  const top=remove(own.deck,t.target);
+  if(!top)break;
+  clear(top,'under');
+  (host.x.under??=[]).push(top);
+  api.deckCheck(s,t.p);
+  break;
+ }
  case'g34_StackShieldGrave651':if(v){
   const host=sourceHost474(s,t);
   if(!host||host.x.sealed||!api.isCreature(s,host.x))break;

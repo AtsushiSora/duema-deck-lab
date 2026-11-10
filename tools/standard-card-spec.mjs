@@ -3433,6 +3433,19 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=871){
+  const quartet='自分のターンのはじめにバトルゾーンに自分の《ケロヨン・カルテット》が4体あれば自分はゲームに勝利する。このクリーチャーが破壊される時墓地に置くかわりに手札に戻す。';
+  if(f.typeText==='クリーチャー'&&(
+   d.id==='dmr04-012'&&compact363==='マナゾーンに置く時このカードはタップして置く。'+quartet||
+   d.id==='dmex08-301'&&compact363===quartet
+  ))return {destroyToHand:true,g174Start:[{op:'IfOwn',filter:{g370BattleCount:{filter:{creature:true,g201ExactName:'ケロヨン・カルテット'},min:4}},defs:[{op:'Win871'}]}]};
+  if(d.id==='dmr05-017'&&f.typeText==='進化クリーチャー'&&compact363===
+   '進化-自分のサイバーロード1体の上に置く。メテオバーン-このクリーチャーが攻撃する時このクリーチャーの下にあるカードをすべて自分の手札に加えその後自分の山札の上から1枚目をすべてのプレイヤーに見せる。それがクリーチャーであればこのクリーチャーの下に置いてもよい。')
+   return {evolution:{race:'サイバーロード'},g34Attack:[{op:'MeteorReload871'}]};
+  if(d.id==='dmr01-040'&&f.typeText==='呪文'&&compact363===
+   '自分の山札の上から2枚をマナゾーンに置く。こうしてマナゾーンに置いた光のカード1枚につきバトルゾーンにある相手のクリーチャーを1体選びタップする。こうしてマナゾーンに置いた火のカード1枚につきこのターンバトルゾーンにある自分のクリーチャー1体は「パワーアタッカー+2000」を得る。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Ramp',n:2,g809Together:true,g871Civilizations:true}]};
+ }
  if(phase>=870){
   if(['dmr01-s07','dmx19-s41'].includes(d.id)&&f.typeText==='進化クリーチャー'&&[
    '進化ー自分のビーストフォーク1体の上に置く。このクリーチャーをバトルゾーンに出した時自分の山札の上から2枚を自分のマナゾーンに置いてもよい。このクリーチャーが攻撃する時自分の山札の上から1枚目を自分のマナゾーンに置いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)',

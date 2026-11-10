@@ -1,0 +1,188 @@
+{
+  "phase": 871,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6477,
+  "description": "ターン開始時の同名勝利、メテオバーンでの進化元更新、マナ追加後の文明別効果に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36310/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+    "https://dm.takaratomy.co.jp/rule/qa/44104/",
+    "https://dm.takaratomy.co.jp/rule/qa/40372/",
+    "https://dm.takaratomy.co.jp/rule/qa/42366/",
+    "https://dm.takaratomy.co.jp/rule/qa/43489/",
+    "https://dm.takaratomy.co.jp/rule/qa/43745/"
+  ],
+  "cards": [
+    {
+      "id": "dmr04-012",
+      "name": "ケロヨン・カルテット",
+      "faces": [
+        {
+          "name": "ケロヨン・カルテット",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分のターンのはじめに、バトルゾーンに自分の《ケロヨン・カルテット》が４体あれば、自分はゲームに勝利する。\nこのクリーチャーが破壊される時、墓地に置くかわりに手札に戻す。",
+          "race": "ゲル・フィッシュ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-012",
+      "spec": {
+        "destroyToHand": true,
+        "g174Start": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "filter": {
+                  "creature": true,
+                  "g201ExactName": "ケロヨン・カルテット"
+                },
+                "min": 4
+              }
+            },
+            "defs": [
+              {
+                "op": "Win871"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr04-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "22cb2f999973d88494c2ae09a7fabc648f74efcd5c5c3929271d064f0557b86f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-017",
+      "name": "エンペラー・ベーシックーン",
+      "faces": [
+        {
+          "name": "エンペラー・ベーシックーン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "進化-自分のサイバーロード１体の上に置く。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードをすべて自分の手札に加え、その後、自分の山札の上から１枚目をすべてのプレイヤーに見せる。それがクリーチャーであれば、このクリーチャーの下に置いてもよい。",
+          "race": "サイバーロード/エイリアン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-017",
+      "spec": {
+        "evolution": {
+          "race": "サイバーロード"
+        },
+        "g34Attack": [
+          {
+            "op": "MeteorReload871"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "c7184463d1caa93b6b9f9e7a16c61de25a1dc723532ba87e444274650ad5bc6c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr01-040",
+      "name": "ジオ・ブロンズ・ミラクル",
+      "faces": [
+        {
+          "name": "ジオ・ブロンズ・ミラクル",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の山札の上から２枚をマナゾーンに置く。こうしてマナゾーンに置いた光のカード１枚につき、バトルゾーンにある相手のクリーチャーを１体選び、タップする。こうしてマナゾーンに置いた火のカード１枚につき、このターン、バトルゾーンにある自分のクリーチャー１体は「パワーアタッカー+2000」を得る。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-040",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 2,
+            "g809Together": true,
+            "g871Civilizations": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "719953b7540ba9fc02fd6cbb940560af9aaa0536223ab30441e2c048a0db31d0",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex08-301",
+      "canonicalId": "dmr04-012",
+      "name": "ケロヨン・カルテット",
+      "faces": [
+        {
+          "name": "ケロヨン・カルテット",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のターンのはじめに、バトルゾーンに自分の《ケロヨン・カルテット》が４体あれば、自分はゲームに勝利する。\nこのクリーチャーが破壊される時、墓地に置くかわりに手札に戻す。",
+          "race": "ゲル・フィッシュ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-301",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-301.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "72f0e22d4e2dd2822c39d6ad782a42be02d3543c5560d5794fc2d836c8fe0da5",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr04-012": 4,
+      "dmr05-017": 4,
+      "dmr01-040": 4,
+      "dmex08-301": 4
+    }
+  }
+}

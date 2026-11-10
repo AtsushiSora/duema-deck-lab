@@ -189353,21 +189353,113 @@
       ],
       "supportBatch": "phase-870",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr04-012",
+      "name": "ケロヨン・カルテット",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ゲル・フィッシュ",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n自分のターンのはじめに、バトルゾーンに自分の《ケロヨン・カルテット》が４体あれば、自分はゲームに勝利する。\nこのクリーチャーが破壊される時、墓地に置くかわりに手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-012",
+      "limit": 4,
+      "destroyToHand": true,
+      "g174Start": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "g201ExactName": "ケロヨン・カルテット"
+              },
+              "min": 4
+            }
+          },
+          "defs": [
+            {
+              "op": "Win871"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-871",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-017",
+      "name": "エンペラー・ベーシックーン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 5000,
+      "race": "サイバーロード/エイリアン",
+      "text": "進化-自分のサイバーロード１体の上に置く。\nメテオバーン-このクリーチャーが攻撃する時、このクリーチャーの下にあるカードをすべて自分の手札に加え、その後、自分の山札の上から１枚目をすべてのプレイヤーに見せる。それがクリーチャーであれば、このクリーチャーの下に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-017",
+      "limit": 4,
+      "evolution": {
+        "race": "サイバーロード"
+      },
+      "g34Attack": [
+        {
+          "op": "MeteorReload871"
+        }
+      ],
+      "supportBatch": "phase-871",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-040",
+      "name": "ジオ・ブロンズ・ミラクル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "自分の山札の上から２枚をマナゾーンに置く。こうしてマナゾーンに置いた光のカード１枚につき、バトルゾーンにある相手のクリーチャーを１体選び、タップする。こうしてマナゾーンに置いた火のカード１枚につき、このターン、バトルゾーンにある自分のクリーチャー１体は「パワーアタッカー+2000」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-040",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 2,
+          "g809Together": true,
+          "g871Civilizations": true
+        }
+      ],
+      "supportBatch": "phase-871",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 870,
+    "phase": 871,
     "checkedAt": "2026-11-11",
-    "baseCount": 6474,
+    "baseCount": 6477,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6477,
+    "totalCount": 6480,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35911/",
-      "https://dm.takaratomy.co.jp/rule/qa/42937/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36452/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36310/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+      "https://dm.takaratomy.co.jp/rule/qa/44104/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -204823,6 +204915,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/42082/",
           "https://dm.takaratomy.co.jp/rule/qa/31877/",
           "https://dm.takaratomy.co.jp/rule/qa/45440/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 870,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6474,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6477,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35911/",
+          "https://dm.takaratomy.co.jp/rule/qa/42937/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36452/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
