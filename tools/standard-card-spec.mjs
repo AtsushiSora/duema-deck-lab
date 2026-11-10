@@ -2507,6 +2507,19 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=790&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const frontText=normalize(f.abilityText);
+  if(frontText==='スピードアタッカージャストダイバーW・ブレイカーこのクリーチャーが攻撃する時カードを3枚まで引く。このターン自分がカードを7枚以上引いていれば相手のエレメントを2つまで選び持ち主の手札に戻す。その後このクリーチャーは相手のシールドを1つブレイクしてもよい。')
+   return {speedAttacker:true,justDiver:true,breaker:2,g34Attack:[{op:'DrawUpTo',n:3},
+    {op:'IfOwn',filter:{g790MinDraws:7},defs:[{op:'Select',origin:'battle',owner:'opponent',to:'hand',n:2,optional:true,filter:{element:true},g173Targets:true,
+     title:'手札に戻す相手のエレメントを2つまで選ぶ',after:[{op:'Offer',title:'このクリーチャーで相手のシールドをブレイクする？',g790CreatureBreak:true,defs:[{op:'Break497',n:1,g747CreatureBreak:true}]}]}]}]};
+  if(frontText==='スピードアタッカー(このクリーチャーは召喚酔いしない)W・ブレイカー(このクリーチャーはシールドを2つブレイクする)自分のクリーチャーが攻撃する時このクリーチャーが自分の手札にありこのターン自分がカードを7枚以上引いていてこのターン自分の《爆裂英雄C・T・7》が出ていなければこのクリーチャーを出してもよい。')
+   return {speedAttacker:true,breaker:2,g790AttackDeclare:true};
+  const sugoiReveal=/^このクリーチャーが出た時自分の山札の上から1枚目?を表向きにする。それがクリーチャーなら手札に加える。(そうでなければ|それ以外なら)山札の下に置く。/;
+  const thirdEntry='相手のクリーチャーが出る時このターン相手の他のクリーチャーが2体以上出ていれば相手はかわりにそのクリーチャーをマナゾーンに置く。';
+  if(sugoiReveal.test(frontText)&&frontText.replace(sugoiReveal,'')===thirdEntry)
+   return {effect:'sixPhoto',g34Tasks:[{op:'RevealTop514',filter:{creature:true},to:'hand',elseTo:'deck'}],g38Ritsui:true};
+ }
  if(phase>=789&&d?.status==='complete'){
   const frontText=normalize(f.abilityText);
   const trigger='S・トリガーS・トリガー';

@@ -919,7 +919,7 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
   log(s,p,'evolve',`${card(base).name}から${c.name}へ進化`,{cardId:c.id});
  }
  if(!inst.tapped&&speedTapOnEntry(s,p,c,isEvolution(inst)))inst.tapped=true;
- if(c.natureAce4&&genmuActive(s))inst.aceIgnored=true;s.players[p].battle.push(inst);if(entryOptions.g728CrossIds?.length)extra.crossOnEntry(s,p,inst,entryOptions.g728CrossIds);extra.history.d2Entry(s,p,inst);inst=extra.phoenix.link(s,p,inst,entryOptions);inst=extra.saga.linkM(s,p,inst,entryOptions);if(c.balchuris)(s.g23BalEntered??=[null,null])[p]=s.turn;if(c.type==='creature')(s.g7Entries??=[0,0])[p]++;refreshDynamicTypes(s);if(isCreature(s,inst)&&s.metrics[p].firstCreature===null)s.metrics[p].firstCreature=s.players[p].turns;
+ if(c.natureAce4&&genmuActive(s))inst.aceIgnored=true;s.players[p].battle.push(inst);if(entryOptions.g728CrossIds?.length)extra.crossOnEntry(s,p,inst,entryOptions.g728CrossIds);extra.history.d2Entry(s,p,inst);inst=extra.phoenix.link(s,p,inst,entryOptions);inst=extra.saga.linkM(s,p,inst,entryOptions);if(c.balchuris)(s.g23BalEntered??=[null,null])[p]=s.turn;if(c.g790AttackDeclare)(s.g790CTEntered??=[null,null])[p]=s.turn;if(c.type==='creature')(s.g7Entries??=[0,0])[p]++;refreshDynamicTypes(s);if(isCreature(s,inst)&&s.metrics[p].firstCreature===null)s.metrics[p].firstCreature=s.players[p].turns;
  if(entryOptions.g771SpeedSpell&&!inst.sealed&&isCreature(s,inst))extra.six.deploymentSpeed771(s,p,inst,entryOptions.g771SpeedSpell,entryOptions.g774Banky);
  if(isCreature(s,inst)){s.players[p].enteredThisTurn=(s.players[p].enteredThisTurn||0)+1;s.creaturesEntered=(s.creaturesEntered||0)+1;}
  if(entryOptions.g753Swap){
@@ -3260,6 +3260,7 @@ export function rankHeuristicActions(s){
   if(a.kind==='saveShield'){const x=find(p,a.uid),cost=layers(x);return 20+Math.max(0,3-me.shields)*15+(a.exLifeHit?5:0)-cost.reduce((n,x)=>n+aiCost(card(x)),0)*.8-power(x,false,s)/2500+(effectiveCard(x,s).g172Death||effectiveCard(x,s).g172Leave?5:0);}
   if(a.kind==='finishShieldGuards')return 0;
   if(a.kind==='orderTrigger')return (c.type==='creature'?35:30)+aiCost(c);
+  if(a.kind==='orderEffect'&&c.g790AttackDeclare&&me.drawsThisTurn<7)return -1;
   if(a.kind==='orderEntry'||a.kind==='orderEffect')return aiCost(c)+(c.multiAssault?20:0);
   if(a.kind==='dragonTap'){const x=find(1-p,a.uid);return x.tapped?-1:10+aiCost(c)*2+(effectiveCard(x,v).blocker?12:0);}
   if(a.kind==='skipDragonTap')return 0;

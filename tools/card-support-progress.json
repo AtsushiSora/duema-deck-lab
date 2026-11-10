@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6223,
-  "pendingNames": 5604,
-  "phase": 789,
+  "supportedNames": 6226,
+  "pendingNames": 5601,
+  "phase": 790,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3318,
+    "クリーチャー": 3315,
     "NEOクリーチャー": 152,
     "呪文": 797,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1242,
-    "未対応の能力文": 4101,
+    "未対応の能力文": 4098,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -11105,30 +11105,93 @@
         "runtimeNote": "各最大10分。Phase 568、621、627、676、678、785、788の関連回帰を実施し、長時間のCPU対戦をテスト名で除外。全体のnpm testは中断・合否未確認。"
       },
       "deferred": []
+    },
+    {
+      "phase": 790,
+      "cards": [
+        {
+          "id": "dm24ex4-019",
+          "name": "爆裂英雄 A・R・T"
+        },
+        {
+          "id": "dm24ex4-071",
+          "name": "爆裂英雄 C・T・７"
+        },
+        {
+          "id": "dm24ex4-074",
+          "name": "忠犬な騎士スゴイワン"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm24ex4-Sec006",
+          "canonicalId": "dm24ex4-019",
+          "name": "爆裂英雄 A・R・T"
+        },
+        {
+          "id": "dm24ex4-PR031",
+          "canonicalId": "dm24ex4-071",
+          "name": "爆裂英雄 C・T・７"
+        },
+        {
+          "id": "dm24ex4-PR034",
+          "canonicalId": "dm24ex4-074",
+          "name": "忠犬な騎士スゴイワン"
+        },
+        {
+          "id": "dm25rp4-T08",
+          "canonicalId": "dm24ex4-074",
+          "name": "忠犬な騎士スゴイワン"
+        },
+        {
+          "id": "dm25ex3-TF24",
+          "canonicalId": "dm24ex4-074",
+          "name": "忠犬な騎士スゴイワン"
+        }
+      ],
+      "supportedNames": 6226,
+      "pendingNames": 5601,
+      "verification": {
+        "focusedPassed": 13,
+        "regressionPassed": 210,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 8,
+        "scope": "通常版3点と再録5点の全能力、基本情報、画像、殿堂制限なしを公式照合。A・R・Tの任意ドロー、7枚条件、相手エレメントの手札戻し、侵略後の効果ブレイクとG・ストライク抑止（QA 46244）を検証。C・T・７の宣言時の手札、解決時の実ドローと同名登場履歴、登場置換、CPUの解決順、JSON復元を検証。スゴイワンの公開と手札追加・山札下への移動、両ターンの登場置換と3体を出す効果（類似QA 33425）を検証。",
+        "runtimeNote": "各最大10分。侵略・バルチュリス、ギャラクシーの登場置換、Phase 514・747・789を関連回帰として実行。長時間のCPU対戦と、過去の総数・レシピ数を固定した2件のデータ件数テストはテスト名で除外。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": []
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 789,
-    "nextPhase": 790,
+    "lastVerifiedPhase": 790,
+    "nextPhase": 791,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm24ex4-019",
-        "name": "爆裂英雄 A・R・T",
-        "check": "攻撃時の任意ドロー、7枚条件、エレメントの手札戻しと攻撃個体による追加ブレイクを公式照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-019"
+        "id": "dm24ex4-049",
+        "name": "審問の絆",
+        "check": "G・ストライク、2枚ドロー、光または水の非進化ブロッカーを出す処理を公式照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-049"
       },
       {
-        "id": "dm24ex4-071",
-        "name": "爆裂英雄 C・T・７",
-        "check": "攻撃宣言時点での手札、7枚ドローと同名の登場履歴を公式照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-071"
+        "id": "dm24ex4-073",
+        "name": "導姫ユーキ",
+        "check": "召喚時の任意の手札破棄と2軽減について、通常召喚・支払い前の選択・破棄の置換を公式照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-073"
       },
       {
-        "id": "dm24ex4-074",
-        "name": "忠犬な騎士スゴイワン",
-        "check": "山札の公開・手札追加・山札の下への移動と、相手の3体目以降の登場置換を公式照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-074"
+        "id": "dm24ex4-090",
+        "name": "ボルザード・ゴールド・ドラゴン",
+        "check": "任意の召喚コスト軽減と、それを選んだ場合だけ登場時に行う自身による自シールドブレイクを公式照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-090"
+      },
+      {
+        "id": "dm24ex4-034",
+        "name": "偽りの月 インデペンデンス / 月を継ぐもの",
+        "check": "2枚を墓地に置いてそのうちの1枚を回収する処理、超次元の呪文による能力付与、呪文面のエレメント戻しと手札破棄を公式照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-034"
       },
       {
         "id": "dm24ex4-038",

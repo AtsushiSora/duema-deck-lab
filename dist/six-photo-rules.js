@@ -281,6 +281,7 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g790MinDraws!==undefined)return (s.players[p].drawsThisTurn||0)>=f.g790MinDraws;
   if(f.g722CrossedAny)return [p,1-p].some(owner=>ownCondition(s,owner,{g442CrossedAlly:true}));
   if(f.g666FaceUpShieldGo)return api.shieldGoCount(s,p)>0;
   if(f.g757FaceUpShield)return s.players[p].shields.some(group=>api.shieldCards(group).some(x=>x.faceUp));
@@ -1605,7 +1606,12 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
   break;
  }
  case'g34_AfterAttackDestroy':if(s.attackLifecycle)(s.attackLifecycle.g176Deaths??=[]).push({p:t.p,uid:t.uid,incarnation:t.incarnation||0,source:t.source});break;
- case'g34_Offer':{if(card(t.source).supportBatch==='phase-596'){
+ case'g34_Offer':{
+  if(t.g790CreatureBreak){
+   const host=sourceHost474(s,t)?.x;
+   if(!host||host.sealed||!api.isCreature(s,host)||!opp.shields.length)break;
+  }
+  if(card(t.source).supportBatch==='phase-596'){
   const score=modeScore(s,t,t.defs)-(own.shields.length===1?18:5);
   choice(s,t,t.title,[opt('使う',true,score),skip()]);
   break;

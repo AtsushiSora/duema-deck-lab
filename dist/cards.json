@@ -180811,22 +180811,137 @@
       ],
       "supportBatch": "phase-789",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-019",
+      "name": "爆裂英雄 A・R・T",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "マジック・フレイム・コマンド",
+      "text": "スピードアタッカー\nジャストダイバー\nW・ブレイカー\nこのクリーチャーが攻撃する時、カードを３枚まで引く。このターン、自分がカードを７枚以上引いていれば、相手のエレメントを２つまで選び、持ち主の手札に戻す。その後、このクリーチャーは相手のシールドを１つブレイクしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-019",
+      "limit": 4,
+      "speedAttacker": true,
+      "justDiver": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "DrawUpTo",
+          "n": 3
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g790MinDraws": 7
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "to": "hand",
+              "n": 2,
+              "optional": true,
+              "filter": {
+                "element": true
+              },
+              "g173Targets": true,
+              "title": "手札に戻す相手のエレメントを2つまで選ぶ",
+              "after": [
+                {
+                  "op": "Offer",
+                  "title": "このクリーチャーで相手のシールドをブレイクする？",
+                  "g790CreatureBreak": true,
+                  "defs": [
+                    {
+                      "op": "Break497",
+                      "n": 1,
+                      "g747CreatureBreak": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-790",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-071",
+      "name": "爆裂英雄 C・T・７",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "マジック・フレイム・コマンド",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のクリーチャーが攻撃する時、このクリーチャーが自分の手札にあり、このターン自分がカードを７枚以上引いていて、このターン自分の《爆裂英雄 C・T・７》が出ていなければ、このクリーチャーを出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-071",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g790AttackDeclare": true,
+      "supportBatch": "phase-790",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-074",
+      "name": "忠犬な騎士スゴイワン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ドリームメイト",
+      "text": "このクリーチャーが出た時、自分の山札の上から１枚目を表向きにする。それがクリーチャーなら手札に加える。そうでなければ、山札の下に置く。\n相手のクリーチャーが出る時、このターン、相手の他のクリーチャーが２体以上出ていれば、相手はかわりにそのクリーチャーをマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-074",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "RevealTop514",
+          "filter": {
+            "creature": true
+          },
+          "to": "hand",
+          "elseTo": "deck"
+        }
+      ],
+      "g38Ritsui": true,
+      "supportBatch": "phase-790",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 789,
+    "phase": 790,
     "checkedAt": "2026-11-10",
-    "baseCount": 6220,
+    "baseCount": 6223,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6223,
+    "totalCount": 6226,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/39835/",
-      "https://dm.takaratomy.co.jp/rule/qa/43748/",
-      "https://dm.takaratomy.co.jp/rule/qa/45556/",
-      "https://dm.takaratomy.co.jp/rule/qa/42049/"
+      "https://dm.takaratomy.co.jp/rule/qa/46241/",
+      "https://dm.takaratomy.co.jp/rule/qa/46242/",
+      "https://dm.takaratomy.co.jp/rule/qa/46245/",
+      "https://dm.takaratomy.co.jp/rule/qa/46246/",
+      "https://dm.takaratomy.co.jp/rule/qa/33425/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -194603,6 +194718,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/48125/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37943/",
           "https://dm.takaratomy.co.jp/rule/qa/48502/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 789,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6220,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6223,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/39835/",
+          "https://dm.takaratomy.co.jp/rule/qa/43748/",
+          "https://dm.takaratomy.co.jp/rule/qa/45556/",
+          "https://dm.takaratomy.co.jp/rule/qa/42049/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
