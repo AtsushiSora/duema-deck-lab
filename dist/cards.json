@@ -191616,22 +191616,142 @@
       ],
       "supportBatch": "phase-892",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-069",
+      "name": "オオダテ入道",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "デモニオ/鬼札王国",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n各ターンの終わりに、このクリーチャーがタップしていたら破壊する。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、真上の▪️能力を無視する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-069",
+      "limit": 4,
+      "blocker": true,
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "sumBoth": true,
+            "min": 7
+          }
+        },
+        "grants": {
+          "g474AnyEnd": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g590SourceTapped": true
+              },
+              "defs": [
+                {
+                  "op": "SelfDestroy"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-893",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-054",
+      "name": "キリツケ入道",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5000,
+      "race": "ブレイブ・スピリット/鬼札王国",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nスピードアタッカー（このクリーチャーは召喚酔いしない）\n各ターンの終わりに、このクリーチャーがタップしていれば破壊する。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、真上の▪️能力を無視する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-054",
+      "limit": 4,
+      "blocker": true,
+      "speedAttacker": true,
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "sumBoth": true,
+            "min": 7
+          }
+        },
+        "grants": {
+          "g474AnyEnd": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g590SourceTapped": true
+              },
+              "defs": [
+                {
+                  "op": "SelfDestroy"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-893",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-041",
+      "name": "ゼニガタ入道",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "デモニオ/鬼札王国",
+      "text": "このクリーチャーが攻撃する時、自分のシールドを１つ手札に加える。ただし、その「S・トリガー」は使えない。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、真上の▪️能力を無視する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-041",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "sumBoth": true,
+            "min": 7
+          }
+        },
+        "grants": {
+          "g34Attack": [
+            {
+              "op": "ShieldHand",
+              "g238ShieldHand": true
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-893",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 892,
+    "phase": 893,
     "checkedAt": "2026-11-11",
-    "baseCount": 6541,
+    "baseCount": 6544,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6544,
+    "totalCount": 6547,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36400/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37192/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35145/",
-      "https://dm.takaratomy.co.jp/rule/qa/39667/",
-      "https://dm.takaratomy.co.jp/rule/qa/40463/"
+      "https://dm.takaratomy.co.jp/rule/qa/34236/",
+      "https://dm.takaratomy.co.jp/rule/qa/34259/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -207523,6 +207643,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/33591/",
           "https://dm.takaratomy.co.jp/rule/qa/39437/",
           "https://dm.takaratomy.co.jp/rule/qa/39442/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 892,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6541,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6544,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36400/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37192/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35145/",
+          "https://dm.takaratomy.co.jp/rule/qa/39667/",
+          "https://dm.takaratomy.co.jp/rule/qa/40463/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

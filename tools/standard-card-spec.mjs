@@ -3445,6 +3445,20 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=893&&creature){
+  const active={g334ZoneCount:{zone:'shields',sumBoth:true,min:7}};
+  const oniIgnore='鬼タイム:自分と相手のシールドの数が合計6つ以下なら真上の▪️能力を無視する。';
+  const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+  if(d.id==='dmrp15-069'&&compact363===blocker+
+   '各ターンの終わりにこのクリーチャーがタップしていたら破壊する。'+oniIgnore||
+   d.id==='dmrp14-054'&&compact363===blocker+
+   'スピードアタッカー(このクリーチャーは召喚酔いしない)各ターンの終わりにこのクリーチャーがタップしていれば破壊する。'+oniIgnore)
+   return {blocker:true,...(d.id==='dmrp14-054'?{speedAttacker:true}:{}),g260Self:{filter:active,
+    grants:{g474AnyEnd:[{op:'IfOwn',filter:{g590SourceTapped:true},defs:[{op:'SelfDestroy'}]}]}}};
+  if(d.id==='dmrp15-041'&&compact363===
+   'このクリーチャーが攻撃する時自分のシールドを1つ手札に加える。ただしその「S・トリガー」は使えない。'+oniIgnore)
+   return {g260Self:{filter:active,grants:{g34Attack:[{op:'ShieldHand',g238ShieldHand:true}]}}};
+ }
  if(phase>=892&&creature){
   if(d.id==='dmrp14-059'&&compact363===
    'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)各ターンこのクリーチャーがはじめてタップした時自分の火のクリーチャーがバトルゾーンにあればこのクリーチャーをアンタップする。')
