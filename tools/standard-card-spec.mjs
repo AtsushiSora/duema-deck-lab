@@ -3433,6 +3433,21 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=861){
+  if(['dm36-011','dm36-011VC'].includes(d.id)&&f.typeText==='進化クリーチャー'&&
+   compact363.replace(/^【H・ソウル】/,'').replaceAll('{HSoulsicon}','').replace(/^進化ー/,'進化-')===
+   '進化-自分の(H・ソウル)クリーチャー1体の上に置く。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)このクリーチャーが破壊された時次のうちいずれかひとつを選ぶ。(H・ソウル)クリーチャーを1体自分の手札からバトルゾーンに出す。自分の山札の上から1枚目を裏向きのまま新しいシールドとして自分のシールドゾーンに加える。')
+   return {g558Souls:['H'],evolution:{g853Soul:'H'},breaker:2,g172Death:[{op:'Choose',g184Modes:true,modes:[
+    {label:'手札からH・ソウルクリーチャーを1体出す',defs:[{op:'Select',origin:'hand',deploy:true,n:1,filter:{creature:true,g853Soul:'H'},title:'出すH・ソウルクリーチャーを1体選ぶ'}]},
+    {label:'山札の上から1枚をシールドにする',defs:[{op:'ShieldTop',n:1}]}
+   ]}]};
+  if(d.id==='dm37-007'&&f.typeText==='クリーチャー'&&compact363===
+   'S・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)ターン中自分のシールドが2枚以上ブレイクされていた場合そのターンの終わりに自分の山札の上から1枚目を裏向きのまま新しいシールドとして自分のシールドゾーンに加える。')
+   return {trigger:true,g558Souls:['H'],g861OwnShieldBreakEnd:2};
+  if(d.id==='dm23-027'&&f.typeText==='クリーチャー'&&compact363===
+   '相手のターン中自分の他のグランド・デビルが破壊された時相手は自分自身のシールドを1枚選び持ち主の墓地に置く。')
+   return {g303DeathWatch:{race:'グランド・デビル',opponentTurn:true,defs:[{op:'OwnShieldGraves697',opponentOnly:true}]}};
+ }
  if(phase>=860&&f.typeText==='クリーチャー'){
   if(d.id==='dm36-036'&&compact363==='バトル中このクリーチャーのパワーはバトルゾーンにある自分の他の(W・ソウル)クリーチャー1体につき+2000される。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
    return {g558Souls:['W'],breaker:2,g860BattleCountPower:{zone:'battle',other:true,filter:{g853Soul:'W'},amount:2000}};

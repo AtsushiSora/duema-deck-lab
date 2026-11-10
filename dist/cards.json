@@ -187986,23 +187986,136 @@
       },
       "supportBatch": "phase-860",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm36-011",
+      "name": "開眼者シンラン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7500,
+      "race": "メカサンダー",
+      "text": "進化-自分の(H・ソウル)クリーチャー１体の上に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが破壊された時、次のうちいずれかひとつを選ぶ。\n(H・ソウル)クリーチャーを１体、自分の手札からバトルゾーンに出す。\n自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-011",
+      "limit": 4,
+      "g558Souls": [
+        "H"
+      ],
+      "evolution": {
+        "g853Soul": "H"
+      },
+      "breaker": 2,
+      "g172Death": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "手札からH・ソウルクリーチャーを1体出す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "hand",
+                  "deploy": true,
+                  "n": 1,
+                  "filter": {
+                    "creature": true,
+                    "g853Soul": "H"
+                  },
+                  "title": "出すH・ソウルクリーチャーを1体選ぶ"
+                }
+              ]
+            },
+            {
+              "label": "山札の上から1枚をシールドにする",
+              "defs": [
+                {
+                  "op": "ShieldTop",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-861",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm37-007",
+      "name": "霊騎パドマ・ロマサ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "アーク・セラフィム",
+      "text": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nターン中、自分のシールドが２枚以上ブレイクされていた場合、そのターンの終わりに、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-007",
+      "limit": 4,
+      "trigger": true,
+      "g558Souls": [
+        "H"
+      ],
+      "g861OwnShieldBreakEnd": 2,
+      "supportBatch": "phase-861",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23-027",
+      "name": "封魔リベンジ・アラスト",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "グランド・デビル",
+      "text": "相手のターン中、自分の他のグランド・デビルが破壊された時、相手は自分自身のシールドを１枚選び、持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-027",
+      "limit": 4,
+      "g303DeathWatch": {
+        "race": "グランド・デビル",
+        "opponentTurn": true,
+        "defs": [
+          {
+            "op": "OwnShieldGraves697",
+            "opponentOnly": true
+          }
+        ]
+      },
+      "supportBatch": "phase-861",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 860,
+    "phase": 861,
     "checkedAt": "2026-11-11",
-    "baseCount": 6444,
+    "baseCount": 6447,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6447,
+    "totalCount": 6450,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36041/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34917/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36048/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316671/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37633/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37634/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37634/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36679/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36092/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36093/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36094/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/34944/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35044/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -203245,6 +203358,26 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36002/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36003/",
           "https://dm.takaratomy.co.jp/rule/qa_old/34915/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37633/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37634/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 860,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6444,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6447,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36041/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34917/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36048/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37633/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37634/"
         ],

@@ -1,0 +1,206 @@
+{
+  "phase": 861,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6447,
+  "description": "H・ソウル進化と破壊時の二択、自分のシールドのブレイクを参照するターン終了時能力、相手ターン中の味方破壊によるシールドの墓地送りに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316671/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37633/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37634/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36679/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36092/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36093/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36094/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34944/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35044/"
+  ],
+  "cards": [
+    {
+      "id": "dm36-011",
+      "name": "開眼者シンラン",
+      "faces": [
+        {
+          "name": "開眼者シンラン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分の(H・ソウル)クリーチャー１体の上に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが破壊された時、次のうちいずれかひとつを選ぶ。\n(H・ソウル)クリーチャーを１体、自分の手札からバトルゾーンに出す。\n自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加える。",
+          "race": "メカサンダー",
+          "powerText": "7500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-011",
+      "spec": {
+        "g558Souls": [
+          "H"
+        ],
+        "evolution": {
+          "g853Soul": "H"
+        },
+        "breaker": 2,
+        "g172Death": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "手札からH・ソウルクリーチャーを1体出す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "hand",
+                    "deploy": true,
+                    "n": 1,
+                    "filter": {
+                      "creature": true,
+                      "g853Soul": "H"
+                    },
+                    "title": "出すH・ソウルクリーチャーを1体選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "山札の上から1枚をシールドにする",
+                "defs": [
+                  {
+                    "op": "ShieldTop",
+                    "n": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "db85fc330561ed00909daf275db8ba29642b9fa1a190741bdaef6e7856dffb05",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm37-007",
+      "name": "霊騎パドマ・ロマサ",
+      "faces": [
+        {
+          "name": "霊騎パドマ・ロマサ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nターン中、自分のシールドが２枚以上ブレイクされていた場合、そのターンの終わりに、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加える。",
+          "race": "アーク・セラフィム",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm37-007",
+      "spec": {
+        "trigger": true,
+        "g558Souls": [
+          "H"
+        ],
+        "g861OwnShieldBreakEnd": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm37-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "ff0f36588ecc72b5b6252932507ee5272b3198be0c4e2e3a9d49131f41f5b1eb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23-027",
+      "name": "封魔リベンジ・アラスト",
+      "faces": [
+        {
+          "name": "封魔リベンジ・アラスト",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "相手のターン中、自分の他のグランド・デビルが破壊された時、相手は自分自身のシールドを１枚選び、持ち主の墓地に置く。",
+          "race": "グランド・デビル",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-027",
+      "spec": {
+        "g303DeathWatch": {
+          "race": "グランド・デビル",
+          "opponentTurn": true,
+          "defs": [
+            {
+              "op": "OwnShieldGraves697",
+              "opponentOnly": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "8633540ec3c25ff2d6f54c35a7df0fca17518393da4e24b0c02c5120516d8d3b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm36-011VC",
+      "canonicalId": "dm36-011",
+      "name": "開眼者シンラン",
+      "faces": [
+        {
+          "name": "開眼者シンラン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "【H・ソウル】\n進化ー自分の{H Souls icon}(H・ソウル)クリーチャー１体の上に置く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nこのクリーチャーが破壊された時、次のうちいずれかひとつを選ぶ。 　{H Souls icon}(H・ソウル)クリーチャーを１体、自分の手札からバトルゾーンに出す。 　自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加える。",
+          "race": "メカサンダー",
+          "powerText": "7500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-011VC",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-011VC.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "14f2ade1aa5da6f62142fa0829c5d270f2698c0ab5fd8f4dc4aa4548911dded9",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm36-011": 4,
+      "dm37-007": 4,
+      "dm23-027": 4,
+      "dm36-011VC": 4
+    }
+  }
+}

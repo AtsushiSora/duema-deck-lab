@@ -720,6 +720,7 @@ function finishManaExchange753(s,t){
  }));
 }
 function matchesEvolution(base,condition,context){
+ if(condition.g853Soul)return !base.sealed&&!base.faceDown&&isCreature(context,base)&&extra.six.hasSoul(card(base),condition.g853Soul);
  const c=effectiveCard(base,context),races=String(c.race).split('/'),anyRace=!!c.g293AnyEvolutionRace&&context.players.some(p=>p.battle.includes(base));
  if(condition.creature)return isCreature(context,base);if(condition.nonEvolution&&isEvolution(base))return false;if(condition.evolution)return isEvolution(base)&&(!condition.civilization||civilizations(c).includes(condition.civilization));
  if(condition.ultimate)return !!card(base).ultimateEvolution;
