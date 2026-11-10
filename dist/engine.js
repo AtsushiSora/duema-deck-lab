@@ -71,7 +71,7 @@ export function effectiveCard(inst,context,forPower=false){
  let base=card(inst);const owner=context?.players.findIndex(p=>p.battle.some(x=>x.uid===inst.uid));
  if(owner==null||owner<0){if(context)for(const p of [0,1]){const c=zoneCard(context,p,inst);if(c!==base)return c;}return base;}
  base=zoneCard(context,owner,inst,'battle');
- if(abilitiesIgnored(context,inst)){const {id,name,type,civ,civilizations,manaValue,cost,power,race,limit,sMax,starEvolution}=base;return externalBlockState(context,owner,inst,extra.utilityNatureSupport.decorate(context,owner,inst,{id,name,type,civ,civilizations,manaValue,cost,...(inst.g40Reckless?.turn===context.turn||extra.six.forced546(context,owner,inst)?{mustAttack:true}:{}),...(sMax?{sMax:true}:{}),...(starEvolution?{starEvolution:true}:{}),power:base.hyperTap&&inst.hyperActive?base.hyper.power:power,race,limit}));}
+ if(abilitiesIgnored(context,inst)){const {id,name,type,civ,civilizations,manaValue,cost,power,race,limit,sMax,starEvolution}=base;return externalBlockState(context,owner,inst,extra.utilityNatureSupport.decorate(context,owner,inst,{id,name,type,civ,civilizations,manaValue,cost,...(inst.g40Reckless?.turn===context.turn||extra.six.forced546(context,owner,inst)?{mustAttack:true}:{}),...(sMax?{sMax:true}:{}),...(starEvolution?{starEvolution:true}:{}),power:base.hyper&&inst.hyperActive&&(base.hyperTap||inst.hyperResolved)?base.hyper.power:power,race,limit}));}
  // Track ordinary Blocker grants separately from the printed Dragon Blocker.
  const printed=base.g716DragonBlock?{...base,blocker:false}:base;
  let c=inheritSoul404(base.hyper&&inst.hyperActive?{...printed,...base.hyper}:printed,inst,card,layers);if(base.natureAce4&&!isCreature(context,inst))c={...c,type:'seed',power:0};
@@ -672,7 +672,13 @@ export const canCreatureAttack=(s,p,c)=>canAttack(s,p,c);
 function canAttack(s,p,c){const d=effectiveCard(c,s);return d.type==='creature'&&extra.history.canAttack(s,p,c)&&extra.six.fifteen.canAttack(s,p,c)&&(!d.twoTappedAttack||s.players[p].battle.filter(x=>isCreature(s,x)&&x.tapped).length>=2)&&!c.tapped&&!d.noAttack&&(!d.needsBigAttack||s.g16BigAttack?.[p]===s.turn)&&!extra.locked(s,p,c,'attack')&&!extra.six.attackPower593(s,p,c,false)&&!(c.entered===s.turn&&s.players[1-p].battle.some(x=>{const guard=effectiveCard(x,s);return guard.stopEntryAttack||guard.g475StopNonEvolutionEntryAttack&&!isEvolution(c);})&&!s.players[p].battle.some(x=>effectiveCard(x,s).ignoreAttackLocks))&&(c.entered<s.turn||d.speedAttacker||isEvolution(c)||d.machFighter||d.entryPlayerAttack||extra.abyssPlayer(s,c));}
 function canAttackPlayer(s,c){
  const p=s.players.findIndex(x=>x.battle.some(y=>y.uid===c.uid));
- const guarded=s.extLimits?.some(l=>l.kind==='g750CannotAttackPlayer'&&l.player===1-p&&l.turn===s.turn);
+ const defenders=s.players[1-p].battle;
+ const tappedGuard=defenders.some(x=>{
+  const min=card(x).g780TappedPlayerGuard;
+  return min&&!x.sealed&&effectiveCard(x,s).g780TappedPlayerGuard&&
+   defenders.filter(y=>y.tapped&&!y.sealed&&isCreature(s,y)).length>=min;
+ });
+ const guarded=tappedGuard||s.extLimits?.some(l=>l.kind==='g750CannotAttackPlayer'&&l.player===1-p&&l.turn===s.turn);
  if(guarded&&!s.players[p].battle.some(x=>effectiveCard(x,s).ignoreAttackLocks))return false;
  return extra.photo160.canAttackPlayer(s,p,c)&&!extra.six.attackPower593(s,p,c,true)&&(s.players[p].battle.some(x=>effectiveCard(x,s).ignoreAttackLocks)||!s.players[1-p].battle.some(x=>effectiveCard(x,s).didaGuard&&power(c,false,s)<power(x,false,s)))&&!(c.entered===s.turn&&s.players[1-p].battle.some(x=>effectiveCard(x,s).gaia||effectiveCard(x,s).g40EntryPlayerStop)&&!s.players[p].battle.some(x=>effectiveCard(x,s).ignoreAttackLocks))&&(c.entered<s.turn||effectiveCard(c,s).speedAttacker||effectiveCard(c,s).entryPlayerAttack||extra.abyssPlayer(s,c)||isEvolution(c));
 }
@@ -1448,7 +1454,7 @@ function nextTurn(s){
  s.g31ExtraTurn=!!queued;s.active=next;extra.expire(s,'start',s.active);s.turn++;s.phase='charge';const p=s.players[s.active];p.turns++;s.metrics[s.active].turns=p.turns;if(!p.deck.length){deckCheck(s,s.active);if(s.winner!==null||s.lossEvent)return;}
  // Expire effects at the specified controller's turn start, before untapping.
  for(const own of s.players)for(const top of own.battle)for(const c of layers(top)){if(c.tapLocks)c.tapLocks=c.tapLocks.filter(who=>who!==s.active);}
- for(const top of p.battle)for(const c of layers(top))delete c.hyperActive;
+ for(const top of p.battle)for(const c of layers(top)){delete c.hyperActive;delete c.hyperResolved;}
  refreshDynamicTypes(s);const silent=p.battle.filter(c=>canSilent496(s,c));if(silent.length){s.phase='start';s.startStep={player:s.active,stage:'silent496',remaining:silent.map(c=>({uid:c.uid,incarnation:c.incarnation||0})),chosen:[]};advanceStart(s);}else finishStartUntap496(s);
 }
 function canSilent496(s,x){const c=effectiveCard(x,s);return !!(isCreature(s,x)&&x.tapped&&c.g496Silent&&!skipsStartUntap(s,x)&&!c.g26Zaze&&!c.g40StartNoUntap&&canUntap(x));}

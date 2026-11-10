@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6193,
-  "pendingNames": 5634,
-  "phase": 779,
+  "supportedNames": 6196,
+  "pendingNames": 5631,
+  "phase": 780,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3342,
+    "クリーチャー": 3339,
     "NEOクリーチャー": 152,
     "呪文": 803,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4113,
+    "未対応の能力文": 4110,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -10467,30 +10467,90 @@
           "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-025"
         }
       ]
+    },
+    {
+      "phase": 780,
+      "cards": [
+        {
+          "id": "dm24rp2-047",
+          "name": "ヨメイサンビョウダケ"
+        },
+        {
+          "id": "dm24rp2-046",
+          "name": "ルナサンライト コハク"
+        },
+        {
+          "id": "dm24rp2-042",
+          "name": "コッコ・格・ルピア"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm24ex3-072",
+          "canonicalId": "dm24rp2-046",
+          "name": "ルナサンライト コハク"
+        },
+        {
+          "id": "dm24ex3-066",
+          "canonicalId": "dm24rp2-042",
+          "name": "コッコ・格・ルピア"
+        },
+        {
+          "id": "promoy23-036",
+          "canonicalId": "dm24rp2-042",
+          "name": "コッコ・格・ルピア"
+        }
+      ],
+      "supportedNames": 6196,
+      "pendingNames": 5631,
+      "verification": {
+        "focusedPassed": 7,
+        "regressionPassed": 207,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 6,
+        "scope": "3種類と再録3版を公式照合し、6点のJPEGと殿堂制限なしを確認。タップ3体の境界、封印・非クリーチャー・能力無視、レッドゾーンによる攻撃制限の無視、登場時・攻撃時の超化獣の選択と保存復元、既存のハイパー化によるタップ時のマナ加速、Zラッシュ持ちの解放、能力無視時のパワーとアタック・チャンス、次の自分のターン開始時の期限を検証。",
+        "runtimeNote": "各最大10分。既存ハイパー化とPhase 418、574、723、750、776〜779の関連回帰。レッドゾーンの270試合ワーカーと27試合のランダム対戦を含んだ試行は各プロセスを中断してログを保存し、同ファイルを外して今回の固有テストでレッドゾーンとの相互作用を検証。残りのCPU長時間対戦は --test-skip-pattern で除外。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dm24rp1-013",
+          "name": "真空の求道者マオ",
+          "check": "初出の能力とDM24-EX3同名収録を確認。場のマオにシールドゾーンへ入った・離れたカード1枚ごとに誘発を渡す必要がある。既存処理には城や束の一部を直接移す経路があり、EXライフ・同時移動と合わせて重複も漏れもないことを検証するまで保留。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-013"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 779,
-    "nextPhase": 780,
+    "lastVerifiedPhase": 780,
+    "nextPhase": 781,
     "workInProgress": [],
     "nextCandidates": [
       {
+        "id": "dm24rp2-013",
+        "name": "ハイパー・エントリー",
+        "check": "登場した個体を解放とブロッカーの両方に引き継ぎ、進化・登場置換と相手ターン中のS・トリガーを検証する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-013"
+      },
+      {
+        "id": "dm24rp2-S09",
+        "name": "森翠月 ゴルファンタジスタ",
+        "check": "通常と解放後の能力、超化獣限定の召喚軽減、攻撃時の味方全体のハイパーモード解放、再録と同名版を確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-S09"
+      },
+      {
+        "id": "dm24rp2-025",
+        "name": "ルナコバルト アサギ",
+        "check": "山札2枚のマナ・手札への振り分けと、マナからの超化獣召喚の各自ターン1回を既存処理と照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-025"
+      },
+      {
         "id": "dm24rp1-013",
         "name": "真空の求道者マオ",
-        "check": "初出の公式本文とDM24-EX3への同名収録を確認。盾の束、城、EXライフを含め、置かれる・離れるそれぞれのカード単位の誘発とアンタップを確認する。",
+        "check": "初出の能力とDM24-EX3同名収録を確認。場のマオにシールドゾーンへ入った・離れたカード1枚ごとに誘発を渡す必要がある。既存処理には城や束の一部を直接移す経路があり、EXライフ・同時移動と合わせて重複も漏れもないことを検証するまで保留。",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-013"
-      },
-      {
-        "id": "dm24rp2-047",
-        "name": "ヨメイサンビョウダケ",
-        "check": "味方のタップ中クリーチャーを数えるプレイヤー攻撃制限を既存の攻撃合法性処理で再現できるか確認する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-047"
-      },
-      {
-        "id": "dm24rp2-046",
-        "name": "ルナサンライト コハク",
-        "check": "登場時のハイパーモードの解放、次の自分のターン開始までの期限、タップ時のマナ加速を既存処理と照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-046"
       },
       {
         "id": "dm24rp3-038",

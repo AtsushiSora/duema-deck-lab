@@ -2564,6 +2564,17 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=780&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const releaseText='次の自分のターンのはじめまで自分の超化獣クリーチャー1体のハイパーモードを解放する。';
+  const release={op:'Target',owner:'self',filter:{g724ExactRace:'超化獣'},g780ReleaseHyper:true,
+   title:'ハイパーモードを解放する自分の超化獣を選ぶ'};
+  if(compact363==='自分のタップしているクリーチャーが3体以上あれば相手のクリーチャーは自分を攻撃できない。')
+   return {g780TappedPlayerGuard:3};
+  if(compact363==='このクリーチャーが出た時'+releaseText+'このクリーチャーがタップした時自分の山札の上から1枚目をマナゾーンに置く。')
+   return {effect:'sixPhoto',g34Tasks:[release],g188Tapped:[{op:'Ramp',n:1}]};
+  if(compact363==='スピードアタッカー(このクリーチャーは召喚酔いしない)このクリーチャーが攻撃する時'+releaseText)
+   return {speedAttacker:true,g34Attack:[release]};
+ }
  if(phase>=779&&d.faces.length===1){
   const paid=(symbol,body)=>'このクリーチャーを{'+symbol+'}を支払って召喚してもよい。そうしたらこのクリーチャーが出た時相手は'+body;
   const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
