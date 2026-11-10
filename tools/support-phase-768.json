@@ -1,0 +1,326 @@
+{
+  "phase": 768,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6151,
+  "description": "アーマード・メクレイドとその後の速攻付与、相手の無償展開への反応、手札交換・墓地回収と山札公開に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/39644/",
+    "https://dm.takaratomy.co.jp/rule/qa/39643/",
+    "https://dm.takaratomy.co.jp/rule/qa/38688/",
+    "https://dm.takaratomy.co.jp/rule/qa/42975/",
+    "https://dm.takaratomy.co.jp/rule/qa/39409/",
+    "https://dm.takaratomy.co.jp/rule/qa/45070/",
+    "https://dm.takaratomy.co.jp/rule/qa/45589/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp3-025",
+      "name": "運明！ベリアvs.キャディ",
+      "faces": [
+        {
+          "name": "運明！ベリアvs.キャディ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\n相手のターン中、このクリーチャーのパワーを+10000する。\n相手のエレメントがコストを支払わずに出た時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+          "race": "ジャイアント・インセクト/アビスロイヤル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-025",
+      "spec": {
+        "guardman": true,
+        "g38EnemyTurnBonus": 10000,
+        "g768UnpaidRamp": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "27b72b30db0d25f475d77aea6aedcc5d4118400d330d9348b2eed508e2a3cdd5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2-042",
+      "name": "リトル・翔・バルピア",
+      "faces": [
+        {
+          "name": "リトル・翔・バルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のクリーチャーが攻撃する時、それがこのターンの２回目の攻撃であれば、アーマード・メクレイド５する。（アーマード・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のアーマードを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "アーマード・ファイアー・バード",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-042",
+      "spec": {
+        "g252AttackWatch": {
+          "who": "self",
+          "g768AttackNumber": 2,
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Raid767",
+              "race": "アーマード",
+              "max": 5
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ad13046a9778da9219f3e19401d573a79458815b54d78a157fc7705f5056e952",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2-070",
+      "name": "太陽との邂逅",
+      "faces": [
+        {
+          "name": "太陽との邂逅",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "アーマード・メクレイド５する。（アーマード・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のアーマードを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）\nこのターン、自分のクリーチャーすべてに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "アーマード・アーツ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-070",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Raid767",
+            "race": "アーマード",
+            "max": 5
+          },
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "grant": {
+              "speedAttacker": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "5fd952031080a472e6f9a7d7dbded67238152f1a4cfdd588234ff0064737dc78",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-033",
+      "name": "激光魚",
+      "faces": [
+        {
+          "name": "激光魚",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、次のうちいずれか１つを選ぶ。\n▶カードを１枚引き、自分の手札を１枚捨てる。\n▶コスト４以下の呪文を１枚、自分の墓地から手札に戻す。",
+          "race": "マジック・フィッシュ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-033",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "カードを1枚引き、手札を1枚捨てる",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  },
+                  {
+                    "op": "Discard",
+                    "owner": "self",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "コスト4以下の呪文を墓地から手札に戻す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "grave",
+                    "to": "hand",
+                    "n": 1,
+                    "filter": {
+                      "g228Face": {
+                        "type": "spell",
+                        "max": 4
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "19a283d855b90b8fddad4dc7b076e9bb68a44877a853bebad52ff57870ebed67",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp3-053",
+      "name": "巡鎧者メンドーサ",
+      "faces": [
+        {
+          "name": "巡鎧者メンドーサ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、自分の山札の上から１枚目を表向きにする。それがアーマードなら手札に加える。そうでなければ、山札の下に置いてもよい。",
+          "race": "アーマード・コスモ・ウォーカー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-053",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "anyFaceRace": "アーマード"
+            },
+            "to": "hand",
+            "elseTo": "deck",
+            "g768OptionalBottom": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp3-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "830b05009c04750c2c054013fcc0230af0632d26b59ebad72657185f40bbf7eb",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23rp2x-042",
+      "canonicalId": "dm23rp2-042",
+      "name": "リトル・翔・バルピア",
+      "faces": [
+        {
+          "name": "リトル・翔・バルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のクリーチャーが攻撃する時、それがこのターンの２回目の攻撃であれば、アーマード・メクレイド５する。（アーマード・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のアーマードを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+          "race": "アーマード・ファイアー・バード",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-042",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "7dc9148d92afbc1b8f1b73cc2fbf7524ae5f363e845824d085a3b51309c67d38",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp2x-070",
+      "canonicalId": "dm23rp2-070",
+      "name": "太陽との邂逅",
+      "faces": [
+        {
+          "name": "太陽との邂逅",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "アーマード・メクレイド５する。（アーマード・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のアーマードを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）\nこのターン、自分のクリーチャーすべてに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "アーマード・アーツ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2x-070",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp2x-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "75cb4174c9a16369230b82767f6fa23926394455072b90c77e491d87061c818b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp3-025": 4,
+      "dm23rp2-042": 4,
+      "dm23rp2-070": 4,
+      "dm23rp3-033": 4,
+      "dm23rp3-053": 4,
+      "dm23rp2x-042": 4,
+      "dm23rp2x-070": 4
+    }
+  }
+}

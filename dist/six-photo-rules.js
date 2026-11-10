@@ -298,7 +298,7 @@ export function createSixPhotoRules(api){
   }
   // Redzone records this attack immediately after this hook; its existing counter
   // also remembers earlier attacks made before a watcher entered the battlefield.
-  const previous=s.g23Attacks?.[p],first=previous?.turn!==s.turn||!previous.count;
+  const previous=s.g23Attacks?.[p],number=previous?.turn===s.turn?previous.count+1:1,first=number===1;
   // Count qualifying declarations even if the watcher has not entered yet (QA49402).
   let firstCostSix=false;
   if(cost(effective(attacker,s))>=6){
@@ -308,7 +308,7 @@ export function createSixPhotoRules(api){
    seen[p]=true;
   }
   for(const owner of[s.active,1-s.active])for(const x of watchSources252(s,owner)){const c=effective(x,s),watches=[...(c.g252AttackWatch?[c.g252AttackWatch]:[]),...(c.g253AttackWatches||[])];
-   for(const watch of watches)if((watch.who==='self'?owner===p:owner!==p)&&!(x.uid===attacker.uid&&(watch.other||api.selfStopped(s,p)))&&(!watch.first||first)&&(!watch.g764FirstCostSix||firstCostSix)&&(!watch.entryTurn||attacker.entered===s.turn)&&(!watch.playerAttack||s.attack?.target==='player')&&(!watch.defs.some(d=>d.g747Once)||!parottaUsed747(s,x))&&matches(s,p,attacker,watch.filter)){if(watch.g399Attacker)send(s,owner,x,'Sequence',{defs:watch.defs,g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0,...(watch.g677Layers?{refs:api.allLayers(attacker).map(key)}:{}),...(watch.defs.some(d=>d.op==='AttackDeploy409')?{cost:cost(effective(attacker,s))===Infinity?'∞':cost(effective(attacker,s))}: {})}});else queue(s,owner,x,watch.defs);}
+   for(const watch of watches)if((watch.who==='self'?owner===p:owner!==p)&&!(x.uid===attacker.uid&&(watch.other||api.selfStopped(s,p)))&&(!watch.first||first)&&(!watch.g768AttackNumber||watch.g768AttackNumber===number)&&(!watch.g764FirstCostSix||firstCostSix)&&(!watch.entryTurn||attacker.entered===s.turn)&&(!watch.playerAttack||s.attack?.target==='player')&&(!watch.defs.some(d=>d.g747Once)||!parottaUsed747(s,x))&&matches(s,p,attacker,watch.filter)){if(watch.g399Attacker)send(s,owner,x,'Sequence',{defs:watch.defs,g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0,...(watch.g677Layers?{refs:api.allLayers(attacker).map(key)}:{}),...(watch.defs.some(d=>d.op==='AttackDeploy409')?{cost:cost(effective(attacker,s))===Infinity?'∞':cost(effective(attacker,s))}: {})}});else queue(s,owner,x,watch.defs);}
   }
  }
  function opponentAddedShields618(s,p){
@@ -1549,7 +1549,19 @@ export function createSixPhotoRules(api){
  case'g34_Put':{const y=s.players[t.owner??t.p][t.origin]?.find(x=>x.uid===t.target);if(!y)break;const c=faces(card(y))[t.face||0];if(t.execution&&c.type==='spell'){doPut(s,t);break;}if(!canPut(s,t.p,y,t.origin,!!t.execution))break;if(c.g213Mars||c.g31Evolution?.minCards){doPut(s,t);break;}if(c.evolution||c.neoEvolution&&!t.noEvolve)choice(s,t,'出すクリーチャーの進化元を選ぶ',[...(c.neoEvolution?[opt('進化させずに出す',null,1)]:[]),...api.evolutionBases(s,t.p,c).filter(b=>b.uid!==y.uid).map(b=>opt(card(b).name,b.uid,10,b.cardId))]);else doPut(s,t);break;}
  case'g34_ManaDown426':{const rows=own.mana.filter(y=>!y.faceDown);if(rows.length)choice(s,t,'裏向きにする自分のマナを1枚選ぶ（任意）',[...rows.map(y=>opt(card(y).name,{uid:y.uid,serial:y.zoneSerial||0},manaDownScore426(s,t,y),y.cardId)),skip()]);break;}
  // A failed deployment must not be confused with a failed printed condition.
- case'g34_RevealTop514':{const ids=look(s,{...t,n:1,public:true}),y=own.deck.find(y=>y.uid===ids[0]);if(!y){api.deckCheck(s,t.p);break;}const matched=matches(s,t.p,y,t.filter),to=matched?t.to:t.elseTo,moveDef=to?{op:'RevealMove514',target:y.uid,to}:null,defs=moveDef?[moveDef]:[];if(matched&&t.optional&&to==='battle'&&canPut(s,t.p,y,'deck'))start(s,t,[{op:'Offer',title:card(y).name+'をバトルゾーンに出す？',score:own.deck.length<=1?-1000:20+Math.min(20,cost(card(y))),defs}, {op:'RevealRelease514',ids}]);else start(s,t,[...defs,{op:'RevealRelease514',ids}]);break;}
+ case'g34_RevealTop514':{
+  const ids=look(s,{...t,n:1,public:true}),y=own.deck.find(y=>y.uid===ids[0]);
+  if(!y){api.deckCheck(s,t.p);break;}
+  const matched=matches(s,t.p,y,t.filter),to=matched?t.to:t.elseTo;
+  const defs=to?[{op:'RevealMove514',target:y.uid,to}]:[];
+  const release={op:'RevealRelease514',ids};
+  if(matched&&t.optional&&to==='battle'&&canPut(s,t.p,y,'deck'))
+   start(s,t,[{op:'Offer',title:card(y).name+'をバトルゾーンに出す？',score:own.deck.length<=1?-1000:20+Math.min(20,cost(card(y))),defs},release]);
+  else if(!matched&&t.g768OptionalBottom&&defs.length)
+   start(s,t,[{op:'Offer',title:'公開したカードを山札の下に置く？',defs},release]);
+  else start(s,t,[...defs,release]);
+  break;
+ }
  case'g34_RevealMove514':if(t.to==='battle')put(s,{...t,op:'g34_Put',origin:'deck'});else zoneMove(s,t.p,'deck',t.target,t.to,t);break;
  case'g34_RevealRelease514':for(const uid of t.ids)release(s,t.p,uid);api.deckCheck(s,t.p);break;
  case'g34_LookDeploy530':{const ids=look(s,t.g201Search?{...t,n:own.deck.length}:t);put(s,{...t,op:'g34_Select',origin:'deck',g530Ids:ids,deploy:true,n:t.limit??'all',optional:!t.g749Required,title:'確認したカードから出すクリーチャーを選ぶ',after:[{op:'LookRest530',ids,rest:t.rest||'top'}]});break;}
@@ -2426,11 +2438,12 @@ export function createSixPhotoRules(api){
  opponentEntry767(s,p,y,options){
   if(!y.sealed)for(const watcher of creatures(s,1-p)){
    if(watcher.sealed||api.ignored(s,watcher))continue;
-   const {g767SecondEnemy,g767UnpaidRaid}=effective(watcher,s);
+   const {g767SecondEnemy,g767UnpaidRaid,g768UnpaidRamp}=effective(watcher,s);
    if(g767SecondEnemy&&api.isCreature(s,y)&&s.players[p].enteredThisTurn>=2)
     send(s,1-p,watcher,'Batsuda767',{entrants:[y,...(y.godLinks||[])].map(x=>({uid:x.uid,incarnation:x.incarnation||0}))});
-   if(g767UnpaidRaid&&!options.costPaid&&!options.paidMana&&!used(s,'g767UnpaidRaidUsed',watcher))
-    send(s,1-p,watcher,'Zentuu767');
+   if(options.costPaid||options.paidMana)continue;
+   if(g767UnpaidRaid&&!used(s,'g767UnpaidRaidUsed',watcher))send(s,1-p,watcher,'Zentuu767');
+   if(g768UnpaidRamp)queue(s,1-p,watcher,[{op:'Offer',title:'山札の上から1枚をマナゾーンに置く？',defs:[{op:'Ramp',n:1}]}]);
   }
  },
  entry(s,p,y,options){const c=card(y),creature=api.isCreature(s,y);

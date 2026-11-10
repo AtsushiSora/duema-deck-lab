@@ -2564,6 +2564,25 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=768){
+  const armoredRaid='アーマード・メクレイド5する。(アーマード・メクレイド5:自分の山札の上から3枚を見る。その中からコスト5以下のアーマードを1枚コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く)';
+  const raid={op:'Raid767',race:'アーマード',max:5};
+  if(f.typeText==='クリーチャー'){
+   if(compact363==='ガードマン(このクリーチャーをタップして相手クリーチャーの攻撃先を自分の他のクリーチャーからこのクリーチャーに変更してもよい)相手のターン中このクリーチャーのパワーを+10000する。相手のエレメントがコストを支払わずに出た時自分の山札の上から1枚目をマナゾーンに置いてもよい。')
+    return {guardman:true,g38EnemyTurnBonus:10000,g768UnpaidRamp:true};
+   if(compact363==='自分のクリーチャーが攻撃する時それがこのターンの2回目の攻撃であれば'+armoredRaid)
+    return {g252AttackWatch:{who:'self',g768AttackNumber:2,filter:{creature:true},defs:[raid]}};
+   if(compact363==='このクリーチャーが出た時次のうちいずれか1つを選ぶ。▶カードを1枚引き自分の手札を1枚捨てる。▶コスト4以下の呪文を1枚自分の墓地から手札に戻す。')
+    return {effect:'sixPhoto',g34Tasks:[{op:'Choose',g184Modes:true,modes:[
+     {label:'カードを1枚引き、手札を1枚捨てる',defs:[{op:'Draw',n:1},{op:'Discard',owner:'self',n:1}]},
+     {label:'コスト4以下の呪文を墓地から手札に戻す',defs:[{op:'Select',origin:'grave',to:'hand',n:1,filter:{g228Face:{type:'spell',max:4}}}]}
+    ]}]};
+   if(compact363==='このクリーチャーが出た時自分の山札の上から1枚目を表向きにする。それがアーマードなら手札に加える。そうでなければ山札の下に置いてもよい。')
+    return {effect:'sixPhoto',g34Tasks:[{op:'RevealTop514',filter:{anyFaceRace:'アーマード'},to:'hand',elseTo:'deck',g768OptionalBottom:true}]};
+  }
+  if(f.typeText==='呪文'&&compact363===armoredRaid+'このターン自分のクリーチャーすべてに「スピードアタッカー」を与える。(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)')
+   return {effect:'sixPhoto',g34Tasks:[raid,{op:'GroupGrant364',owner:'self',filter:{creature:true},grant:{speedAttacker:true},spell:true}]};
+ }
  if(phase>=767&&f.typeText==='クリーチャー'){
   if(compact363==='相手のこのターン2体目以降のクリーチャーが出た時このクリーチャーをマナゾーンに置いてもよい。そうしたら相手のそのクリーチャーを持ち主のマナゾーンに置く。')
    return {g767SecondEnemy:true};

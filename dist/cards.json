@@ -178078,24 +178078,203 @@
       "g767UnpaidRaid": true,
       "supportBatch": "phase-767",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp3-025",
+      "name": "運明！ベリアvs.キャディ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ジャイアント・インセクト/アビスロイヤル",
+      "text": "ガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\n相手のターン中、このクリーチャーのパワーを+10000する。\n相手のエレメントがコストを支払わずに出た時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-025",
+      "limit": 4,
+      "guardman": true,
+      "g38EnemyTurnBonus": 10000,
+      "g768UnpaidRamp": true,
+      "supportBatch": "phase-768",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-042",
+      "name": "リトル・翔・バルピア",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "アーマード・ファイアー・バード",
+      "text": "自分のクリーチャーが攻撃する時、それがこのターンの２回目の攻撃であれば、アーマード・メクレイド５する。（アーマード・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のアーマードを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-042",
+      "limit": 4,
+      "g252AttackWatch": {
+        "who": "self",
+        "g768AttackNumber": 2,
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Raid767",
+            "race": "アーマード",
+            "max": 5
+          }
+        ]
+      },
+      "supportBatch": "phase-768",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp2-070",
+      "name": "太陽との邂逅",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "アーマード・アーツ",
+      "text": "アーマード・メクレイド５する。（アーマード・メクレイド５：自分の山札の上から３枚を見る。その中から、コスト５以下のアーマードを１枚、コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く）\nこのターン、自分のクリーチャーすべてに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-070",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Raid767",
+          "race": "アーマード",
+          "max": 5
+        },
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "grant": {
+            "speedAttacker": true
+          },
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-768",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp3-033",
+      "name": "激光魚",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "マジック・フィッシュ",
+      "text": "このクリーチャーが出た時、次のうちいずれか１つを選ぶ。\n▶カードを１枚引き、自分の手札を１枚捨てる。\n▶コスト４以下の呪文を１枚、自分の墓地から手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-033",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "カードを1枚引き、手札を1枚捨てる",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1
+                },
+                {
+                  "op": "Discard",
+                  "owner": "self",
+                  "n": 1
+                }
+              ]
+            },
+            {
+              "label": "コスト4以下の呪文を墓地から手札に戻す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "to": "hand",
+                  "n": 1,
+                  "filter": {
+                    "g228Face": {
+                      "type": "spell",
+                      "max": 4
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-768",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23rp3-053",
+      "name": "巡鎧者メンドーサ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "アーマード・コスモ・ウォーカー",
+      "text": "このクリーチャーが出た時、自分の山札の上から１枚目を表向きにする。それがアーマードなら手札に加える。そうでなければ、山札の下に置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-053",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "RevealTop514",
+          "filter": {
+            "anyFaceRace": "アーマード"
+          },
+          "to": "hand",
+          "elseTo": "deck",
+          "g768OptionalBottom": true
+        }
+      ],
+      "supportBatch": "phase-768",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 767,
+    "phase": 768,
     "checkedAt": "2026-11-10",
-    "baseCount": 6148,
-    "newEffectCards": 3,
+    "baseCount": 6151,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 6151,
+    "totalCount": 6156,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/46859/",
-      "https://dm.takaratomy.co.jp/rule/qa/36722/",
-      "https://dm.takaratomy.co.jp/rule/qa/42955/",
       "https://dm.takaratomy.co.jp/rule/qa/39644/",
       "https://dm.takaratomy.co.jp/rule/qa/39643/",
-      "https://dm.takaratomy.co.jp/rule/qa/44212/"
+      "https://dm.takaratomy.co.jp/rule/qa/38688/",
+      "https://dm.takaratomy.co.jp/rule/qa/42975/",
+      "https://dm.takaratomy.co.jp/rule/qa/39409/",
+      "https://dm.takaratomy.co.jp/rule/qa/45070/",
+      "https://dm.takaratomy.co.jp/rule/qa/45589/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -191430,6 +191609,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/45915/",
           "https://dm.takaratomy.co.jp/rule/qa/44212/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31627/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 767,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6148,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6151,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/46859/",
+          "https://dm.takaratomy.co.jp/rule/qa/36722/",
+          "https://dm.takaratomy.co.jp/rule/qa/42955/",
+          "https://dm.takaratomy.co.jp/rule/qa/39644/",
+          "https://dm.takaratomy.co.jp/rule/qa/39643/",
+          "https://dm.takaratomy.co.jp/rule/qa/44212/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
