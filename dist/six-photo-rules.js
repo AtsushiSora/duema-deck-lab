@@ -348,6 +348,8 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
   // Redzone records this attack immediately after this hook; its existing counter
   // also remembers earlier attacks made before a watcher entered the battlefield.
   const previous=s.g23Attacks?.[p],number=previous?.turn===s.turn?previous.count+1:1,first=number===1;
+  const firstPlayer=s.attack?.target==='player'&&(s.g481Attackers?.turn!==s.turn||
+   !s.g481Attackers.events.some(e=>e.p===p&&e.playerTarget));
   // Count qualifying declarations even if the watcher has not entered yet (QA49402).
   let firstCostSix=false;
   if(cost(effective(attacker,s))>=6){
@@ -357,7 +359,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
    seen[p]=true;
   }
   for(const owner of[s.active,1-s.active])for(const x of watchSources252(s,owner)){const c=effective(x,s),watches=[...(c.g252AttackWatch?[c.g252AttackWatch]:[]),...(c.g253AttackWatches||[])];
-   for(const watch of watches)if((watch.who==='both'||(watch.who==='self'?owner===p:owner!==p))&&!(x.uid===attacker.uid&&(watch.other||api.selfStopped(s,p)))&&(!watch.first||first)&&(!watch.g768AttackNumber||watch.g768AttackNumber===number)&&(!watch.g764FirstCostSix||firstCostSix)&&(!watch.entryTurn||attacker.entered===s.turn)&&(!watch.playerAttack||s.attack?.target==='player')&&(!watch.defs.some(d=>d.g747Once)||!parottaUsed747(s,x))&&!used792(s,x,watch.defs[0])&&matches(s,p,attacker,watch.filter)){if(watch.g399Attacker)send(s,owner,x,'Sequence',{defs:watch.defs,g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0,...(watch.g677Layers?{refs:api.allLayers(attacker).map(key)}:{}),...(watch.defs.some(d=>d.op==='AttackDeploy409'||d.op==='AttackHandDeploy798')?{cost:cost(effective(attacker,s))===Infinity?'∞':cost(effective(attacker,s))}: {})}});else queue(s,owner,x,watch.defs);}
+   for(const watch of watches)if((watch.who==='both'||(watch.who==='self'?owner===p:owner!==p))&&!(x.uid===attacker.uid&&(watch.other||api.selfStopped(s,p)))&&(!watch.first||first)&&(!watch.g768AttackNumber||watch.g768AttackNumber===number)&&(!watch.g764FirstCostSix||firstCostSix)&&(!watch.entryTurn||attacker.entered===s.turn)&&(!watch.playerAttack||s.attack?.target==='player')&&(!watch.g799FirstPlayer||firstPlayer)&&(!watch.defs.some(d=>d.g747Once)||!parottaUsed747(s,x))&&!used792(s,x,watch.defs[0])&&matches(s,p,attacker,watch.filter)){if(watch.g399Attacker)send(s,owner,x,'Sequence',{defs:watch.defs,g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0,...(watch.g677Layers?{refs:api.allLayers(attacker).map(key)}:{}),...(watch.defs.some(d=>d.op==='AttackDeploy409'||d.op==='AttackHandDeploy798')?{cost:cost(effective(attacker,s))===Infinity?'∞':cost(effective(attacker,s))}: {})}});else queue(s,owner,x,watch.defs);}
   }
  }
  function opponentAddedShields618(s,p){
@@ -1717,7 +1719,18 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
   selection(s,{selected:[],rows:[],...t,...limit});
   break;
  }
- case'g34_Put':{const y=s.players[t.owner??t.p][t.origin]?.find(x=>x.uid===t.target);if(!y)break;const c=faces(card(y))[t.face||0];if(t.execution&&c.type==='spell'){doPut(s,t);break;}if(!canPut(s,t.p,y,t.origin,!!t.execution))break;if(c.g213Mars||c.g31Evolution?.minCards){doPut(s,t);break;}if(c.evolution||c.neoEvolution&&!t.noEvolve)choice(s,t,'出すクリーチャーの進化元を選ぶ',[...(c.neoEvolution?[opt('進化させずに出す',null,1)]:[]),...api.evolutionBases(s,t.p,c).filter(b=>b.uid!==y.uid).map(b=>opt(card(b).name,b.uid,10,b.cardId))]);else doPut(s,t);break;}
+ case'g34_Put':{const y=s.players[t.owner??t.p][t.origin]?.find(x=>x.uid===t.target);if(!y)break;const c=faces(card(y))[t.face||0];if(t.execution&&c.type==='spell'){doPut(s,t);break;}if(!canPut(s,t.p,y,t.origin,!!t.execution))break;if(c.g213Mars||c.g31Evolution?.minCards){doPut(s,t);break;}if(c.evolution||c.neoEvolution&&!t.noEvolve){
+  let bases=api.evolutionBases(s,t.p,c).filter(b=>b.uid!==y.uid&&(!t.g799YobiBases||t.g799YobiBases.includes(b.uid)));
+  if(t.g799YobiBases){
+   const other=t.rows.find(r=>r.uid!==y.uid&&own.deck.some(x=>x.uid===r.uid&&card(x).evolution));
+   const next=other&&own.deck.find(x=>x.uid===other.uid);
+   const nextBases=next?api.evolutionBases(s,t.p,card(next)).filter(b=>t.g799YobiBases.includes(b.uid)):[];
+   const both=bases.filter(b=>nextBases.some(nextBase=>nextBase.uid!==b.uid));
+   if(both.length)bases=both;
+  }
+  const options=[...(c.neoEvolution?[opt('進化させずに出す',null,1)]:[]),...bases.map(b=>opt(card(b).name,b.uid,10,b.cardId))];
+  if(options.length)choice(s,t,'出すクリーチャーの進化元を選ぶ',options);
+ }else doPut(s,t);break;}
  case'g34_ManaDown426':{const rows=own.mana.filter(y=>!y.faceDown);if(rows.length)choice(s,t,'裏向きにする自分のマナを1枚選ぶ（任意）',[...rows.map(y=>opt(card(y).name,{uid:y.uid,serial:y.zoneSerial||0},manaDownScore426(s,t,y),y.cardId)),skip()]);break;}
  // A failed deployment must not be confused with a failed printed condition.
  case'g34_RevealTop514':{
@@ -1735,6 +1748,33 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  }
  case'g34_RevealMove514':if(t.to==='battle')put(s,{...t,op:'g34_Put',origin:'deck'});else zoneMove(s,t.p,'deck',t.target,t.to,t);break;
  case'g34_RevealRelease514':for(const uid of t.ids)release(s,t.p,uid);api.deckCheck(s,t.p);break;
+ case'g34_DoubleYobi799':{
+  if(api.deckLocked(s,t.p))break;
+  const protectedIds=reserved(own),ids=[],hits=[];
+  const limit=api.lookCount(s,t.p,own.deck.length);
+  for(const y of own.deck){
+   if(ids.length===limit||hits.length===2)break;
+   if(protectedIds.has(y.uid))continue;
+   ids.push(y.uid);
+   const c=api.zoneCard(s,t.p,y,'deck');
+   if(c.type==='creature'&&cost(c)<(t.max==='∞'?Infinity:t.max))hits.push(y);
+  }
+  if(!ids.length)break;
+  look(s,{...t,n:ids.length,public:true});
+  const rows=hits.filter(x=>canPut(s,t.p,x,'deck'))
+   .sort((a,b)=>Number(!!card(b).evolution)-Number(!!card(a).evolution))
+   .map(x=>({uid:x.uid,p:t.p,origin:'deck'}));
+  finishSelect(s,{...t,rows,deploy:true,g799YobiBases:own.battle.map(x=>x.uid),
+   after:[{op:'DoubleYobiRest799',ids}]});
+  break;
+ }
+ case'g34_DoubleYobiRest799':{
+  const rest=t.ids.map(uid=>{release(s,t.p,uid);return remove(own.deck,uid);}).filter(Boolean);
+  for(const y of rest)delete y.g11Sideways;
+  if(rest.length)own.deck.push(...api.shuffled(rest,Math.floor(api.random(s)*4294967296)));
+  api.deckCheck(s,t.p);
+  break;
+ }
  case'g34_LookDeploy530':{
   const ids=look(s,t.g201Search?{...t,n:own.deck.length}:t);
   let eligible=ids;
@@ -2862,7 +2902,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
    else queue(s,owner,x,watch.defs);
   }
   if(creature&&!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g468EntryWatch;if(!x.sealed&&watch&&(!watch.g565Other||x.uid!==y.uid)&&(!(x.uid===y.uid)||!options.selfMuted&&!api.selfStopped(s,p))&&matches(s,p,y,watch.filter))send(s,p,x,'Entry468',{mode:watch.mode,subject:{uid:y.uid,incarnation:y.incarnation||0}});}if(!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g251EntryDraw,self=x.uid===y.uid;if(!x.sealed&&watch&&(!self||!options.selfMuted&&!api.selfStopped(s,p))&&(self&&watch.selfAlways||matches(s,p,y,watch.filter)))queue(s,p,x,watch.defs);}if(!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g250EntryDraw,self=x.uid===y.uid;if(!x.sealed&&watch&&(self?watch.self&&!options.selfMuted&&!api.selfStopped(s,p):matches(s,p,y,watch.filter)))queue(s,p,x,watch.defs);}if(s.active===p&&!y.sealed)for(const x of creatures(s,p)){const watch=effective(x,s).g249OtherEntry;if(!x.sealed&&x.uid!==y.uid&&watch&&matches(s,p,y,watch.filter))queue(s,p,x,watch.defs);}if(creature){const stopped=options.selfMuted||api.selfStopped(s,p);for(const x of active(s,p,'cabbage'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[select('mana',null,1,{creature:true,color:'自然',minPower:12000,exactCost:cost(c)-1},{deploy:true,optional:true})]);if(ninja(effective(y,s)))for(const x of active(s,p,'mukujimmed'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[E('Draw',{n:1,optional:true})]);if(angel(effective(y,s)))for(const x of active(s,p,'everries'))if(!(stopped&&x.uid===y.uid))queue(s,p,x,[E('Draw',{n:1,optional:true})]);for(const x of active(s,1-p,'nameko'))if(!options.paidMana)queue(s,1-p,x,[C('nameko',{target:y.uid,targetIncarnation:y.incarnation||0})]);if(options.execution===false)for(const x of active(s,1-p,'oogumo'))queue(s,1-p,x,[E('ExactMove',{to:'grave',target:y.uid,targetIncarnation:y.incarnation||0})]);}if(options.origin!=='hand')for(const x of s.players[1-p].battle.filter(x=>!api.ignored(s,x)))for(const layer of api.layers(x))if(card(layer).g34SoulDock)queue(s,1-p,x,[E('ExactMove',{to:'grave',target:y.uid,targetIncarnation:y.incarnation||0})]);},
- attack(s,p,x){if(s.g481Attackers?.turn!==s.turn)s.g481Attackers={turn:s.turn,events:[]};const refs=api.allLayers(x).map(key),first=!s.g481Attackers.events.some(e=>e.refs.some(r=>refs.includes(r)));s.g481Attackers.events.push({p,refs});if(s.attackLifecycle){s.attackLifecycle.g543First=first;s.attackLifecycle.g543Refs=refs;}if(first)for(const r of s.extLimits||[])if(r.kind==='g543Shinka'&&r.when==='firstAttack'&&refs.includes(key(r)))api.enqueue(s,r.p,{source:r.source,effect:'extended',task:task('g34_ResolveDelay537',r.p,r.source,{uid:r.uid,incarnation:r.incarnation,defs:[{op:'AfterAttack542',defs:[{op:'Untap',g191First:true}]}]})});const defender=s.attack?.target!=='player'&&s.players[1-p].battle.find(y=>y.uid===s.attack?.target);if(defender){
+ attack(s,p,x){if(s.g481Attackers?.turn!==s.turn)s.g481Attackers={turn:s.turn,events:[]};const refs=api.allLayers(x).map(key),first=!s.g481Attackers.events.some(e=>e.refs.some(r=>refs.includes(r)));s.g481Attackers.events.push({p,refs,...(s.attack?.target==='player'?{playerTarget:true}:{})});if(s.attackLifecycle){s.attackLifecycle.g543First=first;s.attackLifecycle.g543Refs=refs;}if(first)for(const r of s.extLimits||[])if(r.kind==='g543Shinka'&&r.when==='firstAttack'&&refs.includes(key(r)))api.enqueue(s,r.p,{source:r.source,effect:'extended',task:task('g34_ResolveDelay537',r.p,r.source,{uid:r.uid,incarnation:r.incarnation,defs:[{op:'AfterAttack542',defs:[{op:'Untap',g191First:true}]}]})});const defender=s.attack?.target!=='player'&&s.players[1-p].battle.find(y=>y.uid===s.attack?.target);if(defender){
   const defs=effective(defender,s).g447Attacked;
   if(defs)queue(s,1-p,defender,defs);
   const ref={uid:defender.uid,incarnation:defender.incarnation||0};

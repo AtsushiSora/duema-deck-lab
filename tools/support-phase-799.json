@@ -1,0 +1,475 @@
+{
+  "phase": 799,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6250,
+  "description": "爆翠竜の迎撃と離脱、魔誕の獅子と猛将のヨビニオン・常在付与・攻撃時除去に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/45937/",
+    "https://dm.takaratomy.co.jp/rule/qa/45263/",
+    "https://dm.takaratomy.co.jp/rule/qa/45437/",
+    "https://dm.takaratomy.co.jp/rule/qa/49402/",
+    "https://dm.takaratomy.co.jp/rule/qa/38732/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp4-S10",
+      "name": "爆翠竜 ゴルファンタジスタ",
+      "faces": [
+        {
+          "name": "爆翠竜 ゴルファンタジスタ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ハイパーエナジー（このクリーチャーを召喚する時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない）\nマッハファイター\nT・ブレイカー\n各ターン、はじめてクリーチャーが自分を攻撃する時、このクリーチャーとそのクリーチャーをバトルさせてもよい。\n相手のターン中に、このクリーチャーが離れた時、コスト７以下のクリーチャーを１体、自分のマナゾーンから出してもよい。",
+          "race": "ジャイアント・ドラゴン",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-S10",
+      "spec": {
+        "hyperEnergy": true,
+        "machFighter": true,
+        "breaker": 3,
+        "g252AttackWatch": {
+          "who": "opponent",
+          "playerAttack": true,
+          "g799FirstPlayer": true,
+          "g399Attacker": true,
+          "defs": [
+            {
+              "op": "FightAttacker798"
+            }
+          ]
+        },
+        "g601OpponentLeave": true,
+        "g172Leave": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "deploy": true,
+            "optional": true,
+            "n": 1,
+            "filter": {
+              "creature": true,
+              "max": 7
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-S10.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "95f5bfacab94be40696f10d42cadb4a94f5d66dabff0e0cbd39cea300fe1b024",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-S05",
+      "name": "魔誕の獅子デスライガー",
+      "faces": [
+        {
+          "name": "魔誕の獅子デスライガー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "W・ブレイカー\n自分のクリーチャーすべてに「マッハファイター」を与える。\nW・ヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが２体出るまで表向きにしてもよい。その２体を出す。残りをシャッフルし、山札の下に置く）",
+          "race": "デーモン・コマンド",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-S05",
+      "spec": {
+        "breaker": 2,
+        "g799DoubleYobi": true,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "machFighter": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-S05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "733ef9aa86627eb71b2a7d048637d2965ba6438854339b4224ac9f934fe256a3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-S04",
+      "name": "魔誕の猛将ダイダロス",
+      "faces": [
+        {
+          "name": "魔誕の猛将ダイダロス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "W・ブレイカー\nヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\n自分のクリーチャーすべてに「スピードアタッカー」と「ガードマン」を与える。\nこのクリーチャーが攻撃する時、相手のパワー4000以下のクリーチャーを１体選び、破壊する。",
+          "race": "デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-S04",
+      "spec": {
+        "breaker": 2,
+        "yobinion": true,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "grants": {
+              "speedAttacker": true,
+              "guardman": true
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "maxPower": 4000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-S04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "1a0487e4e6d2839a61e2748faf2b148ae8bfadd43dce0f447c43a136ca4faf14",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex3-rp4S10",
+      "canonicalId": "dm24rp4-S10",
+      "name": "爆翠竜 ゴルファンタジスタ",
+      "faces": [
+        {
+          "name": "爆翠竜 ゴルファンタジスタ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ハイパーエナジー（このクリーチャーを召喚する時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない）\nマッハファイター\nT・ブレイカー\n各ターン、はじめてクリーチャーが自分を攻撃する時、このクリーチャーとそのクリーチャーをバトルさせてもよい。\n相手のターン中に、このクリーチャーが離れた時、コスト７以下のクリーチャーを１体、自分のマナゾーンから出してもよい。",
+          "race": "ジャイアント・ドラゴン",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp4S10",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp4S10.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "01cefe3eedd8c45ecfe2492ec40fb13e89c6e492d3ee8eab7d2fdfd2f008c74a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-Sec11",
+      "canonicalId": "dm24rp4-S10",
+      "name": "爆翠竜 ゴルファンタジスタ",
+      "faces": [
+        {
+          "name": "爆翠竜 ゴルファンタジスタ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ハイパーエナジー（このクリーチャーを召喚する時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない）\nマッハファイター\nT・ブレイカー\n各ターン、はじめてクリーチャーが自分を攻撃する時、このクリーチャーとそのクリーチャーをバトルさせてもよい。\n相手のターン中に、このクリーチャーが離れた時、コスト７以下のクリーチャーを１体、自分のマナゾーンから出してもよい。",
+          "race": "ジャイアント・ドラゴン",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-Sec11",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-Sec11.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "d4e550279ef4f737699e85dcec7574ec2b341aea1806efa196a8da4e9cd9dd12",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-rp4Sec11",
+      "canonicalId": "dm24rp4-S10",
+      "name": "爆翠竜 ゴルファンタジスタ",
+      "faces": [
+        {
+          "name": "爆翠竜 ゴルファンタジスタ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "ハイパーエナジー（このクリーチャーを召喚する時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない）\nマッハファイター\nT・ブレイカー\n各ターン、はじめてクリーチャーが自分を攻撃する時、このクリーチャーとそのクリーチャーをバトルさせてもよい。\n相手のターン中に、このクリーチャーが離れた時、コスト７以下のクリーチャーを１体、自分のマナゾーンから出してもよい。",
+          "race": "ジャイアント・ドラゴン",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp4Sec11",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp4Sec11.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ce3bc6799538d2d97ed7eb7b29d01f8f219ee5bc842450d888b4525d8d15f6fb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-rp4S05",
+      "canonicalId": "dm24rp4-S05",
+      "name": "魔誕の獅子デスライガー",
+      "faces": [
+        {
+          "name": "魔誕の獅子デスライガー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "W・ブレイカー\n自分のクリーチャーすべてに「マッハファイター」を与える。\nW・ヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが２体出るまで表向きにしてもよい。その２体を出す。残りをシャッフルし、山札の下に置く）",
+          "race": "デーモン・コマンド",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp4S05",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp4S05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "dd5525399da49f9d021d90851317efe0a2c46bc7d7ffb982872ad0ac32a5a472",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-Sec06",
+      "canonicalId": "dm24rp4-S05",
+      "name": "魔誕の獅子デスライガー",
+      "faces": [
+        {
+          "name": "魔誕の獅子デスライガー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "W・ブレイカー\n自分のクリーチャーすべてに「マッハファイター」を与える。\nW・ヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが２体出るまで表向きにしてもよい。その２体を出す。残りをシャッフルし、山札の下に置く）",
+          "race": "デーモン・コマンド",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-Sec06",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-Sec06.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "532e95828795d5e95c7a6e77bde0caf7106f91d045fdb19563973449f1a2208f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-rp4Sec06",
+      "canonicalId": "dm24rp4-S05",
+      "name": "魔誕の獅子デスライガー",
+      "faces": [
+        {
+          "name": "魔誕の獅子デスライガー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "W・ブレイカー\n自分のクリーチャーすべてに「マッハファイター」を与える。\nW・ヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが２体出るまで表向きにしてもよい。その２体を出す。残りをシャッフルし、山札の下に置く）",
+          "race": "デーモン・コマンド",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp4Sec06",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp4Sec06.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "9f4d8eb7ded4c37d246fa6d77eb5e2d9e930282799eecc6e69785e5c537ef17a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-rp4S04",
+      "canonicalId": "dm24rp4-S04",
+      "name": "魔誕の猛将ダイダロス",
+      "faces": [
+        {
+          "name": "魔誕の猛将ダイダロス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "W・ブレイカー\nヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\n自分のクリーチャーすべてに「スピードアタッカー」と「ガードマン」を与える。\nこのクリーチャーが攻撃する時、相手のパワー4000以下のクリーチャーを１体選び、破壊する。",
+          "race": "デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp4S04",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp4S04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "6afc2d41c01d748bd94c3c85fcb81bc9b7094c36b1dc39ddea1073ec53fe4093",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-Sec05",
+      "canonicalId": "dm24rp4-S04",
+      "name": "魔誕の猛将ダイダロス",
+      "faces": [
+        {
+          "name": "魔誕の猛将ダイダロス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "W・ブレイカー\nヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\n自分のクリーチャーすべてに「スピードアタッカー」と「ガードマン」を与える。\nこのクリーチャーが攻撃する時、相手のパワー4000以下のクリーチャーを１体選び、破壊する。",
+          "race": "デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-Sec05",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-Sec05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "641ecd19909c513b20da00b704342f62c77be5f22a9932eb78904104c3898de1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-rp4Sec05",
+      "canonicalId": "dm24rp4-S04",
+      "name": "魔誕の猛将ダイダロス",
+      "faces": [
+        {
+          "name": "魔誕の猛将ダイダロス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "W・ブレイカー\nヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\n自分のクリーチャーすべてに「スピードアタッカー」と「ガードマン」を与える。\nこのクリーチャーが攻撃する時、相手のパワー4000以下のクリーチャーを１体選び、破壊する。",
+          "race": "デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp4Sec05",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp4Sec05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "6eca361badec2921c0865ec16d1e0bb572cc7aec4391b27a199dfc7e6f30f057",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex1-023",
+      "canonicalId": "dm24rp4-S04",
+      "name": "魔誕の猛将ダイダロス",
+      "faces": [
+        {
+          "name": "魔誕の猛将ダイダロス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "W・ブレイカー\nヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\n自分のクリーチャーすべてに「スピードアタッカー」と「ガードマン」を与える。\nこのクリーチャーが攻撃する時、相手のパワー4000以下のクリーチャーを１体選び、破壊する。",
+          "race": "デーモン・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-023",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex1-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "3650f066c4d1c073faa85d9f2a407b46fcdb035fd864bbeef1a8f285532a43df",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp4-S10": 4,
+      "dm24rp4-S05": 4,
+      "dm24rp4-S04": 4,
+      "dm24ex3-rp4S10": 4,
+      "dm24rp4-Sec11": 4,
+      "dm24ex3-rp4Sec11": 4,
+      "dm24ex3-rp4S05": 4,
+      "dm24rp4-Sec06": 4,
+      "dm24ex3-rp4Sec06": 4,
+      "dm24ex3-rp4S04": 4,
+      "dm24rp4-Sec05": 4,
+      "dm24ex3-rp4Sec05": 4,
+      "dm26ex1-023": 4
+    }
+  }
+}

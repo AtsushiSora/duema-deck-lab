@@ -182054,22 +182054,140 @@
       },
       "supportBatch": "phase-798",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-S10",
+      "name": "爆翠竜 ゴルファンタジスタ",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 15000,
+      "race": "ジャイアント・ドラゴン",
+      "text": "ハイパーエナジー（このクリーチャーを召喚する時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にはならない）\nマッハファイター\nT・ブレイカー\n各ターン、はじめてクリーチャーが自分を攻撃する時、このクリーチャーとそのクリーチャーをバトルさせてもよい。\n相手のターン中に、このクリーチャーが離れた時、コスト７以下のクリーチャーを１体、自分のマナゾーンから出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-S10",
+      "limit": 4,
+      "hyperEnergy": true,
+      "machFighter": true,
+      "breaker": 3,
+      "g252AttackWatch": {
+        "who": "opponent",
+        "playerAttack": true,
+        "g799FirstPlayer": true,
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "FightAttacker798"
+          }
+        ]
+      },
+      "g601OpponentLeave": true,
+      "g172Leave": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "deploy": true,
+          "optional": true,
+          "n": 1,
+          "filter": {
+            "creature": true,
+            "max": 7
+          }
+        }
+      ],
+      "supportBatch": "phase-799",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-S05",
+      "name": "魔誕の獅子デスライガー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 11000,
+      "race": "デーモン・コマンド",
+      "text": "W・ブレイカー\n自分のクリーチャーすべてに「マッハファイター」を与える。\nW・ヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが２体出るまで表向きにしてもよい。その２体を出す。残りをシャッフルし、山札の下に置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-S05",
+      "limit": 4,
+      "breaker": 2,
+      "g799DoubleYobi": true,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "machFighter": true
+          }
+        }
+      ],
+      "supportBatch": "phase-799",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-S04",
+      "name": "魔誕の猛将ダイダロス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "デーモン・コマンド",
+      "text": "W・ブレイカー\nヨビニオン（このクリーチャーが召喚によって出た時、自分の山札の上から、これよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\n自分のクリーチャーすべてに「スピードアタッカー」と「ガードマン」を与える。\nこのクリーチャーが攻撃する時、相手のパワー4000以下のクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-S04",
+      "limit": 4,
+      "breaker": 2,
+      "yobinion": true,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "speedAttacker": true,
+            "guardman": true
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "filter": {
+            "maxPower": 4000,
+            "g199Power": true
+          }
+        }
+      ],
+      "supportBatch": "phase-799",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 798,
+    "phase": 799,
     "checkedAt": "2026-11-10",
-    "baseCount": 6247,
+    "baseCount": 6250,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6250,
+    "totalCount": 6253,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/44212/",
-      "https://dm.takaratomy.co.jp/rule/qa/45922/",
-      "https://dm.takaratomy.co.jp/rule/qa/45923/",
-      "https://dm.takaratomy.co.jp/rule/qa/45924/",
-      "https://dm.takaratomy.co.jp/rule/qa/45932/",
+      "https://dm.takaratomy.co.jp/rule/qa/45937/",
+      "https://dm.takaratomy.co.jp/rule/qa/45263/",
+      "https://dm.takaratomy.co.jp/rule/qa/45437/",
+      "https://dm.takaratomy.co.jp/rule/qa/49402/",
+      "https://dm.takaratomy.co.jp/rule/qa/38732/",
       "https://dm.takaratomy.co.jp/rule/rulechange/"
     ],
     "next": [
@@ -196025,6 +196143,26 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/46627/",
           "https://dm.takaratomy.co.jp/rule/qa/45437/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 798,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6247,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6250,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/44212/",
+          "https://dm.takaratomy.co.jp/rule/qa/45922/",
+          "https://dm.takaratomy.co.jp/rule/qa/45923/",
+          "https://dm.takaratomy.co.jp/rule/qa/45924/",
+          "https://dm.takaratomy.co.jp/rule/qa/45932/",
           "https://dm.takaratomy.co.jp/rule/rulechange/"
         ],
         "next": [

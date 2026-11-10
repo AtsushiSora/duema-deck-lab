@@ -986,6 +986,7 @@ export function entryAbilities(s,p,original,reference){
  if(c.g414ShieldPlus)extended('シールド・プラス','g34_ShieldPlus414');
  if(c.g27Raid)extended('超魂レイド','g27_Raid');
  if(c.yobinion)extended('ヨビニオン','g19Yobi',{max:costValue(card(reference.source))});
+ if(c.g799DoubleYobi)extended('W・ヨビニオン','g19Yobi',{max:costValue(card(reference.source)),double799:true});
  if(c.samuraiGenerate)extended('侍流ジェネレート','g18_Generate');
  if(c.finalRev)extended('ファイナル革命',c.finalRev==='extreme'?'g26_Final':c.finalRev==='burst'?'g3_Final':c.finalRev==='dark'?'finalDark':c.finalRev==='nova'?'g8_Final':c.finalRev==='gira'?'g11_Final':'finalLight');
  if(c.shiroLock)extended('革命チェンジ登場時の呪文制限','g18_ShiraLock');

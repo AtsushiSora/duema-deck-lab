@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6250,
-  "pendingNames": 5577,
-  "phase": 798,
+  "supportedNames": 6253,
+  "pendingNames": 5574,
+  "phase": 799,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3301,
+    "クリーチャー": 3298,
     "NEOクリーチャー": 152,
     "呪文": 791,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1241,
-    "未対応の能力文": 4077,
+    "未対応の能力文": 4074,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -11639,30 +11639,112 @@
         "runtimeNote": "各最大10分。Phase 409・430・530・564・670・762・792・797の関連回帰を実施。Phase 409・430・530・564の長時間CPU対戦はテスト名で除外。全体のnpm testは中断・合否未確認。"
       },
       "deferred": []
+    },
+    {
+      "phase": 799,
+      "cards": [
+        {
+          "id": "dm24rp4-S10",
+          "name": "爆翠竜 ゴルファンタジスタ"
+        },
+        {
+          "id": "dm24rp4-S05",
+          "name": "魔誕の獅子デスライガー"
+        },
+        {
+          "id": "dm24rp4-S04",
+          "name": "魔誕の猛将ダイダロス"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm24ex3-rp4S10",
+          "canonicalId": "dm24rp4-S10",
+          "name": "爆翠竜 ゴルファンタジスタ"
+        },
+        {
+          "id": "dm24rp4-Sec11",
+          "canonicalId": "dm24rp4-S10",
+          "name": "爆翠竜 ゴルファンタジスタ"
+        },
+        {
+          "id": "dm24ex3-rp4Sec11",
+          "canonicalId": "dm24rp4-S10",
+          "name": "爆翠竜 ゴルファンタジスタ"
+        },
+        {
+          "id": "dm24ex3-rp4S05",
+          "canonicalId": "dm24rp4-S05",
+          "name": "魔誕の獅子デスライガー"
+        },
+        {
+          "id": "dm24rp4-Sec06",
+          "canonicalId": "dm24rp4-S05",
+          "name": "魔誕の獅子デスライガー"
+        },
+        {
+          "id": "dm24ex3-rp4Sec06",
+          "canonicalId": "dm24rp4-S05",
+          "name": "魔誕の獅子デスライガー"
+        },
+        {
+          "id": "dm24ex3-rp4S04",
+          "canonicalId": "dm24rp4-S04",
+          "name": "魔誕の猛将ダイダロス"
+        },
+        {
+          "id": "dm24rp4-Sec05",
+          "canonicalId": "dm24rp4-S04",
+          "name": "魔誕の猛将ダイダロス"
+        },
+        {
+          "id": "dm24ex3-rp4Sec05",
+          "canonicalId": "dm24rp4-S04",
+          "name": "魔誕の猛将ダイダロス"
+        },
+        {
+          "id": "dm26ex1-023",
+          "canonicalId": "dm24rp4-S04",
+          "name": "魔誕の猛将ダイダロス"
+        }
+      ],
+      "supportedNames": 6253,
+      "pendingNames": 5574,
+      "verification": {
+        "focusedPassed": 20,
+        "regressionPassed": 333,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 13,
+        "scope": "通常版3点と再録・別イラスト10点の全能力、基本情報、画像、殿堂制限なしを公式照合。爆翠竜はハイパーエナジー、マッハファイター、T・ブレイカー、最初の対プレイヤー攻撃への任意バトル（類似QA 49402）、相手ターンの各種離脱と任意のマナ展開を検証。デスライガーは召喚時のW・ヨビニオン、該当0・1・2体（QA 45937）、進化元がない場合（類似QA 45263）、進化元を別々に取る場合と能力コピー時のコスト、山札下への移動とマッハファイター付与の終了を検証。ダイダロスは通常のヨビニオンと発動辞退、味方へのスピードアタッカー・ガードマン、現在パワー4000以下の除去を検証。既存対戦定義6,250件が一致することを確認。今回の候補の保留はなし。既存の保留理由は継続記録。",
+        "runtimeNote": "各最大10分。Mecha、Abyss、Phase 168・398・530・764・797・798の関連回帰を実施。初回はMecha・Abyssの長時間ランダム対戦を除外し切れなかったため中断・合否未確認（/tmp/duema-phase-799-regression-interrupted.log）。続く実行はAbyssの長時間の全カード能力コピー総当たりと280試合ワーカーを除外できておらず中断・合否未確認（/tmp/duema-phase-799-regression-exhaustive-interrupted.log、/tmp/duema-phase-799-regression-worker-interrupted.log）。検証済みの実行ではこれらのケースとMecha・Abyss、Phase 168・398・530の長時間CPU対戦をテスト名で除外。MechaのUltraSaver試験1件は基点75cf14fcでも同じreplaceUltra未表示で失敗したため、今回の検証済み範囲から除外。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": []
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 798,
-    "nextPhase": 799,
+    "lastVerifiedPhase": 799,
+    "nextPhase": 800,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm24rp4-S10",
-        "name": "爆翠竜 ゴルファンタジスタ",
-        "check": "ハイパーエナジー、マッハファイター、最初の対プレイヤー攻撃に対する効果バトル、相手ターンの離脱時の展開を公式照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-S10"
+        "id": "dm24rp4-S03",
+        "name": "超暴淵 ボジャガイスト",
+        "check": "墓地からの通常召喚とハイパーエナジーの併用、登場時の相手による2枚破棄と手札が空の場合の弱体化を公式照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-S03"
       },
       {
-        "id": "dm24rp4-S05",
-        "name": "魔誕の獅子デスライガー",
-        "check": "味方へのマッハファイター付与と、召喚時のW・ヨビニオンの公開・同時展開を公式照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-S05"
+        "id": "dm24rp4-S06",
+        "name": "陽炎の精霊メルキウス",
+        "check": "任意で付与するハイパーエナジー、複数体からの付与の重複、ジャストダイバー、公開と山札下順序、各ターン終了時のアンタップを公式照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-S06"
       },
       {
-        "id": "dm24rp4-S04",
-        "name": "魔誕の猛将ダイダロス",
-        "check": "ヨビニオンと味方へのスピードアタッカー・ガードマン付与、攻撃時の効果と再録を公式照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-S04"
+        "id": "dm24rp4-S08",
+        "name": "♪ハックより 一時ずらして じゅうとなな",
+        "check": "ハイパーエナジー、枚数指定と墓地からの展開、バラバラエティ3と最初の同名呪文による追加ターンを公式照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-S08"
       },
       {
         "id": "dm24ex4-073",
@@ -12198,7 +12280,8 @@
       "Phase 321・322の既存マジボンバーは、手札からEXライフ持ちを出す際に公式QA 41150と異なり、先に閲覧中のカードを解放する。既存の対戦挙動を維持するため、このバッチの裁定対応はHOODに限定。既存カードへの適用は再開データと回帰テストを別途検証する。",
       "Phase 749の偽爆電融 ゾルネードシヴァの任意ブレイクは現行定義で1つ固定。総合ルール701.14dと類似QA 39660に沿う追加ブレイクへの切り替え、発生源が離れた後の挙動、保存途中の既存選択肢との互換性を別途確認する。",
       "公式QA 43789のデュエマの鬼！キクチ師範代・禁術のカルマ カレイコは対戦未対応。どちらかの対応時に、フォックの手札以外の移動を一括で山札へシャッフルする裁定を検証する。今回検証したカレイコの黒像と星空に浮かぶニンギョは墓地への置換。",
-      "Utility 113のZebraの裏向きマナ表示試験は、Phase 796基点c402ba16でも再現。期待する「裏向きのマナ」に対し「裏向きのカード」と表示されるため、今回の変更とは分けて扱う。"
+      "Utility 113のZebraの裏向きマナ表示試験は、Phase 796基点c402ba16でも再現。期待する「裏向きのマナ」に対し「裏向きのカード」と表示されるため、今回の変更とは分けて扱う。",
+      "MechaのUltraSaver試験はPhase 799の基点75cf14fcでも同じreplaceUltra未表示で失敗する。手札に戻す効果に対する自己置換の期待を既存挙動と別途照合する。"
     ]
   }
 }

@@ -2507,6 +2507,20 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=799&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const hyper='ハイパーエナジー(このクリーチャーを召喚する時コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー1体につきこのクリーチャーの召喚コストを2少なくする。ただしコストは0以下にはならない)';
+  const yobi='ヨビニオン(このクリーチャーが召喚によって出た時自分の山札の上からこれよりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし山札の下に置く)';
+  const doubleYobi='W・ヨビニオン(このクリーチャーが召喚によって出た時自分の山札の上からこれよりコストが小さいクリーチャーが2体出るまで表向きにしてもよい。その2体を出す。残りをシャッフルし山札の下に置く)';
+  if(text.replace(hyper,'ハイパーエナジー')==='ハイパーエナジーマッハファイターT・ブレイカー各ターンはじめてクリーチャーが自分を攻撃する時このクリーチャーとそのクリーチャーをバトルさせてもよい。相手のターン中にこのクリーチャーが離れた時コスト7以下のクリーチャーを1体自分のマナゾーンから出してもよい。')
+   return {hyperEnergy:true,machFighter:true,breaker:3,g252AttackWatch:{who:'opponent',playerAttack:true,g799FirstPlayer:true,g399Attacker:true,defs:[{op:'FightAttacker798'}]},
+    g601OpponentLeave:true,g172Leave:[{op:'Select',origin:'mana',deploy:true,optional:true,n:1,filter:{creature:true,max:7}}]};
+  if(text==='W・ブレイカー自分のクリーチャーすべてに「マッハファイター」を与える。'+doubleYobi)
+   return {breaker:2,g799DoubleYobi:true,g208Auras:[{filter:{creature:true},grants:{machFighter:true}}]};
+  if(text==='W・ブレイカー'+yobi+'自分のクリーチャーすべてに「スピードアタッカー」と「ガードマン」を与える。このクリーチャーが攻撃する時相手のパワー4000以下のクリーチャーを1体選び破壊する。')
+   return {breaker:2,yobinion:true,g208Auras:[{filter:{creature:true},grants:{speedAttacker:true,guardman:true}}],
+    g34Attack:[{op:'Target',to:'grave',filter:{maxPower:4000,g199Power:true}}]};
+ }
  if(phase>=798&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText),gs='{GS}G・ストライク';
   const gsFull=gs+'(このクリーチャーを自分のシールドゾーンから手札に加える時表向きにし相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)';
