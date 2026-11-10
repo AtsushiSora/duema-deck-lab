@@ -3433,6 +3433,14 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=858&&f.typeText==='クリーチャー'){
+  if(d.id==='dm36-067'&&compact363==='自分の他の(W・ソウル)クリーチャーが破壊される時墓地に置くかわりに自分のマナゾーンに置く。')
+   return {g558Souls:['W'],g575ManaAura:{other:true,filter:{creature:true,g853Soul:'W'}}};
+  if(compact363==='相手がバトルゾーンにあるクロスギアを1枚選ぶ時このクリーチャーにクロスしてあるクロスギアを選ぶことはできない。')
+   return {g858ProtectCrossedGear:true};
+  if(d.id==='dm37-006'&&compact363==='バトルゾーンにある自分の他の(H・ソウル)と(M・ソウル)クリーチャーはすべて「ブロッカー」を得る。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {g558Souls:['H','M'],breaker:2,g208Auras:[{other:true,filter:{g856Souls:['H','M']},grants:{blocker:true}}]};
+ }
  if(phase>=857&&f.typeText==='クリーチャー'){
   if(compact363==='自分のワイルド・ベジーズをマナゾーンに置いた時そのターンの終わりまでこのクリーチャーのパワーは+2000される。')
    return {g857ManaEntryRace:'ワイルド・ベジーズ',g807ManaEntry:[{op:'SelfBoost313',power:2000,g536Source:true}]};
