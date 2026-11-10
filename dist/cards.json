@@ -179119,22 +179119,151 @@
       ],
       "supportBatch": "phase-775",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp1-030",
+      "name": "聖騎士アリアン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2500,
+      "race": "レインボー・ファントム",
+      "text": "このクリーチャーがアンタップした時、このターン、次に召喚する自分のクリーチャーのコストを最大２少なくする。ただし、コストは０以下にはならない。\n相手のターン中に、このクリーチャーが離れた時、自分の山札の上から１枚目をシールド化してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-030",
+      "limit": 4,
+      "g299Untapped": [
+        {
+          "op": "NextReduction456",
+          "type": "creature",
+          "amount": 2
+        }
+      ],
+      "g601OpponentLeave": true,
+      "g172Leave": [
+        {
+          "op": "Offer",
+          "title": "山札の上から1枚目をシールド化する？",
+          "defs": [
+            {
+              "op": "ShieldTop"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-776",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-020",
+      "name": "悪魔世界の業焔",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "ヨビニオン（自分の山札の上から、この呪文よりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\n次のうちいずれか１つを選ぶ。\n▶シールドを１つブレイクする。\n▶このターン、自分のクリーチャーすべてに「スピードアタッカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-020",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Yobi398"
+        },
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "相手のシールドを1つブレイクする",
+              "defs": [
+                {
+                  "op": "Break497",
+                  "n": 1
+                }
+              ]
+            },
+            {
+              "label": "自分のクリーチャーすべてにこのターン「スピードアタッカー」を与える",
+              "defs": [
+                {
+                  "op": "GroupGrant364",
+                  "owner": "self",
+                  "filter": {
+                    "creature": true
+                  },
+                  "grant": {
+                    "speedAttacker": true
+                  },
+                  "spell": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-776",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-016",
+      "name": "悪魔世界の激流",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "ヨビニオン（自分の山札の上から、この呪文よりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\n自分のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは相手に選ばれず、攻撃されない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-016",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Yobi398"
+        },
+        {
+          "op": "Target",
+          "owner": "self",
+          "g521UntilStart": true,
+          "spell": true,
+          "grant": {
+            "untargetable": true,
+            "cannotBeAttacked": true
+          },
+          "title": "次の自分のターンまで守るクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-776",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 775,
+    "phase": 776,
     "checkedAt": "2026-11-10",
-    "baseCount": 6176,
+    "baseCount": 6179,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6179,
+    "totalCount": 6182,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/43789/",
-      "https://dm.takaratomy.co.jp/rule/qa/41471/",
-      "https://dm.takaratomy.co.jp/rule/qa/44661/",
-      "https://dm.takaratomy.co.jp/rule/qa/31568/",
+      "https://dm.takaratomy.co.jp/rule/qa/43042/",
+      "https://dm.takaratomy.co.jp/rule/qa/45263/",
+      "https://dm.takaratomy.co.jp/rule/qa/45264/",
+      "https://dm.takaratomy.co.jp/rule/qa/45265/",
+      "https://dm.takaratomy.co.jp/rule/qa/47465/",
+      "https://dm.takaratomy.co.jp/rule/qa/47489/",
       "https://dm.takaratomy.co.jp/rule/rulechange/31654/"
     ],
     "next": [
@@ -192636,6 +192765,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/44188/",
           "https://dm.takaratomy.co.jp/rule/qa/48922/",
           "https://dm.takaratomy.co.jp/rule/qa/33527/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 775,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6176,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6179,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/43789/",
+          "https://dm.takaratomy.co.jp/rule/qa/41471/",
+          "https://dm.takaratomy.co.jp/rule/qa/44661/",
+          "https://dm.takaratomy.co.jp/rule/qa/31568/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31654/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

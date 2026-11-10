@@ -2564,6 +2564,26 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=776&&d.faces.length===1){
+  const yobi='ヨビニオン(自分の山札の上からこの呪文よりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし山札の下に置く)';
+  if(f.typeText==='呪文'&&compact363===yobi+'次のうちいずれか1つを選ぶ。▶シールドを1つブレイクする。▶このターン自分のクリーチャーすべてに「スピードアタッカー」を与える。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Yobi398'},{op:'Choose',g184Modes:true,modes:[
+    {label:'相手のシールドを1つブレイクする',defs:[{op:'Break497',n:1}]},
+    {label:'自分のクリーチャーすべてにこのターン「スピードアタッカー」を与える',defs:[
+     {op:'GroupGrant364',owner:'self',filter:{creature:true},grant:{speedAttacker:true},spell:true}
+    ]}
+   ]}]};
+  if(f.typeText==='呪文'&&compact363===yobi+'自分のクリーチャーを1体選ぶ。次の自分のターンのはじめまでそのクリーチャーは相手に選ばれず攻撃されない。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Yobi398'},{op:'Target',owner:'self',g521UntilStart:true,spell:true,
+    grant:{untargetable:true,cannotBeAttacked:true},title:'次の自分のターンまで守るクリーチャーを選ぶ'}]};
+  const arian='このクリーチャーがアンタップした時このターン次に召喚する自分のクリーチャーのコストを';
+  const arianEnd='2少なくする。ただしコストは0以下にはならない。相手のターン中にこのクリーチャーが離れた時自分の山札の上から1枚目をシールド化してもよい。';
+  // The first print's exact wording is preserved in the catalogue. Use the verified later text in battle.
+  const earlyArian=d.id==='dm24rp1-030'&&d.name==='聖騎士アリアン'&&compact363===arian+'最大'+arianEnd;
+  if(f.typeText==='クリーチャー'&&(earlyArian||compact363===arian+arianEnd))
+   return {g299Untapped:[{op:'NextReduction456',type:'creature',amount:2}],
+    g601OpponentLeave:true,g172Leave:[{op:'Offer',title:'山札の上から1枚目をシールド化する？',defs:[{op:'ShieldTop'}]}]};
+ }
  if(phase>=775&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const abyssRush='アビスラッシュ:このクリーチャーを自分の墓地から召喚してもよい。そうしたらこのターンこのクリーチャーはプレイヤーを攻撃できターンの終わりに山札の下に置かれる。';
   const reprintRush='アビスラッシュ(このクリーチャーを自分の墓地から召喚してもよい。そうしたらこのターンこのクリーチャーはプレイヤーを攻撃できこのターンの終わりに山札の下に置かれる)';

@@ -1,0 +1,335 @@
+{
+  "phase": 776,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6179,
+  "description": "ヨビニオン呪文2種類のブレイク・全体速攻・単体保護と、聖騎士アリアンのアンタップ時の召喚軽減・離脱時の任意シールド化に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/43042/",
+    "https://dm.takaratomy.co.jp/rule/qa/45263/",
+    "https://dm.takaratomy.co.jp/rule/qa/45264/",
+    "https://dm.takaratomy.co.jp/rule/qa/45265/",
+    "https://dm.takaratomy.co.jp/rule/qa/47465/",
+    "https://dm.takaratomy.co.jp/rule/qa/47489/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31654/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp1-030",
+      "name": "聖騎士アリアン",
+      "faces": [
+        {
+          "name": "聖騎士アリアン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがアンタップした時、このターン、次に召喚する自分のクリーチャーのコストを最大２少なくする。ただし、コストは０以下にはならない。\n相手のターン中に、このクリーチャーが離れた時、自分の山札の上から１枚目をシールド化してもよい。",
+          "race": "レインボー・ファントム",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp1-030",
+      "spec": {
+        "g299Untapped": [
+          {
+            "op": "NextReduction456",
+            "type": "creature",
+            "amount": 2
+          }
+        ],
+        "g601OpponentLeave": true,
+        "g172Leave": [
+          {
+            "op": "Offer",
+            "title": "山札の上から1枚目をシールド化する？",
+            "defs": [
+              {
+                "op": "ShieldTop"
+              }
+            ]
+          }
+        ]
+      },
+      "currentPrint": {
+        "id": "dm24ex3-048",
+        "name": "聖騎士アリアン",
+        "faces": [
+          {
+            "name": "聖騎士アリアン",
+            "typeText": "クリーチャー",
+            "civilizationText": "光",
+            "civilizations": [
+              "光"
+            ],
+            "cost": 2,
+            "costText": "2",
+            "abilityText": "このクリーチャーがアンタップした時、このターン、次に召喚する自分のクリーチャーのコストを２少なくする。ただし、コストは０以下にはならない。\n相手のターン中に、このクリーチャーが離れた時、自分の山札の上から１枚目をシールド化してもよい。",
+            "race": "レインボー・ファントム",
+            "powerText": "2500",
+            "missingFields": []
+          }
+        ],
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-048",
+        "verification": {
+          "checkedAt": "2026-11-10",
+          "sha256": "220cf7e1507e9227d4d3aacecfe5bb6c3a674d203f135a685d24bf64ca6e409e",
+          "facesMatched": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp1-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "2684322f234c21331f36b3d95ba1fc012d728000eedc19ef2bb5ad74d4212257",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-020",
+      "name": "悪魔世界の業焔",
+      "faces": [
+        {
+          "name": "悪魔世界の業焔",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ヨビニオン（自分の山札の上から、この呪文よりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\n次のうちいずれか１つを選ぶ。\n▶シールドを１つブレイクする。\n▶このターン、自分のクリーチャーすべてに「スピードアタッカー」を与える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-020",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Yobi398"
+          },
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のシールドを1つブレイクする",
+                "defs": [
+                  {
+                    "op": "Break497",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "自分のクリーチャーすべてにこのターン「スピードアタッカー」を与える",
+                "defs": [
+                  {
+                    "op": "GroupGrant364",
+                    "owner": "self",
+                    "filter": {
+                      "creature": true
+                    },
+                    "grant": {
+                      "speedAttacker": true
+                    },
+                    "spell": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "0629c52558291d8a3daef7480235508e917fbc0c097b1dc3513b8894b465d124",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-016",
+      "name": "悪魔世界の激流",
+      "faces": [
+        {
+          "name": "悪魔世界の激流",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ヨビニオン（自分の山札の上から、この呪文よりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\n自分のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは相手に選ばれず、攻撃されない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-016",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Yobi398"
+          },
+          {
+            "op": "Target",
+            "owner": "self",
+            "g521UntilStart": true,
+            "spell": true,
+            "grant": {
+              "untargetable": true,
+              "cannotBeAttacked": true
+            },
+            "title": "次の自分のターンまで守るクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "fcaf5dec4cf30034ca8f68eccd78b3beaac0d5ebfcb5a6106c9d4e735c534387",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex3-048",
+      "canonicalId": "dm24rp1-030",
+      "name": "聖騎士アリアン",
+      "faces": [
+        {
+          "name": "聖騎士アリアン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがアンタップした時、このターン、次に召喚する自分のクリーチャーのコストを２少なくする。ただし、コストは０以下にはならない。\n相手のターン中に、このクリーチャーが離れた時、自分の山札の上から１枚目をシールド化してもよい。",
+          "race": "レインボー・ファントム",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-048",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "220cf7e1507e9227d4d3aacecfe5bb6c3a674d203f135a685d24bf64ca6e409e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-032",
+      "canonicalId": "dm24rp4-020",
+      "name": "悪魔世界の業焔",
+      "faces": [
+        {
+          "name": "悪魔世界の業焔",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ヨビニオン（自分の山札の上から、この呪文よりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\n次のうちいずれか１つを選ぶ。\n▶シールドを１つブレイクする。\n▶このターン、自分のクリーチャーすべてに「スピードアタッカー」を与える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-032",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "657ec68d11a7b193158465f46ab3066f2aa67bd48736eb7ab4c7ac88103cec4a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy23-098",
+      "canonicalId": "dm24rp4-020",
+      "name": "悪魔世界の業焔",
+      "faces": [
+        {
+          "name": "悪魔世界の業焔",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ヨビニオン（自分の山札の上から、この呪文よりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\n次のうちいずれか１つを選ぶ。\n▶シールドを１つブレイクする。\n▶このターン、自分のクリーチャーすべてに「スピードアタッカー」を与える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy23-098",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy23-098.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "fbe93102470d40c85d1dc55ecba2d5bf64fd7f7d047d20dae37424846762dd8c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-016",
+      "canonicalId": "dm24rp4-016",
+      "name": "悪魔世界の激流",
+      "faces": [
+        {
+          "name": "悪魔世界の激流",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ヨビニオン（自分の山札の上から、この呪文よりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし、山札の下に置く）\n自分のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、そのクリーチャーは相手に選ばれず、攻撃されない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-016",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "f0a78e03be394a18494a6f80a854a166e58139cd0e45184171146d9e4430511c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp1-030": 4,
+      "dm24rp4-020": 4,
+      "dm24rp4-016": 4,
+      "dm24ex3-048": 4,
+      "dm24ex3-032": 4,
+      "promoy23-098": 4,
+      "dm24ex3-016": 4
+    }
+  }
+}

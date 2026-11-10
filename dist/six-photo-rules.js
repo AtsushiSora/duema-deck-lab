@@ -846,7 +846,7 @@ export function createSixPhotoRules(api){
   else if(d.op==='BattleCardMove579')score+=Math.max(0,...cardMoveOptions579(s,{...t,...d}).map(o=>o.score));
   else if(d.op==='Look'&&d.g310Search)score+=own.deck.length>1?(own.hand.length<4?12:8):0;
   else if(card(t.source).supportBatch==='phase-775'&&d.op==='Look'&&d.rest==='top'&&d.stages?.[0]?.to==='hand'&&!api.deckLocked(s,t.p))score+=deckCount<=1?-1000:own.hand.length<4?14:8;
-  else if(card(t.source).supportBatch==='phase-775'&&d.op==='Break497')score+=Math.min(d.n,opp.shields.length??opp.shields)*12;
+  else if(d.op==='Break497'&&['phase-775','phase-776'].includes(card(t.source)?.supportBatch))score+=Math.min(d.n,opp.shields.length??opp.shields)*12;
   else if(d.op==='GroupGrant364'&&d.grant.poweredBreaker&&d.grant.attackBonus){
    const shields=opp.shields.length??opp.shields;
    const blockers=creatures(s,1-t.p).filter(x=>!x.sealed&&!x.tapped&&effective(x,s).blocker).map(x=>api.power(x,false,s));
