@@ -55,11 +55,20 @@ export function createGalaxyRules(api){
   if(e.options.mugenBases&&!card(r.source).tokoshie&&!card(r.source).g38Bell)api.attachMugenBases(s,e.p,x,e.options.mugenBases);
   // A creature replacement moves Mars together with its deck-evolution sources (official 47078); card replacements leave them in the library (47056).
   if(card(x).g213Mars&&!card(r.source).tokoshie&&!card(r.source).deckRedirect)api.attachMarsDeck(s,e.p,x);
+  if(e.options.g831DeckBase){
+   const uid=e.options.g831DeckBase;
+   own.g34Protected=own.g34Protected.filter(ref=>ref!==uid);
+   if(!card(r.source).tokoshie&&!card(r.source).deckRedirect){
+    const base=remove(own.deck,uid);
+    if(base)x.under=[base];
+   }
+  }
   // Hand-evolution material moves with the creature when Gaia replaces entry (QA39125).
   if(card(x).g827HandWaterEvolution&&card(r.source).gaiaEntry)api.attachHandEvolution(s,e.p,x,e.baseUid);
   const all=api.layers(x),moved=[];for(const y of all){const old=origins.get(y.uid);clear(y,r.to);if(old?.zone===r.to){if(old.serial===undefined)delete y.zoneSerial;else y.zoneSerial=old.serial;y.tapped=old.tapped;own[r.to].push(y);}else moved.push(y);}
   if(moved.length)api.addZone(s,e.p,r.to,...moved);api.fifteen.replaced(s,e,r);
   log(s,e.p,'entryReplace',card(r.source).name+'でバトルゾーンのかわりに'+(r.to==='mana'?'マナ':r.to==='hand'?'手札':'墓地')+'へ',{cardId:x.cardId});
+  if(e.options.g831DeckBase)api.deckCheck(s,e.p);
   if(r.segare&&s.players[1-e.p].battle.some(x=>x.uid===r.segare))move(s,[{player:1-e.p,uid:r.segare,to:'mana',by:e.options.effectController??api.effectActor(s)}]);
  }
 

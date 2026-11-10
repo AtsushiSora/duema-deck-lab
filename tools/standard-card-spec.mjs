@@ -2507,6 +2507,15 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=831&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='クリーチャー'&&text==='自分の他の名前に《死神》とあるクリーチャーをバトルゾーンに出した時自分の墓地からそのクリーチャーよりコストが小さく名前に《死神》とあるクリーチャーを1体選んでもよい。その選んだクリーチャーを手札に戻す。')
+   return {g314OtherEntry:{who:'self',filter:{creature:true,g819CreatureNameIncludes:'死神'},g831DeathRecovery:true}};
+  if(f.typeText==='進化クリーチャー(デッキ進化)'&&text==='デッキ進化-自分の山札の上から1枚目を表向きにする。そのカードがクリーチャーであればこのクリーチャーをその上に重ねつつバトルゾーンに出す。そのカードがクリーチャー以外であればこのクリーチャーを自分の手札に戻す。')
+   return {g45MDeck:true,g831SingleDeckEvolution:true};
+  if(f.typeText==='進化クリーチャー(究極進化)'&&text==='究極進化-自分の進化クリーチャー1体の上に置く。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)このクリーチャーがバトルゾーンを離れる時かわりにクリーチャーではないカードを1枚手札から捨ててもよい。')
+   return {ultimateEvolution:true,evolution:{evolution:true},breaker:2,g831Sunshine:true};
+ }
  if(phase>=830&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='進化クリーチャー(マナ進化)'&&text==='マナ進化-自然のクリーチャーを1体自分のマナゾーンから選びこのクリーチャーをその上に重ねつつバトルゾーンに出す。自分の自然のクリーチャーを召喚するコストを最大2少なくしてもよい。ただしコストは1より少なくならない。')

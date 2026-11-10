@@ -30,7 +30,26 @@ export function createSagaChampionRules(api){
  case'g45_Woz':queue(s,t,'WozPick',{selected:[]});break;
  case'g45_WozPick':{const rows=[0,1].flatMap(owner=>allowed(s,owner,'grave')?s.players[owner].grave.flatMap(y=>faces(card(y)).flatMap((c,face)=>c.type==='spell'&&cost(c)<=3&&!(t.selected||[]).some(r=>r.uid===y.uid)&&api.canCast(s,t.p,c,owner===t.p?'grave':null)?[{y,c,face,owner}]:[])):[]);if(t.selected.length>=2||!rows.length){queue(s,t,'WozNext');break;}choice(s,t,'両プレイヤーの墓地からコスト3以下の呪文を2枚まで選ぶ',[...rows.map(({y,c,face,owner})=>opt((owner===t.p?'自分：':'相手：')+c.name,{uid:y.uid,face,owner},25+cost(c),y.cardId)),opt('この内容で唱える',null,0)]);break;}
  case'g45_WozNext':{const rows=t.selected.filter(r=>s.players[r.owner].grave.some(y=>y.uid===r.uid)&&allowed(s,r.owner,'grave'));if(!rows.length)break;choice(s,{...t,selected:rows},'次に唱える呪文を選ぶ',rows.map(r=>{const y=s.players[r.owner].grave.find(y=>y.uid===r.uid);return opt(faces(card(y))[r.face].name,r,20,y.cardId);}));break;}
- case'g45_MDeck':{const held=own.g31Holding.find(y=>y.uid===t.uid);if(!held)break;const ids=reveal(s,t,3),rows=ids.map(uid=>own.deck.find(y=>y.uid===uid)).filter(y=>card(y).type==='creature');if(!rows.length){finishMDeck(s,{...t,ids},null);break;}choice(s,{...t,ids},'Mデッキ進化：公開した3枚から進化元クリーチャーを1体選ぶ',rows.map(y=>opt(card(y).name,y.uid,10+cost(card(y)),y.cardId)));break;}
+ case'g45_MDeck':{const held=own.g31Holding.find(y=>y.uid===t.uid);if(!held)break;
+  if(card(held).g831SingleDeckEvolution){
+   const ids=reveal(s,t,1);
+   const base=own.deck.find(y=>y.uid===ids[0]);
+   remove(own.g31Holding,t.uid);
+   if(base&&faces(card(base)).some(face=>face.type==='creature'))
+    api.enter(s,t.p,held,null,{...t.options,g45MDeckReady:true,g831DeckBase:base.uid});
+   else{
+    release(s,t.p,ids);
+    const serial=held.zoneSerial;
+    clear(held,'hand');delete held.summonedTurn;
+    if(t.options.origin==='hand'){
+     if(serial===undefined)delete held.zoneSerial;
+     else held.zoneSerial=serial;
+     own.hand.push(held);
+    }else api.addZone(s,t.p,'hand',held);
+   }
+   api.deckCheck(s,t.p);break;
+  }
+  const ids=reveal(s,t,3),rows=ids.map(uid=>own.deck.find(y=>y.uid===uid)).filter(y=>card(y).type==='creature');if(!rows.length){finishMDeck(s,{...t,ids},null);break;}choice(s,{...t,ids},'Mデッキ進化：公開した3枚から進化元クリーチャーを1体選ぶ',rows.map(y=>opt(card(y).name,y.uid,10+cost(card(y)),y.cardId)));break;}
  case'g45_MLink':{const rows=creatures(s,t.p).filter(y=>![y,...(y.godLinks||[])].some(z=>card(z.cardId).g45MDeck)&&[y,...(y.godLinks||[])].some(z=>['邪神R・ロマノフ','邪神C・ロマノフ'].includes(card(z.cardId).name)));if(rows.length)choice(s,t,'ロマノフとG・リンクして出す？',[...rows.map(y=>opt(card(y).name+'とG・リンク',y.uid,35,y.cardId)),skip()]);else finishMEntry(s,t,null);break;}
  case'g45_Meteor':{if(!x)break;const parts=[x,...(x.godLinks||[])],rows=parts.flatMap(y=>(y.under||[]).flatMap(api.layers));if(rows.length)choice(s,t,'メテオバーン：M・ロマノフの下のカードを1枚墓地に置く？',[...rows.map(y=>opt(card(y).name,y.uid,30,y.cardId)),skip()]);break;}
  case'g45_ManaSpell':{const rows=allowed(s,t.p,'mana')?own.mana.flatMap(y=>faces(card(y)).flatMap((c,face)=>c.type==='spell'&&cost(c)<=6&&colors(c).some(c=>['火','闇'].includes(c))&&api.canCast(s,t.p,c,'mana')?[{y,c,face}]:[])):[];choice(s,t,'マナから唱える火または闇のコスト6以下の呪文を選ぶ',rows.map(({y,c,face})=>opt(c.name,{uid:y.uid,face},30+cost(c),y.cardId)));break;}
@@ -66,6 +85,6 @@ export function createSagaChampionRules(api){
  decorate(s,p,x,c){if(p<0)return c;if(c.g45Bruce&&s.players[p].grave.length<13)c={...c,noAttack:true};if(c.g45Kubrick&&manaCount(s,p,'火')>=3)c={...c,speedAttacker:true};if(x.g45LemmingBreaker===s.turn)c={...c,breaker:Math.max(2,Number(c.breaker)||1)};return c;},
  graveAdded(s,p,all){if(manaCount(s,p,'水')<3)return;for(const x of all)if(card(x).g45Kubrick)api.enqueue(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Target',p,x.cardId,{anyOwner:true,to:'hand',optional:true,title:'キューブリック：手札に戻すクリーチャーを1体まで選ぶ'})});},
  discarded(s,t,x,actual){if(actual)for(const y of creatures(s,t.p))if(effective(y,s).g45Lemming)on(s,t.p,y,'Lemming');},
- attack(s,p,x){if(api.selfStopped(s,p)||api.ignored(s,x))return;for(const y of [x,...(x.godLinks||[])])if(card(y.cardId).g45MDeck)on(s,p,x,'Meteor',{mUid:y.uid});},
+ attack(s,p,x){if(api.selfStopped(s,p)||api.ignored(s,x))return;for(const y of [x,...(x.godLinks||[])])if(card(y.cardId).g45MDeck&&!card(y.cardId).g831SingleDeckEvolution)on(s,p,x,'Meteor',{mUid:y.uid});},
  };
 }

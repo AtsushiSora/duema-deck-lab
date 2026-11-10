@@ -1193,6 +1193,14 @@ export function createSixPhotoRules(api){
  }
  case'g34_AttackFight408':{if(t.g747Once&&parottaUsed747(s,t))break;const y=attackHost408(s,t);if(y&&api.isCreature(s,y)&&!y.sealed)put(s,{...t,op:'g34_FightEnemy240',fighter:{uid:y.uid,incarnation:y.incarnation||0},optional:true});break;}
  case'g34_AttackExtraBreak511':{const ref=t.g399Attacker;if(ref)start(s,{...t,uid:ref.uid,incarnation:ref.incarnation},[{op:'SelfExtraBreak444',amount:t.amount}]);break;}
+ case'g34_DeathRecovery831':{
+  const ref=t.g831Subject;
+  const subject=own.battle.find(x=>x.uid===ref.uid&&(x.incarnation||0)===ref.incarnation&&!x.sealed);
+  const value=subject?cost(effective(subject,s)):t.g831LastCost??ref.cost;
+  start(s,t,[{op:'Select',origin:'grave',n:1,to:'hand',optional:true,
+   filter:{creature:true,g819CreatureNameIncludes:'死神',belowCost:value===Infinity?'∞':value}}]);
+  break;
+ }
  case'g34_CopyPower765':{
   const recipient=sourceHost474(s,t)?.x;
   if(!recipient||recipient.sealed||!api.isCreature(s,recipient))break;
@@ -3172,6 +3180,10 @@ export function createSixPhotoRules(api){
     subject:{uid:y.uid,incarnation:y.incarnation||0},power:watch.g755EntrantPower
    });
    else if(watch.g762EntrantMach)send(s,owner,x,'EntryMach762',{subject:{uid:y.uid,incarnation:y.incarnation||0}});
+   else if(watch.g831DeathRecovery){
+    const value=cost(effective(y,s));
+    send(s,owner,x,'DeathRecovery831',{g831Subject:{uid:y.uid,incarnation:y.incarnation||0,cost:value===Infinity?'∞':value}});
+   }
    else if(watch.g765CopyPower)send(s,owner,x,'CopyPower765',{g765Subject:{uid:y.uid,incarnation:y.incarnation||0}});
    else queue(s,owner,x,watch.defs);
   }
