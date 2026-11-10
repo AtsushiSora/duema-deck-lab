@@ -182274,18 +182274,147 @@
       ],
       "supportBatch": "phase-800",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24-048",
+      "name": "シースピン・クロウラー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "アースイーター",
+      "text": "このクリーチャーが攻撃する時、自分のマナゾーンにある光のカードを２枚タップしてもよい。そうした場合、そのターンの終わりに、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-048",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "TapManaColors698",
+          "colors": [
+            "光",
+            "光"
+          ],
+          "defs": [
+            {
+              "op": "Schedule537",
+              "when": "turnEnd",
+              "defs": [
+                {
+                  "op": "Untap",
+                  "g191First": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-801",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24-104",
+      "name": "脈動の化身",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ミステリー・トーテム",
+      "text": "このクリーチャーが水または闇のクリーチャーを攻撃する時、このターン、このクリーチャーのパワーは+3000され、ターンの終わりにアンタップされる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-104",
+      "limit": 4,
+      "g801DefenderFilter": {
+        "any": [
+          {
+            "color": "水"
+          },
+          {
+            "color": "闇"
+          }
+        ]
+      },
+      "g691AttackCreature": [
+        {
+          "op": "SelfBoost313",
+          "power": 3000,
+          "g536Source": true
+        },
+        {
+          "op": "Schedule537",
+          "when": "turnEnd",
+          "defs": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-801",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26-012",
+      "name": "パンチとビンタの報酬",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー\nこのターンの終わりに、バトルゾーンでタップされているクリーチャー１体につきカードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-012",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Schedule537",
+          "when": "turnEnd",
+          "spell": true,
+          "defs": [
+            {
+              "op": "CountDraw",
+              "zone": "battle",
+              "owner": "both",
+              "filter": {
+                "creature": true,
+                "tapped": true
+              },
+              "optional": "each"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-801",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 800,
+    "phase": 801,
     "checkedAt": "2026-11-10",
-    "baseCount": 6253,
+    "baseCount": 6256,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6256,
+    "totalCount": 6259,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/31572/",
+      "https://dm.takaratomy.co.jp/rule/qa/41284/",
+      "https://dm.takaratomy.co.jp/rule/qa/44205/",
+      "https://dm.takaratomy.co.jp/rule/qa/45450/",
       "https://dm.takaratomy.co.jp/rule/qa/40625/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35581/",
       "https://dm.takaratomy.co.jp/rule/rulechange/"
     ],
     "next": [
@@ -196281,6 +196410,22 @@
           "https://dm.takaratomy.co.jp/rule/qa/45437/",
           "https://dm.takaratomy.co.jp/rule/qa/49402/",
           "https://dm.takaratomy.co.jp/rule/qa/38732/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 800,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6253,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6256,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/40625/",
           "https://dm.takaratomy.co.jp/rule/rulechange/"
         ],
         "next": [

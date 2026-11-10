@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6256,
-  "pendingNames": 5571,
-  "phase": 800,
+  "supportedNames": 6259,
+  "pendingNames": 5568,
+  "phase": 801,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3295,
+    "クリーチャー": 3293,
     "NEOクリーチャー": 152,
-    "呪文": 791,
+    "呪文": 790,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 57,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1241,
-    "未対応の能力文": 4071,
+    "未対応の能力文": 4068,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -11783,30 +11783,61 @@
           "reason": "公式本文を確認。サイキックとデュエルメイトを識別し、超次元から出た実データで両方の条件を検証できるまで保留。"
         }
       ]
+    },
+    {
+      "phase": 801,
+      "cards": [
+        {
+          "id": "dm24-048",
+          "name": "シースピン・クロウラー"
+        },
+        {
+          "id": "dm24-104",
+          "name": "脈動の化身"
+        },
+        {
+          "id": "dm26-012",
+          "name": "パンチとビンタの報酬"
+        }
+      ],
+      "printAliases": [],
+      "supportedNames": 6259,
+      "pendingNames": 5568,
+      "verification": {
+        "focusedPassed": 14,
+        "regressionPassed": 155,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "通常版3点の全能力、基本情報、公式JPEG、使用制限なしを照合。同名再録は照合範囲で該当なし。シースピンは光マナの支払い・辞退・不足、進化後のアンタップ、再登場した個体の除外を検証。脈動は攻撃先の文明、多色、対プレイヤー攻撃、実バトル中の強化とターン終了時の解除を検証。報酬はQA 35581と31572に沿った解決時の双方のタップ数と任意ドロー、手札からの通常詠唱とS・トリガー、マナのタップ、ゲンムエンペラーによる遅延効果の無視を検証。既存対戦定義6,256件の一致を確認。",
+        "runtimeNote": "各最大10分。Phase 185・537・627・641・698・800の関連回帰155件に成功。Phase 185・537の長時間CPU対戦を除外する意図で指定した否定パターンが実行環境で機能せず、該当3テストも約98秒で完了した回帰に含まれた。次回は実動作を確認した --test-skip-pattern を使う。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": []
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 800,
-    "nextPhase": 801,
+    "lastVerifiedPhase": 801,
+    "nextPhase": 802,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm24-048",
-        "name": "シースピン・クロウラー",
-        "check": "光のマナ2枚のタップと、発生源の個体を追跡するターン終了時のアンタップを公式照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-048"
+        "id": "dm25-024",
+        "name": "プリズム・ブレイン",
+        "check": "引いた2枚の公開と多色の判定を照合し、追加で引いたカードの公開範囲とドロー置換を検証する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-024"
       },
       {
-        "id": "dm24-104",
-        "name": "脈動の化身",
-        "check": "水または闇のクリーチャーへの攻撃時に限る強化とターン終了時のアンタップを公式照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-104"
+        "id": "dm25-039",
+        "name": "ブレード・サークル",
+        "check": "次の相手のターンに攻撃した光以外の最初のクリーチャーと、攻撃宣言時の文明を公式照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-039"
       },
       {
-        "id": "dm26-012",
-        "name": "パンチとビンタの報酬",
-        "check": "S・トリガー、ターン終了時点の双方のタップ中クリーチャーの集計、任意のドローを公式照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-012"
+        "id": "dm24-094",
+        "name": "スカル・チェーンソー",
+        "check": "手札を捨てられない場合に限る、相手によるクリーチャー破壊またはマナの墓地送りを公式照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-094"
       },
       {
         "id": "dm24ex4-073",
@@ -12319,12 +12350,6 @@
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-s08"
       },
       {
-        "id": "dm25-024",
-        "name": "プリズム・ブレイン",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-024",
-        "check": "公式の初出本文と旧QA 35545を確認。多色が2枚でも追加は1枚。ドロー置換で別に引いたカードや、その場で手札から移動したカードを公開対象と混同しないよう、実際にこの呪文で引いたカードのUIDを検証するまで保留。"
-      },
-      {
         "id": "dmrp05-060",
         "name": "ケジメノ裁徒",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-060",
@@ -12368,7 +12393,7 @@
       }
     ],
     "steps": [
-      "git statusとAGENTS.mdを確認し、カードID・正規名・再録・能力文全体・基本情報・画像・使用制限・関連裁定を照合する。",
+      "最新コミット、作業ツリー、ステージ済み差分、AGENTS.md、前回の検証結果と実行中の作業を確認する。稼働中の作業には触れず、カードID・正規名・再録・全能力・基本情報・画像・使用制限・関連裁定を照合する。",
       "新たな条件は既存カードの挙動と保存形式を維持して追加し、公式確認や効果全体の再現ができない場合は保留する。",
       "個別・関連回帰は各最大10分。長時間のCPU対戦は --test-skip-pattern でテスト名を明示して除外する。全体のnpm testは中断・合否未確認のままとする。",
       "実データで再集計し、検証内容と保留理由をbatchHistoryに残して、検証済み差分のみローカルコミットする。"

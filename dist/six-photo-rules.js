@@ -47,7 +47,7 @@ export function createSixPhotoRules(api){
    if(r.when===when&&(when==='turnEnd'?r.turn===s.turn:(r.who??r.p)===p&&r.turn<s.turn)){
     if(r.spellCost!==undefined&&api.spellIgnored(s,{type:'spell',cost:r.spellCost,spellSource:r.source}))continue;
     due.push({player:r.p,source:r.source,uid:r.uid,incarnation:r.incarnation,effect:'extended',
-     task:task('g34_ResolveDelay537',r.p,r.source,{uid:r.uid,incarnation:r.incarnation,defs:r.defs})});
+     task:task('g34_ResolveDelay537',r.p,r.source,{uid:r.uid,incarnation:r.incarnation,defs:r.defs,...(r.spellCost!==undefined?{spellCost:r.spellCost}:{})})});
    }else if(r.when!=='turnEnd'||r.turn>=s.turn)keep.push(r);
   }
   s.g537Delays=keep;
@@ -335,7 +335,13 @@ export function createSixPhotoRules(api){
   .flatMap(y=>colors(effective(y,s,true))).filter(q=>['光','水','闇','火','自然'].includes(q))).size;
  const countDraw=(s,p,t)=>{const owner=t.owner==='opponent'?1-p:p;
   if(t.g777DistinctCreatureCosts)return new Set(creatures(s,owner).filter(x=>!x.sealed&&!x.faceDown).map(x=>cost(api.zoneCard(s,owner,x,'battle')))).size;
-if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle);const rows=t.zone==='battle'?(t.g262Elements?s.players[owner].battle:creatures(s,owner)).filter(y=>!y.sealed):s.players[owner][t.zone]||[];return rows.filter(y=>(!t.g329Other||y.uid!==t.uid||(y.incarnation||0)!==(t.incarnation||0))&&matches(s,owner,y,t.filter)).length;};
+  if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle);
+  const owners=t.owner==='both'&&t.zone==='battle'?[0,1]:[owner];
+  return owners.reduce((total,who)=>{
+   const rows=t.zone==='battle'?(t.g262Elements?s.players[who].battle:creatures(s,who)).filter(y=>!y.sealed):s.players[who][t.zone]||[];
+   return total+rows.filter(y=>(!t.g329Other||y.uid!==t.uid||(y.incarnation||0)!==(t.incarnation||0))&&matches(s,who,y,t.filter)).length;
+  },0);
+ };
  // Attack watchers include tamaseeds; losing an ability or a seal disables the source.
  const watchSources252=(s,p)=>s.players[p].battle.filter(x=>!x.sealed&&!api.ignored(s,x));
  const attackDraws613=(s,p)=>(s.extLimits||[]).filter(l=>l.kind==='g613AttackDraw'&&l.player===p&&l.turn===s.turn&&(l.spell===false||!api.spellIgnored(s,{type:'spell',spellSource:l.source,cost:cost(card(l.source))})));
@@ -1499,8 +1505,14 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  }
  case'g34_ResolveEnd501':if(t.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:t.spellCost,spellSource:t.source}))start(s,t,t.defs);break;
  case'g34_AfterAttack542':if(s.attackLifecycle)(s.attackLifecycle.g542After??=[]).push({p:t.p,source:t.source,uid:t.uid,incarnation:t.incarnation||0,defs:structuredClone(t.defs)});break;
- case'g34_Schedule537':(s.g537Delays??=[]).push({p:t.p,source:t.source,uid:t.uid,incarnation:t.incarnation||0,turn:s.turn,when:t.when,defs:structuredClone(t.defs)});break;
- case'g34_ResolveDelay537':start(s,t,t.defs);break;
+ case'g34_Schedule537':{
+  if(t.when==='turnEnd'&&t.spell&&s.endStep)break;
+  const spellCost=t.spell?cost(faces(card(t.source)).find(c=>c.type==='spell')||card(t.source)):undefined;
+  (s.g537Delays??=[]).push({p:t.p,source:t.source,uid:t.uid,incarnation:t.incarnation||0,turn:s.turn,when:t.when,
+   defs:structuredClone(t.defs),...(spellCost!==undefined?{spellCost}:{})});
+  break;
+ }
+ case'g34_ResolveDelay537':if(t.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:t.spellCost,spellSource:t.source}))start(s,t,t.defs);break;
  case'g34_Sequence':start(s,t,t.defs);break;
  case'g34_Magibomber321':{const ids=look(s,{...t,n:1}),rows=[...own.hand.map(y=>({y,origin:'hand'})),...own.deck.filter(y=>ids.includes(y.uid)).map(y=>({y,origin:'deck'}))].filter(({y,origin})=>card(y).type==='creature'&&cost(card(y))<=t.n&&canPut(s,t.p,y,origin));choice(s,{...t,ids},'マジボンバー：手札または山札の上から1体出す？',[...rows.map(({y,origin})=>opt((origin==='hand'?'手札：':'山札：')+card(y).name,{uid:y.uid,origin},own.deck.length<=1&&(origin==='deck'||card(y).exLife)?-1000:20+cost(card(y)),y.cardId)),skip()]);break;}
  case'g34_EntryFight624':{
@@ -2912,7 +2924,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
   }
  }const c=effective(x,s),own=s.players[p];
  if(c.g781ReleaseAll&&!api.selfStopped(s,p))queue(s,p,x,[E('ReleaseAllHyper781')]);
- if(first&&c.g540FirstAttack&&!api.selfStopped(s,p))queue(s,p,x,c.g540FirstAttack);if(c.g320Jave&&!api.selfStopped(s,p))queue(s,p,x,[{op:'Smash320',serial:x.zoneSerial||0}]);if(c.g34Attack&&!api.selfStopped(s,p)){const defs=c.g34Attack.filter(d=>!d.g764PlayerAttack||s.attack?.target==='player');if(defs.length)queue(s,p,x,defs);}if(c.g756TurboRush==='discard'&&!api.selfStopped(s,p)&&turboReady756(s,p,x))queue(s,p,x,[{op:'Discard',g756All:true}]);if(defender&&c.g691AttackCreature&&!api.selfStopped(s,p)&&(c.g714AttackMinPower===undefined||currentPower506(s,defender)>=c.g714AttackMinPower))queue(s,p,x,c.g691AttackCreature);if(!api.selfStopped(s,p))for(const {source,grants:g}of c.g404Inherited||[])if(g.g34Attack)queue(s,p,x,g.g34Attack,source);if(!api.selfStopped(s,p))for(const {source,grants:g}of c.g406Inherited||[])if(g.g34Attack)queue(s,p,x,g.g34Attack,source);if(c.g34Role==='emrakul')queue(s,p,x,[C('emrakulSix')]);if(c.g34Role==='minogami')queue(s,p,x,[E('Offer',{defs:[E('Look',{n:3,public:true,stages:[{to:'mana',n:'all',filter:{twin:true}}],after:[C('minogamiBuff')]})]})]);if(card(x).neoEvolution)for(const y of active(s,p,'grasper'))queue(s,p,y,[select('mana',null,1,{creature:true,belowPower:api.power(x,false,s)},{deploy:true,optional:true})]);if(!api.ignored(s,x))for(const layer of api.layers(x))if(card(layer).g34SoulDiscard)queue(s,p,x,[E('Discard',{n:1,random:true})]);if(ninja(c))for(const y of active(s,p,'happou')){if(s.attack?.target==='player')queue(s,p,y,[E('Discard',{n:1,random:true})]);else(x.g34Grants??=[]).push({turn:s.turn,slayer:true,g34BattleSafe:true});}if(api.isEvolution(x)&&cost(c)>=2)for(const y of own.hand.filter(y=>card(y).g34Role==='baromreizu'))queue(s,p,y,[C('reizuCast')]);},
+ if(first&&c.g540FirstAttack&&!api.selfStopped(s,p))queue(s,p,x,c.g540FirstAttack);if(c.g320Jave&&!api.selfStopped(s,p))queue(s,p,x,[{op:'Smash320',serial:x.zoneSerial||0}]);if(c.g34Attack&&!api.selfStopped(s,p)){const defs=c.g34Attack.filter(d=>!d.g764PlayerAttack||s.attack?.target==='player');if(defs.length)queue(s,p,x,defs);}if(c.g756TurboRush==='discard'&&!api.selfStopped(s,p)&&turboReady756(s,p,x))queue(s,p,x,[{op:'Discard',g756All:true}]);if(defender&&c.g691AttackCreature&&!api.selfStopped(s,p)&&(c.g714AttackMinPower===undefined||currentPower506(s,defender)>=c.g714AttackMinPower)&&(!c.g801DefenderFilter||matches(s,1-p,defender,c.g801DefenderFilter)))queue(s,p,x,c.g691AttackCreature);if(!api.selfStopped(s,p))for(const {source,grants:g}of c.g404Inherited||[])if(g.g34Attack)queue(s,p,x,g.g34Attack,source);if(!api.selfStopped(s,p))for(const {source,grants:g}of c.g406Inherited||[])if(g.g34Attack)queue(s,p,x,g.g34Attack,source);if(c.g34Role==='emrakul')queue(s,p,x,[C('emrakulSix')]);if(c.g34Role==='minogami')queue(s,p,x,[E('Offer',{defs:[E('Look',{n:3,public:true,stages:[{to:'mana',n:'all',filter:{twin:true}}],after:[C('minogamiBuff')]})]})]);if(card(x).neoEvolution)for(const y of active(s,p,'grasper'))queue(s,p,y,[select('mana',null,1,{creature:true,belowPower:api.power(x,false,s)},{deploy:true,optional:true})]);if(!api.ignored(s,x))for(const layer of api.layers(x))if(card(layer).g34SoulDiscard)queue(s,p,x,[E('Discard',{n:1,random:true})]);if(ninja(c))for(const y of active(s,p,'happou')){if(s.attack?.target==='player')queue(s,p,y,[E('Discard',{n:1,random:true})]);else(x.g34Grants??=[]).push({turn:s.turn,slayer:true,g34BattleSafe:true});}if(api.isEvolution(x)&&cost(c)>=2)for(const y of own.hand.filter(y=>card(y).g34Role==='baromreizu'))queue(s,p,y,[C('reizuCast')]);},
  attackStart(s,p,x){
   if(s.attack?.target==='player'&&(s.extLimits||[]).some(r=>r.kind==='g712BlockBreak'&&r.player===p&&r.turn===s.turn))s.attack.g712PlayerTarget=true;
   attackWatches252(s,p,x);for(const y of s.players[p].hand)for(const[c,face]of faces(card(y)).map((c,i)=>[c,i])){const w=c.g417Chance;if(w&&!api.spellIgnored(s,c)&&(!w.hyper||hyperMode418(s,x))&&chanceMatches419(s,p,x,w))send(s,p,y,'Chance417',{serial:y.zoneSerial||0,face});}for(const y of active(s,1-p,'souzan'))queue(s,1-p,y,[C('souzanStop')]);{for(const y of s.players[1-p].shields.flatMap(api.shieldCards).filter(y=>y.faceUp&&card(y).g34Role==='mantraCastle'))queue(s,1-p,y,[C('mantraDefend')]);if(s.attack?.target==='player'&&s.players.some(p=>!p.shields.length)&&!s.players[1-p].battle.some(y=>!y.sealed&&card(y).g34Role==='nightmare'))for(const y of s.players[1-p].hand.filter(y=>card(y).g34Role==='nightmare'))queue(s,1-p,y,[C('nightmare')]);}},

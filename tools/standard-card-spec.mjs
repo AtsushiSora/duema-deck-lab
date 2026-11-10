@@ -2507,6 +2507,19 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=801&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const untapAtEnd={op:'Schedule537',when:'turnEnd',defs:[{op:'Untap',g191First:true}]};
+  if(f.typeText==='クリーチャー'){
+   if(text==='このクリーチャーが攻撃する時自分のマナゾーンにある光のカードを2枚タップしてもよい。そうした場合そのターンの終わりにこのクリーチャーをアンタップする。')
+    return {g34Attack:[{op:'TapManaColors698',colors:['光','光'],defs:[untapAtEnd]}]};
+   if(text==='このクリーチャーが水または闇のクリーチャーを攻撃する時このターンこのクリーチャーのパワーは+3000されターンの終わりにアンタップされる。')
+    return {g801DefenderFilter:{any:[{color:'水'},{color:'闇'}]},g691AttackCreature:[{op:'SelfBoost313',power:3000,g536Source:true},untapAtEnd]};
+  }
+  if(f.typeText==='呪文'&&text==='マナゾーンに置く時このカードはタップして置く。S・トリガーこのターンの終わりにバトルゾーンでタップされているクリーチャー1体につきカードを1枚引いてもよい。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Schedule537',when:'turnEnd',spell:true,
+    defs:[{op:'CountDraw',zone:'battle',owner:'both',filter:{creature:true,tapped:true},optional:'each'}]}]};
+ }
  if(phase>=800&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const match=text.match(/^このクリーチャーが攻撃する時自分のマナゾーン(?:にある|の)(火|自然|闇)のカードを2枚タップしてもよい。そうした場合(.+)$/);
