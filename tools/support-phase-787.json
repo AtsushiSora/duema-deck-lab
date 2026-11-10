@@ -1,0 +1,449 @@
+{
+  "phase": 787,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6214,
+  "description": "自分のシールドゾーンからのカード離脱を参照する攻撃制限、文明と種族を指定した手札・墓地展開、山札下への手札入れ替えと手札戻しの選択に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck03/",
+    "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck09/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37022/",
+    "https://dm.takaratomy.co.jp/news/other/39167/"
+  ],
+  "cards": [
+    {
+      "id": "dm24ex4-069",
+      "name": "轟血鬼 ザ・ナイト",
+      "faces": [
+        {
+          "name": "轟血鬼 ザ・ナイト",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このターン、カードが自分のシールドゾーンを離れていなければ、このクリーチャーは攻撃できない。",
+          "race": "ソニック・コマンド/ヴァンパイア",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-069",
+      "spec": {
+        "g787AttackAfterShieldLeaves": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-069.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "2e1dbe375e00a2b30a0475aed1351e20d3820a823c5ef0f7073e4a6b15ba3749",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-050",
+      "name": "幻双の絆",
+      "faces": [
+        {
+          "name": "幻双の絆",
+          "typeText": "呪文",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\n光のコスト７以下のエンジェル・コマンドを１つ、自分の手札から出してもよい。\n闇のコスト７以下のデーモン・コマンドを１つ、自分の墓地から出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-050",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "element": true,
+              "color": "光",
+              "race": "エンジェル・コマンド",
+              "max": 7
+            }
+          },
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "element": true,
+              "color": "闇",
+              "race": "デーモン・コマンド",
+              "max": 7
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "1abf59b4ff333305554cee33afb35981a3cf74d89dcdf2d698d2fa9b69015bf9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-055",
+      "name": "豪運の絆",
+      "faces": [
+        {
+          "name": "豪運の絆",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー\n次のうちいずれか１つを選ぶ。\n▶自分の手札を２枚まで、好きな順序で山札の下に置く。その後、その枚数より１枚多くカードを引く。\n▶相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-055",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "modes": [
+              {
+                "label": "手札を最大2枚、山札の下に置いて、その枚数＋1枚引く",
+                "defs": [
+                  {
+                    "op": "HandCycle460",
+                    "to": "deck",
+                    "order": true,
+                    "max": 2,
+                    "extra": 1
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャー1体を手札に戻す",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "hand"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "2d1261506a77915adbfa75d18d27683c300ad301fb7ac848d777cee1914ef9a6",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex4-PR029",
+      "canonicalId": "dm24ex4-069",
+      "name": "轟血鬼 ザ・ナイト",
+      "faces": [
+        {
+          "name": "轟血鬼 ザ・ナイト",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このターン、カードが自分のシールドゾーンを離れていなければ、このクリーチャーは攻撃できない。",
+          "race": "ソニック・コマンド/ヴァンパイア",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-PR029",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-PR029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "4b52265748006a9c16b8c0af1b2f08084d076d2e20f77e2744a522da7299a8b4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy24-047",
+      "canonicalId": "dm24ex4-069",
+      "name": "轟血鬼 ザ・ナイト",
+      "faces": [
+        {
+          "name": "轟血鬼 ザ・ナイト",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このターン、カードが自分のシールドゾーンを離れていなければ、このクリーチャーは攻撃できない。",
+          "race": "ソニック・コマンド/ヴァンパイア",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy24-047",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy24-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "d51a3a912719cd49690285e7a5762c263059f36135dcf23473079b186518640e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-PR010",
+      "canonicalId": "dm24ex4-050",
+      "name": "幻双の絆",
+      "faces": [
+        {
+          "name": "幻双の絆",
+          "typeText": "呪文",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\n光のコスト７以下のエンジェル・コマンドを１つ、自分の手札から出してもよい。\n闇のコスト７以下のデーモン・コマンドを１つ、自分の墓地から出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-PR010",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-PR010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "be66751c18e04c74db606cc8f671d727a9ab0881f8a0230eb6da681ed909f80e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp3-T03",
+      "canonicalId": "dm24ex4-050",
+      "name": "幻双の絆",
+      "faces": [
+        {
+          "name": "幻双の絆",
+          "typeText": "呪文",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\n光のコスト７以下のエンジェル・コマンドを１つ、自分の手札から出してもよい。\n闇のコスト７以下のデーモン・コマンドを１つ、自分の墓地から出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-T03",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-T03.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "db6d075acc503b86b04707dfddcfa0bdc11b137dd3e95bad8d5658082c29ffb1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex3-TF11",
+      "canonicalId": "dm24ex4-050",
+      "name": "幻双の絆",
+      "faces": [
+        {
+          "name": "幻双の絆",
+          "typeText": "呪文",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\n光のコスト７以下のエンジェル・コマンドを１つ、自分の手札から出してもよい。\n闇のコスト７以下のデーモン・コマンドを１つ、自分の墓地から出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-TF11",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-TF11.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "adfda6c7c21cfa9da6d80f74a364b9a82b8830b880be72511b696800656d8b45",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-PR015",
+      "canonicalId": "dm24ex4-055",
+      "name": "豪運の絆",
+      "faces": [
+        {
+          "name": "豪運の絆",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー\n次のうちいずれか１つを選ぶ。\n▶自分の手札を２枚まで、好きな順序で山札の下に置く。その後、その枚数より１枚多くカードを引く。\n▶相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-PR015",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-PR015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "d2e02951624840953fb20327d98a09f8f5a9e4239f8ce99dc05606a449f1bbae",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp4-T04",
+      "canonicalId": "dm24ex4-055",
+      "name": "豪運の絆",
+      "faces": [
+        {
+          "name": "豪運の絆",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー\n次のうちいずれか１つを選ぶ。\n▶自分の手札を２枚まで、好きな順序で山札の下に置く。その後、その枚数より１枚多くカードを引く。\n▶相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp4-T04",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp4-T04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "cc60f94c154e0a4945329061413a9a469a76fe6482b4cf672aa7311c82a9fae0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex3-TF13",
+      "canonicalId": "dm24ex4-055",
+      "name": "豪運の絆",
+      "faces": [
+        {
+          "name": "豪運の絆",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー\n次のうちいずれか１つを選ぶ。\n▶自分の手札を２枚まで、好きな順序で山札の下に置く。その後、その枚数より１枚多くカードを引く。\n▶相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-TF13",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-TF13.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "b0ffae50c868ec371da2a3011ac8e76b07345f3e400c443930bd78127e1b0cef",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex2-MC024",
+      "canonicalId": "dm24ex4-055",
+      "name": "豪運の絆",
+      "faces": [
+        {
+          "name": "豪運の絆",
+          "typeText": "呪文",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー S・トリガー\n次の中から１回選ぶ。\n▶自分の手札を２枚まで、好きな順序で山札の下に置く。その後、その枚数より１枚多くカードを引く。\n▶相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex2-MC024",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex2-MC024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "01ae101513480aad8001a55b2a9568d3f00f2e5b87378299141f441b176bb9d6",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24ex4-069": 4,
+      "dm24ex4-050": 4,
+      "dm24ex4-055": 4,
+      "dm24ex4-PR029": 4,
+      "promoy24-047": 4,
+      "dm24ex4-PR010": 4,
+      "dm25rp3-T03": 4,
+      "dm25ex3-TF11": 4,
+      "dm24ex4-PR015": 4,
+      "dm25rp4-T04": 4,
+      "dm25ex3-TF13": 4,
+      "dm26ex2-MC024": 4
+    }
+  }
+}

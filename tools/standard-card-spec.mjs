@@ -2507,6 +2507,24 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=787&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const trigger='S・トリガーS・トリガー';
+  if(f.typeText==='クリーチャー'&&text==='このターンカードが自分のシールドゾーンを離れていなければこのクリーチャーは攻撃できない。')
+   return {g787AttackAfterShieldLeaves:true};
+  if(f.typeText==='呪文'&&text===trigger+'光のコスト7以下のエンジェル・コマンドを1つ自分の手札から出してもよい。闇のコスト7以下のデーモン・コマンドを1つ自分の墓地から出してもよい。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Select',origin:'hand',n:1,deploy:true,optional:true,filter:{element:true,color:'光',race:'エンジェル・コマンド',max:7}},
+    {op:'Select',origin:'grave',n:1,deploy:true,optional:true,g236GraveDeploy:true,filter:{element:true,color:'闇',race:'デーモン・コマンド',max:7}}
+   ]};
+  const cycle='自分の手札を2枚まで好きな順序で山札の下に置く。その後その枚数より1枚多くカードを引く。';
+  const bounce='相手のクリーチャーを1体選び持ち主の手札に戻す。';
+  if(f.typeText==='呪文'&&['次のうちいずれか1つを選ぶ。','次の中から1回選ぶ。'].some(mode=>text===trigger+mode+'▶'+cycle+'▶'+bounce))
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Choose',modes:[
+    {label:'手札を最大2枚、山札の下に置いて、その枚数＋1枚引く',defs:[{op:'HandCycle460',to:'deck',order:true,max:2,extra:1}]},
+    {label:'相手のクリーチャー1体を手札に戻す',defs:[{op:'Target',to:'hand'}]}
+   ]}]};
+ }
  if(phase>=786&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const trigger='S・トリガーS・トリガー';

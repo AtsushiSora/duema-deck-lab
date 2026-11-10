@@ -918,8 +918,18 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  function handCycle460(s,t){
   const own=s.players[t.p],selected=t.selected||[],ids=t.ids||own.hand.map(x=>x.uid);
   if(t.to==='deck'){
-   if(t.order){const left=ids.filter(uid=>!selected.includes(uid)&&own.hand.some(x=>x.uid===uid));if(left.length>1){choice(s,{...t,ids,selected},'山札の下に置く順序を選ぶ（最初が上）',left.map(uid=>{const x=own.hand.find(y=>y.uid===uid);return opt(card(x).name,uid,0,x.cardId);}));return;}
-    const order=[...selected,...left];for(const uid of order)zoneMove(s,t.p,'hand',uid,'deck',t);api.draw(s,t.p,order.length);return;
+   if(t.order){
+    const left=ids.filter(uid=>!selected.includes(uid)&&own.hand.some(x=>x.uid===uid));
+    const bounded=t.max!==undefined;
+    if(bounded?selected.length<t.max&&left.length:left.length>1){
+     choice(s,{...t,ids,selected},'山札の下に置く順序を選ぶ（最初が上）',[
+      ...left.map(uid=>{const x=own.hand.find(y=>y.uid===uid);return opt(card(x).name,uid,0,x.cardId);}),
+      ...(bounded?[opt('この枚数で確定',null,0)]:[])
+     ]);
+     return;
+    }
+    finishBottomCycle460(s,t,bounded?selected:[...selected,...left]);
+    return;
    }
    const ps=t.both?[s.active,1-s.active]:[t.p],counts=ps.map(p=>s.players[p].hand.length);
    put(s,task('g34_CycleDrawAll460',t.p,t.source,{ps,counts}));
@@ -929,6 +939,10 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
   const cap=Math.min(t.max??ids.length,ids.length),available=ids.filter(uid=>!selected.includes(uid)&&own.hand.some(x=>x.uid===uid));
   if(t.mode==='any'&&selected.length<cap&&available.length){choice(s,{...t,ids,selected},'捨てる手札を選ぶ（'+selected.length+'枚選択済み）',[...available.map(uid=>{const x=own.hand.find(y=>y.uid===uid);return opt(card(x).name,uid,own.deck.length<=selected.length+(t.extra||0)+1?-1000:3-cost(card(x)),x.cardId);}),opt('この枚数で確定',null,0)]);return;}
   finishCycle460(s,t,t.mode==='all'?ids:selected);
+ }
+ function finishBottomCycle460(s,t,ids){
+  const moved=ids.filter(uid=>zoneMove(s,t.p,'hand',uid,'deck',t)).length;
+  api.draw(s,t.p,moved+(t.extra||0));
  }
  function discardFollow584(s,t,x){
   const owner=t.blind?1-t.p:t.p;
@@ -1994,7 +2008,12 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  case'g34_PayOnce464':if(typeof v==='string')put(s,{...t,selected:[...t.selected,v]});else if(v===null){const args=[...t.args];args[18]=t.selected;api.cast(s,t.p,...args);}break;
  case'g34_HandReveal462':if(v!==null)put(s,{...t,selected:[...t.selected,v]});else finishReveal462(s,t,own.hand.filter(x=>t.selected.includes(x.uid)));break;
  case'g34_PlayerDraw461':if(t.upTo)put(s,{...t,chosen:v});else if(v)put(s,{...t,accepted:true});break;
- case'g34_HandCycle460':if(t.optional&&!t.accepted){if(v)put(s,{...t,accepted:true});}else if(t.order||v!==null)put(s,{...t,selected:[...t.selected,v]});else finishCycle460(s,t,t.selected);break;
+ case'g34_HandCycle460':
+  if(t.optional&&!t.accepted){if(v)put(s,{...t,accepted:true});}
+  else if(v!==null)put(s,{...t,selected:[...t.selected,v]});
+  else if(t.to==='deck'&&t.order)finishBottomCycle460(s,t,t.selected);
+  else finishCycle460(s,t,t.selected);
+  break;
  case'g34_EachPlayer459':if(v)put(s,{...t,index:t.index+1,selected:[...t.selected,v]});break;
  case'g34_SpaceCharge454':if(v)start(s,t,t.rules.flatMap((r,i)=>v.includes(i)?r.defs:[]));break;
  case'g34_ManaReveal449':{const c=card(t.source),y=own.hand.find(y=>y.uid===v);if(!y||new Set(faces(card(y)).flatMap(colors)).size<2||api.spellIgnored(s,c))break;api.log(s,t.p,'reveal',c.name+'で公開：'+card(y).name,{cardId:y.cardId});const mana=own.mana.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);if(mana&&api.untap(s,t.p,mana))api.log(s,t.p,'untapMana',c.name+'をアンタップ',{cardId:t.source});break;}

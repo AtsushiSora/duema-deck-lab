@@ -180391,22 +180391,140 @@
       ],
       "supportBatch": "phase-786",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-069",
+      "name": "轟血鬼 ザ・ナイト",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 4000,
+      "race": "ソニック・コマンド/ヴァンパイア",
+      "text": "このターン、カードが自分のシールドゾーンを離れていなければ、このクリーチャーは攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-069",
+      "limit": 4,
+      "g787AttackAfterShieldLeaves": true,
+      "supportBatch": "phase-787",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-050",
+      "name": "幻双の絆",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー\n光のコスト７以下のエンジェル・コマンドを１つ、自分の手札から出してもよい。\n闇のコスト７以下のデーモン・コマンドを１つ、自分の墓地から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-050",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "element": true,
+            "color": "光",
+            "race": "エンジェル・コマンド",
+            "max": 7
+          }
+        },
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "g236GraveDeploy": true,
+          "filter": {
+            "element": true,
+            "color": "闇",
+            "race": "デーモン・コマンド",
+            "max": 7
+          }
+        }
+      ],
+      "supportBatch": "phase-787",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-055",
+      "name": "豪運の絆",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー\n次のうちいずれか１つを選ぶ。\n▶自分の手札を２枚まで、好きな順序で山札の下に置く。その後、その枚数より１枚多くカードを引く。\n▶相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-055",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "modes": [
+            {
+              "label": "手札を最大2枚、山札の下に置いて、その枚数＋1枚引く",
+              "defs": [
+                {
+                  "op": "HandCycle460",
+                  "to": "deck",
+                  "order": true,
+                  "max": 2,
+                  "extra": 1
+                }
+              ]
+            },
+            {
+              "label": "相手のクリーチャー1体を手札に戻す",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "hand"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-787",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 786,
+    "phase": 787,
     "checkedAt": "2026-11-10",
-    "baseCount": 6211,
+    "baseCount": 6214,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6214,
+    "totalCount": 6217,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/45122/",
-      "https://dm.takaratomy.co.jp/rule/qa/49146/",
-      "https://dm.takaratomy.co.jp/rule/qa/42947/",
-      "https://dm.takaratomy.co.jp/rule/qa/46525/"
+      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck03/",
+      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck09/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37022/",
+      "https://dm.takaratomy.co.jp/news/other/39167/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -194125,6 +194243,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/45122/",
           "https://dm.takaratomy.co.jp/rule/qa/45123/",
           "https://dm.takaratomy.co.jp/rule/qa/31530/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 786,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6211,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6214,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/45122/",
+          "https://dm.takaratomy.co.jp/rule/qa/49146/",
+          "https://dm.takaratomy.co.jp/rule/qa/42947/",
+          "https://dm.takaratomy.co.jp/rule/qa/46525/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
