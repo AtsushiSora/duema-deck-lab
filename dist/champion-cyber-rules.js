@@ -6,7 +6,10 @@ export function createChampionCyberRules(api){
  const send=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g48_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
  const queue=(s,t,op,more={})=>put(s,{...t,op:'g48_'+op,...more});
  const canMove=(s,p,z)=>!api.canMoveZone||api.canMoveZone(s,p,z);
- const handBases=(s,p,uid)=>s.players[p].hand.filter(x=>x.uid!==uid&&card(x).type==='creature');
+ const handBaseCount=c=>c.g827HandWaterEvolution?1:3;
+ const handBaseLabel=c=>c.g827HandWaterEvolution?'手札進化':'手札進化GV';
+ const handBaseMatches=(x,c)=>card(x).type==='creature'&&(!c.g827HandWaterEvolution||colors(card(x)).includes('水'));
+ const handBases=(s,p,uid,c)=>s.players[p].hand.filter(x=>x.uid!==uid&&handBaseMatches(x,c));
  const sourceSoul=(s,x,kind)=>api.ignored(s,x)?[]:api.layers(x).slice(1).filter(y=>card(y).g48Soul===kind);
  const bounce=(s,t)=>{const rows=[0,1].flatMap(p=>creatures(s,p).map(x=>({p,x}))),options=rows.flatMap(({p,x})=>api.targetOptions(s,t.p,[x]).map(o=>({...o,value:{p,uid:x.uid},score:p===t.p?-cost(card(x)):20+cost(card(x))})));choice(s,t,'手札に戻すクリーチャーを選ぶ',[...options,skip()]);};
  function run(s,t){if(raid.run(s,t))return true;if(!t.op.startsWith('g48_'))return false;const own=s.players[t.p];switch(t.op){
@@ -27,7 +30,7 @@ export function createChampionCyberRules(api){
  case'g48_Mercury':{const x=live(s,t),rows=x?api.layers(x).slice(1):[];choice(s,t,'マーキュリー：進化元を1枚墓地に置く？',[...rows.map(y=>opt(card(y).name,y.uid,20,y.cardId)),skip()]);break;}
  case'g48_MercuryBounce':{const selected=t.selected||[],rows=s.players[1-t.p].battle.filter(x=>!selected.includes(x.uid));if(selected.length>=2||!rows.length){if(selected.length)api.move(s,selected.map(uid=>({player:1-t.p,uid,to:'hand',destroy:false})));break;}choice(s,{...t,selected},'マーキュリー：相手のエレメントを2つまで戻す（'+selected.length+'/2）',[...api.targetOptions(s,t.p,rows),opt('ここまでで確定',null,0)]);break;}
  case'g48_World':for(const p of[s.active,1-s.active]){const other=s.players[p],rows=[...other.hand.splice(0),...(canMove(s,p,'grave')?other.grave.splice(0):[])];for(const x of rows)api.clear(x,'deck');api.shuffleLibrary(s,p,rows,t.source);}put(s,...[s.active,1-s.active].map(p=>task('draw',p,t.source,{n:5})));break;
- case'g48_HandBases':{const selected=t.selected||[],rows=handBases(s,t.p,t.target).filter(x=>!selected.includes(x.uid));if(selected.length===3){if(t.args){const args=[...t.args];args[2]=selected;api.cast(s,t.p,...args);}else api.enter(s,t.p,t.inst,selected,t.entryOptions);break;}if(rows.length<3-selected.length)break;choice(s,{...t,selected},'手札進化GV：重ねるクリーチャーを3枚選ぶ（'+selected.length+'/3）',rows.map(x=>opt(card(x).name,x.uid,20-cost(card(x)),x.cardId)));break;}
+ case'g48_HandBases':{const c=card(t.source),n=handBaseCount(c),selected=t.selected||[],rows=handBases(s,t.p,t.target,c).filter(x=>!selected.includes(x.uid));if(selected.length===n){if(t.args){const args=[...t.args];args[2]=selected;api.cast(s,t.p,...args);}else api.enter(s,t.p,t.inst,selected,t.entryOptions);break;}if(rows.length<n-selected.length)break;choice(s,{...t,selected},handBaseLabel(c)+'：重ねる'+(c.g827HandWaterEvolution?'水の':'')+'クリーチャーを'+n+'枚選ぶ（'+selected.length+'/'+n+'）',rows.map(x=>opt(card(x).name,x.uid,20-cost(card(x)),x.cardId)));break;}
  default:throw Error('未実装のサイバー効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(raid.chosen(s,t,v))return true;if(!t.op.startsWith('g48_'))return false;const own=s.players[t.p];switch(t.op){
@@ -51,10 +54,16 @@ export function createChampionCyberRules(api){
  entry(s,p,x){if(card(x).g48Effect)(s.g48EntryInfo??={})[x.uid+'@'+(x.incarnation||0)]={fromCyber:api.layers(x).slice(1).some(y=>faces(card(y)).some(cyber)),evolved:api.isEvolution(x)};if(!api.isCreature(s,x)||!cyber(card(x)))return;for(const y of creatures(s,p)){if(y.uid===x.uid||!card(y).g48Mimi||api.ignored(s,y)||api.selfStopped(s,p))continue;const k=y.uid+'@'+(y.incarnation||0);if(s.g48MimiUsed?.[k]===s.turn)continue;(s.g48MimiUsed??={})[k]=s.turn;send(s,p,y,'Bounce');}},
  recordBattleCards(s,p,rows){for(const x of rows)if(card(x).g48Grave)(s.g48FromBattle??={})[p+':'+x.uid]={serial:x.zoneSerial||0,enabled:!api.ignored(s,x)};},
  graveAdded(s,p,rows){for(const x of rows){const k=p+':'+x.uid,before=s.g48FromBattle?.[k];if(!before)continue;delete s.g48FromBattle[k];if(!before.enabled||(x.zoneSerial||0)!==before.serial+1)continue;if(card(x).g48Grave==='Flower')send(s,p,x,'Flower');else if(card(x).g48Grave==='Idol')send(s,p,x,'Raid',{race:'サイバー',max:8});}},
- allowedCast(s,p,c,origin){return !c.g48HandEvolution||handBases(s,p,c.id).length-((origin==='hand'||origin==null)&&s.players[p].hand.some(x=>x.cardId===c.id)?1:0)>=3;},
- beforeCast(s,p,args){const [uid,,bases,face=0,,origin='hand']=args,x=s.players[p][origin]?.find(x=>x.uid===uid),c=x&&faces(card(x))[face];if(!c?.g48HandEvolution||Array.isArray(bases))return false;if(handBases(s,p,uid).length<3)throw Error('手札進化GVの進化元が3枚必要です');put(s,task('g48_HandBases',p,c.id,{target:uid,args,selected:[]}));return true;},
- beforeEnter(s,p,inst,bases,entryOptions){if(!card(inst).g48HandEvolution||Array.isArray(bases))return false;if(handBases(s,p,inst.uid).length<3)throw Error('手札進化GVの進化元が3枚必要です');put(s,task('g48_HandBases',p,inst.cardId,{target:inst.uid,inst,entryOptions,selected:[]}));return true;},
- attachHandEvolution(s,p,inst,bases){if(!Array.isArray(bases)||bases.length!==3||new Set(bases).size!==3||!bases.every(uid=>handBases(s,p,inst.uid).some(x=>x.uid===uid)))throw Error('手札進化GVの進化元が正しくありません');inst.under=bases.map(uid=>{const x=api.remove(s.players[p].hand,uid);api.clear(x,'battle');return x;});},
+ allowedCast(s,p,c,origin,entryCheck=false){
+  if(!c.g48HandEvolution)return true;
+  const uid=c.g827HandWaterEvolution?c.executionUid:null,rows=handBases(s,p,uid,c);
+  const excludeSource=entryCheck&&!c.g827HandWaterEvolution?origin==='hand':
+   !uid&&(origin==='hand'||origin==null)&&rows.some(x=>x.cardId===c.id);
+  return rows.length-(excludeSource?1:0)>=handBaseCount(c);
+ },
+ beforeCast(s,p,args){const [uid,,bases,face=0,,origin='hand']=args,x=s.players[p][origin]?.find(x=>x.uid===uid),c=x&&faces(card(x))[face];if(!c?.g48HandEvolution||Array.isArray(bases))return false;const n=handBaseCount(c);if(handBases(s,p,uid,c).length<n)throw Error(handBaseLabel(c)+'の進化元が'+n+'枚必要です');put(s,task('g48_HandBases',p,c.id,{target:uid,args,selected:[]}));return true;},
+ beforeEnter(s,p,inst,bases,entryOptions){const c=card(inst);if(!c.g48HandEvolution||Array.isArray(bases))return false;const n=handBaseCount(c);if(handBases(s,p,inst.uid,c).length<n)throw Error(handBaseLabel(c)+'の進化元が'+n+'枚必要です');put(s,task('g48_HandBases',p,inst.cardId,{target:inst.uid,inst,entryOptions,selected:[]}));return true;},
+ attachHandEvolution(s,p,inst,bases){const c=card(inst),n=handBaseCount(c),rows=handBases(s,p,inst.uid,c);if(!Array.isArray(bases)||bases.length!==n||new Set(bases).size!==n||!bases.every(uid=>rows.some(x=>x.uid===uid)))throw Error(handBaseLabel(c)+'の進化元が正しくありません');inst.under=bases.map(uid=>{const x=api.remove(s.players[p].hand,uid);api.clear(x,'battle');return x;});},
  mainActions(s,p){const out=[],own=s.players[p];for(const x of own.hand){const c=card(x);if(c.g48Aroma&&[0,1].some(p=>creatures(s,p).some(y=>/サイバー・?ロード/.test(effective(y,s).race)))&&api.canCast(s,p,c,'hand')&&api.canEnter(s,p,c,{origin:'hand',execution:true}))out.push({kind:'play',uid:x.uid,cardId:x.cardId,cost:0,freeSummon:'G・ゼロ',label:c.name+'をG・ゼロで召喚'});if(c.g48Mercury&&(own.mana.filter(y=>faces(api.zoneCard(s,p,y,'mana')).some(c=>/サイバー|フェニックス/.test(c.race))).length+own.battle.filter(y=>/サイバー|フェニックス/.test(effective(y,s).race)).length)>=5&&api.canCast(s,p,c,'hand')&&api.canEnter(s,p,c,{origin:'hand',execution:true})&&api.canPay(s,p,{...c,cost:3,civilizations:['水','水'],fixedPayment:true}))out.push({kind:'play',uid:x.uid,cardId:x.cardId,cost:3,alternative:'g48Mercury',label:c.name+'を水2/3マナで召喚'});}return out;},
  alternative(s,p,a){api.cast(s,p,a.uid,false,null,0,{cost:3,civilizations:['水','水'],fixedPayment:true},'hand');}
  };

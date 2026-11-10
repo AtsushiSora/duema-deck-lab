@@ -184745,22 +184745,134 @@
       ],
       "supportBatch": "phase-826",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm32-003",
+      "name": "クリスタル・アックス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 11000,
+      "race": "リキッド・ピープル",
+      "text": "手札進化-水のクリーチャーを１体自分の手札から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーはブロックされない。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-003",
+      "limit": 4,
+      "g48HandEvolution": true,
+      "g827HandWaterEvolution": true,
+      "unblockable": true,
+      "breaker": 2,
+      "supportBatch": "phase-827",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-051",
+      "name": "ツクモ・スパーク",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "サイバー・ウイルス/オリジン",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、持ち主の手札に戻す。\nこのクリーチャーがバトルゾーンを離れた時、相手はクリーチャーを１体、自分自身の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-051",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "hand"
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "OpponentSelect",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "title": "自分の手札から出すクリーチャーを1体選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-827",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm33-044",
+      "name": "ルナー・クロロ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ファイアー・バード",
+      "text": "バトルゾーンにあるクリーチャーはすべて「スレイヤー」を得る。(「スレイヤー」を得たクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)\n自分のドラゴンが攻撃する時、クリーチャーを１体、自分の墓地から手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm33-044",
+      "limit": 4,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "both": true,
+          "grants": {
+            "slayer": true
+          }
+        }
+      ],
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "race": "ドラゴン"
+        },
+        "defs": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "to": "hand",
+            "optional": true,
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-827",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 826,
+    "phase": 827,
     "checkedAt": "2026-11-10",
-    "baseCount": 6335,
+    "baseCount": 6338,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6338,
+    "totalCount": 6341,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37468/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37469/",
-      "https://dm.takaratomy.co.jp/rule/qa/45129/",
-      "https://dm.takaratomy.co.jp/rule/qa/39038/",
-      "https://dm.takaratomy.co.jp/rule/qa/45800/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37370/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37371/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37372/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37373/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37374/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35875/",
+      "https://dm.takaratomy.co.jp/rule/qa/45585/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37640/",
+      "https://dm.takaratomy.co.jp/rule/qa/45075/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -199296,6 +199408,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/42937/",
           "https://dm.takaratomy.co.jp/rule/qa/47060/",
           "https://dm.takaratomy.co.jp/rule/qa/46840/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 826,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6335,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6338,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37468/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37469/",
+          "https://dm.takaratomy.co.jp/rule/qa/45129/",
+          "https://dm.takaratomy.co.jp/rule/qa/39038/",
+          "https://dm.takaratomy.co.jp/rule/qa/45800/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

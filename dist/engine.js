@@ -481,7 +481,7 @@ export function canEnterCreature(s,p,c=null,{origin='hand',execution=true,commit
  if(!extra.photo160.allowedEntry(s,p,c)||!extra.combat.allowedEntry(s,p,c,{origin,execution})||!extra.original.allowedEntry(s,p,c))return false;
  if(!extra.environment.allowedEntry(s,p,c)||!extra.recommended.allowedEntry(s,p,c,{execution}))return false;
  if(c&&execution&&!extra.allowedCard(s,p,c))return false;
- const own=s.players[p];if(c?.g48HandEvolution&&!committed&&own.hand.filter(x=>card(x).type==='creature').length-(origin==='hand'?1:0)<3)return false;if((!c||c.type==='creature')&&own.entryLimitThisTurn&&(own.enteredThisTurn||0)>=1)return false;
+ const own=s.players[p];if(c?.g48HandEvolution&&!committed&&!extra.cyber.allowedCast(s,p,c,origin,true))return false;if((!c||c.type==='creature')&&own.entryLimitThisTurn&&(own.enteredThisTurn||0)>=1)return false;
  if(!c)return true;if(execution&&!committed&&!extra.six.allowedCast(s,p,c))return false;if(!extra.six.allowedEntry(s,p,c,{origin,execution}))return false;
  if((s.extLimits||[]).some(l=>l.player===p&&l.active!==false&&((l.kind==='entryCost'&&c.type==='creature'&&costValue(c)<=l.max)||(l.kind==='entryPower'&&c.type==='creature'&&numeric(c.power)<=l.max)||(l.kind==='summon'&&execution&&c.type==='creature'&&costValue(c)<=l.max))))return false;
  if(c.type==='creature'&&s.players[1-p].battle.some(x=>effectiveCard(x,s).handEntryOnly)&&origin!=='hand')return false;
@@ -652,7 +652,7 @@ function manaExchangeBases753(s,t){
   battle:pl.battle.filter(x=>x!==old),mana:pl.mana.filter(x=>x!==incoming)
  }:pl)};
  if(face.g45MDeck)return {bases:[],optional:own.deck.length>0};
- if(face.g48HandEvolution)return {bases:[],optional:own.hand.filter(x=>card(x).type==='creature').length>=3};
+ if(face.g48HandEvolution)return {bases:[],optional:extra.cyber.allowedCast(s,p,face,'mana')};
  if(face.ultraEvolution)return {bases:[],optional:ultraBases(projected,p,face).reduce((n,x)=>n+costValue(effectiveCard(x,projected)),0)>=face.ultraEvolution};
  if(extra.phoenix.complex(s,p,face,options)||face.graveEvolution)
   return {bases:[],optional:evolutionBases(projected,p,face,options).length>0};

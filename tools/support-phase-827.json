@@ -1,0 +1,234 @@
+{
+  "phase": 827,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6338,
+  "description": "水の手札進化、相手への任意の手札展開、双方へのスレイヤー付与とドラゴン攻撃時の墓地回収に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37370/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37371/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37372/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37373/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37374/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35875/",
+    "https://dm.takaratomy.co.jp/rule/qa/45585/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37640/",
+    "https://dm.takaratomy.co.jp/rule/qa/45075/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm32-003",
+      "name": "クリスタル・アックス",
+      "faces": [
+        {
+          "name": "クリスタル・アックス",
+          "typeText": "進化クリーチャー(手札進化)",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "手札進化-水のクリーチャーを１体自分の手札から選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーはブロックされない。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "リキッド・ピープル",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-003",
+      "spec": {
+        "g48HandEvolution": true,
+        "g827HandWaterEvolution": true,
+        "unblockable": true,
+        "breaker": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "6727f2c8eb6bb0bc91c7d38811ac563f94681c7c0c597354c4e194bad1dbc826",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm32-051",
+      "name": "ツクモ・スパーク",
+      "faces": [
+        {
+          "name": "ツクモ・スパーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、持ち主の手札に戻す。\nこのクリーチャーがバトルゾーンを離れた時、相手はクリーチャーを１体、自分自身の手札からバトルゾーンに出してもよい。",
+          "race": "サイバー・ウイルス/オリジン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-051",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "hand"
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "OpponentSelect",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "title": "自分の手札から出すクリーチャーを1体選ぶ（任意）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "2dd56775f43f48bdef6311e5d0e2eedf739f61fa5363463b64b666407cdaa7a4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm33-044",
+      "name": "ルナー・クロロ",
+      "faces": [
+        {
+          "name": "ルナー・クロロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトルゾーンにあるクリーチャーはすべて「スレイヤー」を得る。(「スレイヤー」を得たクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)\n自分のドラゴンが攻撃する時、クリーチャーを１体、自分の墓地から手札に戻してもよい。",
+          "race": "ファイアー・バード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm33-044",
+      "spec": {
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "both": true,
+            "grants": {
+              "slayer": true
+            }
+          }
+        ],
+        "g252AttackWatch": {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm33-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "40128345d8ffc16a8ff753aa560fc5df78ed04af4817d2dde7414fa92fe2e1a6",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx10-051",
+      "canonicalId": "dm33-044",
+      "name": "ルナー・クロロ",
+      "faces": [
+        {
+          "name": "ルナー・クロロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトルゾーンにあるクリーチャーはすべて「スレイヤー」を得る。(「スレイヤー」を得たクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する)\n自分のドラゴンが攻撃する時、クリーチャーを１体、自分の墓地から手札に戻してもよい。",
+          "race": "ファイアー・バード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx10-051",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx10-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "db3de1126d4ce011d0d2b99d9010ee424a82cc475a567c245b8ca8bed4e3df12",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx17-033",
+      "canonicalId": "dm33-044",
+      "name": "ルナー・クロロ",
+      "faces": [
+        {
+          "name": "ルナー・クロロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトルゾーンにあるクリーチャーはすべて「スレイヤー」を得る。（「スレイヤー」を得たクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\n自分のドラゴンが攻撃する時、クリーチャーを１体、自分の墓地から手札に戻してもよい。",
+          "race": "ファイアー・バード",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx17-033",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx17-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "5e523bc385d99414ba185987cd41aa95dc1cfa9aa68214fd9b2939dd91f73f92",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm32-003": 4,
+      "dm32-051": 4,
+      "dm33-044": 4,
+      "dmx10-051": 4,
+      "dmx17-033": 4
+    }
+  }
+}

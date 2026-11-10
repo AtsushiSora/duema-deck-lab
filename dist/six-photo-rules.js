@@ -1829,7 +1829,7 @@ export function createSixPhotoRules(api){
   const origin=t.origin||'battle',battle=origin==='battle';
   const action=t.tap?'タップする':t.to==='grave'?'破壊する':t.to==='hand'?'手札に戻す':'マナに置く';
   const title=t.title||action+(battle?'自分のクリーチャーを'+(t.n??1)+'体':'自分の'+origin+'のカードを'+(t.n??1)+'枚')+'選ぶ';
-  put(s,{...t,op:'g34_Select',p:1-t.p,controller:t.controller??t.p,origin,filter:{...(battle?{creature:true}:{}),...t.filter},g187OwnPick:true,title});
+  put(s,{...t,op:'g34_Select',p:1-t.p,controller:t.controller??t.p,origin,filter:{...(battle?{creature:true}:{}),...t.filter},g187OwnPick:!t.deploy,title});
   break;
  }
  case'g34_OpponentManaLoss478':put(s,{...t,op:'g34_Select',p:1-t.p,controller:t.controller??t.p,origin:'mana',to:'grave',n:1,g184ManaLoss:true,title:'墓地に置く自分のマナを1枚選ぶ'});break;

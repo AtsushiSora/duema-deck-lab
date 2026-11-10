@@ -2507,6 +2507,15 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=827&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='進化クリーチャー(手札進化)'&&text==='手札進化-水のクリーチャーを1体自分の手札から選びこのクリーチャーをその上に重ねつつバトルゾーンに出す。このクリーチャーはブロックされない。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {g48HandEvolution:true,g827HandWaterEvolution:true,unblockable:true,breaker:2};
+  if(f.typeText==='クリーチャー'&&text==='このクリーチャーをバトルゾーンに出した時バトルゾーンにある相手のクリーチャーを1体選び持ち主の手札に戻す。このクリーチャーがバトルゾーンを離れた時相手はクリーチャーを1体自分自身の手札からバトルゾーンに出してもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',to:'hand'}],g172Leave:[{op:'OpponentSelect',origin:'hand',deploy:true,n:1,optional:true,filter:{creature:true},title:'自分の手札から出すクリーチャーを1体選ぶ（任意）'}]};
+  if(f.typeText==='クリーチャー'&&text==='バトルゾーンにあるクリーチャーはすべて「スレイヤー」を得る。(「スレイヤー」を得たクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)自分のドラゴンが攻撃する時クリーチャーを1体自分の墓地から手札に戻してもよい。')
+   return {g208Auras:[{filter:{creature:true},both:true,grants:{slayer:true}}],g252AttackWatch:{who:'self',filter:{creature:true,race:'ドラゴン'},defs:[{op:'Select',origin:'grave',n:1,to:'hand',optional:true,filter:{creature:true}}]}};
+ }
  if(phase>=826&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const trigger='S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
