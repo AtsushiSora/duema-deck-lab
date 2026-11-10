@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6148,
-  "pendingNames": 5679,
-  "phase": 766,
+  "supportedNames": 6151,
+  "pendingNames": 5676,
+  "phase": 767,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -82,7 +82,7 @@
     },
     {
       "ability": "メクレイド",
-      "pendingNames": 47,
+      "pendingNames": 45,
       "examples": [
         {
           "id": "dm23rp1-033",
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3378,
+    "クリーチャー": 3375,
     "NEOクリーチャー": 152,
     "呪文": 812,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4152,
+    "未対応の能力文": 4149,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -9568,30 +9568,102 @@
         "runtimeNote": "各最大10分。Phase 204・225・235・463・472・594・595・644・764・765の名前指定回帰203件が成功。全体のnpm testは中断・合否未確認。"
       },
       "deferred": []
+    },
+    {
+      "phase": 767,
+      "cards": [
+        {
+          "id": "dm23rp2-049",
+          "name": "罰打の妖精"
+        },
+        {
+          "id": "dm23rp2-064",
+          "name": "グ:ルボカッサ"
+        },
+        {
+          "id": "dm23rp2-033",
+          "name": "ゼンツー"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm23rp2x-049",
+          "canonicalId": "dm23rp2-049",
+          "name": "罰打の妖精"
+        },
+        {
+          "id": "dm23rp2x-064",
+          "canonicalId": "dm23rp2-064",
+          "name": "グ:ルボカッサ"
+        },
+        {
+          "id": "dm23rp2x-033",
+          "canonicalId": "dm23rp2-033",
+          "name": "ゼンツー"
+        }
+      ],
+      "supportedNames": 6151,
+      "pendingNames": 5676,
+      "verification": {
+        "focusedPassed": 8,
+        "regressionPassed": 75,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 6,
+        "scope": "3種類6版の公式能力全文、基本情報、マナ、画像実体、再録、使用制限を照合。罰打は相手の2体目以降、任意と保存復元、実体追跡と移動先の置換を検証。ルボカッサは当ターンの相手の墓地移動数と自ターン終了条件、ゼンツーは通常支払い・無償タマシード・コスト0・S・トリガー・登場能力の抑止・辞退後の再誘発を検証。メクレイドでは種族・コストと山札下の順序を確認。既存カード定義は基点と一致。",
+        "runtimeNote": "各最大10分。Phase 403・601・624・677・742・764・766から関連テスト75件が成功。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dm23rp2-047",
+          "name": "推出の超人",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-047",
+          "check": "通常版とDM23-RP2X版の公式本文と同名収録を確認。類似QA 43051では同時移動も2枚目として数え、QA 43050では他のプレイヤーの効果で置いた場合と発生源自身が2枚目として移動する場合も含む。全てのマナ移動と、移動直前の発生源を重複なく記録できるまで保留。"
+        },
+        {
+          "id": "dm24rp4-070",
+          "name": "ライラ・理・アイニー",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-070",
+          "check": "通常版の公式本文と同名商品を確認。現行総合ルール701.13b〜dではバトル結果に由来する効果の連鎖が終わるまでバトル中。敗北による破壊だけを拾うと漏れ、攻撃中の破壊を全て拾うと攻撃時効果やバトル後のスレイヤーも誤検知する。通常バトルと効果バトル、置換と連鎖を区別して検証するまで保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 766,
-    "nextPhase": 767,
+    "lastVerifiedPhase": 767,
+    "nextPhase": 768,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm23rp2-049",
-        "name": "罰打の妖精",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-049",
-        "check": "相手の2体目以降の登場と、発生源が実際にマナへ移動した場合に限る後続処理を照合する。"
+        "id": "dm23rp3-025",
+        "name": "運明！ベリアvs.キャディ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-025",
+        "check": "相手の無償エレメント登場の監視を再利用し、ガードマンと相手ターンのパワー加算も検証する。"
       },
       {
-        "id": "dm23rp2-064",
-        "name": "グ:ルボカッサ",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-064",
-        "check": "相手の墓地へ置かれた物理カードの枚数をターン終了時に判定し、アビス・メクレイド5につなげる処理を検証する。"
+        "id": "dm23rp2-042",
+        "name": "リトル・翔・バルピア",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-042",
+        "check": "自分の2回目の攻撃宣言を数え、アーマード・メクレイド5と発生源が後から出た場合を検証する。"
       },
       {
-        "id": "dm23rp2-033",
-        "name": "ゼンツー",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-033",
-        "check": "コストを支払わないエレメント登場の裁定を、無償召喚・単なる展開・軽減・代替コストと照合し、任意のマジック・メクレイド5を検証する。"
+        "id": "dm23rp2-070",
+        "name": "太陽との邂逅",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-070",
+        "check": "アーマード・メクレイド5を先に解決し、その結果出たクリーチャーを含むスピードアタッカー付与の範囲を公式裁定と照合する。"
+      },
+      {
+        "id": "dm23rp3-033",
+        "name": "激光魚",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-033",
+        "check": "任意ではない1枚の手札交換と、コスト4以下の呪文面の墓地回収を検証する。"
+      },
+      {
+        "id": "dm23rp3-053",
+        "name": "巡鎧者メンドーサ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-053",
+        "check": "公開したカードの種族判定、外れた場合の任意の山札下移動、ツインパクトの扱いを照合する。"
       },
       {
         "id": "dm23rp2-047",

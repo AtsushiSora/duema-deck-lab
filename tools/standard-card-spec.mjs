@@ -2564,6 +2564,14 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=767&&f.typeText==='クリーチャー'){
+  if(compact363==='相手のこのターン2体目以降のクリーチャーが出た時このクリーチャーをマナゾーンに置いてもよい。そうしたら相手のそのクリーチャーを持ち主のマナゾーンに置く。')
+   return {g767SecondEnemy:true};
+  if(compact363==='自分のターンの終わりにこのターン相手の墓地にカードが2枚以上置かれていたらアビス・メクレイド5する。(アビス・メクレイド5:自分の山札の上から3枚を見る。その中からコスト5以下のアビスを1枚コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く)')
+   return {g767GraveRaid:true};
+  if(compact363==='各ターンに一度相手がコストを支払わずにエレメントを出した時マジック・メクレイド5してもよい。(マジック・メクレイド5:自分の山札の上から3枚を見る。その中からコスト5以下のマジックを1枚コストを支払わずに使ってもよい。残りを好きな順序で山札の下に置く)')
+   return {g767UnpaidRaid:true};
+ }
  if(phase>=766&&f.typeText==='クリーチャー'){
   if(compact363==='自分のコスト6以上のクリーチャーが召喚によって出た時このクリーチャーを自分の墓地から出してもよい。')
    return {g766GraveSummonMin:6};
