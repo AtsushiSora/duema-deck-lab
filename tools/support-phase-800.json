@@ -1,0 +1,161 @@
+{
+  "phase": 800,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6253,
+  "description": "攻撃時に指定文明のマナ2枚をタップする旧弾3種の除去、パワー強化、手札破棄に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/40625/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dm24-057",
+      "name": "三連の炎棍",
+      "faces": [
+        {
+          "name": "三連の炎棍",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、自分のマナゾーンの火のカードを２枚タップしてもよい。そうした場合、相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+          "race": "ビーストフォーク",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-057",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "TapManaColors698",
+            "colors": [
+              "火",
+              "火"
+            ],
+            "defs": [
+              {
+                "op": "Target",
+                "to": "grave",
+                "filter": {
+                  "blocker": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-057.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "f45e7ea3ffb0e438eab5245f5882cc8000dded75505e2b0be0317e60543a2d52",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-044",
+      "name": "巡霊者ラジャスタ",
+      "faces": [
+        {
+          "name": "巡霊者ラジャスタ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃する時、自分のマナゾーンにある自然のカードを２枚タップしてもよい。そうした場合、そのターン、このクリーチャーのパワーは+3000される。",
+          "race": "コスモ・ウォーカー",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-044",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "TapManaColors698",
+            "colors": [
+              "自然",
+              "自然"
+            ],
+            "defs": [
+              {
+                "op": "SelfBoost313",
+                "power": 3000,
+                "g536Source": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "745da1d89e30478b23faedcce3080704e848902186ff1572d12e3e1999a57317",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24-053",
+      "name": "闇風の狙撃手ミミズーク",
+      "faces": [
+        {
+          "name": "闇風の狙撃手ミミズーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、自分のマナゾーンにある闇のカードを２枚タップしてもよい。そうした場合、相手の手札を見てその中から１枚選び、捨てさせる。",
+          "race": "フェザーノイド",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-053",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "TapManaColors698",
+            "colors": [
+              "闇",
+              "闇"
+            ],
+            "defs": [
+              {
+                "op": "InspectOne258"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "9756fb87ba7a695d02d5fd0d6c2f9940abfef8ab364a9a876bcbf88a7cc7382a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24-057": 4,
+      "dm24-044": 4,
+      "dm24-053": 4
+    }
+  }
+}

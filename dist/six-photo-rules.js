@@ -2274,7 +2274,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
   const paid=selected.map(uid=>own.mana.find(x=>x.uid===uid&&!x.tapped));
   if(paid.every(Boolean)){
    for(const x of paid)x.tapped=true;
-   start(s,t,[{op:'OwnShieldGraves697',to:'mana'}]);
+   start(s,t,t.defs??[{op:'OwnShieldGraves697',to:'mana'}]);
   }
  }break;
  case'g34_OwnShieldGraves697':put(s,{...t,picks:[...(t.picks||[]),{owner:t.chooser,uid:v}]});break;

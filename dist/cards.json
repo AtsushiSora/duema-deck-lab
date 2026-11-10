@@ -182172,22 +182172,120 @@
       ],
       "supportBatch": "phase-799",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24-057",
+      "name": "三連の炎棍",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "ビーストフォーク",
+      "text": "このクリーチャーが攻撃する時、自分のマナゾーンの火のカードを２枚タップしてもよい。そうした場合、相手の「ブロッカー」を持つクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-057",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "TapManaColors698",
+          "colors": [
+            "火",
+            "火"
+          ],
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "blocker": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-800",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24-044",
+      "name": "巡霊者ラジャスタ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1500,
+      "race": "コスモ・ウォーカー",
+      "text": "このクリーチャーが攻撃する時、自分のマナゾーンにある自然のカードを２枚タップしてもよい。そうした場合、そのターン、このクリーチャーのパワーは+3000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-044",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "TapManaColors698",
+          "colors": [
+            "自然",
+            "自然"
+          ],
+          "defs": [
+            {
+              "op": "SelfBoost313",
+              "power": 3000,
+              "g536Source": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-800",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24-053",
+      "name": "闇風の狙撃手ミミズーク",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "フェザーノイド",
+      "text": "このクリーチャーが攻撃する時、自分のマナゾーンにある闇のカードを２枚タップしてもよい。そうした場合、相手の手札を見てその中から１枚選び、捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-053",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "TapManaColors698",
+          "colors": [
+            "闇",
+            "闇"
+          ],
+          "defs": [
+            {
+              "op": "InspectOne258"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-800",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 799,
+    "phase": 800,
     "checkedAt": "2026-11-10",
-    "baseCount": 6250,
+    "baseCount": 6253,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6253,
+    "totalCount": 6256,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/45937/",
-      "https://dm.takaratomy.co.jp/rule/qa/45263/",
-      "https://dm.takaratomy.co.jp/rule/qa/45437/",
-      "https://dm.takaratomy.co.jp/rule/qa/49402/",
-      "https://dm.takaratomy.co.jp/rule/qa/38732/",
+      "https://dm.takaratomy.co.jp/rule/qa/40625/",
       "https://dm.takaratomy.co.jp/rule/rulechange/"
     ],
     "next": [
@@ -196163,6 +196261,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/45923/",
           "https://dm.takaratomy.co.jp/rule/qa/45924/",
           "https://dm.takaratomy.co.jp/rule/qa/45932/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 799,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6250,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6253,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/45937/",
+          "https://dm.takaratomy.co.jp/rule/qa/45263/",
+          "https://dm.takaratomy.co.jp/rule/qa/45437/",
+          "https://dm.takaratomy.co.jp/rule/qa/49402/",
+          "https://dm.takaratomy.co.jp/rule/qa/38732/",
           "https://dm.takaratomy.co.jp/rule/rulechange/"
         ],
         "next": [

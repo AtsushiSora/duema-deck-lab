@@ -2507,6 +2507,19 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=800&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const match=text.match(/^このクリーチャーが攻撃する時自分のマナゾーン(?:にある|の)(火|自然|闇)のカードを2枚タップしてもよい。そうした場合(.+)$/);
+  if(match){
+   const [,color,body]=match;
+   const effect={
+    火:{text:'相手の「ブロッカー」を持つクリーチャーを1体破壊する。',def:{op:'Target',to:'grave',filter:{blocker:true}}},
+    自然:{text:'そのターンこのクリーチャーのパワーは+3000される。',def:{op:'SelfBoost313',power:3000,g536Source:true}},
+    闇:{text:'相手の手札を見てその中から1枚選び捨てさせる。',def:{op:'InspectOne258'}}
+   }[color];
+   if(body===effect.text)return {g34Attack:[{op:'TapManaColors698',colors:[color,color],defs:[effect.def]}]};
+  }
+ }
  if(phase>=799&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const hyper='ハイパーエナジー(このクリーチャーを召喚する時コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー1体につきこのクリーチャーの召喚コストを2少なくする。ただしコストは0以下にはならない)';

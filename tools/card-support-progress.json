@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6253,
-  "pendingNames": 5574,
-  "phase": 799,
+  "supportedNames": 6256,
+  "pendingNames": 5571,
+  "phase": 800,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3298,
+    "クリーチャー": 3295,
     "NEOクリーチャー": 152,
     "呪文": 791,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1241,
-    "未対応の能力文": 4074,
+    "未対応の能力文": 4071,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -11721,30 +11721,92 @@
         "runtimeNote": "各最大10分。Mecha、Abyss、Phase 168・398・530・764・797・798の関連回帰を実施。初回はMecha・Abyssの長時間ランダム対戦を除外し切れなかったため中断・合否未確認（/tmp/duema-phase-799-regression-interrupted.log）。続く実行はAbyssの長時間の全カード能力コピー総当たりと280試合ワーカーを除外できておらず中断・合否未確認（/tmp/duema-phase-799-regression-exhaustive-interrupted.log、/tmp/duema-phase-799-regression-worker-interrupted.log）。検証済みの実行ではこれらのケースとMecha・Abyss、Phase 168・398・530の長時間CPU対戦をテスト名で除外。MechaのUltraSaver試験1件は基点75cf14fcでも同じreplaceUltra未表示で失敗したため、今回の検証済み範囲から除外。全体のnpm testは中断・合否未確認。"
       },
       "deferred": []
+    },
+    {
+      "phase": 800,
+      "cards": [
+        {
+          "id": "dm24-057",
+          "name": "三連の炎棍"
+        },
+        {
+          "id": "dm24-044",
+          "name": "巡霊者ラジャスタ"
+        },
+        {
+          "id": "dm24-053",
+          "name": "闇風の狙撃手ミミズーク"
+        }
+      ],
+      "printAliases": [],
+      "supportedNames": 6256,
+      "pendingNames": 5571,
+      "verification": {
+        "focusedPassed": 11,
+        "regressionPassed": 93,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "通常版3点の全能力、基本情報、画像、殿堂制限なしを公式照合。同名再録は公式商品情報とローカルの既存ID・正規名に照合した範囲で該当なし。指定文明のアンタップ済みのマナ2枚を別々に選ぶこと、多色と文明追加、1枚選んだ後の辞退、候補不足を検証。三連はブロッカーの選択とブロック前の破壊、ラジャスタは実バトルでの4500とターン終了時の解除、ミミズークは支払い後の手札確認と保存復元後の個体指定を検証。既存対戦定義6,253件が一致することを確認。",
+        "runtimeNote": "各最大10分。Phase 258・698・797・798・799の関連回帰を実施。Phase 258の長時間CPU対戦2件をテスト名で除外。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dm24rp4-S03",
+          "name": "超暴淵 ボジャガイスト",
+          "reason": "通常の墓地召喚とハイパーエナジーの入口が分かれており、墓地を起点とする支払い・取消・確定を一貫して検証するまで保留。"
+        },
+        {
+          "id": "dm24rp4-S06",
+          "name": "陽炎の精霊メルキウス",
+          "reason": "QA 45936のように付与元ごとにハイパーエナジーが独立して重複し、別の能力なら同じコストの個体をそれぞれタップできる。宣言順と付与元ごとのターン制限を検証するまで保留。"
+        },
+        {
+          "id": "dm24rp4-S08",
+          "name": "♪ハックより 一時ずらして じゅうとなな",
+          "reason": "コストの種類数による能力付与の時点と、付与されなかった場合も含めた自分の最初の同名呪文の追跡を、別のゾーンや再録IDからの実行でも検証するまで保留。"
+        },
+        {
+          "id": "dm25ex4-051",
+          "name": "アカシック・マップ",
+          "reason": "公式本文を確認。山札に入るデュエリストのカードタイプと選択処理が未対応のため保留。"
+        },
+        {
+          "id": "dm25ex4-064",
+          "name": "次元戴冠プリンプリン",
+          "reason": "公式本文を確認。クリーチャー・名前にホールを含むカードに加え、デュエリストのカードタイプを判定できるまで保留。"
+        },
+        {
+          "id": "dm25ex4-044",
+          "name": "怒流牙 モチヅキ・ダルク",
+          "reason": "公式本文を確認。サイキックとデュエルメイトを識別し、超次元から出た実データで両方の条件を検証できるまで保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 799,
-    "nextPhase": 800,
+    "lastVerifiedPhase": 800,
+    "nextPhase": 801,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm24rp4-S03",
-        "name": "超暴淵 ボジャガイスト",
-        "check": "墓地からの通常召喚とハイパーエナジーの併用、登場時の相手による2枚破棄と手札が空の場合の弱体化を公式照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-S03"
+        "id": "dm24-048",
+        "name": "シースピン・クロウラー",
+        "check": "光のマナ2枚のタップと、発生源の個体を追跡するターン終了時のアンタップを公式照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-048"
       },
       {
-        "id": "dm24rp4-S06",
-        "name": "陽炎の精霊メルキウス",
-        "check": "任意で付与するハイパーエナジー、複数体からの付与の重複、ジャストダイバー、公開と山札下順序、各ターン終了時のアンタップを公式照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-S06"
+        "id": "dm24-104",
+        "name": "脈動の化身",
+        "check": "水または闇のクリーチャーへの攻撃時に限る強化とターン終了時のアンタップを公式照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-104"
       },
       {
-        "id": "dm24rp4-S08",
-        "name": "♪ハックより 一時ずらして じゅうとなな",
-        "check": "ハイパーエナジー、枚数指定と墓地からの展開、バラバラエティ3と最初の同名呪文による追加ターンを公式照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-S08"
+        "id": "dm26-012",
+        "name": "パンチとビンタの報酬",
+        "check": "S・トリガー、ターン終了時点の双方のタップ中クリーチャーの集計、任意のドローを公式照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-012"
       },
       {
         "id": "dm24ex4-073",
@@ -12267,6 +12329,42 @@
         "name": "ケジメノ裁徒",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-060",
         "check": "初出の公式本文とDMSD07収録を確認。公式QA 39978・31797の同条件に従い、既存シールドの束への追加、表向きの紋章、城などもカード単位で誘発する。イカリノ裁徒と共通で、追加経路の通知を重複なく検証するまで保留。"
+      },
+      {
+        "id": "dm24rp4-S03",
+        "name": "超暴淵 ボジャガイスト",
+        "check": "通常の墓地召喚とハイパーエナジーの入口が分かれており、墓地を起点とする支払い・取消・確定を一貫して検証するまで保留。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-S03"
+      },
+      {
+        "id": "dm24rp4-S06",
+        "name": "陽炎の精霊メルキウス",
+        "check": "QA 45936のように付与元ごとにハイパーエナジーが独立して重複し、別の能力なら同じコストの個体をそれぞれタップできる。宣言順と付与元ごとのターン制限を検証するまで保留。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-S06"
+      },
+      {
+        "id": "dm24rp4-S08",
+        "name": "♪ハックより 一時ずらして じゅうとなな",
+        "check": "コストの種類数による能力付与の時点と、付与されなかった場合も含めた自分の最初の同名呪文の追跡を、別のゾーンや再録IDからの実行でも検証するまで保留。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-S08"
+      },
+      {
+        "id": "dm25ex4-051",
+        "name": "アカシック・マップ",
+        "check": "公式本文を確認。山札に入るデュエリストのカードタイプと選択処理が未対応のため保留。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-051"
+      },
+      {
+        "id": "dm25ex4-064",
+        "name": "次元戴冠プリンプリン",
+        "check": "公式本文を確認。クリーチャー・名前にホールを含むカードに加え、デュエリストのカードタイプを判定できるまで保留。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-064"
+      },
+      {
+        "id": "dm25ex4-044",
+        "name": "怒流牙 モチヅキ・ダルク",
+        "check": "公式本文を確認。サイキックとデュエルメイトを識別し、超次元から出た実データで両方の条件を検証できるまで保留。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex4-044"
       }
     ],
     "steps": [
