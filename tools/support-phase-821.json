@@ -1,0 +1,157 @@
+{
+  "phase": 821,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6317,
+  "description": "対象の強化と追加ブレイク、究極進化と任意ドロー、手札破棄と相手の墓地回収に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/31530/",
+    "https://dm.takaratomy.co.jp/rule/qa/31531/",
+    "https://dm.takaratomy.co.jp/rule/qa/34191/",
+    "https://dm.takaratomy.co.jp/rule/qa/41094/",
+    "https://dm.takaratomy.co.jp/rule/qa/44188/",
+    "https://dm.takaratomy.co.jp/rule/qa/46870/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35316/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm32-070",
+      "name": "エボリュート・パワー",
+      "faces": [
+        {
+          "name": "エボリュート・パワー",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このターン、バトルゾーンにある自分のクリーチャー１体のパワーは+3000され、シールドをさらに１枚ブレイクする。そのクリーチャーが進化クリーチャーであれば、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-070",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "spell": true,
+            "power": 3000,
+            "g455ExtraBreak": 1,
+            "g821DrawIfEvolution": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ad87740bae43d138d88fd5aed68c51434c3fde2312754db97cb9d6c93bef486d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm32-s04",
+      "name": "神羅ブリザード・ムーン",
+      "faces": [
+        {
+          "name": "神羅ブリザード・ムーン",
+          "typeText": "進化クリーチャー(究極進化)",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "究極進化-自分の進化クリーチャー１体の上に置く。\nこのクリーチャーが攻撃する時、カードを３枚まで引いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ルナティック・エンペラー/サイバー・コマンド",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-s04",
+      "spec": {
+        "ultimateEvolution": true,
+        "evolution": {
+          "evolution": true
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "DrawUpTo",
+            "n": 3
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "106a28dd27b89ac827dd0385f2c5f56162faa2c5d7eb1c44a43f7cdf4712603c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm32-026",
+      "name": "妖蟲恐皇ガイルス",
+      "faces": [
+        {
+          "name": "妖蟲恐皇ガイルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、相手の手札を１枚見ないで選び、捨てさせる。\nこのクリーチャーがバトルゾーンを離れた時、相手はカードを１枚、自分自身の墓地から選び、手札に戻してもよい。",
+          "race": "パラサイトワーム/ダークロード",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-026",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BlindDiscard773"
+          }
+        ],
+        "g172Leave": [
+          {
+            "op": "OpponentSelect",
+            "origin": "grave",
+            "n": 1,
+            "to": "hand",
+            "optional": true,
+            "title": "自分の墓地から手札に戻すカードを1枚選ぶ（任意）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "a869f28f5e3f55b747749eeda3398a4511794f2b5be92d93cc7a69372db621c7",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm32-070": 4,
+      "dm32-s04": 4,
+      "dm32-026": 4
+    }
+  }
+}

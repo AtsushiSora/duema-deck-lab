@@ -184165,22 +184165,116 @@
       ],
       "supportBatch": "phase-820",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm32-070",
+      "name": "エボリュート・パワー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "このターン、バトルゾーンにある自分のクリーチャー１体のパワーは+3000され、シールドをさらに１枚ブレイクする。そのクリーチャーが進化クリーチャーであれば、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-070",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "spell": true,
+          "power": 3000,
+          "g455ExtraBreak": 1,
+          "g821DrawIfEvolution": true
+        }
+      ],
+      "supportBatch": "phase-821",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-s04",
+      "name": "神羅ブリザード・ムーン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 9000,
+      "race": "ルナティック・エンペラー/サイバー・コマンド",
+      "text": "究極進化-自分の進化クリーチャー１体の上に置く。\nこのクリーチャーが攻撃する時、カードを３枚まで引いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-s04",
+      "limit": 4,
+      "ultimateEvolution": true,
+      "evolution": {
+        "evolution": true
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "DrawUpTo",
+          "n": 3
+        }
+      ],
+      "supportBatch": "phase-821",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-026",
+      "name": "妖蟲恐皇ガイルス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "パラサイトワーム/ダークロード",
+      "text": "このクリーチャーをバトルゾーンに出した時、相手の手札を１枚見ないで選び、捨てさせる。\nこのクリーチャーがバトルゾーンを離れた時、相手はカードを１枚、自分自身の墓地から選び、手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-026",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BlindDiscard773"
+        }
+      ],
+      "g172Leave": [
+        {
+          "op": "OpponentSelect",
+          "origin": "grave",
+          "n": 1,
+          "to": "hand",
+          "optional": true,
+          "title": "自分の墓地から手札に戻すカードを1枚選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-821",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 820,
+    "phase": 821,
     "checkedAt": "2026-11-10",
-    "baseCount": 6314,
+    "baseCount": 6317,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6317,
+    "totalCount": 6320,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/42955/",
-      "https://dm.takaratomy.co.jp/rule/qa/39123/",
-      "https://dm.takaratomy.co.jp/rule/qa/48906/",
-      "https://dm.takaratomy.co.jp/rule/qa/49605/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37378/",
+      "https://dm.takaratomy.co.jp/rule/qa/31530/",
+      "https://dm.takaratomy.co.jp/rule/qa/31531/",
+      "https://dm.takaratomy.co.jp/rule/qa/34191/",
+      "https://dm.takaratomy.co.jp/rule/qa/41094/",
+      "https://dm.takaratomy.co.jp/rule/qa/44188/",
+      "https://dm.takaratomy.co.jp/rule/qa/46870/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35316/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -198591,6 +198685,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/31531/",
           "https://dm.takaratomy.co.jp/rule/qa/31530/",
           "https://dm.takaratomy.co.jp/rule/qa/42392/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 820,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6314,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6317,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/42955/",
+          "https://dm.takaratomy.co.jp/rule/qa/39123/",
+          "https://dm.takaratomy.co.jp/rule/qa/48906/",
+          "https://dm.takaratomy.co.jp/rule/qa/49605/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37378/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

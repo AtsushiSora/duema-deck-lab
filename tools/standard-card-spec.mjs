@@ -2507,6 +2507,16 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=821&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='呪文'&&text==='このターンバトルゾーンにある自分のクリーチャー1体のパワーは+3000されシールドをさらに1枚ブレイクする。そのクリーチャーが進化クリーチャーであればカードを1枚引いてもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',spell:true,power:3000,g455ExtraBreak:1,g821DrawIfEvolution:true}]};
+  if(f.typeText==='進化クリーチャー(究極進化)'&&text==='究極進化-自分の進化クリーチャー1体の上に置く。このクリーチャーが攻撃する時カードを3枚まで引いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {ultimateEvolution:true,evolution:{evolution:true},breaker:2,g34Attack:[{op:'DrawUpTo',n:3}]};
+  if(f.typeText==='クリーチャー'&&text==='このクリーチャーをバトルゾーンに出した時相手の手札を1枚見ないで選び捨てさせる。このクリーチャーがバトルゾーンを離れた時相手はカードを1枚自分自身の墓地から選び手札に戻してもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'BlindDiscard773'}],
+    g172Leave:[{op:'OpponentSelect',origin:'grave',n:1,to:'hand',optional:true,title:'自分の墓地から手札に戻すカードを1枚選ぶ（任意）'}]};
+ }
  if(phase>=820&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='クリーチャー'){
