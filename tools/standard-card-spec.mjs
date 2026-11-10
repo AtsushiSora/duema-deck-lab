@@ -3433,6 +3433,21 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=878&&f.typeText==='クリーチャー'){
+  if(d.id==='dmr05-037'&&compact363===
+   'ガチンコ・ジャッジで見せたカードを自分の山札の一番下に置くかわりにマナゾーンに置いてもよい。自分のターンの終わりに自然のカードを1枚自分のマナゾーンから手札に戻してもよい。')
+   return {g878JudgeMana:true,g174End:[{op:'Select',origin:'mana',to:'hand',n:1,optional:true,filter:{color:'自然'}}]};
+  if(['dmr05-026','dmr05-026M'].includes(d.id)&&compact363===
+   'このクリーチャーまたは他のゴーストを召喚してバトルゾーンに出した時それとコストが同じゴーストを1体自分の墓地からバトルゾーンに出してもよい。')
+   return {g878GhostRecovery:true};
+  if(['dmr09-018','dmx16-032','dmex02-073'].includes(d.id)){
+   const trigger='S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)';
+   const body=d.id==='dmex02-073'?'このクリーチャーがバトルゾーンに出た時自分の山札をシャッフルしその後上から1枚目を表向きにする。そのカードが呪文なら':
+    'このクリーチャーをバトルゾーンに出した時自分の山札をシャッフルしその後上から1枚目をすべてのプレイヤーに見せる。そのカードが呪文であれば';
+   if(compact363===trigger+body+'コストを支払わずに唱えてもよい。呪文でなければ自分の手札に加える。')
+    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Shuffle405'},{op:'LookSpell841',g878SpellBlue:true}]};
+  }
+ }
  if(phase>=877&&f.typeText==='クリーチャー'){
   if(['dmr06-017','dmx25-033','dmx12b-080','promoy11-034'].includes(d.id)){
    const prefix=d.id==='dmx25-033'?'':'バトルゾーンにある';

@@ -190089,24 +190089,104 @@
       },
       "supportBatch": "phase-877",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-037",
+      "name": "大盛の超人",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ジャイアント/エイリアン",
+      "text": "ガチンコ・ジャッジで見せたカードを自分の山札の一番下に置くかわりに、マナゾーンに置いてもよい。\n自分のターンの終わりに、自然のカードを１枚、自分のマナゾーンから手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-037",
+      "limit": 4,
+      "g878JudgeMana": true,
+      "g174End": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "color": "自然"
+          }
+        }
+      ],
+      "supportBatch": "phase-878",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-026",
+      "name": "拷問の影カワハギ・ジャケット",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "ゴースト",
+      "text": "このクリーチャーまたは他のゴーストを召喚してバトルゾーンに出した時、それとコストが同じゴーストを１体、自分の墓地からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-026",
+      "limit": 4,
+      "g878GhostRecovery": true,
+      "supportBatch": "phase-878",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-018",
+      "name": "アクア・スペルブルー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 2000,
+      "race": "リキッド・ピープル/ハンター",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーをバトルゾーンに出した時、自分の山札をシャッフルし、その後、上から１枚目をすべてのプレイヤーに見せる。そのカードが呪文であれば、コストを支払わずに唱えてもよい。呪文でなければ、自分の手札に加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-018",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Shuffle405"
+        },
+        {
+          "op": "LookSpell841",
+          "g878SpellBlue": true
+        }
+      ],
+      "supportBatch": "phase-878",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 877,
+    "phase": 878,
     "checkedAt": "2026-11-11",
-    "baseCount": 6496,
+    "baseCount": 6499,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6499,
+    "totalCount": 6502,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36642/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36724/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37681/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35564/",
-      "https://dm.takaratomy.co.jp/rule/qa/45562/",
-      "https://dm.takaratomy.co.jp/rule/qa/46147/"
+      "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+      "https://dm.takaratomy.co.jp/archive/capture/volweeklydash08/",
+      "https://dm.takaratomy.co.jp/rule/qa/48940/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36603/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36833/",
+      "https://dm.takaratomy.co.jp/rule/qa/43078/",
+      "https://dm.takaratomy.co.jp/archive/dmex02/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -205698,6 +205778,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/45589/",
           "https://dm.takaratomy.co.jp/card/detail/?id=dm06-029",
           "https://dm.takaratomy.co.jp/rule/qa_old/36722/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 877,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6496,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6499,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36642/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36724/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37681/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35564/",
+          "https://dm.takaratomy.co.jp/rule/qa/45562/",
+          "https://dm.takaratomy.co.jp/rule/qa/46147/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

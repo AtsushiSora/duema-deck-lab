@@ -1178,7 +1178,8 @@ function completeExecution(s,p,inst,c,{ruleOrigin,origin,free,freeReason,alterna
  // QA40182: using a creature from a locked zone still pays its costs, but the
  // creature stays in that zone and has no battlefield entry event.
  if(originBlocked402){delete inst.summonedTurn;s.players[p][origin].splice(originIndex402<0?s.players[p][origin].length:originIndex402,0,inst);const zone=origin==='grave'?'墓地':'マナゾーン';log(s,p,'entryPrevented',`${c.name}は${zone}から移動できず、${zone}に残る`,{cardId:c.id});return;}
- const checkDeckSpell=ruleOrigin==='deck'&&freeReason==='スーパー・スペル・グレートブルー'&&!s.players[p].deck.length;
+ const checkDeckSpell=ruleOrigin==='deck'&&!s.players[p].deck.length&&
+  ['スーパー・スペル・グレートブルー','アクア・スペルブルー'].includes(freeReason);
  if(c.type==='spell')extra.spellCast(s,p,c,inst,ruleOrigin,face);
  if(c.type==='castle'){inst.faceUp=true;s.players[p].shields.push(inst);extra.shieldAdded(s,p,inst);if(free)(s.noManaUse??=[false,false])[p]=true;}
  else if(['creature','seed','gear','field'].includes(c.type)){enterCreature(s,p,inst,baseUid,{origin:ruleOrigin,execution:true,committed:true,paidMana,costPaid:!free&&cost>0,effectController:free||alternativeCost!==null?p:null,plus:!!c.triggerPlus&&free&&freeReason==='S・トリガー'&&!!inst.triggerPlus,super:!!c.superTrigger&&free&&(freeReason==='S・トリガー'&&!!inst.superTrigger||grantedSuper),ddd:freeReason==='D・D・D',...(alternativeCost?.g777AltEntry?{g777AltEntry:true}:{}),...(c.mugenGate&&Array.isArray(baseUid)?{mugenBases:baseUid}:{})});if(ruleOrigin==='deck')deckCheck(s,p);}
@@ -1257,7 +1258,7 @@ function finishCharger(s){
 }
 function startJudge(s,p,source,uid,mode,onWin=null){s.judge={player:p,source,uid,mode,onWin,parent:s.judge||null,wins:0,round:0,...(mode==='attack'?{deferredEffects:(s.pendingEffects||[]).splice(0)}:{})};judgeRound(s);}
 function judgeRound(s){
- const j=s.judge;j.round++;j.stage='compare';j.prohibited=[0,1].map(p=>deckLocked(s,p));j.revealed=s.players.map((p,i)=>!deckLocked(s,i)&&p.deck[0]?{uid:p.deck[0].uid,cardId:p.deck[0].cardId}:null);
+ const j=s.judge;j.round++;j.stage='compare';delete j.mana878;j.prohibited=[0,1].map(p=>deckLocked(s,p));j.revealed=s.players.map((p,i)=>!deckLocked(s,i)&&p.deck[0]?{uid:p.deck[0].uid,cardId:p.deck[0].cardId}:null);
  for(const who of [s.active,1-s.active])if(!j.revealed[who]&&!s.players[who].deck.length){deckCheck(s,who);if(s.winner!==null||s.lossEvent)return;}
  j.costs=j.revealed.map(x=>{if(!x)return 'no-card';const costs=[...new Set(playFaces(card(x)).map(c=>c.cost))];return costs.length===1?costs[0]:null;});
  log(s,j.player,'judgeReveal',`ガチンコ・ジャッジ${j.round}回目：${j.revealed.map((x,i)=>`${s.players[i].name}は${x?card(x).name:'公開できるカードなし'}`).join(' / ')}を公開`,{cardId:j.source});
@@ -1265,10 +1266,30 @@ function judgeRound(s){
  advanceJudgeCosts(s);
 }
 function advanceJudgeCosts(s){
- const j=s.judge;if(!j||j.stage!=='compare'||s.winner!==null)return;
- for(const who of [s.active,1-s.active])if(j.costs[who]===null){s.decision={type:'judgeCost',player:who,source:j.revealed[who].cardId};return;}
- // The two cards rotate directly within their libraries; a one-card library never becomes empty.
- for(const who of [0,1]){if(j.revealed[who]){const x=s.players[who].deck.shift();if(x)s.players[who].deck.push(x);}}
+ const j=s.judge;if(!j||!['compare','destinations878'].includes(j.stage)||s.winner!==null)return;
+ if(j.stage==='compare'){
+  const order=[s.active,1-s.active];
+  for(const who of order)if(j.costs[who]===null){s.decision={type:'judgeCost',player:who,source:j.revealed[who].cardId};return;}
+  for(const who of order){
+   if(!j.revealed[who]||j.mana878?.[who]!==undefined)continue;
+   const source=s.players[who].battle.find(x=>!x.sealed&&card(x).g878JudgeMana&&isCreature(s,x)&&effectiveCard(x,s).g878JudgeMana);
+   if(source){s.decision={type:'judgeMana878',player:who,source:source.cardId,cardId:j.revealed[who].cardId};return;}
+  }
+  for(const who of order){
+   if(!j.revealed[who])continue;
+   const own=s.players[who],x=own.deck.shift();
+   if(!x)continue;
+   if(j.mana878?.[who]){
+    // The move to mana already replaces the judge's deck-bottom move.
+    clearBattleState(x,'mana');
+    x.tapped=manaCivilizations(card(x)).length>1;
+    addZone(s,who,'mana',x);
+   }else own.deck.push(x);
+  }
+  if(j.mana878?.includes(true)){j.stage='destinations878';return;}
+ }
+ // Deck-out and any loss replacement resolve before the judge result.
+ j.stage='compare';
  const compared=j.costs.map((printed,p)=>{
   if(printed==='no-card'||printed==='∞')return printed;
   const bonus=s.players[p].battle.reduce((sum,x)=>sum+(!x.sealed&&isCreature(s,x)?effectiveCard(x,s).g873JudgeBonus||0:0),0);
@@ -1782,6 +1803,10 @@ export function getLegalActions(s){
   if(d.type==='evolution'){const c={...card(d.source),...Object.fromEntries(['g464Reducers','g463Reduction','g456Reduction'].filter(k=>d.playAction?.[k]!==undefined).map(k=>[k,d.playAction[k]]))},origin=d.playAction?.origin||'hand',free=!!d.playAction?.freeSummon;out=evolutionBases(s,p,c).filter(base=>base.uid!==d.uid&&(!c.neoEvolution||free||validMana(s,p,{...c,summonOrigin:origin,g27BaseUid:base.uid}))).map(base=>option('evolve',`${card(base).name}の上に${c.name}を重ねる`,{uid:d.uid,baseUid:base.uid,cardId:c.id,...(c.neoEvolution?{cost:free?0:summonCost(s,p,{...c,summonOrigin:origin,g27BaseUid:base.uid})}:{})}));if(c.neoEvolution&&(free||validMana(s,p,{...c,summonOrigin:origin,g27BaseUid:null})))out.unshift(option('evolve',`${c.name}を進化させず召喚`,{uid:d.uid,cardId:c.id,cost:free?0:summonCost(s,p,{...c,summonOrigin:origin,g27BaseUid:null})}));out.push(option('cancelEvolution','召喚をやめる'));}
   if(d.type==='revealEvolution'){const c=card(d.source);out=evolutionBases(s,p,c).map(base=>option('revealEvolve',`${card(base).name}の上に公開した${c.name}を重ねる`,{uid:d.uid,baseUid:base.uid,cardId:c.id}));if(c.neoEvolution)out.unshift(option('revealEvolve',`公開した${c.name}を進化させず出す`,{uid:d.uid,cardId:c.id}));}
   if(d.type==='judgeCost')out=playFaces(card(d.source)).map((c,face)=>option('judgeCost',`${c.name}のコスト${c.cost}を参照`,{face,cost:c.cost,cardId:d.source}));
+  if(d.type==='judgeMana878')out=[
+   option('judgeMana878',card(d.cardId).name+'をかわりにマナに置く',{toMana:true,cardId:d.cardId}),
+   option('judgeMana878','山札の一番下に置く',{toMana:false})
+  ];
   if(d.type==='judgeContinue')out=[option('judgeAgain',`もう一度ガチンコ・ジャッジ（現在${s.judge.wins}勝）`),option('stopJudge',`${s.judge.wins}勝で中止し、ブレイクへ進む`)];
   if(d.type==='judgeBreak')out=opp.shields.map((x,i)=>{const ex=!!exLifeShieldInfo(s,1-p,x.uid)?.active;return option('judgeBreak',`効果でシールド${i+1}${ex?'（EXライフ）':''}を1つブレイク（残り${s.judge.remaining}回）`,{shield:x.uid,exLifeHit:ex});});
   if(d.type==='shieldGuard'){
@@ -1972,6 +1997,7 @@ function stepCore(s,action){
  if(a.kind==='skipTrigger'){s.decision=null;s.triggers.undeclared.shift();log(s,p,'skip','S・トリガーを使わない');}
  if(a.kind==='breakShields'){s.decision=null;breakShields(s,d.defender,a.shields);}
  if(a.kind==='judgeCost'){s.judge.costs[p]=a.cost;s.decision=null;advanceJudgeCosts(s);}
+ if(a.kind==='judgeMana878'){(s.judge.mana878??=[])[p]=a.toMana;s.decision=null;advanceJudgeCosts(s);}
  if(a.kind==='judgeAgain'){s.decision=null;judgeRound(s);}
  if(a.kind==='stopJudge')beginJudgeBreaks(s);
  if(a.kind==='judgeBreak'){s.decision=null;s.judge.remaining--;breakShields(s,1-p,[a.shield]);}
@@ -2018,7 +2044,7 @@ function stepCore(s,action){
  manaDeparted(s,manaBefore);let manaPrevious=manaSnapshot(s);extra.six.fifteen.graveDeparted(s,graveBefore);let gravePrevious=s.players.map(p=>p.grave.map(x=>x.uid));for(let n=0;n<1000;n++){manaDeparted(s,manaPrevious);manaPrevious=manaSnapshot(s);extra.six.fifteen.graveDeparted(s,gravePrevious);gravePrevious=s.players.map(p=>p.grave.map(x=>x.uid));
   for(const p of[s.active,1-s.active])checkSidewaysHand(s,p);
   if(advanceLoss(s)){if(s.decision||s.winner!==null)break;continue;}
-  refreshDynamicTypes(s);if(extra.lionelState(s)){if(s.decision)break;continue;}advanceLeaving(s);if(extra.lionelState(s)){if(s.decision)break;continue;}if(!s.leaving&&!s.decision)for(const p of[s.active,1-s.active]){deckCheck(s,p);if(s.winner!==null||s.lossEvent)break;}if(s.winner!==null)break;if(s.lossEvent)continue;resumeInterrupt(s);advanceDeclarations(s);advanceBattle(s);extra.finishSwap(s);if(!s.attackDeclarations&&!s.leaving)advanceEffects(s);if(!s.leaving)advanceTriggers(s);advanceJudgeBreaks(s);
+  refreshDynamicTypes(s);if(extra.lionelState(s)){if(s.decision)break;continue;}advanceLeaving(s);if(extra.lionelState(s)){if(s.decision)break;continue;}if(!s.leaving&&!s.decision)for(const p of[s.active,1-s.active]){deckCheck(s,p);if(s.winner!==null||s.lossEvent)break;}if(s.winner!==null)break;if(s.lossEvent)continue;if(!s.decision&&s.judge?.stage==='destinations878')advanceJudgeCosts(s);resumeInterrupt(s);advanceDeclarations(s);advanceBattle(s);extra.finishSwap(s);if(!s.attackDeclarations&&!s.leaving)advanceEffects(s);if(!s.leaving)advanceTriggers(s);advanceJudgeBreaks(s);
   // Native effects and extended tasks can each move mana before power is checked.
   manaDeparted(s,manaPrevious);manaPrevious=manaSnapshot(s);
   powerCleanup(s);if(!s.pendingEffects?.length&&!s.triggers)extra.beforeNonActive(s);extra.advance(s);
@@ -3485,6 +3511,7 @@ export function rankHeuristicActions(s){
   if(a.kind==='noBlock')return 0;
   if(a.kind==='breakShields')return 1+(a.exLifeHits||0)*2;
   if(a.kind==='judgeCost')return a.cost;
+  if(a.kind==='judgeMana878')return a.toMana?(me.deckCount>1?15:-10):0;
   if(a.kind==='judgeAgain')return v.decision.wins<them.shields?10:-1;
   if(a.kind==='stopJudge')return 0;
   if(a.kind==='judgeBreak')return a.exLifeHit?5:1;

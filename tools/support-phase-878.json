@@ -1,0 +1,232 @@
+{
+  "phase": 878,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6499,
+  "description": "ガチンコ・ジャッジの移動置換、召喚したゴーストと同コストの蘇生、山札の公開と呪文の任意詠唱に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf",
+    "https://dm.takaratomy.co.jp/archive/capture/volweeklydash08/",
+    "https://dm.takaratomy.co.jp/rule/qa/48940/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36603/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36833/",
+    "https://dm.takaratomy.co.jp/rule/qa/43078/",
+    "https://dm.takaratomy.co.jp/archive/dmex02/"
+  ],
+  "cards": [
+    {
+      "id": "dmr05-037",
+      "name": "大盛の超人",
+      "faces": [
+        {
+          "name": "大盛の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ガチンコ・ジャッジで見せたカードを自分の山札の一番下に置くかわりに、マナゾーンに置いてもよい。\n自分のターンの終わりに、自然のカードを１枚、自分のマナゾーンから手札に戻してもよい。",
+          "race": "ジャイアント/エイリアン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-037",
+      "spec": {
+        "g878JudgeMana": true,
+        "g174End": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "color": "自然"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "89f8993ec34c6bdb3599b339fffb0ca5faa8d76038a67e234471c8ce9dc57ae5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-026",
+      "name": "拷問の影カワハギ・ジャケット",
+      "faces": [
+        {
+          "name": "拷問の影カワハギ・ジャケット",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーまたは他のゴーストを召喚してバトルゾーンに出した時、それとコストが同じゴーストを１体、自分の墓地からバトルゾーンに出してもよい。",
+          "race": "ゴースト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-026",
+      "spec": {
+        "g878GhostRecovery": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "14d5d14aaa735e9c84d41bbfe63c6e2066b8c64bf8cc6d7fd7763e3e6b036ae1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr09-018",
+      "name": "アクア・スペルブルー",
+      "faces": [
+        {
+          "name": "アクア・スペルブルー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーをバトルゾーンに出した時、自分の山札をシャッフルし、その後、上から１枚目をすべてのプレイヤーに見せる。そのカードが呪文であれば、コストを支払わずに唱えてもよい。呪文でなければ、自分の手札に加える。",
+          "race": "リキッド・ピープル/ハンター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-018",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Shuffle405"
+          },
+          {
+            "op": "LookSpell841",
+            "g878SpellBlue": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "86af506a2a1699198bf2cb0a561693580a28b65d638ea3ca637683d88f7ff772",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmr05-026M",
+      "canonicalId": "dmr05-026",
+      "name": "拷問の影カワハギ・ジャケット",
+      "faces": [
+        {
+          "name": "拷問の影カワハギ・ジャケット",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーまたは他のゴーストを召喚してバトルゾーンに出した時、それとコストが同じゴーストを１体、自分の墓地からバトルゾーンに出してもよい。",
+          "race": "ゴースト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-026M",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-026M.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "4a8708a91629524f16f6e2549d1fc7b4d49f852aeffb75f0797ae48b3eb09a6b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx16-032",
+      "canonicalId": "dmr09-018",
+      "name": "アクア・スペルブルー",
+      "faces": [
+        {
+          "name": "アクア・スペルブルー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーをバトルゾーンに出した時、自分の山札をシャッフルし、その後、上から１枚目をすべてのプレイヤーに見せる。そのカードが呪文であれば、コストを支払わずに唱えてもよい。呪文でなければ、自分の手札に加える。",
+          "race": "リキッド・ピープル/ハンター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-032",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx16-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "d3d2adb0efe8690084afc138f926d76b524af36d0540200c49e9979850465d84",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex02-073",
+      "canonicalId": "dmr09-018",
+      "name": "アクア・スペルブルー",
+      "faces": [
+        {
+          "name": "アクア・スペルブルー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分の山札をシャッフルし、その後、上から１枚目を表向きにする。そのカードが呪文なら、コストを支払わずに唱えてもよい。呪文でなければ、自分の手札に加える。",
+          "race": "リキッド・ピープル/ハンター",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-073",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex02-073.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "fd92c21eda8a7208b0e1403048aa617b837d5d47b99aa54b6a5fef88d8d5e32b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr05-037": 4,
+      "dmr05-026": 4,
+      "dmr09-018": 4,
+      "dmr05-026M": 4,
+      "dmx16-032": 4,
+      "dmex02-073": 4
+    }
+  }
+}

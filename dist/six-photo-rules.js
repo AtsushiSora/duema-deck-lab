@@ -1349,12 +1349,16 @@ export function createSixPhotoRules(api){
   else release(s,t.p,t.target);
   break;
  }
+ case'g34_GhostRecovery878':
  case'g34_DeathRecovery831':{
   const ref=t.g831Subject;
   const subject=own.battle.find(x=>x.uid===ref.uid&&(x.incarnation||0)===ref.incarnation&&!x.sealed);
   const value=subject?cost(effective(subject,s)):t.g831LastCost??ref.cost;
-  start(s,t,[{op:'Select',origin:'grave',n:1,to:'hand',optional:true,
-   filter:{creature:true,g819CreatureNameIncludes:'死神',belowCost:value===Infinity?'∞':value}}]);
+  const limit=value===Infinity?'∞':value;
+  if(t.op==='g34_GhostRecovery878')
+   start(s,t,[{op:'Select',origin:'grave',n:1,deploy:true,optional:true,filter:{creature:true,race:'ゴースト',exactCost:limit}}]);
+  else start(s,t,[{op:'Select',origin:'grave',n:1,to:'hand',optional:true,
+   filter:{creature:true,g819CreatureNameIncludes:'死神',belowCost:limit}}]);
   break;
  }
  case'g34_CopyPower765':{
@@ -2199,14 +2203,20 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_LookSpell841':{
-  const [uid]=look(s,{...t,n:1}),y=own.deck.find(x=>x.uid===uid);
+  const [uid]=look(s,{...t,n:1,public:t.g878SpellBlue||t.public}),y=own.deck.find(x=>x.uid===uid);
   if(!y)break;
   release(s,t.p,y.uid);
-  const options=faces(api.zoneCard(s,t.p,y,'deck')).flatMap((c,face)=>c.type==='spell'&&api.canCast(s,t.p,c,'deck')
+  const revealedFaces=faces(api.zoneCard(s,t.p,y,'deck'));
+  if(t.g878SpellBlue&&!revealedFaces.some(c=>c.type==='spell')){
+   zoneMove(s,t.p,'deck',y.uid,'hand');
+   api.deckCheck(s,t.p);
+   break;
+  }
+  const options=revealedFaces.flatMap((c,face)=>c.type==='spell'&&api.canCast(s,t.p,c,'deck')
    ?[opt(c.name+'を唱える',{uid,face,serial:y.zoneSerial||0},own.deck.length===1?-1000:spellScore555(s,t,c),y.cardId)]:[]);
   const peek={...t,g585Peek:[{id:y.cardId,label:'自分の山札の上'}]};
   if(options.length)choice(s,peek,'確認したカードの呪文を唱える？',[...options,skip()]);
-  else choice(s,peek,'確認したカード',[opt('確認を終える',null,0)]);
+  else if(!t.g878SpellBlue)choice(s,peek,'確認したカード',[opt('確認を終える',null,0)]);
   break;
  }
  case'g34_MillHatch841':{
@@ -2614,7 +2624,7 @@ export function createSixPhotoRules(api){
  case'g34_LookSpell841':{
   const y=v&&own.deck.find(x=>x.uid===v.uid&&(x.zoneSerial||0)===v.serial);
   const c=y&&faces(api.zoneCard(s,t.p,y,'deck'))[v.face];
-  if(c?.type==='spell'&&api.canCast(s,t.p,c,'deck'))cast(s,t.p,y.uid,true,null,v.face,null,'deck','スーパー・スペル・グレートブルー');
+  if(c?.type==='spell'&&api.canCast(s,t.p,c,'deck'))cast(s,t.p,y.uid,true,null,v.face,null,'deck',t.g878SpellBlue?card(t.source).name:'スーパー・スペル・グレートブルー');
   break;
  }
  case'g34_SelfGraveBottom839':
@@ -3580,6 +3590,12 @@ export function createSixPhotoRules(api){
    queue(s,p,y,c.g773RevEntry);
   if(creature&&!y.sealed&&options.execution===true){
    const enteredCost=cost(effective(y,s));
+   if(race(effective(y,s),'ゴースト'))for(const watcher of creatures(s,p)){
+    if(watcher.sealed||!card(watcher).g878GhostRecovery||!effective(watcher,s).g878GhostRecovery||
+       watcher.uid===y.uid&&(options.selfMuted||api.selfStopped(s,p)))continue;
+    send(s,p,watcher,'GhostRecovery878',{g831Subject:{uid:y.uid,incarnation:y.incarnation||0,
+     cost:enteredCost===Infinity?'∞':enteredCost}});
+   }
    for(const x of s.players[p].grave){
     const min=card(x).g766GraveSummonMin;
     if(min!==undefined&&!x.faceDown&&enteredCost>=min)
