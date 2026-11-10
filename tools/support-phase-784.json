@@ -1,0 +1,436 @@
+{
+  "phase": 784,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6205,
+  "description": "ハイパーモード3種類に対応し、最初の攻撃へのタップ誘発、パワー合計による同時破壊、2種類のブレイカー選択を再現する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/49402/",
+    "https://dm.takaratomy.co.jp/rule/qa/44383/",
+    "https://dm.takaratomy.co.jp/rule/qa/43056/",
+    "https://dm.takaratomy.co.jp/rule/qa/43486/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp2-011",
+      "name": "ハイパー・トリセラティ",
+      "faces": [
+        {
+          "name": "ハイパー・トリセラティ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、シールド化する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "メカ・エンジェル・コマンド/超化獣",
+          "powerText": "4500",
+          "missingFields": []
+        },
+        {
+          "name": "ハイパー・トリセラティ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、シールド化する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー\n各ターン、はじめて自分のクリーチャーが攻撃する時、相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。",
+          "race": "メカ・エンジェル・コマンド/超化獣",
+          "powerText": "8500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-011",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "shields"
+          }
+        ],
+        "hyperTap": true,
+        "hyper": {
+          "power": 8500,
+          "breaker": 2,
+          "g252AttackWatch": {
+            "who": "self",
+            "first": true,
+            "filter": {
+              "creature": true
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "tap": true,
+                "lock": true,
+                "g210TapLock": true
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-011a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "4c01851e9edcbc05e1bb812c8848f015c047eace9880a08939c5f66ab4194afb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-021",
+      "name": "ボルシャック・ハイパー・アークゼオス",
+      "faces": [
+        {
+          "name": "ボルシャック・ハイパー・アークゼオス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、パワーの合計が7000以下になるように相手のクリーチャーを２体まで選び、破壊する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "アーマード・ドラゴン/超化獣",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "ボルシャック・ハイパー・アークゼオス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、パワーの合計が7000以下になるように相手のクリーチャーを２体まで選び、破壊する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー\nこのクリーチャーが攻撃する時、相手の「ブロッカー」を持つクリーチャーを１体選び、破壊する。",
+          "race": "アーマード・ドラゴン/超化獣",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-021",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "n": 2,
+            "optional": true,
+            "to": "grave",
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g506PowerBudget": 7000,
+            "title": "合計パワー7000以下になるよう2体まで選ぶ"
+          }
+        ],
+        "hyperTap": true,
+        "hyper": {
+          "power": 7000,
+          "breaker": 2,
+          "g34Attack": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "blocker": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-021a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "29d6dc7e843e142e8af9e2696c565862f1313a52e4a75b636b0e80d81746fad4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-007",
+      "name": "超哀樹 シンベロム",
+      "faces": [
+        {
+          "name": "超哀樹 シンベロム",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚を見る。そのうちの１枚をシールド化し、もう１枚をマナゾーンに置く。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "デーモン・コマンド/超化獣",
+          "powerText": "7000",
+          "missingFields": []
+        },
+        {
+          "name": "超哀樹 シンベロム",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚を見る。そのうちの１枚をシールド化し、もう１枚をマナゾーンに置く。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置く。その後、「S・トリガー」を持つクリーチャーを１体、自分のマナゾーンから出してもよい。",
+          "race": "デーモン・コマンド/超化獣",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-007",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 2,
+            "stages": [
+              {
+                "n": 1,
+                "to": "shields"
+              }
+            ],
+            "rest": "mana"
+          }
+        ],
+        "hyperTap": true,
+        "hyper": {
+          "power": 12000,
+          "breaker": 3,
+          "g633DoubleBreaker": true,
+          "g34Attack": [
+            {
+              "op": "Ramp",
+              "n": 1
+            },
+            {
+              "op": "Select",
+              "origin": "mana",
+              "deploy": true,
+              "n": 1,
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "faceUp": true,
+                "g784ShieldTrigger": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-007a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "734d7d4c558a2ba214760fcf17f8c38b30967bcda966996e72f47bc169a7c936",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24rp2-Sec12",
+      "canonicalId": "dm24rp2-011",
+      "name": "ハイパー・トリセラティ",
+      "faces": [
+        {
+          "name": "ハイパー・トリセラティ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、シールド化する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "メカ・エンジェル・コマンド/超化獣",
+          "powerText": "4500",
+          "missingFields": []
+        },
+        {
+          "name": "ハイパー・トリセラティ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、シールド化する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー\n各ターン、はじめて自分のクリーチャーが攻撃する時、相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。",
+          "race": "メカ・エンジェル・コマンド/超化獣",
+          "powerText": "8500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-Sec12",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-Sec12a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "d5304160cd99ba98386f8ddb6b80b9aa993c5c0ecfd80e87d72f3e00c7a0f03b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp2-Sec15",
+      "canonicalId": "dm24rp2-021",
+      "name": "ボルシャック・ハイパー・アークゼオス",
+      "faces": [
+        {
+          "name": "ボルシャック・ハイパー・アークゼオス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、パワーの合計が7000以下になるように相手のクリーチャーを２体まで選び、破壊する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "アーマード・ドラゴン/超化獣",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "ボルシャック・ハイパー・アークゼオス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、パワーの合計が7000以下になるように相手のクリーチャーを２体まで選び、破壊する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー\nこのクリーチャーが攻撃する時、相手の「ブロッカー」を持つクリーチャーを１体選び、破壊する。",
+          "race": "アーマード・ドラゴン/超化獣",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-Sec15",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-Sec15a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "798e25f47c56a389c1b9e1f657d82bb8e150ff134224070fe55332025f7abd93",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy23-033",
+      "canonicalId": "dm24rp2-021",
+      "name": "ボルシャック・ハイパー・アークゼオス",
+      "faces": [
+        {
+          "name": "ボルシャック・ハイパー・アークゼオス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、パワーの合計が7000以下になるように相手のクリーチャーを２体まで選び、破壊する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "アーマード・ドラゴン/超化獣",
+          "powerText": "3000",
+          "missingFields": []
+        },
+        {
+          "name": "ボルシャック・ハイパー・アークゼオス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\nこのクリーチャーが出た時、パワーの合計が7000以下になるように相手のクリーチャーを２体まで選び、破壊する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー\nこのクリーチャーが攻撃する時、相手の「ブロッカー」を持つクリーチャーを１体選び、破壊する。",
+          "race": "アーマード・ドラゴン/超化獣",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy23-033",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy23-033a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "2fcc734ad7a439440e9020166ad7674f9e5e90725ee1797672c1c1fd4f6c17a4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-rp2007",
+      "canonicalId": "dm24rp2-007",
+      "name": "超哀樹 シンベロム",
+      "faces": [
+        {
+          "name": "超哀樹 シンベロム",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚を見る。そのうちの１枚をシールド化し、もう１枚をマナゾーンに置く。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）",
+          "race": "デーモン・コマンド/超化獣",
+          "powerText": "7000",
+          "missingFields": []
+        },
+        {
+          "name": "超哀樹 シンベロム",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚を見る。そのうちの１枚をシールド化し、もう１枚をマナゾーンに置く。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置く。その後、「S・トリガー」を持つクリーチャーを１体、自分のマナゾーンから出してもよい。",
+          "race": "デーモン・コマンド/超化獣",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp2007",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp2007a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "3487973b68b9fea86b5b400adc85c00c9bd8c3a41f1a58c055f01e5745555ae6",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp2-011": 4,
+      "dm24rp2-021": 4,
+      "dm24rp2-007": 4,
+      "dm24rp2-Sec12": 4,
+      "dm24rp2-Sec15": 4,
+      "promoy23-033": 4,
+      "dm24ex3-rp2007": 4
+    }
+  }
+}

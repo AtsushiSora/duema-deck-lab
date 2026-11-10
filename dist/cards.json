@@ -180032,21 +180032,178 @@
       },
       "supportBatch": "phase-783",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-011",
+      "name": "ハイパー・トリセラティ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4500,
+      "race": "メカ・エンジェル・コマンド/超化獣",
+      "text": "S・トリガー S・トリガー\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、シールド化する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\n【ハイパーモード】\nS・トリガー S・トリガー\nこのクリーチャーが出た時、相手のクリーチャーを１体選び、シールド化する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー\n各ターン、はじめて自分のクリーチャーが攻撃する時、相手のクリーチャーを１体選び、タップする。次の相手のターンのはじめに、そのクリーチャーはアンタップしない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-011",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "shields"
+        }
+      ],
+      "hyperTap": true,
+      "hyper": {
+        "power": 8500,
+        "breaker": 2,
+        "g252AttackWatch": {
+          "who": "self",
+          "first": true,
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "tap": true,
+              "lock": true,
+              "g210TapLock": true
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-784",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-021",
+      "name": "ボルシャック・ハイパー・アークゼオス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "アーマード・ドラゴン/超化獣",
+      "text": "S・トリガー S・トリガー\nこのクリーチャーが出た時、パワーの合計が7000以下になるように相手のクリーチャーを２体まで選び、破壊する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\n【ハイパーモード】\nS・トリガー S・トリガー\nこのクリーチャーが出た時、パワーの合計が7000以下になるように相手のクリーチャーを２体まで選び、破壊する。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nW・ブレイカー\nこのクリーチャーが攻撃する時、相手の「ブロッカー」を持つクリーチャーを１体選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-021",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": 2,
+          "optional": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g506PowerBudget": 7000,
+          "title": "合計パワー7000以下になるよう2体まで選ぶ"
+        }
+      ],
+      "hyperTap": true,
+      "hyper": {
+        "power": 7000,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "filter": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-784",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-007",
+      "name": "超哀樹 シンベロム",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "デーモン・コマンド/超化獣",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚を見る。そのうちの１枚をシールド化し、もう１枚をマナゾーンに置く。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\n【ハイパーモード】\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーが出た時、自分の山札の上から２枚を見る。そのうちの１枚をシールド化し、もう１枚をマナゾーンに置く。\nハイパー化：自分の他のクリーチャーを１体タップする。（自分のメインステップ中に、ハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く）\nT・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置く。その後、「S・トリガー」を持つクリーチャーを１体、自分のマナゾーンから出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-007",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 2,
+          "stages": [
+            {
+              "n": 1,
+              "to": "shields"
+            }
+          ],
+          "rest": "mana"
+        }
+      ],
+      "hyperTap": true,
+      "hyper": {
+        "power": 12000,
+        "breaker": 3,
+        "g633DoubleBreaker": true,
+        "g34Attack": [
+          {
+            "op": "Ramp",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "faceUp": true,
+              "g784ShieldTrigger": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-784",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 783,
+    "phase": 784,
     "checkedAt": "2026-11-10",
-    "baseCount": 6202,
+    "baseCount": 6205,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6205,
+    "totalCount": 6208,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/45120/",
-      "https://dm.takaratomy.co.jp/rule/qa/46866/",
-      "https://dm.takaratomy.co.jp/rule/qa/44836/"
+      "https://dm.takaratomy.co.jp/rule/qa/49402/",
+      "https://dm.takaratomy.co.jp/rule/qa/44383/",
+      "https://dm.takaratomy.co.jp/rule/qa/43056/",
+      "https://dm.takaratomy.co.jp/rule/qa/43486/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -193707,6 +193864,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/46571/",
           "https://dm.takaratomy.co.jp/rule/qa/45579/",
           "https://dm.takaratomy.co.jp/rule/qa/40102/",
+          "https://dm.takaratomy.co.jp/rule/qa/44836/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 783,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6202,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6205,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/45120/",
+          "https://dm.takaratomy.co.jp/rule/qa/46866/",
           "https://dm.takaratomy.co.jp/rule/qa/44836/"
         ],
         "next": [

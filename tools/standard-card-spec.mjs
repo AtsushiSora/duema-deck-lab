@@ -2461,6 +2461,22 @@ export function standardCardSpec(d,{phase=165}={}){
   const hyper='ハイパー化:自分の他のクリーチャーを1体タップする。(自分のメインステップ中にハイパーモードを解放できる。ハイパーモードは次の自分のターンのはじめまで続く)';
   const guard='ガードマン(このクリーチャーをタップして相手クリーチャーの攻撃先を自分の他のクリーチャーからこのクリーチャーに変更してもよい)';
   const blocker='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)';
+  if(phase>=784){
+   const tri='S・トリガーS・トリガーこのクリーチャーが出た時相手のクリーチャーを1体選びシールド化する。'+hyper;
+   if(front===tri&&back===front+'W・ブレイカー各ターンはじめて自分のクリーチャーが攻撃する時相手のクリーチャーを1体選びタップする。次の相手のターンのはじめにそのクリーチャーはアンタップしない。'&&f.powerText==='4500'&&active.powerText==='8500')
+    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'shields'}],hyperTap:true,
+     hyper:{power:8500,breaker:2,g252AttackWatch:{who:'self',first:true,filter:{creature:true},defs:[{op:'Target',tap:true,lock:true,g210TapLock:true}]}}};
+   const budget='パワーの合計が7000以下になるように相手のクリーチャーを2体まで選び破壊する。';
+   const arx='S・トリガーS・トリガーこのクリーチャーが出た時'+budget+hyper;
+   if(front===arx&&back===front+'W・ブレイカーこのクリーチャーが攻撃する時相手の「ブロッカー」を持つクリーチャーを1体選び破壊する。'&&f.powerText==='3000'&&active.powerText==='7000')
+    return {trigger:true,effect:'sixPhoto',g34Tasks:[powerBudget506(budget)],hyperTap:true,
+     hyper:{power:7000,breaker:2,g34Attack:[{op:'Target',to:'grave',filter:{blocker:true}}]}};
+   const shin='ブロッカーブロッカーW・ブレイカーこのクリーチャーが出た時自分の山札の上から2枚を見る。そのうちの1枚をシールド化しもう1枚をマナゾーンに置く。'+hyper;
+   if(front===shin&&back===front+'T・ブレイカーこのクリーチャーが攻撃する時自分の山札の上から1枚目をマナゾーンに置く。その後「S・トリガー」を持つクリーチャーを1体自分のマナゾーンから出してもよい。'&&f.powerText==='7000'&&active.powerText==='12000')
+    return {blocker:true,breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Look',n:2,stages:[{n:1,to:'shields'}],rest:'mana'}],hyperTap:true,
+     hyper:{power:12000,breaker:3,g633DoubleBreaker:true,g34Attack:[{op:'Ramp',n:1},
+      {op:'Select',origin:'mana',deploy:true,n:1,optional:true,filter:{creature:true,faceUp:true,g784ShieldTrigger:true}}]}};
+  }
   if(phase>=783){
    const doubleBreaker='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';
    const eine='S・トリガーS・トリガーブロッカーブロッカーこのクリーチャーが出た時次の自分のターンのはじめまでこのクリーチャーのハイパーモードを解放する。'+hyper;
