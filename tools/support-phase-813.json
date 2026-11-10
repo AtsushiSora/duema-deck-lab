@@ -1,0 +1,138 @@
+{
+  "phase": 813,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6292,
+  "description": "詠唱誘発のカード回収、スピードアタッカーの強化、任意の呪文軽減と非公開の手札破棄に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35650/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34950/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31409/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm28-019",
+      "name": "氷牙アクア・マルガレーテ卿",
+      "faces": [
+        {
+          "name": "氷牙アクア・マルガレーテ卿",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分が呪文を唱えた時、バトルゾーンにある進化以外のカードを１枚、持ち主の手札に戻してもよい。",
+          "race": "リキッド・ピープル/ナイト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-019",
+      "spec": {
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "BattleCardMove579",
+              "anyOwner": true,
+              "g813NonEvolution": true,
+              "to": "hand",
+              "optional": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "3b39898d8285f66e39460f4e620217a3cd2242aa426b2bb513c85b892825d39f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-030",
+      "name": "直神兵ワッショイエクスプレス",
+      "faces": [
+        {
+          "name": "直神兵ワッショイエクスプレス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "「スピードアタッカー」を持つ自分のクリーチャーすべてのパワーは+2000され、シールドをさらに１枚ブレイクする。",
+          "race": "アーマロイド",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-030",
+      "spec": {
+        "g813SpeedAura": {
+          "power": 2000,
+          "extraBreak": 1
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "7f18e537823aee15fabbe5970f6402cff2736f074ae3e2595e555534cb4887df",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm27-034",
+      "name": "妖魔賢樹フライ・ラブ",
+      "faces": [
+        {
+          "name": "妖魔賢樹フライ・ラブ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分の呪文を唱える時、支払うコストを１少なくしてもよい。ただし、コストは１より少なくならない。\nこのクリーチャーが破壊された時、相手の手札を１枚見ないで選び、捨てさせる。",
+          "race": "ツリーフォーク/ヘドリアン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-034",
+      "spec": {
+        "g485SpellReduction": 1,
+        "g172Death": [
+          {
+            "op": "BlindDiscard773"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm27-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "1cd859fb50f6ae70cc2d0f97e9c7029c2f89abd9b7073ddc86a086f7045f947d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm28-019": 4,
+      "dm28-030": 4,
+      "dm27-034": 4
+    }
+  }
+}

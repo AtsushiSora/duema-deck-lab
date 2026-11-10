@@ -2507,6 +2507,15 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=813&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(text==='自分が呪文を唱えた時バトルゾーンにある進化以外のカードを1枚持ち主の手札に戻してもよい。')
+   return {g204SpellWatch:{who:'self',defs:[{op:'BattleCardMove579',anyOwner:true,g813NonEvolution:true,to:'hand',optional:true}]}};
+  if(text==='「スピードアタッカー」を持つ自分のクリーチャーすべてのパワーは+2000されシールドをさらに1枚ブレイクする。')
+   return {g813SpeedAura:{power:2000,extraBreak:1}};
+  if(text==='マナゾーンに置く時このカードはタップして置く。自分の呪文を唱える時支払うコストを1少なくしてもよい。ただしコストは1より少なくならない。このクリーチャーが破壊された時相手の手札を1枚見ないで選び捨てさせる。')
+   return {g485SpellReduction:1,g172Death:[{op:'BlindDiscard773'}]};
+ }
  if(phase>=812&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText),keyword='シールド・プラス-';
   const plus='自分の山札の上から1枚目を裏向きのまま自分のシールドいずれかの下に置いてもよい。(こうして重ねたカードの束を1枚のシールドとみなす)';

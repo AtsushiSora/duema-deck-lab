@@ -194,6 +194,7 @@ export function createSixPhotoRules(api){
     const definition=t.min!==undefined||t.max!==undefined?effective(top,s):null;
     for(const [index,x] of api.layers(top).entries()){
      if((t.other&&x.uid===t.uid)||x.uid===t.excludeUid)continue;
+     if(t.g813NonEvolution&&!x.faceDown&&api.isEvolution(x))continue;
      const sealIndex=own.seals?.indexOf(x)??-1;
      const below=index>0&&!top.godLinks?.includes(x);
      if(linked&&!below&&!api.targetable(s,t.p,p,top))continue;
