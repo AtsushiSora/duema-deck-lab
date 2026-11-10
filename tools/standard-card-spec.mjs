@@ -3433,6 +3433,19 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=865){
+  if(d.id==='dm39-041'&&f.typeText==='クリーチャー'&&compact363===
+   'シンパシー:(M・ソウル)クリーチャー(このクリーチャーを召喚する時支払うコストはバトルゾーンにある自分の(M・ソウル)クリーチャー1体につき1少なくなる。ただしコストは1より少なくならない)連鎖(このクリーチャーをバトルゾーンに出した時自分の山札の上から1枚目をすべてのプレイヤーに見せる。そのカードがこのクリーチャーよりコストが小さいクリーチャーであればバトルゾーンに出してもよい)')
+   return {g558Souls:['M'],g211Sympathy:{amount:1,minimum:1,filter:{creature:true,g853Soul:'M'}},
+    effect:'champion',g84Effect:'Chain',g865PublicChain:true};
+  if(d.id==='dm38-005'&&f.typeText==='進化クリーチャー'&&compact363===
+   'マナゾーンに置く時このカードはタップして置く。進化-自分の(M・ソウル)または(K・ソウル)クリーチャー1体の上に置く。このクリーチャーをバトルゾーンに出した時相手のパワー3000以下のクリーチャーをすべて破壊する。その後こうして破壊したクリーチャー1体につき1枚カードを引く。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {g558Souls:['M','K'],evolution:{any:[{g853Soul:'M'},{g853Soul:'K'}]},breaker:2,effect:'sixPhoto',
+    g34Tasks:[{op:'Sweep',filter:{creature:true,maxPower:3000,g199Power:true},g865DrawDestroyed:true}]};
+  if(d.id==='dm36-009'&&f.typeText==='クリーチャー'&&compact363===
+   '自分の他の(W・ソウル)クリーチャーをバトルゾーンに出した時自分のマナゾーンにある(W・ソウル)クリーチャーをすべてアンタップする。T・ブレイカー(このクリーチャーはシールドを3枚ブレイクする)')
+   return {g558Souls:['W'],breaker:3,g865WSoulEntry:[{op:'UntapMana',filter:{faceUp:true,creature:true,g853Soul:'W'}}]};
+ }
  if(phase>=864){
   if(d.id==='dm37-008'&&f.typeText==='進化クリーチャー'&&compact363===
    '進化-自分の(H・ソウル)または(M・ソウル)クリーチャー1体の上に置く。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)相手がクリーチャーをバトルゾーンに出した時カードを2枚まで引いてもよい。')

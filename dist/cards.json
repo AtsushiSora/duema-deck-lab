@@ -188480,24 +188480,133 @@
       },
       "supportBatch": "phase-864",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm39-041",
+      "name": "アクア・ジャック",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 1000,
+      "race": "リキッド・ピープル",
+      "text": "シンパシー:(M・ソウル)クリーチャー(このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分の(M・ソウル)クリーチャー１体につき１少なくなる。ただしコストは１より少なくならない)\n連鎖(このクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目をすべてのプレイヤーに見せる。そのカードが、このクリーチャーよりコストが小さいクリーチャーであれば、バトルゾーンに出してもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm39-041",
+      "limit": 4,
+      "g558Souls": [
+        "M"
+      ],
+      "g211Sympathy": {
+        "amount": 1,
+        "minimum": 1,
+        "filter": {
+          "creature": true,
+          "g853Soul": "M"
+        }
+      },
+      "effect": "champion",
+      "g84Effect": "Chain",
+      "g865PublicChain": true,
+      "supportBatch": "phase-865",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm38-005",
+      "name": "爆裂大河シルヴェスタ・V・ソード",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "サイバー・コマンド/フレイム・コマンド",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n進化-自分の(M・ソウル)または(K・ソウル)クリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、相手のパワー3000以下のクリーチャーをすべて破壊する。その後、こうして破壊したクリーチャー１体につき１枚、カードを引く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-005",
+      "limit": 4,
+      "g558Souls": [
+        "M",
+        "K"
+      ],
+      "evolution": {
+        "any": [
+          {
+            "g853Soul": "M"
+          },
+          {
+            "g853Soul": "K"
+          }
+        ]
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "filter": {
+            "creature": true,
+            "maxPower": 3000,
+            "g199Power": true
+          },
+          "g865DrawDestroyed": true
+        }
+      ],
+      "supportBatch": "phase-865",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm36-009",
+      "name": "無双大地ナズナグマ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 12000,
+      "race": "ガイア・コマンド/アース・ドラゴン",
+      "text": "自分の他の(W・ソウル)クリーチャーをバトルゾーンに出した時、自分のマナゾーンにある(W・ソウル)クリーチャーをすべてアンタップする。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-009",
+      "limit": 4,
+      "g558Souls": [
+        "W"
+      ],
+      "breaker": 3,
+      "g865WSoulEntry": [
+        {
+          "op": "UntapMana",
+          "filter": {
+            "faceUp": true,
+            "creature": true,
+            "g853Soul": "W"
+          }
+        }
+      ],
+      "supportBatch": "phase-865",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 864,
+    "phase": 865,
     "checkedAt": "2026-11-11",
-    "baseCount": 6456,
+    "baseCount": 6459,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6459,
+    "totalCount": 6462,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36100/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36225/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36226/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37634/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37636/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36244/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/34916/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/34924/",
+      "https://dm.takaratomy.co.jp/rule/qa/40197/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36224/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37634/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -203831,6 +203940,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/40397/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37636/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37637/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36244/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 864,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6456,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6459,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36100/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36225/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36226/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37634/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37636/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36244/"
         ],
         "next": [

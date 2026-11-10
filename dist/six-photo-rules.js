@@ -2313,7 +2313,7 @@ export function createSixPhotoRules(api){
   if(rows.length){
    // The direct destruction attempts count even when replaced (QA34333/34334).
    if(t.g733DrawPerAttempt)start(s,t,[{op:'DrawUpTo',n:rows.length,g203Draw:true}]);
-   move(s,rows);
+   move(s,rows,t.g865DrawDestroyed?{kind:'g865DrawDestroyed',player:t.p,source:t.source}:null);
   }
   break;
  }
@@ -3451,6 +3451,12 @@ export function createSixPhotoRules(api){
   }
  },
  observedEntry(s,p,y,options){
+  if(!y.sealed&&!y.faceDown&&hasSoul(card(y),'W')&&api.isCreature(s,y)){
+   for(const watcher of s.players[p].battle){
+    const defs=card(watcher).g865WSoulEntry;
+    if(defs&&watcher.uid!==y.uid&&!watcher.sealed&&!watcher.faceDown&&!api.ignored(s,watcher)&&api.isCreature(s,watcher))queue(s,p,watcher,defs);
+   }
+  }
   if(!y.sealed&&hasSoul(card(y),'H')&&api.isCreature(s,y))
    (s.g857LightSoulEnteredTurn??=[null,null])[p]=s.turn;
   if(!y.sealed)for(const watcher of creatures(s,1-p)){

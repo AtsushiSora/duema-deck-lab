@@ -9,7 +9,7 @@ export function createUtilityWaterChain(api){
  function deploy(s,t){put(s,...t.selected.map(uid=>task('g34_Put',t.p,t.source,{origin:'deck',target:uid})),follow(t,'Order',{ordered:[]}));}
  function run(s,t){if(!t.op.startsWith('g84_'))return false;const own=s.players[t.p];switch(t.op){
  case'g84_Hogan':case'g84_Chain':{
-  if(api.deckLocked(s,t.p))break;const skip=held(own),xs=own.deck.filter(x=>!skip.has(x.uid)).slice(0,api.lookCount(s,t.p,t.op==='g84_Hogan'?2:1)),ids=xs.map(x=>x.uid),publicLook=api.lookPublic(s,t.p);
+  if(api.deckLocked(s,t.p))break;const skip=held(own),xs=own.deck.filter(x=>!skip.has(x.uid)).slice(0,api.lookCount(s,t.p,t.op==='g84_Hogan'?2:1)),ids=xs.map(x=>x.uid),publicLook=t.publicLook||api.lookPublic(s,t.p);
   (own.g34Protected??=[]).push(...ids);if(ids.length)api.log(s,t.p,publicLook?'reveal':'look',card(t.source).name+'：山札の上'+ids.length+'枚を'+(publicLook?'公開：'+xs.map(x=>card(x).name).join('・'):'確認'),{cardId:t.source});
   put(s,follow(t,'Pick',{ids,selected:[]}));break;
  }
@@ -27,7 +27,7 @@ export function createUtilityWaterChain(api){
  case'g84_Sonic':if(v){const p=s.players.findIndex(p=>p.battle.some(x=>x.uid===v));if(p>=0)api.move(s,[{player:p,uid:v,to:'hand',destroy:false,controller:t.controller??t.p}]);}break;
  default:throw Error('未実装の水の連鎖・補充選択：'+t.op);
  }return true;}
- return{run,chosen,effect(s,p,c,uid,entry){if(!c.g84Effect)return false;const ref={uid,incarnation:entry?.incarnation??s.players[p].battle.find(x=>x.uid===uid)?.incarnation??0},root=s.players[p].battle.find(x=>self(x,ref)),max=root?effective(root,s).cost:entry?.lastKnownCost??c.cost;put(s,task('g84_'+c.g84Effect,p,c.id,{...ref,max}));return true;},
+ return{run,chosen,effect(s,p,c,uid,entry){if(!c.g84Effect)return false;const ref={uid,incarnation:entry?.incarnation??s.players[p].battle.find(x=>x.uid===uid)?.incarnation??0},root=s.players[p].battle.find(x=>self(x,ref)),max=root?effective(root,s).cost:entry?.lastKnownCost??c.cost;put(s,task('g84_'+c.g84Effect,p,c.id,{...ref,max,...(c.g865PublicChain?{publicLook:true}:{})}));return true;},
  entry(s,p,x,o){if(!api.isCreature(s,x)||o.selfMuted||api.selfStopped(s,p))return;for(const y of living(s,p)){
   const c=effective(y,s);if(c.g84Jester&&s.active===p&&s.players[p].enteredThisTurn===2)api.enqueue(s,p,{uid:y.uid,incarnation:y.incarnation||0,source:y.cardId,effect:'extended',task:task('g34_Draw',p,y.cardId,{n:1,optional:true})});
   if(c.g84Irons&&y.uid!==x.uid&&colors(effective(x,s)).includes('水'))api.enqueue(s,p,{uid:y.uid,incarnation:y.incarnation||0,source:y.cardId,effect:'extended',task:task('g84_Irons',p,y.cardId,{uid:y.uid,incarnation:y.incarnation||0})});
