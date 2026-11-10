@@ -1,0 +1,169 @@
+{
+  "phase": 875,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6489,
+  "description": "アンノウン登場時の任意の自壊と、墓地・マナから順にクリーチャーを出す効果に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/42955/",
+    "https://dm.takaratomy.co.jp/rule/qa/33425/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37269/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37270/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36606/"
+  ],
+  "cards": [
+    {
+      "id": "dmr06-044",
+      "name": "画鋲男",
+      "faces": [
+        {
+          "name": "画鋲男",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のアンノウンをバトルゾーンに出した時、このクリーチャーを破壊してもよい。そうした場合、相手のタップされているクリーチャーを１体破壊する。",
+          "race": "ヘドリアン/アンノイズ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-044",
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "race": "アンノウン"
+          },
+          "defs": [
+            {
+              "op": "IfSource541",
+              "defs": [
+                {
+                  "op": "SelfSacrifice407",
+                  "defs": [
+                    {
+                      "op": "Target",
+                      "to": "grave",
+                      "filter": {
+                        "tapped": true
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr06-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "7129889fd313dc49f4d2e8e9c32c581942133d4f9119d8e0117fab047731cd6d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr09-026",
+      "name": "暗黒皇女アンドゥ・トロワ",
+      "faces": [
+        {
+          "name": "暗黒皇女アンドゥ・トロワ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、コスト１のクリーチャー、コスト２のクリーチャー、コスト３のクリーチャーをそれぞれ１体ずつ、自分の墓地からバトルゾーンに出す。",
+          "race": "ダークロード",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-026",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DeploySeries875",
+            "origin": "grave",
+            "costs": [
+              1,
+              2,
+              3
+            ],
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr09-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "ac3d742b3654337199f454f16f4b62784854a3ad050a6be0c3c2ebfdc4b9fd63",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr05-035",
+      "name": "星降る夜のフェレットくん",
+      "faces": [
+        {
+          "name": "星降る夜のフェレットくん",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーが破壊された時、ドリームメイトを２体、自分のマナゾーンからバトルゾーンに出してもよい。",
+          "race": "ドリームメイト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-035",
+      "spec": {
+        "g172Death": [
+          {
+            "op": "DeploySeries875",
+            "origin": "mana",
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "race": "ドリームメイト"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr05-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "901bc5b5c1d1703f4467a0ee6293d68397b3aa34876314b687aefd040df5f8d6",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr06-044": 4,
+      "dmr09-026": 4,
+      "dmr05-035": 4
+    }
+  }
+}

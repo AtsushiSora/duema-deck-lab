@@ -1725,6 +1725,21 @@ export function createSixPhotoRules(api){
   ]);
   break;
  }
+ case'g34_DeploySeries875':{
+  const selected=t.selected??[],remaining=t.costs?.length??t.n;
+  const filter=t.costs?{...t.filter,any:t.costs.map(exactCost=>({exactCost}))}:t.filter;
+  const rows=remaining>0?list(s,{...t,deploy:true,selected,filter}):[];
+  if(!rows.length){
+   if(selected.length)put(s,task('g34_Custom',t.p,t.source,{name:'finishBatch'}));
+   break;
+  }
+  const zone=t.origin==='mana'?'マナゾーン':'墓地';
+  choice(s,{...t,selected},zone+'から出すクリーチャーを選ぶ',[
+   ...rows.map(({x})=>opt(card(x).name,{uid:x.uid,cost:cost(api.zoneCard(s,t.p,x,t.origin))},15+cost(card(x)),x.cardId)),
+   ...(t.optional&&!selected.length?[skip()]:[])
+  ]);
+  break;
+ }
  case'g34_GraveArmy':{const ids=t.ids??own.grave.map(y=>y.uid),selected=t.selected||[],rows=list(s,{...t,origin:'grave',deploy:true,selected}).filter(r=>ids.includes(r.x.uid));if(selected.length>=t.n||!rows.length){put(s,task('g34_Custom',t.p,t.source,{name:'finishBatch'}));break;}s.g34DeployBatch=true;choice(s,{...t,ids,selected},'墓地から出す闇のクリーチャーを選ぶ（'+selected.length+'/'+t.n+'体）',[...rows.map(({x})=>opt(card(x).name,{uid:x.uid,origin:'grave',p:t.p},15+cost(card(x)),x.cardId)),opt('ここまでで確定',null,0)]);break;}
  // A resolved delayed move follows the same creature through evolution and control changes.
  case'g34_ReturnGroup785':{
@@ -2925,6 +2940,13 @@ export function createSixPhotoRules(api){
    s.g34DeployBatch=true;
    put(s,{...t,op:'g34_Put',origin:'hand',owner:t.p,target:v,execution:false},{...t,n:t.n-1});
   }else put(s,task('g34_Custom',t.p,t.source,{name:'finishBatch'}));
+  break;
+ case'g34_DeploySeries875':
+  if(v){
+   s.g34DeployBatch=true;
+   const remaining=t.costs?{costs:t.costs.filter(n=>n!==v.cost)}:{n:t.n-1};
+   put(s,{...t,op:'g34_Put',target:v.uid},{...t,...remaining,selected:[...t.selected,v.uid]});
+  }
   break;
  case'g34_GraveArmy':if(v)put(s,{...t,op:'g34_Put',origin:'grave',owner:t.p,target:v.uid,execution:false},{...t,selected:[...t.selected,v.uid]});else put(s,task('g34_Custom',t.p,t.source,{name:'finishBatch'}));break;
  case'g34_RampCost411':start(s,t,[{op:'Sweep',both:true,to:'mana',filter:{creature:true,...(v==='∞'?{}:{max:v})}}]);break;

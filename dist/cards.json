@@ -189785,23 +189785,129 @@
       ],
       "supportBatch": "phase-874",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr06-044",
+      "name": "画鋲男",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ヘドリアン/アンノイズ",
+      "text": "自分のアンノウンをバトルゾーンに出した時、このクリーチャーを破壊してもよい。そうした場合、相手のタップされているクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-044",
+      "limit": 4,
+      "g251EntryDraw": {
+        "filter": {
+          "creature": true,
+          "race": "アンノウン"
+        },
+        "defs": [
+          {
+            "op": "IfSource541",
+            "defs": [
+              {
+                "op": "SelfSacrifice407",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "tapped": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-875",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-026",
+      "name": "暗黒皇女アンドゥ・トロワ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "ダークロード",
+      "text": "このクリーチャーをバトルゾーンに出した時、コスト１のクリーチャー、コスト２のクリーチャー、コスト３のクリーチャーをそれぞれ１体ずつ、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-026",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DeploySeries875",
+          "origin": "grave",
+          "costs": [
+            1,
+            2,
+            3
+          ],
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-875",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr05-035",
+      "name": "星降る夜のフェレットくん",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 3000,
+      "race": "ドリームメイト",
+      "text": "このクリーチャーが破壊された時、ドリームメイトを２体、自分のマナゾーンからバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr05-035",
+      "limit": 4,
+      "g172Death": [
+        {
+          "op": "DeploySeries875",
+          "origin": "mana",
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "race": "ドリームメイト"
+          }
+        }
+      ],
+      "supportBatch": "phase-875",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 874,
+    "phase": 875,
     "checkedAt": "2026-11-11",
-    "baseCount": 6486,
+    "baseCount": 6489,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6489,
+    "totalCount": 6492,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37590/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37591/",
-      "https://dm.takaratomy.co.jp/rule/qa/42944/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36638/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf"
+      "https://dm.takaratomy.co.jp/rule/qa/42955/",
+      "https://dm.takaratomy.co.jp/rule/qa/33425/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37269/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37270/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36606/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -205333,6 +205439,26 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37679/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37680/",
           "https://dm.takaratomy.co.jp/rule/qa/43489/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 874,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6486,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6489,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37590/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37591/",
+          "https://dm.takaratomy.co.jp/rule/qa/42944/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36638/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20251017.pdf"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

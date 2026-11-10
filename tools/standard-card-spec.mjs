@@ -3433,6 +3433,19 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=875&&f.typeText==='クリーチャー'){
+  if(d.id==='dmr06-044'&&compact363===
+   '自分のアンノウンをバトルゾーンに出した時このクリーチャーを破壊してもよい。そうした場合相手のタップされているクリーチャーを1体破壊する。')
+   return {g251EntryDraw:{filter:{creature:true,race:'アンノウン'},defs:[{op:'IfSource541',defs:[
+    {op:'SelfSacrifice407',defs:[{op:'Target',to:'grave',filter:{tapped:true}}]}
+   ]}]}};
+  if(d.id==='dmr09-026'&&compact363===
+   'このクリーチャーをバトルゾーンに出した時コスト1のクリーチャーコスト2のクリーチャーコスト3のクリーチャーをそれぞれ1体ずつ自分の墓地からバトルゾーンに出す。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'DeploySeries875',origin:'grave',costs:[1,2,3],filter:{creature:true}}]};
+  if(d.id==='dmr05-035'&&compact363===
+   'このクリーチャーが破壊された時ドリームメイトを2体自分のマナゾーンからバトルゾーンに出してもよい。')
+   return {g172Death:[{op:'DeploySeries875',origin:'mana',n:2,optional:true,filter:{creature:true,race:'ドリームメイト'}}]};
+ }
  if(phase>=874&&f.typeText==='クリーチャー'){
   if(d.id==='dmr04-014'&&compact363===
    'マナゾーンに置く時このカードはタップして置く。ブロッカーブロッカースペース・チャージ:多色(自分のマナゾーンに多色カードが置かれた時このクリーチャーのq能力を使ってもよい)qバトルゾーンにある進化ではないクリーチャーを1体選ぶ。それを破壊するか持ち主の手札に戻すか新しいシールドとして持ち主のシールドゾーンに裏向きにして加える。')
