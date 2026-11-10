@@ -1462,7 +1462,11 @@ function resolveAttack(s,blockUid){
   log(s,other,'block',`${card(b).name}でブロック`,{cardId:b.cardId});
   extra.ninjaWindow(s,s.active);return;
  }
- if(s.attack.target==='player'&&!s.attack.g482Unblocked){s.attack.g482Unblocked=true;if(extra.six.unblocked482(s,s.active,a)){s.attack.stage='unblocked482';return;}}
+ if(!s.attack.g482Unblocked){
+  const triggered=extra.six.unblocked482(s,s.active,a);
+  if(s.attack.target==='player'||triggered)s.attack.g482Unblocked=true;
+  if(triggered){s.attack.stage='unblocked482';return;}
+ }
  if(s.attack.target==='player'&&extra.six.selectNullBreaker471(s,s.active,a))return;
  if(s.attack.target==='player'&&s.attack.g471Breaker!=='null'&&extra.selectBreaker(s,s.active,a))return;
  const gMode=s.attack.g471Breaker!=='null'&&(s.attack.g14Breaker==='g'||!s.attack.g14Breaker&&effectiveCard(a,s).gBreaker);if(s.attack.target==='player'&&gMode&&s.attackLifecycle)s.attackLifecycle.g14G={p:s.active,uid:a.uid,source:a.cardId};

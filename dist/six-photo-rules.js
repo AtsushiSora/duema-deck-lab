@@ -2122,6 +2122,18 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ContinueDeckSpell841':api.resumeCastSpell(s,t.p,t.uid,true);break;
+ case'g34_Unryu852':{
+  const [uid]=look(s,{...t,n:1}),top=own.deck.find(x=>x.uid===uid);
+  if(!top)break;
+  release(s,t.p,uid);
+  const peek={...t,g585Peek:[{id:top.cardId,label:'自分の山札の上'}]};
+  if(card(top).type==='gear'&&canPut(s,t.p,top,'deck')){
+   choice(s,{...peek,target:uid},'クロスギアを出して、このクリーチャーをアンタップする？',[
+    opt('出してアンタップする',true,own.deck.length>1?18:-1000,top.cardId),skip()
+   ]);
+  }else choice(s,{...peek,op:'g34_PeekRead585'},'確認したカード',[opt('確認を終える',null,0)]);
+  break;
+ }
  case'g34_LookSpell841':{
   const [uid]=look(s,{...t,n:1}),y=own.deck.find(x=>x.uid===uid);
   if(!y)break;
@@ -2158,7 +2170,7 @@ export function createSixPhotoRules(api){
   const rest=t.g798DifferentCost!==undefined?{op:'Distribute255',ids,rest:'grave'}:{op:'LookRest530',ids,rest:t.rest||'top'};
   const inspection=t.g841DeckPeek?{g585Peek:own.deck.filter(x=>ids.includes(x.uid)).map(x=>({id:x.cardId,label:'自分の山札'}))}:{};
   put(s,{...t,...inspection,op:'g34_Select',origin:'deck',g530Ids:eligible,deploy:true,n:t.limit??'all',optional:!t.g749Required,
-   title:'確認したカードから出すクリーチャーを選ぶ',after:[rest]});
+   title:t.title||'確認したカードから出すクリーチャーを選ぶ',after:[rest]});
   break;
  }
  case'g34_LookRest530':put(s,{...t,op:'g34_Order',rest:t.rest||'top',g259OrderTop:true,ordered:[]});break;
@@ -2513,6 +2525,11 @@ export function createSixPhotoRules(api){
  case'g34_TappedShieldPick842':
   put(s,{...t,picked:[...t.picked,v]});
   break;
+ case'g34_Unryu852':if(v){
+  const top=own.deck.find(x=>x.uid===t.target);
+  if(top&&card(top).type==='gear'&&canPut(s,t.p,top,'deck'))
+   start(s,t,[{op:'Put',origin:'deck',target:top.uid},{op:'Untap',g191First:true}]);
+ }break;
  case'g34_LookSpell841':{
   const y=v&&own.deck.find(x=>x.uid===v.uid&&(x.zoneSerial||0)===v.serial);
   const c=y&&faces(api.zoneCard(s,t.p,y,'deck'))[v.face];
@@ -3566,17 +3583,23 @@ export function createSixPhotoRules(api){
  broken484(s,context,n){if(!n||!context||context.reverse||context.burn)return;const p=context.player,x=s.players[p]?.battle.find(x=>x.uid===context.sourceUid&&(context.incarnation===undefined||(x.incarnation||0)===context.incarnation));if(x&&!x.sealed&&effective(x,s).g484BreakEndReturn)queue(s,p,x,[E('BreakDelay484')]);},
  unblocked482(s,p,x){
   if(x.sealed)return false;
-  const attacker=effective(x,s),defs=!api.selfStopped(s,p)&&attacker.g482Unblocked;
+  const playerAttack=s.attack.target==='player';
+  const attacker=effective(x,s),defs=playerAttack&&!api.selfStopped(s,p)&&attacker.g482Unblocked;
   if(defs)queue(s,p,x,defs);
   let triggered=!!defs;
   if(!s.attack.g484Blocked)for(const source of creatures(s,p)){
    if(source.sealed)continue;
-   const races=effective(source,s).g701UnblockedMana;
-   if(!races?.some(name=>race(attacker,name)))continue;
-   queue(s,p,source,[{op:'OpponentManaLoss478'}]);
-   triggered=true;
+   const {g701UnblockedMana,g852UnblockedDiscard}=effective(source,s);
+   if(playerAttack&&g701UnblockedMana?.some(name=>race(attacker,name))){
+    queue(s,p,source,[{op:'OpponentManaLoss478'}]);
+    triggered=true;
+   }
+   if(g852UnblockedDiscard?.some(name=>race(attacker,name))){
+    queue(s,p,source,[{op:'Discard',n:1}]);
+    triggered=true;
+   }
   }
-  if(!s.attack.g484Blocked)for(const source of creatures(s,1-p)){
+  if(playerAttack&&!s.attack.g484Blocked)for(const source of creatures(s,1-p)){
    const defs=!source.sealed&&effective(source,s).g726DefenderUnblocked;
    if(!defs)continue;
    queue(s,1-p,source,defs);

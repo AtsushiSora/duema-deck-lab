@@ -187181,24 +187181,98 @@
       ],
       "supportBatch": "phase-851",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm29-026",
+      "name": "相撲Dr.ウンリュウ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "サムライ/グレートメカオー",
+      "text": "このクリーチャーが攻撃する時、自分の山札の上から１枚目を見る。そのカードがクロスギアならバトルゾーンに出し、このクリーチャーをアンタップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-026",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Unryu852"
+        }
+      ],
+      "supportBatch": "phase-852",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23-045",
+      "name": "魔刃のガーリィペイ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "ブレイブ・スピリット",
+      "text": "自分のティラノ・ドレイクまたはブレイブ・スピリットが攻撃してブロックされなかった時、相手は自分自身の手札を１枚選んで捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-045",
+      "limit": 4,
+      "g852UnblockedDiscard": [
+        "ティラノ・ドレイク",
+        "ブレイブ・スピリット"
+      ],
+      "supportBatch": "phase-852",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm30-049",
+      "name": "烈火イザヨイグレンオー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "フレイム・モンスター/サムライ",
+      "text": "このクリーチャーが破壊された時、自分の山札を見る。その中からクロスギアを１枚選び、バトルゾーンに出してもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-049",
+      "limit": 4,
+      "g172Death": [
+        {
+          "op": "LookDeploy530",
+          "g201Search": true,
+          "g841DeckPeek": true,
+          "limit": 1,
+          "rest": "shuffle",
+          "filter": {
+            "g201Gear": true
+          },
+          "title": "確認したカードから出すクロスギアを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-852",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 851,
+    "phase": 852,
     "checkedAt": "2026-11-11",
-    "baseCount": 6417,
+    "baseCount": 6420,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6420,
+    "totalCount": 6423,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37786/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35326/",
-      "https://dm.takaratomy.co.jp/rule/qa/31742/",
-      "https://dm.takaratomy.co.jp/rule/qa/40947/",
-      "https://dm.takaratomy.co.jp/rule/qa/43489/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31631/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35679/",
+      "https://dm.takaratomy.co.jp/rule/qa/42981/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31641/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31637/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -202263,6 +202337,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/43917/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31639/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 851,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6417,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6420,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37786/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35326/",
+          "https://dm.takaratomy.co.jp/rule/qa/31742/",
+          "https://dm.takaratomy.co.jp/rule/qa/40947/",
+          "https://dm.takaratomy.co.jp/rule/qa/43489/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31631/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

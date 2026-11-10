@@ -1,0 +1,138 @@
+{
+  "phase": 852,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6420,
+  "description": "クロスギアの登場と、非ブロック時の手札破棄に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35679/",
+    "https://dm.takaratomy.co.jp/rule/qa/42981/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31641/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31637/"
+  ],
+  "cards": [
+    {
+      "id": "dm29-026",
+      "name": "相撲Dr.ウンリュウ",
+      "faces": [
+        {
+          "name": "相撲Dr.ウンリュウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが攻撃する時、自分の山札の上から１枚目を見る。そのカードがクロスギアならバトルゾーンに出し、このクリーチャーをアンタップしてもよい。",
+          "race": "サムライ/グレートメカオー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-026",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Unryu852"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm29-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "2981a28de86df926f80683b740fdd335a964aeff0e8a04a5d38f84ccefc3b77b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23-045",
+      "name": "魔刃のガーリィペイ",
+      "faces": [
+        {
+          "name": "魔刃のガーリィペイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のティラノ・ドレイクまたはブレイブ・スピリットが攻撃してブロックされなかった時、相手は自分自身の手札を１枚選んで捨てる。",
+          "race": "ブレイブ・スピリット",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-045",
+      "spec": {
+        "g852UnblockedDiscard": [
+          "ティラノ・ドレイク",
+          "ブレイブ・スピリット"
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "0243b08ed673ca45dd541e447169bbad4f12d460f97821d223b24f44d13c7f29",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm30-049",
+      "name": "烈火イザヨイグレンオー",
+      "faces": [
+        {
+          "name": "烈火イザヨイグレンオー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが破壊された時、自分の山札を見る。その中からクロスギアを１枚選び、バトルゾーンに出してもよい。その後、山札をシャッフルする。",
+          "race": "フレイム・モンスター/サムライ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-049",
+      "spec": {
+        "g172Death": [
+          {
+            "op": "LookDeploy530",
+            "g201Search": true,
+            "g841DeckPeek": true,
+            "limit": 1,
+            "rest": "shuffle",
+            "filter": {
+              "g201Gear": true
+            },
+            "title": "確認したカードから出すクロスギアを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm30-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "d750e5a092dc296d7ada7adf15249219494f8add490a1653c64a0de3a9a9526e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm29-026": 4,
+      "dm23-045": 4,
+      "dm30-049": 4
+    }
+  }
+}

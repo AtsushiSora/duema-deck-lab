@@ -6177,6 +6177,21 @@ export function standardCardSpec(d,{phase=165}={}){
     continue;
    }
   }
+  if(phase>=852&&creature){
+   if(line==='このクリーチャーが攻撃する時自分の山札の上から1枚目を見る。そのカードがクロスギアならバトルゾーンに出しこのクリーチャーをアンタップしてもよい。'){
+    attack.push({op:'Unryu852'});
+    continue;
+   }
+   if(line==='自分のティラノ・ドレイクまたはブレイブ・スピリットが攻撃してブロックされなかった時相手は自分自身の手札を1枚選んで捨てる。'){
+    spec.g852UnblockedDiscard=['ティラノ・ドレイク','ブレイブ・スピリット'];
+    continue;
+   }
+   if(line==='このクリーチャーが破壊された時自分の山札を見る。その中からクロスギアを1枚選びバトルゾーンに出してもよい。その後山札をシャッフルする。'){
+    death.push({op:'LookDeploy530',g201Search:true,g841DeckPeek:true,limit:1,rest:'shuffle',filter:{g201Gear:true},
+     title:'確認したカードから出すクロスギアを選ぶ'});
+    continue;
+   }
+  }
   if(phase>=851&&creature){
    if(line==='自分の進化クリーチャーを他のクリーチャーの上に置いた時相手の「ブロッカー」を持つクリーチャーを1体破壊する。'){
     spec.g849EvolutionPlaced='destroyBlocker';
