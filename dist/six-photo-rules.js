@@ -3488,6 +3488,13 @@ export function createSixPhotoRules(api){
   return moves;
  },
  destroyToHand390(s,p,x){return !x.sealed&&creatures(s,p).some(y=>{const rule=!y.sealed&&effective(y,s).g390DestroyToHand;return rule&&matches(s,p,x,rule.filter);});},
+ destroyToShield877(s,p,x){
+  return creatures(s,p).some(source=>{
+   if(source.uid===x.uid||source.sealed||!card(source).g877DestroyToShield)return false;
+   const filter=effective(source,s).g877DestroyToShield;
+   return filter&&matches(s,p,x,filter);
+  });
+ },
  optionalDestroyToHand720(s,p,x){
   return creatures(s,p).some(source=>{
    const filter=!source.sealed&&effective(source,s).g720OptionalDestroyToHand;
@@ -3740,7 +3747,8 @@ export function createSixPhotoRules(api){
    const defs=playerAttack&&c.g726DefenderUnblocked?
     [...c.g726DefenderUnblocked,...(c.g870DefenderUnblocked||[])]:c.g870DefenderUnblocked;
    if(!defs?.length)continue;
-   queue(s,1-p,source,defs);
+   queue(s,1-p,source,defs.map(def=>def.g877Attacker?
+    {...def,g403Refs:[{uid:x.uid,incarnation:x.incarnation||0}],followEvolution:true}:def));
    triggered=true;
   }
   return triggered;

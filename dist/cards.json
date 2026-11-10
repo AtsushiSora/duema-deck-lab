@@ -190003,23 +190003,110 @@
       },
       "supportBatch": "phase-876",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr06-017",
+      "name": "好奇心 プリンセスプリン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ハンター/エイリアン",
+      "text": "バトルゾーンにある自分のクリーチャーはすべて、種族にハンターとエイリアンを追加する。\nハンティング(バトル中、このクリーチャーのパワーは、バトルゾーンにある自分のハンター１体につき+1000される)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-017",
+      "limit": 4,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "raceAdd": [
+              "ハンター",
+              "エイリアン"
+            ]
+          }
+        }
+      ],
+      "g166Hunting": true,
+      "supportBatch": "phase-877",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr09-007",
+      "name": "血塗られた奈落 スクリーム",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 12000,
+      "race": "アウトレイジ",
+      "text": "相手のクリーチャーが自分を攻撃してブロックされなかった時、自分の山札の上から３枚を墓地に置き、そのクリーチャーを破壊する。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr09-007",
+      "limit": 4,
+      "breaker": 3,
+      "g726DefenderUnblocked": [
+        {
+          "op": "Mill",
+          "n": 3
+        },
+        {
+          "op": "ExactMove",
+          "to": "grave",
+          "g877Attacker": true
+        }
+      ],
+      "supportBatch": "phase-877",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr06-020",
+      "name": "献身の守護者ヤーラ・セ・ナイス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ガーディアン/ハンター",
+      "text": "自分の他の、進化ではないガーディアンが破壊される時、墓地に置くかわりに、新しいシールドとして自分のシールドゾーンに裏向きにして加える。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr06-020",
+      "limit": 4,
+      "breaker": 2,
+      "g877DestroyToShield": {
+        "creature": true,
+        "nonEvolution": true,
+        "race": "ガーディアン"
+      },
+      "supportBatch": "phase-877",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 876,
+    "phase": 877,
     "checkedAt": "2026-11-11",
-    "baseCount": 6492,
-    "newEffectCards": 4,
+    "baseCount": 6496,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6496,
+    "totalCount": 6499,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36831/",
-      "https://dm.takaratomy.co.jp/rule/qa/44100/",
-      "https://dm.takaratomy.co.jp/rule/qa/45589/",
-      "https://dm.takaratomy.co.jp/card/detail/?id=dm06-029",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36722/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36642/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36724/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37681/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35564/",
+      "https://dm.takaratomy.co.jp/rule/qa/45562/",
+      "https://dm.takaratomy.co.jp/rule/qa/46147/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -205591,6 +205678,26 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37269/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37270/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36606/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 876,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6492,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6496,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36831/",
+          "https://dm.takaratomy.co.jp/rule/qa/44100/",
+          "https://dm.takaratomy.co.jp/rule/qa/45589/",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm06-029",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36722/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

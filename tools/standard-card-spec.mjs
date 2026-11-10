@@ -3433,6 +3433,20 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=877&&f.typeText==='クリーチャー'){
+  if(['dmr06-017','dmx25-033','dmx12b-080','promoy11-034'].includes(d.id)){
+   const prefix=d.id==='dmx25-033'?'':'バトルゾーンにある';
+   const hunting=d.id==='dmx25-033'?['を','する']:['は','される'];
+   if(compact363===prefix+'自分のクリーチャーはすべて種族にハンターとエイリアンを追加する。ハンティング(バトル中このクリーチャーのパワー'+hunting[0]+'バトルゾーンにある自分のハンター1体につき+1000'+hunting[1]+')')
+    return {g208Auras:[{filter:{creature:true},grants:{raceAdd:['ハンター','エイリアン']}}],g166Hunting:true};
+  }
+  if(d.id==='dmr09-007'&&compact363===
+   '相手のクリーチャーが自分を攻撃してブロックされなかった時自分の山札の上から3枚を墓地に置きそのクリーチャーを破壊する。T・ブレイカー(このクリーチャーはシールドを3枚ブレイクする)')
+   return {breaker:3,g726DefenderUnblocked:[{op:'Mill',n:3},{op:'ExactMove',to:'grave',g877Attacker:true}]};
+  if(d.id==='dmr06-020'&&compact363===
+   '自分の他の進化ではないガーディアンが破壊される時墓地に置くかわりに新しいシールドとして自分のシールドゾーンに裏向きにして加える。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g877DestroyToShield:{creature:true,nonEvolution:true,race:'ガーディアン'}};
+ }
  if(phase>=876&&f.typeText==='クリーチャー'){
   if(d.id==='dmr05-027'&&compact363===
    'このクリーチャーのパワーはバトルゾーンにある自分の他の《跳箱男》1体につき+3000されシールドをさらに1枚ブレイクする。')
