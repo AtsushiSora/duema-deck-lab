@@ -181948,19 +181948,128 @@
       ],
       "supportBatch": "phase-797",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-044",
+      "name": "瓜割の超人",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 9000,
+      "race": "ジャイアント",
+      "text": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n相手のクリーチャーが出たターンに攻撃する時、このクリーチャーとバトルさせてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-044",
+      "limit": 4,
+      "gStrike": true,
+      "guardman": true,
+      "noPlayerAttack": true,
+      "g252AttackWatch": {
+        "who": "opponent",
+        "entryTurn": true,
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "FightAttacker798"
+          }
+        ]
+      },
+      "supportBatch": "phase-798",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-001",
+      "name": "魔誕の覇者ガジラビュート",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "デーモン・コマンド",
+      "text": "{GS} G・ストライク\n各ターンに一度、クリーチャーがプレイヤーを攻撃する時、そのクリーチャー以下のコストのクリーチャーを１体、自分の手札から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-001",
+      "limit": 4,
+      "gStrike": true,
+      "g252AttackWatch": {
+        "who": "both",
+        "playerAttack": true,
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "AttackHandDeploy798",
+            "g792Once": "gajiraDeploy"
+          }
+        ]
+      },
+      "supportBatch": "phase-798",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-005",
+      "name": "魔誕の邪将クエイクス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "デーモン・コマンド",
+      "text": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を表向きにする。その中から、コスト６以下で、自分のどのクリーチャーともコストが異なるクリーチャーを好きな数出してもよい。残りをすべて墓地に置く。\nバラバラエティ５：クリーチャーがプレイヤーを攻撃する時、自分のクリーチャーをすべてアンタップする。（コストが異なる自分のエレメントが５つ以上あれば、このクリーチャーにこの能力を与える）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-005",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "public": true,
+          "g798DifferentCost": 6,
+          "rest": "grave"
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g466DistinctCosts": 5
+        },
+        "grants": {
+          "g252AttackWatch": {
+            "who": "both",
+            "playerAttack": true,
+            "defs": [
+              {
+                "op": "GroupUntap"
+              }
+            ]
+          }
+        }
+      },
+      "supportBatch": "phase-798",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 797,
+    "phase": 798,
     "checkedAt": "2026-11-10",
-    "baseCount": 6244,
+    "baseCount": 6247,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6247,
+    "totalCount": 6250,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/46627/",
-      "https://dm.takaratomy.co.jp/rule/qa/45437/",
+      "https://dm.takaratomy.co.jp/rule/qa/44212/",
+      "https://dm.takaratomy.co.jp/rule/qa/45922/",
+      "https://dm.takaratomy.co.jp/rule/qa/45923/",
+      "https://dm.takaratomy.co.jp/rule/qa/45924/",
+      "https://dm.takaratomy.co.jp/rule/qa/45932/",
       "https://dm.takaratomy.co.jp/rule/rulechange/"
     ],
     "next": [
@@ -195900,6 +196009,23 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20260213%E2%80%972.pdf",
           "https://dm.takaratomy.co.jp/rule/qa/41075/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35234/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 797,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6244,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6247,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/46627/",
+          "https://dm.takaratomy.co.jp/rule/qa/45437/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

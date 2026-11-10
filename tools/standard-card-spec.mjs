@@ -2507,6 +2507,20 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=798&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText),gs='{GS}G・ストライク';
+  const gsFull=gs+'(このクリーチャーを自分のシールドゾーンから手札に加える時表向きにし相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)';
+  const guard='ガードマン(このクリーチャーをタップして相手クリーチャーの攻撃先を自分の他のクリーチャーからこのクリーチャーに変更してもよい)';
+  if(text===gsFull+guard+'このクリーチャーは相手プレイヤーを攻撃できない。相手のクリーチャーが出たターンに攻撃する時このクリーチャーとバトルさせてもよい。')
+   return {gStrike:true,guardman:true,noPlayerAttack:true,g252AttackWatch:{who:'opponent',entryTurn:true,g399Attacker:true,defs:[{op:'FightAttacker798'}]}};
+  if(text===gs+'各ターンに一度クリーチャーがプレイヤーを攻撃する時そのクリーチャー以下のコストのクリーチャーを1体自分の手札から出してもよい。')
+   return {gStrike:true,g252AttackWatch:{who:'both',playerAttack:true,g399Attacker:true,defs:[{op:'AttackHandDeploy798',g792Once:'gajiraDeploy'}]}};
+  const attack='このクリーチャーが攻撃する時自分の山札の上から3枚を表向きにする。その中からコスト6以下で自分のどのクリーチャーともコストが異なるクリーチャーを好きな数出してもよい。残りをすべて墓地に置く。';
+  const bara='バラバラエティ5:クリーチャーがプレイヤーを攻撃する時自分のクリーチャーをすべてアンタップする。(コストが異なる自分のエレメントが5つ以上あればこのクリーチャーにこの能力を与える)';
+  if(text==='スピードアタッカーW・ブレイカー'+attack+bara)
+   return {speedAttacker:true,breaker:2,g34Attack:[{op:'LookDeploy530',n:3,public:true,g798DifferentCost:6,rest:'grave'}],
+    g260Self:{filter:{g466DistinctCosts:5},grants:{g252AttackWatch:{who:'both',playerAttack:true,defs:[{op:'GroupUntap'}]}}}};
+ }
  if(phase>=797&&d?.status==='complete'&&d.faces.length===1){
   const creatureHyper='ハイパーエナジー(このクリーチャーを召喚する時コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー1体につきこのクリーチャーの召喚コストを2少なくする。ただしコストは0以下にはならない)';
   const spellHyper='ハイパーエナジー(この呪文を唱える時コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー1体につきこの呪文のコストを2少なくする。ただしコストは0以下にはならない)';

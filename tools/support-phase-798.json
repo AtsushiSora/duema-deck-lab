@@ -1,0 +1,286 @@
+{
+  "phase": 798,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6247,
+  "description": "瓜割の超人の登場ターンへの迎撃、ガジラビュートの手札展開、クエイクスの攻撃時展開とバラバラエティに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/44212/",
+    "https://dm.takaratomy.co.jp/rule/qa/45922/",
+    "https://dm.takaratomy.co.jp/rule/qa/45923/",
+    "https://dm.takaratomy.co.jp/rule/qa/45924/",
+    "https://dm.takaratomy.co.jp/rule/qa/45932/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp4-044",
+      "name": "瓜割の超人",
+      "faces": [
+        {
+          "name": "瓜割の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "{GS} G・ストライク（このクリーチャーを自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\nガードマン（このクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n相手のクリーチャーが出たターンに攻撃する時、このクリーチャーとバトルさせてもよい。",
+          "race": "ジャイアント",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-044",
+      "spec": {
+        "gStrike": true,
+        "guardman": true,
+        "noPlayerAttack": true,
+        "g252AttackWatch": {
+          "who": "opponent",
+          "entryTurn": true,
+          "g399Attacker": true,
+          "defs": [
+            {
+              "op": "FightAttacker798"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "9f3076bb5c7b8cdbf5d8c6153174f3a5ebe68f9d1642c596114c5cb2224f5a67",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-001",
+      "name": "魔誕の覇者ガジラビュート",
+      "faces": [
+        {
+          "name": "魔誕の覇者ガジラビュート",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{GS} G・ストライク\n各ターンに一度、クリーチャーがプレイヤーを攻撃する時、そのクリーチャー以下のコストのクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "デーモン・コマンド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-001",
+      "spec": {
+        "gStrike": true,
+        "g252AttackWatch": {
+          "who": "both",
+          "playerAttack": true,
+          "g399Attacker": true,
+          "defs": [
+            {
+              "op": "AttackHandDeploy798",
+              "g792Once": "gajiraDeploy"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "722c2b9cac7440b74bed2d53a3080979165d79e631cb9a66b40f2cc398d95a3a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-005",
+      "name": "魔誕の邪将クエイクス",
+      "faces": [
+        {
+          "name": "魔誕の邪将クエイクス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を表向きにする。その中から、コスト６以下で、自分のどのクリーチャーともコストが異なるクリーチャーを好きな数出してもよい。残りをすべて墓地に置く。\nバラバラエティ５：クリーチャーがプレイヤーを攻撃する時、自分のクリーチャーをすべてアンタップする。（コストが異なる自分のエレメントが５つ以上あれば、このクリーチャーにこの能力を与える）",
+          "race": "デーモン・コマンド",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-005",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "LookDeploy530",
+            "n": 3,
+            "public": true,
+            "g798DifferentCost": 6,
+            "rest": "grave"
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g466DistinctCosts": 5
+          },
+          "grants": {
+            "g252AttackWatch": {
+              "who": "both",
+              "playerAttack": true,
+              "defs": [
+                {
+                  "op": "GroupUntap"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "f7da97f767661f68b2c0b8f20489b79e28ebbf951001adb0cb1c10e2e53e8322",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex3-rp4001",
+      "canonicalId": "dm24rp4-001",
+      "name": "魔誕の覇者ガジラビュート",
+      "faces": [
+        {
+          "name": "魔誕の覇者ガジラビュート",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "{GS} G・ストライク\n各ターンに一度、クリーチャーがプレイヤーを攻撃する時、そのクリーチャー以下のコストのクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "デーモン・コマンド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp4001",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp4001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ef8d663ecac38eb7bcfaca880b2f3703bafc61aa17c6838a0f7521703dc9f0ce",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-rp4005",
+      "canonicalId": "dm24rp4-005",
+      "name": "魔誕の邪将クエイクス",
+      "faces": [
+        {
+          "name": "魔誕の邪将クエイクス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を表向きにする。その中から、コスト６以下で、自分のどのクリーチャーともコストが異なるクリーチャーを好きな数出してもよい。残りをすべて墓地に置く。\nバラバラエティ５：クリーチャーがプレイヤーを攻撃する時、自分のクリーチャーをすべてアンタップする。（コストが異なる自分のエレメントが５つ以上あれば、このクリーチャーにこの能力を与える）",
+          "race": "デーモン・コマンド",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp4005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp4005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ffef199b4dd83d8ba50985204809ab2fe51da98ee4371f029bb72453a5c792dc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24rp4-Sec13",
+      "canonicalId": "dm24rp4-005",
+      "name": "魔誕の邪将クエイクス",
+      "faces": [
+        {
+          "name": "魔誕の邪将クエイクス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を表向きにする。その中から、コスト６以下で、自分のどのクリーチャーともコストが異なるクリーチャーを好きな数、出してもよい。残りをすべて墓地に置く。\nバラバラエティ５：クリーチャーがプレイヤーを攻撃する時、自分のクリーチャーをすべてアンタップする。（コストが異なる自分のエレメントが５つ以上あれば、このクリーチャーにこの能力を与える）",
+          "race": "デーモン・コマンド",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-Sec13",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp4-Sec13.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "76e1683d0c705b1cede6a69bab224be300679cfba51f466bb60adae6d3aed30c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex3-rp4Sec13",
+      "canonicalId": "dm24rp4-005",
+      "name": "魔誕の邪将クエイクス",
+      "faces": [
+        {
+          "name": "魔誕の邪将クエイクス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーが攻撃する時、自分の山札の上から３枚を表向きにする。その中から、コスト６以下で、自分のどのクリーチャーともコストが異なるクリーチャーを好きな数、出してもよい。残りをすべて墓地に置く。\nバラバラエティ５：クリーチャーがプレイヤーを攻撃する時、自分のクリーチャーをすべてアンタップする。（コストが異なる自分のエレメントが５つ以上あれば、このクリーチャーにこの能力を与える）",
+          "race": "デーモン・コマンド",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex3-rp4Sec13",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex3-rp4Sec13.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "cd760d29c0ec8cee37b76904647f31c69b546e6ca0201be96df0e7f40172fac3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp4-044": 4,
+      "dm24rp4-001": 4,
+      "dm24rp4-005": 4,
+      "dm24ex3-rp4001": 4,
+      "dm24ex3-rp4005": 4,
+      "dm24rp4-Sec13": 4,
+      "dm24ex3-rp4Sec13": 4
+    }
+  }
+}

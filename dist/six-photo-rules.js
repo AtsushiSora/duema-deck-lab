@@ -357,7 +357,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
    seen[p]=true;
   }
   for(const owner of[s.active,1-s.active])for(const x of watchSources252(s,owner)){const c=effective(x,s),watches=[...(c.g252AttackWatch?[c.g252AttackWatch]:[]),...(c.g253AttackWatches||[])];
-   for(const watch of watches)if((watch.who==='self'?owner===p:owner!==p)&&!(x.uid===attacker.uid&&(watch.other||api.selfStopped(s,p)))&&(!watch.first||first)&&(!watch.g768AttackNumber||watch.g768AttackNumber===number)&&(!watch.g764FirstCostSix||firstCostSix)&&(!watch.entryTurn||attacker.entered===s.turn)&&(!watch.playerAttack||s.attack?.target==='player')&&(!watch.defs.some(d=>d.g747Once)||!parottaUsed747(s,x))&&!used792(s,x,watch.defs[0])&&matches(s,p,attacker,watch.filter)){if(watch.g399Attacker)send(s,owner,x,'Sequence',{defs:watch.defs,g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0,...(watch.g677Layers?{refs:api.allLayers(attacker).map(key)}:{}),...(watch.defs.some(d=>d.op==='AttackDeploy409')?{cost:cost(effective(attacker,s))===Infinity?'∞':cost(effective(attacker,s))}: {})}});else queue(s,owner,x,watch.defs);}
+   for(const watch of watches)if((watch.who==='both'||(watch.who==='self'?owner===p:owner!==p))&&!(x.uid===attacker.uid&&(watch.other||api.selfStopped(s,p)))&&(!watch.first||first)&&(!watch.g768AttackNumber||watch.g768AttackNumber===number)&&(!watch.g764FirstCostSix||firstCostSix)&&(!watch.entryTurn||attacker.entered===s.turn)&&(!watch.playerAttack||s.attack?.target==='player')&&(!watch.defs.some(d=>d.g747Once)||!parottaUsed747(s,x))&&!used792(s,x,watch.defs[0])&&matches(s,p,attacker,watch.filter)){if(watch.g399Attacker)send(s,owner,x,'Sequence',{defs:watch.defs,g399Attacker:{uid:attacker.uid,incarnation:attacker.incarnation||0,...(watch.g677Layers?{refs:api.allLayers(attacker).map(key)}:{}),...(watch.defs.some(d=>d.op==='AttackDeploy409'||d.op==='AttackHandDeploy798')?{cost:cost(effective(attacker,s))===Infinity?'∞':cost(effective(attacker,s))}: {})}});else queue(s,owner,x,watch.defs);}
   }
  }
  function opponentAddedShields618(s,p){
@@ -1103,6 +1103,15 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
   break;
  }
  case'g34_AttackEffect409':{if(attackHost408(s,t))(s.extLimits??=[]).push({kind:'g409AttackEffect',player:t.p,ref:t.g399Attacker,effect:t.kind,expires:'start',who:t.p});break;}
+ case'g34_AttackHandDeploy798':{
+  if(used792(s,t,t))break;
+  const host=sourceHost474(s,t.g399Attacker)?.x;
+  const ceiling=host?cost(effective(host,s)):t.g399Attacker.cost;
+  const filter={creature:true,...(ceiling==='∞'||ceiling===Infinity?{}:{max:ceiling})};
+  start(s,t,[{op:'Select',origin:'hand',filter,deploy:true,n:1,optional:true,g792Once:t.g792Once,
+   title:'攻撃したクリーチャー以下のコストのクリーチャーを手札から出す？'}]);
+  break;
+ }
  case'g34_AttackDeploy409':{const host=attackHost408(s,t),budget=host?cost(effective(host,s)):t.g399Attacker?.cost==='∞'?Infinity:t.g399Attacker?.cost;if(budget>0)start(s,t,[{op:'Select',origin:'mana',filter:{creature:true},deploy:true,n:2,optional:true,g409Budget:budget===Infinity?'∞':budget,title:'合計コストが'+(budget===Infinity?'∞':budget)+'未満になるよう2体まで選ぶ'}]);break;}
  case'g34_AttackOtherMana409':{const attacker=attackHost408(s,t),enemies=creatures(s,1-t.p).filter(y=>!y.sealed),rows=creatures(s,t.p).filter(y=>!y.sealed&&y!==attacker);if(rows.length)choice(s,t,t.g399Attacker?'攻撃中のクリーチャー以外をマナに置く？':'マナに置く自分のクリーチャーを1体選ぶ（任意）',[...rows.map(y=>opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},enemies.length?Math.min(...enemies.map(z=>cost(effective(z,s))*3))+4-cost(effective(y,s))*2:-10,y.cardId)),skip()]);break;}
  case'g34_AttackEndUntap408':if(attackHost408(s,t))(s.g408EndUntaps??=[]).push({p:t.p,source:t.source,g399Attacker:t.g399Attacker,turn:s.turn});break;
@@ -1500,6 +1509,11 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
   }
   break;
  }
+ case'g34_FightAttacker798':{
+  const ally=fightUnit240(s,t.p,t,true),attacker=fightUnit240(s,1-t.p,t.g399Attacker,true);
+  if(ally&&attacker)choice(s,t,'攻撃したクリーチャーとバトルする？',[opt('バトルする',true,fightScore240(s,ally,attacker),ally.cardId),skip()]);
+  break;
+ }
  case'g34_KatsuFight321':{const b=fightUnit240(s,1-t.p,t.enemy);if(x&&b)choice(s,t,'カツムゲン：無料で出た相手とバトルする？',[opt('バトルする',true,fightScore240(s,x,b),t.source),skip()]);break;}
  case'g34_KatsuLoot321':{if(!own.hand.length)break;const last=own.deck.length<=2,shako=creatures(s,t.p).some(y=>effective(y,s).shako);choice(s,t,'カツムゲン：手札を1枚捨てて2枚引く？',[...own.hand.map(y=>opt(card(y).name,y.uid,last?(shako?1000:-1000):20-cost(card(y))+(card(y).type==='creature'&&api.power(y,false,s)>=6000?15:0),y.cardId)),skip()]);break;}
  case'g34_KatsuDraw321':put(s,task('draw',t.p,t.source,{n:2}),...(t.high&&t.discarded?[{...t,op:'g34_Untap'}]:[]));break;
@@ -1721,7 +1735,18 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  }
  case'g34_RevealMove514':if(t.to==='battle')put(s,{...t,op:'g34_Put',origin:'deck'});else zoneMove(s,t.p,'deck',t.target,t.to,t);break;
  case'g34_RevealRelease514':for(const uid of t.ids)release(s,t.p,uid);api.deckCheck(s,t.p);break;
- case'g34_LookDeploy530':{const ids=look(s,t.g201Search?{...t,n:own.deck.length}:t);put(s,{...t,op:'g34_Select',origin:'deck',g530Ids:ids,deploy:true,n:t.limit??'all',optional:!t.g749Required,title:'確認したカードから出すクリーチャーを選ぶ',after:[{op:'LookRest530',ids,rest:t.rest||'top'}]});break;}
+ case'g34_LookDeploy530':{
+  const ids=look(s,t.g201Search?{...t,n:own.deck.length}:t);
+  let eligible=ids;
+  if(t.g798DifferentCost!==undefined){
+   const costs=new Set(creatures(s,t.p).filter(x=>!x.sealed).map(x=>cost(api.zoneCard(s,t.p,x,'battle'))));
+   eligible=own.deck.filter(x=>ids.includes(x.uid)&&matches(s,t.p,x,{creature:true,max:t.g798DifferentCost})&&!costs.has(cost(api.zoneCard(s,t.p,x,'deck')))).map(x=>x.uid);
+  }
+  const rest=t.g798DifferentCost!==undefined?{op:'Distribute255',ids,rest:'grave'}:{op:'LookRest530',ids,rest:t.rest||'top'};
+  put(s,{...t,op:'g34_Select',origin:'deck',g530Ids:eligible,deploy:true,n:t.limit??'all',optional:!t.g749Required,
+   title:'確認したカードから出すクリーチャーを選ぶ',after:[rest]});
+  break;
+ }
  case'g34_LookRest530':put(s,{...t,op:'g34_Order',rest:t.rest||'top',g259OrderTop:true,ordered:[]});break;
  case'g34_Marianna728':{
   const ids=look(s,{...t,n:own.deck.length});
@@ -2137,6 +2162,10 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
   }
   break;
  }
+ case'g34_FightAttacker798':if(v){
+  const ally=fightUnit240(s,t.p,t,true),attacker=fightUnit240(s,1-t.p,t.g399Attacker,true);
+  if(ally&&attacker)api.battle(s,t.p,ally,1-t.p,attacker,s.attack?.attacker);
+ }break;
  case'g34_KatsuFight321':{const b=fightUnit240(s,1-t.p,t.enemy);if(v&&x&&b)api.battle(s,t.p,x,1-t.p,b,s.attack?.attacker);break;}
  case'g34_LookShield744':
   release(s,t.p,t.target);
@@ -2345,6 +2374,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  case'g34_Select':
   if(v){
    if(t.g766SpellUse)mark(s,'g766SpellUse',t);
+   if(t.g792Once)(s.once??={})[onceKey792(t,t)]=s.turn;
    put(s,{...t,selected:[...(t.selected||[]),v.uid],rows:[...(t.rows||[]),v]});
   }else finishSelect(s,t);
   break;
