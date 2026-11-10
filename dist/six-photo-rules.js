@@ -556,6 +556,17 @@ export function createSixPhotoRules(api){
   if(t.origin==='hand'&&dest==='mana')for(const x of moved)api.handMana(s,t.p,x);
   if(t.g583DrawMoved&&moved.length)start(s,t,[{op:'Draw',n:moved.length}]);
  }
+ const graveHandManaOrigins771=['grave','hand'];
+ function finishGraveHandMana771(s,t){
+  const own=s.players[t.p];
+  const moved=graveHandManaOrigins771.map((origin,i)=>{
+   if(!t.picks[i]||!api.canMoveZone(s,t.p,origin)||origin==='grave'&&api.manaRedirect(s,t.p))return null;
+   return remove(own[origin],t.picks[i]);
+  });
+  for(const x of moved.filter(Boolean)){clear(x,'mana');x.tapped=true;}
+  api.addZone(s,t.p,'mana',...moved.filter(Boolean));
+  if(moved[1])api.handMana(s,t.p,moved[1]);
+ }
  function graveSpellOptions594(s,t){
   return s.players.flatMap((owner,p)=>api.canMoveZone(s,p,'grave')?owner.grave.flatMap(x=>faces(card(x)).flatMap((c,face)=>
    c.type==='spell'&&cost(c)<=t.max&&api.canCast(s,t.p,c,'grave',p)?[opt((p===t.p?'自分：':'相手：')+c.name,{uid:x.uid,owner:p,face,serial:x.zoneSerial||0},15+cost(c),x.cardId)]:[]
@@ -852,7 +863,7 @@ export function createSixPhotoRules(api){
  // Sacrifice is optional; use only public enemy information to value the payoff.
  function seedReviveValue547(s,t,v,canDie){const d=t.defs?.[0];if(!d||!api.canMoveZone(s,t.p,'grave'))return-1000;const rows=list(s,{...t,...d,selected:[]}).map(r=>r.x);if(canDie&&matches(s,t.p,v,d.filter)&&canPut(s,t.p,v,'grave'))rows.push(v);if(!rows.length)return-1000;return Math.max(...rows.map(y=>{const c=card(y),entry=modeScore(s,{...t,source:y.cardId},c.g34Tasks||[]);return entry<=-900?-1000:10+cost(c)*3+entry;}));}
  function sacrificeValue413(s,t,defs){let score=modeScore(s,t,defs);if(score<=-900)return score;for(const d of defs){if(d.op==='Untap'&&d.g191First)score+=selfUntapValue542(s,t);else if(d.op==='OpponentSelect'){const xs=creatures(s,1-t.p).filter(y=>!y.sealed&&matches(s,1-t.p,y,d.filter));if(xs.length)score+=Math.min(...xs.map(y=>12+cost(effective(y,s))*2+api.power(y,false,s)/3000));}else if(d.op==='Select'&&d.owner==='opponent'&&d.origin==='battle'&&d.to==='grave'&&d.n===1)score+=modeScore(s,t,[{...d,op:'Target'}])-modeScore(s,t,[d]);else if(d.op==='DrawUpTo')score+=Math.min(d.n,Math.max(0,s.players[t.p].deck.length-1))*(s.players[t.p].hand.length<3?12:8);else if(d.op==='Look'&&d.g201Search&&!api.deckLocked(s,t.p)&&s.players[t.p].deck.length>1){const xs=s.players[t.p].deck.filter(y=>matches(s,t.p,y,d.stages[0].filter));if(xs.length)score+=10+Math.min(10,Math.max(...xs.map(y=>cost(card(y)))));}}return score;}
- function doPut(s,t,base=null){const owner=t.owner??t.p,own=s.players[owner],x=own[t.origin]?.find(x=>x.uid===t.target);if(!x||t.g550CostBudget!==undefined&&(x.zoneSerial||0)!==(t.serial550||0))return;if(t.execution&&faces(card(x))[t.face||0]?.type==='spell'){release(s,owner,x.uid);if(!api.canCast(s,t.p,faces(card(x))[t.face||0],t.origin))return;cast(s,t.p,x.uid,!t.payment,base,t.face||0,t.payment||null,t.origin);return;}if(!canPut(s,t.p,x,t.origin,!!t.execution)||card(x).gCastle&&!api.canAddShield(s,t.p))return;own.g34ManaHeld=(own.g34ManaHeld||[]).filter(uid=>uid!==x.uid);if(t.origin==='deck')release(s,owner,x.uid);if(t.execution)cast(s,t.p,x.uid,!t.payment,base,t.face||0,t.payment||null,t.origin,t.reason||'カードの能力');else{remove(own[t.origin],x.uid);if(card(x).gCastle){clear(x,'shields');x.faceUp=true;s.players[t.p].shields.push(x);api.notifyShieldAdded(s,t.p,x);(s.noManaUse??=[false,false])[t.p]=true;return;}clear(x,'battle');enter(s,t.p,x,base,{origin:t.origin,execution:false,tapped:!!t.tapped,...(t.g745Magibomber?{g745Magibomber:true}:{})});if(t.delayed){x.g34Delayed={turn:s.turn,to:t.delayed,source:t.source,controller:t.controller??t.p};if(t.drawOnBottom)x.g35DrawOnBottom=true;}if(t.grant){(x.g34Grants??=[]).push({turn:s.turn,...t.grant});}}}
+ function doPut(s,t,base=null){const owner=t.owner??t.p,own=s.players[owner],x=own[t.origin]?.find(x=>x.uid===t.target);if(!x||t.g550CostBudget!==undefined&&(x.zoneSerial||0)!==(t.serial550||0))return;if(t.execution&&faces(card(x))[t.face||0]?.type==='spell'){release(s,owner,x.uid);if(!api.canCast(s,t.p,faces(card(x))[t.face||0],t.origin))return;cast(s,t.p,x.uid,!t.payment,base,t.face||0,t.payment||null,t.origin);return;}if(!canPut(s,t.p,x,t.origin,!!t.execution)||card(x).gCastle&&!api.canAddShield(s,t.p))return;own.g34ManaHeld=(own.g34ManaHeld||[]).filter(uid=>uid!==x.uid);if(t.origin==='deck')release(s,owner,x.uid);if(t.execution)cast(s,t.p,x.uid,!t.payment,base,t.face||0,t.payment||null,t.origin,t.reason||'カードの能力');else{remove(own[t.origin],x.uid);if(card(x).gCastle){clear(x,'shields');x.faceUp=true;s.players[t.p].shields.push(x);api.notifyShieldAdded(s,t.p,x);(s.noManaUse??=[false,false])[t.p]=true;return;}clear(x,'battle');enter(s,t.p,x,base,{origin:t.origin,execution:false,tapped:!!t.tapped,...(t.g745Magibomber?{g745Magibomber:true}:{}),...(t.g771DeploySpeed?{g771SpeedSpell:t.source}:{})});if(t.delayed){x.g34Delayed={turn:s.turn,to:t.delayed,source:t.source,controller:t.controller??t.p};if(t.drawOnBottom)x.g35DrawOnBottom=true;}if(t.grant){(x.g34Grants??=[]).push({turn:s.turn,...t.grant});}}}
  // Mana-triggered self buffs and optional hand refills use only public state.
  function spaceScore455(s,t,defs){return defs.reduce((n,d)=>{const own=s.players[t.p];if(d.op==='Sequence')return n+spaceScore455(s,t,d.defs);if(d.op==='NextReduction456')return n+(s.active===t.p?Math.min(20,d.amount*4):0);if(d.op==='DrawUpTo')return n+Math.min(d.n,Math.max(0,own.deck.length-1))*10;if(d.op==='DiscardAll244')return n-own.hand.length*8;if(d.op==='OpponentSelect'){const rows=creatures(s,1-t.p).filter(y=>!y.sealed&&matches(s,1-t.p,y,d.filter));return n+(rows.length?10+Math.min(...rows.map(y=>cost(effective(y,s))*2)):0);}if(d.op==='Target'&&d.owner==='self'){const rows=creatures(s,t.p).filter(y=>!y.sealed&&matches(s,t.p,y,d.filter)),legal=new Set(targetOptions(s,t.p,rows).map(o=>o.value));return n+Math.max(0,...rows.filter(y=>legal.has(y.uid)).map(y=>d.grant?.slayer?8:s.active===t.p&&!y.tapped?8+(d.g455ExtraBreak?6:0):0));}if(d.op==='SelfBoost313'||d.op==='SelfExtraBreak444'){const x=live(s,t);return n+(x&&s.active===t.p&&!x.tapped?8:0);}return n+modeScore(s,t,[d]);},0);}
  // Each player chooses their own card in turn order, before either selected card moves.
@@ -1772,6 +1783,17 @@ export function createSixPhotoRules(api){
    ...(t.g766Below?{g766SpellUse:true,title:'唱えた呪文よりコストの小さいクリーチャーを出す（任意）'}:{})}]);
   break;
  }
+ case'g34_GraveHandMana771':{
+  const picks=t.picks||[],origin=graveHandManaOrigins771[picks.length];
+  if(!origin){finishGraveHandMana771(s,t);break;}
+  const rows=api.canMoveZone(s,t.p,origin)?own[origin]:[];
+  if(!rows.length){put(s,{...t,picks:[...picks,null]});break;}
+  const score=origin==='grave'&&api.manaRedirect(s,t.p)?-10:20;
+  choice(s,t,(origin==='grave'?'墓地':'手札')+'からタップしてマナに置くカードを1枚選ぶ（任意）',[
+   ...rows.map(y=>opt(card(y).name,y.uid,score,y.cardId)),skip()
+  ]);
+  break;
+ }
  case'g34_GraveSpell594':choice(s,t,'コスト'+t.max+'以下の呪文をどちらかの墓地から唱える',graveSpellOptions594(s,t));break;
  case'g34_GravePick598':{
   if(t.owner===undefined){
@@ -1867,6 +1889,7 @@ export function createSixPhotoRules(api){
  case'g34_LookDestination467':put(s,{...t,op:'g34_LookPick',stages:t.stages.map((q,i)=>i===t.stage?{...q,to:v,g467Chosen:true}:q)});break;
  case'g34_PowerSweep696':start(s,t,[{op:'Sweep',both:true,to:'grave',filter:{creature:true,...(v>0?{minPower:v}:{}),maxPower:v,g199Power:true}}]);break;
  case'g34_CostSweep596':start(s,t,[{op:'Sweep',to:'grave',filter:{creature:true,min:v,max:v}}]);break;
+ case'g34_GraveHandMana771':put(s,{...t,picks:[...(t.picks||[]),v]});break;
  case'g34_GraveSpell594':{
   if(!v||!graveSpellOptions594(s,t).some(({value:r})=>r.owner===v.owner&&r.uid===v.uid&&r.face===v.face&&r.serial===v.serial))break;
   const foreign=v.owner!==t.p,origin=foreign?'g34Holding':'grave',grave=s.players[v.owner].grave;
@@ -2570,6 +2593,9 @@ export function createSixPhotoRules(api){
  battleWins(s,p,w){const x=s.players[p].battle.find(x=>x.uid===w?.uid),c=x&&effective(x,s),defs=c&&(!c.g588FirstSelfWin||w.g588FirstForUnit)&&c.g189BattleWin?.filter(d=>!d.g752FirstOnly||w.g588FirstForUnit);return [...(defs?.length?[{player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Sequence',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs})}]:[]),...winWatches252(s,p,w)];},
  mugenTapped415(s,p,x){const c=effective(x,s);if(!x.sealed&&c.g415MugenTapped)queue(s,p,x,c.g415MugenTapped);},
  tapped(s,p,x){
+  if(!x.sealed&&api.isCreature(s,x))for(const y of s.players[p].battle){
+   if(card(y).g771Wing&&!y.sealed&&!api.ignored(s,y)&&api.isCreature(s,y))queue(s,p,y,[E('Draw',{n:1,optional:true})]);
+  }
   if(api.isCreature(s,x))for(const y of s.players[1-p].battle){
    const {g678OpponentTap,g681OpponentTapAnyTurn}=card(y);
    if(g678OpponentTap&&(s.active===1-p||g681OpponentTapAnyTurn)&&!y.sealed&&!api.ignored(s,y)&&api.isCreature(s,y))queue(s,1-p,y,g678OpponentTap);
@@ -2625,7 +2651,15 @@ export function createSixPhotoRules(api){
  shieldLeft(s,p,shield,group){s.g34ShieldLeftTurn=s.turn;if(s.leaving)(s.g536ShieldDepartures??=[]).push(p);else shieldDeparture536(s,p);if(group==null)return;for(const x of s.players[p].battle){if(!api.layers(x).some(z=>(z.exLifeShieldUids||[z.exLifeShieldUid]).includes(group))||api.ignored(s,x))continue;const role=card(x).g34Role;if(role==='doll')queue(s,p,x,[C('dollModes')]);if(role==='romaion')queue(s,p,x,[exec('hand',8,{spellOnly:true})]);if(role==='godtime')queue(s,p,x,[E('Offer',{defs:[C('endTurn')]})]);}},
  // A departing watcher can only observe its own departure (603.5d).
  flushElementLeaves617(s,watchers=[]){
-  for(const y of watchers)if(s.players[y.p].battle.some(x=>key(x)===key(y)))queue(s,y.p,y,[{op:'Draw',n:1,optional:true}]);
+  for(const y of watchers){
+   const live=s.players[y.p].battle.find(x=>key(x)===key(y));
+   if(!live)continue;
+   if(y.g771Wing){
+    if(!live.sealed&&!api.ignored(s,live)&&api.isCreature(s,live))queue(s,y.p,live,[
+     E('Offer',{title:'翼速 ザ・ウイングをアンタップする？',defs:[E('Untap',{g191First:true})]})
+    ]);
+   }else queue(s,y.p,y,[E('Draw',{n:1,optional:true})]);
+  }
  },
  flushShield536(s){if(s.leaving)return;const departed=s.g536ShieldDepartures||[];delete s.g536ShieldDepartures;for(const p of departed)shieldDeparture536(s,p);},
  drawn676(s,p,n,before){
@@ -2656,6 +2690,9 @@ export function createSixPhotoRules(api){
   if(victim){
    const watchers=before.filter(y=>y.p!==p&&y.elementDraw||
     to==='grave'&&victim.creature&&y.graveDraw&&key(y)!==key(victim));
+   if(victim.creature)for(const y of before){
+    if(y.p===p&&key(y)!==key(victim)&&card(y.cardId).g771Wing)watchers.push({...y,g771Wing:true});
+   }
    if(watchers.length){
     if(s.leaving)(s.leaving.g617Draws??=[]).push(...watchers);
     else hooks.flushElementLeaves617(s,watchers);
@@ -2745,7 +2782,7 @@ for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand
  combined.discount=(...args)=>hooks.discount(...args)+fifteen.discount(...args);
  combined.snapshot=(s,leaving)=>({...hooks.snapshot(s,leaving),fifteen:fifteen.snapshot(s)});
  combined.leaving=(s,p,x,snapshot,to,destroy)=>{hooks.leaving(s,p,x,snapshot,to,destroy);fifteen.leaving(s,p,x,snapshot?.fifteen,to,destroy);};
- return{...combined,fifteen, afterSpell566(s,f){if(f.spell?.g566EvoCharger&&!api.spellIgnored(s,f.spell))put(s,task('g34_EvoCharge566',f.caster??f.owner,f.spell.id,{}));},
+ return{...combined,fifteen, deploymentSpeed771(s,p,x,source){applyGrant(s,{p,source,spell:true,grant:{speedAttacker:true}},x);}, afterSpell566(s,f){if(f.spell?.g566EvoCharger&&!api.spellIgnored(s,f.spell))put(s,task('g34_EvoCharge566',f.caster??f.owner,f.spell.id,{}));},
 weakerBlock569(s,a,b){const p=s.players.findIndex(own=>own.battle.includes(a));if(p<0)return false;const fromSpell=(s.extLimits||[]).some(l=>l.kind==='g569WeakerBlock'&&api.allLayers(a).some(y=>key(y)===key(l.ref))&&!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})),fromAura=creatures(s,p).some(x=>{if(x.sealed||api.ignored(s,x))return false;const r=effective(x,s).g569Aura;return r&&matches(s,p,a,r.filter)&&(!r.mana||s.players[p].mana.filter(y=>api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,p).includes(r.mana.color)).length>=r.mana.n);});return (fromSpell||fromAura)&&api.power(b,false,s)<api.power(a,true,s);},
 attackPower593(s,p,x,playerOnly){
  const locks=(s.extLimits||[]).filter(l=>l.kind==='g593AttackPower'&&l.playerOnly===playerOnly&&(l.player===null||l.player===p)&&!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}));

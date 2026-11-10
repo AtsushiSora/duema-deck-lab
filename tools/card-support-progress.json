@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6164,
-  "pendingNames": 5663,
-  "phase": 770,
-  "added": 4,
+  "supportedNames": 6167,
+  "pendingNames": 5660,
+  "phase": 771,
+  "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3363,
+    "クリーチャー": 3361,
     "NEOクリーチャー": 152,
-    "呪文": 811,
+    "呪文": 810,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 60,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4138,
+    "未対応の能力文": 4135,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -9789,54 +9789,139 @@
           "check": "通常版とDM23-RP4X版の公式本文・同名商品を確認。墓地・手札から最大1枚ずつ確定してから同時にタップして置く処理と、移動先の置換や墓地移動禁止を確認するため保留。"
         }
       ]
+    },
+    {
+      "phase": 771,
+      "cards": [
+        {
+          "id": "dm23rp4-001",
+          "name": "翼速 ザ・ウイング"
+        },
+        {
+          "id": "dm23rp4-068",
+          "name": "ア:ロックロ"
+        },
+        {
+          "id": "dm23rp4-071",
+          "name": "蓄炎呪文「メラピッカ・チャージャー」"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm23rp4x-001",
+          "canonicalId": "dm23rp4-001",
+          "name": "翼速 ザ・ウイング"
+        },
+        {
+          "id": "dm23rp4x-001X",
+          "canonicalId": "dm23rp4-001",
+          "name": "翼速 ザ・ウイング"
+        },
+        {
+          "id": "dm26ex1-033",
+          "canonicalId": "dm23rp4-001",
+          "name": "翼速 ザ・ウイング"
+        },
+        {
+          "id": "dm23rp4x-068",
+          "canonicalId": "dm23rp4-068",
+          "name": "ア:ロックロ"
+        },
+        {
+          "id": "dm23rp4x-071",
+          "canonicalId": "dm23rp4-071",
+          "name": "蓄炎呪文「メラピッカ・チャージャー」"
+        },
+        {
+          "id": "dm23rp4-19A",
+          "canonicalId": "dm23rp4-071",
+          "name": "蓄炎呪文「メラピッカ・チャージャー」"
+        },
+        {
+          "id": "dm23rp4x-19A",
+          "canonicalId": "dm23rp4-071",
+          "name": "蓄炎呪文「メラピッカ・チャージャー」"
+        },
+        {
+          "id": "dm23rp4-21B",
+          "canonicalId": "dm23rp4-071",
+          "name": "蓄炎呪文「メラピッカ・チャージャー」"
+        },
+        {
+          "id": "dm23rp4x-21B",
+          "canonicalId": "dm23rp4-071",
+          "name": "蓄炎呪文「メラピッカ・チャージャー」"
+        }
+      ],
+      "supportedNames": 6167,
+      "pendingNames": 5660,
+      "verification": {
+        "focusedPassed": 17,
+        "regressionPassed": 40,
+        "regressionFailed": 0,
+        "regressionSkipped": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 12,
+        "scope": "3種類12版の公式能力全文、基本情報、マナ、画像実体、再録、使用制限を照合。召喚軽減、実際の味方タップと攻撃、W・ブレイカー、同時離脱時の任意アンタップ、墓地と手札の任意選択と一括タップ配置、墓地移動の置換・制限、チャージャー、実際に場に出た個体への速攻とNEO進化・置換・呪文無視、選択中のJSON復元を確認。既存カード定義は基点と一致。",
+        "runtimeNote": "各最大10分。最初の回帰は対象外のCPU対戦も起動したため今回のプロセスのみ停止してログを保持し、Phase 364・413・583・590・617・678・693・763・770から関連ケースに限定して検証。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dm23rp3-038",
+          "name": "ボルシャック・サイン",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-038",
+          "check": "初出の公式本文を確認。今回実装した、場に出た個体への呪文由来の速攻付与を再利用候補とする。非進化指定のNEOの扱いと、展開できない場合も行う自分のエレメント破壊を照合する。"
+        },
+        {
+          "id": "dm23rp4-012",
+          "name": "星姫械 エルナドンナ",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-012",
+          "check": "通常版とDM23-RP4X版の公式本文を確認。各ターン1回の離脱置換、複数体が同時に離れる場合とシールド回収時のS・トリガー禁止を、既存の置換と併せて検証するまで保留。"
+        },
+        {
+          "id": "dm23rp4-027",
+          "name": "助招！アルデ&パワッチ",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-027",
+          "check": "通常版とDM23-RP4X版の公式本文を確認。召喚時の任意タップを支払いに組み込み、実際にタップできた場合の軽減、エスケープとの独立性を検証するまで保留。"
+        },
+        {
+          "id": "dm23rp4-070",
+          "name": "蓄明呪文「マブシコワ・チャージャー」",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-070",
+          "check": "通常版とDM23-RP4X版の公式本文を確認。各側最大1つの選択を確定してから同時に墓地へ送り、選ばれた側だけがシールド化する処理と、置換・山札枯渇の裁定を照合するまで保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 770,
-    "nextPhase": 771,
+    "lastVerifiedPhase": 771,
+    "nextPhase": 772,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm23rp4-001",
-        "name": "翼速 ザ・ウイング",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-001",
-        "check": "クリーチャー数の比較による召喚軽減、自分のクリーチャーが実際にタップまたは離れた場合の任意効果を照合する。"
+        "id": "dm23rp3-038",
+        "name": "ボルシャック・サイン",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-038",
+        "check": "初出の公式本文を確認。今回実装した、場に出た個体への呪文由来の速攻付与を再利用候補とする。非進化指定のNEOの扱いと、展開できない場合も行う自分のエレメント破壊を照合する。"
       },
       {
         "id": "dm23rp4-012",
         "name": "星姫械 エルナドンナ",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-012",
-        "check": "他のクリーチャーの離脱置換と、S・トリガーを使わないシールド回収、各ターン1回の扱いを照合する。"
+        "check": "通常版とDM23-RP4X版の公式本文を確認。各ターン1回の離脱置換、複数体が同時に離れる場合とシールド回収時のS・トリガー禁止を、既存の置換と併せて検証するまで保留。"
       },
       {
         "id": "dm23rp4-027",
         "name": "助招！アルデ&パワッチ",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-027",
-        "check": "召喚時の任意タップによる軽減とエスケープを、既存の追加支払い処理と照合する。"
+        "check": "通常版とDM23-RP4X版の公式本文を確認。召喚時の任意タップを支払いに組み込み、実際にタップできた場合の軽減、エスケープとの独立性を検証するまで保留。"
       },
       {
         "id": "dm23rp4-070",
         "name": "蓄明呪文「マブシコワ・チャージャー」",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-070",
-        "check": "選択した側だけがシールド化する処理と、両者のシールド選択・山札枯渇時の順序を確認する。"
-      },
-      {
-        "id": "dm23rp4-071",
-        "name": "蓄炎呪文「メラピッカ・チャージャー」",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-071",
-        "check": "任意の手札展開、展開先の個体に対する呪文由来の速攻、チャージャーを確認する。"
-      },
-      {
-        "id": "dm23rp4-068",
-        "name": "ア:ロックロ",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-068",
-        "check": "通常版とDM23-RP4X版の公式本文・同名商品を確認。墓地・手札から最大1枚ずつ確定してから同時にタップして置く処理と、移動先の置換や墓地移動禁止を確認するため保留。"
-      },
-      {
-        "id": "dm23rp3-038",
-        "name": "ボルシャック・サイン",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp3-038",
-        "check": "公式本文と同名収録を確認。非進化指定でのNEOの出し方と、展開した個体にかかる呪文由来のスピードアタッカーが移動・効果無視を受けた場合の処理、自分のエレメント破壊まで検証するため保留。"
+        "check": "通常版とDM23-RP4X版の公式本文を確認。各側最大1つの選択を確定してから同時に墓地へ送り、選ばれた側だけがシールド化する処理と、置換・山札枯渇の裁定を照合するまで保留。"
       },
       {
         "id": "dm23rp2-047",

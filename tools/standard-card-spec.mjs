@@ -2564,6 +2564,14 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=771){
+  if(f.typeText==='クリーチャー'&&compact363==='自分のクリーチャーが相手のより多ければこのクリーチャーの召喚コストを3少なくする。ブロッカーブロッカーW・ブレイカー自分のクリーチャーがタップした時カードを1枚引いてもよい。自分の他のクリーチャーが離れた時このクリーチャーをアンタップしてもよい。')
+   return {g261Discount:{filter:{g413MoreCreatures:true},amount:3},blocker:true,breaker:2,g771Wing:true};
+  if(f.typeText==='クリーチャー'&&compact363==='このクリーチャーが出た時自分の墓地と手札からカードを最大1枚ずつタップしてマナゾーンに置いてもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'GraveHandMana771'}]};
+  if(f.typeText==='呪文'&&compact363==='コスト2以下のクリーチャーを1体自分の手札から出してもよい。このターンそのクリーチャーに「スピードアタッカー」を与える。(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)チャージャー(この呪文を唱えた後墓地に置くかわりにマナゾーンに置く)')
+   return {normalCharger:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'hand',deploy:true,n:1,optional:true,filter:{creature:true,max:2},g771DeploySpeed:true}]};
+ }
  if(phase>=770&&f.typeText==='クリーチャー'){
   const trigger='S・トリガーS・トリガー';
   const summon='(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)';

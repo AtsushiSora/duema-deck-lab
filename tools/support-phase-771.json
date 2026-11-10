@@ -1,0 +1,418 @@
+{
+  "phase": 771,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6164,
+  "description": "味方のタップと離脱、墓地と手札からの同時マナ配置、手札から出したクリーチャーへの速攻付与に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/43051/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-033",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dmrp22-042",
+    "https://dm.takaratomy.co.jp/rule/qa/32348/",
+    "https://dm.takaratomy.co.jp/rule/qa/48922/",
+    "https://dm.takaratomy.co.jp/rule/qa/33527/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37511/"
+  ],
+  "cards": [
+    {
+      "id": "dm23rp4-001",
+      "name": "翼速 ザ・ウイング",
+      "faces": [
+        {
+          "name": "翼速 ザ・ウイング",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のクリーチャーが相手のより多ければ、このクリーチャーの召喚コストを３少なくする。\nブロッカーブロッカー\nW・ブレイカー\n自分のクリーチャーがタップした時、カードを１枚引いてもよい。\n自分の他のクリーチャーが離れた時、このクリーチャーをアンタップしてもよい。",
+          "race": "アーマード・ソニック・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-001",
+      "spec": {
+        "g261Discount": {
+          "filter": {
+            "g413MoreCreatures": true
+          },
+          "amount": 3
+        },
+        "blocker": true,
+        "breaker": 2,
+        "g771Wing": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "cf41d334f4274d64eec940415ab6b376ed99c76a4f165a29e994c28d47814f5a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-068",
+      "name": "ア:ロックロ",
+      "faces": [
+        {
+          "name": "ア:ロックロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の墓地と手札からカードを最大１枚ずつ、タップしてマナゾーンに置いてもよい。",
+          "race": "ヴェールアビス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-068",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GraveHandMana771"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-068.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "bc74ddbdf1686468cc409b33a15b2b460e334489c8acc3934f9fe5488834b158",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-071",
+      "name": "蓄炎呪文「メラピッカ・チャージャー」",
+      "faces": [
+        {
+          "name": "蓄炎呪文「メラピッカ・チャージャー」",
+          "typeText": "呪文",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "コスト２以下のクリーチャーを１体、自分の手札から出してもよい。このターン、そのクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-071",
+      "spec": {
+        "normalCharger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 2
+            },
+            "g771DeploySpeed": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-071.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "f50120cdc17daa2d3b91faa35508eb57376cfbf10792bc6df7ebbcc51ef56224",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23rp4x-001",
+      "canonicalId": "dm23rp4-001",
+      "name": "翼速 ザ・ウイング",
+      "faces": [
+        {
+          "name": "翼速 ザ・ウイング",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のクリーチャーが相手のより多ければ、このクリーチャーの召喚コストを３少なくする。\nブロッカーブロッカー\nW・ブレイカー\n自分のクリーチャーがタップした時、カードを１枚引いてもよい。\n自分の他のクリーチャーが離れた時、このクリーチャーをアンタップしてもよい。",
+          "race": "アーマード・ソニック・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-001",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "16c8c849598ff9b5e7201f6620adf71e56fc7ca968fb63f657dc6a26f224d17b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4x-001X",
+      "canonicalId": "dm23rp4-001",
+      "name": "翼速 ザ・ウイング",
+      "faces": [
+        {
+          "name": "翼速 ザ・ウイング",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のクリーチャーが相手のより多ければ、このクリーチャーの召喚コストを３少なくする。\nブロッカーブロッカー\nW・ブレイカー\n自分のクリーチャーがタップした時、カードを１枚引いてもよい。\n自分の他のクリーチャーが離れた時、このクリーチャーをアンタップしてもよい。",
+          "race": "アーマード・ソニック・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-001X",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-001X.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "dfd1ce95ce70e89317bc103e9fb504bcec3fe475bcc3ea726cb255882ebbc4fa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex1-033",
+      "canonicalId": "dm23rp4-001",
+      "name": "翼速 ザ・ウイング",
+      "faces": [
+        {
+          "name": "翼速 ザ・ウイング",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のクリーチャーが相手のより多ければ、このクリーチャーの召喚コストを３少なくする。\nブロッカーブロッカー\nW・ブレイカー\n自分のクリーチャーがタップした時、カードを１枚引いてもよい。\n自分の他のクリーチャーが離れた時、このクリーチャーをアンタップしてもよい。",
+          "race": "アーマード・ソニック・コマンド",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex1-033",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex1-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "13fa79c018325df0e09b0f538038ab8a76f8f1b901f6c854116ddd35175ff74d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4x-068",
+      "canonicalId": "dm23rp4-068",
+      "name": "ア:ロックロ",
+      "faces": [
+        {
+          "name": "ア:ロックロ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが出た時、自分の墓地と手札からカードを最大１枚ずつ、タップしてマナゾーンに置いてもよい。",
+          "race": "ヴェールアビス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-068",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-068.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "885dc8d72e53fe97cc138477140c65019bfe1e356a6c6798fcbd05d168fff51b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4x-071",
+      "canonicalId": "dm23rp4-071",
+      "name": "蓄炎呪文「メラピッカ・チャージャー」",
+      "faces": [
+        {
+          "name": "蓄炎呪文「メラピッカ・チャージャー」",
+          "typeText": "呪文",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "コスト２以下のクリーチャーを１体、自分の手札から出してもよい。このターン、そのクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-071",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-071.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "d0f8332ec851a9b7c7ac49b50139079f38b4b46e1106d2c7a80692c3b6c0d097",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-19A",
+      "canonicalId": "dm23rp4-071",
+      "name": "蓄炎呪文「メラピッカ・チャージャー」",
+      "faces": [
+        {
+          "name": "蓄炎呪文「メラピッカ・チャージャー」",
+          "typeText": "呪文",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "コスト２以下のクリーチャーを１体、自分の手札から出してもよい。このターン、そのクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-19A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-19A.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "9beb8ce59b8d48cab1f1d4d9b21cde274f3b8492a7a2227985c4323070d2ff89",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4x-19A",
+      "canonicalId": "dm23rp4-071",
+      "name": "蓄炎呪文「メラピッカ・チャージャー」",
+      "faces": [
+        {
+          "name": "蓄炎呪文「メラピッカ・チャージャー」",
+          "typeText": "呪文",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "コスト２以下のクリーチャーを１体、自分の手札から出してもよい。このターン、そのクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-19A",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-19A.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "49ebf5c442475f97e7318f8ed4800bc593609c0f61de3f5d3335e249230e5e74",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4-21B",
+      "canonicalId": "dm23rp4-071",
+      "name": "蓄炎呪文「メラピッカ・チャージャー」",
+      "faces": [
+        {
+          "name": "蓄炎呪文「メラピッカ・チャージャー」",
+          "typeText": "呪文",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "コスト２以下のクリーチャーを１体、自分の手札から出してもよい。このターン、そのクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4-21B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4-21B.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "47ec9d867c894813fe12e0ba6bbeae636e124259c38a26578fcd17225897d141",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23rp4x-21B",
+      "canonicalId": "dm23rp4-071",
+      "name": "蓄炎呪文「メラピッカ・チャージャー」",
+      "faces": [
+        {
+          "name": "蓄炎呪文「メラピッカ・チャージャー」",
+          "typeText": "呪文",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "コスト２以下のクリーチャーを１体、自分の手札から出してもよい。このターン、そのクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp4x-21B",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23rp4x-21B.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "6495bf3a45435fc9b7aa8bdddae3dc6496b8ec0b0517679626b022800259c953",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23rp4-001": 4,
+      "dm23rp4-068": 4,
+      "dm23rp4-071": 4,
+      "dm23rp4x-001": 4,
+      "dm23rp4x-001X": 4,
+      "dm26ex1-033": 4,
+      "dm23rp4x-068": 4,
+      "dm23rp4x-071": 4,
+      "dm23rp4-19A": 4,
+      "dm23rp4x-19A": 4,
+      "dm23rp4-21B": 4,
+      "dm23rp4x-21B": 4
+    }
+  }
+}
