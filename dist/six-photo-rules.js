@@ -1552,6 +1552,12 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ResolveEnd501':if(t.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:t.spellCost,spellSource:t.source}))start(s,t,t.defs);break;
+ case'g34_AttackDoubleBreaker807':{
+  const host=sourceHost474(s,t)?.x;
+  if(host&&s.attackLifecycle&&s.attack?.attacker===host.uid)
+   s.attackLifecycle.g807DoubleBreaker={uid:t.uid,incarnation:t.incarnation||0};
+  break;
+ }
  case'g34_AfterAttack542':if(s.attackLifecycle)(s.attackLifecycle.g542After??=[]).push({p:t.p,source:t.source,uid:t.uid,incarnation:t.incarnation||0,defs:structuredClone(t.defs)});break;
  case'g34_Schedule537':{
   if(t.when==='turnEnd'&&t.spell&&s.endStep)break;
@@ -1816,7 +1822,7 @@ export function createSixPhotoRules(api){
   const ids=look(s,{...t,n:1,public:true}),y=own.deck.find(y=>y.uid===ids[0]);
   if(!y){api.deckCheck(s,t.p);break;}
   const matched=matches(s,t.p,y,t.filter),to=matched?t.to:t.elseTo;
-  const defs=to?[{op:'RevealMove514',target:y.uid,to,...(t.g774Banky?{g774Banky:true}:{})}]:[];
+  const defs=to?[{op:'RevealMove514',target:y.uid,to,...(t.g774Banky?{g774Banky:true}:{})}]:matched?[]:t.elseDefs||[];
   const release={op:'RevealRelease514',ids};
   if(matched&&t.optional&&to==='battle'&&canPut(s,t.p,y,'deck'))
    start(s,t,[{op:'Offer',title:card(y).name+'をバトルゾーンに出す？',score:own.deck.length<=1?-1000:20+Math.min(20,cost(card(y))),defs},release]);
@@ -2896,13 +2902,14 @@ export function createSixPhotoRules(api){
  manaAdded449(s,p,cards){
   const sources=creatures(s,p).flatMap(x=>{
    if(x.sealed)return [];
-   const {g454Space:rules,g763MultiManaUntap:untap}=effective(x,s);
-   return rules||untap?[{x,rules:rules||[],untap}]:[];
+   const {g454Space:rules,g763MultiManaUntap:untap,g807ManaEntry:defs}=effective(x,s);
+   return rules||untap||defs?[{x,rules:rules||[],untap,defs}]:[];
   });
   for(const x of cards){
    if(!x.faceDown&&api.zoneCard(s,p,x).g449ManaReveal)send(s,p,x,'ManaReveal449',{serial:x.zoneSerial||0});
    const actual=api.manaColors(x.faceDown?{civilizations:[],civ:'ゼロ',manaValue:1}:api.zoneCard(s,p,x,'mana'),s,p);
    for(const source of sources){
+    if(source.defs)queue(s,p,source.x,source.defs);
     const rules=source.rules.filter(r=>actual.includes(r.color));
     if(rules.length)send(s,p,source.x,'SpaceCharge454',{rules:structuredClone(rules)});
     if(source.untap&&actual.length>1)api.enqueue(s,p,{uid:source.x.uid,incarnation:source.x.incarnation||0,

@@ -2507,6 +2507,18 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=807&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const manaTap='マナゾーンに置く時このカードはタップして置く。';
+  const text=normalize(f.abilityText);
+  if(f.civilizations.length>1&&text===manaTap+'このクリーチャーをバトルゾーンに出した時自分の山札の上から1枚目を表向きにする。そのカードが多色でなければ自分のシールドを1枚選び墓地に置く。W・ブレイカー')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'RevealTop514',filter:{g223Multicolor:true},elseDefs:[{op:'ShieldGrave'}]}]};
+  const tobi=text.replace(/ブロッカーブロッカー(?:\(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい\))?/,'ブロッカー');
+  if(f.civilizations.length>1&&(tobi===manaTap+'ブロッカーこのクリーチャーは相手プレイヤーを攻撃できない。自分のマナゾーンにカードを置いた時バトルゾーンにある相手のクリーチャーを1体選びタップしてもよい。'||
+     tobi===manaTap+'ブロッカーこのクリーチャーは相手プレイヤーを攻撃できない。自分のマナゾーンにカードを置いた時相手のクリーチャーを1体選びタップしてもよい。'))
+   return {blocker:true,noPlayerAttack:true,g807ManaEntry:[{op:'Target',tap:true,optional:true}]};
+  if(f.civilizations.length>1&&text===manaTap+'このクリーチャーが攻撃する時その攻撃の終わりまでこのクリーチャーは「W・ブレイカー」を得てもよい。そうした場合その攻撃の後このクリーチャーを破壊する。')
+   return {g34Attack:[{op:'Offer',title:'この攻撃でW・ブレイカーを得る？',defs:[{op:'AttackDoubleBreaker807'},{op:'AfterAttack542',defs:[{op:'SelfDestroy'}]}]}]};
+ }
  if(phase>=806&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(text==='マナゾーンに置く時このカードはタップして置く。このクリーチャーはこのクリーチャーと同じ文明を持つクリーチャーに攻撃またはブロックされない。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')

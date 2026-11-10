@@ -162,7 +162,10 @@ export function effectiveCard(inst,context,forPower=false){
  c=extra.utilityTop.decorate(context,owner,inst,c);
  c=extra.six.grantAuras(context,owner,inst,externalBlockState(context,owner,inst,extra.utilityNatureSupport.decorate(context,owner,inst,extra.utilityGuard.decorate(context,owner,inst,extra.saga.decorate(context,owner,inst,extra.combat.decorate(context,owner,inst,extra.firebird.decorate(context,owner,inst,extra.history.decorate(context,owner,inst,extra.continuation.decorate(context,owner,inst,extra.six.decorate(context,owner,inst,extra.shieldPhoto.decorate(context,owner,inst,extra.photo.decorate(context,owner,inst,c))))))))))));
  c=decorateSurvivor406(context,owner,inst,c,{card,ignored:abilitiesIgnored,isCreature});
- const breakerChoices=c.g633DoubleBreaker&&!forPower?[c.breaker]:null;
+ const attackBreaker=context.attackLifecycle?.g807DoubleBreaker;
+ const attackDouble=!forPower&&attackBreaker&&layers(inst).some(x=>x.uid===attackBreaker.uid&&(x.incarnation||0)===attackBreaker.incarnation);
+ if(attackDouble&&!(c.breaker>=2)&&c.breaker!=='∞')c={...c,breaker:2};
+ const breakerChoices=(c.g633DoubleBreaker||attackDouble)&&!forPower?[c.breaker]:null;
  if(c.g444Crew&&!forPower){
   const n=extra.six.crewBreak444(context,owner,inst,c);
   breakerChoices?.push(n);
