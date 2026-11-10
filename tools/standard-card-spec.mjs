@@ -2507,6 +2507,17 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=817&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='クリーチャー'){
+   if(text==='バトルゾーンにある自分の他のナイトはすべて「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)')
+    return {g208Auras:[{filter:{creature:true,g724ExactRace:'ナイト'},other:true,grants:{speedAttacker:true}}]};
+   if(text==='このクリーチャーが攻撃する時パワー3000以下のクリーチャーを1体自分のマナゾーンからバトルゾーンに出してもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+    return {breaker:2,g34Attack:[{op:'Select',origin:'mana',n:1,deploy:true,optional:true,filter:{faceUp:true,g228Face:{type:'creature',maxPower:3000}}}]};
+  }
+  if(f.typeText==='呪文'&&text==='S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)名前に《白騎士》とあるクリーチャーを1体自分の手札からバトルゾーンに出してもよい。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'hand',n:1,deploy:true,optional:true,filter:{g228Face:{type:'creature',nameAny:['白騎士']}}}]};
+ }
  if(phase>=816&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(text==='自分が呪文を唱えた時バトルゾーンにある相手の「ブロッカー」を持つクリーチャーを1体選ぶ。そのクリーチャーはこのターンブロックできない。')

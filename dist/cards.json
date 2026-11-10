@@ -183771,23 +183771,125 @@
       ],
       "supportBatch": "phase-816",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm31-048",
+      "name": "爆獣イナバ・ギーゼ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ドラゴノイド/オリジン/ナイト",
+      "text": "バトルゾーンにある自分の他のナイトはすべて、「スピードアタッカー」を得る。(「スピードアタッカー」を得たクリーチャーは召喚酔いしない)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-048",
+      "limit": 4,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "g724ExactRace": "ナイト"
+          },
+          "other": true,
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-817",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm35-023",
+      "name": "白騎士ゲート",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n名前に《白騎士》とあるクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-023",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "nameAny": [
+                "白騎士"
+              ]
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-817",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm30-005",
+      "name": "緑神龍バグナボーン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "アース・ドラゴン",
+      "text": "このクリーチャーが攻撃する時、パワー3000以下のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-005",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "faceUp": true,
+            "g228Face": {
+              "type": "creature",
+              "maxPower": 3000
+            }
+          }
+        }
+      ],
+      "supportBatch": "phase-817",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 816,
+    "phase": 817,
     "checkedAt": "2026-11-10",
-    "baseCount": 6302,
+    "baseCount": 6305,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6305,
+    "totalCount": 6308,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35841/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37480/",
       "https://dm.takaratomy.co.jp/rule/qa/31531/",
-      "https://dm.takaratomy.co.jp/rule/qa/40102/",
-      "https://dm.takaratomy.co.jp/rule/qa/47894/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+      "https://dm.takaratomy.co.jp/rule/qa/31690/",
+      "https://dm.takaratomy.co.jp/rule/qa/34384/",
+      "https://dm.takaratomy.co.jp/rule/qa/48922/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316654/",
+      "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-109",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -198109,6 +198211,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/45589/",
           "https://dm.takaratomy.co.jp/rule/qa/47059/",
           "https://dm.takaratomy.co.jp/rule/qa/47495/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 816,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6302,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6305,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35841/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37480/",
+          "https://dm.takaratomy.co.jp/rule/qa/31531/",
+          "https://dm.takaratomy.co.jp/rule/qa/40102/",
+          "https://dm.takaratomy.co.jp/rule/qa/47894/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [
