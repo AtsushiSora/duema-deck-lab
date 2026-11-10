@@ -1,10 +1,10 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6182,
-  "pendingNames": 5645,
-  "phase": 776,
-  "added": 3,
+  "supportedNames": 6186,
+  "pendingNames": 5641,
+  "phase": 777,
+  "added": 4,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
   "nextAbilityGroups": [
@@ -154,9 +154,9 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3350,
+    "クリーチャー": 3347,
     "NEOクリーチャー": 152,
-    "呪文": 806,
+    "呪文": 805,
     "GRクリーチャー": 159,
     "G-NEOクリーチャー": 32,
     "タマシード": 60,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4124,
+    "未対応の能力文": 4120,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -10286,36 +10286,89 @@
           "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-065"
         }
       ]
+    },
+    {
+      "phase": 777,
+      "cards": [
+        {
+          "id": "dm24rp3-014",
+          "name": "光神龍アヴァタール"
+        },
+        {
+          "id": "dm24rp4-035",
+          "name": "♪友のため ケローラたちが オペレーション"
+        },
+        {
+          "id": "dm24rp3-072",
+          "name": "振回転の超人"
+        },
+        {
+          "id": "dm24rp3-062",
+          "name": "黒神龍スカルシューム"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm24ex3-003",
+          "canonicalId": "dm24rp3-014",
+          "name": "光神龍アヴァタール"
+        },
+        {
+          "id": "dm24ex3-057",
+          "canonicalId": "dm24rp4-035",
+          "name": "♪友のため ケローラたちが オペレーション"
+        }
+      ],
+      "supportedNames": 6186,
+      "pendingNames": 5641,
+      "verification": {
+        "focusedPassed": 13,
+        "regressionPassed": 498,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 6,
+        "scope": "4種類6版の公式能力全文、基本情報、マナ、画像実体、同名収録、使用制限を照合。異なるコストのエレメントの軽減、登場時と実際のタップ時の任意シールド化、ハイパーエナジーの支払い・キャンセル・封印と同コストの除外、異なるコストのクリーチャーのドロー、別コストの文明と支払い・通常召喚との区別・登場置換、相手による任意選択、選択中のJSON復元を検証。既存カード定義は基点と一致。",
+        "runtimeNote": "各最大10分。Phase 168・188・261・466・564・568・765・776の関連回帰は長時間CPU対戦をテスト名で除外。個別テスト初回の封印フィクスチャを修正し、実物の封印カードを配置して再検証した。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dm24rp4-065",
+          "name": "カンテ＝ランタン",
+          "check": "初出の公式本文を確認。現行総合ルール115.2・115.3a・701.13に沿って、バトル比較前のパワー0以下の破壊、比較が行われない場合の勝利誘発、対戦結果による誘発の間の有効期間を、通常バトルと効果バトルの両方で検証するまで保留。",
+          "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-065"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 776,
-    "nextPhase": 777,
+    "lastVerifiedPhase": 777,
+    "nextPhase": 778,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm24rp3-014",
-        "name": "光神龍アヴァタール",
-        "check": "異なるコストのエレメント3つの軽減と登場時・実際にタップした時のシールド化を既存処理で再現できるか確認する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-014"
+        "id": "dm24rp3-067",
+        "name": "ボルシャック・デュアルショック",
+        "check": "別コストで出た場合だけ、シールドをブレイクせず墓地へ置く。シールドの束とシールド離脱誘発の処理を確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-067"
       },
       {
-        "id": "dm24rp4-035",
-        "name": "♪友のため ケローラたちが オペレーション",
-        "check": "ハイパーエナジーと、異なるコストの自軍クリーチャー数を数えるドロー処理を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-035"
+        "id": "dm24rp3-057",
+        "name": "芸馬猫刄 スゴローニャ",
+        "check": "別コスト召喚後の必須のマナ回収と通常召喚を区別し、マナの移動禁止や置換を確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-057"
       },
       {
-        "id": "dm24rp3-072",
-        "name": "振回転の超人",
-        "check": "固定額の代替召喚、代替召喚で出た場合だけの相手任意マナ加速、W・ブレイカーを照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-072"
+        "id": "dm24rp4-046",
+        "name": "「ファーーーー！俺様は哀しい!!」",
+        "check": "ハイパーエナジーの呪文経路と、墓地を戻す処理の後で山札4枚から任意で出す処理を照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-046"
       },
       {
-        "id": "dm24rp3-062",
-        "name": "黒神龍スカルシューム",
-        "check": "固定額の代替召喚と、相手が自身で選ぶ任意の2ドローを同じ代替召喚処理で再現できるか確認する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-062"
+        "id": "dm24rp4-029",
+        "name": "加速樹",
+        "check": "G・ストライクと、相手の登場時点のコストを自分のマナ枚数と比べる誘発を既存処理で再現できるか確認する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-029"
       },
       {
         "id": "dm24rp4-065",

@@ -2564,6 +2564,25 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=777&&d.faces.length===1){
+  const shield={op:'Offer',title:'山札の上から1枚目をシールド化する？',defs:[{op:'ShieldTop',n:1}]};
+  if(f.typeText==='クリーチャー'&&compact363==='コストが異なる自分のエレメントが3つ以上あればこのクリーチャーの召喚コストを5少なくする。ただしコストは0以下にはならない。このクリーチャーが出た時またはタップした時自分の山札の上から1枚目をシールド化してもよい。')
+   return {g261Discount:{filter:{g466DistinctCosts:3},amount:5},effect:'sixPhoto',g34Tasks:[shield],g188Tapped:[shield]};
+  const energy='ハイパーエナジー(この呪文を唱える時コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー1体につきこの呪文のコストを2少なくする。ただしコストは0以下にはならない)';
+  const draw='カードを1枚引く。';
+  if(f.typeText==='呪文'&&['自分のクリーチャーの異なるコスト1つにつき','コストが異なる自分のクリーチャー1体につき'].some(prefix=>compact363===energy+prefix+draw))
+   return {hyperEnergy:true,effect:'sixPhoto',g34Tasks:[{op:'CountDraw',zone:'battle',g777DistinctCreatureCosts:true}]};
+  const breaker='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';
+  const paid=(symbol,body)=>'このクリーチャーを{'+symbol+'}を支払って召喚してもよい。そうしたらこのクリーチャーが出た時相手は'+body+breaker;
+  if(f.typeText==='クリーチャー'&&compact363===paid('nn02','自身の山札の上から1枚目をマナゾーンに置いてもよい。'))
+   return {breaker:2,g568Alt:{cost:2,paymentColors:['自然'],entry:[
+    {op:'OpponentOffer777',title:'山札の上から1枚目をマナゾーンに置く？',defs:[{op:'Ramp',n:1}]}
+   ]}};
+  if(f.typeText==='クリーチャー'&&compact363===paid('dd02','カードを2枚引いてもよい。'))
+   return {breaker:2,g568Alt:{cost:2,paymentColors:['闇'],entry:[
+    {op:'OpponentOffer777',title:'カードを2枚引く？',defs:[{op:'Draw',n:2}]}
+   ]}};
+ }
  if(phase>=776&&d.faces.length===1){
   const yobi='ヨビニオン(自分の山札の上からこの呪文よりコストが小さいクリーチャーが出るまで表向きにしてもよい。そのクリーチャーを出す。残りをシャッフルし山札の下に置く)';
   if(f.typeText==='呪文'&&compact363===yobi+'次のうちいずれか1つを選ぶ。▶シールドを1つブレイクする。▶このターン自分のクリーチャーすべてに「スピードアタッカー」を与える。')

@@ -179246,25 +179246,174 @@
       ],
       "supportBatch": "phase-776",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp3-014",
+      "name": "光神龍アヴァタール",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "アポロニア・ドラゴン",
+      "text": "コストが異なる自分のエレメントが３つ以上あれば、このクリーチャーの召喚コストを５少なくする。ただし、コストは０以下にはならない。\nこのクリーチャーが出た時またはタップした時、自分の山札の上から１枚目をシールド化してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-014",
+      "limit": 4,
+      "g261Discount": {
+        "filter": {
+          "g466DistinctCosts": 3
+        },
+        "amount": 5
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "山札の上から1枚目をシールド化する？",
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "g188Tapped": [
+        {
+          "op": "Offer",
+          "title": "山札の上から1枚目をシールド化する？",
+          "defs": [
+            {
+              "op": "ShieldTop",
+              "n": 1
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-777",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp4-035",
+      "name": "♪友のため ケローラたちが オペレーション",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "マジック・ソング",
+      "text": "ハイパーエナジー（この呪文を唱える時、コストが異なる自分のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、この呪文のコストを２少なくする。ただし、コストは０以下にはならない）\n自分のクリーチャーの、異なるコスト１つにつき、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-035",
+      "limit": 4,
+      "hyperEnergy": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "g777DistinctCreatureCosts": true
+        }
+      ],
+      "supportBatch": "phase-777",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp3-072",
+      "name": "振回転の超人",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "ジャイアント",
+      "text": "このクリーチャーを、 {nn02}を支払って召喚してもよい。そうしたら、このクリーチャーが出た時、相手は自身の山札の上から１枚目をマナゾーンに置いてもよい。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-072",
+      "limit": 4,
+      "breaker": 2,
+      "g568Alt": {
+        "cost": 2,
+        "paymentColors": [
+          "自然"
+        ],
+        "entry": [
+          {
+            "op": "OpponentOffer777",
+            "title": "山札の上から1枚目をマナゾーンに置く？",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-777",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp3-062",
+      "name": "黒神龍スカルシューム",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "ドラゴン・ゾンビ",
+      "text": "このクリーチャーを、{dd02}を支払って召喚してもよい。そうしたら、このクリーチャーが出た時、相手はカードを２枚引いてもよい。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp3-062",
+      "limit": 4,
+      "breaker": 2,
+      "g568Alt": {
+        "cost": 2,
+        "paymentColors": [
+          "闇"
+        ],
+        "entry": [
+          {
+            "op": "OpponentOffer777",
+            "title": "カードを2枚引く？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 2
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-777",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 776,
+    "phase": 777,
     "checkedAt": "2026-11-10",
-    "baseCount": 6179,
-    "newEffectCards": 3,
+    "baseCount": 6182,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6182,
+    "totalCount": 6186,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/43042/",
-      "https://dm.takaratomy.co.jp/rule/qa/45263/",
-      "https://dm.takaratomy.co.jp/rule/qa/45264/",
-      "https://dm.takaratomy.co.jp/rule/qa/45265/",
-      "https://dm.takaratomy.co.jp/rule/qa/47465/",
-      "https://dm.takaratomy.co.jp/rule/qa/47489/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31654/"
+      "https://dm.takaratomy.co.jp/rule/qa/45468/",
+      "https://dm.takaratomy.co.jp/rule/qa/45473/",
+      "https://dm.takaratomy.co.jp/rule/qa/45936/",
+      "https://dm.takaratomy.co.jp/rule/qa/45563/",
+      "https://dm.takaratomy.co.jp/rule/qa/43792/",
+      "https://dm.takaratomy.co.jp/rule/qa/48123/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -192784,6 +192933,28 @@
           "https://dm.takaratomy.co.jp/rule/qa/41471/",
           "https://dm.takaratomy.co.jp/rule/qa/44661/",
           "https://dm.takaratomy.co.jp/rule/qa/31568/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31654/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 776,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6179,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6182,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/43042/",
+          "https://dm.takaratomy.co.jp/rule/qa/45263/",
+          "https://dm.takaratomy.co.jp/rule/qa/45264/",
+          "https://dm.takaratomy.co.jp/rule/qa/45265/",
+          "https://dm.takaratomy.co.jp/rule/qa/47465/",
+          "https://dm.takaratomy.co.jp/rule/qa/47489/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31654/"
         ],
         "next": [
