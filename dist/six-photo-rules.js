@@ -340,7 +340,7 @@ export function createSixPhotoRules(api){
  function winWatches252(s,p,w){const winner=s.players[p].battle.find(x=>x.uid===w?.uid);if(!winner)return[];return watchSources252(s,p).flatMap(x=>{const watch=effective(x,s).g252WinWatch;return watch&&(!watch.first||w.g587First)&&(!watch.other||x.uid!==winner.uid)&&matches(s,p,winner,watch.filter)?[{player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Sequence',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs:watch.defs,...(watch.winner?{g399Attacker:{uid:winner.uid,incarnation:winner.incarnation||0}}:{})})}]:[];});}
  // Use events come from actual summons and spell casts, not arbitrary battlefield entries.
  function useBlockers524(s,caster){for(const x of creatures(s,1-caster))if(!x.sealed&&effective(x,s).g524OpponentUseBlocker)queue(s,1-caster,x,[{op:'UseBlocker524'}]);}
- const spellWatches=(s,caster,c)=>[s.active,1-s.active].flatMap(owner=>creatures(s,owner).filter(x=>!x.sealed).flatMap(x=>{const watch=effective(x,s).g204SpellWatch;return watch&&(watch.who==='both'||(watch.who==='self'?owner===caster:owner!==caster))&&(!watch.opponentTurn||s.active!==owner)&&(!watch.color||colors(c).includes(watch.color))&&(!watch.colorsAny||watch.colorsAny.some(color=>colors(c).includes(color)))&&(!watch.race||race(c,watch.race))?[{owner,x,watch}]:[];}));
+ const spellWatches=(s,caster,c)=>[s.active,1-s.active].flatMap(owner=>creatures(s,owner).filter(x=>!x.sealed).flatMap(x=>{const watch=effective(x,s).g204SpellWatch;return watch&&(watch.who==='both'||(watch.who==='self'?owner===caster:owner!==caster))&&(!watch.opponentTurn||s.active!==owner)&&(!watch.color||colors(c).includes(watch.color))&&(!watch.colorsAny||watch.colorsAny.some(color=>colors(c).includes(color)))&&(!watch.race||race(c,watch.race))&&(!watch.g766Once||!used(s,'g766SpellUse',x))?[{owner,x,watch}]:[];}));
  // Use the already decorated target stats and suppress breaker calculation on sources to avoid power recursion.
  function auraPower(s,x,c){const owner=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));if(owner<0||x.sealed||c.type!=='creature')return 0;const fits=f=>(!f.creature||c.type==='creature')&&(!f.color||colors(c).includes(f.color))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.g220NameAny||f.g220NameAny.some(q=>String(c.name).normalize('NFKC').includes(q.normalize('NFKC'))))&&(!f.any||f.any.some(fits))&&(!f.evolution||api.isEvolution(x))&&(f.min===undefined||cost(c)>=f.min)&&(!f.tapped||x.tapped)&&(!f.g436Crossed||ownCondition(s,owner,{g436Crossed:true},x.uid));let bonus=0;for(const sourceOwner of[0,1])for(const source of s.players[sourceOwner].battle){const raw=api.zoneCard(s,sourceOwner,source);if(source.sealed||(!raw.g205Aura&&!raw.g260Self?.grants?.g205Aura&&!raw.g268ManaGrants?.some(r=>r.grants?.g205Aura))||!api.isCreature(s,source)&&!(raw.type==='field'&&raw.d2Field))continue;const aura=effective(source,s,true).g205Aura;if(!aura||!aura.both&&owner!==(aura.opponent?1-sourceOwner:sourceOwner)||aura.other&&source.uid===x.uid||aura.turn==='own'&&s.active!==sourceOwner||aura.turn==='opponent'&&s.active===sourceOwner||!fits(aura.filter))continue;bonus+=aura.power;}return bonus;}
  // Counting characteristics must not calculate power/breakers on the counted cards.
@@ -1073,6 +1073,13 @@ export function createSixPhotoRules(api){
  case'g34_ScheduleGraveReturn644':
   if((t.anyTurn||s.active===t.p)&&!s.endStep&&(!t.condition||ownCondition(s,t.p,t.condition)))put(s,{...t,op:'g34_Schedule537',when:'turnEnd',defs:[{op:'SelfGraveRevive644',serial:t.serial}]});
   break;
+ case'g34_GraveSummonWatch766':{
+  const y=own.grave.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);
+  if(y&&api.canMoveZone(s,t.p,'grave')&&canPut(s,t.p,y,'grave'))start(s,t,[{
+   op:'Offer',title:card(y).name+'を墓地から出す？',defs:[{op:'SelfGraveRevive644',serial:t.serial}]
+  }]);
+  break;
+ }
  case'g34_SelfGraveRevive644':{
   const y=own.grave.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);
   if(y&&api.canMoveZone(s,t.p,'grave')&&canPut(s,t.p,y,'grave'))doPut(s,{...t,owner:t.p,origin:'grave',target:y.uid});
@@ -1726,7 +1733,13 @@ export function createSixPhotoRules(api){
   if(targets.length)move(s,targets.map(y=>({player:owner,uid:y.uid,to:'deck',controller:t.p})));
   break;
  }
- case'g34_CastCostDeploy595':start(s,t,[{op:'Select',origin:'hand',n:1,deploy:true,g195HandDeploy:true,optional:true,filter:{creature:true,nonEvolution:true,exactCost:t.castCost}}]);break;
+ case'g34_CastCostDeploy595':{
+  if(t.g766Below&&used(s,'g766SpellUse',t))break;
+  const filter=t.g766Below?{creature:true,belowCost:t.castCost}:{creature:true,nonEvolution:true,exactCost:t.castCost};
+  start(s,t,[{op:'Select',origin:'hand',n:1,deploy:true,g195HandDeploy:true,optional:true,filter,
+   ...(t.g766Below?{g766SpellUse:true,title:'唱えた呪文よりコストの小さいクリーチャーを出す（任意）'}:{})}]);
+  break;
+ }
  case'g34_GraveSpell594':choice(s,t,'コスト'+t.max+'以下の呪文をどちらかの墓地から唱える',graveSpellOptions594(s,t));break;
  case'g34_GravePick598':{
   if(t.owner===undefined){
@@ -2050,7 +2063,12 @@ export function createSixPhotoRules(api){
  case'g34_ChooseRaceUntap713':
   start(s,t,[{op:'Schedule537',when:'turnEnd',defs:[{op:'GroupUntap',owner:'both',g713ExactRace:v,filter:{creature:true}}]}]);
   break;
- case'g34_Select':if(v)put(s,{...t,selected:[...(t.selected||[]),v.uid],rows:[...(t.rows||[]),v]});else finishSelect(s,t);break;
+ case'g34_Select':
+  if(v){
+   if(t.g766SpellUse)mark(s,'g766SpellUse',t);
+   put(s,{...t,selected:[...(t.selected||[]),v.uid],rows:[...(t.rows||[]),v]});
+  }else finishSelect(s,t);
+  break;
  case'g34_Put':doPut(s,t,v);break;
  case'g34_Marianna728':put(s,{...t,op:'g34_Order',rest:'shuffle',after:v?[{op:'MariannaCast728',selected:v}]:null});break;
  case'g34_MariannaCast728':if(v)cast(s,t.p,t.selected.uid,true,null,t.selected.face,null,'deck','光器マリアンナの能力');break;
@@ -2381,6 +2399,14 @@ export function createSixPhotoRules(api){
   }
  },
  entry(s,p,y,options){const c=card(y),creature=api.isCreature(s,y);
+  if(creature&&!y.sealed&&options.execution===true){
+   const enteredCost=cost(effective(y,s));
+   for(const x of s.players[p].grave){
+    const min=card(x).g766GraveSummonMin;
+    if(min!==undefined&&!x.faceDown&&enteredCost>=min)
+     send(s,p,x,'GraveSummonWatch766',{serial:x.zoneSerial||0});
+   }
+  }
   for(const {x,defs}of seedWatches548(s,p,y,options))queue(s,p,x,defs);
   if(creature&&!y.sealed&&s.players[p].enteredThisTurn===2){
    for(const watcher of creatures(s,p)){
@@ -2513,7 +2539,17 @@ export function createSixPhotoRules(api){
   }
   return triggered;
  },
- untapped(s,p,x,turnStart=false){recordUntap472(s,p,x);const defs=effective(x,s).g299Untapped;if(!x.sealed&&defs)queue(s,p,x,defs);if(turnStart&&effective(x,s).g34Role==='kusabi')queue(s,p,x,[E('Ramp',{n:2,optional:true}),C('kusabi12')]);},
+ untapped(s,p,x,turnStart=false){
+  recordUntap472(s,p,x);
+  const defs=effective(x,s).g299Untapped;
+  if(!x.sealed&&defs)queue(s,p,x,defs);
+  if(turnStart&&effective(x,s).g34Role==='kusabi')queue(s,p,x,[E('Ramp',{n:2,optional:true}),C('kusabi12')]);
+  if(!x.sealed&&api.isCreature(s,x)&&s.players[p].battle.includes(x))
+   for(const owner of [s.active,1-s.active])for(const other of s.players[owner].battle){
+    if(other.uid!==x.uid&&card(other).g766OtherUntap&&!other.sealed&&api.isCreature(s,other)&&effective(other,s).g766OtherUntap)
+     queue(s,owner,other,[{op:'Untap',g191First:true}]);
+   }
+ },
  shieldLeft(s,p,shield,group){s.g34ShieldLeftTurn=s.turn;if(s.leaving)(s.g536ShieldDepartures??=[]).push(p);else shieldDeparture536(s,p);if(group==null)return;for(const x of s.players[p].battle){if(!api.layers(x).some(z=>(z.exLifeShieldUids||[z.exLifeShieldUid]).includes(group))||api.ignored(s,x))continue;const role=card(x).g34Role;if(role==='doll')queue(s,p,x,[C('dollModes')]);if(role==='romaion')queue(s,p,x,[exec('hand',8,{spellOnly:true})]);if(role==='godtime')queue(s,p,x,[E('Offer',{defs:[C('endTurn')]})]);}},
  // A departing watcher can only observe its own departure (603.5d).
  flushElementLeaves617(s,watchers=[]){

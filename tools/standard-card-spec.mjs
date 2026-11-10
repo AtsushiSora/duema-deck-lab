@@ -2564,6 +2564,14 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=766&&f.typeText==='クリーチャー'){
+  if(compact363==='自分のコスト6以上のクリーチャーが召喚によって出た時このクリーチャーを自分の墓地から出してもよい。')
+   return {g766GraveSummonMin:6};
+  if(compact363==='このターン中に自分が呪文を唱えていなければこのクリーチャーは攻撃できない。各ターンに一度自分が呪文を唱えた時その呪文よりコストが小さいクリーチャーを1体自分の手札から出してもよい。')
+   return {g225AttackRequires:{kind:'spells',min:1},g204SpellWatch:{who:'self',g766Once:true,defs:[{op:'CastCostDeploy595',g766Below:true}]}};
+  if(compact363==='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)スピードアタッカー(このクリーチャーは召喚酔いしない)他のクリーチャーがアンタップした時このクリーチャーをアンタップする。')
+   return {blocker:true,speedAttacker:true,g766OtherUntap:true};
+ }
  if(phase>=765){
   if(f.typeText==='クリーチャー'&&compact363==='パワード・ブレイカー(このクリーチャーはそのパワー6000ごとにシールドをさらに1つブレイクする)自分のコスト6以上のクリーチャーが出た時次の自分のターンのはじめまでそのクリーチャーのパワーをこのクリーチャーのパワーに加える。')
    return {poweredBreaker:true,g314OtherEntry:{who:'self',filter:{min:6},g765CopyPower:true}};

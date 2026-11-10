@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6145,
-  "pendingNames": 5682,
-  "phase": 765,
+  "supportedNames": 6148,
+  "pendingNames": 5679,
+  "phase": 766,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3381,
+    "クリーチャー": 3378,
     "NEOクリーチャー": 152,
     "呪文": 812,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1259,
-    "未対応の能力文": 4155,
+    "未対応の能力文": 4152,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -9516,30 +9516,82 @@
           "check": "通常版とDM23-RP2X版の公式本文と同名収録を確認。類似QA 43051では同時移動も2枚目として数え、QA 43050では他のプレイヤーの効果で置いた場合と発生源自身が2枚目として移動する場合も含む。全てのマナ移動と、移動直前の発生源を重複なく記録できるまで保留。"
         }
       ]
+    },
+    {
+      "phase": 766,
+      "cards": [
+        {
+          "id": "dm24rp4-063",
+          "name": "コオニ鬼麗"
+        },
+        {
+          "id": "dm24rp4-023",
+          "name": "電磁賢者シリックス"
+        },
+        {
+          "id": "dm23rp2-050",
+          "name": "鎧輪双翔ボルシャック・スカイ"
+        }
+      ],
+      "printAliases": [
+        {
+          "id": "dm24rp4-Sec17",
+          "canonicalId": "dm24rp4-023",
+          "name": "電磁賢者シリックス"
+        },
+        {
+          "id": "dm23rp2x-050",
+          "canonicalId": "dm23rp2-050",
+          "name": "鎧輪双翔ボルシャック・スカイ"
+        },
+        {
+          "id": "dm25rp1-T06",
+          "canonicalId": "dm23rp2-050",
+          "name": "鎧輪双翔ボルシャック・スカイ"
+        },
+        {
+          "id": "dm25ex3-TF26",
+          "canonicalId": "dm23rp2-050",
+          "name": "鎧輪双翔ボルシャック・スカイ"
+        }
+      ],
+      "supportedNames": 6148,
+      "pendingNames": 5679,
+      "verification": {
+        "focusedPassed": 11,
+        "regressionPassed": 203,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 7,
+        "scope": "3種類7版の公式本文・基本情報・マナ・画像・同名商品・使用制限を照合。召喚による登場と非召喚、墓地の同一滞在、唱えたツインパクト面、相手の墓地からの詠唱、任意効果の辞退と個体ごとの使用、相手ターン開始と効果による実際のアンタップ、選択途中の保存復元を検証。既存カード定義は基点と一致。",
+        "runtimeNote": "各最大10分。Phase 204・225・235・463・472・594・595・644・764・765の名前指定回帰203件が成功。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": []
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 765,
-    "nextPhase": 766,
+    "lastVerifiedPhase": 766,
+    "nextPhase": 767,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm24rp4-063",
-        "name": "コオニ鬼麗",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-063",
-        "check": "墓地にある状態からの誘発を確認。コスト6以上を召喚して実際に出た場合を、召喚以外で出た場合と区別し、墓地を離れて戻った際のUIDの扱いを検証する。"
+        "id": "dm23rp2-049",
+        "name": "罰打の妖精",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-049",
+        "check": "相手の2体目以降の登場と、発生源が実際にマナへ移動した場合に限る後続処理を照合する。"
       },
       {
-        "id": "dm24rp4-023",
-        "name": "電磁賢者シリックス",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp4-023",
-        "check": "呪文を唱えた履歴による攻撃制限、各ターン一度の誘発と、唱えた呪文よりコストの小さい手札のクリーチャーを出す処理を照合する。"
+        "id": "dm23rp2-064",
+        "name": "グ:ルボカッサ",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-064",
+        "check": "相手の墓地へ置かれた物理カードの枚数をターン終了時に判定し、アビス・メクレイド5につなげる処理を検証する。"
       },
       {
-        "id": "dm23rp2-050",
-        "name": "鎧輪双翔ボルシャック・スカイ",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-050",
-        "check": "ブロッカー・スピードアタッカーと、他のクリーチャーが実際にアンタップした時の誘発を確認。ターン開始時の一斉アンタップと相手側を含めて検証する。"
+        "id": "dm23rp2-033",
+        "name": "ゼンツー",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23rp2-033",
+        "check": "コストを支払わないエレメント登場の裁定を、無償召喚・単なる展開・軽減・代替コストと照合し、任意のマジック・メクレイド5を検証する。"
       },
       {
         "id": "dm23rp2-047",
