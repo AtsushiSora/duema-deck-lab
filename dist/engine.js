@@ -1181,11 +1181,21 @@ function advanceDeclarations(s){if(s.lossEvent)return;
  if(s.attackDeclarations.length){const uid=s.attackDeclarations[0],origin=['hand','mana','grave'].find(z=>s.players[s.active][z].some(x=>x.uid===uid)),inst=s.players[s.active][origin].find(x=>x.uid===uid);s.decision={type:'dddDeclare',player:s.active,uid,source:inst.cardId,origin,serial:inst.zoneSerial||0};}
  else delete s.attackDeclarations;
 }
+function sharesProtectedCivilization806(s,protectedCard,other,definition){
+ const scope=definition.g806CivilizationProtection;
+ if(!scope)return false;
+ const otherColors=civilizations(effectiveCard(other,s,true)).filter(color=>color!=='ゼロ');
+ if(scope==='self')return otherColors.some(color=>civilizations(definition).includes(color));
+ const own=s.players.find(p=>p.battle.includes(protectedCard));
+ return !!own&&own.battle.some(x=>!x.sealed&&isCreature(s,x)&&
+  otherColors.some(color=>civilizations(effectiveCard(x,s,true)).includes(color)));
+}
 function attackTargetAllowed(s,attacker,target){
  if(!attacker)return false;
  const a=effectiveCard(attacker,s),d=effectiveCard(target,s),f=d.g206AttackProtection;
  if(a.g483AttackCreatureColors&&!a.g483AttackCreatureColors.some(color=>civilizations(d).includes(color)))return false;
  if((d.cannotBeAttackedByCivs||[]).some(c=>civilizations(a).includes(c)))return false;
+ if(sharesProtectedCivilization806(s,target,attacker,d))return false;
  // This restriction belongs to the protecting creature, even if the target's abilities are ignored.
  const owner=1-s.active,allies=s.players[owner].battle;
  for(const source of allies){
@@ -1207,7 +1217,9 @@ function blockAttackerAllowed(s,attacker,blocker){
   g.g725NoBlockMaxPower!==undefined&&power(blocker,false,s)<=g.g725NoBlockMaxPower
   ||g.g737CreatureAttackUnblockable&&s.attack?.target!=='player'
  )))return false;
- const f=effectiveCard(attacker,s).g206NoBlock;if(!f)return true;
+ const a=effectiveCard(attacker,s),f=a.g206NoBlock;
+ if(sharesProtectedCivilization806(s,attacker,blocker,a))return false;
+ if(!f)return true;
  const b=effectiveCard(blocker,s);
  return !(f.minPower!=null&&power(blocker,false,s)>=f.minPower||f.maxPower!=null&&power(blocker,false,s)<=f.maxPower||f.maxCost!=null&&costValue(b)<=f.maxCost||f.lessPower&&power(blocker,false,s)<power(attacker,true,s)||f.color&&civilizations(b).includes(f.color)||f.exceptRace&&!String(b.race||'').includes(f.exceptRace)||f.nonEvolution&&!isEvolution(blocker)||f.creatureAttack&&s.attack?.target!=='player');
 }

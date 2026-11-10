@@ -1,9 +1,9 @@
 {
   "checkedAt": "2026-11-10",
   "catalogueNames": 11827,
-  "supportedNames": 6271,
-  "pendingNames": 5556,
-  "phase": 805,
+  "supportedNames": 6274,
+  "pendingNames": 5553,
+  "phase": 806,
   "added": 3,
   "readyForOfficialVerification": [],
   "dependencyBlocked": [],
@@ -154,7 +154,7 @@
     }
   ],
   "pendingByType": {
-    "クリーチャー": 3283,
+    "クリーチャー": 3280,
     "NEOクリーチャー": 152,
     "呪文": 788,
     "GRクリーチャー": 159,
@@ -226,7 +226,7 @@
   },
   "reasons": {
     "複数面・特殊カードタイプまたは情報不足": 1241,
-    "未対応の能力文": 4056,
+    "未対応の能力文": 4053,
     "未対応のG・ゼロ条件": 25,
     "未対応の召喚時能力": 23,
     "未対応のシンカパワー": 2,
@@ -12013,30 +12013,67 @@
           "reason": "初出の公式本文を確認。文明の常在追加と、その追加で多色になった時の能力無視、他の文明追加への依存、複数体の火パワー加算の適用順を一体で検証するまで保留。"
         }
       ]
+    },
+    {
+      "phase": 806,
+      "cards": [
+        {
+          "id": "dm25-031",
+          "name": "霊王機ブルファリオン"
+        },
+        {
+          "id": "dm25-041",
+          "name": "封魔カメレオス"
+        },
+        {
+          "id": "dm25-049",
+          "name": "特捜兵クロード"
+        }
+      ],
+      "printAliases": [],
+      "supportedNames": 6274,
+      "pendingNames": 5553,
+      "verification": {
+        "focusedPassed": 13,
+        "regressionPassed": 227,
+        "regressionFailed": 0,
+        "regressionIncludesFocused": false,
+        "check": "成功",
+        "officialPrints": 3,
+        "scope": "初出3点の全能力、基本情報、公式JPEG、使用制限なしを照合。同名再録は公式の収録商品と既存の正規名に照合した範囲で該当なし。ブルファリオンは自身の文明、カメレオスはQA 35544に従い自分のクリーチャー全体の文明を参照し、無色、封印による集合の変化、ラルファスでの一時追加、攻撃・ブロック制限を確認。ブルファリオンのマナタップとW・ブレイクを検証。クロードはS・トリガー、任意の1枚を双方の対象ゾーンから選ぶ処理、封印中を選べないQA 32467、アンタップ禁止、タマシード、ツインパクト、コートニーで文明が変わった裏向きマナの非公開処理を確認。既存対戦定義6,271件の一致を確認。",
+        "runtimeNote": "各最大10分。Phase 206・210・569・698・805の関連回帰に成功。Phase 206・210・569の長時間CPU対戦を --test-skip-pattern で除外。全体のnpm testは中断・合否未確認。"
+      },
+      "deferred": [
+        {
+          "id": "dm25-048",
+          "name": "黒雲のリンバウシャ",
+          "reason": "公式本文とQA 35551・35552を確認。闇/自然を両方持つ1体は1回、該当2体は2回誘発。監視元の自身と他のクリーチャーが同時に出る場合に、現行の順次登場処理で並び順によらず正しい誘発数にできるまで保留。"
+        }
+      ]
     }
   ],
   "resume": {
-    "lastVerifiedPhase": 805,
-    "nextPhase": 806,
+    "lastVerifiedPhase": 806,
+    "nextPhase": 807,
     "workInProgress": [],
     "nextCandidates": [
       {
-        "id": "dm25-031",
-        "name": "霊王機ブルファリオン",
-        "check": "攻撃する側またはブロックする側と共有する文明を現在の特性で判定し、W・ブレイカーと多色マナも確認する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-031"
+        "id": "dm24-009",
+        "name": "鎧亜の紅滅グレン・ブラムスリー",
+        "check": "多色とW・ブレイカー、登場時の山札上1枚の公開、単色・無色の場合の自分のシールド墓地送りを照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-009"
       },
       {
-        "id": "dm25-041",
-        "name": "封魔カメレオス",
-        "check": "自分のクリーチャー全体が持つ文明の集合を参照する攻撃・ブロック制限と、文明追加や場を離れた時の反映を照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-041"
+        "id": "dm26-025",
+        "name": "護聖妖精トビ・ゴンゴン",
+        "check": "自分のマナゾーンに置いた時の任意タップを、チャージと効果、同時に複数枚、裏向きマナも含め照合する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-025"
       },
       {
-        "id": "dm25-048",
-        "name": "黒雲のリンバウシャ",
-        "check": "闇または自然のクリーチャーの登場時に誘発する強化を、同時登場・多色・自身の登場・能力の重なりを含め公式照合する。",
-        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-048"
+        "id": "dm26-055",
+        "name": "機動剛勇ラスト・モモタロウ",
+        "check": "任意の攻撃中W・ブレイカーと攻撃後の自壊を照合し、ブロックされた場合や発生源の個体を追跡する。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26-055"
       },
       {
         "id": "dm24ex4-073",
@@ -12613,6 +12650,12 @@
         "name": "染風の宮司カーズ",
         "check": "初出の公式本文を確認。文明の常在追加と、その追加で多色になった時の能力無視、他の文明追加への依存、複数体の火パワー加算の適用順を一体で検証するまで保留。",
         "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24-025"
+      },
+      {
+        "id": "dm25-048",
+        "name": "黒雲のリンバウシャ",
+        "check": "公式本文とQA 35551・35552を確認。闇/自然を両方持つ1体は1回、該当2体は2回誘発。監視元の自身と他のクリーチャーが同時に出る場合に、現行の順次登場処理で並び順によらず正しい誘発数にできるまで保留。",
+        "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25-048"
       }
     ],
     "steps": [

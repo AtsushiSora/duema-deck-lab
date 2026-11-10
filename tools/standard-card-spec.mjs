@@ -2507,6 +2507,15 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=806&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(text==='マナゾーンに置く時このカードはタップして置く。このクリーチャーはこのクリーチャーと同じ文明を持つクリーチャーに攻撃またはブロックされない。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g806CivilizationProtection:'self'};
+  if(text==='このクリーチャーはバトルゾーンにある自分のクリーチャーと同じ文明を持つクリーチャーから攻撃またはブロックされない。')
+   return {g806CivilizationProtection:'team'};
+  if(text==='S・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)このクリーチャーをバトルゾーンに出した時バトルゾーンまたはマナゾーンにある自分の多色カードを1枚アンタップしてもよい。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Select',zones:['battle','mana'],n:1,optional:true,g806MultiUntap:true,title:'アンタップする自分の多色カードを1枚選ぶ'}]};
+ }
  if(phase>=805&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(text==='このクリーチャーで攻撃するかわりにタップして次の能力を使ってもよい。バトルゾーンにある自分のクリーチャーを1体選ぶ。このターンそのクリーチャーに好きな文明をひとつ追加する。')
