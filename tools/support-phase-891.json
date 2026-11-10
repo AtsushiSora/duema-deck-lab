@@ -1,0 +1,164 @@
+{
+  "phase": 891,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6538,
+  "description": "双方の選択後に同時バウンスするSトリガー、自軍離脱監視の任意ドロー、破壊監視と解決時の多色条件・スレイヤーに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/33607/",
+    "https://dm.takaratomy.co.jp/rule/qa/33591/",
+    "https://dm.takaratomy.co.jp/rule/qa/39437/",
+    "https://dm.takaratomy.co.jp/rule/qa/39442/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp14-037",
+      "name": "魔法学校 パクスクウガ",
+      "faces": [
+        {
+          "name": "魔法学校 パクスクウガ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。その後、自分のクリーチャーを１体選んでもよい。それらを持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-037",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "to": "hand",
+            "n": 1,
+            "g173Targets": true,
+            "g193Select": true,
+            "g891BouncePair": true,
+            "filter": {
+              "creature": true
+            },
+            "title": "手札に戻す相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "04c857ac12d3c882ef8bfd5cb36047ff67ce7e094fd48aa189af07402cc61839",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp14-010",
+      "name": "不和の菜将 ジターナイト",
+      "faces": [
+        {
+          "name": "不和の菜将 ジターナイト",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "W・ブレイカー\n自分のクリーチャーがバトルゾーンを離れた時、カードを１枚引いてもよい。",
+          "race": "デーモン・コマンド/ワイルド・ベジーズ/不死樹王国",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-010",
+      "spec": {
+        "breaker": 2,
+        "g891OwnCreatureLeaves": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "96a562200e26038999cf3da0633392dee0cc3df92959a66c1712f4eae9d67ad2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex14-006",
+      "name": "毘盛伽 ジョウ骨キ",
+      "faces": [
+        {
+          "name": "毘盛伽 ジョウ骨キ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "スレイヤー\nレインボーナス：クリーチャーが破壊された時、バトルゾーンに自分の多色クリーチャーがあれば、カードを１枚引いてもよい。",
+          "race": "マフィ・ギャング/チーム零",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-006",
+      "spec": {
+        "slayer": true,
+        "g303DeathWatch": {
+          "both": true,
+          "self": true,
+          "g891LookBackSelf": true,
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "creature": true,
+                "multi": true
+              },
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "optional": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex14-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "f3ecea36110176f07d45759de27a1bcbe3532b0ae1e872901058cae7f3f08eb3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp14-037": 4,
+      "dmrp14-010": 4,
+      "dmex14-006": 4
+    }
+  }
+}

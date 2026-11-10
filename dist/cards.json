@@ -191420,21 +191420,124 @@
       ],
       "supportBatch": "phase-890",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-037",
+      "name": "魔法学校 パクスクウガ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。その後、自分のクリーチャーを１体選んでもよい。それらを持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-037",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "opponent",
+          "to": "hand",
+          "n": 1,
+          "g173Targets": true,
+          "g193Select": true,
+          "g891BouncePair": true,
+          "filter": {
+            "creature": true
+          },
+          "title": "手札に戻す相手のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-891",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-010",
+      "name": "不和の菜将 ジターナイト",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "デーモン・コマンド/ワイルド・ベジーズ/不死樹王国",
+      "text": "W・ブレイカー\n自分のクリーチャーがバトルゾーンを離れた時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-010",
+      "limit": 4,
+      "breaker": 2,
+      "g891OwnCreatureLeaves": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-891",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex14-006",
+      "name": "毘盛伽 ジョウ骨キ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "マフィ・ギャング/チーム零",
+      "text": "スレイヤー\nレインボーナス：クリーチャーが破壊された時、バトルゾーンに自分の多色クリーチャーがあれば、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex14-006",
+      "limit": 4,
+      "slayer": true,
+      "g303DeathWatch": {
+        "both": true,
+        "self": true,
+        "g891LookBackSelf": true,
+        "defs": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "multi": true
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-891",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 890,
+    "phase": 891,
     "checkedAt": "2026-11-11",
-    "baseCount": 6535,
+    "baseCount": 6538,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6538,
+    "totalCount": 6541,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/38756/",
-      "https://dm.takaratomy.co.jp/rule/qa/46566/",
-      "https://dm.takaratomy.co.jp/rule/qa/34238/",
-      "https://dm.takaratomy.co.jp/rule/qa/41457/"
+      "https://dm.takaratomy.co.jp/rule/qa/33607/",
+      "https://dm.takaratomy.co.jp/rule/qa/33591/",
+      "https://dm.takaratomy.co.jp/rule/qa/39437/",
+      "https://dm.takaratomy.co.jp/rule/qa/39442/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -207290,6 +207393,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/34328/",
           "https://dm.takaratomy.co.jp/rule/qa/39074/",
           "https://dm.takaratomy.co.jp/rule/qa/39105/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 890,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6535,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6538,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/38756/",
+          "https://dm.takaratomy.co.jp/rule/qa/46566/",
+          "https://dm.takaratomy.co.jp/rule/qa/34238/",
+          "https://dm.takaratomy.co.jp/rule/qa/41457/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

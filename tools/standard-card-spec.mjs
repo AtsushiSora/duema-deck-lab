@@ -3445,6 +3445,19 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=891){
+  if(d.id==='dmrp14-037'&&f.typeText==='呪文'&&compact363===
+   'S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)相手のクリーチャーを1体選ぶ。その後自分のクリーチャーを1体選んでもよい。それらを持ち主の手札に戻す。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'battle',owner:'opponent',to:'hand',n:1,
+    g173Targets:true,g193Select:true,g891BouncePair:true,filter:{creature:true},title:'手札に戻す相手のクリーチャーを1体選ぶ'}]};
+  if(d.id==='dmrp14-010'&&creature&&compact363===
+   'W・ブレイカー自分のクリーチャーがバトルゾーンを離れた時カードを1枚引いてもよい。')
+   return {breaker:2,g891OwnCreatureLeaves:[{op:'Draw',n:1,optional:true}]};
+  if(d.id==='dmex14-006'&&creature&&compact363===
+   'スレイヤーレインボーナス:クリーチャーが破壊された時バトルゾーンに自分の多色クリーチャーがあればカードを1枚引いてもよい。')
+   return {slayer:true,g303DeathWatch:{both:true,self:true,g891LookBackSelf:true,
+    defs:[{op:'IfOwn',filter:{creature:true,multi:true},defs:[{op:'Draw',n:1,optional:true}]}]}};
+ }
  if(phase>=890){
   if(d.id==='dmrp15-071'&&creature&&compact363===
    "ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)このクリーチャーが攻撃する時攻撃の後このクリーチャーを破壊する。オシオキムーン:カードが自分のシールドゾーンを離れた時そのターンこのクリーチャーに「スレイヤー」を与える。(「スレイヤー」を持つクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)")
