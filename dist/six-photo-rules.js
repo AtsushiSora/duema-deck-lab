@@ -1180,6 +1180,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
    choice(s,t,title,opp.hand.map((_,i)=>opt('裏向きの手札 '+(i+1),i,0)));
   }
   break;
+ case'g34_StartManaLimit794':put(s,task('g43_LimitMana',t.p,t.source,{max:t.max}));break;
  case'g34_StartManaLock773':
   choice(s,t,'次のターン開始時にアンタップさせない相手のマナを1枚選ぶ',opp.mana.map((y,i)=>
    opt(y.faceDown?'裏向きのマナ '+(i+1):card(y).name,y.uid,y.tapped?10:0,y.faceDown?null:y.cardId)));
@@ -1552,7 +1553,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
   const selected=t.n==='all'?shields.map(y=>y.uid):(t.selected||[]).filter(uid=>shields.some(y=>y.uid===uid));
   if(selected.length<n)choice(s,{...t,selected},
    'ブレイクする'+(chooser===owner?'自分':'相手')+'のシールドを'+n+'つ選ぶ（'+selected.length+'つ選択済み）',
-   shields.flatMap((y,i)=>selected.includes(y.uid)?[]:[opt('シールド'+(i+1),y.uid,10)]),chooser);
+   [...shields.flatMap((y,i)=>selected.includes(y.uid)?[]:[opt('シールド'+(i+1),y.uid,10)]),...(t.optional&&!selected.length?[skip()]:[])],chooser);
   else if(n)api.interruptBreak(s,owner,host?selected.slice(0,n):selected,{...t,op:'g34_AfterBreak278'},
    {player:t.p,sourceUid:host?.uid??t.uid,source:t.source,controller:t.p,g278Effect:true,
     ...(host?{incarnation:host.incarnation||0,...(c.g122NoST?{noST:true}:{}),reverse:!!c.reverseBurn,burn:!!c.shieldBurn,...(c.qqLock?{qqBreak:true}:{})}:{})});
@@ -2224,7 +2225,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
   }
   start(s,t,t.defs);
  }break;
- case'g34_Break497':put(s,{...t,selected:[...(t.selected||[]),v]});break;
+ case'g34_Break497':if(v)put(s,{...t,selected:[...(t.selected||[]),v]});break;
  case'g34_ShieldMana557':if(s.players[1-t.p].shields.some(x=>x.uid===v)){const moved=api.moveShields(s,1-t.p,[v],'mana');api.log(s,t.p,'shieldMana',card(t.source).name+'：相手のシールドを1つマナへ置いた（カード'+moved.length+'枚）',{cardId:t.source});}break;
  case'g34_Break278':{
   const host=t.requiresCreature&&sourceHost474(s,t);
@@ -2626,7 +2627,7 @@ if(t.g641Civilizations)return countBattleCivilizations(s,s.players[owner].battle
  beginLoss(s,p,uid){const x=s.players[p].battle.find(x=>x.uid===uid);if(x)minoLoss(s,{op:'g34_Custom',name:'minoLoss',p,source:x.cardId,uid,selected:[]});},
  muku(s,p,x){return ninja(effective(x,s))?active(s,p,'mukujimmed').filter(y=>!used(s,'g34Muku',y)).map(y=>({uid:y.uid,key:key(y),cardId:y.cardId})):[];},
  useMuku(s,p,k){(s.g34Muku??={})[k]=s.turn;},
- shieldTrigger(s,p,x,c){if(c.type==='creature'&&mecha(c)&&cost(c)<=8&&active(s,p,'kuusoku').length)return true;const root=s.players[p].shields.find(r=>api.shieldCards(r).some(y=>y.uid===x.uid)),group=root&&api.shieldGroup(root);if(root&&c.type==='creature'&&c.g433SeedTrigger&&s.players[p].battle.some(y=>!y.sealed&&matches(s,p,y,{g295Tamaseed:true})))return true;return active(s,p,'fourJustice').length>0&&s.players[p].battle.some(y=>api.layers(y).some(z=>(z.exLifeShieldUids||[z.exLifeShieldUid]).includes(group)));},
+ shieldTrigger(s,p,x,c){if(race(c,'ドラゴン')&&s.players[p].battle.some(y=>!y.sealed&&card(y).g794DragonShieldTrigger&&cost(c)<=effective(y,s).g794DragonShieldTrigger))return true;if(c.type==='creature'&&mecha(c)&&cost(c)<=8&&active(s,p,'kuusoku').length)return true;const root=s.players[p].shields.find(r=>api.shieldCards(r).some(y=>y.uid===x.uid)),group=root&&api.shieldGroup(root);if(root&&c.type==='creature'&&c.g433SeedTrigger&&s.players[p].battle.some(y=>!y.sealed&&matches(s,p,y,{g295Tamaseed:true})))return true;return active(s,p,'fourJustice').length>0&&s.players[p].battle.some(y=>api.layers(y).some(z=>(z.exLifeShieldUids||[z.exLifeShieldUid]).includes(group)));},
  // Mana entry is independent of casting or battlefield entry (QA39403/39404).
  manaAdded449(s,p,cards){
   const sources=creatures(s,p).flatMap(x=>{

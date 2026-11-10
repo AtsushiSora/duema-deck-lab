@@ -29,7 +29,18 @@ export function createMadoRules(api){
  case'g4_Airvo':{const list=[0,1].flatMap(p=>api.visibleBattleCards(s,p).flatMap(top=>api.layers(top).filter(x=>(x===top?[card(x)]:faces(card(x))).some(c=>cost(c)<=7)).filter(x=>x!==top||api.targetable(s,t.p,p,top)).map(x=>({x,top,p}))));const forced=list.filter(r=>r.p!==t.p&&r.x===r.top&&effective(r.top,s).forceTarget);choice(s,t,'エアヴォ：コスト7以下のカードを1枚、手札に戻す',(forced.length?forced:list).map(({x,top,p})=>opt(card(x).name,{uid:x.uid,top:top.uid,player:p},p===t.p?(x===top?-15:10):cost(card(x))*3,card(x).id)));break;}
  case'g4_Gon':{const uids=policyLook(s,t.p,3,own.deck,api).map(x=>x.uid);own.g4Protected=uids;if(uids.length)choice(s,{...t,uids},'ゴンパドゥ：上3枚から手札に加える1枚を選ぶ',uids.map(uid=>{const x=own.deck.find(x=>x.uid===uid);return opt(card(x).name,uid,card(x).newWorld&&!fields(s,t.p).length?150:Math.min(30,cost(card(x))),x.cardId);}));break;}
  case'g4_Blood':choice(s,t,'墓地を山札に戻すプレイヤーを選ぶ',[opt('自分の墓地',t.p,own.deck.length<12?35:-3),opt('相手の墓地',1-t.p,opp.grave.length>5?30:2)]);break;
- case'g4_Untap':{const selected=t.selected||[],available=t.uids.filter(uid=>!selected.includes(uid)&&own.mana.some(x=>x.uid===uid&&x.tapped&&api.canUntap(x)));if(selected.length===3||!available.length){for(const uid of selected){const x=own.mana.find(x=>x.uid===uid);if(x&&api.canUntap(x))x.tapped=false;}break;}choice(s,{...t,selected},'ガ・リュザーク：アンタップするマナを3枚まで選ぶ（'+selected.length+'/3）',[...available.map(uid=>{const x=own.mana.find(x=>x.uid===uid);return opt(card(x).name,uid,20+colors(card(x)).length,x.cardId);}),opt('ここまでで確定',null,0)]);break;}
+ case'g4_Untap':{
+  const selected=t.selected||[],max=t.max??3;
+  const available=t.uids.filter(uid=>!selected.includes(uid)&&own.mana.some(x=>x.uid===uid&&x.tapped&&api.canUntap(x)));
+  if(selected.length===max||!available.length){for(const uid of selected){const x=own.mana.find(x=>x.uid===uid);if(x&&api.canUntap(x))x.tapped=false;}break;}
+  const name=max===3?'ガ・リュザーク':card(t.source).name;
+  choice(s,{...t,selected},name+'：アンタップするマナを'+max+'枚まで選ぶ（'+selected.length+'/'+max+'）',
+   [...available.map(uid=>{
+    const x=own.mana.find(x=>x.uid===uid);
+    return max>3&&x.faceDown?opt('裏向きのマナ '+(own.mana.indexOf(x)+1),uid,20):opt(card(x).name,uid,20+colors(card(x)).length,x.cardId);
+   }),opt('ここまでで確定',null,0)]);
+  break;
+ }
  default:throw Error('未実装の水魔導具効果：'+t.op);
  }return true;}
  function chosen(s,t,v){if(dark.chosen(s,t,v))return true;if(!t.op.startsWith('g4_'))return false;const own=s.players[t.p];switch(t.op){
@@ -57,6 +68,13 @@ export function createMadoRules(api){
  block(s,p,x){if(effective(x,s).madoGashagon&&!api.selfStopped(s,p))on(s,p,x,'discard',{n:1,causedBy:p});},
  graveWatchers(s){return [0,1].flatMap(p=>creatures(s,p).filter(x=>effective(x,s).dollarGraveDraw).map(x=>({p,uid:x.uid,source:x.cardId})));},
  graveAdded(s,p,all,snapshot){for(const y of snapshot||this.graveWatchers(s))if(y.p!==p)for(const x of all)api.enqueue(s,y.p,{uid:y.uid,source:y.source,effect:'extended',task:task('optionalDrawOne',y.p,y.source)});},
- beforeUntap(s,p){if(!creatures(s,1-p).some(x=>effective(x,s).manaUntapThree))return false;const uids=s.players[p].mana.filter(x=>x.tapped&&!x.skipUntap&&api.canUntap(x)).map(x=>x.uid);if(uids.length)put(s,task('g4_Untap',p,s.players[1-p].battle.find(x=>effective(x,s).manaUntapThree).cardId,{uids,selected:[]}));return true;},
+ beforeUntap(s,p,limit){
+  const source=creatures(s,1-p).find(x=>effective(x,s).manaUntapThree);
+  if(!limit&&!source)return false;
+  const max=limit?.max??3,smaller=source&&(!limit||max>3);
+  const uids=s.players[p].mana.filter(x=>x.tapped&&!x.skipUntap&&api.canUntap(x)).map(x=>x.uid);
+  if(uids.length)put(s,task('g4_Untap',p,smaller?source.cardId:limit.source,{uids,selected:[],...(max>3&&!smaller?{max}:{})}));
+  return true;
+ },
  };
 }

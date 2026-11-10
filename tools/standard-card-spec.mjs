@@ -2507,6 +2507,24 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=794&&d?.status==='complete'&&d.faces.length===1){
+  const front=normalize(f.abilityText);
+  const gs='{GS}G・ストライク(この呪文を自分のシールドゾーンから手札に加える時表向きにし相手のクリーチャーを1体選んでもよい。このターンそのクリーチャーは攻撃できない)';
+  if(f.typeText==='呪文'&&front===gs+'相手の手札を1枚見ないで選び捨てさせる。カードを2枚引く。相手は自身のクリーチャーを3体選び破壊する。次の相手のターンのはじめに相手は自身のマナゾーンにあるカードを4枚までしかアンタップできない。')
+   return {gStrike:true,effect:'sixPhoto',g34Tasks:[{op:'BlindDiscard773'},{op:'Draw',n:2},
+    {op:'OpponentSelect',n:3,to:'grave'},{op:'StartManaLimit794',max:4}]};
+  if(f.typeText==='クリーチャー'){
+   const joker='相手のクリーチャーの能力または呪文によってこのクリーチャーが自分の手札から捨てられる時墓地に置くかわりに出してもよい。ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)このクリーチャーが出た時プレイヤーを1人選んでもよい。そのプレイヤーは自身の墓地にあるカードをすべて山札に加えてシャッフルする。その後自分はカードを2枚引く。';
+   if(front===joker)return {blocker:true,g591Discard:'opponentEffect',effect:'sixPhoto',
+    g34Tasks:[{op:'GraveShuffle545',optional:true},{op:'Draw',n:2}]};
+   const change='革命チェンジ:光または火のコスト5以上のドラゴン';
+   const reminder='(自分の光または火のコスト5以上のドラゴンが攻撃する時そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい)';
+   const rainbow='W・ブレイカー自分の名前に《ボルメテウス》とあるクリーチャーすべてに「スピードアタッカー」を与える。このクリーチャーが出た時このクリーチャーは自分のシールドを1つブレイクしてもよい。自分のシールドゾーンにあるコスト7以下のドラゴン';
+   if([reminder,''].some(r=>['','・カード'].some(n=>front===change+r+rainbow+n+'すべてに「S・トリガー」を与える。')))
+    return {rev:{colors:['光','火'],min:5},breaker:2,g208Auras:[{filter:{creature:true,g227NameIncludes:'ボルメテウス'},grants:{speedAttacker:true}}],
+     g794DragonShieldTrigger:7,effect:'sixPhoto',g34Tasks:[{op:'Break497',owner:'self',n:1,optional:true,g747CreatureBreak:true}]};
+  }
+ }
  if(phase>=793&&d?.status==='complete'&&d.faces.length===1){
   const front=normalize(f.abilityText),trigger='S・トリガーS・トリガー';
   if(f.typeText==='呪文'){

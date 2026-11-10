@@ -181449,25 +181449,142 @@
       ],
       "supportBatch": "phase-793",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-053",
+      "name": "超躍の絆",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "{GS} G・ストライク（この呪文を自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n相手の手札を１枚見ないで選び、捨てさせる。\nカードを２枚引く。\n相手は自身のクリーチャーを３体選び、破壊する。\n次の相手のターンのはじめに、相手は自身のマナゾーンにあるカードを４枚までしかアンタップできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-053",
+      "limit": 4,
+      "gStrike": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BlindDiscard773"
+        },
+        {
+          "op": "Draw",
+          "n": 2
+        },
+        {
+          "op": "OpponentSelect",
+          "n": 3,
+          "to": "grave"
+        },
+        {
+          "op": "StartManaLimit794",
+          "max": 4
+        }
+      ],
+      "supportBatch": "phase-794",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-085",
+      "name": "審秘の精霊ピュリファイ・ジョーカー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "エンジェル・コマンド",
+      "text": "相手の、クリーチャーの能力または呪文によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりに出してもよい。\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、プレイヤーを１人選んでもよい。そのプレイヤーは、自身の墓地にあるカードをすべて山札に加えてシャッフルする。その後、自分はカードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-085",
+      "limit": 4,
+      "blocker": true,
+      "g591Discard": "opponentEffect",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GraveShuffle545",
+          "optional": true
+        },
+        {
+          "op": "Draw",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-794",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex4-015",
+      "name": "ボルメテウス・レインボー・ドラゴン",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 11000,
+      "race": "アーマード・ドラゴン",
+      "text": "革命チェンジ：光または火の、コスト５以上のドラゴン（自分の光または火の、コスト５以上のドラゴンが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\n自分の、名前に《ボルメテウス》とあるクリーチャーすべてに「スピードアタッカー」を与える。\nこのクリーチャーが出た時、このクリーチャーは自分のシールドを１つブレイクしてもよい。\n自分のシールドゾーンにあるコスト７以下のドラゴンすべてに「S・トリガー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-015",
+      "limit": 4,
+      "rev": {
+        "colors": [
+          "光",
+          "火"
+        ],
+        "min": 5
+      },
+      "breaker": 2,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "g227NameIncludes": "ボルメテウス"
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "g794DragonShieldTrigger": 7,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Break497",
+          "owner": "self",
+          "n": 1,
+          "optional": true,
+          "g747CreatureBreak": true
+        }
+      ],
+      "supportBatch": "phase-794",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 793,
+    "phase": 794,
     "checkedAt": "2026-11-10",
-    "baseCount": 6232,
+    "baseCount": 6235,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6235,
+    "totalCount": 6238,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/46239/",
-      "https://dm.takaratomy.co.jp/rule/qa/48466/",
-      "https://dm.takaratomy.co.jp/rule/qa/41125/",
-      "https://dm.takaratomy.co.jp/rule/qa/39992/",
+      "https://dm.takaratomy.co.jp/rule/qa/46235/",
+      "https://dm.takaratomy.co.jp/rule/qa/46251/",
+      "https://dm.takaratomy.co.jp/rule/qa/39652/",
       "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck02/",
-      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck05/",
-      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck08/"
+      "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck04/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -195324,6 +195441,28 @@
           "https://dm.takaratomy.co.jp/rule/qa/42657/",
           "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck06/",
           "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck07/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 793,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6232,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6235,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/46239/",
+          "https://dm.takaratomy.co.jp/rule/qa/48466/",
+          "https://dm.takaratomy.co.jp/rule/qa/41125/",
+          "https://dm.takaratomy.co.jp/rule/qa/39992/",
+          "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck02/",
+          "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck05/",
+          "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck08/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -1,0 +1,335 @@
+{
+  "phase": 794,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6235,
+  "description": "非公開の手札破棄とターン開始時のマナのアンタップ上限、破棄時の任意の登場置換と墓地のシャッフル、ドラゴンへの面ごとのS・トリガー付与に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/46235/",
+    "https://dm.takaratomy.co.jp/rule/qa/46251/",
+    "https://dm.takaratomy.co.jp/rule/qa/39652/",
+    "https://dm.takaratomy.co.jp/rule/qa/45060/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36407/",
+    "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck02/",
+    "https://dm.takaratomy.co.jp/dm24ex4_decklist/deck04/"
+  ],
+  "cards": [
+    {
+      "id": "dm24ex4-053",
+      "name": "超躍の絆",
+      "faces": [
+        {
+          "name": "超躍の絆",
+          "typeText": "呪文",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "{GS} G・ストライク（この呪文を自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n相手の手札を１枚見ないで選び、捨てさせる。\nカードを２枚引く。\n相手は自身のクリーチャーを３体選び、破壊する。\n次の相手のターンのはじめに、相手は自身のマナゾーンにあるカードを４枚までしかアンタップできない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-053",
+      "spec": {
+        "gStrike": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BlindDiscard773"
+          },
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "OpponentSelect",
+            "n": 3,
+            "to": "grave"
+          },
+          {
+            "op": "StartManaLimit794",
+            "max": 4
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "5e02153494e047090712ea733f20f0f8c951f5b6bbd97540ffb336803ec26136",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-085",
+      "name": "審秘の精霊ピュリファイ・ジョーカー",
+      "faces": [
+        {
+          "name": "審秘の精霊ピュリファイ・ジョーカー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "相手の、クリーチャーの能力または呪文によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりに出してもよい。\nブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーが出た時、プレイヤーを１人選んでもよい。そのプレイヤーは、自身の墓地にあるカードをすべて山札に加えてシャッフルする。その後、自分はカードを２枚引く。",
+          "race": "エンジェル・コマンド",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-085",
+      "spec": {
+        "blocker": true,
+        "g591Discard": "opponentEffect",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GraveShuffle545",
+            "optional": true
+          },
+          {
+            "op": "Draw",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-085.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "8c05b2f5ea18bf06eacb91d095b29ae09131a8179a958693ad5121e8ac998670",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-015",
+      "name": "ボルメテウス・レインボー・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルメテウス・レインボー・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "革命チェンジ：光または火の、コスト５以上のドラゴン（自分の光または火の、コスト５以上のドラゴンが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\n自分の、名前に《ボルメテウス》とあるクリーチャーすべてに「スピードアタッカー」を与える。\nこのクリーチャーが出た時、このクリーチャーは自分のシールドを１つブレイクしてもよい。\n自分のシールドゾーンにあるコスト７以下のドラゴンすべてに「S・トリガー」を与える。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-015",
+      "spec": {
+        "rev": {
+          "colors": [
+            "光",
+            "火"
+          ],
+          "min": 5
+        },
+        "breaker": 2,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "g227NameIncludes": "ボルメテウス"
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ],
+        "g794DragonShieldTrigger": 7,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Break497",
+            "owner": "self",
+            "n": 1,
+            "optional": true,
+            "g747CreatureBreak": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "8427e9c91009846cba9cdff736c949540309eb1bc159b86189287b7d7b6932cd",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24ex4-PR013",
+      "canonicalId": "dm24ex4-053",
+      "name": "超躍の絆",
+      "faces": [
+        {
+          "name": "超躍の絆",
+          "typeText": "呪文",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "{GS} G・ストライク（この呪文を自分のシールドゾーンから手札に加える時、表向きにし、相手のクリーチャーを１体選んでもよい。このターン、そのクリーチャーは攻撃できない）\n相手の手札を１枚見ないで選び、捨てさせる。\nカードを２枚引く。\n相手は自身のクリーチャーを３体選び、破壊する。\n次の相手のターンのはじめに、相手は自身のマナゾーンにあるカードを４枚までしかアンタップできない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-PR013",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-PR013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "0794fea938e978290b4c48dfd25bb5026d90b90d7cf0e0eda84664c2f4920534",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-Sec003",
+      "canonicalId": "dm24ex4-015",
+      "name": "ボルメテウス・レインボー・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルメテウス・レインボー・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "革命チェンジ：光または火の、コスト５以上のドラゴン（自分の光または火の、コスト５以上のドラゴンが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\n自分の、名前に《ボルメテウス》とあるクリーチャーすべてに「スピードアタッカー」を与える。\nこのクリーチャーが出た時、このクリーチャーは自分のシールドを１つブレイクしてもよい。\n自分のシールドゾーンにあるコスト７以下のドラゴンすべてに「S・トリガー」を与える。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-Sec003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-Sec003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "3933916d2024b9e3281e3584d9c81fc1ad42100cec96dbe29e8b198ea7a4138e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex4-ChoSec003",
+      "canonicalId": "dm24ex4-015",
+      "name": "ボルメテウス・レインボー・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルメテウス・レインボー・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "革命チェンジ：光または火の、コスト５以上のドラゴン（自分の光または火の、コスト５以上のドラゴンが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\n自分の、名前に《ボルメテウス》とあるクリーチャーすべてに「スピードアタッカー」を与える。\nこのクリーチャーが出た時、このクリーチャーは自分のシールドを１つブレイクしてもよい。\n自分のシールドゾーンにあるコスト７以下のドラゴンすべてに「S・トリガー」を与える。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex4-ChoSec003",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex4-ChoSec003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "faebfe074947587b34d4894fe1eb19a301d565a51337225476f07350c6210c25",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp3-TR3",
+      "canonicalId": "dm24ex4-015",
+      "name": "ボルメテウス・レインボー・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルメテウス・レインボー・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "革命チェンジ：光または火の、コスト５以上のドラゴン\nW・ブレイカー\n自分の、名前に《ボルメテウス》とあるクリーチャーすべてに「スピードアタッカー」を与える。\nこのクリーチャーが出た時、このクリーチャーは自分のシールドを１つブレイクしてもよい。\n自分のシールドゾーンにあるコスト７以下のドラゴン・カードすべてに「S・トリガー」を与える。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp3-TR3",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp3-TR3.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "28bf55c4e5537475745ca5cdd04b570cdc2755db79efbf0ddc2d0b42640790cd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex3-rp3TR3",
+      "canonicalId": "dm24ex4-015",
+      "name": "ボルメテウス・レインボー・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルメテウス・レインボー・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "革命チェンジ：光または火の、コスト５以上のドラゴン\nW・ブレイカー\n自分の、名前に《ボルメテウス》とあるクリーチャーすべてに「スピードアタッカー」を与える。\nこのクリーチャーが出た時、このクリーチャーは自分のシールドを１つブレイクしてもよい。\n自分のシールドゾーンにあるコスト７以下のドラゴン・カードすべてに「S・トリガー」を与える。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex3-rp3TR3",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex3-rp3TR3.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "b1238acd7496f2bf943877eb3f04d70ff4d9c186426127896c6911ad92c3a4bf",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24ex4-053": 4,
+      "dm24ex4-085": 4,
+      "dm24ex4-015": 4,
+      "dm24ex4-PR013": 4,
+      "dm24ex4-Sec003": 4,
+      "dm24ex4-ChoSec003": 4,
+      "dm25rp3-TR3": 4,
+      "dm25ex3-rp3TR3": 4
+    }
+  }
+}

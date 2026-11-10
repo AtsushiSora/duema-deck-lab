@@ -9,6 +9,7 @@ export function createJuniorChampionRules(api){
  case'g43_Razel':{const selected=t.selected||[];choice(s,{...t,selected},'ラゼル＝ズバイラル：異なる効果を2つ選ぶ（'+selected.length+'/2）',modeNames.flatMap((label,m)=>selected.includes(m)?[]:[opt(label,m,value(s,t.p,m))]));break;}
  case'g43_OpponentMode':choice(s,t,'ラゼル＝ズバイラル：相手が使う効果を1つ選ぶ',t.selected.map(m=>opt(modeNames[m],m,-value(s,t.p,m))));s.decision.player=1-t.p;break;
  case'g43_Mode':if(t.mode===0)put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:opp.hand.length,all:true}));if(t.mode===1)api.move(s,creatures(s,1-t.p).map(x=>({player:1-t.p,uid:x.uid,to:'grave',destroy:true})));if(t.mode===2)(s.g43UntapLimits??=[]).push({p:1-t.p,turns:opp.turns,source:t.source});if(t.mode===3)queue(s,t,'Shields',{selected:[],n:Math.min(2,opp.shields.length)});break;
+ case'g43_LimitMana':(s.g43UntapLimits??=[]).push({p:1-t.p,turns:opp.turns,source:t.source,max:t.max});break;
  case'g43_Shields':{const ids=(t.selected||[]).filter(uid=>opp.shields.some(x=>x.uid===uid));if(ids.length>=t.n||!opp.shields.some(x=>!ids.includes(x.uid))){if(ids.length)api.interruptBreak(s,1-t.p,ids,task('g43_Done',t.p,t.source));break;}choice(s,{...t,selected:ids},'ブレイクするシールドを2つ選ぶ',opp.shields.flatMap((x,i)=>ids.includes(x.uid)?[]:[opt('シールド'+(i+1),x.uid)]));break;}
  case'g43_Done':break;
  case'g43_Mugen':api.draw(s,t.p,1);queue(s,t,'SkipOffer');break;
@@ -31,6 +32,11 @@ export function createJuniorChampionRules(api){
  tapped(s,p,x){if(card(x).g43Razel&&!api.ignored(s,x))on(s,p,x);},
  snapshot(s,rows){return rows.flatMap(r=>{const x=s.players[r.player].battle.find(x=>x.uid===r.uid);return x&&card(x).g43Razel&&!api.ignored(s,x)?[x.uid]:[];});},
  leaving(s,p,x,snapshot){if(snapshot?.includes(x.uid))on(s,p,x);},
- beforeUntap(s,p,preventMana){const limits=(s.g43UntapLimits||[]).filter(x=>x.p===p&&x.turns<s.players[p].turns);if(!limits.length)return false;s.g43UntapLimits=(s.g43UntapLimits||[]).filter(x=>!limits.includes(x));if(preventMana)return true;const uids=s.players[p].mana.filter(x=>x.tapped&&!x.skipUntap&&api.canUntap(x)).map(x=>x.uid);if(uids.length)put(s,task('g4_Untap',p,limits[0].source,{uids,selected:[]}));return true;},
+ takeUntapLimit(s,p){
+  const limits=(s.g43UntapLimits||[]).filter(x=>x.p===p&&x.turns<s.players[p].turns);
+  if(!limits.length)return null;
+  s.g43UntapLimits=s.g43UntapLimits.filter(x=>!limits.includes(x));
+  return limits.reduce((best,x)=>(x.max??3)<(best.max??3)?x:best);
+ },
  };
 }
