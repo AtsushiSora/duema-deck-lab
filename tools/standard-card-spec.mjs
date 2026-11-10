@@ -3433,6 +3433,31 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=867&&f.typeText==='呪文'){
+  if(d.id==='dmr01-051'&&compact363===
+   'S・トリガー相手はバトルゾーンにある自身のアンタップされているクリーチャーを1体選ぶ。その後バトルゾーンに自分の光または闇のクリーチャーがあれば相手はバトルゾーンにある自身のアンタップされているクリーチャーをもう1体選ぶ。選ばれたクリーチャーを相手の手札に戻す。'){
+   const bounce=n=>({op:'OpponentSelect',to:'hand',n,filter:{untapped:true}});
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'IfOwn',filter:{creature:true,any:[{color:'光'},{color:'闇'}]},
+    defs:[bounce(2)],elseDefs:[bounce(1)]}]};
+  }
+  if(d.id==='dmr04-010'&&compact363===
+   'このターンバトルゾーンにある自分のハンターすべてのパワーは+3000されシールドをさらにもう1枚ブレイクする。バトルゾーンに自分のハンターが7体以上あれば相手のクリーチャーをすべて破壊する。'){
+   const hunters={owner:'self',filter:{creature:true,race:'ハンター'},spell:true};
+   return {effect:'sixPhoto',g34Tasks:[{op:'GroupPower',...hunters,power:3000},
+    {op:'GroupLasting412',...hunters,extraBreak:1},
+    {op:'IfOwn',filter:{g370BattleCount:{filter:hunters.filter,min:7}},defs:[{op:'Sweep',filter:{creature:true}}]}]};
+  }
+  if(['dmr04-020','dmx16-067'].includes(d.id)&&compact363===
+   'マナゾーンに置く時このカードはタップして置く。自分のマナゾーンに水のカードが5枚以上あればカードを2枚まで引く。自分のマナゾーンに闇のカードが5枚以上あれば相手は自身の手札を2枚選んで捨てる。自分のマナゾーンに火のカードが5枚以上あれば相手のパワー6000以下のクリーチャーを2体破壊する。'){
+   const mana=(color,def)=>({op:'IfOwn',filter:{g267Mana:{n:5,color}},defs:[def]});
+   return {effect:'sixPhoto',g34Tasks:[
+    mana('水',{op:'DrawUpTo',n:2,g853EachDraw:true,g203Draw:true}),
+    mana('闇',{op:'Discard',n:2}),
+    mana('火',{op:'Select',owner:'opponent',origin:'battle',to:'grave',n:2,g173Targets:true,g193Select:true,
+     filter:{creature:true,maxPower:6000,g199Power:true},title:'破壊するパワー6000以下の相手クリーチャーを2体選ぶ'})
+   ]};
+  }
+ }
  if(phase>=866){
   if(['dmr04-046','dmex12-109'].includes(d.id)&&f.typeText==='クリーチャー'&&[
    'マナゾーンに置く時このカードはタップして置く。このクリーチャーをバトルゾーンに出した時相手は自身の山札の上から2枚をすべてのプレイヤーに見せる。そのうちの1枚を選び墓地に置かせる。',

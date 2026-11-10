@@ -1,0 +1,294 @@
+{
+  "phase": 867,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6465,
+  "description": "相手が選ぶ条件付きバウンス、ハンターの強化と一斉破壊、マナの3文明に応じた呪文に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36520/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36526/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36527/",
+    "https://dm.takaratomy.co.jp/rule/qa/34191/",
+    "https://dm.takaratomy.co.jp/rule/qa/41285/"
+  ],
+  "cards": [
+    {
+      "id": "dmr01-051",
+      "name": "ナルト・スパイラル",
+      "faces": [
+        {
+          "name": "ナルト・スパイラル",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー\n相手は、バトルゾーンにある自身のアンタップされているクリーチャーを１体選ぶ。その後、バトルゾーンに自分の光または闇のクリーチャーがあれば、相手はバトルゾーンにある自身のアンタップされているクリーチャーをもう１体選ぶ。選ばれたクリーチャーを相手の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-051",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "any": [
+                {
+                  "color": "光"
+                },
+                {
+                  "color": "闇"
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "OpponentSelect",
+                "to": "hand",
+                "n": 2,
+                "filter": {
+                  "untapped": true
+                }
+              }
+            ],
+            "elseDefs": [
+              {
+                "op": "OpponentSelect",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "untapped": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr01-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "bcb8e41a3fb7a311f04cdf3259bdb7a71c8140ab890cb56219752fda847dd92e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr04-010",
+      "name": "必殺！オレの爆炎!!",
+      "faces": [
+        {
+          "name": "必殺！オレの爆炎!!",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このターン、バトルゾーンにある自分のハンターすべてのパワーは+3000され、シールドをさらにもう１枚ブレイクする。\nバトルゾーンに自分のハンターが７体以上あれば、相手のクリーチャーをすべて破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-010",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "race": "ハンター"
+            },
+            "spell": true,
+            "power": 3000
+          },
+          {
+            "op": "GroupLasting412",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "race": "ハンター"
+            },
+            "spell": true,
+            "extraBreak": 1
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g370BattleCount": {
+                "filter": {
+                  "creature": true,
+                  "race": "ハンター"
+                },
+                "min": 7
+              }
+            },
+            "defs": [
+              {
+                "op": "Sweep",
+                "filter": {
+                  "creature": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr04-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "1ef77d7ce695c50be6d377b135c0a0a71de76bc45141ab1a6ff73b2217e97e21",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr04-020",
+      "name": "必殺！絶対絶望!!",
+      "faces": [
+        {
+          "name": "必殺！絶対絶望!!",
+          "typeText": "呪文",
+          "civilizationText": "水/闇/火",
+          "civilizations": [
+            "水",
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分のマナゾーンに水のカードが５枚以上あれば、カードを２枚まで引く。\n自分のマナゾーンに闇のカードが５枚以上あれば、相手は自身の手札を２枚選んで捨てる。\n自分のマナゾーンに火のカードが５枚以上あれば、相手のパワー6000以下のクリーチャーを２体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-020",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g267Mana": {
+                "n": 5,
+                "color": "水"
+              }
+            },
+            "defs": [
+              {
+                "op": "DrawUpTo",
+                "n": 2,
+                "g853EachDraw": true,
+                "g203Draw": true
+              }
+            ]
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g267Mana": {
+                "n": 5,
+                "color": "闇"
+              }
+            },
+            "defs": [
+              {
+                "op": "Discard",
+                "n": 2
+              }
+            ]
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g267Mana": {
+                "n": 5,
+                "color": "火"
+              }
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "owner": "opponent",
+                "origin": "battle",
+                "to": "grave",
+                "n": 2,
+                "g173Targets": true,
+                "g193Select": true,
+                "filter": {
+                  "creature": true,
+                  "maxPower": 6000,
+                  "g199Power": true
+                },
+                "title": "破壊するパワー6000以下の相手クリーチャーを2体選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr04-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "92b13fdf8b6d5d4f55e327c9be5ca1d0411b0e1f9d28fd3a8606b7095f8ae5cc",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx16-067",
+      "canonicalId": "dmr04-020",
+      "name": "必殺！絶対絶望!!",
+      "faces": [
+        {
+          "name": "必殺！絶対絶望!!",
+          "typeText": "呪文",
+          "civilizationText": "水/闇/火",
+          "civilizations": [
+            "水",
+            "闇",
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分のマナゾーンに水のカードが５枚以上あれば、カードを２枚まで引く。\n自分のマナゾーンに闇のカードが５枚以上あれば、相手は自身の手札を２枚選んで捨てる。\n自分のマナゾーンに火のカードが５枚以上あれば、相手のパワー6000以下のクリーチャーを２体破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-067",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx16-067.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "91f833b997f9ae9d72e5d5bf351f1c1a9275865392769cdc4256bef78af54902",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr01-051": 4,
+      "dmr04-010": 4,
+      "dmr04-020": 4,
+      "dmx16-067": 4
+    }
+  }
+}

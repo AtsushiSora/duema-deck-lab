@@ -188709,23 +188709,222 @@
       ],
       "supportBatch": "phase-866",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-051",
+      "name": "ナルト・スパイラル",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー\n相手は、バトルゾーンにある自身のアンタップされているクリーチャーを１体選ぶ。その後、バトルゾーンに自分の光または闇のクリーチャーがあれば、相手はバトルゾーンにある自身のアンタップされているクリーチャーをもう１体選ぶ。選ばれたクリーチャーを相手の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-051",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "color": "光"
+              },
+              {
+                "color": "闇"
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "OpponentSelect",
+              "to": "hand",
+              "n": 2,
+              "filter": {
+                "untapped": true
+              }
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "OpponentSelect",
+              "to": "hand",
+              "n": 1,
+              "filter": {
+                "untapped": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-867",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr04-010",
+      "name": "必殺！オレの爆炎!!",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "このターン、バトルゾーンにある自分のハンターすべてのパワーは+3000され、シールドをさらにもう１枚ブレイクする。\nバトルゾーンに自分のハンターが７体以上あれば、相手のクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-010",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupPower",
+          "owner": "self",
+          "filter": {
+            "creature": true,
+            "race": "ハンター"
+          },
+          "spell": true,
+          "power": 3000
+        },
+        {
+          "op": "GroupLasting412",
+          "owner": "self",
+          "filter": {
+            "creature": true,
+            "race": "ハンター"
+          },
+          "spell": true,
+          "extraBreak": 1
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "race": "ハンター"
+              },
+              "min": 7
+            }
+          },
+          "defs": [
+            {
+              "op": "Sweep",
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-867",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr04-020",
+      "name": "必殺！絶対絶望!!",
+      "civ": "水/闇/火",
+      "civilizations": [
+        "水",
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n自分のマナゾーンに水のカードが５枚以上あれば、カードを２枚まで引く。\n自分のマナゾーンに闇のカードが５枚以上あれば、相手は自身の手札を２枚選んで捨てる。\n自分のマナゾーンに火のカードが５枚以上あれば、相手のパワー6000以下のクリーチャーを２体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-020",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g267Mana": {
+              "n": 5,
+              "color": "水"
+            }
+          },
+          "defs": [
+            {
+              "op": "DrawUpTo",
+              "n": 2,
+              "g853EachDraw": true,
+              "g203Draw": true
+            }
+          ]
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g267Mana": {
+              "n": 5,
+              "color": "闇"
+            }
+          },
+          "defs": [
+            {
+              "op": "Discard",
+              "n": 2
+            }
+          ]
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g267Mana": {
+              "n": 5,
+              "color": "火"
+            }
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "owner": "opponent",
+              "origin": "battle",
+              "to": "grave",
+              "n": 2,
+              "g173Targets": true,
+              "g193Select": true,
+              "filter": {
+                "creature": true,
+                "maxPower": 6000,
+                "g199Power": true
+              },
+              "title": "破壊するパワー6000以下の相手クリーチャーを2体選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-867",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 866,
+    "phase": 867,
     "checkedAt": "2026-11-11",
-    "baseCount": 6462,
+    "baseCount": 6465,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6465,
+    "totalCount": 6468,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36540/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36541/",
-      "https://dm.takaratomy.co.jp/rule/qa/31782/",
-      "https://dm.takaratomy.co.jp/rule/qa/43454/",
-      "https://dm.takaratomy.co.jp/rule/qa/49608/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36520/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36526/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36527/",
+      "https://dm.takaratomy.co.jp/rule/qa/34191/",
+      "https://dm.takaratomy.co.jp/rule/qa/41285/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -204101,6 +204300,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/40197/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36224/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37634/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 866,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6462,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6465,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36540/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36541/",
+          "https://dm.takaratomy.co.jp/rule/qa/31782/",
+          "https://dm.takaratomy.co.jp/rule/qa/43454/",
+          "https://dm.takaratomy.co.jp/rule/qa/49608/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
