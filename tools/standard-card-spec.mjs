@@ -2511,6 +2511,15 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=843&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='クリーチャー'&&text==='マナゾーンに置く時このカードはタップして置く。バトルゾーンにある自分の他のエイリアンはすべて「スピードアタッカー」と「スレイヤー」を得る。相手の呪文の効果または相手のクリーチャーの能力によってこのクリーチャーが自分の手札から捨てられる時墓地に置くかわりに自分のマナゾーンに置いてもよい。')
+   return {g208Auras:[{filter:{creature:true,race:'エイリアン'},other:true,grants:{speedAttacker:true,slayer:true}}],g843DiscardToMana:true};
+  if(f.typeText==='呪文'&&text==='S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)バトルゾーンにある自分の進化ではないクリーチャーを1体選んで裏向きにし新しいシールドとして自分のシールドゾーンに加える。加えたカードが闇または火のクリーチャーであればカードを1枚引いてもよい。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',filter:{nonEvolution:true},to:'shields',g843ShieldDraw:true}]};
+  if(f.typeText==='クリーチャー'&&text==='このクリーチャーが攻撃する時バトルゾーンにある相手のクリーチャーを1体選ぶ。そのターンそのクリーチャーのパワーはバトルゾーンにある自分のタップされているクリーチャー1体につき-1000される。(パワー0以下のクリーチャーは破壊される)')
+   return {g34Attack:[{op:'TappedPower843'}]};
+ }
  if(phase>=842&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText),breaker='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
   if(text==='このクリーチャーが攻撃する時バトルゾーンにある自分のタップされているクリーチャー1体につき相手のシールドをひとつ選ぶ。相手は選ばれたシールドを自身の手札に加える。')

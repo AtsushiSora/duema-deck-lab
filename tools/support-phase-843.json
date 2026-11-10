@@ -1,0 +1,147 @@
+{
+  "phase": 843,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6391,
+  "description": "エイリアンへの常在能力付与、シールド化後の任意ドロー、タップ数に応じたパワー低下に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36368/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36394/"
+  ],
+  "cards": [
+    {
+      "id": "dmr02-005",
+      "name": "エイリアン・ファーザー",
+      "faces": [
+        {
+          "name": "エイリアン・ファーザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nバトルゾーンにある自分の他のエイリアンはすべて「スピードアタッカー」と「スレイヤー」を得る。\n相手の呪文の効果または相手のクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりに自分のマナゾーンに置いてもよい。",
+          "race": "エイリアン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-005",
+      "spec": {
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "race": "エイリアン"
+            },
+            "other": true,
+            "grants": {
+              "speedAttacker": true,
+              "slayer": true
+            }
+          }
+        ],
+        "g843DiscardToMana": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr02-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "a59e10988c4d59b51d95b324240de9c9bfbac9e2330f4fc65055d5e47507ea06",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr03-021",
+      "name": "ドンドン守るナウ",
+      "faces": [
+        {
+          "name": "ドンドン守るナウ",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにある自分の、進化ではないクリーチャーを１体選んで裏向きにし、新しいシールドとして自分のシールドゾーンに加える。加えたカードが闇または火のクリーチャーであれば、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-021",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "nonEvolution": true
+            },
+            "to": "shields",
+            "g843ShieldDraw": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr03-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "179c0551c30b21ddbbc5d10e8d8c0fe7a459d4f488cf0956778ea244015f1c35",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr02-041",
+      "name": "神討虫ローズ・ワーム",
+      "faces": [
+        {
+          "name": "神討虫ローズ・ワーム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが攻撃する時、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは、バトルゾーンにある自分のタップされているクリーチャー１体につき-1000される。(パワー０以下のクリーチャーは破壊される)",
+          "race": "パラサイトワーム/ハンター",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-041",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "TappedPower843"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr02-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "ef67aa314a86e80e1a9e015e52c0ea76a64dc6284b17b06b367da3a08d9173f2",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr02-005": 4,
+      "dmr03-021": 4,
+      "dmr02-041": 4
+    }
+  }
+}

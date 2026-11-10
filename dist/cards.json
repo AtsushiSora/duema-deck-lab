@@ -186484,22 +186484,107 @@
       ],
       "supportBatch": "phase-842",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr02-005",
+      "name": "エイリアン・ファーザー",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "エイリアン",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nバトルゾーンにある自分の他のエイリアンはすべて「スピードアタッカー」と「スレイヤー」を得る。\n相手の呪文の効果または相手のクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりに自分のマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-005",
+      "limit": 4,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "race": "エイリアン"
+          },
+          "other": true,
+          "grants": {
+            "speedAttacker": true,
+            "slayer": true
+          }
+        }
+      ],
+      "g843DiscardToMana": true,
+      "supportBatch": "phase-843",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr03-021",
+      "name": "ドンドン守るナウ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにある自分の、進化ではないクリーチャーを１体選んで裏向きにし、新しいシールドとして自分のシールドゾーンに加える。加えたカードが闇または火のクリーチャーであれば、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr03-021",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "nonEvolution": true
+          },
+          "to": "shields",
+          "g843ShieldDraw": true
+        }
+      ],
+      "supportBatch": "phase-843",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr02-041",
+      "name": "神討虫ローズ・ワーム",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "パラサイトワーム/ハンター",
+      "text": "このクリーチャーが攻撃する時、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは、バトルゾーンにある自分のタップされているクリーチャー１体につき-1000される。(パワー０以下のクリーチャーは破壊される)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr02-041",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "TappedPower843"
+        }
+      ],
+      "supportBatch": "phase-843",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 842,
+    "phase": 843,
     "checkedAt": "2026-11-10",
-    "baseCount": 6388,
+    "baseCount": 6391,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6391,
+    "totalCount": 6394,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36387/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36388/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36235/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36236/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36368/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36394/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -201390,6 +201475,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/31530/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
           "https://dm.takaratomy.co.jp/rule/qa/40498/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 842,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6388,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6391,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36387/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36388/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36235/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36236/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -2071,8 +2071,19 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_Clock842':put(s,{...t,op:'g61_Clock',g842FixedOrder:true});break;
+ case'g34_TappedPower843':{
+  const n=tappedCreatures843(s,t.p);
+  put(s,{...t,op:'g34_Target',power:-1000*n,g242PowerMinus:true,title:'パワーを下げる相手のクリーチャーを選ぶ'});
+  break;
+ }
+ case'g34_CheckShield843':{
+  const x=own.shields.find(x=>x.uid===t.target&&(x.zoneSerial||0)===t.serial);
+  if(x&&faces(api.zoneCard(s,t.p,x,'shields')).some(c=>c.type==='creature'&&colors(c).some(q=>q==='闇'||q==='火')))
+   start(s,t,[{op:'Draw',n:1,optional:true}]);
+  break;
+ }
  case'g34_TappedShields842':{
-  const n=creatures(s,t.p).filter(x=>!x.sealed&&x.tapped).length;
+  const n=tappedCreatures843(s,t.p);
   if(n)put(s,{...t,op:'g34_TappedShieldPick842',n,picked:[]});
   break;
  }
@@ -2977,6 +2988,15 @@ export function createSixPhotoRules(api){
  }break;
  case'g34_ManaExchangeBase753':api.beginManaExchange753(s,t,v);break;
  case'g34_Target':
+  if(t.g843ShieldDraw){
+   const y=v&&own.battle.find(x=>x.uid===v.uid);
+   if(y){
+    const serial=(y.zoneSerial||0)+1;
+    move(s,[{player:t.p,uid:y.uid,to:'shields',destroy:false,controller:t.p}]);
+    put(s,{...t,op:'g34_CheckShield843',target:y.uid,serial});
+   }
+   break;
+  }
   if(t.g826TapAnother){
    const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid);
    if(y){
@@ -3046,6 +3066,7 @@ export function createSixPhotoRules(api){
  }return true;}
  // Custom continuations are below; generic effects above never lose or clone cards.
   const active=(s,p,role)=>s.players[p].battle.filter(x=>card(x).g34Role===role&&!api.ignored(s,x));
+ const tappedCreatures843=(s,p)=>creatures(s,p).filter(x=>!x.sealed&&x.tapped).length;
  const E=(op,more={})=>({op,...more}),C=(name,more={})=>E('Custom',{name,...more});
  const exec=(origin,max,more={})=>E('Execute',{origin,max,...more}),select=(origin,to,n,filter={},more={})=>E('Select',{origin,to,n,filter,...more});
  const buff=(s,x,n)=>{(x.powerModifiers??=[]).push({amount:n,expires:'end',who:s.active});};

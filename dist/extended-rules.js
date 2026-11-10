@@ -166,7 +166,7 @@ export function createExtendedRules(api){
  const requested393J=createRequested393JokerRules(requested393Api);
  const requested393P=createRequested393PuppetRules(requested393Api);
  const requested393SG=createRequested393SuperguardRules(requested393Api);
- const requested394=createRequested394Rules({...requested393Api,discardMode:(s,t,x)=>discardMode(s,t,x),handProtected:(s,t)=>handProtected(s,t),replaceDiscard:(s,t,x)=>replaceDiscard(s,t,x),discardCard:(s,t,x)=>discardCard(s,t,x)});
+ const requested394=createRequested394Rules({...requested393Api,discardMode:(s,t,x)=>discardMode(s,t,x),canReplaceDiscard:(s,t,x)=>canReplaceDiscard(s,t,x),discardReplacementZone,handProtected:(s,t)=>handProtected(s,t),replaceDiscard:(s,t,x)=>replaceDiscard(s,t,x),discardCard:(s,t,x)=>discardCard(s,t,x)});
  const shieldPhoto=createShieldPhotoRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const photo=createKenjiPhotoRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const bolshack=createBolshackRules({...api,creatures,put,task,choice,opt,skip,targetOptions,targetable,lock});
@@ -198,8 +198,13 @@ export function createExtendedRules(api){
  const abyss=createAbyssRules({...api,creatures,put,task,choice,opt,skip,targetOptions,canLeave,discardSelected:(s,t,ids)=>beginDiscardBatch(s,t,ids)});
  const enemyDiscardEffect=(s,t)=>!t.selfDiscard&&(t.causedBy??t.controller??s.active)===1-t.p&&['spell','creature'].includes(card(t.source)?.type);
  const handProtected=(s,t)=>enemyDiscardEffect(s,t)&&creatures(s,t.p).some(x=>effective(x,s).g591HandShield);
+ function discardReplacementZone(x){return card(x).g843DiscardToMana?'mana':'battle';}
+ function canReplaceDiscard(s,t,x){
+  return card(x).g843DiscardToMana||canEnter(s,t.p,card(x),{origin:'hand',execution:false});
+ }
  function discardMode(s,t,x){
   const c=card(x),enemyTurn=t.p!==s.active;
+  if(c.g843DiscardToMana&&!api.handAbilityIgnored(s,x)&&enemyDiscardEffect(s,t))return 'optional';
   if(c.g591Discard==='opponentEffect607'){
    return !api.handAbilityIgnored(s,x)&&!t.selfDiscard&&(t.causedBy??t.controller??s.active)===1-t.p&&
     ['spell','creature','seed','gear','field','aura','artifact','land'].includes(card(t.source)?.type)?'mandatory':null;
@@ -271,8 +276,9 @@ export function createExtendedRules(api){
     const x=own.hand.find(x=>x.uid===t.uid);if(!x)break;
     if(handProtected(s,t)){if(t.batchId)put(s,{...t,op:'discardBatch'});break;}
     const mode=discardMode(s,t,x);
-    if(mode&&canEnter(s,t.p,card(x),{origin:'hand',execution:false})){
+    if(mode&&canReplaceDiscard(s,t,x)){
      if(mode==='mandatory')replaceDiscard(s,t,x);
+     else if(card(x).g843DiscardToMana)choice(s,t,'捨てるかわりにマナゾーンに置きますか？',[opt('墓地のかわりにマナへ置く',true,30,x.cardId),opt('そのまま捨てる',false,0)]);
      else choice(s,t,'捨てるかわりにバトルゾーンに出しますか？',[opt('墓地のかわりに出す',true,card(x).g591Discard==='drawTwo'&&own.deck.length<=2?-1000:30,x.cardId),opt('そのまま捨てる',false,0)]);
      break;
     }
@@ -361,6 +367,14 @@ export function createExtendedRules(api){
  function replaceDiscard(s,t,x){
   const c=card(x);
   remove(s.players[t.p].hand,x.uid);
+  if(c.g843DiscardToMana){
+   clear(x,'mana');
+   api.addZone(s,t.p,'mana',x);
+   api.handMana(s,t.p,x);
+   log(s,t.p,'discardReplace',c.name+'を墓地のかわりにマナゾーンへ置く',{cardId:x.cardId});
+   afterDiscard(s,t,x,false);
+   return;
+  }
   enter(s,t.p,x,null,{origin:'hand',execution:false,...(c.g591Discard?{replacement:true}:{})});
   afterDiscard(s,t,x,false);
   if(c.discardBounce)put(s,task('bounceAny',t.p,x.cardId));
