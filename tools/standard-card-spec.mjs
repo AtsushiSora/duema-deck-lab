@@ -3445,6 +3445,24 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=895&&creature&&d.faces.length===1){
+  if(d.id==='dmrp15-054'&&compact363===
+   '水または火のクリーチャーを召喚によって自分の手札からバトルゾーンに出した時自分の手札を1枚捨てその後カードを1枚引く。')
+   return {g251EntryDraw:{filter:{creature:true,any:[{color:'水'},{color:'火'}]},g895SummonedHand:true,
+    defs:[{op:'Discard',owner:'self',n:1},{op:'Draw',n:1}]}};
+  if(d.id==='dmrp16-095'&&compact363===
+   '各ターン自分が最初のクリーチャーを召喚した時そのターンこのクリーチャーのパワーを+5000し「W・ブレイカー」を与える。(「W・ブレイカー」を持つクリーチャーはシールドを2つブレイクする)')
+   return {g808SummonWatch:{g895FirstSummon:true,defs:[{op:'SelfBoost313',power:5000,breaker:2,g536Source:true}]}};
+  if(['dmrp16-056','dm22ex2-049','promoy22-077'].includes(d.id)&&[
+   'このクリーチャーがバトルゾーンに出た時このクリーチャーを破壊してもよい。そしたら',
+   'このクリーチャーが出た時このクリーチャーを破壊してもよい。そうしたら'
+  ].some(start=>compact363===start+'次のうちいずれか1つを選ぶ。▶相手の手札を1枚見ないで選び捨てさせる。▶相手のパワー2000以下のクリーチャーを1体破壊する。'||
+   compact363===start+'次のうちいずれか1つを選ぶ。▶相手の手札を1枚見ないで選び捨てさせる。▶相手のパワー2000以下のクリーチャーを1体選び破壊する。'))
+   return {effect:'sixPhoto',g34Tasks:[{op:'SelfSacrifice407',defs:[{op:'Choose',g184Modes:true,modes:[
+    {label:'相手の手札1枚を見ないで選び捨てさせる',defs:[{op:'Discard',n:1,random:true}]},
+    {label:'相手のパワー2000以下のクリーチャー1体を破壊する',defs:[{op:'Target',to:'grave',filter:{maxPower:2000,g199Power:true}}]}
+   ]}]}]};
+ }
  if(phase>=894){
   if(d.id==='dmex14-055'&&f.typeText==='呪文'&&compact363===
    'コスト4以下の進化ではないジョーカーズ・クリーチャーを1体自分の手札からバトルゾーンに出してもよい。レインボーナス:バトルゾーンに自分の多色クリーチャーがあれば相手と自分のクリーチャーを1体ずつ選んでもよい。その2体をバトルさせる。')

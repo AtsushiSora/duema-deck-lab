@@ -191865,19 +191865,149 @@
       ],
       "supportBatch": "phase-894",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-054",
+      "name": "応援者 オシヤバミ",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 4000,
+      "race": "ムートピア/美孔麗王国",
+      "text": "水または火のクリーチャーを召喚によって自分の手札からバトルゾーンに出した時、自分の手札を１枚捨て、その後、カードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-054",
+      "limit": 4,
+      "g251EntryDraw": {
+        "filter": {
+          "creature": true,
+          "any": [
+            {
+              "color": "水"
+            },
+            {
+              "color": "火"
+            }
+          ]
+        },
+        "g895SummonedHand": true,
+        "defs": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "n": 1
+          },
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-895",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-095",
+      "name": "わらしべドリームメイカー",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 5000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "各ターン、自分が最初のクリーチャーを召喚した時、そのターン、このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-095",
+      "limit": 4,
+      "g808SummonWatch": {
+        "g895FirstSummon": true,
+        "defs": [
+          {
+            "op": "SelfBoost313",
+            "power": 5000,
+            "breaker": 2,
+            "g536Source": true
+          }
+        ]
+      },
+      "supportBatch": "phase-895",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-056",
+      "name": "コオニ童子",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "デモニオ/鬼札王国",
+      "text": "このクリーチャーがバトルゾーンに出た時、このクリーチャーを破壊してもよい。そしたら、次のうちいずれか１つを選ぶ。\n▶相手の手札を１枚見ないで選び、捨てさせる。\n▶相手のパワー2000以下のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-056",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SelfSacrifice407",
+          "defs": [
+            {
+              "op": "Choose",
+              "g184Modes": true,
+              "modes": [
+                {
+                  "label": "相手の手札1枚を見ないで選び捨てさせる",
+                  "defs": [
+                    {
+                      "op": "Discard",
+                      "n": 1,
+                      "random": true
+                    }
+                  ]
+                },
+                {
+                  "label": "相手のパワー2000以下のクリーチャー1体を破壊する",
+                  "defs": [
+                    {
+                      "op": "Target",
+                      "to": "grave",
+                      "filter": {
+                        "maxPower": 2000,
+                        "g199Power": true
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-895",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 894,
+    "phase": 895,
     "checkedAt": "2026-11-11",
-    "baseCount": 6547,
+    "baseCount": 6550,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6550,
+    "totalCount": 6553,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/39406/",
-      "https://dm.takaratomy.co.jp/rule/qa/34240/"
+      "https://dm.takaratomy.co.jp/rule/qa/39109/",
+      "https://dm.takaratomy.co.jp/rule/qa/39103/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -207804,6 +207934,22 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/34236/",
           "https://dm.takaratomy.co.jp/rule/qa/34259/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 894,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6547,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6550,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39406/",
+          "https://dm.takaratomy.co.jp/rule/qa/34240/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

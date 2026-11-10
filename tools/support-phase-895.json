@@ -1,0 +1,250 @@
+{
+  "phase": 895,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6550,
+  "description": "手札から召喚によって出た水・火クリーチャーの登場監視、各ターン最初の召喚時の自己強化、自壊後の見ないで選ぶ捨て札かパワー破壊の選択に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/39109/",
+    "https://dm.takaratomy.co.jp/rule/qa/39103/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp15-054",
+      "name": "応援者 オシヤバミ",
+      "faces": [
+        {
+          "name": "応援者 オシヤバミ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "水または火のクリーチャーを召喚によって自分の手札からバトルゾーンに出した時、自分の手札を１枚捨て、その後、カードを１枚引く。",
+          "race": "ムートピア/美孔麗王国",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-054",
+      "spec": {
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "color": "水"
+              },
+              {
+                "color": "火"
+              }
+            ]
+          },
+          "g895SummonedHand": true,
+          "defs": [
+            {
+              "op": "Discard",
+              "owner": "self",
+              "n": 1
+            },
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "535955dac3dcd7f3aff0e4aa0ccb2bc564bacbd785c27d46282229ce3f094362",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-095",
+      "name": "わらしべドリームメイカー",
+      "faces": [
+        {
+          "name": "わらしべドリームメイカー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "各ターン、自分が最初のクリーチャーを召喚した時、そのターン、このクリーチャーのパワーを+5000し、「W・ブレイカー」を与える。（「W・ブレイカー」を持つクリーチャーはシールドを２つブレイクする）",
+          "race": "ジョーカーズ/チーム切札",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-095",
+      "spec": {
+        "g808SummonWatch": {
+          "g895FirstSummon": true,
+          "defs": [
+            {
+              "op": "SelfBoost313",
+              "power": 5000,
+              "breaker": 2,
+              "g536Source": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-095.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "f7bb610330b39ec5ac319ad134734de9d2c324ef9acfc66f745067947403e4aa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-056",
+      "name": "コオニ童子",
+      "faces": [
+        {
+          "name": "コオニ童子",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、このクリーチャーを破壊してもよい。そしたら、次のうちいずれか１つを選ぶ。\n▶相手の手札を１枚見ないで選び、捨てさせる。\n▶相手のパワー2000以下のクリーチャーを１体破壊する。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-056",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "SelfSacrifice407",
+            "defs": [
+              {
+                "op": "Choose",
+                "g184Modes": true,
+                "modes": [
+                  {
+                    "label": "相手の手札1枚を見ないで選び捨てさせる",
+                    "defs": [
+                      {
+                        "op": "Discard",
+                        "n": 1,
+                        "random": true
+                      }
+                    ]
+                  },
+                  {
+                    "label": "相手のパワー2000以下のクリーチャー1体を破壊する",
+                    "defs": [
+                      {
+                        "op": "Target",
+                        "to": "grave",
+                        "filter": {
+                          "maxPower": 2000,
+                          "g199Power": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-056.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "366a0763089136f6ead37ef991a28ded769e7d2ecc5a57b3378ffd00c8c291aa",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm22ex2-049",
+      "canonicalId": "dmrp16-056",
+      "name": "コオニ童子",
+      "faces": [
+        {
+          "name": "コオニ童子",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、このクリーチャーを破壊してもよい。そうしたら、次のうちいずれか１つを選ぶ。\n▶相手の手札を１枚見ないで選び、捨てさせる。\n▶相手のパワー2000以下のクリーチャーを１体破壊する。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-049",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex2-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "6de8400d043faf31da0f64ca2f5d78968ea9e699f378cde27e046e5103425b5f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy22-077",
+      "canonicalId": "dmrp16-056",
+      "name": "コオニ童子",
+      "faces": [
+        {
+          "name": "コオニ童子",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが出た時、このクリーチャーを破壊してもよい。そうしたら、次のうちいずれか１つを選ぶ。\n▶相手の手札を１枚見ないで選び、捨てさせる。\n▶相手のパワー2000以下のクリーチャーを１体選び、破壊する。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy22-077",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy22-077.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "f10fae5a312af0188950e3f4e0e7b2273beae0b45c6c6e26c5847031b347ea6d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp15-054": 4,
+      "dmrp16-095": 4,
+      "dmrp16-056": 4,
+      "dm22ex2-049": 4,
+      "promoy22-077": 4
+    }
+  }
+}
