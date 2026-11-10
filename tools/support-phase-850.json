@@ -1,0 +1,165 @@
+{
+  "phase": 850,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6413,
+  "description": "シールドの非公開閲覧、持ち主の手札への移動と任意ドロー、進化時のマナ加速とシールド追加に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37786/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37378/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37424/",
+    "https://dm.takaratomy.co.jp/rule/qa/43917/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31639/"
+  ],
+  "cards": [
+    {
+      "id": "dm02-022",
+      "name": "予言者ウィン",
+      "faces": [
+        {
+          "name": "予言者ウィン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーが攻撃するとき、相手のシールドを１枚選んで見てよい。そのあとそれを元に戻す。",
+          "race": "ライトブリンガー",
+          "powerText": "1500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-022",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Peek585",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm02-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "bbf39ac18afdf93a80a2f0c851e0a9db9d539a96cc857ea1d174ac4c0ac81979",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-042",
+      "name": "超閃奥義 ヴィルヴィー・スパイラル",
+      "faces": [
+        {
+          "name": "超閃奥義 ヴィルヴィー・スパイラル",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻す。それが自分のクリーチャーであれば、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-042",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "hand",
+            "g850OwnBounceDraw": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "2e42933167bd0e7a7c4fc491684105ccd8b03c53e92175885dd88828e9c0579d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-049",
+      "name": "原始 サンモス",
+      "faces": [
+        {
+          "name": "原始 サンモス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の進化クリーチャーを他のクリーチャーの上に置いた時、自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "ビーストフォーク號/侵略者",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-049",
+      "spec": {
+        "g849EvolutionPlaced": "ramp"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "27c1b277bcad8384c56193e110aa438142d5a36012b6b09b55a080b232ed61c7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-027",
+      "name": "侵略者 コケシエル",
+      "faces": [
+        {
+          "name": "侵略者 コケシエル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の進化クリーチャーを他のクリーチャーの上に置いた時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに置く。",
+          "race": "エンジェル・コマンド/侵略者",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-027",
+      "spec": {
+        "g849EvolutionPlaced": "shield"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "9ea1586749105d29d6bb5e8f114790700ff38218f01911ef9878cec7a4eb20c0",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm02-022": 4,
+      "dmr14-042": 4,
+      "dmr19-049": 4,
+      "dmr19-027": 4
+    }
+  }
+}

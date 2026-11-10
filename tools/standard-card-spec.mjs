@@ -6177,6 +6177,24 @@ export function standardCardSpec(d,{phase=165}={}){
     continue;
    }
   }
+  if(phase>=850){
+   if(creature&&line==='このクリーチャーが攻撃する時相手のシールドを1枚選んで見てよい。そのあとそれを元に戻す。'){
+    attack.push({op:'Peek585',optional:true});
+    continue;
+   }
+   if(!creature&&!seed&&line==='バトルゾーンにあるクリーチャーを1体選び持ち主の手札に戻す。それが自分のクリーチャーであればカードを1枚引いてもよい。'){
+    entry.push({op:'Target',anyOwner:true,to:'hand',g850OwnBounceDraw:true});
+    continue;
+   }
+   if(creature&&line==='自分の進化クリーチャーを他のクリーチャーの上に置いた時自分の山札の上から1枚目をマナゾーンに置く。'){
+    spec.g849EvolutionPlaced='ramp';
+    continue;
+   }
+   if(creature&&line==='自分の進化クリーチャーを他のクリーチャーの上に置いた時自分の山札の上から1枚目を裏向きのまま新しいシールドとして自分のシールドゾーンに置く。'){
+    spec.g849EvolutionPlaced='shield';
+    continue;
+   }
+  }
   if(phase>=849&&creature){
    if(line==='このクリーチャーが攻撃する時相手の山札の上から1枚目と手札を見てもよい。'){
     attack.push({op:'Offer',title:'相手の山札の上と手札を確認する？',defs:[{op:'Peek585',opponentDeckTop:true,hand:true}]});

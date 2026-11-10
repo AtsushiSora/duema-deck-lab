@@ -2996,6 +2996,14 @@ export function createSixPhotoRules(api){
  }break;
  case'g34_ManaExchangeBase753':api.beginManaExchange753(s,t,v);break;
  case'g34_Target':
+  if(t.g850OwnBounceDraw){
+   const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid);
+   if(y){
+    move(s,[{player:v.p,uid:y.uid,to:'hand',destroy:false,controller:t.p}]);
+    if(v.p===t.p)start(s,t,[{op:'Draw',n:1,optional:true}]);
+   }
+   break;
+  }
   if(t.g843ShieldDraw){
    const y=v&&own.battle.find(x=>x.uid===v.uid);
    if(y){
