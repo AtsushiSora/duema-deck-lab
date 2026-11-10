@@ -3433,6 +3433,18 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=855){
+  if(f.typeText==='呪文'&&compact363==='Ωアタック・チャンス-グレートメカオー(自分のグレートメカオーが攻撃する時この呪文をコストを支払わずに唱えてもよい)カードを2枚引く。')
+   return {effect:'sixPhoto',g417Chance:{race:'グレートメカオー'},g34Tasks:[{op:'Draw',n:2}]};
+  if(f.typeText==='クリーチャー'&&[
+   'このクリーチャーをバトルゾーンに出した時自分の山札の上から5枚を表向きにする。その中からクロスギアを1枚バトルゾーンに出し残りを好きな順序で山札の一番下に戻す。',
+   'このクリーチャーが出た時自分の山札の上から5枚を表向きにする。その中からクロスギアを1枚出し残りを好きな順序で山札の下に置く。'
+  ].includes(compact363))
+   return {effect:'sixPhoto',g34Tasks:[{op:'LookDeploy530',n:5,public:true,limit:1,g749Required:true,rest:'bottom',
+    filter:{g201Gear:true},title:'公開したカードから出すクロスギアを1枚選ぶ'}]};
+  if(f.typeText==='クリーチャー'&&compact363==='ブロッカーこのクリーチャーがブロックした時バトルの後このクリーチャーを破壊する。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {blocker:true,breaker:2,g699DestroyAfterBlock:true};
+ }
  if(phase>=854&&f.typeText==='クリーチャー'){
   if(d.id==='dm36-089'&&compact363==='このクリーチャーをバトルゾーンに出した時(E・ソウル)クリーチャーを1体自分の墓地から手札に戻してもよい。')
    return {g558Souls:['E'],effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'grave',to:'hand',n:1,optional:true,
