@@ -188907,24 +188907,256 @@
       ],
       "supportBatch": "phase-867",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr04-027",
+      "name": "爆熱 BAGOOONミサイル",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n次のうちいずれかひとつを選ぶ。バトルゾーンに自分の多色クリーチャーがある場合は、両方を選んでもよい。\n▼バトルゾーンにある相手のクリーチャーを１体選び、タップする。\n▼バトルゾーンにある相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-027",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "相手のクリーチャー1体をタップする",
+              "defs": [
+                {
+                  "op": "Target",
+                  "tap": true
+                }
+              ]
+            },
+            {
+              "label": "相手のクリーチャー1体を持ち主の手札に戻す",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "hand"
+                }
+              ]
+            },
+            {
+              "label": "両方を選ぶ",
+              "condition": {
+                "creature": true,
+                "multi": true,
+                "faceUp": true
+              },
+              "defs": [
+                {
+                  "op": "Target",
+                  "tap": true
+                },
+                {
+                  "op": "Target",
+                  "to": "hand"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-868",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr04-033",
+      "name": "爆熱 キラー・ドライブ",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n次のうちいずれかひとつを選ぶ。バトルゾーンに自分の多色クリーチャーがある場合は、両方を選んでもよい。\n▼クリーチャーを１体、自分の墓地から手札に戻す。\n▼相手のパワー4000以下のクリーチャーを１体、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-033",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "墓地からクリーチャー1体を手札に戻す",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "to": "hand",
+                  "n": 1,
+                  "filter": {
+                    "creature": true
+                  }
+                }
+              ]
+            },
+            {
+              "label": "パワー4000以下の相手クリーチャー1体を破壊する",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "maxPower": 4000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            },
+            {
+              "label": "両方を選ぶ",
+              "condition": {
+                "creature": true,
+                "multi": true,
+                "faceUp": true
+              },
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "to": "hand",
+                  "n": 1,
+                  "filter": {
+                    "creature": true
+                  }
+                },
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "maxPower": 4000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-868",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr04-030",
+      "name": "爆熱 メルニア・エマージェンシー",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n次のうちいずれかひとつを選ぶ。バトルゾーンに自分の多色クリーチャーがある場合は、両方を選んでもよい。\n▼カードを２枚まで引き、その後、手札を１枚捨てる。\n▼相手はカードを１枚引き、その後、カードを２枚、自身の手札から選んで捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-030",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "2枚まで引き、自分の手札を1枚捨てる",
+              "defs": [
+                {
+                  "op": "DrawUpTo",
+                  "n": 2,
+                  "g853EachDraw": true,
+                  "g203Draw": true
+                },
+                {
+                  "op": "Discard",
+                  "owner": "self",
+                  "n": 1
+                }
+              ]
+            },
+            {
+              "label": "相手は1枚引き、相手自身が手札を2枚捨てる",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "owner": "opponent",
+                  "n": 1
+                },
+                {
+                  "op": "Discard",
+                  "n": 2
+                }
+              ]
+            },
+            {
+              "label": "両方を選ぶ",
+              "condition": {
+                "creature": true,
+                "multi": true,
+                "faceUp": true
+              },
+              "defs": [
+                {
+                  "op": "DrawUpTo",
+                  "n": 2,
+                  "g853EachDraw": true,
+                  "g203Draw": true
+                },
+                {
+                  "op": "Discard",
+                  "owner": "self",
+                  "n": 1
+                },
+                {
+                  "op": "Draw",
+                  "owner": "opponent",
+                  "n": 1
+                },
+                {
+                  "op": "Discard",
+                  "n": 2
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-868",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 867,
+    "phase": 868,
     "checkedAt": "2026-11-11",
-    "baseCount": 6465,
+    "baseCount": 6468,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6468,
+    "totalCount": 6471,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36520/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36526/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36527/",
-      "https://dm.takaratomy.co.jp/rule/qa/34191/",
-      "https://dm.takaratomy.co.jp/rule/qa/41285/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36530/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37527/",
+      "https://dm.takaratomy.co.jp/rule/qa/34224/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31654/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -204320,6 +204552,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/31782/",
           "https://dm.takaratomy.co.jp/rule/qa/43454/",
           "https://dm.takaratomy.co.jp/rule/qa/49608/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 867,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6465,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6468,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36520/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36526/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36527/",
+          "https://dm.takaratomy.co.jp/rule/qa/34191/",
+          "https://dm.takaratomy.co.jp/rule/qa/41285/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

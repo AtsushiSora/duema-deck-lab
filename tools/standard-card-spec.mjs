@@ -3433,6 +3433,32 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=868&&f.typeText==='呪文'){
+  const prefix='マナゾーンに置く時このカードはタップして置く。次のうちいずれかひとつを選ぶ。バトルゾーンに自分の多色クリーチャーがある場合は両方を選んでもよい。';
+  const modal=(first,second)=>({effect:'sixPhoto',g34Tasks:[{op:'Choose',g184Modes:true,modes:[
+   first,second,{label:'両方を選ぶ',condition:{creature:true,multi:true,faceUp:true},defs:[...first.defs,...second.defs]}
+  ]}]});
+  if(d.id==='dmr04-027'&&compact363===prefix+
+   '▼バトルゾーンにある相手のクリーチャーを1体選びタップする。▼バトルゾーンにある相手のクリーチャーを1体選び持ち主の手札に戻す。')
+   return modal(
+    {label:'相手のクリーチャー1体をタップする',defs:[{op:'Target',tap:true}]},
+    {label:'相手のクリーチャー1体を持ち主の手札に戻す',defs:[{op:'Target',to:'hand'}]}
+   );
+  if(d.id==='dmr04-033'&&compact363===prefix+
+   '▼クリーチャーを1体自分の墓地から手札に戻す。▼相手のパワー4000以下のクリーチャーを1体破壊する。')
+   return modal(
+    {label:'墓地からクリーチャー1体を手札に戻す',defs:[{op:'Select',origin:'grave',to:'hand',n:1,filter:{creature:true}}]},
+    {label:'パワー4000以下の相手クリーチャー1体を破壊する',defs:[{op:'Target',to:'grave',filter:{maxPower:4000,g199Power:true}}]}
+   );
+  if(d.id==='dmr04-030'&&compact363===prefix+
+   '▼カードを2枚まで引きその後手札を1枚捨てる。▼相手はカードを1枚引きその後カードを2枚自身の手札から選んで捨てる。')
+   return modal(
+    {label:'2枚まで引き、自分の手札を1枚捨てる',defs:[
+     {op:'DrawUpTo',n:2,g853EachDraw:true,g203Draw:true},{op:'Discard',owner:'self',n:1}
+    ]},
+    {label:'相手は1枚引き、相手自身が手札を2枚捨てる',defs:[{op:'Draw',owner:'opponent',n:1},{op:'Discard',n:2}]}
+   );
+ }
  if(phase>=867&&f.typeText==='呪文'){
   if(d.id==='dmr01-051'&&compact363===
    'S・トリガー相手はバトルゾーンにある自身のアンタップされているクリーチャーを1体選ぶ。その後バトルゾーンに自分の光または闇のクリーチャーがあれば相手はバトルゾーンにある自身のアンタップされているクリーチャーをもう1体選ぶ。選ばれたクリーチャーを相手の手札に戻す。'){

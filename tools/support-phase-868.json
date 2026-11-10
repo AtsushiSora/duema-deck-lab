@@ -1,0 +1,296 @@
+{
+  "phase": 868,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6468,
+  "description": "味方の多色クリーチャーがいる時に両方を選べる爆熱呪文3種類に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36530/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37527/",
+    "https://dm.takaratomy.co.jp/rule/qa/34224/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31654/"
+  ],
+  "cards": [
+    {
+      "id": "dmr04-027",
+      "name": "爆熱 BAGOOONミサイル",
+      "faces": [
+        {
+          "name": "爆熱 BAGOOONミサイル",
+          "typeText": "呪文",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n次のうちいずれかひとつを選ぶ。バトルゾーンに自分の多色クリーチャーがある場合は、両方を選んでもよい。\n▼バトルゾーンにある相手のクリーチャーを１体選び、タップする。\n▼バトルゾーンにある相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-027",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "相手のクリーチャー1体をタップする",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "tap": true
+                  }
+                ]
+              },
+              {
+                "label": "相手のクリーチャー1体を持ち主の手札に戻す",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "hand"
+                  }
+                ]
+              },
+              {
+                "label": "両方を選ぶ",
+                "condition": {
+                  "creature": true,
+                  "multi": true,
+                  "faceUp": true
+                },
+                "defs": [
+                  {
+                    "op": "Target",
+                    "tap": true
+                  },
+                  {
+                    "op": "Target",
+                    "to": "hand"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr04-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "901759d0ceb3562e49f4f32e8b935667417d95bc1c55d6b56f4f63e0d8b332e5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr04-033",
+      "name": "爆熱 キラー・ドライブ",
+      "faces": [
+        {
+          "name": "爆熱 キラー・ドライブ",
+          "typeText": "呪文",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n次のうちいずれかひとつを選ぶ。バトルゾーンに自分の多色クリーチャーがある場合は、両方を選んでもよい。\n▼クリーチャーを１体、自分の墓地から手札に戻す。\n▼相手のパワー4000以下のクリーチャーを１体、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-033",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "墓地からクリーチャー1体を手札に戻す",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "grave",
+                    "to": "hand",
+                    "n": 1,
+                    "filter": {
+                      "creature": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "パワー4000以下の相手クリーチャー1体を破壊する",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 4000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "両方を選ぶ",
+                "condition": {
+                  "creature": true,
+                  "multi": true,
+                  "faceUp": true
+                },
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "grave",
+                    "to": "hand",
+                    "n": 1,
+                    "filter": {
+                      "creature": true
+                    }
+                  },
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 4000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr04-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "8ae2822d1006ac7fd387706c89b45ef0331baf374cd6d8e9ebf53760ee1b0f9e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr04-030",
+      "name": "爆熱 メルニア・エマージェンシー",
+      "faces": [
+        {
+          "name": "爆熱 メルニア・エマージェンシー",
+          "typeText": "呪文",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n次のうちいずれかひとつを選ぶ。バトルゾーンに自分の多色クリーチャーがある場合は、両方を選んでもよい。\n▼カードを２枚まで引き、その後、手札を１枚捨てる。\n▼相手はカードを１枚引き、その後、カードを２枚、自身の手札から選んで捨てる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr04-030",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "2枚まで引き、自分の手札を1枚捨てる",
+                "defs": [
+                  {
+                    "op": "DrawUpTo",
+                    "n": 2,
+                    "g853EachDraw": true,
+                    "g203Draw": true
+                  },
+                  {
+                    "op": "Discard",
+                    "owner": "self",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "相手は1枚引き、相手自身が手札を2枚捨てる",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "owner": "opponent",
+                    "n": 1
+                  },
+                  {
+                    "op": "Discard",
+                    "n": 2
+                  }
+                ]
+              },
+              {
+                "label": "両方を選ぶ",
+                "condition": {
+                  "creature": true,
+                  "multi": true,
+                  "faceUp": true
+                },
+                "defs": [
+                  {
+                    "op": "DrawUpTo",
+                    "n": 2,
+                    "g853EachDraw": true,
+                    "g203Draw": true
+                  },
+                  {
+                    "op": "Discard",
+                    "owner": "self",
+                    "n": 1
+                  },
+                  {
+                    "op": "Draw",
+                    "owner": "opponent",
+                    "n": 1
+                  },
+                  {
+                    "op": "Discard",
+                    "n": 2
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr04-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "887d29a04611f7a91b22cc81e30197cb731b5b1f6c09287cf80069dd5f6c21c6",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr04-027": 4,
+      "dmr04-033": 4,
+      "dmr04-030": 4
+    }
+  }
+}
