@@ -2507,6 +2507,24 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=828&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const cascade=[
+   'マナ進化-自然のクリーチャーを1体自分のマナゾーンから選びこのクリーチャーをその上に重ねつつバトルゾーンに出す。このクリーチャーをバトルゾーンに出した時スノーフェアリーをすべて自分のマナゾーンから手札に戻してもよい。そうした場合スノーフェアリーをすべて自分の墓地からマナゾーンに置く。',
+   'マナ進化:自然のクリーチャーを1体自分のマナゾーンから選びこのクリーチャーをその上に重ねつつバトルゾーンに出す。このクリーチャーがバトルゾーンに出た時スノーフェアリーをすべて自分のマナゾーンから手札に戻してもよい。そうしたらスノーフェアリーをすべて自分の墓地からマナゾーンに置く。',
+   'マナ進化:自然のクリーチャーを1体自分のマナゾーンから選びこのクリーチャーをその上に重ねつつ出す。このクリーチャーが出た時スノーフェアリーをすべて自分のマナゾーンから手札に戻してもよい。そうしたらスノーフェアリーをすべて自分の墓地からマナゾーンに置く。',
+   'マナ進化:自分のマナゾーンにある自然のクリーチャー1体の上に重ねつつ出す。このクリーチャーが出た時スノーフェアリー・カードをすべて自分のマナゾーンから手札に戻してもよい。そうしたらスノーフェアリー・カードをすべて自分の墓地からマナゾーンに置く。'
+  ];
+  if(['進化クリーチャー(マナ進化)','進化クリーチャー'].includes(f.typeText)&&cascade.includes(text))
+   return {manaEvolution:true,evolution:{civilization:'自然'},effect:'sixPhoto',g34Tasks:[{op:'FairyManaExchange828'}]};
+  const shiden={creature:true,race:'ドラゴン',g819CreatureNameIncludes:'紫電'};
+  if(f.typeText==='クリーチャー'&&text==='自分の名前に《紫電》とあるドラゴンが攻撃する時それよりパワーの小さい相手のクリーチャーを1体破壊する。セイバー-名前に《紫電》とあるドラゴン(自分の名前に《紫電》とあるドラゴン1体が破壊される時このクリーチャーをかわりに破壊してもよい)')
+   return {g571Saver:{filter:shiden},g252AttackWatch:{who:'self',filter:shiden,g399Attacker:true,defs:[{op:'TargetBelowSource692',g828CompareAttacker:true,to:'grave'}]}};
+  if(f.typeText==='呪文'&&text==='このターンバトルゾーンにある自分のクリーチャーすべてのパワーは+2000される。このターン自分のクリーチャーがバトルに勝った時負けたクリーチャーよりパワーが4000以上大きければそのクリーチャーは相手のシールドを1枚ブレイクする。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'GroupPower',owner:'self',filter:{creature:true},power:2000},{op:'BattleBreak828'}]};
+  if(f.typeText==='クリーチャー'&&text==='ブロッカーこのクリーチャーがバトルに勝った時負けたクリーチャーよりパワーが4000以上大きければこのクリーチャーは相手のシールドを1枚ブレイクする。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {blocker:true,breaker:2,g828BattleBreak:true};
+ }
  if(phase>=827&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='進化クリーチャー(手札進化)'&&text==='手札進化-水のクリーチャーを1体自分の手札から選びこのクリーチャーをその上に重ねつつバトルゾーンに出す。このクリーチャーはブロックされない。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')

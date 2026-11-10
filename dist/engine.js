@@ -342,8 +342,12 @@ function rememberComparisonPower(s,owner,host,leaving){
  const pending=[...(s.pendingEffects||[]),...(s.triggers?.entries||[]),...(s.judge?.deferredEffects||[])];
  const all=[...pending.map(e=>e.task),...(s.extTasks||[])].filter(Boolean);
  const departs=ref=>leaving.some(card=>card.uid===ref.uid&&(card.incarnation||0)===(ref.incarnation||0));
- const tasks=all.filter(task=>task.p===owner&&
-  (task.op==='g34_TargetBelowSource692'||task.defs?.some(def=>def.op==='TargetBelowSource692'))&&departs(task));
+ const tasks=all.filter(task=>{
+  const compare=task.op==='g34_TargetBelowSource692'?task:task.defs?.find(def=>def.op==='TargetBelowSource692');
+  if(!compare)return false;
+  if(compare.g828CompareAttacker)return task.g399Attacker&&departs(task.g399Attacker);
+  return task.p===owner&&departs(task);
+ });
  const copies=all.filter(task=>task.g765Subject&&departs(task.g765Subject));
  if(!tasks.length&&!copies.length||host.sealed)return;
  const attack=s.attackLifecycle;
@@ -1298,7 +1302,17 @@ function battle(s,pa,a,pd,b,attackingUid=null,replaced=false,blockUntap){
  }
  log(s,pa,'battle',`${card(a).name}(${ap===Infinity?'∞':ap}) 対 ${card(b).name}(${bp===Infinity?'∞':bp})`);
  const aw=forced[0]||!forced[1]&&ap>bp,bw=forced[1]||!forced[0]&&bp>ap,winner=aw&&!bw?pa:bw&&!aw?pd:null,winning=aw&&!bw?a:bw&&!aw?b:null,moves=[];if(!aw&&!extra.firebird.battleSafe(s,a)&&!extra.six.battleSafe(s,a,b,bp))moves.push({player:pa,uid:a.uid,battlePower:ap});if(!bw&&!extra.firebird.battleSafe(s,b)&&!extra.six.battleSafe(s,b,a,ap))moves.push({player:pd,uid:b.uid,battlePower:bp});
- moveCreatures(s,moves,{kind:'battleResult',winner,both:aw&&bw?[{player:pa,uid:a.uid,source:a.cardId,mechade:!!effectiveCard(a,s).mechade,breakNine:!!effectiveCard(a,s).breakNine},{player:pd,uid:b.uid,source:b.cardId,mechade:!!effectiveCard(b,s).mechade,breakNine:!!effectiveCard(b,s).breakNine}]:null,winning:winning?{uid:winning.uid,source:winning.cardId,mechade:!!effectiveCard(winning,s).mechade,breakNine:!!effectiveCard(winning,s).breakNine}:null,late:late.sort((x,y)=>Number(y.controller===s.active)-Number(x.controller===s.active))});
+ const result=(player,unit,ownPower,otherPower)=>{
+  const c=effectiveCard(unit,s);
+  const breaks=extra.six.battleBreaks828(s,player,unit,c,ownPower,otherPower);
+  return {uid:unit.uid,source:unit.cardId,mechade:!!c.mechade,breakNine:!!c.breakNine,...(breaks.length?{g828Breaks:breaks}:{})};
+ };
+ moveCreatures(s,moves,{
+  kind:'battleResult',winner,
+  both:aw&&bw?[{player:pa,...result(pa,a,ap,bp)},{player:pd,...result(pd,b,bp,ap)}]:null,
+  winning:winning?result(winner,winning,aw?ap:bp,aw?bp:ap):null,
+  late:late.sort((x,y)=>Number(y.controller===s.active)-Number(x.controller===s.active))
+ });
 }
 function markBattleWin587(s,p,w){
  if(s.g587BattleWins?.turn!==s.turn)s.g587BattleWins={turn:s.turn,players:[false,false]};
@@ -1316,7 +1330,7 @@ function finishBattleResult(s,winner,late,winning=null,both=null){
  const results=both??(winner===null?[]:[{...winning,player:winner}]);
  for(const p of [s.active,1-s.active])for(const w of results.filter(x=>x.player===p)){
   const result=markBattleWin587(s,p,w);
-  wins.push(...s.players[p].battle.filter(x=>effectiveCard(x,s).battleWinDraw).map(x=>({player:p,uid:x.uid,source:x.cardId})),...extra.battleWins(s,p,result));
+  wins.push(...s.players[p].battle.filter(x=>effectiveCard(x,s).battleWinDraw).map(x=>({player:p,uid:x.uid,source:x.cardId})),...extra.battleWins(s,p,result),...(w.g828Breaks||[]));
   if(w.breakNine)wins.push({...w,player:p});
   const cards=extra.six.handBattleWins588(s,p,w);
   if(cards.length)declarations.push({p,source:w.source,cards});

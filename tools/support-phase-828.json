@@ -1,0 +1,344 @@
+{
+  "phase": 828,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6341,
+  "description": "マナと墓地のスノーフェアリーの入れ替え、紫電を持つドラゴンの攻撃と破壊置換、パワー差で発生するバトル勝利時のブレイクに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34900/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35918/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35969/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35970/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35971/",
+    "https://dm.takaratomy.co.jp/rule/qa/39401/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm32-104",
+      "name": "ダイヤモンド・カスケード",
+      "faces": [
+        {
+          "name": "ダイヤモンド・カスケード",
+          "typeText": "進化クリーチャー(マナ進化)",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナ進化-自然のクリーチャーを１体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーをバトルゾーンに出した時、スノーフェアリーをすべて、自分のマナゾーンから手札に戻してもよい。そうした場合、スノーフェアリーをすべて、自分の墓地からマナゾーンに置く。",
+          "race": "スノーフェアリー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-104",
+      "spec": {
+        "manaEvolution": true,
+        "evolution": {
+          "civilization": "自然"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FairyManaExchange828"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-104.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "1f4e0390b92bf69428fefeed5dfd617ec9fd7ce4ab42654123441e0b80216be7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm34-031",
+      "name": "ルルーク・紫玄・ルピア",
+      "faces": [
+        {
+          "name": "ルルーク・紫玄・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の、名前に《紫電》とあるドラゴンが攻撃する時、それよりパワーの小さい相手のクリーチャーを１体破壊する。\nセイバー - 名前に《紫電》とあるドラゴン(自分の、名前に《紫電》とあるドラゴン１体が破壊される時、このクリーチャーをかわりに破壊してもよい)",
+          "race": "ファイアー・バード/サムライ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-031",
+      "spec": {
+        "g571Saver": {
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン",
+            "g819CreatureNameIncludes": "紫電"
+          }
+        },
+        "g252AttackWatch": {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン",
+            "g819CreatureNameIncludes": "紫電"
+          },
+          "g399Attacker": true,
+          "defs": [
+            {
+              "op": "TargetBelowSource692",
+              "g828CompareAttacker": true,
+              "to": "grave"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm34-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "431821873c744ef155c66ba7a43aafbb765a1c9bde537d9d72f16d7513514223",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm35-019",
+      "name": "ぶちかまし・ギザスマッシュ",
+      "faces": [
+        {
+          "name": "ぶちかまし・ギザスマッシュ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このターン、バトルゾーンにある自分のクリーチャーすべてのパワーは+2000される。\nこのターン、自分のクリーチャーがバトルに勝った時、負けたクリーチャーよりパワーが4000以上大きければ、そのクリーチャーは相手のシールドを１枚ブレイクする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-019",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "power": 2000
+          },
+          {
+            "op": "BattleBreak828"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm35-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "2a457533a38af2f89117ea643a356127aea5cfb3807620f0218dffe760112081",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm35-013",
+      "name": "黒神龍ギザバッカル",
+      "faces": [
+        {
+          "name": "黒神龍ギザバッカル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー\nこのクリーチャーがバトルに勝った時、負けたクリーチャーよりパワーが4000以上大きければ、このクリーチャーは相手のシールドを１枚ブレイクする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ドラゴン・ゾンビ",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-013",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g828BattleBreak": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm35-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "a9b7e030033fb2b73258d3f4581789a62809cf9dd432af8ba632c8e41711c68c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex12-100",
+      "canonicalId": "dm32-104",
+      "name": "ダイヤモンド・カスケード",
+      "faces": [
+        {
+          "name": "ダイヤモンド・カスケード",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナ進化：自然のクリーチャーを１体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーがバトルゾーンに出た時、スノーフェアリーをすべて、自分のマナゾーンから手札に戻してもよい。そうしたら、スノーフェアリーをすべて、自分の墓地からマナゾーンに置く。",
+          "race": "スノーフェアリー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-100",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-100.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "dfc443d4b163ba7aeb536d31b670f05499caff8b0f186b2c2cea68fc7682dcc1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24ex1-082",
+      "canonicalId": "dm32-104",
+      "name": "ダイヤモンド・カスケード",
+      "faces": [
+        {
+          "name": "ダイヤモンド・カスケード",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナ進化：自然のクリーチャーを１体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつ出す。\nこのクリーチャーが出た時、スノーフェアリーをすべて、自分のマナゾーンから手札に戻してもよい。そうしたら、スノーフェアリーをすべて、自分の墓地からマナゾーンに置く。",
+          "race": "スノーフェアリー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-082",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24ex1-082.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "30fcee81e8e2725b09c5c7d47aecab802e3ce343c4c1aedd1854f3dd491f8af9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm24bd5-054",
+      "canonicalId": "dm32-104",
+      "name": "ダイヤモンド・カスケード",
+      "faces": [
+        {
+          "name": "ダイヤモンド・カスケード",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナ進化：自然のクリーチャーを１体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつ出す。\nこのクリーチャーが出た時、スノーフェアリーをすべて、自分のマナゾーンから手札に戻してもよい。そうしたら、スノーフェアリーをすべて、自分の墓地からマナゾーンに置く。",
+          "race": "スノーフェアリー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd5-054",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd5-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "2cf4e5063b78e4906df0c8d77119af7b1d64a0cf1f2c6101ea54faf05259ef27",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex5-036",
+      "canonicalId": "dm32-104",
+      "name": "ダイヤモンド・カスケード",
+      "faces": [
+        {
+          "name": "ダイヤモンド・カスケード",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナ進化：自分のマナゾーンにある、自然のクリーチャー１体の上に重ねつつ出す。\nこのクリーチャーが出た時、スノーフェアリー・カードをすべて、自分のマナゾーンから手札に戻してもよい。そうしたら、スノーフェアリー・カードをすべて、自分の墓地からマナゾーンに置く。",
+          "race": "スノーフェアリー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex5-036",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex5-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "bda3e23d0c0b72a10c278f59952cf4958dc05c8d46897cf0915d0390ddbc1512",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc67-011",
+      "canonicalId": "dm34-031",
+      "name": "ルルーク・紫玄・ルピア",
+      "faces": [
+        {
+          "name": "ルルーク・紫玄・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分の、名前に《紫電》とあるドラゴンが攻撃する時、それよりパワーの小さい相手のクリーチャーを１体破壊する。\nセイバー-名前に《紫電》とあるドラゴン(自分の、名前に《紫電》とあるドラゴン１体が破壊される時、このクリーチャーをかわりに破壊してもよい)",
+          "race": "ファイアー・バード/サムライ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc67-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc67-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "696155854319fc9f24591e6a075beabef91ea83eb4fb03f534b3b7f677d52825",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm32-104": 4,
+      "dm34-031": 4,
+      "dm35-019": 4,
+      "dm35-013": 4,
+      "dmex12-100": 4,
+      "dm24ex1-082": 4,
+      "dm24bd5-054": 4,
+      "dm26ex5-036": 4,
+      "dmc67-011": 4
+    }
+  }
+}

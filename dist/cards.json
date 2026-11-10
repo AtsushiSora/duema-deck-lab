@@ -184853,26 +184853,145 @@
       },
       "supportBatch": "phase-827",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm32-104",
+      "name": "ダイヤモンド・カスケード",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "スノーフェアリー",
+      "text": "マナ進化-自然のクリーチャーを１体自分のマナゾーンから選び、このクリーチャーをその上に重ねつつバトルゾーンに出す。\nこのクリーチャーをバトルゾーンに出した時、スノーフェアリーをすべて、自分のマナゾーンから手札に戻してもよい。そうした場合、スノーフェアリーをすべて、自分の墓地からマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-104",
+      "limit": 4,
+      "manaEvolution": true,
+      "evolution": {
+        "civilization": "自然"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "FairyManaExchange828"
+        }
+      ],
+      "supportBatch": "phase-828",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm34-031",
+      "name": "ルルーク・紫玄・ルピア",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ファイアー・バード/サムライ",
+      "text": "自分の、名前に《紫電》とあるドラゴンが攻撃する時、それよりパワーの小さい相手のクリーチャーを１体破壊する。\nセイバー - 名前に《紫電》とあるドラゴン(自分の、名前に《紫電》とあるドラゴン１体が破壊される時、このクリーチャーをかわりに破壊してもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm34-031",
+      "limit": 4,
+      "g571Saver": {
+        "filter": {
+          "creature": true,
+          "race": "ドラゴン",
+          "g819CreatureNameIncludes": "紫電"
+        }
+      },
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "race": "ドラゴン",
+          "g819CreatureNameIncludes": "紫電"
+        },
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "TargetBelowSource692",
+            "g828CompareAttacker": true,
+            "to": "grave"
+          }
+        ]
+      },
+      "supportBatch": "phase-828",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm35-019",
+      "name": "ぶちかまし・ギザスマッシュ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "このターン、バトルゾーンにある自分のクリーチャーすべてのパワーは+2000される。\nこのターン、自分のクリーチャーがバトルに勝った時、負けたクリーチャーよりパワーが4000以上大きければ、そのクリーチャーは相手のシールドを１枚ブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-019",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupPower",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "power": 2000
+        },
+        {
+          "op": "BattleBreak828"
+        }
+      ],
+      "supportBatch": "phase-828",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm35-013",
+      "name": "黒神龍ギザバッカル",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "ドラゴン・ゾンビ",
+      "text": "ブロッカー\nこのクリーチャーがバトルに勝った時、負けたクリーチャーよりパワーが4000以上大きければ、このクリーチャーは相手のシールドを１枚ブレイクする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-013",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g828BattleBreak": true,
+      "supportBatch": "phase-828",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 827,
+    "phase": 828,
     "checkedAt": "2026-11-10",
-    "baseCount": 6338,
-    "newEffectCards": 3,
+    "baseCount": 6341,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6341,
+    "totalCount": 6345,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37370/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37371/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37372/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37373/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37374/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35875/",
-      "https://dm.takaratomy.co.jp/rule/qa/45585/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37640/",
-      "https://dm.takaratomy.co.jp/rule/qa/45075/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/34900/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35918/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35969/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35970/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35971/",
+      "https://dm.takaratomy.co.jp/rule/qa/39401/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -199428,6 +199547,30 @@
           "https://dm.takaratomy.co.jp/rule/qa/45129/",
           "https://dm.takaratomy.co.jp/rule/qa/39038/",
           "https://dm.takaratomy.co.jp/rule/qa/45800/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 827,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6338,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6341,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37370/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37371/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37372/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37373/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37374/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35875/",
+          "https://dm.takaratomy.co.jp/rule/qa/45585/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37640/",
+          "https://dm.takaratomy.co.jp/rule/qa/45075/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [
