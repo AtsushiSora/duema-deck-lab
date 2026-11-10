@@ -6177,6 +6177,20 @@ export function standardCardSpec(d,{phase=165}={}){
     continue;
    }
   }
+  if(phase>=847&&creature){
+   if(line==='自分が呪文を唱えた時このクリーチャーを自分の墓地から手札に戻してもよい。'){
+    spec.g847SpellGraveReturn=true;
+    continue;
+   }
+   if(line==='「スピードアタッカー」を持つクリーチャーはバトルゾーンにタップして出る。'){
+    spec.g847SpeedTap=true;
+    continue;
+   }
+   if(line==='このクリーチャーは可能なら毎ターンクリーチャーを攻撃する。'){
+    spec.g847MustAttackCreature=true;
+    continue;
+   }
+  }
   if(phase>=846&&creature){
    if(line==='このクリーチャーが破壊される時このクリーチャーを墓地に置くかわりに自分の手札から呪文を1枚捨ててもよい。'){
     spec.g846SpellDiscard=true;

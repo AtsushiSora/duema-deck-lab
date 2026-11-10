@@ -1382,8 +1382,11 @@ export function createSixPhotoRules(api){
  case'g34_GraveReturn754':{
   const y=own.grave.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);
   if(!y||!api.canMoveZone(s,t.p,'grave'))break;
-  const manaColors=new Set(own.mana.filter(x=>!x.faceDown).flatMap(x=>api.manaColors(api.zoneCard(s,t.p,x,'mana'),s,t.p)));
-  if(t.colors.every(c=>manaColors.has(c)))start(s,t,[{op:'Offer',title:card(y).name+'を墓地から手札に戻す？',
+  if(t.colors?.length){
+   const manaColors=new Set(own.mana.filter(x=>!x.faceDown).flatMap(x=>api.manaColors(api.zoneCard(s,t.p,x,'mana'),s,t.p)));
+   if(!t.colors.every(c=>manaColors.has(c)))break;
+  }
+  start(s,t,[{op:'Offer',title:card(y).name+'を墓地から手札に戻す？',
    score:18,defs:[{op:'SelfGraveHand476',serial:t.serial}]}]);
   break;
  }
@@ -3359,7 +3362,12 @@ export function createSixPhotoRules(api){
    queue(s,p,source,watch.defs);
   }
  }for(const y of selectedOnce464(s,p,c))y.g464UsedTurn=s.turn;recordSummon463(s,p,c);if(c.type==='creature')consumeReduction456(s,p,c);if(c.type==='creature'&&['mana','grave'].includes(origin)&&typeof permit==='string'&&permit.startsWith('g450:'))((s.g450ZoneUses??=[{},{}])[p]??={})[permit]=s.turn;if(c.type!=='spell')noncreatureUse448(s,p,c);if(c.type==='creature'){countExecution(s,p,c);if(colors(c).includes('自然')&&Number(c.power)>=12000)s.g34Discounts=(s.g34Discounts||[]).filter(y=>y.p!==p||y.turn!==s.turn);}},
- spellCast(s,p,c){useBlockers524(s,p);consumeReduction456(s,p,c);noncreatureUse448(s,p,c);countExecution(s,p,c);for(const {owner,x,watch}of spellWatches(s,p,c))queue(s,owner,x,watch.defs.map(d=>d.op==='CastCostDeploy595'?{...d,castCost:c.cost}:d));},
+ spellCast(s,p,c){
+  useBlockers524(s,p);consumeReduction456(s,p,c);noncreatureUse448(s,p,c);countExecution(s,p,c);
+  for(const {owner,x,watch}of spellWatches(s,p,c))queue(s,owner,x,watch.defs.map(d=>d.op==='CastCostDeploy595'?{...d,castCost:c.cost}:d));
+  for(const x of s.players[p].grave)if(!x.faceDown&&card(x).g847SpellGraveReturn)
+   send(s,p,x,'GraveReturn754',{serial:x.zoneSerial||0});
+ },
  opponentShieldTrigger699(s,p){
   for(const watcher of creatures(s,1-p)){
    const defs=!watcher.sealed&&effective(watcher,s).g699OpponentShieldTrigger;

@@ -983,7 +983,8 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  const baseWasCreature=!!baseUid&&s.players[p].battle.some(x=>x.uid===baseUid&&isCreature(s,x)),baseWasEvolution=!!baseUid&&s.players[p].battle.some(x=>x.uid===baseUid&&isEvolution(x));
  const c=card(inst);if(c.triggerPlus)inst.triggerPlus=!!entryOptions.plus;delete inst.g11Sideways;if(!entryOptions.g753Swap&&extra.replaceEntry(s,p,inst,baseUid,entryOptions))return;
  if(c.g728CrossOnEntry&&extra.six.crossEntry728(s,p,inst,baseUid,entryOptions))return;
- const typedTap=typedTapOnEntry720(s,p,c);
+ const typedTap=typedTapOnEntry720(s,p,c)||c.type==='creature'&&c.speedAttacker&&
+  s.players.some(owner=>owner.battle.some(x=>card(x).g847SpeedTap&&isCreature(s,x)&&!abilitiesIgnored(s,x)));
  const baseIds=Array.isArray(baseUid)?baseUid:[baseUid];
  const baseRaces=baseUid?new Map(s.players[p].battle
   .filter(x=>baseIds.includes(x.uid)&&isCreature(s,x))
@@ -1813,10 +1814,12 @@ export function getLegalActions(s){
  }
  out=out.filter(a=>(!['fight','dragonTap'].includes(a.kind)||extra.targetable(s,p,1-p,s.players[1-p].battle.find(x=>x.uid===(a.target||a.uid))))&&(!a.targets||a.targets.every(t=>extra.targetable(s,p,t.player,s.players[t.player].battle.find(x=>layers(x).some(y=>y.uid===t.uid))))));
  out=extra.six.variants463(s,p,extra.six.variants456(s,p,extra.utilityWater.variants(s,p,extra.history.variants(s,p,extra.viride.variants(s,p,extra.variants(s,p,extra.forceActions(s,p,out))))))).filter(a=>!['play','mugenStart'].includes(a.kind)||extra.originAllowed(s,p,a.origin||'hand'));
- if(s.phase==='attack'&&extra.shieldPhoto.forcesCreatureAttack(s,p)){
+ const forceSmallCreatureAttack=s.phase==='attack'&&extra.shieldPhoto.forcesCreatureAttack(s,p);
+ if(s.phase==='attack'&&(forceSmallCreatureAttack||own.battle.some(x=>card(x).g847MustAttackCreature))){
   // Check the available creature targets after all other attack restrictions.
   const attackers=new Set(out.filter(a=>a.kind==='attack'&&a.target!=='player').map(a=>a.uid));
-  const forced=new Set(own.battle.filter(x=>attackers.has(x.uid)&&power(x,false,s)<=6000).map(x=>x.uid));
+  const forced=new Set(own.battle.filter(x=>attackers.has(x.uid)&&
+   (forceSmallCreatureAttack&&power(x,false,s)<=6000||effectiveCard(x,s).g847MustAttackCreature)).map(x=>x.uid));
   if(forced.size)out=out.filter(a=>a.kind!=='endTurn'&&(!forced.has(a.uid)||!a.requiresUnforcedAttack&&(a.kind!=='attack'||a.target!=='player')));
  }
  return out.map((a,i)=>({...a,...(a.kind==='play'&&typeof a.manaPermit==='string'&&a.manaPermit.startsWith('g450:')?{label:a.label+extra.six.permitLabel450(s,p,a.manaPermit)}:{}),id:i,player:p}));
