@@ -2564,6 +2564,14 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=763&&f.typeText==='クリーチャー'){
+  if(compact363==='S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)このクリーチャーが出た時クリーチャーを2体まで選びそれぞれタップまたはアンタップする。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'battle',anyOwner:true,n:2,optional:true,g173Targets:true,g193Select:true,g763TapOrUntap:true,filter:{creature:true},title:'タップまたはアンタップするクリーチャーを2体まで選ぶ'}]};
+  if(compact363==='マナゾーンに置く時このカードはタップして置く。自分の他の多色クリーチャーがバトルゾーンに出た時カードを1枚引く。自分の多色カードをマナゾーンに置いた時そのカードをアンタップする。')
+   return {g314OtherEntry:{who:'self',filter:{multi:true},defs:[{op:'Draw',n:1}]},g763MultiManaUntap:true};
+  if(compact363==='W・ブレイカーこのクリーチャーが攻撃する時相手は自身の山札の上から1枚目を見せ山札の一番下に置く。そのカードのコストが5以上ならこのクリーチャーを攻撃の後アンタップする。')
+   return {breaker:2,g34Attack:[{op:'Poker763'}]};
+ }
  if(phase>=762&&f.typeText==='クリーチャー'){
   const mach='マッハファイター(このクリーチャーは出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)';
   if(compact363===mach+'相手のクリーチャーが出たターンに攻撃する時相手はそのクリーチャーを自身のマナゾーンに置く。')

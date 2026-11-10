@@ -559,6 +559,14 @@ export function createSixPhotoRules(api){
   moveZoneSelection583(s,t,rows);
  }
  function finishSelect(s,t){
+  if(t.g763TapOrUntap){
+   const defs=(t.rows||[]).flatMap(({p,uid})=>{
+    const target=s.players[p].battle.find(x=>x.uid===uid);
+    return target?[{op:'TapState235',target:{p,uid,incarnation:target.incarnation||0}}]:[];
+   });
+   start(s,t,defs);
+   return;
+  }
   if(t.g713SameCreature){recoverSameCreature713(s,t);return;}
   if(t.g671PlayerLockPower)for(const row of t.rows||[]){
    const target=s.players[row.p].battle.find(x=>x.uid===row.uid);
@@ -952,6 +960,18 @@ export function createSixPhotoRules(api){
   const player=t.own?t.p:1-t.p;
   const refs=t.own?[key(t)]:t.g399Attacker.refs;
   (s.extLimits??=[]).push({kind:'g677OnlyAttacker',player,refs,controller:t.p,expires:'end',who:s.active});
+  break;
+ }
+ case'g34_Poker763':{
+  const opponent=1-t.p,[uid]=look(s,{...t,p:opponent,n:1,public:true});
+  const revealed=opp.deck.find(x=>x.uid===uid);
+  if(!revealed)break;
+  const costs=[...new Set(faces(card(revealed)).map(f=>cost(f)))];
+  if(!zoneMove(s,opponent,'deck',uid,'deck')){release(s,opponent,uid);break;}
+  if(costs.length===1){
+   if(costs[0]>=5)start(s,t,[{op:'AfterAttack542',defs:[{op:'Untap',g191First:true}]}]);
+  }else choice(s,t,'公開したカードのどちらのコストを参照する？',
+   costs.map(n=>opt('コスト'+(n===Infinity?'∞':n),n>=5,n>=5?20:0,revealed.cardId)));
   break;
  }
  case'g34_AttackerMana762':{
@@ -1842,6 +1862,7 @@ export function createSixPhotoRules(api){
  case'g34_KatsuLoot321':{const y=own.hand.find(y=>y.uid===v);if(y)api.discardSelected(s,t.p,[y.uid],t.source,t.p,null,{...t,op:'g34_KatsuDraw321',high:card(y).type==='creature'&&api.power(y,false,s)>=6000});break;}
  case'g34_Next320':{const y=own.deck.find(y=>y.uid===t.target);if(!y)break;release(s,t.p,y.uid);if(v.to){zoneMove(s,t.p,'deck',y.uid,v.to,t);api.deckCheck(s,t.p);}else cast(s,t.p,y.uid,true,v.baseUid,v.face,null,'deck','ゴルギーネクスト');break;}
  case'g34_Smash320':if(v&&smashSource320(s,t))api.castBattleSpell(s,t.p,t.uid,t.incarnation,t.source);break;
+ case'g34_Poker763':if(v)start(s,t,[{op:'AfterAttack542',defs:[{op:'Untap',g191First:true}]}]);break;
  case'g34_TapState235':{const y=s.players[t.target.p].battle.find(y=>y.uid===t.target.uid&&(y.incarnation||0)===t.target.incarnation);if(y){if(v)api.tap(s,t.target.p,y);else if(y.tapped&&api.canUntap(y)){y.tapped=false;combined.untapped(s,t.target.p,y);}}break;}
  case'g34_SpellLock589':lockSpells589(s,t,v);break;
  case'g34_BattleDeclare588':if(v){
@@ -2296,11 +2317,20 @@ export function createSixPhotoRules(api){
  shieldTrigger(s,p,x,c){if(c.type==='creature'&&mecha(c)&&cost(c)<=8&&active(s,p,'kuusoku').length)return true;const root=s.players[p].shields.find(r=>api.shieldCards(r).some(y=>y.uid===x.uid)),group=root&&api.shieldGroup(root);if(root&&c.type==='creature'&&c.g433SeedTrigger&&s.players[p].battle.some(y=>!y.sealed&&matches(s,p,y,{g295Tamaseed:true})))return true;return active(s,p,'fourJustice').length>0&&s.players[p].battle.some(y=>api.layers(y).some(z=>(z.exLifeShieldUids||[z.exLifeShieldUid]).includes(group)));},
  // Mana entry is independent of casting or battlefield entry (QA39403/39404).
  manaAdded449(s,p,cards){
-  const sources=creatures(s,p).flatMap(x=>{const rules=!x.sealed&&effective(x,s).g454Space;return rules?[{x,rules}]:[];});
+  const sources=creatures(s,p).flatMap(x=>{
+   if(x.sealed)return [];
+   const {g454Space:rules,g763MultiManaUntap:untap}=effective(x,s);
+   return rules||untap?[{x,rules:rules||[],untap}]:[];
+  });
   for(const x of cards){
    if(!x.faceDown&&api.zoneCard(s,p,x).g449ManaReveal)send(s,p,x,'ManaReveal449',{serial:x.zoneSerial||0});
    const actual=api.manaColors(x.faceDown?{civilizations:[],civ:'ゼロ',manaValue:1}:api.zoneCard(s,p,x,'mana'),s,p);
-   for(const source of sources){const rules=source.rules.filter(r=>actual.includes(r.color));if(rules.length)send(s,p,source.x,'SpaceCharge454',{rules:structuredClone(rules)});}
+   for(const source of sources){
+    const rules=source.rules.filter(r=>actual.includes(r.color));
+    if(rules.length)send(s,p,source.x,'SpaceCharge454',{rules:structuredClone(rules)});
+    if(source.untap&&actual.length>1)api.enqueue(s,p,{uid:source.x.uid,incarnation:source.x.incarnation||0,
+     source:source.x.cardId,effect:'extended',task:task('g159R_ManaUntap',p,source.x.cardId,{target:x.uid,serial:x.zoneSerial||0})});
+   }
   }
  },
  played(s,p,c,x,origin,permit){if(c.type==='creature')useBlockers524(s,p);for(const y of selectedOnce464(s,p,c))y.g464UsedTurn=s.turn;recordSummon463(s,p,c);if(c.type==='creature')consumeReduction456(s,p,c);if(c.type==='creature'&&['mana','grave'].includes(origin)&&typeof permit==='string'&&permit.startsWith('g450:'))((s.g450ZoneUses??=[{},{}])[p]??={})[permit]=s.turn;if(c.type!=='spell')noncreatureUse448(s,p,c);if(c.type==='creature'){countExecution(s,p,c);if(colors(c).includes('自然')&&Number(c.power)>=12000)s.g34Discounts=(s.g34Discounts||[]).filter(y=>y.p!==p||y.turn!==s.turn);}},

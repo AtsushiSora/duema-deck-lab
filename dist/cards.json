@@ -177682,21 +177682,113 @@
       "g762BattleProxyRace": "超化獣",
       "supportBatch": "phase-762",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24rp2-051",
+      "name": "粛清者ゴットハルト",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ソルトルーパー",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、クリーチャーを２体まで選び、それぞれタップまたはアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-051",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "anyOwner": true,
+          "n": 2,
+          "optional": true,
+          "g173Targets": true,
+          "g193Select": true,
+          "g763TapOrUntap": true,
+          "filter": {
+            "creature": true
+          },
+          "title": "タップまたはアンタップするクリーチャーを2体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-763",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-008",
+      "name": "虹色類 アミュレックス",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4500,
+      "race": "ジュラシック・ドラゴン",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n自分の他の多色クリーチャーがバトルゾーンに出た時、カードを１枚引く。\n自分の多色カードをマナゾーンに置いた時、そのカードをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-008",
+      "limit": 4,
+      "g314OtherEntry": {
+        "who": "self",
+        "filter": {
+          "multi": true
+        },
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "g763MultiManaUntap": true,
+      "supportBatch": "phase-763",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-004",
+      "name": "奇天烈 ポーカード",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "マジック・コマンド/侵略者",
+      "text": "W・ブレイカー\nこのクリーチャーが攻撃する時、相手は自身の山札の上から１枚目を見せ、山札の一番下に置く。そのカードのコストが５以上なら、このクリーチャーを攻撃の後アンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-004",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Poker763"
+        }
+      ],
+      "supportBatch": "phase-763",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 762,
+    "phase": 763,
     "checkedAt": "2026-11-10",
-    "baseCount": 6133,
+    "baseCount": 6136,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6136,
+    "totalCount": 6139,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/42498/",
-      "https://dm.takaratomy.co.jp/rule/qa/42499/",
-      "https://dm.takaratomy.co.jp/rule/qa/40676/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35256/",
+      "https://dm.takaratomy.co.jp/rule/qa/44603/",
+      "https://dm.takaratomy.co.jp/rule/qa/41277/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -190940,6 +191032,24 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/qa_old/37034/",
           "https://dm.takaratomy.co.jp/rule/qa/38756/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 762,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6133,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6136,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/42498/",
+          "https://dm.takaratomy.co.jp/rule/qa/42499/",
+          "https://dm.takaratomy.co.jp/rule/qa/40676/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -1,0 +1,153 @@
+{
+  "phase": 763,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6136,
+  "description": "クリーチャー2体までの位相変更、多色カードの登場・マナ移動の監視、公開したカードのコスト判定に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35256/",
+    "https://dm.takaratomy.co.jp/rule/qa/44603/",
+    "https://dm.takaratomy.co.jp/rule/qa/41277/"
+  ],
+  "cards": [
+    {
+      "id": "dm24rp2-051",
+      "name": "粛清者ゴットハルト",
+      "faces": [
+        {
+          "name": "粛清者ゴットハルト",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーが出た時、クリーチャーを２体まで選び、それぞれタップまたはアンタップする。",
+          "race": "ソルトルーパー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24rp2-051",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "anyOwner": true,
+            "n": 2,
+            "optional": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "g763TapOrUntap": true,
+            "filter": {
+              "creature": true
+            },
+            "title": "タップまたはアンタップするクリーチャーを2体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24rp2-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "dc4ffcc815fb756111e07c940caa1fe4b5138c15b976972c415c0c1c74a3ae13",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr21-008",
+      "name": "虹色類 アミュレックス",
+      "faces": [
+        {
+          "name": "虹色類 アミュレックス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n自分の他の多色クリーチャーがバトルゾーンに出た時、カードを１枚引く。\n自分の多色カードをマナゾーンに置いた時、そのカードをアンタップする。",
+          "race": "ジュラシック・ドラゴン",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-008",
+      "spec": {
+        "g314OtherEntry": {
+          "who": "self",
+          "filter": {
+            "multi": true
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        },
+        "g763MultiManaUntap": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "f9d2b6fc55a36bce49c096220247c6994da49a308a9ad76345b59740f694e905",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr17-004",
+      "name": "奇天烈 ポーカード",
+      "faces": [
+        {
+          "name": "奇天烈 ポーカード",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが攻撃する時、相手は自身の山札の上から１枚目を見せ、山札の一番下に置く。そのカードのコストが５以上なら、このクリーチャーを攻撃の後アンタップする。",
+          "race": "マジック・コマンド/侵略者",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-004",
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Poker763"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "bcf07cdddb837e44b50595636d990ab85093c81f66d8833ac5eebaef22b0393c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm24rp2-051": 4,
+      "dmr21-008": 4,
+      "dmr17-004": 4
+    }
+  }
+}
