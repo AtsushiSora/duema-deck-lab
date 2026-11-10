@@ -3433,6 +3433,23 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=862){
+  if(d.id==='dm36-029'&&f.typeText==='進化クリーチャー'&&compact363===
+   '進化-自分の(K・ソウル)クリーチャー1体の上に置く。このクリーチャーをバトルゾーンに出した時バトルゾーンにある自分の(K・ソウル)クリーチャーを1体選ぶ。そのターンそのクリーチャーのパワーは+3000され「W・ブレイカー」を得る。')
+   return {g558Souls:['K'],evolution:{g853Soul:'K'},effect:'sixPhoto',g34Tasks:[
+    {op:'Target',owner:'self',filter:{creature:true,g853Soul:'K'},power:3000,grant:{g313Breaker:2,g633DoubleBreaker:true}}
+   ]};
+  if(d.id==='dm36-017'&&f.typeText==='進化クリーチャー'&&compact363===
+   '進化-自分の(M・ソウル)クリーチャー1体の上に置く。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)このクリーチャーまたは自分の他の(M・ソウル)クリーチャーが破壊された時相手はバトルゾーンにある自身のクリーチャーを1体選び手札に戻す。')
+   return {g558Souls:['M'],evolution:{g853Soul:'M'},breaker:2,
+    g303DeathWatch:{self:true,g862OtherSoul:'M',defs:[{op:'OpponentSelect',to:'hand',n:1}]}};
+  if(['dm36-088','dm36-088VC'].includes(d.id)&&f.typeText==='クリーチャー'&&
+   compact363.replace(/^【E・ソウル】/,'').replace('このクリーチャーのd能力を使う)d','このクリーチャーの能力を使う)')===
+   'このクリーチャーをバトルゾーンに出した時自分の山札の上から4枚を自分の墓地に置く。返霊3(このクリーチャーが攻撃する時自分の墓地からカードを3枚好きな順序で山札の一番下に置いてもよい。そうした場合このクリーチャーの能力を使う)カードを1枚引く。')
+   return {g558Souls:['E'],effect:'sixPhoto',g34Tasks:[{op:'Mill',n:4}],
+    g34Attack:[{op:'Select',origin:'grave',to:'deck',n:3,optional:true,g837Reikon:[{op:'Draw',n:1}],
+     title:'返霊3：山札の下に置く順に墓地のカードを3枚選ぶ'}]};
+ }
  if(phase>=861){
   if(['dm36-011','dm36-011VC'].includes(d.id)&&f.typeText==='進化クリーチャー'&&
    compact363.replace(/^【H・ソウル】/,'').replaceAll('{HSoulsicon}','').replace(/^進化ー/,'進化-')===

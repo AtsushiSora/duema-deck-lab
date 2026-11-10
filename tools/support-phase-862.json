@@ -1,0 +1,216 @@
+{
+  "phase": 862,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6450,
+  "description": "ソウル進化と登場時の強化、ソウルクリーチャーの破壊時の手札戻し、登場時の墓地送りと返霊3に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37634/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36062/",
+    "https://dm.takaratomy.co.jp/rule/qa/43290/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37627/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37629/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37630/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37631/",
+    "https://dm.takaratomy.co.jp/rule/qa/40371/"
+  ],
+  "cards": [
+    {
+      "id": "dm36-029",
+      "name": "機神装甲ヴァルタイソン",
+      "faces": [
+        {
+          "name": "機神装甲ヴァルタイソン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "進化-自分の(K・ソウル)クリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分の(K・ソウル)クリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは+3000され、「W・ブレイカー」を得る。",
+          "race": "ヒューマノイド",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-029",
+      "spec": {
+        "g558Souls": [
+          "K"
+        ],
+        "evolution": {
+          "g853Soul": "K"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "creature": true,
+              "g853Soul": "K"
+            },
+            "power": 3000,
+            "grant": {
+              "g313Breaker": 2,
+              "g633DoubleBreaker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "29771f88e9cad5ca92c15c7e2cc59ea31ca3ba16ec32b8f1a8d41e49411155f9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-017",
+      "name": "レジェンダリー・アンフビュース",
+      "faces": [
+        {
+          "name": "レジェンダリー・アンフビュース",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分の(M・ソウル)クリーチャー１体の上に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーまたは自分の他の(M・ソウル)クリーチャーが破壊された時、相手はバトルゾーンにある自身のクリーチャーを１体選び、手札に戻す。",
+          "race": "リヴァイアサン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-017",
+      "spec": {
+        "g558Souls": [
+          "M"
+        ],
+        "evolution": {
+          "g853Soul": "M"
+        },
+        "breaker": 2,
+        "g303DeathWatch": {
+          "self": true,
+          "g862OtherSoul": "M",
+          "defs": [
+            {
+              "op": "OpponentSelect",
+              "to": "hand",
+              "n": 1
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "a2f244b58896a0d213b99b0b14a14c4cf93c5bcb238defbca116a7673ad12d4d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-088",
+      "name": "冥界の影ラビリンス・ローズ",
+      "faces": [
+        {
+          "name": "冥界の影ラビリンス・ローズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から４枚を自分の墓地に置く。\n返霊３(このクリーチャーが攻撃する時、自分の墓地からカードを３枚、好きな順序で山札の一番下に置いてもよい。そうした場合、このクリーチャーの能力を使う)\nカードを１枚引く。",
+          "race": "ゴースト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-088",
+      "spec": {
+        "g558Souls": [
+          "E"
+        ],
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 4
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "deck",
+            "n": 3,
+            "optional": true,
+            "g837Reikon": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ],
+            "title": "返霊3：山札の下に置く順に墓地のカードを3枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-088.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "53a76fc9627b6cacbb4fbdf39e4b212b19adf375a51124e174d0fa1742407964",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm36-088VC",
+      "canonicalId": "dm36-088",
+      "name": "冥界の影ラビリンス・ローズ",
+      "faces": [
+        {
+          "name": "冥界の影ラビリンス・ローズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "【E・ソウル】\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から４枚を自分の墓地に置く。\n返霊３（このクリーチャーが攻撃する時、自分の墓地からカードを３枚、好きな順序で山札の一番下に置いてもよい。そうした場合、このクリーチャーの d 能力を使う） d カードを１枚引く。",
+          "race": "ゴースト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-088VC",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-088VC.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "5b3e379cc3a2cea852cf65952e093576b0656db9149c1c29ff9178bc07882e1c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm36-029": 4,
+      "dm36-017": 4,
+      "dm36-088": 4,
+      "dm36-088VC": 4
+    }
+  }
+}

@@ -188095,27 +188095,146 @@
       },
       "supportBatch": "phase-861",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm36-029",
+      "name": "機神装甲ヴァルタイソン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 4000,
+      "race": "ヒューマノイド",
+      "text": "進化-自分の(K・ソウル)クリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分の(K・ソウル)クリーチャーを１体選ぶ。そのターン、そのクリーチャーのパワーは+3000され、「W・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-029",
+      "limit": 4,
+      "g558Souls": [
+        "K"
+      ],
+      "evolution": {
+        "g853Soul": "K"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "creature": true,
+            "g853Soul": "K"
+          },
+          "power": 3000,
+          "grant": {
+            "g313Breaker": 2,
+            "g633DoubleBreaker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-862",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm36-017",
+      "name": "レジェンダリー・アンフビュース",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "リヴァイアサン",
+      "text": "進化-自分の(M・ソウル)クリーチャー１体の上に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーまたは自分の他の(M・ソウル)クリーチャーが破壊された時、相手はバトルゾーンにある自身のクリーチャーを１体選び、手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-017",
+      "limit": 4,
+      "g558Souls": [
+        "M"
+      ],
+      "evolution": {
+        "g853Soul": "M"
+      },
+      "breaker": 2,
+      "g303DeathWatch": {
+        "self": true,
+        "g862OtherSoul": "M",
+        "defs": [
+          {
+            "op": "OpponentSelect",
+            "to": "hand",
+            "n": 1
+          }
+        ]
+      },
+      "supportBatch": "phase-862",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm36-088",
+      "name": "冥界の影ラビリンス・ローズ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ゴースト",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から４枚を自分の墓地に置く。\n返霊３(このクリーチャーが攻撃する時、自分の墓地からカードを３枚、好きな順序で山札の一番下に置いてもよい。そうした場合、このクリーチャーの能力を使う)\nカードを１枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-088",
+      "limit": 4,
+      "g558Souls": [
+        "E"
+      ],
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 4
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "deck",
+          "n": 3,
+          "optional": true,
+          "g837Reikon": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ],
+          "title": "返霊3：山札の下に置く順に墓地のカードを3枚選ぶ"
+        }
+      ],
+      "supportBatch": "phase-862",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 861,
+    "phase": 862,
     "checkedAt": "2026-11-11",
-    "baseCount": 6447,
+    "baseCount": 6450,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6450,
+    "totalCount": 6453,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316671/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37633/",
+      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
       "https://dm.takaratomy.co.jp/rule/qa_old/37634/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36679/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36092/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36093/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36094/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34944/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35044/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/36062/",
+      "https://dm.takaratomy.co.jp/rule/qa/43290/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37627/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37629/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37630/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37631/",
+      "https://dm.takaratomy.co.jp/rule/qa/40371/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -203380,6 +203499,30 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36048/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37633/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37634/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 861,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6447,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6450,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316671/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37633/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37634/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36679/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36092/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36093/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36094/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34944/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35044/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
