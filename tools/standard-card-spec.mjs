@@ -2507,6 +2507,18 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana'}],hyperTap:true,
     hyper:{power:9000,breaker:2,g206NoBlock:{lessPower:true}}};
  }
+ if(phase>=818&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='クリーチャー'&&text==='自分の進化クリーチャーを召喚した時カードを1枚引いてもよい。そうした場合自分の手札を1枚山札の一番下に置く。')
+   return {g808SummonWatch:{g816Evolution:true,defs:[{op:'Offer',title:'カードを1枚引き、手札を1枚山札の下に置く？',
+    defs:[{op:'Draw',n:1,g818AfterDraw:[{op:'Select',origin:'hand',n:1,to:'deck',g183Return:true,title:'山札の一番下に置く手札を選ぶ'}]}]}]}};
+  if(f.typeText==='呪文'){
+   if(text==='このターンバトルゾーンにある自分のクリーチャー1体のパワーは+3000され「W・ブレイカー」を得る。ナイト・マジック(バトルゾーンに自分のナイトがあればこの呪文の能力をもう一度使ってもよい)')
+    return {effect:'sixPhoto',g70Effect:'Bakuretsu'};
+   if(text==='バトルゾーンにある自分のクリーチャーを1体選ぶ。そのクリーチャーに含まれるカード1枚につき自分の山札の上から1枚を裏向きのまま新しいシールドとしてシールドゾーンに加える。')
+    return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',spell:true,g503Stack:'shield',title:'構成カードを数える自分のクリーチャーを1体選ぶ'}]};
+  }
+ }
  if(phase>=817&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='クリーチャー'){

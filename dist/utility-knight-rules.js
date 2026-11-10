@@ -15,6 +15,8 @@ export function createUtilityKnightRules(api){
   Stream:[{op:'g70_StreamPick'}],
   Chain:[{op:'g70_ChainPick'}],
   Critical:[{op:'g71_Critical'}],
+  Bakuretsu:[{op:'g34_Target',owner:'self',spell:true,power:3000,grant:{g818DoubleBreaker:true},
+   title:'パワーを+3000し「W・ブレイカー」を与える自分のクリーチャーを選ぶ'}],
   Plus:[{op:'g71_Plus'}]
  };
  const body=(t,mode)=>magic[mode].map(d=>task(d.op,t.p,t.source,{uid:t.uid,...d}));
@@ -27,6 +29,7 @@ export function createUtilityKnightRules(api){
   case'Stream':return streamTargets(s,t.p).some(o=>s.players[1-t.p].battle.some(x=>x.uid===o.value))?15:-10;
   case'Chain':return targetOptions(s,t.p,living(s,1-t.p)).some(o=>!s.players[1-t.p].battle.find(x=>x.uid===o.value).tapped)?12:-10;
   case'Critical':return targetOptions(s,t.p,living(s,1-t.p).filter(x=>effective(x,s).blocker)).length?15:-10;
+  case'Bakuretsu':return targetOptions(s,t.p,living(s,t.p)).length?15:-10;
   case'Plus':return s.players[t.p].deck.length>1&&s.players[t.p].shields.length&&api.canAddShield(s,t.p)&&!s.players.some(p=>p.battle.some(x=>effective(x,s).deckRedirect))?12:-100;
   case'Open':return s.players[t.p].deck.length>1||winsDraw(s,t.p)?10:0;
   default:return s.players[1-t.p].hand.length?10:0;
@@ -37,11 +40,11 @@ export function createUtilityKnightRules(api){
  case'g70_Mirage':if(hasRace(s,t.p,'サイバーロード'))choice(s,t,'ミラージュ・マーメイド：カードを3枚引く？',[opt('3枚引く',true,drawScore(s,t.p,3)),opt('引かない',false,0)]);break;
  case'g70_Open':put(s,follow(t,'Draw',{n:2}),follow(t,'Knight',{mode:'Open'}));break;
  case'g70_Bullet':put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:1}),follow(t,'Knight',{mode:'Bullet'}));break;
- case'g70_Zanzibar':case'g70_Soul':case'g70_Glory':case'g70_Panda':case'g70_Stream':case'g70_Chain':case'g70_Critical':case'g70_Plus':{const mode=t.op.slice(4);put(s,...body(t,mode),follow(t,'Knight',{mode}));break;}
+ case'g70_Zanzibar':case'g70_Soul':case'g70_Glory':case'g70_Panda':case'g70_Stream':case'g70_Chain':case'g70_Critical':case'g70_Bakuretsu':case'g70_Plus':{const mode=t.op.slice(4);put(s,...body(t,mode),follow(t,'Knight',{mode}));break;}
  case'g70_StreamPick':choice(s,t,'手札に戻すクリーチャーまたはクロスギアを1つ選ぶ',streamTargets(s,t.p).map(o=>{const own=s.players[t.p].battle.some(x=>x.uid===o.value);return{...o,label:(own?'自分':'相手')+' '+o.label,score:own?-5-o.score:10+o.score};}));break;
  case'g70_ChainPick':choice(s,t,'タップする相手のクリーチャーを1体選ぶ',targetOptions(s,t.p,living(s,1-t.p)).map(o=>{const x=s.players[1-t.p].battle.find(x=>x.uid===o.value);return{...o,label:o.label+'（'+(x.tapped?'タップ中':'アンタップ')+'）',score:x.tapped?-5:10+o.score};}));break;
  case'g70_Draw':choice(s,t,'魔弾オープン・ブレイン：カードを2枚まで引く',Array.from({length:t.n+1},(_,n)=>opt(n+'枚',n,drawScore(s,t.p,n))));break;
- case'g70_Knight':if(hasRace(s,t.p,'ナイト'))choice(s,t,'ナイト・マジック：効果をもう一度使う？',[opt('もう一度使う',true,repeatScore(s,t)),opt('使わない',false,0)]);break;
+ case'g70_Knight':if(t.mode==='Bakuretsu'?living(s,t.p).some(x=>String(effective(x,s).race||'').split('/').includes('ナイト')):hasRace(s,t.p,'ナイト'))choice(s,t,'ナイト・マジック：効果をもう一度使う？',[opt('もう一度使う',true,repeatScore(s,t)),opt('使わない',false,0)]);break;
  case'g70_Clone':{const copies=s.players.reduce((n,p)=>n+p.grave.filter(x=>card(x).name===card(t.source).name).length,0);put(s,follow(t,'ClonePick',{max:1+copies,selected:[]}));break;}
  case'g70_ClonePick':{const list=[t.p,1-t.p].flatMap(p=>living(s,p)).filter(x=>!t.selected.some(r=>r.uid===x.uid)),options=targetOptions(s,t.p,list);if(t.selected.length>=t.max||!options.length){bounce(s,t);break;}choice(s,t,'手札に戻すクリーチャーを選ぶ（'+t.selected.length+'/'+t.max+'、最低1体）',[...options.map(o=>{const owner=s.players.findIndex(p=>p.battle.some(x=>x.uid===o.value));return{...o,label:(owner===t.p?'自分':'相手')+' '+o.label,score:owner===t.p?-5-o.score:10+o.score};}),...(t.selected.length?[opt('ここまでで確定',null,0)]:[])]);break;}
  default:throw Error('未実装のナイト・選択効果：'+t.op);

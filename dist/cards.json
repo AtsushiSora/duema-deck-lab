@@ -183873,23 +183873,119 @@
       ],
       "supportBatch": "phase-817",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm32-083",
+      "name": "キング・ブルファング",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "リヴァイアサン",
+      "text": "自分の進化クリーチャーを召喚した時、カードを１枚引いてもよい。そうした場合、自分の手札を１枚、山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-083",
+      "limit": 4,
+      "g808SummonWatch": {
+        "g816Evolution": true,
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "カードを1枚引き、手札を1枚山札の下に置く？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1,
+                "g818AfterDraw": [
+                  {
+                    "op": "Select",
+                    "origin": "hand",
+                    "n": 1,
+                    "to": "deck",
+                    "g183Return": true,
+                    "title": "山札の一番下に置く手札を選ぶ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-818",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm30-051",
+      "name": "魔弾バクレツ・ストライク",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "ナイト",
+      "text": "このターン、バトルゾーンにある自分のクリーチャー１体のパワーは+3000され、「W・ブレイカー」を得る。\nナイト・マジック(バトルゾーンに自分のナイトがあれば、この呪文の能力をもう一度使ってもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-051",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g70Effect": "Bakuretsu",
+      "supportBatch": "phase-818",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm35-007",
+      "name": "白騎士アトミック・ゲイナー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 7,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある自分のクリーチャーを１体選ぶ。そのクリーチャーに含まれるカード１枚につき、自分の山札の上から１枚を裏向きのまま、新しいシールドとしてシールドゾーンに加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-007",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "spell": true,
+          "g503Stack": "shield",
+          "title": "構成カードを数える自分のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-818",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 817,
+    "phase": 818,
     "checkedAt": "2026-11-10",
-    "baseCount": 6305,
+    "baseCount": 6308,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6308,
+    "totalCount": 6311,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/31531/",
-      "https://dm.takaratomy.co.jp/rule/qa/31690/",
-      "https://dm.takaratomy.co.jp/rule/qa/34384/",
-      "https://dm.takaratomy.co.jp/rule/qa/48922/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316654/",
-      "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-109",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35808/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35956/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/34907/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/34908/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35812/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37521/",
+      "https://dm.takaratomy.co.jp/rule/qa/40393/",
+      "https://dm.takaratomy.co.jp/rule/qa/40400/",
+      "https://dm.takaratomy.co.jp/rule/qa/44837/",
+      "https://dm.takaratomy.co.jp/rule/qa/47367/",
+      "https://dm.takaratomy.co.jp/rule/qa/47894/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -198232,6 +198328,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/40102/",
           "https://dm.takaratomy.co.jp/rule/qa/47894/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 817,
+        "checkedAt": "2026-11-10",
+        "baseCount": 6305,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6308,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/31531/",
+          "https://dm.takaratomy.co.jp/rule/qa/31690/",
+          "https://dm.takaratomy.co.jp/rule/qa/34384/",
+          "https://dm.takaratomy.co.jp/rule/qa/48922/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316654/",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-109",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

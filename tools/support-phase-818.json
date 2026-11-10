@@ -1,0 +1,160 @@
+{
+  "phase": 818,
+  "checkedAt": "2026-11-10",
+  "baseCount": 6308,
+  "description": "進化召喚後の手札調整、ナイト・マジックによる強化、構成カード枚数に応じたシールド追加に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35808/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35956/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34907/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34908/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35812/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37521/",
+    "https://dm.takaratomy.co.jp/rule/qa/40393/",
+    "https://dm.takaratomy.co.jp/rule/qa/40400/",
+    "https://dm.takaratomy.co.jp/rule/qa/44837/",
+    "https://dm.takaratomy.co.jp/rule/qa/47367/",
+    "https://dm.takaratomy.co.jp/rule/qa/47894/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm32-083",
+      "name": "キング・ブルファング",
+      "faces": [
+        {
+          "name": "キング・ブルファング",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の進化クリーチャーを召喚した時、カードを１枚引いてもよい。そうした場合、自分の手札を１枚、山札の一番下に置く。",
+          "race": "リヴァイアサン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-083",
+      "spec": {
+        "g808SummonWatch": {
+          "g816Evolution": true,
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "カードを1枚引き、手札を1枚山札の下に置く？",
+              "defs": [
+                {
+                  "op": "Draw",
+                  "n": 1,
+                  "g818AfterDraw": [
+                    {
+                      "op": "Select",
+                      "origin": "hand",
+                      "n": 1,
+                      "to": "deck",
+                      "g183Return": true,
+                      "title": "山札の一番下に置く手札を選ぶ"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-083.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "468c2d2db2354d3af0c30b6e925aace33bdf09a668190a644d5a5336dbb5ade8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm30-051",
+      "name": "魔弾バクレツ・ストライク",
+      "faces": [
+        {
+          "name": "魔弾バクレツ・ストライク",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このターン、バトルゾーンにある自分のクリーチャー１体のパワーは+3000され、「W・ブレイカー」を得る。\nナイト・マジック(バトルゾーンに自分のナイトがあれば、この呪文の能力をもう一度使ってもよい)",
+          "race": "ナイト",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-051",
+      "spec": {
+        "effect": "sixPhoto",
+        "g70Effect": "Bakuretsu"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm30-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "9c211a4546e3c1604eaedecacc64742b205564c819f9f02247820ee22892df2e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm35-007",
+      "name": "白騎士アトミック・ゲイナー",
+      "faces": [
+        {
+          "name": "白騎士アトミック・ゲイナー",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "バトルゾーンにある自分のクリーチャーを１体選ぶ。そのクリーチャーに含まれるカード１枚につき、自分の山札の上から１枚を裏向きのまま、新しいシールドとしてシールドゾーンに加える。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm35-007",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "spell": true,
+            "g503Stack": "shield",
+            "title": "構成カードを数える自分のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm35-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-10",
+        "sha256": "14e5c7fea83d2fc5a02936db07c888fe42401d5c874bab6aeb50f55f23b5ee52",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-10",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm32-083": 4,
+      "dm30-051": 4,
+      "dm35-007": 4
+    }
+  }
+}
