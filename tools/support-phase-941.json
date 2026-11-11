@@ -1,0 +1,237 @@
+{
+  "phase": 941,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6695,
+  "description": "S・トリガーの二択破壊、進化Vと登場時の破壊、ジャイアント数までの任意マナ追加を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35497/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37352/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37354/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35001/"
+  ],
+  "cards": [
+    {
+      "id": "dm22-032",
+      "name": "ボンバ・ドール",
+      "faces": [
+        {
+          "name": "ボンバ・ドール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n相手のパワー2000以下のクリーチャーを１体、または、相手のタップされているパワー5000以下のクリーチャーを１体、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-032",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "パワー2000以下の相手クリーチャー1体を破壊",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "maxPower": 2000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              },
+              {
+                "label": "タップされているパワー5000以下の相手クリーチャー1体を破壊",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "to": "grave",
+                    "filter": {
+                      "tapped": true,
+                      "maxPower": 5000,
+                      "g199Power": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "95c2e6b37b51e105e9092ffbbd6769a6215759015e41e8ffec9f4c39bfc3f2b1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22-027",
+      "name": "闇彗星アステロイド・ゲルーム",
+      "faces": [
+        {
+          "name": "闇彗星アステロイド・ゲルーム",
+          "typeText": "進化クリーチャー(進化V)",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化V-自分のグランド・デビル、ディープ・マリーン、ドラゴン・ゾンビのいずれか２体を重ねた上に置く。\nこのクリーチャーをバトルゾーンに出した時、相手のクリーチャーを１体破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "フェニックス",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-027",
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "any": [
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "ディープ・マリーン"
+                },
+                {
+                  "race": "ドラゴン・ゾンビ"
+                }
+              ]
+            },
+            {
+              "any": [
+                {
+                  "race": "グランド・デビル"
+                },
+                {
+                  "race": "ディープ・マリーン"
+                },
+                {
+                  "race": "ドラゴン・ゾンビ"
+                }
+              ]
+            }
+          ]
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "5d41fb9365a51bcdd7b1eb923b1be135490b7fcd7e60e4f17c0093c07d84d6a9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx09-008",
+      "name": "米込の超人",
+      "faces": [
+        {
+          "name": "米込の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のジャイアント１体につき自分の山札の上から１枚、自分のマナゾーンに置いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ジャイアント/アンノイズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx09-008",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CreatureCountRamp765",
+            "filter": {
+              "race": "ジャイアント"
+            },
+            "optional": true,
+            "g809Together": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx09-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "6a5166f32f2baf767ad394a0580a1efb5f9c98cf943f5cf3ff2b6ff81baeb623",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc41-008",
+      "canonicalId": "dm22-032",
+      "name": "ボンバ・ドール",
+      "faces": [
+        {
+          "name": "ボンバ・ドール",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加えた時、コストを支払わずにすぐ唱えてもよい)\n相手のパワー2000以下のクリーチャーを１体、または、相手のタップされているパワー5000以下のクリーチャーを１体、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc41-008",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc41-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "1c1625310582949b416fb157d76a1cdd9d093547c982f90e766f40787dd8251f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22-032": 4,
+      "dm22-027": 4,
+      "dmx09-008": 4,
+      "dmc41-008": 4
+    }
+  }
+}

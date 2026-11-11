@@ -3388,6 +3388,29 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=941&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const bomb='相手のパワー2000以下のクリーチャーを1体または相手のタップされているパワー5000以下のクリーチャーを1体破壊する。';
+  const trigger='S・トリガー(この呪文をシールドゾーンから手札に加え';
+  if(['dm22-032','dmc41-008'].includes(d.id)&&f.typeText==='呪文'&&
+   ['る時','た時'].some(t=>text===trigger+t+'コストを支払わずにすぐ唱えてもよい)'+bomb))
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Choose',g184Modes:true,modes:[
+    {label:'パワー2000以下の相手クリーチャー1体を破壊',defs:[{op:'Target',to:'grave',filter:{maxPower:2000,g199Power:true}}]},
+    {label:'タップされているパワー5000以下の相手クリーチャー1体を破壊',defs:[{op:'Target',to:'grave',filter:{tapped:true,maxPower:5000,g199Power:true}}]}
+   ]}]};
+  const doubleBreaker='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
+  if(d.id==='dm22-027'&&f.typeText==='進化クリーチャー(進化V)'&&text===
+   '進化V-自分のグランド・デビルディープ・マリーンドラゴン・ゾンビのいずれか2体を重ねた上に置く。このクリーチャーをバトルゾーンに出した時相手のクリーチャーを1体破壊する。'+doubleBreaker){
+   const races=['グランド・デビル','ディープ・マリーン','ドラゴン・ゾンビ'];
+   return {evolution:{g31:true},g31Evolution:{zone:'battle',
+    conditions:Array.from({length:2},()=>({any:races.map(race=>({race}))}))},
+    breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'grave'}]};
+  }
+  if(d.id==='dmx09-008'&&f.typeText==='クリーチャー'&&text===
+   'このクリーチャーをバトルゾーンに出した時バトルゾーンにある自分のジャイアント1体につき自分の山札の上から1枚自分のマナゾーンに置いてもよい。'+doubleBreaker)
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'CreatureCountRamp765',filter:{race:'ジャイアント'},
+    optional:true,g809Together:true}]};
+ }
  if(phase>=940&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='呪文'&&d.id==='dm30-025'&&text===

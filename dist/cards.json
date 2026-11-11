@@ -196294,23 +196294,167 @@
       ],
       "supportBatch": "phase-940",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22-032",
+      "name": "ボンバ・ドール",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n相手のパワー2000以下のクリーチャーを１体、または、相手のタップされているパワー5000以下のクリーチャーを１体、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-032",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "パワー2000以下の相手クリーチャー1体を破壊",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "maxPower": 2000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            },
+            {
+              "label": "タップされているパワー5000以下の相手クリーチャー1体を破壊",
+              "defs": [
+                {
+                  "op": "Target",
+                  "to": "grave",
+                  "filter": {
+                    "tapped": true,
+                    "maxPower": 5000,
+                    "g199Power": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-941",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22-027",
+      "name": "闇彗星アステロイド・ゲルーム",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 9000,
+      "race": "フェニックス",
+      "text": "進化V-自分のグランド・デビル、ディープ・マリーン、ドラゴン・ゾンビのいずれか２体を重ねた上に置く。\nこのクリーチャーをバトルゾーンに出した時、相手のクリーチャーを１体破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-027",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "any": [
+              {
+                "race": "グランド・デビル"
+              },
+              {
+                "race": "ディープ・マリーン"
+              },
+              {
+                "race": "ドラゴン・ゾンビ"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "race": "グランド・デビル"
+              },
+              {
+                "race": "ディープ・マリーン"
+              },
+              {
+                "race": "ドラゴン・ゾンビ"
+              }
+            ]
+          }
+        ]
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave"
+        }
+      ],
+      "supportBatch": "phase-941",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx09-008",
+      "name": "米込の超人",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "ジャイアント/アンノイズ",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のジャイアント１体につき自分の山札の上から１枚、自分のマナゾーンに置いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx09-008",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CreatureCountRamp765",
+          "filter": {
+            "race": "ジャイアント"
+          },
+          "optional": true,
+          "g809Together": true
+        }
+      ],
+      "supportBatch": "phase-941",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 940,
+    "phase": 941,
     "checkedAt": "2026-11-11",
-    "baseCount": 6691,
-    "newEffectCards": 4,
+    "baseCount": 6695,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6695,
+    "totalCount": 6698,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35717/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35718/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35001/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35467/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35497/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37352/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37354/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35001/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -213127,6 +213271,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/42937/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37440/",
           "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-S001"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 940,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6691,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6695,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35717/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35718/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35001/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35467/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
