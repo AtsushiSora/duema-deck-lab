@@ -201911,28 +201911,195 @@
       ],
       "supportBatch": "phase-987",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-054",
+      "name": "チャケの心意気",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを１体タップする。次の自分のターンのはじめまで、そのクリーチャーのパワーは+4000され、相手のクリーチャーが攻撃する時、可能であればそのクリーチャーを攻撃する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-054",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "spell": true,
+          "tap": true,
+          "power": 4000,
+          "g521UntilStart": true,
+          "g988Lure": true,
+          "title": "タップしてパワーを+4000する自分のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-988",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-046",
+      "name": "強襲する髑髏月",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "相手の手札を２枚見ないで選び、捨てさせる。\n自分の闇のクリーチャーを１体破壊してもよい。そうした場合、この呪文を唱えた後、墓地に置くかわりに手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-046",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BlindDiscard773",
+          "n": 2
+        },
+        {
+          "op": "SacrificeAlly413",
+          "filter": {
+            "color": "闇"
+          },
+          "defs": [
+            {
+              "op": "SpellFinish416",
+              "to": "hand"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-988",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-006",
+      "name": "聖霊龍王 スタグネイト",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 10500,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "進化ー自分の光のドラゴン１体の上に置く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nこのクリーチャーがタップしている時、バトルゾーンにある相手のクリーチャーは相手のターンのはじめにアンタップされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-006",
+      "limit": 4,
+      "evolution": {
+        "category": "ドラゴン",
+        "civilization": "光"
+      },
+      "breaker": 2,
+      "g988StartUntapLock": true,
+      "supportBatch": "phase-988",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-001",
+      "name": "救済の精霊龍 ゴシック・ヘレン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nこのクリーチャーまたは自分の他のクリーチャーが破壊された時、自分の山札の上から２枚を見る。その中から、コスト３以下の進化ではないクリーチャーを１体、バトルゾーンに出してもよい。残りのカードを好きな順序で自分の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-001",
+      "limit": 4,
+      "breaker": 2,
+      "g303DeathWatch": {
+        "self": true,
+        "g891LookBackSelf": true,
+        "defs": [
+          {
+            "op": "LookDeploy530",
+            "n": 2,
+            "limit": 1,
+            "rest": "bottom",
+            "g841DeckPeek": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "max": 3
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-988",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-005",
+      "name": "地掘類蛇蝎目 ディグルピオン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 6000,
+      "race": "ジュラシック・コマンド・ドラゴン",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンに自分の他のドラゴンがあれば、自分の山札の上から１枚目をマナゾーンに置く。自分のドラゴンが他に１体もなければ、このクリーチャーをマナゾーンに置く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-005",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン",
+            "g334Other": true
+          },
+          "defs": [
+            {
+              "op": "Ramp",
+              "n": 1
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "SelfMana297",
+              "g536Source": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-988",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 987,
+    "phase": 988,
     "checkedAt": "2026-11-12",
-    "baseCount": 6865,
+    "baseCount": 6870,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 6870,
+    "totalCount": 6875,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37111/",
-      "https://dm.takaratomy.co.jp/rule/qa/41750/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37219/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37220/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37158/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37159/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37231/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37232/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37233/",
-      "https://dm.takaratomy.co.jp/rule/qa/43297/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37165/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37166/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37142/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37134/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -219712,6 +219879,31 @@
           "https://dm.takaratomy.co.jp/rule/qa/41750/",
           "https://dm.takaratomy.co.jp/rule/qa/45589/",
           "https://dm.takaratomy.co.jp/rule/rulechange/%E5%A4%89%E6%9B%B4%E7%82%B92026-07-23/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 987,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6865,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 6870,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37111/",
+          "https://dm.takaratomy.co.jp/rule/qa/41750/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37219/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37220/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37158/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37159/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37231/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37232/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37233/",
+          "https://dm.takaratomy.co.jp/rule/qa/43297/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

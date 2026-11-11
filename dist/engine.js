@@ -1921,14 +1921,19 @@ function nextTurn(s){
  for(const top of p.battle)for(const c of layers(top)){delete c.hyperActive;delete c.hyperResolved;}
  refreshDynamicTypes(s);const silent=p.battle.filter(c=>canSilent496(s,c));if(silent.length){s.phase='start';s.startStep={player:s.active,stage:'silent496',remaining:silent.map(c=>({uid:c.uid,incarnation:c.incarnation||0})),chosen:[]};advanceStart(s);}else finishStartUntap496(s);
 }
-function canSilent496(s,x){const c=effectiveCard(x,s);return !!(isCreature(s,x)&&x.tapped&&c.g496Silent&&!skipsStartUntap(s,x)&&!c.g26Zaze&&!c.g40StartNoUntap&&canUntap(x));}
+function startCreatureUntapLocked988(s,p){
+ return s.players[1-p].battle.some(x=>x.tapped&&!x.sealed&&card(x).g988StartUntapLock&&
+  isCreature(s,x)&&effectiveCard(x,s).g988StartUntapLock);
+}
+function canSilent496(s,x){const c=effectiveCard(x,s);return !!(isCreature(s,x)&&x.tapped&&c.g496Silent&&!startCreatureUntapLocked988(s,s.active)&&!skipsStartUntap(s,x)&&!c.g26Zaze&&!c.g40StartNoUntap&&canUntap(x));}
 function finishStartUntap496(s,chosen=[]){
  const p=s.players[s.active],kept=new Set(chosen.map(c=>c.uid));
  const preventMana=p.battle.some(x=>!x.sealed&&isCreature(s,x)&&effectiveCard(x,s).g723NoStartManaUntap);
  // QA39142: the tapped condition looks at the card before turn-start untapping.
  const tappedBefore=new Set(p.battle.filter(x=>x.tapped).map(x=>x.uid));
  const limited=extra.beforeUntap(s,s.active,preventMana)||preventMana;
- for(const c of [...p.mana,...p.battle]){const wasTapped=c.tapped;if(!kept.has(c.uid)&&(!limited||p.battle.includes(c))&&!skipsStartUntap(s,c)&&!(p.battle.includes(c)&&(effectiveCard(c,s).g26Zaze||effectiveCard(c,s).g40StartNoUntap))&&canUntap(c))c.tapped=false;delete c.skipUntap;for(const layer of layers(c))delete layer.g170StartFreeze;if(wasTapped&&!c.tapped&&p.battle.includes(c))extra.six.untapped(s,s.active,c,true);}
+ const lockCreatures=startCreatureUntapLocked988(s,s.active);
+ for(const c of [...p.mana,...p.battle]){const wasTapped=c.tapped;if(!kept.has(c.uid)&&(!limited||p.battle.includes(c))&&!(lockCreatures&&p.battle.includes(c)&&isCreature(s,c))&&!skipsStartUntap(s,c)&&!(p.battle.includes(c)&&(effectiveCard(c,s).g26Zaze||effectiveCard(c,s).g40StartNoUntap))&&canUntap(c))c.tapped=false;delete c.skipUntap;for(const layer of layers(c))delete layer.g170StartFreeze;if(wasTapped&&!c.tapped&&p.battle.includes(c))extra.six.untapped(s,s.active,c,true);}
  p.entryLimitThisTurn=!!p.entryLimitNextTurn;p.entryLimitNextTurn=false;
  log(s,s.active,'turn',`${p.name}の${displayTurn(s)}ターン目`);s.startStep={player:s.active};s.phase='start';
  for(const c of chosen)enqueueEffect(s,s.active,{uid:c.uid,incarnation:c.incarnation,source:c.source,effect:'extended',task:extra.task('g34_Sequence',s.active,c.source,{uid:c.uid,incarnation:c.incarnation,defs:c.defs})});
@@ -3107,7 +3112,7 @@ export function rankHeuristicActions(s){
   if(a.kind==='crossGear')return a.score;
   if(a.kind==='silent496'){
    if(!a.yes)return 0;const x=find(p,a.uid),defs=x&&effectiveCard(x,v).g496Silent;if(!defs)return -100;const drain=defs.reduce((n,d)=>n+(['Draw','Ramp','ShieldTop'].includes(d.op)?d.n||1:d.op==='Look'?1:0),0);if(drain&&drain>=me.deckCount-1)return -1000;
-   const projected=structuredClone(v),own=projected.players[p];for(const y of own.battle){const c=effectiveCard(y,projected);if(y.uid!==x.uid&&!v.g496Kept.includes(y.uid)&&canUntap(y)&&!skipsStartUntap(projected,y)&&!c.g26Zaze&&!c.g40StartNoUntap)y.tapped=false;}
+   const projected=structuredClone(v),own=projected.players[p],lockCreatures=startCreatureUntapLocked988(projected,p);for(const y of own.battle){const c=effectiveCard(y,projected);if(!(lockCreatures&&isCreature(projected,y))&&y.uid!==x.uid&&!v.g496Kept.includes(y.uid)&&canUntap(y)&&!skipsStartUntap(projected,y)&&!c.g26Zaze&&!c.g40StartNoUntap)y.tapped=false;}
    let score=extra.six.tapScore439(projected,p,own.battle.find(y=>y.uid===x.uid),defs);
    for(const d of defs){if(d.op==='ShieldTop')score+=12*(d.n||1);if(d.op==='Break497')score+=12*(d.n==='all'?them.shields:Math.min(d.n,them.shields));if(d.op==='InspectOne258'&&them.hand.length)score+=16;if(d.op==='ShieldExchange446'&&me.hand.length)score+=8;
     if(d.op==='GroupGrant364'&&d.grant.g313Breaker)for(const y of own.battle){const c=effectiveCard(y,projected);if(!y.sealed&&!y.tapped&&!c.noAttack&&!c.noPlayerAttack&&(y.entered<v.turn||c.speedAttacker||isEvolution(y))&&extra.six.matches(projected,p,y,d.filter)&&(c.breaker||1)<d.grant.g313Breaker)score+=8;}

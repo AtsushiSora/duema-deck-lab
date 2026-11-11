@@ -1,0 +1,376 @@
+{
+  "phase": 988,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6870,
+  "description": "攻撃先の指定、非公開手札の破棄と呪文の回収、ターン開始時のアンタップ制限、破壊誘発の山札からの登場、ドラゴン条件によるマナ追加に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37165/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37166/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37142/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37134/"
+  ],
+  "cards": [
+    {
+      "id": "dmr14-054",
+      "name": "チャケの心意気",
+      "faces": [
+        {
+          "name": "チャケの心意気",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分のクリーチャーを１体タップする。次の自分のターンのはじめまで、そのクリーチャーのパワーは+4000され、相手のクリーチャーが攻撃する時、可能であればそのクリーチャーを攻撃する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-054",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "spell": true,
+            "tap": true,
+            "power": 4000,
+            "g521UntilStart": true,
+            "g988Lure": true,
+            "title": "タップしてパワーを+4000する自分のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "fa05c3a47baa6a3dc78a8fab34f9d7170709fbcdf8ed14ec0efaf18098a368ed",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-046",
+      "name": "強襲する髑髏月",
+      "faces": [
+        {
+          "name": "強襲する髑髏月",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "相手の手札を２枚見ないで選び、捨てさせる。\n自分の闇のクリーチャーを１体破壊してもよい。そうした場合、この呪文を唱えた後、墓地に置くかわりに手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-046",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BlindDiscard773",
+            "n": 2
+          },
+          {
+            "op": "SacrificeAlly413",
+            "filter": {
+              "color": "闇"
+            },
+            "defs": [
+              {
+                "op": "SpellFinish416",
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "66aa9c5c43ff7bfbbe4ac2172edac1db6cb2157ab3a27d4f6df74c9c95fce502",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-006",
+      "name": "聖霊龍王 スタグネイト",
+      "faces": [
+        {
+          "name": "聖霊龍王 スタグネイト",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化ー自分の光のドラゴン１体の上に置く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nこのクリーチャーがタップしている時、バトルゾーンにある相手のクリーチャーは相手のターンのはじめにアンタップされない。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "10500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-006",
+      "spec": {
+        "evolution": {
+          "category": "ドラゴン",
+          "civilization": "光"
+        },
+        "breaker": 2,
+        "g988StartUntapLock": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "e74b0538c4d1a7bbdeed5fdb3aeed6eda35423d08191e2a579dd786e45011d4f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-001",
+      "name": "救済の精霊龍 ゴシック・ヘレン",
+      "faces": [
+        {
+          "name": "救済の精霊龍 ゴシック・ヘレン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nこのクリーチャーまたは自分の他のクリーチャーが破壊された時、自分の山札の上から２枚を見る。その中から、コスト３以下の進化ではないクリーチャーを１体、バトルゾーンに出してもよい。残りのカードを好きな順序で自分の山札の一番下に置く。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-001",
+      "spec": {
+        "breaker": 2,
+        "g303DeathWatch": {
+          "self": true,
+          "g891LookBackSelf": true,
+          "defs": [
+            {
+              "op": "LookDeploy530",
+              "n": 2,
+              "limit": 1,
+              "rest": "bottom",
+              "g841DeckPeek": true,
+              "filter": {
+                "creature": true,
+                "nonEvolution": true,
+                "max": 3
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "77f98910e5ce27e63aecc34ba2cbcdf1e667eb8af4544fee58019ff1eeabc713",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-005",
+      "name": "地掘類蛇蝎目 ディグルピオン",
+      "faces": [
+        {
+          "name": "地掘類蛇蝎目 ディグルピオン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンに自分の他のドラゴンがあれば、自分の山札の上から１枚目をマナゾーンに置く。自分のドラゴンが他に１体もなければ、このクリーチャーをマナゾーンに置く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "ジュラシック・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-005",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "creature": true,
+              "race": "ドラゴン",
+              "g334Other": true
+            },
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ],
+            "elseDefs": [
+              {
+                "op": "SelfMana297",
+                "g536Source": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "aa7bbfc48afa46ac7a179bb9281bc3acf05a7ada03ffe63f494151e0635498dc",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm23bd4-037",
+      "canonicalId": "dmr14-005",
+      "name": "地掘類蛇蝎目 ディグルピオン",
+      "faces": [
+        {
+          "name": "地掘類蛇蝎目 ディグルピオン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが出た時、自分の他のドラゴンがあれば、山札の上から１枚目をマナゾーンに置く。そうでなければ、このクリーチャーをマナゾーンに置く。",
+          "race": "ジュラシック・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd4-037",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd4-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "b9ecfe4377324b8bf5f65246642a3b8339b1f22f222d78a69ed0ea3d7d71899e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex13-006",
+      "canonicalId": "dmr14-005",
+      "name": "地掘類蛇蝎目 ディグルピオン",
+      "faces": [
+        {
+          "name": "地掘類蛇蝎目 ディグルピオン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンに自分の他のドラゴンがあれば、自分の山札の上から１枚目をマナゾーンに置く。自分のドラゴンが他に１体もなければ、このクリーチャーをマナゾーンに置く。",
+          "race": "ジュラシック・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "98c3d21baee8e345309d78d3735af0c6894011d2aef6795ca1ad97d88d1c240c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmbd05-008",
+      "canonicalId": "dmr14-005",
+      "name": "地掘類蛇蝎目 ディグルピオン",
+      "faces": [
+        {
+          "name": "地掘類蛇蝎目 ディグルピオン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンに自分の他のドラゴンがあれば、自分の山札の上から１枚目をマナゾーンに置く。自分のドラゴンが他に１体もなければ、このクリーチャーをマナゾーンに置く。",
+          "race": "ジュラシック・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd05-008",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd05-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "00d1f6df72b2129da9eb00545b1be02617e856979daa83eae800531cce545b53",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx26-014",
+      "canonicalId": "dmr14-005",
+      "name": "地掘類蛇蝎目 ディグルピオン",
+      "faces": [
+        {
+          "name": "地掘類蛇蝎目 ディグルピオン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、バトルゾーンに自分の他のドラゴンがあれば、自分の山札の上から１枚目をマナゾーンに置く。自分のドラゴンが他に１体もなければ、このクリーチャーをマナゾーンに置く。",
+          "race": "ジュラシック・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx26-014",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx26-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "a6b51d1929ec4ee781f05008ced0c4f6198a879f6f59152f067889f31ae05643",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr14-054": 4,
+      "dmr14-046": 4,
+      "dmr14-006": 4,
+      "dmr14-001": 4,
+      "dmr14-005": 4,
+      "dm23bd4-037": 4,
+      "dmex13-006": 4,
+      "dmbd05-008": 4,
+      "dmx26-014": 4
+    }
+  }
+}

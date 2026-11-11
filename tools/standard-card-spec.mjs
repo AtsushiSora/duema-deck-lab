@@ -3435,6 +3435,42 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=988&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText),double='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
+  if(f.typeText==='呪文'){
+   const trigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+   if(d.id==='dmr14-054'&&text===trigger+
+    '自分のクリーチャーを1体タップする。次の自分のターンのはじめまでそのクリーチャーのパワーは+4000され相手のクリーチャーが攻撃する時可能であればそのクリーチャーを攻撃する。')
+    return {trigger:true,effect:'sixPhoto',g34Tasks:[
+     {op:'Target',owner:'self',spell:true,tap:true,power:4000,g521UntilStart:true,g988Lure:true,
+      title:'タップしてパワーを+4000する自分のクリーチャーを1体選ぶ'}
+    ]};
+   if(d.id==='dmr14-046'&&text==='相手の手札を2枚見ないで選び捨てさせる。'+
+    '自分の闇のクリーチャーを1体破壊してもよい。そうした場合この呪文を唱えた後墓地に置くかわりに手札に戻す。')
+    return {effect:'sixPhoto',g34Tasks:[
+     {op:'BlindDiscard773',n:2},
+     {op:'SacrificeAlly413',filter:{color:'闇'},defs:[{op:'SpellFinish416',to:'hand'}]}
+    ]};
+  }
+  if(d.id==='dmr14-006'&&f.typeText==='進化クリーチャー'&&text==='進化ー自分の光のドラゴン1体の上に置く。'+double+
+   'このクリーチャーがタップしている時バトルゾーンにある相手のクリーチャーは相手のターンのはじめにアンタップされない。')
+   return {evolution:{category:'ドラゴン',civilization:'光'},breaker:2,g988StartUntapLock:true};
+  if(f.typeText==='クリーチャー'){
+   if(d.id==='dmr14-001'&&text===double+
+    'このクリーチャーまたは自分の他のクリーチャーが破壊された時自分の山札の上から2枚を見る。その中からコスト3以下の進化ではないクリーチャーを1体バトルゾーンに出してもよい。残りのカードを好きな順序で自分の山札の一番下に置く。')
+    return {breaker:2,g303DeathWatch:{self:true,g891LookBackSelf:true,defs:[
+     {op:'LookDeploy530',n:2,limit:1,rest:'bottom',g841DeckPeek:true,filter:{creature:true,nonEvolution:true,max:3}}
+    ]}};
+   const dig='このクリーチャーをバトルゾーンに出した時バトルゾーンに自分の他のドラゴンがあれば自分の山札の上から1枚目をマナゾーンに置く。自分のドラゴンが他に1体もなければこのクリーチャーをマナゾーンに置く。';
+   if(d.id==='dmr14-005'&&text===dig+double||
+      ['dmex13-006','dmbd05-008','dmx26-014'].includes(d.id)&&text==='W・ブレイカー'+dig.replace('をバトルゾーンに出した時','がバトルゾーンに出た時')||
+      d.id==='dm23bd4-037'&&text==='W・ブレイカーこのクリーチャーが出た時自分の他のドラゴンがあれば山札の上から1枚目をマナゾーンに置く。そうでなければこのクリーチャーをマナゾーンに置く。')
+    return {breaker:2,effect:'sixPhoto',g34Tasks:[
+     {op:'IfOwn',filter:{creature:true,race:'ドラゴン',g334Other:true},
+      defs:[{op:'Ramp',n:1}],elseDefs:[{op:'SelfMana297',g536Source:true}]}
+    ]};
+  }
+ }
  if(phase>=987&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='クリーチャー'){
