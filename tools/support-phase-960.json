@@ -1,0 +1,228 @@
+{
+  "phase": 960,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6765,
+  "description": "爆進ダブルとターン終了時のアンタップ、元の進化元の復帰、同名ドリームメイトをマナから出す効果に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37523/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37524/",
+    "https://dm.takaratomy.co.jp/rule/qa/34224/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34896/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35803/",
+    "https://dm.takaratomy.co.jp/rule/qa/33591/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm32-016",
+      "name": "爆進レーザー・ネット",
+      "faces": [
+        {
+          "name": "爆進レーザー・ネット",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "次のうちいずれかひとつを選ぶ。\nバトルゾーンにある自分のクリーチャーを２体まで選ぶ。このターン、そのクリーチャーはブロックされない。\nこのターンの終わりに、バトルゾーンにある自分のクリーチャーを２体まで選んでアンタップする。\n爆進ダブル(バトルゾーンに自分の進化クリーチャーがあれば、この効果を両方とも選んでもよい)",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-016",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "自分のクリーチャーを2体までブロックされなくする",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "battle",
+                    "n": 2,
+                    "optional": true,
+                    "filter": {
+                      "creature": true
+                    },
+                    "g173Targets": true,
+                    "g193Select": true,
+                    "g335Grant": {
+                      "unblockable": true
+                    },
+                    "spell": true,
+                    "title": "ブロックされなくする自分のクリーチャーを2体まで選ぶ"
+                  }
+                ]
+              },
+              {
+                "label": "選んだ自分のクリーチャーをターンの終わりにアンタップ",
+                "defs": [
+                  {
+                    "op": "ChooseUntap562",
+                    "n": 2,
+                    "optional": true,
+                    "delay": true
+                  }
+                ]
+              },
+              {
+                "label": "両方を使う",
+                "condition": {
+                  "g370BattleCount": {
+                    "min": 1,
+                    "filter": {
+                      "creature": true,
+                      "evolution": true
+                    }
+                  }
+                },
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "battle",
+                    "n": 2,
+                    "optional": true,
+                    "filter": {
+                      "creature": true
+                    },
+                    "g173Targets": true,
+                    "g193Select": true,
+                    "g335Grant": {
+                      "unblockable": true
+                    },
+                    "spell": true,
+                    "title": "ブロックされなくする自分のクリーチャーを2体まで選ぶ"
+                  },
+                  {
+                    "op": "ChooseUntap562",
+                    "n": 2,
+                    "optional": true,
+                    "delay": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "f6718a55fbb65da1090d49bfe188dc891f9483d7b62a96a44ae1b07d7ac1d2fe",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm32-065",
+      "name": "大作家シバ",
+      "faces": [
+        {
+          "name": "大作家シバ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化-自分のドリームメイト１体の上に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが破壊された時、このクリーチャーの進化元であったカードを１枚、墓地からバトルゾーンに出してもよい。",
+          "race": "ドリームメイト",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-065",
+      "spec": {
+        "evolution": {
+          "race": "ドリームメイト"
+        },
+        "breaker": 2,
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "g960FormerBases": true,
+            "title": "墓地から元の進化元を1枚出す？"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-065.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "3d3048a0b8458d27d19bc95e15cf54f7abafe009077d4bca95b3a0abe6437fd9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-s09",
+      "name": "ジェネラル・クワガタン",
+      "faces": [
+        {
+          "name": "ジェネラル・クワガタン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "自分のドリームメイトが破壊された時、そのドリームメイトと同じ名前のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ビークル・ビー",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-s09",
+      "spec": {
+        "breaker": 2,
+        "g303DeathWatch": {
+          "race": "ドリームメイト",
+          "self": true,
+          "selfFilter": true,
+          "g891LookBackSelf": true,
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "n": 1,
+              "deploy": true,
+              "optional": true,
+              "g960DeathNames": true,
+              "title": "マナゾーンから同じ名前のクリーチャーを1体出す？"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-s09.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "827017e5cf6c41b8ddf8d51e4246aeb54a6e78e2cb68207232fa4eea3ee40c5f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm32-016": 4,
+      "dm32-065": 4,
+      "dm19-s09": 4
+    }
+  }
+}

@@ -198574,25 +198574,188 @@
       ],
       "supportBatch": "phase-959",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm32-016",
+      "name": "爆進レーザー・ネット",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "次のうちいずれかひとつを選ぶ。\nバトルゾーンにある自分のクリーチャーを２体まで選ぶ。このターン、そのクリーチャーはブロックされない。\nこのターンの終わりに、バトルゾーンにある自分のクリーチャーを２体まで選んでアンタップする。\n爆進ダブル(バトルゾーンに自分の進化クリーチャーがあれば、この効果を両方とも選んでもよい)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-016",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "自分のクリーチャーを2体までブロックされなくする",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "battle",
+                  "n": 2,
+                  "optional": true,
+                  "filter": {
+                    "creature": true
+                  },
+                  "g173Targets": true,
+                  "g193Select": true,
+                  "g335Grant": {
+                    "unblockable": true
+                  },
+                  "spell": true,
+                  "title": "ブロックされなくする自分のクリーチャーを2体まで選ぶ"
+                }
+              ]
+            },
+            {
+              "label": "選んだ自分のクリーチャーをターンの終わりにアンタップ",
+              "defs": [
+                {
+                  "op": "ChooseUntap562",
+                  "n": 2,
+                  "optional": true,
+                  "delay": true
+                }
+              ]
+            },
+            {
+              "label": "両方を使う",
+              "condition": {
+                "g370BattleCount": {
+                  "min": 1,
+                  "filter": {
+                    "creature": true,
+                    "evolution": true
+                  }
+                }
+              },
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "battle",
+                  "n": 2,
+                  "optional": true,
+                  "filter": {
+                    "creature": true
+                  },
+                  "g173Targets": true,
+                  "g193Select": true,
+                  "g335Grant": {
+                    "unblockable": true
+                  },
+                  "spell": true,
+                  "title": "ブロックされなくする自分のクリーチャーを2体まで選ぶ"
+                },
+                {
+                  "op": "ChooseUntap562",
+                  "n": 2,
+                  "optional": true,
+                  "delay": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-960",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-065",
+      "name": "大作家シバ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "ドリームメイト",
+      "text": "進化-自分のドリームメイト１体の上に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)\nこのクリーチャーが破壊された時、このクリーチャーの進化元であったカードを１枚、墓地からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-065",
+      "limit": 4,
+      "evolution": {
+        "race": "ドリームメイト"
+      },
+      "breaker": 2,
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "g960FormerBases": true,
+          "title": "墓地から元の進化元を1枚出す？"
+        }
+      ],
+      "supportBatch": "phase-960",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-s09",
+      "name": "ジェネラル・クワガタン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ビークル・ビー",
+      "text": "自分のドリームメイトが破壊された時、そのドリームメイトと同じ名前のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-s09",
+      "limit": 4,
+      "breaker": 2,
+      "g303DeathWatch": {
+        "race": "ドリームメイト",
+        "self": true,
+        "selfFilter": true,
+        "g891LookBackSelf": true,
+        "defs": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "g960DeathNames": true,
+            "title": "マナゾーンから同じ名前のクリーチャーを1体出す？"
+          }
+        ]
+      },
+      "supportBatch": "phase-960",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 959,
+    "phase": 960,
     "checkedAt": "2026-11-11",
-    "baseCount": 6761,
-    "newEffectCards": 4,
+    "baseCount": 6765,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6765,
+    "totalCount": 6768,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37523/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37524/",
       "https://dm.takaratomy.co.jp/rule/qa/34224/",
-      "https://dm.takaratomy.co.jp/rule/qa/31530/",
-      "https://dm.takaratomy.co.jp/rule/qa/46493/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35106/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31626/",
-      "https://dm.takaratomy.co.jp/rule/qa/49608/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/34896/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35803/",
+      "https://dm.takaratomy.co.jp/rule/qa/33591/",
+      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -215809,6 +215972,28 @@
           "https://dm.takaratomy.co.jp/rule/qa/40689/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37421/",
           "https://dm.takaratomy.co.jp/rule/qa/40693/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 959,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6761,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6765,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37523/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37524/",
+          "https://dm.takaratomy.co.jp/rule/qa/34224/",
+          "https://dm.takaratomy.co.jp/rule/qa/31530/",
+          "https://dm.takaratomy.co.jp/rule/qa/46493/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35106/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31626/",
+          "https://dm.takaratomy.co.jp/rule/qa/49608/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

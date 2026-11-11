@@ -3399,6 +3399,15 @@ export function standardCardSpec(d,{phase=165}={}){
    first,second,{label:'両方を使う',condition:{g370BattleCount:{min:1,filter:{creature:true,evolution:true}}},
     defs:[...first.defs,...second.defs]}
   ]}]});
+  if(phase>=960&&d.id==='dm32-016'&&text===choose+
+   'バトルゾーンにある自分のクリーチャーを2体まで選ぶ。このターンそのクリーチャーはブロックされない。'+
+   'このターンの終わりにバトルゾーンにある自分のクリーチャーを2体まで選んでアンタップする。'+double)
+   return blast({label:'自分のクリーチャーを2体までブロックされなくする',defs:[
+    {op:'Select',origin:'battle',n:2,optional:true,filter:{creature:true},g173Targets:true,g193Select:true,
+     g335Grant:{unblockable:true},spell:true,title:'ブロックされなくする自分のクリーチャーを2体まで選ぶ'}
+   ]},{label:'選んだ自分のクリーチャーをターンの終わりにアンタップ',defs:[
+    {op:'ChooseUntap562',n:2,optional:true,delay:true}
+   ]});
   const destroy=maxPower=>({label:'パワー'+maxPower+'以下の相手クリーチャーを1体破壊',
    defs:[{op:'Target',to:'grave',filter:{maxPower,g199Power:true}}]});
   if(d.id==='dm32-028'&&text===choose+
@@ -3420,6 +3429,20 @@ export function standardCardSpec(d,{phase=165}={}){
    'バトルゾーンにある相手の進化クリーチャーを1体選び一番上のカードを持ち主のマナゾーンに置く。')
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
+ }
+ if(phase>=960&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText),double='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
+  if(d.id==='dm32-065'&&f.typeText==='進化クリーチャー'&&text===
+   '進化-自分のドリームメイト1体の上に置く。'+double+
+   'このクリーチャーが破壊された時このクリーチャーの進化元であったカードを1枚墓地からバトルゾーンに出してもよい。')
+   return {evolution:{race:'ドリームメイト'},breaker:2,g172Death:[
+    {op:'Select',origin:'grave',n:1,deploy:true,optional:true,g960FormerBases:true,title:'墓地から元の進化元を1枚出す？'}
+   ]};
+  if(d.id==='dm19-s09'&&f.typeText==='クリーチャー'&&text===
+   '自分のドリームメイトが破壊された時そのドリームメイトと同じ名前のクリーチャーを1体自分のマナゾーンからバトルゾーンに出してもよい。'+double)
+   return {breaker:2,g303DeathWatch:{race:'ドリームメイト',self:true,selfFilter:true,g891LookBackSelf:true,defs:[
+    {op:'Select',origin:'mana',n:1,deploy:true,optional:true,g960DeathNames:true,title:'マナゾーンから同じ名前のクリーチャーを1体出す？'}
+   ]}};
  }
  if(phase>=958&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
