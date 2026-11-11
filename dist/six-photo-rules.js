@@ -2092,6 +2092,11 @@ export function createSixPhotoRules(api){
  case'g34_Destination553':{const xs=t.rows.flatMap(r=>{const y=s.players[r.p].battle.find(y=>y.uid===r.uid);return y?[y]:[];});choice(s,t,'選んだエレメントすべての移動先を選ぶ',[opt('すべてマナゾーンに置く','mana',xs.length*10),opt('すべて破壊する','grave',xs.reduce((n,y)=>n+(hooks.destroySafe409(s,y)?-5:30+cost(card(y))),0))]);break;}
  case'g34_CountOwn538':{const n=creatures(s,t.p).filter(y=>!y.sealed&&matches(s,t.p,y,t.filter)).length;if(!n)break;if(t.mode==='select')start(s,t,[{...t.def,n}]);else if(t.mode==='belowCost')start(s,t,[{...t.def,filter:{...t.def.filter,belowCost:n}}]);else if(t.mode==='repeat')start(s,t,Array.from({length:n},()=>structuredClone(t.def)));else throw Error('未対応のクリーチャー数効果');break;}
  case'g34_CountDraw':{const n=countDraw(s,t.p,t);if(n)start(s,t,[t.optional==='each'?{op:'DrawUpTo',n,g203Draw:true}:t.optional==='amount'?{op:'Draw',n,optional:true}:t.optional==='all'?{op:'Offer',title:'カードを'+n+'枚まとめて引く？',defs:[{op:'Draw',n}]}:{op:'Draw',n}]);break;}
+ case'g34_CountBlindDiscard983':{
+  const n=countDraw(s,t.p,t);
+  if(n)start(s,t,[{op:'BlindDiscard773',n}]);
+  break;
+ }
  case'g34_CountMill967':api.mill(s,t.p,countDraw(s,t.p,t));break;
  // Choose the entry order as well as the cards: a newly entered creature may be an evolution base.
  // Keep entry triggers pending until the whole army is placed; never include subsequently recycled cards.
@@ -4054,8 +4059,10 @@ export function createSixPhotoRules(api){
   }
   if(t.g885FirstTap){
    const y=v&&own.battle.find(x=>x.uid===v.uid);
-   if(y)(s.extLimits??=[]).push({kind:'g885FirstTap',ref:{uid:y.uid,incarnation:y.incarnation||0},
-    player:t.p,source:t.source,expires:'end',who:s.active});
+   if(y&&(!t.g983FirstTapThisTurn||!y.tapped&&!used(s,'g191Tapped',y)))
+    (s.extLimits??=[]).push({kind:'g885FirstTap',ref:{uid:y.uid,incarnation:y.incarnation||0},
+     player:t.p,source:t.source,expires:'end',who:s.active,
+     ...(t.g983FirstTapThisTurn?{spellCost:cost(faces(card(t.source)).at(-1))}:{})});
    break;
   }
   if(t.g882DeployBelowCost){
@@ -4808,7 +4815,12 @@ export function createSixPhotoRules(api){
    const refs=api.allLayers(x).map(key);
    s.extLimits=s.extLimits.filter(r=>{
     if(r.kind!=='g885FirstTap'||!refs.includes(key(r.ref)))return true;
-    api.enqueue(s,r.player,{...r.ref,source:r.source,effect:'extended',
+    const untap={op:'Untap',g191First:true};
+    if(r.spellCost!==undefined){
+     if(api.spellIgnored(s,{type:'spell',cost:r.spellCost,spellSource:r.source}))return false;
+     api.enqueue(s,r.player,{...r.ref,source:r.source,effect:'extended',
+      task:task('g34_ResolveDelay537',r.player,r.source,{...r.ref,spellCost:r.spellCost,defs:[untap]})});
+    }else api.enqueue(s,r.player,{...r.ref,source:r.source,effect:'extended',
      task:task('g34_Untap',r.player,r.source,{...r.ref,g191First:true})});
     return false;
    });

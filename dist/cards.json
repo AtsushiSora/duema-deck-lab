@@ -201076,25 +201076,166 @@
       "untargetable": true,
       "supportBatch": "phase-982",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr15-051",
+      "name": "二刀流トレーニング",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある自分のクリーチャーを１体選ぶ。そのクリーチャーがこのターンはじめてタップされた時、アンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-051",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g885FirstTap": true,
+          "g983FirstTapThisTurn": true,
+          "title": "このターン最初のタップでアンタップする自分のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-983",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx05-003",
+      "name": "超銀河竜 GILL",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 9000,
+      "race": "アーマード・ドラゴン/エイリアン",
+      "text": "このクリーチャーをバトルゾーンに出した時、パワーの合計が9000以下になるように相手のクリーチャーを好きな数選び、破壊する。その後、相手のシールドをひとつ選び、持ち主の墓地に置く。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-003",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "n": "all",
+          "optional": true,
+          "to": "grave",
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g506PowerBudget": 9000,
+          "title": "合計パワー9000以下になるよう好きな数選ぶ"
+        },
+        {
+          "op": "ShieldMove685",
+          "n": 1,
+          "to": "grave",
+          "required": true
+        }
+      ],
+      "supportBatch": "phase-983",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex15-b018",
+      "name": "闘うべき時!!",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 8,
+      "power": 0,
+      "race": "",
+      "text": "相手のシールドを１つ選び、持ち主の墓地に置く。その後、相手のシールドが１つもなければ、自分はゲームに勝利する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b018",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldMove685",
+          "n": 1,
+          "to": "grave",
+          "required": true
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "opponent": true,
+              "max": 0
+            }
+          },
+          "defs": [
+            {
+              "op": "Win871",
+              "reason": "相手のシールドが0で勝利"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-983",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr15-012",
+      "name": "慢心の悪魔龍 アクノハナ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "デーモン・コマンド・ドラゴン",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のファンキー・ナイトメア１体につき、相手の手札を１枚見ないで選び、捨てさせる。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-012",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountBlindDiscard983",
+          "zone": "battle",
+          "filter": {
+            "faceUp": true,
+            "race": "ファンキー・ナイトメア"
+          }
+        }
+      ],
+      "supportBatch": "phase-983",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 982,
+    "phase": 983,
     "checkedAt": "2026-11-12",
-    "baseCount": 6842,
+    "baseCount": 6846,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6846,
+    "totalCount": 6850,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/46854/",
-      "https://dm.takaratomy.co.jp/rule/qa/31579/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37184/",
-      "https://dm.takaratomy.co.jp/rule/qa/42143/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37322/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31636/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37192/",
+      "https://dm.takaratomy.co.jp/rule/qa/45450/",
+      "https://dm.takaratomy.co.jp/rule/qa/39759/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316659/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -218768,6 +218909,28 @@
           "https://dm.takaratomy.co.jp/rule/qa/42947/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36416/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 982,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6842,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6846,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/46854/",
+          "https://dm.takaratomy.co.jp/rule/qa/31579/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37184/",
+          "https://dm.takaratomy.co.jp/rule/qa/42143/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37322/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31636/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

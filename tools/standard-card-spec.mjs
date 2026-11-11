@@ -3435,6 +3435,27 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=983&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText),shieldToGrave={op:'ShieldMove685',n:1,to:'grave',required:true};
+  if(f.typeText==='呪文'){
+   if(['dmr15-051','dmsd11-020'].includes(d.id)&&text==='バトルゾーンにある自分のクリーチャーを1体選ぶ。そのクリーチャーがこのターンはじめてタップされた時アンタップする。')
+    return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',g885FirstTap:true,g983FirstTapThisTurn:true,
+     title:'このターン最初のタップでアンタップする自分のクリーチャーを選ぶ'}]};
+   if(['dmex15-b018','promoy25-128'].includes(d.id)&&[
+    '相手のシールドを1つ選び持ち主の墓地に置く。その後相手のシールドが1つもなければ自分はゲームに勝利する。',
+    '相手のシールドを1つ選び持ち主の墓地に置く。その後相手のシールドが1つもなければ自分はゲームに勝つ。'
+   ].includes(text))
+    return {effect:'sixPhoto',g34Tasks:[shieldToGrave,
+     {op:'IfOwn',filter:{g334ZoneCount:{zone:'shields',opponent:true,max:0}},defs:[{op:'Win871',reason:'相手のシールドが0で勝利'}]}]};
+  }
+  if(f.typeText==='クリーチャー'){
+   if(['dmx05-003','dmd13-016','promoy12-019'].includes(d.id)&&text==='このクリーチャーをバトルゾーンに出した時パワーの合計が9000以下になるように相手のクリーチャーを好きな数選び破壊する。その後相手のシールドをひとつ選び持ち主の墓地に置く。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+    return {breaker:2,effect:'sixPhoto',g34Tasks:[
+     powerBudget506('相手のクリーチャーをパワーの合計が9000以下になるように好きな数選び破壊する。'),shieldToGrave]};
+   if(d.id==='dmr15-012'&&text==='このクリーチャーをバトルゾーンに出した時バトルゾーンにある自分のファンキー・ナイトメア1体につき相手の手札を1枚見ないで選び捨てさせる。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+    return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'CountBlindDiscard983',zone:'battle',filter:{faceUp:true,race:'ファンキー・ナイトメア'}}]};
+  }
+ }
  if(phase>=982&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dmx05-s01'&&f.typeText==='進化クリーチャー'&&text==='進化-自分のエイリアン1体の上に置く。相手はバトルゾーンに自身のエイリアンが1体もなければ呪文を唱えることはできない。T・ブレイカー(このクリーチャーはシールドを3枚ブレイクする)')
