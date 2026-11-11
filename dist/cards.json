@@ -205836,25 +205836,147 @@
       ],
       "supportBatch": "phase-1011",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-021",
+      "name": "時の宮殿 ベルファーレ",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "エンジェル・コマンド・ドラゴン/革命軍/ドレミ団",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n革命チェンジ-光または水のドラゴン（自分の光または水のドラゴンが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが破壊された時、または、自分のシールドがブレイクされた時にこのクリーチャーがタップしていれば、そのターンの残りをとばす。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-021",
+      "limit": 4,
+      "rev": {
+        "colors": [
+          "光",
+          "水"
+        ],
+        "g486Current": true
+      },
+      "breaker": 2,
+      "g172Death": [
+        {
+          "op": "Custom",
+          "name": "endTurn",
+          "g1012Tapped": true
+        }
+      ],
+      "g1012OwnShieldBreakTapped": [
+        {
+          "op": "Custom",
+          "name": "endTurn"
+        }
+      ],
+      "supportBatch": "phase-1012",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-008",
+      "name": "求答士の参謀 マルヴァーツ",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "クリスタル・コマンド・ドラゴン/革命軍/テック団",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n革命チェンジ：水または闇のドラゴン（自分の水または闇のドラゴンが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\n相手がカードを引いた時、相手は自身の手札を１枚選び、捨ててもよい。相手がそうしなければ、自分はカードを２枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-008",
+      "limit": 4,
+      "rev": {
+        "colors": [
+          "水",
+          "闇"
+        ],
+        "g486Current": true
+      },
+      "breaker": 2,
+      "g676OppDraw": [
+        {
+          "op": "OpponentDiscardOrDraw1012"
+        }
+      ],
+      "supportBatch": "phase-1012",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-005",
+      "name": "獣軍隊X ゲリラフガン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ゲリラ・コマンド/イニシャルズ",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、このクリーチャーをタップしてもよい。\n相手のクリーチャーが攻撃する時、可能ならこのクリーチャーを攻撃する。\n自分のマナゾーンにカードが６枚以上あれば、自分のシールドゾーンにあるこのクリーチャーに「S・トリガー」を与える。\nこのクリーチャーが破壊された時、自然のコスト６以下のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-005",
+      "limit": 4,
+      "breaker": 2,
+      "g431AttackMe": true,
+      "g876ShieldTriggerCondition": {
+        "g272ManaCount": 6
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Offer",
+          "title": "このクリーチャーをタップする？",
+          "defs": [
+            {
+              "op": "SelfTap314",
+              "g536Source": true
+            }
+          ]
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "color": "自然",
+            "max": 6,
+            "faceUp": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1012",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1011,
+    "phase": 1012,
     "checkedAt": "2026-11-12",
-    "baseCount": 6969,
+    "baseCount": 6972,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6972,
+    "totalCount": 6975,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37841/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
-      "https://dm.takaratomy.co.jp/rule/qa/46619/",
-      "https://dm.takaratomy.co.jp/rule/qa/43074/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31642/",
-      "https://dm.takaratomy.co.jp/rule/qa/45900/",
-      "https://dm.takaratomy.co.jp/rule/rulechange_info/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37848/",
+      "https://dm.takaratomy.co.jp/rule/qa/45603/",
+      "https://dm.takaratomy.co.jp/rule/qa/41168/",
+      "https://dm.takaratomy.co.jp/rule/qa/40226/",
+      "https://dm.takaratomy.co.jp/rule/qa/42657/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316661/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -224130,6 +224252,28 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37947/",
           "https://dm.takaratomy.co.jp/rule/qa/40960/",
           "https://dm.takaratomy.co.jp/rule/qa/49608/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1011,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6969,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6972,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37841/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
+          "https://dm.takaratomy.co.jp/rule/qa/46619/",
+          "https://dm.takaratomy.co.jp/rule/qa/43074/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31642/",
+          "https://dm.takaratomy.co.jp/rule/qa/45900/",
+          "https://dm.takaratomy.co.jp/rule/rulechange_info/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

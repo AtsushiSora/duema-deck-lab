@@ -1848,6 +1848,7 @@ function commitShieldBreak(s,defender,uids){
   extra.six.recordBreak756(s,breakContext,count);
   extra.six.allyBreakDraw779(s,breakContext,count);
   extra.broken(s,breakContext,count);
+  if(count)extra.six.ownShieldBroken1012(s,defender,count);
  }
  s.players[defender].hand.push(...broken);
  if(!handOnly){s.players[defender].brokenThisTurn=(s.players[defender].brokenThisTurn||0)+count;s.metrics[controller].breaks+=count;}

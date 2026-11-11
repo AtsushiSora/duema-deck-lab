@@ -2002,6 +2002,19 @@ export function createSixPhotoRules(api){
    opt('指定されたカードを残し、残りをすべて捨てる',false,0)]);
   break;
  }
+ case'g34_OpponentDiscardOrDraw1012':{
+  if(!opp.hand.length||api.handProtected(s,{p:1-t.p,source:t.source,causedBy:t.p})){
+   put(s,{...t,op:'g34_DrawUnlessDiscarded1012'});
+  }else{
+   choice(s,t,'自分の手札を1枚捨てる？',[
+    ...opp.hand.map(y=>opt(card(y).name+'を捨てる',y.uid,15-Math.min(20,cost(card(y))),y.cardId)),skip()
+   ],1-t.p);
+  }
+  break;
+ }
+ case'g34_DrawUnlessDiscarded1012':
+  if(!t.discarded)start(s,t,[{op:'Offer',title:'カードを2枚引く？',defs:[{op:'Draw',n:2}]}]);
+  break;
  case'g34_DiscardFor248':{const rows=own.hand.filter(y=>matches(s,t.p,y,t.g488DiscardFilter));if(rows.length)choice(s,t,t.title||(t.g488DiscardFilter?'手札のクリーチャーを1体捨てて能力を使う？':'手札を1枚捨てて能力を使う？'),[...rows.map(y=>opt(card(y).name+'を捨てる',y.uid,discardScore248(s,t,y),y.cardId)),skip()]);break;}
  case'g34_IfHand246':if(own.hand.length<=t.max)start(s,t,t.defs);else if(t.elseDefs)start(s,t,t.elseDefs);break;
  case'g34_IfOwn':if(ownCondition(s,t.p,t.filter,t.uid,t.incarnation??null,t.lastKnownCount))start(s,t,t.defs);else if(t.elseDefs)start(s,t,t.elseDefs);break;
@@ -2149,7 +2162,11 @@ export function createSixPhotoRules(api){
  }
  case'g34_SelfExtraBreak444':if(t.g969FollowControl?sourceHost474(s,t):own.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))))(s.extLimits??=[]).push({kind:'g412ExtraBreak',player:t.p,ref:{uid:t.uid,incarnation:t.incarnation||0},source:t.source,amount:t.amount,expires:'end',who:s.active,...(t.g969FollowControl?{g969FollowControl:true}:{})});break;
  case'g34_SelfBoost313':{const y=t.g536Source?sourceHost474(s,t)?.x:x;if(y&&(!t.g694ClearOnSeal||!y.sealed&&api.isCreature(s,y))){(y.powerModifiers??=[]).push({amount:t.power,expires:'end',who:s.active,...(t.g694ClearOnSeal?{g694ClearOnSeal:true}:{}),...(t.g337PowerAttacker?{attackOnly:true,grantedAbility:true}:{})});if(t.breaker)(y.g34Grants??=[]).push({turn:s.turn,g313Breaker:t.breaker,...(t.g633DoubleBreaker?{g633DoubleBreaker:true}:{})});}break;}
- case'g34_SelfTap314':if(x)api.tap(s,t.p,x);break;
+ case'g34_SelfTap314':{
+  const host=t.g536Source?sourceHost474(s,t):x?{p:t.p,x}:null;
+  if(host)api.tap(s,host.p,host.x);
+  break;
+ }
  case'g34_RevengeDeclare795':{
   const y=revengeCard795(s,t);
   if(y&&(card(y).g795Revenge.opponentDraws===undefined||revengeDraws910(s,t.p,card(y).g795Revenge)))
@@ -3989,6 +4006,12 @@ export function createSixPhotoRules(api){
   if(t.after)start(s,t,t.after);
   break;
  case'g34_DiscardAll244':if(v)put(s,{...t,accepted:true});break;
+ case'g34_OpponentDiscardOrDraw1012':{
+  const after={...t,op:'g34_DrawUnlessDiscarded1012'};
+  if(v&&s.players[1-t.p].hand.some(y=>y.uid===v))api.discardSelected(s,1-t.p,[v],t.source,t.p,null,after);
+  else put(s,after);
+  break;
+ }
  case'g34_DiscardFor248':{
   const y=own.hand.find(y=>y.uid===v);
   if(y&&matches(s,t.p,y,t.g488DiscardFilter)){
@@ -5231,6 +5254,12 @@ export function createSixPhotoRules(api){
   }
  },
  flushShield536(s){if(s.leaving)return;const departed=s.g536ShieldDepartures||[];delete s.g536ShieldDepartures;for(const p of departed)shieldDeparture536(s,p);},
+ ownShieldBroken1012(s,p,count){
+  for(const x of creatures(s,p)){
+   const defs=x.tapped&&!x.sealed&&effective(x,s).g1012OwnShieldBreakTapped;
+   if(defs)for(let i=0;i<count;i++)queue(s,p,x,defs);
+  }
+ },
  drawn676(s,p,n,before){
   if(!n)return;
   if(before===0&&s.active===p)for(const source of creatures(s,p)){
@@ -5269,7 +5298,7 @@ export function createSixPhotoRules(api){
    ...(c.g965OtherOwnLeave?{g965OtherOwnLeave:true}:{}),
    ...((c.g891OwnCreatureLeaves||c.g303DeathWatch?.g891LookBackSelf)&&leaving.some(row=>row.player===p&&row.uid===x.uid)?{g891OnlySelf:true}:{}),element:!x.sealed&&!x.faceDown,elementDraw:!!c.g617OpponentElementLeaves&&!x.sealed&&!x.faceDown&&!api.ignored(s,x),...(c.g1009OpponentCreatureLeaves&&!x.sealed&&!x.faceDown?{opponentCreatureLeaves:c.g1009OpponentCreatureLeaves}:{}),...(c.g693OtherCreatureGraveDraw&&!x.sealed&&!x.faceDown&&!api.ignored(s,x)&&api.isCreature(s,x)?{graveDraw:true}:{}),watch:!x.sealed&&!api.ignored(s,x)&&(!c.g303DeathWatch?.g725RemainInBattle||!leaving.some(row=>row.player===p&&row.uid===x.uid))?c.g303DeathWatch:undefined};})),selfLeaves:s.players.flatMap((own,p)=>own.battle.flatMap(x=>{const c=effective(x,s);return c.g172Death||c.g172Leave?[{p,uid:x.uid,incarnation:x.incarnation||0,g172Death:c.g172Death,
    ...(c.g172Death?.some(d=>d.g960FormerBases)?{formerBases960:(x.under||[]).flatMap(api.allLayers)
-    .map(y=>({uid:y.uid,serial:(y.zoneSerial||0)+1}))}:{}),...(c.g172Death?.some(d=>d.g901Untapped)?{g901WasTapped:!!x.tapped}:{}),...(c.g172Death?.some(d=>d.op==='CrossedDeathDraw728')?{crossedCount728:crossedCount728(s,x)}:{}),...(c.g172Death?.some(d=>d.op==='MedusaCross929')?{crossedGearRefs929:crossedGearRefs929(s,p,x)}:{}),g172Leave:c.g172Leave,g601OpponentLeave:c.g601OpponentLeave}]:[];})),scarlet:[0,1].map(p=>active(s,p,'scarlet').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0}))),dororon:[0,1].map(p=>active(s,p,'dororon').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0})))};},
+    .map(y=>({uid:y.uid,serial:(y.zoneSerial||0)+1}))}:{}),...(c.g172Death?.some(d=>d.g901Untapped||d.g1012Tapped)?{g901WasTapped:!!x.tapped}:{}),...(c.g172Death?.some(d=>d.op==='CrossedDeathDraw728')?{crossedCount728:crossedCount728(s,x)}:{}),...(c.g172Death?.some(d=>d.op==='MedusaCross929')?{crossedGearRefs929:crossedGearRefs929(s,p,x)}:{}),g172Leave:c.g172Leave,g601OpponentLeave:c.g601OpponentLeave}]:[];})),scarlet:[0,1].map(p=>active(s,p,'scarlet').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0}))),dororon:[0,1].map(p=>active(s,p,'dororon').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0})))};},
  leaving(s,p,x,snapshot,to,destroy){
   // An ability that sees its own move to the graveyard looks back only for its own card.
   const graveDefs=card(x).g838AnyGrave;
@@ -5308,6 +5337,7 @@ export function createSixPhotoRules(api){
    const defs=prior.g172Death
     .filter(d=>!d.g934OpponentTurn||s.active!==p)
     .filter(d=>!d.g901Untapped||!(prior.g901WasTapped??x.tapped))
+    .filter(d=>!d.g1012Tapped||(prior.g901WasTapped??x.tapped))
     .filter(d=>d.op!=='ScheduleGraveReturn644'||d.anyTurn||s.active===p)
     .flatMap(d=>{
      if(d.g960FormerBases){

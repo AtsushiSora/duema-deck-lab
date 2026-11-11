@@ -3435,6 +3435,29 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=1012&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const manaTap='マナゾーンに置く時このカードはタップして置く。';
+  if(d.id==='dmr21-021'&&text===manaTap+
+   '革命チェンジ-光または水のドラゴン(自分の光または水のドラゴンが攻撃する時そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい)'+
+   'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+
+   'このクリーチャーが破壊された時または自分のシールドがブレイクされた時にこのクリーチャーがタップしていればそのターンの残りをとばす。'){
+   const endTurn={op:'Custom',name:'endTurn'};
+   return {rev:{colors:['光','水'],g486Current:true},breaker:2,
+    g172Death:[{...endTurn,g1012Tapped:true}],g1012OwnShieldBreakTapped:[endTurn]};
+  }
+  if(d.id==='dmr22-008'&&text===manaTap+
+   '革命チェンジ:水または闇のドラゴン(自分の水または闇のドラゴンが攻撃する時そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい)'+
+   'W・ブレイカー相手がカードを引いた時相手は自身の手札を1枚選び捨ててもよい。相手がそうしなければ自分はカードを2枚引いてもよい。')
+   return {rev:{colors:['水','闇'],g486Current:true},breaker:2,g676OppDraw:[{op:'OpponentDiscardOrDraw1012'}]};
+  if(d.id==='dmr22-005'&&text==='W・ブレイカーこのクリーチャーがバトルゾーンに出た時このクリーチャーをタップしてもよい。'+
+   '相手のクリーチャーが攻撃する時可能ならこのクリーチャーを攻撃する。'+
+   '自分のマナゾーンにカードが6枚以上あれば自分のシールドゾーンにあるこのクリーチャーに「S・トリガー」を与える。'+
+   'このクリーチャーが破壊された時自然のコスト6以下のクリーチャーを1体自分のマナゾーンからバトルゾーンに出してもよい。')
+   return {breaker:2,g431AttackMe:true,g876ShieldTriggerCondition:{g272ManaCount:6},
+    effect:'sixPhoto',g34Tasks:[{op:'Offer',title:'このクリーチャーをタップする？',defs:[{op:'SelfTap314',g536Source:true}]}],
+    g172Death:[{op:'Select',origin:'mana',n:1,deploy:true,optional:true,filter:{creature:true,color:'自然',max:6,faceUp:true}}]};
+ }
  if(phase>=1011&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const manaTap='マナゾーンに置く時このカードはタップして置く。';
