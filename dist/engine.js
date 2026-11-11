@@ -1433,6 +1433,12 @@ function attackTargetAllowed(s,attacker,target){
 // Check the current characteristics before declaring a blocker. Battle-only
 // bonuses (including Hunting) have not started; attack and continuous bonuses have.
 function blockAttackerAllowed(s,attacker,blocker){
+ // The prohibition affects block declarations, while the Blocker ability remains.
+ for(const {battle} of s.players)for(const source of battle){
+  const races=card(source).g940BlockOnlyRaces;
+  if(races&&!abilitiesIgnored(s,source)&&isCreature(s,source)&&
+   !races.some(race=>String(effectiveCard(blocker,s).race).includes(race)))return false;
+ }
  if(card(blocker).g911BlockColors){
   const defender=effectiveCard(blocker,s);
   if(defender.g911ColorBlockOnly&&!civilizations(effectiveCard(attacker,s)).some(color=>defender.g911BlockColors.includes(color)))return false;

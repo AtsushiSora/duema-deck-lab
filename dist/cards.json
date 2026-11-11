@@ -196161,23 +196161,156 @@
       ],
       "supportBatch": "phase-939",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm30-025",
+      "name": "フォース・リローデッド",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー\nバトルゾーンにある自分の、「シールド・フォース」を持つクリーチャーを１体、自分の手札に戻す。その後、そのクリーチャーをバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-025",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "g939ShieldForce": true
+          },
+          "g940Reload": true,
+          "title": "手札に戻す自分のシールド・フォース持ちを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-940",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23-019",
+      "name": "ドコカラ・デンデン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 1000,
+      "race": "ビークル・ビー",
+      "text": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のドリームメイト１体につき、自分の山札の上から１枚、マナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-019",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CreatureCountRamp765",
+          "filter": {
+            "race": "ドリームメイト"
+          },
+          "optional": true,
+          "g809Together": true
+        }
+      ],
+      "supportBatch": "phase-940",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22-043",
+      "name": "フューチャー・カプセル",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n自分の山札の上から５枚を見る。その中から好きな枚数を好きな順序で山札の上に戻し、残りを好きな順序で山札の下に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-043",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 5,
+          "g940SplitTop": true,
+          "stages": [
+            {
+              "n": "all",
+              "to": "deckTop",
+              "optional": true,
+              "title": "山札の上に残すカードを上から順に選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-940",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm21-s01",
+      "name": "キャプテン・ミリオンパーツ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 4500,
+      "race": "キカイヒーロー",
+      "text": "バトルゾーンにあるグレートメカオーとキカイヒーローはすべて「ブロッカー」を得る。\nバトルゾーンにある、グレートメカオーとキカイヒーロー以外のクリーチャーは、ブロックすることができない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-s01",
+      "limit": 4,
+      "g208Auras": [
+        {
+          "both": true,
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "グレートメカオー",
+              "キカイヒーロー"
+            ]
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      ],
+      "g940BlockOnlyRaces": [
+        "グレートメカオー",
+        "キカイヒーロー"
+      ],
+      "supportBatch": "phase-940",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 939,
+    "phase": 940,
     "checkedAt": "2026-11-11",
-    "baseCount": 6688,
-    "newEffectCards": 3,
+    "baseCount": 6691,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6691,
+    "totalCount": 6695,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35481/",
-      "https://dm.takaratomy.co.jp/rule/qa/31580/",
-      "https://dm.takaratomy.co.jp/rule/qa/42937/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37440/",
-      "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-S001"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35717/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35718/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35001/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35467/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -212974,6 +213107,26 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35434/",
           "https://dm.takaratomy.co.jp/rule/qa/42937/",
           "https://dm.takaratomy.co.jp/rule/qa/46821/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 939,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6688,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6691,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35481/",
+          "https://dm.takaratomy.co.jp/rule/qa/31580/",
+          "https://dm.takaratomy.co.jp/rule/qa/42937/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37440/",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-S001"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

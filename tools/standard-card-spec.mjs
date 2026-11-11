@@ -3388,6 +3388,27 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=940&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='呪文'&&d.id==='dm30-025'&&text===
+   'S・トリガーバトルゾーンにある自分の「シールド・フォース」を持つクリーチャーを1体自分の手札に戻す。その後そのクリーチャーをバトルゾーンに出してもよい。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',filter:{g939ShieldForce:true},
+    g940Reload:true,title:'手札に戻す自分のシールド・フォース持ちを選ぶ'}]};
+  if(f.typeText==='クリーチャー'&&d.id==='dm23-019'&&text===
+   'S・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)このクリーチャーをバトルゾーンに出した時バトルゾーンにある自分のドリームメイト1体につき自分の山札の上から1枚マナゾーンに置いてもよい。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'CreatureCountRamp765',filter:{race:'ドリームメイト'},
+    optional:true,g809Together:true}]};
+  if(f.typeText==='呪文'&&d.id==='dm22-043'&&text===
+   'S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)自分の山札の上から5枚を見る。その中から好きな枚数を好きな順序で山札の上に戻し残りを好きな順序で山札の下に戻す。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Look',n:5,g940SplitTop:true,
+    stages:[{n:'all',to:'deckTop',optional:true,title:'山札の上に残すカードを上から順に選ぶ'}]}]};
+  if(f.typeText==='クリーチャー'&&d.id==='dm21-s01'&&text===
+   'バトルゾーンにあるグレートメカオーとキカイヒーローはすべて「ブロッカー」を得る。バトルゾーンにあるグレートメカオーとキカイヒーロー以外のクリーチャーはブロックすることができない。'){
+   const raceAny=['グレートメカオー','キカイヒーロー'];
+   return {g208Auras:[{both:true,filter:{creature:true,raceAny},grants:{blocker:true}}],
+    g940BlockOnlyRaces:raceAny};
+  }
+ }
  if(phase>=939&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(['dm23-026','promoy5-064'].includes(d.id)&&f.typeText==='クリーチャー'&&text===

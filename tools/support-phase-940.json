@@ -1,0 +1,208 @@
+{
+  "phase": 940,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6691,
+  "description": "シールド・フォース持ちの手札戻しと任意再登場、ドリームメイト数までのマナ追加、山札上5枚の上下への並べ替え、両陣営の種族別ブロックを実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35717/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35718/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35001/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35467/"
+  ],
+  "cards": [
+    {
+      "id": "dm30-025",
+      "name": "フォース・リローデッド",
+      "faces": [
+        {
+          "name": "フォース・リローデッド",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "S・トリガー\nバトルゾーンにある自分の、「シールド・フォース」を持つクリーチャーを１体、自分の手札に戻す。その後、そのクリーチャーをバトルゾーンに出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-025",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "g939ShieldForce": true
+            },
+            "g940Reload": true,
+            "title": "手札に戻す自分のシールド・フォース持ちを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm30-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "4d72d258cbe8b192d259c66bbe4b6aa61880a95b1b3da870112c9acb5f63fe53",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23-019",
+      "name": "ドコカラ・デンデン",
+      "faces": [
+        {
+          "name": "ドコカラ・デンデン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のドリームメイト１体につき、自分の山札の上から１枚、マナゾーンに置いてもよい。",
+          "race": "ビークル・ビー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-019",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CreatureCountRamp765",
+            "filter": {
+              "race": "ドリームメイト"
+            },
+            "optional": true,
+            "g809Together": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "bfb133077d28bb140f927b181810c32a982870a9b6937d4b0b00f987ce6b4dba",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22-043",
+      "name": "フューチャー・カプセル",
+      "faces": [
+        {
+          "name": "フューチャー・カプセル",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n自分の山札の上から５枚を見る。その中から好きな枚数を好きな順序で山札の上に戻し、残りを好きな順序で山札の下に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-043",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 5,
+            "g940SplitTop": true,
+            "stages": [
+              {
+                "n": "all",
+                "to": "deckTop",
+                "optional": true,
+                "title": "山札の上に残すカードを上から順に選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "78dbb46a5bf4af0b0aa06896aad39133a96cc301eea4ecd62cc477f23fc305de",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm21-s01",
+      "name": "キャプテン・ミリオンパーツ",
+      "faces": [
+        {
+          "name": "キャプテン・ミリオンパーツ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "バトルゾーンにあるグレートメカオーとキカイヒーローはすべて「ブロッカー」を得る。\nバトルゾーンにある、グレートメカオーとキカイヒーロー以外のクリーチャーは、ブロックすることができない。",
+          "race": "キカイヒーロー",
+          "powerText": "4500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-s01",
+      "spec": {
+        "g208Auras": [
+          {
+            "both": true,
+            "filter": {
+              "creature": true,
+              "raceAny": [
+                "グレートメカオー",
+                "キカイヒーロー"
+              ]
+            },
+            "grants": {
+              "blocker": true
+            }
+          }
+        ],
+        "g940BlockOnlyRaces": [
+          "グレートメカオー",
+          "キカイヒーロー"
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-s01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "7febb9353af9ad9c6972fcfdb3fd76ce616f48bdea757a5cccf8c16f8fe5b2ca",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm30-025": 4,
+      "dm23-019": 4,
+      "dm22-043": 4,
+      "dm21-s01": 4
+    }
+  }
+}

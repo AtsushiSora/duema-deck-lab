@@ -1998,6 +1998,12 @@ export function createSixPhotoRules(api){
  case'g34_ConfirmHandReturn857':
   if(own.hand.some(y=>y.uid===t.returned&&(y.zoneSerial||0)===t.serial))start(s,t,t.defs);
   break;
+ case'g34_Reload940':{
+  const y=own.hand.find(y=>y.uid===t.target&&(y.zoneSerial||0)===t.serial);
+  if(y&&canPut(s,t.p,y,'hand'))start(s,t,[{op:'Offer',title:card(y).name+'をもう一度出す？',
+   score:20,defs:[{op:'Put',origin:'hand',target:y.uid,execution:false}]}]);
+  break;
+ }
  case'g34_MarshalTouch558':{const rows=marshalRows558(s,t);if(rows.length)choice(s,t,t.title||'マーシャル・タッチ：戻す自分の他のクリーチャーを1体選ぶ（任意）',[...rows.map(y=>opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},marshalValue558(s,t,y),y.cardId)),skip()]);break;}
  case'g34_SacrificeAlly413':{const rows=(t.g547Seed?own.battle.filter(y=>matches(s,t.p,y,{g295Tamaseed:true})):creatures(s,t.p)).filter(y=>!y.sealed&&(!t.other||!api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))&&(!t.filter||matches(s,t.p,y,t.filter))),legal=new Set(targetOptions(s,t.p,rows).map(o=>o.value)),payoff=sacrificeValue413(s,t,t.defs||[]);if(rows.some(y=>legal.has(y.uid)))choice(s,t,t.g547Seed?'破壊して効果を使う自分のタマシードを1枚選ぶ（任意）':'破壊して効果を使う自分のクリーチャーを1体選ぶ（任意）',[...rows.filter(y=>legal.has(y.uid)).map(y=>{const c=effective(y,s),canDie=api.canLeave(s,t.p,y)&&!hooks.destroySafe409(s,y),penalty=canDie?Math.min(30,6+cost(c)*2+api.power(y,false,s)/2000):0;return opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},Math.max(-1000,Math.min(1000,(t.g547Seed&&t.defs?.[0]?.deploy?seedReviveValue547(s,t,y,canDie):payoff)+(canDie?modeScore(s,t,c.g172Death||[]):0)-penalty)),y.cardId);}),skip()]);break;}
  case'g34_SelfSacrifice407':{const owner=s.players.findIndex(p=>p.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))),y=owner>=0?s.players[owner].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))):null;if(!y)break;const c=effective(y,s),penalty=api.canLeave(s,owner,y)?Math.min(25,6+cost(c)*2+api.power(y,false,s)/2000):0,score=modeScore(s,t,t.defs||[])+(t.defs||[]).filter(d=>d.op==='Choose').reduce((n,d)=>n+Math.max(0,...d.modes.map(m=>modeScore(s,t,m.defs))),0)+modeScore(s,t,c.g172Death||[])-penalty;choice(s,t,'このクリーチャーを破壊して能力を使う？',[opt('破壊する',true,score,y.cardId),skip()]);break;}
@@ -2535,7 +2541,16 @@ export function createSixPhotoRules(api){
  case'g34_RaidPick':return raid764.run(s,t);
  case'g34_Look':{if(t.g201Search)t={...t,n:own.deck.length};let ids;if(t.stages?.some(q=>q.g467Destinations&&!q.filter)&&api.deckLocked(s,t.p)){t={...t,g467Blind:true};const skip=reserved(own);ids=own.deck.filter(x=>!skip.has(x.uid)).slice(0,t.n).map(x=>x.uid);(own.g34Protected??=[]).push(...ids);}else ids=look(s,t);put(s,{...t,op:'g34_LookPick',ids,stage:0,chosen:[]});break;}
  case'g34_Distribute255':distribute255(s,t);break;
- case'g34_LookPick':{const xs=t.ids.map(uid=>own.deck.find(x=>x.uid===uid)).filter(Boolean),stages=t.stages||[],stage=stages[t.stage];if(!stage){
+ case'g34_LookPick':{const xs=t.ids.map(uid=>own.deck.find(x=>x.uid===uid)).filter(Boolean),stages=t.stages||[],stage=stages[t.stage];
+  if(t.g940SplitTop){
+   const ordered=t.chosen||[],remaining=xs.filter(y=>!ordered.includes(y.uid));
+   if(!remaining.length||ordered.length===stage.n){
+    put(s,{...t,op:'g34_Order',ids:[],ordered,rest:'top',g259OrderTop:true,
+     after:[{op:'Order',ids:remaining.map(y=>y.uid),rest:'bottom',ordered:[]}]});
+    break;
+   }
+  }
+  if(!stage){
    if(t.g791OrderRest)distribute255(s,{...t,ids:[]});
    if(s.winner===null)put(s,{...t,op:t.g255Distribute&&!t.g791OrderRest?'g34_Distribute255':'g34_Order',ids:xs.map(x=>x.uid),ordered:[],after:t.after});
    break;
@@ -3585,6 +3600,14 @@ export function createSixPhotoRules(api){
  case'g34_ManaExchangeBase753':api.beginManaExchange753(s,t,v);break;
  case'g34_Target':
   if(used792(s,t,t))break;
+  if(t.g940Reload){
+   const y=v&&own.battle.find(y=>y.uid===v.uid);
+   if(y){
+    put(s,{...t,op:'g34_Reload940',target:y.uid,serial:(y.zoneSerial||0)+1});
+    move(s,[{player:t.p,uid:y.uid,to:'hand',controller:t.p}]);
+   }
+   break;
+  }
   if(t.g939ReturnBases){
    if(v)put(s,{...t,op:'g34_ReturnBases939',owner:v.p,target:v.uid});
    break;
