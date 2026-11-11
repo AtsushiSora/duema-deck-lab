@@ -1,0 +1,162 @@
+{
+  "phase": 930,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6659,
+  "description": "クロス先の攻撃時の山札確認、山札から墓地に置いたカードを参照する除去と展開、自己破壊によるドラゴン展開に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/43462/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31654/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35335/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+    "https://dm.takaratomy.co.jp/rule/qa/45589/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37228/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm15-011",
+      "name": "サブマリン・レイバー",
+      "faces": [
+        {
+          "name": "サブマリン・レイバー",
+          "typeText": "クロスギア",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "これをクロスしたクリーチャーが攻撃する時、自分の山札の上から４枚を見てもよい。そうした場合、その中から１枚を自分の手札に加え、他の３枚を好きな順番で自分の山札の一番下に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-011",
+      "spec": {
+        "type": "gear",
+        "g930CrossAttack": [
+          {
+            "op": "Look",
+            "n": 4,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm15-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "61801a89090a5237e8f96cbf4c9f1637f038a9c5f2aca0dcf828d30d1e3fbef7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm15-017",
+      "name": "トレジャー・チャンス",
+      "faces": [
+        {
+          "name": "トレジャー・チャンス",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の山札の上から１枚目を自分の墓地に置く。\nそのカードがクリーチャーであれば、パワーがそのクリーチャーより小さい相手のクリーチャーを１体破壊する。そのカードがクロスギアであれば、それをバトルゾーンに出してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-017",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "TreasureChance930"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm15-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "787688a3bef680e1556bea47cacb8241da5438e852795953c99b2cb70c3a96d0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22-031",
+      "name": "ドラゴンの執事ニャンパッタ",
+      "faces": [
+        {
+          "name": "ドラゴンの執事ニャンパッタ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー\nこのクリーチャーは、可能であれば毎ターン攻撃する。\n自分のターンのはじめに、このクリーチャーを破壊してもよい。そうした場合、進化ではないドラゴンを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "ドリームメイト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-031",
+      "spec": {
+        "speedAttacker": true,
+        "mustAttack": true,
+        "g174Start": [
+          {
+            "op": "SelfSacrifice407",
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 1,
+                "deploy": true,
+                "optional": true,
+                "filter": {
+                  "creature": true,
+                  "nonEvolution": true,
+                  "race": "ドラゴン"
+                },
+                "title": "手札から進化ではないドラゴンを1体出す（任意）"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "68ee4caf8cb58375484aacca37cf6b7844ff29c108280f3a22bb62b607b1a290",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm15-011": 4,
+      "dm15-017": 4,
+      "dm22-031": 4
+    }
+  }
+}

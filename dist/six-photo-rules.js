@@ -2584,6 +2584,22 @@ export function createSixPhotoRules(api){
  case'g34_ManaCountRamp529':{const n=own.mana.length;if(n)start(s,t,[{op:'Offer',title:'山札から'+n+'枚をまとめてタップしてマナに置く？',defs:[{op:'Ramp',n,tapped:true}]}]);break;}
  case'g34_ManaDeploy523':{const max=own.mana.length;start(s,t,[t.summon?{op:'Execute',origin:'hand',creatureOnly:true,max,optional:t.optional}:{op:'Select',origin:t.origin,n:1,deploy:true,optional:t.optional,filter:{...t.filter,max}}]);break;}
  case'g34_PowerSweep696':choice(s,t,t.max+'以下の数字を選ぶ',powerSweepOptions696(s,t));break;
+ case'g34_TreasureChance930':{
+  const y=api.takeTop(s,t.p);
+  if(y){
+   clear(y,'grave');
+   api.addZone(s,t.p,'grave',y);
+  }
+  api.deckCheck(s,t.p);
+  if(s.winner!==null||!y||!own.grave.includes(y))break;
+  const definition=api.zoneCard(s,t.p,y,'grave');
+  const creature=faces(definition).find(face=>face.type==='creature');
+  if(creature)start(s,t,[{op:'Target',to:'grave',spell:true,filter:{belowPower:creature.power,g199Power:true},
+   title:'墓地に置いたカードよりパワーが小さい相手クリーチャーを1体破壊する'}]);
+  else if(definition.type==='gear')start(s,t,[{op:'Select',origin:'grave',n:1,deploy:true,optional:true,
+   g530Ids:[y.uid],filter:{g201Gear:true},title:'墓地に置いたクロスギアを出す（任意）'}]);
+  break;
+ }
  case'g34_LionessMill928':{
   const y=api.takeTop(s,t.p);
   if(y){

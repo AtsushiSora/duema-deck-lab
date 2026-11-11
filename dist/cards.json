@@ -195163,21 +195163,120 @@
       },
       "supportBatch": "phase-929",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm15-011",
+      "name": "サブマリン・レイバー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "これをクロスしたクリーチャーが攻撃する時、自分の山札の上から４枚を見てもよい。そうした場合、その中から１枚を自分の手札に加え、他の３枚を好きな順番で自分の山札の一番下に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-011",
+      "limit": 4,
+      "g930CrossAttack": [
+        {
+          "op": "Look",
+          "n": 4,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-930",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm15-017",
+      "name": "トレジャー・チャンス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "自分の山札の上から１枚目を自分の墓地に置く。\nそのカードがクリーチャーであれば、パワーがそのクリーチャーより小さい相手のクリーチャーを１体破壊する。そのカードがクロスギアであれば、それをバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-017",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "TreasureChance930"
+        }
+      ],
+      "supportBatch": "phase-930",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22-031",
+      "name": "ドラゴンの執事ニャンパッタ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ドリームメイト",
+      "text": "スピードアタッカー\nこのクリーチャーは、可能であれば毎ターン攻撃する。\n自分のターンのはじめに、このクリーチャーを破壊してもよい。そうした場合、進化ではないドラゴンを１体、自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-031",
+      "limit": 4,
+      "speedAttacker": true,
+      "mustAttack": true,
+      "g174Start": [
+        {
+          "op": "SelfSacrifice407",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 1,
+              "deploy": true,
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "nonEvolution": true,
+                "race": "ドラゴン"
+              },
+              "title": "手札から進化ではないドラゴンを1体出す（任意）"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-930",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 929,
+    "phase": 930,
     "checkedAt": "2026-11-11",
-    "baseCount": 6656,
+    "baseCount": 6659,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6659,
+    "totalCount": 6662,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/43461/",
-      "https://dm.takaratomy.co.jp/rule/qa/31786/",
+      "https://dm.takaratomy.co.jp/rule/qa/43462/",
       "https://dm.takaratomy.co.jp/rule/rulechange/31654/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35103/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35335/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+      "https://dm.takaratomy.co.jp/rule/qa/45589/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37228/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -211765,6 +211864,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/43462/",
           "https://dm.takaratomy.co.jp/rule/qa/42077/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37486/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 929,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6656,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6659,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/43461/",
+          "https://dm.takaratomy.co.jp/rule/qa/31786/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31654/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35103/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

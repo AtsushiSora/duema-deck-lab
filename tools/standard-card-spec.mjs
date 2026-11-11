@@ -3388,6 +3388,9 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=930&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クロスギア'&&d.id==='dm15-011'&&normalize(f.abilityText)===
+  'これをクロスしたクリーチャーが攻撃する時自分の山札の上から4枚を見てもよい。そうした場合その中から1枚を自分の手札に加え他の3枚を好きな順番で自分の山札の一番下に戻す。')
+  return {type:'gear',g930CrossAttack:[{op:'Look',n:4,rest:'bottom',stages:[{n:1,to:'hand'}]}]};
  if(phase>=928&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クロスギア'&&d.id==='dm14-078'&&normalize(f.abilityText)===
   'クロスギア:このカードをバトルゾーンに置く。クリーチャーにクロスするにはこのカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れてもこのカードはバトルゾーンに残る。自分のターンの終わりにこれをクロスしたクリーャーをアンタップしてもよい。')
   return {type:'gear',g928CrossEndUntap:true};
@@ -3452,6 +3455,17 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=930&&d.faces.length===1){
+  if(d.id==='dm15-017'&&f.typeText==='呪文'&&compact363===
+   '自分の山札の上から1枚目を自分の墓地に置く。そのカードがクリーチャーであればパワーがそのクリーチャーより小さい相手のクリーチャーを1体破壊する。そのカードがクロスギアであればそれをバトルゾーンに出してもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'TreasureChance930'}]};
+  if(d.id==='dm22-031'&&f.typeText==='クリーチャー'&&compact363===
+   'スピードアタッカーこのクリーチャーは可能であれば毎ターン攻撃する。自分のターンのはじめにこのクリーチャーを破壊してもよい。そうした場合進化ではないドラゴンを1体自分の手札からバトルゾーンに出してもよい。')
+   return {speedAttacker:true,mustAttack:true,g174Start:[{op:'SelfSacrifice407',defs:[
+    {op:'Select',origin:'hand',n:1,deploy:true,optional:true,filter:{creature:true,nonEvolution:true,race:'ドラゴン'},
+     title:'手札から進化ではないドラゴンを1体出す（任意）'}
+   ]}]};
+ }
  if(phase>=929&&d.faces.length===1&&creature){
   if(d.id==='dm15-025'&&compact363===
    'このクリーチャーが破壊された時このクリーチャーにクロスしてあったクロスギアをすべて自分の他のクリーチャー1体にコストを支払わずにクロスしてもよい。')

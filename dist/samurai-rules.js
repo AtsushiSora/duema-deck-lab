@@ -122,7 +122,14 @@ export function createSamuraiRules(api){
    if(c.samuraiBui)on(s,p,x,'g18_Bui');
    if(c.samuraiMusashi)on(s,p,x,'g18_MusashiUse');
   }
-  for(const g of attached(s,p,x))if(card(g).doss&&active(s,g))on(s,p,g,'g18_Mekraid');
+  for(const g of attached(s,p,x)){
+   if(!active(s,g))continue;
+   const gear=card(g);
+   if(gear.doss)on(s,p,g,'g18_Mekraid');
+   if(gear.g930CrossAttack)on(s,p,g,'g34_Offer',{
+    title:'山札の上から4枚を見る？',defs:gear.g930CrossAttack,score:s.players[p].deck.length>1?10:-1000
+   });
+  }
   for(const owner of [p,1-p])for(const gear of gears(s,owner)){
    if(!card(gear).g727CrossRaceDraw||!sharesCrossedRace(s,owner,gear,effective(x,s,true)))continue;
    on(s,owner,gear,'g34_Offer',{title:'カードを1枚引く？',defs:[{op:'Draw',n:1}]});
