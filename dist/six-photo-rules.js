@@ -158,12 +158,18 @@ export function createSixPhotoRules(api){
   for(const [p,y] of rows)api.tap(s,p,y);
  }
 
- function revengeCard795(s,t){return s.players[t.p].hand.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial&&card(y).g795Revenge&&!api.handAbilityIgnored(s,y));}
- function revengeReady795(s,p,x){
-  const c=card(x),filter=c.g795Revenge;
-  return creatures(s,1-p).some(y=>!y.sealed&&matches(s,1-p,y,filter))&&
-   api.canCast(s,p,c,'hand')&&api.canEnter(s,p,c,{origin:'hand',execution:true});
+ function revengeCard795(s,t){
+  const cards=t.origin==='deck'?[api.peekTop(s,t.p)].filter(Boolean):s.players[t.p].hand;
+  return cards.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial&&card(y).g795Revenge&&!api.handAbilityIgnored(s,y));
  }
+ function revengeDraws910(s,p,filter){return (s.players[1-p].drawsThisTurn||0)>=filter.opponentDraws;}
+ function revengeReady795(s,p,x,origin='hand'){
+  const c=card(x),filter=c.g795Revenge;
+  const condition=filter.opponentDraws===undefined?
+   creatures(s,1-p).some(y=>!y.sealed&&matches(s,1-p,y,filter)):revengeDraws910(s,p,filter);
+  return condition&&api.canCast(s,p,c,origin)&&api.canEnter(s,p,c,{origin,execution:true});
+ }
+ const revengeDeclare795=(p,y,origin)=>task('g34_RevengeDeclare795',p,y.cardId,{uid:y.uid,serial:y.zoneSerial||0,...(origin?{origin}:{})});
  function chanceMatches419(s,p,x,w){const name=creatureFaceName(effective(x,s));return(!w.name||name.includes(w.name))&&(!w.g201ExactName||exactName(name)===exactName(w.g201ExactName))&&matches(s,p,x,{...w,g199Power:true});}
  function graveCreatureName614(s,p,c){
   const name=exactName(creatureFaceName(c));
@@ -373,7 +379,7 @@ export function createSixPhotoRules(api){
    const shields=s.players[p].shields;
    return creatures(s,p).filter(x=>!x.sealed).length>=(typeof shields==='number'?shields:shields.length);
   }
-  if(f.all)return f.all.every(filter=>ownCondition(s,p,filter,sourceUid,sourceIncarnation,lastKnownCount));if(f.g805NoOpponentMulti)return !s.players[1-p].battle.some(x=>!x.sealed&&!x.faceDown&&colors(effective(x,s,true)).length>1);if(f.g603AttackThisTurn)return !!s.attack||s.g481Attackers?.turn===s.turn&&s.g481Attackers.events.length>0||!!s.g23Attacks?.some(a=>a?.turn===s.turn);if(f.g590AnyEmptyShields)return s.players.some(x=>(x.shields?.length??x.shields)===0);if(f.g590SourceTapped)return s.players[p].battle.some(x=>x.tapped&&api.allLayers(x).some(y=>y.uid===sourceUid&&(sourceIncarnation===null||(y.incarnation||0)===sourceIncarnation)));if(f.g580LaterAttack)return s.g23Attacks?.[p]?.turn===s.turn&&s.g23Attacks[p].count>1;if(f.g580D2Field)return s.players[p].battle.some(x=>!x.sealed&&!x.faceDown&&card(x).d2Field);if(f.g568ManaColors)return f.g568ManaColors.every(color=>s.players[p].mana.some(y=>api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,p).includes(color)));if(f.g567NoTappedMana)return s.players[p].mana.every(y=>!y.tapped);if(f.g565NoAttacks)return s.g481Attackers?.turn!==s.turn||!s.g481Attackers.events.length;if(f.g565FaceUpShields)return Array.isArray(s.players[p].shields)&&s.players[p].shields.flatMap(api.shieldCards).some(x=>x.faceUp);if(f.g563Neo)return neoState563(s,p,s.players[p].battle.find(x=>x.uid===sourceUid&&(sourceIncarnation===null||(x.incarnation||0)===sourceIncarnation)));if(f.g541CreaturesAtLeastShields){const shields=s.players[p].shields;return creatures(s,p).filter(x=>!x.sealed).length>=(typeof shields==='number'?shields:shields.length);}if(f.g539Jokers!==undefined)return jokerCount539(s,p)>=f.g539Jokers;if(f.g508EvolutionOrLink)return creatures(s,p).some(x=>!x.sealed&&evolutionOrLinkedGod(x,api.zoneCard(s,p,x)));if(f.g501TotalCreaturesMax!==undefined)return[0,1].reduce((n,who)=>n+creatures(s,who).filter(x=>!x.sealed).length,0)<=f.g501TotalCreaturesMax;if(f.g479OnlyCreature){const rows=creatures(s,p).filter(x=>!x.sealed);return rows.length===1&&api.layers(rows[0]).some(x=>x.uid===sourceUid);}if(f.g466DistinctCosts)return new Set(s.players[p].battle.filter(x=>!x.sealed&&!x.faceDown).map(x=>api.zoneCard(s,p,x,'battle')).filter(c=>['creature','seed','gear','field','aura'].includes(c.type)).map(cost)).size>=f.g466DistinctCosts;if(f.g465OwnTurn&&s.active!==p)return false;if(f.g465OpponentShieldsMax!==undefined){const shields=s.players[1-p].shields;return(typeof shields==='number'?shields:shields.length)<=f.g465OpponentShieldsMax;}if(f.g458Defending)return !!s.attack&&(s.attack.blockUid||s.attack.target)===sourceUid;if(f.g448Spells)return(s.g37Spells?.[p]?.turn===s.turn?s.g37Spells[p].n:0)>=f.g448Spells;if(f.g448NoncreatureUses)return(s.g448NoncreatureUses?.[p]?.turn===s.turn?s.g448NoncreatureUses[p].n:0)>=f.g448NoncreatureUses;if(f.g448Draws)return(s.players[p].drawsThisTurn||0)>=f.g448Draws;if(f.g448NoName){const norm=v=>String(v||'').normalize('NFKC').replace(/\s/g,'');return !s.players[p].battle.some(x=>!x.sealed&&api.isCreature(s,x)&&norm(effective(x,s).name)===norm(f.g448NoName));}if(f.g448OpponentOverMana)return s.players[1-p].battle.some(x=>!x.sealed&&api.isCreature(s,x)&&cost(effective(x,s))>s.players[1-p].mana.length);if(f.g442CrossedAlly)return s.players.some(own=>own.battle.some(g=>!g.sealed&&card(g).type==='gear'&&g.crossedTo&&s.players[p].battle.some(y=>!y.sealed&&api.isCreature(s,y)&&y.uid===g.crossedTo.uid&&(y.incarnation||0)===g.crossedTo.incarnation)));if(f.g436Crossed){const source=s.players[p].battle.find(x=>x.uid===sourceUid);return !!source&&s.players.some(own=>own.battle.some(g=>!g.sealed&&card(g).type==='gear'&&g.crossedTo?.uid===sourceUid&&g.crossedTo.incarnation===(source.incarnation||0)));}if(f.g413MoreCreatures)return creatures(s,p).filter(y=>!y.sealed).length>creatures(s,1-p).filter(y=>!y.sealed).length;if(f.g411ManaRace){const r=f.g411ManaRace;return s.players[p].mana.filter(y=>!y.faceDown&&api.manaColors(card(y),s,p).includes(r.color)&&faces(api.zoneCard(s,p,y,'mana')).some(c=>c.type==='creature'&&race(c,r.race))).length>=r.n;}if(f.g400Wave)return [0,1].reduce((n,who)=>n+s.players[who].battle.filter(y=>!y.sealed&&api.isCreature(s,y)&&!api.ignored(s,y)&&api.zoneCard(s,who,y).g400Wave).length,0)>=f.g400Wave;if(f.g370BattleCount){const c=f.g370BattleCount,n=creatures(s,p).filter(x=>!x.sealed&&matches(s,p,x,c.filter)).length;return(c.min===undefined||n>=c.min)&&(c.max===undefined||n<=c.max);}if(f.g334ZoneCount){const c=f.g334ZoneCount,size=who=>{const rows=s.players[who][c.zone];return typeof rows==='number'?rows:(rows||[]).length;},n=c.sumBoth?size(p)+size(1-p):size(c.opponent?1-p:p);return c.atLeastOpponent?n>=size(1-p):c.moreThanOpponent?n>size(1-p):c.lessThanOpponent?n<size(1-p):(c.min===undefined||n>=c.min)&&(c.max===undefined||n<=c.max);}if(f.g286FaceDownMana!==undefined)return s.players[p].mana.filter(y=>y.faceDown).length>=f.g286FaceDownMana;if(f.g285AllManaTapped)return s.players[p].mana.every(y=>y.tapped);if(f.g282AllMana)return s.players[p].mana.every(y=>{const cs=api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,p).filter(c=>['光','水','闇','火','自然'].includes(c));return cs.includes(f.g282AllMana.color)||!!f.g282AllMana.colorless&&cs.length===0;});if(f.g273Grave)return s.players[p].grave.filter(y=>matches(s,p,y,f.g273Grave.filter)).length>=f.g273Grave.n;if(f.g272ManaCount!==undefined)return s.players[p].mana.length>=f.g272ManaCount;if(f.g267Mana)return manaCondition267(s,p,f.g267Mana);if(f.g265ShieldsMax!==undefined){const shields=s.players[p].shields;return(typeof shields==='number'?shields:shields.length)<=f.g265ShieldsMax;}const rows=(f.g334Both?[p,1-p]:[p]).flatMap(who=>s.players[who].battle.filter(x=>!x.sealed&&(!f.g334Other||x.uid!==sourceUid||sourceIncarnation!==null&&(x.incarnation||0)!==sourceIncarnation)&&matches(s,who,x,f.seed&&(card(x).seedCreature||card(x).natureAce4)?{...f,seed:false}:f)));return f.g258Civil?rows.length>=f.g258Civil:rows.length>0;};
+  if(f.all)return f.all.every(filter=>ownCondition(s,p,filter,sourceUid,sourceIncarnation,lastKnownCount));if(f.g805NoOpponentMulti)return !s.players[1-p].battle.some(x=>!x.sealed&&!x.faceDown&&colors(effective(x,s,true)).length>1);if(f.g603AttackThisTurn)return !!s.attack||s.g481Attackers?.turn===s.turn&&s.g481Attackers.events.length>0||!!s.g23Attacks?.some(a=>a?.turn===s.turn);if(f.g590AnyEmptyShields)return s.players.some(x=>(x.shields?.length??x.shields)===0);if(f.g590SourceTapped)return s.players[p].battle.some(x=>x.tapped&&api.allLayers(x).some(y=>y.uid===sourceUid&&(sourceIncarnation===null||(y.incarnation||0)===sourceIncarnation)));if(f.g580LaterAttack)return s.g23Attacks?.[p]?.turn===s.turn&&s.g23Attacks[p].count>1;if(f.g580D2Field)return s.players[p].battle.some(x=>!x.sealed&&!x.faceDown&&card(x).d2Field);if(f.g568ManaColors)return f.g568ManaColors.every(color=>s.players[p].mana.some(y=>api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,p).includes(color)));if(f.g567NoTappedMana)return s.players[p].mana.every(y=>!y.tapped);if(f.g565NoAttacks)return s.g481Attackers?.turn!==s.turn||!s.g481Attackers.events.length;if(f.g565FaceUpShields)return Array.isArray(s.players[p].shields)&&s.players[p].shields.flatMap(api.shieldCards).some(x=>x.faceUp);if(f.g563Neo)return neoState563(s,p,s.players[p].battle.find(x=>x.uid===sourceUid&&(sourceIncarnation===null||(x.incarnation||0)===sourceIncarnation)));if(f.g541CreaturesAtLeastShields){const shields=s.players[p].shields;return creatures(s,p).filter(x=>!x.sealed).length>=(typeof shields==='number'?shields:shields.length);}if(f.g539Jokers!==undefined)return jokerCount539(s,p)>=f.g539Jokers;if(f.g508EvolutionOrLink)return creatures(s,p).some(x=>!x.sealed&&evolutionOrLinkedGod(x,api.zoneCard(s,p,x)));if(f.g501TotalCreaturesMax!==undefined)return[0,1].reduce((n,who)=>n+creatures(s,who).filter(x=>!x.sealed).length,0)<=f.g501TotalCreaturesMax;if(f.g479OnlyCreature){const rows=creatures(s,p).filter(x=>!x.sealed);return rows.length===1&&api.layers(rows[0]).some(x=>x.uid===sourceUid);}if(f.g466DistinctCosts)return new Set(s.players[p].battle.filter(x=>!x.sealed&&!x.faceDown).map(x=>api.zoneCard(s,p,x,'battle')).filter(c=>['creature','seed','gear','field','aura'].includes(c.type)).map(cost)).size>=f.g466DistinctCosts;if(f.g465OwnTurn&&s.active!==p)return false;if(f.g465OpponentShieldsMax!==undefined){const shields=s.players[1-p].shields;return(typeof shields==='number'?shields:shields.length)<=f.g465OpponentShieldsMax;}if(f.g458Defending)return !!s.attack&&(s.attack.blockUid||s.attack.target)===sourceUid;if(f.g448Spells)return(s.g37Spells?.[p]?.turn===s.turn?s.g37Spells[p].n:0)>=f.g448Spells;if(f.g448NoncreatureUses)return(s.g448NoncreatureUses?.[p]?.turn===s.turn?s.g448NoncreatureUses[p].n:0)>=f.g448NoncreatureUses;if(f.g448Draws)return(s.players[p].drawsThisTurn||0)>=f.g448Draws;if(f.g448NoName){const norm=v=>String(v||'').normalize('NFKC').replace(/\s/g,'');return !s.players[p].battle.some(x=>!x.sealed&&api.isCreature(s,x)&&norm(effective(x,s).name)===norm(f.g448NoName));}if(f.g448OpponentOverMana)return s.players[1-p].battle.some(x=>!x.sealed&&api.isCreature(s,x)&&cost(effective(x,s))>s.players[1-p].mana.length);if(f.g442CrossedAlly)return s.players.some(own=>own.battle.some(g=>!g.sealed&&card(g).type==='gear'&&g.crossedTo&&s.players[p].battle.some(y=>!y.sealed&&api.isCreature(s,y)&&y.uid===g.crossedTo.uid&&(y.incarnation||0)===g.crossedTo.incarnation)));if(f.g436Crossed){const source=s.players[p].battle.find(x=>x.uid===sourceUid);return !!source&&s.players.some(own=>own.battle.some(g=>!g.sealed&&card(g).type==='gear'&&g.crossedTo?.uid===sourceUid&&g.crossedTo.incarnation===(source.incarnation||0)));}if(f.g413MoreCreatures){const who=f.g413MoreCreatures==='opponent'?1-p:p;return creatures(s,who).filter(y=>!y.sealed).length>creatures(s,1-who).filter(y=>!y.sealed).length;}if(f.g411ManaRace){const r=f.g411ManaRace;return s.players[p].mana.filter(y=>!y.faceDown&&api.manaColors(card(y),s,p).includes(r.color)&&faces(api.zoneCard(s,p,y,'mana')).some(c=>c.type==='creature'&&race(c,r.race))).length>=r.n;}if(f.g400Wave)return [0,1].reduce((n,who)=>n+s.players[who].battle.filter(y=>!y.sealed&&api.isCreature(s,y)&&!api.ignored(s,y)&&api.zoneCard(s,who,y).g400Wave).length,0)>=f.g400Wave;if(f.g370BattleCount){const c=f.g370BattleCount,n=creatures(s,p).filter(x=>!x.sealed&&matches(s,p,x,c.filter)).length;return(c.min===undefined||n>=c.min)&&(c.max===undefined||n<=c.max);}if(f.g334ZoneCount){const c=f.g334ZoneCount,size=who=>{const rows=s.players[who][c.zone];return typeof rows==='number'?rows:(rows||[]).length;},n=c.sumBoth?size(p)+size(1-p):size(c.opponent?1-p:p);return c.atLeastOpponent?n>=size(1-p):c.moreThanOpponent?n>size(1-p):c.lessThanOpponent?n<size(1-p):(c.min===undefined||n>=c.min)&&(c.max===undefined||n<=c.max);}if(f.g286FaceDownMana!==undefined)return s.players[p].mana.filter(y=>y.faceDown).length>=f.g286FaceDownMana;if(f.g285AllManaTapped)return s.players[p].mana.every(y=>y.tapped);if(f.g282AllMana)return s.players[p].mana.every(y=>{const cs=api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,p).filter(c=>['光','水','闇','火','自然'].includes(c));return cs.includes(f.g282AllMana.color)||!!f.g282AllMana.colorless&&cs.length===0;});if(f.g273Grave)return s.players[p].grave.filter(y=>matches(s,p,y,f.g273Grave.filter)).length>=f.g273Grave.n;if(f.g272ManaCount!==undefined)return s.players[p].mana.length>=f.g272ManaCount;if(f.g267Mana)return manaCondition267(s,p,f.g267Mana);if(f.g265ShieldsMax!==undefined){const shields=s.players[p].shields;return(typeof shields==='number'?shields:shields.length)<=f.g265ShieldsMax;}const rows=(f.g334Both?[p,1-p]:[p]).flatMap(who=>s.players[who].battle.filter(x=>!x.sealed&&(!f.g334Other||x.uid!==sourceUid||sourceIncarnation!==null&&(x.incarnation||0)!==sourceIncarnation)&&matches(s,who,x,f.seed&&(card(x).seedCreature||card(x).natureAce4)?{...f,seed:false}:f)));return f.g258Civil?rows.length>=f.g258Civil:rows.length>0;};
  const canPut=(s,p,x,origin,execution=false)=>(['creature','seed','field','gear'].includes(card(x).type)||card(x).gCastle)&&(!execution||api.canCast(s,p,card(x),origin))&&api.canEnter(s,p,card(x),{origin,execution})&&(!card(x).evolution||api.evolutionBases(s,p,card(x),card(x).g31Evolution?.minCards?{origin,execution,exclude:x.uid}:undefined).some(y=>y.uid!==x.uid));
  const countBattleCivilizations=(s,rows)=>new Set(rows.filter(y=>!y.sealed&&!y.faceDown)
   .flatMap(y=>colors(effective(y,s,true))).filter(q=>['光','水','闇','火','自然'].includes(q))).size;
@@ -1754,13 +1760,14 @@ export function createSixPhotoRules(api){
  case'g34_SelfTap314':if(x)api.tap(s,t.p,x);break;
  case'g34_RevengeDeclare795':{
   const y=revengeCard795(s,t);
-  if(y)choice(s,t,card(y).name+'のリベンジ・チャンスを宣言する？',
-   [opt('宣言する',true,revengeReady795(s,t.p,y)?25:-5,y.cardId),skip()]);
+  if(y&&(card(y).g795Revenge.opponentDraws===undefined||revengeDraws910(s,t.p,card(y).g795Revenge)))
+   choice(s,t,card(y).name+'のリベンジ・チャンスを宣言する？',
+    [opt('宣言する',true,revengeReady795(s,t.p,y,t.origin)?25:-5,y.cardId),skip()]);
   break;
  }
  case'g34_RevengeSummon795':{
   const y=revengeCard795(s,t);
-  if(y&&revengeReady795(s,t.p,y))choice(s,t,card(y).name+'をリベンジ・チャンスで召喚する？',
+  if(y&&revengeReady795(s,t.p,y,t.origin))choice(s,t,card(y).name+'をリベンジ・チャンスで召喚する？',
    [opt('コストを支払わずに召喚する',true,25,y.cardId),skip()]);
   break;
  }
@@ -3077,12 +3084,14 @@ export function createSixPhotoRules(api){
   const y=revengeCard795(s,t);
   if(y&&s.endStep){
    api.log(s,t.p,'reveal',card(y).name+'のリベンジ・チャンスを宣言',{cardId:y.cardId});
-   s.endStep.deferred.push({player:t.p,uid:y.uid,source:y.cardId,effect:'extended',task:{...t,op:'g34_RevengeSummon795'}});
+   const entry={player:t.p,uid:y.uid,source:y.cardId,effect:'extended',task:{...t,op:'g34_RevengeSummon795'}};
+   if(s.endStep.stage==='resolve')api.enqueue(s,t.p,entry);
+   else s.endStep.deferred.push(entry);
   }
  }break;
  case'g34_RevengeSummon795':if(v){
   const y=revengeCard795(s,t);
-  if(y&&revengeReady795(s,t.p,y))cast(s,t.p,y.uid,true,null,0,null,'hand','リベンジ・チャンス');
+  if(y&&revengeReady795(s,t.p,y,t.origin))cast(s,t.p,y.uid,true,null,0,null,t.origin||'hand','リベンジ・チャンス');
  }break;
  case'g34_Chance417':if(v){const y=own.hand.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial),c=y&&faces(card(y))[t.face];if(c?.g417Chance&&!api.spellIgnored(s,c)&&api.canCast(s,t.p,c,'hand'))cast(s,t.p,y.uid,true,null,t.face,null,'hand','アタック・チャンス');}break;
  case'g34_FairyManaExchange828':if(v)put(s,{...t,accepted:true});break;
@@ -3345,6 +3354,16 @@ export function createSixPhotoRules(api){
   if(t.g780ReleaseHyper){
    const y=v&&own.battle.find(y=>y.uid===v.uid);
    if(y)releaseHyper781(s,t.p,y);
+   break;
+  }
+  if(t.g910AnotherIfRace){
+   const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid);
+   if(!y)break;
+   // Use the selected creature's race and layers before any destruction replacement.
+   const another=race(effective(y,s),t.g910AnotherIfRace),g810Excluded=api.allLayers(y).map(key);
+   move(s,[{player:v.p,uid:y.uid,to:'grave',destroy:true,controller:t.controller??t.p}]);
+   if(another)start(s,t,[{op:'Target',to:'grave',spell:t.spell,optional:true,g810Excluded,
+    title:'破壊する別の相手クリーチャーを選ぶ'}]);
    break;
   }
   if(t.g810AnotherWith){
@@ -3816,6 +3835,7 @@ export function createSixPhotoRules(api){
    if(watch.minEntryCount!==undefined&&(s.players[p].enteredThisTurn||0)<watch.minEntryCount)continue;
    if(watch.ownTurn&&owner!==s.active||used792(s,x,watch.defs?.[0])||watch.filter&&!matches(s,p,y,watch.filter))continue;
    if(watch.g778OverMana&&cost(effective(y,s))<=s.players[owner].mana.length)continue;
+   if(watch.g910HigherPower&&currentPower506(s,y)<=currentPower506(s,x))continue;
    if(watch.g755EntrantPower)send(s,owner,x,'EntryBoost755',{
     subject:{uid:y.uid,incarnation:y.incarnation||0},power:watch.g755EntrantPower
    });
@@ -4036,9 +4056,30 @@ export function createSixPhotoRules(api){
    if(defs.length)queue(s,p,x,defs);
   }if(effective(x,s).g34Role==='dragonOrb')queue(s,p,x,[C('orbDeploy')]);if(ninja(effective(x,s)))for(const y of(snapshot?.dororon?.[p]||active(s,p,'dororon')))queue(s,p,y,[E('Draw',{n:1,optional:true})]);}},
  revengeEnd795(s){
-  const declarations=[s.active,1-s.active].flatMap(p=>s.players[p].hand.filter(y=>card(y).g795Revenge&&!api.handAbilityIgnored(s,y))
-   .map(y=>task('g34_RevengeDeclare795',p,y.cardId,{uid:y.uid,serial:y.zoneSerial||0})));
+  const active=s.active;
+  const declarations=[active,1-active].flatMap(p=>s.players[p].hand.flatMap(y=>{
+   const filter=card(y).g795Revenge;
+   if(!filter||api.handAbilityIgnored(s,y))return [];
+   const declaration=revengeDeclare795(p,y);
+   if(filter.opponentDraws===undefined)return [declaration];
+   return p===active&&revengeDraws910(s,p,filter)?[declaration]:[];
+  }));
+  const top=api.peekTop(s,active),filter=top&&card(top).g795Revenge;
+  if(filter?.opponentDraws!==undefined&&revengeDraws910(s,active,filter))
+   declarations.push(revengeDeclare795(active,top,'deck'));
   if(declarations.length)put(s,...declarations);
+ },
+ revengeNonActive910(s){
+  const end=s.endStep;
+  if(end?.stage!=='resolve'||end.g910RevengeChecked||s.decision||s.extTasks?.length||s.triggers||s.leaving||s.battleResolution)return false;
+  // The non-turn player declares only after the turn player's pending effects (rule 511).
+  end.g910RevengeChecked=true;
+  const p=1-s.active,ready=s.players[p].hand.flatMap(y=>{
+   const filter=card(y).g795Revenge;
+   return filter?.opponentDraws!==undefined&&revengeDraws910(s,p,filter)&&!api.handAbilityIgnored(s,y)?[revengeDeclare795(p,y)]:[];
+  });
+  if(ready.length)put(s,...ready);
+  return !!ready.length;
  },
  end(s){if(s.extLimits)s.extLimits=s.extLimits.filter(l=>!(l.kind==='g546Force'&&l.when==='nextOpponent'&&s.active===1-l.controller&&s.turn>l.turn));const out=collect537(s,'turnEnd',s.active);const remaining501=[];for(const r of s.g501EndDelays||[])if(!r.ownEnd||r.p===s.active)out.push({player:r.p,source:r.source,effect:'extended',task:task('g34_ResolveEnd501',r.p,r.source,{...r})});else remaining501.push(r);s.g501EndDelays=remaining501;for(const t of s.g484BreakEnds||[])if(t.turn===s.turn)out.push({player:t.p,source:t.source,uid:t.uid,effect:'extended',task:task('g34_Sequence',t.p,t.source,{uid:t.uid,incarnation:t.incarnation,defs:[E('BreakReturn484')]})});s.g484BreakEnds=[];for(const t of s.g408EndUntaps||[])if(t.turn===s.turn)out.push({player:t.p,source:t.source,uid:t.g399Attacker.uid,effect:'extended',task:task('g34_AttackUntap408',t.p,t.source,{g399Attacker:t.g399Attacker})});s.g408EndUntaps=[];for(const p of[0,1]){const add=(x,defs,source=x.cardId)=>out.push({player:p,uid:x.uid,source,effect:'extended',task:task('g34_Sequence',p,source,{uid:x.uid,incarnation:x.incarnation||0,defs})});for(const x of s.players[p].battle){if(x.g34Delayed?.turn===s.turn){const d=x.g34Delayed,controller=d.controller??p,source=d.source||x.cardId;out.push({player:controller,uid:x.uid,source,effect:'extended',task:task('g34_DelayedMove532',controller,source,{uid:x.uid,incarnation:x.incarnation||0,to:d.to})});}if(api.ignored(s,x))continue;const r=card(x).g34Role;if(!x.sealed&&effective(x,s).g474AnyEnd)add(x,effective(x,s).g474AnyEnd);
   const manaLeftEnd=card(x).g811ManaLeftEnd;

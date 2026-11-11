@@ -1,0 +1,248 @@
+{
+  "phase": 910,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6595,
+  "description": "クリーチャー数による攻撃制限、ドロー枚数によるリベンジ・チャンス、パワーが上回る登場と自己マナ移動、ゴッド破壊に続く追加除去に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/page/68/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36188/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36189/",
+    "https://dm.takaratomy.co.jp/rule/qa/41260/",
+    "https://dm.takaratomy.co.jp/rule/qa/39655/",
+    "https://dm.takaratomy.co.jp/rule/qa/40422/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm03-050",
+      "name": "奇襲兵ブルレイザー",
+      "faces": [
+        {
+          "name": "奇襲兵ブルレイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "バトルゾーンにある相手のクリーチャーの数が自分のクリーチャーの数より多いとき、このクリーチャーは攻撃することができない。",
+          "race": "ドラゴノイド",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-050",
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g413MoreCreatures": "opponent"
+          },
+          "grants": {
+            "noAttack": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm03-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "d3c4c01be78dd40d2eb8fe3a11b78ad3850e4c4efad148a96cf4e9ca7588e1ad",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm38-053",
+      "name": "ベニジシ・スパイダー",
+      "faces": [
+        {
+          "name": "ベニジシ・スパイダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "リベンジ・チャンス-各ターンの終わりに、相手がそのターン、カードを３枚以上引いていた場合、このクリーチャーをコストを支払わずに召喚してもよい。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "ジャイアント・インセクト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-053",
+      "spec": {
+        "g558Souls": [
+          "W"
+        ],
+        "g795Revenge": {
+          "opponentDraws": 3
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm38-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "3b2febadfa2786179a985cfa2c66c3216d57eb61bf84403366d3be882de7fca3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-038",
+      "name": "クイック・アボガド",
+      "faces": [
+        {
+          "name": "クイック・アボガド",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "パワーがこのクリーチャーより大きい他のクリーチャーがバトルゾーンに出た時、このクリーチャーを自分のマナゾーンに置く。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-038",
+      "spec": {
+        "g314OtherEntry": {
+          "who": "both",
+          "g910HigherPower": true,
+          "defs": [
+            {
+              "op": "SelfMana297",
+              "g536Source": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "b26c246338e9d9a4e18fd6543fba4bbb23dcf6b47231b93e69f3cdab0fc0556b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm31-013",
+      "name": "魔弾ゴッド・ジェノサイダー",
+      "faces": [
+        {
+          "name": "魔弾ゴッド・ジェノサイダー",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "相手のクリーチャーを１体破壊する。そのクリーチャーがゴッドであれば、相手のクリーチャーをもう１体破壊してもよい。",
+          "race": "ナイト",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-013",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "spell": true,
+            "g910AnotherIfRace": "ゴッド"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "a22772639df549b9edea0f7a53ee08aadc40be735702ec0217dd696ecc77ccfa",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc27-050",
+      "canonicalId": "dm03-050",
+      "name": "奇襲兵ブルレイザー",
+      "faces": [
+        {
+          "name": "奇襲兵ブルレイザー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "バトルゾーンにある相手のクリーチャーの数が自分のクリーチャーの数より多いとき、このクリーチャーは攻撃することができない。",
+          "race": "ドラゴノイド",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc27-050",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc27-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "27d28e383f5c7b0a048c263dbd76f861c1825e2c3c291801fd5351a54cf9c0f0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx18-020",
+      "canonicalId": "dm38-053",
+      "name": "ベニジシ・スパイダー",
+      "faces": [
+        {
+          "name": "ベニジシ・スパイダー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "リベンジ・チャンス-各ターンの終わりに、相手がそのターン、カードを３枚以上引いていた場合、このクリーチャーをコストを支払わずに召喚してもよい。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目をマナゾーンに置く。",
+          "race": "ジャイアント・インセクト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx18-020",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx18-020.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "97215ab889f4028a5633bd8934d505150df683087479c531bf28cb6ca3074e19",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm03-050": 4,
+      "dm38-053": 4,
+      "dm14-038": 4,
+      "dm31-013": 4,
+      "dmc27-050": 4,
+      "dmx18-020": 4
+    }
+  }
+}

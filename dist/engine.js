@@ -1746,6 +1746,7 @@ function advanceEnd(s){if(s.lossEvent)return;
   end.stage='resolve';const deferred=end.deferred||[];end.deferred=[];for(const e of deferred)enqueueEffect(s,e.player??s.active,e);if(deferred.length)return;
   if(end.untap.length){s.decision={type:'untap',player:s.active,uids:end.untap};return;}
  }
+ if(extra.six.revengeNonActive910(s))return;
  end.declared=end.declared.filter(uid=>own.hand.some(x=>x.uid===uid));
  while(end.declared.length){
   if(end.declared.length>1&&end.declared.some(uid=>card(own.hand.find(x=>x.uid===uid)).endMirage)){s.decision={type:'endAbilityOrder',player:p};return;}

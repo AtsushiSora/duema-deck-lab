@@ -3445,6 +3445,21 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=910&&d.faces.length===1){
+  if(creature&&['dm03-050','dmc27-050'].includes(d.id)&&compact363===
+   'バトルゾーンにある相手のクリーチャーの数が自分のクリーチャーの数より多いときこのクリーチャーは攻撃することができない。')
+   return {g260Self:{filter:{g413MoreCreatures:'opponent'},grants:{noAttack:true}}};
+  if(creature&&['dm38-053','dmx18-020'].includes(d.id)&&compact363===
+   'リベンジ・チャンス-各ターンの終わりに相手がそのターンカードを3枚以上引いていた場合このクリーチャーをコストを支払わずに召喚してもよい。'+
+   'このクリーチャーをバトルゾーンに出した時自分の山札の上から1枚目をマナゾーンに置く。')
+   return {g558Souls:['W'],g795Revenge:{opponentDraws:3},effect:'sixPhoto',g34Tasks:[{op:'Ramp',n:1}]};
+  if(creature&&d.id==='dm14-038'&&compact363===
+   'パワーがこのクリーチャーより大きい他のクリーチャーがバトルゾーンに出た時このクリーチャーを自分のマナゾーンに置く。')
+   return {g314OtherEntry:{who:'both',g910HigherPower:true,defs:[{op:'SelfMana297',g536Source:true}]}};
+  if(f.typeText==='呪文'&&d.id==='dm31-013'&&compact363===
+   '相手のクリーチャーを1体破壊する。そのクリーチャーがゴッドであれば相手のクリーチャーをもう1体破壊してもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',to:'grave',spell:true,g910AnotherIfRace:'ゴッド'}]};
+ }
  if(phase>=909&&creature&&d.faces.length===1){
   if(['dm24ex1-070','promoy23-043'].includes(d.id)&&compact363===
    'S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)'+

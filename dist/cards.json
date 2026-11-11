@@ -193283,23 +193283,137 @@
       },
       "supportBatch": "phase-909",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm03-050",
+      "name": "奇襲兵ブルレイザー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "ドラゴノイド",
+      "text": "バトルゾーンにある相手のクリーチャーの数が自分のクリーチャーの数より多いとき、このクリーチャーは攻撃することができない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-050",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "g413MoreCreatures": "opponent"
+        },
+        "grants": {
+          "noAttack": true
+        }
+      },
+      "supportBatch": "phase-910",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm38-053",
+      "name": "ベニジシ・スパイダー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ジャイアント・インセクト",
+      "text": "リベンジ・チャンス-各ターンの終わりに、相手がそのターン、カードを３枚以上引いていた場合、このクリーチャーをコストを支払わずに召喚してもよい。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目をマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm38-053",
+      "limit": 4,
+      "g558Souls": [
+        "W"
+      ],
+      "g795Revenge": {
+        "opponentDraws": 3
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-910",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm14-038",
+      "name": "クイック・アボガド",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "ワイルド・ベジーズ",
+      "text": "パワーがこのクリーチャーより大きい他のクリーチャーがバトルゾーンに出た時、このクリーチャーを自分のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-038",
+      "limit": 4,
+      "g314OtherEntry": {
+        "who": "both",
+        "g910HigherPower": true,
+        "defs": [
+          {
+            "op": "SelfMana297",
+            "g536Source": true
+          }
+        ]
+      },
+      "supportBatch": "phase-910",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm31-013",
+      "name": "魔弾ゴッド・ジェノサイダー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "ナイト",
+      "text": "相手のクリーチャーを１体破壊する。そのクリーチャーがゴッドであれば、相手のクリーチャーをもう１体破壊してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-013",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "spell": true,
+          "g910AnotherIfRace": "ゴッド"
+        }
+      ],
+      "supportBatch": "phase-910",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 909,
+    "phase": 910,
     "checkedAt": "2026-11-11",
-    "baseCount": 6592,
-    "newEffectCards": 3,
+    "baseCount": 6595,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6595,
+    "totalCount": 6599,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/31691/",
-      "https://dm.takaratomy.co.jp/rule/qa/44212/",
-      "https://dm.takaratomy.co.jp/rule/qa/39067/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37679/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37680/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/変更点2026-07-23/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/page/68/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36188/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36189/",
+      "https://dm.takaratomy.co.jp/rule/qa/41260/",
+      "https://dm.takaratomy.co.jp/rule/qa/39655/",
+      "https://dm.takaratomy.co.jp/rule/qa/40422/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+      "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -209507,6 +209621,26 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37153/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37615/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 909,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6592,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6595,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/31691/",
+          "https://dm.takaratomy.co.jp/rule/qa/44212/",
+          "https://dm.takaratomy.co.jp/rule/qa/39067/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37679/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37680/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/変更点2026-07-23/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
