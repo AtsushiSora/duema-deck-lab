@@ -3445,6 +3445,21 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=914&&f.typeText==='呪文'&&d.faces.length===1){
+  if(d.id==='dm27-026'&&compact363==='S・トリガー'+
+   '相手は自分自身の手札を1枚選んで捨てる。そのカードの文明と同じ文明のカードが自分のマナゾーンに1枚でもあれば相手は自分自身のマナゾーンからカードを1枚選び墓地に置く。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'HandFollow584',owner:'opponent',g914SharedManaColor:true,then:[{op:'OpponentManaLoss478'}]}]};
+  if(d.id==='dm05-023'&&compact363===
+   'バトルゾーンにある自分の水のクリーチャー1体につきバトルゾーンにある相手のクリーチャーを1体選びタップしてもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'CountOwn538',filter:{creature:true,color:'水'},mode:'select',
+    def:{op:'Select',origin:'battle',owner:'opponent',optional:true,g173Targets:true,g193Select:true,g193Tap:true,
+     filter:{creature:true},title:'タップする相手のクリーチャーを選ぶ'}}]};
+  if(d.id==='dm10-100'&&compact363===
+   'S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)'+
+   '自分の次のターンのはじめまで相手のクリーチャーは「このクリーチャーは可能であれば攻撃する」を得る。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'GroupGrant364',owner:'opponent',filter:{creature:true},g521UntilStart:true,spell:true,
+    grant:{mustAttack:true,g736ForcedAttack:true}}]};
+ }
  if(phase>=913&&d.faces.length===1){
   if(f.typeText==='呪文'&&d.id==='dm04-008'&&compact363===
    'S(シールド)・トリガー(このカードをシールドゾーンから手札に加えるときコストを支払わずにすぐ唱えてよい)'+

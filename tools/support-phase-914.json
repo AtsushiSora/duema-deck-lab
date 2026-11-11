@@ -1,0 +1,172 @@
+{
+  "phase": 914,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6608,
+  "description": "捨てたカードとマナの文明照合、味方の水クリーチャー数による任意タップ、相手クリーチャーへの期限付き攻撃強制に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/45267/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37999/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37626/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36933/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm27-026",
+      "name": "暗黒螺旋",
+      "faces": [
+        {
+          "name": "暗黒螺旋",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー\n相手は自分自身の手札を１枚選んで捨てる。そのカードの文明と同じ文明のカードが自分のマナゾーンに１枚でもあれば、相手は自分自身のマナゾーンからカードを１枚選び、墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-026",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "HandFollow584",
+            "owner": "opponent",
+            "g914SharedManaColor": true,
+            "then": [
+              {
+                "op": "OpponentManaLoss478"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm27-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "6f49aeb1a171e5e031e10f08fabbb898c1ffd4dfbd8f05fc38a58f4a67427191",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm05-023",
+      "name": "サンダー・ネット",
+      "faces": [
+        {
+          "name": "サンダー・ネット",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "バトルゾーンにある自分の水のクリーチャー１体につき、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm05-023",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountOwn538",
+            "filter": {
+              "creature": true,
+              "color": "水"
+            },
+            "mode": "select",
+            "def": {
+              "op": "Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "optional": true,
+              "g173Targets": true,
+              "g193Select": true,
+              "g193Tap": true,
+              "filter": {
+                "creature": true
+              },
+              "title": "タップする相手のクリーチャーを選ぶ"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm05-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "82ce423a22fef90ea689d7ad3109b391eec7bbcae7363b43a0cd67aed750cae3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-100",
+      "name": "強制突撃",
+      "faces": [
+        {
+          "name": "強制突撃",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n自分の次のターンのはじめまで、相手のクリーチャーは「このクリーチャーは可能であれば攻撃する」を得る。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-100",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupGrant364",
+            "owner": "opponent",
+            "filter": {
+              "creature": true
+            },
+            "g521UntilStart": true,
+            "spell": true,
+            "grant": {
+              "mustAttack": true,
+              "g736ForcedAttack": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-100.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "b941e661fd0202e57a69b7086ab555f2a2e68a6df05ed41820df3bbb873db3b4",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm27-026": 4,
+      "dm05-023": 4,
+      "dm10-100": 4
+    }
+  }
+}

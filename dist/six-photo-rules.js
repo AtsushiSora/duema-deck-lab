@@ -1167,9 +1167,13 @@ export function createSixPhotoRules(api){
   const moved=ids.filter(uid=>zoneMove(s,t.p,'hand',uid,'deck',t)).length;
   api.draw(s,t.p,moved+(t.extra||0));
  }
+ const discardOwner584=t=>t.blind||t.owner==='opponent'?1-t.p:t.p;
  function discardFollow584(s,t,x){
-  const owner=t.blind?1-t.p:t.p;
-  api.discardSelected(s,owner,[x.uid],t.source,t.controller??t.p,null,{...t,op:'g34_AfterHandFollow584',matched:matches(s,owner,x,t.filter)});
+  const owner=discardOwner584(t);
+  const discardedColors=t.g914SharedManaColor?
+   faces(api.zoneCard(s,owner,x,'hand')).flatMap(colors).filter(c=>civilizations805.includes(c)):null;
+  api.discardSelected(s,owner,[x.uid],t.source,t.controller??t.p,null,{...t,op:'g34_AfterHandFollow584',
+   matched:matches(s,owner,x,t.filter),...(discardedColors?{discardedColors}:{})});
  }
  function finishCycle460(s,t,ids){const selected=ids.filter(uid=>s.players[t.p].hand.some(x=>x.uid===uid));api.discardSelected(s,t.p,selected,t.source,t.p,null,{op:'g34_CycleDraw460',p:t.p,source:t.source,n:t.fixedDraw??selected.length,extra:t.extra||0});}
  // Reveal complete physical hand cards; twinpacts contribute both civilizations but count once.
@@ -1260,13 +1264,22 @@ export function createSixPhotoRules(api){
  // Match the chosen physical card before discard replacements, then use the batch's actual result.
  case'g34_DiscardMatch517':if(!own.hand.length)api.draw(s,t.p,1);else choice(s,t,'捨てる手札を1枚選ぶ',own.hand.map(y=>{const n=1+(matches(s,t.p,y,t.filter)?1:0);return opt(card(y).name,y.uid,(own.deck.length<=n?-1000:15+(n-1)*10)-Math.min(30,cost(card(y))),y.cardId);}));break;
  case'g34_HandFollow584':{
-  const hand=t.blind?opp.hand:own.hand;
-  if(!hand.length){start(s,t,t.always||[]);break;}
+  const owner=discardOwner584(t),hand=s.players[owner].hand;
+  if(!hand.length||owner!==t.p&&api.handProtected(s,{p:owner,source:t.source,causedBy:t.controller??t.p})){
+   start(s,t,t.always||[]);break;
+  }
   if(t.blind){discardFollow584(s,t,hand[Math.floor(api.random(s)*hand.length)]);break;}
-  choice(s,t,'捨てる手札を1枚選ぶ',[...hand.map(x=>opt(card(x).name,x.uid,12+(matches(s,t.p,x,t.filter)?7:0)-Math.min(24,cost(card(x))),x.cardId)),...(t.optional?[skip()]:[])]);
+  choice(s,t,'捨てる手札を1枚選ぶ',[...hand.map(x=>opt(card(x).name,x.uid,12+(matches(s,owner,x,t.filter)?7:0)-Math.min(24,cost(card(x))),x.cardId)),...(t.optional?[skip()]:[])],owner);
   break;
  }
- case'g34_AfterHandFollow584':start(s,t,[...(t.always||[]),...(t.discarded?(t.success||[]):[]),...(t.discarded&&t.matched?t.then:[])]);break;
+ case'g34_AfterHandFollow584':{
+  // A discard replacement does not supply a discarded card (QA45267).
+  const matched=t.g914SharedManaColor?t.discarded&&own.mana.some(x=>
+   api.manaColors(x.faceDown?{civilizations:[]}:api.zoneCard(s,t.p,x,'mana'),s,t.p)
+    .some(c=>t.discardedColors.includes(c))):t.matched;
+  start(s,t,[...(t.always||[]),...(t.discarded?(t.success||[]):[]),...(t.discarded&&matched?t.then:[])]);
+  break;
+ }
  case'g34_DrawAfterDiscard517':api.draw(s,t.p,1+(t.discarded&&t.matches?1:0));break;
  case'g34_HandCycle460':handCycle460(s,t);break;
  case'g34_CycleDrawAll460':for(let i=0;i<t.ps.length&&s.winner===null;i++)if(t.counts[i])api.draw(s,t.ps[i],t.counts[i]);break;
@@ -3237,7 +3250,7 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_Draw':api.draw(s,t.p,v);break;
- case'g34_HandFollow584':{const x=own.hand.find(y=>y.uid===v);if(x)discardFollow584(s,t,x);break;}
+ case'g34_HandFollow584':{const x=s.players[discardOwner584(t)].hand.find(y=>y.uid===v);if(x)discardFollow584(s,t,x);break;}
  case'g34_DiscardMatch517':{const y=own.hand.find(y=>y.uid===v);if(y)api.discardSelected(s,t.p,[y.uid],t.source,t.p,null,{op:'g34_DrawAfterDiscard517',p:t.p,source:t.source,matches:matches(s,t.p,y,t.filter)});else api.draw(s,t.p,1);break;}
  case'g34_MillTapped782':{
   if(!v)break;
