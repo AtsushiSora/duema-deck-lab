@@ -1,0 +1,246 @@
+{
+  "phase": 1017,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6987,
+  "description": "マガンド、ジェイリー、パールダ、デッドゲリラの公式能力を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/rule/qa/34320/",
+    "https://dm.takaratomy.co.jp/rule/qa/34321/",
+    "https://dm.takaratomy.co.jp/rule/qa/48479/",
+    "https://dm.takaratomy.co.jp/rule/qa/48481/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
+    "https://dm.takaratomy.co.jp/rule/qa/40962/",
+    "https://dm.takaratomy.co.jp/rule/qa/39841/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316682/"
+  ],
+  "cards": [
+    {
+      "id": "dmr18-006",
+      "name": "殺意の悪魔龍 マガンド",
+      "faces": [
+        {
+          "name": "殺意の悪魔龍 マガンド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃する時、自分のシールドをひとつ、手札に戻す。ただし、その「S・トリガー」は使えない。こうしてシールドを手札に戻したなら、このターン、このクリーチャーのパワーを+3000し、「W・ブレイカー」を与える。",
+          "race": "デーモン・コマンド・ドラゴン/革命軍",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-006",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "ShieldHandFollow1017",
+            "noST": true,
+            "requireHand": true,
+            "defs": [
+              {
+                "op": "SelfBoost313",
+                "power": 3000,
+                "breaker": 2,
+                "g536Source": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "e6dd6f0dd08ca8a0942857d84a3eec743fb2c07ff084fd557f2ee7bbf48f70cc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr20-046",
+      "name": "蹴足の玉 ジェイリー",
+      "faces": [
+        {
+          "name": "蹴足の玉 ジェイリー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分のクリーチャーの数が自分のシールドの数以上なら、このクリーチャーに「シールド・セイバー」を与える。（自分のシールドがブレイクされる時、かわりに「シールド・セイバー」を持つクリーチャーを破壊してもよい）",
+          "race": "ジャスティス・オーブ/革命軍",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-046",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g260Self": {
+          "filter": {
+            "g687CreatureCountAtLeastShields": true
+          },
+          "grants": {
+            "g401ShieldSaver": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr20-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "840312243dadcd14a91c6b13c521fdd1a6964732234274ce4660e4a3574b1146",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-013",
+      "name": "音の精霊龍 パールダ",
+      "faces": [
+        {
+          "name": "音の精霊龍 パールダ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分のシールドをひとつ、手札に加えてもよい。その後、手札を１枚、裏向きにして、新しいシールドとして自分のシールドゾーンに置いてもよい。（こうして手札に加えたシールドカードの「S・トリガー」を使ってもよい）",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-013",
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "ShieldHandFollow1017",
+            "optional": true,
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "to": "shields",
+                "n": 1,
+                "optional": true,
+                "title": "裏向きでシールド化する手札を1枚選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "8ceea0e701374d1b6abd75dca3bf78797a28d14b937302505bfa83c05ca4b413",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-018",
+      "name": "S級不死 デッドゲリラ",
+      "faces": [
+        {
+          "name": "S級不死 デッドゲリラ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化―自分の闇のクリーチャー１体の上に置く。\nS級侵略 [不死]―闇のコマンド（自分の闇のコマンドが攻撃する時、自分の手札または墓地にあるこのクリーチャーをその上に重ねてもよい）\nスレイヤー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、次の相手のターン、相手のクリーチャーはすべて、可能なら攻撃する。",
+          "race": "ゲリラ・コマンド/S級侵略者",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-018",
+      "spec": {
+        "evolution": {
+          "civilization": "闇"
+        },
+        "invasion": {
+          "colors": [
+            "闇"
+          ],
+          "origins": [
+            "hand",
+            "grave"
+          ],
+          "categories": [
+            "コマンド"
+          ]
+        },
+        "slayer": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ForceGroup546",
+            "when": "nextOpponent"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "8dbf7e7670b40546018854c717e5b07781012079076bf6d6049c6e72f5cdbc60",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex13-008",
+      "canonicalId": "dmr18-006",
+      "name": "殺意の悪魔龍 マガンド",
+      "faces": [
+        {
+          "name": "殺意の悪魔龍 マガンド",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが攻撃する時、自分のシールドを１つ手札に戻す。ただし、その「S・トリガー」は使えない。このようにしてシールドを手札に戻したなら、このターン、このクリーチャーのパワーを+3000し、「W・ブレイカー」を与える。",
+          "race": "デーモン・コマンド・ドラゴン/革命軍",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-008",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "57aeee6843ffb63e3f576ff37bd093d5a0c941f9ff23a746a5de4e98e473403e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr18-006": 4,
+      "dmr20-046": 4,
+      "dmr18-013": 4,
+      "dmr19-018": 4,
+      "dmex13-008": 4
+    }
+  }
+}

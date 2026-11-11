@@ -2953,11 +2953,15 @@ export function createSixPhotoRules(api){
   if(n)put(s,{...t,op:'g34_TappedShieldPick842',n,picked:[]});
   break;
  }
- case'g34_ShieldTriggerUntap1015':{
+ case'g34_ShieldTriggerUntap1015':
+ case'g34_ShieldHandFollow1017':{
+  const untap=t.op==='g34_ShieldTriggerUntap1015';
+  const score=untap?(x?.tapped&&api.canUntap(x)&&own.shields.length>1?12:-2):own.shields.length>1?10:-2;
   const options=own.shields.flatMap((shield,i)=>api.shieldCards(shield).some(y=>!y.g37ShieldHeld)
-   ?[opt('シールド '+(i+1)+(shield.faceUp?'：'+card(shield).name:''),shield.uid,
-    x?.tapped&&api.canUntap(x)&&own.shields.length>1?12:-2,shield.faceUp?shield.cardId:undefined)]:[]);
-  if(options.length)choice(s,t,'手札に加える自分のシールドを選ぶ',[...options,skip()]);
+   ?[opt('シールド '+(i+1)+(shield.faceUp?'：'+card(shield).name:''),shield.uid,score,shield.faceUp?shield.cardId:undefined)]:[]);
+  if(options.length)choice(s,t,'手札に加える自分のシールドを選ぶ'+(t.noST?'（S・トリガーは使えません）':''),
+   untap||t.optional?[...options,skip()]:options);
+  else if(t.optional)start(s,t,t.defs);
   break;
  }
  case'g34_TappedShieldPick842':{
@@ -3592,6 +3596,13 @@ export function createSixPhotoRules(api){
   if(v)api.interruptBreak(s,t.p,[v],{...t,op:'g34_Untap',g191First:true},
    {g842Hand:true,controller:t.p,source:t.source});
   break;
+ case'g34_ShieldHandFollow1017':{
+  if(!v){if(t.optional)start(s,t,t.defs);break;}
+  const follow={...t,op:'g34_Sequence'};
+  const moved=api.interruptBreak(s,t.p,[v],follow,{g842Hand:true,controller:t.p,source:t.source,noST:t.noST});
+  if(t.requireHand&&!moved)follow.defs=[];
+  break;
+ }
  case'g34_TappedShieldPick842':
   put(s,{...t,picked:[...t.picked,v]});
   break;

@@ -1859,8 +1859,9 @@ function commitShieldBreak(s,defender,uids){
  const gs=extra.gsAllowed(s,defender)?broken.filter(x=>card(x).gStrike).map(x=>x.uid):[];
  if(eligible.length||gs.length||extra.hasSB(s,defender,broken)){if(s.triggers)(s.triggerStack??=[]).push(s.triggers);s.triggers={interrupt:!!s.g19Interrupt?.breaking,player:defender,undeclared:eligible.filter(uid=>broken.some(x=>x.uid===uid)),declared:[],entries:[],eligibleFaces,breaker,faceByUid:{},gsUndeclared:gs,gsDeclared:[]};if(s.g19Interrupt?.breaking)s.g19Interrupt.breaking=false;}
  extra.beginSB(s,defender,broken,true);
+ return broken.length;
 }
-function interruptBreak(s,p,uids,follow,context=null){const parent=s.g19Interrupt;s.g19Interrupt={breaking:true,tasks:[follow,...(s.extTasks||[])],effects:(s.pendingEffects||[]).splice(0),context:s.breakContext,...(parent?{parent}:{})};s.extTasks=[];s.breakContext=context;if(context?.g842Hand)commitShieldBreak(s,p,uids);else breakShields(s,p,uids);}
+function interruptBreak(s,p,uids,follow,context=null){const parent=s.g19Interrupt;s.g19Interrupt={breaking:true,tasks:[follow,...(s.extTasks||[])],effects:(s.pendingEffects||[]).splice(0),context:s.breakContext,...(parent?{parent}:{})};s.extTasks=[];s.breakContext=context;if(context?.g842Hand)return commitShieldBreak(s,p,uids);breakShields(s,p,uids);}
 function resumeInterrupt(s){const w=s.g19Interrupt;if(!w||s.shieldBreak||s.decision||!w.breaking)return;finishInterrupt(s);}
 function finishInterrupt(s){const w=s.g19Interrupt;if(w.parent)s.g19Interrupt=w.parent;else delete s.g19Interrupt;s.extTasks=[...w.tasks,...(s.extTasks||[])];s.pendingEffects=[...w.effects,...(s.pendingEffects||[])];s.breakContext=w.context;}
 

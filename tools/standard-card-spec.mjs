@@ -3435,6 +3435,34 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=1017&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const attack='このクリーチャーが攻撃する時';
+  const original=d.id==='dmr18-006',reprint=d.id==='dmex13-008';
+  if(f.typeText==='クリーチャー'&&(original||reprint)&&text===attack+'自分のシールドを'+
+   (original?'ひとつ':'1つ')+'手札に戻す。ただしその「S・トリガー」は使えない。'+
+   (original?'こうして':'このようにして')+'シールドを手札に戻したならこのターンこのクリーチャーのパワーを+3000し「W・ブレイカー」を与える。')
+   return {g34Attack:[{op:'ShieldHandFollow1017',noST:true,requireHand:true,defs:[
+    {op:'SelfBoost313',power:3000,breaker:2,g536Source:true}
+   ]}]};
+  if(f.typeText==='クリーチャー'&&d.id==='dmr20-046'&&text===
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   'このクリーチャーは相手プレイヤーを攻撃できない。'+
+   '自分のクリーチャーの数が自分のシールドの数以上ならこのクリーチャーに「シールド・セイバー」を与える。'+
+   '(自分のシールドがブレイクされる時かわりに「シールド・セイバー」を持つクリーチャーを破壊してもよい)')
+   return {blocker:true,noPlayerAttack:true,g260Self:{filter:{g687CreatureCountAtLeastShields:true},grants:{g401ShieldSaver:true}}};
+  if(f.typeText==='クリーチャー'&&d.id==='dmr18-013'&&text==='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+attack+
+   '自分のシールドをひとつ手札に加えてもよい。その後手札を1枚裏向きにして新しいシールドとして自分のシールドゾーンに置いてもよい。'+
+   '(こうして手札に加えたシールドカードの「S・トリガー」を使ってもよい)')
+   return {breaker:2,g34Attack:[{op:'ShieldHandFollow1017',optional:true,defs:[
+    {op:'Select',origin:'hand',to:'shields',n:1,optional:true,title:'裏向きでシールド化する手札を1枚選ぶ'}
+   ]}]};
+  if(f.typeText==='進化クリーチャー'&&d.id==='dmr19-018'&&text==='進化―自分の闇のクリーチャー1体の上に置く。'+
+   'S級侵略[不死]―闇のコマンド(自分の闇のコマンドが攻撃する時自分の手札または墓地にあるこのクリーチャーをその上に重ねてもよい)'+
+   'スレイヤーW・ブレイカーこのクリーチャーがバトルゾーンに出た時次の相手のターン相手のクリーチャーはすべて可能なら攻撃する。')
+   return {evolution:{civilization:'闇'},invasion:{colors:['闇'],origins:['hand','grave'],categories:['コマンド']},
+    slayer:true,breaker:2,effect:'sixPhoto',g34Tasks:[{op:'ForceGroup546',when:'nextOpponent'}]};
+ }
  if(phase>=1016&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const shuffle={op:'GraveShuffle545',owner:'self'};
