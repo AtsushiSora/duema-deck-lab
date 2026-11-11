@@ -3445,6 +3445,18 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=899&&creature&&d.faces.length===1){
+  if(['dmrp17-011','dm22ex2-013'].includes(d.id)&&[
+   'マッハファイター(このクリーチャーは出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)コスト5以下のクリーチャーを攻撃中このクリーチャーに「スレイヤー」を与える。このクリーチャーが出た時コスト5以下のクリーチャーを1体自分の手札から出してもよい。',
+   'マッハファイターコスト5以下のクリーチャーを攻撃中このクリーチャーに「スレイヤー」を与える。このクリーチャーが出た時コスト5以下のクリーチャーを1体自分の手札から出してもよい。'].includes(compact363))
+   return {machFighter:true,g899AttackSlayerMax:5,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'hand',deploy:true,n:1,optional:true,filter:{creature:true,max:5}}]};
+  if(d.id==='dmrp09-057'&&compact363===
+   'このクリーチャーが攻撃する時自分の他のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー1体につき自分の山札の上から1枚をマナゾーンに置く。')
+   return {g34Attack:[{op:'Select',origin:'battle',owner:'self',n:'all',optional:true,g187OwnPick:true,g899RampTapped:true,filter:{creature:true,untapped:true}}]};
+  if(d.id==='dmrp11-054'&&compact363===
+   'このクリーチャーがバトルゾーンに出た時そのターン中すでに自分の他のクリーチャーがバトルゾーンに出ていればこのターンこのクリーチャーに「スピードアタッカー」を与える。(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)')
+   return {effect:'sixPhoto',g34Tasks:[{op:'IfOwn',filter:{g334ZoneCount:{zone:'enteredThisTurn',min:2}},defs:[{op:'SelfGrant754',g770LiveCreature:true,grant:{speedAttacker:true}}]}]};
+ }
  if(phase>=898&&creature&&d.faces.length===1){
   if(d.id==='dmrp14-035'&&compact363==='相手のコスト4以下のクリーチャーが手札以外のどこからでもバトルゾーンに出る時相手はかわりにそのクリーチャーを手札に加える。')
    return {g38Bell:true,g898BellMax:4};

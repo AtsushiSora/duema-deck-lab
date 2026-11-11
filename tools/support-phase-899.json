@@ -1,0 +1,200 @@
+{
+  "phase": 899,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6562,
+  "description": "攻撃先の現在コストに応じたスレイヤー、攻撃時に他の味方を任意タップした実数分のマナ追加、登場履歴によるスピードアタッカー付与に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/39683/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36972/",
+    "https://dm.takaratomy.co.jp/rule/qa/39131/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp17-011",
+      "name": "Disカルセ・ドニー",
+      "faces": [
+        {
+          "name": "Disカルセ・ドニー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇/自然",
+          "civilizations": [
+            "光",
+            "闇",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nコスト５以下のクリーチャーを攻撃中、このクリーチャーに「スレイヤー」を与える。\nこのクリーチャーが出た時、コスト５以下のクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "スピリット・クォーツ/ディスタス",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-011",
+      "spec": {
+        "machFighter": true,
+        "g899AttackSlayerMax": 5,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "max": 5
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "25d153d7d0fafd0f03145b3d957270d115067fbdda9b293da3ad03a593175363",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp09-057",
+      "name": "クロス倍九郎",
+      "faces": [
+        {
+          "name": "クロス倍九郎",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが攻撃する時、自分の他のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、自分の山札の上から１枚をマナゾーンに置く。",
+          "race": "ジョーカーズ",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-057",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "self",
+            "n": "all",
+            "optional": true,
+            "g187OwnPick": true,
+            "g899RampTapped": true,
+            "filter": {
+              "creature": true,
+              "untapped": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-057.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "c28a45906ddf3d9933906d163f5dda675589d89cea52ee7eec2592357a24c465",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp11-054",
+      "name": "スリップ尖車 スピンクル",
+      "faces": [
+        {
+          "name": "スリップ尖車 スピンクル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、そのターン中、すでに自分の他のクリーチャーがバトルゾーンに出ていれば、このターン、このクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "ビートジョッキー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-054",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "enteredThisTurn",
+                "min": 2
+              }
+            },
+            "defs": [
+              {
+                "op": "SelfGrant754",
+                "g770LiveCreature": true,
+                "grant": {
+                  "speedAttacker": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp11-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "ae0cd98f2fd6ba102f8545e1bd3283a25010a6b60f9566cdc62592d6406c3ced",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm22ex2-013",
+      "canonicalId": "dmrp17-011",
+      "name": "Disカルセ・ドニー",
+      "faces": [
+        {
+          "name": "Disカルセ・ドニー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/闇/自然",
+          "civilizations": [
+            "光",
+            "闇",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マッハファイター\nコスト５以下のクリーチャーを攻撃中、このクリーチャーに「スレイヤー」を与える。\nこのクリーチャーが出た時、コスト５以下のクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "スピリット・クォーツ/ディスタス",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex2-013",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex2-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "9a261d716d9f741a72d6a6ea6fc30df8578d6fa2f58beee5edc48b3e52fbad80",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp17-011": 4,
+      "dmrp09-057": 4,
+      "dmrp11-054": 4,
+      "dm22ex2-013": 4
+    }
+  }
+}

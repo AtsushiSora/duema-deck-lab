@@ -192263,20 +192263,128 @@
       ],
       "supportBatch": "phase-898",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp17-011",
+      "name": "Disカルセ・ドニー",
+      "civ": "光/闇/自然",
+      "civilizations": [
+        "光",
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "スピリット・クォーツ/ディスタス",
+      "text": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nコスト５以下のクリーチャーを攻撃中、このクリーチャーに「スレイヤー」を与える。\nこのクリーチャーが出た時、コスト５以下のクリーチャーを１体、自分の手札から出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-011",
+      "limit": 4,
+      "machFighter": true,
+      "g899AttackSlayerMax": 5,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "hand",
+          "deploy": true,
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "max": 5
+          }
+        }
+      ],
+      "supportBatch": "phase-899",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-057",
+      "name": "クロス倍九郎",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ジョーカーズ",
+      "text": "このクリーチャーが攻撃する時、自分の他のクリーチャーを好きな数タップしてもよい。こうしてタップしたクリーチャー１体につき、自分の山札の上から１枚をマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-057",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "self",
+          "n": "all",
+          "optional": true,
+          "g187OwnPick": true,
+          "g899RampTapped": true,
+          "filter": {
+            "creature": true,
+            "untapped": true
+          }
+        }
+      ],
+      "supportBatch": "phase-899",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-054",
+      "name": "スリップ尖車 スピンクル",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ビートジョッキー",
+      "text": "このクリーチャーがバトルゾーンに出た時、そのターン中、すでに自分の他のクリーチャーがバトルゾーンに出ていれば、このターン、このクリーチャーに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-054",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "enteredThisTurn",
+              "min": 2
+            }
+          },
+          "defs": [
+            {
+              "op": "SelfGrant754",
+              "g770LiveCreature": true,
+              "grant": {
+                "speedAttacker": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-899",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 898,
+    "phase": 899,
     "checkedAt": "2026-11-11",
-    "baseCount": 6559,
+    "baseCount": 6562,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6562,
+    "totalCount": 6565,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31620/",
+      "https://dm.takaratomy.co.jp/rule/qa/39683/",
       "https://dm.takaratomy.co.jp/rule/qa_old/36972/",
-      "https://dm.takaratomy.co.jp/rule/qa/34228/"
+      "https://dm.takaratomy.co.jp/rule/qa/39131/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -208269,6 +208377,23 @@
           "https://dm.takaratomy.co.jp/rule/qa/33588/",
           "https://dm.takaratomy.co.jp/rule/qa/49400/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36972/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 898,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6559,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6562,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31620/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36972/",
+          "https://dm.takaratomy.co.jp/rule/qa/34228/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
