@@ -1811,7 +1811,7 @@ export function createSixPhotoRules(api){
  }
  case'g34_GroupPower':for(const {p,y}of groupPowerRows(s,t))(y.powerModifiers??=[]).push({amount:t.g561DarkMana?0:p===t.p&&t.ownPower!==undefined?t.ownPower:t.power,...(t.g561DarkMana?{g561DarkMana:t.p}:{}),expires:'end',who:s.active,...(t.g561AttackOnly?{attackOnly:true}:{}),...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});break;
  case'g34_SelfExtraBreak444':if(own.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))))(s.extLimits??=[]).push({kind:'g412ExtraBreak',player:t.p,ref:{uid:t.uid,incarnation:t.incarnation||0},source:t.source,amount:t.amount,expires:'end',who:s.active});break;
- case'g34_SelfBoost313':{const y=t.g536Source?sourceHost474(s,t)?.x:x;if(y&&(!t.g694ClearOnSeal||!y.sealed&&api.isCreature(s,y))){(y.powerModifiers??=[]).push({amount:t.power,expires:'end',who:s.active,...(t.g694ClearOnSeal?{g694ClearOnSeal:true}:{}),...(t.g337PowerAttacker?{attackOnly:true,grantedAbility:true}:{})});if(t.breaker)(y.g34Grants??=[]).push({turn:s.turn,g313Breaker:t.breaker});}break;}
+ case'g34_SelfBoost313':{const y=t.g536Source?sourceHost474(s,t)?.x:x;if(y&&(!t.g694ClearOnSeal||!y.sealed&&api.isCreature(s,y))){(y.powerModifiers??=[]).push({amount:t.power,expires:'end',who:s.active,...(t.g694ClearOnSeal?{g694ClearOnSeal:true}:{}),...(t.g337PowerAttacker?{attackOnly:true,grantedAbility:true}:{})});if(t.breaker)(y.g34Grants??=[]).push({turn:s.turn,g313Breaker:t.breaker,...(t.g633DoubleBreaker?{g633DoubleBreaker:true}:{})});}break;}
  case'g34_SelfTap314':if(x)api.tap(s,t.p,x);break;
  case'g34_RevengeDeclare795':{
   const y=revengeCard795(s,t);

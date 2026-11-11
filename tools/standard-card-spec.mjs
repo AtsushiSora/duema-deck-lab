@@ -3445,6 +3445,19 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=919&&d.faces.length===1){
+  if(creature&&['dmrp05-060','dmsd07-012'].includes(d.id)&&compact363===
+   '自分のシールドゾーンにカードが置かれた時そのターンこのクリーチャーのパワーを+3000し「W・ブレイカー」を与える。(「W・ブレイカー」を持つクリーチャーはシールドを2つブレイクする)')
+   return {g918ShieldAdded:[{op:'SelfBoost313',power:3000,breaker:2,g536Source:true,g633DoubleBreaker:true}]};
+  if(f.typeText==='呪文'&&['dm03-020','dmr20-024','dmx12b-082'].includes(d.id)&&[
+   '自分のシールドから好きな枚数を裏向きのまま選び表向きにして自分のマナゾーンに置く。',
+   '自分のシールドを好きな数自分のマナゾーンに置く。'
+  ].includes(compact363))
+   return {effect:'sixPhoto',g34Tasks:[{op:'ShieldHand',g535Count:'any',g554To:'mana',optional:true}]};
+  if(creature&&['dm10-088','dmr20-056','dmex13-073','dmx12b-099'].includes(d.id)&&
+   /^このクリーチャー(?:をバトルゾーンに出した|がバトルゾーンに出た)時自分のシールドを(?:1枚選び自分の|ひとつ選び自分の|ひとつ|1つ)手札に加える。\(その「S・トリガー」を使ってもよい\)$/.test(compact363))
+   return {effect:'sixPhoto',g34Tasks:[{op:'TappedShieldPick842',owner:'self',n:1,picked:[]}]};
+ }
  if(phase>=918&&creature&&d.faces.length===1){
   if(d.id==='dm10-023'&&compact363===
    'このクリーチャーをバトルゾーンに出した時自分のシールドを1枚選び自分の手札に加える。(その「S・トリガー」を使ってもよい)')
