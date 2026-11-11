@@ -1,0 +1,245 @@
+{
+  "phase": 1000,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6919,
+  "description": "トリガラ・ダシッチ、復讐 ハッサミー、侵略者 ノイバウテン、奇天烈 チャンG、復讐 ギャロウズの公式能力を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/39558/",
+    "https://dm.takaratomy.co.jp/rule/qa/46522/",
+    "https://dm.takaratomy.co.jp/rule/qa/45585/"
+  ],
+  "cards": [
+    {
+      "id": "dmr17-085",
+      "name": "トリガラ・ダシッチ",
+      "faces": [
+        {
+          "name": "トリガラ・ダシッチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、次のうちいずれかひとつを選ぶ。 ▼自分の墓地にあるドラゴンを好きな数、好きな順序で山札の上に置く。 ▼自分の他のクリーチャーを１体選ぶ。そのターン、そのクリーチャーに「パワーアタッカー+2000」を与える。（攻撃中、そのクリーチャーのパワーは+2000される）",
+          "race": "ファイアー・バード炎",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-085",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "墓地のドラゴンを好きな数、山札の上に置く",
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "grave",
+                    "to": "deckTop",
+                    "n": "all",
+                    "optional": true,
+                    "g183Return": true,
+                    "filter": {
+                      "anyFaceRace": "ドラゴン"
+                    },
+                    "title": "山札の上に戻すドラゴンを順に選ぶ（先に選んだカードが一番上）"
+                  }
+                ]
+              },
+              {
+                "label": "他のクリーチャー1体にパワーアタッカー+2000を与える",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "owner": "self",
+                    "g179Other": true,
+                    "power": 2000,
+                    "g337PowerAttacker": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-085.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "75732ba4b62ff76f2ae51f7c4fd2d30fe5c847463bdeaee1dcc455df230c818e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr17-045",
+      "name": "復讐 ハッサミー",
+      "faces": [
+        {
+          "name": "復讐 ハッサミー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手のシールドが２つ以下なら、自分の闇のクリーチャーすべてに「スレイヤー」を与える。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+          "race": "ファンキー・ナイトメア/侵略者",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-045",
+      "spec": {
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true,
+              "color": "闇"
+            },
+            "g557Condition": {
+              "g465OpponentShieldsMax": 2
+            },
+            "grants": {
+              "slayer": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "a92709742e96d9bfb799255951f74565d750caebf24d435750735c92dd499fb5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-027",
+      "name": "侵略者 ノイバウテン",
+      "faces": [
+        {
+          "name": "侵略者 ノイバウテン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーを召喚する時、自分の手札から進化クリーチャーを１体相手に見せてもよい。そうしたら、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にならない。\n自分のターンの終わりに、このクリーチャーをアンタップする。",
+          "race": "エンジェル・コマンド/侵略者",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-027",
+      "spec": {
+        "g470RevealReduction": {
+          "evolution": true,
+          "amount": 2,
+          "exact": true
+        },
+        "g166EndUntap": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "b9f85c27893155f790d526633d9833a463c9ae520688ba97e0a3dc009465233d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-031",
+      "name": "奇天烈 チャンG",
+      "faces": [
+        {
+          "name": "奇天烈 チャンG",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーを召喚する時、自分の手札から進化クリーチャーを１体相手に見せてもよい。そうしたら、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にならない。\nこのクリーチャーはブロックされない。",
+          "race": "マジック・コマンド/侵略者",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-031",
+      "spec": {
+        "g470RevealReduction": {
+          "evolution": true,
+          "amount": 2,
+          "exact": true
+        },
+        "unblockable": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "9ea1fc6667ae66aa73d76e8ec69b384221818d378df2f8626aa08783110c27f3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-033",
+      "name": "復讐 ギャロウズ",
+      "faces": [
+        {
+          "name": "復讐 ギャロウズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーを召喚する時、自分の手札から進化クリーチャーを１体、相手に見せてもよい。そうしたら、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にならない。\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+          "race": "デーモン・コマンド/侵略者",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-033",
+      "spec": {
+        "g470RevealReduction": {
+          "evolution": true,
+          "amount": 2,
+          "exact": true
+        },
+        "slayer": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "ea0d58542b697ec739802b79733d1ee6f66d566bc0f34a963e8273ba84f2efa0",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr17-085": 4,
+      "dmr17-045": 4,
+      "dmr18-027": 4,
+      "dmr18-031": 4,
+      "dmr18-033": 4
+    }
+  }
+}

@@ -3435,6 +3435,33 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=1000&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmr17-085'&&text===
+   'このクリーチャーがバトルゾーンに出た時次のうちいずれかひとつを選ぶ。▼自分の墓地にあるドラゴンを好きな数好きな順序で山札の上に置く。'+
+   '▼自分の他のクリーチャーを1体選ぶ。そのターンそのクリーチャーに「パワーアタッカー+2000」を与える。(攻撃中そのクリーチャーのパワーは+2000される)')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Choose',g184Modes:true,modes:[
+    {label:'墓地のドラゴンを好きな数、山札の上に置く',defs:[
+     {op:'Select',origin:'grave',to:'deckTop',n:'all',optional:true,g183Return:true,filter:{anyFaceRace:'ドラゴン'},
+      title:'山札の上に戻すドラゴンを順に選ぶ（先に選んだカードが一番上）'}
+    ]},
+    {label:'他のクリーチャー1体にパワーアタッカー+2000を与える',defs:[
+     {op:'Target',owner:'self',g179Other:true,power:2000,g337PowerAttacker:true}
+    ]}
+   ]}]};
+  if(d.id==='dmr17-045'&&text===
+   '相手のシールドが2つ以下なら自分の闇のクリーチャーすべてに「スレイヤー」を与える。'+
+   '(「スレイヤー」を持つクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)')
+   return {g208Auras:[{filter:{creature:true,color:'闇'},g557Condition:{g465OpponentShieldsMax:2},grants:{slayer:true}}]};
+  const revealEvolution='このクリーチャーを召喚する時自分の手札から進化クリーチャーを1体相手に見せてもよい。'+
+   'そうしたらこのクリーチャーの召喚コストを2少なくする。ただしコストは0以下にならない。';
+  if(d.id==='dmr18-027'&&text===revealEvolution+'自分のターンの終わりにこのクリーチャーをアンタップする。')
+   return {g470RevealReduction:{evolution:true,amount:2,exact:true},g166EndUntap:true};
+  if(d.id==='dmr18-031'&&text===revealEvolution+'このクリーチャーはブロックされない。')
+   return {g470RevealReduction:{evolution:true,amount:2,exact:true},unblockable:true};
+  if(d.id==='dmr18-033'&&text===revealEvolution+'スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)')
+   return {g470RevealReduction:{evolution:true,amount:2,exact:true},slayer:true};
+ }
  if(phase>=999&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const entry='このクリーチャーがバトルゾーンに出た時',modernEntry='このクリーチャーが出た時';

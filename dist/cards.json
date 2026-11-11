@@ -203845,23 +203845,181 @@
       },
       "supportBatch": "phase-999",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-085",
+      "name": "トリガラ・ダシッチ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ファイアー・バード炎",
+      "text": "このクリーチャーがバトルゾーンに出た時、次のうちいずれかひとつを選ぶ。 ▼自分の墓地にあるドラゴンを好きな数、好きな順序で山札の上に置く。 ▼自分の他のクリーチャーを１体選ぶ。そのターン、そのクリーチャーに「パワーアタッカー+2000」を与える。（攻撃中、そのクリーチャーのパワーは+2000される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-085",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Choose",
+          "g184Modes": true,
+          "modes": [
+            {
+              "label": "墓地のドラゴンを好きな数、山札の上に置く",
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "grave",
+                  "to": "deckTop",
+                  "n": "all",
+                  "optional": true,
+                  "g183Return": true,
+                  "filter": {
+                    "anyFaceRace": "ドラゴン"
+                  },
+                  "title": "山札の上に戻すドラゴンを順に選ぶ（先に選んだカードが一番上）"
+                }
+              ]
+            },
+            {
+              "label": "他のクリーチャー1体にパワーアタッカー+2000を与える",
+              "defs": [
+                {
+                  "op": "Target",
+                  "owner": "self",
+                  "g179Other": true,
+                  "power": 2000,
+                  "g337PowerAttacker": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1000",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-045",
+      "name": "復讐 ハッサミー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ファンキー・ナイトメア/侵略者",
+      "text": "相手のシールドが２つ以下なら、自分の闇のクリーチャーすべてに「スレイヤー」を与える。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-045",
+      "limit": 4,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true,
+            "color": "闇"
+          },
+          "g557Condition": {
+            "g465OpponentShieldsMax": 2
+          },
+          "grants": {
+            "slayer": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1000",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr18-027",
+      "name": "侵略者 ノイバウテン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "エンジェル・コマンド/侵略者",
+      "text": "このクリーチャーを召喚する時、自分の手札から進化クリーチャーを１体相手に見せてもよい。そうしたら、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にならない。\n自分のターンの終わりに、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-027",
+      "limit": 4,
+      "g470RevealReduction": {
+        "evolution": true,
+        "amount": 2,
+        "exact": true
+      },
+      "g166EndUntap": true,
+      "supportBatch": "phase-1000",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr18-031",
+      "name": "奇天烈 チャンG",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "マジック・コマンド/侵略者",
+      "text": "このクリーチャーを召喚する時、自分の手札から進化クリーチャーを１体相手に見せてもよい。そうしたら、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にならない。\nこのクリーチャーはブロックされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-031",
+      "limit": 4,
+      "g470RevealReduction": {
+        "evolution": true,
+        "amount": 2,
+        "exact": true
+      },
+      "unblockable": true,
+      "supportBatch": "phase-1000",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr18-033",
+      "name": "復讐 ギャロウズ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "デーモン・コマンド/侵略者",
+      "text": "このクリーチャーを召喚する時、自分の手札から進化クリーチャーを１体、相手に見せてもよい。そうしたら、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にならない。\nスレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-033",
+      "limit": 4,
+      "g470RevealReduction": {
+        "evolution": true,
+        "amount": 2,
+        "exact": true
+      },
+      "slayer": true,
+      "supportBatch": "phase-1000",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 999,
+    "phase": 1000,
     "checkedAt": "2026-11-12",
-    "baseCount": 6915,
-    "newEffectCards": 4,
+    "baseCount": 6919,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 6919,
+    "totalCount": 6924,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/31724/",
-      "https://dm.takaratomy.co.jp/rule/qa/40637/",
-      "https://dm.takaratomy.co.jp/rule/qa/41152/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37256/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37429/"
+      "https://dm.takaratomy.co.jp/rule/qa/39558/",
+      "https://dm.takaratomy.co.jp/rule/qa/46522/",
+      "https://dm.takaratomy.co.jp/rule/qa/45585/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -221885,6 +222043,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/31825/",
           "https://dm.takaratomy.co.jp/rule/qa/31824/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31650/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 999,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6915,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6919,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/31724/",
+          "https://dm.takaratomy.co.jp/rule/qa/40637/",
+          "https://dm.takaratomy.co.jp/rule/qa/41152/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37256/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37429/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
