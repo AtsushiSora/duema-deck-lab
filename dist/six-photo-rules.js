@@ -2830,8 +2830,26 @@ export function createSixPhotoRules(api){
  case'g34_ManaDown426':{const rows=own.mana.filter(y=>!y.faceDown);if(rows.length)choice(s,t,'裏向きにする自分のマナを1枚選ぶ（任意）',[...rows.map(y=>opt(card(y).name,{uid:y.uid,serial:y.zoneSerial||0},manaDownScore426(s,t,y),y.cardId)),skip()]);break;}
  // A failed deployment must not be confused with a failed printed condition.
  case'g34_RevealTop514':{
+  if(t.g1010DestroyBelowPower&&api.deckLocked(s,t.p)){
+   // QA 31654: a fixed top card still moves when it cannot be revealed.
+   const held=reserved(own),top=own.deck.find(y=>!held.has(y.uid));
+   if(top)zoneMove(s,t.p,'deck',top.uid,'hand',t);
+   api.deckCheck(s,t.p);
+   break;
+  }
   const ids=look(s,{...t,n:1,public:true}),y=own.deck.find(y=>y.uid===ids[0]);
   if(!y){api.deckCheck(s,t.p);break;}
+  if(t.g1010DestroyBelowPower){
+   const creature=faces(api.zoneCard(s,t.p,y,'deck')).find(face=>face.type==='creature');
+   const power=creature&&api.revealedPower(y,s);
+   const moved=zoneMove(s,t.p,'deck',y.uid,'hand',t);
+   if(!moved)release(s,t.p,y.uid);
+   api.deckCheck(s,t.p);
+   if(moved&&creature&&s.winner===null)start(s,t,[{op:'Target',to:'grave',
+    filter:{belowPower:power===Infinity?'∞':power,g199Power:true},
+    title:'公開したクリーチャーよりパワーが小さい相手を1体破壊する'}]);
+   break;
+  }
   const filter=t.g746OwnManaCost?{...t.filter,max:own.mana.length}:t.filter;
   const matched=matches(s,t.p,y,filter),to=matched?t.to:t.elseTo;
   const defs=to?[{op:'RevealMove514',target:y.uid,to,...(t.g774Banky?{g774Banky:true}:{})}]:matched?[]:t.elseDefs||[];
@@ -3885,7 +3903,11 @@ export function createSixPhotoRules(api){
   const owner=t.owner==='opponent'?1-t.p:t.p,y=s.players[owner].hand[v];
   if(y){
    api.log(s,owner,'reveal',card(t.source).name+'で公開：'+card(y).name,{cardId:y.cardId});
-   if(t.owner!=='opponent'&&matches(s,t.p,y,{g223Multicolor:true}))start(s,t,[{op:'SelfGrant754',grant:{speedAttacker:true}}]);
+   if(t.g1010Deploy){
+    if(card(y).type==='creature'&&canPut(s,t.p,y,'hand'))start(s,t,[{op:'Offer',
+     title:card(y).name+'をバトルゾーンに出す？',score:deployValue550(s,t.p,y),
+     defs:[{op:'Put',origin:'hand',target:y.uid}]}]);
+   }else if(t.owner!=='opponent'&&matches(s,t.p,y,{g223Multicolor:true}))start(s,t,[{op:'SelfGrant754',grant:{speedAttacker:true}}]);
   }
   break;
  }

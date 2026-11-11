@@ -1,0 +1,216 @@
+{
+  "phase": 1010,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6966,
+  "description": "メガ・デストロイ・ドラゴン、水晶邪龍 デスティニア、ゴースト・パイレーツの公式能力を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/48920/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31654/",
+    "https://dm.takaratomy.co.jp/rule/qa/31824/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37947/",
+    "https://dm.takaratomy.co.jp/rule/qa/40960/",
+    "https://dm.takaratomy.co.jp/rule/qa/49608/"
+  ],
+  "cards": [
+    {
+      "id": "dmr21-005",
+      "name": "メガ・デストロイ・ドラゴン",
+      "faces": [
+        {
+          "name": "メガ・デストロイ・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、自分の山札の上から１枚目を表向きにし、それを手札に加える。それがクリーチャーなら、それよりパワーの小さい相手のクリーチャーを１体、破壊する。",
+          "race": "メガ・コマンド・ドラゴン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-005",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "RevealTop514",
+            "to": "hand",
+            "g1010DestroyBelowPower": true
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "RevealTop514",
+            "to": "hand",
+            "g1010DestroyBelowPower": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "847e9a4ae5f9dcd613f97f70fddc9cbfa59573aaf3a442e509d317288e2e97ee",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr22-s06",
+      "name": "水晶邪龍 デスティニア",
+      "faces": [
+        {
+          "name": "水晶邪龍 デスティニア",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー\nこのクリーチャーはブロックされない。\nマナ武装 ４：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンに多色カードが４枚以上あれば、自分の手札を山札に加えてシャッフルし、カードを４枚引き、その後、相手に自分の手札を１枚見ないで選ばせてから、それを見せる。それがクリーチャーなら、バトルゾーンに出してもよい。",
+          "race": "クリスタル・コマンド・ドラゴン/デーモン・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-s06",
+      "spec": {
+        "breaker": 2,
+        "unblockable": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g267Mana": {
+                "n": 4,
+                "multi": true
+              }
+            },
+            "defs": [
+              {
+                "op": "HandCycle460",
+                "to": "deck",
+                "fixedDraw": 4
+              },
+              {
+                "op": "BlindReveal803",
+                "g1010Deploy": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-s06.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "2210ddefca935e12942cebbf4b698b817c4679fd239c8bf05403bfbfd58caec0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr22-026",
+      "name": "ゴースト・パイレーツ",
+      "faces": [
+        {
+          "name": "ゴースト・パイレーツ",
+          "typeText": "呪文",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを_8000 する。（パワー０以下のクリーチャーは破壊される）\n相手のパワー8000以下のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-026",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -8000,
+            "g242PowerMinus": true,
+            "spell": true
+          },
+          {
+            "op": "Target",
+            "to": "hand",
+            "toOwnerHand": true,
+            "spell": true,
+            "filter": {
+              "maxPower": 8000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "errata": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-026.jpg",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを−8000 する。（パワー０以下のクリーチャーは破壊される）\n相手のパワー8000以下のクリーチャーを１体選び、持ち主の手札に戻す。"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "5e6b3f0cc429f636c57522e57c90abb1aaf7a73f42a1b096f2a1c425c3cb3f7e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmrp08-g02",
+      "canonicalId": "dmr22-s06",
+      "name": "水晶邪龍 デスティニア",
+      "faces": [
+        {
+          "name": "水晶邪龍 デスティニア",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/闇",
+          "civilizations": [
+            "水",
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーはブロックされない。\nマナ武装 ４：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンに多色カードが４枚以上あれば、自分の手札を山札に加えてシャッフルし、カードを４枚引き、その後、相手に自分の手札を１枚見ないで選ばせてから、それを見せる。それがクリーチャーなら、バトルゾーンに出してもよい。",
+          "race": "クリスタル・コマンド・ドラゴン/デーモン・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-g02",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-g02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "bf4215f4e7f9eda7e168e7770e45cbdd781ec83da0bf74af5e6941ae4d16e75b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr21-005": 4,
+      "dmr22-s06": 4,
+      "dmr22-026": 4,
+      "dmrp08-g02": 4
+    }
+  }
+}

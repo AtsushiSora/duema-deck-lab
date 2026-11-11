@@ -205616,26 +205616,145 @@
       ],
       "supportBatch": "phase-1009",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-005",
+      "name": "メガ・デストロイ・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "メガ・コマンド・ドラゴン",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時または攻撃する時、自分の山札の上から１枚目を表向きにし、それを手札に加える。それがクリーチャーなら、それよりパワーの小さい相手のクリーチャーを１体、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-005",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "RevealTop514",
+          "to": "hand",
+          "g1010DestroyBelowPower": true
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "RevealTop514",
+          "to": "hand",
+          "g1010DestroyBelowPower": true
+        }
+      ],
+      "supportBatch": "phase-1010",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-s06",
+      "name": "水晶邪龍 デスティニア",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "クリスタル・コマンド・ドラゴン/デーモン・コマンド・ドラゴン",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー\nこのクリーチャーはブロックされない。\nマナ武装 ４：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンに多色カードが４枚以上あれば、自分の手札を山札に加えてシャッフルし、カードを４枚引き、その後、相手に自分の手札を１枚見ないで選ばせてから、それを見せる。それがクリーチャーなら、バトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-s06",
+      "limit": 4,
+      "breaker": 2,
+      "unblockable": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g267Mana": {
+              "n": 4,
+              "multi": true
+            }
+          },
+          "defs": [
+            {
+              "op": "HandCycle460",
+              "to": "deck",
+              "fixedDraw": 4
+            },
+            {
+              "op": "BlindReveal803",
+              "g1010Deploy": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1010",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-026",
+      "name": "ゴースト・パイレーツ",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 8,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを−8000 する。（パワー０以下のクリーチャーは破壊される）\n相手のパワー8000以下のクリーチャーを１体選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-026",
+      "abilityErrata": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-026.jpg",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを−8000 する。（パワー０以下のクリーチャーは破壊される）\n相手のパワー8000以下のクリーチャーを１体選び、持ち主の手札に戻す。"
+      },
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -8000,
+          "g242PowerMinus": true,
+          "spell": true
+        },
+        {
+          "op": "Target",
+          "to": "hand",
+          "toOwnerHand": true,
+          "spell": true,
+          "filter": {
+            "maxPower": 8000,
+            "g199Power": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1010",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1009,
+    "phase": 1010,
     "checkedAt": "2026-11-12",
-    "baseCount": 6961,
-    "newEffectCards": 5,
+    "baseCount": 6966,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6966,
+    "totalCount": 6969,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/40371/",
-      "https://dm.takaratomy.co.jp/coverage/dmgp05_f01/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37867/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37868/",
-      "https://dm.takaratomy.co.jp/rule/qa/43074/",
-      "https://dm.takaratomy.co.jp/rule/qa/33591/",
-      "https://dm.takaratomy.co.jp/rule/qa/45793/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36034/"
+      "https://dm.takaratomy.co.jp/rule/qa/48920/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31654/",
+      "https://dm.takaratomy.co.jp/rule/qa/31824/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37947/",
+      "https://dm.takaratomy.co.jp/rule/qa/40960/",
+      "https://dm.takaratomy.co.jp/rule/qa/49608/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -223867,6 +223986,29 @@
           "https://dm.takaratomy.co.jp/rule/qa/39858/",
           "https://dm.takaratomy.co.jp/rule/qa/42650/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37680/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1009,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6961,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 6966,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/40371/",
+          "https://dm.takaratomy.co.jp/coverage/dmgp05_f01/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37867/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37868/",
+          "https://dm.takaratomy.co.jp/rule/qa/43074/",
+          "https://dm.takaratomy.co.jp/rule/qa/33591/",
+          "https://dm.takaratomy.co.jp/rule/qa/45793/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36034/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

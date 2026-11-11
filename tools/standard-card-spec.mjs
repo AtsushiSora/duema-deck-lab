@@ -3435,6 +3435,37 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=1010&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const manaTap='マナゾーンに置く時このカードはタップして置く。';
+  const entry='このクリーチャーがバトルゾーンに出た時';
+  const breaker='W・ブレイカー';
+  if(d.id==='dmr21-005'&&f.typeText==='クリーチャー'&&text===breaker+
+   'このクリーチャーがバトルゾーンに出た時または攻撃する時自分の山札の上から1枚目を表向きにしそれを手札に加える。'+
+   'それがクリーチャーならそれよりパワーの小さい相手のクリーチャーを1体破壊する。'){
+   const defs=[{op:'RevealTop514',to:'hand',g1010DestroyBelowPower:true}];
+   return {breaker:2,effect:'sixPhoto',g34Tasks:defs,g34Attack:defs};
+  }
+  const destinyText=d.id==='dmr22-s06'?manaTap:d.id==='dmrp08-g02'?'':null;
+  if(destinyText!==null&&f.typeText==='クリーチャー'&&text===destinyText+breaker+
+   'このクリーチャーはブロックされない。マナ武装4:'+entry+
+   '自分のマナゾーンに多色カードが4枚以上あれば自分の手札を山札に加えてシャッフルしカードを4枚引き'+
+   'その後相手に自分の手札を1枚見ないで選ばせてからそれを見せる。それがクリーチャーならバトルゾーンに出してもよい。')
+   return {breaker:2,unblockable:true,effect:'sixPhoto',g34Tasks:[
+    {op:'IfOwn',filter:{g267Mana:{n:4,multi:true}},defs:[
+     {op:'HandCycle460',to:'deck',fixedDraw:4},{op:'BlindReveal803',g1010Deploy:true}
+    ]}
+   ]};
+  // The official card image prints −8000 where the database displays _8000.
+  if(d.id==='dmr22-026'&&f.typeText==='呪文'&&text===manaTap+
+   'S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)'+
+   '相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを_8000する。(パワー0以下のクリーチャーは破壊される)'+
+   '相手のパワー8000以下のクリーチャーを1体選び持ち主の手札に戻す。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Target',power:-8000,g242PowerMinus:true,spell:true},
+    {op:'Target',to:'hand',toOwnerHand:true,spell:true,filter:{maxPower:8000,g199Power:true}}
+   ]};
+ }
  if(phase>=1009&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const manaTap='マナゾーンに置く時このカードはタップして置く。';
