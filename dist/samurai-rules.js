@@ -190,11 +190,16 @@ export function createSamuraiRules(api){
   for(const g of gears(s,p))for(const x of creatures(s,p)){
    if(live(s,p,g)?.uid===x.uid)continue;
    const gear=card(g),host=card(x),existing=!!live(s,p,g),free=active(s,g)&&freeCross(gear,host);
+   const hostFree=host.g946FreeCross&&!x.sealed&&active(s,x)&&!g.sealed&&!g.faceDown;
    const base=free?0:api.summonCost(s,p,crossPayment(g));
    const max=free||!host.g933CrossDiscount||!active(s,x)||noReduce(s,p)?0:Math.min(host.g933CrossDiscount,base-1);
    const score=gear.g125CrossUnblock?(existing?-30:attached(s,p,x).some(y=>card(y).g125CrossUnblock&&active(s,y))?5:35)+(x.tapped?-10:0):
     gear.g119Petro?(existing||attached(s,p,x).some(y=>card(y).g119Petro&&active(s,y))?-30:40+Math.min(cost(host),12)*3):
     existing?-30:gear.zangeki&&(dragon(host)||samurai(host))?70:gear.doss?30:10;
+   if(hostFree&&!free)
+    out.push({kind:'crossGear',uid:g.uid,cardId:g.cardId,target:x.uid,cost:0,free:true,
+     score:score+(!existing&&x.entered<s.turn&&!x.tapped?4:0)+1,
+     label:gear.name+' → '+host.name+'にクロス（無料）'});
    for(let reduction=0;reduction<=max;reduction++){
     const payment=crossPayment(g,reduction);
     if(!free&&!api.canPay(s,p,payment))continue;

@@ -1,0 +1,373 @@
+{
+  "phase": 946,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6713,
+  "description": "マナからの無料詠唱、ボルベルグへの無料クロス、最初のバトル勝利によるアンタップとブロック時のナイト回収を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37401/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35312/",
+    "https://dm.takaratomy.co.jp/rule/qa/42947/",
+    "https://dm.takaratomy.co.jp/rule/qa/45450/",
+    "https://dm.takaratomy.co.jp/rule/qa/43368/"
+  ],
+  "cards": [
+    {
+      "id": "dm32-s01",
+      "name": "神羅サンダー・ムーン",
+      "faces": [
+        {
+          "name": "神羅サンダー・ムーン",
+          "typeText": "進化クリーチャー(究極進化)",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "究極進化-自分の進化クリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、自分のマナゾーンにある呪文を１枚、コストを支払わずに唱えてもよい。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "ルナティック・エンペラー/エンジェル・コマンド",
+          "powerText": "17500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-s01",
+      "spec": {
+        "ultimateEvolution": true,
+        "evolution": {
+          "evolution": true
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Execute",
+            "origin": "mana",
+            "spellOnly": true,
+            "filter": {
+              "faceUp": true
+            },
+            "optional": true,
+            "title": "自分のマナゾーンからコストを支払わずに唱える呪文を選ぶ（任意）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-s01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "5c7e564e846c3aff8aa280447af94bb241afecf56c7ad2f53afc911e4dcaf389",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-s07",
+      "name": "ボルベルグ・クロス・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルベルグ・クロス・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nバトルゾーンにある自分のクロスギアを、コストを支払わずにこのクリーチャーにクロスしてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-s07",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "g946FreeCross": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-s07.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "c98f14cc8856475e7e87a0c0884c9629ef9843da0071b0b1ab7cbb2b4a7ae9a8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm30-055",
+      "name": "獣達の輪舞",
+      "faces": [
+        {
+          "name": "獣達の輪舞",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このターン、バトルゾーンにある自分のクリーチャー１体のパワーは+2000される。そのクリーチャーがこのターン、はじめてバトルに勝った時、そのクリーチャーをアンタップしてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-055",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 2000,
+            "spell": true,
+            "g946BattleWinUntap": true,
+            "title": "パワーを+2000する自分のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm30-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "9e5237a7b4bfcc1f25d21bc47bac95872891a57f650c6fa69438ab95cf353c14",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm29-012",
+      "name": "邪眼死龍デモトリーV世",
+      "faces": [
+        {
+          "name": "邪眼死龍デモトリーV世",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\n自分のクリーチャーがブロックした時またはブロックされた時、自分の山札の上から１枚目を表向きにする。そのカードがナイトであれば、自分の手札に加えてもよい。",
+          "race": "ドラゴン・ゾンビ/ナイト",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-012",
+      "spec": {
+        "breaker": 2,
+        "g946BlockWatch": [
+          {
+            "op": "Look",
+            "n": 1,
+            "public": true,
+            "rest": "top",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "filter": {
+                  "g819AnyFaceRace": "ナイト"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm29-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "751c58430fdcd40788720e103f81674b215f508623670fe3dcd476c641788175",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx12b-028",
+      "canonicalId": "dm32-s01",
+      "name": "神羅サンダー・ムーン",
+      "faces": [
+        {
+          "name": "神羅サンダー・ムーン",
+          "typeText": "進化クリーチャー（究極進化）",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "究極進化-自分の進化クリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、自分のマナゾーンにある呪文を１枚、コストを支払わずに唱えてもよい。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+          "race": "ルナティック・エンペラー/エンジェル・コマンド",
+          "powerText": "17500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx12b-028",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx12b-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "220368a2984edebf466944dd19b230a71a835d725e5c03e862dc39017d5aac52",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23ex2-006",
+      "canonicalId": "dm32-s01",
+      "name": "神羅サンダー・ムーン",
+      "faces": [
+        {
+          "name": "神羅サンダー・ムーン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 10,
+          "costText": "10",
+          "abilityText": "究極進化：進化クリーチャー１体の上に置く。\nT・ブレイカー\nこのクリーチャーが出た時、呪文を１枚、コストを支払わずに自分のマナゾーンから唱えてもよい。",
+          "race": "ルナティック・エンペラー/エンジェル・コマンド",
+          "powerText": "17500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex2-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex2-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "7a1c50922666ed9824bfe53a6fa5d93a996b88fa647d4e1507054016a3853093",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc39-011",
+      "canonicalId": "dm14-s07",
+      "name": "ボルベルグ・クロス・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルベルグ・クロス・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nバトルゾーンにある自分のクロスギアを、コストを支払わずにこのクリーチャーにクロスしてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc39-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc39-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "32263e5f12711a50acffad641e155ff0f6cf298d18ce8f533689f3e97c06b486",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc66-013",
+      "canonicalId": "dm14-s07",
+      "name": "ボルベルグ・クロス・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルベルグ・クロス・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nバトルゾーンにある自分のクロスギアを、コストを支払わずにこのクリーチャーにクロスしてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "アーマード・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc66-013",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc66-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "95402b4b16c37da6f0f7839b6c63868095ed849f368f3b79650177edf1d11001",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx21-044",
+      "canonicalId": "dm14-s07",
+      "name": "ボルベルグ・クロス・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルベルグ・クロス・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "スピードアタッカー\nW・ブレイカー\n自分のクロスギアを、コストを支払わずにこのクリーチャーにクロスしてもよい。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-044",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx21-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "6f484db9ffb0a04f136dc8816612ab534ce48e7474b0a9797376ab3c212e4f36",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex15-a030",
+      "canonicalId": "dm14-s07",
+      "name": "ボルベルグ・クロス・ドラゴン",
+      "faces": [
+        {
+          "name": "ボルベルグ・クロス・ドラゴン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "スピードアタッカー\nW・ブレイカー\n自分のクロスギアを、コストを支払わずにこのクリーチャーにクロスしてもよい。",
+          "race": "アーマード・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-a030",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-a030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "d0537acbe7139cbcf80c86a5b38e7f40e4f65cee587107519ab15d923bf98aa0",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm32-s01": 4,
+      "dm14-s07": 4,
+      "dm30-055": 4,
+      "dm29-012": 4,
+      "dmx12b-028": 4,
+      "dm23ex2-006": 4,
+      "dmc39-011": 4,
+      "dmc66-013": 4,
+      "dmx21-044": 4,
+      "dmex15-a030": 4
+    }
+  }
+}

@@ -1255,7 +1255,7 @@ function completeExecution(s,p,inst,c,{ruleOrigin,origin,free,freeReason,alterna
  if(c.type==='spell')extra.spellCast(s,p,c,inst,ruleOrigin,face);
  if(c.type==='castle'){inst.faceUp=true;s.players[p].shields.push(inst);extra.shieldAdded(s,p,inst);extra.six.shieldAdded918(s,p);if(free)(s.noManaUse??=[false,false])[p]=true;}
  else if(['creature','seed','gear','field'].includes(c.type)){enterCreature(s,p,inst,baseUid,{origin:ruleOrigin,execution:true,committed:true,paidMana,costPaid:!free&&cost>0,effectController:free||alternativeCost!==null?p:null,plus:!!c.triggerPlus&&free&&freeReason==='S・トリガー'&&!!inst.triggerPlus,super:!!c.superTrigger&&free&&(freeReason==='S・トリガー'&&!!inst.superTrigger||grantedSuper),ddd:freeReason==='D・D・D',...(alternativeCost?.g777AltEntry?{g777AltEntry:true}:{}),...(c.mugenGate&&Array.isArray(baseUid)?{mugenBases:baseUid}:{})});if(ruleOrigin==='deck')deckCheck(s,p);}
- else if(c.charger&&!spellIgnored(s,c)){s.resolvingSpell={player:p,inst,source:c.id,face,origin:'hand'};if(checkDeckSpell&&checkDeckSpell841(s,p,c,inst))return;powerCleanup(s);if(s.decision||s.leaving||s.lossEvent)(s.extTasks??=[]).unshift(extra.task('g34_ResolveSpell207',p,c.id,{uid:inst.uid}));else startJudge(s,p,c.id,inst.uid,'spell');}
+ else if(c.charger&&!spellIgnored(s,c)){s.resolvingSpell={player:p,inst,source:c.id,face,origin:ruleOrigin};if(checkDeckSpell&&checkDeckSpell841(s,p,c,inst))return;powerCleanup(s);if(s.decision||s.leaving||s.lossEvent)(s.extTasks??=[]).unshift(extra.task('g34_ResolveSpell207',p,c.id,{uid:inst.uid}));else startJudge(s,p,c.id,inst.uid,'spell');}
  else{c.triggerPlusActive=!!c.triggerPlus&&free&&freeReason==='S・トリガー'&&!!inst.triggerPlus;c.superTriggerActive=!!c.superTrigger&&free&&(freeReason==='S・トリガー'&&!!inst.superTrigger||grantedSuper);if(c.crystalCharger&&!spellIgnored(s,c))inst.crystalFinish=true;if(c.normalCharger&&!spellIgnored(s,c))inst.normalFinish=true;extra.finishSpell(s,p,inst,c);if(checkDeckSpell&&checkDeckSpell841(s,p,c,inst))return;if(!extra.beforeSpell(s,p,c,inst))resolveSpell(s,p,inst.uid);}
 }
 // Executing the spell side may be replaced even when its physical card stays in battle (QA46947).
@@ -1325,7 +1325,11 @@ function finishCharger(s){
  const r=s.resolvingSpell;if(!r||s.winner!==null)return;
  const c=playFaces(card(r.source))[r.face];
  // Rule 609.8a: the spell's own Charger replacement precedes Yes Xanadu.
- const to='mana';if(r.shieldCast){finishShieldSpell(s,r.shieldCast,to);s.extSpells=s.extSpells.filter(f=>f!==r.shieldCast);s.resolvingSpell=null;return;}delete r.inst.finishTo;clearBattleState(r.inst,to);addZone(s,s.players[r.inst.cardOwner??r.player],to,r.inst);s.resolvingSpell=null;
+ const to='mana';if(r.shieldCast){finishShieldSpell(s,r.shieldCast,to);s.extSpells=s.extSpells.filter(f=>f!==r.shieldCast);s.resolvingSpell=null;return;}delete r.inst.finishTo;
+ const owner=s.players[r.inst.cardOwner??r.player];
+ if(r.origin==='mana')owner.mana.push(r.inst);
+ else {clearBattleState(r.inst,to);addZone(s,owner,to,r.inst);}
+ s.resolvingSpell=null;
  log(s,r.player,'charger',`${c.name}をチャージャーでマナへ（${r.inst.tapped?'タップ':'アンタップ'}）`,{cardId:r.source,face:r.face});
 }
 function startJudge(s,p,source,uid,mode,onWin=null){s.judge={player:p,source,uid,mode,onWin,parent:s.judge||null,wins:0,round:0,...(mode==='attack'||mode==='attackDraw'?{deferredEffects:(s.pendingEffects||[]).splice(0)}:{})};judgeRound(s);}

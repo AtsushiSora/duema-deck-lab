@@ -463,6 +463,17 @@ export function createSixPhotoRules(api){
    }
   }
  }
+ function rondoWins946(s,winner,result){
+  if(!winner||!result.g588FirstForUnit)return [];
+  return (s.extLimits||[]).flatMap(rule=>{
+   if(rule.kind!=='g946BattleWinUntap'||rule.turn!==s.turn||
+    !api.allLayers(winner).some(layer=>key(layer)===key(rule.ref)))return [];
+   const {source,controller,ref}=rule,spellCost=cost(card(source));
+   if(api.spellIgnored(s,{type:'spell',cost:spellCost,spellSource:source}))return [];
+   return [{player:controller,uid:ref.uid,source,effect:'extended',
+    task:task('g34_RondoUntap946',controller,source,{...ref,spellCost})}];
+  });
+ }
  function opponentAddedShields618(s,p){
   const owner=1-p,prior=s.players[owner].turns-Number(s.active===owner);
   return (s.g618ShieldTurns?.[owner]||[]).includes(prior);
@@ -1405,6 +1416,14 @@ export function createSixPhotoRules(api){
   const player=1-t.p,attacker=attackHost408(s,{...t,p:player});
   if(attacker&&!attacker.sealed&&api.isCreature(s,attacker))
    move(s,[{player,uid:attacker.uid,to:'grave',destroy:true,controller:t.controller??t.p}]);
+  break;
+ }
+ case'g34_RondoUntap946':{
+  const host=sourceHost474(s,t);
+  if(host?.x.tapped&&api.isCreature(s,host.x)&&api.canUntap(host.x)&&
+   !api.spellIgnored(s,{type:'spell',cost:t.spellCost,spellSource:t.source}))
+   start(s,t,[{op:'Offer',title:card(host.x).name+'をアンタップする？',
+    score:selfUntapValue542(s,t),defs:[{op:'Untap',g191First:true}]}]);
   break;
  }
  case'g34_AttackerMana762':{
@@ -3618,6 +3637,11 @@ export function createSixPhotoRules(api){
  case'g34_ManaExchangeBase753':api.beginManaExchange753(s,t,v);break;
  case'g34_Target':
   if(used792(s,t,t))break;
+  if(t.g946BattleWinUntap&&v){
+   const target=own.battle.find(y=>y.uid===v.uid);
+   if(target)(s.extLimits??=[]).push({kind:'g946BattleWinUntap',source:t.source,controller:t.p,
+    ref:{uid:target.uid,incarnation:target.incarnation||0},turn:s.turn,expires:'end',who:s.active});
+  }
   if(t.g940Reload){
    const y=v&&own.battle.find(y=>y.uid===v.uid);
    if(y){
@@ -3900,6 +3924,11 @@ export function createSixPhotoRules(api){
    if(effective(source,s).g830AllyBlockBreak){
     send(s,p,source,'Break497',{uid:x.uid,incarnation:x.incarnation||0,n:1,g747CreatureBreak:true,g830BlockBreaker:x.cardId});
    }
+  }
+  for(const player of [owner,p])for(const source of s.players[player].battle){
+   if(!card(source).g946BlockWatch||source.sealed||!api.isCreature(s,source))continue;
+   const watch=effective(source,s).g946BlockWatch;
+   if(watch)queue(s,player,source,watch);
   }
   const blocked=a&&!a.sealed&&effective(a,s).g559Blocked;
   if(blocked)queue(s,owner,a,blocked);
@@ -4288,7 +4317,13 @@ export function createSixPhotoRules(api){
   return sources.map(source=>({player:p,uid:unit.uid,source,effect:'extended',
    task:task('g34_Break497',p,source,{uid:unit.uid,incarnation:unit.incarnation||0,n:1,g747CreatureBreak:true,g828BattleBreaker:unit.cardId})}));
  },
- battleWins(s,p,w){const x=s.players[p].battle.find(x=>x.uid===w?.uid),c=x&&effective(x,s),defs=c&&(!c.g588FirstSelfWin||w.g588FirstForUnit)&&c.g189BattleWin?.filter(d=>!d.g752FirstOnly||w.g588FirstForUnit);return [...(defs?.length?[{player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g34_Sequence',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs})}]:[]),...winWatches252(s,p,w)];},
+ battleWins(s,p,w){
+  const x=s.players[p].battle.find(x=>x.uid===w?.uid),c=x&&effective(x,s);
+  const defs=c&&(!c.g588FirstSelfWin||w.g588FirstForUnit)&&c.g189BattleWin?.filter(d=>!d.g752FirstOnly||w.g588FirstForUnit);
+  return [...(defs?.length?[{player:p,uid:x.uid,source:x.cardId,effect:'extended',
+   task:task('g34_Sequence',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,defs})}]:[]),
+   ...winWatches252(s,p,w),...rondoWins946(s,x,w)];
+ },
  mugenTapped415(s,p,x){const c=effective(x,s);if(!x.sealed&&c.g415MugenTapped)queue(s,p,x,c.g415MugenTapped);},
  tapped(s,p,x){
   if(!x.sealed&&api.isCreature(s,x))for(const y of s.players[p].battle){

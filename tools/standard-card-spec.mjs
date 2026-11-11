@@ -3388,6 +3388,29 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=946&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(['dm32-s01','dmx12b-028','dm23ex2-006'].includes(d.id)&&
+   ['進化クリーチャー(究極進化)','進化クリーチャー'].includes(f.typeText.normalize('NFKC'))&&[
+    '究極進化-自分の進化クリーチャー1体の上に置く。このクリーチャーをバトルゾーンに出した時自分のマナゾーンにある呪文を1枚コストを支払わずに唱えてもよい。T・ブレイカー(このクリーチャーはシールドを3枚ブレイクする)',
+    '究極進化:進化クリーチャー1体の上に置く。T・ブレイカーこのクリーチャーが出た時呪文を1枚コストを支払わずに自分のマナゾーンから唱えてもよい。'
+   ].includes(text))
+   return {ultimateEvolution:true,evolution:{evolution:true},breaker:3,effect:'sixPhoto',
+    g34Tasks:[{op:'Execute',origin:'mana',spellOnly:true,filter:{faceUp:true},optional:true,
+     title:'自分のマナゾーンからコストを支払わずに唱える呪文を選ぶ（任意）'}]};
+  if(['dm14-s07','dmc39-011','dmc66-013','dmx21-044','dmex15-a030'].includes(d.id)&&f.typeText==='クリーチャー'&&[
+   'スピードアタッカー(このクリーチャーは召喚酔いしない)バトルゾーンにある自分のクロスギアをコストを支払わずにこのクリーチャーにクロスしてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)',
+   'スピードアタッカーW・ブレイカー自分のクロスギアをコストを支払わずにこのクリーチャーにクロスしてもよい。'
+  ].includes(text))return {speedAttacker:true,breaker:2,g946FreeCross:true};
+  if(d.id==='dm30-055'&&f.typeText==='呪文'&&text===
+   'このターンバトルゾーンにある自分のクリーチャー1体のパワーは+2000される。そのクリーチャーがこのターンはじめてバトルに勝った時そのクリーチャーをアンタップしてもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',power:2000,spell:true,g946BattleWinUntap:true,
+    title:'パワーを+2000する自分のクリーチャーを1体選ぶ'}]};
+  if(d.id==='dm29-012'&&f.typeText==='クリーチャー'&&text===
+   'W・ブレイカー自分のクリーチャーがブロックした時またはブロックされた時自分の山札の上から1枚目を表向きにする。そのカードがナイトであれば自分の手札に加えてもよい。')
+   return {breaker:2,g946BlockWatch:[{op:'Look',n:1,public:true,rest:'top',
+    stages:[{n:1,to:'hand',optional:true,filter:{g819AnyFaceRace:'ナイト'}}]}]};
+ }
  if(phase>=945&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm31-046'&&f.typeText==='呪文'&&text===

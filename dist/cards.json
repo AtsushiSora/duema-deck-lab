@@ -196944,25 +196944,146 @@
       ],
       "supportBatch": "phase-945",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm32-s01",
+      "name": "神羅サンダー・ムーン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 10,
+      "power": 17500,
+      "race": "ルナティック・エンペラー/エンジェル・コマンド",
+      "text": "究極進化-自分の進化クリーチャー１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、自分のマナゾーンにある呪文を１枚、コストを支払わずに唱えてもよい。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-s01",
+      "limit": 4,
+      "ultimateEvolution": true,
+      "evolution": {
+        "evolution": true
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Execute",
+          "origin": "mana",
+          "spellOnly": true,
+          "filter": {
+            "faceUp": true
+          },
+          "optional": true,
+          "title": "自分のマナゾーンからコストを支払わずに唱える呪文を選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-946",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm14-s07",
+      "name": "ボルベルグ・クロス・ドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 7000,
+      "race": "アーマード・ドラゴン",
+      "text": "スピードアタッカー(このクリーチャーは召喚酔いしない)\nバトルゾーンにある自分のクロスギアを、コストを支払わずにこのクリーチャーにクロスしてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-s07",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "g946FreeCross": true,
+      "supportBatch": "phase-946",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm30-055",
+      "name": "獣達の輪舞",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "このターン、バトルゾーンにある自分のクリーチャー１体のパワーは+2000される。そのクリーチャーがこのターン、はじめてバトルに勝った時、そのクリーチャーをアンタップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-055",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "power": 2000,
+          "spell": true,
+          "g946BattleWinUntap": true,
+          "title": "パワーを+2000する自分のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-946",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm29-012",
+      "name": "邪眼死龍デモトリーV世",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ドラゴン・ゾンビ/ナイト",
+      "text": "W・ブレイカー\n自分のクリーチャーがブロックした時またはブロックされた時、自分の山札の上から１枚目を表向きにする。そのカードがナイトであれば、自分の手札に加えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-012",
+      "limit": 4,
+      "breaker": 2,
+      "g946BlockWatch": [
+        {
+          "op": "Look",
+          "n": 1,
+          "public": true,
+          "rest": "top",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "filter": {
+                "g819AnyFaceRace": "ナイト"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-946",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 945,
+    "phase": 946,
     "checkedAt": "2026-11-11",
-    "baseCount": 6709,
+    "baseCount": 6713,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6713,
+    "totalCount": 6717,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34883/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35760/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35761/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37401/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35576/",
-      "https://dm.takaratomy.co.jp/rule/qa/42655/",
-      "https://dm.takaratomy.co.jp/rule/qa/41414/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35312/",
+      "https://dm.takaratomy.co.jp/rule/qa/42947/",
+      "https://dm.takaratomy.co.jp/rule/qa/45450/",
+      "https://dm.takaratomy.co.jp/rule/qa/43368/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -213876,6 +213997,28 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36037/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36038/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36039/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 945,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6709,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6713,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34883/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35760/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35761/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37401/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35576/",
+          "https://dm.takaratomy.co.jp/rule/qa/42655/",
+          "https://dm.takaratomy.co.jp/rule/qa/41414/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
