@@ -1222,6 +1222,15 @@ export function createSixPhotoRules(api){
  // Evo Charger continues after the physical spell has completed its move to mana.
  case'g34_EvoCharge566':{const hosts=creatures(s,t.p).filter(y=>!y.sealed&&api.isEvolution(y)),rows=own.mana.filter(y=>!y.faceDown&&faces(card(y)).some(c=>c.type==='creature'));if(!api.canMoveZone(s,t.p,'mana')||!hosts.length||!rows.length)break;if(!t.host)choice(s,t,'進化元を追加する自分の進化クリーチャーを選ぶ（任意）',[...hosts.map(y=>opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},8,y.cardId)),skip()]);else if(hosts.some(y=>key(y)===key(t.host)))choice(s,t,'進化元に追加するマナのクリーチャーを選ぶ（任意）',[...rows.map(y=>opt(card(y).name,{uid:y.uid,serial:y.zoneSerial||0},6-cost(card(y)),y.cardId)),skip()]);break;}
  case'g34_Bind566':{const caster=t.caster??t.p,stage=t.stage||0;if(stage<2){const chooser=stage?1-caster:caster,rows=creatures(s,chooser).filter(y=>!y.sealed);if(!rows.length)put(s,{...t,p:caster,caster,stage:stage+1});else choice(s,{...t,p:chooser,caster,stage},'攻撃できる自分のクリーチャーを1体選ぶ',rows.map(y=>opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},api.power(y,false,s)/1000,y.cardId)));}else{const chosen=t.chosen||[];for(const who of[0,1])for(const y of creatures(s,who))if(!y.sealed&&!chosen.includes(key(y)))(y.g35NoAttack??=[]).push({turn:s.turn,g566SpellCost:cost(card(t.source)),g566Controller:caster},{turn:s.turn+1,g566SpellCost:cost(card(t.source)),g566Controller:caster});}break;}
+ case'g34_OpponentChooseAttacker916':{
+  const player=1-t.p;
+  if(s.active!==player)break;
+  const eligible=api.availableAttackers916(s);
+  const options=opp.battle.filter(y=>eligible.has(y.uid)).map(y=>
+   opt(card(y).name,{uid:y.uid,incarnation:y.incarnation||0},-api.power(y,false,s)/1000,y.cardId));
+  choice(s,t,'攻撃できる自分のクリーチャーを1体選ぶ',options,player);
+  break;
+ }
  case'g34_PowerAttack593':(s.extLimits??=[]).push({kind:'g593AttackPower',player:t.both?null:1-t.p,max:t.max,playerOnly:!!t.playerOnly,expires:'start',who:t.p,spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});break;
  case'g34_EntryStop593':(s.extLimits??=[]).push({kind:'attack',player:1-t.p,...t.subject,controller:t.p,expires:'end',who:s.active});break;
  case'g34_PlayerGuard750':
@@ -2747,6 +2756,15 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
  }
  function chosen(s,t,v){if(fifteen.chosen(s,t,v))return true;if(!t.op.startsWith('g34_'))return false;const own=s.players[t.p],x=live(s,t);switch(t.op){
+ case'g34_OpponentChooseAttacker916':{
+  const player=1-t.p;
+  const selected=v&&s.players[player].battle.find(y=>key(y)===key(v));
+  if(selected&&s.active===player){
+   force546(s,{...t,when:'end'},player,selected);
+   applyGrant(s,{...t,grant:{g736ForcedAttack:true}},selected);
+  }
+  break;
+ }
  case'g34_TappedShieldPick842':
   put(s,{...t,picked:[...t.picked,v]});
   break;

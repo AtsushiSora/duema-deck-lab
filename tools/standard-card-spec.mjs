@@ -3445,6 +3445,14 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=916&&creature&&d.faces.length===1){
+  if(['dm03-036','dm04-007'].includes(d.id)&&compact363===
+   'このクリーチャーがバトルゾーンから自分の墓地に置かれるとき裏向きにして自分のシールドに加える。')
+   return {g916GraveShield:true};
+  if(d.id==='dm10-050'&&compact363===
+   '相手のターンのはじめに相手はバトルゾーンにある自分自身の攻撃できるクリーチャーを1体選ぶ。そのクリーチャーは可能であればそのターン攻撃する。')
+   return {g179OpponentStart:[{op:'OpponentChooseAttacker916'}]};
+ }
  if(phase>=915&&d.faces.length===1){
   if(f.typeText==='呪文'&&d.id==='dm10-094'&&compact363==='S・トリガー'+
    'バトルゾーンにある相手のクリーチャーを1体選ぶ。そのクリーチャーは自分の次のターンのはじめまで「このクリーチャーは可能なら攻撃する」を得る。')
