@@ -1,0 +1,276 @@
+{
+  "phase": 973,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6808,
+  "description": "墓地からの魔導具召喚、攻撃時の味方強化、破壊時の名前参照ドロー、召喚監視、ムートピア登場時の呪文回収を処理する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/31718/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31627/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31649/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp05-006",
+      "name": "堕魔 ヴォーミラ",
+      "faces": [
+        {
+          "name": "堕魔 ヴォーミラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を墓地に置いてもよい。\n自分のターンに一度、魔導具クリーチャーを１体、自分の墓地から召喚してもよい。",
+          "race": "マフィ・ギャング/魔導具",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-006",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 3,
+            "optional": true
+          }
+        ],
+        "g450ZoneSummon": {
+          "origin": "grave",
+          "filter": {
+            "creature": true,
+            "race": "魔導具"
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "819c4f396e995a73c5ab485bc5e94268532a800547be9559f4a2c6261260004a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-027",
+      "name": "ダゴンシム",
+      "faces": [
+        {
+          "name": "ダゴンシム",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが攻撃する時、そのターン、自分の他のクリーチャー１体はパワーを+12000され、シールドをさらに２つブレイクする。",
+          "race": "グランセクト",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-027",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "g179Other": true,
+            "power": 12000,
+            "g455ExtraBreak": 2,
+            "g969FollowControl": true,
+            "title": "パワーを+12000し追加ブレイクを与える他の自分のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "9d6611a4a8976ac64e2398217d24e6a42041cf26eb62a299c32a6e0f5441fe76",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-037",
+      "name": "蓄積された魔力 パーノレ",
+      "faces": [
+        {
+          "name": "蓄積された魔力 パーノレ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが破壊された時、自分の墓地にある《蓄積された魔力》と名前にあるカード１枚につき、カードを１枚引く。",
+          "race": "ムートピア",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-037",
+      "spec": {
+        "g172Death": [
+          {
+            "op": "CountDraw",
+            "zone": "grave",
+            "filter": {
+              "g220NameAny": [
+                "蓄積された魔力"
+              ]
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "e5af1cdfaa3c9e201294603adc9a6c35356468fc54a6b41d52acafe20e4c0f2f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp03-026",
+      "name": "龍装者 ジュランジュ",
+      "faces": [
+        {
+          "name": "龍装者 ジュランジュ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "ワールド・ブレイカー（このクリーチャーは相手のシールドをすべてブレイクする）\n自分の他のクリーチャーを召喚した時、このクリーチャーを自分のマナゾーンに置く。",
+          "race": "ドラゴンギルド/グランセクト",
+          "powerText": "24000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-026",
+      "spec": {
+        "breaker": "∞",
+        "worldBreaker": true,
+        "g808SummonWatch": {
+          "defs": [
+            {
+              "op": "SelfMana297",
+              "g536Source": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "3fec65b77c9bf3ba31060975e51b5e5c4688f5ffe3bc283e9b04b8b35db5adaf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04m-003",
+      "name": "龍装艦 スペルエビート",
+      "faces": [
+        {
+          "name": "龍装艦 スペルエビート",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー\nこのクリーチャーまたは自分の他のムートピアがバトルゾーンに出た時、自分の山札の上から１枚目を墓地に置く。その後、呪文を１枚、自分の墓地から手札に戻す。",
+          "race": "ドラゴンギルド/ムートピア",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-003",
+      "spec": {
+        "blocker": true,
+        "g251EntryDraw": {
+          "selfAlways": true,
+          "filter": {
+            "race": "ムートピア"
+          },
+          "defs": [
+            {
+              "op": "Mill",
+              "n": 1
+            },
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "hand",
+              "n": 1,
+              "filter": {
+                "spell": true
+              },
+              "title": "墓地から手札に戻す呪文を1枚選ぶ"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04m-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "a883daa666b3274049863c01102d953e3bf5afb634edb4ab7c7b2f798b6d09c6",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex08-206",
+      "canonicalId": "dmrp05-006",
+      "name": "堕魔 ヴォーミラ",
+      "faces": [
+        {
+          "name": "堕魔 ヴォーミラ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を墓地に置いてもよい。\n自分のターンに一度、魔導具クリーチャーを１体、自分の墓地から召喚してもよい。",
+          "race": "マフィ・ギャング/魔導具",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-206",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-206.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "169a9a37b8367ebf17c09b71ef454ded07e6f69f41332aaea15db7562e7f93e0",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp05-006": 4,
+      "dmrp02-027": 4,
+      "dmrp04s-037": 4,
+      "dmrp03-026": 4,
+      "dmrp04m-003": 4,
+      "dmex08-206": 4
+    }
+  }
+}

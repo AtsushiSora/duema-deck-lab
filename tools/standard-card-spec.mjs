@@ -3435,6 +3435,22 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=973&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(['dmrp05-006','dmex08-206'].includes(d.id)&&text==='このクリーチャーがバトルゾーンに出た時自分の山札の上から3枚を墓地に置いてもよい。自分のターンに一度魔導具クリーチャーを1体自分の墓地から召喚してもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Mill',n:3,optional:true}],g450ZoneSummon:{origin:'grave',filter:{creature:true,race:'魔導具'}}};
+  if(d.id==='dmrp02-027'&&text==='このクリーチャーが攻撃する時そのターン自分の他のクリーチャー1体はパワーを+12000されシールドをさらに2つブレイクする。')
+   return {g34Attack:[{op:'Target',owner:'self',g179Other:true,power:12000,g455ExtraBreak:2,g969FollowControl:true,
+    title:'パワーを+12000し追加ブレイクを与える他の自分のクリーチャーを1体選ぶ'}]};
+  if(d.id==='dmrp04s-037'&&text==='このクリーチャーが破壊された時自分の墓地にある《蓄積された魔力》と名前にあるカード1枚につきカードを1枚引く。')
+   return {g172Death:[{op:'CountDraw',zone:'grave',filter:{g220NameAny:['蓄積された魔力']}}]};
+  if(d.id==='dmrp03-026'&&text==='ワールド・ブレイカー(このクリーチャーは相手のシールドをすべてブレイクする)自分の他のクリーチャーを召喚した時このクリーチャーを自分のマナゾーンに置く。')
+   return {breaker:'∞',worldBreaker:true,g808SummonWatch:{defs:[{op:'SelfMana297',g536Source:true}]}};
+  if(d.id==='dmrp04m-003'&&text==='ブロッカーブロッカーこのクリーチャーまたは自分の他のムートピアがバトルゾーンに出た時自分の山札の上から1枚目を墓地に置く。その後呪文を1枚自分の墓地から手札に戻す。')
+   return {blocker:true,g251EntryDraw:{selfAlways:true,filter:{race:'ムートピア'},defs:[
+    {op:'Mill',n:1},{op:'Select',origin:'grave',to:'hand',n:1,filter:{spell:true},title:'墓地から手札に戻す呪文を1枚選ぶ'}
+   ]}};
+ }
  if(phase>=972&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmrp08-028'&&text==='このクリーチャーがバトルゾーンに出た時自分の山札の上から1枚目をマナゾーンに置く。自分のマナゾーンにあるツインパクトカードをすべての文明のカードとして扱う。')
