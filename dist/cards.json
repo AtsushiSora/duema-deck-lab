@@ -197530,24 +197530,106 @@
       },
       "supportBatch": "phase-951",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23-011",
+      "name": "アクア・スイッチ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "リキッド・ピープル",
+      "text": "バイオ・T-自分のリキッド・ピープルが攻撃して、バトルが始まった時、このカードを自分の手札から捨ててもよい。そうした場合、そのターンの終わりまで、攻撃している自分のクリーチャーのパワーは自分の手札１枚につき+1000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-011",
+      "limit": 4,
+      "g952BioT": {
+        "race": "リキッド・ピープル"
+      },
+      "supportBatch": "phase-952",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23-049",
+      "name": "お祭番長ゴリヤンキー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "ドリームメイト",
+      "text": "バイオ・T-自分のドリームメイトが攻撃して、バトルが始まった時、このカードを自分の手札から捨ててもよい。そうした場合、そのターンの終わりまで、攻撃している自分のクリーチャーは「パワーアタッカー+4000」を得る。(攻撃中、「パワーアタッカー+4000」を得たクリーチャーのパワーは+4000される)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-049",
+      "limit": 4,
+      "g952BioT": {
+        "race": "ドリームメイト",
+        "attackBonus": 4000
+      },
+      "supportBatch": "phase-952",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23-009",
+      "name": "コマンダー・バブルガイ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 2000,
+      "race": "キカイヒーロー",
+      "text": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のグレートメカオーと同じ数だけ、自分の山札の上にあるカードを見る。その中から１枚を自分の手札に加え、残りを好きな順序で山札の一番下に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-009",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountOwn538",
+          "mode": "select",
+          "filter": {
+            "creature": true,
+            "race": "グレートメカオー"
+          },
+          "def": {
+            "op": "Look",
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand"
+              }
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-952",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 951,
+    "phase": 952,
     "checkedAt": "2026-11-11",
-    "baseCount": 6730,
-    "newEffectCards": 4,
+    "baseCount": 6734,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6734,
+    "totalCount": 6737,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37597/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37599/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316689/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31618/",
       "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37607/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37608/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35508/",
+      "https://dm.takaratomy.co.jp/rule/qa/38718/",
+      "https://dm.takaratomy.co.jp/rule/qa/40676/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -214585,6 +214667,27 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35620/",
           "https://dm.takaratomy.co.jp/rule/qa/39511/",
           "https://dm.takaratomy.co.jp/rule/qa/42896/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 951,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6730,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6734,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37597/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37599/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316689/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37607/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37608/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

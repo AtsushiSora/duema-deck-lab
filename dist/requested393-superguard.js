@@ -22,7 +22,7 @@ export function createRequested393SuperguardRules(api){
  }
  function finish(s,t,replacement=null){
   const rows=t.rows.map((r,i)=>replacement?.row===i?ref(replacement.p,replacement):r),[a,b]=rows.map(r=>live(s,r));
-  if(a&&b)api.battle(s,rows[0].p,a,rows[1].p,b,t.attacking,true,t.blockUntap);
+  if(a&&b)api.battle(s,rows[0].p,a,rows[1].p,b,t.attacking,true,t.blockUntap,t.attackBattle);
  }
  function run(s,t){if(t.op!=='g393SG_Battle')return false;
   if(!t.owners.length){finish(s,t);return true;}
@@ -44,8 +44,8 @@ export function createRequested393SuperguardRules(api){
   finish(s,t,selected);return true;
  }
  return{run,chosen,
-  replaceBattle(s,pa,a,pb,b,attacking=null,blockUntap){
-   const rows=[ref(pa,a),ref(pb,b)],owners=[s.active,1-s.active],t=task('g393SG_Battle',pa,a.cardId,{rows,owners,attacking,...(blockUntap?{blockUntap}:{})});
+  replaceBattle(s,pa,a,pb,b,attacking=null,blockUntap,attackBattle){
+   const rows=[ref(pa,a),ref(pb,b)],owners=[s.active,1-s.active],t=task('g393SG_Battle',pa,a.cardId,{rows,owners,attacking,...(blockUntap?{blockUntap}:{}),...(attackBattle?{attackBattle:true}:{})});
    // Retain the existing Galactic handler when no competing replacement is present.
    if(!owners.some(p=>candidates(s,t,p).some(r=>r.kind!=='galactic')))return false;
    put(s,t);return true;

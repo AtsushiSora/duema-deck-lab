@@ -3388,6 +3388,19 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=952&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(['dm23-011','promoy5-066'].includes(d.id)&&text===
+   'バイオ・T-自分のリキッド・ピープルが攻撃してバトルが始まった時このカードを自分の手札から捨ててもよい。そうした場合そのターンの終わりまで攻撃している自分のクリーチャーのパワーは自分の手札1枚につき+1000される。')
+   return {g952BioT:{race:'リキッド・ピープル'}};
+  if(d.id==='dm23-049'&&text===
+   'バイオ・T-自分のドリームメイトが攻撃してバトルが始まった時このカードを自分の手札から捨ててもよい。そうした場合そのターンの終わりまで攻撃している自分のクリーチャーは「パワーアタッカー+4000」を得る。(攻撃中「パワーアタッカー+4000」を得たクリーチャーのパワーは+4000される)')
+   return {g952BioT:{race:'ドリームメイト',attackBonus:4000}};
+  if(d.id==='dm23-009'&&text===
+   'S・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)このクリーチャーをバトルゾーンに出した時バトルゾーンにある自分のグレートメカオーと同じ数だけ自分の山札の上にあるカードを見る。その中から1枚を自分の手札に加え残りを好きな順序で山札の一番下に戻す。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'CountOwn538',mode:'select',
+    filter:{creature:true,race:'グレートメカオー'},def:{op:'Look',rest:'bottom',stages:[{n:1,to:'hand'}]}}]};
+ }
  if(phase>=951&&d?.status==='complete'&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const luna={g396Zero:{all:[{g951AnyHandMin:9}]},g951FirstOwnDraw:true};

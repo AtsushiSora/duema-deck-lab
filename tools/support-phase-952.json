@@ -1,0 +1,176 @@
+{
+  "phase": 952,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6734,
+  "description": "攻撃で始まるバトルのバイオ・Tと、グレートメカオーの数に応じた山札の確認を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31618/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35508/",
+    "https://dm.takaratomy.co.jp/rule/qa/38718/",
+    "https://dm.takaratomy.co.jp/rule/qa/40676/"
+  ],
+  "cards": [
+    {
+      "id": "dm23-011",
+      "name": "アクア・スイッチ",
+      "faces": [
+        {
+          "name": "アクア・スイッチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バイオ・T-自分のリキッド・ピープルが攻撃して、バトルが始まった時、このカードを自分の手札から捨ててもよい。そうした場合、そのターンの終わりまで、攻撃している自分のクリーチャーのパワーは自分の手札１枚につき+1000される。",
+          "race": "リキッド・ピープル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-011",
+      "spec": {
+        "g952BioT": {
+          "race": "リキッド・ピープル"
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "38869e194569ae317e62fc5e5764bb5c071f720203510773cee299d57fc29931",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23-049",
+      "name": "お祭番長ゴリヤンキー",
+      "faces": [
+        {
+          "name": "お祭番長ゴリヤンキー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "バイオ・T-自分のドリームメイトが攻撃して、バトルが始まった時、このカードを自分の手札から捨ててもよい。そうした場合、そのターンの終わりまで、攻撃している自分のクリーチャーは「パワーアタッカー+4000」を得る。(攻撃中、「パワーアタッカー+4000」を得たクリーチャーのパワーは+4000される)",
+          "race": "ドリームメイト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-049",
+      "spec": {
+        "g952BioT": {
+          "race": "ドリームメイト",
+          "attackBonus": 4000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-049.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "905a63377a905e835c2efb46a211369aa6d0028bf167be815948b14dbe6d7d97",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23-009",
+      "name": "コマンダー・バブルガイ",
+      "faces": [
+        {
+          "name": "コマンダー・バブルガイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー(このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい)\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある自分のグレートメカオーと同じ数だけ、自分の山札の上にあるカードを見る。その中から１枚を自分の手札に加え、残りを好きな順序で山札の一番下に戻す。",
+          "race": "キカイヒーロー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-009",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountOwn538",
+            "mode": "select",
+            "filter": {
+              "creature": true,
+              "race": "グレートメカオー"
+            },
+            "def": {
+              "op": "Look",
+              "rest": "bottom",
+              "stages": [
+                {
+                  "n": 1,
+                  "to": "hand"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "aabb4b14d594a3547af7b0966c5701abbeb7c1759426a8f13ab0e174924e4778",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy5-066",
+      "canonicalId": "dm23-011",
+      "name": "アクア・スイッチ",
+      "faces": [
+        {
+          "name": "アクア・スイッチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バイオ・T-自分のリキッド・ピープルが攻撃して、バトルが始まった時、このカードを自分の手札から捨ててもよい。そうした場合、そのターンの終わりまで、攻撃している自分のクリーチャーのパワーは自分の手札１枚につき+1000される。",
+          "race": "リキッド・ピープル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy5-066",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy5-066.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "6159071623fe866e48adee2c9e6c97e2a020a06d7094802961ec678e98c56256",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23-011": 4,
+      "dm23-049": 4,
+      "dm23-009": 4,
+      "promoy5-066": 4
+    }
+  }
+}

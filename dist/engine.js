@@ -1494,12 +1494,13 @@ function advanceAttack(s){if(s.lossEvent)return;
  if(!s.attack||s.decision||s.winner!==null||s.pendingEffects?.length||s.extTasks?.length||s.triggers||s.g19Interrupt||s.battleResolution||s.judge||s.attackDeclarations||s.leaving)return;
  if(s.attack.stage==='effects'){if(extra.ninjaWindow(s,1-s.active))return;s.attack.stage='block';s.decision={type:'block',player:1-s.active};}
  else if(s.attack.stage.startsWith('redirecting')||s.attack.stage==='unblocked482')resolveAttack(s,null);
- else if(s.attack.stage==='blockedEffects'){const a=s.players[s.active].battle.find(x=>x.uid===s.attack.attacker),b=s.players[1-s.active].battle.find(x=>x.uid===s.attack.blockUid);if(a&&b&&!blockedBattle484(s,a))battle(s,s.active,a,1-s.active,b,a.uid,false,s.attack.g695BlockUntap);s.attack=null;}
+ else if(s.attack.stage==='blockedEffects'){const a=s.players[s.active].battle.find(x=>x.uid===s.attack.attacker),b=s.players[1-s.active].battle.find(x=>x.uid===s.attack.blockUid);if(a&&b&&!blockedBattle484(s,a))battle(s,s.active,a,1-s.active,b,a.uid,false,s.attack.g695BlockUntap,true);s.attack=null;}
 }
 // Capture color-qualified Slayer at the start of the battle, alongside ordinary Slayer.
 function slayerCount534(s,x,y){const c=effectiveCard(x,s);return(c.slayer?(c.g208SlayerCount||1):0)+(c.g534SlayerColors?.some(color=>civilizations(effectiveCard(y,s)).includes(color))?1:0);}
-function battle(s,pa,a,pd,b,attackingUid=null,replaced=false,blockUntap){
- if(!replaced&&extra.replaceBattle(s,pa,a,pd,b,attackingUid,blockUntap))return;
+function battle(s,pa,a,pd,b,attackingUid=null,replaced=false,blockUntap,attackBattle=false){
+ if(!replaced&&extra.replaceBattle(s,pa,a,pd,b,attackingUid,blockUntap,attackBattle))return;
+ if(attackBattle&&a.uid===attackingUid&&extra.six.declareBioT952(s,pa,a,pd,b,blockUntap))return;
  if(s.battleResolution){(s.battleStack??=[]).push(s.battleResolution);s.battleResolution=null;}
  const bonus=(x,p)=>effectiveCard(x,s).revZero&&!s.players[p].shields.length?10000:0;
  const ap=matchupPower(a,b,a.uid===attackingUid,s,b.uid===attackingUid)+bonus(a,pa),bp=matchupPower(b,a,b.uid===attackingUid,s,a.uid===attackingUid)+bonus(b,pd),late=[],forced=extra.beforeBattle(s,pa,a,pd,b);
@@ -1636,7 +1637,7 @@ function resolveAttack(s,blockUid){
  if(s.attack.target==='player'&&s.attack.g471Breaker!=='null'&&extra.selectBreaker(s,s.active,a))return;
  const gMode=s.attack.g471Breaker!=='null'&&(s.attack.g14Breaker==='g'||!s.attack.g14Breaker&&effectiveCard(a,s).gBreaker);if(s.attack.target==='player'&&gMode&&s.attackLifecycle)s.attackLifecycle.g14G={p:s.active,uid:a.uid,source:a.cardId};
  if(s.attack.target==='player'&&!gMode&&s.attack.g471Breaker!=='null'&&extra.six.selectGrantedBreaker633(s,s.active,a))return;
- if(s.attack.target!=='player'){const b=s.players[other].battle.find(x=>x.uid===s.attack.target);if(b&&!blockedBattle484(s,a))battle(s,s.active,a,other,b,a.uid);}
+ if(s.attack.target!=='player'){const b=s.players[other].battle.find(x=>x.uid===s.attack.target);if(b&&!blockedBattle484(s,a))battle(s,s.active,a,other,b,a.uid,false,undefined,true);}
  else if(!s.players[other].shields.length)finish(s,s.active,'ダイレクトアタックが成立','loss','directAttack');
  else{
   const shields=s.players[other].shields,c=effectiveCard(a,s),breaker=s.attack.g633Breaker??c.breaker??1;

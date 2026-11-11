@@ -190,20 +190,28 @@ export function createSixPhotoRules(api){
  // Smash Burst follows the same physical card through its first zone change (QA48746).
  function smashSource320(s,t){for(const origin of['battle','hand','grave','mana','deck','extra']){const xs=origin==='battle'?s.players[t.p].battle.flatMap(api.allLayers):s.players[t.p][origin],x=xs.find(x=>x.uid===t.uid);if(x&&(origin==='battle'?(x.incarnation||0)===(t.incarnation||0):(x.zoneSerial||0)===(t.serial||0)+1))return{origin,x};}return null;}
  const send=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g34_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
- function declareBioK951(s,t){
+ function declareHandBio(s,t){
   const rows=s.players[t.p].hand.filter(x=>t.ids.includes(x.uid)),remaining=rows.filter(x=>!t.selected.includes(x.uid));
+  const keyword=t.battle?'バイオ・T':'バイオ・K';
   if(remaining.length&&!t.done){
-   choice(s,t,'使用を宣言するバイオ・Kを選ぶ',[
-    ...remaining.map(x=>opt(card(x).name,x.uid,s.players[t.p].deck.length>2?6:-5,x.cardId)),
+   choice(s,t,'使用を宣言する'+keyword+'を選ぶ',[
+    ...remaining.map(x=>opt(card(x).name,x.uid,t.battle||s.players[t.p].deck.length>2?6:-5,x.cardId)),
     opt('宣言を確定',null,0)
    ]);
    return;
   }
-  for(const source of rows.filter(x=>t.selected.includes(x.uid))){
-   api.log(s,t.p,'reveal',card(source).name+'のバイオ・Kを宣言',{cardId:source.cardId});
-   send(s,t.p,source,'BioK951',{serial:source.zoneSerial||0});
+  const declared=t.battle?t.selected.map(uid=>rows.find(x=>x.uid===uid)).filter(Boolean):
+   rows.filter(x=>t.selected.includes(x.uid));
+  for(const source of declared){
+   api.log(s,t.p,'reveal',card(source).name+'の'+keyword+'を宣言',{cardId:source.cardId});
+   if(!t.battle)send(s,t.p,source,'BioK951',{serial:source.zoneSerial||0});
   }
+  if(t.battle)put(s,...declared.map(x=>task('g34_BioT952',t.p,x.cardId,{
+   uid:x.uid,serial:x.zoneSerial||0,attacker:t.battle.attacker
+  })),task('g34_BioBattle952',t.p,t.source,t.battle));
  }
+ const bioBattleUnit=(s,ref)=>s.players[ref.p].battle.find(x=>
+  x.uid===ref.uid&&(x.incarnation||0)===ref.incarnation&&!x.sealed&&api.isCreature(s,x));
  const tasks=(p,source,defs,more={})=>(defs||[]).map(d=>task(/^(?:g35_|g393[CDJP]_)/.test(d.op)?d.op:'g34_'+d.op,p,source,{...more,...d,op:/^(?:g35_|g393[CDJP]_)/.test(d.op)?d.op:'g34_'+d.op,p:d.p??p,source}));
  const start=(s,t,defs)=>put(s,...tasks(t.p,t.source,defs,{uid:t.uid,incarnation:t.incarnation||0,controller:t.controller??t.p,moved:t.moved||0,...(t.lastKnownCount!==undefined?{lastKnownCount:t.lastKnownCount}:{}),...(t.g692LastPower!==undefined?{g692LastPower:t.g692LastPower}:{}),...(t.g694Defender?{g694Defender:t.g694Defender}:{}),...(t.g399Attacker?{g399Attacker:t.g399Attacker}:{})}));
  // Delayed effects retain the attacking creature, independently of the watcher.
@@ -2378,6 +2386,24 @@ export function createSixPhotoRules(api){
   ]);
   break;
  }
+ case'g34_BioT952':{
+  const source=own.hand.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);
+  if(!source||!bioBattleUnit(s,t.attacker)||api.handAbilityIgnored(s,source))break;
+  choice(s,t,'バイオ・Tでこのカードを捨てる？',[opt('捨てる',true,6,t.source),skip()]);
+  break;
+ }
+ case'g34_BioPower952':{
+  const attacker=bioBattleUnit(s,t.attacker),rule=card(t.source).g952BioT;
+  if(!attacker)break;
+  if(rule.attackBonus)(attacker.g34Grants??=[]).push({turn:s.turn,attackBonus:rule.attackBonus});
+  else if(own.hand.length)buff(s,attacker,own.hand.length*1000);
+  break;
+ }
+ case'g34_BioBattle952':{
+  const attacker=bioBattleUnit(s,t.attacker),defender=bioBattleUnit(s,t.defender);
+  if(attacker&&defender)api.battle(s,t.p,attacker,t.defender.p,defender,attacker.uid,true,t.blockUntap);
+  break;
+ }
  case'g34_ShinobiSearch950':{
   const ids=t.ids??look(s,{...t,n:own.deck.length}),selected=t.selected??[];
   const rows=own.deck.filter(x=>ids.includes(x.uid)&&matches(s,t.p,x,{g228Face:{type:'creature',raceAll:['シノビ']}}));
@@ -3362,7 +3388,11 @@ export function createSixPhotoRules(api){
    api.discardSelected(s,t.p,[t.uid],t.source,t.p,task('g34_DrawUpTo',t.p,t.source,{n:2,g203Draw:true}));
   break;
  case'g34_BioKDeclare951':
-  declareBioK951(s,v?{...t,selected:[...t.selected,v]}:{...t,done:true});
+  declareHandBio(s,v?{...t,selected:[...t.selected,v]}:{...t,done:true});
+  break;
+ case'g34_BioT952':
+  if(v&&own.hand.some(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial))
+   api.discardSelected(s,t.p,[t.uid],t.source,t.p,task('g34_BioPower952',t.p,t.source,{attacker:t.attacker}));
   break;
  case'g34_ShinobiSearch950':
   if(t.g950Revealed){
@@ -4570,7 +4600,7 @@ export function createSixPhotoRules(api){
   if(playerAttack&&!s.attack.g484Blocked&&race(attacker,'グレートメカオー')){
    const ids=s.players[p].hand.filter(y=>card(y).g951BioK&&!api.handAbilityIgnored(s,y)).map(y=>y.uid);
    if(ids.length){
-    declareBioK951(s,task('g34_BioKDeclare951',p,x.cardId,{ids,selected:[]}));
+    declareHandBio(s,task('g34_BioKDeclare951',p,x.cardId,{ids,selected:[]}));
     triggered=true;
    }
   }
@@ -4597,6 +4627,19 @@ export function createSixPhotoRules(api){
    triggered=true;
   }
   return triggered;
+ },
+ declareBioT952(s,p,attacker,other,defender,blockUntap){
+  const c=effective(attacker,s);
+  const ids=s.players[p].hand.filter(x=>{
+   const rule=card(x).g952BioT;
+   return rule&&race(c,rule.race)&&!api.handAbilityIgnored(s,x);
+  }).map(x=>x.uid);
+  if(!ids.length)return false;
+  const ref=(p,x)=>({p,uid:x.uid,incarnation:x.incarnation||0});
+  declareHandBio(s,task('g34_BioKDeclare951',p,attacker.cardId,{ids,selected:[],battle:{
+   attacker:ref(p,attacker),defender:ref(other,defender),...(blockUntap?{blockUntap}:{})
+  }}));
+  return true;
  },
  untapped(s,p,x,turnStart=false){
   recordUntap472(s,p,x);
