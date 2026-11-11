@@ -3445,6 +3445,19 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=904&&d.faces.length===1){
+  if(creature&&['dmrp09-021','dmex17-057'].includes(d.id)&&compact363===
+   '自分のクリーチャーがタップした時それを破壊してもよい。そうしたらカードを1枚引く。')
+   return {g904AllyTap:true};
+  if(f.typeText==='呪文'&&d.id==='dmrp12-096'&&compact363===
+   '自分のクリーチャーを1体選ぶ。このターンそのクリーチャーがはじめて攻撃する時そのクリーチャーをアンタップする。カードを1枚引く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',g904FirstAttackUntap:true},{op:'Draw',n:1}]};
+  if(f.typeText==='呪文'&&['dmrp16-087','promoy21-075'].includes(d.id)&&[
+   '相手の手札を見る。その中から1枚選んで表向きにし新しいシールドとして持ち主のシールドゾーンに置いてもよい。',
+   '相手の手札を見る。その中から1枚選び表向きにシールド化してもよい。'
+  ].includes(compact363))
+   return {effect:'sixPhoto',g34Tasks:[{op:'InspectHand',g223Inspect:true,chooseOne:true,g904ToShield:true}]};
+ }
  if(phase>=903&&creature&&d.faces.length===1){
   if(d.id==='dmrp12-041'&&compact363===
    'S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)このクリーチャーがバトルゾーンに出た時そのターン相手のコスト5以下のクリーチャーはすべて攻撃もブロックもできない。')
