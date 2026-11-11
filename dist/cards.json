@@ -199734,23 +199734,144 @@
       ],
       "supportBatch": "phase-970",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp01-040",
+      "name": "貝獣 ジミーシ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "ムートピア",
+      "text": "自分のターンの終わりに、バトルゾーンに自分のムートピアがあれば、このクリーチャーを自分の墓地から手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-040",
+      "limit": 4,
+      "g971GraveEnd": {
+        "race": "ムートピア"
+      },
+      "supportBatch": "phase-971",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd12-011",
+      "name": "凶鬼51号 ハーシル",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "マフィ・ギャング",
+      "text": "自分のターン中に、このクリーチャーが破壊された時、次の相手のターンのはじめに、このクリーチャーを墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd12-011",
+      "limit": 4,
+      "g172Death": [
+        {
+          "op": "ScheduleGraveReturn644",
+          "nextOpponent": true
+        }
+      ],
+      "supportBatch": "phase-971",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-080",
+      "name": "ポリスワン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ジョーカーズ",
+      "text": "このクリーチャーがバトルゾーンに出た時、相手のアンタップしているクリーチャーを１体選ぶ。そのターン、自分の他のクリーチャーはそのクリーチャーを攻撃できる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-080",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "filter": {
+            "untapped": true
+          },
+          "g971AttackTarget": true,
+          "title": "攻撃先にする相手のアンタップしているクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-971",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp02-014",
+      "name": "宙の誘い 大霧",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "メタリカ",
+      "text": "ラビリンス：このクリーチャーが破壊された時、自分のシールドの数が相手より多ければ、カードを１枚引く。その後、光のコスト８以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-014",
+      "limit": 4,
+      "g172Death": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "moreThanOpponent": true
+            }
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            },
+            {
+              "op": "Select",
+              "origin": "hand",
+              "filter": {
+                "creature": true,
+                "color": "光",
+                "max": 8
+              },
+              "deploy": true,
+              "n": 1,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-971",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 970,
+    "phase": 971,
     "checkedAt": "2026-11-11",
-    "baseCount": 6797,
+    "baseCount": 6801,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6801,
+    "totalCount": 6805,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/45799/",
-      "https://dm.takaratomy.co.jp/rule/qa/46508/",
-      "https://dm.takaratomy.co.jp/rule/qa/31578/",
-      "https://dm.takaratomy.co.jp/rule/qa/42659/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31645/"
+      "https://dm.takaratomy.co.jp/rule/qa/31550/",
+      "https://dm.takaratomy.co.jp/rule/qa/31998/",
+      "https://dm.takaratomy.co.jp/rule/qa/33416/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31624/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -217189,6 +217310,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/45072/",
           "https://dm.takaratomy.co.jp/rule/qa/36563/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31631/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 970,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6797,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6801,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/45799/",
+          "https://dm.takaratomy.co.jp/rule/qa/46508/",
+          "https://dm.takaratomy.co.jp/rule/qa/31578/",
+          "https://dm.takaratomy.co.jp/rule/qa/42659/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31645/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

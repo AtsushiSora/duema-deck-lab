@@ -3435,6 +3435,20 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=971&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmrp01-040'&&text==='自分のターンの終わりにバトルゾーンに自分のムートピアがあればこのクリーチャーを自分の墓地から手札に戻してもよい。')
+   return {g971GraveEnd:{race:'ムートピア'}};
+  if(['dmsd12-011','dmrp10-050'].includes(d.id)&&text==='自分のターン中にこのクリーチャーが破壊された時次の相手のターンのはじめにこのクリーチャーを墓地からバトルゾーンに出す。')
+   return {g172Death:[{op:'ScheduleGraveReturn644',nextOpponent:true}]};
+  if(d.id==='dmrp06-080'&&text==='このクリーチャーがバトルゾーンに出た時相手のアンタップしているクリーチャーを1体選ぶ。そのターン自分の他のクリーチャーはそのクリーチャーを攻撃できる。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',filter:{untapped:true},g971AttackTarget:true,
+    title:'攻撃先にする相手のアンタップしているクリーチャーを1体選ぶ'}]};
+  if(d.id==='dmrp02-014'&&text==='ラビリンス:このクリーチャーが破壊された時自分のシールドの数が相手より多ければカードを1枚引く。その後光のコスト8以下のクリーチャーを1体自分の手札からバトルゾーンに出してもよい。')
+   return {g172Death:[{op:'IfOwn',filter:{g334ZoneCount:{zone:'shields',moreThanOpponent:true}},defs:[
+    {op:'Draw',n:1},{op:'Select',origin:'hand',filter:{creature:true,color:'光',max:8},deploy:true,n:1,optional:true}
+   ]}]};
+ }
  if(phase>=970&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='promoy21-014'&&text==='このクリーチャーが出た時自分のカードを1枚マナゾーンまたはバトルゾーンから墓地に置いてもよい。そうしたらカードを2枚引く。')

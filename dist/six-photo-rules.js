@@ -1706,7 +1706,7 @@ export function createSixPhotoRules(api){
  case'g34_SelfGrant754':{const host=sourceHost474(s,t);if(host&&(!t.g770LiveCreature||!host.x.sealed&&api.isCreature(s,host.x)))applyGrant(s,t,host.x);break;}
  case'g34_GraveReturn754':{
   const y=own.grave.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);
-  if(!y||!api.canMoveZone(s,t.p,'grave'))break;
+  if(!y||!api.canMoveZone(s,t.p,'grave')||t.condition&&!ownCondition(s,t.p,t.condition))break;
   if(t.colors?.length){
    const manaColors=new Set(own.mana.filter(x=>!x.faceDown).flatMap(x=>api.manaColors(api.zoneCard(s,t.p,x,'mana'),s,t.p)));
    if(!t.colors.every(c=>manaColors.has(c)))break;
@@ -1718,7 +1718,9 @@ export function createSixPhotoRules(api){
  case'g34_SelfHand299':{const host=sourceHost474(s,t);if(host)move(s,[{player:host.p,uid:host.x.uid,to:'hand',controller:t.controller??t.p}]);break;}
  // The death trigger follows its first grave visit, never a later visit by the same physical card.
  case'g34_ScheduleGraveReturn644':
-  if((t.anyTurn||s.active===t.p)&&!s.endStep&&(!t.condition||ownCondition(s,t.p,t.condition)))put(s,{...t,op:'g34_Schedule537',when:'turnEnd',defs:[{op:'SelfGraveRevive644',serial:t.serial}]});
+  if((t.anyTurn||s.active===t.p)&&(t.nextOpponent||!s.endStep)&&(!t.condition||ownCondition(s,t.p,t.condition)))
+   put(s,{...t,op:'g34_Schedule537',when:t.nextOpponent?'nextOwnStart':'turnEnd',...(t.nextOpponent?{who:1-t.p}:{}),
+    defs:[{op:'SelfGraveRevive644',serial:t.serial}]});
   break;
  case'g34_GraveSummonWatch766':{
   const y=own.grave.find(y=>y.uid===t.uid&&(y.zoneSerial||0)===t.serial);
@@ -2220,7 +2222,7 @@ export function createSixPhotoRules(api){
   if(t.when==='turnEnd'&&t.spell&&s.endStep)break;
   const spellCost=t.spell?cost(faces(card(t.source)).find(c=>c.type==='spell')||card(t.source)):undefined;
   (s.g537Delays??=[]).push({p:t.p,source:t.source,uid:t.uid,incarnation:t.incarnation||0,turn:s.turn,when:t.when,
-   defs:structuredClone(t.defs),...(spellCost!==undefined?{spellCost}:{})});
+   defs:structuredClone(t.defs),...(t.who!==undefined?{who:t.who}:{}),...(spellCost!==undefined?{spellCost}:{})});
   break;
  }
  case'g34_ResolveDelay537':if(t.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:t.spellCost,spellSource:t.source}))start(s,t,t.defs);break;
@@ -3953,6 +3955,12 @@ export function createSixPhotoRules(api){
    if(v)put(s,{...t,op:'g34_ReturnBases939',owner:v.p,target:v.uid});
    break;
   }
+  if(t.g971AttackTarget){
+   const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid&&!x.tapped&&api.isCreature(s,x));
+   if(y)(s.extLimits??=[]).push({kind:'g971AttackTarget',player:t.p,refs:api.allLayers(y).map(key),
+    except:key(t),turn:s.turn,expires:'end',who:s.active});
+   break;
+  }
   if(t.g924AttackableUntapped){
    const y=v&&s.players[v.p].battle.find(x=>x.uid===v.uid);
    if(y)(s.extLimits??=[]).push({kind:'g924AttackableUntapped',refs:api.allLayers(y).map(key),
@@ -4352,6 +4360,14 @@ export function createSixPhotoRules(api){
  // The permission comes from the allied Dragon, even if the attacker is ignored (QA39131).
  dragonAttackUntapped967:(s,p,x,c)=>race(c,'ドラゴン')&&s.players[p].battle.some(source=>
   source.uid!==x.uid&&card(source).g967DragonAttackUntapped&&!api.ignored(s,source)&&api.isCreature(s,source)),
+ attackTargets971(s,p,attacker){
+  const limits=(s.extLimits||[]).filter(l=>l.kind==='g971AttackTarget'&&l.player===p&&l.turn===s.turn);
+  if(!limits.length)return [];
+  const refs=api.allLayers(attacker).map(key);
+  // Check current attackers so the permission also covers creatures that enter later.
+  return s.players[1-p].battle.filter(x=>!x.sealed&&api.isCreature(s,x)&&limits.some(l=>
+   !refs.includes(l.except)&&api.allLayers(x).some(y=>l.refs.includes(key(y))))).map(x=>x.uid);
+ },
  attackableUntapped:(s,x,attacker)=>attacker.g926AttackCrossed&&crossedCount728(s,x)>0||
   s.players.some(owner=>owner.battle.some(y=>!y.sealed&&card(y).g925MulticolorAttackable&&
   effective(y,s).g925MulticolorAttackable))&&colors(effective(x,s)).length>1||
@@ -4936,7 +4952,13 @@ export function createSixPhotoRules(api){
   if(ready.length)put(s,...ready);
   return !!ready.length;
  },
- end(s){if(s.extLimits)s.extLimits=s.extLimits.filter(l=>!(l.kind==='g546Force'&&l.when==='nextOpponent'&&s.active===1-l.controller&&s.turn>l.turn));const out=collect537(s,'turnEnd',s.active);const remaining501=[];for(const r of s.g501EndDelays||[])if(!r.ownEnd||r.p===s.active)out.push({player:r.p,source:r.source,effect:'extended',task:task('g34_ResolveEnd501',r.p,r.source,{...r})});else remaining501.push(r);s.g501EndDelays=remaining501;for(const t of s.g484BreakEnds||[])if(t.turn===s.turn)out.push({player:t.p,source:t.source,uid:t.uid,effect:'extended',task:task('g34_Sequence',t.p,t.source,{uid:t.uid,incarnation:t.incarnation,defs:[E('BreakReturn484')]})});s.g484BreakEnds=[];for(const t of s.g408EndUntaps||[])if(t.turn===s.turn)out.push({player:t.p,source:t.source,uid:t.g399Attacker.uid,effect:'extended',task:task('g34_AttackUntap408',t.p,t.source,{g399Attacker:t.g399Attacker})});s.g408EndUntaps=[];for(const p of[0,1]){const add=(x,defs,source=x.cardId)=>out.push({player:p,uid:x.uid,source,effect:'extended',task:task('g34_Sequence',p,source,{uid:x.uid,incarnation:x.incarnation||0,defs})});for(const x of s.players[p].battle){if(x.g34Delayed?.turn===s.turn){const d=x.g34Delayed,controller=d.controller??p,source=d.source||x.cardId;out.push({player:controller,uid:x.uid,source,effect:'extended',task:task('g34_DelayedMove532',controller,source,{uid:x.uid,incarnation:x.incarnation||0,to:d.to})});}if(api.ignored(s,x))continue;const r=card(x).g34Role;if(!x.sealed&&effective(x,s).g474AnyEnd)add(x,effective(x,s).g474AnyEnd);
+ end(s){if(s.extLimits)s.extLimits=s.extLimits.filter(l=>!(l.kind==='g546Force'&&l.when==='nextOpponent'&&s.active===1-l.controller&&s.turn>l.turn));const out=collect537(s,'turnEnd',s.active);
+  for(const x of s.players[s.active].grave){
+   const condition=!x.faceDown&&card(x).g971GraveEnd;
+   if(condition)out.push({player:s.active,uid:x.uid,source:x.cardId,effect:'extended',
+    task:task('g34_GraveReturn754',s.active,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,serial:x.zoneSerial||0,condition})});
+  }
+  const remaining501=[];for(const r of s.g501EndDelays||[])if(!r.ownEnd||r.p===s.active)out.push({player:r.p,source:r.source,effect:'extended',task:task('g34_ResolveEnd501',r.p,r.source,{...r})});else remaining501.push(r);s.g501EndDelays=remaining501;for(const t of s.g484BreakEnds||[])if(t.turn===s.turn)out.push({player:t.p,source:t.source,uid:t.uid,effect:'extended',task:task('g34_Sequence',t.p,t.source,{uid:t.uid,incarnation:t.incarnation,defs:[E('BreakReturn484')]})});s.g484BreakEnds=[];for(const t of s.g408EndUntaps||[])if(t.turn===s.turn)out.push({player:t.p,source:t.source,uid:t.g399Attacker.uid,effect:'extended',task:task('g34_AttackUntap408',t.p,t.source,{g399Attacker:t.g399Attacker})});s.g408EndUntaps=[];for(const p of[0,1]){const add=(x,defs,source=x.cardId)=>out.push({player:p,uid:x.uid,source,effect:'extended',task:task('g34_Sequence',p,source,{uid:x.uid,incarnation:x.incarnation||0,defs})});for(const x of s.players[p].battle){if(x.g34Delayed?.turn===s.turn){const d=x.g34Delayed,controller=d.controller??p,source=d.source||x.cardId;out.push({player:controller,uid:x.uid,source,effect:'extended',task:task('g34_DelayedMove532',controller,source,{uid:x.uid,incarnation:x.incarnation||0,to:d.to})});}if(api.ignored(s,x))continue;const r=card(x).g34Role;if(!x.sealed&&effective(x,s).g474AnyEnd)add(x,effective(x,s).g474AnyEnd);
   const manaLeftEnd=card(x).g811ManaLeftEnd;
   if(manaLeftEnd&&s.g47ManaLeft?.[p]===s.turn)add(x,manaLeftEnd);
   const ownShieldBreakEnd=card(x).g861OwnShieldBreakEnd;

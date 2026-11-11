@@ -1,0 +1,226 @@
+{
+  "phase": 971,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6801,
+  "description": "墓地からのターン終了時回収と遅延復帰、特定の攻撃先への攻撃許可、破壊時のラビリンスを処理する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/31550/",
+    "https://dm.takaratomy.co.jp/rule/qa/31998/",
+    "https://dm.takaratomy.co.jp/rule/qa/33416/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31624/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp01-040",
+      "name": "貝獣 ジミーシ",
+      "faces": [
+        {
+          "name": "貝獣 ジミーシ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターンの終わりに、バトルゾーンに自分のムートピアがあれば、このクリーチャーを自分の墓地から手札に戻してもよい。",
+          "race": "ムートピア",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-040",
+      "spec": {
+        "g971GraveEnd": {
+          "race": "ムートピア"
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "464773d6cad446e3480c5e53a7db3d1203668be82f3b84fdbeb0b36d0754ecaa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd12-011",
+      "name": "凶鬼51号 ハーシル",
+      "faces": [
+        {
+          "name": "凶鬼51号 ハーシル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のターン中に、このクリーチャーが破壊された時、次の相手のターンのはじめに、このクリーチャーを墓地からバトルゾーンに出す。",
+          "race": "マフィ・ギャング",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd12-011",
+      "spec": {
+        "g172Death": [
+          {
+            "op": "ScheduleGraveReturn644",
+            "nextOpponent": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd12-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "a4340be6350bec6b837d9e898305e615cc01e96c86921fd071ef7d94acacfd02",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp06-080",
+      "name": "ポリスワン",
+      "faces": [
+        {
+          "name": "ポリスワン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、相手のアンタップしているクリーチャーを１体選ぶ。そのターン、自分の他のクリーチャーはそのクリーチャーを攻撃できる。",
+          "race": "ジョーカーズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-080",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "filter": {
+              "untapped": true
+            },
+            "g971AttackTarget": true,
+            "title": "攻撃先にする相手のアンタップしているクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-080.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "22fa0d5dc80f77eba62f22b59cc5979b7edc846c308eb3ccb1f38b6e34d5e7cd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp02-014",
+      "name": "宙の誘い 大霧",
+      "faces": [
+        {
+          "name": "宙の誘い 大霧",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ラビリンス：このクリーチャーが破壊された時、自分のシールドの数が相手より多ければ、カードを１枚引く。その後、光のコスト８以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "メタリカ",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-014",
+      "spec": {
+        "g172Death": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "moreThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              },
+              {
+                "op": "Select",
+                "origin": "hand",
+                "filter": {
+                  "creature": true,
+                  "color": "光",
+                  "max": 8
+                },
+                "deploy": true,
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp02-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "3b3ca262df57f0176ad98cad9b1266d1772083f786835b4fb6a8df43f04cbdcf",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmrp10-050",
+      "canonicalId": "dmsd12-011",
+      "name": "凶鬼51号 ハーシル",
+      "faces": [
+        {
+          "name": "凶鬼51号 ハーシル",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分のターン中に、このクリーチャーが破壊された時、次の相手のターンのはじめに、このクリーチャーを墓地からバトルゾーンに出す。",
+          "race": "マフィ・ギャング",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-050",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "653b40245d9563e06846c9d36115923884b133695b5d981f2a279cd690e2ed2d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp01-040": 4,
+      "dmsd12-011": 4,
+      "dmrp06-080": 4,
+      "dmrp02-014": 4,
+      "dmrp10-050": 4
+    }
+  }
+}
