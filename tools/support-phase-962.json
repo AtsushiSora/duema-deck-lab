@@ -1,0 +1,289 @@
+{
+  "phase": 962,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6771,
+  "description": "バトル勝利時のアンタップ、メタモーフによるシールド確認、ターボラッシュによる強化、攻撃義務と攻撃時の破壊に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35163/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35356/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36206/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34948/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37329/",
+    "https://dm.takaratomy.co.jp/rule/qa/48037/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35453/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm09-032",
+      "name": "無限掌",
+      "faces": [
+        {
+          "name": "無限掌",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "バトルゾーンにある自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーがバトルに勝ったとき、バトルの後でアンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-032",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "spell": true,
+            "g946BattleWinUntap": true,
+            "g962EveryWin": true,
+            "title": "バトルに勝つたびアンタップする自分のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm09-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "52b0af0e19b641539aca0fbf43a23e75d75d489466863eb8b9342c7988a4e482",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-082",
+      "name": "アクア・スパイ",
+      "faces": [
+        {
+          "name": "アクア・スパイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "メタモーフ(自分のマナゾーンに７枚以上カードがあれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、プレイヤー１人のシールドをすべて見てもよい。その後、そのシールドを元に戻す。",
+          "race": "リキッド・ピープル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-082",
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g272ManaCount": 7
+          },
+          "grants": {
+            "g34Tasks": [
+              {
+                "op": "Choose",
+                "title": "どちらのシールドをすべて見る？",
+                "modes": [
+                  {
+                    "label": "自分のシールドを見る",
+                    "defs": [
+                      {
+                        "op": "Peek585",
+                        "who": "self",
+                        "all": true,
+                        "g962ShieldContents": true
+                      }
+                    ]
+                  },
+                  {
+                    "label": "相手のシールドを見る",
+                    "defs": [
+                      {
+                        "op": "Peek585",
+                        "who": "opponent",
+                        "all": true,
+                        "g962ShieldContents": true
+                      }
+                    ]
+                  },
+                  {
+                    "label": "見ない",
+                    "defs": [],
+                    "score": 0
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-082.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "878e2eb7f15b8fb1c28cc670ffcacd80bef689b63c4f4a2e4012f96ff364195e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm08-053",
+      "name": "食獣セニア",
+      "faces": [
+        {
+          "name": "食獣セニア",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ターボラッシュ(自分の他のクリーチャーがシールドをブレイクしたあと、そのターンが終わるまで、このクリーチャーは次の能力を得る)\nこのクリーチャーのパワーは+5000され、「W(ダブル)・ブレイカー」を得る。",
+          "race": "ツリーフォーク",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-053",
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g962TurboRush": true
+          },
+          "grants": {
+            "power": 5000,
+            "breaker": 2,
+            "g633DoubleBreaker": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm08-053.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "ba51858141f2742ecf0ad7a6e5700e648feb26d351475f2937c876a1a0907bec",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm20-004",
+      "name": "流れ星ムサシ",
+      "faces": [
+        {
+          "name": "流れ星ムサシ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーがタップされている時、相手のクリーチャーはすべて、可能であれば攻撃する。\n相手のクリーチャーが攻撃する時、そのクリーチャーのパワーが3000以下であれば破壊する。",
+          "race": "ドリームメイト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-004",
+      "spec": {
+        "g224ForceAttack": {
+          "owner": "opponent",
+          "tapped": true,
+          "opponentTurn": true
+        },
+        "g252AttackWatch": {
+          "who": "opponent",
+          "g399Attacker": true,
+          "defs": [
+            {
+              "op": "DestroyAttacker944",
+              "maxPower": 3000
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "1b1691ee0184f0d50cbf188824685af12cf85eec9957d712e88f35931af0664b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc27-032",
+      "canonicalId": "dm09-032",
+      "name": "無限掌",
+      "faces": [
+        {
+          "name": "無限掌",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "バトルゾーンにある自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーがバトルに勝ったとき、バトルの後でアンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc27-032",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc27-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "7ce27a93d4bc73b448b64e1de91648d8ed1815a3957a58f53afd1314be204753",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc42-051",
+      "canonicalId": "dm09-032",
+      "name": "無限掌",
+      "faces": [
+        {
+          "name": "無限掌",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "バトルゾーンにある自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーがバトルに勝った時、アンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc42-051",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc42-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "9850d2d7cac1e3962d2aed71cc877c0183bec941aace6862846de7f0f5e7cdd4",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm09-032": 4,
+      "dm14-082": 4,
+      "dm08-053": 4,
+      "dm20-004": 4,
+      "dmc27-032": 4,
+      "dmc42-051": 4
+    }
+  }
+}

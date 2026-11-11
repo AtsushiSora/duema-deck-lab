@@ -198830,22 +198830,177 @@
       },
       "supportBatch": "phase-961",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm09-032",
+      "name": "無限掌",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーがバトルに勝ったとき、バトルの後でアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm09-032",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "spell": true,
+          "g946BattleWinUntap": true,
+          "g962EveryWin": true,
+          "title": "バトルに勝つたびアンタップする自分のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-962",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm14-082",
+      "name": "アクア・スパイ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "リキッド・ピープル",
+      "text": "メタモーフ(自分のマナゾーンに７枚以上カードがあれば、このクリーチャーは次の能力を得る)\nこのクリーチャーをバトルゾーンに出した時、プレイヤー１人のシールドをすべて見てもよい。その後、そのシールドを元に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-082",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "g272ManaCount": 7
+        },
+        "grants": {
+          "g34Tasks": [
+            {
+              "op": "Choose",
+              "title": "どちらのシールドをすべて見る？",
+              "modes": [
+                {
+                  "label": "自分のシールドを見る",
+                  "defs": [
+                    {
+                      "op": "Peek585",
+                      "who": "self",
+                      "all": true,
+                      "g962ShieldContents": true
+                    }
+                  ]
+                },
+                {
+                  "label": "相手のシールドを見る",
+                  "defs": [
+                    {
+                      "op": "Peek585",
+                      "who": "opponent",
+                      "all": true,
+                      "g962ShieldContents": true
+                    }
+                  ]
+                },
+                {
+                  "label": "見ない",
+                  "defs": [],
+                  "score": 0
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-962",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm08-053",
+      "name": "食獣セニア",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ツリーフォーク",
+      "text": "ターボラッシュ(自分の他のクリーチャーがシールドをブレイクしたあと、そのターンが終わるまで、このクリーチャーは次の能力を得る)\nこのクリーチャーのパワーは+5000され、「W(ダブル)・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-053",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "g962TurboRush": true
+        },
+        "grants": {
+          "power": 5000,
+          "breaker": 2,
+          "g633DoubleBreaker": true
+        }
+      },
+      "supportBatch": "phase-962",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm20-004",
+      "name": "流れ星ムサシ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 4000,
+      "race": "ドリームメイト",
+      "text": "このクリーチャーがタップされている時、相手のクリーチャーはすべて、可能であれば攻撃する。\n相手のクリーチャーが攻撃する時、そのクリーチャーのパワーが3000以下であれば破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-004",
+      "limit": 4,
+      "g224ForceAttack": {
+        "owner": "opponent",
+        "tapped": true,
+        "opponentTurn": true
+      },
+      "g252AttackWatch": {
+        "who": "opponent",
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "DestroyAttacker944",
+            "maxPower": 3000
+          }
+        ]
+      },
+      "supportBatch": "phase-962",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 961,
+    "phase": 962,
     "checkedAt": "2026-11-11",
-    "baseCount": 6768,
-    "newEffectCards": 3,
+    "baseCount": 6771,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6771,
+    "totalCount": 6775,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35433/",
-      "https://dm.takaratomy.co.jp/rule/qa/45900/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36034/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35052/",
-      "https://dm.takaratomy.co.jp/rule/qa/45589/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35163/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35356/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36206/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/34948/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37329/",
+      "https://dm.takaratomy.co.jp/rule/qa/48037/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35453/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -216105,6 +216260,26 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/34896/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35803/",
           "https://dm.takaratomy.co.jp/rule/qa/33591/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 961,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6768,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6771,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35433/",
+          "https://dm.takaratomy.co.jp/rule/qa/45900/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36034/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35052/",
+          "https://dm.takaratomy.co.jp/rule/qa/45589/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

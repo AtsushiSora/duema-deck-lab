@@ -3430,6 +3430,24 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=962&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(['dm09-032','dmc27-032','dmc42-051'].includes(d.id)&&f.typeText==='呪文'&&[
+   'バトルゾーンにある自分のクリーチャーを1体選ぶ。このターンそのクリーチャーがバトルに勝ったときバトルの後でアンタップする。',
+   'バトルゾーンにある自分のクリーチャーを1体選ぶ。このターンそのクリーチャーがバトルに勝った時アンタップする。'
+  ].includes(text))
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',filter:{creature:true},spell:true,
+    g946BattleWinUntap:true,g962EveryWin:true,title:'バトルに勝つたびアンタップする自分のクリーチャーを1体選ぶ'}]};
+  if(d.id==='dm08-053'&&f.typeText==='クリーチャー'&&text===
+   'ターボラッシュ(自分の他のクリーチャーがシールドをブレイクしたあとそのターンが終わるまでこのクリーチャーは次の能力を得る)'+
+   'このクリーチャーのパワーは+5000され「W(ダブル)・ブレイカー」を得る。')
+   return {g260Self:{filter:{g962TurboRush:true},grants:{power:5000,breaker:2,g633DoubleBreaker:true}}};
+  if(d.id==='dm20-004'&&f.typeText==='クリーチャー'&&text===
+   'このクリーチャーがタップされている時相手のクリーチャーはすべて可能であれば攻撃する。'+
+   '相手のクリーチャーが攻撃する時そのクリーチャーのパワーが3000以下であれば破壊する。')
+   return {g224ForceAttack:{owner:'opponent',tapped:true,opponentTurn:true},
+    g252AttackWatch:{who:'opponent',g399Attacker:true,defs:[{op:'DestroyAttacker944',maxPower:3000}]}};
+ }
  if(phase>=961&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(['dm19-028','dmx08-009'].includes(d.id)&&f.typeText==='呪文'&&text===
@@ -6918,6 +6936,15 @@ export function standardCardSpec(d,{phase=165}={}){
      grants:{attackBonus:3000,breaker:2,g633DoubleBreaker:true}}]};
    }
    const grants={
+    ...(phase>=962&&d.id==='dm14-082'?{
+     'このクリーチャーをバトルゾーンに出した時プレイヤー1人のシールドをすべて見てもよい。その後そのシールドを元に戻す。':{
+      g34Tasks:[{op:'Choose',title:'どちらのシールドをすべて見る？',modes:[
+       {label:'自分のシールドを見る',defs:[{op:'Peek585',who:'self',all:true,g962ShieldContents:true}]},
+       {label:'相手のシールドを見る',defs:[{op:'Peek585',who:'opponent',all:true,g962ShieldContents:true}]},
+       {label:'見ない',defs:[],score:0}
+      ]}]
+     }
+    }:{}),
     ...(phase>=435?{
      'このクリーチャーをバトルゾーンに出した時カードを1枚引いてもよい。':{g34Tasks:[{op:'Offer',defs:[{op:'Draw',n:1}]}]},
      'どんな種族の進化クリーチャーをこのクリーチャーの上に置いてもよい。':{g293AnyEvolutionRace:true},

@@ -397,6 +397,10 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g962TurboRush){
+   const source=s.players[p].battle.find(x=>x.uid===sourceUid&&!x.sealed);
+   return !!source&&turboReady756(s,p,source);
+  }
   if(f.g951AnyHandMin!==undefined)return s.players.some(player=>player.hand.length>=f.g951AnyHandMin);
   if(f.g876SummonNumber!==undefined){
    const history=s.g463Summons?.[p];
@@ -502,14 +506,14 @@ export function createSixPhotoRules(api){
   }
  }
  function rondoWins946(s,winner,result){
-  if(!winner||!result.g588FirstForUnit)return [];
+  if(!winner)return [];
   return (s.extLimits||[]).flatMap(rule=>{
-   if(rule.kind!=='g946BattleWinUntap'||rule.turn!==s.turn||
+   if(rule.kind!=='g946BattleWinUntap'||rule.turn!==s.turn||!rule.g962EveryWin&&!result.g588FirstForUnit||
     !api.allLayers(winner).some(layer=>key(layer)===key(rule.ref)))return [];
    const {source,controller,ref}=rule,spellCost=cost(card(source));
    if(api.spellIgnored(s,{type:'spell',cost:spellCost,spellSource:source}))return [];
    return [{player:controller,uid:ref.uid,source,effect:'extended',
-    task:task('g34_RondoUntap946',controller,source,{...ref,spellCost})}];
+    task:task('g34_RondoUntap946',controller,source,{...ref,spellCost,...(rule.g962EveryWin?{g962EveryWin:true}:{})})}];
   });
  }
  function opponentAddedShields618(s,p){
@@ -714,7 +718,8 @@ export function createSixPhotoRules(api){
  function peekRows585(s,t){
   const owners=t.who==='both'?[t.p,1-t.p]:[t.who==='self'?t.p:1-t.p];
   return owners.flatMap(p=>s.players[p].shields.flatMap((root,i)=>{
-   const group=api.shieldCards(root),label=(p===t.p?'自分':'相手')+'のシールド '+(i+1);
+   const group=api.shieldCards(root).filter(x=>!t.g962ShieldContents||!x.faceUp||!card(x).gCastle);
+   const label=(p===t.p?'自分':'相手')+'のシールド '+(i+1);
    if(t.cardOnly)return group.map((x,j)=>({x,p,seen:[x],label:label+' のカード '+(j+1)}));
    return [{x:root,p,seen:group,label}];
   }));
@@ -1483,16 +1488,18 @@ export function createSixPhotoRules(api){
  }
  case'g34_DestroyAttacker944':{
   const player=1-t.p,attacker=attackHost408(s,{...t,p:player});
-  if(attacker&&!attacker.sealed&&api.isCreature(s,attacker))
+  if(attacker&&!attacker.sealed&&api.isCreature(s,attacker)&&(t.maxPower===undefined||livePower199(s,attacker,true)<=t.maxPower))
    move(s,[{player,uid:attacker.uid,to:'grave',destroy:true,controller:t.controller??t.p}]);
   break;
  }
  case'g34_RondoUntap946':{
   const host=sourceHost474(s,t);
   if(host?.x.tapped&&api.isCreature(s,host.x)&&api.canUntap(host.x)&&
-   !api.spellIgnored(s,{type:'spell',cost:t.spellCost,spellSource:t.source}))
-   start(s,t,[{op:'Offer',title:card(host.x).name+'をアンタップする？',
-    score:selfUntapValue542(s,t),defs:[{op:'Untap',g191First:true}]}]);
+   !api.spellIgnored(s,{type:'spell',cost:t.spellCost,spellSource:t.source})){
+   const untap={op:'Untap',g191First:true};
+   start(s,t,t.g962EveryWin?[untap]:[{op:'Offer',title:card(host.x).name+'をアンタップする？',
+    score:selfUntapValue542(s,t),defs:[untap]}]);
+  }
   break;
  }
  case'g34_AttackerMana762':{
@@ -3873,7 +3880,8 @@ export function createSixPhotoRules(api){
   if(t.g946BattleWinUntap&&v){
    const target=own.battle.find(y=>y.uid===v.uid);
    if(target)(s.extLimits??=[]).push({kind:'g946BattleWinUntap',source:t.source,controller:t.p,
-    ref:{uid:target.uid,incarnation:target.incarnation||0},turn:s.turn,expires:'end',who:s.active});
+    ref:{uid:target.uid,incarnation:target.incarnation||0},turn:s.turn,expires:'end',who:s.active,
+    ...(t.g962EveryWin?{g962EveryWin:true}:{})});
   }
   if(t.g940Reload){
    const y=v&&own.battle.find(y=>y.uid===v.uid);
