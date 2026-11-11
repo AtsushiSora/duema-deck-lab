@@ -201381,22 +201381,217 @@
       ],
       "supportBatch": "phase-984",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr16s-029",
+      "name": "リンクウッドの龍変化！",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "このターン、バトルゾーンにある自分のクリーチャーすべてのパワーは+3000され、種族にガイアール・コマンド・ドラゴンを追加する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-029",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupPower",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "spell": true,
+          "power": 3000
+        },
+        {
+          "op": "GroupGrant364",
+          "owner": "self",
+          "filter": {
+            "creature": true
+          },
+          "spell": true,
+          "grant": {
+            "raceAdd": [
+              "ガイアール・コマンド・ドラゴン"
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-985",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr16g-038",
+      "name": "金色証明",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 8,
+      "power": 0,
+      "race": "",
+      "text": "マナ武装 ３：自分のマナゾーンに水のカードが３枚以上あれば、この呪文を唱えるコストは最大５少なくなる。\nバトルゾーンにある進化ではないカードを１枚選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-038",
+      "limit": 4,
+      "g985SpellReduction": {
+        "filter": {
+          "g267Mana": {
+            "n": 3,
+            "color": "水"
+          }
+        },
+        "amount": 5
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BattleCardMove579",
+          "anyOwner": true,
+          "g813NonEvolution": true,
+          "to": "hand",
+          "title": "持ち主の手札に戻す進化ではないカードを1枚選ぶ"
+        }
+      ],
+      "supportBatch": "phase-985",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr16s-054",
+      "name": "熱狂の加護",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "このターン、バトルゾーンにある自分のクリーチャー１体のパワーは+3000され、シールドをさらに１枚ブレイクする。\n自分のシールドの数が相手のより多ければ、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-054",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "spell": true,
+          "power": 3000,
+          "g455ExtraBreak": 1,
+          "g969FollowControl": true,
+          "title": "パワーを+3000し追加ブレイクを与える自分のクリーチャーを1体選ぶ"
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "moreThanOpponent": true
+            }
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-985",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr16s-002",
+      "name": "閃光の精霊龍 ヴァルハラ・マスター",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5500,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "このクリーチャーが攻撃する時、名前に《スパーク》とある呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。\nバトルゾーンにある相手のクリーチャーがすべてタップしていれば、このクリーチャーのパワーは+5500され、「W・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-002",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Execute",
+          "origin": "hand",
+          "spellOnly": true,
+          "g985FaceNameIncludes": "スパーク",
+          "optional": true,
+          "title": "手札からコストを支払わずに唱える「スパーク」呪文を選ぶ（任意）"
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g985NoUntappedOpponent": true
+        },
+        "grants": {
+          "power": 5500,
+          "breaker": 2
+        }
+      },
+      "supportBatch": "phase-985",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr16g-028",
+      "name": "熱血龍 スリリング・ジェット",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "ガイアール・コマンド・ドラゴン",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を墓地に置く。こうして墓地に置いたドラゴン１体につき、そのターン、このクリーチャーはシールドをさらに１枚ブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-028",
+      "limit": 4,
+      "speedAttacker": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "MillExtraBreak745",
+          "n": 3,
+          "race": "ドラゴン",
+          "g969FollowControl": true
+        }
+      ],
+      "supportBatch": "phase-985",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 984,
+    "phase": 985,
     "checkedAt": "2026-11-12",
-    "baseCount": 6850,
+    "baseCount": 6855,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 6855,
+    "totalCount": 6860,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37221/",
-      "https://dm.takaratomy.co.jp/rule/qa/38709/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36128/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/34866/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37111/",
-      "https://dm.takaratomy.co.jp/img/202207regulation.pdf"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37188/",
+      "https://dm.takaratomy.co.jp/rule/qa/41079/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37234/",
+      "https://dm.takaratomy.co.jp/rule/qa/41295/",
+      "https://dm.takaratomy.co.jp/rule/qa/34191/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -219111,6 +219306,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/45450/",
           "https://dm.takaratomy.co.jp/rule/qa/39759/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316659/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 984,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6850,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 6855,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37221/",
+          "https://dm.takaratomy.co.jp/rule/qa/38709/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37111/",
+          "https://dm.takaratomy.co.jp/img/202207regulation.pdf"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

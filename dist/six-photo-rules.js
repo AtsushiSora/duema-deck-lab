@@ -137,7 +137,15 @@ export function createSixPhotoRules(api){
  function floorOptions500(s,p,c){let sums=new Set([0]);if(c.type!=='creature'||c.crossing)return[0];for(const x of creatures(s,p)){const r=!x.sealed&&effective(x,s).g500SummonAura;if(!r||r.filter.race&&!race(c,r.filter.race)||r.filter.multi&&colors(c).length<2)continue;const amounts=r.exact?[0,r.amount]:Array.from({length:r.amount+1},(_,i)=>i);sums=new Set([...sums].flatMap(n=>amounts.map(m=>n+m)));}return[...sums].sort((a,b)=>b-a);}
  function payFloor500(s,t){const choices=[];for(const amount of floorOptions500(s,t.p,t.c)){const c={...t.c,g500Handled:true,g500Amount:amount};if(api.canPay(s,t.p,c)){const n=api.summonCost(s,t.p,c);choices.push(opt((amount?amount+'軽減する':'軽減しない')+'（'+n+'マナ）',amount,100-n*5,t.source));}}choice(s,t,'最低2マナの軽減量を選ぶ',[...choices,opt('召喚をやめる',false,-1000)]);}
  // Optional continuous spell reductions are chosen for each paid cast, including zero use.
- function spellReductionMax485(s,p,c){return c.type==='spell'&&!c.crossing?creatures(s,p).filter(x=>!x.sealed).reduce((n,x)=>{const r=effective(x,s).g485SpellReduction;return n+(typeof r==='number'?r:r&&(!r.color||colors(c).includes(r.color))?r.amount:0);},0):0;}
+ function spellReductionMax485(s,p,c){
+  if(c.type!=='spell'||c.crossing)return 0;
+  const self=c.g985SpellReduction;
+  const ownReduction=self&&ownCondition(s,p,self.filter)?self.amount:0;
+  return creatures(s,p).filter(x=>!x.sealed).reduce((n,x)=>{
+   const r=effective(x,s).g485SpellReduction;
+   return n+(typeof r==='number'?r:r&&(!r.color||colors(c).includes(r.color))?r.amount:0);
+  },ownReduction);
+ }
  function spellReduction485(s,p,c){const max=spellReductionMax485(s,p,c);return c.g485Amount===undefined?max:Math.max(0,Math.min(max,c.g485Amount));}
  function paySpell485(s,t){const max=spellReductionMax485(s,t.p,t.c),choices=[];for(let amount=max;amount>=0;amount--){const c={...t.c,g485Handled:true,g485Amount:amount};if(api.canPay(s,t.p,c)){const n=api.summonCost(s,t.p,c);choices.push(opt((amount?amount+'軽減する':'軽減しない')+'（'+n+'マナ）',amount,100-n*5,t.source));}}choice(s,t,'呪文の軽減を使う量を選ぶ',[...choices,opt('唱えるのをやめる',false,-1000)]);}
  // The card being summoned is in use, so a different physical hand card must be revealed.
@@ -453,6 +461,7 @@ export function createSixPhotoRules(api){
    const candidates=allies.filter(x=>colors(effective(x,s)).includes(first));
    return allies.some(x=>colors(effective(x,s)).includes(second)&&candidates.some(y=>y.uid!==x.uid));
   }
+  if(f.g985NoUntappedOpponent)return !creatures(s,1-p).some(x=>!x.sealed&&!x.tapped);
   if(f.g687CreatureCountAtLeastShields){
    const shields=s.players[p].shields;
    return creatures(s,p).filter(x=>!x.sealed).length>=(typeof shields==='number'?shields:shields.length);
@@ -2955,7 +2964,7 @@ export function createSixPhotoRules(api){
   if(s.winner!==null)break;
   const amount=own.grave.slice(first).filter(y=>faces(api.zoneCard(s,t.p,y,'grave'))
    .some(f=>f.type==='creature'&&race(f,t.race))).length;
-  if(amount)start(s,t,[{op:'SelfExtraBreak444',amount}]);
+  if(amount)start(s,t,[{op:'SelfExtraBreak444',amount,...(t.g969FollowControl?{g969FollowControl:true}:{})}]);
   break;
  }
  case'g34_MillTapped782':{
@@ -3279,7 +3288,7 @@ export function createSixPhotoRules(api){
    break;
   }
   const owner=t.g191First?s.players.findIndex(p=>p.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0)))):t.p,y=t.g191First&&owner>=0?s.players[owner].battle.find(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))):t.g404Carrier?own.battle.find(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)):x;if(y&&api.canUntap(y)){const was=y.tapped;y.tapped=false;if(was)combined.untapped(s,owner,y);}break;}
- case'g34_Execute':{const origins=t.zones||[t.origin||'hand'],rows=origins.flatMap(origin=>(!t.g555FinishTo||api.canMoveZone(s,t.p,origin)?own[origin]:[]).flatMap(y=>faces(card(y)).flatMap((c,face)=>matches(s,t.p,{...y,cardId:y.cardId},t.filter)&&(!t.spellOnly||c.type==='spell')&&(!t.g556SpellColor||colors(c).includes(t.g556SpellColor))&&(!t.spellColorsAny||colors(c).some(color=>t.spellColorsAny.includes(color)))&&(!t.creatureOnly||c.type==='creature')&&(!t.nonCreature||c.type!=='creature')&&(t.max===undefined||cost(c)<=t.max)&&(!t.trigger||c.trigger||c.triggerPlus||c.superTrigger)&&api.canCast(s,t.p,c,origin)&&(c.type!=='creature'||api.canEnter(s,t.p,c,{origin,execution:true})&&(!c.evolution||api.evolutionBases(s,t.p,c).length))?[opt((t.zones?.length>1?(origin==='hand'?'手札：':'墓地：'):'')+c.name,{uid:y.uid,face,origin,...(t.g555FinishTo?{serial555:y.zoneSerial||0}:{})},t.g555FinishTo?spellScore555(s,t,c):20+cost(c),y.cardId)]:[])));choice(s,t,t.title||'コストを支払わず実行するカードを選ぶ',[...rows,...(t.optional===false?[]:[t.g408Decline?{...skip(),score:modeScore(s,t,t.g408Decline)}:skip()])]);break;}
+ case'g34_Execute':{const origins=t.zones||[t.origin||'hand'],rows=origins.flatMap(origin=>(!t.g555FinishTo||api.canMoveZone(s,t.p,origin)?own[origin]:[]).flatMap(y=>faces(card(y)).flatMap((c,face)=>matches(s,t.p,{...y,cardId:y.cardId},t.filter)&&(!t.spellOnly||c.type==='spell')&&(!t.g985FaceNameIncludes||c.name.includes(t.g985FaceNameIncludes))&&(!t.g556SpellColor||colors(c).includes(t.g556SpellColor))&&(!t.spellColorsAny||colors(c).some(color=>t.spellColorsAny.includes(color)))&&(!t.creatureOnly||c.type==='creature')&&(!t.nonCreature||c.type!=='creature')&&(t.max===undefined||cost(c)<=t.max)&&(!t.trigger||c.trigger||c.triggerPlus||c.superTrigger)&&api.canCast(s,t.p,c,origin)&&(c.type!=='creature'||api.canEnter(s,t.p,c,{origin,execution:true})&&(!c.evolution||api.evolutionBases(s,t.p,c).length))?[opt((t.zones?.length>1?(origin==='hand'?'手札：':'墓地：'):'')+c.name,{uid:y.uid,face,origin,...(t.g555FinishTo?{serial555:y.zoneSerial||0}:{})},t.g555FinishTo?spellScore555(s,t,c):20+cost(c),y.cardId)]:[])));choice(s,t,t.title||'コストを支払わず実行するカードを選ぶ',[...rows,...(t.optional===false?[]:[t.g408Decline?{...skip(),score:modeScore(s,t,t.g408Decline)}:skip()])]);break;}
  case'g34_Choose':choice(s,t,t.title||'効果を選ぶ',t.modes.flatMap((m,i)=>m.condition&&!ownCondition(s,t.p,m.condition,t.uid,t.incarnation)?[]:[opt(m.label||'効果'+(i+1),i,t.g184Modes?modeScore(s,t,m.defs):m.score??10)]));break;
  case'g34_Custom':custom(s,t);break;
  default:throw Error('未実装の6デッキ効果：'+t.op);

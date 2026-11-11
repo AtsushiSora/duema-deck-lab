@@ -1,0 +1,281 @@
+{
+  "phase": 985,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6855,
+  "description": "一時的な種族追加とパワー強化、選択式のマナ武装による呪文軽減、非進化カードの手札戻し、攻撃時の呪文詠唱、追加ブレイクに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36128/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34866/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37111/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37188/",
+    "https://dm.takaratomy.co.jp/rule/qa/41079/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37234/",
+    "https://dm.takaratomy.co.jp/rule/qa/41295/",
+    "https://dm.takaratomy.co.jp/rule/qa/34191/"
+  ],
+  "cards": [
+    {
+      "id": "dmr16s-029",
+      "name": "リンクウッドの龍変化！",
+      "faces": [
+        {
+          "name": "リンクウッドの龍変化！",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このターン、バトルゾーンにある自分のクリーチャーすべてのパワーは+3000され、種族にガイアール・コマンド・ドラゴンを追加する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-029",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "spell": true,
+            "power": 3000
+          },
+          {
+            "op": "GroupGrant364",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "spell": true,
+            "grant": {
+              "raceAdd": [
+                "ガイアール・コマンド・ドラゴン"
+              ]
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "2f3d992a2d00120e408bd16e1c061e9e3633c590e49b53f6f116f5b15c12b799",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-038",
+      "name": "金色証明",
+      "faces": [
+        {
+          "name": "金色証明",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "マナ武装 ３：自分のマナゾーンに水のカードが３枚以上あれば、この呪文を唱えるコストは最大５少なくなる。\nバトルゾーンにある進化ではないカードを１枚選び、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-038",
+      "spec": {
+        "g985SpellReduction": {
+          "filter": {
+            "g267Mana": {
+              "n": 3,
+              "color": "水"
+            }
+          },
+          "amount": 5
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "anyOwner": true,
+            "g813NonEvolution": true,
+            "to": "hand",
+            "title": "持ち主の手札に戻す進化ではないカードを1枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "a06ec7b008b42137e7ccf56a77956d9c91fe356ef519eeff9946e6698aa84db2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16s-054",
+      "name": "熱狂の加護",
+      "faces": [
+        {
+          "name": "熱狂の加護",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このターン、バトルゾーンにある自分のクリーチャー１体のパワーは+3000され、シールドをさらに１枚ブレイクする。\n自分のシールドの数が相手のより多ければ、カードを１枚引いてもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-054",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "spell": true,
+            "power": 3000,
+            "g455ExtraBreak": 1,
+            "g969FollowControl": true,
+            "title": "パワーを+3000し追加ブレイクを与える自分のクリーチャーを1体選ぶ"
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "shields",
+                "moreThanOpponent": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "3f009bd042d56db9965ca6ff18a3f1a378cd5782c0113fcb8738cc7fb6bfc687",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16s-002",
+      "name": "閃光の精霊龍 ヴァルハラ・マスター",
+      "faces": [
+        {
+          "name": "閃光の精霊龍 ヴァルハラ・マスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、名前に《スパーク》とある呪文を１枚、自分の手札からコストを支払わずに唱えてもよい。\nバトルゾーンにある相手のクリーチャーがすべてタップしていれば、このクリーチャーのパワーは+5500され、「W・ブレイカー」を得る。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-002",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "spellOnly": true,
+            "g985FaceNameIncludes": "スパーク",
+            "optional": true,
+            "title": "手札からコストを支払わずに唱える「スパーク」呪文を選ぶ（任意）"
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g985NoUntappedOpponent": true
+          },
+          "grants": {
+            "power": 5500,
+            "breaker": 2
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-002.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "9f04c905b3a359274303ac772e0f581d717b11db2d98b2e04e30f73ccc80f6b6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-028",
+      "name": "熱血龍 スリリング・ジェット",
+      "faces": [
+        {
+          "name": "熱血龍 スリリング・ジェット",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を墓地に置く。こうして墓地に置いたドラゴン１体につき、そのターン、このクリーチャーはシールドをさらに１枚ブレイクする。",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-028",
+      "spec": {
+        "speedAttacker": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "MillExtraBreak745",
+            "n": 3,
+            "race": "ドラゴン",
+            "g969FollowControl": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "b21570bd3d3a9e212b752ee17559db18f8349e1747de80fdfcf2e94a9fb1c7bf",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr16s-029": 4,
+      "dmr16g-038": 4,
+      "dmr16s-054": 4,
+      "dmr16s-002": 4,
+      "dmr16g-028": 4
+    }
+  }
+}

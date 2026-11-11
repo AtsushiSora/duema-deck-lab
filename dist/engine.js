@@ -123,10 +123,10 @@ export function zoneCard(s,p,inst,zone=null,definition=card(inst)){
 // Read-only UI access to the same physical-layer permissions used by legal moves.
 export function graveSummonSources(s,p=0){return extra.six.fifteen.graveSummonSources(s,p);}
 export function spellIgnored(s,c){if(c.spellSource){const source=card(c.spellSource),face=source&&playFaces(source).find(f=>f.type==='spell');if(face)c={...face,cost:c.cost};}return c.type==='spell'&&(costValue(c)<=5&&genmuActive(s)||momoActive(s)&&civilizations(c.civilizations||c.civ?c:c.id?(card(c.id)||c):c).length<=1);}
-const activeAttackGrant=(s,g)=>g.turn===s.turn&&(g.spellCost===undefined||!spellIgnored(s,{type:'spell',cost:g.spellCost,spellSource:g.spellSource}));
+const activeTurnGrant=(s,g)=>g.turn===s.turn&&(g.spellCost===undefined||!spellIgnored(s,{type:'spell',cost:g.spellCost,spellSource:g.spellSource}));
 function externalBlockState(s,p,x,c){
- if(!x.sealed&&c.type==='creature'&&!c.g838FreshUntapped&&x.g34Grants?.some(g=>g.g838FreshUntapped&&activeAttackGrant(s,g)))c={...c,attackUntapped:true,g838FreshUntapped:true};
- if(!x.sealed&&c.type==='creature'&&!c.attackUntapped&&x.g34Grants?.some(g=>g.g737CreatureAttackUnblockable&&activeAttackGrant(s,g)))c={...c,attackUntapped:true};
+ if(!x.sealed&&c.type==='creature'&&!c.g838FreshUntapped&&x.g34Grants?.some(g=>g.g838FreshUntapped&&activeTurnGrant(s,g)))c={...c,attackUntapped:true,g838FreshUntapped:true};
+ if(!x.sealed&&c.type==='creature'&&!c.attackUntapped&&x.g34Grants?.some(g=>g.g737CreatureAttackUnblockable&&activeTurnGrant(s,g)))c={...c,attackUntapped:true};
  if(!x.sealed&&isCreature(s,x)&&s.players[p].battle.some(field=>card(field).g682FieldUnblockable&&!abilitiesIgnored(s,field)))c={...c,unblockable:true};
  if(c.type==='creature'&&extra.six.playerStop567(s,p,x))c={...c,noPlayerAttack:true};if(c.type==='creature'&&extra.six.protected565(s,x))c={...c,untargetable:true,cannotBeAttacked:true};const n=c.type==='creature'?extra.six.extraBreak412(s,p,x)+extra.six.extraBreak557(s,p,x,c)+extra.six.crossExtraBreak948(s,p,x):0;if(n)c={...c,extraBreak:(c.extraBreak||0)+n};const stealth=c.type==='creature'&&c.g226Stealth&&s.players[1-p].mana.some(y=>manaColors(card(y),s,1-p).includes(c.g226Stealth));return stealth||c.g227EmptyShieldUnblockable&&s.players[1-p].shields.length===0||extra.samuraiUnblocked(s,p,x,c)?{...c,unblockable:true}:c;}
 // Identity and printed stats stay intact; all abilities, including granted ones, are ignored.
@@ -137,6 +137,10 @@ export function effectiveCard(inst,context,forPower=false){
  let base=card(inst);const owner=context?.players.findIndex(p=>p.battle.some(x=>x.uid===inst.uid));
  if(owner==null||owner<0){if(context)for(const p of [0,1]){const c=zoneCard(context,p,inst);if(c!==base)return c;}return base;}
  base=zoneCard(context,owner,inst,'battle');
+ // A resolved spell can change the recipient's race even while its own abilities are ignored.
+ const races=inst.g34Grants?.flatMap(g=>g.raceAdd&&activeTurnGrant(context,g)?g.raceAdd:[]);
+ if(races?.length&&!inst.sealed&&isCreature(context,inst))
+  base={...base,race:[...new Set([...String(base.race||'').split('/').filter(Boolean),...races])].join('/')};
  if(abilitiesIgnored(context,inst)){const {id,name,type,civ,civilizations,manaValue,cost,power,race,limit,sMax,starEvolution}=base;return externalBlockState(context,owner,inst,extra.utilityNatureSupport.decorate(context,owner,inst,{id,name,type,civ,civilizations,manaValue,cost,...(inst.g40Reckless?.turn===context.turn||extra.six.forced546(context,owner,inst)?{mustAttack:true}:{}),...(sMax?{sMax:true}:{}),...(starEvolution?{starEvolution:true}:{}),power:base.hyper&&inst.hyperActive&&(base.hyperTap||inst.hyperResolved)?base.hyper.power:power,race,limit}));}
  // Track ordinary Blocker grants separately from printed restricted Blockers.
  const printed=base.g716DragonBlock||base.g911BlockColors?{...base,blocker:false}:base;
@@ -1532,7 +1536,7 @@ function blockAttackerAllowed(s,attacker,blocker){
  if(extra.six.weakerBlock569(s,attacker,blocker))return false;
  // A resolved restriction on blocking is not an ability granted to the attacker.
  const tribalGrants=(attacker.g34Grants||[]).filter(g=>g.g725NoBlockMaxPower!==undefined||g.g737CreatureAttackUnblockable);
- if(tribalGrants.some(g=>activeAttackGrant(s,g)&&(
+ if(tribalGrants.some(g=>activeTurnGrant(s,g)&&(
   g.g725NoBlockMaxPower!==undefined&&power(blocker,false,s)<=g.g725NoBlockMaxPower
   ||g.g737CreatureAttackUnblockable&&s.attack?.target!=='player'
  )))return false;

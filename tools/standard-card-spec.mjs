@@ -3435,6 +3435,37 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=985&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='呪文'){
+   if(d.id==='dmr16s-029'&&text==='このターンバトルゾーンにある自分のクリーチャーすべてのパワーは+3000され種族にガイアール・コマンド・ドラゴンを追加する。'){
+    const group={owner:'self',filter:{creature:true},spell:true};
+    return {effect:'sixPhoto',g34Tasks:[
+     {op:'GroupPower',...group,power:3000},
+     {op:'GroupGrant364',...group,grant:{raceAdd:['ガイアール・コマンド・ドラゴン']}}
+    ]};
+   }
+   if(d.id==='dmr16g-038'&&text==='マナ武装3:自分のマナゾーンに水のカードが3枚以上あればこの呪文を唱えるコストは最大5少なくなる。バトルゾーンにある進化ではないカードを1枚選び持ち主の手札に戻す。')
+    return {g985SpellReduction:{filter:{g267Mana:{n:3,color:'水'}},amount:5},effect:'sixPhoto',g34Tasks:[
+     {op:'BattleCardMove579',anyOwner:true,g813NonEvolution:true,to:'hand',
+      title:'持ち主の手札に戻す進化ではないカードを1枚選ぶ'}
+    ]};
+   if(d.id==='dmr16s-054'&&text==='このターンバトルゾーンにある自分のクリーチャー1体のパワーは+3000されシールドをさらに1枚ブレイクする。自分のシールドの数が相手のより多ければカードを1枚引いてもよい。')
+    return {effect:'sixPhoto',g34Tasks:[
+     {op:'Target',owner:'self',spell:true,power:3000,g455ExtraBreak:1,g969FollowControl:true,
+      title:'パワーを+3000し追加ブレイクを与える自分のクリーチャーを1体選ぶ'},
+     {op:'IfOwn',filter:{g334ZoneCount:{zone:'shields',moreThanOpponent:true}},defs:[{op:'Draw',n:1,optional:true}]}
+    ]};
+  }
+  if(f.typeText==='クリーチャー'){
+   if(d.id==='dmr16s-002'&&text==='このクリーチャーが攻撃する時名前に《スパーク》とある呪文を1枚自分の手札からコストを支払わずに唱えてもよい。バトルゾーンにある相手のクリーチャーがすべてタップしていればこのクリーチャーのパワーは+5500され「W・ブレイカー」を得る。')
+    return {g34Attack:[{op:'Execute',origin:'hand',spellOnly:true,g985FaceNameIncludes:'スパーク',optional:true,
+     title:'手札からコストを支払わずに唱える「スパーク」呪文を選ぶ（任意）'}],
+     g260Self:{filter:{g985NoUntappedOpponent:true},grants:{power:5500,breaker:2}}};
+   if(d.id==='dmr16g-028'&&text==='スピードアタッカー(このクリーチャーは召喚酔いしない)このクリーチャーをバトルゾーンに出した時自分の山札の上から3枚を墓地に置く。こうして墓地に置いたドラゴン1体につきそのターンこのクリーチャーはシールドをさらに1枚ブレイクする。')
+    return {speedAttacker:true,effect:'sixPhoto',g34Tasks:[{op:'MillExtraBreak745',n:3,race:'ドラゴン',g969FollowControl:true}]};
+  }
+ }
  if(phase>=984&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const trigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
