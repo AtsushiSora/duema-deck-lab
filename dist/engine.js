@@ -1444,6 +1444,8 @@ function blockAttackerAllowed(s,attacker,blocker){
   if(defender.g911ColorBlockOnly&&!civilizations(effectiveCard(attacker,s)).some(color=>defender.g911BlockColors.includes(color)))return false;
  }
  if(card(blocker).g716DragonBlock&&effectiveCard(blocker,s).g716DragonBlockOnly&&!isDragon(effectiveCard(attacker,s)))return false;
+ if(card(blocker).g944CannotBlockMaxPower!==undefined&&
+  power(attacker,true,s)<=effectiveCard(blocker,s).g944CannotBlockMaxPower)return false;
  if(card(blocker).g942NoEvolutionDragonBlock&&effectiveCard(blocker,s).g942NoEvolutionDragonBlock&&
   (isEvolution(attacker)||isDragon(effectiveCard(attacker,s))))return false;
  if(unblockedNow(s,attacker)||(effectiveCard(attacker,s).g408LessPowerBlock||(attacker.g34Grants||[]).some(g=>g.turn===s.turn&&g.g408LessPowerBlock))&&power(blocker,false,s)<power(attacker,true,s))return false;

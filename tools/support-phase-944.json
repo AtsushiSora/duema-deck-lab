@@ -1,0 +1,218 @@
+{
+  "phase": 944,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6705,
+  "description": "攻撃時のパワーによるブロック制限、ドラゴンを起点とする墓地回収、双方のクリーチャー登場で得るブロッカー、攻撃宣言に反応する順次破壊を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37323/",
+    "https://dm.takaratomy.co.jp/rule/qa/46493/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35492/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36035/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36036/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36037/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36038/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36039/"
+  ],
+  "cards": [
+    {
+      "id": "dm20-039",
+      "name": "白金の守護者ラ・ブール",
+      "faces": [
+        {
+          "name": "白金の守護者ラ・ブール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、パワー2000以下のクリーチャーをブロックできない。\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+          "race": "ガーディアン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-039",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g944CannotBlockMaxPower": 2000
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "e0750e58eda12289b2edd978218af70b47f72e1f0cc94ecb5f1d29864118dd6c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22-047",
+      "name": "連龍陣",
+      "faces": [
+        {
+          "name": "連龍陣",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nクリーチャーを１体、自分の墓地から手札に戻す。そのクリーチャーがドラゴンであれば、クリーチャーをもう１体、自分の墓地から手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-047",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "filter": {
+              "faceUp": true,
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "title": "手札に戻す墓地のクリーチャーを1体選ぶ",
+            "g654MovedFilter": {
+              "g228Face": {
+                "type": "creature",
+                "raceAll": [
+                  "ドラゴン"
+                ]
+              }
+            },
+            "g583OnMove": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "to": "hand",
+                "n": 1,
+                "filter": {
+                  "faceUp": true,
+                  "g228Face": {
+                    "type": "creature"
+                  }
+                },
+                "optional": true,
+                "title": "手札に戻す墓地のクリーチャーをもう1体選ぶ（任意）"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "a8ebd03385b6b714942b05204e9188ee1cd86a9fa32aac76ca28003c38df947c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm29-040",
+      "name": "リアクティブ・クロウラー",
+      "faces": [
+        {
+          "name": "リアクティブ・クロウラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "他のクリーチャーがバトルゾーンに出た時、そのターン、このクリーチャーは「ブロッカー」を得る。",
+          "race": "アースイーター",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-040",
+      "spec": {
+        "g314OtherEntry": {
+          "who": "both",
+          "defs": [
+            {
+              "op": "SelfGrant754",
+              "grant": {
+                "blocker": true
+              },
+              "g770LiveCreature": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm29-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "cd3e4eaea0029447c5a8ba2b8dada5043eaf8891bfb9632ef89405aeeef1192b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm36-027",
+      "name": "特攻秘宝カースガイ",
+      "faces": [
+        {
+          "name": "特攻秘宝カースガイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のクリーチャーが攻撃する時、このクリーチャーを破壊する。その後、相手の攻撃クリーチャーを破壊する。",
+          "race": "パンドラボックス",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-027",
+      "spec": {
+        "g252AttackWatch": {
+          "who": "opponent",
+          "g399Attacker": true,
+          "defs": [
+            {
+              "op": "SelfDestroy"
+            },
+            {
+              "op": "DestroyAttacker944"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm36-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "7064d2b4e1ae456004ec0b47731643e266e06182001e8d82df34664667e3db1a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm20-039": 4,
+      "dm22-047": 4,
+      "dm29-040": 4,
+      "dm36-027": 4
+    }
+  }
+}

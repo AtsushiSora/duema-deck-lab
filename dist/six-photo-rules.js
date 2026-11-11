@@ -1401,6 +1401,12 @@ export function createSixPhotoRules(api){
    costs.map(n=>opt('コスト'+(n===Infinity?'∞':n),n>=5,n>=5?20:0,revealed.cardId)));
   break;
  }
+ case'g34_DestroyAttacker944':{
+  const player=1-t.p,attacker=attackHost408(s,{...t,p:player});
+  if(attacker&&!attacker.sealed&&api.isCreature(s,attacker))
+   move(s,[{player,uid:attacker.uid,to:'grave',destroy:true,controller:t.controller??t.p}]);
+  break;
+ }
  case'g34_AttackerMana762':{
   const player=1-t.p,attacker=attackHost408(s,{...t,p:player});
   if(attacker&&!attacker.sealed&&api.isCreature(s,attacker))

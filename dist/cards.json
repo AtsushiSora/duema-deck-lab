@@ -196681,22 +196681,166 @@
       ],
       "supportBatch": "phase-943",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm20-039",
+      "name": "白金の守護者ラ・ブール",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 3000,
+      "race": "ガーディアン",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、パワー2000以下のクリーチャーをブロックできない。\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-039",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g944CannotBlockMaxPower": 2000,
+      "supportBatch": "phase-944",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22-047",
+      "name": "連龍陣",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nクリーチャーを１体、自分の墓地から手札に戻す。そのクリーチャーがドラゴンであれば、クリーチャーをもう１体、自分の墓地から手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-047",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "filter": {
+            "faceUp": true,
+            "g228Face": {
+              "type": "creature"
+            }
+          },
+          "title": "手札に戻す墓地のクリーチャーを1体選ぶ",
+          "g654MovedFilter": {
+            "g228Face": {
+              "type": "creature",
+              "raceAll": [
+                "ドラゴン"
+              ]
+            }
+          },
+          "g583OnMove": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "to": "hand",
+              "n": 1,
+              "filter": {
+                "faceUp": true,
+                "g228Face": {
+                  "type": "creature"
+                }
+              },
+              "optional": true,
+              "title": "手札に戻す墓地のクリーチャーをもう1体選ぶ（任意）"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-944",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm29-040",
+      "name": "リアクティブ・クロウラー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "アースイーター",
+      "text": "他のクリーチャーがバトルゾーンに出た時、そのターン、このクリーチャーは「ブロッカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm29-040",
+      "limit": 4,
+      "g314OtherEntry": {
+        "who": "both",
+        "defs": [
+          {
+            "op": "SelfGrant754",
+            "grant": {
+              "blocker": true
+            },
+            "g770LiveCreature": true
+          }
+        ]
+      },
+      "supportBatch": "phase-944",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm36-027",
+      "name": "特攻秘宝カースガイ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 5000,
+      "race": "パンドラボックス",
+      "text": "相手のクリーチャーが攻撃する時、このクリーチャーを破壊する。その後、相手の攻撃クリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm36-027",
+      "limit": 4,
+      "g252AttackWatch": {
+        "who": "opponent",
+        "g399Attacker": true,
+        "defs": [
+          {
+            "op": "SelfDestroy"
+          },
+          {
+            "op": "DestroyAttacker944"
+          }
+        ]
+      },
+      "supportBatch": "phase-944",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 943,
+    "phase": 944,
     "checkedAt": "2026-11-11",
-    "baseCount": 6701,
+    "baseCount": 6705,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6705,
+    "totalCount": 6709,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35500/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37323/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37423/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37424/"
+      "https://dm.takaratomy.co.jp/rule/qa/46493/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35492/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36035/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36036/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36037/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36038/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36039/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -213568,6 +213712,25 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/qa_old/37335/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 943,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6701,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6705,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35500/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37323/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37423/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37424/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

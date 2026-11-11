@@ -3388,6 +3388,25 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=944&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm20-039'&&f.typeText==='クリーチャー'&&text===
+   'ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)このクリーチャーはパワー2000以下のクリーチャーをブロックできない。このクリーチャーは相手プレイヤーを攻撃できない。')
+   return {blocker:true,noPlayerAttack:true,g944CannotBlockMaxPower:2000};
+  if(d.id==='dm22-047'&&f.typeText==='呪文'&&text===
+   'S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)クリーチャーを1体自分の墓地から手札に戻す。そのクリーチャーがドラゴンであればクリーチャーをもう1体自分の墓地から手札に戻してもよい。'){
+   const recover={op:'Select',origin:'grave',to:'hand',n:1,filter:{faceUp:true,g228Face:{type:'creature'}}};
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{...recover,title:'手札に戻す墓地のクリーチャーを1体選ぶ',
+    g654MovedFilter:{g228Face:{type:'creature',raceAll:['ドラゴン']}},
+    g583OnMove:[{...recover,optional:true,title:'手札に戻す墓地のクリーチャーをもう1体選ぶ（任意）'}]}]};
+  }
+  if(d.id==='dm29-040'&&f.typeText==='クリーチャー'&&text===
+   '他のクリーチャーがバトルゾーンに出た時そのターンこのクリーチャーは「ブロッカー」を得る。')
+   return {g314OtherEntry:{who:'both',defs:[{op:'SelfGrant754',grant:{blocker:true},g770LiveCreature:true}]}};
+  if(d.id==='dm36-027'&&f.typeText==='クリーチャー'&&text===
+   '相手のクリーチャーが攻撃する時このクリーチャーを破壊する。その後相手の攻撃クリーチャーを破壊する。')
+   return {g252AttackWatch:{who:'opponent',g399Attacker:true,defs:[{op:'SelfDestroy'},{op:'DestroyAttacker944'}]}};
+ }
  if(phase>=943&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm19-002'&&f.typeText==='クリーチャー'&&text===
