@@ -192371,20 +192371,103 @@
       ],
       "supportBatch": "phase-899",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-100",
+      "name": "モナオミオ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "グランセクト",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーを、バトルゾーンにタップして出してもよい。\n相手のクリーチャーが攻撃する時、可能ならこのクリーチャーを攻撃する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-100",
+      "limit": 4,
+      "trigger": true,
+      "g432EntryTap": true,
+      "g431AttackMe": true,
+      "supportBatch": "phase-900",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp11-083",
+      "name": "ラッセル・マーシュ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "マフィ・ギャング",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nターンの終わりに、このクリーチャーがタップしていれば、このクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp11-083",
+      "limit": 4,
+      "blocker": true,
+      "g474AnyEnd": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g590SourceTapped": true
+          },
+          "defs": [
+            {
+              "op": "SelfDestroy"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-900",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-099",
+      "name": "島廻の超人",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ジャイアント",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、カードを１枚、自分の墓地からマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-099",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "mana",
+          "n": 1,
+          "optional": true,
+          "filter": {}
+        }
+      ],
+      "supportBatch": "phase-900",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 899,
+    "phase": 900,
     "checkedAt": "2026-11-11",
-    "baseCount": 6562,
+    "baseCount": 6565,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6565,
+    "totalCount": 6568,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/39683/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36972/",
-      "https://dm.takaratomy.co.jp/rule/qa/39131/"
+      "https://dm.takaratomy.co.jp/rule/qa/40270/",
+      "https://dm.takaratomy.co.jp/rule/qa/42657/",
+      "https://dm.takaratomy.co.jp/rule/qa/47916/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -208394,6 +208477,23 @@
           "https://dm.takaratomy.co.jp/rule/rulechange/31620/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36972/",
           "https://dm.takaratomy.co.jp/rule/qa/34228/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 899,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6562,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6565,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39683/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36972/",
+          "https://dm.takaratomy.co.jp/rule/qa/39131/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

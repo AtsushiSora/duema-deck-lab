@@ -3445,6 +3445,17 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=900&&creature&&d.faces.length===1){
+  if(d.id==='dmrp11-100'&&compact363===
+   'S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)このクリーチャーをバトルゾーンにタップして出してもよい。相手のクリーチャーが攻撃する時可能ならこのクリーチャーを攻撃する。')
+   return {trigger:true,g432EntryTap:true,g431AttackMe:true};
+  if(d.id==='dmrp11-083'&&compact363===
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)ターンの終わりにこのクリーチャーがタップしていればこのクリーチャーを破壊する。')
+   return {blocker:true,g474AnyEnd:[{op:'IfOwn',filter:{g590SourceTapped:true},defs:[{op:'SelfDestroy'}]}]};
+  if(d.id==='dmrp12-099'&&compact363===
+   'S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)このクリーチャーがバトルゾーンに出た時カードを1枚自分の墓地からマナゾーンに置いてもよい。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'grave',to:'mana',n:1,optional:true,filter:{}}]};
+ }
  if(phase>=899&&creature&&d.faces.length===1){
   if(['dmrp17-011','dm22ex2-013'].includes(d.id)&&[
    'マッハファイター(このクリーチャーは出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)コスト5以下のクリーチャーを攻撃中このクリーチャーに「スレイヤー」を与える。このクリーチャーが出た時コスト5以下のクリーチャーを1体自分の手札から出してもよい。',
