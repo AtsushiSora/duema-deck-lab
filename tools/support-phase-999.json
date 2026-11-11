@@ -1,0 +1,440 @@
+{
+  "phase": 999,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6915,
+  "description": "指令の精霊龍 コマンデュオ、真紅の精霊龍 レッドローズ、革命類突進目 トリケラX、音速 スパナーの公式能力を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/31724/",
+    "https://dm.takaratomy.co.jp/rule/qa/40637/",
+    "https://dm.takaratomy.co.jp/rule/qa/41152/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37256/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37429/"
+  ],
+  "cards": [
+    {
+      "id": "dmr17-012",
+      "name": "指令の精霊龍 コマンデュオ",
+      "faces": [
+        {
+          "name": "指令の精霊龍 コマンデュオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、カードを１枚引く。その後自分の、進化ではない光のコスト５以下のクリーチャーを１体、手札からバトルゾーンに出してもよい。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-012",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "optional": true,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "color": "光",
+              "max": 5
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "08fc74852dca9607ef9f5e8ce18377680261e7b0bc08a40f1956c1d4b35fa5dc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr17-058",
+      "name": "真紅の精霊龍 レッドローズ",
+      "faces": [
+        {
+          "name": "真紅の精霊龍 レッドローズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、カードを１枚引く。\nマナ武装 ３：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンに光のカードが３枚以上あれば、進化ではない光のコスト４以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-058",
+      "spec": {
+        "g527ExtraEntry": [
+          {
+            "label": "カードを1枚引く",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1
+              }
+            ]
+          },
+          {
+            "label": "マナ武装3で光のクリーチャーを出す",
+            "defs": [
+              {
+                "op": "IfOwn",
+                "filter": {
+                  "g267Mana": {
+                    "color": "光",
+                    "n": 3
+                  }
+                },
+                "defs": [
+                  {
+                    "op": "Select",
+                    "origin": "hand",
+                    "n": 1,
+                    "optional": true,
+                    "deploy": true,
+                    "filter": {
+                      "creature": true,
+                      "nonEvolution": true,
+                      "color": "光",
+                      "max": 4
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-058.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "a625f7a8e0cc949e0969625666cb1a5ede3feba9d7f6e1a7d8b7e43be8b074b0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr17-010",
+      "name": "革命類突進目 トリケラX",
+      "faces": [
+        {
+          "name": "革命類突進目 トリケラX",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "進化-自分の自然のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが攻撃する時、このクリーチャーよりパワーの小さい相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\n革命２―自分のシールドが２つ以下なら、このクリーチャーのパワーを+9000し、「Q・ブレイカー」を与える。",
+          "race": "ジュラシック・コマンド・ドラゴン/革命軍",
+          "powerText": "9000+",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-010",
+      "spec": {
+        "evolution": {
+          "civilization": "自然"
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "TargetBelowSource692",
+            "to": "mana",
+            "g199Power": true
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g265ShieldsMax": 2
+          },
+          "grants": {
+            "power": 9000,
+            "breaker": 4,
+            "g633DoubleBreaker": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "7827ff2eacbae84b9b3f70b00be052a2563189b8a744ef3c4aee686aeac73ed6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr17-051",
+      "name": "音速 スパナー",
+      "faces": [
+        {
+          "name": "音速 スパナー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーのパワーを、相手のシールドゾーンにあるカード１枚につき-1000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "ヒューマノイド爆/侵略者",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-051",
+      "spec": {
+        "power": 5000,
+        "g207CountPower": {
+          "zone": "shields",
+          "g333ShieldCards": true,
+          "opponent": true,
+          "amount": -1000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr17-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "b706590c7e28573c4a6b46930c65d4f4f353ef8244b607e3275487423c6d9654",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm25ex1-070",
+      "canonicalId": "dmr17-012",
+      "name": "指令の精霊龍 コマンデュオ",
+      "faces": [
+        {
+          "name": "指令の精霊龍 コマンデュオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが出た時、カードを１枚引く。その後、光のコスト５以下の進化ではないクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-070",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex1-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "e980be127babe3ca3c09bf8f0db3006cec4e1b976795f5f93a004ed38568334b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd30-009",
+      "canonicalId": "dmr17-012",
+      "name": "指令の精霊龍 コマンデュオ",
+      "faces": [
+        {
+          "name": "指令の精霊龍 コマンデュオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、カードを１枚引く。その後、自分の光のコスト５以下の進化ではないクリーチャーを１体、手札からバトルゾーンに出してもよい。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd30-009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd30-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "35e5f29514b5bd11d25edc0780a76dd4a6e830d4602bd9aa545b26ca74e2ff5a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd28-011",
+      "canonicalId": "dmr17-012",
+      "name": "指令の精霊龍 コマンデュオ",
+      "faces": [
+        {
+          "name": "指令の精霊龍 コマンデュオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、カードを１枚引く。その後、自分の進化ではない光のコスト５以下のクリーチャーを１体、手札からバトルゾーンに出してもよい。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd28-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd28-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "481eec726bdede199d63e677dc8e9165ee4171fadfda26d6d0f5319261f88d51",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy14-025",
+      "canonicalId": "dmr17-012",
+      "name": "指令の精霊龍 コマンデュオ",
+      "faces": [
+        {
+          "name": "指令の精霊龍 コマンデュオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、カードを１枚引く。その後、進化ではない光のコスト５以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-025",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy14-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "b8c433855a3b293f69af348a37d0becb0d6d8253aab6e67d6f7faaee5ee79c4e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex1-071",
+      "canonicalId": "dmr17-058",
+      "name": "真紅の精霊龍 レッドローズ",
+      "faces": [
+        {
+          "name": "真紅の精霊龍 レッドローズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが出た時、カードを１枚引く。\nマナ武装３：このクリーチャーが出た時、自分のマナゾーンに光のカードが３枚以上あれば、光のコスト４以下の進化ではないクリーチャーを１体、自分の手札から出してもよい。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-071",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex1-071.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "453cfe0f0a0f399b859bce1f2eb052be5a3a303d55f4602f9ab5cc76a69f350c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd28-013",
+      "canonicalId": "dmr17-058",
+      "name": "真紅の精霊龍 レッドローズ",
+      "faces": [
+        {
+          "name": "真紅の精霊龍 レッドローズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、カードを１枚引く。\nマナ武装 ３：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンに光のカードが３枚以上あれば、進化ではない光のコスト４以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd28-013",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd28-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "239cc8173c7c2080657b3918b328939ba4fe510ebaf4434ea39b94e83615d733",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy14-065",
+      "canonicalId": "dmr17-058",
+      "name": "真紅の精霊龍 レッドローズ",
+      "faces": [
+        {
+          "name": "真紅の精霊龍 レッドローズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、カードを１枚引く。\nマナ武装 ３：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンに光のカードが３枚以上あれば、進化ではない光のコスト４以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-065",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy14-065.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "7af7506e84aa87177111f63afe2e80cf8882863b21ed51d8b410d8daab973baa",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr17-012": 4,
+      "dmr17-058": 4,
+      "dmr17-010": 4,
+      "dmr17-051": 4,
+      "dm25ex1-070": 4,
+      "dmd30-009": 4,
+      "dmd28-011": 4,
+      "promoy14-025": 4,
+      "dm25ex1-071": 4,
+      "dmd28-013": 4,
+      "promoy14-065": 4
+    }
+  }
+}

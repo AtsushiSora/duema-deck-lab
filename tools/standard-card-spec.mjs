@@ -3435,6 +3435,45 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=999&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const entry='このクリーチャーがバトルゾーンに出た時',modernEntry='このクリーチャーが出た時';
+  const draw={op:'Draw',n:1};
+  const deployLight=max=>({op:'Select',origin:'hand',n:1,optional:true,deploy:true,
+   filter:{creature:true,nonEvolution:true,color:'光',max}});
+  if(f.typeText==='クリーチャー'){
+   const double='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';
+   const drawThen=entry+'カードを1枚引く。その後';
+   const oldDeploy5='進化ではない光のコスト5以下のクリーチャーを1体';
+   const play5='手札からバトルゾーンに出してもよい。';
+   if((['dmr17-012','dmd28-011'].includes(d.id)&&text===double+drawThen+'自分の'+oldDeploy5+play5)||
+    (d.id==='promoy14-025'&&text===double+drawThen+oldDeploy5+'自分の'+play5)||
+    (d.id==='dmd30-009'&&text===double+drawThen+'自分の光のコスト5以下の進化ではないクリーチャーを1体'+play5)||
+    (d.id==='dm25ex1-070'&&text===double+modernEntry+'カードを1枚引く。その後光のコスト5以下の進化ではないクリーチャーを1体自分の手札から出してもよい。'))
+    return {breaker:2,effect:'sixPhoto',g34Tasks:[draw,deployLight(5)]};
+   const armed3=entry=>'マナ武装3:'+entry+'自分のマナゾーンに光のカードが3枚以上あれば';
+   if((['dmr17-058','dmd28-013','promoy14-065'].includes(d.id)&&text===entry+'カードを1枚引く。'+armed3(entry)+
+    '進化ではない光のコスト4以下のクリーチャーを1体自分の手札からバトルゾーンに出してもよい。')||
+    (d.id==='dm25ex1-071'&&text===modernEntry+'カードを1枚引く。'+armed3(modernEntry)+
+    '光のコスト4以下の進化ではないクリーチャーを1体自分の手札から出してもよい。'))
+    return {g527ExtraEntry:[
+     {label:'カードを1枚引く',defs:[draw]},
+     {label:'マナ武装3で光のクリーチャーを出す',defs:[
+      {op:'IfOwn',filter:{g267Mana:{color:'光',n:3}},defs:[deployLight(4)]}
+     ]}
+    ]};
+   if(d.id==='dmr17-051'&&text===
+    'このクリーチャーのパワーを相手のシールドゾーンにあるカード1枚につき-1000する。(パワー0以下のクリーチャーは破壊される)')
+    // The official detail omits power. The official card image shows 5000−.
+    return {power:5000,g207CountPower:countPower207(text,phase)};
+  }
+  if(d.id==='dmr17-010'&&f.typeText==='進化クリーチャー'&&text===
+   '進化-自分の自然のクリーチャー1体の上に置く。W・ブレイカー'+
+   'このクリーチャーが攻撃する時このクリーチャーよりパワーの小さい相手のクリーチャーを1体選び持ち主のマナゾーンに置く。'+
+   '革命2―自分のシールドが2つ以下ならこのクリーチャーのパワーを+9000し「Q・ブレイカー」を与える。')
+   return {evolution:{civilization:'自然'},breaker:2,g34Attack:[{op:'TargetBelowSource692',to:'mana',g199Power:true}],
+    g260Self:{filter:{g265ShieldsMax:2},grants:{power:9000,breaker:4,g633DoubleBreaker:true}}};
+ }
  if(phase>=998&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const entry='このクリーチャーをバトルゾーンに出した時';

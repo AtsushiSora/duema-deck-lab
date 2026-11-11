@@ -203685,23 +203685,183 @@
       "g998DragonEntryFight": true,
       "supportBatch": "phase-998",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-012",
+      "name": "指令の精霊龍 コマンデュオ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、カードを１枚引く。その後自分の、進化ではない光のコスト５以下のクリーチャーを１体、手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-012",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "optional": true,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "color": "光",
+            "max": 5
+          }
+        }
+      ],
+      "supportBatch": "phase-999",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-058",
+      "name": "真紅の精霊龍 レッドローズ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "このクリーチャーがバトルゾーンに出た時、カードを１枚引く。\nマナ武装 ３：このクリーチャーがバトルゾーンに出た時、自分のマナゾーンに光のカードが３枚以上あれば、進化ではない光のコスト４以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-058",
+      "limit": 4,
+      "g527ExtraEntry": [
+        {
+          "label": "カードを1枚引く",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1
+            }
+          ]
+        },
+        {
+          "label": "マナ武装3で光のクリーチャーを出す",
+          "defs": [
+            {
+              "op": "IfOwn",
+              "filter": {
+                "g267Mana": {
+                  "color": "光",
+                  "n": 3
+                }
+              },
+              "defs": [
+                {
+                  "op": "Select",
+                  "origin": "hand",
+                  "n": 1,
+                  "optional": true,
+                  "deploy": true,
+                  "filter": {
+                    "creature": true,
+                    "nonEvolution": true,
+                    "color": "光",
+                    "max": 4
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-999",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-010",
+      "name": "革命類突進目 トリケラX",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "ジュラシック・コマンド・ドラゴン/革命軍",
+      "text": "進化-自分の自然のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが攻撃する時、このクリーチャーよりパワーの小さい相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。\n革命２―自分のシールドが２つ以下なら、このクリーチャーのパワーを+9000し、「Q・ブレイカー」を与える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-010",
+      "limit": 4,
+      "evolution": {
+        "civilization": "自然"
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "TargetBelowSource692",
+          "to": "mana",
+          "g199Power": true
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g265ShieldsMax": 2
+        },
+        "grants": {
+          "power": 9000,
+          "breaker": 4,
+          "g633DoubleBreaker": true
+        }
+      },
+      "supportBatch": "phase-999",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr17-051",
+      "name": "音速 スパナー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 5000,
+      "race": "ヒューマノイド爆/侵略者",
+      "text": "このクリーチャーのパワーを、相手のシールドゾーンにあるカード１枚につき-1000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr17-051",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "shields",
+        "g333ShieldCards": true,
+        "opponent": true,
+        "amount": -1000
+      },
+      "supportBatch": "phase-999",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 998,
+    "phase": 999,
     "checkedAt": "2026-11-12",
-    "baseCount": 6912,
-    "newEffectCards": 3,
+    "baseCount": 6915,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6915,
+    "totalCount": 6919,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37175/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37176/",
-      "https://dm.takaratomy.co.jp/rule/qa/31825/",
-      "https://dm.takaratomy.co.jp/rule/qa/31824/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31650/"
+      "https://dm.takaratomy.co.jp/rule/qa/31724/",
+      "https://dm.takaratomy.co.jp/rule/qa/40637/",
+      "https://dm.takaratomy.co.jp/rule/qa/41152/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37256/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37429/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -221705,6 +221865,26 @@
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
           "https://dm.takaratomy.co.jp/rule/qa/32484/",
           "https://dm.takaratomy.co.jp/rule/qa/43078/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 998,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6912,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6915,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37175/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37176/",
+          "https://dm.takaratomy.co.jp/rule/qa/31825/",
+          "https://dm.takaratomy.co.jp/rule/qa/31824/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31650/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
