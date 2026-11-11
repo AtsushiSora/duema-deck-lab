@@ -205129,26 +205129,252 @@
       ],
       "supportBatch": "phase-1007",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-064",
+      "name": "族長の無双弓",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のアンタップしているクリーチャーを１体選び、持ち主のマナゾーンに置く。\nマナ武装 ２：自分のマナゾーンに多色カードが２枚以上あれば、次の自分のターンのはじめまで、自分のクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-064",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "mana",
+          "toOwnerMana": true,
+          "filter": {
+            "untapped": true
+          }
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g267Mana": {
+              "n": 2,
+              "multi": true
+            }
+          },
+          "defs": [
+            {
+              "op": "GroupGrant364",
+              "owner": "self",
+              "filter": {
+                "creature": true
+              },
+              "spell": true,
+              "grant": {
+                "blocker": true
+              },
+              "g521UntilStart": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1008",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-003",
+      "name": "暗黒貴族ウノドス・トレス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ダークロード",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を墓地に置く。その後、コスト１のクリーチャー、コスト２のクリーチャー、コスト３のクリーチャーをそれぞれ１体、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-003",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 3
+        },
+        {
+          "op": "DeploySeries875",
+          "origin": "grave",
+          "costs": [
+            1,
+            2,
+            3
+          ],
+          "filter": {
+            "creature": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1008",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-070",
+      "name": "レインボー・ヘル",
+      "civ": "闇/火",
+      "civilizations": [
+        "闇",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを−3000する。（パワー０以下のクリーチャーは破壊される）\nマナ武装 ２：自分のマナゾーンに多色カードが２枚以上あれば、このターン、自分のクリーチャーすべてのパワーを、バトル中+2000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-070",
+      "abilityErrata": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-070.jpg",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを−3000する。（パワー０以下のクリーチャーは破壊される）\nマナ武装 ２：自分のマナゾーンに多色カードが２枚以上あれば、このターン、自分のクリーチャーすべてのパワーを、バトル中+2000する。"
+      },
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "power": -3000,
+          "g242PowerMinus": true,
+          "spell": true
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g267Mana": {
+              "n": 2,
+              "multi": true
+            }
+          },
+          "defs": [
+            {
+              "op": "GroupPower",
+              "owner": "self",
+              "filter": {
+                "creature": true
+              },
+              "spell": true,
+              "power": 2000,
+              "g446BattleOnly": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1008",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-047",
+      "name": "卓球の玉 ポンピン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3500,
+      "race": "ジャスティス・オーブ",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分の光と水を両方持つクリーチャーがバトルゾーンに出た時、または光と水を両方持つ呪文を唱えた時、相手のクリーチャーを１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-047",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g251EntryDraw": {
+        "filter": {
+          "creature": true,
+          "colorsAll": [
+            "光",
+            "水"
+          ]
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ]
+      },
+      "g204SpellWatch": {
+        "who": "self",
+        "colorsAll": [
+          "光",
+          "水"
+        ],
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1008",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-006",
+      "name": "賢犬の精霊龍 ロイヤルワン",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "エンジェル・ドラゴン/革命軍",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n光または水の呪文を自分の手札から唱えた時、その呪文よりコストが小さいクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-006",
+      "limit": 4,
+      "g204SpellWatch": {
+        "who": "self",
+        "origin": "hand",
+        "colorsAny": [
+          "光",
+          "水"
+        ],
+        "defs": [
+          {
+            "op": "CastCostDeploy595",
+            "below": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1008",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1007,
+    "phase": 1008,
     "checkedAt": "2026-11-12",
-    "baseCount": 6951,
+    "baseCount": 6956,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 6956,
+    "totalCount": 6961,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/32408/",
-      "https://dm.takaratomy.co.jp/rule/qa/33262/",
-      "https://dm.takaratomy.co.jp/rule/qa/33267/",
-      "https://dm.takaratomy.co.jp/rule/qa/33332/",
-      "https://dm.takaratomy.co.jp/rule/qa/34226/",
-      "https://dm.takaratomy.co.jp/rule/qa/47380/",
-      "https://dm.takaratomy.co.jp/coverage/dmgp06_f04/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35971/"
+      "https://dm.takaratomy.co.jp/rule/qa/31611/",
+      "https://dm.takaratomy.co.jp/rule/qa/33425/",
+      "https://dm.takaratomy.co.jp/rule/qa/46608/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36821/",
+      "https://dm.takaratomy.co.jp/rule/qa/39858/",
+      "https://dm.takaratomy.co.jp/rule/qa/42650/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37680/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -223335,6 +223561,29 @@
           "https://dm.takaratomy.co.jp/rule/qa/47896/",
           "https://dm.takaratomy.co.jp/rule/qa/31824/",
           "https://dm.takaratomy.co.jp/coverage/dmnt16_f03_b/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1007,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6951,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 6956,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/32408/",
+          "https://dm.takaratomy.co.jp/rule/qa/33262/",
+          "https://dm.takaratomy.co.jp/rule/qa/33267/",
+          "https://dm.takaratomy.co.jp/rule/qa/33332/",
+          "https://dm.takaratomy.co.jp/rule/qa/34226/",
+          "https://dm.takaratomy.co.jp/rule/qa/47380/",
+          "https://dm.takaratomy.co.jp/coverage/dmgp06_f04/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35971/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

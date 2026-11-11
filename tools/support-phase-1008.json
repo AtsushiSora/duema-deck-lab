@@ -1,0 +1,316 @@
+{
+  "phase": 1008,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6956,
+  "description": "族長の無双弓、暗黒貴族ウノドス・トレス、レインボー・ヘル、卓球の玉 ポンピン、賢犬の精霊龍 ロイヤルワンの公式能力を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/31611/",
+    "https://dm.takaratomy.co.jp/rule/qa/33425/",
+    "https://dm.takaratomy.co.jp/rule/qa/46608/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36821/",
+    "https://dm.takaratomy.co.jp/rule/qa/39858/",
+    "https://dm.takaratomy.co.jp/rule/qa/42650/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37680/"
+  ],
+  "cards": [
+    {
+      "id": "dmr23-064",
+      "name": "族長の無双弓",
+      "faces": [
+        {
+          "name": "族長の無双弓",
+          "typeText": "呪文",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のアンタップしているクリーチャーを１体選び、持ち主のマナゾーンに置く。\nマナ武装 ２：自分のマナゾーンに多色カードが２枚以上あれば、次の自分のターンのはじめまで、自分のクリーチャーすべてに「ブロッカー」を与える。（「ブロッカー」を持つクリーチャーをタップして、相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-064",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "toOwnerMana": true,
+            "filter": {
+              "untapped": true
+            }
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g267Mana": {
+                "n": 2,
+                "multi": true
+              }
+            },
+            "defs": [
+              {
+                "op": "GroupGrant364",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                },
+                "spell": true,
+                "grant": {
+                  "blocker": true
+                },
+                "g521UntilStart": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-064.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "3f3c5a0b2377cfa5f18604d3fc7a37700b92fdd366536f7b42f98eab53d72d63",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr22-003",
+      "name": "暗黒貴族ウノドス・トレス",
+      "faces": [
+        {
+          "name": "暗黒貴族ウノドス・トレス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から３枚を墓地に置く。その後、コスト１のクリーチャー、コスト２のクリーチャー、コスト３のクリーチャーをそれぞれ１体、自分の墓地からバトルゾーンに出す。",
+          "race": "ダークロード",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-003",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 3
+          },
+          {
+            "op": "DeploySeries875",
+            "origin": "grave",
+            "costs": [
+              1,
+              2,
+              3
+            ],
+            "filter": {
+              "creature": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "9adcbcfa088bb726ad00e27a67a7e4270aaea74a5d6a9a698409f58cca364cd4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-070",
+      "name": "レインボー・ヘル",
+      "faces": [
+        {
+          "name": "レインボー・ヘル",
+          "typeText": "呪文",
+          "civilizationText": "闇/火",
+          "civilizations": [
+            "闇",
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを_3000する。（パワー０以下のクリーチャーは破壊される）\nマナ武装 ２：自分のマナゾーンに多色カードが２枚以上あれば、このターン、自分のクリーチャーすべてのパワーを、バトル中+2000する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-070",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "power": -3000,
+            "g242PowerMinus": true,
+            "spell": true
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g267Mana": {
+                "n": 2,
+                "multi": true
+              }
+            },
+            "defs": [
+              {
+                "op": "GroupPower",
+                "owner": "self",
+                "filter": {
+                  "creature": true
+                },
+                "spell": true,
+                "power": 2000,
+                "g446BattleOnly": true
+              }
+            ]
+          }
+        ]
+      },
+      "errata": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-070.jpg",
+        "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを−3000する。（パワー０以下のクリーチャーは破壊される）\nマナ武装 ２：自分のマナゾーンに多色カードが２枚以上あれば、このターン、自分のクリーチャーすべてのパワーを、バトル中+2000する。"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "e9a0e12abe568401978ea249094e864d4307641e09f17d44acc525b509eb4645",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-047",
+      "name": "卓球の玉 ポンピン",
+      "faces": [
+        {
+          "name": "卓球の玉 ポンピン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分の光と水を両方持つクリーチャーがバトルゾーンに出た時、または光と水を両方持つ呪文を唱えた時、相手のクリーチャーを１体選び、タップする。",
+          "race": "ジャスティス・オーブ",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-047",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g251EntryDraw": {
+          "filter": {
+            "creature": true,
+            "colorsAll": [
+              "光",
+              "水"
+            ]
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "tap": true
+            }
+          ]
+        },
+        "g204SpellWatch": {
+          "who": "self",
+          "colorsAll": [
+            "光",
+            "水"
+          ],
+          "defs": [
+            {
+              "op": "Target",
+              "tap": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "171fa6aee22fcb2e60585589d2d61fcc8e3387602755ccacf7c59e4d6a51e99c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-006",
+      "name": "賢犬の精霊龍 ロイヤルワン",
+      "faces": [
+        {
+          "name": "賢犬の精霊龍 ロイヤルワン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n光または水の呪文を自分の手札から唱えた時、その呪文よりコストが小さいクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "エンジェル・ドラゴン/革命軍",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-006",
+      "spec": {
+        "g204SpellWatch": {
+          "who": "self",
+          "origin": "hand",
+          "colorsAny": [
+            "光",
+            "水"
+          ],
+          "defs": [
+            {
+              "op": "CastCostDeploy595",
+              "below": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "fa18f10100f8baf344901f3f1f8600ea580a6dfc7b5c3aafe2c7f8707588e4f8",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr23-064": 4,
+      "dmr22-003": 4,
+      "dmr23-070": 4,
+      "dmr23-047": 4,
+      "dmr23-006": 4
+    }
+  }
+}

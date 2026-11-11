@@ -3435,6 +3435,51 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=1008&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const manaTap='マナゾーンに置く時このカードはタップして置く。';
+  const trigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  const manaArmor='マナ武装2:自分のマナゾーンに多色カードが2枚以上あれば';
+  const withManaArmor=def=>({op:'IfOwn',filter:{g267Mana:{n:2,multi:true}},defs:[def]});
+  const allies={owner:'self',filter:{creature:true},spell:true};
+  if(f.typeText==='呪文'&&f.civilizations.length===2){
+   if(d.id==='dmr23-064'&&text===manaTap+trigger+
+    '相手のアンタップしているクリーチャーを1体選び持ち主のマナゾーンに置く。'+manaArmor+
+    '次の自分のターンのはじめまで自分のクリーチャーすべてに「ブロッカー」を与える。'+
+    '(「ブロッカー」を持つクリーチャーをタップして相手クリーチャーの攻撃先をそのクリーチャーに変更してもよい)')
+    return {trigger:true,effect:'sixPhoto',g34Tasks:[
+     {op:'Target',to:'mana',toOwnerMana:true,filter:{untapped:true}},
+     withManaArmor({op:'GroupGrant364',...allies,grant:{blocker:true},g521UntilStart:true})
+    ]};
+   // The official card image prints −3000 where the database displays _3000.
+   if(d.id==='dmr23-070'&&text===manaTap+trigger+
+    '相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを_3000する。(パワー0以下のクリーチャーは破壊される)'+
+    manaArmor+'このターン自分のクリーチャーすべてのパワーをバトル中+2000する。')
+    return {trigger:true,effect:'sixPhoto',g34Tasks:[
+     {op:'Target',power:-3000,g242PowerMinus:true,spell:true},
+     withManaArmor({op:'GroupPower',...allies,power:2000,g446BattleOnly:true})
+    ]};
+  }
+  if(f.typeText==='クリーチャー'){
+   if(d.id==='dmr22-003'&&text==='W・ブレイカーこのクリーチャーがバトルゾーンに出た時'+
+    '自分の山札の上から3枚を墓地に置く。その後コスト1のクリーチャーコスト2のクリーチャーコスト3のクリーチャーをそれぞれ1体自分の墓地からバトルゾーンに出す。')
+    return {breaker:2,effect:'sixPhoto',g34Tasks:[
+     {op:'Mill',n:3},{op:'DeploySeries875',origin:'grave',costs:[1,2,3],filter:{creature:true}}
+    ]};
+   if(d.id==='dmr23-047'&&text===
+    'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+    'このクリーチャーは相手プレイヤーを攻撃できない。'+
+    '自分の光と水を両方持つクリーチャーがバトルゾーンに出た時または光と水を両方持つ呪文を唱えた時相手のクリーチャーを1体選びタップする。'){
+    const colorsAll=['光','水'],defs=[{op:'Target',tap:true}];
+    return {blocker:true,noPlayerAttack:true,
+     g251EntryDraw:{filter:{creature:true,colorsAll},defs},
+     g204SpellWatch:{who:'self',colorsAll,defs}};
+   }
+   if(d.id==='dmr23-006'&&f.civilizations.length===2&&text===manaTap+
+    '光または水の呪文を自分の手札から唱えた時その呪文よりコストが小さいクリーチャーを1体自分の手札からバトルゾーンに出してもよい。')
+    return {g204SpellWatch:{who:'self',origin:'hand',colorsAny:['光','水'],defs:[{op:'CastCostDeploy595',below:true}]}};
+  }
+ }
  if(phase>=1007&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const manaTap='マナゾーンに置く時このカードはタップして置く。';

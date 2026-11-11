@@ -599,8 +599,16 @@ export function createSixPhotoRules(api){
  // Use events come from actual summons and spell casts, not arbitrary battlefield entries.
  function useBlockers524(s,caster){for(const x of creatures(s,1-caster))if(!x.sealed&&effective(x,s).g524OpponentUseBlocker)queue(s,1-caster,x,[{op:'UseBlocker524'}]);}
  const useColorsMatch=(watch,c)=>(!watch.color||colors(c).includes(watch.color))&&
-  (!watch.colorsAny||watch.colorsAny.some(color=>colors(c).includes(color)))&&(!watch.multicolor||colors(c).length>1);
- const spellWatches=(s,caster,c)=>[s.active,1-s.active].flatMap(owner=>creatures(s,owner).filter(x=>!x.sealed).flatMap(x=>{const watch=effective(x,s).g204SpellWatch;return watch&&(watch.who==='both'||(watch.who==='self'?owner===caster:owner!==caster))&&(!watch.opponentTurn||s.active!==owner)&&useColorsMatch(watch,c)&&(!watch.race||race(c,watch.race))&&(!watch.g766Once||!used(s,'g766SpellUse',x))?[{owner,x,watch}]:[];}));
+  (!watch.colorsAny||watch.colorsAny.some(color=>colors(c).includes(color)))&&
+  (!watch.colorsAll||watch.colorsAll.every(color=>colors(c).includes(color)))&&(!watch.multicolor||colors(c).length>1);
+ const spellWatches=(s,caster,c,origin='hand')=>[s.active,1-s.active].flatMap(owner=>
+  creatures(s,owner).filter(x=>!x.sealed).flatMap(x=>{
+   const watch=effective(x,s).g204SpellWatch;
+   if(!watch||(watch.who!=='both'&&owner!==(watch.who==='self'?caster:1-caster)))return [];
+   return (!watch.opponentTurn||s.active!==owner)&&(!watch.origin||watch.origin===origin)&&
+    useColorsMatch(watch,c)&&(!watch.race||race(c,watch.race))&&
+    (!watch.g766Once||!used(s,'g766SpellUse',x))?[{owner,x,watch}]:[];
+  }));
  // Use the already decorated target stats and suppress breaker calculation on sources to avoid power recursion.
  function auraPower(s,x,c){const owner=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));if(owner<0||x.sealed||c.type!=='creature')return 0;const fits=f=>(!f.g856Souls||f.g856Souls.some(soul=>hasSoul(card(x),soul)))&&(!f.creature||c.type==='creature')&&(!f.color||colors(c).includes(f.color))&&(!f.race||race(c,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(c,q)))&&(!f.g220NameAny||f.g220NameAny.some(q=>String(c.name).normalize('NFKC').includes(q.normalize('NFKC'))))&&(!f.any||f.any.some(fits))&&(!f.evolution||api.isEvolution(x))&&(f.min===undefined||cost(c)>=f.min)&&(!f.tapped||x.tapped)&&(!f.g436Crossed||ownCondition(s,owner,{g436Crossed:true},x.uid));let bonus=0;for(const sourceOwner of[0,1])for(const source of s.players[sourceOwner].battle){const raw=api.zoneCard(s,sourceOwner,source);if(source.sealed||(!raw.g205Aura&&!raw.g260Self?.grants?.g205Aura&&!raw.g268ManaGrants?.some(r=>r.grants?.g205Aura))||!api.isCreature(s,source)&&!(raw.type==='field'&&raw.d2Field))continue;const aura=effective(source,s,true).g205Aura;if(!aura||aura.sourceTapped!==undefined&&aura.sourceTapped!==!!source.tapped||!aura.both&&owner!==(aura.opponent?1-sourceOwner:sourceOwner)||aura.other&&source.uid===x.uid||aura.turn==='own'&&s.active!==sourceOwner||aura.turn==='opponent'&&s.active===sourceOwner||!fits(aura.filter))continue;bonus+=aura.power;}return bonus;}
  // Counting characteristics must not calculate power/breakers on the counted cards.
@@ -2106,14 +2114,21 @@ export function createSixPhotoRules(api){
   moveZoneSelection583(s,{...t,...fromGrave},list(s,{...t,...fromGrave}).map(({x})=>x));
   break;
  }
- case'g34_GroupPower':
+ case'g34_GroupPower':{
+  const duration={expires:t.g521UntilStart?'start':'end',who:t.g521UntilStart?t.p:s.active};
+  const spell=t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{};
   for(const {p,y} of groupPowerRows(s,t)){
-   (y.powerModifiers??=[]).push({amount:t.g561DarkMana?0:p===t.p&&t.ownPower!==undefined?t.ownPower:t.power,
-    ...(t.g561DarkMana?{g561DarkMana:t.p}:{}),expires:t.g521UntilStart?'start':'end',who:t.g521UntilStart?t.p:s.active,
-    ...(t.g561AttackOnly?{attackOnly:true}:{}),...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});
+   const amount=t.g561DarkMana?0:p===t.p&&t.ownPower!==undefined?t.ownPower:t.power;
+   if(t.g446BattleOnly){
+    (s.extLimits??=[]).push({kind:'g446BattlePower',ref:{uid:y.uid,incarnation:y.incarnation||0},amount,...duration,...spell});
+   }else{
+    (y.powerModifiers??=[]).push({amount,...duration,...spell,
+     ...(t.g561DarkMana?{g561DarkMana:t.p}:{}),...(t.g561AttackOnly?{attackOnly:true}:{})});
+   }
    if(t.g947BlockBreak)(y.g34Grants??=[]).push(timedGrant335(s,t,{g947BlockBreak:true}));
   }
   break;
+ }
  case'g34_DeathStats969':{
   const host=sourceHost474(s,t);
   if(host&&!host.x.sealed&&api.isCreature(s,host.x))start(s,t,[
@@ -3322,10 +3337,12 @@ export function createSixPhotoRules(api){
  }
  case'g34_CastCostDeploy595':{
   if(t.g766Below&&used(s,'g766SpellUse',t))break;
+  const below=t.below||t.g766Below;
   const filter=t.g966Light?{g228Face:{type:'creature',color:'光',max:t.castCost}}:
-   t.g766Below?{creature:true,belowCost:t.castCost}:{creature:true,nonEvolution:true,exactCost:t.castCost};
+   below?{creature:true,belowCost:t.castCost}:{creature:true,nonEvolution:true,exactCost:t.castCost};
   start(s,t,[{op:'Select',origin:'hand',n:1,deploy:true,g195HandDeploy:true,optional:true,filter,
-   ...(t.g766Below?{g766SpellUse:true,title:'唱えた呪文よりコストの小さいクリーチャーを出す（任意）'}:{}),
+   ...(below?{title:'唱えた呪文よりコストの小さいクリーチャーを出す（任意）'}:{}),
+   ...(t.g766Below?{g766SpellUse:true}:{}),
    ...(t.g966Light?{title:'唱えた呪文のコスト以下の光のクリーチャーを出す（任意）'}:{})}]);
   break;
  }
@@ -4347,7 +4364,7 @@ export function createSixPhotoRules(api){
     filter:{creature:true,...(max===Infinity?{}:{max}),...(t.g795OptionalNonEvolution?{nonEvolution:true}:{})}}]);
    break;
   }
-  if(v){const y=s.players[v.p].battle.find(y=>y.uid===v.uid);if(y){if(t.g792Once)(s.once??={})[onceKey792(t,t)]=s.turn;if(t.g805AddCivilization){put(s,{...t,op:'g34_ChooseCivilization805',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g503Stack){const n=api.allLayers(y).length;const effect=t.g503Stack==='opponentDestroy'?{op:'OpponentSelect',n,to:'grave'}:t.g503Stack==='opponentMinus'?{op:'Target',power:-2000*n,g242PowerMinus:true}:t.g503Stack==='shield'?{op:'ShieldTop',n,g779Simultaneous:true}:{op:t.g503Stack==='draw'?'DrawUpTo':'Ramp',n};start(s,t,[effect,...(t.after||[])]);break;}if(t.g467Destinations){put(s,{...t,op:'g34_TargetDestination467',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g235TapOrUntap){put(s,{...t,op:'g34_TapState235',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g565AttackLock)(y.g35NoAttack??=[]).push({turn:s.turn});if(t.g569WeakerBlock)(s.extLimits??=[]).push({kind:'g569WeakerBlock',ref:{uid:y.uid,incarnation:y.incarnation||0},spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1)),expires:'end',who:s.active});if(t.g567PlayerStop)stopPlayerAttack567(s,t,y);if(t.g190Freeze)freeze(s,t,v.p,y);if(t.g546Force)force546(s,t,v.p,y);if(t.g547OwnerShield)put(s,task('g34_ShieldTop',v.p,t.source,{n:1,controller:t.controller??t.p}));if(t.g631MillCost){const amount=cost(effective(y,s));start(s,t,[{op:'Mill',n:Number.isFinite(amount)?amount:'∞',...(t.g638OptionalMill?{optional:true}:{})}]);}if(t.to)move(s,[{player:v.p,uid:v.uid,to:t.to,destroy:t.to==='grave',tapped:!!t.tapped,...(t.to==='deckTop'?{orderDeckTop:true}:{}),...(t.faceUp?{faceUp:true}:{})}]);const wasTapped=y.tapped;if(t.tap)api.tap(s,v.p,y);const newlyTapped=!wasTapped&&y.tapped;
+  if(v){const y=s.players[v.p].battle.find(y=>y.uid===v.uid);if(y){if(t.g792Once)(s.once??={})[onceKey792(t,t)]=s.turn;if(t.g805AddCivilization){put(s,{...t,op:'g34_ChooseCivilization805',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g503Stack){const n=api.allLayers(y).length;const effect=t.g503Stack==='opponentDestroy'?{op:'OpponentSelect',n,to:'grave'}:t.g503Stack==='opponentMinus'?{op:'Target',power:-2000*n,g242PowerMinus:true}:t.g503Stack==='shield'?{op:'ShieldTop',n,g779Simultaneous:true}:{op:t.g503Stack==='draw'?'DrawUpTo':'Ramp',n};start(s,t,[effect,...(t.after||[])]);break;}if(t.g467Destinations){put(s,{...t,op:'g34_TargetDestination467',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g235TapOrUntap){put(s,{...t,op:'g34_TapState235',target:{...v,incarnation:y.incarnation||0}});break;}if(t.g565AttackLock)(y.g35NoAttack??=[]).push({turn:s.turn});if(t.g569WeakerBlock)(s.extLimits??=[]).push({kind:'g569WeakerBlock',ref:{uid:y.uid,incarnation:y.incarnation||0},spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1)),expires:'end',who:s.active});if(t.g567PlayerStop)stopPlayerAttack567(s,t,y);if(t.g190Freeze)freeze(s,t,v.p,y);if(t.g546Force)force546(s,t,v.p,y);if(t.g547OwnerShield)put(s,task('g34_ShieldTop',v.p,t.source,{n:1,controller:t.controller??t.p}));if(t.g631MillCost){const amount=cost(effective(y,s));start(s,t,[{op:'Mill',n:Number.isFinite(amount)?amount:'∞',...(t.g638OptionalMill?{optional:true}:{})}]);}if(t.to)move(s,[{player:v.p,uid:v.uid,to:t.to,destroy:t.to==='grave',tapped:!!t.tapped,...(t.toOwnerMana?{toOwnerMana:true}:{}),...(t.to==='deckTop'?{orderDeckTop:true}:{}),...(t.faceUp?{faceUp:true}:{})}]);const wasTapped=y.tapped;if(t.tap)api.tap(s,v.p,y);const newlyTapped=!wasTapped&&y.tapped;
    if(t.g988Lure)(s.g42Lures??=[]).push({p:t.p,uid:y.uid,incarnation:y.incarnation||0,source:t.source,cost:cost(card(t.source))});
    if(t.g676TapNames)tapNames676(s,y);if(t.g291UntapUntilSelf)(y.tapLocks??=[]).push(t.p);if(t.untap&&api.canUntap(y)){const was=y.tapped;y.tapped=false;if(was)combined.untapped(s,v.p,y);}if(t.lock){if(t.spell)(y.g170StartFreeze??=[]).push({spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});else y.skipUntap=true;}if(t.power)(y.powerModifiers??=[]).push({amount:t.power,expires:t.g521UntilStart?'start':'end',who:t.g521UntilStart?t.p:s.active,...(t.g337PowerAttacker?{attackOnly:true,grantedAbility:true}:{}),spellSource:t.spell? t.source:undefined,spellCost:t.spell?cost(faces(card(t.source)).at(-1)):undefined});if(t.grant)applyGrant(s,t,y);if(t.g465DestroySafe)(s.extLimits??=[]).push({kind:'g409AttackEffect',player:v.p,ref:{uid:y.uid,incarnation:y.incarnation||0},source:t.source,effect:'destroySafe',expires:t.g465DestroySafe,who:t.g465DestroySafe==='start'?t.p:s.active});if(t.g455ExtraBreak)(s.extLimits??=[]).push({kind:'g412ExtraBreak',player:v.p,ref:{uid:y.uid,incarnation:y.incarnation||0},source:t.source,amount:t.g455ExtraBreak,expires:'end',who:s.active,...(t.g969FollowControl?{g969FollowControl:true}:{}),...(t.spell?{spellCost:cost(faces(card(t.source)).at(-1))}:{})});if(t.g821DrawIfEvolution&&api.isEvolution(y))start(s,t,[{op:'DrawUpTo',n:1}]);if(t.seal)api.seal(s,v.p,[y.uid]);if(t.g587AfterSelection&&(!t.g987AfterNewTap||newlyTapped))start(s,t,t.after);}}if(t.after&&!t.g587AfterSelection)start(s,t,t.after);
   if(t.g1005ManaArmedFollowup&&v)start(s,t,[{
@@ -4666,7 +4683,10 @@ export function createSixPhotoRules(api){
   return !!c.g34AlwaysWin||!!c.g587AttackWins&&attacking587(s,x)||!!c.g587UntappedWins&&!x.tapped||
    hooks.attackEffect409(s,x,'win')||hooks.zeroSafe(s,x)||battleAuras466(s,x).some(r=>r.win);
  },
- battlePower446:(s,x)=>(s?.extLimits||[]).filter(l=>l.kind==='g446BattlePower'&&s.players[l.player].battle.includes(x)&&api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)).reduce((n,l)=>n+l.amount,0),
+ battlePower446:(s,x)=>(s?.extLimits||[]).filter(l=>l.kind==='g446BattlePower'&&
+  (l.player===undefined||s.players[l.player].battle.includes(x))&&
+  (l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}))&&
+  api.allLayers(x).some(y=>y.uid===l.ref.uid&&(y.incarnation||0)===l.ref.incarnation)).reduce((n,l)=>n+l.amount,0),
  battlePower209,
  battleSafe:battleSafe466,
  battleAuraPower466(s,x,c){
@@ -4759,11 +4779,11 @@ export function createSixPhotoRules(api){
    if(card(source).g969FirstJudgeUntap&&!api.ignored(s,source)&&api.isCreature(s,source))
     send(s,p,source,'JudgeUntap969',{g399Attacker:ref},deferred);
  },
- spellCast(s,p,c){
+ spellCast(s,p,c,origin){
   useBlockers524(s,p);consumeReduction456(s,p,c);noncreatureUse448(s,p,c);countExecution(s,p,c);
   // The shared spell count has already recorded this cast, including free casts.
   const firstSpell=s.g37Spells?.[p]?.turn===s.turn&&s.g37Spells[p].n===1;
-  for(const {owner,x,watch}of spellWatches(s,p,c))
+  for(const {owner,x,watch}of spellWatches(s,p,c,origin))
    if(!watch.g965FirstSpell||firstSpell)
     queue(s,owner,x,watch.defs.map(d=>d.op==='CastCostDeploy595'?{...d,castCost:c.cost}:d));
   if(race(c,'魔導具'))magicToolUse976(s,p);
