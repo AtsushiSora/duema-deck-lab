@@ -1,0 +1,203 @@
+{
+  "phase": 995,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6902,
+  "description": "暴食の悪魔龍 グラトニー、熱血トレーニング、超熱血 ギラギラ・ドガッツ、傲慢の悪魔龍 スペルビアの公式能力を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31642/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34934/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37067/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37068/"
+  ],
+  "cards": [
+    {
+      "id": "dmr13-024",
+      "name": "暴食の悪魔龍 グラトニー",
+      "faces": [
+        {
+          "name": "暴食の悪魔龍 グラトニー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーが攻撃する時、自分のクリーチャーを好きな数破壊してもよい。こうして破壊したクリーチャー１体につき２枚、カードを引く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "デーモン・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-024",
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "self",
+            "to": "grave",
+            "n": "all",
+            "optional": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "g995DrawPerDestroyAttempt": 2,
+            "filter": {
+              "creature": true
+            },
+            "title": "破壊する自分のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-024.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "7043789c03519e24f064fccb74754165272b3bb361db2d2fc83a248198237f05",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-064",
+      "name": "熱血トレーニング",
+      "faces": [
+        {
+          "name": "熱血トレーニング",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このターン、バトルゾーンにある自分のクリーチャー１体は「攻撃中、このクリーチャーのパワーは、自分の墓地にある火のカード１枚につき+1000される」を得る。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-064",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "spell": true,
+            "grant": {
+              "g995GraveFire": true
+            },
+            "title": "攻撃中に墓地の火のカードでパワーが上がる自分のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-064.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "f351630d837dcf20ff8e53a3621162865899b500d2836d758bb210637d71045f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-s04",
+      "name": "超熱血 ギラギラ・ドガッツ",
+      "faces": [
+        {
+          "name": "超熱血 ギラギラ・ドガッツ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化V-自分のドラゴン２体の上に置く。\nこのクリーチャーが攻撃する時、このクリーチャーよりパワーが小さい相手のクリーチャーを２体まで破壊する。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-s04",
+      "spec": {
+        "evolution": {
+          "g31": true
+        },
+        "g31Evolution": {
+          "zone": "battle",
+          "conditions": [
+            {
+              "race": "ドラゴン"
+            },
+            {
+              "race": "ドラゴン"
+            }
+          ]
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "TargetBelowSource692",
+            "to": "grave",
+            "n": 2,
+            "optional": true,
+            "g199Power": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "b872e20d0308e0c6c4a01cce71e39b24b9f49af737fbd083ab1a201089c254b9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-006",
+      "name": "傲慢の悪魔龍 スペルビア",
+      "faces": [
+        {
+          "name": "傲慢の悪魔龍 スペルビア",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "T・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\n自分はゲームに勝てず、相手はゲームに負けない。",
+          "race": "デーモン・コマンド・ドラゴン",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-006",
+      "spec": {
+        "breaker": 3,
+        "g995OpponentCannotLose": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "86238dc943928ab711d5ff9895668703ab67e709014449a531c5593161b08f2d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr13-024": 4,
+      "dmr13-064": 4,
+      "dmr14-s04": 4,
+      "dmr13-006": 4
+    }
+  }
+}

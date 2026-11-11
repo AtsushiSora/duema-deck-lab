@@ -3435,6 +3435,26 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=995&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const attack='このクリーチャーが攻撃する時';
+  const triple='T・ブレイカー(このクリーチャーはシールドを3枚ブレイクする)';
+  if(d.id==='dmr13-024'&&f.typeText==='クリーチャー'&&text===attack+
+   '自分のクリーチャーを好きな数破壊してもよい。こうして破壊したクリーチャー1体につき2枚カードを引く。'+
+   'W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g34Attack:[{op:'Select',origin:'battle',owner:'self',to:'grave',n:'all',optional:true,
+    g173Targets:true,g193Select:true,g995DrawPerDestroyAttempt:2,filter:{creature:true},title:'破壊する自分のクリーチャーを選ぶ'}]};
+  if(d.id==='dmr13-064'&&f.typeText==='呪文'&&text===
+   'このターンバトルゾーンにある自分のクリーチャー1体は「攻撃中このクリーチャーのパワーは自分の墓地にある火のカード1枚につき+1000される」を得る。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',spell:true,grant:{g995GraveFire:true},
+    title:'攻撃中に墓地の火のカードでパワーが上がる自分のクリーチャーを1体選ぶ'}]};
+  if(d.id==='dmr14-s04'&&f.typeText==='進化クリーチャー'&&text===
+   '進化V-自分のドラゴン2体の上に置く。'+attack+'このクリーチャーよりパワーが小さい相手のクリーチャーを2体まで破壊する。'+triple)
+   return {evolution:{g31:true},g31Evolution:{zone:'battle',conditions:[{race:'ドラゴン'},{race:'ドラゴン'}]},
+    breaker:3,g34Attack:[{op:'TargetBelowSource692',to:'grave',n:2,optional:true,g199Power:true}]};
+  if(d.id==='dmr13-006'&&f.typeText==='クリーチャー'&&text===triple+'自分はゲームに勝てず相手はゲームに負けない。')
+   return {breaker:3,g995OpponentCannotLose:true};
+ }
  if(phase>=994&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const entry='このクリーチャーをバトルゾーンに出した時';

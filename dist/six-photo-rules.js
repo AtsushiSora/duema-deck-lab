@@ -975,6 +975,15 @@ export function createSixPhotoRules(api){
    return;
   }
   if(t.g583Group){moveZoneSelection583(s,t,t.rows||[],t.owner==='opponent'?1-t.p:t.p);return;}
+ if(t.g995DrawPerDestroyAttempt){
+  const targets=(t.rows||[]).filter(r=>creatures(s,r.p).some(x=>x.uid===r.uid&&!x.sealed));
+  if(targets.length){
+   // The same effect counts destruction attempts even if the move is replaced.
+   start(s,t,[{op:'Draw',n:targets.length*t.g995DrawPerDestroyAttempt}]);
+   move(s,targets.map(r=>({player:r.p,uid:r.uid,to:'grave',destroy:true,controller:t.controller??t.p})));
+  }
+  return;
+ }
  if(t.afterBattleSelect||t.g917BounceMatch){
   const moves=(t.rows||[]).filter(r=>r.origin==='battle'&&s.players[r.p].battle.some(x=>x.uid===r.uid))
    .map(r=>({player:r.p,uid:r.uid,to:t.to,controller:t.controller??t.p}));
@@ -3182,7 +3191,14 @@ export function createSixPhotoRules(api){
     .filter(y=>!y.sealed&&(t.g993OpponentSweepInclusive?currentPower506(s,y)<=threshold:currentPower506(s,y)<threshold))
     .map(y=>({player:p,uid:y.uid,to:'grave',destroy:true})));
    if(rows.length)move(s,rows);
-  }else start(s,t,[{op:'Target',to:t.to,optional:t.optional,...(t.anyOwner?{anyOwner:true}:{}),...(t.g179Other?{g179Other:true}:{}),filter:{belowPower:current===Infinity?'∞':current,...(t.g199Power?{g199Power:true}:{})}}]);
+  }else{
+   const filter={belowPower:current===Infinity?'∞':current,...(t.g199Power?{g199Power:true}:{})};
+   if(t.n>1)start(s,t,[{op:'Select',origin:'battle',owner:'opponent',n:t.n,to:t.to,optional:t.optional,
+    g173Targets:true,g193Select:true,filter:{creature:true,...filter},
+    title:'パワーが小さい相手のクリーチャーを'+t.n+'体まで選ぶ'}]);
+   else start(s,t,[{op:'Target',to:t.to,optional:t.optional,...(t.anyOwner?{anyOwner:true}:{}),
+    ...(t.g179Other?{g179Other:true}:{}),filter}]);
+  }
   break;
  }
  case'g34_TargetByOwnCount655':
@@ -4587,7 +4603,11 @@ export function createSixPhotoRules(api){
    return filter&&matches(s,p,x,filter);
   });
  },
- noLose(s,p){return(s.extLimits||[]).some(l=>l.kind==='g34NoLose'&&l.player===p)||active(s,p,'valhalla').some(()=>s.players[p].mana.filter(x=>api.manaColors(card(x),s,p).includes('光')).length>=9);},
+ noLose(s,p){
+  return (s.extLimits||[]).some(l=>l.kind==='g34NoLose'&&l.player===p)||
+   active(s,p,'valhalla').some(()=>s.players[p].mana.filter(x=>api.manaColors(card(x),s,p).includes('光')).length>=9)||
+   creatures(s,1-p).some(x=>!x.sealed&&effective(x,s).g995OpponentCannotLose);
+ },
  lossOptions(s,p){return s.players[p].mana.length>=8?active(s,p,'minogami').map(x=>opt(card(x).name+'：マナ8枚を山札の下に置く',{kind:'g34Mino',uid:x.uid},60,x.cardId)):[];},
  beginLoss(s,p,uid){const x=s.players[p].battle.find(x=>x.uid===uid);if(x)minoLoss(s,{op:'g34_Custom',name:'minoLoss',p,source:x.cardId,uid,selected:[]});},
  muku(s,p,x){return ninja(effective(x,s))?active(s,p,'mukujimmed').filter(y=>!used(s,'g34Muku',y)).map(y=>({uid:y.uid,key:key(y),cardId:y.cardId})):[];},

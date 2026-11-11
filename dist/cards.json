@@ -203164,24 +203164,151 @@
       ],
       "supportBatch": "phase-994",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-024",
+      "name": "暴食の悪魔龍 グラトニー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "デーモン・コマンド・ドラゴン",
+      "text": "このクリーチャーが攻撃する時、自分のクリーチャーを好きな数破壊してもよい。こうして破壊したクリーチャー１体につき２枚、カードを引く。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-024",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "self",
+          "to": "grave",
+          "n": "all",
+          "optional": true,
+          "g173Targets": true,
+          "g193Select": true,
+          "g995DrawPerDestroyAttempt": 2,
+          "filter": {
+            "creature": true
+          },
+          "title": "破壊する自分のクリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-995",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-064",
+      "name": "熱血トレーニング",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "このターン、バトルゾーンにある自分のクリーチャー１体は「攻撃中、このクリーチャーのパワーは、自分の墓地にある火のカード１枚につき+1000される」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-064",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "spell": true,
+          "grant": {
+            "g995GraveFire": true
+          },
+          "title": "攻撃中に墓地の火のカードでパワーが上がる自分のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-995",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-s04",
+      "name": "超熱血 ギラギラ・ドガッツ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 15000,
+      "race": "ガイアール・コマンド・ドラゴン",
+      "text": "進化V-自分のドラゴン２体の上に置く。\nこのクリーチャーが攻撃する時、このクリーチャーよりパワーが小さい相手のクリーチャーを２体まで破壊する。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-s04",
+      "limit": 4,
+      "evolution": {
+        "g31": true
+      },
+      "g31Evolution": {
+        "zone": "battle",
+        "conditions": [
+          {
+            "race": "ドラゴン"
+          },
+          {
+            "race": "ドラゴン"
+          }
+        ]
+      },
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "TargetBelowSource692",
+          "to": "grave",
+          "n": 2,
+          "optional": true,
+          "g199Power": true
+        }
+      ],
+      "supportBatch": "phase-995",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-006",
+      "name": "傲慢の悪魔龍 スペルビア",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 15000,
+      "race": "デーモン・コマンド・ドラゴン",
+      "text": "T・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\n自分はゲームに勝てず、相手はゲームに負けない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-006",
+      "limit": 4,
+      "breaker": 3,
+      "g995OpponentCannotLose": true,
+      "supportBatch": "phase-995",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 994,
+    "phase": 995,
     "checkedAt": "2026-11-12",
-    "baseCount": 6898,
+    "baseCount": 6902,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6902,
+    "totalCount": 6906,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37081/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37130/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37131/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37019/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37063/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37064/"
+      "https://dm.takaratomy.co.jp/rule/rulechange/31642/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/34934/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37067/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37068/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -221108,6 +221235,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/48916/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35844/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36936/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 994,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6898,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6902,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37081/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37130/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37131/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37019/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37063/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37064/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
