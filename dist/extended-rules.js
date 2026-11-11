@@ -105,13 +105,14 @@ export function createExtendedRules(api){
  // Evaluate shield-trigger permission independently of G・ストライク and S・バック.
  function triggerLocked597(s,p,c,remaining=s.players[p].shields.length,breaker){
   const other=1-p,field=creatures(s,other);
-  return field.some(x=>{
-   const lock=!x.sealed&&effective(x,s).g597TriggerLock;
-   return lock&&(!lock.type||lock.type===c.type)&&(!lock.tapped||x.tapped)
+  const applies=(x,own)=>{
+   const lock=!x.sealed&&!x.faceDown&&effective(x,s).g597TriggerLock;
+   return lock&&(!own||lock.both)&&(!lock.type||lock.type===c.type)&&(!lock.color||colors(c).includes(lock.color))&&(!lock.tapped||x.tapped)
     &&(!lock.ownBreak||x.uid===breaker?.uid&&(breaker.incarnation===undefined||(x.incarnation||0)===breaker.incarnation))
     &&(lock.minShields===undefined||remaining>=lock.minShields)
     &&(!lock.allColors||['光','水','闇','火','自然'].every(color=>field.some(y=>!y.sealed&&colors(effective(y,s)).includes(color))));
-  });
+  };
+  return field.some(x=>applies(x,false))||s.players[p].battle.some(x=>card(x).g597TriggerLock?.both&&api.isCreature(s,x)&&applies(x,true));
  }
  const put=(s,...tasks)=>{(s.extTasks??=[]).unshift(...tasks.filter(Boolean).map(t=>({...t,controller:t.controller??api.effectActor(s)??t.causedBy??t.p})));};
  const task=(op,p,source,more={})=>({op,p,source,...more});

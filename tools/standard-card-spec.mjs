@@ -3430,6 +3430,22 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=961&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(['dm19-028','dmx08-009'].includes(d.id)&&f.typeText==='呪文'&&text===
+   'S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)'+
+   '種族をひとつ選ぶ。選んだ種族の自分のクリーチャーを好きな数破壊する。その後その数以下の相手のクリーチャーを選び破壊する。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'ChooseRace724',g961TrapCommune:true}]};
+  if(d.id==='dm31-009'&&f.typeText==='進化クリーチャー'&&text===
+   '進化-自分のナイト・クリーチャー1体の上に置く。このクリーチャーが攻撃する時自分の墓地に呪文が3枚以上あればカードを1枚引いてもよい。'+
+   'W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {evolution:{race:'ナイト'},breaker:2,g34Attack:[
+    {op:'IfOwn',filter:{g273Grave:{n:3,filter:{g228Face:{type:'spell'}}}},defs:[{op:'Draw',n:1,optional:true}]}
+   ]};
+  if(d.id==='dm04-022'&&f.typeText==='クリーチャー'&&text===
+   'このクリーチャーがバトルゾーンにある間誰も闇のカードの「S(シールド)・トリガー」を使えない。')
+   return {g597TriggerLock:{both:true,color:'闇'}};
+ }
  if(phase>=960&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText),double='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
   if(d.id==='dm32-065'&&f.typeText==='進化クリーチャー'&&text===

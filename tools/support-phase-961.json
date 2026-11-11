@@ -1,0 +1,185 @@
+{
+  "phase": 961,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6768,
+  "description": "種族を選ぶ連続破壊、墓地の呪文を参照する進化クリーチャー、闇のS・トリガーの両者への使用制限に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35433/",
+    "https://dm.takaratomy.co.jp/rule/qa/45900/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36034/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35052/",
+    "https://dm.takaratomy.co.jp/rule/qa/45589/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm19-028",
+      "name": "トラップ・コミューン",
+      "faces": [
+        {
+          "name": "トラップ・コミューン",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n種族をひとつ選ぶ。選んだ種族の自分のクリーチャーを、好きな数破壊する。その後、その数以下の相手のクリーチャーを選び、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-028",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ChooseRace724",
+            "g961TrapCommune": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "5baab09ae97206f50b9163baa1cea8ef92b86e86be6bcd6d5cab73ca8abba13c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm31-009",
+      "name": "氷牙レジェンダリー・ヴァンガード",
+      "faces": [
+        {
+          "name": "氷牙レジェンダリー・ヴァンガード",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分のナイト・クリーチャー１体の上に置く。\nこのクリーチャーが攻撃する時、自分の墓地に呪文が３枚以上あれば、カードを１枚引いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "リヴァイアサン/ナイト",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-009",
+      "spec": {
+        "evolution": {
+          "race": "ナイト"
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g273Grave": {
+                "n": 3,
+                "filter": {
+                  "g228Face": {
+                    "type": "spell"
+                  }
+                }
+              }
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "439638404071c8d3ef9a94877e005f7e51b716d20a2c3b637eb612f5fd62fcaa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm04-022",
+      "name": "暴風の求道者フ・レイル",
+      "faces": [
+        {
+          "name": "暴風の求道者フ・レイル",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーがバトルゾーンにある間、誰も闇のカードの「S(シールド)・トリガー」を使えない。",
+          "race": "メカサンダー",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-022",
+      "spec": {
+        "g597TriggerLock": {
+          "both": true,
+          "color": "闇"
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm04-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "d5a47d11ce23436c520c6f1b5147e9cea1e88b8b7483ffb52189d2403010c71a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx08-009",
+      "canonicalId": "dm19-028",
+      "name": "トラップ・コミューン",
+      "faces": [
+        {
+          "name": "トラップ・コミューン",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n種族をひとつ選ぶ。選んだ種族の自分のクリーチャーを、好きな数破壊する。その後、その数以下の相手のクリーチャーを選び、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx08-009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx08-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "a5071a92825edbde1a40ad2db80273c8163691e18e490fc2c697012b2977579e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm19-028": 4,
+      "dm31-009": 4,
+      "dm04-022": 4,
+      "dmx08-009": 4
+    }
+  }
+}

@@ -909,6 +909,15 @@ export function createSixPhotoRules(api){
    (target.powerModifiers??=[]).push({amount:t.g671PlayerLockPower,expires:'end',who:s.active,spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});
    stopPlayerAttack567(s,{...t,g567PlayerStop:'end'},target);
   }
+  if(t.g961TrapCommune){
+   const targets=(t.rows||[]).filter(r=>creatures(s,t.p).some(x=>x.uid===r.uid&&!x.sealed&&matches(s,t.p,x,t.filter)));
+   if(!targets.length)return;
+   // The same spell counts attempted destructions, before replacement effects are applied.
+   start(s,t,[{op:'Select',owner:'opponent',origin:'battle',to:'grave',n:targets.length,optional:true,
+    filter:{creature:true},g173Targets:true,g193Select:true,title:'破壊する相手のクリーチャーを'+targets.length+'体まで選ぶ'}]);
+   move(s,targets.map(({uid})=>({player:t.p,uid,to:'grave',destroy:true,controller:t.controller??t.p})));
+   return;
+  }
   if(t.g583Group){moveZoneSelection583(s,t,t.rows||[],t.owner==='opponent'?1-t.p:t.p);return;}
  if(t.afterBattleSelect||t.g917BounceMatch){
   const moves=(t.rows||[]).filter(r=>r.origin==='battle'&&s.players[r.p].battle.some(x=>x.uid===r.uid))
@@ -3723,7 +3732,10 @@ export function createSixPhotoRules(api){
   const filter={creature:true,g724ExactRace:v};
   // Dragon is a legal declaration and refers to the category (QA42400).
   const chosen=v==='ドラゴン'?{creature:true,race:v}:filter;
-  if(t.g735Grant)
+  if(t.g961TrapCommune)
+   start(s,t,[{op:'Select',origin:'battle',to:'grave',n:'all',optional:true,filter:chosen,g173Targets:true,
+    g187OwnPick:true,g961TrapCommune:true,title:'破壊する自分の'+v+'を好きな数選ぶ'}]);
+  else if(t.g735Grant)
    start(s,t,[{op:'GroupGrant364',owner:'both',filter:chosen,spell:!t.g737FromCreature,grant:t.g735Grant,g521UntilStart:t.g521UntilStart}]);
   else if(t.g736ForceAttack)
    start(s,t,[{op:'GroupGrant364',owner:'both',filter:chosen,g736ForceAttack:true,grant:{attackBonus:4000,g736ForcedAttack:true}}]);

@@ -198738,23 +198738,114 @@
       },
       "supportBatch": "phase-960",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm19-028",
+      "name": "トラップ・コミューン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\n種族をひとつ選ぶ。選んだ種族の自分のクリーチャーを、好きな数破壊する。その後、その数以下の相手のクリーチャーを選び、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-028",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ChooseRace724",
+          "g961TrapCommune": true
+        }
+      ],
+      "supportBatch": "phase-961",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm31-009",
+      "name": "氷牙レジェンダリー・ヴァンガード",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 11000,
+      "race": "リヴァイアサン/ナイト",
+      "text": "進化-自分のナイト・クリーチャー１体の上に置く。\nこのクリーチャーが攻撃する時、自分の墓地に呪文が３枚以上あれば、カードを１枚引いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-009",
+      "limit": 4,
+      "evolution": {
+        "race": "ナイト"
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g273Grave": {
+              "n": 3,
+              "filter": {
+                "g228Face": {
+                  "type": "spell"
+                }
+              }
+            }
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-961",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm04-022",
+      "name": "暴風の求道者フ・レイル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "メカサンダー",
+      "text": "このクリーチャーがバトルゾーンにある間、誰も闇のカードの「S(シールド)・トリガー」を使えない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm04-022",
+      "limit": 4,
+      "g597TriggerLock": {
+        "both": true,
+        "color": "闇"
+      },
+      "supportBatch": "phase-961",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 960,
+    "phase": 961,
     "checkedAt": "2026-11-11",
-    "baseCount": 6765,
+    "baseCount": 6768,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6768,
+    "totalCount": 6771,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37523/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37524/",
-      "https://dm.takaratomy.co.jp/rule/qa/34224/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34896/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35803/",
-      "https://dm.takaratomy.co.jp/rule/qa/33591/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35433/",
+      "https://dm.takaratomy.co.jp/rule/qa/45900/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36034/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35052/",
+      "https://dm.takaratomy.co.jp/rule/qa/45589/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -215994,6 +216085,27 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35106/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31626/",
           "https://dm.takaratomy.co.jp/rule/qa/49608/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 960,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6765,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6768,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37523/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37524/",
+          "https://dm.takaratomy.co.jp/rule/qa/34224/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34896/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35803/",
+          "https://dm.takaratomy.co.jp/rule/qa/33591/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
