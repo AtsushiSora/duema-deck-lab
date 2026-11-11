@@ -204575,24 +204575,187 @@
       ],
       "supportBatch": "phase-1004",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-033",
+      "name": "改速 4-W",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ソニック・コマンド/イニシャルズ",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、コスト７以下のクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-033",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "optional": true,
+          "to": "hand",
+          "filter": {
+            "max": 7
+          },
+          "title": "手札に戻すコスト7以下のクリーチャーを1体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1005",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-030",
+      "name": "賢者の法聖堂",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のクリーチャーを１体選び、タップする。\nマナ武装 ４：自分のマナゾーンに多色カードが４枚以上あれば、相手のクリーチャーをさらに２体まで選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-030",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "g1005ManaArmedFollowup": {
+            "origin": "battle",
+            "n": 2,
+            "optional": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "filter": {
+              "creature": true
+            },
+            "owner": "opponent",
+            "g193Tap": true,
+            "title": "追加でタップする相手のクリーチャーを2体まで選ぶ"
+          }
+        }
+      ],
+      "supportBatch": "phase-1005",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-014",
+      "name": "謎帥の艦隊",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nクリーチャーを１体選び、持ち主の手札に戻す。\nマナ武装 ４：自分のマナゾーンに多色カードが４枚以上あれば、クリ－チャーをさらに２体まで選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-014",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "to": "hand",
+          "g1005ManaArmedFollowup": {
+            "origin": "battle",
+            "n": 2,
+            "optional": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "filter": {
+              "creature": true
+            },
+            "anyOwner": true,
+            "to": "hand",
+            "title": "追加で持ち主の手札に戻すクリーチャーを2体まで選ぶ"
+          }
+        }
+      ],
+      "supportBatch": "phase-1005",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-050",
+      "name": "封魔ドランブネ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "グランド・デビル",
+      "text": "バトルゾーンに自分の闇のクリーチャーがあれば、このクリーチャーに「スレイヤー」を与え、種族にクリスタル・ドラゴンを追加する。（「スレイヤー」を持つクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-050",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "creature": true,
+          "color": "闇"
+        },
+        "grants": {
+          "slayer": true,
+          "raceAdd": [
+            "クリスタル・ドラゴン"
+          ]
+        }
+      },
+      "supportBatch": "phase-1005",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-s04",
+      "name": "聖者の精霊龍 セレナーデ",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7500,
+      "race": "エンジェル・コマンド・ドラゴン/革命軍",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nブロッカーブロッカー\nW・ブレイカー\n「スピードアタッカー」を持つクリーチャーはすべて、バトルゾーンに出たターン、攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-s04",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g1005SpeedEntryLock": true,
+      "supportBatch": "phase-1005",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1004,
+    "phase": 1005,
     "checkedAt": "2026-11-12",
-    "baseCount": 6937,
-    "newEffectCards": 4,
+    "baseCount": 6941,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 6941,
+    "totalCount": 6946,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37845/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35844/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35637/",
-      "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-052",
-      "https://dm.takaratomy.co.jp/rule/qa/44318/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37975/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37877/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37878/",
+      "https://dm.takaratomy.co.jp/rule/qa/31824/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37110/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31395/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -222717,6 +222880,27 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
           "https://dm.takaratomy.co.jp/rule/qa/42657/",
           "https://dm.takaratomy.co.jp/rule/qa/31929/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1004,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6937,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6941,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37845/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35844/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35637/",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-052",
+          "https://dm.takaratomy.co.jp/rule/qa/44318/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37975/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

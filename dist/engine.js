@@ -899,9 +899,19 @@ function blockPower570(s,x,c,y=null){const r=c.g570BlockPower;if(!s||!r||x.seale
 function poweredBlockerActive(s,x){return !!s?.attack&&s.attack.g209BlockingUid===x.uid&&(s.attack.target===x.uid||s.attack.stage==='blockedEffects'&&s.attack.blockUid===x.uid);}
 function battleBasePower(x,attacking,s,y=null,blocking=false){const c=effectiveCard(x,s);if(c.g321Katsu)return Infinity;return power(x,attacking,s)+huntingPower(x,s)+(c.g38BattleBonus||0)+extra.six.battlePower209(s,x,y,c)+extra.six.battlePower446(s,x)+extra.six.battleAuraPower466(s,x,c)+(blocking&&!poweredBlockerActive(s,x)?(c.g209PoweredBlocker||0)+blockPower570(s,x,c,y):0);}
 export function matchupPower(x,y,attacking=false,s=null,otherAttacking=y?.uid===s?.attack?.attacker,blocking=false){const c=effectiveCard(x,s),other=y&&(c.g116FireBattleBonus||c.g118LargeBattleBonus)?effectiveCard(y,s):null,fire=c.g116FireBattleBonus&&other&&civilizations(other).includes('火')?c.g116FireBattleBonus:0,otherPower=c.g118LargeBattleBonus&&other?battleBasePower(y,otherAttacking,s,x)+(other.g116FireBattleBonus&&civilizations(c).includes('火')?other.g116FireBattleBonus:0)+(other.g118LargeBattleBonus&&battleBasePower(x,attacking,s,y,blocking)+fire>=12000?other.g118LargeBattleBonus:0):0;return battleBasePower(x,attacking,s,y,blocking)+fire+(c.g118LargeBattleBonus&&y&&otherPower>=12000?c.g118LargeBattleBonus:0);}
-export function attackLocked(s,p,c){return !!s&&!!c&&!c.sealed&&effectiveCard(c,s).type==='creature'&&extra.locked(s,p,c,'attack');}
+function speedEntryAttackLocked(s,p,x,c){
+ if(!c.speedAttacker||(x.originalEntryTurn??x.entered)!==s.turn)return false;
+ const hasSource=player=>s.players[player].battle.some(y=>
+  card(y).g1005SpeedEntryLock&&isCreature(s,y)&&!abilitiesIgnored(s,y));
+ return hasSource(p)||hasSource(1-p)&&!s.players[p].battle.some(y=>effectiveCard(y,s).ignoreAttackLocks);
+}
+export function attackLocked(s,p,c){
+ if(!s||!c||c.sealed)return false;
+ const data=effectiveCard(c,s);
+ return data.type==='creature'&&(extra.locked(s,p,c,'attack')||speedEntryAttackLocked(s,p,c,data));
+}
 export const canCreatureAttack=(s,p,c)=>canAttack(s,p,c);
-function canAttack(s,p,c,allowFresh=false,d=effectiveCard(c,s)){return d.type==='creature'&&extra.history.canAttack(s,p,c)&&extra.six.fifteen.canAttack(s,p,c)&&(!d.twoTappedAttack||s.players[p].battle.filter(x=>isCreature(s,x)&&x.tapped).length>=2)&&!c.tapped&&!d.noAttack&&(!d.needsBigAttack||s.g16BigAttack?.[p]===s.turn)&&!extra.locked(s,p,c,'attack')&&!extra.six.attackPower593(s,p,c,false)&&!(c.entered===s.turn&&s.players[1-p].battle.some(x=>{const guard=effectiveCard(x,s);return guard.stopEntryAttack||guard.g475StopNonEvolutionEntryAttack&&!isEvolution(c);})&&!s.players[p].battle.some(x=>effectiveCard(x,s).ignoreAttackLocks))&&(c.entered<s.turn||d.speedAttacker||isEvolution(c)||d.machFighter||d.entryPlayerAttack||extra.abyssPlayer(s,c)||allowFresh);}
+function canAttack(s,p,c,allowFresh=false,d=effectiveCard(c,s)){return d.type==='creature'&&!speedEntryAttackLocked(s,p,c,d)&&extra.history.canAttack(s,p,c)&&extra.six.fifteen.canAttack(s,p,c)&&(!d.twoTappedAttack||s.players[p].battle.filter(x=>isCreature(s,x)&&x.tapped).length>=2)&&!c.tapped&&!d.noAttack&&(!d.needsBigAttack||s.g16BigAttack?.[p]===s.turn)&&!extra.locked(s,p,c,'attack')&&!extra.six.attackPower593(s,p,c,false)&&!(c.entered===s.turn&&s.players[1-p].battle.some(x=>{const guard=effectiveCard(x,s);return guard.stopEntryAttack||guard.g475StopNonEvolutionEntryAttack&&!isEvolution(c);})&&!s.players[p].battle.some(x=>effectiveCard(x,s).ignoreAttackLocks))&&(c.entered<s.turn||d.speedAttacker||isEvolution(c)||d.machFighter||d.entryPlayerAttack||extra.abyssPlayer(s,c)||allowFresh);}
 function canAttackPlayer(s,c,rule=effectiveCard(c,s)){
  const p=s.players.findIndex(x=>x.battle.some(y=>y.uid===c.uid));
  const requires=rule.g840PlayerAttackRequires;

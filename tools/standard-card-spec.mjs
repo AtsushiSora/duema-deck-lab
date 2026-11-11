@@ -3435,6 +3435,37 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=1005&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText).replaceAll('クリ-チャー','クリーチャー').replaceAll('クリ−チャー','クリーチャー');
+  const trigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  const armed='マナ武装4:自分のマナゾーンに多色カードが4枚以上あれば';
+  const additional={origin:'battle',n:2,optional:true,g173Targets:true,g193Select:true,filter:{creature:true}};
+  if(d.id==='dmr22-030'&&f.typeText==='呪文'&&text===trigger+
+   '相手のクリーチャーを1体選びタップする。'+armed+'相手のクリーチャーをさらに2体まで選びタップする。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',tap:true,g1005ManaArmedFollowup:{
+    ...additional,owner:'opponent',g193Tap:true,title:'追加でタップする相手のクリーチャーを2体まで選ぶ'
+   }}]};
+  if(['dmr22-014','dmex08-228'].includes(d.id)&&f.typeText==='呪文'&&text===trigger+
+   'クリーチャーを1体選び持ち主の手札に戻す。'+armed+'クリーチャーをさらに2体まで選び持ち主の手札に戻す。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',anyOwner:true,to:'hand',g1005ManaArmedFollowup:{
+    ...additional,anyOwner:true,to:'hand',title:'追加で持ち主の手札に戻すクリーチャーを2体まで選ぶ'
+   }}]};
+  if(d.id==='dmr22-033'&&f.typeText==='クリーチャー'&&text===
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'+
+   'このクリーチャーは攻撃できない。'+
+   'このクリーチャーがバトルゾーンに出た時コスト7以下のクリーチャーを1体選び持ち主の手札に戻してもよい。')
+   return {blocker:true,noAttack:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Target',anyOwner:true,optional:true,to:'hand',filter:{max:7},title:'手札に戻すコスト7以下のクリーチャーを1体まで選ぶ'}
+   ]};
+  if(d.id==='dmr22-050'&&f.typeText==='クリーチャー'&&text===
+   'バトルゾーンに自分の闇のクリーチャーがあればこのクリーチャーに「スレイヤー」を与え種族にクリスタル・ドラゴンを追加する。'+
+   '(「スレイヤー」を持つクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)')
+   return {g260Self:{filter:{creature:true,color:'闇'},grants:{slayer:true,raceAdd:['クリスタル・ドラゴン']}}};
+  if(d.id==='dmr22-s04'&&f.typeText==='クリーチャー'&&f.civilizations.length===2&&text===
+   'マナゾーンに置く時このカードはタップして置く。ブロッカーブロッカーW・ブレイカー'+
+   '「スピードアタッカー」を持つクリーチャーはすべてバトルゾーンに出たターン攻撃できない。')
+   return {blocker:true,breaker:2,g1005SpeedEntryLock:true};
+ }
  if(phase>=1004&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const manaTap='マナゾーンに置く時このカードはタップして置く。';
