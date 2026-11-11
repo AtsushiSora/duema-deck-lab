@@ -1,0 +1,173 @@
+{
+  "phase": 1016,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6984,
+  "description": "天斬の悪魔龍 ジュランデス、破線の悪魔龍 キルビリー、音速 ソニックブームの公式能力を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37803/",
+    "https://dm.takaratomy.co.jp/rule/qa/43359/",
+    "https://dm.takaratomy.co.jp/rule/qa/39965/",
+    "https://dm.takaratomy.co.jp/rule/qa/45462/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35971/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316677/"
+  ],
+  "cards": [
+    {
+      "id": "dmr20-004",
+      "name": "天斬の悪魔龍 ジュランデス",
+      "faces": [
+        {
+          "name": "天斬の悪魔龍 ジュランデス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "ワールド・ブレイカー\nこのクリーチャーは、バトルゾーンにタップして出る。\n自分の墓地にあるカードが13枚より少なければ、このクリーチャーはアンタップされない。\nこのクリーチャーがアンタップする時、自分の墓地にあるカードをすべて山札に加えてシャッフルする。",
+          "race": "デーモン・コマンド・ドラゴン",
+          "powerText": "24000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-004",
+      "spec": {
+        "breaker": "∞",
+        "worldBreaker": true,
+        "g295EnterTapped": true,
+        "g1016UntapMinGrave": 13,
+        "g299Untapped": [
+          {
+            "op": "GraveShuffle545",
+            "owner": "self"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr20-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "9dcf4d5d39cb6b446c4274e224dcaa75ebd1396bb523c8bd8bdc0b39f2182b88",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr18-005",
+      "name": "破線の悪魔龍 キルビリー",
+      "faces": [
+        {
+          "name": "破線の悪魔龍 キルビリー",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー\nこのクリーチャーが攻撃する時、自分の墓地にカードが８枚以上あれば、墓地のカードをすべて山札に加えてシャッフルしてもよい。そうしたら、そのターン、相手のクリーチャーすべてのパワーを-8000する。（パワー０以下のクリーチャーは破壊される）",
+          "race": "デーモン・コマンド・ドラゴン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-005",
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g334ZoneCount": {
+                "zone": "grave",
+                "min": 8
+              }
+            },
+            "defs": [
+              {
+                "op": "Offer",
+                "title": "自分の墓地をすべて山札に戻してシャッフルする？",
+                "defs": [
+                  {
+                    "op": "GraveShuffle545",
+                    "owner": "self"
+                  },
+                  {
+                    "op": "GroupPower",
+                    "owner": "opponent",
+                    "filter": {
+                      "creature": true
+                    },
+                    "power": -8000
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "3e2d80e03d0782898be3183c26747bd8c479d9ec9e545779879e84e4238e298a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr19-s07",
+      "name": "音速 ソニックブーム",
+      "faces": [
+        {
+          "name": "音速 ソニックブーム",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のシールドを２つ選ぶ。このクリーチャーは、それ以外の相手のシールドをすべてブレイクする。",
+          "race": "ソニック・コマンド/侵略者",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-s07",
+      "spec": {
+        "speedAttacker": true,
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Break497",
+            "n": "all",
+            "keep": 2,
+            "g747CreatureBreak": true,
+            "g913DepartedBreaker": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr19-s07.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "276e5d305a5fe3ef4f5cf930e6538d66a5f07666113610619a070994b5f9103c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr20-004": 4,
+      "dmr18-005": 4,
+      "dmr19-s07": 4
+    }
+  }
+}

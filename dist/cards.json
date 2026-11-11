@@ -206338,24 +206338,133 @@
       },
       "supportBatch": "phase-1015",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr20-004",
+      "name": "天斬の悪魔龍 ジュランデス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 24000,
+      "race": "デーモン・コマンド・ドラゴン",
+      "text": "ワールド・ブレイカー\nこのクリーチャーは、バトルゾーンにタップして出る。\n自分の墓地にあるカードが13枚より少なければ、このクリーチャーはアンタップされない。\nこのクリーチャーがアンタップする時、自分の墓地にあるカードをすべて山札に加えてシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-004",
+      "limit": 4,
+      "breaker": "∞",
+      "worldBreaker": true,
+      "g295EnterTapped": true,
+      "g1016UntapMinGrave": 13,
+      "g299Untapped": [
+        {
+          "op": "GraveShuffle545",
+          "owner": "self"
+        }
+      ],
+      "supportBatch": "phase-1016",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr18-005",
+      "name": "破線の悪魔龍 キルビリー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "デーモン・コマンド・ドラゴン",
+      "text": "W・ブレイカー\nこのクリーチャーが攻撃する時、自分の墓地にカードが８枚以上あれば、墓地のカードをすべて山札に加えてシャッフルしてもよい。そうしたら、そのターン、相手のクリーチャーすべてのパワーを-8000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-005",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "grave",
+              "min": 8
+            }
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "自分の墓地をすべて山札に戻してシャッフルする？",
+              "defs": [
+                {
+                  "op": "GraveShuffle545",
+                  "owner": "self"
+                },
+                {
+                  "op": "GroupPower",
+                  "owner": "opponent",
+                  "filter": {
+                    "creature": true
+                  },
+                  "power": -8000
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1016",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr19-s07",
+      "name": "音速 ソニックブーム",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "ソニック・コマンド/侵略者",
+      "text": "スピードアタッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のシールドを２つ選ぶ。このクリーチャーは、それ以外の相手のシールドをすべてブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-s07",
+      "limit": 4,
+      "speedAttacker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Break497",
+          "n": "all",
+          "keep": 2,
+          "g747CreatureBreak": true,
+          "g913DepartedBreaker": true
+        }
+      ],
+      "supportBatch": "phase-1016",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1015,
+    "phase": 1016,
     "checkedAt": "2026-11-12",
-    "baseCount": 6981,
+    "baseCount": 6984,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6984,
+    "totalCount": 6987,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/rule/rulechange/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37806/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37807/",
-      "https://dm.takaratomy.co.jp/rule/qa/40962/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31639/",
-      "https://dm.takaratomy.co.jp/rule/qa/45798/"
+      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37803/",
+      "https://dm.takaratomy.co.jp/rule/qa/43359/",
+      "https://dm.takaratomy.co.jp/rule/qa/39965/",
+      "https://dm.takaratomy.co.jp/rule/qa/45462/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35971/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316677/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -224722,6 +224831,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/46605/",
           "https://dm.takaratomy.co.jp/rule/qa/47896/",
           "https://dm.takaratomy.co.jp/rule/qa/31824/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1015,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6981,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6984,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37806/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37807/",
+          "https://dm.takaratomy.co.jp/rule/qa/40962/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31639/",
+          "https://dm.takaratomy.co.jp/rule/qa/45798/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

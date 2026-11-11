@@ -3435,6 +3435,27 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=1016&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const shuffle={op:'GraveShuffle545',owner:'self'};
+  if(d.id==='dmr20-004'&&text==='ワールド・ブレイカーこのクリーチャーはバトルゾーンにタップして出る。'+
+   '自分の墓地にあるカードが13枚より少なければこのクリーチャーはアンタップされない。'+
+   'このクリーチャーがアンタップする時自分の墓地にあるカードをすべて山札に加えてシャッフルする。')
+   return {breaker:'∞',worldBreaker:true,g295EnterTapped:true,g1016UntapMinGrave:13,g299Untapped:[shuffle]};
+  if(d.id==='dmr18-005'&&text==='W・ブレイカーこのクリーチャーが攻撃する時自分の墓地にカードが8枚以上あれば'+
+   '墓地のカードをすべて山札に加えてシャッフルしてもよい。そうしたらそのターン相手のクリーチャーすべてのパワーを-8000する。'+
+   '(パワー0以下のクリーチャーは破壊される)')
+   return {breaker:2,g34Attack:[{op:'IfOwn',filter:{g334ZoneCount:{zone:'grave',min:8}},defs:[
+    {op:'Offer',title:'自分の墓地をすべて山札に戻してシャッフルする？',defs:[
+     shuffle,{op:'GroupPower',owner:'opponent',filter:{creature:true},power:-8000}
+    ]}
+   ]}]};
+  if(d.id==='dmr19-s07'&&text==='スピードアタッカーW・ブレイカーこのクリーチャーがバトルゾーンに出た時'+
+   '相手のシールドを2つ選ぶ。このクリーチャーはそれ以外の相手のシールドをすべてブレイクする。')
+   return {speedAttacker:true,breaker:2,effect:'sixPhoto',g34Tasks:[
+    {op:'Break497',n:'all',keep:2,g747CreatureBreak:true,g913DepartedBreaker:true}
+   ]};
+ }
  if(phase>=1015&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='クリーチャー'&&['dmr18-020','dmx24-018'].includes(d.id)&&

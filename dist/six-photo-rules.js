@@ -2599,12 +2599,19 @@ export function createSixPhotoRules(api){
   if(t.g747CreatureBreak&&!host&&!triggeredBreaker)break;
   const c=host&&effective(host,s);
   if(c?.g977CannotBreak)break;
-  const n=t.n==='all'?shields.length:Math.min(t.n+(c?.extraBreak||0),shields.length);
-  const selected=t.n==='all'?shields.map(y=>y.uid):(t.selected||[]).filter(uid=>shields.some(y=>y.uid===uid));
-  if(selected.length<n)choice(s,{...t,selected},
-   'ブレイクする'+(chooser===owner?'自分':'相手')+'のシールドを'+n+'つ選ぶ（'+selected.length+'つ選択済み）',
+  const keeping=t.keep!==undefined;
+  if(keeping&&shields.length<=t.keep)break;
+  const n=keeping?t.keep:t.n==='all'?shields.length:Math.min(t.n+(c?.extraBreak||0),shields.length);
+  const selected=t.n==='all'&&!keeping?shields.map(y=>y.uid):(t.selected||[]).filter(uid=>shields.some(y=>y.uid===uid));
+  if(selected.length<n){
+   const action=keeping?'残す':'ブレイクする';
+   choice(s,{...t,selected},
+   action+(chooser===owner?'自分':'相手')+'のシールドを'+n+'つ選ぶ（'+selected.length+'つ選択済み）',
    [...shields.flatMap((y,i)=>selected.includes(y.uid)?[]:[opt('シールド'+(i+1),y.uid,10)]),...(t.optional&&!selected.length?[skip()]:[])],chooser);
-  else if(n)api.interruptBreak(s,owner,host?selected.slice(0,n):selected,{...t,op:'g34_AfterBreak278'},
+   break;
+  }
+  const broken=keeping?shields.filter(y=>!selected.includes(y.uid)).map(y=>y.uid):host?selected.slice(0,n):selected;
+  if(n&&broken.length)api.interruptBreak(s,owner,broken,{...t,op:'g34_AfterBreak278'},
    {player:t.p,sourceUid:host?.uid??t.uid,source:triggeredBreaker?(host?.cardId??triggeredBreaker):t.source,controller:t.p,g278Effect:true,
     ...(triggeredBreaker||t.g909AfterBreak?{incarnation:host?.incarnation??t.incarnation??0}:{}),
     ...(triggeredBreaker&&!host?{g913DepartedBreaker:true}:{}),
@@ -4682,7 +4689,13 @@ export function createSixPhotoRules(api){
     n,Math.min(n==='∞'?Infinity:n,shields))));
   return true;
  },
- noUntap(s,x){const p=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));return p>=0&&api.isCreature(s,x)&&!mecha(effective(x,s))&&(active(s,0,'shinGod').length||active(s,1,'shinGod').length)>0;},
+ noUntap(s,x){
+  const p=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));
+  if(p<0||!api.isCreature(s,x))return false;
+  const c=effective(x,s);
+  return s.players[p].grave.length<(c.g1016UntapMinGrave??0)||
+   !mecha(c)&&(active(s,0,'shinGod').length||active(s,1,'shinGod').length)>0;
+ },
  countDiscount212(s,p,c){if(c.g212CountDiscount?.minimum===2)return 0;const max=countDiscountMax499(s,p,c);return c.g212CountDiscount?.optional&&c.g499Reduction!==undefined?Math.min(max,Math.max(0,c.g499Reduction)):max;},
  summonAuraDiscount290(s,p,c){
   const r=summonAuras560(s,p,c),selected=c.g560Amount===undefined?r.optional:Math.min(r.optional,Math.max(0,c.g560Amount));
