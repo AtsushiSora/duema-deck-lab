@@ -3435,6 +3435,15 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=976&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='呪文'&&['dmrp03-038','dmsd11-012'].includes(d.id)&&text==='コストを支払うかわりに自分の水のクリーチャーを2体タップしてこの呪文を唱えてもよい。相手のクリーチャーを1体選び持ち主の手札に戻す。')
+   return {effect:'sixPhoto',g976TapCast:'水',g34Tasks:[{op:'Target',to:'hand'}]};
+  if(f.typeText==='呪文'&&d.id==='dmrp03-051'&&text==='コストを支払うかわりに自分の火のクリーチャーを2体タップしてこの呪文を唱えてもよい。自分の手札を1枚捨てその後カードを2枚引く。')
+   return {effect:'sixPhoto',g976TapCast:'火',g34Tasks:[{op:'Discard',owner:'self',n:1},{op:'Draw',n:2}]};
+  if(f.typeText==='クリーチャー'&&d.id==='dmrp08-022'&&text==='自分の魔導具クリーチャーを召喚した時または魔導具を持つ呪文を唱えた時このクリーチャーを自分の墓地からバトルゾーンに出してもよい。')
+   return {g976MagicToolUse:true};
+ }
  if(phase>=975&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmrp03-088'&&text==='自分のパワー12000以上のクリーチャーを召喚した時このクリーチャーを自分のマナゾーンからバトルゾーンに出してもよい。')

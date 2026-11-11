@@ -1413,6 +1413,22 @@ export function createSixPhotoRules(api){
  case'g34_PayAura560':payAura560(s,t);break;
  case'g34_PayFloor500':payFloor500(s,t);break;
  case'g34_PayCount499':payCount499(s,t);break;
+ case'g34_TapCast976':{
+  const source=own[t.origin].find(x=>x.uid===t.uid),c=source&&api.zoneCard(s,t.p,source,t.origin);
+  if(!c?.g976TapCast||api.spellIgnored(s,c)||!api.canMoveZone(s,t.p,t.origin)||
+     !api.canCast(s,t.p,c,t.origin,source.cardOwner??t.p)||
+     !api.costAltPermits568(s,t.p,source,c,t.origin).includes(t.permit))break;
+  const eligible=tapCastCreatures976(s,t.p,c.g976TapCast),selected=t.selected;
+  if(eligible.length<2||selected.some(uid=>!eligible.some(x=>x.uid===uid)))break;
+  if(selected.length===2){
+   cast(s,t.p,t.uid,false,null,0,{cost:0,g568PaymentColors:[],fixedPayment:true,g40PayNormally:true,g976TapPayment:selected},
+    t.origin,'代替コスト',false,t.permit);
+   break;
+  }
+  choice(s,t,c.g976TapCast+'のクリーチャーを2体タップする（'+selected.length+'/2）',
+   [...eligible.filter(x=>!selected.includes(x.uid)).map(x=>opt(card(x).name,x.uid,14-cost(card(x)),x.cardId)),skip()]);
+  break;
+ }
  case'g34_PaySpell485':paySpell485(s,t);break;
  case'g34_RevealPayment470':revealPayment470(s,t);break;
  case'g34_PayOnce464':payOnce464(s,t);break;
@@ -3350,6 +3366,7 @@ export function createSixPhotoRules(api){
  case'g34_PayAura560':if(typeof v==='number'){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g560Handled:true,g560Amount:v};api.cast(s,t.p,...args);}break;
  case'g34_PayFloor500':if(typeof v==='number'){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g500Handled:true,g500Amount:v};api.cast(s,t.p,...args);}break;
  case'g34_PayCount499':if(typeof v==='number'){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g499Handled:true,g499Reduction:v};api.cast(s,t.p,...args);}break;
+ case'g34_TapCast976':if(v)put(s,{...t,selected:[...t.selected,v]});break;
  case'g34_PaySpell485':if(typeof v==='number'){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g485Handled:true,g485Amount:v};api.cast(s,t.p,...args);}break;
  case'g34_RevealPayment470':if(typeof v==='string')put(s,{...t,revealed:v});else if(v!==false){const args=[...t.args],old=args[4];args[4]={...(typeof old==='object'?old:old!==null?{cost:old}:{}),g470Handled:true,g470Amount:v??0,...(t.revealed?{g470Revealed:t.revealed}:{})};api.cast(s,t.p,...args);}break;
  case'g34_PayOnce464':if(typeof v==='string')put(s,{...t,selected:[...t.selected,v]});else if(v===null){const args=[...t.args];args[18]=t.selected;api.cast(s,t.p,...args);}break;
@@ -4500,6 +4517,7 @@ export function createSixPhotoRules(api){
   for(const {owner,x,watch}of spellWatches(s,p,c))
    if(!watch.g965FirstSpell||firstSpell)
     queue(s,owner,x,watch.defs.map(d=>d.op==='CastCostDeploy595'?{...d,castCost:c.cost}:d));
+  if(race(c,'魔導具'))magicToolUse976(s,p);
   for(const x of s.players[p].grave)if(!x.faceDown&&card(x).g847SpellGraveReturn)
    send(s,p,x,'GraveReturn754',{serial:x.zoneSerial||0});
  },
@@ -4568,7 +4586,8 @@ export function createSixPhotoRules(api){
   if(c.g773RevEntry&&options.revolution&&creature&&!y.sealed&&!options.selfMuted&&!api.selfStopped(s,p)&&!api.ignored(s,y))
    queue(s,p,y,c.g773RevEntry);
   if(creature&&!y.sealed&&options.execution===true){
-   const enteredCost=cost(effective(y,s));
+   const entrant=effective(y,s),enteredCost=cost(entrant);
+   if(race(entrant,'魔導具'))magicToolUse976(s,p);
    if(race(effective(y,s),'ゴースト'))for(const watcher of creatures(s,p)){
     if(watcher.sealed||!card(watcher).g878GhostRecovery||!effective(watcher,s).g878GhostRecovery||
        watcher.uid===y.uid&&(options.selfMuted||api.selfStopped(s,p)))continue;
@@ -5031,6 +5050,14 @@ export function createSixPhotoRules(api){
  mainActions(s,p){const own=s.players[p],out=[];
   // Alternative payment changes neither printed civilizations nor zone permissions.
   for(const origin of['hand','mana','grave'])for(const x of own[origin]){
+   const c=api.zoneCard(s,p,x,origin),color=c.g976TapCast;
+   if(!x.faceDown&&color&&!api.spellIgnored(s,c)&&api.canMoveZone(s,p,origin)&&
+      api.canCast(s,p,c,origin,x.cardOwner??p)&&tapCastCreatures976(s,p,color).length>=2)
+    for(const permit of new Set(api.costAltPermits568(s,p,x,c,origin)))
+     out.push({kind:'play',alternative:'sixPhoto',role:'tapCast976',uid:x.uid,cardId:x.cardId,origin,manaPermit:permit,cost:0,
+      label:c.name+'を'+color+'のクリーチャー2体をタップして唱える'});
+  }
+  for(const origin of['hand','mana','grave'])for(const x of own[origin]){
    const c=api.zoneCard(s,p,x,origin),r=c.g568Alt;if(x.faceDown||!hasAltPayment568(s,p,origin,r)||!api.canMoveZone(s,p,origin)||!api.canCast(s,p,c,origin)||c.type==='creature'&&!api.canEnter(s,p,c,{origin,execution:true}))continue;
    for(const permit of new Set(api.costAltPermits568(s,p,x,c,origin)))for(const base of[c.neoEvolution?null:undefined,...(c.neoEvolution?api.evolutionBases(s,p,c):[])])for(const snowReducers of[undefined,...api.snowVariants(s,p,c)]){
     const payment={...c,...(origin==='mana'?{civilizations:api.manaColors(c,s,p)}:{}),cost:r.cost,printedCost:c.cost,g568PaymentColors:r.paymentColors,g27BaseUid:base?.uid??null,summonOrigin:origin,executionUid:x.uid,...(snowReducers?{snowReducers}:{})};
@@ -5052,10 +5079,23 @@ export function createSixPhotoRules(api){
    for(const permit of permits)out.push({kind:'play',uid:x.uid,cardId:x.cardId,face,origin:'grave',manaPermit:permit,cost:api.summonCost(s,p,payment),label:c.name+'を墓地から召喚する'});
   }
 for(const x of own.hand){const c=card(x),r=c.g34Role;if(!api.canCast(s,p,c,'hand')||c.type==='creature'&&!api.canEnter(s,p,c,{origin:'hand',execution:true}))continue;let okay=false;if(r==='sirius')okay=creatures(s,p).filter(y=>angel(effective(y,s))&&!y.tapped&&api.canUntap(y)).length>=5;if(r==='zero')okay=own.hand.filter(y=>y!==x&&colors(card(y)).includes('闇')).length>=3&&creatures(s,p).filter(y=>colors(effective(y,s)).includes('闇')&&api.canLeave(s,p,y)).length>=3;if(r==='reiai')okay=own.battle.filter(y=>api.canLeave(s,p,y)).length>=2&&api.canPay(s,p,{cost:5,civilizations:['光','闇','自然'],fixedPayment:true});if(okay)out.push({kind:'play',alternative:'sixPhoto',uid:x.uid,cardId:x.cardId,role:r,label:c.name+'を代替コストで使う',cost:r==='reiai'?5:0});}return out;},
- alternative(s,p,a){if(a.role==='paidAlt568'){const origin=a.origin||'hand',x=s.players[p][origin].find(x=>x.uid===a.uid),c=x&&api.zoneCard(s,p,x,origin),r=c?.g568Alt;if(!hasAltPayment568(s,p,origin,r)||!api.costAltPermits568(s,p,x,c,origin).includes(a.manaPermit))throw Error('別コストの使用条件を満たしていません');cast(s,p,a.uid,false,a.baseUid??null,0,{cost:r.cost,g568PaymentColors:r.paymentColors,...(r.entry?{g777AltEntry:true}:{}),...(origin==='mana'?{civilizations:api.manaColors(c,s,p)}:{})},origin,'条件付き別コスト',false,a.manaPermit,a.snowReducers??null);return;}if(a.role==='recycle416'){const c=card(a.cardId);if(c.g416RecycleCost)cast(s,p,a.uid,false,null,a.face||0,{cost:c.g416RecycleCost,g40PayNormally:true},'grave','リサイクル',true);return;}if(a.role==='manaBirth296'){cast(s,p,a.uid,false,null,0,{cost:card(a.cardId).g296ManaBirth},'mana','マナ爆誕',false,null,a.snowReducers??null);return;}put(s,task('g34_Custom',p,a.cardId,{name:'alternative',uid:a.uid,role:a.role,selected:[]}));},
+ alternative(s,p,a){
+  if(a.role==='tapCast976'){
+   put(s,task('g34_TapCast976',p,a.cardId,{uid:a.uid,origin:a.origin,permit:a.manaPermit??null,selected:[]}));
+   return;
+  }
+  if(a.role==='paidAlt568'){const origin=a.origin||'hand',x=s.players[p][origin].find(x=>x.uid===a.uid),c=x&&api.zoneCard(s,p,x,origin),r=c?.g568Alt;if(!hasAltPayment568(s,p,origin,r)||!api.costAltPermits568(s,p,x,c,origin).includes(a.manaPermit))throw Error('別コストの使用条件を満たしていません');cast(s,p,a.uid,false,a.baseUid??null,0,{cost:r.cost,g568PaymentColors:r.paymentColors,...(r.entry?{g777AltEntry:true}:{}),...(origin==='mana'?{civilizations:api.manaColors(c,s,p)}:{})},origin,'条件付き別コスト',false,a.manaPermit,a.snowReducers??null);return;}if(a.role==='recycle416'){const c=card(a.cardId);if(c.g416RecycleCost)cast(s,p,a.uid,false,null,a.face||0,{cost:c.g416RecycleCost,g40PayNormally:true},'grave','リサイクル',true);return;}if(a.role==='manaBirth296'){cast(s,p,a.uid,false,null,0,{cost:card(a.cardId).g296ManaBirth},'mana','マナ爆誕',false,null,a.snowReducers??null);return;}put(s,task('g34_Custom',p,a.cardId,{name:'alternative',uid:a.uid,role:a.role,selected:[]}));},
  };
+ function tapCastCreatures976(s,p,color){
+  return creatures(s,p).filter(x=>!x.sealed&&!x.tapped&&colors(effective(x,s,true)).includes(color));
+ }
  function hasAltPayment568(s,p,origin,r){
   return !!r&&(!r.handOnly||origin==='hand'&&s.players[p].hand.length===1)&&(!r.condition||ownCondition(s,p,r.condition));
+ }
+ function magicToolUse976(s,p){
+  for(const x of s.players[p].grave)
+   if(!x.faceDown&&card(x).g976MagicToolUse)
+    send(s,p,x,'GraveSummonWatch766',{serial:x.zoneSerial||0});
  }
  function noncreatureUse448(s,p,c){if(c.type==='creature')return;const prev=s.g448NoncreatureUses?.[p];(s.g448NoncreatureUses??=[null,null])[p]={turn:s.turn,n:prev?.turn===s.turn?prev.n+1:1};}
  function countExecution(s,p,c){const prev=s.g34Executions?.[p];(s.g34Executions??=[null,null])[p]={turn:s.turn,n:prev?.turn===s.turn?prev.n+1:1};if(s.active===p&&cost(c)<=9)for(const x of active(s,1-p,'dokindante'))queue(s,1-p,x,[E('Draw',{n:1,optional:true}),exec('hand',9,{spellOnly:true})]);}
