@@ -3449,6 +3449,18 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=926&&d.faces.length===1){
+  if(evolution&&d.id==='dm16-030'&&compact363===
+   '進化-自分のビッグマッスル1体の上に置く。このクリーチャーはクロスギアをクロスされたタップされていないクリーチャーを攻撃できる。W・ブレイカー')
+   return {evolution:{race:'ビッグマッスル'},breaker:2,g926AttackCrossed:true};
+  if(evolution&&d.id==='dm16-s03'&&compact363===
+   '進化-自分のドラゴン・ゾンビ1体の上に置く。相手のクリーチャーは可能であればこのクリーチャーを攻撃する。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {evolution:{race:'ドラゴン・ゾンビ'},breaker:2,g926MandatoryAttackTarget:true};
+  if(f.typeText==='呪文'&&d.id==='dm05-017'&&compact363===
+   'バトルゾーンにある自分の自然のクリーチャー1体につき相手のマナゾーンから1枚選び持ち主の墓地に置いてもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Select',owner:'opponent',origin:'mana',to:'grave',
+    optional:true,g583Group:true,g184ManaLoss:true,g926OwnCreatureColor:'自然'}]};
+ }
  if(phase>=925&&d.faces.length===1&&creature){
   if(d.id==='dm14-032'&&compact363===
    'バトルゾーンにあるクリーチャーはすべてタップされていない多色クリーチャーを攻撃できる。')

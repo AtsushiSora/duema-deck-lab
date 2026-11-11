@@ -722,14 +722,14 @@ export function createSixPhotoRules(api){
   else(y.g34Grants??=[]).push(timedGrant335(s,t,t.grant));
  }
  // Publish the complete movement before its zone triggers or matching draw.
- function moveZoneSelection583(s,t,rows){
-  if(!api.canMoveZone(s,t.p,t.origin))return;
-  const dest=t.to==='mana'&&t.origin!=='hand'&&api.manaRedirect(s,t.p)?'grave':t.to;
+ function moveZoneSelection583(s,t,rows,owner=t.p){
+  if(!api.canMoveZone(s,owner,t.origin))return;
+  const dest=t.to==='mana'&&t.origin!=='hand'&&api.manaRedirect(s,owner)?'grave':t.to;
   if(dest===t.origin)return;
-  const origin=s.players[t.p][t.origin],moved=rows.map(r=>remove(origin,r.uid)).filter(Boolean);
+  const origin=s.players[owner][t.origin],moved=rows.map(r=>remove(origin,r.uid)).filter(Boolean);
   for(const x of moved)clear(x,dest);
-  api.addZone(s,t.p,dest,...moved);
-  if(t.origin==='hand'&&dest==='mana')for(const x of moved)api.handMana(s,t.p,x);
+  api.addZone(s,owner,dest,...moved);
+  if(t.origin==='hand'&&dest==='mana')for(const x of moved)api.handMana(s,owner,x);
   if(t.g583DrawMoved&&moved.length)start(s,t,[{op:'Draw',n:moved.length}]);
  }
  const graveHandManaOrigins771=['grave','hand'];
@@ -812,7 +812,7 @@ export function createSixPhotoRules(api){
    (target.powerModifiers??=[]).push({amount:t.g671PlayerLockPower,expires:'end',who:s.active,spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))});
    stopPlayerAttack567(s,{...t,g567PlayerStop:'end'},target);
   }
-  if(t.g583Group){moveZoneSelection583(s,t,t.rows||[]);return;}
+  if(t.g583Group){moveZoneSelection583(s,t,t.rows||[],t.owner==='opponent'?1-t.p:t.p);return;}
  if(t.afterBattleSelect||t.g917BounceMatch){
   const moves=(t.rows||[]).filter(r=>r.origin==='battle'&&s.players[r.p].battle.some(x=>x.uid===r.uid))
    .map(r=>({player:r.p,uid:r.uid,to:t.to,controller:t.controller??t.p}));
@@ -2266,6 +2266,11 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_Select':{
+  if(t.g926OwnCreatureColor&&t.n===undefined){
+   const n=creatures(s,t.p).filter(x=>!x.sealed&&!x.faceDown&&colors(effective(x,s)).includes(t.g926OwnCreatureColor)).length;
+   if(!n)break;
+   t={...t,n,title:'相手のマナから墓地に置くカードを'+n+'枚まで選ぶ'};
+  }
   const limit=t.g746OwnManaCost?{filter:{...t.filter,max:own.mana.length}}:{};
   selection(s,{selected:[],rows:[],...t,...limit});
   break;
@@ -3760,7 +3765,8 @@ export function createSixPhotoRules(api){
  },
  stay577,
  zeroSafe:(s,x)=>!!effective(x,s).g34AlwaysWinAtZero&&api.power(x,false,s)<=0,
- attackableUntapped:(s,x)=>s.players.some(owner=>owner.battle.some(y=>!y.sealed&&card(y).g925MulticolorAttackable&&
+ attackableUntapped:(s,x,attacker)=>attacker.g926AttackCrossed&&crossedCount728(s,x)>0||
+  s.players.some(owner=>owner.battle.some(y=>!y.sealed&&card(y).g925MulticolorAttackable&&
   effective(y,s).g925MulticolorAttackable))&&colors(effective(x,s)).length>1||
   (s.extLimits||[]).some(l=>l.kind==='g924AttackableUntapped'&&l.turn===s.turn&&
   api.allLayers(x).some(y=>l.refs.includes(key(y)))&&!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource})),
