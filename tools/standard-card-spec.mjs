@@ -3435,6 +3435,16 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=977&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='クリーチャー'&&d.id==='dmrp03-035'&&text==='このカードを自分の手札から捨てる時墓地に置くかわりに自分のNEOクリーチャー1体の下に置いてもよい。')
+   return {g977DiscardUnderNeo:true};
+  if(f.typeText==='クリーチャー'&&['dmrp04s-057','dmrp04m-040','dmex03-062','dmex03-063','dmex08-128'].includes(d.id)&&text==='このクリーチャーはシールドをブレイクできない。自分は「S・トリガー」能力を使えない。このカードは4枚より多くデッキに入れることができる。')
+   return {g977CannotBreak:true,g597TriggerLock:{ownOnly:true},g314Unlimited:true};
+  // The official correction (31433) specifies the hand as the source.
+  if(f.typeText==='呪文'&&d.id==='dmrp08-019'&&text==='カードを2枚引く。その後水のコスト3以下のクリーチャーではないカードを1枚コストを支払わずに使ってもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Draw',n:2},{op:'Execute',origin:'hand',nonCreature:true,g556SpellColor:'水',max:3,optional:true}]};
+ }
  if(phase>=976&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='呪文'&&['dmrp03-038','dmsd11-012'].includes(d.id)&&text==='コストを支払うかわりに自分の水のクリーチャーを2体タップしてこの呪文を唱えてもよい。相手のクリーチャーを1体選び持ち主の手札に戻す。')

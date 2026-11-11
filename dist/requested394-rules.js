@@ -18,8 +18,13 @@ export function createRequested394Rules(api){
   const rows=api.handProtected(s,event)?[]:own.hand.filter(x=>!t.kept.hand.includes(x.uid));
   const x=rows.find(x=>!Object.hasOwn(t.plans,x.uid)&&api.discardMode(s,event,x)==='optional'&&api.canReplaceDiscard(s,event,x));
   if(x){
-   const mana=api.discardReplacementZone(x)==='mana',label=mana?'マナゾーンに置く':'バトルゾーンに出す';
-   choice(s,{...t,p:owner},card(x).name+'を捨てるかわりに'+(mana?'マナに置く？':'出す？'),[opt(label,x.uid,25,x.cardId),opt('そのまま捨てる',null,0)]);
+   if(card(x).g977DiscardUnderNeo){
+    const {title,options}=api.discardReplacementOptions(s,event,x);
+    choice(s,{...t,p:owner},card(x).name+'：'+title,[...options,opt('そのまま捨てる',null,0)]);
+   }else{
+    const mana=card(x).g843DiscardToMana,label=mana?'マナゾーンに置く':'バトルゾーンに出す';
+    choice(s,{...t,p:owner},card(x).name+'を捨てるかわりに'+(mana?'マナに置く？':'出す？'),[opt(label,x.uid,25,x.cardId),opt('そのまま捨てる',null,0)]);
+   }
    return;
   }
   const after={kind:'g394Cut',actor:t.actor,p:owner,source:t.source,shields:own.shields.filter(x=>!t.kept.shields.includes(x.uid)).map(x=>x.uid),hand:rows.map(x=>x.uid),plans:t.plans};
@@ -32,7 +37,7 @@ export function createRequested394Rules(api){
   case'g394_DiscardPlans':planDiscard(s,t);break;
   case'g394_Attack':defs(s,t,[{op:'Offer',g186GraveMill:true,title:'山札の上2枚を墓地に置く？',defs:[{op:'Mill',n:2}]},{op:'Select',origin:'grave',deploy:true,n:1,noEvolve:true,filter:{creature:true,nonEvolution:true,max:6,any:[{color:'闇'},{color:'火'}]},title:'墓地から出す闇か火のコスト6以下の進化ではないクリーチャーを1体選ぶ'}]);break;
  }return true;}
- function chosen(s,t,v){if(!t.op.startsWith('g394_'))return false;if(t.op==='g394_Keep'){const zone=['shields','hand','battle'][t.stage];put(s,{...t,p:t.actor,kept:{...t.kept,[zone]:[...(t.kept[zone]||[]),v]}});}else if(t.op==='g394_DiscardPlans'){const own=s.players[t.p],x=own.hand.find(x=>!t.kept.hand.includes(x.uid)&&!Object.hasOwn(t.plans,x.uid)&&api.discardMode(s,{p:t.p,causedBy:t.actor,source:t.source},x)==='optional'&&api.canReplaceDiscard(s,t,x));if(x)put(s,{...t,p:t.actor,plans:{...t.plans,[x.uid]:!!v}});}return true;}
+ function chosen(s,t,v){if(!t.op.startsWith('g394_'))return false;if(t.op==='g394_Keep'){const zone=['shields','hand','battle'][t.stage];put(s,{...t,p:t.actor,kept:{...t.kept,[zone]:[...(t.kept[zone]||[]),v]}});}else if(t.op==='g394_DiscardPlans'){const own=s.players[t.p],x=own.hand.find(x=>!t.kept.hand.includes(x.uid)&&!Object.hasOwn(t.plans,x.uid)&&api.discardMode(s,{p:t.p,causedBy:t.actor,source:t.source},x)==='optional'&&api.canReplaceDiscard(s,t,x));if(x)put(s,{...t,p:t.actor,plans:{...t.plans,[x.uid]:v&&typeof v==='object'?v:!!v}});}return true;}
  return{run,chosen,
   effect(s,p,c,uid){if(!c.g394Jao)return false;put(s,task('g394_Keep',p,c.id,{actor:p,controller:p,uid,stage:0,kept:{}}));return true;},
   attack(s,p,x){const n=s.g393DUnitAttacks?.[key(x)];if(!x.sealed&&!api.selfStopped(s,p)&&effective(x,s).g394Jao&&n?.turn===s.turn&&n.n===1)queue(s,p,x,'Attack');},
@@ -42,7 +47,7 @@ export function createRequested394Rules(api){
    for(const uid of t.hand){
     const x=own.hand.find(x=>x.uid===uid);if(!x)continue;
     const event={p:t.p,causedBy:t.actor,controller:t.actor,source:t.source,n:1};
-    if((t.plans[uid]||api.discardMode(s,event,x)==='mandatory')&&api.canReplaceDiscard(s,event,x))api.replaceDiscard(s,event,x);
+    if((t.plans[uid]||api.discardMode(s,event,x)==='mandatory')&&api.canReplaceDiscard(s,event,x))api.replaceDiscard(s,event,x,t.plans[uid]||true);
     else api.discardCard(s,event,x);
    }
   }

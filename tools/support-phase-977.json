@@ -1,0 +1,259 @@
+{
+  "phase": 977,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6824,
+  "description": "手札を捨てる際のNEO進化元への置換、シールドのブレイクとS・トリガーの制限、公式訂正後の手札からのカード実行を処理する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/31621/",
+    "https://dm.takaratomy.co.jp/rule/qa/31681/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31433/",
+    "https://dm.takaratomy.co.jp/rule/qa/40424/",
+    "https://dm.takaratomy.co.jp/rule/qa/46609/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp03-035",
+      "name": "貝獣 ヒヨク",
+      "faces": [
+        {
+          "name": "貝獣 ヒヨク",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このカードを自分の手札から捨てる時、墓地に置くかわりに自分のNEOクリーチャー１体の下に置いてもよい。",
+          "race": "ムートピア",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-035",
+      "spec": {
+        "g977DiscardUnderNeo": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "da28465254d5f8227e23e0e8aa25647610d1742cb49765d31cff794546bd5bf0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-057",
+      "name": "はずれポンの助",
+      "faces": [
+        {
+          "name": "はずれポンの助",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーはシールドをブレイクできない。\n自分は「S・トリガー」能力を使えない。\nこのカードは、４枚より多くデッキに入れることができる。",
+          "race": "ジョーカーズ",
+          "powerText": "820",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-057",
+      "spec": {
+        "g977CannotBreak": true,
+        "g597TriggerLock": {
+          "ownOnly": true
+        },
+        "g314Unlimited": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-057.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "476c1a7e138d90d45cddf92fdf82cef57b636c434e89bc743c67b830a2cbc676",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp08-019",
+      "name": "堕呪 ザフィヴォ",
+      "faces": [
+        {
+          "name": "堕呪 ザフィヴォ",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "カードを２枚引く。その後、水のコスト３以下の、クリーチャーではないカードを１枚、コストを支払わずに使ってもよい。",
+          "race": "魔導具",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-019",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Execute",
+            "origin": "hand",
+            "nonCreature": true,
+            "g556SpellColor": "水",
+            "max": 3,
+            "optional": true
+          }
+        ]
+      },
+      "errata": {
+        "source": "https://dm.takaratomy.co.jp/rule/rulechange/31433/",
+        "abilityText": "カードを２枚引く。その後、水のコスト３以下の、クリーチャーではないカードを１枚、手札からコストを支払わずに使ってもよい。"
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "e0efcce47d3524e0ba5021b8082bc0ee44de9c7662b5964eea234793ff69d98d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmrp04m-040",
+      "canonicalId": "dmrp04s-057",
+      "name": "はずれポンの助",
+      "faces": [
+        {
+          "name": "はずれポンの助",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーはシールドをブレイクできない。\n自分は「S・トリガー」能力を使えない。\nこのカードは、４枚より多くデッキに入れることができる。",
+          "race": "ジョーカーズ",
+          "powerText": "820",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-040",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04m-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "89482751294a2cef2fe4fa94a26adaa58e7af88c0d5a01fa4e7ee6dc8dc58d45",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex03-062",
+      "canonicalId": "dmrp04s-057",
+      "name": "はずれポンの助",
+      "faces": [
+        {
+          "name": "はずれポンの助",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーはシールドをブレイクできない。\n自分は「S・トリガー」能力を使えない。\nこのカードは、４枚より多くデッキに入れることができる。",
+          "race": "ジョーカーズ",
+          "powerText": "820",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-062",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex03-062.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "e8569f54496a980abb03d2925170dda73980d2519918f7526a362c491a44e3ff",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex03-063",
+      "canonicalId": "dmrp04s-057",
+      "name": "はずれポンの助",
+      "faces": [
+        {
+          "name": "はずれポンの助",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーはシールドをブレイクできない。\n自分は「S・トリガー」能力を使えない。\nこのカードは、４枚より多くデッキに入れることができる。",
+          "race": "ジョーカーズ",
+          "powerText": "820",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-063",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex03-063.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "9946b6285e45040690021425c5e0d93e63c93621692cfa22846eb9d3c6c7be00",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex08-128",
+      "canonicalId": "dmrp04s-057",
+      "name": "はずれポンの助",
+      "faces": [
+        {
+          "name": "はずれポンの助",
+          "typeText": "クリーチャー",
+          "civilizationText": "ゼロ",
+          "civilizations": [
+            "無色"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "このクリーチャーはシールドをブレイクできない。\n自分は「S・トリガー」能力を使えない。\nこのカードは、４枚より多くデッキに入れることができる。",
+          "race": "ジョーカーズ",
+          "powerText": "820",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex08-128",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex08-128.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "debb52fa06668afadb1ad7cc3cec6fcc4ce369e2a77e68aa6b78c6743f40f9a9",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp03-035": 4,
+      "dmrp04s-057": 4,
+      "dmrp08-019": 4,
+      "dmrp04m-040": 4,
+      "dmex03-062": 4,
+      "dmex03-063": 4,
+      "dmex08-128": 4
+    }
+  }
+}

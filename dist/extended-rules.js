@@ -107,12 +107,12 @@ export function createExtendedRules(api){
   const other=1-p,field=creatures(s,other);
   const applies=(x,own)=>{
    const lock=!x.sealed&&!x.faceDown&&effective(x,s).g597TriggerLock;
-   return lock&&(!own||lock.both)&&(!lock.type||lock.type===c.type)&&(!lock.color||colors(c).includes(lock.color))&&(!lock.tapped||x.tapped)
+   return lock&&(own?lock.both||lock.ownOnly:!lock.ownOnly)&&(!lock.type||lock.type===c.type)&&(!lock.color||colors(c).includes(lock.color))&&(!lock.tapped||x.tapped)
     &&(!lock.ownBreak||x.uid===breaker?.uid&&(breaker.incarnation===undefined||(x.incarnation||0)===breaker.incarnation))
     &&(lock.minShields===undefined||remaining>=lock.minShields)
     &&(!lock.allColors||['光','水','闇','火','自然'].every(color=>field.some(y=>!y.sealed&&colors(effective(y,s)).includes(color))));
   };
-  return field.some(x=>applies(x,false))||s.players[p].battle.some(x=>card(x).g597TriggerLock?.both&&api.isCreature(s,x)&&applies(x,true));
+  return field.some(x=>applies(x,false))||creatures(s,p).some(x=>{const lock=card(x).g597TriggerLock;return (lock?.both||lock?.ownOnly)&&applies(x,true);});
  }
  const put=(s,...tasks)=>{(s.extTasks??=[]).unshift(...tasks.filter(Boolean).map(t=>({...t,controller:t.controller??api.effectActor(s)??t.causedBy??t.p})));};
  const task=(op,p,source,more={})=>({op,p,source,...more});
@@ -167,7 +167,7 @@ export function createExtendedRules(api){
  const requested393J=createRequested393JokerRules(requested393Api);
  const requested393P=createRequested393PuppetRules(requested393Api);
  const requested393SG=createRequested393SuperguardRules(requested393Api);
- const requested394=createRequested394Rules({...requested393Api,discardMode:(s,t,x)=>discardMode(s,t,x),canReplaceDiscard:(s,t,x)=>canReplaceDiscard(s,t,x),discardReplacementZone,handProtected:(s,t)=>handProtected(s,t),replaceDiscard:(s,t,x)=>replaceDiscard(s,t,x),discardCard:(s,t,x)=>discardCard(s,t,x)});
+ const requested394=createRequested394Rules({...requested393Api,discardMode:(s,t,x)=>discardMode(s,t,x),canReplaceDiscard:(s,t,x)=>canReplaceDiscard(s,t,x),discardReplacementOptions,handProtected:(s,t)=>handProtected(s,t),replaceDiscard:(s,t,x,v)=>replaceDiscard(s,t,x,v),discardCard:(s,t,x)=>discardCard(s,t,x)});
  const shieldPhoto=createShieldPhotoRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const photo=createKenjiPhotoRules({...api,creatures,put,task,choice,opt,skip,targetOptions});
  const bolshack=createBolshackRules({...api,creatures,put,task,choice,opt,skip,targetOptions,targetable,lock});
@@ -199,12 +199,29 @@ export function createExtendedRules(api){
  const abyss=createAbyssRules({...api,creatures,put,task,choice,opt,skip,targetOptions,canLeave,discardSelected:(s,t,ids)=>beginDiscardBatch(s,t,ids)});
  const enemyDiscardEffect=(s,t)=>!t.selfDiscard&&(t.causedBy??t.controller??s.active)===1-t.p&&['spell','creature'].includes(card(t.source)?.type);
  const handProtected=(s,t)=>enemyDiscardEffect(s,t)&&creatures(s,t.p).some(x=>effective(x,s).g591HandShield);
- function discardReplacementZone(x){return card(x).g843DiscardToMana?'mana':'battle';}
+ function neoDiscardHosts977(s,p){
+  return creatures(s,p).filter(y=>!y.sealed&&!y.faceDown&&api.zoneCard(s,p,y,'battle').neoEvolution);
+ }
  function canReplaceDiscard(s,t,x){
-  return card(x).g843DiscardToMana||canEnter(s,t.p,card(x),{origin:'hand',execution:false});
+  const c=card(x);
+  if(c.g977DiscardUnderNeo)return neoDiscardHosts977(s,t.p).length>0;
+  return c.g843DiscardToMana||canEnter(s,t.p,c,{origin:'hand',execution:false});
+ }
+ function discardReplacementOptions(s,t,x){
+  const c=card(x),own=s.players[t.p];
+  if(c.g977DiscardUnderNeo)return {
+   title:'捨てるかわりに下に置く自分のNEOクリーチャーを選ぶ',
+   options:neoDiscardHosts977(s,t.p).map(y=>opt(card(y).name+'の下に置く',{uid:y.uid,incarnation:y.incarnation||0},25,y.cardId))
+  };
+  if(c.g843DiscardToMana)return {
+   title:'捨てるかわりにマナゾーンに置きますか？',options:[opt('墓地のかわりにマナへ置く',true,30,x.cardId)]
+  };
+  return {title:'捨てるかわりにバトルゾーンに出しますか？',
+   options:[opt('墓地のかわりに出す',true,c.g591Discard==='drawTwo'&&own.deck.length<=2?-1000:30,x.cardId)]};
  }
  function discardMode(s,t,x){
   const c=card(x),enemyTurn=t.p!==s.active;
+  if(c.g977DiscardUnderNeo&&!api.handAbilityIgnored(s,x))return 'optional';
   if(c.g843DiscardToMana&&!api.handAbilityIgnored(s,x)&&enemyDiscardEffect(s,t))return 'optional';
   if(c.g591Discard==='opponentEffect607'){
    return !api.handAbilityIgnored(s,x)&&!t.selfDiscard&&(t.causedBy??t.controller??s.active)===1-t.p&&
@@ -279,8 +296,10 @@ export function createExtendedRules(api){
     const mode=discardMode(s,t,x);
     if(mode&&canReplaceDiscard(s,t,x)){
      if(mode==='mandatory')replaceDiscard(s,t,x);
-     else if(card(x).g843DiscardToMana)choice(s,t,'捨てるかわりにマナゾーンに置きますか？',[opt('墓地のかわりにマナへ置く',true,30,x.cardId),opt('そのまま捨てる',false,0)]);
-     else choice(s,t,'捨てるかわりにバトルゾーンに出しますか？',[opt('墓地のかわりに出す',true,card(x).g591Discard==='drawTwo'&&own.deck.length<=2?-1000:30,x.cardId),opt('そのまま捨てる',false,0)]);
+     else {
+      const {title,options}=discardReplacementOptions(s,t,x);
+      choice(s,t,title,[...options,opt('そのまま捨てる',false,0)]);
+     }
      break;
     }
     discardCard(s,t,x);break;
@@ -398,8 +417,18 @@ export function createExtendedRules(api){
   }
  }
  function beginDiscardBatch(s,t,uids){if(handProtected(s,t))uids=[];const batchId=String(s.extDiscardSerial=(s.extDiscardSerial||0)+1);(s.extDiscardBatches??={})[batchId]={p:t.p,source:t.source,uids:[...uids],actual:0,randomDiscardAfter:t.randomDiscardAfter};const watchers=discardWatchers848(s,t.p);if(watchers.length)s.extDiscardBatches[batchId].g848Watchers=watchers;put(s,{...t,op:'discardBatch',batchId,n:1,randomDiscardAfter:false});}
- function replaceDiscard(s,t,x){
+ function replaceDiscard(s,t,x,selected=true){
   const c=card(x);
+  if(c.g977DiscardUnderNeo){
+   const host=neoDiscardHosts977(s,t.p).find(y=>y.uid===selected?.uid&&(y.incarnation||0)===selected.incarnation);
+   if(!host){discardCard(s,t,x);return;}
+   remove(s.players[t.p].hand,x.uid);
+   clear(x,'under');
+   (host.under??=[]).push(x);
+   log(s,t.p,'discardReplace',c.name+'を墓地のかわりに'+card(host).name+'の下に置く',{cardId:x.cardId});
+   afterDiscard(s,t,x,false);
+   return;
+  }
   remove(s.players[t.p].hand,x.uid);
   if(c.g843DiscardToMana){
    clear(x,'mana');
@@ -449,7 +478,7 @@ export function createExtendedRules(api){
   case 'optionalLoot':if(value)put(s,task('draw',t.p,t.source,{n:t.n}),task('discard',t.p,t.source,{causedBy:t.p,n:1}));break;
   case 'discardSelect':if(value)put(s,{...t,selected:[...t.selected,value]});else beginDiscardBatch(s,t,t.selected);break;
   case 'discard':if(value)put(s,{...t,op:'discardChosen',uid:value});else if(t.randomDiscardAfter&&t.discarded)put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:t.discarded,random:true}));break;
-  case 'discardChosen':{const x=own.hand.find(x=>x.uid===t.uid);if(!x)break;if(value)replaceDiscard(s,t,x);else discardCard(s,t,x);break;}
+  case 'discardChosen':{const x=own.hand.find(x=>x.uid===t.uid);if(!x)break;if(value)replaceDiscard(s,t,x,value);else discardCard(s,t,x);break;}
   case 'elementBounce':move(s,[{player:1-t.p,uid:value,to:'hand'}]);if(t.discardAfter)put(s,task('discard',1-t.p,t.source,{causedBy:t.p,n:1,random:true}));break;
   case 'jadowShield':{const all=api.moveShield(s,t.p,value,'hand',{handEffects:false});abyss.beginSB(s,t.p,all);for(const x of all){lionel.shieldHand(s,t.p,x,false);gachi.shieldHand(s,t.p,x);}put(s,...all.filter(x=>card(x).gStrike).map(x=>task('gsTarget',t.p,x.cardId)),task('destroyUntapped',t.p,t.source));break;}
   case 'destroyUntapped':move(s,[{player:1-t.p,uid:value,to:'grave'}]);break;

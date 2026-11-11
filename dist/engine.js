@@ -1718,6 +1718,10 @@ function resolveAttack(s,blockUid){
   if(s.attack.target==='player'||triggered)s.attack.g482Unblocked=true;
   if(triggered){s.attack.stage='unblocked482';return;}
  }
+ if(s.attack.target==='player'&&s.players[other].shields.length&&effectiveCard(a,s).g977CannotBreak){
+  s.attack=null;
+  return;
+ }
  if(s.attack.target==='player'&&extra.six.selectNullBreaker471(s,s.active,a))return;
  if(s.attack.target==='player'&&s.attack.g471Breaker!=='null'&&extra.selectBreaker(s,s.active,a))return;
  const gMode=s.attack.g471Breaker!=='null'&&(s.attack.g14Breaker==='g'||!s.attack.g14Breaker&&effectiveCard(a,s).gBreaker);if(s.attack.target==='player'&&gMode&&s.attackLifecycle)s.attackLifecycle.g14G={p:s.active,uid:a.uid,source:a.cardId};

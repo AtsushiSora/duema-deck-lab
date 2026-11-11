@@ -2441,6 +2441,7 @@ export function createSixPhotoRules(api){
   const triggeredBreaker=t.g830BlockBreaker??t.g828BattleBreaker;
   if(t.g747CreatureBreak&&!host&&!triggeredBreaker)break;
   const c=host&&effective(host,s);
+  if(c?.g977CannotBreak)break;
   const n=t.n==='all'?shields.length:Math.min(t.n+(c?.extraBreak||0),shields.length);
   const selected=t.n==='all'?shields.map(y=>y.uid):(t.selected||[]).filter(uid=>shields.some(y=>y.uid===uid));
   if(selected.length<n)choice(s,{...t,selected},
@@ -2457,7 +2458,7 @@ export function createSixPhotoRules(api){
  case'g34_ShieldMana557':if(opp.shields.length)choice(s,t,'マナに置く相手のシールドを1つ選ぶ',opp.shields.map((x,i)=>opt('シールド'+(i+1),x.uid,10)));break;
  case'g34_Break278':{
   const host=t.requiresCreature&&sourceHost474(s,t);
-  if(t.requiresCreature&&(!host||!api.isCreature(s,host.x)))break;
+  if(t.requiresCreature&&(!host||!api.isCreature(s,host.x)||effective(host.x,s).g977CannotBreak))break;
   if(opp.shields.length)choice(s,t,'ブレイクする相手のシールドを1つ選ぶ',[...opp.shields.map((x,i)=>opt('シールド'+(i+1),x.uid,10)),...(t.optional?[skip()]:[])]);break;
  }
  case'g34_AfterBreak278':if(t.g909Broke)start(s,t,t.g909AfterBreak);break;
@@ -3805,7 +3806,7 @@ export function createSixPhotoRules(api){
  }break;
  case'g34_Break278':{
   const host=t.requiresCreature&&sourceHost474(s,t);
-  if(t.requiresCreature&&(!host||!api.isCreature(s,host.x)))break;
+  if(t.requiresCreature&&(!host||!api.isCreature(s,host.x)||effective(host.x,s).g977CannotBreak))break;
   if(s.players[1-t.p].shields.some(x=>x.uid===v))api.interruptBreak(s,1-t.p,[v],{...t,op:'g34_AfterBreak278'},
    {player:t.p,sourceUid:host?host.x.uid:t.uid,source:t.source,controller:t.p,g278Effect:true,...(host?{incarnation:host.x.incarnation||0}:{})});
   break;
