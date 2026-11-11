@@ -64,6 +64,7 @@ export function createSixPhotoRules(api){
   const due=[],keep=[];
   for(const r of s.g537Delays||[]){
    if(r.when===when&&(when==='turnEnd'?r.turn===s.turn:(r.who??r.p)===p&&r.turn<s.turn)){
+    if(r.defs[0]?.op==='ReturnGroup785'&&!r.defs[0].refs.length)continue;
     if(r.spellCost!==undefined&&api.spellIgnored(s,{type:'spell',cost:r.spellCost,spellSource:r.source}))continue;
     due.push({player:r.p,source:r.source,uid:r.uid,incarnation:r.incarnation,effect:'extended',
      task:task('g34_ResolveDelay537',r.p,r.source,{uid:r.uid,incarnation:r.incarnation,defs:r.defs,...(r.spellCost!==undefined?{spellCost:r.spellCost}:{})})});
@@ -1048,10 +1049,15 @@ export function createSixPhotoRules(api){
   return;
  }if(t.deploy){
   let returnGroup;
-  if(t.g785ReturnGroup){
+  if(t.g785ReturnGroup&&rows.length){
    const delays=s.g537Delays??=[];
+   const nextOpponentStart=t.g785ReturnGroup==='graveAtOpponentStart';
    returnGroup=delays.length;
-   delays.push({p:t.p,source:t.source,when:'turnEnd',turn:s.turn,defs:[{op:'ReturnGroup785',refs:[],...(t.g785ReturnGroup==='grave'?{to:'grave'}:{})}]});
+   delays.push({
+    p:t.p,source:t.source,turn:s.turn,
+    ...(nextOpponentStart?{when:'nextOwnStart',who:1-t.p}:{when:'turnEnd'}),
+    defs:[{op:'ReturnGroup785',refs:[],...(nextOpponentStart||t.g785ReturnGroup==='grave'?{to:'grave'}:{})}]
+   });
   }
   if(rows.length>1){s.g34DeployBatch=true;s.players[t.p].g34ManaHeld=rows.filter(r=>r.origin==='mana').map(r=>r.uid);}put(s,...rows.map(r=>({...t,...r,owner:r.p,p:t.p,op:'g34_Put',origin:r.origin,target:r.uid,...(returnGroup===undefined?{}:{g785Group:returnGroup})})),...(t.after?tasks(t.p,t.source,t.after,{uid:t.uid,incarnation:t.incarnation}):[]),task('g34_Custom',t.p,t.source,{name:'finishBatch'}));}else{if(t.g190Freeze)for(const r of rows)freeze(s,t,r.p,s.players[r.p].battle.find(x=>x.uid===r.uid));if(t.g546Force)for(const r of rows){const y=s.players[r.p].battle.find(x=>x.uid===r.uid);if(y)force546(s,t,r.p,y);}if((t.g187OwnPick&&t.tap)||t.g193Tap)for(const r of rows){const x=s.players[r.p].battle.find(x=>x.uid===r.uid);if(x){api.tap(s,r.p,x);if(t.g210TapLock||t.g743NeoLock&&sourceNeo563(s,t))startUntapLock210(t,x);}}if(t.g510Untap)for(const r of rows){const x=s.players[r.p].battle.find(x=>x.uid===r.uid);if(x?.tapped&&api.canUntap(x)){x.tapped=false;combined.untapped(s,r.p,x);}}if(t.g335Grant)for(const r of rows){const x=s.players[r.p].battle.find(x=>x.uid===r.uid);if(x)(x.g34Grants??=[]).push(timedGrant335(s,t,t.g335Grant));}if(t.g210ManaUntap){let n=0;for(const r of rows){const x=s.players[r.p].mana.find(x=>x.uid===r.uid);if(x&&api.canUntap(x)){if(x.tapped)n++;x.tapped=false;}}api.log(s,t.p,'untapMana',card(t.source).name+'：マナを'+n+'枚アンタップ',{cardId:t.source});}const b=rows.filter(r=>r.origin==='battle');for(const r of rows.filter(r=>r.origin!=='battle'))if(t.to)zoneMove(s,r.p,r.origin,r.uid,t.to,t);if(b.length&&t.to)move(s,b.map(r=>({player:r.p,uid:r.uid,to:t.to,destroy:t.to==='grave',controller:t.controller??t.p})));if(t.after)start(s,t,t.after);}}
  // A resolved group effect is a snapshot, not an aura. Match the source creature through its layers for "other".

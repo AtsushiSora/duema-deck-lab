@@ -3435,6 +3435,34 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=1001&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const entry='このクリーチャーがバトルゾーンに出た時';
+  const revolution2={g265ShieldsMax:2};
+  if(d.id==='dmr18-040'&&text===
+   'このクリーチャーを召喚する時自分の手札にある進化クリーチャーを1体相手に見せてもよい。'+
+   'そうしたらこのクリーチャーの召喚コストを2少なくする。ただしコストは0以下にならない。')
+   return {g470RevealReduction:{evolution:true,amount:2,exact:true}};
+  if(d.id==='dmr19-053'&&text===entry+'カードを1枚引く。'+
+   '革命2―このクリーチャーが破壊された時自分のシールドが2つ以下なら光のコスト7以下の進化ではないクリーチャーを1体自分の手札からバトルゾーンに出してもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Draw',n:1}],g172Death:[
+    {op:'IfOwn',filter:revolution2,defs:[
+     {op:'Select',origin:'hand',n:1,deploy:true,optional:true,filter:{creature:true,nonEvolution:true,color:'光',max:7}}
+    ]}
+   ]};
+  if(d.id==='dmr18-004'&&text==='W・ブレイカー相手のクリーチャーがバトルゾーンに出た時カードを1枚引いてもよい。'+
+   '革命2-'+entry+'自分のシールドが2つ以下ならバトルゾーンにある相手のクリーチャーをすべて持ち主の手札に戻す。')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[
+    {op:'IfOwn',filter:revolution2,defs:[{op:'Sweep',owner:'opponent',to:'hand',filter:{creature:true}}]}
+   ],g314OtherEntry:{who:'opponent',defs:[{op:'Draw',n:1,optional:true}]}};
+  if(d.id==='dmr18-019'&&text==='S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)'+
+   entry+'進化ではない闇のコスト4以下のクリーチャーを1体自分の墓地からバトルゾーンに出してもよい。'+
+   '次の相手のターンのはじめにそのクリーチャーを破壊する。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Select',origin:'grave',n:1,deploy:true,optional:true,g785ReturnGroup:'graveAtOpponentStart',
+     filter:{creature:true,nonEvolution:true,color:'闇',max:4}}
+   ]};
+ }
  if(phase>=1000&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmr17-085'&&text===

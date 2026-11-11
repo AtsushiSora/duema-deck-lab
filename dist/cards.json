@@ -204005,21 +204005,179 @@
       "slayer": true,
       "supportBatch": "phase-1000",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr18-040",
+      "name": "獣軍隊 パンチョウ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ゲリラ・コマンド/侵略者",
+      "text": "このクリーチャーを召喚する時、自分の手札にある進化クリーチャーを１体、相手に見せてもよい。そうしたら、このクリーチャーの召喚コストを２少なくする。ただし、コストは０以下にならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-040",
+      "limit": 4,
+      "g470RevealReduction": {
+        "evolution": true,
+        "amount": 2,
+        "exact": true
+      },
+      "supportBatch": "phase-1001",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr19-053",
+      "name": "革命の精霊龍 ローズダカーポ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3500,
+      "race": "エンジェル・コマンド・ドラゴン/革命軍",
+      "text": "このクリーチャーがバトルゾーンに出た時、カードを１枚引く。\n革命２―このクリーチャーが破壊された時、自分のシールドが２つ以下なら、光のコスト７以下の進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-053",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g265ShieldsMax": 2
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "n": 1,
+              "deploy": true,
+              "optional": true,
+              "filter": {
+                "creature": true,
+                "nonEvolution": true,
+                "color": "光",
+                "max": 7
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1001",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr18-004",
+      "name": "龍素記号Rv ペニシリン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "クリスタル・コマンド・ドラゴン/革命軍",
+      "text": "W・ブレイカー\n相手のクリーチャーがバトルゾーンに出た時、カードを１枚引いてもよい。\n革命２-このクリーチャーがバトルゾーンに出た時、自分のシールドが２つ以下なら、バトルゾーンにある相手のクリーチャーをすべて持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-004",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g265ShieldsMax": 2
+          },
+          "defs": [
+            {
+              "op": "Sweep",
+              "owner": "opponent",
+              "to": "hand",
+              "filter": {
+                "creature": true
+              }
+            }
+          ]
+        }
+      ],
+      "g314OtherEntry": {
+        "who": "opponent",
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "supportBatch": "phase-1001",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr18-019",
+      "name": "ミケニャンコ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 2000,
+      "race": "ファンキー・ナイトメア",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、進化ではない闇のコスト４以下のクリーチャーを１体、自分の墓地からバトルゾーンに出してもよい。次の相手のターンのはじめに、そのクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-019",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "g785ReturnGroup": "graveAtOpponentStart",
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "color": "闇",
+            "max": 4
+          }
+        }
+      ],
+      "supportBatch": "phase-1001",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1000,
+    "phase": 1001,
     "checkedAt": "2026-11-12",
-    "baseCount": 6919,
-    "newEffectCards": 5,
+    "baseCount": 6924,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6924,
+    "totalCount": 6928,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
       "https://dm.takaratomy.co.jp/rule/qa/39558/",
       "https://dm.takaratomy.co.jp/rule/qa/46522/",
-      "https://dm.takaratomy.co.jp/rule/qa/45585/"
+      "https://dm.takaratomy.co.jp/rule/qa/33609/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37237/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37282/",
+      "https://dm.takaratomy.co.jp/rule/qa/31554/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -222063,6 +222221,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/41152/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37256/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37429/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1000,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6919,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 6924,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/39558/",
+          "https://dm.takaratomy.co.jp/rule/qa/46522/",
+          "https://dm.takaratomy.co.jp/rule/qa/45585/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
