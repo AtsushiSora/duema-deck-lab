@@ -1,0 +1,216 @@
+{
+  "phase": 908,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6589,
+  "description": "マッハファイター、破壊時の裏向きマナ置換、アウトレイジのG・ゼロと攻撃能力の付与、攻撃時にシャッフルした山札からのドラゴン登場またはマナ追加に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/31691/",
+    "https://dm.takaratomy.co.jp/rule/qa/46233/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
+    "https://dm.takaratomy.co.jp/rule/qa/44619/",
+    "https://dm.takaratomy.co.jp/rule/qa/49221/",
+    "https://dm.takaratomy.co.jp/rule/qa/42394/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37153/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37615/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm23ex3-070",
+      "name": "豊穣のシダン マグノリア",
+      "faces": [
+        {
+          "name": "豊穣のシダン マグノリア",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこのクリーチャーが破壊される時、墓地に置くかわりに裏向きにしてマナゾーンに置く。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+          "race": "オラクル・セレス/ヒューマノイド",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-070",
+      "spec": {
+        "machFighter": true,
+        "g908DestroyToCrystal": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23ex3-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "cf57b665a83353363381f977ae6fa5c1aedc885aed9b4fdb26a08ac9b6f9fb94",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr10-028",
+      "name": "無法の裏技ドドンガ・ドン",
+      "faces": [
+        {
+          "name": "無法の裏技ドドンガ・ドン",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "G・ゼロ - バトルゾーンに自分のアウトレイジがあれば、この呪文をコストを支払わずに唱えてもよい。\nこのターン、バトルゾーンにある自分のクリーチャー１体は「パワーアタッカー+3000」を得、タップされていないクリーチャーを攻撃できる。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-028",
+      "spec": {
+        "g261Free": {
+          "filter": {
+            "race": "アウトレイジ",
+            "faceUp": true
+          },
+          "label": "G・ゼロ"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "power": 3000,
+            "g337PowerAttacker": true,
+            "grant": {
+              "attackUntapped": true
+            },
+            "spell": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr10-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "ca5dfee33f9b92ce5d67887f7552efb26086acbaec02349d5fee50cf8c54e64a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex3-070",
+      "name": "宿禰マロン＜最強傑作でし！＞",
+      "faces": [
+        {
+          "name": "宿禰マロン＜最強傑作でし！＞",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこのクリーチャーが攻撃する時、自分の山札をシャッフルし、その後、上から１枚を表向きにする。それがドラゴンなら出してもよい。それ以外ならマナゾーンに置く。",
+          "race": "アース・ドラゴン/アオハル組",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex3-070",
+      "spec": {
+        "machFighter": true,
+        "g34Attack": [
+          {
+            "op": "Shuffle405"
+          },
+          {
+            "op": "RevealTop514",
+            "filter": {
+              "anyFaceRace": "ドラゴン"
+            },
+            "to": "battle",
+            "elseTo": "mana",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex3-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "daf2915db58ccf7e6857a72bc4d823df92604caa957297f825aad13f3a27da59",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm26ex3-SEC018",
+      "canonicalId": "dm26ex3-070",
+      "name": "宿禰マロン＜最強傑作でし！＞",
+      "faces": [
+        {
+          "name": "宿禰マロン＜最強傑作でし！＞",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マッハファイター\nこのクリーチャーが攻撃する時、自分の山札をシャッフルし、その後、上から１枚を表向きにする。それがドラゴンなら出してもよい。それ以外ならマナゾーンに置く。",
+          "race": "アース・ドラゴン/アオハル組",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex3-SEC018",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex3-SEC018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "8bf7a3c40690f866a6f77af618dbd1ccfee769935a274d1f1682aadc127840e5",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm26ex3-SEC018CHO",
+      "canonicalId": "dm26ex3-070",
+      "name": "宿禰マロン＜最強傑作でし！＞",
+      "faces": [
+        {
+          "name": "宿禰マロン＜最強傑作でし！＞",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マッハファイター\nこのクリーチャーが攻撃する時、自分の山札をシャッフルし、その後、上から１枚を表向きにする。それがドラゴンなら出してもよい。それ以外ならマナゾーンに置く。",
+          "race": "アース・ドラゴン/アオハル組",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex3-SEC018CHO",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm26ex3-SEC018CHO.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "d05f7863e11890e5199999e6abcfab97237a1a03097b8e66751d4126dc01ea87",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23ex3-070": 4,
+      "dmr10-028": 4,
+      "dm26ex3-070": 4,
+      "dm26ex3-SEC018": 4,
+      "dm26ex3-SEC018CHO": 4
+    }
+  }
+}

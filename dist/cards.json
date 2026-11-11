@@ -193084,23 +193084,116 @@
       ],
       "supportBatch": "phase-907",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23ex3-070",
+      "name": "豊穣のシダン マグノリア",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "オラクル・セレス/ヒューマノイド",
+      "text": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこのクリーチャーが破壊される時、墓地に置くかわりに裏向きにしてマナゾーンに置く。（マナゾーンにある裏向きのカードは、マナの数字が１の無色カードとして扱う。その持ち主はそれをいつでも見てもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23ex3-070",
+      "limit": 4,
+      "machFighter": true,
+      "g908DestroyToCrystal": true,
+      "supportBatch": "phase-908",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr10-028",
+      "name": "無法の裏技ドドンガ・ドン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "G・ゼロ - バトルゾーンに自分のアウトレイジがあれば、この呪文をコストを支払わずに唱えてもよい。\nこのターン、バトルゾーンにある自分のクリーチャー１体は「パワーアタッカー+3000」を得、タップされていないクリーチャーを攻撃できる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr10-028",
+      "limit": 4,
+      "g261Free": {
+        "filter": {
+          "race": "アウトレイジ",
+          "faceUp": true
+        },
+        "label": "G・ゼロ"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "power": 3000,
+          "g337PowerAttacker": true,
+          "grant": {
+            "attackUntapped": true
+          },
+          "spell": true
+        }
+      ],
+      "supportBatch": "phase-908",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm26ex3-070",
+      "name": "宿禰マロン＜最強傑作でし！＞",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "アース・ドラゴン/アオハル組",
+      "text": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこのクリーチャーが攻撃する時、自分の山札をシャッフルし、その後、上から１枚を表向きにする。それがドラゴンなら出してもよい。それ以外ならマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm26ex3-070",
+      "limit": 4,
+      "machFighter": true,
+      "g34Attack": [
+        {
+          "op": "Shuffle405"
+        },
+        {
+          "op": "RevealTop514",
+          "filter": {
+            "anyFaceRace": "ドラゴン"
+          },
+          "to": "battle",
+          "elseTo": "mana",
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-908",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 907,
+    "phase": 908,
     "checkedAt": "2026-11-11",
-    "baseCount": 6586,
+    "baseCount": 6589,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6589,
+    "totalCount": 6592,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/rule/qa/31691/",
-      "https://dm.takaratomy.co.jp/rule/qa/31690/",
-      "https://dm.takaratomy.co.jp/rule/qa/46491/",
-      "https://dm.takaratomy.co.jp/rule/qa/40642/",
-      "https://dm.takaratomy.co.jp/rule/qa/42521/",
-      "https://dm.takaratomy.co.jp/rule/qa/39849/",
+      "https://dm.takaratomy.co.jp/rule/qa/46233/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
+      "https://dm.takaratomy.co.jp/rule/qa/44619/",
+      "https://dm.takaratomy.co.jp/rule/qa/49221/",
+      "https://dm.takaratomy.co.jp/rule/qa/42394/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37153/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37615/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
     ],
     "next": [
@@ -209265,6 +209358,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/40652/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36710/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31650/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 907,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6586,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6589,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/31691/",
+          "https://dm.takaratomy.co.jp/rule/qa/31690/",
+          "https://dm.takaratomy.co.jp/rule/qa/46491/",
+          "https://dm.takaratomy.co.jp/rule/qa/40642/",
+          "https://dm.takaratomy.co.jp/rule/qa/42521/",
+          "https://dm.takaratomy.co.jp/rule/qa/39849/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

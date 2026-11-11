@@ -3445,6 +3445,21 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=908&&d.faces.length===1){
+  const mach='マッハファイター(このクリーチャーは出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)';
+  if(creature&&d.id==='dm23ex3-070'&&compact363===mach+
+   'このクリーチャーが破壊される時墓地に置くかわりに裏向きにしてマナゾーンに置く。(マナゾーンにある裏向きのカードはマナの数字が1の無色カードとして扱う。その持ち主はそれをいつでも見てもよい)')
+   return {machFighter:true,g908DestroyToCrystal:true};
+  if(f.typeText==='呪文'&&d.id==='dmr10-028'&&compact363===
+   'G・ゼロ-バトルゾーンに自分のアウトレイジがあればこの呪文をコストを支払わずに唱えてもよい。'+
+   'このターンバトルゾーンにある自分のクリーチャー1体は「パワーアタッカー+3000」を得タップされていないクリーチャーを攻撃できる。')
+   return {g261Free:{filter:{race:'アウトレイジ',faceUp:true},label:'G・ゼロ'},effect:'sixPhoto',
+    g34Tasks:[{op:'Target',owner:'self',power:3000,g337PowerAttacker:true,grant:{attackUntapped:true},spell:true}]};
+  if(creature&&['dm26ex3-070','dm26ex3-SEC018','dm26ex3-SEC018CHO'].includes(d.id)&&
+   compact363===(d.id==='dm26ex3-070'?mach:'マッハファイター')+
+   'このクリーチャーが攻撃する時自分の山札をシャッフルしその後上から1枚を表向きにする。それがドラゴンなら出してもよい。それ以外ならマナゾーンに置く。')
+   return {machFighter:true,g34Attack:[{op:'Shuffle405'},{op:'RevealTop514',filter:{anyFaceRace:'ドラゴン'},to:'battle',elseTo:'mana',optional:true}]};
+ }
  if(phase>=907&&creature&&d.faces.length===1){
   const mach='マッハファイター(このクリーチャーは出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)';
   if(['dmsd05-005','promoy17-013'].includes(d.id)&&compact363===mach.replace('は出た','はバトルゾーンに出た')+
