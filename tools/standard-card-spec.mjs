@@ -3435,6 +3435,34 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=990&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const double='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
+  if(['dmr16g-023','dmr16s-023'].includes(d.id)&&
+   text==='相手の呪文の効果または相手のクリーチャーの能力によってこのクリーチャーが自分の手札から捨てられる時墓地に置くかわりに自分のバトルゾーンに置いてもよい。'+
+    'このクリーチャーをバトルゾーンに出した時自分の山札の上から3枚をすべてのプレイヤーに見せる。その中からカードに能力が書かれていないクリーチャーをすべて自分の手札に加え残りを好きな順序で自分の山札の一番下に置く。')
+   return {g591Discard:'opponentEffect',effect:'sixPhoto',g34Tasks:[{op:'Look',n:3,public:true,rest:'bottom',
+    stages:[{n:'all',allMatches:true,to:'hand',filter:{creature:true,g990PrintedNoAbilities:true}}]}]};
+  if(d.id==='dmr16s-035'&&
+   text==='ブロッカーブロッカー《遊撃師団ニューイー》は4枚より多くデッキに入れることができる。'+
+    'バトルゾーンに自分のクリーチャーが5体以上なければこのクリーチャーは相手プレイヤーを攻撃できない。'+
+    '自分の名前に《遊撃師団》を持つクリーチャーが5体以上バトルゾーンにあればこのクリーチャーのパワーは+5000され「W・ブレイカー」を得る。')
+   return {blocker:true,noPlayerAttack:true,g314Unlimited:true,
+    g260Self:{filter:{g370BattleCount:{filter:{creature:true,g819CreatureNameIncludes:'遊撃師団'},min:5}},
+     grants:{power:5000,breaker:2}},
+    g268ManaGrants:[{filter:{g370BattleCount:{filter:{creature:true},min:5}},grants:{noPlayerAttack:false}}]};
+  if(d.id==='dmr14-050'&&
+   text==='このクリーチャーをバトルゾーンに出した時バトルゾーンにある相手のタップされていないクリーチャーを1体選ぶ。そのターンバトルゾーンにある自分のクリーチャーはすべてそのクリーチャーを攻撃できる。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',filter:{untapped:true},g971AttackTarget:true,includeSource:true,
+    title:'攻撃できるようにするアンタップ中の相手のクリーチャーを1体選ぶ'}]};
+  if(d.id==='dmr13-s03'&&text==='このクリーチャーをバトルゾーンに出した時相手のクリーチャーを1体破壊する。'+double+
+   'このクリーチャーまたは他のクリーチャーが破壊された時カードを1枚引いてもよい。')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'grave'}],
+    g303DeathWatch:{both:true,self:true,g891LookBackSelf:true,defs:[{op:'Draw',n:1,optional:true}]}};
+  if(d.id==='dmr13-041'&&text===double+
+   'このクリーチャーが破壊される時墓地に置くかわりに新しいシールドとして自分のシールドゾーンに裏向きにして加える。')
+   return {breaker:2,g842DestroyShield:true};
+ }
  if(phase>=989&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='呪文'&&['dmr16g-015','dmr16s-015'].includes(d.id)&&

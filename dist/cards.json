@@ -202226,25 +202226,201 @@
       "strikeBackColor": "火",
       "supportBatch": "phase-989",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr16g-023",
+      "name": "アクア提督 ザ・ミスター",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "リキッド・ピープル閃",
+      "text": "相手の呪文の効果または相手のクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりに自分のバトルゾーンに置いてもよい。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚をすべてのプレイヤーに見せる。その中から、カードに能力が書かれていないクリーチャーをすべて自分の手札に加え、残りを好きな順序で自分の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-023",
+      "limit": 4,
+      "g591Discard": "opponentEffect",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "public": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": "all",
+              "allMatches": true,
+              "to": "hand",
+              "filter": {
+                "creature": true,
+                "g990PrintedNoAbilities": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-990",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr16s-035",
+      "name": "遊撃師団 ニューイー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "ジャスティス・ウイング",
+      "text": "ブロッカー ブロッカー\n《遊撃師団 ニューイー》は、４枚より多くデッキに入れることができる。\nバトルゾーンに自分のクリーチャーが５体以上なければ、このクリーチャーは相手プレイヤーを攻撃できない。\n自分の、名前に《遊撃師団》を持つクリーチャーが５体以上バトルゾーンにあれば、このクリーチャーのパワーは+5000され、「W・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-035",
+      "limit": 40,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g314Unlimited": true,
+      "g260Self": {
+        "filter": {
+          "g370BattleCount": {
+            "filter": {
+              "creature": true,
+              "g819CreatureNameIncludes": "遊撃師団"
+            },
+            "min": 5
+          }
+        },
+        "grants": {
+          "power": 5000,
+          "breaker": 2
+        }
+      },
+      "g268ManaGrants": [
+        {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true
+              },
+              "min": 5
+            }
+          },
+          "grants": {
+            "noPlayerAttack": false
+          }
+        }
+      ],
+      "supportBatch": "phase-990",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-050",
+      "name": "爆旗持ち ラガブーリン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ヒューマノイド爆",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のタップされていないクリーチャーを１体選ぶ。そのターン、バトルゾーンにある自分のクリーチャーはすべて、そのクリーチャーを攻撃できる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-050",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "filter": {
+            "untapped": true
+          },
+          "g971AttackTarget": true,
+          "includeSource": true,
+          "title": "攻撃できるようにするアンタップ中の相手のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-990",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-s03",
+      "name": "永遠の悪魔龍 デッド・リュウセイ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "デーモン・コマンド・ドラゴン",
+      "text": "このクリーチャーをバトルゾーンに出した時、相手のクリーチャーを１体破壊する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nこのクリーチャーまたは他のクリーチャーが破壊された時、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-s03",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave"
+        }
+      ],
+      "g303DeathWatch": {
+        "both": true,
+        "self": true,
+        "g891LookBackSelf": true,
+        "defs": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "supportBatch": "phase-990",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-041",
+      "name": "潜守の精霊龍 フロマイラム",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nこのクリーチャーが破壊される時、墓地に置くかわりに、新しいシールドとして自分のシールドゾーンに裏向きにして加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-041",
+      "limit": 4,
+      "breaker": 2,
+      "g842DestroyShield": true,
+      "supportBatch": "phase-990",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 989,
+    "phase": 990,
     "checkedAt": "2026-11-12",
-    "baseCount": 6875,
+    "baseCount": 6880,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 6880,
+    "totalCount": 6885,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/40275/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37417/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37418/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37419/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37420/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31637/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36076/"
+      "https://dm.takaratomy.co.jp/rule/qa/33218/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36695/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37163/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31430/",
+      "https://dm.takaratomy.co.jp/rule/qa/42989/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -220069,6 +220245,28 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36427/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37142/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37134/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 989,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6875,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 6880,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/40275/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37417/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37418/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37419/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37420/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31637/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36076/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

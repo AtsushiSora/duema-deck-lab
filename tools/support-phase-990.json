@@ -1,0 +1,295 @@
+{
+  "phase": 990,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6880,
+  "description": "アクア提督、遊撃師団の攻撃条件と強化、ラガブーリンの攻撃許可、破壊時のドローとシールド化を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/33218/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36695/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37163/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31430/",
+    "https://dm.takaratomy.co.jp/rule/qa/42989/"
+  ],
+  "cards": [
+    {
+      "id": "dmr16g-023",
+      "name": "アクア提督 ザ・ミスター",
+      "faces": [
+        {
+          "name": "アクア提督 ザ・ミスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手の呪文の効果または相手のクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりに自分のバトルゾーンに置いてもよい。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚をすべてのプレイヤーに見せる。その中から、カードに能力が書かれていないクリーチャーをすべて自分の手札に加え、残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "リキッド・ピープル閃",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-023",
+      "spec": {
+        "g591Discard": "opponentEffect",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": "all",
+                "allMatches": true,
+                "to": "hand",
+                "filter": {
+                  "creature": true,
+                  "g990PrintedNoAbilities": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "24cd283414ed900f77669132057c8bb7f9097c07353b110154412bfab409f719",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16s-035",
+      "name": "遊撃師団 ニューイー",
+      "faces": [
+        {
+          "name": "遊撃師団 ニューイー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー ブロッカー\n《遊撃師団 ニューイー》は、４枚より多くデッキに入れることができる。\nバトルゾーンに自分のクリーチャーが５体以上なければ、このクリーチャーは相手プレイヤーを攻撃できない。\n自分の、名前に《遊撃師団》を持つクリーチャーが５体以上バトルゾーンにあれば、このクリーチャーのパワーは+5000され、「W・ブレイカー」を得る。",
+          "race": "ジャスティス・ウイング",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-035",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g314Unlimited": true,
+        "g260Self": {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "g819CreatureNameIncludes": "遊撃師団"
+              },
+              "min": 5
+            }
+          },
+          "grants": {
+            "power": 5000,
+            "breaker": 2
+          }
+        },
+        "g268ManaGrants": [
+          {
+            "filter": {
+              "g370BattleCount": {
+                "filter": {
+                  "creature": true
+                },
+                "min": 5
+              }
+            },
+            "grants": {
+              "noPlayerAttack": false
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "566037e3371ba4f359a8665ec6c015cff299349b24f8d78e3b3cc39eb5e79758",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-050",
+      "name": "爆旗持ち ラガブーリン",
+      "faces": [
+        {
+          "name": "爆旗持ち ラガブーリン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手のタップされていないクリーチャーを１体選ぶ。そのターン、バトルゾーンにある自分のクリーチャーはすべて、そのクリーチャーを攻撃できる。",
+          "race": "ヒューマノイド爆",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-050",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "filter": {
+              "untapped": true
+            },
+            "g971AttackTarget": true,
+            "includeSource": true,
+            "title": "攻撃できるようにするアンタップ中の相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-050.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "f4b2746a7278bf9fd3a9ed4febbdb72a6ac312be038c9794bd6069346e240259",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-s03",
+      "name": "永遠の悪魔龍 デッド・リュウセイ",
+      "faces": [
+        {
+          "name": "永遠の悪魔龍 デッド・リュウセイ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、相手のクリーチャーを１体破壊する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nこのクリーチャーまたは他のクリーチャーが破壊された時、カードを１枚引いてもよい。",
+          "race": "デーモン・コマンド・ドラゴン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-s03",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave"
+          }
+        ],
+        "g303DeathWatch": {
+          "both": true,
+          "self": true,
+          "g891LookBackSelf": true,
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-s03.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "1ff2a65f9fb9b14bf7c9e5496dc8b197463945031d2e16386f4e7daaafeaa600",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-041",
+      "name": "潜守の精霊龍 フロマイラム",
+      "faces": [
+        {
+          "name": "潜守の精霊龍 フロマイラム",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\nこのクリーチャーが破壊される時、墓地に置くかわりに、新しいシールドとして自分のシールドゾーンに裏向きにして加える。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-041",
+      "spec": {
+        "breaker": 2,
+        "g842DestroyShield": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "4c8accad274b64fddee74c74eebdf5eae00fa9805d24baecc6c407cf19d6db76",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmr16s-023",
+      "canonicalId": "dmr16g-023",
+      "name": "アクア提督 ザ・ミスター",
+      "faces": [
+        {
+          "name": "アクア提督 ザ・ミスター",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "相手の呪文の効果または相手のクリーチャーの能力によって、このクリーチャーが自分の手札から捨てられる時、墓地に置くかわりに自分のバトルゾーンに置いてもよい。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚をすべてのプレイヤーに見せる。その中から、カードに能力が書かれていないクリーチャーをすべて自分の手札に加え、残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "リキッド・ピープル閃",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-023",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "cd472f8c7e6431c90334a5629bc66bd19769ec87ae143b84680274793f5818d3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr16g-023": 4,
+      "dmr16s-035": 4,
+      "dmr14-050": 4,
+      "dmr13-s03": 4,
+      "dmr13-041": 4,
+      "dmr16s-023": 4
+    }
+  }
+}
