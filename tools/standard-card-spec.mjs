@@ -3435,6 +3435,16 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=968&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmrp02-070'&&text==='このクリーチャーがどこからでも自分の墓地に置かれた時相手のパワー2000以下のクリーチャーを1体選び持ち主の手札に戻してもよい。')
+   return {g675GraveEntry:[{op:'Target',to:'hand',optional:true,filter:{maxPower:2000,g199Power:true},
+    title:'手札に戻すパワー2000以下の相手クリーチャーを選ぶ（任意）'}]};
+  if(['dmx13-012','dmd10-008'].includes(d.id)&&text==='バトルゾーンにある自分の他の無色クリーチャー1体につきこのクリーチャーのパワーは+5000されシールドをさらに1枚ブレイクする。')
+   return {g207CountPower:{zone:'battle',other:true,filter:{noColor:true},amount:5000},g876BreakPerCount:true};
+  if(d.id==='dmr13-108'&&text==='このクリーチャーがこのクリーチャーよりパワーの大きいクリーチャーとのバトルに負けた時相手クリーチャーを持ち主のマナゾーンに置く。')
+   return {g968LossToLarger:true};
+ }
  if(phase>=967&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmex14-088'&&text==='このクリーチャーがアンタップする時カードを1枚引く。')

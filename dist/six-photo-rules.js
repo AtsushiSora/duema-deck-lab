@@ -567,10 +567,11 @@ export function createSixPhotoRules(api){
    if(t.g561Battle)return t.amount*countBattleCivilizations(s,rows.map(({y})=>y));
    return t.amount*new Set(rows.flatMap(({p,y})=>api.manaColors(card(y),s,p,true)).filter(q=>['光','水','闇','火','自然'].includes(q))).size;
   }
-  const {g876BattleName,...f}=t.filter||{};
+  const {g876BattleName,noColor,...f}=t.filter||{};
   const fits=({p,y})=>{
    if(t.zone==='battle'&&(y.sealed||y.faceDown||!t.g561Elements&&!api.isCreature(s,y)))return false;
    if(g876BattleName&&!battleNames676(y).includes(exactName(g876BattleName)))return false;
+   if(noColor&&colors(api.zoneCard(s,p,y,t.zone)).length)return false;
    if(f.g853Soul&&!hasSoul(card(y),f.g853Soul))return false;
    if(!Object.keys(f).length)return true;
    const d=t.zone==='battle'?effective(y,s,true):card(y),printed=t.zone==='battle'?[d]:faces(d);

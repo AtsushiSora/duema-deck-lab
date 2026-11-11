@@ -199443,21 +199443,95 @@
       "g967DragonAttackUntapped": true,
       "supportBatch": "phase-967",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp02-070",
+      "name": "刃の御家人 タチ・ウォー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ムートピア",
+      "text": "このクリーチャーがどこからでも自分の墓地に置かれた時、相手のパワー2000以下のクリーチャーを１体選び、持ち主の手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp02-070",
+      "limit": 4,
+      "g675GraveEntry": [
+        {
+          "op": "Target",
+          "to": "hand",
+          "optional": true,
+          "filter": {
+            "maxPower": 2000,
+            "g199Power": true
+          },
+          "title": "手札に戻すパワー2000以下の相手クリーチャーを選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-968",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx13-012",
+      "name": "神託のサトリ 最澄",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "オラクル",
+      "text": "バトルゾーンにある自分の他の無色クリーチャー１体につき、このクリーチャーのパワーは+5000され、シールドをさらに１枚ブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx13-012",
+      "limit": 4,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "filter": {
+          "noColor": true
+        },
+        "amount": 5000
+      },
+      "g876BreakPerCount": true,
+      "supportBatch": "phase-968",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-108",
+      "name": "矢毒の面 イロケロ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ビーストフォーク號",
+      "text": "このクリーチャーが、このクリーチャーよりパワーの大きいクリーチャーとのバトルに負けた時、相手クリーチャーを持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-108",
+      "limit": 4,
+      "g968LossToLarger": true,
+      "supportBatch": "phase-968",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 967,
+    "phase": 968,
     "checkedAt": "2026-11-11",
-    "baseCount": 6788,
+    "baseCount": 6791,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6791,
+    "totalCount": 6794,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/42132/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37127/",
-      "https://dm.takaratomy.co.jp/rule/qa/39131/"
+      "https://dm.takaratomy.co.jp/rule/qa/31622/",
+      "https://dm.takaratomy.co.jp/rule/qa/46841/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35985/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -216840,6 +216914,24 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37111/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36676/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31649/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 967,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6788,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6791,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/42132/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37127/",
+          "https://dm.takaratomy.co.jp/rule/qa/39131/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

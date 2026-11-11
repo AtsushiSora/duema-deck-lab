@@ -788,7 +788,7 @@ function advanceLeaving(s){if(s.lossEvent)return;
  if(batch.after?.kind==='shieldSaverBreak401'){log(s,batch.after.player,'shieldSaver',`シールド・セイバーでシールド${batch.rows.length}つを残す`);if(batch.after.uids.length)commitBreakReplacements401(s,batch.after.player,batch.after.uids);else s.breakContext=null;}
  if(destroyedForDraw)extra.put(s,extra.task('draw',batch.after.player,batch.after.source,{n:destroyedForDraw}));
  if(batch.after?.kind==='limit')limitNextTurn(s,batch.after.player,card(batch.after.source));
- if(batch.after?.kind==='battleResult')finishBattleResult(s,batch.after.winner,batch.after.late,batch.after.winning,batch.after.both);
+ if(batch.after?.kind==='battleResult')finishBattleResult(s,batch.after.winner,batch.after.late,batch.after.winning,batch.after.both,batch.after.losses);
 }
 // Resolve the mana side only after the normal leave pipeline accepts the exchange (701.26b).
 function manaExchangeCards753(s,t){
@@ -1569,10 +1569,21 @@ function battle(s,pa,a,pd,b,attackingUid=null,replaced=false,blockUntap,attackBa
   const breaks=extra.six.battleBreaks828(s,player,unit,c,ownPower,otherPower);
   return {uid:unit.uid,source:unit.cardId,mechade:!!c.mechade,breakNine:!!c.breakNine,...(breaks.length?{g828Breaks:breaks}:{})};
  };
+ const losses=[];
+ // Record the loss and compared powers before either participant leaves.
+ const queueLoss=(player,unit,opponentPlayer,opponent,ownPower,otherPower,won)=>{
+  if(won||otherPower<=ownPower||!effectiveCard(unit,s).g968LossToLarger)return;
+  const refs=layers(opponent).map(x=>({uid:x.uid,incarnation:x.incarnation||0}));
+  losses.push({player,uid:unit.uid,source:unit.cardId,onLoss:true,
+   task:extra.task('g34_ExactMove',player,unit.cardId,{owner:opponentPlayer,to:'mana',filter:{creature:true},g403Refs:refs,followEvolution:true})});
+ };
+ queueLoss(pa,a,pd,b,ap,bp,aw);
+ queueLoss(pd,b,pa,a,bp,ap,bw);
  moveCreatures(s,moves,{
   kind:'battleResult',winner,
   both:aw&&bw?[{player:pa,...result(pa,a,ap,bp)},{player:pd,...result(pd,b,bp,ap)}]:null,
   winning:winning?result(winner,winning,aw?ap:bp,aw?bp:ap):null,
+  ...(losses.length?{losses}:{}),
   late:late.sort((x,y)=>Number(y.controller===s.active)-Number(x.controller===s.active))
  });
 }
@@ -1587,8 +1598,8 @@ function markBattleWin587(s,p,w){
  s.g587BattleWins.refs=[...new Set([...previous,...refs])];
  return {...w,g587First:first,g588FirstForUnit:firstForUnit};
 }
-function finishBattleResult(s,winner,late,winning=null,both=null){
- const wins=[],declarations=[];
+function finishBattleResult(s,winner,late,winning=null,both=null,losses=[]){
+ const wins=[...losses],declarations=[];
  const results=both??(winner===null?[]:[{...winning,player:winner}]);
  for(const p of [s.active,1-s.active])for(const w of results.filter(x=>x.player===p)){
   const result=markBattleWin587(s,p,w);
@@ -2035,7 +2046,7 @@ export function getLegalActions(s){
   if(d.type==='dragonTap'){out=opp.battle.filter(x=>isCreature(s,x)).map(x=>option('dragonTap',`${card(x).name}をタップ${x.tapped?'（タップ中）':''}`,{uid:x.uid,cardId:x.cardId}));out.push(option('skipDragonTap','今回はタップせず、次の登場時に使えるようにする'));}
   if(d.type==='trigger')out=[...(s.triggers.eligibleFaces?.[d.uid]||[0]).map(face=>option('useTrigger',`${playFaces(card(d.source))[face].name}を使う`,{uid:d.uid,cardId:d.source,...(card(d.source).spellFace?{face}:{})})),option('skipTrigger','使わず手札に加える')];
   if(d.type==='fight'){out=own.battle.some(x=>x.uid===d.uid&&(d.sourceIncarnation===undefined||(x.incarnation||0)===d.sourceIncarnation))?opp.battle.filter(x=>isCreature(s,x)).map(x=>option('fight',`${card(x).name}とバトル（相手のパワー${power(x,x.uid===s.attack?.attacker,s)}）`,{uid:d.uid,target:x.uid,cardId:x.cardId})):[];out.push(option('skipFight','バトルさせない'));}
-  if(d.type==='battleWinOrder')out=s.battleResolution.wins.flatMap((e,index)=>e.player===p?[option('battleWinOrder',`${card(e.source).name}の勝利時能力を先に解決`,{uid:e.uid,cardId:e.source,winIndex:index})]:[]);
+  if(d.type==='battleWinOrder')out=s.battleResolution.wins.flatMap((e,index)=>e.player===p?[option('battleWinOrder',`${card(e.source).name}の${e.onLoss?'敗北':'勝利'}時能力を先に解決`,{uid:e.uid,cardId:e.source,winIndex:index})]:[]);
   if(d.type==='draw')out=Array.from({length:d.max+1},(_,n)=>option('draw',n?`${n}枚引く`:'引かない',{n}));
   if(d.type==='optionalRamp')out=[option('useRamp','4枚をマナに置き、2枚を山札に戻す'),option('skipRamp','マナに置かない')];
   if(d.type==='manaTop')out=own.mana.filter(x=>!d.chosen.includes(x.uid)).map(x=>option('manaTop',`山札の上から${d.chosen.length+1}枚目に${card(x).name}を置く（${x.tapped?'タップ中':'アンタップ'}）`,{uid:x.uid,cardId:x.cardId}));
