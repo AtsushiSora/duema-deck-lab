@@ -3388,6 +3388,22 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=935&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm17-032'&&f.typeText==='呪文'&&text===
+   'バトルゾーンにある相手のクリーチャーを1体選ぶ。その後自分の山札の上から1枚目を墓地に置く。選んだクリーチャーのコストが墓地に置いたカードのコストより小さければそのクリーチャーを破壊する。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'BirdTarget935'}]};
+  if(f.typeText==='進化クリーチャー'){
+   if(d.id==='dm16-s05'&&text===
+    '進化-自分のアース・ドラゴン1体の上に置く。このクリーチャーのパワーはすべてのマナゾーンにあるカード1枚につき+1000される。T・ブレイカー(このクリーチャーはシールドを3枚ブレイクする)')
+    return {evolution:{race:'アース・ドラゴン'},breaker:3,g207CountPower:{zone:'mana',both:true,amount:1000}};
+   if(['dm17-018','dmc42-033','promoy4-027'].includes(d.id)&&text===
+    '進化-自分のワイルド・ベジーズ1体の上に置く。このクリーチャーをバトルゾーンに出した時自分のマナゾーンにある文明を数える。その後その文明の数と同じ枚数のカードを自分の山札の上からマナゾーンに置く。W・ブレイカーこのクリーチャーが破壊された時カードを2枚自分のマナゾーンから手札に戻す。')
+    return {evolution:{race:'ワイルド・ベジーズ'},breaker:2,effect:'sixPhoto',
+     g34Tasks:[{op:'Ramp',g935ManaCivilizations:true,g809Together:true}],
+     g172Death:[{op:'Select',origin:'mana',to:'hand',n:2,title:'手札に戻す自分のマナを2枚選ぶ'}]};
+  }
+ }
  if(phase>=934&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const blocker='ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)';

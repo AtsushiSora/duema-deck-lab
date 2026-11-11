@@ -1,0 +1,212 @@
+{
+  "phase": 935,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6676,
+  "description": "山札から墓地へ置いたカードと対象の印刷コストを比較する破壊、双方のマナ枚数に応じたパワー、自分のマナ文明数に応じたマナ追加と破壊時の回収を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35386/",
+    "https://dm.takaratomy.co.jp/rule/qa/39761/",
+    "https://dm.takaratomy.co.jp/rule/qa/43361/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35391/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35392/"
+  ],
+  "cards": [
+    {
+      "id": "dm17-032",
+      "name": "鳥速火炎弾",
+      "faces": [
+        {
+          "name": "鳥速火炎弾",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "バトルゾーンにある相手のクリーチャーを１体選ぶ。その後、自分の山札の上から１枚目を墓地に置く。選んだクリーチャーのコストが、墓地に置いたカードのコストより小さければ、そのクリーチャーを破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-032",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BirdTarget935"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm17-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "710cd91fddb9ed7e1755e1b0de6e68ef80a665ab560bae095b130c7c9d1f325a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-s05",
+      "name": "超神龍ブラムグレール",
+      "faces": [
+        {
+          "name": "超神龍ブラムグレール",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "進化-自分のアース・ドラゴン１体の上に置く。\nこのクリーチャーのパワーは、すべてのマナゾーンにあるカード１枚につき+1000される。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "アース・ドラゴン",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-s05",
+      "spec": {
+        "evolution": {
+          "race": "アース・ドラゴン"
+        },
+        "breaker": 3,
+        "g207CountPower": {
+          "zone": "mana",
+          "both": true,
+          "amount": 1000
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-s05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "17db161f86d4a789dfcb6597904536f2b39b03766636ebe22702ce5dce7e0cf4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm17-018",
+      "name": "大菜王ビッグ・ナスディーン",
+      "faces": [
+        {
+          "name": "大菜王ビッグ・ナスディーン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "進化-自分のワイルド・ベジーズ１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、自分のマナゾーンにある文明を数える。その後、その文明の数と同じ枚数のカードを、自分の山札の上からマナゾーンに置く。\nW・ブレイカー\nこのクリーチャーが破壊された時、カードを２枚、自分のマナゾーンから手札に戻す。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-018",
+      "spec": {
+        "evolution": {
+          "race": "ワイルド・ベジーズ"
+        },
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ramp",
+            "g935ManaCivilizations": true,
+            "g809Together": true
+          }
+        ],
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 2,
+            "title": "手札に戻す自分のマナを2枚選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm17-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "e34a4ad756834bf132911cc4228e8d66165f04a33ff8ae0252817b6e67ad66c8",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc42-033",
+      "canonicalId": "dm17-018",
+      "name": "大菜王ビッグ・ナスディーン",
+      "faces": [
+        {
+          "name": "大菜王ビッグ・ナスディーン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "進化-自分のワイルド・ベジーズ１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、自分のマナゾーンにある文明を数える。その後、その文明の数と同じ枚数のカードを、自分の山札の上からマナゾーンに置く。\nW・ブレイカー\nこのクリーチャーが破壊された時、カードを２枚、自分のマナゾーンから手札に戻す。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc42-033",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc42-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "05992cd5402a9458c1fa679576db4574c9f184edc187de86a5f9622b2d521c80",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy4-027",
+      "canonicalId": "dm17-018",
+      "name": "大菜王ビッグ・ナスディーン",
+      "faces": [
+        {
+          "name": "大菜王ビッグ・ナスディーン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "進化-自分のワイルド・ベジーズ１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、自分のマナゾーンにある文明を数える。その後、その文明の数と同じ枚数のカードを、自分の山札の上からマナゾーンに置く。\nW・ブレイカー\nこのクリーチャーが破壊された時、カードを２枚、自分のマナゾーンから手札に戻す。",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy4-027",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy4-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "01e13ac49879c8ea4f3bbfae805b0cb9cbd08ae063effad4acb01a130090b63d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm17-032": 4,
+      "dm16-s05": 4,
+      "dm17-018": 4,
+      "dmc42-033": 4,
+      "promoy4-027": 4
+    }
+  }
+}

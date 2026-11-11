@@ -195650,24 +195650,113 @@
       ],
       "supportBatch": "phase-934",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm17-032",
+      "name": "鳥速火炎弾",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある相手のクリーチャーを１体選ぶ。その後、自分の山札の上から１枚目を墓地に置く。選んだクリーチャーのコストが、墓地に置いたカードのコストより小さければ、そのクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-032",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BirdTarget935"
+        }
+      ],
+      "supportBatch": "phase-935",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm16-s05",
+      "name": "超神龍ブラムグレール",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 1000,
+      "race": "アース・ドラゴン",
+      "text": "進化-自分のアース・ドラゴン１体の上に置く。\nこのクリーチャーのパワーは、すべてのマナゾーンにあるカード１枚につき+1000される。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-s05",
+      "limit": 4,
+      "evolution": {
+        "race": "アース・ドラゴン"
+      },
+      "breaker": 3,
+      "g207CountPower": {
+        "zone": "mana",
+        "both": true,
+        "amount": 1000
+      },
+      "supportBatch": "phase-935",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm17-018",
+      "name": "大菜王ビッグ・ナスディーン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "ワイルド・ベジーズ",
+      "text": "進化-自分のワイルド・ベジーズ１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、自分のマナゾーンにある文明を数える。その後、その文明の数と同じ枚数のカードを、自分の山札の上からマナゾーンに置く。\nW・ブレイカー\nこのクリーチャーが破壊された時、カードを２枚、自分のマナゾーンから手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-018",
+      "limit": 4,
+      "evolution": {
+        "race": "ワイルド・ベジーズ"
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ramp",
+          "g935ManaCivilizations": true,
+          "g809Together": true
+        }
+      ],
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 2,
+          "title": "手札に戻す自分のマナを2枚選ぶ"
+        }
+      ],
+      "supportBatch": "phase-935",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 934,
+    "phase": 935,
     "checkedAt": "2026-11-11",
-    "baseCount": 6672,
-    "newEffectCards": 4,
+    "baseCount": 6676,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6676,
+    "totalCount": 6679,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/40689/",
-      "https://dm.takaratomy.co.jp/rule/qa/43367/",
-      "https://dm.takaratomy.co.jp/rule/qa/38672/",
-      "https://dm.takaratomy.co.jp/rule/qa/43462/",
-      "https://dm.takaratomy.co.jp/rule/qa/42077/",
-      "https://dm.takaratomy.co.jp/rule/qa/48113/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35386/",
+      "https://dm.takaratomy.co.jp/rule/qa/39761/",
+      "https://dm.takaratomy.co.jp/rule/qa/43361/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35391/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35392/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -212362,6 +212451,27 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35376/",
           "https://dm.takaratomy.co.jp/rule/qa/42476/",
           "https://dm.takaratomy.co.jp/rule/qa/43462/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 934,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6672,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6676,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/40689/",
+          "https://dm.takaratomy.co.jp/rule/qa/43367/",
+          "https://dm.takaratomy.co.jp/rule/qa/38672/",
+          "https://dm.takaratomy.co.jp/rule/qa/43462/",
+          "https://dm.takaratomy.co.jp/rule/qa/42077/",
+          "https://dm.takaratomy.co.jp/rule/qa/48113/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

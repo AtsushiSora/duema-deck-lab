@@ -984,6 +984,15 @@ export function createSixPhotoRules(api){
    return opt(String(n),n,score);
   });
  }
+ function birdTarget935(s,t){
+  const owner=1-t.p;
+  return t.target&&creatures(s,owner).find(x=>x.uid===t.target.uid&&(x.incarnation||0)===t.target.incarnation);
+ }
+ function destroyBelowCost935(s,t,threshold){
+  const target=birdTarget935(s,t),owner=1-t.p;
+  if(target&&cost(api.zoneCard(s,owner,target,'battle'))<(threshold==='∞'?Infinity:threshold))
+   move(s,[{player:owner,uid:target.uid,to:'grave',destroy:true,controller:t.p}]);
+ }
  function gearSweepRows928(s,threshold){
   return s.players.flatMap(({battle},player)=>battle
    .filter(x=>!x.sealed&&!x.faceDown&&card(x).type==='gear'&&cost(effective(x,s))<(threshold==='∞'?Infinity:threshold))
@@ -2517,7 +2526,7 @@ export function createSixPhotoRules(api){
   else ramp(s,t,count);
   break;
  }
- case'g34_Ramp':if(t.optional)choice(s,t,'山札からマナに置く枚数を選ぶ',Array.from({length:Math.min(t.n,own.deck.length)+1},(_,n)=>opt(n+'枚',n,n<own.deck.length?n*5:-100)));else ramp(s,t,t.n);break;
+ case'g34_Ramp':if(t.optional)choice(s,t,'山札からマナに置く枚数を選ぶ',Array.from({length:Math.min(t.n,own.deck.length)+1},(_,n)=>opt(n+'枚',n,n<own.deck.length?n*5:-100)));else ramp(s,t,t.g935ManaCivilizations?manaCivilizationCount(s,t.p):t.n);break;
  case'g34_DrawAfterGear816':
   if(own.grave.some(y=>y.uid===t.target))start(s,t,[{op:'DrawUpTo',n:2}]);
   break;
@@ -2612,6 +2621,32 @@ export function createSixPhotoRules(api){
    title:'墓地に置いたカードよりパワーが小さい相手クリーチャーを1体破壊する'}]);
   else if(definition.type==='gear')start(s,t,[{op:'Select',origin:'grave',n:1,deploy:true,optional:true,
    g530Ids:[y.uid],filter:{g201Gear:true},title:'墓地に置いたクロスギアを出す（任意）'}]);
+  break;
+ }
+ case'g34_BirdTarget935':{
+  const options=targetOptions(s,t.p,creatures(s,1-t.p));
+  if(options.length)choice(s,t,'コストを比べる相手のクリーチャーを選ぶ',options);
+  else put(s,{...t,op:'g34_BirdMill935'});
+  break;
+ }
+ case'g34_BirdMill935':{
+  const top=api.takeTop(s,t.p);
+  if(top){
+   clear(top,'grave');
+   api.addZone(s,t.p,'grave',top);
+   if(t.target){
+    const costs=[...new Set(faces(api.zoneCard(s,t.p,top,'grave')).map(cost))].map(n=>n===Infinity?'∞':n);
+    put(s,{...t,op:'g34_BirdCompare935',costs});
+   }
+  }
+  api.deckCheck(s,t.p);
+  break;
+ }
+ case'g34_BirdCompare935':{
+  if(!birdTarget935(s,t))break;
+  if(t.costs.length===1)destroyBelowCost935(s,t,t.costs[0]);
+  else choice(s,t,'墓地に置いたカードのどちらのコストを参照する？',t.costs.map(n=>
+   opt('コスト'+n,n,n==='∞'?100:Math.min(n,99))));
   break;
  }
  case'g34_LionessMill928':{
@@ -3305,6 +3340,12 @@ export function createSixPhotoRules(api){
   }
   break;
  case'g34_GraveArmy':if(v)put(s,{...t,op:'g34_Put',origin:'grave',owner:t.p,target:v.uid,execution:false},{...t,selected:[...t.selected,v.uid]});else put(s,task('g34_Custom',t.p,t.source,{name:'finishBatch'}));break;
+ case'g34_BirdTarget935':{
+  const target=s.players[1-t.p].battle.find(x=>x.uid===v);
+  put(s,{...t,op:'g34_BirdMill935',...(target?{target:{uid:target.uid,incarnation:target.incarnation||0}}:{})});
+  break;
+ }
+ case'g34_BirdCompare935':destroyBelowCost935(s,t,v);break;
  case'g34_LionessSweep928':sweepGears928(s,t,v);break;
  case'g34_RampCost411':start(s,t,[{op:'Sweep',both:true,to:'mana',filter:{creature:true,...(v==='∞'?{}:{max:v})}}]);break;
  case'g34_AttackOtherMana409':if(v){const y=own.battle.find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation);if(y&&y!==attackHost408(s,t)){move(s,[{player:t.p,uid:y.uid,to:'mana'}]);start(s,t,[{op:'OpponentSelect',n:1,to:'mana'}]);}}break;
