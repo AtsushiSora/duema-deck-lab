@@ -2110,7 +2110,7 @@ export function rankHeuristicActions(s){
  const score=a=>{
   const c=a.cardId?(a.kind==='play'?playFaces(card(a.cardId))[a.face||0]:card(a.cardId)):null;
   if(a.kind==='attack'){
-   const n=extra.six.attackDraws613(v,p).filter(l=>!l.optional).length;
+   const n=extra.six.attackDraws613(v,p,find(p,a.uid)).filter(l=>l.player===p&&!l.optional).reduce((sum,l)=>sum+(l.n??1),0);
    if(n&&n>=me.deckCount)return living(me.battle).some(x=>effectiveCard(x,v).shako)?1000:-1000;
   }
   // Entry counts include the new Joker, but a mana summon moves an already-counted card.

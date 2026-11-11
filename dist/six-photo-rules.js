@@ -388,9 +388,17 @@ export function createSixPhotoRules(api){
  };
  // Attack watchers include tamaseeds; losing an ability or a seal disables the source.
  const watchSources252=(s,p)=>s.players[p].battle.filter(x=>!x.sealed&&!api.ignored(s,x));
- const attackDraws613=(s,p)=>(s.extLimits||[]).filter(l=>l.kind==='g613AttackDraw'&&l.player===p&&l.turn===s.turn&&(l.spell===false||!api.spellIgnored(s,{type:'spell',spellSource:l.source,cost:cost(card(l.source))})));
+ const attackDraws613=(s,p,x)=>(s.extLimits||[]).filter(l=>l.kind==='g613AttackDraw'&&l.turn===s.turn&&
+  (l.refs?x&&api.allLayers(x).some(y=>l.refs.includes(key(y))):l.player===p)&&
+  (l.spell===false||!api.spellIgnored(s,{type:'spell',spellSource:l.source,cost:cost(card(l.source))})));
  function attackWatches252(s,p,attacker){
-  for(const l of attackDraws613(s,p))api.enqueue(s,p,{source:l.source,effect:'extended',task:task('g34_Draw',p,l.source,{n:1,...(l.optional?{optional:true}:{})})});
+  for(const l of attackDraws613(s,p,attacker)){
+   const draw={n:l.n??1,...(l.optional?{optional:true}:{})};
+   const effect=l.refs
+    ?task('g34_ResolveDelay537',l.player,l.source,{spellCost:cost(card(l.source)),defs:[{op:'Draw',...draw}]})
+    :task('g34_Draw',l.player,l.source,draw);
+   api.enqueue(s,l.player,{source:l.source,effect:'extended',task:effect});
+  }
   if(s.attack?.target==='player')for(const l of s.extLimits||[]){
    if(l.kind!=='g741PlayerAttackResponse'||l.who===p)continue;
    api.enqueue(s,l.who,{source:l.source,effect:'extended',task:task('g34_Sequence',l.who,l.source,{defs:l.defs})});
@@ -2610,7 +2618,10 @@ export function createSixPhotoRules(api){
  case'g34_TurnBlockBreak712':
   (s.extLimits??=[]).push({kind:'g712BlockBreak',player:t.p,source:t.source,uid:t.uid,incarnation:t.incarnation||0,turn:s.turn,expires:'end',who:s.active});
   break;
- case'g34_TurnAttackDraw613':(s.extLimits??=[]).push({kind:'g613AttackDraw',player:t.p,source:t.source,turn:s.turn,expires:'end',who:s.active,...(t.spell===false?{spell:false}:{}),...(t.optional?{optional:true}:{})});break;
+ case'g34_TurnAttackDraw613':
+  (s.extLimits??=[]).push({kind:'g613AttackDraw',player:t.p,source:t.source,turn:s.turn,expires:'end',who:s.active,
+   ...(t.spell===false?{spell:false}:{}),...(t.optional?{optional:true}:{}),...(t.refs?{refs:t.refs,n:t.n}:{})});
+  break;
  case'g34_SpellLock489':(s.extLimits??=[]).push({kind:t.max===undefined?'cast':'spellCostLock',player:1-t.p,controller:t.p,expires:t.expires,who:t.expires==='end'?s.active:t.p,...(t.max===undefined?{}:{max:t.max})});break;
  case'g34_AttackCap627':{
   const player=1-t.p;
@@ -3233,6 +3244,11 @@ export function createSixPhotoRules(api){
  }break;
  case'g34_ManaExchangeBase753':api.beginManaExchange753(s,t,v);break;
  case'g34_Target':
+  if(t.g906AttackDraw){
+   const y=v&&own.battle.find(x=>x.uid===v.uid);
+   if(y)start(s,t,[{op:'TurnAttackDraw613',refs:api.allLayers(y).map(key),n:t.g906AttackDraw}]);
+   break;
+  }
   if(t.g904FirstAttackUntap){
    const y=v&&own.battle.find(x=>x.uid===v.uid);
    if(y)(s.extLimits??=[]).push({kind:'g543Shinka',when:'firstAttackUntap',p:t.p,source:t.source,

@@ -192883,25 +192883,127 @@
       ],
       "supportBatch": "phase-905",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmx22b-020",
+      "name": "バックベアード",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "ダークロード",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、他のアンタップされているクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22b-020",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "g179Other": true,
+          "filter": {
+            "creature": true,
+            "untapped": true
+          }
+        }
+      ],
+      "supportBatch": "phase-906",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmsd11-006",
+      "name": "C.A.P. センサー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーが攻撃する時、カードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd11-006",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g906AttackDraw": 2
+        }
+      ],
+      "supportBatch": "phase-906",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp18-s01",
+      "name": "ウェイボール ＜バイロン.Star＞",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 12000,
+      "race": "トリックス/リヴァイアサン/レクスターズ",
+      "text": "スター進化：レクスターズまたは水のクリーチャー１体の上に置く。（このクリーチャーが離れる時、かわりに一番上のカードが離れる）\nT・ブレイカー\nこのクリーチャーが攻撃する時、カードを２枚引く。その後、自分の手札が６枚以下なら、攻撃を中止する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-s01",
+      "limit": 4,
+      "evolution": {
+        "any": [
+          {
+            "race": "レクスターズ"
+          },
+          {
+            "civilization": "水"
+          }
+        ]
+      },
+      "starEvolution": true,
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "Draw",
+          "n": 2
+        },
+        {
+          "op": "IfHand246",
+          "max": 6,
+          "defs": [
+            {
+              "op": "Custom",
+              "name": "stopAttack"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-906",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 905,
+    "phase": 906,
     "checkedAt": "2026-11-11",
-    "baseCount": 6580,
+    "baseCount": 6583,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6583,
+    "totalCount": 6586,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36775/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37043/",
-      "https://dm.takaratomy.co.jp/rule/qa/39075/",
-      "https://dm.takaratomy.co.jp/rule/qa/39076/",
-      "https://dm.takaratomy.co.jp/rule/qa/39077/",
-      "https://dm.takaratomy.co.jp/rule/qa/48486/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316683/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+      "https://dm.takaratomy.co.jp/rule/qa/39849/",
+      "https://dm.takaratomy.co.jp/rule/qa/39850/",
+      "https://dm.takaratomy.co.jp/rule/qa/44188/",
+      "https://dm.takaratomy.co.jp/rule/qa/45450/",
+      "https://dm.takaratomy.co.jp/rule/qa/40652/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36710/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31650/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -209022,6 +209124,28 @@
           "https://dm.takaratomy.co.jp/rule/qa/42363/",
           "https://dm.takaratomy.co.jp/rule/qa/45450/",
           "https://dm.takaratomy.co.jp/rule/qa/40652/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 905,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6580,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6583,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36775/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37043/",
+          "https://dm.takaratomy.co.jp/rule/qa/39075/",
+          "https://dm.takaratomy.co.jp/rule/qa/39076/",
+          "https://dm.takaratomy.co.jp/rule/qa/39077/",
+          "https://dm.takaratomy.co.jp/rule/qa/48486/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316683/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

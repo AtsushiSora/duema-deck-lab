@@ -3445,6 +3445,18 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=906&&d.faces.length===1){
+  if(creature&&d.id==='dmx22b-020'&&compact363===
+   'W・ブレイカーこのクリーチャーがバトルゾーンに出た時他のアンタップされているクリーチャーをすべて破壊する。')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Sweep',both:true,g179Other:true,filter:{creature:true,untapped:true}}]};
+  if(f.typeText==='呪文'&&d.id==='dmsd11-006'&&compact363===
+   '自分のクリーチャーを1体選ぶ。このターンそのクリーチャーが攻撃する時カードを2枚引く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',g906AttackDraw:2}]};
+  if(f.typeText==='スター進化クリーチャー'&&d.id==='dmrp18-s01'&&compact363===
+   'スター進化:レクスターズまたは水のクリーチャー1体の上に置く。(このクリーチャーが離れる時かわりに一番上のカードが離れる)T・ブレイカーこのクリーチャーが攻撃する時カードを2枚引く。その後自分の手札が6枚以下なら攻撃を中止する。')
+   return {evolution:{any:[{race:'レクスターズ'},{civilization:'水'}]},starEvolution:true,breaker:3,
+    g34Attack:[{op:'Draw',n:2},{op:'IfHand246',max:6,defs:[{op:'Custom',name:'stopAttack'}]}]};
+ }
  if(phase>=905&&d.faces.length===1){
   if(creature&&d.id==='dmrp18-092'&&compact363===
    'このクリーチャーの召喚コストを自分のマナゾーンの進化クリーチャー1体につき1少なくする。ただしコストは0より少なくならない。')
