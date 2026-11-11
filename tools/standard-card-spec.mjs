@@ -3445,6 +3445,21 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=915&&d.faces.length===1){
+  if(f.typeText==='呪文'&&d.id==='dm10-094'&&compact363==='S・トリガー'+
+   'バトルゾーンにある相手のクリーチャーを1体選ぶ。そのクリーチャーは自分の次のターンのはじめまで「このクリーチャーは可能なら攻撃する」を得る。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',g521UntilStart:true,spell:true,
+    grant:{mustAttack:true,g736ForcedAttack:true},title:'攻撃を強制する相手のクリーチャーを1体選ぶ'}]};
+  if(creature&&d.id==='dm13-013'&&compact363===
+   'このクリーチャーがシールドをブレイクした時そのターンの終わりにこのクリーチャーを破壊し各プレイヤーは自分自身のマナゾーンからカードを1枚選んで持ち主の墓地に置く。')
+   return {g915AfterSelfBreak:[{op:'Schedule537',when:'turnEnd',defs:[
+    {op:'SelfDestroy'},{op:'ManaChoose582',who:'each',n:1,to:'grave'}]}]};
+  if(creature&&d.id==='dm14-003'&&compact363===
+   'このクリーチャーをバトルゾーンに出した時相手はバトルゾーンにある自分自身のクリーチャーを1体選び持ち主の手札に戻してもよい。'+
+   'そうした場合このクリーチャーを自分の手札に戻す。W・ブレイカー')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'OpponentSelect',to:'hand',n:1,optional:true,
+    title:'手札に戻す自分のクリーチャーを1体選ぶ（任意）',afterBattleSelect:[{op:'SelfHand299'}]}]};
+ }
  if(phase>=914&&f.typeText==='呪文'&&d.faces.length===1){
   if(d.id==='dm27-026'&&compact363==='S・トリガー'+
    '相手は自分自身の手札を1枚選んで捨てる。そのカードの文明と同じ文明のカードが自分のマナゾーンに1枚でもあれば相手は自分自身のマナゾーンからカードを1枚選び墓地に置く。')

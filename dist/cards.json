@@ -193768,22 +193768,123 @@
       ],
       "supportBatch": "phase-914",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm10-094",
+      "name": "魂縛",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 1,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー\nバトルゾーンにある相手のクリーチャーを１体選ぶ。そのクリーチャーは、自分の次のターンのはじめまで「このクリーチャーは、可能なら攻撃する」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-094",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "g521UntilStart": true,
+          "spell": true,
+          "grant": {
+            "mustAttack": true,
+            "g736ForcedAttack": true
+          },
+          "title": "攻撃を強制する相手のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-915",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm13-013",
+      "name": "メッツアーのアイロン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "ゼノパーツ",
+      "text": "このクリーチャーがシールドをブレイクした時、そのターンの終わりにこのクリーチャーを破壊し、各プレイヤーは自分自身のマナゾーンからカードを１枚選んで持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-013",
+      "limit": 4,
+      "g915AfterSelfBreak": [
+        {
+          "op": "Schedule537",
+          "when": "turnEnd",
+          "defs": [
+            {
+              "op": "SelfDestroy"
+            },
+            {
+              "op": "ManaChoose582",
+              "who": "each",
+              "n": 1,
+              "to": "grave"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-915",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm14-003",
+      "name": "ウェーブ・クロウラー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "アースイーター",
+      "text": "このクリーチャーをバトルゾーンに出した時、相手はバトルゾーンにある自分自身のクリーチャーを１体選び、持ち主の手札に戻してもよい。そうした場合、このクリーチャーを自分の手札に戻す。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-003",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "OpponentSelect",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "title": "手札に戻す自分のクリーチャーを1体選ぶ（任意）",
+          "afterBattleSelect": [
+            {
+              "op": "SelfHand299"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-915",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 914,
+    "phase": 915,
     "checkedAt": "2026-11-11",
-    "baseCount": 6608,
+    "baseCount": 6611,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6611,
+    "totalCount": 6614,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/45267/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37999/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37626/",
+      "https://dm.takaratomy.co.jp/rule/qa/45793/",
       "https://dm.takaratomy.co.jp/rule/qa_old/36933/",
       "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31631/",
+      "https://dm.takaratomy.co.jp/rule/qa/45462/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -210089,6 +210190,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/34314/",
           "https://dm.takaratomy.co.jp/rule/qa/45462/",
           "https://dm.takaratomy.co.jp/rule/qa/34191/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 914,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6608,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6611,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/45267/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37999/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37626/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36933/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],

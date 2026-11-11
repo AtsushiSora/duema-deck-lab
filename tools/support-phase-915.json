@@ -1,0 +1,164 @@
+{
+  "phase": 915,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6611,
+  "description": "単体への期限付き攻撃強制、シールドブレイク後のターン終了時の自壊とマナ損失、相手自身の任意選択による連続手札戻しに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/45793/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36933/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31631/",
+    "https://dm.takaratomy.co.jp/rule/qa/45462/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm10-094",
+      "name": "魂縛",
+      "faces": [
+        {
+          "name": "魂縛",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "S・トリガー\nバトルゾーンにある相手のクリーチャーを１体選ぶ。そのクリーチャーは、自分の次のターンのはじめまで「このクリーチャーは、可能なら攻撃する」を得る。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-094",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "g521UntilStart": true,
+            "spell": true,
+            "grant": {
+              "mustAttack": true,
+              "g736ForcedAttack": true
+            },
+            "title": "攻撃を強制する相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-094.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "84656aa27e885267d46a76ab7ec861cc724c20a9eaa1272147b271afb4a108fb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm13-013",
+      "name": "メッツアーのアイロン",
+      "faces": [
+        {
+          "name": "メッツアーのアイロン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがシールドをブレイクした時、そのターンの終わりにこのクリーチャーを破壊し、各プレイヤーは自分自身のマナゾーンからカードを１枚選んで持ち主の墓地に置く。",
+          "race": "ゼノパーツ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-013",
+      "spec": {
+        "g915AfterSelfBreak": [
+          {
+            "op": "Schedule537",
+            "when": "turnEnd",
+            "defs": [
+              {
+                "op": "SelfDestroy"
+              },
+              {
+                "op": "ManaChoose582",
+                "who": "each",
+                "n": 1,
+                "to": "grave"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "54c1a356009f7f14f027479a8d6ad8a389ce090a11721084a6f22808ba871ffa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-003",
+      "name": "ウェーブ・クロウラー",
+      "faces": [
+        {
+          "name": "ウェーブ・クロウラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、相手はバトルゾーンにある自分自身のクリーチャーを１体選び、持ち主の手札に戻してもよい。そうした場合、このクリーチャーを自分の手札に戻す。\nW・ブレイカー",
+          "race": "アースイーター",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-003",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OpponentSelect",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "title": "手札に戻す自分のクリーチャーを1体選ぶ（任意）",
+            "afterBattleSelect": [
+              {
+                "op": "SelfHand299"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "b4c072db588be352f02b3fe02aebddbde280e201cf61eaad89fe0c67e1b0d398",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm10-094": 4,
+      "dm13-013": 4,
+      "dm14-003": 4
+    }
+  }
+}

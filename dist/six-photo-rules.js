@@ -807,6 +807,13 @@ export function createSixPhotoRules(api){
    stopPlayerAttack567(s,{...t,g567PlayerStop:'end'},target);
   }
   if(t.g583Group){moveZoneSelection583(s,t,t.rows||[]);return;}
+ if(t.afterBattleSelect){
+  const moves=(t.rows||[]).filter(r=>r.origin==='battle'&&s.players[r.p].battle.some(x=>x.uid===r.uid))
+   .map(r=>({player:r.p,uid:r.uid,to:t.to,controller:t.controller??t.p}));
+  // The selection and attempted move suffice, even when the move is replaced (QA45793).
+  if(moves.length){move(s,moves);start(s,t,t.afterBattleSelect);}
+  return;
+ }
   if(t.g673ShuffleOnMove){
    const rows=t.rows||[];
    if(!rows.length)return;
@@ -3972,7 +3979,14 @@ export function createSixPhotoRules(api){
    queue(s,l.player,{cardId:l.source},[E('Offer',{title:'カードを2枚引く？',defs:[E('Draw',{n:2})]})]);
  },
  // Remember the physical incarnation at the break, then follow later evolution at turn end.
- broken484(s,context,n){if(!n||!context||context.reverse||context.burn)return;const p=context.player,x=s.players[p]?.battle.find(x=>x.uid===context.sourceUid&&(context.incarnation===undefined||(x.incarnation||0)===context.incarnation));if(x&&!x.sealed&&effective(x,s).g484BreakEndReturn)queue(s,p,x,[E('BreakDelay484')]);},
+ broken484(s,context,n){
+  if(!n||!context||context.reverse||context.burn)return;
+  const p=context.player,x=s.players[p]?.battle.find(x=>x.uid===context.sourceUid&&(context.incarnation===undefined||(x.incarnation||0)===context.incarnation));
+  if(!x||x.sealed)return;
+  const c=effective(x,s);
+  if(c.g484BreakEndReturn)queue(s,p,x,[E('BreakDelay484')]);
+  if(c.g915AfterSelfBreak&&context.g756Breaker?.length&&!s.endStep)queue(s,p,x,c.g915AfterSelfBreak);
+ },
  unblocked482(s,p,x){
   if(x.sealed)return false;
   const playerAttack=s.attack.target==='player';
