@@ -3388,6 +3388,21 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=947&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm11-s01'&&f.typeText==='進化クリーチャー'&&text===
+   '進化-自分のグラディエーター1体の上に置く。W・ブレイカー相手がバトルゾーンにあるクリーチャーを選ぶ時このクリーチャーを選ぶことはできない。(ただしこのクリーチャーを攻撃またはブロックしてもよい)')
+   return {evolution:{race:'グラディエーター'},breaker:2,untargetable:true};
+  if(['dm13-025','dmc34-030'].includes(d.id)&&f.typeText==='呪文'&&text===
+   'このターンの終わりまでバトルゾーンにある自分のクリーチャーすべてのパワーは+4000され「このクリーチャーが相手プレイヤーを攻撃してブロックされた時相手のシールドを1枚ブレイクする」を得る。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'GroupPower',owner:'self',power:4000,spell:true,g947BlockBreak:true}]};
+  if(d.id==='dm14-039'&&f.typeText==='クリーチャー'&&text===
+   'プレイヤーがターンのはじめにカードを引いた時そのプレイヤーは自分自身の手札を1枚持ち主のマナゾーンに置いてもよい。このクリーチャーは相手プレイヤーを攻撃できない。')
+   return {noPlayerAttack:true,g947StartDrawMana:true};
+  if(d.id==='dm27-s04'&&f.typeText==='クリーチャー'&&f.civilizations.join('/')===colors.join('/')&&text===
+   'マナゾーンに置く時このカードはタップして置く。W・ブレイカー相手のクリーチャーが自分を攻撃する時相手は自分自身のマナゾーンにない文明の数マナゾーンのカードをタップしてもよい。そうしない場合その攻撃を中止する。')
+   return {manaValue:0,breaker:2,g947DefendMana:true};
+ }
  if(phase>=946&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(['dm32-s01','dmx12b-028','dm23ex2-006'].includes(d.id)&&

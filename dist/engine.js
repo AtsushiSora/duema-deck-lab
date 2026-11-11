@@ -359,7 +359,9 @@ function takeDrawCard(s,p){
  const uid=chooseHeroDraw(choices,{heroId:s.challenge.heroId,signature:s.challenge.signature,...(s.challenge.heroId&&!['shobu','katta','joe','win','hakuoh','basara','kira','kaiza'].includes(s.challenge.heroId)?{manaCards:own.mana.filter(x=>!x.faceDown).map(x=>({...card(x),civilizations:manaCivilizations(card(x))})),grave:own.grave.map(card)}:{}),mana:own.mana.length,colors:[...new Set(own.mana.flatMap(x=>manaCivilizations(card(x))))],hand:own.hand.map(describe),battle:own.battle.map(x=>publicCreature(x,p)),enemyBattle:s.players[1-p].battle.map(x=>publicCreature(x,1-p)),shields:own.shields.length,enemyShields:s.players[1-p].shields.length,active:s.active===p});
  const i=own.deck.findIndex(x=>x.uid===uid);return i<0?null:own.deck.splice(i,1)[0];
 }
-function draw(s,p,n,{unreplaceable=false,drawn}={}){let actual=0,replacementDraws=0;for(let i=0;i<n&&s.winner===null;i++){const replaced=unreplaceable?null:babyloniaDraw(s,p);if(replaced!==null){replacementDraws+=replaced;continue;}if(!unreplaceable&&!s.players[p].deck.length&&extra.deckSafe(s,p)&&s.players[p].battle.some(x=>effectiveCard(x,s).bigBang)){extra.put(s,extra.task("g10_Draws",p,s.players[p].battle.find(x=>effectiveCard(x,s).bigBang).cardId,{n:n-i}));break;}const last=s.players[p].deck.length===1&&!extra.deckSafe(s,p)&&!extra.seed.noLose(s,1-p,'replacementWin')&&s.players[p].battle.some(x=>effectiveCard(x,s).shako),c=takeDrawCard(s,p);if(c){clearBattleState(c,'hand');s.players[p].hand.push(c);drawn?.push(c.uid);actual++;if(!last&&c.g11FromSideways){checkSidewaysHand(s,p);if(s.winner!==null||s.lossEvent){if(n-i-1&&s.lossEvent)extra.put(s,extra.task('draw',p,c.cardId,{n:n-i-1}));break;}}}if(last&&c){finish(s,p,'シャコガイル：山札の最後の1枚を引いて勝利','replacementWin');if(s.winner===null)deckCheck(s,p);}else deckCheck(s,p);checkSidewaysHand(s,p);}extra.drawn(s,p,actual);log(s,p,'draw',`カードを${actual}枚引いた`);return actual+replacementDraws;}
+function draw(s,p,n,{unreplaceable=false,drawn,turnDraw=false}={}){let actual=0,replacementDraws=0;for(let i=0;i<n&&s.winner===null;i++){const replaced=unreplaceable?null:babyloniaDraw(s,p);if(replaced!==null){replacementDraws+=replaced;continue;}if(!unreplaceable&&!s.players[p].deck.length&&extra.deckSafe(s,p)&&s.players[p].battle.some(x=>effectiveCard(x,s).bigBang)){extra.put(s,extra.task("g10_Draws",p,s.players[p].battle.find(x=>effectiveCard(x,s).bigBang).cardId,{n:n-i}));break;}const last=s.players[p].deck.length===1&&!extra.deckSafe(s,p)&&!extra.seed.noLose(s,1-p,'replacementWin')&&s.players[p].battle.some(x=>effectiveCard(x,s).shako),c=takeDrawCard(s,p);if(c){clearBattleState(c,'hand');s.players[p].hand.push(c);drawn?.push(c.uid);actual++;if(!last&&c.g11FromSideways){checkSidewaysHand(s,p);if(s.winner!==null||s.lossEvent){if(n-i-1&&s.lossEvent)extra.put(s,extra.task('draw',p,c.cardId,{n:n-i-1}));break;}}}if(last&&c){finish(s,p,'シャコガイル：山札の最後の1枚を引いて勝利','replacementWin');if(s.winner===null)deckCheck(s,p);}else deckCheck(s,p);checkSidewaysHand(s,p);}
+ if(turnDraw&&actual&&s.winner===null)extra.six.turnDrawn947(s,p,actual);
+ extra.drawn(s,p,actual);log(s,p,'draw',`カードを${actual}枚引いた`);return actual+replacementDraws;}
 function mill(s,p,n){for(let i=0;i<n&&s.winner===null;i++){const x=takeDeckTop(s,p);if(x){clearBattleState(x);addZone(s,s.players[p],'grave',x);}deckCheck(s,p);}}
 
 // Only committed moves mark a card, and addZone consumes the mark synchronously.
@@ -1489,7 +1491,7 @@ function defendRequired(s,p,selected){
 function blockedBattle484(s,a){return s.attack?.g484Blocked&&(s.attack.g694SkipBattle||effectiveCard(a,s).g484NoBlockedBattle);}
 function advanceAttack(s){if(s.lossEvent)return;
  if(s.attack){const a=s.players[s.active].battle.find(x=>x.uid===s.attack.attacker),b=s.attack.target!=='player'&&s.players[1-s.active].battle.find(x=>x.uid===s.attack.target);if(a?.sealed||b?.sealed)s.attack=null;}
- if(!s.attack||s.decision||s.winner!==null||s.pendingEffects?.length||s.extTasks?.length||s.triggers||s.battleResolution||s.judge||s.attackDeclarations||s.leaving)return;
+ if(!s.attack||s.decision||s.winner!==null||s.pendingEffects?.length||s.extTasks?.length||s.triggers||s.g19Interrupt||s.battleResolution||s.judge||s.attackDeclarations||s.leaving)return;
  if(s.attack.stage==='effects'){if(extra.ninjaWindow(s,1-s.active))return;s.attack.stage='block';s.decision={type:'block',player:1-s.active};}
  else if(s.attack.stage.startsWith('redirecting')||s.attack.stage==='unblocked482')resolveAttack(s,null);
  else if(s.attack.stage==='blockedEffects'){const a=s.players[s.active].battle.find(x=>x.uid===s.attack.attacker),b=s.players[1-s.active].battle.find(x=>x.uid===s.attack.blockUid);if(a&&b&&!blockedBattle484(s,a))battle(s,s.active,a,1-s.active,b,a.uid,false,s.attack.g695BlockUntap);s.attack=null;}
@@ -1836,7 +1838,7 @@ function advanceStart(s){if(s.lossEvent)return;if(!s.startStep||s.decision||s.ex
  s.phase='charge';
  const sources=s.players[p].battle.filter(x=>card(x).g729ExtraStartDraw&&isCreature(s,x)&&effectiveCard(x,s).g729ExtraStartDraw).map(x=>x.cardId);
  if(sources.length)extra.put(s,extra.task('g34_StartDraw729',p,sources[0],{sources,n:1}));
- else draw(s,p,1);
+ else draw(s,p,1,{turnDraw:true});
 }
 function beginEnd(s){
  const untappers=s.players[s.active].battle.filter(c=>effectiveCard(c,s).g166EndUntap||effectiveCard(c,s).endUntap&&c.tapped&&canUntap(c)),deferred=[...extra.end(s),...untappers.map(x=>({uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:effectiveCard(x,s).g166EndUntap?'g166EndUntap':'endUntap',uids:[x.uid]}))],p=1-s.active;s.endStep={player:p,stage:'declare',deferred,remaining:s.players[p].hand.filter(x=>card(x).gaia||card(x).endMirage).map(x=>x.uid),declared:[],untap:[]};extra.beforeEnd(s);advanceEnd(s);
