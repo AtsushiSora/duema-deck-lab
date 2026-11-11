@@ -3388,6 +3388,21 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=939&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(['dm23-026','promoy5-064'].includes(d.id)&&f.typeText==='クリーチャー'&&text===
+   'このクリーチャーをバトルゾーンに出した時自分の山札の上から3枚を見る。その中からコスト3以下のディープ・マリーンを1体バトルゾーンに出し残りを好きな順序で山札の上に戻してもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'LookDeploy530',n:3,limit:1,rest:'top',g841DeckPeek:true,
+    filter:{creature:true,race:'ディープ・マリーン',max:3}}]};
+  const trigger='S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  if(f.typeText==='呪文'&&d.id==='dm22-008'&&text===trigger+
+   'バトルゾーンにある進化クリーチャーを1体選ぶ。そのクリーチャーの下にあるカードをすべて持ち主の手札に戻す。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',anyOwner:true,filter:{evolution:true},
+    g939ReturnBases:true,title:'下のカードをすべて手札に戻す進化クリーチャーを選ぶ'}]};
+  if(f.typeText==='呪文'&&d.id==='dm28-021'&&text===trigger+
+   'バトルゾーンにある自分の「シールド・フォース」能力を持つクリーチャー1体につき1枚カードを引く。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'CountDraw',zone:'battle',filter:{creature:true,g939ShieldForce:true}}]};
+ }
  if(phase>=938&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='呪文'){

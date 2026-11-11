@@ -1,0 +1,187 @@
+{
+  "phase": 939,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6688,
+  "description": "山札上のディープ・マリーンの任意登場と残りの順序、進化元の一括手札戻し、シールド・フォース能力の参照を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35481/",
+    "https://dm.takaratomy.co.jp/rule/qa/31580/",
+    "https://dm.takaratomy.co.jp/rule/qa/42937/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37440/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-S001"
+  ],
+  "cards": [
+    {
+      "id": "dm23-026",
+      "name": "封魔アルゴルス・ヴァイソン",
+      "faces": [
+        {
+          "name": "封魔アルゴルス・ヴァイソン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を見る。その中から、コスト３以下のディープ・マリーンを１体バトルゾーンに出し、残りを好きな順序で山札の上に戻してもよい。",
+          "race": "グランド・デビル",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-026",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "LookDeploy530",
+            "n": 3,
+            "limit": 1,
+            "rest": "top",
+            "g841DeckPeek": true,
+            "filter": {
+              "creature": true,
+              "race": "ディープ・マリーン",
+              "max": 3
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "3ff161b0c8de68f355057d1f2d9a8df336ce095fbd7a43c8134a2aa51b113a65",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22-008",
+      "name": "リバース・トーン",
+      "faces": [
+        {
+          "name": "リバース・トーン",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンにある進化クリーチャーを１体選ぶ。そのクリーチャーの下にあるカードをすべて、持ち主の手札に戻す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-008",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "filter": {
+              "evolution": true
+            },
+            "g939ReturnBases": true,
+            "title": "下のカードをすべて手札に戻す進化クリーチャーを選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "c8b2f701b11736fe5a2f1aaff1ac4a7069ae4d5fc0a354fac6742ee59f39a843",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm28-021",
+      "name": "フォース・オペレーション",
+      "faces": [
+        {
+          "name": "フォース・オペレーション",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンにある自分の、「シールド・フォース」能力を持つクリーチャー１体につき１枚、カードを引く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-021",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountDraw",
+            "zone": "battle",
+            "filter": {
+              "creature": true,
+              "g939ShieldForce": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm28-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "673df7839f98e349275cd39c6420e64e5b22c71ee34332f20f653ddb24478ade",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy5-064",
+      "canonicalId": "dm23-026",
+      "name": "封魔アルゴルス・ヴァイソン",
+      "faces": [
+        {
+          "name": "封魔アルゴルス・ヴァイソン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を見る。その中から、コスト３以下のディープ・マリーンを１体バトルゾーンに出し、残りを好きな順序で山札の上に戻してもよい。",
+          "race": "グランド・デビル",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy5-064",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy5-064.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "423fc38c6746f8b1dfc3d51be32949992fa4a3cab90307b985f273f9c008192b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23-026": 4,
+      "dm22-008": 4,
+      "dm28-021": 4,
+      "promoy5-064": 4
+    }
+  }
+}

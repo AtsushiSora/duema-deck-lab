@@ -196067,25 +196067,117 @@
       "g938DestroyBlockerOfRace": "ビークル・ビー",
       "supportBatch": "phase-938",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23-026",
+      "name": "封魔アルゴルス・ヴァイソン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "グランド・デビル",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から３枚を見る。その中から、コスト３以下のディープ・マリーンを１体バトルゾーンに出し、残りを好きな順序で山札の上に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-026",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 3,
+          "limit": 1,
+          "rest": "top",
+          "g841DeckPeek": true,
+          "filter": {
+            "creature": true,
+            "race": "ディープ・マリーン",
+            "max": 3
+          }
+        }
+      ],
+      "supportBatch": "phase-939",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22-008",
+      "name": "リバース・トーン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンにある進化クリーチャーを１体選ぶ。そのクリーチャーの下にあるカードをすべて、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-008",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "filter": {
+            "evolution": true
+          },
+          "g939ReturnBases": true,
+          "title": "下のカードをすべて手札に戻す進化クリーチャーを選ぶ"
+        }
+      ],
+      "supportBatch": "phase-939",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm28-021",
+      "name": "フォース・オペレーション",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nバトルゾーンにある自分の、「シールド・フォース」能力を持つクリーチャー１体につき１枚、カードを引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm28-021",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountDraw",
+          "zone": "battle",
+          "filter": {
+            "creature": true,
+            "g939ShieldForce": true
+          }
+        }
+      ],
+      "supportBatch": "phase-939",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 938,
+    "phase": 939,
     "checkedAt": "2026-11-11",
-    "baseCount": 6685,
+    "baseCount": 6688,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6688,
+    "totalCount": 6691,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31411/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34849/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37536/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37354/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35434/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35481/",
+      "https://dm.takaratomy.co.jp/rule/qa/31580/",
       "https://dm.takaratomy.co.jp/rule/qa/42937/",
-      "https://dm.takaratomy.co.jp/rule/qa/46821/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37440/",
+      "https://dm.takaratomy.co.jp/card/detail/?id=dm26rp1-S001"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -212860,6 +212952,28 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37536/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37537/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36963/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 938,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6685,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6688,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31411/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34849/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37536/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37354/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35434/",
+          "https://dm.takaratomy.co.jp/rule/qa/42937/",
+          "https://dm.takaratomy.co.jp/rule/qa/46821/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
