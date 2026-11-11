@@ -202975,25 +202975,213 @@
       "g166EndUntap": true,
       "supportBatch": "phase-993",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-040",
+      "name": "野生設計図",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "自分の山札の上から３枚をすべてのプレイヤーに見せる。その中から、コストが異なるクリーチャーを好きな数、自分の手札に加える。残りを好きな順序で自分の山札の一番下に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-040",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "n": 3,
+          "public": true,
+          "rest": "bottom",
+          "stages": [
+            {
+              "n": "all",
+              "optional": true,
+              "to": "hand",
+              "filter": {
+                "g228Face": {
+                  "type": "creature"
+                }
+              },
+              "g994DistinctCreatureCosts": true,
+              "title": "手札に加えるコストが異なるクリーチャーを選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-994",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-s03",
+      "name": "暴君の悪魔龍 デストロキール",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 12000,
+      "race": "デーモン・コマンド・ドラゴン",
+      "text": "このクリーチャーをバトルゾーンに出した時またはこのクリーチャーが攻撃する時、闇のクリーチャーを１体、自分の墓地から手札に戻してもよい。そうした場合、相手のクリーチャーを１体破壊する。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\nこのクリーチャーがバトルゾーンを離れる時、バトルゾーンに自分のクリーチャーが他に１体もなければ、かわりにクリーチャーを２体、自分の手札から捨ててもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-s03",
+      "limit": 4,
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "color": "闇"
+            }
+          },
+          "g583OnMove": [
+            {
+              "op": "Target",
+              "to": "grave"
+            }
+          ],
+          "title": "手札に戻す墓地の闇のクリーチャーを1体選ぶ（任意）"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "hand",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "color": "闇"
+            }
+          },
+          "g583OnMove": [
+            {
+              "op": "Target",
+              "to": "grave"
+            }
+          ],
+          "title": "手札に戻す墓地の闇のクリーチャーを1体選ぶ（任意）"
+        }
+      ],
+      "g994SoloCreatureDiscard": true,
+      "supportBatch": "phase-994",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-s04",
+      "name": "破獄のマントラ ゾロ・ア・スター",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 12000,
+      "race": "オラクリオン/オラクル",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n進化ー自分のオラクル１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、各プレイヤーはバトルゾーンにある自身の、ゴッド、オラクリオン、オラクル以外のクリーチャーをすべて、好きな順序で山札の一番下に置く。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-s04",
+      "limit": 4,
+      "evolution": {
+        "race": "オラクル"
+      },
+      "breaker": 3,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Sweep",
+          "both": true,
+          "to": "deck",
+          "filter": {
+            "creature": true
+          },
+          "g994ExcludeRaces": [
+            "ゴッド",
+            "オラクリオン",
+            "オラクル"
+          ],
+          "g994OrderBottom": true
+        }
+      ],
+      "supportBatch": "phase-994",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-001",
+      "name": "天団の精霊龍 エスポワール",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9500,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "ブロッカー ブロッカー\nこのクリーチャーが攻撃する時、バトルゾーンにある自分の「ブロッカー」を持つクリーチャー１体につき、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-001",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "CountOwn538",
+          "filter": {
+            "creature": true,
+            "blocker": true
+          },
+          "mode": "select",
+          "def": {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "opponent",
+            "optional": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "g193Tap": true,
+            "filter": {
+              "creature": true
+            },
+            "title": "タップする相手のクリーチャーを選ぶ"
+          }
+        }
+      ],
+      "supportBatch": "phase-994",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 993,
+    "phase": 994,
     "checkedAt": "2026-11-12",
-    "baseCount": 6894,
+    "baseCount": 6898,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6898,
+    "totalCount": 6902,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37153/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37066/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
-      "https://dm.takaratomy.co.jp/rule/qa/43073/",
-      "https://dm.takaratomy.co.jp/rule/qa/48916/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35844/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36936/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37081/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37130/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37131/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37019/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37063/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37064/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -220898,6 +221086,28 @@
           "https://dm.takaratomy.co.jp/rule/qa/40535/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37164/",
           "https://dm.takaratomy.co.jp/rule/qa/44602/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 993,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6894,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6898,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37153/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37066/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+          "https://dm.takaratomy.co.jp/rule/qa/43073/",
+          "https://dm.takaratomy.co.jp/rule/qa/48916/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35844/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36936/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

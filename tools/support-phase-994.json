@@ -1,0 +1,265 @@
+{
+  "phase": 994,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6898,
+  "description": "野生設計図、暴君の悪魔龍 デストロキール、破獄のマントラ ゾロ・ア・スター、天団の精霊龍 エスポワールの公式能力を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37081/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37130/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37131/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37019/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37063/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37064/"
+  ],
+  "cards": [
+    {
+      "id": "dmr13-040",
+      "name": "野生設計図",
+      "faces": [
+        {
+          "name": "野生設計図",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の山札の上から３枚をすべてのプレイヤーに見せる。その中から、コストが異なるクリーチャーを好きな数、自分の手札に加える。残りを好きな順序で自分の山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-040",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 3,
+            "public": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": "all",
+                "optional": true,
+                "to": "hand",
+                "filter": {
+                  "g228Face": {
+                    "type": "creature"
+                  }
+                },
+                "g994DistinctCreatureCosts": true,
+                "title": "手札に加えるコストが異なるクリーチャーを選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-040.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "a9215bb40bb1042c0ff01cf56aba893d186274654ea38c796d4a98625da5d9dd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-s03",
+      "name": "暴君の悪魔龍 デストロキール",
+      "faces": [
+        {
+          "name": "暴君の悪魔龍 デストロキール",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時またはこのクリーチャーが攻撃する時、闇のクリーチャーを１体、自分の墓地から手札に戻してもよい。そうした場合、相手のクリーチャーを１体破壊する。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）\nこのクリーチャーがバトルゾーンを離れる時、バトルゾーンに自分のクリーチャーが他に１体もなければ、かわりにクリーチャーを２体、自分の手札から捨ててもよい。",
+          "race": "デーモン・コマンド・ドラゴン",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-s03",
+      "spec": {
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "color": "闇"
+              }
+            },
+            "g583OnMove": [
+              {
+                "op": "Target",
+                "to": "grave"
+              }
+            ],
+            "title": "手札に戻す墓地の闇のクリーチャーを1体選ぶ（任意）"
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "to": "hand",
+            "n": 1,
+            "optional": true,
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "color": "闇"
+              }
+            },
+            "g583OnMove": [
+              {
+                "op": "Target",
+                "to": "grave"
+              }
+            ],
+            "title": "手札に戻す墓地の闇のクリーチャーを1体選ぶ（任意）"
+          }
+        ],
+        "g994SoloCreatureDiscard": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-s03.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "a7fb2ac4c68fab296d837d95bb8c40621eb7ca3a2dc186460ff4e76d262921f4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr12-s04",
+      "name": "破獄のマントラ ゾロ・ア・スター",
+      "faces": [
+        {
+          "name": "破獄のマントラ ゾロ・ア・スター",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\n進化ー自分のオラクル１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、各プレイヤーはバトルゾーンにある自身の、ゴッド、オラクリオン、オラクル以外のクリーチャーをすべて、好きな順序で山札の一番下に置く。\nT・ブレイカー（このクリーチャーはシールドを３枚ブレイクする）",
+          "race": "オラクリオン/オラクル",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-s04",
+      "spec": {
+        "evolution": {
+          "race": "オラクル"
+        },
+        "breaker": 3,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "deck",
+            "filter": {
+              "creature": true
+            },
+            "g994ExcludeRaces": [
+              "ゴッド",
+              "オラクリオン",
+              "オラクル"
+            ],
+            "g994OrderBottom": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr12-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "4ed8bf5d5558cadc42f0c4317e8ca2123c7b80e7e147f5a5ff85309875b7a3a8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-001",
+      "name": "天団の精霊龍 エスポワール",
+      "faces": [
+        {
+          "name": "天団の精霊龍 エスポワール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー ブロッカー\nこのクリーチャーが攻撃する時、バトルゾーンにある自分の「ブロッカー」を持つクリーチャー１体につき、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "9500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-001",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "CountOwn538",
+            "filter": {
+              "creature": true,
+              "blocker": true
+            },
+            "mode": "select",
+            "def": {
+              "op": "Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "optional": true,
+              "g173Targets": true,
+              "g193Select": true,
+              "g193Tap": true,
+              "filter": {
+                "creature": true
+              },
+              "title": "タップする相手のクリーチャーを選ぶ"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "be5a9b526f267ee14407824e7286dea988c511a0adc50ac0afd0cfd26e969de6",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr13-040": 4,
+      "dmr14-s03": 4,
+      "dmr12-s04": 4,
+      "dmr13-001": 4
+    }
+  }
+}

@@ -3435,6 +3435,37 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=994&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const entry='このクリーチャーをバトルゾーンに出した時';
+  const attack='このクリーチャーが攻撃する時';
+  const triple='T・ブレイカー(このクリーチャーはシールドを3枚ブレイクする)';
+  if(d.id==='dmr13-040'&&f.typeText==='呪文'&&text===
+   '自分の山札の上から3枚をすべてのプレイヤーに見せる。その中からコストが異なるクリーチャーを好きな数自分の手札に加える。残りを好きな順序で自分の山札の一番下に置く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Look',n:3,public:true,rest:'bottom',stages:[
+    {n:'all',optional:true,to:'hand',filter:{g228Face:{type:'creature'}},g994DistinctCreatureCosts:true,
+     title:'手札に加えるコストが異なるクリーチャーを選ぶ'}
+   ]}]};
+  if(d.id==='dmr14-s03'&&f.typeText==='クリーチャー'&&text===entry+'または'+attack+
+   '闇のクリーチャーを1体自分の墓地から手札に戻してもよい。そうした場合相手のクリーチャーを1体破壊する。'+triple+
+   'このクリーチャーがバトルゾーンを離れる時バトルゾーンに自分のクリーチャーが他に1体もなければかわりにクリーチャーを2体自分の手札から捨ててもよい。'){
+   const recover={op:'Select',origin:'grave',to:'hand',n:1,optional:true,filter:{g228Face:{type:'creature',color:'闇'}},
+    g583OnMove:[{op:'Target',to:'grave'}],title:'手札に戻す墓地の闇のクリーチャーを1体選ぶ（任意）'};
+   return {breaker:3,effect:'sixPhoto',g34Tasks:[recover],g34Attack:[recover],g994SoloCreatureDiscard:true};
+  }
+  if(d.id==='dmr12-s04'&&f.typeText==='進化クリーチャー'&&text===
+   'マナゾーンに置く時このカードはタップして置く。進化ー自分のオラクル1体の上に置く。'+entry+
+   '各プレイヤーはバトルゾーンにある自身のゴッドオラクリオンオラクル以外のクリーチャーをすべて好きな順序で山札の一番下に置く。'+triple)
+   return {evolution:{race:'オラクル'},breaker:3,effect:'sixPhoto',g34Tasks:[
+    {op:'Sweep',both:true,to:'deck',filter:{creature:true},g994ExcludeRaces:['ゴッド','オラクリオン','オラクル'],g994OrderBottom:true}
+   ]};
+  if(d.id==='dmr13-001'&&f.typeText==='クリーチャー'&&text==='ブロッカーブロッカー'+attack+
+   'バトルゾーンにある自分の「ブロッカー」を持つクリーチャー1体につきバトルゾーンにある相手のクリーチャーを1体選びタップしてもよい。'+
+   'W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {blocker:true,breaker:2,g34Attack:[{op:'CountOwn538',filter:{creature:true,blocker:true},mode:'select',
+    def:{op:'Select',origin:'battle',owner:'opponent',optional:true,g173Targets:true,g193Select:true,g193Tap:true,
+     filter:{creature:true},title:'タップする相手のクリーチャーを選ぶ'}}]};
+ }
  if(phase>=993&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const entry='このクリーチャーをバトルゾーンに出した時';
