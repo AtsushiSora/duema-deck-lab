@@ -3388,6 +3388,24 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=942&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const blocker='ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)';
+  if(d.id==='dm22-042'&&text===blocker+
+   'このクリーチャーは攻撃することができない。このクリーチャーは進化クリーチャーまたはドラゴンをブロックできない。')
+   return {blocker:true,noAttack:true,g942NoEvolutionDragonBlock:true};
+  if(d.id==='dm22-038'&&text===blocker+
+   'このクリーチャーは相手プレイヤーを攻撃できない。このクリーチャーが破壊された時バトルゾーンにある自分のクリーチャー1体をアンタップする。')
+   return {blocker:true,noPlayerAttack:true,g172Death:[{op:'Target',owner:'self',untap:true,
+    title:'アンタップする自分のクリーチャーを1体選ぶ'}]};
+  if(d.id==='dm21-s04'&&text===
+   'W・ブレイカー自分のターンのはじめにバトルゾーンに自分の《竜音のキラ》が1体もなければカードを2枚自分のマナゾーンから墓地に置く。バトルゾーンに自分の《竜音のキラ》が1体でもあればこのクリーチャーは「スピードアタッカー」を得る。'){
+   const name='竜音のキラ';
+   return {breaker:2,g260Self:{filter:{creature:true,g201ExactName:name},grants:{speedAttacker:true}},
+    g174Start:[{op:'IfOwn',filter:{g448NoName:name},defs:[{op:'Select',origin:'mana',to:'grave',n:2,
+     g184ManaLoss:true,g583Group:true,title:'墓地に置く自分のマナを2枚選ぶ'}]}]};
+  }
+ }
  if(phase>=941&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const bomb='相手のパワー2000以下のクリーチャーを1体または相手のタップされているパワー5000以下のクリーチャーを1体破壊する。';

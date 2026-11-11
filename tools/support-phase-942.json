@@ -1,0 +1,155 @@
+{
+  "phase": 942,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6698,
+  "description": "進化クリーチャーとドラゴンへのブロック禁止、竜音のキラの有無によるマナ墓地送りとスピードアタッカー、破壊時の味方アンタップを実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37335/"
+  ],
+  "cards": [
+    {
+      "id": "dm22-042",
+      "name": "鎧兵機サーボルト",
+      "faces": [
+        {
+          "name": "鎧兵機サーボルト",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは攻撃することができない。\nこのクリーチャーは、進化クリーチャーまたはドラゴンをブロックできない。",
+          "race": "グレートメカオー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-042",
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g942NoEvolutionDragonBlock": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "fc89505193df5713add96036ad61ede10639a03153c49e5354062aba9b782053",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm21-s04",
+      "name": "キラ・ゼクス・ドラグーン",
+      "faces": [
+        {
+          "name": "キラ・ゼクス・ドラグーン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\n自分のターンのはじめに、バトルゾーンに自分の《竜音のキラ》が１体もなければ、カードを２枚、自分のマナゾーンから墓地に置く。\nバトルゾーンに自分の《竜音のキラ》が１体でもあれば、このクリーチャーは「スピードアタッカー」を得る。",
+          "race": "ティラノ・ドレイク",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-s04",
+      "spec": {
+        "breaker": 2,
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "g201ExactName": "竜音のキラ"
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        },
+        "g174Start": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g448NoName": "竜音のキラ"
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "mana",
+                "to": "grave",
+                "n": 2,
+                "g184ManaLoss": true,
+                "g583Group": true,
+                "title": "墓地に置く自分のマナを2枚選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm21-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "584479e990de7b28f97fc08f5b5f06dba42efa527d92c49a2ef34291d5e63273",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm22-038",
+      "name": "活性電士エナジオン",
+      "faces": [
+        {
+          "name": "活性電士エナジオン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが破壊された時、バトルゾーンにある自分のクリーチャー１体をアンタップする。",
+          "race": "グレートメカオー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-038",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g172Death": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "untap": true,
+            "title": "アンタップする自分のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22-038.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "9dfb7d4c42b1732425a37eb774f7aa735958892e1f41a20909ff62b189c3583f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22-042": 4,
+      "dm21-s04": 4,
+      "dm22-038": 4
+    }
+  }
+}

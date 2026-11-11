@@ -196439,22 +196439,115 @@
       ],
       "supportBatch": "phase-941",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22-042",
+      "name": "鎧兵機サーボルト",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 4000,
+      "race": "グレートメカオー",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは攻撃することができない。\nこのクリーチャーは、進化クリーチャーまたはドラゴンをブロックできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-042",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g942NoEvolutionDragonBlock": true,
+      "supportBatch": "phase-942",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm21-s04",
+      "name": "キラ・ゼクス・ドラグーン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 9000,
+      "race": "ティラノ・ドレイク",
+      "text": "W・ブレイカー\n自分のターンのはじめに、バトルゾーンに自分の《竜音のキラ》が１体もなければ、カードを２枚、自分のマナゾーンから墓地に置く。\nバトルゾーンに自分の《竜音のキラ》が１体でもあれば、このクリーチャーは「スピードアタッカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-s04",
+      "limit": 4,
+      "breaker": 2,
+      "g260Self": {
+        "filter": {
+          "creature": true,
+          "g201ExactName": "竜音のキラ"
+        },
+        "grants": {
+          "speedAttacker": true
+        }
+      },
+      "g174Start": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g448NoName": "竜音のキラ"
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "to": "grave",
+              "n": 2,
+              "g184ManaLoss": true,
+              "g583Group": true,
+              "title": "墓地に置く自分のマナを2枚選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-942",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm22-038",
+      "name": "活性電士エナジオン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "グレートメカオー",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーが破壊された時、バトルゾーンにある自分のクリーチャー１体をアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22-038",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g172Death": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "untap": true,
+          "title": "アンタップする自分のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-942",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 941,
+    "phase": 942,
     "checkedAt": "2026-11-11",
-    "baseCount": 6695,
+    "baseCount": 6698,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6698,
+    "totalCount": 6701,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35497/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37352/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37354/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35001/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37335/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -213291,6 +213384,25 @@
           "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35001/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35467/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 941,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6695,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6698,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35497/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37352/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37354/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35001/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
