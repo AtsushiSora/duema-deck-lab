@@ -122,15 +122,17 @@ export function createSamuraiRules(api){
  inherit(s,base,x){if(base.g18Blocker)x.g18Blocker=structuredClone(base.g18Blocker);for(const p of[0,1])for(const g of attached(s,p,base))g.crossedTo={uid:x.uid,incarnation:x.incarnation||0};},
  decorate932(s,p,x,c){
   if(c.type!=='creature')return c;
-  let speed=false,slayers=0,attackBonus=0;
+  let speed=false,blocker=false,slayers=0,attackBonus=0;
   for(const owner of [p,1-p])for(const g of s.players[owner].battle){
    const def=card(g);
-   if((!def.g932UncrossedSpeed&&!def.g932UncrossedSlayer)||g.faceDown||!active(s,g))continue;
+   if((!def.g932UncrossedSpeed&&!def.g932UncrossedSlayer&&!def.g945CrossBlocker)||g.faceDown||!active(s,g))continue;
    const host=live(s,owner,g);
+   if(def.g945CrossBlocker&&owner===p&&host===x)blocker=true;
    if(!host){speed||=!!def.g932UncrossedSpeed;slayers+=Number(!!def.g932UncrossedSlayer);}
    else if(owner===p&&host.uid===x.uid&&(host.incarnation||0)===(x.incarnation||0))attackBonus+=def.g932CrossAttackBonus||0;
   }
   if(speed&&!c.speedAttacker)c={...c,speedAttacker:true};
+  if(blocker&&!c.blocker)c={...c,blocker:true};
   if(slayers)c={...c,slayer:true,g208SlayerCount:(c.slayer?c.g208SlayerCount||1:0)+slayers};
   if(attackBonus)c={...c,attackBonus:(c.attackBonus||0)+attackBonus};
   return c;

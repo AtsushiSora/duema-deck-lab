@@ -3388,6 +3388,31 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=945&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm31-046'&&f.typeText==='呪文'&&text===
+   'S・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)パワーが一番小さい相手のクリーチャーを破壊する。2体以上ある場合自分がどちらを破壊するか選ぶ。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'DestroyLowestEnemy945'}]};
+  const ultimate='究極進化-自分の進化クリーチャー1体の上に置く。';
+  if(d.id==='dm32-047'&&f.typeText==='進化クリーチャー(究極進化)'&&text===ultimate+
+   'このクリーチャーが攻撃する時バトルゾーンにあるクリーチャーを1体選び持ち主の手札に戻してもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {ultimateEvolution:true,evolution:{evolution:true},breaker:2,
+    g34Attack:[{op:'Target',anyOwner:true,to:'hand',optional:true}]};
+  if(['dm32-s07','dmc62-009'].includes(d.id)&&['進化クリーチャー(究極進化)','進化クリーチャー'].includes(f.typeText)&&text===ultimate+
+   'このクリーチャーが攻撃する時パワー6000以下の相手のクリーチャーを2体まで破壊する。T・ブレイカー(このクリーチャーはシールドを3枚ブレイクする)')
+   return {ultimateEvolution:true,evolution:{evolution:true},breaker:3,
+    g34Attack:[{op:'Select',owner:'opponent',origin:'battle',to:'grave',n:2,optional:true,g173Targets:true,g193Select:true,
+     filter:{creature:true,maxPower:6000,g199Power:true},title:'破壊するパワー6000以下の相手クリーチャーを2体まで選ぶ'}]};
+  const cross='クロスギア';
+  const reminder=':このカードをバトルゾーンに置く。クリーチャーにクロスするにはこのカードのコストをもう一度支払う。そのクリーチャーが離れてもこのカードは残る。';
+  const manaTap='マナゾーンに置く時このカードはタップして置く。';
+  const bonusOld='これをクロスしたクリーチャーのパワーは+4000され「ブロッカー」を得る。';
+  const bonusNew='これをクロスしたクリーチャーのパワーを+4000し「ブロッカー」を与える。';
+  const discard='これをクロスしたクリーチャーが攻撃する時相手の手札を見ないで1枚選び捨てさせる。';
+  if(['dm31-019','dmc64-027','dmx14-046','dmx22a-019','dmex15-b078','dmex17-w15'].includes(d.id)&&f.typeText==='クロスギア'&&f.civilizations.join('/')==='光/闇'&&
+   [manaTap+cross+bonusOld+discard,cross+reminder+bonusNew+discard,manaTap+cross+reminder+bonusNew+discard].includes(text))
+   return {type:'gear',g123CrossPower:4000,g945CrossBlocker:true,g931CrossAttack:[{op:'BlindDiscard773'}]};
+ }
  if(phase>=944&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm20-039'&&f.typeText==='クリーチャー'&&text===

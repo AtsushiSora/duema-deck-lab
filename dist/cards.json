@@ -196821,26 +196821,148 @@
       },
       "supportBatch": "phase-944",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm31-046",
+      "name": "戦力外通告",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nパワーが一番小さい相手のクリーチャーを破壊する。２体以上ある場合、自分がどちらを破壊するか選ぶ。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-046",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DestroyLowestEnemy945"
+        }
+      ],
+      "supportBatch": "phase-945",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm31-019",
+      "name": "至宝 オール・イエス",
+      "civ": "光/闇",
+      "civilizations": [
+        "光",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "gear",
+      "cost": 2,
+      "power": 0,
+      "race": "サムライ",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nクロスギア\nこれをクロスしたクリーチャーのパワーは+4000され、「ブロッカー」を得る。\nこれをクロスしたクリーチャーが攻撃する時、相手の手札を見ないで１枚選び、捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-019",
+      "limit": 4,
+      "g123CrossPower": 4000,
+      "g945CrossBlocker": true,
+      "g931CrossAttack": [
+        {
+          "op": "BlindDiscard773"
+        }
+      ],
+      "supportBatch": "phase-945",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-047",
+      "name": "神羅スパイラル・ムーン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ルナティック・エンペラー/サイバー・コマンド",
+      "text": "究極進化-自分の進化クリーチャー１体の上に置く。\nこのクリーチャーが攻撃する時、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-047",
+      "limit": 4,
+      "ultimateEvolution": true,
+      "evolution": {
+        "evolution": true
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "to": "hand",
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-945",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-s07",
+      "name": "神羅ドラグ・ムーン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 15000,
+      "race": "ルナティック・エンペラー/アーマード・ドラゴン",
+      "text": "究極進化-自分の進化クリーチャー１体の上に置く。\nこのクリーチャーが攻撃する時、パワー6000以下の相手のクリーチャーを２体まで破壊する。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-s07",
+      "limit": 4,
+      "ultimateEvolution": true,
+      "evolution": {
+        "evolution": true
+      },
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "owner": "opponent",
+          "origin": "battle",
+          "to": "grave",
+          "n": 2,
+          "optional": true,
+          "g173Targets": true,
+          "g193Select": true,
+          "filter": {
+            "creature": true,
+            "maxPower": 6000,
+            "g199Power": true
+          },
+          "title": "破壊するパワー6000以下の相手クリーチャーを2体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-945",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 944,
+    "phase": 945,
     "checkedAt": "2026-11-11",
-    "baseCount": 6705,
+    "baseCount": 6709,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6709,
+    "totalCount": 6713,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37323/",
-      "https://dm.takaratomy.co.jp/rule/qa/46493/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35492/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36035/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36036/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36037/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36038/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36039/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/34883/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35760/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35761/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37401/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35576/",
+      "https://dm.takaratomy.co.jp/rule/qa/42655/",
+      "https://dm.takaratomy.co.jp/rule/qa/41414/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -213731,6 +213853,29 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37323/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37423/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37424/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 944,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6705,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6709,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37323/",
+          "https://dm.takaratomy.co.jp/rule/qa/46493/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35492/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36035/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36036/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36037/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36038/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36039/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

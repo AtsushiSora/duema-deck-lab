@@ -1,0 +1,381 @@
+{
+  "phase": 945,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6709,
+  "description": "戦力外通告の最小パワー破壊、オール・イエスのクロス能力、究極進化2種類の攻撃時能力を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34883/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35760/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35761/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37401/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35576/",
+    "https://dm.takaratomy.co.jp/rule/qa/42655/",
+    "https://dm.takaratomy.co.jp/rule/qa/41414/"
+  ],
+  "cards": [
+    {
+      "id": "dm31-046",
+      "name": "戦力外通告",
+      "faces": [
+        {
+          "name": "戦力外通告",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー(この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい)\nパワーが一番小さい相手のクリーチャーを破壊する。２体以上ある場合、自分がどちらを破壊するか選ぶ。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-046",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DestroyLowestEnemy945"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "8fcbc72c068e3be377f4e8f39bfdc361587778cee31a3f418ac87913de7ad843",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm31-019",
+      "name": "至宝 オール・イエス",
+      "faces": [
+        {
+          "name": "至宝 オール・イエス",
+          "typeText": "クロスギア",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nクロスギア\nこれをクロスしたクリーチャーのパワーは+4000され、「ブロッカー」を得る。\nこれをクロスしたクリーチャーが攻撃する時、相手の手札を見ないで１枚選び、捨てさせる。",
+          "race": "サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-019",
+      "spec": {
+        "type": "gear",
+        "g123CrossPower": 4000,
+        "g945CrossBlocker": true,
+        "g931CrossAttack": [
+          {
+            "op": "BlindDiscard773"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "55f69b95218f93859de664771223fb7c7bfaa38ee4d24f763ccbffb2ba0371b8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm32-047",
+      "name": "神羅スパイラル・ムーン",
+      "faces": [
+        {
+          "name": "神羅スパイラル・ムーン",
+          "typeText": "進化クリーチャー(究極進化)",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "究極進化-自分の進化クリーチャー１体の上に置く。\nこのクリーチャーが攻撃する時、バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ルナティック・エンペラー/サイバー・コマンド",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-047",
+      "spec": {
+        "ultimateEvolution": true,
+        "evolution": {
+          "evolution": true
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "to": "hand",
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "62ef5b9d71082c4e058b71cc80e13baa08acdd47b0c271506b5bec33159b9c76",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm32-s07",
+      "name": "神羅ドラグ・ムーン",
+      "faces": [
+        {
+          "name": "神羅ドラグ・ムーン",
+          "typeText": "進化クリーチャー(究極進化)",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "究極進化-自分の進化クリーチャー１体の上に置く。\nこのクリーチャーが攻撃する時、パワー6000以下の相手のクリーチャーを２体まで破壊する。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "ルナティック・エンペラー/アーマード・ドラゴン",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-s07",
+      "spec": {
+        "ultimateEvolution": true,
+        "evolution": {
+          "evolution": true
+        },
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "owner": "opponent",
+            "origin": "battle",
+            "to": "grave",
+            "n": 2,
+            "optional": true,
+            "g173Targets": true,
+            "g193Select": true,
+            "filter": {
+              "creature": true,
+              "maxPower": 6000,
+              "g199Power": true
+            },
+            "title": "破壊するパワー6000以下の相手クリーチャーを2体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-s07.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "82001e3630f9278b8acd44823ceb5336a57ac2d9918383ea84ea26c71330c10a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc64-027",
+      "canonicalId": "dm31-019",
+      "name": "至宝 オール・イエス",
+      "faces": [
+        {
+          "name": "至宝 オール・イエス",
+          "typeText": "クロスギア",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nクロスギア\nこれをクロスしたクリーチャーのパワーは+4000され、「ブロッカー」を得る。\nこれをクロスしたクリーチャーが攻撃する時、相手の手札を見ないで１枚選び、捨てさせる。",
+          "race": "サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc64-027",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc64-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "09601eac86574f061c00a79d73af8c5731ae2d65fbd28585c53ef012a5c582d1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx14-046",
+      "canonicalId": "dm31-019",
+      "name": "至宝 オール・イエス",
+      "faces": [
+        {
+          "name": "至宝 オール・イエス",
+          "typeText": "クロスギア",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nクロスギア\nこれをクロスしたクリーチャーのパワーは+4000され、「ブロッカー」を得る。\nこれをクロスしたクリーチャーが攻撃する時、相手の手札を見ないで１枚選び、捨てさせる。",
+          "race": "サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-046",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx14-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "9ab405bfe063340d8dea7cc1dd74459c4f924e495bc5acfb58124a38641af219",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx22a-019",
+      "canonicalId": "dm31-019",
+      "name": "至宝 オール・イエス",
+      "faces": [
+        {
+          "name": "至宝 オール・イエス",
+          "typeText": "クロスギア",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nクロスギア\nこれをクロスしたクリーチャーのパワーは+4000され、「ブロッカー」を得る。\nこれをクロスしたクリーチャーが攻撃する時、相手の手札を見ないで１枚選び、捨てさせる。",
+          "race": "サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22a-019",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22a-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "7b5b7b5921ce7270203dd23bd6161b6e37553f3e3d9523b7cfd37e97bee30ed8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex15-b078",
+      "canonicalId": "dm31-019",
+      "name": "至宝 オール・イエス",
+      "faces": [
+        {
+          "name": "至宝 オール・イエス",
+          "typeText": "クロスギア",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "クロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーが離れても、このカードは残る。\nこれをクロスしたクリーチャーのパワーを+4000し、「ブロッカー」を与える。\nこれをクロスしたクリーチャーが攻撃する時、相手の手札を見ないで１枚選び、捨てさせる。",
+          "race": "サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b078",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-b078.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "028c20dcaf32607bde62a86915804daa685b5a523c391522f45d9cb5eb9be122",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex17-w15",
+      "canonicalId": "dm31-019",
+      "name": "至宝 オール・イエス",
+      "faces": [
+        {
+          "name": "至宝 オール・イエス",
+          "typeText": "クロスギア",
+          "civilizationText": "光/闇",
+          "civilizations": [
+            "光",
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nクロスギア : このカードをバトルゾーンに置く。クリーチャーにクロスするには、このカードのコストをもう一度支払う。そのクリーチャーが離れても、このカードは残る。\nこれをクロスしたクリーチャーのパワーを+4000し、「ブロッカー」を与える。\nこれをクロスしたクリーチャーが攻撃する時、相手の手札を見ないで１枚選び、捨てさせる。",
+          "race": "サムライ",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex17-w15",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex17-w15.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "bf341cf891a6e8dc5854dceffd81c5dd6fe34101ecf2fef1528a2672f0552ae6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc62-009",
+      "canonicalId": "dm32-s07",
+      "name": "神羅ドラグ・ムーン",
+      "faces": [
+        {
+          "name": "神羅ドラグ・ムーン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "究極進化-自分の進化クリーチャー１体の上に置く。\nこのクリーチャーが攻撃する時、パワー6000以下の相手のクリーチャーを２体まで破壊する。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "ルナティック・エンペラー/アーマード・ドラゴン",
+          "powerText": "15000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc62-009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc62-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "ed32471ddd2f41752b2e0e3cbc242076e4aeb9e778604aa5593e0f081d9c9957",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm31-046": 4,
+      "dm31-019": 4,
+      "dm32-047": 4,
+      "dm32-s07": 4,
+      "dmc64-027": 4,
+      "dmx14-046": 4,
+      "dmx22a-019": 4,
+      "dmex15-b078": 4,
+      "dmex17-w15": 4,
+      "dmc62-009": 4
+    }
+  }
+}

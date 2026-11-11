@@ -2032,6 +2032,18 @@ export function createSixPhotoRules(api){
   move(s,[{player:host.p,uid:host.x.uid,to:'deck',controller:t.controller??t.p}]);
   break;
  }
+ case'g34_DestroyLowestEnemy945':{
+  const player=1-t.p;
+  const lowest=lowestPower741(s,creatures(s,player));
+  // Only a tie requires choosing a creature (official QA 34883 and 35761).
+  if(lowest.length===1){
+   move(s,[{player,uid:lowest[0].uid,to:'grave',destroy:true,controller:t.controller??t.p}]);
+  }else if(lowest.length>1){
+   start(s,t,[{op:'Target',to:'grave',g741MinPower:true,
+    title:'破壊する最小パワーの相手クリーチャーを1体選ぶ'}]);
+  }
+  break;
+ }
  case'g34_LowestPower739':put(s,{...t,op:'g61_Bronx'});break;
  case'g34_SelfDestroy':{const host=sourceHost474(s,t);if(host)move(s,[{player:host.p,uid:host.x.uid,to:'grave',destroy:true,controller:t.controller??t.p}]);break;}
  case'g34_IfMana':if(own.mana.filter(y=>{const cs=api.manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),s,t.p);return t.multi?cs.length>1:cs.includes(t.color);}).length>=t.n)start(s,t,t.defs);break;
