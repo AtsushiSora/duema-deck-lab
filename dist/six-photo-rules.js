@@ -3261,7 +3261,8 @@ export function createSixPhotoRules(api){
   const current=host&&!host.x.sealed&&api.isCreature(s,host.x)?currentPower506(s,host.x):t.g692LastPower;
   if(current===undefined||current===-Infinity||current==='-∞')break;
   if(t.g745Sweep||t.g993OpponentSweepInclusive){
-   const threshold=current==='∞'?Infinity:current,owners=t.g993OpponentSweepInclusive?[1-t.p]:[t.p,1-t.p];
+   const threshold=current==='∞'?Infinity:current;
+   const owners=t.g993OpponentSweepInclusive||t.g745Sweep==='opponent'?[1-t.p]:[t.p,1-t.p];
    const rows=owners.flatMap(p=>creatures(s,p)
     .filter(y=>!y.sealed&&(t.g993OpponentSweepInclusive?currentPower506(s,y)<=threshold:currentPower506(s,y)<threshold))
     .map(y=>({player:p,uid:y.uid,to:'grave',destroy:true})));

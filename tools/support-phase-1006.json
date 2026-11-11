@@ -1,0 +1,343 @@
+{
+  "phase": 1006,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6946,
+  "description": "D２J２ ヴィスエンマ、Mの悪魔龍 カラムバイン、激龍霊樹ドドンギャス、獣軍隊X ネオボンバー、神聖で新生な霊樹の公式能力を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37923/",
+    "https://dm.takaratomy.co.jp/rule/qa/34339/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36202/",
+    "https://dm.takaratomy.co.jp/rule/qa/47896/",
+    "https://dm.takaratomy.co.jp/rule/qa/31824/",
+    "https://dm.takaratomy.co.jp/coverage/dmnt16_f03_b/"
+  ],
+  "cards": [
+    {
+      "id": "dmr23-001",
+      "name": "D２J２ ヴィスエンマ",
+      "faces": [
+        {
+          "name": "D２J２ ヴィスエンマ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手の進化ではないクリーチャーを１体、表向きのまま、新しいシールドとして持ち主のシールドゾーンに置く。\nバトルゾーンに自分のD２フィールドがある時、このクリーチャーはすべてのバトルに勝つ。",
+          "race": "エンジェル・コマンド/マスター・イニシャルズ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-001",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "shields",
+            "faceUp": true,
+            "filter": {
+              "nonEvolution": true
+            },
+            "title": "表向きのシールドにする相手の非進化クリーチャーを1体選ぶ"
+          }
+        ],
+        "g260Self": {
+          "filter": {
+            "g580D2Field": true
+          },
+          "grants": {
+            "g34AlwaysWin": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "97ebe1f5c1fdcfa2f3adce559983b3e47440172f66152c2f969a15f48372ef03",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-034",
+      "name": "Mの悪魔龍 カラムバイン",
+      "faces": [
+        {
+          "name": "Mの悪魔龍 カラムバイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーが破壊された時、コスト５以下のD２フィールドを１枚、自分の手札または墓地からバトルゾーンに出してもよい。",
+          "race": "デーモン・コマンド・ドラゴン/イニシャルズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-034",
+      "spec": {
+        "slayer": true,
+        "g172Death": [
+          {
+            "op": "Select",
+            "zones": [
+              "hand",
+              "grave"
+            ],
+            "n": 1,
+            "optional": true,
+            "deploy": true,
+            "filter": {
+              "faceUp": true,
+              "g228Face": {
+                "type": "field",
+                "d2": true,
+                "max": 5
+              }
+            },
+            "title": "出すコスト5以下のD2フィールドを1枚まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "646827aa8ccb7eb9069b7614c509fcea17a196b72a72eb10dae3a24b063fb1e0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-010",
+      "name": "激龍霊樹ドドンギャス",
+      "faces": [
+        {
+          "name": "激龍霊樹ドドンギャス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火/自然",
+          "civilizations": [
+            "火",
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー\nマナ武装 ４：このクリーチャーが攻撃する時、自分のマナゾーンに多色カードが４枚以上あれば、このクリーチャーよりパワーが小さい相手のクリーチャーをすべて破壊する。",
+          "race": "メガ・コマンド・ドラゴン/ミステリー・トーテム",
+          "powerText": "9000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-010",
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g267Mana": {
+                "n": 4,
+                "multi": true
+              }
+            },
+            "defs": [
+              {
+                "op": "TargetBelowSource692",
+                "g745Sweep": "opponent"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "adffe3327c8127c5392a0251e9ba168b1777c90ec94b684e35e44a35edccc12d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr23-037",
+      "name": "獣軍隊X ネオボンバー",
+      "faces": [
+        {
+          "name": "獣軍隊X ネオボンバー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、コスト５以下のD２フィールドを１枚、自分の手札またはマナゾーンからバトルゾーンに出してもよい。",
+          "race": "ゲリラ・コマンド/イニシャルズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-037",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "zones": [
+              "hand",
+              "mana"
+            ],
+            "n": 1,
+            "optional": true,
+            "deploy": true,
+            "filter": {
+              "faceUp": true,
+              "g228Face": {
+                "type": "field",
+                "d2": true,
+                "max": 5
+              }
+            },
+            "title": "出すコスト5以下のD2フィールドを1枚まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr23-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "e08edfddfdf053185cf644f71299e800406475d4c8ea5a445085eff3e67714ed",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr22-042",
+      "name": "神聖で新生な霊樹",
+      "faces": [
+        {
+          "name": "神聖で新生な霊樹",
+          "typeText": "呪文",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から１枚目を表向きにして、新しいシールドとして自分のシールドゾーンに置く。\nカードを２枚まで、自分のマナゾーンから手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-042",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 1,
+            "faceUp": true
+          },
+          {
+            "op": "Select",
+            "origin": "mana",
+            "to": "hand",
+            "n": 2,
+            "optional": true,
+            "g583Group": true,
+            "title": "手札に戻す自分のマナを2枚まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr22-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "57688c3b44afa075f97366d8b973e1987bd62d9d803ad5a879dbc966c001f989",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex13-041",
+      "canonicalId": "dmr22-042",
+      "name": "神聖で新生な霊樹",
+      "faces": [
+        {
+          "name": "神聖で新生な霊樹",
+          "typeText": "呪文",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から１枚目を表向きにして、新しいシールドとしてシールドゾーンに置く。\nカードを２枚まで、自分のマナゾーンから手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-041",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "b6ddc92fe4573052caf0b569078d2abdfc9b0aa9a9b0785316857a7e5afef7b6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm23bd5-045",
+      "canonicalId": "dmr22-042",
+      "name": "神聖で新生な霊樹",
+      "faces": [
+        {
+          "name": "神聖で新生な霊樹",
+          "typeText": "呪文",
+          "civilizationText": "光/自然",
+          "civilizations": [
+            "光",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から１枚目を表向きにシールド化する。\nカードを２枚まで、自分のマナゾーンから手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23bd5-045",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23bd5-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "e84dfb5a2b672f0fb9c9acd130d89d09c6bd120d1a99d922fb726b7cd1044d29",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr23-001": 4,
+      "dmr23-034": 4,
+      "dmr23-010": 4,
+      "dmr23-037": 4,
+      "dmr22-042": 4,
+      "dmex13-041": 4,
+      "dm23bd5-045": 4
+    }
+  }
+}

@@ -414,10 +414,12 @@ function rememberBattleInformation(s,owner,host,leaving){
  const all=[...pending.map(e=>e.task),...(s.extTasks||[])].filter(Boolean);
  const departs=ref=>leaving.some(card=>card.uid===ref.uid&&(card.incarnation||0)===(ref.incarnation||0));
  const tasks=all.filter(task=>{
-  const compare=task.op==='g34_TargetBelowSource692'?task:task.defs?.find(def=>def.op==='TargetBelowSource692');
-  if(!compare)return false;
-  if(compare.g828CompareAttacker)return task.g399Attacker&&departs(task.g399Attacker);
-  return task.p===owner&&departs(task);
+  const readsDepartingPower=def=>{
+   if(def.op==='TargetBelowSource692'||def.op==='g34_TargetBelowSource692')
+    return def.g828CompareAttacker?task.g399Attacker&&departs(task.g399Attacker):task.p===owner&&departs(task);
+   return def.defs?.some(readsDepartingPower)||def.elseDefs?.some(readsDepartingPower);
+  };
+  return readsDepartingPower(task);
  });
  if(host.sealed)return;
  const resultEffects=[

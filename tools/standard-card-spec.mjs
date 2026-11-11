@@ -3435,6 +3435,45 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=1006&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const entry='このクリーチャーがバトルゾーンに出た時';
+  const manaTap='マナゾーンに置く時このカードはタップして置く。';
+  const wBreaker='W・ブレイカー';
+  const deployField=zones=>({op:'Select',zones,n:1,optional:true,deploy:true,
+   filter:{faceUp:true,g228Face:{type:'field',d2:true,max:5}},
+   title:'出すコスト5以下のD2フィールドを1枚まで選ぶ'});
+  if(d.id==='dmr23-001'&&f.typeText==='クリーチャー'&&text===wBreaker+entry+
+   '相手の進化ではないクリーチャーを1体表向きのまま新しいシールドとして持ち主のシールドゾーンに置く。'+
+   'バトルゾーンに自分のD2フィールドがある時このクリーチャーはすべてのバトルに勝つ。')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'shields',faceUp:true,filter:{nonEvolution:true},
+    title:'表向きのシールドにする相手の非進化クリーチャーを1体選ぶ'}],
+    g260Self:{filter:{g580D2Field:true},grants:{g34AlwaysWin:true}}};
+  if(d.id==='dmr23-034'&&f.typeText==='クリーチャー'&&text===
+   'スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)'+
+   'このクリーチャーが破壊された時コスト5以下のD2フィールドを1枚自分の手札または墓地からバトルゾーンに出してもよい。')
+   return {slayer:true,g172Death:[deployField(['hand','grave'])]};
+  if(d.id==='dmr23-010'&&f.typeText==='クリーチャー'&&f.civilizations.length===2&&text===manaTap+wBreaker+
+   'マナ武装4:このクリーチャーが攻撃する時自分のマナゾーンに多色カードが4枚以上あればこのクリーチャーよりパワーが小さい相手のクリーチャーをすべて破壊する。')
+   return {breaker:2,g34Attack:[{op:'IfOwn',filter:{g267Mana:{n:4,multi:true}},defs:[
+    {op:'TargetBelowSource692',g745Sweep:'opponent'}
+   ]}]};
+  if(d.id==='dmr23-037'&&f.typeText==='クリーチャー'&&text===wBreaker+'(このクリーチャーはシールドを2つブレイクする)'+entry+
+   'コスト5以下のD2フィールドを1枚自分の手札またはマナゾーンからバトルゾーンに出してもよい。')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[deployField(['hand','mana'])]};
+  const trigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  const recover='カードを2枚まで自分のマナゾーンから手札に戻してもよい。';
+  const treeText={
+   'dmr22-042':manaTap+trigger+'自分の山札の上から1枚目を表向きにして新しいシールドとして自分のシールドゾーンに置く。'+recover,
+   'dmex13-041':trigger+'自分の山札の上から1枚目を表向きにして新しいシールドとしてシールドゾーンに置く。'+recover,
+   'dm23bd5-045':trigger+'自分の山札の上から1枚目を表向きにシールド化する。'+recover
+  };
+  if(f.typeText==='呪文'&&f.civilizations.length===2&&text===treeText[d.id])
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[
+    {op:'ShieldTop',n:1,faceUp:true},
+    {op:'Select',origin:'mana',to:'hand',n:2,optional:true,g583Group:true,title:'手札に戻す自分のマナを2枚まで選ぶ'}
+   ]};
+ }
  if(phase>=1005&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText).replaceAll('クリ-チャー','クリーチャー').replaceAll('クリ−チャー','クリーチャー');
   const trigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';

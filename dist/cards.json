@@ -204739,23 +204739,218 @@
       "g1005SpeedEntryLock": true,
       "supportBatch": "phase-1005",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-001",
+      "name": "D２J２ ヴィスエンマ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "エンジェル・コマンド/マスター・イニシャルズ",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手の進化ではないクリーチャーを１体、表向きのまま、新しいシールドとして持ち主のシールドゾーンに置く。\nバトルゾーンに自分のD２フィールドがある時、このクリーチャーはすべてのバトルに勝つ。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-001",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "shields",
+          "faceUp": true,
+          "filter": {
+            "nonEvolution": true
+          },
+          "title": "表向きのシールドにする相手の非進化クリーチャーを1体選ぶ"
+        }
+      ],
+      "g260Self": {
+        "filter": {
+          "g580D2Field": true
+        },
+        "grants": {
+          "g34AlwaysWin": true
+        }
+      },
+      "supportBatch": "phase-1006",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-034",
+      "name": "Mの悪魔龍 カラムバイン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "デーモン・コマンド・ドラゴン/イニシャルズ",
+      "text": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーが破壊された時、コスト５以下のD２フィールドを１枚、自分の手札または墓地からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-034",
+      "limit": 4,
+      "slayer": true,
+      "g172Death": [
+        {
+          "op": "Select",
+          "zones": [
+            "hand",
+            "grave"
+          ],
+          "n": 1,
+          "optional": true,
+          "deploy": true,
+          "filter": {
+            "faceUp": true,
+            "g228Face": {
+              "type": "field",
+              "d2": true,
+              "max": 5
+            }
+          },
+          "title": "出すコスト5以下のD2フィールドを1枚まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1006",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-010",
+      "name": "激龍霊樹ドドンギャス",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "メガ・コマンド・ドラゴン/ミステリー・トーテム",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー\nマナ武装 ４：このクリーチャーが攻撃する時、自分のマナゾーンに多色カードが４枚以上あれば、このクリーチャーよりパワーが小さい相手のクリーチャーをすべて破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-010",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g267Mana": {
+              "n": 4,
+              "multi": true
+            }
+          },
+          "defs": [
+            {
+              "op": "TargetBelowSource692",
+              "g745Sweep": "opponent"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1006",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-037",
+      "name": "獣軍隊X ネオボンバー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ゲリラ・コマンド/イニシャルズ",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーがバトルゾーンに出た時、コスト５以下のD２フィールドを１枚、自分の手札またはマナゾーンからバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-037",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "zones": [
+            "hand",
+            "mana"
+          ],
+          "n": 1,
+          "optional": true,
+          "deploy": true,
+          "filter": {
+            "faceUp": true,
+            "g228Face": {
+              "type": "field",
+              "d2": true,
+              "max": 5
+            }
+          },
+          "title": "出すコスト5以下のD2フィールドを1枚まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1006",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-042",
+      "name": "神聖で新生な霊樹",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nS・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から１枚目を表向きにして、新しいシールドとして自分のシールドゾーンに置く。\nカードを２枚まで、自分のマナゾーンから手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-042",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "n": 1,
+          "faceUp": true
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "to": "hand",
+          "n": 2,
+          "optional": true,
+          "g583Group": true,
+          "title": "手札に戻す自分のマナを2枚まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-1006",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1005,
+    "phase": 1006,
     "checkedAt": "2026-11-12",
-    "baseCount": 6941,
+    "baseCount": 6946,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 6946,
+    "totalCount": 6951,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37877/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37878/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37923/",
+      "https://dm.takaratomy.co.jp/rule/qa/34339/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36202/",
+      "https://dm.takaratomy.co.jp/rule/qa/47896/",
       "https://dm.takaratomy.co.jp/rule/qa/31824/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37110/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31395/"
+      "https://dm.takaratomy.co.jp/coverage/dmnt16_f03_b/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -222901,6 +223096,26 @@
           "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-052",
           "https://dm.takaratomy.co.jp/rule/qa/44318/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37975/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1005,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6941,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 6946,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37877/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37878/",
+          "https://dm.takaratomy.co.jp/rule/qa/31824/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37110/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31395/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
