@@ -204286,24 +204286,173 @@
       ],
       "supportBatch": "phase-1002",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr20-045",
+      "name": "不死の翼 フェニクル",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ジャスティス・ウイング",
+      "text": "マナ武装 ３―このクリーチャーが破壊される時、自分のマナゾーンに光のカードが３枚以上あれば、かわりにこのクリーチャーを裏向きにし、新しいシールドとして自分のシールドゾーンに加えてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-045",
+      "limit": 4,
+      "g842OptionalDestroyShield": {
+        "g267Mana": {
+          "n": 3,
+          "color": "光"
+        }
+      },
+      "supportBatch": "phase-1003",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr20-041",
+      "name": "獣軍隊 カマイタチ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "ゲリラ・コマンド/侵略者",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２つブレイクする）\n自分のクリーチャーの数が自分のシールドの数以上なら、このクリーチャーをマナゾーンから召喚してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-041",
+      "limit": 4,
+      "breaker": 2,
+      "g297SelfManaSummon": {
+        "g541CreaturesAtLeastShields": true
+      },
+      "supportBatch": "phase-1003",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr19-023",
+      "name": "フルフワモケダケ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "バルーン・マッシュルーム",
+      "text": "相手のクリーチャーが攻撃する時、可能であればこのクリーチャーを攻撃する。\n自分の他のクリーチャーすべてに「ガードマン」を与える。（「ガードマン」を持つクリーチャーをタップして、相手クリーチャーの攻撃先を、自分の他のクリーチャーからそのクリーチャーに変更してもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr19-023",
+      "limit": 4,
+      "g431AttackMe": true,
+      "g208Auras": [
+        {
+          "other": true,
+          "filter": {
+            "creature": true
+          },
+          "grants": {
+            "guardman": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1003",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr20-017",
+      "name": "悪魔龍王 プッシュ・ザ・アイ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 7000,
+      "race": "デーモン・コマンド・ドラゴン/革命軍",
+      "text": "進化―自分の闇のクリーチャー１体の上に置く。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分のクリーチャーの数が自分のシールドの数以上なら、相手のアンタップしているクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-017",
+      "limit": 4,
+      "evolution": {
+        "civilization": "闇"
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g541CreaturesAtLeastShields": true
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "grave",
+              "filter": {
+                "untapped": true
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1003",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr20-029",
+      "name": "夢の兵器 デュエロウ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "ジ・アンサー",
+      "text": "このクリーチャーがバトルゾーンに出た時、カードを２枚引く。その後、相手はカードを１枚引く。\n自分の水の呪文を唱えるコストを最大２少なくしてもよい。ただし、コストは０以下にならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr20-029",
+      "limit": 4,
+      "g485SpellReduction": {
+        "amount": 2,
+        "color": "水"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2
+        },
+        {
+          "op": "Draw",
+          "owner": "opponent",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-1003",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1002,
+    "phase": 1003,
     "checkedAt": "2026-11-12",
-    "baseCount": 6928,
-    "newEffectCards": 4,
+    "baseCount": 6932,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 6932,
+    "totalCount": 6937,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37281/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37287/",
-      "https://dm.takaratomy.co.jp/rule/qa/39785/",
-      "https://dm.takaratomy.co.jp/rule/qa/45802/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37452/",
-      "https://dm.takaratomy.co.jp/rule/qa/39332/"
+      "https://dm.takaratomy.co.jp/rule/qa/39393/",
+      "https://dm.takaratomy.co.jp/rule/qa/46507/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36581/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36082/",
+      "https://dm.takaratomy.co.jp/rule/qa/42657/",
+      "https://dm.takaratomy.co.jp/rule/qa/31929/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -222386,6 +222535,27 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37237/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37282/",
           "https://dm.takaratomy.co.jp/rule/qa/31554/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1002,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6928,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6932,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37281/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37287/",
+          "https://dm.takaratomy.co.jp/rule/qa/39785/",
+          "https://dm.takaratomy.co.jp/rule/qa/45802/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37452/",
+          "https://dm.takaratomy.co.jp/rule/qa/39332/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

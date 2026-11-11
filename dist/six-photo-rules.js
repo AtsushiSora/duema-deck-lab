@@ -30,6 +30,7 @@ export function createSixPhotoRules(api){
  ];
  // Mana characteristics include both twinpact faces and live Courtney effects.
  const manaPermits297=(s,p,x,c=card(x))=>s.active!==p||x.faceDown||!s.players[p].mana.includes(x)||c.type!=='creature'||!api.canMoveZone(s,p,'mana')?[]:[
+  ...(c.g297SelfManaSummon&&ownCondition(s,p,c.g297SelfManaSummon)?['g297:self']:[]),
   ...((s.extLimits||[]).some(l=>l.kind==='g297ManaTurn'&&l.player===p&&l.turn===s.turn)?['g297:turn']:
   creatures(s,p).filter(y=>{const rule=effective(y,s).g297ManaAura,cs=api.manaColors(card(x),s,p);return !y.sealed&&rule&&(rule.colorless?cs.length===0:cs.length>1);}).slice(0,1).map(y=>'g297:'+y.uid+'@'+(y.incarnation||0))),...zonePermits450(s,p,x,c,'mana'),...(c.g539SelfMana&&jokerCount539(s,p)>=c.g539SelfMana?['g539:self']:[])];
  const crossGears728=(s,p)=>s.players[p].battle.filter(x=>!x.sealed&&card(x).type==='gear');

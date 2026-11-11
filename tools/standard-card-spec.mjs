@@ -3435,6 +3435,33 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=1003&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const double='W・ブレイカー(このクリーチャーはシールドを2つブレイクする)';
+  const creaturesAtLeastShields={g541CreaturesAtLeastShields:true};
+  if(f.typeText==='クリーチャー'){
+   if(d.id==='dmr20-045'&&text===
+    'マナ武装3―このクリーチャーが破壊される時自分のマナゾーンに光のカードが3枚以上あればかわりにこのクリーチャーを裏向きにし新しいシールドとして自分のシールドゾーンに加えてもよい。')
+    return {g842OptionalDestroyShield:{g267Mana:{n:3,color:'光'}}};
+   if(d.id==='dmr20-041'&&text===double+
+    '自分のクリーチャーの数が自分のシールドの数以上ならこのクリーチャーをマナゾーンから召喚してもよい。')
+    return {breaker:2,g297SelfManaSummon:creaturesAtLeastShields};
+   if(d.id==='dmr19-023'&&text===
+    '相手のクリーチャーが攻撃する時可能であればこのクリーチャーを攻撃する。'+
+    '自分の他のクリーチャーすべてに「ガードマン」を与える。(「ガードマン」を持つクリーチャーをタップして相手クリーチャーの攻撃先を自分の他のクリーチャーからそのクリーチャーに変更してもよい)')
+    return {g431AttackMe:true,g208Auras:[{other:true,filter:{creature:true},grants:{guardman:true}}]};
+   if(d.id==='dmr20-029'&&text===
+    'このクリーチャーがバトルゾーンに出た時カードを2枚引く。その後相手はカードを1枚引く。'+
+    '自分の水の呪文を唱えるコストを最大2少なくしてもよい。ただしコストは0以下にならない。')
+    return {g485SpellReduction:{amount:2,color:'水'},effect:'sixPhoto',
+     g34Tasks:[{op:'Draw',n:2},{op:'Draw',owner:'opponent',n:1}]};
+  }
+  if(d.id==='dmr20-017'&&f.typeText==='進化クリーチャー'&&text==='進化―自分の闇のクリーチャー1体の上に置く。'+double+
+   'このクリーチャーが攻撃する時自分のクリーチャーの数が自分のシールドの数以上なら相手のアンタップしているクリーチャーを1体破壊する。')
+   return {evolution:{civilization:'闇'},breaker:2,g34Attack:[
+    {op:'IfOwn',filter:creaturesAtLeastShields,defs:[{op:'Target',to:'grave',filter:{untapped:true}}]}
+   ]};
+ }
  if(phase>=1002&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const entry='このクリーチャーがバトルゾーンに出た時';
