@@ -1,0 +1,411 @@
+{
+  "phase": 987,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6865,
+  "description": "マナ武装によるS・トリガー、パワー低下とカード指定除去、手札保護、攻撃の後のタップとアンタップに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37111/",
+    "https://dm.takaratomy.co.jp/rule/qa/41750/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37219/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37220/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37158/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37159/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37231/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37232/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37233/",
+    "https://dm.takaratomy.co.jp/rule/qa/43297/"
+  ],
+  "cards": [
+    {
+      "id": "dmr16g-011",
+      "name": "惨事の悪魔龍 ザンジデス",
+      "faces": [
+        {
+          "name": "惨事の悪魔龍 ザンジデス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナ武装 ５：自分のマナゾーンに闇のカードが５枚以上あれば、このクリーチャーは「S・トリガー」を得る。\nこのクリーチャーをバトルゾーンに出した時、そのターン、バトルゾーンにある相手のクリーチャーすべてのパワーは-2000される。（パワー０以下のクリーチャーは破壊される）\nW・ブレイカー",
+          "race": "デーモン・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-011",
+      "spec": {
+        "breaker": 2,
+        "g876ShieldTriggerCondition": {
+          "g267Mana": {
+            "n": 5,
+            "color": "闇"
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupPower",
+            "owner": "opponent",
+            "filter": {
+              "creature": true
+            },
+            "power": -2000,
+            "g214GroupPower": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "27648a1aba89cba343aa1c8c6676db6b313b358f87349ec531bd931a0c90bdeb",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-013",
+      "name": "熱血龍 メッタギルス",
+      "faces": [
+        {
+          "name": "熱血龍 メッタギルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナ武装 ５：自分のマナゾーンに火のカードが５枚以上あれば、このクリーチャーは「S・トリガー」を得る。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手の、コスト５以下の進化ではないカードを１枚選び、持ち主の墓地に置く。\nW・ブレイカー",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-013",
+      "spec": {
+        "breaker": 2,
+        "g876ShieldTriggerCondition": {
+          "g267Mana": {
+            "n": 5,
+            "color": "火"
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "g813NonEvolution": true,
+            "max": 5,
+            "to": "grave"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "458182b73720b7cbeef74b51ddd28f2654d7d3b15cbd26556a184e25d9bbebac",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-017",
+      "name": "緑罠類有毒目 トラップトプス",
+      "faces": [
+        {
+          "name": "緑罠類有毒目 トラップトプス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナ武装 ５：自分のマナゾーンに自然のカードが５枚以上あれば、このクリーチャーは「S・トリガー」を得る。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手の、コスト５以下の進化ではないカードを１枚選び、持ち主のマナゾーンに置く。\nW・ブレイカー",
+          "race": "ジュラシック・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-017",
+      "spec": {
+        "breaker": 2,
+        "g876ShieldTriggerCondition": {
+          "g267Mana": {
+            "n": 5,
+            "color": "自然"
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "g813NonEvolution": true,
+            "max": 5,
+            "to": "mana"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "d9d715d66c3923160e58226fdd1bab10b2c4ec14fa80a81df54a260faab3d365",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-036",
+      "name": "聖鐘の翼 ティグヌス",
+      "faces": [
+        {
+          "name": "聖鐘の翼 ティグヌス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分の手札は、相手の呪文の効果またはクリーチャーの能力によって捨てられない。",
+          "race": "ジャスティス・ウイング",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-036",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g591HandShield": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "1e5159321a5dbf20620a9ec069eb22288cf7aa414668711b34902e0ce3edaf0f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16s-003",
+      "name": "ゴウ・ブレイクドラゴン",
+      "faces": [
+        {
+          "name": "ゴウ・ブレイクドラゴン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分の火のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが攻撃する時、攻撃の後、バトルゾーンにある自分の火のクリーチャーを１体タップしてもよい。そうした場合、このクリーチャーをアンタップする。",
+          "race": "メガ・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-003",
+      "spec": {
+        "evolution": {
+          "civilization": "火"
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "AfterAttack542",
+            "defs": [
+              {
+                "op": "Target",
+                "owner": "self",
+                "filter": {
+                  "color": "火"
+                },
+                "tap": true,
+                "optional": true,
+                "g587AfterSelection": true,
+                "g987AfterNewTap": true,
+                "after": [
+                  {
+                    "op": "Untap",
+                    "g191First": true
+                  }
+                ],
+                "title": "攻撃の後、タップする自分の火のクリーチャーを選ぶ（任意）"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "1054a187142e96a54c23376b904c1d4e98040810f897593a122718cffe4cf405",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmr16s-011",
+      "canonicalId": "dmr16g-011",
+      "name": "惨事の悪魔龍 ザンジデス",
+      "faces": [
+        {
+          "name": "惨事の悪魔龍 ザンジデス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナ武装 ５：自分のマナゾーンに闇のカードが５枚以上あれば、このクリーチャーは「S・トリガー」を得る。\nこのクリーチャーをバトルゾーンに出した時、そのターン、バトルゾーンにある相手のクリーチャーすべてのパワーは-2000される。（パワー０以下のクリーチャーは破壊される）\nW・ブレイカー",
+          "race": "デーモン・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "42f8d52f8cf74df3aa7f4e68a9df04fdf3f81d2059990bc69c47083e8bde4c44",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16s-014",
+      "canonicalId": "dmr16g-013",
+      "name": "熱血龍 メッタギルス",
+      "faces": [
+        {
+          "name": "熱血龍 メッタギルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナ武装 ５：自分のマナゾーンに火のカードが５枚以上あれば、このクリーチャーは「S・トリガー」を得る。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手の、コスト５以下の進化ではないカードを１枚選び、持ち主の墓地に置く。\nW・ブレイカー",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-014",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "53e02092f93752aad7c31bbc917c2d312453c0484f71b80f12ffbb3772c2702d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy14-042",
+      "canonicalId": "dmr16g-013",
+      "name": "熱血龍 メッタギルス",
+      "faces": [
+        {
+          "name": "熱血龍 メッタギルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナ武装 ５：自分のマナゾーンに火のカードが５枚以上あれば、このクリーチャーは「S・トリガー」を得る。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手の、コスト５以下の進化ではないカードを１枚選び、持ち主の墓地に置く。\nW・ブレイカー",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-042",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy14-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "fb8a02f241831fa36436a110a8d438502d6911cc834583502c4d0d0b08e32187",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16s-017",
+      "canonicalId": "dmr16g-017",
+      "name": "緑罠類有毒目 トラップトプス",
+      "faces": [
+        {
+          "name": "緑罠類有毒目 トラップトプス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナ武装 ５：自分のマナゾーンに自然のカードが５枚以上あれば、このクリーチャーは「S・トリガー」を得る。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手の、コスト５以下の進化ではないカードを１枚選び、持ち主のマナゾーンに置く。\nW・ブレイカー",
+          "race": "ジュラシック・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-017",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "032336412630660e87530c6aa0a030eff2a9913ac43adae40910137dd1c5fff0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx22a-039",
+      "canonicalId": "dmr14-036",
+      "name": "聖鐘の翼 ティグヌス",
+      "faces": [
+        {
+          "name": "聖鐘の翼 ティグヌス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分の手札は、相手の呪文の効果またはクリーチャーの能力によって捨てられない。",
+          "race": "ジャスティス・ウイング",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx22a-039",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx22a-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "31ae7372ce987ca972b3dd7d6e5da0f541eed5e078d34fd780a8f133239e2fb8",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr16g-011": 4,
+      "dmr16g-013": 4,
+      "dmr16g-017": 4,
+      "dmr14-036": 4,
+      "dmr16s-003": 4,
+      "dmr16s-011": 4,
+      "dmr16s-014": 4,
+      "promoy14-042": 4,
+      "dmr16s-017": 4,
+      "dmx22a-039": 4
+    }
+  }
+}

@@ -201738,26 +201738,201 @@
       ],
       "supportBatch": "phase-986",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr16g-011",
+      "name": "惨事の悪魔龍 ザンジデス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "デーモン・コマンド・ドラゴン",
+      "text": "マナ武装 ５：自分のマナゾーンに闇のカードが５枚以上あれば、このクリーチャーは「S・トリガー」を得る。\nこのクリーチャーをバトルゾーンに出した時、そのターン、バトルゾーンにある相手のクリーチャーすべてのパワーは-2000される。（パワー０以下のクリーチャーは破壊される）\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-011",
+      "limit": 4,
+      "breaker": 2,
+      "g876ShieldTriggerCondition": {
+        "g267Mana": {
+          "n": 5,
+          "color": "闇"
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupPower",
+          "owner": "opponent",
+          "filter": {
+            "creature": true
+          },
+          "power": -2000,
+          "g214GroupPower": true
+        }
+      ],
+      "supportBatch": "phase-987",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr16g-013",
+      "name": "熱血龍 メッタギルス",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "ガイアール・コマンド・ドラゴン",
+      "text": "マナ武装 ５：自分のマナゾーンに火のカードが５枚以上あれば、このクリーチャーは「S・トリガー」を得る。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手の、コスト５以下の進化ではないカードを１枚選び、持ち主の墓地に置く。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-013",
+      "limit": 4,
+      "breaker": 2,
+      "g876ShieldTriggerCondition": {
+        "g267Mana": {
+          "n": 5,
+          "color": "火"
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BattleCardMove579",
+          "g813NonEvolution": true,
+          "max": 5,
+          "to": "grave"
+        }
+      ],
+      "supportBatch": "phase-987",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr16g-017",
+      "name": "緑罠類有毒目 トラップトプス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "ジュラシック・コマンド・ドラゴン",
+      "text": "マナ武装 ５：自分のマナゾーンに自然のカードが５枚以上あれば、このクリーチャーは「S・トリガー」を得る。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手の、コスト５以下の進化ではないカードを１枚選び、持ち主のマナゾーンに置く。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-017",
+      "limit": 4,
+      "breaker": 2,
+      "g876ShieldTriggerCondition": {
+        "g267Mana": {
+          "n": 5,
+          "color": "自然"
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BattleCardMove579",
+          "g813NonEvolution": true,
+          "max": 5,
+          "to": "mana"
+        }
+      ],
+      "supportBatch": "phase-987",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-036",
+      "name": "聖鐘の翼 ティグヌス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 3000,
+      "race": "ジャスティス・ウイング",
+      "text": "ブロッカー ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n自分の手札は、相手の呪文の効果またはクリーチャーの能力によって捨てられない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-036",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g591HandShield": true,
+      "supportBatch": "phase-987",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr16s-003",
+      "name": "ゴウ・ブレイクドラゴン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "メガ・コマンド・ドラゴン",
+      "text": "進化-自分の火のクリーチャー１体の上に置く。\nW・ブレイカー\nこのクリーチャーが攻撃する時、攻撃の後、バトルゾーンにある自分の火のクリーチャーを１体タップしてもよい。そうした場合、このクリーチャーをアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-003",
+      "limit": 4,
+      "evolution": {
+        "civilization": "火"
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "AfterAttack542",
+          "defs": [
+            {
+              "op": "Target",
+              "owner": "self",
+              "filter": {
+                "color": "火"
+              },
+              "tap": true,
+              "optional": true,
+              "g587AfterSelection": true,
+              "g987AfterNewTap": true,
+              "after": [
+                {
+                  "op": "Untap",
+                  "g191First": true
+                }
+              ],
+              "title": "攻撃の後、タップする自分の火のクリーチャーを選ぶ（任意）"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-987",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 986,
+    "phase": 987,
     "checkedAt": "2026-11-12",
-    "baseCount": 6860,
+    "baseCount": 6865,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 6865,
+    "totalCount": 6870,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/40374/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37155/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37111/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37188/",
-      "https://dm.takaratomy.co.jp/rule/qa/41079/",
       "https://dm.takaratomy.co.jp/rule/qa/41750/",
-      "https://dm.takaratomy.co.jp/rule/qa/45589/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/%E5%A4%89%E6%9B%B4%E7%82%B92026-07-23/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37219/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37220/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37158/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37159/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37231/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37232/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37233/",
+      "https://dm.takaratomy.co.jp/rule/qa/43297/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -219514,6 +219689,29 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37234/",
           "https://dm.takaratomy.co.jp/rule/qa/41295/",
           "https://dm.takaratomy.co.jp/rule/qa/34191/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 986,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6860,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 6865,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/40374/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37155/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37111/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37188/",
+          "https://dm.takaratomy.co.jp/rule/qa/41079/",
+          "https://dm.takaratomy.co.jp/rule/qa/41750/",
+          "https://dm.takaratomy.co.jp/rule/qa/45589/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/%E5%A4%89%E6%9B%B4%E7%82%B92026-07-23/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -3435,6 +3435,41 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=987&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='クリーチャー'){
+   const tignus=['dmr14-036','dmx22a-039'].includes(d.id);
+   const blocker=[
+    'ブロッカーブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)',
+    'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'
+   ];
+   if(tignus&&blocker.some(head=>text===head+'このクリーチャーは相手プレイヤーを攻撃できない。自分の手札は相手の呪文の効果またはクリーチャーの能力によって捨てられない。'))
+    return {blocker:true,noPlayerAttack:true,g591HandShield:true};
+   const dragons=[
+    {ids:['dmr16g-011','dmr16s-011'],color:'闇',
+     body:'そのターンバトルゾーンにある相手のクリーチャーすべてのパワーは-2000される。(パワー0以下のクリーチャーは破壊される)',
+     task:{op:'GroupPower',owner:'opponent',filter:{creature:true},power:-2000,g214GroupPower:true}},
+    {ids:['dmr16g-013','dmr16s-014','promoy14-042'],color:'火',zone:'墓地',to:'grave'},
+    {ids:['dmr16g-017','dmr16s-017'],color:'自然',zone:'マナゾーン',to:'mana'}
+   ];
+   const dragon=dragons.find(x=>x.ids.includes(d.id));
+   if(dragon){
+    const {color,zone,to}=dragon;
+    const trigger='マナ武装5:自分のマナゾーンに'+color+'のカードが5枚以上あればこのクリーチャーは「S・トリガー」を得る。';
+    const body=dragon.body??'バトルゾーンにある相手のコスト5以下の進化ではないカードを1枚選び持ち主の'+zone+'に置く。';
+    if(text===trigger+'このクリーチャーをバトルゾーンに出した時'+body+'W・ブレイカー')
+     return {breaker:2,g876ShieldTriggerCondition:{g267Mana:{n:5,color}},effect:'sixPhoto',g34Tasks:[
+      dragon.task??{op:'BattleCardMove579',g813NonEvolution:true,max:5,to}
+     ]};
+   }
+  }
+  if(d.id==='dmr16s-003'&&f.typeText==='進化クリーチャー'&&
+   text==='進化-自分の火のクリーチャー1体の上に置く。W・ブレイカーこのクリーチャーが攻撃する時攻撃の後バトルゾーンにある自分の火のクリーチャーを1体タップしてもよい。そうした場合このクリーチャーをアンタップする。')
+   return {evolution:{civilization:'火'},breaker:2,g34Attack:[{op:'AfterAttack542',defs:[
+    {op:'Target',owner:'self',filter:{color:'火'},tap:true,optional:true,g587AfterSelection:true,g987AfterNewTap:true,
+     after:[{op:'Untap',g191First:true}],title:'攻撃の後、タップする自分の火のクリーチャーを選ぶ（任意）'}
+   ]}]};
+ }
  if(phase>=986&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const trigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
