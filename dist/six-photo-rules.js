@@ -917,9 +917,11 @@ export function createSixPhotoRules(api){
   const opponent=1-t.p;
   (s.extLimits??=[]).push({
    kind:'g589SpellLock',player:opponent,controller:t.p,expires:'end',who:opponent,
-   afterTurns:s.players[opponent].turns,nextOnly:!!t.nextOnly,color:color??null
+   afterTurns:s.players[opponent].turns,nextOnly:!!t.nextOnly,color:color??null,
+   ...(t.g937Summon?{g937Summon:true}:{})
   });
-  api.log(s,t.p,'spellLock',card(t.source).name+'：相手の'+(color?color+'の':'')+'呪文を制限',{cardId:t.source});
+  const action=t.g937Summon?'召喚と呪文':(color?color+'の':'')+'呪文';
+  api.log(s,t.p,'spellLock',card(t.source).name+'：相手の'+action+'を制限',{cardId:t.source});
  }
  function gravePickRemovalCost598(s,t,n){
   const rows=creatures(s,1-t.p).filter(x=>!x.sealed&&cost(effective(x,s))<=n);
@@ -1842,7 +1844,7 @@ export function createSixPhotoRules(api){
   moveZoneSelection583(s,{...t,...fromGrave},list(s,{...t,...fromGrave}).map(({x})=>x));
   break;
  }
- case'g34_GroupPower':for(const {p,y}of groupPowerRows(s,t))(y.powerModifiers??=[]).push({amount:t.g561DarkMana?0:p===t.p&&t.ownPower!==undefined?t.ownPower:t.power,...(t.g561DarkMana?{g561DarkMana:t.p}:{}),expires:'end',who:s.active,...(t.g561AttackOnly?{attackOnly:true}:{}),...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});break;
+ case'g34_GroupPower':for(const {p,y}of groupPowerRows(s,t))(y.powerModifiers??=[]).push({amount:t.g561DarkMana?0:p===t.p&&t.ownPower!==undefined?t.ownPower:t.power,...(t.g561DarkMana?{g561DarkMana:t.p}:{}),expires:t.g521UntilStart?'start':'end',who:t.g521UntilStart?t.p:s.active,...(t.g561AttackOnly?{attackOnly:true}:{}),...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});break;
  case'g34_SelfExtraBreak444':if(own.battle.some(y=>api.allLayers(y).some(z=>z.uid===t.uid&&(z.incarnation||0)===(t.incarnation||0))))(s.extLimits??=[]).push({kind:'g412ExtraBreak',player:t.p,ref:{uid:t.uid,incarnation:t.incarnation||0},source:t.source,amount:t.amount,expires:'end',who:s.active});break;
  case'g34_SelfBoost313':{const y=t.g536Source?sourceHost474(s,t)?.x:x;if(y&&(!t.g694ClearOnSeal||!y.sealed&&api.isCreature(s,y))){(y.powerModifiers??=[]).push({amount:t.power,expires:'end',who:s.active,...(t.g694ClearOnSeal?{g694ClearOnSeal:true}:{}),...(t.g337PowerAttacker?{attackOnly:true,grantedAbility:true}:{})});if(t.breaker)(y.g34Grants??=[]).push({turn:s.turn,g313Breaker:t.breaker,...(t.g633DoubleBreaker?{g633DoubleBreaker:true}:{})});}break;}
  case'g34_SelfTap314':if(x)api.tap(s,t.p,x);break;
@@ -3915,7 +3917,8 @@ export function createSixPhotoRules(api){
   if(c.type==='field'&&creatures(s,1-p).some(x=>!x.sealed&&effective(x,s).g685OpponentFieldLock))return false;
   if(c.type==='spell'&&s.players.some(owner=>owner.battle.some(x=>x.tapped&&!x.sealed&&
    card(x).g924TappedSpellLock&&effective(x,s).g924TappedSpellLock)))return false;
-  if(c.type==='spell'&&(s.extLimits||[]).some(l=>l.kind==='g589SpellLock'&&l.player===p&&
+  if((c.type==='spell'||c.type==='creature')&&(s.extLimits||[]).some(l=>l.kind==='g589SpellLock'&&l.player===p&&
+   (c.type==='spell'||l.g937Summon)&&
    (!l.nextOnly||s.active===p&&s.players[p].turns>l.afterTurns)&&(!l.color||colors(c).includes(l.color))))return false;
   if(c.type==='spell'&&!colors(c).includes('光')&&(active(s,0,'alca').length||active(s,1,'alca').length))return false;if(c.type==='creature'||c.type==='spell'){if(active(s,1-p,'perfect').length&&s.g34Executions?.[p]?.turn===s.turn&&s.g34Executions[p].n>=3)return false;if(!colors(c).includes('光')&&(active(s,0,'alphadios').length||active(s,1,'alphadios').length))return false;}return c.type!=='spell'||!active(s,1-p,'hAlka').some(x=>x.hyperActive&&creatures(s,1-p).some(y=>y.tapped));},
  allowedEntry(s,p,c,options){if(c.type==='creature'&&(s.players[p].enteredThisTurn||0)>=2&&creatures(s,1-p).some(x=>!x.sealed&&effective(x,s).g320Next))return false;if(c.g298NoHandSummon&&options.execution&&options.origin==='hand')return false;if(c.type==='creature'&&s.active===1-p&&colors(c).length===1&&active(s,1-p,'superRoma').length)return false;return !options.execution||c.type!=='creature'||colors(c).includes('光')||!(active(s,0,'alphadios').length||active(s,1,'alphadios').length);},

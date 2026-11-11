@@ -3388,6 +3388,23 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=937&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm20-026'&&f.typeText==='クリーチャー'&&text===
+   'ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)このクリーチャーは攻撃することができない。相手のクリーチャーが自分を攻撃してブロックされなかった時このクリーチャーをアンタップしてもよい。')
+   return {blocker:true,noAttack:true,g726DefenderUnblocked:[
+    {op:'Offer',title:'深海メカ・オーシャーンをアンタップする？',defs:[{op:'Untap',g191First:true}]}
+   ]};
+  if(d.id==='dm21-021'&&f.typeText==='クリーチャー'&&text===
+   'ブロッカーこのクリーチャーをバトルゾーンに出した時次の自分のターンのはじめまでバトルゾーンにある自分の「ブロッカー」を持つクリーチャーすべてのパワーは+4000される。このクリーチャーは相手プレイヤーを攻撃できない。')
+   return {blocker:true,noPlayerAttack:true,effect:'sixPhoto',g34Tasks:[
+    {op:'GroupPower',owner:'self',filter:{creature:true,blocker:true},power:4000,g521UntilStart:true}
+   ]};
+  if(d.id==='dm21-014'&&f.typeText==='呪文'&&text===
+   'シンパシー:グランド・デビルとディープ・マリーン(この呪文を唱える時支払うコストはバトルゾーンにある自分のグランド・デビルまたはディープ・マリーン1体につき1少なくなる。ただしコストは1より少なくならない)相手は次の自分自身のターンにクリーチャーを召喚できず呪文を唱えることもできない。')
+   return {g211Sympathy:{amount:1,filter:{creature:true,raceAny:['グランド・デビル','ディープ・マリーン']}},
+    effect:'sixPhoto',g34Tasks:[{op:'SpellLock589',nextOnly:true,g937Summon:true}]};
+ }
  if(phase>=936&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText),breaker='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
   if(d.id==='dm19-035'&&f.typeText==='進化クリーチャー'&&text===

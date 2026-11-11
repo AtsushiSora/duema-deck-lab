@@ -195845,21 +195845,125 @@
       ],
       "supportBatch": "phase-936",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm20-026",
+      "name": "深海メカ・オーシャーン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "グレートメカオー",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは攻撃することができない。\n相手のクリーチャーが自分を攻撃してブロックされなかった時、このクリーチャーをアンタップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-026",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g726DefenderUnblocked": [
+        {
+          "op": "Offer",
+          "title": "深海メカ・オーシャーンをアンタップする？",
+          "defs": [
+            {
+              "op": "Untap",
+              "g191First": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-937",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm21-021",
+      "name": "戦域の守護者リーン・イグナス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "ガーディアン",
+      "text": "ブロッカー\nこのクリーチャーをバトルゾーンに出した時、次の自分のターンのはじめまで、バトルゾーンにある自分の「ブロッカー」を持つクリーチャーすべてのパワーは+4000される。\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-021",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupPower",
+          "owner": "self",
+          "filter": {
+            "creature": true,
+            "blocker": true
+          },
+          "power": 4000,
+          "g521UntilStart": true
+        }
+      ],
+      "supportBatch": "phase-937",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm21-014",
+      "name": "デビル・リンク・タブー",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 10,
+      "power": 0,
+      "race": "",
+      "text": "シンパシー：グランド・デビルとディープ・マリーン(この呪文を唱える時支払うコストは、バトルゾーンにある自分のグランド・デビルまたはディープ・マリーン１体につき１少なくなる。ただし、コストは１より少なくならない)\n相手は、次の自分自身のターンにクリーチャーを召喚できず、呪文を唱えることもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm21-014",
+      "limit": 4,
+      "g211Sympathy": {
+        "amount": 1,
+        "filter": {
+          "creature": true,
+          "raceAny": [
+            "グランド・デビル",
+            "ディープ・マリーン"
+          ]
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SpellLock589",
+          "nextOnly": true,
+          "g937Summon": true
+        }
+      ],
+      "supportBatch": "phase-937",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 936,
+    "phase": 937,
     "checkedAt": "2026-11-11",
-    "baseCount": 6679,
+    "baseCount": 6682,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6682,
+    "totalCount": 6685,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/40193/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35446/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35450/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35564/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35466/",
+      "https://dm.takaratomy.co.jp/rule/qa/38635/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37536/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37537/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36963/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -212595,6 +212699,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/43361/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35391/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35392/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 936,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6679,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6682,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/40193/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35446/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35450/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
