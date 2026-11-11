@@ -3059,9 +3059,11 @@ export function createSixPhotoRules(api){
  }
  case'g34_CastCostDeploy595':{
   if(t.g766Below&&used(s,'g766SpellUse',t))break;
-  const filter=t.g766Below?{creature:true,belowCost:t.castCost}:{creature:true,nonEvolution:true,exactCost:t.castCost};
+  const filter=t.g966Light?{g228Face:{type:'creature',color:'光',max:t.castCost}}:
+   t.g766Below?{creature:true,belowCost:t.castCost}:{creature:true,nonEvolution:true,exactCost:t.castCost};
   start(s,t,[{op:'Select',origin:'hand',n:1,deploy:true,g195HandDeploy:true,optional:true,filter,
-   ...(t.g766Below?{g766SpellUse:true,title:'唱えた呪文よりコストの小さいクリーチャーを出す（任意）'}:{})}]);
+   ...(t.g766Below?{g766SpellUse:true,title:'唱えた呪文よりコストの小さいクリーチャーを出す（任意）'}:{}),
+   ...(t.g966Light?{title:'唱えた呪文のコスト以下の光のクリーチャーを出す（任意）'}:{})}]);
   break;
  }
  case'g34_GraveHandMana771':{
@@ -4441,6 +4443,14 @@ export function createSixPhotoRules(api){
    const enteredPower=api.power(y,false,s);
    for(const x of gravePowerWatchers)if(enteredPower>=card(x).g901GraveEntryPower)
     send(s,p,x,'SelfGraveHand476',{serial:x.zoneSerial||0});
+  }
+  if(!y.sealed&&!y.faceDown){
+   const graveRaceWatchers=s.players[p].grave.filter(x=>!x.faceDown&&card(x).g966GraveEntryRace);
+   if(graveRaceWatchers.length){
+    const entrant=effective(y,s,true);
+    for(const x of graveRaceWatchers)if(race(entrant,card(x).g966GraveEntryRace))
+     send(s,p,x,'GraveReturn754',{serial:x.zoneSerial||0});
+   }
   }
   if(!y.sealed&&!y.faceDown&&hasSoul(card(y),'W')&&api.isCreature(s,y)){
    for(const watcher of s.players[p].battle){

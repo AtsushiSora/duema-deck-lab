@@ -3435,6 +3435,18 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=966&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmrp08-012'&&text==='自分が呪文を唱えた時それ以下のコストを持つ光のクリーチャーを1体自分の手札からバトルゾーンに出してもよい。')
+   return {g204SpellWatch:{who:'self',defs:[{op:'CastCostDeploy595',g966Light:true}]}};
+  if(d.id==='dmr16g-050'&&text==='マナ武装3:自分のマナゾーンに自然のカードが3枚以上あればこのクリーチャーを召喚するコストは5少なくなる。')
+   return {g261Discount:{filter:{g267Mana:{n:3,color:'自然'}},amount:5}};
+  if(['dmrp02-045','dm22ex1-085'].includes(d.id)&&[
+   '自分のマフィ・ギャングがバトルゾーンに出た時このクリーチャーを自分の墓地から手札に戻してもよい。',
+   '自分のマフィ・ギャングが出た時このクリーチャーを自分の墓地から手札に戻してもよい。'
+  ].includes(text))
+   return {g966GraveEntryRace:'マフィ・ギャング'};
+ }
  if(phase>=965&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmc34-025'&&text==='このクリーチャーはバトルゾーンにある相手の文明ひとつにつき1枚シールドを追加でブレイクする。')
