@@ -668,6 +668,17 @@ export function createSixPhotoRules(api){
    const hasColor=(x,color)=>matches(s,t.p,x,{g228Face:{type:'creature',color}});
    if(first)candidates=candidates.filter(({x})=>hasColor(first,one)&&hasColor(x,other)||hasColor(first,other)&&hasColor(x,one));
   }
+  if(t.g907ManaUntapColors){
+   const [light,fire]=t.g907ManaUntapColors;
+   const colorsByUid=new Map(s.players[t.p].mana.map(x=>[x.uid,
+    api.manaColors(x.faceDown?{civilizations:[],civ:'ゼロ'}:api.zoneCard(s,t.p,x,'mana'),s,t.p)]));
+   const has=(uid,color)=>colorsByUid.get(uid)?.includes(color);
+   const pair=(a,b)=>a!==b&&(has(a,light)&&has(b,fire)||has(a,fire)&&has(b,light));
+   const [first]=t.selected;
+   const matching=candidates.filter(({x})=>has(x.uid,light)||has(x.uid,fire));
+   const paired=matching.filter(({x})=>first?pair(first,x.uid):matching.some(({x:y})=>pair(x.uid,y.uid)));
+   candidates=first||paired.length?paired:matching;
+  }
   const eligible=t.g173Targets?new Set(targetOptions(s,t.p,candidates.map(r=>r.x)).map(o=>o.value)):null,rows=eligible?candidates.filter(r=>eligible.has(r.x.uid)):candidates,n=t.n==='all'?Infinity:t.n??1;
   if(!rows.length&&t.g585Peek?.length&&!t.selected.length){
    choice(s,t,'確認したカード',[opt('確認を終える',null,0)]);
@@ -2354,8 +2365,10 @@ export function createSixPhotoRules(api){
  // Movement uses the normal ramp replacements; the second card never repeats the test.
  case'g34_RampMatch516':{const y=api.takeTop(s,t.p);if(!y){api.deckCheck(s,t.p);break;}const dest=api.deckRedirect(s,t.p)||api.manaRedirect(s,t.p)?'grave':'mana';clear(y,dest);if(dest==='mana')y.tapped=true;api.addZone(s,t.p,dest,y);const matched=matches(s,t.p,y,t.filter);api.deckCheck(s,t.p);if(s.winner===null)start(s,t,[...(matched?[{op:'Ramp',n:1,tapped:true}]:t.elseDraw?[{op:'Draw',n:1}]:[]),...(t.after||[])]);break;}
  case'g34_CreatureCountRamp765':{
-  const count=creatures(s,t.p).filter(y=>!y.sealed).length;
-  if(count)ramp(s,t,count);
+  const count=countDraw(s,t.p,{...t,zone:'battle'});
+  if(!count)break;
+  if(t.optional)start(s,t,[{op:'Ramp',n:count,optional:true,tapped:t.tapped,g809Together:t.g809Together}]);
+  else ramp(s,t,count);
   break;
  }
  case'g34_Ramp':if(t.optional)choice(s,t,'山札からマナに置く枚数を選ぶ',Array.from({length:Math.min(t.n,own.deck.length)+1},(_,n)=>opt(n+'枚',n,n<own.deck.length?n*5:-100)));else ramp(s,t,t.n);break;

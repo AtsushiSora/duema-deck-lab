@@ -1,0 +1,192 @@
+{
+  "phase": 907,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6586,
+  "description": "マッハファイター、攻撃後の自己マナ移動、文明別のマナアンタップと自然のエレメントを参照したマナ追加に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/31691/",
+    "https://dm.takaratomy.co.jp/rule/qa/31690/",
+    "https://dm.takaratomy.co.jp/rule/qa/46491/",
+    "https://dm.takaratomy.co.jp/rule/qa/40642/",
+    "https://dm.takaratomy.co.jp/rule/qa/42521/",
+    "https://dm.takaratomy.co.jp/rule/qa/39849/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmsd05-005",
+      "name": "ナ・ハナキ・リー",
+      "faces": [
+        {
+          "name": "ナ・ハナキ・リー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーが攻撃した時、攻撃の後、このクリーチャーをマナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd05-005",
+      "spec": {
+        "machFighter": true,
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "AfterAttack542",
+            "defs": [
+              {
+                "op": "SelfMana297",
+                "g536Source": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd05-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "7956017a1901314bd3f321bba64060513451be885aac8818f762c75a3be59088",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25rp1-044",
+      "name": "ポンポン・ルピア",
+      "faces": [
+        {
+          "name": "ポンポン・ルピア",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこのクリーチャーが出た時、自分のマナゾーンにある光のカードと火のカードを１枚ずつアンタップする。",
+          "race": "ファイアー・バード",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-044",
+      "spec": {
+        "machFighter": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 2,
+            "g210ManaUntap": true,
+            "g907ManaUntapColors": [
+              "光",
+              "火"
+            ],
+            "title": "アンタップする光と火のマナを1枚ずつ選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25rp1-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "ffc067479c036d0a2b06f27702a0010580a3a86f31a5887455ae150e89996e6f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp21-043",
+      "name": "式神デイズ",
+      "faces": [
+        {
+          "name": "式神デイズ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこのクリーチャーが出た時、自分の自然のクリーチャー１体または自然のタマシード１枚につき、自分の山札の上から１枚目をタップしてマナゾーンに置いてもよい。",
+          "race": "ワンダー・トリック",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-043",
+      "spec": {
+        "machFighter": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CreatureCountRamp765",
+            "g262Elements": true,
+            "filter": {
+              "creatureOrSeed": true,
+              "color": "自然",
+              "faceUp": true
+            },
+            "optional": true,
+            "tapped": true,
+            "g809Together": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp21-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "43c4483cfe2cdea126e37da4bef777d8c001c79372c89ce461fbeb85208da528",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy17-013",
+      "canonicalId": "dmsd05-005",
+      "name": "ナ・ハナキ・リー",
+      "faces": [
+        {
+          "name": "ナ・ハナキ・リー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーが攻撃した時、攻撃の後、このクリーチャーをマナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy17-013",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy17-013.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "5ca375f2dea5cbef8eaaae413db979ea5fb4161ade3c96405274fb1c1d0bb13c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmsd05-005": 4,
+      "dm25rp1-044": 4,
+      "dmrp21-043": 4,
+      "promoy17-013": 4
+    }
+  }
+}

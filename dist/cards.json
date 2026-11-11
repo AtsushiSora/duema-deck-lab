@@ -192986,24 +192986,122 @@
       ],
       "supportBatch": "phase-906",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmsd05-005",
+      "name": "ナ・ハナキ・リー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 12000,
+      "race": "グランセクト",
+      "text": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nT・ブレイカー（このクリーチャーはシールドを３つブレイクする）\nこのクリーチャーが攻撃した時、攻撃の後、このクリーチャーをマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd05-005",
+      "limit": 4,
+      "machFighter": true,
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "AfterAttack542",
+          "defs": [
+            {
+              "op": "SelfMana297",
+              "g536Source": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-907",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25rp1-044",
+      "name": "ポンポン・ルピア",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ファイアー・バード",
+      "text": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこのクリーチャーが出た時、自分のマナゾーンにある光のカードと火のカードを１枚ずつアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25rp1-044",
+      "limit": 4,
+      "machFighter": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 2,
+          "g210ManaUntap": true,
+          "g907ManaUntapColors": [
+            "光",
+            "火"
+          ],
+          "title": "アンタップする光と火のマナを1枚ずつ選ぶ"
+        }
+      ],
+      "supportBatch": "phase-907",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp21-043",
+      "name": "式神デイズ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "ワンダー・トリック",
+      "text": "マッハファイター（このクリーチャーは、出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこのクリーチャーが出た時、自分の自然のクリーチャー１体または自然のタマシード１枚につき、自分の山札の上から１枚目をタップしてマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp21-043",
+      "limit": 4,
+      "machFighter": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CreatureCountRamp765",
+          "g262Elements": true,
+          "filter": {
+            "creatureOrSeed": true,
+            "color": "自然",
+            "faceUp": true
+          },
+          "optional": true,
+          "tapped": true,
+          "g809Together": true
+        }
+      ],
+      "supportBatch": "phase-907",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 906,
+    "phase": 907,
     "checkedAt": "2026-11-11",
-    "baseCount": 6583,
+    "baseCount": 6586,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6586,
+    "totalCount": 6589,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa/31691/",
+      "https://dm.takaratomy.co.jp/rule/qa/31690/",
+      "https://dm.takaratomy.co.jp/rule/qa/46491/",
+      "https://dm.takaratomy.co.jp/rule/qa/40642/",
+      "https://dm.takaratomy.co.jp/rule/qa/42521/",
       "https://dm.takaratomy.co.jp/rule/qa/39849/",
-      "https://dm.takaratomy.co.jp/rule/qa/39850/",
-      "https://dm.takaratomy.co.jp/rule/qa/44188/",
-      "https://dm.takaratomy.co.jp/rule/qa/45450/",
-      "https://dm.takaratomy.co.jp/rule/qa/40652/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36710/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31650/"
+      "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -209146,6 +209244,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/48486/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316683/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31661/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 906,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6583,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6586,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39849/",
+          "https://dm.takaratomy.co.jp/rule/qa/39850/",
+          "https://dm.takaratomy.co.jp/rule/qa/44188/",
+          "https://dm.takaratomy.co.jp/rule/qa/45450/",
+          "https://dm.takaratomy.co.jp/rule/qa/40652/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36710/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31650/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -3445,6 +3445,18 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=907&&creature&&d.faces.length===1){
+  const mach='マッハファイター(このクリーチャーは出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)';
+  if(['dmsd05-005','promoy17-013'].includes(d.id)&&compact363===mach.replace('は出た','はバトルゾーンに出た')+
+   'T・ブレイカー(このクリーチャーはシールドを3つブレイクする)このクリーチャーが攻撃した時攻撃の後このクリーチャーをマナゾーンに置く。')
+   return {machFighter:true,breaker:3,g34Attack:[{op:'AfterAttack542',defs:[{op:'SelfMana297',g536Source:true}]}]};
+  if(d.id==='dm25rp1-044'&&compact363===mach+'このクリーチャーが出た時自分のマナゾーンにある光のカードと火のカードを1枚ずつアンタップする。')
+   return {machFighter:true,effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'mana',n:2,g210ManaUntap:true,g907ManaUntapColors:['光','火'],
+    title:'アンタップする光と火のマナを1枚ずつ選ぶ'}]};
+  if(d.id==='dmrp21-043'&&compact363===mach+'このクリーチャーが出た時自分の自然のクリーチャー1体または自然のタマシード1枚につき自分の山札の上から1枚目をタップしてマナゾーンに置いてもよい。')
+   return {machFighter:true,effect:'sixPhoto',g34Tasks:[{op:'CreatureCountRamp765',g262Elements:true,
+    filter:{creatureOrSeed:true,color:'自然',faceUp:true},optional:true,tapped:true,g809Together:true}]};
+ }
  if(phase>=906&&d.faces.length===1){
   if(creature&&d.id==='dmx22b-020'&&compact363===
    'W・ブレイカーこのクリーチャーがバトルゾーンに出た時他のアンタップされているクリーチャーをすべて破壊する。')
