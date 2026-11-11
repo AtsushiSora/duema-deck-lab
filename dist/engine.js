@@ -48,17 +48,25 @@ function battleCivilizations805(s,x,c=card(x)){
  const added=additions.filter(r=>refs.some(y=>y.uid===r.uid&&(y.incarnation||0)===r.incarnation)).map(r=>r.color);
  return added.length?[...new Set([...civilizations(c).filter(color=>color!=='ゼロ'),...added])]:civilizations(c);
 }
+function battleCivilizations918(s,x,c=card(x),own){
+ const colors=battleCivilizations805(s,x,c);
+ if(x.sealed||x.faceDown||c.type!=='creature'||colors.includes('火')||
+    !colors.some(color=>color==='闇'||color==='自然'))return colors;
+ const board=(own??s.players.find(p=>p.battle.includes(x)))?.battle;
+ if(!board?.some(y=>card(y).g918Kars&&!abilitiesIgnored(s,y))||!isCreature(s,x))return colors;
+ return [...colors,'火'];
+}
 export function natureElements(s,p){return s.players[p].battle.filter(x=>['creature','seed'].includes(card(x).type)&&battleCivilizations805(s,x).includes('自然')).length;}
 export function isCreature(s,x){const c=card(x);if(c.type!=='creature')return false;if(!c.natureAce4)return true;const p=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));return p<0||numberIgnored(s,x)||travelIgnored(s,x)||!!x.aceIgnored||natureElements(s,p)>=4;}
 function refreshDynamicTypes(s){refreshSeals(s);const g=genmuActive(s);for(const p of[0,1])for(const x of s.players[p].battle)if(card(x).natureAce4){if(!g&&!numberIgnored(s,x)&&!travelIgnored(s,x)&&!rawSixMute(s,x)&&!rawSixNamed(s,x))delete x.aceIgnored;else if(numberIgnored(s,x)||travelIgnored(s,x)||rawSixMute(s,x)||rawSixNamed(s,x)||natureElements(s,p)>=4)x.aceIgnored=true;}extra.gearCleanup(s);for(const own of s.players)for(const x of own.battle)if(card(x).g32Complex||x.g32NoUntap)x.g32NoUntap=extra.photo.noUntap(s,x);for(const own of s.players)for(const x of own.battle)x.g34NoUntap=extra.six.noUntap(s,x);}
-export function abilitiesIgnored(s,c){return c.g35Ignored===s?.turn||!!c.sealed||rawSixMute(s,c)||rawSixNamed(s,c)||travelIgnored(s,c)||numberIgnored(s,c)||isCreature(s,c)&&(genmuActive(s)&&costValue(card(c))<=5||momoActive(s)&&battleCivilizations805(s,c).length<=1);}
+export function abilitiesIgnored(s,c){return c.g35Ignored===s?.turn||!!c.sealed||rawSixMute(s,c)||rawSixNamed(s,c)||travelIgnored(s,c)||numberIgnored(s,c)||isCreature(s,c)&&(genmuActive(s)&&costValue(card(c))<=5||momoActive(s)&&battleCivilizations918(s,c).length<=1);}
 // Continuous race changes follow the physical card's current zone, including
 // evolution sources. Definitions and hidden/face-down characteristics stay intact.
 export function zoneCard(s,p,inst,zone=null,definition=card(inst)){
  let c=definition;if(!c||!s?.players?.[p]||typeof inst==='string'||inst.faceDown||inst.sealed)return c;
  const own=s.players[p];
- if((s.extLimits||[]).some(r=>r.kind==='g805BattleColor')&&(zone==='battle'||!zone&&own.battle.includes(inst))){
-  const cs=battleCivilizations805(s,inst,c);
+ if(zone==='battle'||!zone&&own.battle.includes(inst)){
+  const cs=own.battle.includes(inst)?battleCivilizations918(s,inst,c,own):battleCivilizations805(s,inst,c);
   if(cs.join('/')!==civilizations(c).join('/'))c={...c,civilizations:cs,civ:cs.join('/')};
  }
  if(!own.battle.some(x=>!x.faceDown&&!x.sealed&&card(x).g395Rapia&&!abilitiesIgnored(s,x)))return c;
@@ -324,13 +332,14 @@ function addZone(s,player,zone,...cards){if(!cards.length)return;for(const x of 
   }
   // Every committed placement counts, including moves without other shield notifications.
   extra.photo159.shieldAdded(s,p);
+  extra.six.shieldAdded918(s,p,cards.length);
  }if(zone==='hand')checkSidewaysHand(s,p);if(zone==='grave'){
   extra.graveAdded(s,p,cards,s.leaving?.snapshot?.mado);
   for(const x of cards)if(evolutionGraveSources.delete(x))enqueueEffect(s,p,{uid:x.uid,source:x.cardId,effect:'extended',task:extra.task('optionalDrawOne',p,x.cardId)});
  }if(zone==='mana'){extra.six.manaAdded449(s,p,cards);extra.revisions.manaAdded(s,p,cards);extra.photo159.manaAdded(s,p,cards);}if(zone==='extra')extra.extraAdded(s,p,cards);}
 export const visibleBattleCards=(s,p)=>[...s.players[p].battle.filter(x=>!x.sealed),...(s.players[p].seals||[])];
 function refreshSeals(s){for(const own of s.players)for(const x of own.battle){if((own.seals||[]).some(y=>y.sealOf===x.uid))x.sealed=true;else delete x.sealed;}}
-function moveSeal(s,p,uid,to='grave',shield=null){if((to==='shields'||shield)&&!canAddShield(s,p))return null;const own=s.players[p],target=own.seals?.find(x=>x.uid===uid)?.sealOf,x=remove(own.seals||[],uid);if(!x)return null;clearBattleState(x,to);if(shield)addShieldCard(s,p,shield,x);else if(to==='deckTop')own.deck.unshift(x);else addZone(s,p,to,x);refreshSeals(s);extra.six.fifteen.unsealed(s,p,target);log(s,p,'unseal',to==='grave'?'封印を墓地へ置く':'封印を'+({hand:'手札',mana:'マナ',deck:'山札の下',shields:'シールド',extra:'超次元ゾーン'}[to]||to)+'へ移動');return x;}
+function moveSeal(s,p,uid,to='grave',shield=null){if((to==='shields'||shield)&&!canAddShield(s,p))return null;const own=s.players[p],target=own.seals?.find(x=>x.uid===uid)?.sealOf,x=remove(own.seals||[],uid);if(!x)return null;const intoShield=to==='shields'||!!shield;if(intoShield)refreshSeals(s);clearBattleState(x,to);if(shield)addShieldCard(s,p,shield,x);else if(to==='deckTop')own.deck.unshift(x);else addZone(s,p,to,x);if(!intoShield)refreshSeals(s);extra.six.fifteen.unsealed(s,p,target);log(s,p,'unseal',to==='grave'?'封印を墓地へ置く':'封印を'+({hand:'手札',mana:'マナ',deck:'山札の下',shields:'シールド',extra:'超次元ゾーン'}[to]||to)+'へ移動');return x;}
 function seal(s,p,uids,n=1){const own=s.players[p];for(const uid of uids){const x=own.battle.find(x=>x.uid===uid&&!x.sealed);if(!x)continue;for(let i=0;i<n;i++){const top=takeDeckTop(s,p);if(top){rememberComparisonPower(s,p,x,layers(x));if(x.powerModifiers?.some(modifier=>modifier.g694ClearOnSeal))x.powerModifiers=x.powerModifiers.filter(modifier=>!modifier.g694ClearOnSeal);clearBattleState(top,'seals');top.faceDown=true;top.sealOf=x.uid;delete x.g40Reckless;(own.seals??=[]).push(top);x.sealed=true;log(s,p,'seal',card(x.cardId).name+'に封印を付ける',{cardId:x.cardId});}deckCheck(s,p);if(s.winner!==null||s.lossEvent)break;}}refreshDynamicTypes(s);}
 function recordCombat(s,p){s.g4Combat??=[null,null];const x=s.g4Combat[p];s.g4Combat[p]={turn:s.turn,count:x?.turn===s.turn?x.count+1:1};}
 function attachMugenBases(s,p,inst,refs){const all=[];for(const r of refs){const own=s.players[p],x=remove(own[r.origin],r.uid);if(!x)throw Error('無月の門の素材がありません');const cards=layers(x);if(r.origin==='battle')recordLastPower(s,p,x,cards);for(const y of cards){if(r.origin!=='battle')clearBattleState(y,'battle');else{delete y.under;delete y.godLinks;}}all.push(...cards);}inst.under=all;log(s,p,'mugenSummon',card(inst).name+'の下に'+(card(inst).mugenKind==='joker'?'魔導具・ジョーカーズを':'魔導具を')+refs.length+'つ重ねる',{cardId:inst.cardId});}
@@ -432,6 +441,7 @@ function swapShield585(s,p,uid){
   own.shields[slot]=next;
  }
  extra.shieldAdded(s,p,incoming);
+ extra.six.shieldAdded918(s,p);
  for(const x of own.battle)if(effectiveCard(x,s).shieldEntryTapLock)enqueueEffect(s,p,{uid:x.uid,source:x.cardId,effect:'shieldEntryTapLock'});
  return true;
 }
@@ -444,7 +454,7 @@ function moveShields535(s,p,uids,to,{cardOnly=false,handEffects=true,replacement
  return all;
 }
 function moveShield(s,p,uid,to,options={}){return moveShields535(s,p,[uid],to,options);}
-function addShieldCard(s,p,uid,x,options={}){if(!canAddShield(s,p))return false;if(!attachShield(s.players[p],uid,x,options))return false;extra.shieldAdded(s,p,x);for(const y of s.players[p].battle)if(effectiveCard(y,s).shieldEntryTapLock)enqueueEffect(s,p,{uid:y.uid,source:y.cardId,effect:'shieldEntryTapLock'});return true;}
+function addShieldCard(s,p,uid,x,options={}){if(!canAddShield(s,p))return false;if(!attachShield(s.players[p],uid,x,options))return false;extra.shieldAdded(s,p,x);extra.six.shieldAdded918(s,p);for(const y of s.players[p].battle)if(effectiveCard(y,s).shieldEntryTapLock)enqueueEffect(s,p,{uid:y.uid,source:y.cardId,effect:'shieldEntryTapLock'});return true;}
 function sendBattleCardToShield(s,p,uid,shield){if(!canAddShield(s,p))return;if((s.players[p].seals||[]).some(x=>x.uid===uid)){moveSeal(s,p,uid,'shields',shield);return;}const own=s.players[p],top=own.battle.find(x=>layers(x).some(y=>y.uid===uid));if(!top||!findShield(own,shield))return;if(top.godLinks?.some(x=>x.uid===uid)||top.uid===uid){moveCreatures(s,[{player:p,uid:top.uid,to:'shields',destroy:false,cardOnly:true,shieldAttach:shield,...(top.godLinks?.length?{godPart:uid}:{})}]);return;}const x=detachBattleSource(top,uid);if(!x)return;recordLastPower(s,p,top,[x]);clearBattleState(x,'shields');addShieldCard(s,p,shield,x);}
 
 function deckRedirect(s,p=null){return (p!==null&&extra.manaRedirect(s,p))|| s.players.some(p=>p.battle.some(x=>effectiveCard(x,s).deckRedirect));}
@@ -676,7 +686,7 @@ function advanceLeaving(s){if(s.lossEvent)return;
   if(shuffled.length)shuffleLibrary(s,p,shuffled);
   if(keepOrder&&rows.length>1)orders.push(extra.task('g78_TopOrder',p,rows[0].cardId,{rows,ordered:[]}));
  }
- s.leaving=null;if(orders.length)extra.put(s,...orders.sort((a,b)=>Number(b.p===s.active)-Number(a.p===s.active)));for(const row of fourth){const uids=row.uids.filter(uid=>s.players[row.p].deck.some(x=>x.uid===uid&&x.g11Sideways));if(uids.length>1)extra.put(s,extra.task('g11_FourthOrder',row.p,'dmrp07-m01',{uids,selected:[]}));}delete s.g20LeavingUids;refreshDynamicTypes(s);extra.photo159.flushShieldBatch(s,batch);extra.six.flushGrave838(s,batch.g838GraveCount);extra.six.flushElementLeaves617(s,batch.g617Draws);extra.six.flushShield536(s);
+ s.leaving=null;if(orders.length)extra.put(s,...orders.sort((a,b)=>Number(b.p===s.active)-Number(a.p===s.active)));for(const row of fourth){const uids=row.uids.filter(uid=>s.players[row.p].deck.some(x=>x.uid===uid&&x.g11Sideways));if(uids.length>1)extra.put(s,extra.task('g11_FourthOrder',row.p,'dmrp07-m01',{uids,selected:[]}));}delete s.g20LeavingUids;refreshDynamicTypes(s);extra.photo159.flushShieldBatch(s,batch);extra.six.flushShieldAdded918(s,batch);extra.six.flushGrave838(s,batch.g838GraveCount);extra.six.flushElementLeaves617(s,batch.g617Draws);extra.six.flushShield536(s);
  if(batch.after?.kind==='manaExchange753')finishManaExchange753(s,batch.after);
  if(batch.after?.kind==='g394Cut')extra.requested394.finishZones(s,batch.after);
  if(batch.after?.kind==='shieldSaverBreak401'){log(s,batch.after.player,'shieldSaver',`シールド・セイバーでシールド${batch.rows.length}つを残す`);if(batch.after.uids.length)commitBreakReplacements401(s,batch.after.player,batch.after.uids);else s.breakContext=null;}
@@ -1196,7 +1206,7 @@ function completeExecution(s,p,inst,c,{ruleOrigin,origin,free,freeReason,alterna
  const checkDeckSpell=ruleOrigin==='deck'&&!s.players[p].deck.length&&
   ['スーパー・スペル・グレートブルー','アクア・スペルブルー'].includes(freeReason);
  if(c.type==='spell')extra.spellCast(s,p,c,inst,ruleOrigin,face);
- if(c.type==='castle'){inst.faceUp=true;s.players[p].shields.push(inst);extra.shieldAdded(s,p,inst);if(free)(s.noManaUse??=[false,false])[p]=true;}
+ if(c.type==='castle'){inst.faceUp=true;s.players[p].shields.push(inst);extra.shieldAdded(s,p,inst);extra.six.shieldAdded918(s,p);if(free)(s.noManaUse??=[false,false])[p]=true;}
  else if(['creature','seed','gear','field'].includes(c.type)){enterCreature(s,p,inst,baseUid,{origin:ruleOrigin,execution:true,committed:true,paidMana,costPaid:!free&&cost>0,effectController:free||alternativeCost!==null?p:null,plus:!!c.triggerPlus&&free&&freeReason==='S・トリガー'&&!!inst.triggerPlus,super:!!c.superTrigger&&free&&(freeReason==='S・トリガー'&&!!inst.superTrigger||grantedSuper),ddd:freeReason==='D・D・D',...(alternativeCost?.g777AltEntry?{g777AltEntry:true}:{}),...(c.mugenGate&&Array.isArray(baseUid)?{mugenBases:baseUid}:{})});if(ruleOrigin==='deck')deckCheck(s,p);}
  else if(c.charger&&!spellIgnored(s,c)){s.resolvingSpell={player:p,inst,source:c.id,face,origin:'hand'};if(checkDeckSpell&&checkDeckSpell841(s,p,c,inst))return;powerCleanup(s);if(s.decision||s.leaving||s.lossEvent)(s.extTasks??=[]).unshift(extra.task('g34_ResolveSpell207',p,c.id,{uid:inst.uid}));else startJudge(s,p,c.id,inst.uid,'spell');}
  else{c.triggerPlusActive=!!c.triggerPlus&&free&&freeReason==='S・トリガー'&&!!inst.triggerPlus;c.superTriggerActive=!!c.superTrigger&&free&&(freeReason==='S・トリガー'&&!!inst.superTrigger||grantedSuper);if(c.crystalCharger&&!spellIgnored(s,c))inst.crystalFinish=true;if(c.normalCharger&&!spellIgnored(s,c))inst.normalFinish=true;extra.finishSpell(s,p,inst,c);if(checkDeckSpell&&checkDeckSpell841(s,p,c,inst))return;if(!extra.beforeSpell(s,p,c,inst))resolveSpell(s,p,inst.uid);}

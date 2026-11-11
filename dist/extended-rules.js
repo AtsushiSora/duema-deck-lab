@@ -301,7 +301,7 @@ export function createExtendedRules(api){
    case 'putCreature':{
     const x=own[t.origin].find(x=>x.uid===t.uid);if(!x||!canEnter(s,t.p,card(x),{origin:t.origin,execution:t.execution??false}))break;
     const c=card(x);if(c.evolution||c.neoEvolution&&!t.noEvolve){const bases=evolutionBases(s,t.p,c).filter(b=>b.uid!==x.uid);choice(s,t,'出す方法・進化元を選ぶ',[...(c.neoEvolution?[opt('進化させずに出す',false,1)]:[]),...bases.map(b=>opt(card(b).name+'の上に置く',b.uid,b.tapped?-1:2,b.cardId))]);}
-    else{if(c.gCastle&&!api.canAddShield(s,t.p))break;remove(own[t.origin],x.uid);if(c.gCastle){x.faceUp=true;own.shields.push(x);photo159.shieldAdded(s,t.p,x);shieldPhoto.shieldAdded(s,t.p,x);mecha.shieldAdded(s,t.p,x);viride.shieldAdded(s,t.p,x);(s.noManaUse??=[false,false])[t.p]=true;}else enter(s,t.p,x,null,{origin:t.origin,execution:false});if(t.deckCheck)api.deckCheck(s,t.p);}break;
+    else{if(c.gCastle&&!api.canAddShield(s,t.p))break;remove(own[t.origin],x.uid);if(c.gCastle){x.faceUp=true;own.shields.push(x);six.shieldAdded918(s,t.p);photo159.shieldAdded(s,t.p,x);shieldPhoto.shieldAdded(s,t.p,x);mecha.shieldAdded(s,t.p,x);viride.shieldAdded(s,t.p,x);(s.noManaUse??=[false,false])[t.p]=true;}else enter(s,t.p,x,null,{origin:t.origin,execution:false});if(t.deckCheck)api.deckCheck(s,t.p);}break;
    }
    case 'urEvolve':{
     const base=own.battle.find(x=>x.uid===t.uid);if(!base)break;

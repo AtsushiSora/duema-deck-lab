@@ -3445,6 +3445,18 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=918&&creature&&d.faces.length===1){
+  if(d.id==='dm10-023'&&compact363===
+   'このクリーチャーをバトルゾーンに出した時自分のシールドを1枚選び自分の手札に加える。(その「S・トリガー」を使ってもよい)')
+   return {effect:'sixPhoto',g34Tasks:[{op:'TappedShieldPick842',owner:'self',n:1,picked:[]}]};
+  if(['dmrp05-033','dmsd07-009'].includes(d.id)&&compact363===
+   '自分のシールドゾーンにカードが置かれた時相手のクリーチャーを1体選びタップする。そのクリーチャーは次の相手のターンのはじめにアンタップしない。')
+   return {g918ShieldAdded:[{op:'Target',tap:true,lock:true,g210TapLock:true}]};
+  if(d.id==='dm24-025'&&compact363===
+   'バトルゾーンにある自分の闇のクリーチャーと自然のクリーチャーはすべて火のクリーチャーでもある。'+
+   'バトルゾーンにある自分の他の火のクリーチャーすべてのパワーは+1000される。')
+   return {g918Kars:true,g205Aura:{filter:{creature:true,color:'火'},other:true,power:1000}};
+ }
  if(phase>=917&&d.faces.length===1){
   if(creature&&d.id==='dm03-034'&&compact363===
    'このクリーチャーがバトルゾーンに出たときバトルゾーンにある相手の進化クリーチャーを1体選びそのクリーチャーの一番上のカードを持ち主の墓地に置いてよい。')

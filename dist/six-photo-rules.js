@@ -7,6 +7,7 @@ export function createSixPhotoRules(api){
  const{card,faces,cost,colors,effective,creatures,put,task,choice,opt,skip,remove,clear,enter,cast,move,targetOptions}=api;
  const raid764=createChampionRaid(api,'g34_');
  const attackConditionReading481=new WeakSet(),playerStopReading567=new WeakSet();
+ const shieldAdds918=new WeakMap();
  const civilizations805=['光','水','闇','火','自然'];
  function creatureCivilizations805(s){
   return [0,1].flatMap(p=>creatures(s,p).filter(x=>!x.sealed).map(x=>({
@@ -3484,6 +3485,14 @@ export function createSixPhotoRules(api){
    if(defs)for(let i=0;i<count;i++)queue(s,p,x,defs);
   }
  }
+ function triggerShieldAdded918(s,p,count){
+  if(!count)return;
+  for(const x of s.players[p].battle){
+   if(x.sealed||!card(x).g918ShieldAdded)continue;
+   const defs=effective(x,s).g918ShieldAdded;
+   if(defs)for(let i=0;i<count;i++)queue(s,p,x,defs);
+  }
+ }
  const sourceDefs=(s,t,defs)=>start(s,t,defs),queue=(s,p,x,defs,source=x.cardId)=>send(s,p,source===x.cardId?x:{...x,cardId:source},'Sequence',{defs});
  const used=(s,slot,x)=>s[slot]?.[key(x)]===s.turn,mark=(s,slot,x)=>{(s[slot]??={})[key(x)]=s.turn;};
  const onceKey792=(x,d)=>'g792:'+d.g792Once+':'+key(x);
@@ -3787,6 +3796,19 @@ export function createSixPhotoRules(api){
   for(const {owner,x,watch}of spellWatches(s,p,c))queue(s,owner,x,watch.defs.map(d=>d.op==='CastCostDeploy595'?{...d,castCost:c.cost}:d));
   for(const x of s.players[p].grave)if(!x.faceDown&&card(x).g847SpellGraveReturn)
    send(s,p,x,'GraveReturn754',{serial:x.zoneSerial||0});
+ },
+ shieldAdded918(s,p,count=1){
+  if(s.g20LeavingUids&&s.leaving){
+   const counts=shieldAdds918.get(s.leaving)||[0,0];
+   counts[p]+=count;
+   shieldAdds918.set(s.leaving,counts);
+  }else triggerShieldAdded918(s,p,count);
+ },
+ flushShieldAdded918(s,batch){
+  const counts=shieldAdds918.get(batch);
+  if(!counts)return;
+  shieldAdds918.delete(batch);
+  for(const p of [s.active,1-s.active])triggerShieldAdded918(s,p,counts[p]);
  },
  opponentShieldTrigger699(s,p){
   for(const watcher of creatures(s,1-p)){
