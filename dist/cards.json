@@ -201220,22 +201220,183 @@
       ],
       "supportBatch": "phase-983",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr16g-016",
+      "name": "ベル・ザ・エレメンタル",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 6000,
+      "race": "スノーフェアリー風",
+      "text": "進化ー自分の自然のクリーチャー１体の上に置く。\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置いてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-016",
+      "limit": 4,
+      "evolution": {
+        "civilization": "自然"
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Ramp",
+          "n": 1,
+          "optional": true
+        }
+      ],
+      "supportBatch": "phase-984",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr16g-045",
+      "name": "共倒れの刃",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手と自分のクリーチャーを１体ずつ、破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-045",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "anyOwner": true,
+          "n": 2,
+          "to": "grave",
+          "g984OnePerSide": true,
+          "filter": {
+            "creature": true
+          },
+          "title": "破壊する自分と相手のクリーチャーを1体ずつ選ぶ"
+        }
+      ],
+      "supportBatch": "phase-984",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-037",
+      "name": "天命の聖痕",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある相手のクリーチャーを１体選び、タップする。その後、バトルゾーンにある自分のクリーチャーの数が相手のより多ければ、バトルゾーンにある相手のクリーチャーをもう１体選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-037",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "tap": true,
+          "g984TapIfMore": true,
+          "title": "タップする相手のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-984",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-016",
+      "name": "爆轟 マッカラン・ファイン",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "ヒューマノイド爆",
+      "text": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nマナ武装 ５：自分のマナゾーンに火のカードが５枚以上あれば、バトルゾーンにある自分のクリーチャーはすべて「スピードアタッカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-016",
+      "limit": 4,
+      "speedAttacker": true,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "g267Mana": {
+              "n": 5,
+              "color": "火"
+            }
+          },
+          "grants": {
+            "speedAttacker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-984",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr16g-048",
+      "name": "爆流剣術 伝承の儀",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手と自分のパワー5000以下のクリーチャーを１体ずつ破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-048",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "anyOwner": true,
+          "n": 2,
+          "to": "grave",
+          "g984OnePerSide": true,
+          "filter": {
+            "creature": true,
+            "maxPower": 5000,
+            "g199Power": true
+          },
+          "title": "破壊する自分と相手のクリーチャーを1体ずつ選ぶ"
+        }
+      ],
+      "supportBatch": "phase-984",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 983,
+    "phase": 984,
     "checkedAt": "2026-11-12",
-    "baseCount": 6846,
-    "newEffectCards": 4,
+    "baseCount": 6850,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 6850,
+    "totalCount": 6855,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37192/",
-      "https://dm.takaratomy.co.jp/rule/qa/45450/",
-      "https://dm.takaratomy.co.jp/rule/qa/39759/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316659/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37221/",
+      "https://dm.takaratomy.co.jp/rule/qa/38709/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37111/",
+      "https://dm.takaratomy.co.jp/img/202207regulation.pdf"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -218931,6 +219092,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/42143/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37322/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31636/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 983,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6846,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6850,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37192/",
+          "https://dm.takaratomy.co.jp/rule/qa/45450/",
+          "https://dm.takaratomy.co.jp/rule/qa/39759/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316659/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

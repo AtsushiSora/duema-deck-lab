@@ -1,0 +1,451 @@
+{
+  "phase": 984,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6850,
+  "description": "自然進化と攻撃時の任意マナ加速、双方のクリーチャーの同時破壊、場の数に応じた追加タップ、火のマナ武装によるスピードアタッカー付与に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37221/",
+    "https://dm.takaratomy.co.jp/rule/qa/38709/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37111/",
+    "https://dm.takaratomy.co.jp/img/202207regulation.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmr16g-016",
+      "name": "ベル・ザ・エレメンタル",
+      "faces": [
+        {
+          "name": "ベル・ザ・エレメンタル",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化ー自分の自然のクリーチャー１体の上に置く。\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置いてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "スノーフェアリー風",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-016",
+      "spec": {
+        "evolution": {
+          "civilization": "自然"
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Ramp",
+            "n": 1,
+            "optional": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "4d7a0aa0f2d29dbda7d1b23d798ebac3fdb1df5c9b27a088abda05843b6deab1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-045",
+      "name": "共倒れの刃",
+      "faces": [
+        {
+          "name": "共倒れの刃",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手と自分のクリーチャーを１体ずつ、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-045",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "anyOwner": true,
+            "n": 2,
+            "to": "grave",
+            "g984OnePerSide": true,
+            "filter": {
+              "creature": true
+            },
+            "title": "破壊する自分と相手のクリーチャーを1体ずつ選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "c7b5c6d0c0c745074b4f3cf98107dcfe0be4b00a0a9fd0e13fb24483a3071c83",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-037",
+      "name": "天命の聖痕",
+      "faces": [
+        {
+          "name": "天命の聖痕",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "バトルゾーンにある相手のクリーチャーを１体選び、タップする。その後、バトルゾーンにある自分のクリーチャーの数が相手のより多ければ、バトルゾーンにある相手のクリーチャーをもう１体選び、タップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-037",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "tap": true,
+            "g984TapIfMore": true,
+            "title": "タップする相手のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "ac17387093e6980edde68775efc130fd3662a310b4651beafa454d255ae3f14e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-016",
+      "name": "爆轟 マッカラン・ファイン",
+      "faces": [
+        {
+          "name": "爆轟 マッカラン・ファイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nマナ武装 ５：自分のマナゾーンに火のカードが５枚以上あれば、バトルゾーンにある自分のクリーチャーはすべて「スピードアタッカー」を得る。",
+          "race": "ヒューマノイド爆",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-016",
+      "spec": {
+        "speedAttacker": true,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "g557Condition": {
+              "g267Mana": {
+                "n": 5,
+                "color": "火"
+              }
+            },
+            "grants": {
+              "speedAttacker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "5947cedb674715a06d7ab745f119c6e20683ca52e490e70fded29a9c10bd4b89",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-048",
+      "name": "爆流剣術 伝承の儀",
+      "faces": [
+        {
+          "name": "爆流剣術 伝承の儀",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手と自分のパワー5000以下のクリーチャーを１体ずつ破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-048",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "anyOwner": true,
+            "n": 2,
+            "to": "grave",
+            "g984OnePerSide": true,
+            "filter": {
+              "creature": true,
+              "maxPower": 5000,
+              "g199Power": true
+            },
+            "title": "破壊する自分と相手のクリーチャーを1体ずつ選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "ea55808c382f6c410bcf945534abd34df4ea88fdbb35b6e1e21f8718bf3a1c73",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmr16s-016",
+      "canonicalId": "dmr16g-016",
+      "name": "ベル・ザ・エレメンタル",
+      "faces": [
+        {
+          "name": "ベル・ザ・エレメンタル",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化ー自分の自然のクリーチャー１体の上に置く。\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置いてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "スノーフェアリー風",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-016",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "61c173f8b13c4d051c74eddedb1b4cf5e41e6847352bb14e76c56b24420dd5c6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16s-016D",
+      "canonicalId": "dmr16g-016",
+      "name": "ベル・ザ・エレメンタル",
+      "faces": [
+        {
+          "name": "ベル・ザ・エレメンタル",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化ー自分の自然のクリーチャー１体の上に置く。\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置いてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "スノーフェアリー風",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-016D",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-016D.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "aa62f0624444594518941cbe98c2a3bccb081582a447ab9b41e4caae92ebc99a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx24-022",
+      "canonicalId": "dmr16g-016",
+      "name": "ベル・ザ・エレメンタル",
+      "faces": [
+        {
+          "name": "ベル・ザ・エレメンタル",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "進化：自分の自然のクリーチャー１体の上に置く。\nW・ブレイカー（このクリーチャーはシールドを２つブレイクする）\nこのクリーチャーが攻撃する時、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+          "race": "スノーフェアリー風",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx24-022",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx24-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "e92784cf6c464e4ca2fd7fbf2c44b4fee96a5aed7707ecd307aef9590ca6e21d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16s-044",
+      "canonicalId": "dmr16g-045",
+      "name": "共倒れの刃",
+      "faces": [
+        {
+          "name": "共倒れの刃",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手と自分のクリーチャーを１体ずつ、破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-044",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "28351bf6e861619c88230e85e3c59170549623b0028a8ee6a2627bf18bdf076e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx26-042",
+      "canonicalId": "dmr14-016",
+      "name": "爆轟 マッカラン・ファイン",
+      "faces": [
+        {
+          "name": "爆轟 マッカラン・ファイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nマナ武装 ５：自分のマナゾーンに火のカードが５枚以上あれば、バトルゾーンにある自分のクリーチャーすべてに「スピードアタッカー」を与える。（「スピードアタッカー」を持つクリーチャーは召喚酔いしない）",
+          "race": "ヒューマノイド爆",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx26-042",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx26-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "e8aece94bab842c5a9f61af53f69174471aca567dd47ab530828526c12e3fcc9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy13-044",
+      "canonicalId": "dmr14-016",
+      "name": "爆轟 マッカラン・ファイン",
+      "faces": [
+        {
+          "name": "爆轟 マッカラン・ファイン",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スピードアタッカー（このクリーチャーは召喚酔いしない）\nマナ武装 ５：自分のマナゾーンに火のカードが５枚以上あれば、バトルゾーンにある自分のクリーチャーはすべて「スピードアタッカー」を得る。",
+          "race": "ヒューマノイド爆",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-044",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy13-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "942755cb9fcf707d95b8e0bfc30765bfd950f8ca1d5560a810eee3b792f79544",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16s-048",
+      "canonicalId": "dmr16g-048",
+      "name": "爆流剣術 伝承の儀",
+      "faces": [
+        {
+          "name": "爆流剣術 伝承の儀",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手と自分のパワー5000以下のクリーチャーを１体ずつ破壊する。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-048",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-048.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "432eb3301ba034d0e1c66d62f02424a49236619881c55d3897a99dc6a7a5ec0a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr16g-016": 4,
+      "dmr16g-045": 4,
+      "dmr14-037": 4,
+      "dmr14-016": 4,
+      "dmr16g-048": 4,
+      "dmr16s-016": 4,
+      "dmr16s-016D": 4,
+      "dmx24-022": 4,
+      "dmr16s-044": 4,
+      "dmx26-042": 4,
+      "promoy13-044": 4,
+      "dmr16s-048": 4
+    }
+  }
+}

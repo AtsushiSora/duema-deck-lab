@@ -3435,6 +3435,35 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=984&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const trigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  if(f.typeText==='呪文'){
+   const shared=['dmr16g-045','dmr16s-044'].includes(d.id)&&text===trigger+'相手と自分のクリーチャーを1体ずつ破壊する。';
+   const power=['dmr16g-048','dmr16s-048'].includes(d.id)&&text===trigger+'相手と自分のパワー5000以下のクリーチャーを1体ずつ破壊する。';
+   if(shared||power)return {trigger:true,effect:'sixPhoto',g34Tasks:[{
+    op:'Select',origin:'battle',anyOwner:true,n:2,to:'grave',g984OnePerSide:true,
+    filter:{creature:true,...(power?{maxPower:5000,g199Power:true}:{})},
+    title:'破壊する自分と相手のクリーチャーを1体ずつ選ぶ'
+   }]};
+   if(d.id==='dmr14-037'&&text==='バトルゾーンにある相手のクリーチャーを1体選びタップする。その後バトルゾーンにある自分のクリーチャーの数が相手のより多ければバトルゾーンにある相手のクリーチャーをもう1体選びタップする。')
+    return {effect:'sixPhoto',g34Tasks:[{op:'Target',tap:true,g984TapIfMore:true,
+     title:'タップする相手のクリーチャーを1体選ぶ'}]};
+  }
+  const ramp='このクリーチャーが攻撃する時自分の山札の上から1枚目をマナゾーンに置いてもよい。';
+  const natureBase='自分の自然のクリーチャー1体の上に置く。';
+  if(f.typeText==='進化クリーチャー'&&['dmr16g-016','dmr16s-016','dmr16s-016D','dmx24-022'].includes(d.id)&&[
+   '進化ー'+natureBase+ramp+'W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)',
+   '進化:'+natureBase+'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)'+ramp
+  ].includes(text))return {evolution:{civilization:'自然'},breaker:2,g34Attack:[{op:'Ramp',n:1,optional:true}]};
+  const fireArm='スピードアタッカー(このクリーチャーは召喚酔いしない)マナ武装5:自分のマナゾーンに火のカードが5枚以上あればバトルゾーンにある';
+  if(f.typeText==='クリーチャー'&&['dmr14-016','dmx26-042','promoy13-044'].includes(d.id)&&[
+   fireArm+'自分のクリーチャーはすべて「スピードアタッカー」を得る。',
+   fireArm+'自分のクリーチャーすべてに「スピードアタッカー」を与える。(「スピードアタッカー」を持つクリーチャーは召喚酔いしない)'
+  ].includes(text))return {speedAttacker:true,g208Auras:[{
+   filter:{creature:true},g557Condition:{g267Mana:{n:5,color:'火'}},grants:{speedAttacker:true}
+  }]};
+ }
  if(phase>=983&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText),shieldToGrave={op:'ShieldMove685',n:1,to:'grave',required:true};
   if(f.typeText==='呪文'){
