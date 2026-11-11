@@ -2529,6 +2529,13 @@ export function createSixPhotoRules(api){
   ]);
   break;
  }
+ case'g34_DrawThenTop933':
+  if(t.n>0){
+   // Preserve only actual draws, after replacements have finished.
+   put(s,{...t,n:t.n-1});
+   api.draw(s,t.p,1,{drawn:t.drawn});
+  }else if(t.drawn.length)put(s,{...t,op:'g52_TopHand',n:t.drawn.length,selected:[]});
+  break;
  case'g34_Draw':
   if(t.optional)choice(s,t,'カードを'+t.n+'枚まで引く',Array.from({length:t.n+1},(_,n)=>opt(n+'枚',n,n<own.deck.length?n*5:-100)));
   else{
@@ -3443,7 +3450,10 @@ export function createSixPhotoRules(api){
   put(s,{...t,source:sources[0]||t.source,sources,n:t.n+Number(!!v)});
   break;
  }
- case'g34_Draw':api.draw(s,t.p,v);break;
+ case'g34_Draw':
+  if(t.g933TopSame){if(v)put(s,{...t,op:'g34_DrawThenTop933',n:v,drawn:[]});}
+  else api.draw(s,t.p,v);
+  break;
  case'g34_HandFollow584':{const x=s.players[discardOwner584(t)].hand.find(y=>y.uid===v);if(x)discardFollow584(s,t,x);break;}
  case'g34_DiscardMatch517':{const y=own.hand.find(y=>y.uid===v);if(y)api.discardSelected(s,t.p,[y.uid],t.source,t.p,null,{op:'g34_DrawAfterDiscard517',p:t.p,source:t.source,matches:matches(s,t.p,y,t.filter)});else api.draw(s,t.p,1);break;}
  case'g34_MillTapped782':{

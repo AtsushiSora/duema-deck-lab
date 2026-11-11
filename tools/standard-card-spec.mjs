@@ -3388,6 +3388,19 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=933&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm17-021'&&text==='クロスギアをこのクリーチャーにクロスする時支払うコストは最大2少なくなる。ただしコストは1より少なくならない。')
+   return {g933CrossDiscount:2};
+  if(['dm17-042','dmx21-055','dmex13-078'].includes(d.id)&&[
+   'このクリーチャーをバトルゾーンに出した時カードを2枚まで引く。その後引いたカードの数と同じ枚数の手札を自分の山札の上に好きな順番で置く。',
+   'このクリーチャーがバトルゾーンに出た時カードを2枚まで引く。その後引いたカードの数と同じ枚数の手札を自分の山札の上に好きな順序で置く。',
+   'このクリーチャーがバトルゾーンに出た時カードを2枚まで引く。その後引いたカードの数と同じ枚数の自分の手札を好きな順序で山札の上に置く。'
+  ].includes(text))return {effect:'sixPhoto',g34Tasks:[{op:'Draw',n:2,optional:true,g933TopSame:true}]};
+  if(d.id==='dm17-015'&&text===
+   'このクリーチャーが攻撃する時バトルゾーンにあるクロスギアを1枚選び持ち主の墓地に置く。クロスギアがバトルゾーンから墓地に置かれた時カードを1枚引いてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g34Attack:[{op:'Target',element:true,anyOwner:true,filter:{g201Gear:true},to:'grave',title:'墓地に置くクロスギアを1枚選ぶ'}],g933GearGraveDraw:true};
+ }
  if(phase>=932&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クロスギア'){
   const cross='クロスギア:このカードをバトルゾーンに置く。クリーチャーにクロスするにはこのカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れてもこのカードはバトルゾーンに残る。';
   const text=normalize(f.abilityText);

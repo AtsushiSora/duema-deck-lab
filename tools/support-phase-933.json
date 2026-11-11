@@ -1,0 +1,200 @@
+{
+  "phase": 933,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6669,
+  "description": "クロス先に応じた任意の支払い軽減、任意ドローと実際に引いた枚数分の手札の山札上への移動、攻撃時のクロスギア除去と墓地移動の任意ドローを実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35370/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35375/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35376/",
+    "https://dm.takaratomy.co.jp/rule/qa/42476/",
+    "https://dm.takaratomy.co.jp/rule/qa/43462/"
+  ],
+  "cards": [
+    {
+      "id": "dm17-021",
+      "name": "光剣の使徒アウス・ルーク",
+      "faces": [
+        {
+          "name": "光剣の使徒アウス・ルーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "クロスギアをこのクリーチャーにクロスする時、支払うコストは最大２少なくなる。ただしコストは１より少なくならない。",
+          "race": "イニシエート",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-021",
+      "spec": {
+        "g933CrossDiscount": 2
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm17-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "062850d13b10929e228391cb55639990c0edca62ebb48133204c11ae61daf5aa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm17-042",
+      "name": "テンペスト・ベビー",
+      "faces": [
+        {
+          "name": "テンペスト・ベビー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、カードを２枚まで引く。その後、引いたカードの数と同じ枚数の手札を自分の山札の上に好きな順番で置く。",
+          "race": "サイバー・ウイルス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-042",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2,
+            "optional": true,
+            "g933TopSame": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm17-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "e0119cad7be3763ec074150bf9d75067be847e31448c19e327e09ba467bb547e",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm17-015",
+      "name": "紅神龍ガルワインド",
+      "faces": [
+        {
+          "name": "紅神龍ガルワインド",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーが攻撃する時、バトルゾーンにあるクロスギアを１枚選び、持ち主の墓地に置く。\nクロスギアがバトルゾーンから墓地に置かれた時、カードを１枚引いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ボルケーノ・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-015",
+      "spec": {
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Target",
+            "element": true,
+            "anyOwner": true,
+            "filter": {
+              "g201Gear": true
+            },
+            "to": "grave",
+            "title": "墓地に置くクロスギアを1枚選ぶ"
+          }
+        ],
+        "g933GearGraveDraw": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm17-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "49e8a942a9d12075648140fdd3f5d3f89a12a6608da93dad4413809310ed2838",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx21-055",
+      "canonicalId": "dm17-042",
+      "name": "テンペスト・ベビー",
+      "faces": [
+        {
+          "name": "テンペスト・ベビー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、カードを２枚まで引く。その後、引いたカードの数と同じ枚数の手札を自分の山札の上に好きな順序で置く。",
+          "race": "サイバー・ウイルス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx21-055",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx21-055.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "da5dc6e413b35f1b3e37bc0cd34bc12e6a95fbdccdebab885139e1855c082f3b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex13-078",
+      "canonicalId": "dm17-042",
+      "name": "テンペスト・ベビー",
+      "faces": [
+        {
+          "name": "テンペスト・ベビー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、カードを２枚まで引く。その後、引いたカードの数と同じ枚数の自分の手札を、好きな順序で山札の上に置く。",
+          "race": "サイバー・ウイルス",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-078",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-078.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "f3b866db4a5eb69ac30f4053a38def50511ed7ea807eaf5a44e3fd01bfc1002f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm17-021": 4,
+      "dm17-042": 4,
+      "dm17-015": 4,
+      "dmx21-055": 4,
+      "dmex13-078": 4
+    }
+  }
+}

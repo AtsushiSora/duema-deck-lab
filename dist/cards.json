@@ -195440,23 +195440,100 @@
       "g932SummonDiscount": true,
       "supportBatch": "phase-932",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm17-021",
+      "name": "光剣の使徒アウス・ルーク",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3500,
+      "race": "イニシエート",
+      "text": "クロスギアをこのクリーチャーにクロスする時、支払うコストは最大２少なくなる。ただしコストは１より少なくならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-021",
+      "limit": 4,
+      "g933CrossDiscount": 2,
+      "supportBatch": "phase-933",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm17-042",
+      "name": "テンペスト・ベビー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "サイバー・ウイルス",
+      "text": "このクリーチャーをバトルゾーンに出した時、カードを２枚まで引く。その後、引いたカードの数と同じ枚数の手札を自分の山札の上に好きな順番で置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-042",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 2,
+          "optional": true,
+          "g933TopSame": true
+        }
+      ],
+      "supportBatch": "phase-933",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm17-015",
+      "name": "紅神龍ガルワインド",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "ボルケーノ・ドラゴン",
+      "text": "このクリーチャーが攻撃する時、バトルゾーンにあるクロスギアを１枚選び、持ち主の墓地に置く。\nクロスギアがバトルゾーンから墓地に置かれた時、カードを１枚引いてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-015",
+      "limit": 4,
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Target",
+          "element": true,
+          "anyOwner": true,
+          "filter": {
+            "g201Gear": true
+          },
+          "to": "grave",
+          "title": "墓地に置くクロスギアを1枚選ぶ"
+        }
+      ],
+      "g933GearGraveDraw": true,
+      "supportBatch": "phase-933",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 932,
+    "phase": 933,
     "checkedAt": "2026-11-11",
-    "baseCount": 6666,
+    "baseCount": 6669,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6669,
+    "totalCount": 6672,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/42077/",
-      "https://dm.takaratomy.co.jp/rule/qa/48115/",
-      "https://dm.takaratomy.co.jp/rule/qa/39980/",
-      "https://dm.takaratomy.co.jp/rule/qa/40378/",
-      "https://dm.takaratomy.co.jp/rule/qa/44188/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35370/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35375/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35376/",
+      "https://dm.takaratomy.co.jp/rule/qa/42476/",
       "https://dm.takaratomy.co.jp/rule/qa/43462/"
     ],
     "next": [
@@ -212111,6 +212188,27 @@
           "https://dm.takaratomy.co.jp/rule/qa/43462/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37785/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 932,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6666,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6669,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/42077/",
+          "https://dm.takaratomy.co.jp/rule/qa/48115/",
+          "https://dm.takaratomy.co.jp/rule/qa/39980/",
+          "https://dm.takaratomy.co.jp/rule/qa/40378/",
+          "https://dm.takaratomy.co.jp/rule/qa/44188/",
+          "https://dm.takaratomy.co.jp/rule/qa/43462/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

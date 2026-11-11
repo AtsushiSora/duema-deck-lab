@@ -21,6 +21,7 @@ export function createSamuraiRules(api){
   api.log(s,p,'crossGear',card(g).name+'を'+card(x).name+'にクロス',{cardId:g.cardId,target:x.uid});
   if(effective(x,s).g721CrossRamp)on(s,p,x,'g34_Ramp',{n:1,tapped:true});
  }
+ const crossPayment=(g,reduction=0)=>({...card(g),crossing:true,...(reduction?{g933CrossReduction:reduction}:{})});
  function freeCross(g,c){return c.type==='creature'&&(g.doss&&samurai(c)||g.zangeki&&c.name==='ボルメテウス・武者・ドラゴン');}
  const protect=(s,p,n)=>{const own=s.players[p];const uids=policyLook(s,p,n,own.deck,api).map(x=>x.uid);(own.g18Protected??=[]).push(...uids);return uids;};
  const release=(own,uids)=>own.g18Protected=(own.g18Protected||[]).filter(uid=>!uids.includes(uid));
@@ -96,6 +97,18 @@ export function createSamuraiRules(api){
   return total;
  }
  return {run,chosen,
+ snapshot933(s,rows){
+  if(!rows.some(({player,uid})=>card(s.players[player].battle.find(x=>x.uid===uid))?.type==='gear'))return [];
+  const leaving=new Set(rows.map(r=>r.uid));
+  // The watcher must remain in play through a simultaneous departure (603.5d).
+  return [s.active,1-s.active].flatMap(p=>creatures(s,p)
+   .filter(x=>card(x).g933GearGraveDraw&&!leaving.has(x.uid)&&active(s,x)&&!api.selfStopped(s,p))
+   .map(({uid,incarnation,cardId})=>({p,uid,incarnation,cardId})));
+ },
+ leaving933(s,x,to,watchers){
+  if(to==='grave'&&card(x).type==='gear')for(const w of watchers||[])
+   on(s,w.p,w,'g34_Draw',{n:1,optional:true});
+ },
  unblocked(s,p,x,c=card(x)){if(p<0||x.sealed||c.type!=='creature'||!api.isCreature(s,x))return false;if(attached(s,p,x).some(g=>card(g).g125CrossUnblock&&active(s,g)))return true;const vs=colors(c);return s.players[p].battle.some(y=>!y.sealed&&(card(y).g128WaterAura||card(y).g128LightDarkAura)&&api.isCreature(s,y)&&active(s,y)&&(card(y).g128WaterAura&&y.uid!==x.uid&&vs.includes('水')||card(y).g128LightDarkAura&&vs.some(v=>v==='光'||v==='闇')));},
  protected(s,p,x){
   if(x.crossedTo&&card(x).type==='gear'){
@@ -170,9 +183,29 @@ export function createSamuraiRules(api){
    ...gears(s,p).filter(g=>!g.sealed&&!g.faceDown&&card(g).g928CrossEndUntap&&active(s,g)).map(g=>own(g,'g18_ReverseUntap928'))];
  },
  start(s,p){return creatures(s,p).filter(x=>effective(x,s).maroku&&attached(s,p,x).length).map(x=>({player:p,uid:x.uid,source:x.cardId,effect:'extended',task:task('g18_Maroku',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0})}));},
- mainActions(s,p){const out=[];for(const g of gears(s,p))for(const x of creatures(s,p)){if(live(s,p,g)?.uid===x.uid)continue;const free=active(s,g)&&freeCross(card(g),card(x)),c={...card(g),crossing:true},n=free?0:api.summonCost(s,p,c);if(!free&&!api.canPay(s,p,c))continue;const existing=!!live(s,p,g),score=card(g).g125CrossUnblock?(existing?-30:attached(s,p,x).some(y=>card(y).g125CrossUnblock&&active(s,y))?5:35)+(x.tapped?-10:0):card(g).g119Petro?(existing||attached(s,p,x).some(y=>card(y).g119Petro&&active(s,y))?-30:40+Math.min(cost(card(x)),12)*3):existing?-30:card(g).zangeki&&(dragon(card(x))||samurai(card(x)))?70:card(g).doss?30:10;out.push({kind:'crossGear',uid:g.uid,cardId:g.cardId,target:x.uid,cost:n,free,score:score+(!existing&&x.entered<s.turn&&!x.tapped?4:0),label:card(g).name+' → '+card(x).name+'にクロス（'+(free?'無料':n+'マナ')+'）'});}return out;},
+ mainActions(s,p){
+  const out=[];
+  for(const g of gears(s,p))for(const x of creatures(s,p)){
+   if(live(s,p,g)?.uid===x.uid)continue;
+   const gear=card(g),host=card(x),existing=!!live(s,p,g),free=active(s,g)&&freeCross(gear,host);
+   const base=free?0:api.summonCost(s,p,crossPayment(g));
+   const max=free||!host.g933CrossDiscount||!active(s,x)||noReduce(s,p)?0:Math.min(host.g933CrossDiscount,base-1);
+   const score=gear.g125CrossUnblock?(existing?-30:attached(s,p,x).some(y=>card(y).g125CrossUnblock&&active(s,y))?5:35)+(x.tapped?-10:0):
+    gear.g119Petro?(existing||attached(s,p,x).some(y=>card(y).g119Petro&&active(s,y))?-30:40+Math.min(cost(host),12)*3):
+    existing?-30:gear.zangeki&&(dragon(host)||samurai(host))?70:gear.doss?30:10;
+   for(let reduction=0;reduction<=max;reduction++){
+    const payment=crossPayment(g,reduction);
+    if(!free&&!api.canPay(s,p,payment))continue;
+    const n=free?0:api.summonCost(s,p,payment);
+    out.push({kind:'crossGear',uid:g.uid,cardId:g.cardId,target:x.uid,cost:n,free,
+     ...(reduction?{g933CrossReduction:reduction}:{}),score:score+(!existing&&x.entered<s.turn&&!x.tapped?4:0)+reduction,
+     label:gear.name+' → '+host.name+'にクロス（'+(free?'無料':n+'マナ')+'）'});
+   }
+  }
+  return out;
+ },
  crossOnEntry(s,p,x,ids){for(const g of gears(s,p))if(!g.sealed&&ids.includes(g.uid))cross(s,p,g,x);},
- crossAction(s,p,a){const g=s.players[p].battle.find(x=>x.uid===a.uid),x=s.players[p].battle.find(x=>x.uid===a.target);if(!a.free)api.pay(s,p,{...card(g),crossing:true});cross(s,p,g,x);},
+ crossAction(s,p,a){const g=s.players[p].battle.find(x=>x.uid===a.uid),x=s.players[p].battle.find(x=>x.uid===a.target);if(!a.free)api.pay(s,p,crossPayment(g,a.g933CrossReduction));cross(s,p,g,x);},
  variants(s,p,actions){const out=[...actions];if(noReduce(s,p))return out;for(const a of actions){if(a.kind!=='play'||a.freeSummon||a.alternative||a.g18Reducers!==undefined)continue;const c=faces(card(a.cardId))[a.face||0],max=optionalReducers(s,p,c);for(let n=0;n<max;n++){const payment={...c,summonOrigin:a.origin||'hand',g18Reducers:n,...(a.g7Payment?{g7Payment:a.g7Payment}:{}),...(a.snowReducers?{snowReducers:a.snowReducers}:{}),...(a.magicReducers?{magicReducers:a.magicReducers}:{})};if(api.canPay(s,p,payment))out.push({...a,g18Reducers:n,cost:api.summonCost(s,p,payment),label:c.name+'をザンゲキの軽減'+n+'回で使う'});}}return out;},
  expire(s,when,p){if(when==='start')for(const own of s.players)for(const top of own.battle)for(const x of api.layers(top))x.g18Blocker=(x.g18Blocker||[]).filter(v=>v.who!==p);},
  };

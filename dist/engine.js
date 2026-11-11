@@ -877,7 +877,7 @@ function baseSummonCost297(s,p,c){
  const handTax=(c.summonOrigin||'hand')==='hand'?(c.g653HandSummonTax||0):0;
  const tax=extra.spellTax(s,p,c)+handTax;
  if(s.players[1-p].battle.some(x=>effectiveCard(x,s).noCostReduction))return costValue(c)+tax;
- if(c.crossing)return Math.max(1,costValue(c)-extra.samuraiDiscount(s,p,c));
+ if(c.crossing)return Math.max(1,costValue(c)-extra.samuraiDiscount(s,p,c)-(c.g933CrossReduction||0));
  const reduce=c.type==='creature'&&((c.costReduction==='opponentMulticolorMana3'&&s.players[1-p].mana.some(x=>manaColors(card(x),s,p).length>1))||(c.costReduction==='ownFourDragonsMana3'&&s.players[p].mana.filter(x=>isDragon(card(x))).length>=4)||(c.costReduction==='ownFiveLightFireMana3'&&s.players[p].mana.filter(x=>manaColors(card(x),s,p).some(v=>v==='光'||v==='火')).length>=5));
  const gaia=c.type==='creature'&&numeric(c.printedCost??c.cost)>=10?s.players[p].battle.filter(x=>effectiveCard(x,s).gaia).length*4:0;
  const graveReduction=c.graveCreatureReduction?s.players[p].grave.filter(x=>card(x).type==='creature').length:c.graveEvolution?(c.graveBaseCount??s.players[p].grave.filter(x=>card(x).type==='creature').length-(c.summonOrigin==='grave'?1:0)):0;
