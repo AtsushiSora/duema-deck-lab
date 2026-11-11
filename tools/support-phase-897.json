@@ -1,0 +1,189 @@
+{
+  "phase": 897,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6556,
+  "description": "各ターン最初の攻撃終了時の自軍アンタップ、手札1枚による自己離脱置換と鬼タイムの相手タップ登場、相手2体目以降の登場時マナ追加に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/33588/",
+    "https://dm.takaratomy.co.jp/rule/qa/49400/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36972/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp14-007",
+      "name": "電龍 ヴェヴェロキラー",
+      "faces": [
+        {
+          "name": "電龍 ヴェヴェロキラー",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "ブロッカーブロッカー\nスピードアタッカー\nクリーチャーの攻撃の終わりに、それがこのターン最初の攻撃なら、自分のクリーチャーを１体アンタップする。",
+          "race": "ニトロ・ドラゴン/チームボンバー",
+          "powerText": "5500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-007",
+      "spec": {
+        "blocker": true,
+        "speedAttacker": true,
+        "g897FirstAttackEnd": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "untap": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp14-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "3da9ff23a303e1efe13e4ca950af94823d75000a10099b6be22e51fbec259931",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp13-s03",
+      "name": "「非道」の鬼 ゴウケン齋",
+      "faces": [
+        {
+          "name": "「非道」の鬼 ゴウケン齋",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがバトルゾーンを離れる時、かわりに自分の手札を１枚捨ててもよい。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、相手のクリーチャーはタップしてバトルゾーンに出る。",
+          "race": "デモニオ/鬼札王国",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-s03",
+      "spec": {
+        "breaker": 2,
+        "g897LeaveDiscard": true,
+        "g260Self": {
+          "filter": {
+            "g334ZoneCount": {
+              "zone": "shields",
+              "sumBoth": true,
+              "max": 6
+            }
+          },
+          "grants": {
+            "g720TapEntry": {
+              "all": true
+            }
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp13-s03.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "74f32efecc4350dae8365481a7e38104f727b6fd990120a6cef90e74fb062e36",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-046",
+      "name": "聖夜妖精メリリス",
+      "faces": [
+        {
+          "name": "聖夜妖精メリリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手のクリーチャーがバトルゾーンに出た時、それが相手がこのターンバトルゾーンに出した１体目のクリーチャーでなければ、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+          "race": "スノーフェアリー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-046",
+      "spec": {
+        "g314OtherEntry": {
+          "who": "opponent",
+          "filter": {
+            "creature": true
+          },
+          "minEntryCount": 2,
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "山札の上から1枚をマナゾーンに置く？",
+              "defs": [
+                {
+                  "op": "Ramp",
+                  "n": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-046.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "0d4a92fd1e19c5d0cb0dc9cb5d5cea08e05acc6908e07158a5e62dec34de8329",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm24bd5-045",
+      "canonicalId": "dmrp16-046",
+      "name": "聖夜妖精メリリス",
+      "faces": [
+        {
+          "name": "聖夜妖精メリリス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "相手のクリーチャーが出た時、それが相手がこのターン出した１体目のクリーチャーでなければ、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+          "race": "スノーフェアリー",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24bd5-045",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm24bd5-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "3676ccbef190a30f9006bc88146e94fb0126e52740c439dc56a5bd72b9332321",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp14-007": 4,
+      "dmrp13-s03": 4,
+      "dmrp16-046": 4,
+      "dm24bd5-045": 4
+    }
+  }
+}

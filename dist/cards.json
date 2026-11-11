@@ -192079,20 +192079,119 @@
       "g896AttackPlayer": true,
       "supportBatch": "phase-896",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp14-007",
+      "name": "電龍 ヴェヴェロキラー",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5500,
+      "race": "ニトロ・ドラゴン/チームボンバー",
+      "text": "ブロッカーブロッカー\nスピードアタッカー\nクリーチャーの攻撃の終わりに、それがこのターン最初の攻撃なら、自分のクリーチャーを１体アンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp14-007",
+      "limit": 4,
+      "blocker": true,
+      "speedAttacker": true,
+      "g897FirstAttackEnd": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "untap": true
+        }
+      ],
+      "supportBatch": "phase-897",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp13-s03",
+      "name": "「非道」の鬼 ゴウケン齋",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "デモニオ/鬼札王国",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンを離れる時、かわりに自分の手札を１枚捨ててもよい。\n鬼タイム ：自分と相手のシールドの数が合計６つ以下なら、相手のクリーチャーはタップしてバトルゾーンに出る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp13-s03",
+      "limit": 4,
+      "breaker": 2,
+      "g897LeaveDiscard": true,
+      "g260Self": {
+        "filter": {
+          "g334ZoneCount": {
+            "zone": "shields",
+            "sumBoth": true,
+            "max": 6
+          }
+        },
+        "grants": {
+          "g720TapEntry": {
+            "all": true
+          }
+        }
+      },
+      "supportBatch": "phase-897",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-046",
+      "name": "聖夜妖精メリリス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "スノーフェアリー",
+      "text": "相手のクリーチャーがバトルゾーンに出た時、それが相手がこのターンバトルゾーンに出した１体目のクリーチャーでなければ、自分の山札の上から１枚目をマナゾーンに置いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-046",
+      "limit": 4,
+      "g314OtherEntry": {
+        "who": "opponent",
+        "filter": {
+          "creature": true
+        },
+        "minEntryCount": 2,
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "山札の上から1枚をマナゾーンに置く？",
+            "defs": [
+              {
+                "op": "Ramp",
+                "n": 1
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-897",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 896,
+    "phase": 897,
     "checkedAt": "2026-11-11",
-    "baseCount": 6553,
+    "baseCount": 6556,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6556,
+    "totalCount": 6559,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/34237/",
-      "https://dm.takaratomy.co.jp/rule/qa/39085/",
-      "https://dm.takaratomy.co.jp/rule/qa/39086/"
+      "https://dm.takaratomy.co.jp/rule/qa/33588/",
+      "https://dm.takaratomy.co.jp/rule/qa/49400/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36972/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -208051,6 +208150,23 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/39109/",
           "https://dm.takaratomy.co.jp/rule/qa/39103/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 896,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6553,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6556,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/34237/",
+          "https://dm.takaratomy.co.jp/rule/qa/39085/",
+          "https://dm.takaratomy.co.jp/rule/qa/39086/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -3445,6 +3445,19 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=897&&creature&&d.faces.length===1){
+  if(d.id==='dmrp14-007'&&compact363===
+   'ブロッカーブロッカースピードアタッカークリーチャーの攻撃の終わりにそれがこのターン最初の攻撃なら自分のクリーチャーを1体アンタップする。')
+   return {blocker:true,speedAttacker:true,g897FirstAttackEnd:[{op:'Target',owner:'self',untap:true}]};
+  if(d.id==='dmrp13-s03'&&compact363===
+   'W・ブレイカーこのクリーチャーがバトルゾーンを離れる時かわりに自分の手札を1枚捨ててもよい。鬼タイム:自分と相手のシールドの数が合計6つ以下なら相手のクリーチャーはタップしてバトルゾーンに出る。')
+   return {breaker:2,g897LeaveDiscard:true,g260Self:{filter:{g334ZoneCount:{zone:'shields',sumBoth:true,max:6}},grants:{g720TapEntry:{all:true}}}};
+  if(['dmrp16-046','dm24bd5-045'].includes(d.id)&&[
+   '相手のクリーチャーがバトルゾーンに出た時それが相手がこのターンバトルゾーンに出した1体目のクリーチャーでなければ自分の山札の上から1枚目をマナゾーンに置いてもよい。',
+   '相手のクリーチャーが出た時それが相手がこのターン出した1体目のクリーチャーでなければ自分の山札の上から1枚目をマナゾーンに置いてもよい。'
+  ].includes(compact363))return {g314OtherEntry:{who:'opponent',filter:{creature:true},minEntryCount:2,
+   defs:[{op:'Offer',title:'山札の上から1枚をマナゾーンに置く？',defs:[{op:'Ramp',n:1}]}]}};
+ }
  if(phase>=896&&creature&&d.faces.length===1){
   if(d.id==='dmrp15-093'&&compact363===
    '各ターン自分の2体目以降のクリーチャーの召喚コストを1少なくする。ただしコストは0以下にならない。各ターン自分の2枚目以降の呪文を唱えるコストを1少なくする。ただしコストは0以下にならない。')

@@ -3707,6 +3707,7 @@ export function createSixPhotoRules(api){
    const watch=effective(x,s).g314OtherEntry;
    if(!watch||!creature&&!watch.g765Element||x.sealed||x.uid===y.uid||watch.who!=='both'&&owner!==(watch.who==='opponent'?1-p:p))continue;
    if(watch.entryCount!==undefined&&s.players[p].enteredThisTurn!==watch.entryCount)continue;
+   if(watch.minEntryCount!==undefined&&(s.players[p].enteredThisTurn||0)<watch.minEntryCount)continue;
    if(watch.ownTurn&&owner!==s.active||used792(s,x,watch.defs?.[0])||watch.filter&&!matches(s,p,y,watch.filter))continue;
    if(watch.g778OverMana&&cost(effective(y,s))<=s.players[owner].mana.length)continue;
    if(watch.g755EntrantPower)send(s,owner,x,'EntryBoost755',{
@@ -3936,6 +3937,10 @@ export function createSixPhotoRules(api){
    add(x,[E('Raid767',{race:'アビス',max:5})]);
   const drawLimit=card(x).g698EndDrawDiscard&&!x.sealed&&effective(x,s).g698EndDrawDiscard;if(drawLimit&&(s.players[1-p].drawsThisTurn||0)>=drawLimit)add(x,[E('EndDrawDiscard698')]);if(p!==s.active&&!x.sealed&&effective(x,s).g565OpponentEnd)add(x,effective(x,s).g565OpponentEnd);if(s.active===p){if(effective(x,s).g174End)add(x,effective(x,s).g174End);if(x.tapped&&api.isCreature(s,x)&&effective(x,s).g405Kourin)add(x,[E('Kourin405',{rule:effective(x,s).g405Kourin})]);for(const {source,grants:g}of effective(x,s).g404Inherited||[]){if(g.g174End)add(x,g.g174End,source);if(g.g166EndUntap)add(x,[E('Untap',{g404Carrier:true})],source);}for(const {source,grants:g}of effective(x,s).g406Inherited||[])if(g.g174End)add(x,g.g174End,source);if(r==='musasabi')add(x,[E('Untap')]);if(r==='fourJustice')add(x,[E('Untap'),E('Draw',{n:1,optional:true})]);if(r==='superRoma')add(x,[select('mana','hand',1)]);if(r==='nameko'&&s.players[p].mana.length>=8)add(x,[select('mana','hand',1,{}, {optional:true})]);}}if(p!==s.active){for(const x of s.players[p].hand.filter(x=>card(x).g34Role==='happou'))add(x,[C('happouSummon')]);for(const x of s.players[p].shields.flatMap(api.shieldCards).filter(x=>x.faceUp&&card(x).g34Role==='mantraCastle'))add(x,[E('Draw',{n:1,optional:true})]);}}return out;},
  attackEnd(s,a,x){
+  if(s.g481Attackers?.turn===s.turn&&s.g481Attackers.events.length===1)for(const p of [s.active,1-s.active])for(const watcher of creatures(s,p)){
+   const defs=!watcher.sealed&&effective(watcher,s).g897FirstAttackEnd;
+   if(defs)queue(s,p,watcher,defs);
+  }
   for(const watcher of s.players[a.player].battle){
    if(card(watcher).g774AllyAttackEnd&&!watcher.sealed&&!api.ignored(s,watcher)&&api.isCreature(s,watcher))
     queue(s,a.player,watcher,[E('Draw',{n:1,optional:true})]);
