@@ -201572,26 +201572,192 @@
       ],
       "supportBatch": "phase-985",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-031",
+      "name": "有毒目ヴェスプトックス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ジュラシック・コマンド・ドラゴン",
+      "text": "W・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n相手のクリーチャーがバトルに勝った時、このクリーチャーがタップされていれば、その相手のクリーチャーを持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-031",
+      "limit": 4,
+      "breaker": 2,
+      "g986OpponentBattleWin": true,
+      "supportBatch": "phase-986",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-007",
+      "name": "協奏の翼 メダロ・アンドロム",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ジャスティス・ウイング",
+      "text": "相手がバトルゾーンにあるクリーチャーを選ぶ時、このクリーチャーを選ぶことはできない。（ただし、このクリーチャーを攻撃またはブロックしてもよい）\nマナ武装 ５：自分のマナゾーンに光のカードが５枚以上あれば、バトルゾーンにある自分のクリーチャーはすべて「ブロッカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-007",
+      "limit": 4,
+      "untargetable": true,
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "g267Mana": {
+              "n": 5,
+              "color": "光"
+            }
+          },
+          "grants": {
+            "blocker": true
+          }
+        }
+      ],
+      "supportBatch": "phase-986",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-027",
+      "name": "凶喜にして凶器なる一撃",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 3,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにある相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーは、自分の墓地にあるクリーチャー１体につき-1000される。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-027",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "CountPower561",
+          "zone": "grave",
+          "amount": -1000,
+          "filter": {
+            "g228Face": {
+              "type": "creature"
+            }
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "power": 1,
+              "g561Scale": true,
+              "g242PowerMinus": true,
+              "spell": true,
+              "title": "パワーを下げる相手のクリーチャーを1体選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-986",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr16g-005",
+      "name": "記憶の精霊龍 ソウルガルド",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "マナ武装 ５：自分のマナゾーンに光のカードが５枚以上あれば、このクリーチャーは「S・トリガー」を得る。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手の、コスト５以下の進化ではないカードを１枚選び、裏向きにして、新しいシールドとして持ち主のシールドゾーンに加える。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-005",
+      "limit": 4,
+      "breaker": 2,
+      "g876ShieldTriggerCondition": {
+        "g267Mana": {
+          "n": 5,
+          "color": "光"
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BattleCardMove579",
+          "g813NonEvolution": true,
+          "max": 5,
+          "to": "shields"
+        }
+      ],
+      "supportBatch": "phase-986",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr16g-007",
+      "name": "龍素記号Sg スパゲリア",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 6000,
+      "race": "クリスタル・コマンド・ドラゴン",
+      "text": "マナ武装 ５：自分のマナゾーンに水のカードが５枚以上あれば、このクリーチャーは「S・トリガー」を得る。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにあるコスト５以下の進化ではないカードを１枚選び、持ち主の手札に戻す。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-007",
+      "limit": 4,
+      "breaker": 2,
+      "g876ShieldTriggerCondition": {
+        "g267Mana": {
+          "n": 5,
+          "color": "水"
+        }
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BattleCardMove579",
+          "g813NonEvolution": true,
+          "max": 5,
+          "to": "hand",
+          "anyOwner": true
+        }
+      ],
+      "supportBatch": "phase-986",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 985,
+    "phase": 986,
     "checkedAt": "2026-11-12",
-    "baseCount": 6855,
+    "baseCount": 6860,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 6860,
+    "totalCount": 6865,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36128/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34866/",
+      "https://dm.takaratomy.co.jp/rule/qa/40374/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37155/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37111/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37188/",
       "https://dm.takaratomy.co.jp/rule/qa/41079/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37234/",
-      "https://dm.takaratomy.co.jp/rule/qa/41295/",
-      "https://dm.takaratomy.co.jp/rule/qa/34191/"
+      "https://dm.takaratomy.co.jp/rule/qa/41750/",
+      "https://dm.takaratomy.co.jp/rule/qa/45589/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/%E5%A4%89%E6%9B%B4%E7%82%B92026-07-23/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -219325,6 +219491,29 @@
           "https://dm.takaratomy.co.jp/rule/qa/38709/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37111/",
           "https://dm.takaratomy.co.jp/img/202207regulation.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 985,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6855,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 6860,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36128/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34866/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37111/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37188/",
+          "https://dm.takaratomy.co.jp/rule/qa/41079/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37234/",
+          "https://dm.takaratomy.co.jp/rule/qa/41295/",
+          "https://dm.takaratomy.co.jp/rule/qa/34191/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

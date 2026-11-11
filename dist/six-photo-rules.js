@@ -2156,6 +2156,15 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_DelayedMove532':{const host=sourceHost474(s,t);if(host&&(!t.g774Banky||!host.x.sealed))move(s,[{player:host.p,uid:host.x.uid,to:t.to,destroy:t.to==='grave',controller:t.controller??t.p}]);break;}
+ case'g34_OpponentBattleWin986':{
+  const source=sourceHost474(s,t);
+  const tapped=source&&!source.x.sealed?source.x.tapped:t.lastTapped;
+  if(!tapped)break;
+  const winner=sourceHost474(s,t.winner);
+  if(winner&&!winner.x.sealed&&api.isCreature(s,winner.x))
+   move(s,[{player:winner.p,uid:winner.x.uid,to:'mana',controller:t.p}]);
+  break;
+ }
  case'g34_ExactMove':{
   const owner=t.owner??1-t.p;
   const y=s.players[owner].battle.find(y=>{
@@ -4807,6 +4816,16 @@ export function createSixPhotoRules(api){
   if(c.g828BattleBreak)sources.push(unit.cardId);
   return sources.map(source=>({player:p,uid:unit.uid,source,effect:'extended',
    task:task('g34_Break497',p,source,{uid:unit.uid,incarnation:unit.incarnation||0,n:1,g747CreatureBreak:true,g828BattleBreaker:unit.cardId})}));
+ },
+ opponentBattleWins986(s,p,winner){
+  const owner=1-p,ref={uid:winner.uid,incarnation:winner.incarnation||0};
+  // The losing watcher can leave with the battle result, before its triggered ability resolves.
+  return creatures(s,owner).filter(x=>!x.sealed&&effective(x,s).g986OpponentBattleWin).map(x=>({
+   player:owner,uid:x.uid,source:x.cardId,onOpponentWin:true,
+   task:task('g34_OpponentBattleWin986',owner,x.cardId,{
+    uid:x.uid,incarnation:x.incarnation||0,winner:ref,lastTapped:!!x.tapped
+   })
+  }));
  },
  battleWins(s,p,w){
   const x=s.players[p].battle.find(x=>x.uid===w?.uid),c=x&&effective(x,s);

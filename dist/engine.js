@@ -396,7 +396,7 @@ function addZone(s,player,zone,...cards){if(!cards.length)return;for(const x of 
 export const visibleBattleCards=(s,p)=>[...s.players[p].battle.filter(x=>!x.sealed),...(s.players[p].seals||[])];
 function refreshSeals(s){for(const own of s.players)for(const x of own.battle){if((own.seals||[]).some(y=>y.sealOf===x.uid))x.sealed=true;else delete x.sealed;}}
 function moveSeal(s,p,uid,to='grave',shield=null){if((to==='shields'||shield)&&!canAddShield(s,p))return null;const own=s.players[p],target=own.seals?.find(x=>x.uid===uid)?.sealOf,x=remove(own.seals||[],uid);if(!x)return null;const intoShield=to==='shields'||!!shield;if(intoShield)refreshSeals(s);clearBattleState(x,to);if(shield)addShieldCard(s,p,shield,x);else if(to==='deckTop')own.deck.unshift(x);else addZone(s,p,to,x);if(!intoShield)refreshSeals(s);extra.six.fifteen.unsealed(s,p,target);log(s,p,'unseal',to==='grave'?'封印を墓地へ置く':'封印を'+({hand:'手札',mana:'マナ',deck:'山札の下',shields:'シールド',extra:'超次元ゾーン'}[to]||to)+'へ移動');return x;}
-function seal(s,p,uids,n=1){const own=s.players[p];for(const uid of uids){const x=own.battle.find(x=>x.uid===uid&&!x.sealed);if(!x)continue;for(let i=0;i<n;i++){const top=takeDeckTop(s,p);if(top){rememberComparisonPower(s,p,x,layers(x));if(x.powerModifiers?.some(modifier=>modifier.g694ClearOnSeal))x.powerModifiers=x.powerModifiers.filter(modifier=>!modifier.g694ClearOnSeal);clearBattleState(top,'seals');top.faceDown=true;top.sealOf=x.uid;delete x.g40Reckless;(own.seals??=[]).push(top);x.sealed=true;log(s,p,'seal',card(x.cardId).name+'に封印を付ける',{cardId:x.cardId});}deckCheck(s,p);if(s.winner!==null||s.lossEvent)break;}}refreshDynamicTypes(s);}
+function seal(s,p,uids,n=1){const own=s.players[p];for(const uid of uids){const x=own.battle.find(x=>x.uid===uid&&!x.sealed);if(!x)continue;for(let i=0;i<n;i++){const top=takeDeckTop(s,p);if(top){rememberBattleInformation(s,p,x,layers(x));if(x.powerModifiers?.some(modifier=>modifier.g694ClearOnSeal))x.powerModifiers=x.powerModifiers.filter(modifier=>!modifier.g694ClearOnSeal);clearBattleState(top,'seals');top.faceDown=true;top.sealOf=x.uid;delete x.g40Reckless;(own.seals??=[]).push(top);x.sealed=true;log(s,p,'seal',card(x.cardId).name+'に封印を付ける',{cardId:x.cardId});}deckCheck(s,p);if(s.winner!==null||s.lossEvent)break;}}refreshDynamicTypes(s);}
 function recordCombat(s,p){s.g4Combat??=[null,null];const x=s.g4Combat[p];s.g4Combat[p]={turn:s.turn,count:x?.turn===s.turn?x.count+1:1};}
 function attachMugenBases(s,p,inst,refs){const all=[];for(const r of refs){const own=s.players[p],x=remove(own[r.origin],r.uid);if(!x)throw Error('無月の門の素材がありません');const cards=layers(x);if(r.origin==='battle')recordLastPower(s,p,x,cards);for(const y of cards){if(r.origin!=='battle')clearBattleState(y,'battle');else{delete y.under;delete y.godLinks;}}all.push(...cards);}inst.under=all;log(s,p,'mugenSummon',card(inst).name+'の下に'+(card(inst).mugenKind==='joker'?'魔導具・ジョーカーズを':'魔導具を')+refs.length+'つ重ねる',{cardId:inst.cardId});}
 function detachBattleSource(top,uid){for(const parent of layers(top))for(const key of ['under','godLinks']){const i=parent[key]?.findIndex(x=>x.uid===uid)??-1;if(i<0)continue;const x=parent[key][i];parent[key].splice(i,1,...(key==='under'?[...(x.under||[]),...(x.godLinks||[])]:[]));if(key==='godLinks'&&x.under?.length)(parent.under??=[]).push(...x.under);return x;}return null;}
@@ -408,8 +408,8 @@ export function shieldGuardSources(s,p){return s.players[p].battle.filter(c=>!ab
 function shieldGuardChoices(s){const b=s.shieldBreak;return shieldGuardSources(s,b.player).filter(c=>!b.protections.some(x=>x.uid===c.uid));}
 export function shieldSaverSources(s,p){return s.players[p].battle.filter(x=>!abilitiesIgnored(s,x)&&effectiveCard(x,s).g401ShieldSaver&&extra.canLeave(s,p,x)&&!extra.six.zeroSafe(s,x)&&!(effectiveCard(x,s).caddy&&shevaProtection(s,p)));}
 function shieldSaverChoices(s){const b=s.shieldBreak;return shieldSaverSources(s,b.player).filter(x=>!b.protections.some(r=>r.uid===x.uid));}
-// Preserve only pending relative-power comparisons when their source leaves or is sealed.
-function rememberComparisonPower(s,owner,host,leaving){
+// Preserve information needed by pending effects when their source leaves or is sealed.
+function rememberBattleInformation(s,owner,host,leaving){
  const pending=[...(s.pendingEffects||[]),...(s.triggers?.entries||[]),...(s.judge?.deferredEffects||[])];
  const all=[...pending.map(e=>e.task),...(s.extTasks||[])].filter(Boolean);
  const departs=ref=>leaving.some(card=>card.uid===ref.uid&&(card.incarnation||0)===(ref.incarnation||0));
@@ -420,6 +420,13 @@ function rememberComparisonPower(s,owner,host,leaving){
   return task.p===owner&&departs(task);
  });
  if(host.sealed)return;
+ const resultEffects=[
+  ...(s.leaving?.after?.losses||[]),...(s.battleResolution?.wins||[]),
+  ...(s.battleStack||[]).flatMap(result=>result.wins||[])
+ ];
+ for(const {task} of resultEffects){
+  if(task?.op==='g34_OpponentBattleWin986'&&departs(task))task.lastTapped=!!host.tapped;
+ }
  for(const task of all.filter(task=>task.g831Subject?.uid===host.uid&&departs(task.g831Subject))){
   const value=costValue(effectiveCard(host,s));
   task.g831LastCost=value===Infinity?'∞':value;
@@ -434,7 +441,7 @@ function rememberComparisonPower(s,owner,host,leaving){
  for(const task of copies)task.g765LastPower=savedPower;
 }
 function recordLastPower(s,p,c,leaving){extra.cyber.recordBattleCards(s,p,leaving);
- rememberComparisonPower(s,p,c,leaving);
+ rememberBattleInformation(s,p,c,leaving);
  // Conditional NEO abilities use the creature immediately before departure (QA46945).
  for(const x of leaving)(s.g563LastNeo??={})[x.uid+'@'+(x.incarnation||0)]=!c.sealed&&isCreature(s,c)&&!!zoneCard(s,p,c,'battle').neoEvolution&&isEvolution(c);
  // Attack-duration cast restrictions remain through pending effects after the attacker leaves (QA41551).
@@ -1608,6 +1615,8 @@ function battle(s,pa,a,pd,b,attackingUid=null,replaced=false,blockUntap,attackBa
  };
  queueLoss(pa,a,pd,b,ap,bp,aw);
  queueLoss(pd,b,pa,a,bp,ap,bw);
+ if(aw)losses.push(...extra.six.opponentBattleWins986(s,pa,a));
+ if(bw)losses.push(...extra.six.opponentBattleWins986(s,pd,b));
  moveCreatures(s,moves,{
   kind:'battleResult',winner,
   both:aw&&bw?[{player:pa,...result(pa,a,ap,bp)},{player:pd,...result(pd,b,bp,ap)}]:null,
@@ -2079,7 +2088,7 @@ export function getLegalActions(s){
   if(d.type==='dragonTap'){out=opp.battle.filter(x=>isCreature(s,x)).map(x=>option('dragonTap',`${card(x).name}をタップ${x.tapped?'（タップ中）':''}`,{uid:x.uid,cardId:x.cardId}));out.push(option('skipDragonTap','今回はタップせず、次の登場時に使えるようにする'));}
   if(d.type==='trigger')out=[...(s.triggers.eligibleFaces?.[d.uid]||[0]).map(face=>option('useTrigger',`${playFaces(card(d.source))[face].name}を使う`,{uid:d.uid,cardId:d.source,...(card(d.source).spellFace?{face}:{})})),option('skipTrigger','使わず手札に加える')];
   if(d.type==='fight'){out=own.battle.some(x=>x.uid===d.uid&&(d.sourceIncarnation===undefined||(x.incarnation||0)===d.sourceIncarnation))?opp.battle.filter(x=>isCreature(s,x)).map(x=>option('fight',`${card(x).name}とバトル（相手のパワー${power(x,x.uid===s.attack?.attacker,s)}）`,{uid:d.uid,target:x.uid,cardId:x.cardId})):[];out.push(option('skipFight','バトルさせない'));}
-  if(d.type==='battleWinOrder')out=s.battleResolution.wins.flatMap((e,index)=>e.player===p?[option('battleWinOrder',`${card(e.source).name}の${e.onLoss?'敗北':'勝利'}時能力を先に解決`,{uid:e.uid,cardId:e.source,winIndex:index})]:[]);
+  if(d.type==='battleWinOrder')out=s.battleResolution.wins.flatMap((e,index)=>e.player===p?[option('battleWinOrder',`${card(e.source).name}の${e.onOpponentWin?'相手の勝利':e.onLoss?'敗北':'勝利'}時能力を先に解決`,{uid:e.uid,cardId:e.source,winIndex:index})]:[]);
   if(d.type==='draw')out=Array.from({length:d.max+1},(_,n)=>option('draw',n?`${n}枚引く`:'引かない',{n}));
   if(d.type==='optionalRamp')out=[option('useRamp','4枚をマナに置き、2枚を山札に戻す'),option('skipRamp','マナに置かない')];
   if(d.type==='manaTop')out=own.mana.filter(x=>!d.chosen.includes(x.uid)).map(x=>option('manaTop',`山札の上から${d.chosen.length+1}枚目に${card(x).name}を置く（${x.tapped?'タップ中':'アンタップ'}）`,{uid:x.uid,cardId:x.cardId}));

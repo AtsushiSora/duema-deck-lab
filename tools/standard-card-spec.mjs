@@ -3435,6 +3435,31 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=986&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const trigger='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  const double='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
+  if(f.typeText==='呪文'&&d.id==='dmr14-027'&&text===trigger+
+   'バトルゾーンにある相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーは自分の墓地にあるクリーチャー1体につき-1000される。(パワー0以下のクリーチャーは破壊される)')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'CountPower561',zone:'grave',amount:-1000,
+    filter:{g228Face:{type:'creature'}},
+    defs:[{op:'Target',power:1,g561Scale:true,g242PowerMinus:true,spell:true,title:'パワーを下げる相手のクリーチャーを1体選ぶ'}]}]};
+  if(f.typeText==='クリーチャー'){
+   if(d.id==='dmr14-031'&&text===double+'相手のクリーチャーがバトルに勝った時このクリーチャーがタップされていればその相手のクリーチャーを持ち主のマナゾーンに置く。')
+    return {breaker:2,g986OpponentBattleWin:true};
+   if(d.id==='dmr14-007'&&text==='相手がバトルゾーンにあるクリーチャーを選ぶ時このクリーチャーを選ぶことはできない。(ただしこのクリーチャーを攻撃またはブロックしてもよい)マナ武装5:自分のマナゾーンに光のカードが5枚以上あればバトルゾーンにある自分のクリーチャーはすべて「ブロッカー」を得る。')
+    return {untargetable:true,g208Auras:[{filter:{creature:true},g557Condition:{g267Mana:{n:5,color:'光'}},grants:{blocker:true}}]};
+   const soul=['dmr16g-005','dmr16s-006'].includes(d.id);
+   const spageria=['dmr16g-007','dmr16s-008'].includes(d.id);
+   const manaTrigger=color=>'マナ武装5:自分のマナゾーンに'+color+'のカードが5枚以上あればこのクリーチャーは「S・トリガー」を得る。';
+   const entry='このクリーチャーをバトルゾーンに出した時バトルゾーンにある';
+   if(soul&&text===manaTrigger('光')+entry+'相手のコスト5以下の進化ではないカードを1枚選び裏向きにして新しいシールドとして持ち主のシールドゾーンに加える。W・ブレイカー'||
+      spageria&&text===manaTrigger('水')+entry+'コスト5以下の進化ではないカードを1枚選び持ち主の手札に戻す。'+double)
+    return {breaker:2,g876ShieldTriggerCondition:{g267Mana:{n:5,color:soul?'光':'水'}},effect:'sixPhoto',g34Tasks:[
+     {op:'BattleCardMove579',g813NonEvolution:true,max:5,to:soul?'shields':'hand',...(spageria?{anyOwner:true}:{})}
+    ]};
+  }
+ }
  if(phase>=985&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(f.typeText==='呪文'){

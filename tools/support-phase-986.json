@@ -1,0 +1,315 @@
+{
+  "phase": 986,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6860,
+  "description": "相手のバトル勝利時のマナ送り、ブロッカーとS・トリガーを与えるマナ武装、墓地参照のパワー低下と非進化カード指定除去に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/40374/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37155/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37111/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37188/",
+    "https://dm.takaratomy.co.jp/rule/qa/41079/",
+    "https://dm.takaratomy.co.jp/rule/qa/41750/",
+    "https://dm.takaratomy.co.jp/rule/qa/45589/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/%E5%A4%89%E6%9B%B4%E7%82%B92026-07-23/"
+  ],
+  "cards": [
+    {
+      "id": "dmr14-031",
+      "name": "有毒目ヴェスプトックス",
+      "faces": [
+        {
+          "name": "有毒目ヴェスプトックス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "W・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）\n相手のクリーチャーがバトルに勝った時、このクリーチャーがタップされていれば、その相手のクリーチャーを持ち主のマナゾーンに置く。",
+          "race": "ジュラシック・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-031",
+      "spec": {
+        "breaker": 2,
+        "g986OpponentBattleWin": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "1e2842cb6a050a6e31f1ebe4cd12cc32e0e9cbf8563ae055c77bf068b230d06a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-007",
+      "name": "協奏の翼 メダロ・アンドロム",
+      "faces": [
+        {
+          "name": "協奏の翼 メダロ・アンドロム",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手がバトルゾーンにあるクリーチャーを選ぶ時、このクリーチャーを選ぶことはできない。（ただし、このクリーチャーを攻撃またはブロックしてもよい）\nマナ武装 ５：自分のマナゾーンに光のカードが５枚以上あれば、バトルゾーンにある自分のクリーチャーはすべて「ブロッカー」を得る。",
+          "race": "ジャスティス・ウイング",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-007",
+      "spec": {
+        "untargetable": true,
+        "g208Auras": [
+          {
+            "filter": {
+              "creature": true
+            },
+            "g557Condition": {
+              "g267Mana": {
+                "n": 5,
+                "color": "光"
+              }
+            },
+            "grants": {
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "a0305b174f2dd6283d8ba41af7bb1b49f84b2c58f38461907a32b75e955c3ad3",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-027",
+      "name": "凶喜にして凶器なる一撃",
+      "faces": [
+        {
+          "name": "凶喜にして凶器なる一撃",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにある相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーは、自分の墓地にあるクリーチャー１体につき-1000される。（パワー０以下のクリーチャーは破壊される）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-027",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "CountPower561",
+            "zone": "grave",
+            "amount": -1000,
+            "filter": {
+              "g228Face": {
+                "type": "creature"
+              }
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "power": 1,
+                "g561Scale": true,
+                "g242PowerMinus": true,
+                "spell": true,
+                "title": "パワーを下げる相手のクリーチャーを1体選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "4aa00e7564053fa82656def6cad6018f560812e050c90189fa9c0e70d5be33f0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-005",
+      "name": "記憶の精霊龍 ソウルガルド",
+      "faces": [
+        {
+          "name": "記憶の精霊龍 ソウルガルド",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナ武装 ５：自分のマナゾーンに光のカードが５枚以上あれば、このクリーチャーは「S・トリガー」を得る。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手の、コスト５以下の進化ではないカードを１枚選び、裏向きにして、新しいシールドとして持ち主のシールドゾーンに加える。\nW・ブレイカー",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-005",
+      "spec": {
+        "breaker": 2,
+        "g876ShieldTriggerCondition": {
+          "g267Mana": {
+            "n": 5,
+            "color": "光"
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "g813NonEvolution": true,
+            "max": 5,
+            "to": "shields"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "0931365d4631ee6b7a97cb7e984835f73a66efe0f2021743b7626996ff194a96",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-007",
+      "name": "龍素記号Sg スパゲリア",
+      "faces": [
+        {
+          "name": "龍素記号Sg スパゲリア",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナ武装 ５：自分のマナゾーンに水のカードが５枚以上あれば、このクリーチャーは「S・トリガー」を得る。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにあるコスト５以下の進化ではないカードを１枚選び、持ち主の手札に戻す。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "クリスタル・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-007",
+      "spec": {
+        "breaker": 2,
+        "g876ShieldTriggerCondition": {
+          "g267Mana": {
+            "n": 5,
+            "color": "水"
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "g813NonEvolution": true,
+            "max": 5,
+            "to": "hand",
+            "anyOwner": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "ec9784c2c7a14a1b392dd689d9427206ff1ea82b5903e95d9bd72f87dbaf4093",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmr16s-006",
+      "canonicalId": "dmr16g-005",
+      "name": "記憶の精霊龍 ソウルガルド",
+      "faces": [
+        {
+          "name": "記憶の精霊龍 ソウルガルド",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナ武装 ５：自分のマナゾーンに光のカードが５枚以上あれば、このクリーチャーは「S・トリガー」を得る。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにある相手の、コスト５以下の進化ではないカードを１枚選び、裏向きにして、新しいシールドとして持ち主のシールドゾーンに加える。\nW・ブレイカー",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "9d5176876d10d87f9c0059acd4d0c537483d3625d29bbcd8ae0ff7cc6945d379",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16s-008",
+      "canonicalId": "dmr16g-007",
+      "name": "龍素記号Sg スパゲリア",
+      "faces": [
+        {
+          "name": "龍素記号Sg スパゲリア",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "マナ武装 ５：自分のマナゾーンに水のカードが５枚以上あれば、このクリーチャーは「S・トリガー」を得る。\nこのクリーチャーをバトルゾーンに出した時、バトルゾーンにあるコスト５以下の進化ではないカードを１枚選び、持ち主の手札に戻す。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "クリスタル・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16s-008",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16s-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "a970874ffebd463d85ae59f4f810301cb5fae1b6d924c562c0b62dffaf2b494e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr14-031": 4,
+      "dmr14-007": 4,
+      "dmr14-027": 4,
+      "dmr16g-005": 4,
+      "dmr16g-007": 4,
+      "dmr16s-006": 4,
+      "dmr16s-008": 4
+    }
+  }
+}
