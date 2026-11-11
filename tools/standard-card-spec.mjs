@@ -2438,6 +2438,9 @@ const shobuChargerTasks=()=>[
  {op:'Target',owner:'self',grant:{attackUntapped:true,g838FreshUntapped:true},spell:true,title:'アンタップしているクリーチャーを攻撃できるようにする自分のクリーチャーを選ぶ'}
 ];
 
+const singleLGateText=race=>'L・ゲート:'+race+'(このクリーチャーが破壊される時墓地に置くかわりに'+race+
+ 'を1体自分の墓地から手札に戻してもよい。そうした場合このクリーチャーを山札の一番下に置く)';
+
 export function standardCardSpec(d,{phase=165}={}){
  // Repair only the complete formatting variants pinned to these official prints.
  if(phase>=533&&d?.faces?.length===1){
@@ -3388,13 +3391,25 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=956&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm23-036'&&text==='ブロッカーこのクリーチャーは相手プレイヤーを攻撃できない。'+singleLGateText('ガーディアン'))
+   return {blocker:true,noPlayerAttack:true,g955LGate:'ガーディアン'};
+  if(['dm23-032','dmx09-035'].includes(d.id)&&text===
+   'スピードアタッカー(このクリーチャーは召喚酔いしない)自分のターンの終わりにこのクリーチャーを破壊する。'+singleLGateText('ヒューマノイド'))
+   return {speedAttacker:true,g174End:[{op:'SelfDestroy'}],g955LGate:'ヒューマノイド'};
+  if(d.id==='dm23-047'&&text==='このクリーチャーをバトルゾーンに出した時自分のクリーチャーを1体破壊する。'+singleLGateText('デスパペット'))
+   return {effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'battle',owner:'self',to:'grave',n:1,filter:{creature:true},
+    g187OwnPick:true,g173Targets:true,g193Select:true,title:'破壊する自分のクリーチャーを1体選ぶ'}],g955LGate:'デスパペット'};
+  if(d.id==='dm23-013'&&text==='このクリーチャーをバトルゾーンに出した時自分の手札を1枚捨てる。'+singleLGateText('ドラゴン')+'W・ブレイカー')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Discard',owner:'self',n:1}],g955LGate:'ドラゴン',breaker:2};
+ }
  if(phase>=955&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const race={
    'dm23-048':'ティラノ・ドレイク','dm23-044':'ティラノ・ドレイク','dm23-038':'グレートメカオー',
    'dm23-042':'グランド・デビル','dm23-053':'アーク・セラフィム'
   }[d.id];
-  if(race&&normalize(f.abilityText)===
-   'L・ゲート:'+race+'(このクリーチャーが破壊される時墓地に置くかわりに'+race+'を1体自分の墓地から手札に戻してもよい。そうした場合このクリーチャーを山札の一番下に置く)')
+  if(race&&normalize(f.abilityText)===singleLGateText(race))
    return {g955LGate:race};
  }
  if(phase>=954&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){

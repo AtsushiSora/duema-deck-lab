@@ -197963,15 +197963,125 @@
       "g955LGate": "アーク・セラフィム",
       "supportBatch": "phase-955",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23-036",
+      "name": "転生の守護者コア・パルサー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2500,
+      "race": "ガーディアン",
+      "text": "ブロッカー\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nL・ゲート：ガーディアン(このクリーチャーが破壊される時、墓地に置くかわりに、ガーディアンを１体、自分の墓地から手札に戻してもよい。そうした場合、このクリーチャーを山札の一番下に置く)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-036",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g955LGate": "ガーディアン",
+      "supportBatch": "phase-956",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23-032",
+      "name": "特攻小僧スカイラブ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "ヒューマノイド",
+      "text": "スピードアタッカー(このクリーチャーは召喚酔いしない)\n自分のターンの終わりに、このクリーチャーを破壊する。\nL・ゲート：ヒューマノイド(このクリーチャーが破壊される時、墓地に置くかわりに、ヒューマノイドを１体、自分の墓地から手札に戻してもよい。そうした場合、このクリーチャーを山札の一番下に置く)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-032",
+      "limit": 4,
+      "speedAttacker": true,
+      "g174End": [
+        {
+          "op": "SelfDestroy"
+        }
+      ],
+      "g955LGate": "ヒューマノイド",
+      "supportBatch": "phase-956",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23-047",
+      "name": "厄介人形ヤップップ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 5000,
+      "race": "デスパペット",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分のクリーチャーを１体破壊する。\nL・ゲート：デスパペット(このクリーチャーが破壊される時、墓地に置くかわりに、デスパペットを１体、自分の墓地から手札に戻してもよい。そうした場合、このクリーチャーを山札の一番下に置く)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-047",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "self",
+          "to": "grave",
+          "n": 1,
+          "filter": {
+            "creature": true
+          },
+          "g187OwnPick": true,
+          "g173Targets": true,
+          "g193Select": true,
+          "title": "破壊する自分のクリーチャーを1体選ぶ"
+        }
+      ],
+      "g955LGate": "デスパペット",
+      "supportBatch": "phase-956",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm23-013",
+      "name": "黒神龍ギルガザメス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 8000,
+      "race": "ドラゴン・ゾンビ",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の手札を１枚捨てる。\nL・ゲート：ドラゴン(このクリーチャーが破壊される時、墓地に置くかわりに、ドラゴンを１体、自分の墓地から手札に戻してもよい。そうした場合、このクリーチャーを山札の一番下に置く)\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-013",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Discard",
+          "owner": "self",
+          "n": 1
+        }
+      ],
+      "g955LGate": "ドラゴン",
+      "breaker": 2,
+      "supportBatch": "phase-956",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 955,
+    "phase": 956,
     "checkedAt": "2026-11-11",
-    "baseCount": 6745,
-    "newEffectCards": 5,
+    "baseCount": 6750,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6750,
+    "totalCount": 6754,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
@@ -197982,7 +198092,10 @@
       "https://dm.takaratomy.co.jp/rule/qa_old/37619/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37620/",
       "https://dm.takaratomy.co.jp/rule/qa_old/37621/",
-      "https://dm.takaratomy.co.jp/rule/qa/42962/"
+      "https://dm.takaratomy.co.jp/rule/qa/42962/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35510/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316640/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -215104,6 +215217,29 @@
           "https://dm.takaratomy.co.jp/rule/rulechange/316640/",
           "https://dm.takaratomy.co.jp/rule/qa/44325/",
           "https://dm.takaratomy.co.jp/rule/qa/40829/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 955,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6745,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 6750,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31618/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37617/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37618/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37619/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37620/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37621/",
+          "https://dm.takaratomy.co.jp/rule/qa/42962/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
