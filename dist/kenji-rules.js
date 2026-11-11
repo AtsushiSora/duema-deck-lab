@@ -2,9 +2,10 @@ import {policyRemove,policyLook} from './champion-zone-policy.js';
 // Simultaneous replacement choices may not reserve the same destruction cost.
 export function replacementSacrifices(rows){
  const sacrifices=new Set();
- for(const {plan} of rows){
+ for(const {uid,plan} of rows){
   if(plan?.kind==='ultra'||plan?.kind==='ater')sacrifices.add(plan.uid);
   if(plan?.kind==='g49'&&plan.mode==='queen')sacrifices.add(plan.target);
+  if(plan?.kind==='lGate955')sacrifices.add(uid);
   if(plan?.kind==='oni')for(const uid of plan.cards)sacrifices.add(uid);
  }
  return sacrifices;

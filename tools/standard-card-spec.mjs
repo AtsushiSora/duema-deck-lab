@@ -3388,6 +3388,15 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=955&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const race={
+   'dm23-048':'ティラノ・ドレイク','dm23-044':'ティラノ・ドレイク','dm23-038':'グレートメカオー',
+   'dm23-042':'グランド・デビル','dm23-053':'アーク・セラフィム'
+  }[d.id];
+  if(race&&normalize(f.abilityText)===
+   'L・ゲート:'+race+'(このクリーチャーが破壊される時墓地に置くかわりに'+race+'を1体自分の墓地から手札に戻してもよい。そうした場合このクリーチャーを山札の一番下に置く)')
+   return {g955LGate:race};
+ }
  if(phase>=954&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText),bioK=(race,effect)=>
    'バイオ・K-自分の'+race+'が相手プレイヤーを攻撃してブロックされなかった時このカードを自分の手札から捨ててもよい。そうした場合'+effect;
