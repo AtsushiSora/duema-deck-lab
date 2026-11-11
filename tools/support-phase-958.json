@@ -1,0 +1,263 @@
+{
+  "phase": 958,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6757,
+  "description": "シールド追加と非公開確認、攻撃時の自己選択破壊と墓地からの登場、ブレイク時のS・トリガー禁止に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35186/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37424/",
+    "https://dm.takaratomy.co.jp/rule/qa/46493/",
+    "https://dm.takaratomy.co.jp/rule/qa/31530/",
+    "https://dm.takaratomy.co.jp/rule/qa/42533/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
+    "https://dm.takaratomy.co.jp/rule/qa/40689/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37421/",
+    "https://dm.takaratomy.co.jp/rule/qa/40693/"
+  ],
+  "cards": [
+    {
+      "id": "dm10-061",
+      "name": "電脳聖者エストール",
+      "faces": [
+        {
+          "name": "電脳聖者エストール",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/水",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を裏向きのまま自分のシールドに加え、相手のシールドを１枚見てから元の場所に戻す。",
+          "race": "イニシエート/リキッド・ピープル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-061",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "ShieldTop",
+            "n": 1
+          },
+          {
+            "op": "Peek585",
+            "who": "opponent"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-061.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "110eab7498d3ae22527a66b4ab5f89293f3321c28354881a267ab7e3cd8b78d0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm32-007",
+      "name": "超竜バシュミカヅチ",
+      "faces": [
+        {
+          "name": "超竜バシュミカヅチ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分のアーマード・ドラゴン１体の上に置く。\n相手のクリーチャーが攻撃する時、相手は自分自身のパワー7000以下のクリーチャーを１体選び、破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "アーマード・ドラゴン/オリジン",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-007",
+      "spec": {
+        "evolution": {
+          "race": "アーマード・ドラゴン"
+        },
+        "breaker": 2,
+        "g252AttackWatch": {
+          "who": "opponent",
+          "defs": [
+            {
+              "op": "OpponentSelect",
+              "n": 1,
+              "to": "grave",
+              "filter": {
+                "maxPower": 7000,
+                "g199Power": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm32-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "fac27df05c664a35ba25dcc722ca39e49557f04d5876cd4381671980df3a8348",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm31-012",
+      "name": "大邪眼バルクライ王",
+      "faces": [
+        {
+          "name": "大邪眼バルクライ王",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "進化-自分のダークロード１体の上に置く。\nこのクリーチャーが攻撃する時、進化ではないダークロードを１体、自分の墓地からバトルゾーンに出してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ダークロード/ナイト",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-012",
+      "spec": {
+        "evolution": {
+          "race": "ダークロード"
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "optional": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "ダークロード"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm31-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "73920bac32b2543f1d085ff8c7bbe2db71b526077622cc723d85f10c68130aa8",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm14-s09",
+      "name": "闘匠メサイヤ",
+      "faces": [
+        {
+          "name": "闘匠メサイヤ",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "進化-自分のミステリー・トーテム１体の上に置く。\n誰も、このクリーチャーがブレイクしたシールドの｢S・トリガー｣を使うことはできない。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+          "race": "ミステリー・トーテム",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-s09",
+      "spec": {
+        "evolution": {
+          "race": "ミステリー・トーテム"
+        },
+        "breaker": 3,
+        "g122NoST": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm14-s09.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "b9d071442390bd93ae010b3749e43fcec8d6e9f42bfdcf17aaa141dc5ab83dde",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy3-005",
+      "canonicalId": "dm10-061",
+      "name": "電脳聖者エストール",
+      "faces": [
+        {
+          "name": "電脳聖者エストール",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/光",
+          "civilizations": [
+            "光",
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を裏向きのまま自分のシールドに加え、相手のシールドを１枚見てから元の場所に戻す。",
+          "race": "イニシエート/リキッド・ピープル",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy3-005",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy3-005.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "c98fdd3d33e436f4f6e252df8a7182cd6c74c4de9e8041bd73a258b6d12a08b1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc64-022",
+      "canonicalId": "dm31-012",
+      "name": "大邪眼バルクライ王",
+      "faces": [
+        {
+          "name": "大邪眼バルクライ王",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "進化-自分のダークロード１体の上に置く。\nこのクリーチャーが攻撃する時、進化ではないダークロードを１体、自分の墓地からバトルゾーンに出してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ダークロード/ナイト",
+          "powerText": "11000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc64-022",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc64-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "85c74f1b4c82201973027fc5887818e650bdc001cd0ef24b8be0df21570e413e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm10-061": 4,
+      "dm32-007": 4,
+      "dm31-012": 4,
+      "dm14-s09": 4,
+      "promoy3-005": 4,
+      "dmc64-022": 4
+    }
+  }
+}

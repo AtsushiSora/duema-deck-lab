@@ -3391,6 +3391,27 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=958&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(['dm10-061','promoy3-005'].includes(d.id)&&f.typeText==='クリーチャー'&&text===
+   'マナゾーンに置く時このカードはタップして置く。このクリーチャーをバトルゾーンに出した時自分の山札の上から1枚目を裏向きのまま自分のシールドに加え相手のシールドを1枚見てから元の場所に戻す。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'ShieldTop',n:1},{op:'Peek585',who:'opponent'}]};
+  if(f.typeText==='進化クリーチャー'){
+   const evolve=race=>'進化-自分の'+race+'1体の上に置く。';
+   const double='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
+   if(d.id==='dm32-007'&&text===evolve('アーマード・ドラゴン')+
+    '相手のクリーチャーが攻撃する時相手は自分自身のパワー7000以下のクリーチャーを1体選び破壊する。'+double)
+    return {evolution:{race:'アーマード・ドラゴン'},breaker:2,g252AttackWatch:{who:'opponent',
+     defs:[{op:'OpponentSelect',n:1,to:'grave',filter:{maxPower:7000,g199Power:true}}]}};
+   if(['dm31-012','dmc64-022'].includes(d.id)&&text===evolve('ダークロード')+
+    'このクリーチャーが攻撃する時進化ではないダークロードを1体自分の墓地からバトルゾーンに出してもよい。'+double)
+    return {evolution:{race:'ダークロード'},breaker:2,g34Attack:[{op:'Select',origin:'grave',n:1,
+     deploy:true,optional:true,filter:{creature:true,nonEvolution:true,race:'ダークロード'}}]};
+   if(d.id==='dm14-s09'&&text===evolve('ミステリー・トーテム')+
+    '誰もこのクリーチャーがブレイクしたシールドの「S・トリガー」を使うことはできない。T・ブレイカー(このクリーチャーはシールドを3枚ブレイクする)')
+    return {evolution:{race:'ミステリー・トーテム'},breaker:3,g122NoST:true};
+  }
+ }
  if(phase>=957&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const races={

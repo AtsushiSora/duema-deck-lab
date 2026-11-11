@@ -198162,26 +198162,151 @@
       },
       "supportBatch": "phase-957",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm10-061",
+      "name": "電脳聖者エストール",
+      "civ": "光/水",
+      "civilizations": [
+        "光",
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2000,
+      "race": "イニシエート/リキッド・ピープル",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nこのクリーチャーをバトルゾーンに出した時、自分の山札の上から１枚目を裏向きのまま自分のシールドに加え、相手のシールドを１枚見てから元の場所に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-061",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "ShieldTop",
+          "n": 1
+        },
+        {
+          "op": "Peek585",
+          "who": "opponent"
+        }
+      ],
+      "supportBatch": "phase-958",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm32-007",
+      "name": "超竜バシュミカヅチ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 8000,
+      "race": "アーマード・ドラゴン/オリジン",
+      "text": "進化-自分のアーマード・ドラゴン１体の上に置く。\n相手のクリーチャーが攻撃する時、相手は自分自身のパワー7000以下のクリーチャーを１体選び、破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm32-007",
+      "limit": 4,
+      "evolution": {
+        "race": "アーマード・ドラゴン"
+      },
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "opponent",
+        "defs": [
+          {
+            "op": "OpponentSelect",
+            "n": 1,
+            "to": "grave",
+            "filter": {
+              "maxPower": 7000,
+              "g199Power": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-958",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm31-012",
+      "name": "大邪眼バルクライ王",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 11000,
+      "race": "ダークロード/ナイト",
+      "text": "進化-自分のダークロード１体の上に置く。\nこのクリーチャーが攻撃する時、進化ではないダークロードを１体、自分の墓地からバトルゾーンに出してもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm31-012",
+      "limit": 4,
+      "evolution": {
+        "race": "ダークロード"
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "race": "ダークロード"
+          }
+        }
+      ],
+      "supportBatch": "phase-958",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm14-s09",
+      "name": "闘匠メサイヤ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 13000,
+      "race": "ミステリー・トーテム",
+      "text": "進化-自分のミステリー・トーテム１体の上に置く。\n誰も、このクリーチャーがブレイクしたシールドの｢S・トリガー｣を使うことはできない。\nT・ブレイカー(このクリーチャーはシールドを３枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-s09",
+      "limit": 4,
+      "evolution": {
+        "race": "ミステリー・トーテム"
+      },
+      "breaker": 3,
+      "g122NoST": true,
+      "supportBatch": "phase-958",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 957,
+    "phase": 958,
     "checkedAt": "2026-11-11",
-    "baseCount": 6754,
-    "newEffectCards": 3,
+    "baseCount": 6757,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6757,
+    "totalCount": 6761,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37617/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37618/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37619/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37620/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37621/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37622/",
-      "https://dm.takaratomy.co.jp/rule/qa/42962/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35655/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35186/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37424/",
+      "https://dm.takaratomy.co.jp/rule/qa/46493/",
+      "https://dm.takaratomy.co.jp/rule/qa/31530/",
+      "https://dm.takaratomy.co.jp/rule/qa/42533/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
+      "https://dm.takaratomy.co.jp/rule/qa/40689/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37421/",
+      "https://dm.takaratomy.co.jp/rule/qa/40693/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -215352,6 +215477,29 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/35510/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31650/",
           "https://dm.takaratomy.co.jp/rule/rulechange/316640/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 957,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6754,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6757,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37617/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37618/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37619/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37620/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37621/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37622/",
+          "https://dm.takaratomy.co.jp/rule/qa/42962/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35655/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
