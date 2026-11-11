@@ -1,0 +1,254 @@
+{
+  "phase": 936,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6679,
+  "description": "攻撃時に進化元のカード1枚を任意で手札に加える処理、相手の呪文に誘発するドリームメイトのサーチ、自分のターンの種族別登場履歴を参照する自壊に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/40193/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35446/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35450/"
+  ],
+  "cards": [
+    {
+      "id": "dm19-035",
+      "name": "大菜王ゴッド・バナナーン",
+      "faces": [
+        {
+          "name": "大菜王ゴッド・バナナーン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分のワイルド・ベジーズ１体の上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚、自分の手札に加えてもよい。\nW・ブレイカー",
+          "race": "ワイルド・ベジーズ",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-035",
+      "spec": {
+        "evolution": {
+          "race": "ワイルド・ベジーズ"
+        },
+        "breaker": 2,
+        "g34Attack": [
+          {
+            "op": "StackHand936"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-035.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "5af1a83aada4422c57ac16e50bc841181f91a6f0d182cf45e87fd73bb524842a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm20-018",
+      "name": "大作家チューデルセン",
+      "faces": [
+        {
+          "name": "大作家チューデルセン",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分のドリームメイト１体の上に置く。\n相手が呪文を唱えた時、自分の山札を見る。その中からドリームメイトを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ドリームメイト",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-018",
+      "spec": {
+        "evolution": {
+          "race": "ドリームメイト"
+        },
+        "breaker": 2,
+        "g204SpellWatch": {
+          "who": "opponent",
+          "defs": [
+            {
+              "op": "Look",
+              "g201Search": true,
+              "g200Search": true,
+              "n": "all",
+              "rest": "shuffle",
+              "stages": [
+                {
+                  "n": 1,
+                  "to": "hand",
+                  "optional": true,
+                  "reveal": true,
+                  "filter": {
+                    "creature": true,
+                    "race": "ドリームメイト"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "0ddf2724b67e76079e31841ca6f08bcaf2021358d7d03458a500ddc281302c2c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm20-034",
+      "name": "ホップステップ・バッタン",
+      "faces": [
+        {
+          "name": "ホップステップ・バッタン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のターン中に自分のドリームメイトかビークル・ビーをバトルゾーンに出していなければ、そのターンの終わりに、このクリーチャーを破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ビークル・ビー",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-034",
+      "spec": {
+        "breaker": 2,
+        "g174End": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g936NoDreamOrVehicleEntry": true
+            },
+            "defs": [
+              {
+                "op": "SelfDestroy"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm20-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "2cf9b5bb108c220697cb9948b3133035bc134fd0667733be205777c8a7f78b97",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmc41-009",
+      "canonicalId": "dm20-034",
+      "name": "ホップステップ・バッタン",
+      "faces": [
+        {
+          "name": "ホップステップ・バッタン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のターン中に自分のドリームメイトかビークル・ビーをバトルゾーンに出していなければ、そのターンの終わりに、このクリーチャーを破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ビークル・ビー",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc41-009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc41-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "bd27823bc7e9e7755af2d25375e3bc139e0f915b039588a26f5321e2611421f4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc55-061",
+      "canonicalId": "dm20-034",
+      "name": "ホップステップ・バッタン",
+      "faces": [
+        {
+          "name": "ホップステップ・バッタン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のターン中に自分のドリームメイトかビークル・ビーをバトルゾーンに出していなければ、そのターンの終わりに、このクリーチャーを破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ビークル・ビー",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc55-061",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc55-061.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "6b9ac14cf0a07fb25d91f78521615044de85ec0023b190fb32f244ab2b257dfc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy5-043",
+      "canonicalId": "dm20-034",
+      "name": "ホップステップ・バッタン",
+      "faces": [
+        {
+          "name": "ホップステップ・バッタン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のターン中に自分のドリームメイトかビークル・ビーをバトルゾーンに出していなければ、そのターンの終わりに、このクリーチャーを破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ビークル・ビー",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy5-043",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy5-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "470d304830ebd439cab43a534470cd0a65e1be876215fa0f4d493a8536292b78",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm19-035": 4,
+      "dm20-018": 4,
+      "dm20-034": 4,
+      "dmc41-009": 4,
+      "dmc55-061": 4,
+      "promoy5-043": 4
+    }
+  }
+}

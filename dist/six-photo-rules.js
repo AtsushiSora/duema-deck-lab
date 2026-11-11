@@ -367,6 +367,7 @@ export function createSixPhotoRules(api){
    return powers[p].filter(n=>n===highest).length===1&&!powers[1-p].includes(highest);
   }
   if(f.g837NoManaAdded)return s.g837ManaAddedTurn?.[p]!==s.turn;
+  if(f.g936NoDreamOrVehicleEntry)return s.g936DreamOrVehicleEntryTurn!==s.turn;
   if(f.g834AnyEmptyHand)return s.players.some(player=>player.hand.length===0);
   if(f.g811ManaLeft)return s.g47ManaLeft?.[p]===s.turn;
   if(f.g792AbsentAlly)return !s.players[p].battle.some(x=>!x.sealed&&!x.faceDown&&api.isCreature(s,x)&&effective(x,s).name===f.g792AbsentAlly);
@@ -2087,9 +2088,11 @@ export function createSixPhotoRules(api){
   }else release(s,t.p,uid);
   break;
  }
+ case'g34_StackHand936':
  case'g34_StackShieldGrave651':{
   const host=sourceHost474(s,t),under=host&&!host.x.sealed&&api.isCreature(s,host.x)?(host.x.under||[]).flatMap(api.allLayers):[];
-  if(under.length)choice(s,t,'下から墓地に置くカードを1枚選ぶ（任意）',[
+  const destination=t.op==='g34_StackHand936'?'手札に加える':'墓地に置く';
+  if(under.length)choice(s,t,'下から'+destination+'カードを1枚選ぶ（任意）',[
    ...under.map(y=>opt(y.faceDown?'裏向きのカード':card(y).name,{uid:y.uid,incarnation:y.incarnation||0},10,y.faceDown?undefined:y.cardId)),skip()
   ]);
   break;
@@ -3093,11 +3096,16 @@ export function createSixPhotoRules(api){
   api.deckCheck(s,t.p);
   break;
  }
+ case'g34_StackHand936':
  case'g34_StackShieldGrave651':if(v){
   const host=sourceHost474(s,t);
   if(!host||host.x.sealed||!api.isCreature(s,host.x))break;
   const paid=(host.x.under||[]).flatMap(api.allLayers).find(y=>y.uid===v.uid&&(y.incarnation||0)===v.incarnation);
   if(!paid)break;
+  if(t.op==='g34_StackHand936'){
+   api.moveBattleCard(s,host.p,paid.uid,'hand',{controller:t.p});
+   break;
+  }
   api.moveBattleCard(s,host.p,paid.uid,'grave',{controller:t.p});
   if(s.players[host.p].grave.some(y=>y.uid===paid.uid))put(s,{...t,op:'g34_ShieldGrave588',n:1,required:true});
  }break;
@@ -4043,6 +4051,10 @@ export function createSixPhotoRules(api){
   }
  },
  observedEntry(s,p,y,options){
+  if(p===s.active&&s.g936DreamOrVehicleEntryTurn!==s.turn&&!y.sealed&&api.isCreature(s,y)){
+   const entered=effective(y,s,true);
+   if(race(entered,'ドリームメイト')||race(entered,'ビークル・ビー'))s.g936DreamOrVehicleEntryTurn=s.turn;
+  }
   // Graveyard abilities observe the entrant's current power, before any later attachment or entry ability.
   const gravePowerWatchers=s.players[p].grave.filter(x=>!x.faceDown&&card(x).g901GraveEntryPower!==undefined);
   if(gravePowerWatchers.length&&!y.sealed&&api.isCreature(s,y)){

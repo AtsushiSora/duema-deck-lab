@@ -3388,6 +3388,21 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=936&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText),breaker='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
+  if(d.id==='dm19-035'&&f.typeText==='進化クリーチャー'&&text===
+   '進化-自分のワイルド・ベジーズ1体の上に置く。メテオバーン-このクリーチャーが攻撃する時このクリーチャーの下にあるカードを1枚自分の手札に加えてもよい。W・ブレイカー')
+   return {evolution:{race:'ワイルド・ベジーズ'},breaker:2,g34Attack:[{op:'StackHand936'}]};
+  if(d.id==='dm20-018'&&f.typeText==='進化クリーチャー'&&text===
+   '進化-自分のドリームメイト1体の上に置く。相手が呪文を唱えた時自分の山札を見る。その中からドリームメイトを1体選び相手に見せてから自分の手札に加えてもよい。その後山札をシャッフルする。'+breaker)
+   return {evolution:{race:'ドリームメイト'},breaker:2,g204SpellWatch:{who:'opponent',defs:[
+    {op:'Look',g201Search:true,g200Search:true,n:'all',rest:'shuffle',
+     stages:[{n:1,to:'hand',optional:true,reveal:true,filter:{creature:true,race:'ドリームメイト'}}]}
+   ]}};
+  if(['dm20-034','dmc41-009','dmc55-061','promoy5-043'].includes(d.id)&&f.typeText==='クリーチャー'&&text===
+   '自分のターン中に自分のドリームメイトかビークル・ビーをバトルゾーンに出していなければそのターンの終わりにこのクリーチャーを破壊する。'+breaker)
+   return {breaker:2,g174End:[{op:'IfOwn',filter:{g936NoDreamOrVehicleEntry:true},defs:[{op:'SelfDestroy'}]}]};
+ }
  if(phase>=935&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm17-032'&&f.typeText==='呪文'&&text===

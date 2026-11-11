@@ -195740,23 +195740,126 @@
       ],
       "supportBatch": "phase-935",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm19-035",
+      "name": "大菜王ゴッド・バナナーン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 6000,
+      "race": "ワイルド・ベジーズ",
+      "text": "進化-自分のワイルド・ベジーズ１体の上に置く。\nメテオバーン - このクリーチャーが攻撃する時、このクリーチャーの下にあるカードを１枚、自分の手札に加えてもよい。\nW・ブレイカー",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-035",
+      "limit": 4,
+      "evolution": {
+        "race": "ワイルド・ベジーズ"
+      },
+      "breaker": 2,
+      "g34Attack": [
+        {
+          "op": "StackHand936"
+        }
+      ],
+      "supportBatch": "phase-936",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm20-018",
+      "name": "大作家チューデルセン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "ドリームメイト",
+      "text": "進化-自分のドリームメイト１体の上に置く。\n相手が呪文を唱えた時、自分の山札を見る。その中からドリームメイトを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-018",
+      "limit": 4,
+      "evolution": {
+        "race": "ドリームメイト"
+      },
+      "breaker": 2,
+      "g204SpellWatch": {
+        "who": "opponent",
+        "defs": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "rest": "shuffle",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "creature": true,
+                  "race": "ドリームメイト"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-936",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm20-034",
+      "name": "ホップステップ・バッタン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 7000,
+      "race": "ビークル・ビー",
+      "text": "自分のターン中に自分のドリームメイトかビークル・ビーをバトルゾーンに出していなければ、そのターンの終わりに、このクリーチャーを破壊する。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm20-034",
+      "limit": 4,
+      "breaker": 2,
+      "g174End": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g936NoDreamOrVehicleEntry": true
+          },
+          "defs": [
+            {
+              "op": "SelfDestroy"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-936",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 935,
+    "phase": 936,
     "checkedAt": "2026-11-11",
-    "baseCount": 6676,
+    "baseCount": 6679,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6679,
+    "totalCount": 6682,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35386/",
-      "https://dm.takaratomy.co.jp/rule/qa/39761/",
-      "https://dm.takaratomy.co.jp/rule/qa/43361/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35391/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35392/"
+      "https://dm.takaratomy.co.jp/rule/qa/40193/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35446/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35450/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -212472,6 +212575,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/43462/",
           "https://dm.takaratomy.co.jp/rule/qa/42077/",
           "https://dm.takaratomy.co.jp/rule/qa/48113/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 935,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6676,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6679,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35386/",
+          "https://dm.takaratomy.co.jp/rule/qa/39761/",
+          "https://dm.takaratomy.co.jp/rule/qa/43361/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35391/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35392/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
