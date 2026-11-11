@@ -3388,6 +3388,22 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=932&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クロスギア'){
+  const cross='クロスギア:このカードをバトルゾーンに置く。クリーチャーにクロスするにはこのカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れてもこのカードはバトルゾーンに残る。';
+  const text=normalize(f.abilityText);
+  const slayer='このカードがどのクリーチャーにもクロスされていない時バトルゾーンにあるクリーチャーはすべて「スレイヤー」を得る。';
+  const recover='これをクロスしたクリーチャーが攻撃する時クリーチャーを1体自分の墓地から';
+  if(d.id==='dm16-014'&&text===cross+recover+'自分の手札に戻してもよい。'+slayer||
+     d.id==='dmc42-028'&&text===cross+slayer+recover+'手札に戻してもよい。')
+   return {type:'gear',g932UncrossedSlayer:true,g931CrossAttack:[{op:'Select',origin:'grave',to:'hand',n:1,optional:true,
+    filter:{creature:true},title:'手札に戻す自分の墓地のクリーチャーを1体選ぶ（任意）'}]};
+  if(d.id==='dm16-017'&&text===cross+
+   'これをクロスしたクリーチャーは「パワーアタッカー+4000」を得る。このカードがどのクリーチャーにもクロスされていない時バトルゾーンにあるクリーチャーはすべて「スピードアタッカー」を得る。')
+   return {type:'gear',g932UncrossedSpeed:true,g932CrossAttackBonus:4000};
+  if(d.id==='dm16-019'&&text===cross+
+   'これをクロスしたクリーチャーのパワーは+3000される。このカードがどのクリーチャーにもクロスされていない時自分のクリーチャーを召喚する時支払うコストは1少なくなる。ただしコストは1より少なくならない。')
+   return {type:'gear',g123CrossPower:3000,g932SummonDiscount:true};
+ }
  if(phase>=931&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クロスギア'&&
   ['dm15-055','promoy4-013'].includes(d.id)&&normalize(f.abilityText)===
   'クロスギア:このカードをバトルゾーンに置く。クリーチャーにクロスするにはこのカードのコストをもう一度支払う。そのクリーチャーがバトルゾーンを離れてもこのカードはバトルゾーンに残る。これをクロスしたクリーチャーが攻撃する時カードを1枚自分の墓地から自分のマナゾーンに置いてもよい。')

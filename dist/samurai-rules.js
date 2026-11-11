@@ -107,6 +107,24 @@ export function createSamuraiRules(api){
  effect(s,p,c,uid,entry){const op={samuraiBui:'g18_Bui',samuraiMusashi:'g18_Musashi',samuraiMekraid:'g18_Mekraid',samuraiFlash:'g18_Flash'}[c.effect];if(!op)return false;put(s,task(op,p,c.id,{uid,incarnation:entry?.incarnation||0}));return true;},
  cleanup(s){for(const p of[0,1])for(const g of gears(s,p))if(g.crossedTo&&!live(s,p,g))delete g.crossedTo;},
  inherit(s,base,x){if(base.g18Blocker)x.g18Blocker=structuredClone(base.g18Blocker);for(const p of[0,1])for(const g of attached(s,p,base))g.crossedTo={uid:x.uid,incarnation:x.incarnation||0};},
+ decorate932(s,p,x,c){
+  if(c.type!=='creature')return c;
+  let speed=false,slayers=0,attackBonus=0;
+  for(const owner of [p,1-p])for(const g of s.players[owner].battle){
+   const def=card(g);
+   if((!def.g932UncrossedSpeed&&!def.g932UncrossedSlayer)||g.faceDown||!active(s,g))continue;
+   const host=live(s,owner,g);
+   if(!host){speed||=!!def.g932UncrossedSpeed;slayers+=Number(!!def.g932UncrossedSlayer);}
+   else if(owner===p&&host.uid===x.uid&&(host.incarnation||0)===(x.incarnation||0))attackBonus+=def.g932CrossAttackBonus||0;
+  }
+  if(speed&&!c.speedAttacker)c={...c,speedAttacker:true};
+  if(slayers)c={...c,slayer:true,g208SlayerCount:(c.slayer?c.g208SlayerCount||1:0)+slayers};
+  if(attackBonus)c={...c,attackBonus:(c.attackBonus||0)+attackBonus};
+  return c;
+ },
+ summonDiscount932(s,p,c){
+  return c.type==='creature'?gears(s,p).filter(g=>card(g).g932SummonDiscount&&!g.faceDown&&active(s,g)&&!live(s,p,g)).length:0;
+ },
  discount(s,p,c){
   const all=gears(s,p).filter(x=>active(s,x));
   const gearReducers=c.type==='gear'?creatures(s,p).filter(x=>card(x).g856GearDiscount&&active(s,x)).length:0;
@@ -114,7 +132,7 @@ export function createSamuraiRules(api){
    Math.min(optionalReducers(s,p,c),c.g18Reducers??Infinity);
  },
  speed(s,p,x){const c=card(x);return c.type==='creature'&&(samurai(c)&&creatures(s,p).some(y=>!api.ignored(s,y)&&card(y).samuraiSpeed)||(dragon(c)||samurai(c))&&gears(s,p).some(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((q)=>dragon(q)||samurai(q))(card(live(s,p,g)))));},
- power(s,p,x,c){if(p<0||!api.isCreature(s,x))return 0;return (x.sealed?0:crossedRacePower(s,c))+attached(s,p,x).filter(g=>active(s,g)).reduce((n,g)=>n+(card(g).g123CrossPower||0),0)+attached(s,p,x).filter(g=>card(g).takion&&active(s,g)).length*1000+((dragon(card(x))||samurai(card(x)))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((c)=>dragon(c)||samurai(c))(card(live(s,p,g)))).length*2000:0);},
+ power(s,p,x,c){if(p<0||!api.isCreature(s,x))return 0;return (x.sealed?0:crossedRacePower(s,c))+attached(s,p,x).filter(g=>!g.faceDown&&active(s,g)).reduce((n,g)=>n+(card(g).g123CrossPower||0),0)+attached(s,p,x).filter(g=>card(g).takion&&active(s,g)).length*1000+((dragon(card(x))||samurai(card(x)))?gears(s,p).filter(g=>card(g).zangeki&&active(s,g)&&live(s,p,g)&&((c)=>dragon(c)||samurai(c))(card(live(s,p,g)))).length*2000:0);},
  entry(s,p,x,options){
   const c=card(x);
   if(!options.selfMuted&&!api.selfStopped(s,p)&&!api.ignored(s,x)){
@@ -136,7 +154,7 @@ export function createSamuraiRules(api){
    if(!active(s,g))continue;
    const gear=card(g);
    if(gear.doss)on(s,p,g,'g18_Mekraid');
-   if(gear.g931CrossAttack)on(s,p,g,'g34_Sequence',{defs:gear.g931CrossAttack});
+   if(gear.g931CrossAttack&&!g.faceDown)on(s,p,g,'g34_Sequence',{defs:gear.g931CrossAttack});
    if(gear.g930CrossAttack)on(s,p,g,'g34_Offer',{
     title:'山札の上から4枚を見る？',defs:gear.g930CrossAttack,score:s.players[p].deck.length>1?10:-1000
    });

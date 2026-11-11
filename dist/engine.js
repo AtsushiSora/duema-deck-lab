@@ -216,6 +216,7 @@ export function effectiveCard(inst,context,forPower=false){
  c=extra.utilityTop.decorate(context,owner,inst,c);
  c=extra.six.grantAuras(context,owner,inst,externalBlockState(context,owner,inst,extra.utilityNatureSupport.decorate(context,owner,inst,extra.utilityGuard.decorate(context,owner,inst,extra.saga.decorate(context,owner,inst,extra.combat.decorate(context,owner,inst,extra.firebird.decorate(context,owner,inst,extra.history.decorate(context,owner,inst,extra.continuation.decorate(context,owner,inst,extra.six.decorate(context,owner,inst,extra.shieldPhoto.decorate(context,owner,inst,extra.photo.decorate(context,owner,inst,c))))))))))));
  c=decorateSurvivor406(context,owner,inst,c,{card,ignored:abilitiesIgnored,isCreature});
+ c=extra.samuraiDecorate932(context,owner,inst,c);
  if(c.type==='creature'&&c.speedAttacker){
   // Evaluate after all speed-attacker grants, without decorating the aura sources.
   for(const source of context.players[owner].battle){
@@ -884,15 +885,16 @@ function baseSummonCost297(s,p,c){
  const base=c.g29BT?Math.max(3,costValue(c)+tax-s.players.reduce((n,p)=>n+p.battle.filter(x=>isCreature(s,x)).length,0)):c.graveSpellReduction?Math.max(2,costValue(c)+tax-s.players[p].grave.filter(x=>playFaces(card(x)).some(c=>c.type==='spell')).length):extra.golgy.baseCost(s,p,c)+tax;
  const rupias=extra.utilityTop.rupias(s,p,c);
  const beforeMinimum=extra.six.floorCost500(s,p,c,base)-2*rupias-(c.g40Reduction||0)-(c.g39Reduction||0)-extra.six.discount(s,p,c)-extra.shieldPhoto.discount(s,p,c)-extra.phoenix.discount(s,p,c)-extra.mado.discount(s,p,c)-(c.g29Arc&&s.players[p].battle.some(x=>isCreature(s,x)&&String(effectiveCard(x,s).race).includes('アーマード'))?1:0)-(c.type==='creature'&&String(c.race).includes('ドラゴン')?s.players[p].battle.filter(x=>effectiveCard(x,s).g29Bird).length:0)-extra.golgy.discount(s,p,c)-extra.virideDiscount(s,p,c)-graveReduction-creatureSympathy-(c.madoMomo&&s.players[p].grave.filter(x=>card(x).type!=='creature').length>=4?90:0)-(c.type==='spell'?s.players[p].battle.filter(x=>effectiveCard(x,s).kurokami).length:0)-(c.opponentCreatureReduction?s.players[1-p].battle.filter(x=>isCreature(s,x)).length:0)-(c.manaSympathy?s.players[p].mana.length:0)-extra.abyssDiscount(s,p,c)-extra.samuraiDiscount(s,p,c)-extra.giantDiscount(s,p,c)-extra.hunterDiscount(s,p,c)-extra.armoredDiscount(s,p,c)-extra.magicDiscount(s,p,c)-extra.mechaDiscount(s,p,c)-extra.granDiscount(s,p,c)-(c.gio?c.gioRevealCount||0:0)-(c.gggReduction&&s.players[p].hand.length<=1?c.gggReduction:0)-extra.raceDiscount(s,p,c)-(c.type==='creature'?extra.nextDiscount(s,p):0)-(reduce?3:0)-gaia-(c.costReduction==='allCreatures'?s.players.reduce((n,p)=>n+p.battle.filter(x=>isCreature(s,x)).length,0):0);
+ const gearDiscount=extra.samuraiSummonDiscount932(s,p,c);
  const aura=extra.six.summonAuraDiscount290(s,p,c);
  const laterReduction=extra.six.sympathyDiscount211(s,p,c)+extra.six.countDiscount212(s,p,c)+extra.six.conditionalDiscount261(s,p,c)+extra.utilityControl.firstSpellDiscount(s,p,c)+aura.amount+extra.six.firstSummonDiscount463(s,p,c)+extra.six.onceDiscount464(s,p,c)+extra.six.spellDiscount467(s,p,c)+extra.six.useDiscount468(s,p,c)+extra.six.revealDiscount470(s,p,c)+extra.six.untapDiscount472(s,p,c);
  // A printed zero costs nothing until a reduction with a positive minimum applies (QA40378).
- if(costValue(c)===0&&base===0&&beforeMinimum===0&&laterReduction===0)return 0;
+ if(costValue(c)===0&&base===0&&beforeMinimum===0&&laterReduction===0&&!gearDiscount)return 0;
  // A minimum from another applied reduction still applies (QA39980).
- if(aura.zeroAmount>0&&beforeMinimum===base&&laterReduction===aura.zeroAmount)
+ if(aura.zeroAmount>0&&beforeMinimum===base&&laterReduction===aura.zeroAmount&&!gearDiscount)
   return Math.max(0,base-aura.zeroAmount);
- const reduced=Math.max(rupias||c.graveSpellReduction?2:1,beforeMinimum);
- return Math.max(c.g212CountDiscount?.minimum===0?0:1,reduced-laterReduction);
+ const reduced=Math.max(rupias||c.graveSpellReduction?2:1,beforeMinimum-gearDiscount);
+ return Math.max(c.g212CountDiscount?.minimum===0&&!gearDiscount?0:1,reduced-laterReduction);
 }
 // These printed color-granting abilities do not depend on creature power or stealth.
 // Reading them without decorating the whole board avoids a cycle through stealth.
