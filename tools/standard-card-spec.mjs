@@ -3445,6 +3445,17 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=902&&creature&&d.faces.length===1){
+  if(d.id==='dmrp17-032'&&compact363===
+   '自分のターンの終わりにこのクリーチャーをタップしてもよい。そうしたら自分の他のクリーチャーを1体アンタップする。ササゲール1(ディスペクターを召喚する時コストを1少なくしてもよい。そうしたらこのクリーチャーを破壊する。そのディスペクターのコストは0以下にはならない)')
+   return {sasage:1,g174End:[{op:'TapToUntap748',otherAlly:true}]};
+  if(d.id==='dmrp17-001'&&compact363===
+   '自分の進化クリーチャーの召喚コストを1少なくする。ただしコストは0以下にはならない。このクリーチャーが出た時次の自分のターンのはじめまでこのクリーチャーは離れない。シンカパワー:このクリーチャーが進化する時次の自分のターンのはじめまで相手はコスト4以下の呪文を唱えられない。')
+   return {evolutionReduction:1,effect:'sixPhoto',g34Tasks:[{op:'Stay627'}],g397Shinka:[{op:'SpellLock489',max:4,expires:'start'}]};
+  if(d.id==='dmrp10-069'&&compact363===
+   'このクリーチャーが破壊される時裏向きにして新しいシールドとして自分のシールドゾーンに置く。')
+   return {g842DestroyShield:true};
+ }
  if(phase>=901&&creature&&d.faces.length===1){
   if(d.id==='dmrp17-041'&&compact363===
    'シールド・セイバー(自分のシールドがブレイクされる時かわりにこのクリーチャーを破壊してもよい)自分のパワー6000以上のクリーチャーが出た時このクリーチャーを自分の墓地から手札に戻す。')

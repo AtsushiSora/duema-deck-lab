@@ -1301,7 +1301,13 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_TapToUntap748':{
-  if(!tapSource748(s,t))break;
+  const source=tapSource748(s,t);
+  if(!source)break;
+  if(t.otherAlly){
+   const hasTappedAlly=creatures(s,t.p).some(ally=>ally!==source&&!ally.sealed&&ally.tapped&&api.canUntap(ally));
+   choice(s,t,'このクリーチャーをタップして他の味方をアンタップする？',[opt('タップする',true,hasTappedAlly?20:-10),skip()]);
+   break;
+  }
   const target=attackHost408(s,t),score=target?.tapped&&api.canUntap(target)&&!target.sealed?20:-10;
   const subject=t.g758Attack?'攻撃クリーチャー':'バトルに勝ったグレートメカオー';
   choice(s,t,'このクリーチャーをタップして'+subject+'をアンタップする？',[opt('タップする',true,score),skip()]);
@@ -2821,6 +2827,10 @@ export function createSixPhotoRules(api){
   const source=v&&tapSource748(s,t);
   if(source){
    api.tap(s,t.p,source);
+   if(t.otherAlly){
+    if(source.tapped)start(s,t,[{op:'Target',owner:'self',g179Other:true,untap:true,title:'アンタップする他の味方を選ぶ'}]);
+    break;
+   }
    const winner=attackHost408(s,t);
    if(source.tapped&&winner&&!winner.sealed&&api.isCreature(s,winner))api.untap(s,t.p,winner);
   }

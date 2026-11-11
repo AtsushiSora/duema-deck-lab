@@ -1,0 +1,139 @@
+{
+  "phase": 902,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6571,
+  "description": "ササゲールとターン終了時の自己タップ、進化軽減・離脱禁止・呪文制限、破壊時のシールド化に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/39542/",
+    "https://dm.takaratomy.co.jp/rule/qa/40928/",
+    "https://dm.takaratomy.co.jp/rule/qa/40239/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316678/",
+    "https://dm.takaratomy.co.jp/rule/qa/41176/",
+    "https://dm.takaratomy.co.jp/rule/qa/31609/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp17-032",
+      "name": "聖者 シュライ-１",
+      "faces": [
+        {
+          "name": "聖者 シュライ-１",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分のターンの終わりに、このクリーチャーをタップしてもよい。そうしたら、自分の他のクリーチャーを１体アンタップする。\nササゲール１（ディスペクターを召喚する時、コストを１少なくしてもよい。そうしたら、このクリーチャーを破壊する。そのディスペクターのコストは０以下にはならない）",
+          "race": "イニシエート/ディスタス",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-032",
+      "spec": {
+        "sasage": 1,
+        "g174End": [
+          {
+            "op": "TapToUntap748",
+            "otherAlly": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-032.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "0133dcfeea8ed4e59cef6fb4fd5530324abce76e95406eb485791ecfc771931d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp17-001",
+      "name": "「正義星帝」",
+      "faces": [
+        {
+          "name": "「正義星帝」",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "自分の進化クリーチャーの召喚コストを１少なくする。ただし、コストは０以下にはならない。\nこのクリーチャーが出た時、次の自分のターンのはじめまで、このクリーチャーは離れない。\nシンカパワー：このクリーチャーが進化する時、次の自分のターンのはじめまで、相手はコスト４以下の呪文を唱えられない。",
+          "race": "メタリカ/レクスターズ",
+          "powerText": "3500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp17-001",
+      "spec": {
+        "evolutionReduction": 1,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Stay627"
+          }
+        ],
+        "g397Shinka": [
+          {
+            "op": "SpellLock489",
+            "max": 4,
+            "expires": "start"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp17-001.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "686469503dc9fe63c6b5234903e2e486669e422adad4cfbac9e60afcb317bbc2",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp10-069",
+      "name": "鈍足の使徒アルナーシ",
+      "faces": [
+        {
+          "name": "鈍足の使徒アルナーシ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが破壊される時、裏向きにして、新しいシールドとして自分のシールドゾーンに置く。",
+          "race": "イニシエート",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp10-069",
+      "spec": {
+        "g842DestroyShield": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp10-069.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "f992f70a2fa7d71a27e41ffe5aad3592f90224efb13f564870740e70d2076c99",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp17-032": 4,
+      "dmrp17-001": 4,
+      "dmrp10-069": 4
+    }
+  }
+}

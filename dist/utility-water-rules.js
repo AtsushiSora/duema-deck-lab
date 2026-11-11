@@ -9,7 +9,14 @@ export function createUtilityWaterRules(api){
   if(c.neoEvolution)return c.g27BaseUid===undefined?api.evolutionBases(s,p,c).length>0:!!c.g27BaseUid;
   return !!(c.evolution||c.sMax||c.g48HandEvolution||c.g45MDeck||c.g50ForbiddenEvolution);
  }
- const reduction=(s,p,c)=>evolution(s,p,c)?Math.min(liveReduction(s,p,c),c.g52Reduction??Infinity):0;
+ function reduction(s,p,c){
+  if(!evolution(s,p,c))return 0;
+  const mandatory=creatures(s,p).reduce((total,source)=>{
+   if(source.sealed||!card(source).evolutionReduction)return total;
+   return total+(effective(source,s).evolutionReduction||0);
+  },0);
+  return mandatory+Math.min(liveReduction(s,p,c),c.g52Reduction??Infinity);
+ }
  function payment(s,p,args,n){const [uid,,base,face=0,alt,origin='hand']=args,x=s.players[p][origin]?.find(x=>x.uid===uid),c=x&&faces(card(x))[face];return c&&{...c,summonOrigin:x.g5Origin||origin,g27BaseUid:base,...(args[6]==='D・D・D'?{g28DDD:true}:{}),...(args[9]?{snowReducers:args[9]}:{}),...(args[10]?{gioRevealCount:args[10].length}:{}),...(args[11]?{magicReducers:args[11]}:{}),...(args[12]?{g7Payment:args[12]}:{}),...(args[13]!==null&&args[13]!==undefined?{g18Reducers:args[13]}:{}),...(args[14]!==null&&args[14]!==undefined?{g26Reducers:args[14]}:{}),...(args[15]!==null&&args[15]!==undefined?{g42Reduction:args[15]}:{}),...(alt===null||alt===undefined?{}:typeof alt==='object'?alt:{cost:alt}),g52Reduction:n};}
  function teleport(s,t){
   const selected=t.selected||[],all=[0,1].flatMap(p=>creatures(s,p)).filter(x=>!selected.some(y=>y.uid===x.uid));
