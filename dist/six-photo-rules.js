@@ -2701,6 +2701,11 @@ export function createSixPhotoRules(api){
  case'g34_OpponentDeploy779':put(s,{...t,op:'g34_Select',p:1-t.p,controller:t.controller??t.p,
   origin:'hand',deploy:true,n:1,optional:true,filter:{creature:true,max:3}});break;
  case'g34_OpponentOffer777':put(s,{...t,op:'g34_Offer',p:1-t.p});break;
+ case'g34_OfferBoth992':{
+  const offer={...t,op:'g34_Offer',p:s.active};
+  put(s,offer,{...offer,p:1-s.active});
+  break;
+ }
  case'g34_OpponentSelect':{
   const origin=t.origin||'battle',battle=origin==='battle';
   const action=t.tap?'タップする':t.to==='grave'?'破壊する':t.to==='hand'?'手札に戻す':'マナに置く';

@@ -3435,6 +3435,40 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=992&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(f.typeText==='呪文'&&d.id==='dmr14-051'&&
+   text==='G・ゼロ-バトルゾーンに自分の火のドラグナーがあればこの呪文をコストを支払わずに唱えてもよい。'+
+    'バトルゾーンにあるクリーチャーを1体選ぶ。このターンそのクリーチャーは「スピードアタッカー」を得種族にガイアール・コマンド・ドラゴンを追加する。(スピードアタッカーを得たクリーチャーは召喚酔いしない)')
+   return {g261Free:{filter:{g370BattleCount:{filter:{creature:true,color:'火',race:'ドラグナー'},min:1}},label:'G・ゼロ'},
+    effect:'sixPhoto',g34Tasks:[{op:'Target',anyOwner:true,spell:true,
+     grant:{speedAttacker:true,raceAdd:['ガイアール・コマンド・ドラゴン']},
+     title:'スピードアタッカーと種族を得るクリーチャーを1体選ぶ'}]};
+  if(f.typeText==='クリーチャー'){
+   const entry='このクリーチャーをバトルゾーンに出した時';
+   const loss='このクリーチャーがこのクリーチャーよりパワーの大きいクリーチャーとのバトルに負けた時';
+   const mana='クリーチャーを1体自分のマナゾーンからバトルゾーンに出してもよい。';
+   const deploy=(max,filter={})=>({op:'Select',origin:'mana',n:1,optional:true,deploy:true,
+    filter:{creature:true,nonEvolution:true,color:'自然',max,...filter}});
+   if(['dmr13-065','dmr13-065D','dmex02-004','dmex13-037'].includes(d.id)&&[
+    entry+'コスト4以下の進化ではない自然の',
+    entry+'自然のコスト4以下の進化ではない',
+    'このクリーチャーがバトルゾーンに出た時自然のコスト4以下の進化ではない'
+   ].some(prefix=>text===prefix+mana+loss+'バトル相手のクリーチャーを持ち主のマナゾーンに置く。'))
+    return {effect:'sixPhoto',g34Tasks:[deploy(4)],g968LossToLarger:true};
+   if(d.id==='dmr13-009'&&text===entry+'またはこのクリーチャーが攻撃する時コスト6以下の進化でも多色でもない自然の'+mana+
+    'W・ブレイカー'+loss+'相手クリーチャーを持ち主のマナゾーンに置く。')
+    return {breaker:2,effect:'sixPhoto',g34Tasks:[deploy(6,{g510NonMulticolor:true})],
+     g34Attack:[deploy(6,{g510NonMulticolor:true})],g968LossToLarger:true};
+   if(['dmr13-012','dmr13-012D'].includes(d.id)&&text===entry+
+    '各プレイヤーはそれぞれカードを2枚引いてもよい。その後自分はコスト3以下の光のクリーチャーを2体まで自分の手札からバトルゾーンに出してもよい。'+
+    'W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+    return {breaker:2,effect:'sixPhoto',g34Tasks:[
+     {op:'OfferBoth992',title:'カードを2枚引く？',defs:[{op:'Draw',n:2}]},
+     {op:'Select',origin:'hand',n:2,optional:true,deploy:true,filter:{creature:true,color:'光',max:3}}
+    ]};
+  }
+ }
  if(phase>=991&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const trigger='S・トリガーS・トリガー';

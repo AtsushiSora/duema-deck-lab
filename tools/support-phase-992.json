@@ -1,0 +1,368 @@
+{
+  "phase": 992,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6890,
+  "description": "自然のマナ展開とバトル敗北時のマナ送り、各プレイヤーの任意ドローと光の手札展開、暴龍警報のG・ゼロと一時強化を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/40535/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37164/",
+    "https://dm.takaratomy.co.jp/rule/qa/44602/"
+  ],
+  "cards": [
+    {
+      "id": "dmr13-065",
+      "name": "連鎖類大翼目 プテラトックス",
+      "faces": [
+        {
+          "name": "連鎖類大翼目 プテラトックス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、コスト４以下の進化ではない自然のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。\nこのクリーチャーが、このクリーチャーよりパワーの大きいクリーチャーとのバトルに負けた時、バトル相手のクリーチャーを持ち主のマナゾーンに置く。",
+          "race": "ジュラシック・コマンド・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-065",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "optional": true,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "color": "自然",
+              "max": 4
+            }
+          }
+        ],
+        "g968LossToLarger": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-065.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "908758e3dd54138fd0a5078a169ed304abc085058930b9774a7bd9914d056529",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-009",
+      "name": "連鎖類覇王目 ティラノヴェノム",
+      "faces": [
+        {
+          "name": "連鎖類覇王目 ティラノヴェノム",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 8,
+          "costText": "8",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、コスト６以下の、進化でも多色でもない自然のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。\nW・ブレイカー\nこのクリーチャーが、このクリーチャーよりパワーの大きいクリーチャーとのバトルに負けた時、相手クリーチャーを持ち主のマナゾーンに置く。",
+          "race": "ジュラシック・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-009",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "optional": true,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "color": "自然",
+              "max": 6,
+              "g510NonMulticolor": true
+            }
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "mana",
+            "n": 1,
+            "optional": true,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "color": "自然",
+              "max": 6,
+              "g510NonMulticolor": true
+            }
+          }
+        ],
+        "g968LossToLarger": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "7b8dc72c369fec978f5266543ef4e5f7160f6de311a0836bc3eaff275d334759",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-012",
+      "name": "導きの精霊龍 サリヴァン",
+      "faces": [
+        {
+          "name": "導きの精霊龍 サリヴァン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、各プレイヤーはそれぞれカードを２枚引いてもよい。その後、自分はコスト３以下の光のクリーチャーを２体まで、自分の手札からバトルゾーンに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-012",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "OfferBoth992",
+            "title": "カードを2枚引く？",
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 2
+              }
+            ]
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 2,
+            "optional": true,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "color": "光",
+              "max": 3
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "f01082481315b4e846ae1303aaf721c732700d5f5bfb56392cd2bbc16974df5a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-051",
+      "name": "暴龍警報",
+      "faces": [
+        {
+          "name": "暴龍警報",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "G・ゼロ - バトルゾーンに自分の火のドラグナーがあれば、この呪文をコストを支払わずに唱えてもよい。\nバトルゾーンにあるクリーチャーを１体選ぶ。このターン、そのクリーチャーは「スピードアタッカー」を得、種族にガイアール・コマンド・ドラゴンを追加する。（スピードアタッカーを得たクリーチャーは召喚酔いしない）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-051",
+      "spec": {
+        "g261Free": {
+          "filter": {
+            "g370BattleCount": {
+              "filter": {
+                "creature": true,
+                "color": "火",
+                "race": "ドラグナー"
+              },
+              "min": 1
+            }
+          },
+          "label": "G・ゼロ"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "spell": true,
+            "grant": {
+              "speedAttacker": true,
+              "raceAdd": [
+                "ガイアール・コマンド・ドラゴン"
+              ]
+            },
+            "title": "スピードアタッカーと種族を得るクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "86881f8265da8b88d97ea1c49cf4b29aae23b4fec51af0bc2cc0baee3a201181",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmr13-065D",
+      "canonicalId": "dmr13-065",
+      "name": "連鎖類大翼目 プテラトックス",
+      "faces": [
+        {
+          "name": "連鎖類大翼目 プテラトックス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、コスト４以下の進化ではない自然のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。\nこのクリーチャーが、このクリーチャーよりパワーの大きいクリーチャーとのバトルに負けた時、バトル相手のクリーチャーを持ち主のマナゾーンに置く。",
+          "race": "ジュラシック・コマンド・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-065D",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-065D.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "7639c2100cdc8d07842ba38ba0dd142d7042db5af71555c2d3ef057bf61d356c",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex02-004",
+      "canonicalId": "dmr13-065",
+      "name": "連鎖類大翼目 プテラトックス",
+      "faces": [
+        {
+          "name": "連鎖類大翼目 プテラトックス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自然のコスト４以下の進化ではないクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。\nこのクリーチャーが、このクリーチャーよりパワーの大きいクリーチャーとのバトルに負けた時、バトル相手のクリーチャーを持ち主のマナゾーンに置く。",
+          "race": "ジュラシック・コマンド・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex02-004",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex02-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "5fca93fc8d9573263dfeb99c8493246b5cac857a2a2da66780af331a2587a0d4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex13-037",
+      "canonicalId": "dmr13-065",
+      "name": "連鎖類大翼目 プテラトックス",
+      "faces": [
+        {
+          "name": "連鎖類大翼目 プテラトックス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自然のコスト４以下の進化ではないクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。\nこのクリーチャーが、このクリーチャーよりパワーの大きいクリーチャーとのバトルに負けた時、バトル相手のクリーチャーを持ち主のマナゾーンに置く。",
+          "race": "ジュラシック・コマンド・ドラゴン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex13-037",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex13-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "37349c7dd511e09510b4d0f0ddf4aa67802bf9b85ca2036519fd0690330c56a7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-012D",
+      "canonicalId": "dmr13-012",
+      "name": "導きの精霊龍 サリヴァン",
+      "faces": [
+        {
+          "name": "導きの精霊龍 サリヴァン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、各プレイヤーはそれぞれカードを２枚引いてもよい。その後、自分はコスト３以下の光のクリーチャーを２体まで、自分の手札からバトルゾーンに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-012D",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-012D.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "406b00ee1a07557ee3e24f6cd67b8db05ddc4bbfcd4f1d11c9af82282fb49e7c",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr13-065": 4,
+      "dmr13-009": 4,
+      "dmr13-012": 4,
+      "dmr14-051": 1,
+      "dmr13-065D": 4,
+      "dmex02-004": 4,
+      "dmex13-037": 4,
+      "dmr13-012D": 4
+    }
+  }
+}

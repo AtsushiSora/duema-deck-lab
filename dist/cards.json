@@ -202617,23 +202617,199 @@
       ],
       "supportBatch": "phase-991",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-065",
+      "name": "連鎖類大翼目 プテラトックス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 5000,
+      "race": "ジュラシック・コマンド・ドラゴン",
+      "text": "このクリーチャーをバトルゾーンに出した時、コスト４以下の進化ではない自然のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。\nこのクリーチャーが、このクリーチャーよりパワーの大きいクリーチャーとのバトルに負けた時、バトル相手のクリーチャーを持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-065",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "optional": true,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "color": "自然",
+            "max": 4
+          }
+        }
+      ],
+      "g968LossToLarger": true,
+      "supportBatch": "phase-992",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-009",
+      "name": "連鎖類覇王目 ティラノヴェノム",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 7000,
+      "race": "ジュラシック・コマンド・ドラゴン",
+      "text": "このクリーチャーをバトルゾーンに出した時、またはこのクリーチャーが攻撃する時、コスト６以下の、進化でも多色でもない自然のクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。\nW・ブレイカー\nこのクリーチャーが、このクリーチャーよりパワーの大きいクリーチャーとのバトルに負けた時、相手クリーチャーを持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-009",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "optional": true,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "color": "自然",
+            "max": 6,
+            "g510NonMulticolor": true
+          }
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "optional": true,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "color": "自然",
+            "max": 6,
+            "g510NonMulticolor": true
+          }
+        }
+      ],
+      "g968LossToLarger": true,
+      "supportBatch": "phase-992",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-012",
+      "name": "導きの精霊龍 サリヴァン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "このクリーチャーをバトルゾーンに出した時、各プレイヤーはそれぞれカードを２枚引いてもよい。その後、自分はコスト３以下の光のクリーチャーを２体まで、自分の手札からバトルゾーンに出してもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-012",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "OfferBoth992",
+          "title": "カードを2枚引く？",
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 2
+            }
+          ]
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 2,
+          "optional": true,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "color": "光",
+            "max": 3
+          }
+        }
+      ],
+      "supportBatch": "phase-992",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-051",
+      "name": "暴龍警報",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "G・ゼロ - バトルゾーンに自分の火のドラグナーがあれば、この呪文をコストを支払わずに唱えてもよい。\nバトルゾーンにあるクリーチャーを１体選ぶ。このターン、そのクリーチャーは「スピードアタッカー」を得、種族にガイアール・コマンド・ドラゴンを追加する。（スピードアタッカーを得たクリーチャーは召喚酔いしない）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-051",
+      "limit": 1,
+      "g261Free": {
+        "filter": {
+          "g370BattleCount": {
+            "filter": {
+              "creature": true,
+              "color": "火",
+              "race": "ドラグナー"
+            },
+            "min": 1
+          }
+        },
+        "label": "G・ゼロ"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "spell": true,
+          "grant": {
+            "speedAttacker": true,
+            "raceAdd": [
+              "ガイアール・コマンド・ドラゴン"
+            ]
+          },
+          "title": "スピードアタッカーと種族を得るクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-992",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 991,
+    "phase": 992,
     "checkedAt": "2026-11-12",
-    "baseCount": 6885,
-    "newEffectCards": 5,
+    "baseCount": 6890,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6890,
+    "totalCount": 6894,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35144/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37040/",
-      "https://dm.takaratomy.co.jp/rule/qa/46493/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37071/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37414/"
+      "https://dm.takaratomy.co.jp/rule/qa/40535/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37164/",
+      "https://dm.takaratomy.co.jp/rule/qa/44602/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -220500,6 +220676,26 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37163/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31430/",
           "https://dm.takaratomy.co.jp/rule/qa/42989/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 991,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6885,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 6890,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35144/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37040/",
+          "https://dm.takaratomy.co.jp/rule/qa/46493/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37071/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37414/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
