@@ -3435,6 +3435,45 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=1009&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const manaTap='マナゾーンに置く時このカードはタップして置く。';
+  const entry='このクリーチャーがバトルゾーンに出た時';
+  const breaker='W・ブレイカー';
+  if(d.id==='dmr23-s03'&&text===
+   '革命チェンジ:闇のコスト5以上のコマンド(自分の闇のコスト5以上のコマンドが攻撃する時そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい)'+
+   breaker+entry+'闇のクリーチャーを1体自分の墓地から山札の一番下に置いてもよい。そうしたら相手のクリーチャーを1体破壊する。')
+   return {rev:{race:'コマンド',colors:['闇'],min:5,g486Current:true},breaker:2,effect:'sixPhoto',g34Tasks:[
+    {op:'Select',origin:'grave',to:'deck',n:1,optional:true,filter:{g228Face:{type:'creature',color:'闇'}},
+     g1009AfterMoveAttempt:[{op:'Target',to:'grave'}]}
+   ]};
+  if(d.id==='dmr22-s02'&&text===breaker+entry+
+   '自分の山札の上から2枚を見る。その中からコスト6以下の進化ではないクリーチャーを1体バトルゾーンに出してもよい。残りを好きな順序で自分の山札の一番下に置く。'+
+   'バトルゾーンに自分のD2フィールドがあれば自分のクリーチャーはすべて種族にソニック・コマンドを追加する。')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[
+    {op:'LookDeploy530',n:2,limit:1,rest:'bottom',g841DeckPeek:true,filter:{creature:true,nonEvolution:true,max:6}}
+   ],g208Auras:[{filter:{creature:true},g557Condition:{g580D2Field:true},grants:{raceAdd:['ソニック・コマンド']}}]};
+  if(d.id==='dmr23-s07'&&text===manaTap+'革命チェンジ:光または自然のドラゴンブロッカーブロッカー'+breaker+entry+
+   '多色カードをすべて自分の墓地からマナゾーンに置く。'+
+   'カードが自分のマナゾーンに置かれた時自分のクリーチャーを1体選ぶ。次の自分のターンのはじめまで相手が自分のクリーチャーを選ぶ時そのクリーチャーは選べない。')
+   return {rev:{colors:['光','自然'],g486Current:true},blocker:true,breaker:2,effect:'sixPhoto',
+    g34Tasks:[{op:'Select',origin:'grave',to:'mana',filter:{g223Multicolor:true},g583Group:true,g1009SelectAll:true}],
+    g807ManaEntry:[{op:'Target',owner:'self',g521UntilStart:true,g565External:true,grant:{untargetable:true}}]};
+  if(d.id==='dmr23-008'&&text===manaTap+breaker+entry+'相手のクリーチャーを1体選び持ち主の手札に戻す。'+
+   'マナ武装4:相手のクリーチャーがバトルゾーンに出た時またはバトルゾーンを離れた時自分のマナゾーンに多色カードが4枚以上あればカードを1枚引いてもよい。'){
+   const defs=[{op:'IfOwn',filter:{g267Mana:{n:4,multi:true}},defs:[{op:'Draw',n:1,optional:true}]}];
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'hand',toOwnerHand:true}],
+    g314OtherEntry:{who:'opponent',defs},g1009OpponentCreatureLeaves:defs};
+  }
+  // The official card image prints −2000 where the database displays ?2000.
+  if(d.id==='dmr21-037'&&text===
+   'S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)'+entry+
+   '自分のクリーチャーを1体破壊してもよい。そうしたらそのターン相手のクリーチャーすべてのパワーを?2000する。(パワー0以下のクリーチャーは破壊される)')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[
+    {op:'Target',owner:'self',to:'grave',optional:true,g587AfterSelection:true,
+     after:[{op:'GroupPower',owner:'opponent',filter:{creature:true},power:-2000}]}
+   ]};
+ }
  if(phase>=1008&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const manaTap='マナゾーンに置く時このカードはタップして置く。';

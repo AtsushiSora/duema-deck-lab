@@ -205356,25 +205356,286 @@
       },
       "supportBatch": "phase-1008",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-s03",
+      "name": "Kの反逆 キル・ザ・ボロフ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 8,
+      "power": 8000,
+      "race": "デーモン・コマンド/革命軍",
+      "text": "革命チェンジ：闇のコスト５以上のコマンド（自分の闇のコスト５以上のコマンドが攻撃する時、そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい）\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、闇のクリーチャーを１体、自分の墓地から山札の一番下に置いてもよい。そうしたら、相手のクリーチャーを１体破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-s03",
+      "limit": 4,
+      "rev": {
+        "race": "コマンド",
+        "colors": [
+          "闇"
+        ],
+        "min": 5,
+        "g486Current": true
+      },
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "deck",
+          "n": 1,
+          "optional": true,
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "color": "闇"
+            }
+          },
+          "g1009AfterMoveAttempt": [
+            {
+              "op": "Target",
+              "to": "grave"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1009",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr22-s02",
+      "name": "D2W ワイルド・スピード",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ソニック・コマンド/マスター・イニシャルズ",
+      "text": "W・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、自分の山札の上から２枚を見る。その中からコスト６以下の進化ではないクリーチャーを１体、バトルゾーンに出してもよい。残りを好きな順序で自分の山札の一番下に置く。\nバトルゾーンに自分のD２フィールドがあれば、自分のクリーチャーはすべて、種族にソニック・コマンドを追加する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr22-s02",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "LookDeploy530",
+          "n": 2,
+          "limit": 1,
+          "rest": "bottom",
+          "g841DeckPeek": true,
+          "filter": {
+            "creature": true,
+            "nonEvolution": true,
+            "max": 6
+          }
+        }
+      ],
+      "g208Auras": [
+        {
+          "filter": {
+            "creature": true
+          },
+          "g557Condition": {
+            "g580D2Field": true
+          },
+          "grants": {
+            "raceAdd": [
+              "ソニック・コマンド"
+            ]
+          }
+        }
+      ],
+      "supportBatch": "phase-1009",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-s07",
+      "name": "大長老 ウェイヨウ",
+      "civ": "光/自然",
+      "civilizations": [
+        "光",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 9000,
+      "race": "ジュラシック・コマンド・ドラゴン/革命軍/ダママ団",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\n革命チェンジ：光または自然のドラゴン\nブロッカーブロッカー\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、多色カードをすべて、自分の墓地からマナゾーンに置く。\nカードが自分のマナゾーンに置かれた時、自分のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、相手が自分のクリーチャーを選ぶ時、そのクリーチャーは選べない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-s07",
+      "limit": 4,
+      "rev": {
+        "colors": [
+          "光",
+          "自然"
+        ],
+        "g486Current": true
+      },
+      "blocker": true,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "to": "mana",
+          "filter": {
+            "g223Multicolor": true
+          },
+          "g583Group": true,
+          "g1009SelectAll": true
+        }
+      ],
+      "g807ManaEntry": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "g521UntilStart": true,
+          "g565External": true,
+          "grant": {
+            "untargetable": true
+          }
+        }
+      ],
+      "supportBatch": "phase-1009",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr23-008",
+      "name": "水晶恐皇クリアハデス",
+      "civ": "水/闇",
+      "civilizations": [
+        "水",
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "クリスタル・コマンド・ドラゴン/ダークロード",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nW・ブレイカー\nこのクリーチャーがバトルゾーンに出た時、相手のクリーチャーを１体選び、持ち主の手札に戻す。\nマナ武装 ４：相手のクリーチャーがバトルゾーンに出た時またはバトルゾーンを離れた時、自分のマナゾーンに多色カードが４枚以上あれば、カードを１枚引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr23-008",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "hand",
+          "toOwnerHand": true
+        }
+      ],
+      "g314OtherEntry": {
+        "who": "opponent",
+        "defs": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g267Mana": {
+                "n": 4,
+                "multi": true
+              }
+            },
+            "defs": [
+              {
+                "op": "Draw",
+                "n": 1,
+                "optional": true
+              }
+            ]
+          }
+        ]
+      },
+      "g1009OpponentCreatureLeaves": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g267Mana": {
+              "n": 4,
+              "multi": true
+            }
+          },
+          "defs": [
+            {
+              "op": "Draw",
+              "n": 1,
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1009",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr21-037",
+      "name": "暗黒鎧 サザンジ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 3000,
+      "race": "ダーク・ナイトメア",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体、破壊してもよい。そうしたら、そのターン、相手のクリーチャーすべてのパワーを−2000する。（パワー０以下のクリーチャーは破壊される）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr21-037",
+      "abilityErrata": {
+        "source": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr21-037.jpg",
+        "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、自分のクリーチャーを１体、破壊してもよい。そうしたら、そのターン、相手のクリーチャーすべてのパワーを−2000する。（パワー０以下のクリーチャーは破壊される）"
+      },
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "to": "grave",
+          "optional": true,
+          "g587AfterSelection": true,
+          "after": [
+            {
+              "op": "GroupPower",
+              "owner": "opponent",
+              "filter": {
+                "creature": true
+              },
+              "power": -2000
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-1009",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 1008,
+    "phase": 1009,
     "checkedAt": "2026-11-12",
-    "baseCount": 6956,
+    "baseCount": 6961,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 6961,
+    "totalCount": 6966,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/31611/",
-      "https://dm.takaratomy.co.jp/rule/qa/33425/",
-      "https://dm.takaratomy.co.jp/rule/qa/46608/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36821/",
-      "https://dm.takaratomy.co.jp/rule/qa/39858/",
-      "https://dm.takaratomy.co.jp/rule/qa/42650/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37680/"
+      "https://dm.takaratomy.co.jp/rule/qa/40371/",
+      "https://dm.takaratomy.co.jp/coverage/dmgp05_f01/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37867/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37868/",
+      "https://dm.takaratomy.co.jp/rule/qa/43074/",
+      "https://dm.takaratomy.co.jp/rule/qa/33591/",
+      "https://dm.takaratomy.co.jp/rule/qa/45793/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36034/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -223584,6 +223845,28 @@
           "https://dm.takaratomy.co.jp/rule/qa/47380/",
           "https://dm.takaratomy.co.jp/coverage/dmgp06_f04/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35971/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 1008,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6956,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 6961,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/31611/",
+          "https://dm.takaratomy.co.jp/rule/qa/33425/",
+          "https://dm.takaratomy.co.jp/rule/qa/46608/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36821/",
+          "https://dm.takaratomy.co.jp/rule/qa/39858/",
+          "https://dm.takaratomy.co.jp/rule/qa/42650/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37680/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
