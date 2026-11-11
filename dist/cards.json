@@ -195081,23 +195081,103 @@
       "g928CrossEndUntap": true,
       "supportBatch": "phase-928",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm15-025",
+      "name": "アイス・メデューサ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "スプラッシュ・クイーン",
+      "text": "このクリーチャーが破壊された時、このクリーチャーにクロスしてあったクロスギアをすべて、自分の他のクリーチャー１体に、コストを支払わずにクロスしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-025",
+      "limit": 4,
+      "g172Death": [
+        {
+          "op": "MedusaCross929"
+        }
+      ],
+      "supportBatch": "phase-929",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm16-029",
+      "name": "ギガザンダ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "キマイラ",
+      "text": "アクセル(このクリーチャーにクロスギアがクロスされている時、このクリーチャーは次の能力を得る)\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、相手の山札を見る。その中から１枚選び、持ち主の墓地に置いてもよい。その後、相手は山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-029",
+      "limit": 4,
+      "g260Self": {
+        "filter": {
+          "g436Crossed": true
+        },
+        "grants": {
+          "g482Unblocked": [
+            {
+              "op": "GigazandaSearch929"
+            }
+          ]
+        }
+      },
+      "supportBatch": "phase-929",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm06-s10",
+      "name": "神秘の超人",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 7000,
+      "race": "ジャイアント",
+      "text": "バトルゾーンにタップされていない自分のクリーチャーが他に１体でもあれば、このクリーチャーは攻撃することができない。\nW(ダブル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-s10",
+      "limit": 4,
+      "breaker": 2,
+      "g260Self": {
+        "filter": {
+          "creature": true,
+          "g334Other": true,
+          "untapped": true
+        },
+        "grants": {
+          "noAttack": true
+        }
+      },
+      "supportBatch": "phase-929",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 928,
+    "phase": 929,
     "checkedAt": "2026-11-11",
-    "baseCount": 6653,
+    "baseCount": 6656,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6656,
+    "totalCount": 6659,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/44837/",
-      "https://dm.takaratomy.co.jp/rule/qa/39673/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
-      "https://dm.takaratomy.co.jp/rule/qa/43462/",
-      "https://dm.takaratomy.co.jp/rule/qa/42077/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37486/",
+      "https://dm.takaratomy.co.jp/rule/qa/43461/",
+      "https://dm.takaratomy.co.jp/rule/qa/31786/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31654/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35103/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -211664,6 +211744,27 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35323/",
           "https://dm.takaratomy.co.jp/rule/qa/39962/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 928,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6653,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6656,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/44837/",
+          "https://dm.takaratomy.co.jp/rule/qa/39673/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+          "https://dm.takaratomy.co.jp/rule/qa/43462/",
+          "https://dm.takaratomy.co.jp/rule/qa/42077/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37486/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

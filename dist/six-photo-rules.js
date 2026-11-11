@@ -29,6 +29,11 @@ export function createSixPhotoRules(api){
   creatures(s,p).filter(y=>{const rule=effective(y,s).g297ManaAura,cs=api.manaColors(card(x),s,p);return !y.sealed&&rule&&(rule.colorless?cs.length===0:cs.length>1);}).slice(0,1).map(y=>'g297:'+y.uid+'@'+(y.incarnation||0))),...zonePermits450(s,p,x,c,'mana'),...(c.g539SelfMana&&jokerCount539(s,p)>=c.g539SelfMana?['g539:self']:[])];
  const crossGears728=(s,p)=>s.players[p].battle.filter(x=>!x.sealed&&card(x).type==='gear');
  const crossedCount728=(s,x)=>s.players.reduce((n,_,p)=>n+crossGears728(s,p).filter(g=>g.crossedTo?.uid===x.uid&&g.crossedTo.incarnation===(x.incarnation||0)).length,0);
+ const crossedGearRefs929=(s,p,host)=>crossGears728(s,p)
+  .filter(g=>!g.faceDown&&g.crossedTo?.uid===host.uid&&g.crossedTo.incarnation===(host.incarnation||0))
+  .map(g=>({uid:g.uid,incarnation:g.incarnation||0}));
+ const remainingGears929=(s,t)=>crossGears728(s,t.p)
+  .filter(g=>!g.faceDown&&t.gears.some(ref=>ref.uid===g.uid&&ref.incarnation===(g.incarnation||0)));
  const key=x=>x.uid+'@'+(x.incarnation||0),live=(s,t)=>s.players[t.p].battle.find(x=>x.uid===t.uid&&(x.incarnation||0)===(t.incarnation||0));
  function turboReady756(s,p,x){
   const history=s.g756Breaks;
@@ -1923,6 +1928,26 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ShieldPlus414':put(s,{...t,op:'g71_Plus',optional:true});break;
+ case'g34_MedusaCross929':{
+  if(!remainingGears929(s,t).length)break;
+  const hosts=creatures(s,t.p).filter(x=>!x.sealed&&x.uid!==t.uid);
+  if(hosts.length)choice(s,t,'残ったクロスギアをまとめてクロスするクリーチャーを選ぶ（任意）',
+   [...hosts.map(x=>opt(card(x).name,{uid:x.uid,incarnation:x.incarnation||0},10+cost(card(x)),x.cardId)),skip()]);
+  break;
+ }
+ case'g34_GigazandaSearch929':{
+  const opponent=1-t.p;
+  const ids=look(s,{...t,n:s.players[opponent].deck.length},opponent);
+  if(!ids.length){
+   api.shuffleLibrary(s,opponent);
+   break;
+  }
+  const viewed=new Set(ids);
+  const choices=s.players[opponent].deck.filter(x=>viewed.has(x.uid))
+   .map(x=>opt(card(x).name,x.uid,10+cost(card(x)),x.cardId));
+  choice(s,{...t,ids},'相手の山札から墓地に置くカードを選ぶ（任意）',[...choices,skip()]);
+  break;
+ }
  case'g34_FreeCross927':put(s,{...t,op:'g18_ChooseFreeCross927'});break;
  case'g34_DestroyPerAlly927':{
   const n=creatures(s,t.p).filter(x=>!x.sealed&&matches(s,t.p,x,{raceAny:t.raceAny})).length;
@@ -3059,6 +3084,20 @@ export function createSixPhotoRules(api){
   choice(s,{...t,op:'g34_HauntedMill833',owner:v,target:top.uid},'確認したカードを持ち主の墓地に置きますか？',[
    opt(name+'を墓地に置く',true,v!==t.p?12:deck.deck.length>2?3:-100,blind?null:top.cardId),skip()
   ]);
+  break;
+ }
+ case'g34_MedusaCross929':{
+  const host=v&&creatures(s,t.p).find(x=>!x.sealed&&x.uid===v.uid&&(x.incarnation||0)===v.incarnation);
+  if(host)api.crossGearGroup(s,t.p,host,remainingGears929(s,t)
+   .filter(g=>g.crossedTo?.uid!==host.uid||g.crossedTo.incarnation!==(host.incarnation||0)).map(g=>g.uid));
+  break;
+ }
+ case'g34_GigazandaSearch929':{
+  const opponent=1-t.p;
+  for(const uid of t.ids)release(s,opponent,uid);
+  if(v&&t.ids.includes(v))zoneMove(s,opponent,'deck',v,'grave',t);
+  api.shuffleLibrary(s,opponent);
+  api.deckCheck(s,opponent);
   break;
  }
  case'g34_HauntedMill833':
@@ -4234,7 +4273,7 @@ export function createSixPhotoRules(api){
   const x=s.players[player]?.battle.find(x=>x.uid===uid);
   return x&&!x.sealed&&card(x).g838AnyGrave&&!api.ignored(s,x)?[key(x)]:[];
  }),leave320:s.players.flatMap((own,p)=>own.battle.map(x=>({p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:!x.sealed&&api.isCreature(s,x),race:effective(x,s).race,watch:!x.sealed&&!!effective(x,s).g320Jave}))),death303:s.players.flatMap((own,p)=>own.battle.map(x=>{const c=effective(x,s);return{p,uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0,creature:api.isCreature(s,x),race:c.race,name:c.name,colors:colors(c),...(hasSoul(card(x),'E')?{g860EvilSoul:true}:{}),...(c.g303DeathWatch?.g862OtherSoul&&leaving.some(row=>row.player===p&&row.uid===x.uid)?{g862OnlySelf:true}:{}),...(c.g891OwnCreatureLeaves&&!x.sealed&&!api.ignored(s,x)?{leaveDraw891:c.g891OwnCreatureLeaves}:{}),
-   ...((c.g891OwnCreatureLeaves||c.g303DeathWatch?.g891LookBackSelf)&&leaving.some(row=>row.player===p&&row.uid===x.uid)?{g891OnlySelf:true}:{}),element:!x.sealed&&!x.faceDown,elementDraw:!!c.g617OpponentElementLeaves&&!x.sealed&&!x.faceDown&&!api.ignored(s,x),...(c.g693OtherCreatureGraveDraw&&!x.sealed&&!x.faceDown&&!api.ignored(s,x)&&api.isCreature(s,x)?{graveDraw:true}:{}),watch:!x.sealed&&!api.ignored(s,x)&&(!c.g303DeathWatch?.g725RemainInBattle||!leaving.some(row=>row.player===p&&row.uid===x.uid))?c.g303DeathWatch:undefined};})),selfLeaves:s.players.flatMap((own,p)=>own.battle.flatMap(x=>{const c=effective(x,s);return c.g172Death||c.g172Leave?[{p,uid:x.uid,incarnation:x.incarnation||0,g172Death:c.g172Death,...(c.g172Death?.some(d=>d.g901Untapped)?{g901WasTapped:!!x.tapped}:{}),...(c.g172Death?.some(d=>d.op==='CrossedDeathDraw728')?{crossedCount728:crossedCount728(s,x)}:{}),g172Leave:c.g172Leave,g601OpponentLeave:c.g601OpponentLeave}]:[];})),scarlet:[0,1].map(p=>active(s,p,'scarlet').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0}))),dororon:[0,1].map(p=>active(s,p,'dororon').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0})))};},
+   ...((c.g891OwnCreatureLeaves||c.g303DeathWatch?.g891LookBackSelf)&&leaving.some(row=>row.player===p&&row.uid===x.uid)?{g891OnlySelf:true}:{}),element:!x.sealed&&!x.faceDown,elementDraw:!!c.g617OpponentElementLeaves&&!x.sealed&&!x.faceDown&&!api.ignored(s,x),...(c.g693OtherCreatureGraveDraw&&!x.sealed&&!x.faceDown&&!api.ignored(s,x)&&api.isCreature(s,x)?{graveDraw:true}:{}),watch:!x.sealed&&!api.ignored(s,x)&&(!c.g303DeathWatch?.g725RemainInBattle||!leaving.some(row=>row.player===p&&row.uid===x.uid))?c.g303DeathWatch:undefined};})),selfLeaves:s.players.flatMap((own,p)=>own.battle.flatMap(x=>{const c=effective(x,s);return c.g172Death||c.g172Leave?[{p,uid:x.uid,incarnation:x.incarnation||0,g172Death:c.g172Death,...(c.g172Death?.some(d=>d.g901Untapped)?{g901WasTapped:!!x.tapped}:{}),...(c.g172Death?.some(d=>d.op==='CrossedDeathDraw728')?{crossedCount728:crossedCount728(s,x)}:{}),...(c.g172Death?.some(d=>d.op==='MedusaCross929')?{crossedGearRefs929:crossedGearRefs929(s,p,x)}:{}),g172Leave:c.g172Leave,g601OpponentLeave:c.g601OpponentLeave}]:[];})),scarlet:[0,1].map(p=>active(s,p,'scarlet').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0}))),dororon:[0,1].map(p=>active(s,p,'dororon').map(x=>({uid:x.uid,cardId:x.cardId,incarnation:x.incarnation||0})))};},
  leaving(s,p,x,snapshot,to,destroy){
   // An ability that sees its own move to the graveyard looks back only for its own card.
   const graveDefs=card(x).g838AnyGrave;
@@ -4269,6 +4308,10 @@ export function createSixPhotoRules(api){
     .filter(d=>!d.g901Untapped||!(prior.g901WasTapped??x.tapped))
     .filter(d=>d.op!=='ScheduleGraveReturn644'||d.anyTurn||s.active===p)
     .flatMap(d=>{
+     if(d.op==='MedusaCross929'){
+      const gears=prior.crossedGearRefs929??[];
+      return gears.length?[{...d,gears}]:[];
+     }
      if(d.op==='CrossedDeathDraw728'){
       const n=prior.crossedCount728;
       return n?[{op:'Offer',title:'カードを'+n+'枚引く？',defs:[{op:'Draw',n}]}]:[];

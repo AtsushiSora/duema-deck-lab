@@ -1,0 +1,144 @@
+{
+  "phase": 929,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6656,
+  "description": "破壊時のクロスギア引き継ぎ、アクセルによる相手山札の閲覧、味方のタップ状態による攻撃制限に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/43461/",
+    "https://dm.takaratomy.co.jp/rule/qa/31786/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31654/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35103/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm15-025",
+      "name": "アイス・メデューサ",
+      "faces": [
+        {
+          "name": "アイス・メデューサ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーが破壊された時、このクリーチャーにクロスしてあったクロスギアをすべて、自分の他のクリーチャー１体に、コストを支払わずにクロスしてもよい。",
+          "race": "スプラッシュ・クイーン",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm15-025",
+      "spec": {
+        "g172Death": [
+          {
+            "op": "MedusaCross929"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm15-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "22685b40f9c356af18a1bed7171fe193a8ad0d5f3e4d53049011f36d705c9ef6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-029",
+      "name": "ギガザンダ",
+      "faces": [
+        {
+          "name": "ギガザンダ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "アクセル(このクリーチャーにクロスギアがクロスされている時、このクリーチャーは次の能力を得る)\nこのクリーチャーが相手プレイヤーを攻撃してブロックされなかった時、相手の山札を見る。その中から１枚選び、持ち主の墓地に置いてもよい。その後、相手は山札をシャッフルする。",
+          "race": "キマイラ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-029",
+      "spec": {
+        "g260Self": {
+          "filter": {
+            "g436Crossed": true
+          },
+          "grants": {
+            "g482Unblocked": [
+              {
+                "op": "GigazandaSearch929"
+              }
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "9789b6d343195d30bcf3439bc309b8f64a1432a5a93c26615c353d69375b9b15",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-s10",
+      "name": "神秘の超人",
+      "faces": [
+        {
+          "name": "神秘の超人",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンにタップされていない自分のクリーチャーが他に１体でもあれば、このクリーチャーは攻撃することができない。\nW(ダブル)・ブレイカー(シールドを攻撃したとき、このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "ジャイアント",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-s10",
+      "spec": {
+        "breaker": 2,
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "g334Other": true,
+            "untapped": true
+          },
+          "grants": {
+            "noAttack": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-s10.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "bf7c063cf0b707fa5d430378e5b32eb6f06655a6f19ab81e9ac7475fb4cc5ed8",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm15-025": 4,
+      "dm16-029": 4,
+      "dm06-s10": 4
+    }
+  }
+}

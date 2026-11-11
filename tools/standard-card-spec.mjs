@@ -3452,6 +3452,17 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=929&&d.faces.length===1&&creature){
+  if(d.id==='dm15-025'&&compact363===
+   'このクリーチャーが破壊された時このクリーチャーにクロスしてあったクロスギアをすべて自分の他のクリーチャー1体にコストを支払わずにクロスしてもよい。')
+   return {g172Death:[{op:'MedusaCross929'}]};
+  if(d.id==='dm16-029'&&compact363===
+   'アクセル(このクリーチャーにクロスギアがクロスされている時このクリーチャーは次の能力を得る)このクリーチャーが相手プレイヤーを攻撃してブロックされなかった時相手の山札を見る。その中から1枚選び持ち主の墓地に置いてもよい。その後相手は山札をシャッフルする。')
+   return {g260Self:{filter:{g436Crossed:true},grants:{g482Unblocked:[{op:'GigazandaSearch929'}]}}};
+  if(d.id==='dm06-s10'&&compact363===
+   'バトルゾーンにタップされていない自分のクリーチャーが他に1体でもあればこのクリーチャーは攻撃することができない。W(ダブル)・ブレイカー(シールドを攻撃したときこのクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g260Self:{filter:{creature:true,g334Other:true,untapped:true},grants:{noAttack:true}}};
+ }
  if(phase>=928&&d.faces.length===1){
   if(f.typeText==='呪文'&&({
    'dm01-033':'バトルゾーンにある自分のクリーチャーを1体選ぶ。このターンそのクリーチャーは「パワーアタッカー+4000」と「W(ダブル)・ブレイカー」を得る。(攻撃中そのクリーチャーのパワーは+4000されシールドを攻撃したときシールドを2枚ブレイクする。)',
