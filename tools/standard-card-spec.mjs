@@ -3445,6 +3445,21 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=903&&creature&&d.faces.length===1){
+  if(d.id==='dmrp12-041'&&compact363===
+   'S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)このクリーチャーがバトルゾーンに出た時そのターン相手のコスト5以下のクリーチャーはすべて攻撃もブロックもできない。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'GroupFreeze',filter:{max:5},g190Freeze:'end'}]};
+  if(d.id==='dmrp09-s06'&&compact363===
+   'T・ブレイカーこのクリーチャーが攻撃する時自分のクリーチャーを1体破壊する。自分のクリーチャーが破壊された時次のうちいずれか1つを選ぶ。▶カードを1枚引く。▶相手のクリーチャーを1体選ぶ。このターンそのクリーチャーのパワーを-3000する。')
+   return {breaker:3,g34Attack:[{op:'Select',origin:'battle',owner:'self',to:'grave',n:1,filter:{creature:true},g187OwnPick:true,title:'破壊する自分のクリーチャーを1体指定する'}],
+    g303DeathWatch:{self:true,g891LookBackSelf:true,defs:[{op:'Choose',g184Modes:true,modes:[
+     {label:'カードを1枚引く',defs:[{op:'Draw',n:1}]},
+     {label:'相手クリーチャー1体のパワーを-3000',defs:[{op:'Target',power:-3000,g242PowerMinus:true}]}
+    ]}]}};
+  if(d.id==='dmrp18-077'&&compact363===
+   'ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)このクリーチャーは攻撃できない。このクリーチャーが出た時山札の上から1枚目を墓地に置く。')
+   return {blocker:true,noAttack:true,effect:'sixPhoto',g34Tasks:[{op:'Mill',n:1}]};
+ }
  if(phase>=902&&creature&&d.faces.length===1){
   if(d.id==='dmrp17-032'&&compact363===
    '自分のターンの終わりにこのクリーチャーをタップしてもよい。そうしたら自分の他のクリーチャーを1体アンタップする。ササゲール1(ディスペクターを召喚する時コストを1少なくしてもよい。そうしたらこのクリーチャーを破壊する。そのディスペクターのコストは0以下にはならない)')

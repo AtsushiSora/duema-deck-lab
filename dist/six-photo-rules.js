@@ -1693,6 +1693,9 @@ export function createSixPhotoRules(api){
   choice(s,t,'破壊する相手のクリーチャーを選ぶ',chainOptions838(s,t.p));
   break;
  }
+ case'g34_GroupFreeze':
+  for(const {p,y}of groupPowerRows(s,t))freeze(s,t,p,y);
+  break;
  case'g34_GroupGrant364':
   for(const {p,y}of groupPowerRows(s,t)){
    if(t.g736ForceAttack)force546(s,{...t,when:'end'},p,y);

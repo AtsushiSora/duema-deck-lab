@@ -192597,23 +192597,142 @@
       "g842DestroyShield": true,
       "supportBatch": "phase-902",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp12-041",
+      "name": "諜報員 ツナハッカ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ムートピア",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、そのターン、相手のコスト５以下のクリーチャーはすべて、攻撃もブロックもできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-041",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "GroupFreeze",
+          "filter": {
+            "max": 5
+          },
+          "g190Freeze": "end"
+        }
+      ],
+      "supportBatch": "phase-903",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp09-s06",
+      "name": "闇の破壊神ゼオス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 12000,
+      "race": "マフィ・ギャング/デーモン・コマンド/スペシャルズ",
+      "text": "T・ブレイカー\nこのクリーチャーが攻撃する時、自分のクリーチャーを１体破壊する。\n自分のクリーチャーが破壊された時、次のうちいずれか１つを選ぶ。\n▶カードを１枚引く。\n▶相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－3000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-s06",
+      "limit": 4,
+      "breaker": 3,
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "owner": "self",
+          "to": "grave",
+          "n": 1,
+          "filter": {
+            "creature": true
+          },
+          "g187OwnPick": true,
+          "title": "破壊する自分のクリーチャーを1体指定する"
+        }
+      ],
+      "g303DeathWatch": {
+        "self": true,
+        "g891LookBackSelf": true,
+        "defs": [
+          {
+            "op": "Choose",
+            "g184Modes": true,
+            "modes": [
+              {
+                "label": "カードを1枚引く",
+                "defs": [
+                  {
+                    "op": "Draw",
+                    "n": 1
+                  }
+                ]
+              },
+              {
+                "label": "相手クリーチャー1体のパワーを-3000",
+                "defs": [
+                  {
+                    "op": "Target",
+                    "power": -3000,
+                    "g242PowerMinus": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-903",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp18-077",
+      "name": "不死帝の黒玉 ジェット",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 1000,
+      "race": "アウトレイジ",
+      "text": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーが出た時、山札の上から１枚目を墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-077",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-903",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 902,
+    "phase": 903,
     "checkedAt": "2026-11-11",
-    "baseCount": 6571,
+    "baseCount": 6574,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6574,
+    "totalCount": 6577,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/39542/",
-      "https://dm.takaratomy.co.jp/rule/qa/40928/",
-      "https://dm.takaratomy.co.jp/rule/qa/40239/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316678/",
-      "https://dm.takaratomy.co.jp/rule/qa/41176/",
-      "https://dm.takaratomy.co.jp/rule/qa/31609/"
+      "https://dm.takaratomy.co.jp/rule/qa/43770/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/38037/",
+      "https://dm.takaratomy.co.jp/rule/qa/39429/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36030/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/%E5%A4%89%E6%9B%B4%E7%82%B92026-07-23/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -208674,6 +208793,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/39665/",
           "https://dm.takaratomy.co.jp/rule/qa/32351/",
           "https://dm.takaratomy.co.jp/rule/qa/41293/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 902,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6571,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6574,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39542/",
+          "https://dm.takaratomy.co.jp/rule/qa/40928/",
+          "https://dm.takaratomy.co.jp/rule/qa/40239/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316678/",
+          "https://dm.takaratomy.co.jp/rule/qa/41176/",
+          "https://dm.takaratomy.co.jp/rule/qa/31609/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -1,0 +1,182 @@
+{
+  "phase": 903,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6574,
+  "description": "登場時の攻撃・ブロック制限、攻撃時の自軍破壊と破壊誘発、ブロッカーと登場時の墓地送りに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/43770/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/38037/",
+    "https://dm.takaratomy.co.jp/rule/qa/39429/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36030/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/%E5%A4%89%E6%9B%B4%E7%82%B92026-07-23/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp12-041",
+      "name": "諜報員 ツナハッカ",
+      "faces": [
+        {
+          "name": "諜報員 ツナハッカ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\nこのクリーチャーがバトルゾーンに出た時、そのターン、相手のコスト５以下のクリーチャーはすべて、攻撃もブロックもできない。",
+          "race": "ムートピア",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp12-041",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "GroupFreeze",
+            "filter": {
+              "max": 5
+            },
+            "g190Freeze": "end"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp12-041.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "3e36bc32eb1bcdb66093206a5076b91eb5a46895e90f32b00669277e5b58c04f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp09-s06",
+      "name": "闇の破壊神ゼオス",
+      "faces": [
+        {
+          "name": "闇の破壊神ゼオス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "T・ブレイカー\nこのクリーチャーが攻撃する時、自分のクリーチャーを１体破壊する。\n自分のクリーチャーが破壊された時、次のうちいずれか１つを選ぶ。\n▶カードを１枚引く。\n▶相手のクリーチャーを１体選ぶ。このターン、そのクリーチャーのパワーを－3000する。",
+          "race": "マフィ・ギャング/デーモン・コマンド/スペシャルズ",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp09-s06",
+      "spec": {
+        "breaker": 3,
+        "g34Attack": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "owner": "self",
+            "to": "grave",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g187OwnPick": true,
+            "title": "破壊する自分のクリーチャーを1体指定する"
+          }
+        ],
+        "g303DeathWatch": {
+          "self": true,
+          "g891LookBackSelf": true,
+          "defs": [
+            {
+              "op": "Choose",
+              "g184Modes": true,
+              "modes": [
+                {
+                  "label": "カードを1枚引く",
+                  "defs": [
+                    {
+                      "op": "Draw",
+                      "n": 1
+                    }
+                  ]
+                },
+                {
+                  "label": "相手クリーチャー1体のパワーを-3000",
+                  "defs": [
+                    {
+                      "op": "Target",
+                      "power": -3000,
+                      "g242PowerMinus": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp09-s06.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "6bbe8dee350466ae639ac3fbe7683e10bde22b50150933ce5f1d951154196ed9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp18-077",
+      "name": "不死帝の黒玉 ジェット",
+      "faces": [
+        {
+          "name": "不死帝の黒玉 ジェット",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "ブロッカー ブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは攻撃できない。\nこのクリーチャーが出た時、山札の上から１枚目を墓地に置く。",
+          "race": "アウトレイジ",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp18-077",
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp18-077.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "e79e2c0e4b9e68aa379856d6f74be577849dd535c8c6dc4ffc7b235bc36d4016",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp12-041": 4,
+      "dmrp09-s06": 4,
+      "dmrp18-077": 4
+    }
+  }
+}
