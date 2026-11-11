@@ -1,0 +1,284 @@
+{
+  "phase": 974,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6813,
+  "description": "破壊時の蘇生、攻撃終了時の自壊、タップ状態による常在効果、登場元による分岐、同名カードによる召喚コスト軽減を処理する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/coverage/dmgp04_04/",
+    "https://dm.takaratomy.co.jp/rule/qa/42398/",
+    "https://dm.takaratomy.co.jp/rule/qa/40969/",
+    "https://dm.takaratomy.co.jp/rule/qa/46502/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp01-021",
+      "name": "凶鬼34号 バッシュ",
+      "faces": [
+        {
+          "name": "凶鬼34号 バッシュ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーが破壊された時、パワー1000以下のクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+          "race": "マフィ・ギャング",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-021",
+      "spec": {
+        "slayer": true,
+        "g172Death": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "deploy": true,
+            "g236GraveDeploy": true,
+            "filter": {
+              "creature": true,
+              "maxPower": 1000
+            },
+            "title": "墓地から出すパワー1000以下のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "afb1c0e3fc91220a00cc240ff1d50f9e6866647f4c2c7d9b7772436b9df574ef",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp03-043",
+      "name": "凶鬼65号 カベドン",
+      "faces": [
+        {
+          "name": "凶鬼65号 カベドン",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分のクリーチャーが攻撃する時、その攻撃の終わりにこのクリーチャーを破壊する。",
+          "race": "マフィ・ギャング",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-043",
+      "spec": {
+        "blocker": true,
+        "g252AttackWatch": {
+          "who": "self",
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "AfterAttack542",
+              "defs": [
+                {
+                  "op": "SelfDestroy"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-043.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "3fcc70ca72672c5b7a0553de0d35ad13157c7dc03a7c1755bf9dca14184965f4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-008",
+      "name": "ブロック・キング",
+      "faces": [
+        {
+          "name": "ブロック・キング",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "W・ブレイカー\nこのクリーチャーがアンタップしていれば、相手のクリーチャーはタップしてバトルゾーンに出る。\nこのクリーチャーがタップしていれば、自分の他のクリーチャーのパワーを+7000する。",
+          "race": "ビートジョッキー/スペシャルズ",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-008",
+      "spec": {
+        "breaker": 2,
+        "g974UntappedOpponentTap": true,
+        "g205Aura": {
+          "other": true,
+          "sourceTapped": true,
+          "power": 7000,
+          "filter": {
+            "creature": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "84ea97900c4e56570a4ebd385ad77f0c4ebc7b215b20d0027cb3075acea4cfaf",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp03-010",
+      "name": "ルツパーフェ・パンツァー",
+      "faces": [
+        {
+          "name": "ルツパーフェ・パンツァー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "T・ブレイカー\nこのクリーチャーを自分の手札からバトルゾーンに出した時、マナゾーンに置く。手札以外のゾーンから出した時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "グランセクト",
+          "powerText": "12000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-010",
+      "spec": {
+        "breaker": 3,
+        "g527ExtraEntry": [
+          {
+            "fromHand": true,
+            "label": "手札から出たので自身をマナに置く",
+            "defs": [
+              {
+                "op": "SelfMana297",
+                "g536Source": true
+              }
+            ]
+          },
+          {
+            "fromHand": false,
+            "label": "手札以外から出たので相手のクリーチャーをマナに置く",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "mana"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "f4a6f2d913f85a0e0a641ccdccafd37e4a6923f6bc61d4424e48c99e099effa4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp04s-082",
+      "name": "バグル・パズル",
+      "faces": [
+        {
+          "name": "バグル・パズル",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーを召喚するコストは、バトルゾーンと墓地にある自分の《バグル・パズル》１体につき１少なくなる。ただし、コストは０以下にならない。\nこのカードは、４枚より多くデッキに入れることができる。",
+          "race": "ジョーカーズ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-082",
+      "spec": {
+        "g314Unlimited": true,
+        "g212CountDiscount": {
+          "zones": [
+            "battle",
+            "grave"
+          ],
+          "filter": {
+            "creature": true,
+            "g201ExactName": "バグル・パズル"
+          },
+          "amount": 1,
+          "excludeExecutingCard": true
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04s-082.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "e1ee81f2df459084c933044c2ffdaf3247298b96e84127d62a0cfb582b1b84cc",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex06-064",
+      "canonicalId": "dmrp01-021",
+      "name": "凶鬼34号 バッシュ",
+      "faces": [
+        {
+          "name": "凶鬼34号 バッシュ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーが破壊された時、パワー1000以下のクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+          "race": "マフィ・ギャング",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex06-064",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex06-064.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "7365ccee95806a9d2e341d73a50ce8d0937eab3d86ff52ce5b65d58af8cf6364",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp01-021": 4,
+      "dmrp03-043": 4,
+      "dmrp01-008": 4,
+      "dmrp03-010": 4,
+      "dmrp04s-082": 4,
+      "dmex06-064": 4
+    }
+  }
+}

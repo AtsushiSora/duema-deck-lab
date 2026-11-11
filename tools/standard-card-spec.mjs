@@ -3435,6 +3435,23 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=974&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(['dmrp01-021','dmex06-064'].includes(d.id)&&text==='スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)このクリーチャーが破壊された時パワー1000以下のクリーチャーを1体自分の墓地からバトルゾーンに出す。')
+   return {slayer:true,g172Death:[{op:'Select',origin:'grave',n:1,deploy:true,g236GraveDeploy:true,
+    filter:{creature:true,maxPower:1000},title:'墓地から出すパワー1000以下のクリーチャーを1体選ぶ'}]};
+  if(d.id==='dmrp03-043'&&text==='ブロッカーブロッカー(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)自分のクリーチャーが攻撃する時その攻撃の終わりにこのクリーチャーを破壊する。')
+   return {blocker:true,g252AttackWatch:{who:'self',filter:{creature:true},defs:[{op:'AfterAttack542',defs:[{op:'SelfDestroy'}]}]}};
+  if(d.id==='dmrp01-008'&&text==='W・ブレイカーこのクリーチャーがアンタップしていれば相手のクリーチャーはタップしてバトルゾーンに出る。このクリーチャーがタップしていれば自分の他のクリーチャーのパワーを+7000する。')
+   return {breaker:2,g974UntappedOpponentTap:true,g205Aura:{other:true,sourceTapped:true,power:7000,filter:{creature:true}}};
+  if(d.id==='dmrp03-010'&&text==='T・ブレイカーこのクリーチャーを自分の手札からバトルゾーンに出した時マナゾーンに置く。手札以外のゾーンから出した時相手のクリーチャーを1体選び持ち主のマナゾーンに置く。')
+   return {breaker:3,g527ExtraEntry:[
+    {fromHand:true,label:'手札から出たので自身をマナに置く',defs:[{op:'SelfMana297',g536Source:true}]},
+    {fromHand:false,label:'手札以外から出たので相手のクリーチャーをマナに置く',defs:[{op:'Target',to:'mana'}]}
+   ]};
+  if(d.id==='dmrp04s-082'&&text==='このクリーチャーを召喚するコストはバトルゾーンと墓地にある自分の《バグル・パズル》1体につき1少なくなる。ただしコストは0以下にならない。このカードは4枚より多くデッキに入れることができる。')
+   return {g314Unlimited:true,g212CountDiscount:{zones:['battle','grave'],filter:{creature:true,g201ExactName:'バグル・パズル'},amount:1,excludeExecutingCard:true}};
+ }
  if(phase>=973&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(['dmrp05-006','dmex08-206'].includes(d.id)&&text==='このクリーチャーがバトルゾーンに出た時自分の山札の上から3枚を墓地に置いてもよい。自分のターンに一度魔導具クリーチャーを1体自分の墓地から召喚してもよい。')

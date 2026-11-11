@@ -167,7 +167,7 @@ export function effectiveCard(inst,context,forPower=false){
  if(c.g39Verde)c={...c,civilizations:['光','水','闇','火','自然'],civ:'光/水/闇/火/自然'};
  if(c.g39Fuujin&&!context.players[1-owner].shields.length)c={...c,speedAttacker:true};
  if(c.g38Mela&&!context.players[owner].shields.length)c={...c,blocker:true};
- if(c.madoDeSuzaku&&layers(inst).length>=5)c={...c,opponentTapEntry:true};
+ if(c.madoDeSuzaku&&layers(inst).length>=5||c.g974UntappedOpponentTap&&!inst.tapped)c={...c,opponentTapEntry:true};
  if(c.type==='creature'&&context.players[owner].battle.some(x=>!abilitiesIgnored(context,x)&&card(x).madoGiruUnblock))c={...c,unblockable:true};
  if(c.sheket&&context.players[owner].battle.filter(x=>['creature','seed'].includes(card(x).type)&&civilizations(card(x)).includes('光')).length>=5)c={...c,power:c.power+10000,breaker:3,sheketAttack:true};
  if(c.type==='creature'&&context.players[owner].battle.some(x=>x.uid!==inst.uid&&!abilitiesIgnored(context,x)&&card(x).bakteras))c={...c,blocker:true,speedAttacker:true};
@@ -1135,6 +1135,9 @@ function evolutionWatch721(s,p,entrant,baseRaces){
 function entryBreakShort770(s,p,c){
  return c.g770EntryBreakMin!==undefined&&p!==s.active&&(s.players[p].brokenThisTurn||0)<c.g770EntryBreakMin;
 }
+function eligibleExtraEntry527(c,origin){
+ return (c.g527ExtraEntry||[]).filter(a=>a.fromHand===undefined||origin!=null&&a.fromHand===(origin==='hand'));
+}
 function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  delete inst.g39GraveColors;if(extra.saga.beginMDeck(s,p,inst,baseUid,entryOptions))return;if(extra.cyber.beforeEnter(s,p,inst,baseUid,entryOptions))return;
  if(!entryOptions.g753Swap&&!canEnterCreature(s,p,card(inst),{...entryOptions,committed:true}))throw Error('このクリーチャーは現在出せません');
@@ -1210,7 +1213,7 @@ function enterCreature(s,p,inst,baseUid=null,entryOptions={}){
  if(c.effect&&!(c.effect==='sixPhoto'&&!c.g34Tasks?.length)&&!stopped&&(!c.evolvedEntryOnly||isEvolution(inst))&&(!c.stackOnlyEntry||baseWasCreature)&&(!c.nonEvolutionBase||baseWasCreature&&!baseWasEvolution)&&(!c.summonedEntryOnly||entryOptions.execution!==false))enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,lastKnownPower:power(inst,false,s),lastKnownCost:effectiveCard(inst,s).cost,source:c.id,lastKnownCount:layers(inst).length,super:!!entryOptions.super,effect:'entry'});
  if(!stopped&&entryBreakShort770(s,p,c))enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,source:c.id,
   label:'シールド条件による自壊',effect:'extended',task:extra.task('g34_SelfDestroy',p,c.id,{uid:inst.uid,incarnation:inst.incarnation})});
- if(!stopped)for(const ability of c.g527ExtraEntry||[])enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,source:c.id,label:ability.label,effect:'extended',task:extra.task('g34_Sequence',p,c.id,{uid:inst.uid,incarnation:inst.incarnation,defs:ability.defs})});
+ if(!stopped)for(const ability of eligibleExtraEntry527(c,entryOptions.origin??'hand'))enqueueEffect(s,p,{uid:inst.uid,incarnation:inst.incarnation,source:c.id,label:ability.label,effect:'extended',task:extra.task('g34_Sequence',p,c.id,{uid:inst.uid,incarnation:inst.incarnation,defs:ability.defs})});
  if(!entryOptions.ignoreEntry&&isDragon(c))for(const x of s.players[p].battle)if(effectiveCard(x,s).dragonEntryTap&&(!stopped||x.uid!==inst.uid)){const key=x.uid+'@'+(x.incarnation||0);if(s.once?.[key]!==s.turn)enqueueEffect(s,p,{uid:x.uid,source:x.cardId,effect:'dragonEntryTap',key});}
  if(!entryOptions.ignoreEntry&&!selfMuted&&isDragon(c))for(const x of s.players[p].battle)if(effectiveCard(x,s).g142Rip)enqueueEffect(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:extra.task('g34_Draw',p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,n:1,optional:true})});
  if(entryOptions.g781HyperEntry&&!inst.sealed&&isCreature(s,inst))
@@ -1232,7 +1235,7 @@ export function entryAbilities(s,p,original,reference){
   const {label,op,...args}=ordinaryJBig;
   extended(label,op,args);
  }else if(c.type!=='spell'&&c.effect)add('出た時の効果','entry');
- for(const ability of c.g527ExtraEntry||[])extended(ability.label,'g34_Sequence',{defs:ability.defs});
+ for(const ability of eligibleExtraEntry527(c,null))extended(ability.label,'g34_Sequence',{defs:ability.defs});
  if(c.justDiver)add('ジャストダイバー','justDiver');
  if(c.g414ShieldPlus)extended('シールド・プラス','g34_ShieldPlus414');
  if(c.g27Raid)extended('超魂レイド','g27_Raid');
@@ -2361,7 +2364,7 @@ export function rankHeuristicActions(s){
    if(n>0&&n>=me.deckCount&&!muted)return -1000;
   }
   if(c?.g527ExtraEntry&&['play','useTrigger'].includes(a.kind)){
-   const source=me[a.origin||'hand']?.find(x=>x.uid===a.uid),defs=[...(c.g34Tasks||[]),...c.g527ExtraEntry.flatMap(r=>r.defs)].flatMap(d=>d.op==='IfMana'?(me.mana.filter(y=>{const cs=manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),v,p);return d.multi?cs.length>1:cs.includes(d.color);}).length>=d.n?d.defs:[]):[d]).filter(d=>d.op!=='Discard'),danger=entryExhaustion236(c,source,{defs});if(danger!==null)return danger;
+   const source=me[a.origin||'hand']?.find(x=>x.uid===a.uid),defs=[...(c.g34Tasks||[]),...eligibleExtraEntry527(c,a.origin??(a.kind==='useTrigger'?'shields':'hand')).flatMap(r=>r.defs)].flatMap(d=>d.op==='IfMana'?(me.mana.filter(y=>{const cs=manaColors(y.faceDown?{civilizations:[],civ:'ゼロ'}:card(y),v,p);return d.multi?cs.length>1:cs.includes(d.color);}).length>=d.n?d.defs:[]):[d]).filter(d=>d.op!=='Discard'),danger=entryExhaustion236(c,source,{defs});if(danger!==null)return danger;
   }
   if(a.kind==='extended'&&s.decision?.task?.op==='g34_Select'&&card(s.decision.task.source)?.supportBatch==='phase-384'&&s.decision.task.origin==='mana'&&s.decision.task.owner==='opponent'&&s.decision.task.to==='grave'){
    const uid=s.decision.choices[a.choice]?.value?.uid,x=them.mana.find(x=>x.uid===uid);return x?20+(x.tapped?0:12)+(x.faceDown?1:card(x).manaValue??1)*4:0;

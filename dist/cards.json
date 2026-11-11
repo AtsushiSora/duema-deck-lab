@@ -200094,22 +200094,190 @@
       },
       "supportBatch": "phase-973",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp01-021",
+      "name": "凶鬼34号 バッシュ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2000,
+      "race": "マフィ・ギャング",
+      "text": "スレイヤー（このクリーチャーがバトルする時、バトルの後、相手クリーチャーを破壊する）\nこのクリーチャーが破壊された時、パワー1000以下のクリーチャーを１体、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-021",
+      "limit": 4,
+      "slayer": true,
+      "g172Death": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "deploy": true,
+          "g236GraveDeploy": true,
+          "filter": {
+            "creature": true,
+            "maxPower": 1000
+          },
+          "title": "墓地から出すパワー1000以下のクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-974",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-043",
+      "name": "凶鬼65号 カベドン",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 5000,
+      "race": "マフィ・ギャング",
+      "text": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\n自分のクリーチャーが攻撃する時、その攻撃の終わりにこのクリーチャーを破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-043",
+      "limit": 4,
+      "blocker": true,
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "AfterAttack542",
+            "defs": [
+              {
+                "op": "SelfDestroy"
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-974",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp01-008",
+      "name": "ブロック・キング",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 7000,
+      "race": "ビートジョッキー/スペシャルズ",
+      "text": "W・ブレイカー\nこのクリーチャーがアンタップしていれば、相手のクリーチャーはタップしてバトルゾーンに出る。\nこのクリーチャーがタップしていれば、自分の他のクリーチャーのパワーを+7000する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-008",
+      "limit": 4,
+      "breaker": 2,
+      "g974UntappedOpponentTap": true,
+      "g205Aura": {
+        "other": true,
+        "sourceTapped": true,
+        "power": 7000,
+        "filter": {
+          "creature": true
+        }
+      },
+      "supportBatch": "phase-974",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-010",
+      "name": "ルツパーフェ・パンツァー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 12000,
+      "race": "グランセクト",
+      "text": "T・ブレイカー\nこのクリーチャーを自分の手札からバトルゾーンに出した時、マナゾーンに置く。手札以外のゾーンから出した時、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-010",
+      "limit": 4,
+      "breaker": 3,
+      "g527ExtraEntry": [
+        {
+          "fromHand": true,
+          "label": "手札から出たので自身をマナに置く",
+          "defs": [
+            {
+              "op": "SelfMana297",
+              "g536Source": true
+            }
+          ]
+        },
+        {
+          "fromHand": false,
+          "label": "手札以外から出たので相手のクリーチャーをマナに置く",
+          "defs": [
+            {
+              "op": "Target",
+              "to": "mana"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-974",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp04s-082",
+      "name": "バグル・パズル",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ジョーカーズ",
+      "text": "このクリーチャーを召喚するコストは、バトルゾーンと墓地にある自分の《バグル・パズル》１体につき１少なくなる。ただし、コストは０以下にならない。\nこのカードは、４枚より多くデッキに入れることができる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04s-082",
+      "limit": 40,
+      "g314Unlimited": true,
+      "g212CountDiscount": {
+        "zones": [
+          "battle",
+          "grave"
+        ],
+        "filter": {
+          "creature": true,
+          "g201ExactName": "バグル・パズル"
+        },
+        "amount": 1,
+        "excludeExecutingCard": true
+      },
+      "supportBatch": "phase-974",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 973,
+    "phase": 974,
     "checkedAt": "2026-11-11",
-    "baseCount": 6808,
+    "baseCount": 6813,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 6813,
+    "totalCount": 6818,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/31718/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31627/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31649/"
+      "https://dm.takaratomy.co.jp/coverage/dmgp04_04/",
+      "https://dm.takaratomy.co.jp/rule/qa/42398/",
+      "https://dm.takaratomy.co.jp/rule/qa/40969/",
+      "https://dm.takaratomy.co.jp/rule/qa/46502/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -217609,6 +217777,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/31760/",
           "https://dm.takaratomy.co.jp/rule/qa/46612/",
           "https://dm.takaratomy.co.jp/coverage/dmscs02_f05b/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 973,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6808,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 6813,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/31718/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31627/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31649/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
