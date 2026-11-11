@@ -202404,23 +202404,236 @@
       "g842DestroyShield": true,
       "supportBatch": "phase-990",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-078",
+      "name": "ジャスティス・カーテン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 2,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある自分のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、相手がバトルゾーンにあるクリーチャーを選ぶ時、そのクリーチャーを選ぶことはできない。（ただし、そのクリーチャーを攻撃またはブロックしてもよい）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-078",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "owner": "self",
+          "grant": {
+            "untargetable": true
+          },
+          "g521UntilStart": true,
+          "spell": true,
+          "title": "次の自分のターンまで相手に選ばれなくするクリーチャーを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-991",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-039",
+      "name": "古龍遺跡エウル=ブッカ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー\nバトルゾーンにある相手のタップされていないクリーチャーを１体選び、持ち主のマナゾーンに置く。\nマナ武装 ５：自分のマナゾーンに自然のカードが５枚以上あれば、バトルゾーンにある相手のクリーチャーをさらに１体選び、持ち主のマナゾーンに置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-039",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "mana",
+          "filter": {
+            "untapped": true
+          }
+        },
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g267Mana": {
+              "color": "自然",
+              "n": 5
+            }
+          },
+          "defs": [
+            {
+              "op": "Target",
+              "to": "mana"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-991",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-021",
+      "name": "超過の翼 デネブモンゴ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 2500,
+      "race": "ジャスティス・ウイング",
+      "text": "ブロッカー ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーをバトルゾーンに出した時、カードを１枚引いてもよい。その後、コスト３以下の光のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-021",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true
+        },
+        {
+          "op": "Select",
+          "origin": "hand",
+          "n": 1,
+          "optional": true,
+          "deploy": true,
+          "filter": {
+            "creature": true,
+            "color": "光",
+            "max": 3
+          }
+        }
+      ],
+      "supportBatch": "phase-991",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr12-029",
+      "name": "四十日鼠 チョロチュー",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "アウトレイジMAX",
+      "text": "このカードは、４枚以上デッキに入れることができる。\nバトルゾーンにある自分の他の《四十日鼠 チョロチュー》１体につき、このクリーチャーは「パワーアタッカー+2000」を得る。\nこのクリーチャーは、パワーが6000以上の時、「Ｗ・ブレイカー」を得る。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-029",
+      "limit": 40,
+      "g314Unlimited": true,
+      "g207CountPower": {
+        "zone": "battle",
+        "other": true,
+        "attackOnly": true,
+        "amount": 2000,
+        "filter": {
+          "g876BattleName": "四十日鼠 チョロチュー"
+        }
+      },
+      "g207Breakers": [
+        {
+          "power": 6000,
+          "breaker": 2
+        }
+      ],
+      "supportBatch": "phase-991",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-015",
+      "name": "聖歌の聖堂ゾディアック",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにある相手のクリーチャーを３体まで選び、タップする。\nマナ武装 ５：自分のマナゾーンに光のカードが５枚以上あれば、選んだクリーチャーはすべて、次の相手のターンのはじめにアンタップされない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-015",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g267Mana": {
+              "color": "光",
+              "n": 5
+            }
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "n": 3,
+              "optional": true,
+              "filter": {
+                "creature": true
+              },
+              "g173Targets": true,
+              "g193Select": true,
+              "g193Tap": true,
+              "spell": true,
+              "g210TapLock": true
+            }
+          ],
+          "elseDefs": [
+            {
+              "op": "Select",
+              "origin": "battle",
+              "owner": "opponent",
+              "n": 3,
+              "optional": true,
+              "filter": {
+                "creature": true
+              },
+              "g173Targets": true,
+              "g193Select": true,
+              "g193Tap": true,
+              "spell": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-991",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 990,
+    "phase": 991,
     "checkedAt": "2026-11-12",
-    "baseCount": 6880,
+    "baseCount": 6885,
     "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 6885,
+    "totalCount": 6890,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/33218/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36695/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37163/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31430/",
-      "https://dm.takaratomy.co.jp/rule/qa/42989/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/35144/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37040/",
+      "https://dm.takaratomy.co.jp/rule/qa/46493/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37071/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37414/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -220267,6 +220480,26 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37420/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31637/",
           "https://dm.takaratomy.co.jp/rule/qa_old/36076/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 990,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6880,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 6885,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/33218/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36695/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37163/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31430/",
+          "https://dm.takaratomy.co.jp/rule/qa/42989/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

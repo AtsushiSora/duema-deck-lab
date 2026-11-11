@@ -1,0 +1,562 @@
+{
+  "phase": 991,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6885,
+  "description": "期限付き選択耐性、マナ武装による追加除去とアンタップ制限、同名パワーアタッカー、任意ドローと光の手札展開を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35144/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37040/",
+    "https://dm.takaratomy.co.jp/rule/qa/46493/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37071/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37414/"
+  ],
+  "cards": [
+    {
+      "id": "dmr13-078",
+      "name": "ジャスティス・カーテン",
+      "faces": [
+        {
+          "name": "ジャスティス・カーテン",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "バトルゾーンにある自分のクリーチャーを１体選ぶ。次の自分のターンのはじめまで、相手がバトルゾーンにあるクリーチャーを選ぶ時、そのクリーチャーを選ぶことはできない。（ただし、そのクリーチャーを攻撃またはブロックしてもよい）",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-078",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "grant": {
+              "untargetable": true
+            },
+            "g521UntilStart": true,
+            "spell": true,
+            "title": "次の自分のターンまで相手に選ばれなくするクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-078.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "6dcc71eaf34950ebd0cdba7b2141b62513de473e453e3c75a19850ab5f96547d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-039",
+      "name": "古龍遺跡エウル=ブッカ",
+      "faces": [
+        {
+          "name": "古龍遺跡エウル=ブッカ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\nバトルゾーンにある相手のタップされていないクリーチャーを１体選び、持ち主のマナゾーンに置く。\nマナ武装 ５：自分のマナゾーンに自然のカードが５枚以上あれば、バトルゾーンにある相手のクリーチャーをさらに１体選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-039",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "mana",
+            "filter": {
+              "untapped": true
+            }
+          },
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g267Mana": {
+                "color": "自然",
+                "n": 5
+              }
+            },
+            "defs": [
+              {
+                "op": "Target",
+                "to": "mana"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "51d39dfe36cf221f7adbfc60c076670be9cd9960b74c2109a57351ea5cc94269",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-021",
+      "name": "超過の翼 デネブモンゴ",
+      "faces": [
+        {
+          "name": "超過の翼 デネブモンゴ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカー ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーをバトルゾーンに出した時、カードを１枚引いてもよい。その後、コスト３以下の光のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "ジャスティス・ウイング",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-021",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true
+          },
+          {
+            "op": "Select",
+            "origin": "hand",
+            "n": 1,
+            "optional": true,
+            "deploy": true,
+            "filter": {
+              "creature": true,
+              "color": "光",
+              "max": 3
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-021.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "d5f029b30c8456d10f3cdf37307210b9585a9bfbb6c88799bf71d655a7fb1f3f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr12-029",
+      "name": "四十日鼠 チョロチュー",
+      "faces": [
+        {
+          "name": "四十日鼠 チョロチュー",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このカードは、４枚以上デッキに入れることができる。\nバトルゾーンにある自分の他の《四十日鼠 チョロチュー》１体につき、このクリーチャーは「パワーアタッカー+2000」を得る。\nこのクリーチャーは、パワーが6000以上の時、「Ｗ・ブレイカー」を得る。",
+          "race": "アウトレイジMAX",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr12-029",
+      "spec": {
+        "g314Unlimited": true,
+        "g207CountPower": {
+          "zone": "battle",
+          "other": true,
+          "attackOnly": true,
+          "amount": 2000,
+          "filter": {
+            "g876BattleName": "四十日鼠 チョロチュー"
+          }
+        },
+        "g207Breakers": [
+          {
+            "power": 6000,
+            "breaker": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr12-029.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "83cd11efa076ac1ae901aea0971afd068058919f1e58e3657064ddcd8e59a7d6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-015",
+      "name": "聖歌の聖堂ゾディアック",
+      "faces": [
+        {
+          "name": "聖歌の聖堂ゾディアック",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにある相手のクリーチャーを３体まで選び、タップする。\nマナ武装 ５：自分のマナゾーンに光のカードが５枚以上あれば、選んだクリーチャーはすべて、次の相手のターンのはじめにアンタップされない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-015",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g267Mana": {
+                "color": "光",
+                "n": 5
+              }
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "battle",
+                "owner": "opponent",
+                "n": 3,
+                "optional": true,
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true,
+                "g193Tap": true,
+                "spell": true,
+                "g210TapLock": true
+              }
+            ],
+            "elseDefs": [
+              {
+                "op": "Select",
+                "origin": "battle",
+                "owner": "opponent",
+                "n": 3,
+                "optional": true,
+                "filter": {
+                  "creature": true
+                },
+                "g173Targets": true,
+                "g193Select": true,
+                "g193Tap": true,
+                "spell": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-015.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "3c268c71ea78411671f66069472ce2f1662cb7314539ebdd01621d3c1982bed5",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmex06-071",
+      "canonicalId": "dmr13-039",
+      "name": "古龍遺跡エウル=ブッカ",
+      "faces": [
+        {
+          "name": "古龍遺跡エウル=ブッカ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n相手のアンタップしているクリーチャーを１体選び、持ち主のマナゾーンに置く。\nマナ武装 ５：自分のマナゾーンに自然のカードが５枚以上あれば、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex06-071",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex06-071.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "93df6cbf4b790d33726567e437c8ded32ee4ca82ac2e71da363a1e8e0dc6b682",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmbd08-a-009",
+      "canonicalId": "dmr13-039",
+      "name": "古龍遺跡エウル=ブッカ",
+      "faces": [
+        {
+          "name": "古龍遺跡エウル=ブッカ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにある相手のタップしていないクリーチャーを１体選び、持ち主のマナゾーンに置く。\nマナ武装 ５：自分のマナゾーンに自然のカードが５枚以上あれば、バトルゾーンにある相手のクリーチャーをさらに１体選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd08-a-009",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd08-a-009.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "8563143e65bd421578dc953f6c849453c9d91ccf9dec547aa7f5aaca07daab35",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmsd05-008",
+      "canonicalId": "dmr13-039",
+      "name": "古龍遺跡エウル=ブッカ",
+      "faces": [
+        {
+          "name": "古龍遺跡エウル=ブッカ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにある相手のタップしていないクリーチャーを１体選び、持ち主のマナゾーンに置く。\nマナ武装 ５：自分のマナゾーンに自然のカードが５枚以上あれば、バトルゾーンにある相手のクリーチャーをさらに１体選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd05-008",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd05-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "635c0d23cce03eab9732e044b9ad590f35df6b8a27c0955a6bb597539af4c47f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy14-051",
+      "canonicalId": "dmr13-039",
+      "name": "古龍遺跡エウル=ブッカ",
+      "faces": [
+        {
+          "name": "古龍遺跡エウル=ブッカ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\n相手のアンタップしているクリーチャーを１体選び、持ち主のマナゾーンに置く。\nマナ武装 ５：自分のマナゾーンに自然のカードが５枚以上あれば、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-051",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy14-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "d5440c7f899943a9a4a6f91872b9a8c78eb6be77ae9cc6afeb4da8b5bd78a9f0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy14-054",
+      "canonicalId": "dmr13-039",
+      "name": "古龍遺跡エウル=ブッカ",
+      "faces": [
+        {
+          "name": "古龍遺跡エウル=ブッカ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー\n相手のアンタップしているクリーチャーを１体選び、持ち主のマナゾーンに置く。\nマナ武装 ５：自分のマナゾーンに自然のカードが５枚以上あれば、相手のクリーチャーを１体選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-054",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy14-054.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "fb8149d50b0319bbcfcf4a42d7d14384ddad65572eb52e3730e8b5d22a59600d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy16-070",
+      "canonicalId": "dmr13-039",
+      "name": "古龍遺跡エウル=ブッカ",
+      "faces": [
+        {
+          "name": "古龍遺跡エウル=ブッカ",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガーS・トリガー\nバトルゾーンにある相手のタップされていないクリーチャーを１体選び、持ち主のマナゾーンに置く。\nマナ武装 ５：自分のマナゾーンに自然のカードが５枚以上あれば、バトルゾーンにある相手のクリーチャーをさらに１体選び、持ち主のマナゾーンに置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy16-070",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy16-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "fd239683052c919e8f403f5b18f9c04a5f9278869e0178922c8fb6b7bb0cc5c9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx20-037",
+      "canonicalId": "dmr14-021",
+      "name": "超過の翼 デネブモンゴ",
+      "faces": [
+        {
+          "name": "超過の翼 デネブモンゴ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、カードを１枚引いてもよい。その後、コスト３以下の光のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "ジャスティス・ウイング",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx20-037",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx20-037.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "dd41cdd0acae62160cb7f8025147da85c4cfb9420c6970d5b5343ac78fe4f807",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy14-008",
+      "canonicalId": "dmr14-021",
+      "name": "超過の翼 デネブモンゴ",
+      "faces": [
+        {
+          "name": "超過の翼 デネブモンゴ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "ブロッカーブロッカー（このクリーチャーをタップして、相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがバトルゾーンに出た時、カードを１枚引いてもよい。その後、光のコスト３以下のクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。",
+          "race": "ジャスティス・ウイング",
+          "powerText": "2500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-008",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy14-008.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "ae78367094aee48bafd245e8b2c730a825e8e2bc1becc7f0bf97bbd0efff3eb0",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd23-006",
+      "canonicalId": "dmr13-015",
+      "name": "聖歌の聖堂ゾディアック",
+      "faces": [
+        {
+          "name": "聖歌の聖堂ゾディアック",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\nバトルゾーンにある相手のクリーチャーを３体まで選び、タップする。\nマナ武装 ５：自分のマナゾーンに光のカードが５枚以上あれば、選んだクリーチャーはすべて、次の相手のターンのはじめにアンタップしない。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd23-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd23-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "5572a90c013b859cd1bcba7ba147d2b31049a3d12ffe9dc524d69c6a3876013b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr13-078": 4,
+      "dmr13-039": 4,
+      "dmr14-021": 4,
+      "dmr12-029": 4,
+      "dmr13-015": 4,
+      "dmex06-071": 4,
+      "dmbd08-a-009": 4,
+      "dmsd05-008": 4,
+      "promoy14-051": 4,
+      "promoy14-054": 4,
+      "promoy16-070": 4,
+      "dmx20-037": 4,
+      "promoy14-008": 4,
+      "dmd23-006": 4
+    }
+  }
+}

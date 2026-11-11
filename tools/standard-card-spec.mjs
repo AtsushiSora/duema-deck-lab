@@ -3435,6 +3435,55 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=991&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const trigger='S・トリガーS・トリガー';
+  const reminder='(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)';
+  const mana=(color,defs,elseDefs)=>({op:'IfOwn',filter:{g267Mana:{color,n:5}},defs,...(elseDefs?{elseDefs}:{})});
+  if(f.typeText==='呪文'){
+   if(d.id==='dmr13-078'&&text==='バトルゾーンにある自分のクリーチャーを1体選ぶ。'+
+    '次の自分のターンのはじめまで相手がバトルゾーンにあるクリーチャーを選ぶ時そのクリーチャーを選ぶことはできない。(ただしそのクリーチャーを攻撃またはブロックしてもよい)')
+    return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',grant:{untargetable:true},g521UntilStart:true,spell:true,
+     title:'次の自分のターンまで相手に選ばれなくするクリーチャーを1体選ぶ'}]};
+   if(['dmr13-039','dmex06-071','dmbd08-a-009','dmsd05-008','promoy14-051','promoy14-054','promoy16-070'].includes(d.id)){
+    const body=text.startsWith(trigger+reminder)?text.slice((trigger+reminder).length):text.slice(trigger.length);
+    const [first,second,extra]=body.split('マナ武装5:');
+    const take='クリーチャーを1体選び持ち主のマナゾーンに置く。';
+    if(extra===undefined&&text.startsWith(trigger)&&['バトルゾーンにある相手のタップされていない','バトルゾーンにある相手のタップしていない',
+     '相手のアンタップしている'].some(prefix=>first===prefix+take)&&
+     ['バトルゾーンにある相手のクリーチャーをさらに1体選び持ち主のマナゾーンに置く。','相手の'+take]
+      .some(action=>second==='自分のマナゾーンに自然のカードが5枚以上あれば'+action))
+     return {trigger:true,effect:'sixPhoto',g34Tasks:[
+      {op:'Target',to:'mana',filter:{untapped:true}},
+      mana('自然',[{op:'Target',to:'mana'}])
+     ]};
+   }
+   const tap={op:'Select',origin:'battle',owner:'opponent',n:3,optional:true,
+    filter:{creature:true},g173Targets:true,g193Select:true,g193Tap:true,spell:true};
+   const freeze='選んだクリーチャーはすべて次の相手のターンのはじめにアンタップ';
+   if(['dmr13-015','dmd23-006'].includes(d.id)&&['されない。','しない。'].some(ending=>text===trigger+reminder+
+    'バトルゾーンにある相手のクリーチャーを3体まで選びタップする。マナ武装5:自分のマナゾーンに光のカードが5枚以上あれば'+freeze+ending))
+    return {trigger:true,effect:'sixPhoto',g34Tasks:[mana('光',[{...tap,g210TapLock:true}],[tap])]};
+  }
+  if(f.typeText==='クリーチャー'){
+   if(d.id==='dmr12-029'&&text==='このカードは4枚以上デッキに入れることができる。'+
+    'バトルゾーンにある自分の他の《四十日鼠チョロチュー》1体につきこのクリーチャーは「パワーアタッカー+2000」を得る。'+
+    'このクリーチャーはパワーが6000以上の時「W・ブレイカー」を得る。')
+    return {g314Unlimited:true,g207CountPower:{zone:'battle',other:true,attackOnly:true,amount:2000,
+     filter:{g876BattleName:'四十日鼠 チョロチュー'}},g207Breakers:[{power:6000,breaker:2}]};
+   const blocker='ブロッカーブロッカー';
+   const blockText=['(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)',
+    '(このクリーチャーをタップして相手クリーチャーの攻撃先をこのクリーチャーに変更してもよい)'];
+   const entry=d.id==='dmr14-021'?'をバトルゾーンに出した時':'がバトルゾーンに出た時';
+   const deneb='このクリーチャーは相手プレイヤーを攻撃できない。このクリーチャー'+entry+'カードを1枚引いてもよい。その後';
+   if(['dmr14-021','dmx20-037','promoy14-008'].includes(d.id)&&blockText.some(block=>['コスト3以下の光の','光のコスト3以下の']
+    .some(filter=>text===blocker+block+deneb+filter+'クリーチャーを1体自分の手札からバトルゾーンに出してもよい。')))
+    return {blocker:true,noPlayerAttack:true,effect:'sixPhoto',g34Tasks:[
+     {op:'Draw',n:1,optional:true},
+     {op:'Select',origin:'hand',n:1,optional:true,deploy:true,filter:{creature:true,color:'光',max:3}}
+    ]};
+  }
+ }
  if(phase>=990&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const double='W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)';
