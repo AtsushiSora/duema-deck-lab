@@ -915,7 +915,7 @@ export function manaPayment(mana,c){
  return states.get(goal+':'+cost)?.ids||(exact&&cost<colors.length?[...states.values()].find(st=>st.mask===goal&&st.amount>cost&&st.ids.length===colors.length)?.ids:null)||null;
 }
 // Printed cost remains unchanged for all references, searches, and card details (201.2a).
-export function summonCost(s,p,c){return Math.max(c.type==='creature'&&c.summonOrigin==='mana'&&c.g568PaymentColors===undefined&&allManaColors(s,p)?5:0,baseSummonCost297(s,p,c));}
+export function summonCost(s,p,c){return Math.max(c.g568PaymentColors===undefined&&manaExecutionAllColors(s,p,c)?5:0,baseSummonCost297(s,p,c));}
 // NEO can have a different cost when summoned on a legal base (official Q&A 41070).
 // A missing base choice means quote all available modes; null explicitly means no evolution.
 function summonModes384(s,p,c){return c.type==='creature'&&c.neoEvolution&&c.g27BaseUid===undefined?[{...c,g27BaseUid:null},...evolutionBases(s,p,c).map(base=>({...c,g27BaseUid:base.uid}))]:[c];}
@@ -949,12 +949,30 @@ function baseSummonCost297(s,p,c){
 // These printed color-granting abilities do not depend on creature power or stealth.
 // Reading them without decorating the whole board avoids a cycle through stealth.
 function allManaColors(s,p){return s.players[p].battle.some(x=>!x.sealed&&(card(x).casablanca||card(x).g51Courtney)&&!abilitiesIgnored(s,x));}
-export function manaColors(c,s=null,p=null,forPower=false){return s&&p!==null&&allManaColors(s,p)?['光','水','闇','火','自然']:manaCivilizations(c);}
+const fullManaColors=['光','水','闇','火','自然'];
+function twinManaColors(s,p){return s.players[p].battle.some(x=>card(x).g972TwinManaColors&&!abilitiesIgnored(s,x));}
+function manaExecutionAllColors(s,p,c){
+ return c.summonOrigin==='mana'&&(c.type==='creature'&&allManaColors(s,p)||
+  !!c.id&&!!card(c.id)?.spellFace&&twinManaColors(s,p));
+}
+export function manaColors(c,s=null,p=null,forPower=false){
+ return s&&p!==null&&(allManaColors(s,p)||c.spellFace&&twinManaColors(s,p))?[...fullManaColors]:manaCivilizations(c);
+}
 export function paymentPool(s,p,exclude=[],c=null){
  const zero=(s.g35ZeroMana||[]).some(l=>l.p===p),origin=c?.type==='creature'&&c.g423OriginMana||c?.type==='spell'&&c.g826OriginSpellMana,crystal=c?.type==='creature'&&c.g434CrystalSoul,all=s.players[p].battle.some(x=>effectiveCard(x,s).casablanca||effectiveCard(x,s).g51Courtney||String(c?.race).includes('生徒会組')&&effectiveCard(x,s).g28Gyai);
  // Printed mana stays unchanged. Crystal Soul applies only to face-down mana
  // for this summon, and overrides a prior zero-mana effect (official Q&A 45912).
- return [...s.players[p].mana.map(x=>{const value=zero?0:manaValue(card(x)),boost=crystal&&x.faceDown,double=origin&&value===1&&String(card(x).race||'').split('/').includes('オリジン');return zero||origin||crystal||all?{...x,...(zero||double||boost?{paymentValue:boost?crystal:double?2:0}:{}),...(origin?{paymentExact423:true}:{}),...(crystal?{paymentCrystal434:true}:{}),...(all?{paymentAllColors:true}:{})}:x;}),...s.players[p].battle.flatMap(x=>{
+ const twins=twinManaColors(s,p);
+ return [...s.players[p].mana.map(x=>{
+  const c=card(x),value=zero?0:manaValue(c),boost=crystal&&x.faceDown;
+  const double=origin&&value===1&&String(c.race||'').split('/').includes('オリジン');
+  const anyColor=all||twins&&c.spellFace;
+  return zero||origin||crystal||anyColor?{...x,
+   ...(zero||double||boost?{paymentValue:boost?crystal:double?2:0}:{}),
+   ...(origin?{paymentExact423:true}:{}),...(crystal?{paymentCrystal434:true}:{}),
+   ...(anyColor?{paymentAllColors:true}:{})
+  }:x;
+ }),...s.players[p].battle.flatMap(x=>{
   const data=effectiveCard(x,s);
   if(!data.manaBird)return [];
   return [{...x,paymentBird:true,...(data.manaBird==='ownColors'?{paymentColors:civilizations(data)}:{}),
@@ -963,8 +981,11 @@ export function paymentPool(s,p,exclude=[],c=null){
 }
 function freeSpell(s,p,c){return c.type==='spell'&&(c.g261Free&&extra.six.ownCondition(s,p,c.g261Free.filter)||s.players[p].battle.some(x=>card(x).g40Acashic&&!abilitiesIgnored(s,x)));}
 function freeSpellReason(s,p,c){return c.g261Free&&extra.six.ownCondition(s,p,c.g261Free.filter)?c.g261Free.label:'アカシック3';}
-// A mana-zone creature affected by Courtney still has all five civilizations while paying.
-function paymentCard297(s,p,c){c=executionCard(c);return c.type==='creature'&&c.summonOrigin==='mana'&&allManaColors(s,p)?{...c,civilizations:['光','水','闇','火','自然']}:c;}
+// A card still has its mana-zone civilizations while its cost is being paid (official 31410).
+function paymentCard297(s,p,c){
+ c=executionCard(c);
+ return manaExecutionAllColors(s,p,c)?{...c,civilizations:[...fullManaColors]}:c;
+}
 function validMana(s,p,c){c=paymentCard297(s,p,c);if(freeSpell(s,p,c)&&!c.g40PayNormally)return true;return summonModes384(s,p,c).some(mode=>manaPayment(paymentPool(s,p,[],mode),{...mode,cost:summonCost(s,p,mode)})!==null);}
 class DrawSelectionRequired extends Error{constructor(request){super('ドローの置換を選んでください');this.request=request;}}
 class ManaSelectionRequired extends Error{constructor(request){super('支払うマナを選んでください');this.request=request;}}

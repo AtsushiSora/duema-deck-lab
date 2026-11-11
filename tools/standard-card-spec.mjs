@@ -3435,6 +3435,16 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=972&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmrp08-028'&&text==='このクリーチャーがバトルゾーンに出た時自分の山札の上から1枚目をマナゾーンに置く。自分のマナゾーンにあるツインパクトカードをすべての文明のカードとして扱う。')
+   return {effect:'ramp1',g972TwinManaColors:true};
+  if(d.id==='dmrp06-075'&&text==='このクリーチャーが破壊された時カードを1枚引く。自分の「無月の門」能力を使った時このクリーチャーを自分の墓地からバトルゾーンにタップして出してもよい。')
+   return {g4Tin:true,g172Death:[{op:'Draw',n:1}]};
+  if(['dmrp05-045','dmsd06-011','dmbd08-b-010'].includes(d.id)&&text==='このクリーチャーがバトルゾーンに出た時クリーチャーを1体自分の墓地から選ぶ。それがコスト4以下の魔導具ならバトルゾーンに出す。それ以外なら手札に加える。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Select',origin:'grave',n:1,filter:{creature:true},g972DeployMatching:{race:'魔導具',max:4},
+    title:'墓地のクリーチャーを1体選ぶ（コスト4以下の魔導具なら出す）'}]};
+ }
  if(phase>=971&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmrp01-040'&&text==='自分のターンの終わりにバトルゾーンに自分のムートピアがあればこのクリーチャーを自分の墓地から手札に戻してもよい。')

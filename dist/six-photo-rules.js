@@ -878,6 +878,13 @@ export function createSixPhotoRules(api){
   moveZoneSelection583(s,t,rows);
  }
  function finishSelect(s,{g585Peek,...t}){
+  if(t.g972DeployMatching){
+   const [row]=t.rows;
+   const x=row&&s.players[row.p].grave.find(y=>y.uid===row.uid);
+   if(x&&matches(s,row.p,x,t.g972DeployMatching))put(s,{...t,op:'g34_Put',target:x.uid});
+   else if(x)zoneMove(s,row.p,'grave',x.uid,'hand',t);
+   return;
+  }
   // Both choices precede the simultaneous return, including when no opponent is selectable.
   if(t.g891BouncePair&&!t.g891OwnStage){
    put(s,{...t,op:'g34_Select',owner:'self',g891OwnStage:true,n:(t.selected?.length||0)+1,optional:true,

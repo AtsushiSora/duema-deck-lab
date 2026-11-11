@@ -199855,23 +199855,103 @@
       ],
       "supportBatch": "phase-971",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp08-028",
+      "name": "エンレメン",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "グランセクト",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。\n自分のマナゾーンにあるツインパクトカードを、すべての文明のカードとして扱う。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-028",
+      "limit": 4,
+      "effect": "ramp1",
+      "g972TwinManaColors": true,
+      "supportBatch": "phase-972",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp06-075",
+      "name": "カニ★ニカ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "マフィ・ギャング/ムーゲッツ",
+      "text": "このクリーチャーが破壊された時、カードを１枚引く。\n自分の「無月の門」能力を使った時、このクリーチャーを自分の墓地からバトルゾーンにタップして出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-075",
+      "limit": 4,
+      "g4Tin": true,
+      "g172Death": [
+        {
+          "op": "Draw",
+          "n": 1
+        }
+      ],
+      "supportBatch": "phase-972",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-045",
+      "name": "堕魔 ヴァイシング",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "マフィ・ギャング/魔導具",
+      "text": "このクリーチャーがバトルゾーンに出た時、クリーチャーを１体、自分の墓地から選ぶ。それがコスト４以下の魔導具なら、バトルゾーンに出す。それ以外なら手札に加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-045",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "grave",
+          "n": 1,
+          "filter": {
+            "creature": true
+          },
+          "g972DeployMatching": {
+            "race": "魔導具",
+            "max": 4
+          },
+          "title": "墓地のクリーチャーを1体選ぶ（コスト4以下の魔導具なら出す）"
+        }
+      ],
+      "supportBatch": "phase-972",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 971,
+    "phase": 972,
     "checkedAt": "2026-11-11",
-    "baseCount": 6801,
-    "newEffectCards": 4,
+    "baseCount": 6805,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6805,
+    "totalCount": 6808,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/31550/",
-      "https://dm.takaratomy.co.jp/rule/qa/31998/",
-      "https://dm.takaratomy.co.jp/rule/qa/33416/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31624/"
+      "https://dm.takaratomy.co.jp/rule/rulechange/31410/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35257/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36970/",
+      "https://dm.takaratomy.co.jp/rule/qa/31760/",
+      "https://dm.takaratomy.co.jp/rule/qa/46612/",
+      "https://dm.takaratomy.co.jp/coverage/dmscs02_f05b/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -217330,6 +217410,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/31578/",
           "https://dm.takaratomy.co.jp/rule/qa/42659/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31645/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 971,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6801,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6805,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/31550/",
+          "https://dm.takaratomy.co.jp/rule/qa/31998/",
+          "https://dm.takaratomy.co.jp/rule/qa/33416/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31624/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

@@ -1,0 +1,202 @@
+{
+  "phase": 972,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6805,
+  "description": "ツインパクトのマナ文明変更、無月の門を使った時の墓地からの登場、選んだ墓地のクリーチャーの条件分岐を処理する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31410/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35257/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/36970/",
+    "https://dm.takaratomy.co.jp/rule/qa/31760/",
+    "https://dm.takaratomy.co.jp/rule/qa/46612/",
+    "https://dm.takaratomy.co.jp/coverage/dmscs02_f05b/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp08-028",
+      "name": "エンレメン",
+      "faces": [
+        {
+          "name": "エンレメン",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から１枚目をマナゾーンに置く。\n自分のマナゾーンにあるツインパクトカードを、すべての文明のカードとして扱う。",
+          "race": "グランセクト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp08-028",
+      "spec": {
+        "effect": "ramp1",
+        "g972TwinManaColors": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp08-028.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "279090c5e4177c3c36e9ee560ccc5121a38e82afcf43c5f74b30dd07f0832f8a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp06-075",
+      "name": "カニ★ニカ",
+      "faces": [
+        {
+          "name": "カニ★ニカ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーが破壊された時、カードを１枚引く。\n自分の「無月の門」能力を使った時、このクリーチャーを自分の墓地からバトルゾーンにタップして出してもよい。",
+          "race": "マフィ・ギャング/ムーゲッツ",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp06-075",
+      "spec": {
+        "g4Tin": true,
+        "g172Death": [
+          {
+            "op": "Draw",
+            "n": 1
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp06-075.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "ca9f3196a5d10a12f60044398313fb1843322dbe117fb4349540e16305b8dcb7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp05-045",
+      "name": "堕魔 ヴァイシング",
+      "faces": [
+        {
+          "name": "堕魔 ヴァイシング",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、クリーチャーを１体、自分の墓地から選ぶ。それがコスト４以下の魔導具なら、バトルゾーンに出す。それ以外なら手札に加える。",
+          "race": "マフィ・ギャング/魔導具",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-045",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "grave",
+            "n": 1,
+            "filter": {
+              "creature": true
+            },
+            "g972DeployMatching": {
+              "race": "魔導具",
+              "max": 4
+            },
+            "title": "墓地のクリーチャーを1体選ぶ（コスト4以下の魔導具なら出す）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-045.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "4deb0db26e1d9e4c3baf7218f660f32b4a5416393eff689d6aa7eec4f3e6a24f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmsd06-011",
+      "canonicalId": "dmrp05-045",
+      "name": "堕魔 ヴァイシング",
+      "faces": [
+        {
+          "name": "堕魔 ヴァイシング",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、クリーチャーを１体、自分の墓地から選ぶ。それがコスト４以下の魔導具なら、バトルゾーンに出す。それ以外なら手札に加える。",
+          "race": "マフィ・ギャング/魔導具",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmsd06-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmsd06-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "d2f8c44ace1a4ad3e218ffe12a0fecb54d6a9dc88528f61e5b150c2f7cc02090",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmbd08-b-010",
+      "canonicalId": "dmrp05-045",
+      "name": "堕魔 ヴァイシング",
+      "faces": [
+        {
+          "name": "堕魔 ヴァイシング",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、クリーチャーを１体、自分の墓地から選ぶ。それがコスト４以下の魔導具なら、バトルゾーンに出す。それ以外なら手札に加える。",
+          "race": "マフィ・ギャング/魔導具",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmbd08-b-010",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmbd08-b-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "dc0ba20b93d1071a4cabd9a2b8a36f7e439a213135d1b957f1bb5dcf120976ed",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp08-028": 4,
+      "dmrp06-075": 4,
+      "dmrp05-045": 4,
+      "dmsd06-011": 4,
+      "dmbd08-b-010": 4
+    }
+  }
+}

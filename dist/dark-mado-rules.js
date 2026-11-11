@@ -51,7 +51,7 @@ export function createDarkMadoRules(api){
    case'g30_Gride':{const before=new Set(own.grave.map(x=>x.uid));api.mill(s,t.p,3);const amount=own.grave.filter(x=>!before.has(x.uid)&&faces(card(x)).some(magic)).length*2000;choice(s,{...t,amount},'グリデリア：相手1体を−'+amount+'する？',[...targetOptions(s,t.p,creatures(s,1-t.p)),skip()]);break;}
    case'g30_Funz':{const selected=t.selected||[];if(selected.length===2){move(s,selected.map(uid=>({player:1-t.p,uid,to:'hand',destroy:false})));break;}choice(s,{...t,selected},'フンズヴァイ：戻すエレメントを2つまで選ぶ',[...targetOptions(s,t.p,s.players[1-t.p].battle.filter(x=>!selected.includes(x.uid))),opt('この内容で戻す',null,selected.length?10:0)]);break;}
    case'g30_GraveHand':choice(s,t,'墓地の闇のカードを1枚、手札に戻す',own.grave.filter(x=>faces(card(x)).some(c=>colors(c).includes('闇'))).map(x=>opt(card(x).name,x.uid,10+Math.min(20,cost(card(x))),x.cardId)));break;
-   case'g30_Tin':{const x=own.grave.find(x=>x.uid===t.uid&&serial(x)===t.serial);if(x&&api.canEnter(s,t.p,card(x),{origin:'grave',execution:false}))choice(s,t,'ティン★ビンを墓地からタップして出す？',[opt('タップして出す',true,30,x.cardId),skip()]);break;}
+   case'g30_Tin':{const x=own.grave.find(x=>x.uid===t.uid&&serial(x)===t.serial);if(x&&api.canEnter(s,t.p,card(x),{origin:'grave',execution:false}))choice(s,t,card(x).name+'を墓地からタップして出す？',[opt('タップして出す',true,30,x.cardId),skip()]);break;}
    default:throw Error('未実装の闇魔導具効果：'+t.op);
   }return true;
  }
