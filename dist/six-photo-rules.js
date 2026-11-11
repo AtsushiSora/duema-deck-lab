@@ -651,6 +651,19 @@ export function createSixPhotoRules(api){
   for(const zone of['hand','mana','grave']){const xs=rows.filter(r=>r.to===zone).map(r=>r.x);if(xs.length)api.addZone(s,t.p,zone,...xs);}
   api.deckCheck(s,t.p);
  }
+ function ponyShieldCards949(root){
+  return api.shieldCards(root).filter(x=>!x.g37ShieldHeld&&
+   !(x.faceUp&&card(x).type==='castle'&&!card(x).gCastle));
+ }
+ function peekPonyShield949(s,t,selected){
+  const {uid,cardId}=selected,c=card(selected);
+  const deploy=c.type==='creature'&&!api.isEvolution(selected)&&api.canEnter(s,t.p,c,{origin:'shields',execution:false});
+  api.log(s,t.p,'look',card(t.source).name+'でシールドカードを確認（内容は非公開）',{cardId:t.source});
+  choice(s,{...t,op:'g34_PonyDeploy949',selected:uid,g585Peek:[{id:cardId,label:'相手が選んだ自分のシールドカード'}]},
+   deploy?'確認したカードをバトルゾーンに出しますか？':'選ばれたシールドカードを確認',
+   [...(deploy?[opt('バトルゾーンに出す',true,c.shieldGo&&selected.faceUp?-10:20)]:[]),
+    opt(deploy?'シールドに残す':'確認を終える',null,0)]);
+ }
  function peekRows585(s,t){
   const owners=t.who==='both'?[t.p,1-t.p]:[t.who==='self'?t.p:1-t.p];
   return owners.flatMap(p=>s.players[p].shields.flatMap((root,i)=>{
@@ -2306,6 +2319,39 @@ export function createSixPhotoRules(api){
   if(opp.shields.length)choice(s,t,'ブレイクする相手のシールドを1つ選ぶ',[...opp.shields.map((x,i)=>opt('シールド'+(i+1),x.uid,10)),...(t.optional?[skip()]:[])]);break;
  }
  case'g34_AfterBreak278':if(t.g909Broke)start(s,t,t.g909AfterBreak);break;
+ case'g34_OpponentPickShield949':{
+  const choices=own.shields.flatMap((root,i)=>ponyShieldCards949(root).length?
+   [opt('相手のシールド '+(i+1),root.uid,0)]:[]);
+  if(choices.length)choice(s,t,'相手のシールドを1つ選ぶ',choices,1-t.p);
+  break;
+ }
+ case'g34_PonyShieldCard949':{
+  const root=api.findShield(own,t.group),cards=ponyShieldCards949(root);
+  if(cards.length===1)peekPonyShield949(s,t,cards[0]);
+  else if(cards.length)choice(s,t,'そのシールドからカードを1枚選ぶ',
+   cards.map((x,i)=>opt('シールドのカード '+(i+1),x.uid,0)),1-t.p);
+  break;
+ }
+ case'g34_FlipShields949':{
+  const rows=peekRows585(s,{...t,who:'both'}),selected=t.selected||[];
+  const n=t.n??Math.min(creatures(s,t.p).length,rows.length);
+  if(!n)break;
+  if(t.done||selected.length>=n){
+   for(const row of rows.filter(r=>selected.includes(r.x.uid))){
+    for(const shield of row.seen){
+     if(shield.faceUp)continue;
+     shield.faceUp=true;
+     api.log(s,t.p,'reveal',row.label+'：'+card(shield).name+'を表向きにした',{cardId:shield.cardId});
+    }
+   }
+   break;
+  }
+  choice(s,{...t,n,selected},'表向きにするシールドを'+n+'つまで選ぶ（'+selected.length+'つ選択済み）',[
+   ...rows.filter(r=>!selected.includes(r.x.uid)).map(r=>opt(r.label,r.x.uid,r.seen.some(x=>!x.faceUp)?5:0)),
+   selected.length?opt('ここまでで確定',null,0):skip()
+  ]);
+  break;
+ }
  case'g34_Peek585':{
   if(t.opponentDeckTop){
    const held=reserved(opp),top=opp.deck.find(x=>!held.has(x.uid));
@@ -3242,6 +3288,28 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_FightEnemy240':if(v){const owner=t.fighterOwner??t.p,a=fightUnit240(s,owner,t.fighter,t.g745FollowFighter),b=fightUnit240(s,1-t.p,v);if(a&&b&&a.uid!==b.uid&&(!t.g747Once||!parottaUsed747(s,t))){if(t.g747Once)(s.once??={})[parottaKey747(t)]=s.turn;api.battle(s,owner,a,1-t.p,b,s.attack?.attacker);}}break;
+ case'g34_OpponentPickShield949':put(s,{...t,op:'g34_PonyShieldCard949',group:v});break;
+ case'g34_PonyShieldCard949':{
+  const selected=ponyShieldCards949(api.findShield(own,t.group)).find(x=>x.uid===v);
+  if(selected)peekPonyShield949(s,t,selected);
+  break;
+ }
+ case'g34_PonyDeploy949':{
+  if(!v)break;
+  const selected=ponyShieldCards949(api.findShield(own,t.group)).find(x=>x.uid===t.selected);
+  const options={origin:'shields',execution:false};
+  if(!selected)break;
+  const c=card(selected);
+  if(c.type!=='creature'||api.isEvolution(selected)||!api.canEnter(s,t.p,c,options))break;
+  if(selected.faceUp&&c.shieldGo){api.moveShield(s,t.p,selected.uid,'grave',{cardOnly:true});break;}
+  const entrant=api.removeShieldCard(s,t.p,selected.uid);
+  if(entrant){clear(entrant,'battle');enter(s,t.p,entrant,null,options);}
+  break;
+ }
+ case'g34_FlipShields949':
+  if(v)put(s,{...t,selected:[...t.selected,v]});
+  else if(t.selected.length)put(s,{...t,done:true});
+  break;
  case'g34_Peek585':if(v){const row=peekRows585(s,t).find(r=>r.p===v.player&&r.x.uid===v.uid);if(row)showPeek585(s,{...t,viewed:[...(t.viewed||[]),v.uid]},[row]);}break;
  case'g34_PeekRead585':
   if(v&&api.swapShield585(s,t.p,t.shieldUid))api.log(s,t.p,'shieldSwap',card(t.source).name+'：確認したカードと山札の上を入れ替えた',{cardId:t.source});

@@ -370,16 +370,27 @@ export function createExtendedRules(api){
  function revMatches(s,x,c){const r=c.rev,d=r?.g486Current?effective(x,s):card(x);return !!r&&api.isCreature(s,x)&&(r.any|| (r.categories?r.categories.some(q=>String(d.race).includes(q)):r.race?String(d.race).includes(r.race):d.race.includes('ドラゴン')))&&(!r.nameIncludes||d.name.includes(r.nameIncludes))&&(!r.multicolor||colors(d).length>1)&&(!r.powerMin||power(x,x.uid===s.attack?.attacker,s)>=r.powerMin)&&cost(d)>=(r.min||0)&&(!r.colors||colors(d).some(v=>r.colors.includes(v)));}
  function startSwap(s,t,uid,revolution){const own=s.players[t.p],incoming=revCard(s,t.p,t.uid),origin=incoming&&own.hand.includes(incoming)?'hand':'shields';if(incoming&&galaxy.entryWouldReplace(s,t.p,card(incoming),origin,false)){log(s,t.p,'swapFailed','登場の置き換えにより入れ替えは実行されない',{cardId:t.source});return;}const old=nowCreature(s,t.p,uid);if(!old||!incoming||!revOrigin486(own,incoming,t.g486Serial))return;if(card(old).starEvolution&&old.under?.length){log(s,t.p,'swapFailed','スター進化の構成カードすべては戻せないため入れ替えできない',{cardId:t.source});return;}const attack=s.attack&&[s.attack.attacker,s.attack.target,s.attack.blockUid].includes(uid)?structuredClone(s.attack):null;put(s,{...t,op:'swapFinish',old:uid,tapped:old.tapped,attack,revolution,origin});move(s,[{player:t.p,uid,exchange:true,to:origin==='hand'?'hand':'shields',...(origin==='shields'?{shieldAttach:api.shieldGroup(own.shields.find(root=>api.shieldCards(root).some(y=>y.uid===incoming.uid)))}:{}),destroy:false}]);}
  function discardWatchers848(s,p){
-  return s.players[p].battle.flatMap(x=>{
+  const own=s.players[p].battle.flatMap(x=>{
    if(!card(x).g848DiscardWatch||x.sealed||!api.isCreature(s,x))return [];
    const mode=effective(x,s).g848DiscardWatch;
    return mode==='opponentDiscard'||mode==='draw'&&s.active!==p?
     [{uid:x.uid,cardId:x.cardId,mode}]:[];
   });
+  const enemy=s.players[1-p].battle.flatMap(x=>
+   card(x).g949OpponentDiscardDraw&&!x.sealed&&api.isCreature(s,x)&&effective(x,s).g949OpponentDiscardDraw?
+    [{uid:x.uid,cardId:x.cardId,mode:'opponentDraw949'}]:[]);
+  return [...own,...enemy];
  }
  function notifyDiscard848(s,p,watchers,n){
   if(!n)return;
   for(const {uid,cardId,mode} of watchers||[]){
+   if(mode==='opponentDraw949'){
+    const player=1-p;
+    enqueue(s,player,{uid,source:cardId,effect:'extended',task:task('g34_Offer',player,cardId,{
+     title:'相手が捨てた枚数と同じ'+n+'枚を引きますか？',defs:[{op:'Draw',n}]
+    })});
+    continue;
+   }
    const tasks=mode==='draw'?[task('draw',p,cardId,{n})]:
     Array.from({length:n},()=>task('discard',1-p,cardId,{n:1,causedBy:p}));
    for(const effect of tasks)enqueue(s,p,{uid,source:cardId,effect:'extended',task:effect});

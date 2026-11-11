@@ -3388,6 +3388,19 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=949&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm30-018'&&f.typeText==='クリーチャー'&&text===
+   'このクリーチャーをバトルゾーンに出した時自分のシールドからカードを1枚相手に選ばせる。そのカードを見て進化以外のクリーチャーであればバトルゾーンに出してもよい。W・ブレイカー')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'OpponentPickShield949'}]};
+  if(['dm12-006','dmex08-011'].includes(d.id)&&f.typeText==='クリーチャー'&&[
+   'このクリーチャーをバトルゾーンに出した時バトルゾーンにある自分のクリーチャー1体につきシールドを1枚選び表向きにしてもよい。(選んだシールドはシールドゾーンにある間表向きにしておく)',
+   'このクリーチャーがバトルゾーンに出た時バトルゾーンにある自分のクリーチャー1体につきシールドを1つ選び表向きにしてもよい。(選んだシールドはシールドゾーンにある間表向きにしておく)'
+  ].includes(text))return {effect:'sixPhoto',g34Tasks:[{op:'FlipShields949'}]};
+  if(['dm14-005','dmc42-011'].includes(d.id)&&f.typeText==='進化クリーチャー'&&text===
+   '進化-自分のデスパペット1体の上に置く。相手が自分自身の手札を捨てた時その捨てられたカードと同じ枚数のカードを引いてもよい。')
+   return {evolution:{race:'デスパペット'},g949OpponentDiscardDraw:true};
+ }
  if(phase>=948&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm14-017'&&f.typeText==='クリーチャー'&&text===
