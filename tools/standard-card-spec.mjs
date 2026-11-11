@@ -3435,6 +3435,25 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=1013&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const manaTap='マナゾーンに置く時このカードはタップして置く。';
+  if(d.id==='dmr21-011'&&text===manaTap+'W・ブレイカースピードアタッカー'+
+   '相手のクリーチャーが攻撃する時可能であればこのクリーチャーを攻撃する。'+
+   '相手の呪文の効果またはクリーチャーの能力によってこのクリーチャーを手札から捨てる時墓地に置くかわりにバトルゾーンに置いてもよい。')
+   return {breaker:2,speedAttacker:true,g431AttackMe:true,g591Discard:'opponentEffect'};
+  if(d.id==='dmr22-s08'&&text===manaTap+'スレイヤーW・ブレイカー'+
+   '革命チェンジ:闇または火のドラゴン(自分の闇または火のドラゴンが攻撃する時そのクリーチャーと手札にあるこのクリーチャーを入れ替えてもよい)'+
+   'このクリーチャーがどこからでも墓地に置かれた時バトルゾーンに自分のD2フィールドがあればこのクリーチャーを自分の墓地から手札に戻す。')
+   return {slayer:true,breaker:2,rev:{colors:['闇','火'],g486Current:true},
+    g675GraveEntry:[{op:'SelfGraveHand476',condition:{g580D2Field:true}}]};
+  const entry=d.id==='dmr21-s05'?'このクリーチャーがバトルゾーンに出た時':
+   ['dm22rp2-TR5','dm22rp2x-TR5'].includes(d.id)?'このクリーチャーが出た時':null;
+  if(entry&&text==='W・ブレイカー'+entry+
+   '多色ではないカードが出るまで自分の山札の上からカードを表向きにする。表向きにしたカードをすべて'+
+   (d.id==='dmr21-s05'?'自分の':'')+'マナゾーンに置く。')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'RevealToMana1013'}]};
+ }
  if(phase>=1012&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   const manaTap='マナゾーンに置く時このカードはタップして置く。';

@@ -674,7 +674,11 @@ export function createSixPhotoRules(api){
   const size=t.manaCountFilter?countDraw(s,t.p,{zone:'mana',filter:t.manaCountFilter}):t.n??3;
   const n=ownLibrary?api.lookCount(s,t.p,size):size;
   const publicLook=t.public||ownLibrary&&api.lookPublic(s,t.p);
-  const rows=own.deck.filter(x=>!held.has(x.uid)).slice(0,n);
+  let rows=own.deck.filter(x=>!held.has(x.uid)).slice(0,n);
+  if(t.g1013ThroughNonMulti){
+   const stop=rows.findIndex(x=>new Set(faces(card(x)).flatMap(colors)).size<2);
+   if(stop>=0)rows=rows.slice(0,stop+1);
+  }
   const ids=rows.map(x=>x.uid);
   (own.g34Protected??=[]).push(...ids);
   api.log(s,t.p,publicLook?'reveal':'look',card(t.source).name+'：山札の上'+ids.length+'枚'+
@@ -1859,7 +1863,11 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_RevealDiscard839':revealDiscard839(s,t);break;
- case'g34_SelfGraveHand476':{const y=own.grave.find(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)&&(y.zoneSerial||0)===t.serial);if(y)zoneMove(s,t.p,'grave',y.uid,'hand',t);break;}
+ case'g34_SelfGraveHand476':{
+  const y=own.grave.find(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)&&(y.zoneSerial||0)===t.serial);
+  if(y&&(!t.condition||ownCondition(s,t.p,t.condition)))zoneMove(s,t.p,'grave',y.uid,'hand',t);
+  break;
+ }
  case'g34_SelfGraveShield659':{
   const y=own.grave.find(y=>y.uid===t.uid&&(y.incarnation||0)===(t.incarnation||0)&&(y.zoneSerial||0)===t.serial);
   if(y)zoneMove(s,t.p,'grave',y.uid,'shields',{...t,g657FaceUp:true});
@@ -3065,6 +3073,14 @@ export function createSixPhotoRules(api){
   if(t.revealed&&ownCondition(s,t.p,{g267Mana:{color:'火',n:5}}))
    zoneMove(s,t.p,'deck',t.revealed,'hand',t);
   put(s,{...t,op:'g34_Order',rest:'shuffle'});
+  break;
+ }
+ case'g34_RevealToMana1013':{
+  const ids=look(s,{...t,n:own.deck.length,public:true,g1013ThroughNonMulti:true});
+  if(!ids.length)break;
+  for(const uid of ids)release(s,t.p,uid);
+  moveZoneSelection583(s,{...t,origin:'deck',to:api.deckRedirect(s,t.p)?'grave':'mana'},ids.map(uid=>({uid})));
+  api.deckCheck(s,t.p);
   break;
  }
  case'g34_Look':{if(t.g201Search)t={...t,n:own.deck.length};let ids;if(t.stages?.some(q=>q.g467Destinations&&!q.filter)&&api.deckLocked(s,t.p)){t={...t,g467Blind:true};const skip=reserved(own);ids=own.deck.filter(x=>!skip.has(x.uid)).slice(0,t.n).map(x=>x.uid);(own.g34Protected??=[]).push(...ids);}else ids=look(s,t);
@@ -5282,7 +5298,10 @@ export function createSixPhotoRules(api){
   else flushGrave838(s,all.length);
   for(const y of all)if(card(y).g590SelfGraveBottom)queue(s,p,y,[{op:'GraveBottom589',self:true}]);
   // Cards with grave-entry abilities trigger from the new zone (QA46841).
-  for(const y of all)if(card(y).g675GraveEntry)queue(s,p,y,card(y).g675GraveEntry);
+  for(const y of all){
+   const defs=card(y).g675GraveEntry;
+   if(defs)queue(s,p,y,defs.map(d=>d.op==='SelfGraveHand476'?{...d,serial:y.zoneSerial||0}:d));
+  }
   const graveWatchers=s.players[p].battle.filter(x=>card(x).g677AllyGrave&&!x.sealed&&api.isCreature(s,x)&&!api.ignored(s,x));
   if(graveWatchers.length){
    const newCreatures=all.filter(y=>faces(api.zoneCard(s,p,y,'grave')).some(face=>face.type==='creature'));
