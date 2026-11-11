@@ -190,6 +190,20 @@ export function createSixPhotoRules(api){
  // Smash Burst follows the same physical card through its first zone change (QA48746).
  function smashSource320(s,t){for(const origin of['battle','hand','grave','mana','deck','extra']){const xs=origin==='battle'?s.players[t.p].battle.flatMap(api.allLayers):s.players[t.p][origin],x=xs.find(x=>x.uid===t.uid);if(x&&(origin==='battle'?(x.incarnation||0)===(t.incarnation||0):(x.zoneSerial||0)===(t.serial||0)+1))return{origin,x};}return null;}
  const send=(s,p,x,op,more={})=>api.enqueue(s,p,{uid:x.uid,incarnation:x.incarnation||0,source:x.cardId,effect:'extended',task:task('g34_'+op,p,x.cardId,{uid:x.uid,incarnation:x.incarnation||0,...more})});
+ function declareBioK951(s,t){
+  const rows=s.players[t.p].hand.filter(x=>t.ids.includes(x.uid)),remaining=rows.filter(x=>!t.selected.includes(x.uid));
+  if(remaining.length&&!t.done){
+   choice(s,t,'使用を宣言するバイオ・Kを選ぶ',[
+    ...remaining.map(x=>opt(card(x).name,x.uid,s.players[t.p].deck.length>2?6:-5,x.cardId)),
+    opt('宣言を確定',null,0)
+   ]);
+   return;
+  }
+  for(const source of rows.filter(x=>t.selected.includes(x.uid))){
+   api.log(s,t.p,'reveal',card(source).name+'のバイオ・Kを宣言',{cardId:source.cardId});
+   send(s,t.p,source,'BioK951',{serial:source.zoneSerial||0});
+  }
+ }
  const tasks=(p,source,defs,more={})=>(defs||[]).map(d=>task(/^(?:g35_|g393[CDJP]_)/.test(d.op)?d.op:'g34_'+d.op,p,source,{...more,...d,op:/^(?:g35_|g393[CDJP]_)/.test(d.op)?d.op:'g34_'+d.op,p:d.p??p,source}));
  const start=(s,t,defs)=>put(s,...tasks(t.p,t.source,defs,{uid:t.uid,incarnation:t.incarnation||0,controller:t.controller??t.p,moved:t.moved||0,...(t.lastKnownCount!==undefined?{lastKnownCount:t.lastKnownCount}:{}),...(t.g692LastPower!==undefined?{g692LastPower:t.g692LastPower}:{}),...(t.g694Defender?{g694Defender:t.g694Defender}:{}),...(t.g399Attacker?{g399Attacker:t.g399Attacker}:{})}));
  // Delayed effects retain the attacking creature, independently of the watcher.
@@ -203,6 +217,7 @@ export function createSixPhotoRules(api){
  const evolutionOrLinkedGod=(x,c)=>api.isEvolution(x)||!!(x.godLinks?.length&&race(c,'ゴッド'));
  function matches(s,p,x,f={}){
   if(f.g939ShieldForce&&(api.ignored(s,x)||!hasCopiedRole393(card(x),'g35Role','galaxy')))return false;
+  if(f.g951ManaCivilizationCost&&cost(effective(x,s))>manaCivilizationCount(s,p))return false;
   const c=api.zoneCard(s,p,x),d=s.players[p].battle.includes(x)?effective(x,s):c;if(f.g853Soul&&!hasSoul(c,f.g853Soul))return false;if(f.g508EvolutionOrLink&&!evolutionOrLinkedGod(x,c))return false;const faceMax=f.g228Face?.g815ManaCivilCost?manaCivilizationCount(s,p):f.g228Face?.max;return (!f.g784ShieldTrigger||d.trigger||d.triggerPlus||d.superTrigger)&&(!f.g746Bad||!!d.bad)&&(!f.g724ExactRace||exactRaces(d).includes(f.g724ExactRace))&&(!f.g819CreatureNameIncludes||battleNames676(x).some(name=>name.includes(f.g819CreatureNameIncludes)))&&(!f.g819AnyFaceRace||faces(c).some(face=>exactRaces(face).includes(f.g819AnyFaceRace)))&&(!f.g670Guardman||d.guardman)&&(!f.g661ShieldGo||d.shieldGo)&&(!f.g614GraveCreatureName||graveCreatureName614(s,p,d))&&(!f.g600OverMana||cost(d)>s.players[p].mana.length)&&(!f.g596EnteredThisTurn||(x.originalEntryTurn??x.entered)===s.turn)&&(!f.g587PowerEnding500||currentPower506(s,x)%1000===500)&&(!f.faceUp||!x.faceDown)&&(!f.g556Neo||!!c.neoEvolution)&&(!f.g539JokerCard||faces(c).some(c=>race(c,'ジョーカーズ')))&&(!f.g415Mugen||faces(c).some(c=>c.mugenCrime>0))&&(!f.g412ExceptName||faces(c).every(face=>String(face.name||'').normalize('NFKC').replace(/\s/g,'')!==f.g412ExceptName.normalize('NFKC').replace(/\s/g,'')))&&(!f.g295Tamaseed||c.type==='seed'||!!c.seedCreature||!!c.natureAce4)&&(!f.g228Face||faces(c).some(face=>face.type===f.g228Face.type&&(!f.g228Face.shieldTrigger||face.trigger||face.triggerPlus||face.superTrigger)&&(!f.g228Face.multicolor||colors(face).length>1)&&(!f.g228Face.color||colors(face).includes(f.g228Face.color))&&(!f.g228Face.exceptColor||!colors(face).includes(f.g228Face.exceptColor))&&(!f.g228Face.colorsAll||f.g228Face.colorsAll.every(color=>colors(face).includes(color)))&&(!f.g228Face.raceAll||f.g228Face.raceAll.every(q=>race(face,q)))&&(!f.g228Face.d2||face.d2Field===true)&&(!f.g228Face.nameAny||f.g228Face.nameAny.some(name=>face.name.includes(name)))&&(f.g228Face.min===undefined||cost(face)>=f.g228Face.min)&&(faceMax===undefined||cost(face)<=faceMax)&&(f.g228Face.minPower===undefined||face.power==='∞'||Number(face.power)>=f.g228Face.minPower)&&(f.g228Face.maxPower===undefined||Number(face.power)<=f.g228Face.maxPower)))&&(!f.g584MonoCard||new Set(faces(c).flatMap(colors)).size<=1)&&(!f.g223Multicolor||new Set(faces(c).flatMap(colors)).size>1)&&(!f.g220NameAny||f.g220NameAny.some(q=>faces(c).some(c=>c.name.includes(q))))&&(!f.g218Colored||colors(d).length>0)&&(!f.g217Colorless||faces(c).some(c=>colors(c).length===0))&&(!f.g217SpellColor||faces(c).some(c=>c.type==='spell'&&colors(c).includes(f.g217SpellColor)))&&(!f.g201Gear||c.type==='gear')&&(!f.g201ExactName||faces(c).some(y=>String(y.name||'').normalize('NFKC').replace(/\s/g,'')===f.g201ExactName.normalize('NFKC').replace(/\s/g,'')))&&(!f.g200Colorless||faces(c).every(c=>colors(c).length===0))&&(!f.anyFaceColor||faces(c).some(c=>colors(c).includes(f.anyFaceColor)))&&(f.anyFaceMinCost===undefined||faces(c).some(c=>cost(c)>=f.anyFaceMinCost))&&(!f.colorsAll||f.colorsAll.every(q=>colors(d).includes(q)))&&(!f.any||f.any.some(q=>matches(s,p,x,q)))&&(!f.seed||c.type==='seed')&&(!f.creature||d.type==='creature')&&(!f.nonCreature||faces(c).every(face=>face.type!=='creature'))&&(!f.nonCreatureElement||!api.isCreature(s,x))&&(!f.element||['creature','seed','gear','field'].includes(c.type))&&(!f.nonEvolution||!api.isEvolution(x)&&!c.g48HandEvolution)&&(!f.evolution||api.isEvolution(x))&&(!f.blocker||d.blocker)&&(!f.noColor||colors(d).length===0)&&(!f.creatureOrSeed||['creature','seed'].includes(c.type))&&(f.belowCost===undefined||cost(d)<(f.belowCost==='∞'?Infinity:f.belowCost))&&(!f.notRace||!race(d,f.notRace))&&(!f.race||race(d,f.race))&&(!f.raceAny||f.raceAny.some(q=>race(d,q)))&&(!f.name||c.name.includes(f.name))&&(!f.exactId||c.id===f.exactId)&&(!f.exactUid||x.uid===f.exactUid)&&(f.exactCost===undefined||cost(c)===(f.exactCost==='∞'?Infinity:f.exactCost))&&(f.belowPower===undefined||livePower199(s,x,f.g199Power)<(f.belowPower==='∞'?Infinity:f.belowPower))&&(!f.color||colors(d).includes(f.color))&&(!f.notColor||!colors(d).includes(f.notColor))&&(!f.multi||colors(d).length>1)&&(!f.g510NonMulticolor||colors(d).length<=1)&&(!f.anyFaceRace||faces(c).some(c=>race(c,f.anyFaceRace)))&&(!f.spell||faces(c).some(c=>c.type==='spell'))&&(!f.aura||c.type==='aura')&&(!f.twin||!!c.spellFace)&&(f.min===undefined||cost(d)>=f.min)&&(f.max===undefined||cost(d)<=f.max)&&(f.minPower===undefined||livePower199(s,x,f.g199Power)>=f.minPower)&&(f.maxPower===undefined||livePower199(s,x,f.g199Power)<=f.maxPower)&&(!f.untapped||!x.tapped)&&(!f.tapped||x.tapped);}
  function panyaCanReturn(s,x){
   const linked=x.godLinks||[];
@@ -360,6 +375,7 @@ export function createSixPhotoRules(api){
   });
  }
  const ownCondition=(s,p,f,sourceUid=null,sourceIncarnation=null,lastKnownCount=0)=>{
+  if(f.g951AnyHandMin!==undefined)return s.players.some(player=>player.hand.length>=f.g951AnyHandMin);
   if(f.g876SummonNumber!==undefined){
    const history=s.g463Summons?.[p];
    return (history?.turn===s.turn?history.n:0)+1===f.g876SummonNumber;
@@ -2354,6 +2370,14 @@ export function createSixPhotoRules(api){
   ]);
   break;
  }
+ case'g34_BioK951':{
+  const source=own.hand.find(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial);
+  if(!source||api.handAbilityIgnored(s,source))break;
+  choice(s,t,'バイオ・Kでこのカードを捨てる？',[
+   opt('捨てる',true,own.deck.length>2?6:-5,t.source),skip()
+  ]);
+  break;
+ }
  case'g34_ShinobiSearch950':{
   const ids=t.ids??look(s,{...t,n:own.deck.length}),selected=t.selected??[];
   const rows=own.deck.filter(x=>ids.includes(x.uid)&&matches(s,t.p,x,{g228Face:{type:'creature',raceAll:['シノビ']}}));
@@ -3332,6 +3356,13 @@ export function createSixPhotoRules(api){
  case'g34_FlipShields949':
   if(v)put(s,{...t,selected:[...t.selected,v]});
   else if(t.selected.length)put(s,{...t,done:true});
+  break;
+ case'g34_BioK951':
+  if(v&&own.hand.some(x=>x.uid===t.uid&&(x.zoneSerial||0)===t.serial))
+   api.discardSelected(s,t.p,[t.uid],t.source,t.p,task('g34_DrawUpTo',t.p,t.source,{n:2,g203Draw:true}));
+  break;
+ case'g34_BioKDeclare951':
+  declareBioK951(s,v?{...t,selected:[...t.selected,v]}:{...t,done:true});
   break;
  case'g34_ShinobiSearch950':
   if(t.g950Revealed){
@@ -4536,6 +4567,13 @@ export function createSixPhotoRules(api){
   const attacker=effective(x,s),defs=playerAttack&&!api.selfStopped(s,p)&&attacker.g482Unblocked;
   if(defs)queue(s,p,x,defs);
   let triggered=!!defs;
+  if(playerAttack&&!s.attack.g484Blocked&&race(attacker,'グレートメカオー')){
+   const ids=s.players[p].hand.filter(y=>card(y).g951BioK&&!api.handAbilityIgnored(s,y)).map(y=>y.uid);
+   if(ids.length){
+    declareBioK951(s,task('g34_BioKDeclare951',p,x.cardId,{ids,selected:[]}));
+    triggered=true;
+   }
+  }
   if(!s.attack.g484Blocked)for(const source of creatures(s,p)){
    if(source.sealed)continue;
    const {g701UnblockedMana,g852UnblockedDiscard}=effective(source,s);
@@ -4587,6 +4625,9 @@ export function createSixPhotoRules(api){
  flushShield536(s){if(s.leaving)return;const departed=s.g536ShieldDepartures||[];delete s.g536ShieldDepartures;for(const p of departed)shieldDeparture536(s,p);},
  drawn676(s,p,n,before){
   if(!n)return;
+  if(before===0&&s.active===p)for(const source of creatures(s,p)){
+   if(!source.sealed&&effective(source,s).g951FirstOwnDraw)queue(s,p,source,[E('Draw',{n:1,optional:true})]);
+  }
   if(before<2&&before+n>=2)for(const y of creatures(s,p)){
    if(!y.sealed&&effective(y,s).g789SecondDraw)queue(s,p,y,[E('Draw',{n:1})]);
   }

@@ -3388,6 +3388,28 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=951&&d?.status==='complete'&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  const luna={g396Zero:{all:[{g951AnyHandMin:9}]},g951FirstOwnDraw:true};
+  if(d.id==='dm16-s02'&&d.faces.length===1&&text===
+   'G・ゼロ-9枚以上手札を持つプレイヤーがいればこのクリーチャーをコストを支払わずに召喚してもよい。自分のターンに1枚目のカードを引く時もう1枚余分に引いてもよい。')
+   return luna;
+  if(d.id==='dm25ex1-040'&&d.faces.length===2&&text===
+   'G・ゼロ:手札が9枚以上あるプレイヤーがいればこのクリーチャーをコストを支払わずに召喚してもよい。自分のターン中に自分が最初のカードを引いた時カードをもう1枚引いてもよい。'){
+   const spell=d.faces[1];
+   if(spell.typeText==='呪文'&&normalize(spell.abilityText)==='カードを2枚引く。「ブロッカー」を持つクリーチャーをすべて持ち主の手札に戻す。')
+    return {...luna,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,
+     civilizations:spell.civilizations,race:spell.race,effect:'sixPhoto',g34Tasks:[
+      {op:'Draw',n:2},{op:'Sweep',both:true,to:'hand',filter:{creature:true,blocker:true}}
+     ]}};
+  }
+  if(['dm23-025','dmx11-076','promoy5-065'].includes(d.id)&&d.faces.length===1&&text===
+   'バイオ・K-自分のグレートメカオーが相手プレイヤーを攻撃してブロックされなかった時このカードを手札から捨ててもよい。そうした場合カードを2枚まで引いてもよい。')
+   return {g951BioK:true};
+  if(d.id==='dm27-022'&&d.faces.length===1&&text===
+   '自分のマナゾーンにある文明の数以下のコストを持つ自分のクリーチャーが破壊される時このクリーチャーをかわりに破壊してもよい。')
+   return {g571Saver:{filter:{creature:true,g951ManaCivilizationCost:true}}};
+ }
  if(phase>=950&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(['dm09-s02','dmx12b-035'].includes(d.id)&&[

@@ -1,0 +1,270 @@
+{
+  "phase": 951,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6730,
+  "description": "非ブロック時のバイオ・K、G・ゼロと初回ドロー、ツインパクトの呪文面、マナ文明数による破壊置換を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37597/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37599/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/316689/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37607/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37608/"
+  ],
+  "cards": [
+    {
+      "id": "dm23-025",
+      "name": "奇術ロボ・ジェントルマン",
+      "faces": [
+        {
+          "name": "奇術ロボ・ジェントルマン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "バイオ・K-自分のグレートメカオーが相手プレイヤーを攻撃してブロックされなかった時、このカードを手札から捨ててもよい。そうした場合、カードを２枚まで引いてもよい。",
+          "race": "グレートメカオー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-025",
+      "spec": {
+        "g951BioK": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm23-025.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "0cc2f5865a8fdfa7904b73d2bb3572a703361e6ee605ee92b71d92bb72c2aa02",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-s02",
+      "name": "ルナ・コスモビュー",
+      "faces": [
+        {
+          "name": "ルナ・コスモビュー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "G・ゼロ-９枚以上手札を持つプレイヤーがいれば、このクリーチャーをコストを支払わずに召喚してもよい。\n自分のターンに１枚目のカードを引く時、もう１枚余分に引いてもよい。",
+          "race": "サイバー・ムーン",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-s02",
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "g951AnyHandMin": 9
+            }
+          ]
+        },
+        "g951FirstOwnDraw": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-s02.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "5df0189f56c36205dd1257b20a099c0b3c0a9a9a72d5c18ffadf2073df8512c7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm25ex1-040",
+      "name": "ルナ・コスモビュー / 「これが私の黄昏地獄拳よ！」",
+      "faces": [
+        {
+          "name": "ルナ・コスモビュー",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 9,
+          "costText": "9",
+          "abilityText": "G・ゼロ ：手札が９枚以上あるプレイヤーがいれば、このクリーチャーをコストを支払わずに召喚してもよい。\n自分のターン中に、自分が最初のカードを引いた時、カードをもう１枚引いてもよい。",
+          "race": "サイバー・ムーン",
+          "powerText": "5000",
+          "missingFields": []
+        },
+        {
+          "name": "「これが私の黄昏地獄拳よ！」",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "カードを２枚引く。\n「ブロッカー」を持つクリーチャーをすべて、持ち主の手札に戻す。",
+          "race": "サイバー・ワード",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-040",
+      "spec": {
+        "g396Zero": {
+          "all": [
+            {
+              "g951AnyHandMin": 9
+            }
+          ]
+        },
+        "g951FirstOwnDraw": true,
+        "spellFace": {
+          "name": "「これが私の黄昏地獄拳よ！」",
+          "type": "spell",
+          "cost": 4,
+          "civ": "水",
+          "civilizations": [
+            "水"
+          ],
+          "race": "サイバー・ワード",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Draw",
+              "n": 2
+            },
+            {
+              "op": "Sweep",
+              "both": true,
+              "to": "hand",
+              "filter": {
+                "creature": true,
+                "blocker": true
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm25ex1-040a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "c17335a154997bc35a9c4ea5b533d3e85bdb51a027ac41e81ea02ceb4b00544b",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm27-022",
+      "name": "電界の守護者ラ・フランシス",
+      "faces": [
+        {
+          "name": "電界の守護者ラ・フランシス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のマナゾーンにある文明の数以下のコストを持つ自分のクリーチャーが破壊される 時、このクリーチャーをかわりに破壊してもよい。",
+          "race": "ガーディアン",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-022",
+      "spec": {
+        "g571Saver": {
+          "filter": {
+            "creature": true,
+            "g951ManaCivilizationCost": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm27-022.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "586a254b89311e782a198022ecab8ad1efd0aaa6b86531cfe9f624a1c054dfa9",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx11-076",
+      "canonicalId": "dm23-025",
+      "name": "奇術ロボ・ジェントルマン",
+      "faces": [
+        {
+          "name": "奇術ロボ・ジェントルマン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "バイオ・K-自分のグレートメカオーが相手プレイヤーを攻撃してブロックされなかった時、このカードを手札から捨ててもよい。そうした場合、カードを２枚まで引いてもよい。",
+          "race": "グレートメカオー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx11-076",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx11-076.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "3738283b6bf1cd5aebf82896bc557edb102e67ee782a229e794efe239faea307",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy5-065",
+      "canonicalId": "dm23-025",
+      "name": "奇術ロボ・ジェントルマン",
+      "faces": [
+        {
+          "name": "奇術ロボ・ジェントルマン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "バイオ・K-自分のグレートメカオーが相手プレイヤーを攻撃してブロックされなかった時、このカードを手札から捨ててもよい。そうした場合、カードを２枚まで引いてもよい。",
+          "race": "グレートメカオー",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy5-065",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy5-065.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "6f850ece7ba0e3676b0ca7c25c0dfb61b5ef5253e573cf740bb35d74649eab52",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm23-025": 4,
+      "dm16-s02": 4,
+      "dm25ex1-040": 4,
+      "dm27-022": 4,
+      "dmx11-076": 4,
+      "promoy5-065": 4
+    }
+  }
+}

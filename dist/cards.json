@@ -197409,23 +197409,145 @@
       ],
       "supportBatch": "phase-950",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm23-025",
+      "name": "奇術ロボ・ジェントルマン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "グレートメカオー",
+      "text": "バイオ・K-自分のグレートメカオーが相手プレイヤーを攻撃してブロックされなかった時、このカードを手札から捨ててもよい。そうした場合、カードを２枚まで引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm23-025",
+      "limit": 4,
+      "g951BioK": true,
+      "supportBatch": "phase-951",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm16-s02",
+      "name": "ルナ・コスモビュー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 5000,
+      "race": "サイバー・ムーン",
+      "text": "G・ゼロ-９枚以上手札を持つプレイヤーがいれば、このクリーチャーをコストを支払わずに召喚してもよい。\n自分のターンに１枚目のカードを引く時、もう１枚余分に引いてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-s02",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "g951AnyHandMin": 9
+          }
+        ]
+      },
+      "g951FirstOwnDraw": true,
+      "supportBatch": "phase-951",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm25ex1-040",
+      "name": "ルナ・コスモビュー / 「これが私の黄昏地獄拳よ！」",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 9,
+      "power": 5000,
+      "race": "サイバー・ムーン",
+      "text": "G・ゼロ ：手札が９枚以上あるプレイヤーがいれば、このクリーチャーをコストを支払わずに召喚してもよい。\n自分のターン中に、自分が最初のカードを引いた時、カードをもう１枚引いてもよい。\n【呪文面】\nカードを２枚引く。\n「ブロッカー」を持つクリーチャーをすべて、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-040",
+      "limit": 4,
+      "g396Zero": {
+        "all": [
+          {
+            "g951AnyHandMin": 9
+          }
+        ]
+      },
+      "g951FirstOwnDraw": true,
+      "spellFace": {
+        "name": "「これが私の黄昏地獄拳よ！」",
+        "type": "spell",
+        "cost": 4,
+        "civ": "水",
+        "civilizations": [
+          "水"
+        ],
+        "race": "サイバー・ワード",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Draw",
+            "n": 2
+          },
+          {
+            "op": "Sweep",
+            "both": true,
+            "to": "hand",
+            "filter": {
+              "creature": true,
+              "blocker": true
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-951",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm27-022",
+      "name": "電界の守護者ラ・フランシス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ガーディアン",
+      "text": "自分のマナゾーンにある文明の数以下のコストを持つ自分のクリーチャーが破壊される 時、このクリーチャーをかわりに破壊してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-022",
+      "limit": 4,
+      "g571Saver": {
+        "filter": {
+          "creature": true,
+          "g951ManaCivilizationCost": true
+        }
+      },
+      "supportBatch": "phase-951",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 950,
+    "phase": 951,
     "checkedAt": "2026-11-11",
-    "baseCount": 6727,
-    "newEffectCards": 3,
+    "baseCount": 6730,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6730,
+    "totalCount": 6734,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35151/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35152/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35620/",
-      "https://dm.takaratomy.co.jp/rule/qa/39511/",
-      "https://dm.takaratomy.co.jp/rule/qa/42896/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37597/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37599/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/316689/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37607/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37608/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -214443,6 +214565,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/33426/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37433/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35307/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 950,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6727,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6730,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35151/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35152/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35620/",
+          "https://dm.takaratomy.co.jp/rule/qa/39511/",
+          "https://dm.takaratomy.co.jp/rule/qa/42896/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
