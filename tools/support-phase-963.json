@@ -1,0 +1,502 @@
+{
+  "phase": 963,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6775,
+  "description": "ウェーブストライカーのツインパクト、最初のドローと非ブロック時の手札破棄、進化登場時の破壊、種族指定の山札検索に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37609/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35163/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+    "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-040",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34846/",
+    "https://dm.takaratomy.co.jp/rule/qa/33473/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm22ex1-113",
+      "name": "炎舞闘士サピエント・アーク / 無限掌",
+      "faces": [
+        {
+          "name": "炎舞闘士サピエント・アーク",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ウェーブストライカー（「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーに次のw能力を与える）\nwこのクリーチャーのパワーは+4000され、アンタップしているクリーチャーを攻撃できる。",
+          "race": "ドラゴノイド",
+          "powerText": "2000",
+          "missingFields": []
+        },
+        {
+          "name": "無限掌",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーがバトルに勝った時、アンタップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-113",
+      "spec": {
+        "g400Wave": true,
+        "g260Self": {
+          "filter": {
+            "g400Wave": 3
+          },
+          "grants": {
+            "power": 4000,
+            "attackUntapped": true
+          }
+        },
+        "spellFace": {
+          "name": "無限掌",
+          "type": "spell",
+          "cost": 1,
+          "civ": "火",
+          "civilizations": [
+            "火"
+          ],
+          "race": "",
+          "effect": "sixPhoto",
+          "g34Tasks": [
+            {
+              "op": "Target",
+              "owner": "self",
+              "filter": {
+                "creature": true
+              },
+              "spell": true,
+              "g946BattleWinUntap": true,
+              "g962EveryWin": true,
+              "title": "バトルに勝つたびアンタップする自分のクリーチャーを1体選ぶ"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm22ex1-113a.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "3a1cadd61c5290e3e6aceabee3a21f37f4ebef287190504aa66e3169cd7f4ff4",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm19-018",
+      "name": "封魔バーガンティス",
+      "faces": [
+        {
+          "name": "封魔バーガンティス",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のターンに１枚目のカードを引く時、もう１枚余分に引いてもよい。\n相手のクリーチャーが自分を攻撃してブロックされなかった時、自分の手札をすべて捨てる。",
+          "race": "グランド・デビル",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-018",
+      "spec": {
+        "g951FirstOwnDraw": true,
+        "g726DefenderUnblocked": [
+          {
+            "op": "Discard",
+            "owner": "self",
+            "g756All": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm19-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "275d1270cd907b3dd0d52dac0ddb160788883f9edb119401282dbe5b4fcb39aa",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm02-027",
+      "name": "魔獣虫カオス・ワーム",
+      "faces": [
+        {
+          "name": "魔獣虫カオス・ワーム",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化ー自分のパラサイトワーム１体の上に置く。\nこのクリーチャーがバトルゾーンに出たとき、バトルゾーンにある相手のクリーチャーを１体選び、持ち主の墓地に置いてよい。",
+          "race": "パラサイトワーム",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-027",
+      "spec": {
+        "evolution": {
+          "race": "パラサイトワーム"
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "to": "grave",
+            "optional": true,
+            "title": "破壊する相手のクリーチャーを1体選ぶ（任意）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm02-027.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "0383be76a6d6ce590894a7ebd4bb2fadd0abe2c5fba89943a06189f5f9b0f81a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc34-017",
+      "name": "猛烈元気バンジョー",
+      "faces": [
+        {
+          "name": "猛烈元気バンジョー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からドリームメイトを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "ドリームメイト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc34-017",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "g201Search": true,
+            "g200Search": true,
+            "n": "all",
+            "stages": [
+              {
+                "n": 1,
+                "to": "hand",
+                "optional": true,
+                "reveal": true,
+                "filter": {
+                  "creature": true,
+                  "race": "ドリームメイト"
+                }
+              }
+            ],
+            "rest": "shuffle"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc34-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "734b8090d2d88d4a72a43bbc0cfe1fcc3f2fa946b8e9ab450274e3d783c76342",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm18-067",
+      "canonicalId": "dm02-027",
+      "name": "魔獣虫カオス・ワーム",
+      "faces": [
+        {
+          "name": "魔獣虫カオス・ワーム",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化-自分のパラサイトワーム１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、相手のクリーチャーを１体破壊してもよい。",
+          "race": "パラサイトワーム",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm18-067",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm18-067.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "1b2a0e5cabc47b0932870a77a8a29d9b774c8906e051bb982da90b8c8e78a6f6",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc42-044",
+      "canonicalId": "dm02-027",
+      "name": "魔獣虫カオス・ワーム",
+      "faces": [
+        {
+          "name": "魔獣虫カオス・ワーム",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化ー自分のパラサイトワーム１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、相手のクリーチャーを１体破壊してもよい。",
+          "race": "パラサイトワーム",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc42-044",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc42-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "677b64368f1d6aa0fe5a752c9e944218ebc03fcf0f745c143a43093af4204141",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc55-052",
+      "canonicalId": "dm02-027",
+      "name": "魔獣虫カオス・ワーム",
+      "faces": [
+        {
+          "name": "魔獣虫カオス・ワーム",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化ー自分のパラサイトワーム１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、相手のクリーチャーを１体破壊してもよい。",
+          "race": "パラサイトワーム",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc55-052",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc55-052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "8b3d9485d96cb74237ccaf63ef0bf221b4a66c1b9d787407583bbf66d5a88011",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc61-044",
+      "canonicalId": "dm02-027",
+      "name": "魔獣虫カオス・ワーム",
+      "faces": [
+        {
+          "name": "魔獣虫カオス・ワーム",
+          "typeText": "進化クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "進化ー自分のパラサイトワーム１体の上に置く。\nこのクリーチャーをバトルゾーンに出した時、相手のクリーチャーを１体破壊してもよい。",
+          "race": "パラサイトワーム",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc61-044",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc61-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "9a341b2c6f0e512faa07449167e1c722b56ed67d39af583c992ef69f78e89e3f",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy5-039",
+      "canonicalId": "dmc34-017",
+      "name": "猛烈元気バンジョー",
+      "faces": [
+        {
+          "name": "猛烈元気バンジョー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札を見る。その中からドリームメイトを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "ドリームメイト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy5-039",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy5-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "26b728647de6f2f03f3af46dd29e2eaefeceeb91570b8b49270958ac8eed2648",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc41-006",
+      "canonicalId": "dmc34-017",
+      "name": "猛烈元気バンジョー",
+      "faces": [
+        {
+          "name": "猛烈元気バンジョー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からドリームメイトを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "ドリームメイト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc41-006",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc41-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "9b7672a61315094073b8626f74bac83029178470c1e218866127729b3594b979",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc55-011",
+      "canonicalId": "dmc34-017",
+      "name": "猛烈元気バンジョー",
+      "faces": [
+        {
+          "name": "猛烈元気バンジョー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からドリームメイトを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "ドリームメイト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc55-011",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc55-011.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "35c0991c1b358593ae603239059d860a71ebdc92a767f0e9ad0d4e03fe245d14",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx09-026",
+      "canonicalId": "dmc34-017",
+      "name": "猛烈元気バンジョー",
+      "faces": [
+        {
+          "name": "猛烈元気バンジョー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からドリームメイトを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "ドリームメイト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx09-026",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx09-026.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "1a39a503859df161899160925bc403fc71fbb0338e3877aaa2838f67542710bd",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex12-044",
+      "canonicalId": "dmc34-017",
+      "name": "猛烈元気バンジョー",
+      "faces": [
+        {
+          "name": "猛烈元気バンジョー",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札を見る。その中からドリームメイトを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+          "race": "ドリームメイト",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex12-044",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex12-044.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "7ca90596ea18e386a3cf649ae851acd3df203ed4925f43ceaca7e6b3b9ceba8b",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm22ex1-113": 4,
+      "dm19-018": 4,
+      "dm02-027": 4,
+      "dmc34-017": 4,
+      "dm18-067": 4,
+      "dmc42-044": 4,
+      "dmc55-052": 4,
+      "dmc61-044": 4,
+      "promoy5-039": 4,
+      "dmc41-006": 4,
+      "dmc55-011": 4,
+      "dmx09-026": 4,
+      "dmex12-044": 4
+    }
+  }
+}

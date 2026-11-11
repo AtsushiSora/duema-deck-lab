@@ -510,7 +510,7 @@ export function createSixPhotoRules(api){
   return (s.extLimits||[]).flatMap(rule=>{
    if(rule.kind!=='g946BattleWinUntap'||rule.turn!==s.turn||!rule.g962EveryWin&&!result.g588FirstForUnit||
     !api.allLayers(winner).some(layer=>key(layer)===key(rule.ref)))return [];
-   const {source,controller,ref}=rule,spellCost=cost(card(source));
+   const {source,controller,ref}=rule,spellCost=cost(faces(card(source)).find(c=>c.type==='spell')??card(source));
    if(api.spellIgnored(s,{type:'spell',cost:spellCost,spellSource:source}))return [];
    return [{player:controller,uid:ref.uid,source,effect:'extended',
     task:task('g34_RondoUntap946',controller,source,{...ref,spellCost,...(rule.g962EveryWin?{g962EveryWin:true}:{})})}];
@@ -3033,9 +3033,10 @@ export function createSixPhotoRules(api){
  }
  case'g34_TapAll':for(const p of t.both?[0,1]:[1-t.p])for(const y of creatures(s,p))if(!t.g218Tap||matches(s,p,y,t.filter))api.tap(s,p,y);break;
  case'g34_Discard':{
+  const owner=t.owner==='self'?t.p:t.owner??1-t.p;
   const n=t.g584Count==='faceUpShieldGo'?api.shieldGoCount(s,t.p):
-   t.g585ShieldDeficit?Math.max(0,5-own.shields.length):t.g584Count==='ownShields'?own.shields.length:t.g584Count==='opponentShields'?opp.shields.length:t.g756All?opp.hand.length:t.n??1;
-  if(n)put(s,task('discard',t.owner==='self'?t.p:t.owner??1-t.p,t.source,{causedBy:t.p,n,random:!!t.random,optional:!!t.optional,selfDiscard:t.owner==='self',...(t.g756All?{all:true}:{}),...(t.g869ReturnOnSpell?{g869ReturnUid:t.uid}:{})}));
+   t.g585ShieldDeficit?Math.max(0,5-own.shields.length):t.g584Count==='ownShields'?own.shields.length:t.g584Count==='opponentShields'?opp.shields.length:t.g756All?s.players[owner].hand.length:t.n??1;
+  if(n)put(s,task('discard',owner,t.source,{causedBy:t.p,n,random:!!t.random,optional:!!t.optional,selfDiscard:t.owner==='self',...(t.g756All?{all:true}:{}),...(t.g869ReturnOnSpell?{g869ReturnUid:t.uid}:{})}));
   break;
  }
  case'g34_Scorpion614':scorpion614(s,t);break;

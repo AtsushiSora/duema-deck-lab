@@ -2386,6 +2386,7 @@ function chance419(line){
  return named?{name:named[1]}:null;
 }
 const legacyWaveMarker='ウェーブストライカー(バトルゾーンに「ウェーブストライカー」を持つクリーチャーが他に2体以上あればこのクリーチャーは次の能力を得る)';
+const palmTwinSpell963='自分のクリーチャーを1体選ぶ。このターンそのクリーチャーがバトルに勝った時アンタップする。';
 const waveMarker702='ウェーブストライカー(「ウェーブストライカー」を持つクリーチャーが他に2体以上あればこのクリーチャーに次のw能力を与える)';
 const waveKirstein702=waveMarker702+'w自分のクリーチャーすべてのパワーを+5000し「ブロッカー」と「W・ブレイカー」を与える。';
 const waveLameer702=waveMarker702+'w自分のクリーチャーすべてのパワーを+1000する。';
@@ -3376,6 +3377,9 @@ export function standardCardSpec(d,{phase=165}={}){
    frontText===waveKirstein702&&spellText==='自分の山札の上から2枚をタップしてマナゾーンに置く。その後カードを1枚自分のマナゾーンから墓地に置く。'||
    frontText===waveLameer702&&spellText==='S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)相手のクリーチャーをすべてタップする。カードを1枚引く。'
   );
+  const sapient=phase>=963&&d.id==='dm22ex1-113'&&
+   frontText===waveMarker702+'wこのクリーチャーのパワーは+4000されアンタップしているクリーチャーを攻撃できる。'&&
+   spellText===palmTwinSpell963;
   const matchesWavePair=pair=>frontText===waveMarker702+'w'+pair.front&&spellText===pair.spell;
   const wavePair=phase>=704&&waveTwinFaces704.find(matchesWavePair)||phase>=703&&waveTwinFaces703.find(matchesWavePair);
   const classicSweep733=phase>=733&&(
@@ -3384,8 +3388,9 @@ export function standardCardSpec(d,{phase=165}={}){
    frontText==='このクリーチャーが出た時自分の山札の上から1枚をマナゾーンに置く。'&&
    spellText==='パワー3000以下のクリーチャーをすべて破壊する。その後こうして破壊したクリーチャー1体につきカードを1枚引いてもよい。'
   );
-  if(entryStop||rushSweep||blockerCharger||bounceOrRemove||discardOrRemove||rampOrSweep||speedOrSweep||capOrShield||mammoth||waveTwin||wavePair||classicSweep733){
-   const creatureFace=wavePair?{...front,abilityText:legacyWaveMarker+'\n'+wavePair.legacy}:front;
+  if(entryStop||rushSweep||blockerCharger||bounceOrRemove||discardOrRemove||rampOrSweep||speedOrSweep||capOrShield||mammoth||waveTwin||wavePair||classicSweep733||sapient){
+   const waveLegacy=wavePair?.legacy??(sapient?'このクリーチャーのパワーは+4000され、タップされていないクリーチャーを攻撃できる。':null);
+   const creatureFace=waveLegacy?{...front,abilityText:legacyWaveMarker+'\n'+waveLegacy}:front;
    const creature=standardCardSpec({...d,faces:[creatureFace]},{phase}),body=standardCardSpec({...d,faces:[spell]},{phase});
    if(entryStop&&(!body.crystalCharger||body.g34Tasks?.length!==1||!body.g34Tasks[0].g593OverMana))throw Error('未対応の水晶チャージャーの構成');
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
@@ -3430,12 +3435,32 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=963&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm19-018'&&f.typeText==='クリーチャー'&&text===
+   '自分のターンに1枚目のカードを引く時もう1枚余分に引いてもよい。'+
+   '相手のクリーチャーが自分を攻撃してブロックされなかった時自分の手札をすべて捨てる。')
+   return {g951FirstOwnDraw:true,g726DefenderUnblocked:[{op:'Discard',owner:'self',g756All:true}]};
+  if(['dm02-027','dm18-067','dmc42-044','dmc55-052','dmc61-044'].includes(d.id)&&f.typeText==='進化クリーチャー'&&[
+   'このクリーチャーがバトルゾーンに出たときバトルゾーンにある相手のクリーチャーを1体選び持ち主の墓地に置いてよい。',
+   'このクリーチャーをバトルゾーンに出した時相手のクリーチャーを1体破壊してもよい。'
+  ].includes(text.match(/^進化[-ー]自分のパラサイトワーム1体の上に置く。(.+)$/)?.[1]))
+   return {evolution:{race:'パラサイトワーム'},effect:'sixPhoto',g34Tasks:[
+    {op:'Target',to:'grave',optional:true,title:'破壊する相手のクリーチャーを1体選ぶ（任意）'}
+   ]};
+  if(['dmc34-017','dmc41-006','dmc55-011','dmx09-026','dmex12-044','promoy5-039'].includes(d.id)&&f.typeText==='クリーチャー'&&
+   text.match(/^このクリーチャー(?:をバトルゾーンに出した|がバトルゾーンに出た)時自分の山札を見る。(.+)$/)?.[1]===
+   'その中からドリームメイトを1体選び相手に見せてから自分の手札に加えてもよい。その後山札をシャッフルする。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Look',g201Search:true,g200Search:true,n:'all',
+    stages:[{n:1,to:'hand',optional:true,reveal:true,filter:{creature:true,race:'ドリームメイト'}}],rest:'shuffle'}]};
+ }
  if(phase>=962&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
-  if(['dm09-032','dmc27-032','dmc42-051'].includes(d.id)&&f.typeText==='呪文'&&[
+  if(f.typeText==='呪文'&&(['dm09-032','dmc27-032','dmc42-051'].includes(d.id)&&[
    'バトルゾーンにある自分のクリーチャーを1体選ぶ。このターンそのクリーチャーがバトルに勝ったときバトルの後でアンタップする。',
    'バトルゾーンにある自分のクリーチャーを1体選ぶ。このターンそのクリーチャーがバトルに勝った時アンタップする。'
-  ].includes(text))
+  ].includes(text)||phase>=963&&d.id==='dm22ex1-113'&&
+   text===palmTwinSpell963))
    return {effect:'sixPhoto',g34Tasks:[{op:'Target',owner:'self',filter:{creature:true},spell:true,
     g946BattleWinUntap:true,g962EveryWin:true,title:'バトルに勝つたびアンタップする自分のクリーチャーを1体選ぶ'}]};
   if(d.id==='dm08-053'&&f.typeText==='クリーチャー'&&text===

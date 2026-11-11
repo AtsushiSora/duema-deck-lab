@@ -198983,24 +198983,173 @@
       },
       "supportBatch": "phase-962",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm22ex1-113",
+      "name": "炎舞闘士サピエント・アーク / 無限掌",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 2000,
+      "race": "ドラゴノイド",
+      "text": "ウェーブストライカー（「ウェーブストライカー」を持つクリーチャーが他に２体以上あれば、このクリーチャーに次のw能力を与える）\nwこのクリーチャーのパワーは+4000され、アンタップしているクリーチャーを攻撃できる。\n【呪文面】\n自分のクリーチャーを１体選ぶ。このターン、そのクリーチャーがバトルに勝った時、アンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm22ex1-113",
+      "limit": 4,
+      "g400Wave": true,
+      "g260Self": {
+        "filter": {
+          "g400Wave": 3
+        },
+        "grants": {
+          "power": 4000,
+          "attackUntapped": true
+        }
+      },
+      "spellFace": {
+        "name": "無限掌",
+        "type": "spell",
+        "cost": 1,
+        "civ": "火",
+        "civilizations": [
+          "火"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "owner": "self",
+            "filter": {
+              "creature": true
+            },
+            "spell": true,
+            "g946BattleWinUntap": true,
+            "g962EveryWin": true,
+            "title": "バトルに勝つたびアンタップする自分のクリーチャーを1体選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-963",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm19-018",
+      "name": "封魔バーガンティス",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 4000,
+      "race": "グランド・デビル",
+      "text": "自分のターンに１枚目のカードを引く時、もう１枚余分に引いてもよい。\n相手のクリーチャーが自分を攻撃してブロックされなかった時、自分の手札をすべて捨てる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm19-018",
+      "limit": 4,
+      "g951FirstOwnDraw": true,
+      "g726DefenderUnblocked": [
+        {
+          "op": "Discard",
+          "owner": "self",
+          "g756All": true
+        }
+      ],
+      "supportBatch": "phase-963",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm02-027",
+      "name": "魔獣虫カオス・ワーム",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "パラサイトワーム",
+      "text": "進化ー自分のパラサイトワーム１体の上に置く。\nこのクリーチャーがバトルゾーンに出たとき、バトルゾーンにある相手のクリーチャーを１体選び、持ち主の墓地に置いてよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm02-027",
+      "limit": 4,
+      "evolution": {
+        "race": "パラサイトワーム"
+      },
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "to": "grave",
+          "optional": true,
+          "title": "破壊する相手のクリーチャーを1体選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-963",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmc34-017",
+      "name": "猛烈元気バンジョー",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "ドリームメイト",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分の山札を見る。その中からドリームメイトを１体選び、相手に見せてから自分の手札に加えてもよい。その後、山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc34-017",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Look",
+          "g201Search": true,
+          "g200Search": true,
+          "n": "all",
+          "stages": [
+            {
+              "n": 1,
+              "to": "hand",
+              "optional": true,
+              "reveal": true,
+              "filter": {
+                "creature": true,
+                "race": "ドリームメイト"
+              }
+            }
+          ],
+          "rest": "shuffle"
+        }
+      ],
+      "supportBatch": "phase-963",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 962,
+    "phase": 963,
     "checkedAt": "2026-11-11",
-    "baseCount": 6771,
+    "baseCount": 6775,
     "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6775,
+    "totalCount": 6779,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37609/",
       "https://dm.takaratomy.co.jp/rule/qa_old/35163/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35356/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/36206/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34948/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37329/",
-      "https://dm.takaratomy.co.jp/rule/qa/48037/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35453/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+      "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-040",
+      "https://dm.takaratomy.co.jp/rule/qa_old/34846/",
+      "https://dm.takaratomy.co.jp/rule/qa/33473/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -216280,6 +216429,28 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/36034/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35052/",
           "https://dm.takaratomy.co.jp/rule/qa/45589/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 962,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6771,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6775,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35163/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35356/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/36206/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34948/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37329/",
+          "https://dm.takaratomy.co.jp/rule/qa/48037/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35453/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [
