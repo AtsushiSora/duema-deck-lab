@@ -3435,6 +3435,34 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=981&&d?.status==='complete'){
+  const text=normalize(f.abilityText);
+  if(d.faces.length===1&&f.typeText==='クリーチャー'){
+   if(d.id==='dmr15-018'&&text==='このクリーチャーをバトルゾーンに出した時または攻撃する時名前に「パラス」を持つクリーチャーを1体自分のマナゾーンからバトルゾーンに出してもよい。'){
+    const deploy={op:'Select',origin:'mana',n:1,deploy:true,optional:true,filter:{faceUp:true,g228Face:{type:'creature',nameAny:['パラス']}},
+     title:'自分のマナから出す「パラス」クリーチャーを1体選ぶ（任意）'};
+    return {effect:'sixPhoto',g34Tasks:[deploy],g34Attack:[deploy]};
+   }
+   if(d.id==='dmex03-061'&&text==='このクリーチャーはシールドをブレイクできない。自分は「S・トリガー」能力を使えない。このカードは4枚より多くデッキに入れることができる。')
+    return {g977CannotBreak:true,g597TriggerLock:{ownOnly:true},g314Unlimited:true};
+   if(d.id==='dmx05-006'&&text==='このクリーチャーをバトルゾーンに出した時自分のエイリアンを1体破壊してもよい。そうした場合相手は自身のクリーチャーを1体選び破壊する。')
+    return {effect:'sixPhoto',g34Tasks:[{op:'SacrificeAlly413',filter:{race:'エイリアン'},defs:[{op:'OpponentSelect',n:1,to:'grave'}]}]};
+  }
+  if(d.faces.length===1&&f.typeText==='呪文'&&d.id==='dmx16-029'&&text==='バトルゾーンにあるクリーチャーを1体選び持ち主の手札に戻す。その後いずれかのマナゾーンにある呪文を1枚選び持ち主の手札に戻す。')
+   return {effect:'sixPhoto',g34Tasks:[
+    {op:'Target',anyOwner:true,to:'hand',title:'手札に戻すクリーチャーを1体選ぶ'},
+    {op:'Select',origin:'mana',anyOwner:true,to:'hand',n:1,filter:{faceUp:true,g228Face:{type:'spell'}},title:'いずれかのマナから手札に戻す呪文を1枚選ぶ'}
+   ]};
+  if(d.faces.length===2&&f.typeText==='クリーチャー'&&['dmex15-b005','dm25bd2-004'].includes(d.id)&&text==='ブロッカーブロッカーT・ブレイカー'){
+   const spell=d.faces[1],spellText=normalize(spell.abilityText);
+   const untap='自分のクリーチャーを2体まで選ぶ。このターンの終わりにそれらをアンタップしてもよい。';
+   const charger=['墓地に置くかわりに','墓地のかわりに'].map(phrase=>'チャージャー(この呪文を唱えた後'+phrase+'マナゾーンに置く)');
+   if(spell.typeText==='呪文'&&charger.some(line=>spellText===untap+line))
+    return {blocker:true,breaker:3,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,
+     civilizations:spell.civilizations,race:spell.race,effect:'sixPhoto',normalCharger:true,
+     g34Tasks:[{op:'ChooseUntap562',n:2,optional:true,delay:true,g981UntapTogether:true}]}};
+  }
+ }
  if(phase>=980&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dmx15-009'&&f.typeText==='呪文'&&text==='バトルゾーンにある進化ではないクリーチャーを1体選び新しいシールドとして持ち主のシールドゾーンに裏向きにして加える。')

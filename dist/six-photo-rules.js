@@ -1039,7 +1039,17 @@ export function createSixPhotoRules(api){
  function spellScore555(s,t,c){const n=s.players[t.p].deck?.length??s.players[t.p].deckCount??0,draw={draw2:2,magicDraw:1,ramp1:1,ramp2:2}[c.effect]||0;if(!api.spellIgnored(s,c)&&draw>=n&&draw>0&&!(c.effect==='draw2'&&creatures(s,t.p).some(y=>effective(y,s).shako)))return-1000;return 20+cost(c)+(api.spellIgnored(s,c)?0:modeScore(s,{...t,source:c.id},c.g34Tasks||[]));}
  // Delayed spell effects survive their card leaving the graveyard. Selected refs keep incarnation identity.
  function scheduleUntap562(s,t,defs){const source=faces(card(t.source)).find(c=>c.type==='spell')||card(t.source);(s.g501EndDelays??=[]).push({p:t.p,source:t.source,uid:t.uid,incarnation:t.incarnation||0,ownEnd:!!t.ownEnd,defs:structuredClone(defs),...(!t.creatureSource?{spellCost:cost(source)}:{})});}
- function finishUntap562(s,t){const defs=(t.refs||[]).map(ref=>({op:'AttackUntap408',g399Attacker:ref,g562Creature:true}));if(!defs.length)return;if(t.delay)scheduleUntap562(s,t,t.optionalUntap?defs.map(d=>({op:'Offer',title:'選んだクリーチャーをアンタップする？',defs:[d]})):defs);else start(s,t,defs);}
+ function finishUntap562(s,t){
+  const defs=(t.refs||[]).map(ref=>({op:'AttackUntap408',g399Attacker:ref,g562Creature:true,
+   ...(t.g981UntapTogether?{g764FollowControl:true}:{})}));
+  if(!defs.length)return;
+  if(t.g981UntapTogether){
+   scheduleUntap562(s,t,[{op:'Offer',title:'選んだクリーチャーをまとめてアンタップする？',defs}]);
+   return;
+  }
+  if(t.delay)scheduleUntap562(s,t,t.optionalUntap?defs.map(d=>({op:'Offer',title:'選んだクリーチャーをアンタップする？',defs:[d]})):defs);
+  else start(s,t,defs);
+ }
  function countedPowerDefs561(s,t,d){
   const rows=s.players[t.p][d.zone]||[],source=d.g179Other?sourceHost474(s,t)?.x:null;
   const n=d.zone==='hand'?rows.length:d.zone==='battle'?creatures(s,t.p).filter(y=>y!==source&&!y.sealed&&matches(s,t.p,y,d.filter)).length:

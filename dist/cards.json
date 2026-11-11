@@ -200749,22 +200749,218 @@
       ],
       "supportBatch": "phase-980",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr15-018",
+      "name": "連鎖類寄生目 パラスレックス",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 5000,
+      "race": "ジュラシック・コマンド・ドラゴン",
+      "text": "このクリーチャーをバトルゾーンに出した時または攻撃する時、名前に「パラス」を持つクリーチャーを１体、自分のマナゾーンからバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-018",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "faceUp": true,
+            "g228Face": {
+              "type": "creature",
+              "nameAny": [
+                "パラス"
+              ]
+            }
+          },
+          "title": "自分のマナから出す「パラス」クリーチャーを1体選ぶ（任意）"
+        }
+      ],
+      "g34Attack": [
+        {
+          "op": "Select",
+          "origin": "mana",
+          "n": 1,
+          "deploy": true,
+          "optional": true,
+          "filter": {
+            "faceUp": true,
+            "g228Face": {
+              "type": "creature",
+              "nameAny": [
+                "パラス"
+              ]
+            }
+          },
+          "title": "自分のマナから出す「パラス」クリーチャーを1体選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-981",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx16-029",
+      "name": "龍素の宝剣",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにあるクリーチャーを１体選び、持ち主の手札に戻す。その後、いずれかのマナゾーンにある呪文を１枚選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx16-029",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "anyOwner": true,
+          "to": "hand",
+          "title": "手札に戻すクリーチャーを1体選ぶ"
+        },
+        {
+          "op": "Select",
+          "origin": "mana",
+          "anyOwner": true,
+          "to": "hand",
+          "n": 1,
+          "filter": {
+            "faceUp": true,
+            "g228Face": {
+              "type": "spell"
+            }
+          },
+          "title": "いずれかのマナから手札に戻す呪文を1枚選ぶ"
+        }
+      ],
+      "supportBatch": "phase-981",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex15-b005",
+      "name": "天海の精霊シリウス / W・チャージャー",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 11,
+      "power": 12000,
+      "race": "エンジェル・コマンド",
+      "text": "ブロッカーブロッカー\nT・ブレイカー\n【呪文面】\n自分のクリーチャーを２体まで選ぶ。このターンの終わりに、それらをアンタップしてもよい。\nチャージャー（この呪文を唱えた後、墓地に置くかわりにマナゾーンに置く）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b005",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 3,
+      "spellFace": {
+        "name": "W・チャージャー",
+        "type": "spell",
+        "cost": 3,
+        "civ": "光",
+        "civilizations": [
+          "光"
+        ],
+        "race": "",
+        "effect": "sixPhoto",
+        "normalCharger": true,
+        "g34Tasks": [
+          {
+            "op": "ChooseUntap562",
+            "n": 2,
+            "optional": true,
+            "delay": true,
+            "g981UntapTogether": true
+          }
+        ]
+      },
+      "supportBatch": "phase-981",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmex03-061",
+      "name": "夜のポンの助",
+      "civ": "ゼロ",
+      "civilizations": [],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 820,
+      "race": "ジョーカーズ",
+      "text": "このクリーチャーはシールドをブレイクできない。\n自分は「S・トリガー」能力を使えない。\nこのカードは、４枚より多くデッキに入れることができる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex03-061",
+      "limit": 40,
+      "g977CannotBreak": true,
+      "g597TriggerLock": {
+        "ownOnly": true
+      },
+      "g314Unlimited": true,
+      "supportBatch": "phase-981",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmx05-006",
+      "name": "魔刻の剣士ザビ・オルゼキア",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "デーモン・コマンド/エイリアン",
+      "text": "このクリーチャーをバトルゾーンに出した時、自分のエイリアンを１体破壊してもよい。そうした場合、相手は自身のクリーチャーを１体選び破壊する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx05-006",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "SacrificeAlly413",
+          "filter": {
+            "race": "エイリアン"
+          },
+          "defs": [
+            {
+              "op": "OpponentSelect",
+              "n": 1,
+              "to": "grave"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-981",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 980,
+    "phase": 981,
     "checkedAt": "2026-11-12",
-    "baseCount": 6833,
-    "newEffectCards": 4,
+    "baseCount": 6837,
+    "newEffectCards": 5,
     "newVanillaCards": 0,
-    "totalCount": 6837,
+    "totalCount": 6842,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/46526/",
-      "https://dm.takaratomy.co.jp/rule/qa/33266/",
-      "https://dm.takaratomy.co.jp/rule/qa/42526/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34944/"
+      "https://dm.takaratomy.co.jp/rule/rulechange/316689/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37055/",
+      "https://dm.takaratomy.co.jp/rule/qa/41284/",
+      "https://dm.takaratomy.co.jp/rule/qa/42947/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36416/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/36427/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -218398,6 +218594,25 @@
           "https://dm.takaratomy.co.jp/rule/qa/39328/",
           "https://dm.takaratomy.co.jp/rule/qa/38732/",
           "https://dm.takaratomy.co.jp/rule/qa/33428/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 980,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6833,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6837,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/46526/",
+          "https://dm.takaratomy.co.jp/rule/qa/33266/",
+          "https://dm.takaratomy.co.jp/rule/qa/42526/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34944/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
