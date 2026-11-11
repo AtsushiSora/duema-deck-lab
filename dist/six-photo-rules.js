@@ -255,11 +255,12 @@ export function createSixPhotoRules(api){
  function cardMoveRows579(s,t){
   const rows=new Map();
   const zones=t.zones||['battle'];
-  for(const p of t.anyOwner?[t.p,1-t.p]:[t.owner??1-t.p]){
+  for(const p of t.anyOwner?[t.p,1-t.p]:[t.owner==='self'?t.p:t.owner??1-t.p]){
    const own=s.players[p],side=t.anyOwner?(p===t.p?'自分の':'相手の'):'';
-   for(const origin of zones.filter(z=>z!=='battle'&&(z!=='hand'||p===t.p)&&api.canMoveZone(s,p,z))){
-    const prefix=side+(origin==='mana'?'マナ':'手札')+'：';
+   for(const origin of zones.filter(z=>z!=='battle'&&(z!=='hand'||p===t.p)&&(t.g970AfterMove||api.canMoveZone(s,p,z)))){
+    const prefix=side+({mana:'マナ',grave:'墓地',hand:'手札'}[origin]||'手札')+'：';
     for(const [i,x] of own[origin].entries()){
+     if(t.filter&&!matches(s,p,x,t.filter))continue;
      const label=prefix+(x.faceDown?'裏向きのカード '+(i+1):card(x).name);
      rows.set(x.uid,{x,label,p,origin});
     }
@@ -271,6 +272,7 @@ export function createSixPhotoRules(api){
     const definition=t.min!==undefined||t.max!==undefined?effective(top,s):null;
     for(const [index,x] of api.layers(top).entries()){
      if((t.g917EvolutionTop&&x!==top)||(t.other&&x.uid===t.uid)||x.uid===t.excludeUid)continue;
+     if(t.filter&&!matches(s,p,x,t.filter))continue;
      if(t.g813NonEvolution&&!x.faceDown&&api.isEvolution(x))continue;
      const sealIndex=own.seals?.indexOf(x)??-1;
      const below=index>0&&!top.godLinks?.includes(x);
@@ -291,8 +293,17 @@ export function createSixPhotoRules(api){
  function cardMoveOptions579(s,t){
   const rows=cardMoveRows579(s,t);
   return targetOptions(s,t.p,[...rows.values()].map(r=>r.x)).map(o=>{
-   const {x,label,p}=rows.get(o.value),score=x.faceDown?8:o.score;
-   return opt(label,x.uid,p===t.p?-score:score,x.faceDown?null:o.cardId);
+   const {x,label,p,origin}=rows.get(o.value),score=x.faceDown?8:o.score;
+   let value=p===t.p?-score:score;
+   if(t.g970AfterMove){
+    const returnsToDeck=t.to==='deck'&&origin==='grave'&&api.canMoveZone(s,p,origin);
+    const followState=returnsToDeck?{...s,players:s.players.map((owner,i)=>i===p?
+     {...owner,deck:[...owner.deck,x]}:owner)}:s;
+    const followValue=modeScore(followState,t,t.g970AfterMove);
+    const cost=origin==='grave'||!api.canMoveZone(s,p,origin)?0:origin==='mana'?5:score;
+    value=followValue>=900||followValue<=-900?followValue:followValue-cost;
+   }
+   return opt(label,x.uid,value,x.faceDown?null:o.cardId);
   });
  }
  function moveSelectedCard581(s,t,row,to){
@@ -1405,6 +1416,15 @@ export function createSixPhotoRules(api){
    break;
   }
   const shown=drawn.map(uid=>own.hand.find(y=>y.uid===uid)).filter(Boolean);
+  if(t.g970RevealDraw){
+   const y=shown.find(y=>matches(s,t.p,y,t.g970RevealDraw));
+   if(!y)break;
+   api.log(s,t.p,'reveal',card(t.source).name+'で手札公開：'+card(y).name,{cardId:y.cardId,source:t.source});
+   const host=sourceHost474(s,t);
+   if(host?.x.tapped&&api.isCreature(s,host.x)&&api.canUntap(host.x))
+    start(s,t,[{op:'Offer',title:'このクリーチャーをアンタップする？',defs:[{op:'Untap',g191First:true}]}]);
+   break;
+  }
   for(const y of shown)api.log(s,t.p,'reveal',card(t.source).name+'で手札公開：'+card(y).name,{cardId:y.cardId,source:t.source});
   if(shown.some(y=>matches(s,t.p,y,{g223Multicolor:true})))api.draw(s,t.p,1);
   break;
@@ -3012,7 +3032,7 @@ export function createSixPhotoRules(api){
   const to=t.to||'hand',options=cardMoveOptions579(s,t);
   if(t.optional&&options.length)options.push(skip());
   const destination=t.ownerChoosesDestination?'手札かマナゾーンに移動する':{hand:'手札に戻す',grave:'墓地に置く',mana:'マナゾーンに置く',deck:'山札の下に置く',deckTop:'山札の上に置く',shields:'シールド化する'}[to];
-  choice(s,t,destination+(t.anyOwner?'':'相手の')+'カードを1枚選ぶ',options);
+  choice(s,t,t.title||destination+(t.anyOwner?'':'相手の')+'カードを1枚選ぶ',options);
   break;
  }
  case'g34_DiscardCost655':
@@ -3851,6 +3871,7 @@ export function createSixPhotoRules(api){
  }
  case'g34_Draw':
   if(t.g933TopSame){if(v)put(s,{...t,op:'g34_DrawThenTop933',n:v,drawn:[]});}
+  else if(t.g970RevealDraw){if(v)put(s,{...t,op:'g34_DrawReveal911',n:v,drawn:[]});}
   else api.draw(s,t.p,v);
   break;
  case'g34_HandFollow584':{const x=s.players[discardOwner584(t)].hand.find(y=>y.uid===v);if(x)discardFollow584(s,t,x);break;}
@@ -3893,7 +3914,11 @@ export function createSixPhotoRules(api){
   const row=cardMoveRows579(s,t).get(v),to=t.to||'hand';
   if(row){
    if(t.ownerChoosesDestination)put(s,{...t,op:'g34_BattleCardDestination580',p:row.p,target:v});
-   else moveSelectedCard581(s,t,row,to);
+   else{
+    // Rule 101.3a: a chosen move still counts if prevented or replaced.
+    moveSelectedCard581(s,t,row,to);
+    if(t.g970AfterMove)start(s,t,t.g970AfterMove);
+   }
   }
  }break;
  case'g34_ManaExchange753':if(v)put(s,{...t,op:'g34_ManaExchangePick753',element:v});break;

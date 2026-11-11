@@ -199593,23 +199593,164 @@
       "g969FirstJudgeUntap": true,
       "supportBatch": "phase-969",
       "supportKind": "effect"
+    },
+    {
+      "id": "promoy21-014",
+      "name": "深淵の怖豪 キャッシュ＝キャラッシュ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "アビスポリス/コロコロイヤル",
+      "text": "このクリーチャーが出た時、自分のカードを１枚、マナゾーンまたはバトルゾーンから墓地に置いてもよい。そうしたら、カードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy21-014",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BattleCardMove579",
+          "zones": [
+            "mana",
+            "battle"
+          ],
+          "to": "grave",
+          "optional": true,
+          "owner": "self",
+          "g970AfterMove": [
+            {
+              "op": "Draw",
+              "n": 2
+            }
+          ],
+          "title": "墓地に置く自分のマナかバトルゾーンのカードを1枚選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-970",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-010",
+      "name": "龍素記号Ea パーレンチャン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "クリスタル・コマンド・ドラゴン",
+      "text": "このクリーチャーが攻撃する時、カードを１枚引いてもよい。それが水の呪文であれば相手に見せてから、このクリーチャーをアンタップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-010",
+      "limit": 4,
+      "g34Attack": [
+        {
+          "op": "Draw",
+          "n": 1,
+          "optional": true,
+          "g970RevealDraw": {
+            "g217SpellColor": "水"
+          }
+        }
+      ],
+      "supportBatch": "phase-970",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp01-071",
+      "name": "貝獣 ヒラーガ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ムートピア",
+      "text": "このクリーチャーがバトルゾーンに出た時、水のカードを１枚、自分の手札から捨ててもよい。そうしたら、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-071",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "DiscardFor248",
+          "g488DiscardFilter": {
+            "anyFaceColor": "水"
+          },
+          "g770DiscardAttempt": true,
+          "title": "手札から捨てる水のカードを1枚選ぶ（任意）",
+          "defs": [
+            {
+              "op": "Target",
+              "to": "hand"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-970",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-066",
+      "name": "幻想の魔手 カレイド",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 4000,
+      "race": "ムートピア",
+      "text": "このクリーチャーがバトルゾーンに出た時、呪文を１枚、自分の墓地から山札の一番下に置いてもよい。そうしたら、カードを２枚引く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-066",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BattleCardMove579",
+          "zones": [
+            "grave"
+          ],
+          "to": "deck",
+          "optional": true,
+          "owner": "self",
+          "filter": {
+            "spell": true
+          },
+          "g970AfterMove": [
+            {
+              "op": "Draw",
+              "n": 2
+            }
+          ],
+          "title": "山札の一番下に置く自分の墓地の呪文を1枚選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-970",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 969,
+    "phase": 970,
     "checkedAt": "2026-11-11",
-    "baseCount": 6794,
-    "newEffectCards": 3,
+    "baseCount": 6797,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6797,
+    "totalCount": 6801,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa/39429/",
-      "https://dm.takaratomy.co.jp/rule/qa/45070/",
-      "https://dm.takaratomy.co.jp/rule/qa/45072/",
-      "https://dm.takaratomy.co.jp/rule/qa/36563/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31631/"
+      "https://dm.takaratomy.co.jp/rule/qa/45799/",
+      "https://dm.takaratomy.co.jp/rule/qa/46508/",
+      "https://dm.takaratomy.co.jp/rule/qa/31578/",
+      "https://dm.takaratomy.co.jp/rule/qa/42659/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31645/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -217028,6 +217169,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/31622/",
           "https://dm.takaratomy.co.jp/rule/qa/46841/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35985/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 969,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6794,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6797,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa/39429/",
+          "https://dm.takaratomy.co.jp/rule/qa/45070/",
+          "https://dm.takaratomy.co.jp/rule/qa/45072/",
+          "https://dm.takaratomy.co.jp/rule/qa/36563/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31631/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

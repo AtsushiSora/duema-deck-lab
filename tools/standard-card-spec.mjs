@@ -3435,6 +3435,20 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=970&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='promoy21-014'&&text==='このクリーチャーが出た時自分のカードを1枚マナゾーンまたはバトルゾーンから墓地に置いてもよい。そうしたらカードを2枚引く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'BattleCardMove579',zones:['mana','battle'],to:'grave',optional:true,
+    owner:'self',g970AfterMove:[{op:'Draw',n:2}],title:'墓地に置く自分のマナかバトルゾーンのカードを1枚選ぶ（任意）'}]};
+  if(d.id==='dmr14-010'&&text==='このクリーチャーが攻撃する時カードを1枚引いてもよい。それが水の呪文であれば相手に見せてからこのクリーチャーをアンタップしてもよい。')
+   return {g34Attack:[{op:'Draw',n:1,optional:true,g970RevealDraw:{g217SpellColor:'水'}}]};
+  if(['dmrp01-071','dmrp04m-047','dmex04-075'].includes(d.id)&&text==='このクリーチャーがバトルゾーンに出た時水のカードを1枚自分の手札から捨ててもよい。そうしたら相手のクリーチャーを1体選び持ち主の手札に戻す。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'DiscardFor248',g488DiscardFilter:{anyFaceColor:'水'},
+    g770DiscardAttempt:true,title:'手札から捨てる水のカードを1枚選ぶ（任意）',defs:[{op:'Target',to:'hand'}]}]};
+  if(d.id==='dmrp03-066'&&text==='このクリーチャーがバトルゾーンに出た時呪文を1枚自分の墓地から山札の一番下に置いてもよい。そうしたらカードを2枚引く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'BattleCardMove579',zones:['grave'],to:'deck',optional:true,
+    owner:'self',filter:{spell:true},g970AfterMove:[{op:'Draw',n:2}],title:'山札の一番下に置く自分の墓地の呪文を1枚選ぶ（任意）'}]};
+ }
  if(phase>=969&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmrp02-075'&&text==='自分の他のクリーチャーが破壊された時そのターンこのクリーチャーはパワーを+4000されシールドをさらに1つブレイクする。')

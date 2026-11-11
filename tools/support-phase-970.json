@@ -1,0 +1,275 @@
+{
+  "phase": 970,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6797,
+  "description": "自分のカードの移動と任意の捨て札、攻撃時に引いた水の呪文の公開と任意アンタップを処理する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/45799/",
+    "https://dm.takaratomy.co.jp/rule/qa/46508/",
+    "https://dm.takaratomy.co.jp/rule/qa/31578/",
+    "https://dm.takaratomy.co.jp/rule/qa/42659/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31645/"
+  ],
+  "cards": [
+    {
+      "id": "promoy21-014",
+      "name": "深淵の怖豪 キャッシュ＝キャラッシュ",
+      "faces": [
+        {
+          "name": "深淵の怖豪 キャッシュ＝キャラッシュ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが出た時、自分のカードを１枚、マナゾーンまたはバトルゾーンから墓地に置いてもよい。そうしたら、カードを２枚引く。",
+          "race": "アビスポリス/コロコロイヤル",
+          "powerText": "5000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy21-014",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "zones": [
+              "mana",
+              "battle"
+            ],
+            "to": "grave",
+            "optional": true,
+            "owner": "self",
+            "g970AfterMove": [
+              {
+                "op": "Draw",
+                "n": 2
+              }
+            ],
+            "title": "墓地に置く自分のマナかバトルゾーンのカードを1枚選ぶ（任意）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy21-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "a6633b799f45ea5fb7b49c39eb187b03c275a8eb0f59bb9a66bcd32bc8bc9f88",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-010",
+      "name": "龍素記号Ea パーレンチャン",
+      "faces": [
+        {
+          "name": "龍素記号Ea パーレンチャン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーが攻撃する時、カードを１枚引いてもよい。それが水の呪文であれば相手に見せてから、このクリーチャーをアンタップしてもよい。",
+          "race": "クリスタル・コマンド・ドラゴン",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-010",
+      "spec": {
+        "g34Attack": [
+          {
+            "op": "Draw",
+            "n": 1,
+            "optional": true,
+            "g970RevealDraw": {
+              "g217SpellColor": "水"
+            }
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-010.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "7f6d6309e0545a33c687830a275a12343ab0ad189b48b71bff38964fe4590193",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-071",
+      "name": "貝獣 ヒラーガ",
+      "faces": [
+        {
+          "name": "貝獣 ヒラーガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、水のカードを１枚、自分の手札から捨ててもよい。そうしたら、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "ムートピア",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-071",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "DiscardFor248",
+            "g488DiscardFilter": {
+              "anyFaceColor": "水"
+            },
+            "g770DiscardAttempt": true,
+            "title": "手札から捨てる水のカードを1枚選ぶ（任意）",
+            "defs": [
+              {
+                "op": "Target",
+                "to": "hand"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-071.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "ac052bc1b6a066ccf6354b3f60dc22b3d13b4036cd80779fdacb3e7d3fabc225",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp03-066",
+      "name": "幻想の魔手 カレイド",
+      "faces": [
+        {
+          "name": "幻想の魔手 カレイド",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、呪文を１枚、自分の墓地から山札の一番下に置いてもよい。そうしたら、カードを２枚引く。",
+          "race": "ムートピア",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-066",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "zones": [
+              "grave"
+            ],
+            "to": "deck",
+            "optional": true,
+            "owner": "self",
+            "filter": {
+              "spell": true
+            },
+            "g970AfterMove": [
+              {
+                "op": "Draw",
+                "n": 2
+              }
+            ],
+            "title": "山札の一番下に置く自分の墓地の呪文を1枚選ぶ（任意）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-066.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "00e97f53a99e20c9f1eec1434ef940d644b0e262a1f0d93e4eb8b7c5d9978d1e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmrp04m-047",
+      "canonicalId": "dmrp01-071",
+      "name": "貝獣 ヒラーガ",
+      "faces": [
+        {
+          "name": "貝獣 ヒラーガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、水のカードを１枚、自分の手札から捨ててもよい。そうしたら、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "ムートピア",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp04m-047",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp04m-047.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "8502ed9e9ba9c630a1e09f61861aa8b6921a67db22c332ce0eaec8c75beccfdc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex04-075",
+      "canonicalId": "dmrp01-071",
+      "name": "貝獣 ヒラーガ",
+      "faces": [
+        {
+          "name": "貝獣 ヒラーガ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、水のカードを１枚、自分の手札から捨ててもよい。そうしたら、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "ムートピア",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex04-075",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex04-075.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "8b69d254b0e46e0555f9a49b719629f571ddf89cc47cc1619916fbfbdb7dd682",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "promoy21-014": 4,
+      "dmr14-010": 4,
+      "dmrp01-071": 4,
+      "dmrp03-066": 4,
+      "dmrp04m-047": 4,
+      "dmex04-075": 4
+    }
+  }
+}
