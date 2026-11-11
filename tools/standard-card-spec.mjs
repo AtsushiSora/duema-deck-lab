@@ -3435,6 +3435,35 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=998&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const entry='このクリーチャーをバトルゾーンに出した時';
+  if(d.id==='dmr15-019'&&f.typeText==='呪文'&&text===
+   '自分のマナゾーンにあるドラゴン1体につき自分の山札の上から1枚目を見る。'+
+   'その中から好きな数のドラゴンを自分のマナゾーンに置く。残りを好きな順序で山札の一番下に置く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Look',rest:'bottom',g841DeckPeek:true,
+    manaCountFilter:{faceUp:true,g228Face:{type:'creature',raceAll:['ドラゴン']}},
+    stages:[{n:'all',optional:true,to:'mana',tapMulticolor:true,filter:{anyFaceRace:'ドラゴン'},
+     title:'マナに置くドラゴンを選ぶ'}]}]};
+  if(d.id==='dmr15-s05'&&f.typeText==='クリーチャー'&&text===entry+
+   '自分の山札の上から4枚をすべてのプレイヤーに見せる。その中からコストが異なる自然のクリーチャーを好きな数自分の手札に加える。'+
+   '残りを好きな順序で自分の山札の一番下に置く。マナ武装7:このクリーチャーが攻撃する時'+
+   '自分のマナゾーンに自然のカードが7枚以上あれば進化ではないクリーチャーを1体自分の手札からバトルゾーンに出してもよい。W・ブレイカー')
+   return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Look',n:4,public:true,rest:'bottom',stages:[
+    {n:'all',optional:true,to:'hand',filter:{g228Face:{type:'creature',color:'自然'}},g994DistinctCreatureCosts:true,
+     title:'手札に加えるコストが異なる自然のクリーチャーを選ぶ'}
+   ]}],g34Attack:[{op:'IfOwn',filter:{g267Mana:{color:'自然',n:7}},defs:[
+    {op:'Select',origin:'hand',n:1,optional:true,deploy:true,filter:{creature:true,nonEvolution:true},
+     title:'手札から出す進化ではないクリーチャーを選ぶ'}
+   ]}]};
+  if(d.id==='dmr15-s04'&&f.typeText==='クリーチャー'&&text===
+   'トリプル・シンパシー:火のドラゴン(このクリーチャーを召喚する時支払うコストは'+
+   'バトルゾーンにある自分の火のドラゴン1体につき3少なくなる。ただしコストは1より少なくならない)'+
+   'このクリーチャーまたは自分の他のドラゴンをバトルゾーンに出した時バトルゾーンにある相手のクリーチャーを1体選んでもよい。'+
+   '選んだクリーチャーとそのドラゴンをバトルさせる。T・ブレイカー')
+   return {breaker:3,g211Sympathy:{amount:3,minimum:1,filter:{creature:true,color:'火',race:'ドラゴン'}},
+    effect:'sixPhoto',g34Tasks:[{op:'FightEnemy240',optional:true,g998EntryFight:true}],g998DragonEntryFight:true};
+ }
  if(phase>=997&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const manaDragon='自分のマナゾーンにあるドラゴン1体につき自分の山札の上から';

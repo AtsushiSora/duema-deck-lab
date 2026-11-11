@@ -1,0 +1,215 @@
+{
+  "phase": 998,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6912,
+  "description": "龍秘陣 古代龍万歳、始英雄 ザウロディレクス、熱血龍 三代目DソウルBの公式能力を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37175/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37176/",
+    "https://dm.takaratomy.co.jp/rule/qa/31825/",
+    "https://dm.takaratomy.co.jp/rule/qa/31824/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31650/"
+  ],
+  "cards": [
+    {
+      "id": "dmr15-019",
+      "name": "龍秘陣 古代龍万歳",
+      "faces": [
+        {
+          "name": "龍秘陣 古代龍万歳",
+          "typeText": "呪文",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "自分のマナゾーンにあるドラゴン１体につき、自分の山札の上から１枚目を見る。その中から好きな数のドラゴンを自分のマナゾーンに置く。残りを好きな順序で山札の一番下に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-019",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "rest": "bottom",
+            "g841DeckPeek": true,
+            "manaCountFilter": {
+              "faceUp": true,
+              "g228Face": {
+                "type": "creature",
+                "raceAll": [
+                  "ドラゴン"
+                ]
+              }
+            },
+            "stages": [
+              {
+                "n": "all",
+                "optional": true,
+                "to": "mana",
+                "tapMulticolor": true,
+                "filter": {
+                  "anyFaceRace": "ドラゴン"
+                },
+                "title": "マナに置くドラゴンを選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-019.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "bd75a9a0f636dd515f8836a137d9c188843784f1c491096383299a2b5ebe03ce",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr15-s05",
+      "name": "始英雄 ザウロディレクス",
+      "faces": [
+        {
+          "name": "始英雄 ザウロディレクス",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、自分の山札の上から４枚をすべてのプレイヤーに見せる。その中からコストが異なる自然のクリーチャーを好きな数、自分の手札に加える。残りを好きな順序で自分の山札の一番下に置く。\nマナ武装 ７：このクリーチャーが攻撃する時、自分のマナゾーンに自然のカードが７枚以上あれば、進化ではないクリーチャーを１体、自分の手札からバトルゾーンに出してもよい。\nW・ブレイカー",
+          "race": "ジュラシック・コマンド・ドラゴン",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-s05",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Look",
+            "n": 4,
+            "public": true,
+            "rest": "bottom",
+            "stages": [
+              {
+                "n": "all",
+                "optional": true,
+                "to": "hand",
+                "filter": {
+                  "g228Face": {
+                    "type": "creature",
+                    "color": "自然"
+                  }
+                },
+                "g994DistinctCreatureCosts": true,
+                "title": "手札に加えるコストが異なる自然のクリーチャーを選ぶ"
+              }
+            ]
+          }
+        ],
+        "g34Attack": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g267Mana": {
+                "color": "自然",
+                "n": 7
+              }
+            },
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "hand",
+                "n": 1,
+                "optional": true,
+                "deploy": true,
+                "filter": {
+                  "creature": true,
+                  "nonEvolution": true
+                },
+                "title": "手札から出す進化ではないクリーチャーを選ぶ"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-s05.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "f346577cab13a352e90b5999b2b6797340cab6a78d50df9b8fd39115f6889fea",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr15-s04",
+      "name": "熱血龍 三代目DソウルB",
+      "faces": [
+        {
+          "name": "熱血龍 三代目DソウルB",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 12,
+          "costText": "12",
+          "abilityText": "トリプル・シンパシー：火のドラゴン（このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分の火のドラゴン１体につき３少なくなる。ただしコストは１より少なくならない）\nこのクリーチャーまたは自分の他のドラゴンをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選んでもよい。選んだクリーチャーとそのドラゴンをバトルさせる。\nT・ブレイカー",
+          "race": "ガイアール・コマンド・ドラゴン",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr15-s04",
+      "spec": {
+        "breaker": 3,
+        "g211Sympathy": {
+          "amount": 3,
+          "minimum": 1,
+          "filter": {
+            "creature": true,
+            "color": "火",
+            "race": "ドラゴン"
+          }
+        },
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "FightEnemy240",
+            "optional": true,
+            "g998EntryFight": true
+          }
+        ],
+        "g998DragonEntryFight": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr15-s04.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "31c68177a2a8f5cd90eafa6a5006b4d45a2ff5f3783fcee346303d7b58fac0bf",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr15-019": 4,
+      "dmr15-s05": 4,
+      "dmr15-s04": 4
+    }
+  }
+}
