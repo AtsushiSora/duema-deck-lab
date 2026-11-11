@@ -3435,6 +3435,15 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=975&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmrp03-088'&&text==='自分のパワー12000以上のクリーチャーを召喚した時このクリーチャーを自分のマナゾーンからバトルゾーンに出してもよい。')
+   return {g975ManaSummonMinPower:12000};
+  if(d.id==='dmrp01-007'&&text==='T・ブレイカー相手のターンのはじめにバトルゾーンにある自分のクリーチャーがこのクリーチャーだけなら自分はゲームに負ける。')
+   return {breaker:3,g179OpponentStart:[{op:'IfOwn',filter:{g479OnlyCreature:true},defs:[{op:'Lose975'}]}]};
+  if(d.id==='dmrp05-004'&&text==='ブロッカーブロッカーW・ブレイカー自分の呪文を唱えるコストを最大2少なくする。ただしコストは0以下にならない。自分が呪文を唱えた時相手のクリーチャーを1体選び持ち主の手札に戻す。')
+   return {blocker:true,breaker:2,g485SpellReduction:2,g204SpellWatch:{who:'self',defs:[{op:'Target',to:'hand'}]}};
+ }
  if(phase>=974&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(['dmrp01-021','dmex06-064'].includes(d.id)&&text==='スレイヤー(このクリーチャーがバトルする時バトルの後相手クリーチャーを破壊する)このクリーチャーが破壊された時パワー1000以下のクリーチャーを1体自分の墓地からバトルゾーンに出す。')

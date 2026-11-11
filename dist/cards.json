@@ -200262,22 +200262,100 @@
       },
       "supportBatch": "phase-974",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp03-088",
+      "name": "ぴーまんどりる",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 4000,
+      "race": "グランセクト",
+      "text": "自分のパワー12000以上のクリーチャーを召喚した時、このクリーチャーを自分のマナゾーンからバトルゾーンに出してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-088",
+      "limit": 4,
+      "g975ManaSummonMinPower": 12000,
+      "supportBatch": "phase-975",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp01-007",
+      "name": "凶鬼06号 ギーコギルス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 13000,
+      "race": "マフィ・ギャング",
+      "text": "T・ブレイカー\n相手のターンのはじめに、バトルゾーンにある自分のクリーチャーがこのクリーチャーだけなら、自分はゲームに負ける。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-007",
+      "limit": 4,
+      "breaker": 3,
+      "g179OpponentStart": [
+        {
+          "op": "IfOwn",
+          "filter": {
+            "g479OnlyCreature": true
+          },
+          "defs": [
+            {
+              "op": "Lose975"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-975",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp05-004",
+      "name": "詠唱の担い手 ダイブアオ",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7000,
+      "race": "ムートピア",
+      "text": "ブロッカーブロッカー\nW・ブレイカー\n自分の呪文を唱えるコストを最大２少なくする。ただし、コストは０以下にならない。\n自分が呪文を唱えた時、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-004",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g485SpellReduction": 2,
+      "g204SpellWatch": {
+        "who": "self",
+        "defs": [
+          {
+            "op": "Target",
+            "to": "hand"
+          }
+        ]
+      },
+      "supportBatch": "phase-975",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 974,
-    "checkedAt": "2026-11-11",
-    "baseCount": 6813,
-    "newEffectCards": 5,
+    "phase": 975,
+    "checkedAt": "2026-11-12",
+    "baseCount": 6818,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6818,
+    "totalCount": 6821,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/coverage/dmgp04_04/",
-      "https://dm.takaratomy.co.jp/rule/qa/42398/",
-      "https://dm.takaratomy.co.jp/rule/qa/40969/",
-      "https://dm.takaratomy.co.jp/rule/qa/46502/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/34866/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -217796,6 +217874,25 @@
           "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31627/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31649/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 974,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6813,
+        "newEffectCards": 5,
+        "newVanillaCards": 0,
+        "totalCount": 6818,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/coverage/dmgp04_04/",
+          "https://dm.takaratomy.co.jp/rule/qa/42398/",
+          "https://dm.takaratomy.co.jp/rule/qa/40969/",
+          "https://dm.takaratomy.co.jp/rule/qa/46502/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

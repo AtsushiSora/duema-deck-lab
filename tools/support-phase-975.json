@@ -1,0 +1,140 @@
+{
+  "phase": 975,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6818,
+  "description": "高パワー召喚時のマナからの登場、相手ターン開始時の条件付き敗北、任意の呪文コスト軽減と詠唱時の手札戻しを処理する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34866/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp03-088",
+      "name": "ぴーまんどりる",
+      "faces": [
+        {
+          "name": "ぴーまんどりる",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "自分のパワー12000以上のクリーチャーを召喚した時、このクリーチャーを自分のマナゾーンからバトルゾーンに出してもよい。",
+          "race": "グランセクト",
+          "powerText": "4000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp03-088",
+      "spec": {
+        "g975ManaSummonMinPower": 12000
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp03-088.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "9a2308fbabfe530b0afa05f1f526ccc8599b92aecf791abfa9655d86b34b03d9",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp01-007",
+      "name": "凶鬼06号 ギーコギルス",
+      "faces": [
+        {
+          "name": "凶鬼06号 ギーコギルス",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "T・ブレイカー\n相手のターンのはじめに、バトルゾーンにある自分のクリーチャーがこのクリーチャーだけなら、自分はゲームに負ける。",
+          "race": "マフィ・ギャング",
+          "powerText": "13000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp01-007",
+      "spec": {
+        "breaker": 3,
+        "g179OpponentStart": [
+          {
+            "op": "IfOwn",
+            "filter": {
+              "g479OnlyCreature": true
+            },
+            "defs": [
+              {
+                "op": "Lose975"
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp01-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "4e49f8545d9ed4980dc4fabc3bd6addb2ebf46ed34fdd81ac8a5039e2341c3da",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp05-004",
+      "name": "詠唱の担い手 ダイブアオ",
+      "faces": [
+        {
+          "name": "詠唱の担い手 ダイブアオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカーブロッカー\nW・ブレイカー\n自分の呪文を唱えるコストを最大２少なくする。ただし、コストは０以下にならない。\n自分が呪文を唱えた時、相手のクリーチャーを１体選び、持ち主の手札に戻す。",
+          "race": "ムートピア",
+          "powerText": "7000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp05-004",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g485SpellReduction": 2,
+        "g204SpellWatch": {
+          "who": "self",
+          "defs": [
+            {
+              "op": "Target",
+              "to": "hand"
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp05-004.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "6bf4eda1f55d7344ec47df12e6ff2a82595010a59bf27d8bdc72a6e5d5ab1144",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp03-088": 4,
+      "dmrp01-007": 4,
+      "dmrp05-004": 4
+    }
+  }
+}
