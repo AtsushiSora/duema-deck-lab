@@ -3445,6 +3445,17 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=901&&creature&&d.faces.length===1){
+  if(d.id==='dmrp17-041'&&compact363===
+   'シールド・セイバー(自分のシールドがブレイクされる時かわりにこのクリーチャーを破壊してもよい)自分のパワー6000以上のクリーチャーが出た時このクリーチャーを自分の墓地から手札に戻す。')
+   return {g401ShieldSaver:true,g901GraveEntryPower:6000};
+  if(d.id==='dmrp09-044'&&compact363===
+   'W・ブレイカー(このクリーチャーはシールドを2つブレイクする)このターンにクリーチャーが破壊されていなければこのクリーチャーは攻撃できない。')
+   return {breaker:2,g225AttackRequires:{kind:'creatureDeath'}};
+  if(d.id==='dmrp11-094'&&compact363===
+   'このクリーチャーが破壊された時それがアンタップしていたら自分の墓地からバトルゾーンにタップして出す。')
+   return {g172Death:[{op:'SelfGraveRevive644',g901Untapped:true,tapped:true}]};
+ }
  if(phase>=900&&creature&&d.faces.length===1){
   if(d.id==='dmrp11-100'&&compact363===
    'S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)このクリーチャーをバトルゾーンにタップして出してもよい。相手のクリーチャーが攻撃する時可能ならこのクリーチャーを攻撃する。')
