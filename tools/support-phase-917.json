@@ -1,0 +1,219 @@
+{
+  "phase": 917,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6617,
+  "description": "相手の進化クリーチャーの一番上のカードの除去、自分と相手の同数の手札戻し、2種族のシンパシーと破壊時のシールド化に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35029/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35221/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35108/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37534/",
+    "https://dm.takaratomy.co.jp/rule/qa/45800/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dm03-034",
+      "name": "シェル・ポーチ",
+      "faces": [
+        {
+          "name": "シェル・ポーチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "自然",
+          "civilizations": [
+            "自然"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "このクリーチャーがバトルゾーンに出たとき、バトルゾーンにある相手の進化クリーチャーを１体選び、そのクリーチャーの一番上のカードを持ち主の墓地に置いてよい。",
+          "race": "コロニー・ビートル",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-034",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BattleCardMove579",
+            "to": "grave",
+            "optional": true,
+            "g917EvolutionTop": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm03-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "b189caa82856529672e957568315011f55f92c22c24ccfd38a71970f228fa898",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm06-051",
+      "name": "ショック・ハリケーン",
+      "faces": [
+        {
+          "name": "ショック・ハリケーン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンにある自分のクリーチャーを好きな数選び、自分の手札に戻す。その後、バトルゾーンにある相手のクリーチャーを同じ数選び、持ち主の手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-051",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "owner": "self",
+            "origin": "battle",
+            "to": "hand",
+            "n": "all",
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Select": true,
+            "g917BounceMatch": true,
+            "title": "手札に戻す自分のクリーチャーを好きな数選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm06-051.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "cabd2ea0f72889b41a111661e0a88c6250f92aae062573c4e67c347929aee040",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm13-s03",
+      "name": "聖霊龍騎アサイラム",
+      "faces": [
+        {
+          "name": "聖霊龍騎アサイラム",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nシンパシー: エンジェル・コマンドおよびアーマード・ドラゴン(このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のエンジェル・コマンドまたはアーマード・ドラゴン１体につき１少なくなる。ただしコストは２より少なくならない)\nW・ブレイカー\nこのクリーチャーが破壊される時、墓地に置くかわりに裏向きにして自分のシールドに加える。",
+          "race": "エンジェル・コマンド/アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-s03",
+      "spec": {
+        "breaker": 2,
+        "g842DestroyShield": true,
+        "g211Sympathy": {
+          "amount": 1,
+          "minimum": 2,
+          "filter": {
+            "creature": true,
+            "raceAny": [
+              "エンジェル・コマンド",
+              "アーマード・ドラゴン"
+            ]
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm13-s03.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "7f292b837e46bc56da10155285a206e37a2caa1ab6594fca8fdfd4ed88d7d5ad",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dm18-064",
+      "canonicalId": "dm06-051",
+      "name": "ショック・ハリケーン",
+      "faces": [
+        {
+          "name": "ショック・ハリケーン",
+          "typeText": "呪文",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "バトルゾーンにある自分のクリーチャーを好きな数選び、自分の手札に戻す。その後、バトルゾーンにある相手のクリーチャーを同じ数選び、持ち主の手札に戻してもよい。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm18-064",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm18-064.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "06ad554b1bf642581555ccc6e85b854c2955c6d23e14c99dec97ff4526d6cc57",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmc43-012",
+      "canonicalId": "dm13-s03",
+      "name": "聖霊龍騎アサイラム",
+      "faces": [
+        {
+          "name": "聖霊龍騎アサイラム",
+          "typeText": "クリーチャー",
+          "civilizationText": "光/火",
+          "civilizations": [
+            "光",
+            "火"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nシンパシー: エンジェル・コマンドおよびアーマード・ドラゴン(このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のエンジェル・コマンドまたはアーマード・ドラゴン１体につき１少なくなる。ただしコストは２より少なくならない)\nW・ブレイカー\nこのクリーチャーが破壊される時、墓地に置くかわりに裏向きにして自分のシールドに加える。",
+          "race": "エンジェル・コマンド/アーマード・ドラゴン",
+          "powerText": "6000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc43-012",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc43-012.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "58684a64e80a93521c525b89ca6f3b2d85878beee99b2191fe082d8df0cd21e0",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm03-034": 4,
+      "dm06-051": 4,
+      "dm13-s03": 4,
+      "dm18-064": 4,
+      "dmc43-012": 4
+    }
+  }
+}

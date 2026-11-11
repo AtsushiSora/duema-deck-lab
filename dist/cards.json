@@ -193930,19 +193930,118 @@
       "g916GraveShield": true,
       "supportBatch": "phase-916",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm03-034",
+      "name": "シェル・ポーチ",
+      "civ": "自然",
+      "civilizations": [
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 1000,
+      "race": "コロニー・ビートル",
+      "text": "このクリーチャーがバトルゾーンに出たとき、バトルゾーンにある相手の進化クリーチャーを１体選び、そのクリーチャーの一番上のカードを持ち主の墓地に置いてよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm03-034",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BattleCardMove579",
+          "to": "grave",
+          "optional": true,
+          "g917EvolutionTop": true
+        }
+      ],
+      "supportBatch": "phase-917",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm06-051",
+      "name": "ショック・ハリケーン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "バトルゾーンにある自分のクリーチャーを好きな数選び、自分の手札に戻す。その後、バトルゾーンにある相手のクリーチャーを同じ数選び、持ち主の手札に戻してもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm06-051",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "owner": "self",
+          "origin": "battle",
+          "to": "hand",
+          "n": "all",
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Select": true,
+          "g917BounceMatch": true,
+          "title": "手札に戻す自分のクリーチャーを好きな数選ぶ"
+        }
+      ],
+      "supportBatch": "phase-917",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm13-s03",
+      "name": "聖霊龍騎アサイラム",
+      "civ": "光/火",
+      "civilizations": [
+        "光",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "エンジェル・コマンド/アーマード・ドラゴン",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nシンパシー: エンジェル・コマンドおよびアーマード・ドラゴン(このクリーチャーを召喚する時支払うコストは、バトルゾーンにある自分のエンジェル・コマンドまたはアーマード・ドラゴン１体につき１少なくなる。ただしコストは２より少なくならない)\nW・ブレイカー\nこのクリーチャーが破壊される時、墓地に置くかわりに裏向きにして自分のシールドに加える。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm13-s03",
+      "limit": 4,
+      "breaker": 2,
+      "g842DestroyShield": true,
+      "g211Sympathy": {
+        "amount": 1,
+        "minimum": 2,
+        "filter": {
+          "creature": true,
+          "raceAny": [
+            "エンジェル・コマンド",
+            "アーマード・ドラゴン"
+          ]
+        }
+      },
+      "supportBatch": "phase-917",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 916,
+    "phase": 917,
     "checkedAt": "2026-11-11",
-    "baseCount": 6614,
+    "baseCount": 6617,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6617,
+    "totalCount": 6620,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35179/",
-      "https://dm.takaratomy.co.jp/card/detail/?id=dm13-s03",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35029/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35221/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35108/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37534/",
+      "https://dm.takaratomy.co.jp/rule/qa/45800/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -210289,6 +210388,23 @@
           "https://dm.takaratomy.co.jp/rule/rulechange/31395/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31631/",
           "https://dm.takaratomy.co.jp/rule/qa/45462/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 916,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6614,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6617,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35179/",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm13-s03",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

@@ -218,10 +218,11 @@ export function createSixPhotoRules(api){
    }
    if(!zones.includes('battle'))continue;
    for(const top of api.visibleBattleCards(s,p)){
+    if(t.g917EvolutionTop&&(!api.isEvolution(top)||!api.isCreature(s,top)))continue;
     const linked=!!top.godLinks?.length;
     const definition=t.min!==undefined||t.max!==undefined?effective(top,s):null;
     for(const [index,x] of api.layers(top).entries()){
-     if((t.other&&x.uid===t.uid)||x.uid===t.excludeUid)continue;
+     if((t.g917EvolutionTop&&x!==top)||(t.other&&x.uid===t.uid)||x.uid===t.excludeUid)continue;
      if(t.g813NonEvolution&&!x.faceDown&&api.isEvolution(x))continue;
      const sealIndex=own.seals?.indexOf(x)??-1;
      const below=index>0&&!top.godLinks?.includes(x);
@@ -807,11 +808,14 @@ export function createSixPhotoRules(api){
    stopPlayerAttack567(s,{...t,g567PlayerStop:'end'},target);
   }
   if(t.g583Group){moveZoneSelection583(s,t,t.rows||[]);return;}
- if(t.afterBattleSelect){
+ if(t.afterBattleSelect||t.g917BounceMatch){
   const moves=(t.rows||[]).filter(r=>r.origin==='battle'&&s.players[r.p].battle.some(x=>x.uid===r.uid))
    .map(r=>({player:r.p,uid:r.uid,to:t.to,controller:t.controller??t.p}));
-  // The selection and attempted move suffice, even when the move is replaced (QA45793).
-  if(moves.length){move(s,moves);start(s,t,t.afterBattleSelect);}
+  // These follow-ups use the selected creatures, including moves changed by replacements (QA 45793, notice 31661).
+  if(moves.length){
+   move(s,moves);
+   start(s,t,t.g917BounceMatch?[{op:'BounceMatch917',n:moves.length}]:t.afterBattleSelect);
+  }
   return;
  }
   if(t.g673ShuffleOnMove){
@@ -1900,6 +1904,13 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_ShieldPlus414':put(s,{...t,op:'g71_Plus',optional:true});break;
+ case'g34_BounceMatch917':{
+  const def={op:'Select',origin:'battle',owner:'opponent',to:'hand',n:t.n,filter:{creature:true},
+   g173Targets:true,g193Select:true,title:'手札に戻す相手のクリーチャーを'+t.n+'体選ぶ'};
+  const eligible=list(s,{...t,...def}).filter(({p,x})=>api.targetable(s,t.p,p,x));
+  if(eligible.length>=t.n)start(s,t,[{op:'Offer',title:'相手のクリーチャーを'+t.n+'体手札に戻す？',defs:[def]}]);
+  break;
+ }
  case'g34_CountTap413':{const n=creatures(s,t.p).filter(y=>!y.sealed).length;if(n)start(s,t,[{op:'Select',owner:'opponent',origin:'battle',n,filter:{creature:true},g173Targets:true,g193Tap:true,g193Select:true,title:'タップする相手のクリーチャーを'+n+'体選ぶ'}]);break;}
  case'g34_ConfirmHandReturn857':
   if(own.hand.some(y=>y.uid===t.returned&&(y.zoneSerial||0)===t.serial))start(s,t,t.defs);

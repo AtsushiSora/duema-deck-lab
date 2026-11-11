@@ -3445,6 +3445,21 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=917&&d.faces.length===1){
+  if(creature&&d.id==='dm03-034'&&compact363===
+   'このクリーチャーがバトルゾーンに出たときバトルゾーンにある相手の進化クリーチャーを1体選びそのクリーチャーの一番上のカードを持ち主の墓地に置いてよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'BattleCardMove579',to:'grave',optional:true,g917EvolutionTop:true}]};
+  if(f.typeText==='呪文'&&['dm06-051','dm18-064'].includes(d.id)&&compact363===
+   'バトルゾーンにある自分のクリーチャーを好きな数選び自分の手札に戻す。その後バトルゾーンにある相手のクリーチャーを同じ数選び持ち主の手札に戻してもよい。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Select',owner:'self',origin:'battle',to:'hand',n:'all',optional:true,
+    filter:{creature:true},g173Targets:true,g193Select:true,g917BounceMatch:true,title:'手札に戻す自分のクリーチャーを好きな数選ぶ'}]};
+  if(creature&&['dm13-s03','dmc43-012'].includes(d.id)&&compact363===
+   'マナゾーンに置く時このカードはタップして置く。シンパシー:エンジェル・コマンドおよびアーマード・ドラゴン'+
+   '(このクリーチャーを召喚する時支払うコストはバトルゾーンにある自分のエンジェル・コマンドまたはアーマード・ドラゴン1体につき1少なくなる。ただしコストは2より少なくならない)'+
+   'W・ブレイカーこのクリーチャーが破壊される時墓地に置くかわりに裏向きにして自分のシールドに加える。')
+   return {breaker:2,g842DestroyShield:true,g211Sympathy:{amount:1,minimum:2,
+    filter:{creature:true,raceAny:['エンジェル・コマンド','アーマード・ドラゴン']}}};
+ }
  if(phase>=916&&creature&&d.faces.length===1){
   if(['dm03-036','dm04-007'].includes(d.id)&&compact363===
    'このクリーチャーがバトルゾーンから自分の墓地に置かれるとき裏向きにして自分のシールドに加える。')
