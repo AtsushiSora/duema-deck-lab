@@ -3445,6 +3445,25 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=909&&creature&&d.faces.length===1){
+  if(['dm24ex1-070','promoy23-043'].includes(d.id)&&compact363===
+   'S・トリガーS・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)'+
+   '各ターンに一度自分のクリーチャーが出た時クリーチャーを1体選びタップまたはアンタップしてもよい。')
+   return {trigger:true,g251EntryDraw:{selfAlways:true,filter:{creature:true},defs:[
+    {op:'Target',anyOwner:true,g235TapOrUntap:true,optional:true,g792Once:'way',title:'タップまたはアンタップするクリーチャーを選ぶ'}
+   ]}};
+  if(['dmrp16-029','promoy19-093'].includes(d.id)&&compact363===
+   'マッハファイター(このクリーチャーはバトルゾーンに出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)'+
+   'このクリーチャーが攻撃する時自分のシールドを1つブレイクしてもよい。このようにしてシールドをブレイクしたら自分のマナゾーンのカードを6枚までアンタップする。')
+   return {machFighter:true,g34Attack:[{op:'Break497',owner:'self',n:1,optional:true,g909AfterBreak:[
+    {op:'Select',origin:'mana',n:6,g210ManaUntap:true,optional:true,title:'アンタップする自分のマナを6枚まで選ぶ'}
+   ]}]};
+  if(d.id==='dmr01-042'&&compact363===
+   'このクリーチャーまたは自分の他の光のハンターをバトルゾーンに出した時バトルゾーンにある相手のクリーチャーを1体選びタップしてもよい。'+
+   'ハンティング(バトル中このクリーチャーのパワーはバトルゾーンにある自分のハンター1体につき+1000される)')
+   return {g166Hunting:true,g251EntryDraw:{selfAlways:true,filter:{creature:true,color:'光',race:'ハンター'},
+    defs:[{op:'Target',tap:true,optional:true,title:'タップする相手のクリーチャーを選ぶ'}]}};
+ }
  if(phase>=908&&d.faces.length===1){
   const mach='マッハファイター(このクリーチャーは出たターンの間タップまたはアンタップしているクリーチャーを攻撃できる)';
   if(creature&&d.id==='dm23ex3-070'&&compact363===mach+

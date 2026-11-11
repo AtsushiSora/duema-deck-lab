@@ -193175,26 +193175,131 @@
       ],
       "supportBatch": "phase-908",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm24ex1-070",
+      "name": "注文猫のウェイ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 4,
+      "power": 3000,
+      "race": "ドリームメイト",
+      "text": "S・トリガー S・トリガー（このクリーチャーをシールドゾーンから手札に加える時、コストを支払わずにすぐ召喚してもよい）\n各ターンに一度、自分のクリーチャーが出た時、クリーチャーを１体選び、タップまたはアンタップしてもよい。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm24ex1-070",
+      "limit": 4,
+      "trigger": true,
+      "g251EntryDraw": {
+        "selfAlways": true,
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "anyOwner": true,
+            "g235TapOrUntap": true,
+            "optional": true,
+            "g792Once": "way",
+            "title": "タップまたはアンタップするクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-909",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-029",
+      "name": "燃えろ！アポロソくん",
+      "civ": "火/自然",
+      "civilizations": [
+        "火",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 5000,
+      "race": "ジョーカーズ/チーム切札",
+      "text": "マッハファイター（このクリーチャーは、バトルゾーンに出たターンの間、タップまたはアンタップしているクリーチャーを攻撃できる）\nこのクリーチャーが攻撃する時、自分のシールドを１つブレイクしてもよい。このようにしてシールドをブレイクしたら、自分のマナゾーンのカードを６枚までアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-029",
+      "limit": 4,
+      "machFighter": true,
+      "g34Attack": [
+        {
+          "op": "Break497",
+          "owner": "self",
+          "n": 1,
+          "optional": true,
+          "g909AfterBreak": [
+            {
+              "op": "Select",
+              "origin": "mana",
+              "n": 6,
+              "g210ManaUntap": true,
+              "optional": true,
+              "title": "アンタップする自分のマナを6枚まで選ぶ"
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-909",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr01-042",
+      "name": "光器ララバイ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 2500,
+      "race": "メカ・デル・ソル/ハンター",
+      "text": "このクリーチャーまたは自分の他の光のハンターをバトルゾーンに出した時、バトルゾーンにある相手のクリーチャーを１体選び、タップしてもよい。\nハンティング(バトル中、このクリーチャーのパワーは、バトルゾーンにある自分のハンター１体につき+1000される)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr01-042",
+      "limit": 4,
+      "g166Hunting": true,
+      "g251EntryDraw": {
+        "selfAlways": true,
+        "filter": {
+          "creature": true,
+          "color": "光",
+          "race": "ハンター"
+        },
+        "defs": [
+          {
+            "op": "Target",
+            "tap": true,
+            "optional": true,
+            "title": "タップする相手のクリーチャーを選ぶ"
+          }
+        ]
+      },
+      "supportBatch": "phase-909",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 908,
+    "phase": 909,
     "checkedAt": "2026-11-11",
-    "baseCount": 6589,
+    "baseCount": 6592,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6592,
+    "totalCount": 6595,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/rule/qa/31691/",
-      "https://dm.takaratomy.co.jp/rule/qa/46233/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
-      "https://dm.takaratomy.co.jp/rule/qa/44619/",
-      "https://dm.takaratomy.co.jp/rule/qa/49221/",
-      "https://dm.takaratomy.co.jp/rule/qa/42394/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37153/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37615/",
-      "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+      "https://dm.takaratomy.co.jp/rule/qa/44212/",
+      "https://dm.takaratomy.co.jp/rule/qa/39067/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37679/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37680/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/変更点2026-07-23/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -209378,6 +209483,29 @@
           "https://dm.takaratomy.co.jp/rule/qa/40642/",
           "https://dm.takaratomy.co.jp/rule/qa/42521/",
           "https://dm.takaratomy.co.jp/rule/qa/39849/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 908,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6589,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6592,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/31691/",
+          "https://dm.takaratomy.co.jp/rule/qa/46233/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/316661/",
+          "https://dm.takaratomy.co.jp/rule/qa/44619/",
+          "https://dm.takaratomy.co.jp/rule/qa/49221/",
+          "https://dm.takaratomy.co.jp/rule/qa/42394/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37153/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37615/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
         ],
         "next": [

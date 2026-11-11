@@ -1589,6 +1589,10 @@ function commitShieldBreak(s,defender,uids){
  const eligibleFaces=Object.fromEntries(all.flatMap(x=>{if(shieldLeavesToGrave(x)&&!breakContext?.replacementBreak)return [];const faces=!breakContext?.noST&&extra.triggersAllowed(s,defender)?playFaces(card(x)).flatMap((c,face)=>(c.g26Viride&&s.players[1-defender].battle.filter(x=>isCreature(s,x)).length>=3||extra.six.shieldTrigger(s,defender,x,c)||extra.requested393J.shieldTrigger(s,defender,x,c)||c.trigger||c.triggerPlus||c.superTrigger||c.graveTotalTrigger&&s.players.reduce((n,p)=>n+p.grave.length,0)>=c.graveTotalTrigger||c.rev2Trigger&&s.players[defender].shields.length-count<=2||x.g19ShieldST!==undefined||c.type==='spell'&&extra.spellShieldTrigger(s,defender)||c.shieldConditionalTrigger&&s.players[defender].grave.filter(x=>playFaces(card(x)).some(c=>c.type==='spell')).length>=2)&&extra.triggersAllowed(s,defender,c)&&!extra.triggerLocked597(s,defender,c,remaining,breaker)&&canCastSpell(s,defender,c)&&(extra.spellPermission(s,defender,c)||extra.six.allowsNonLightSpells687(s,c,pendingBreak))?[face]:[]):[];return faces.length?[[x.uid,faces]]:[];})),eligible=Object.keys(eligibleFaces);
  const broken=[];for(const uid of uids){const root=removeShield(s,defender,uid);for(const x of shieldCards(root)){const toGrave=shieldLeavesToGrave(x)&&!breakContext?.replacementBreak;clearBattleState(x,'hand');if(toGrave)addZone(s,s.players[defender],'grave',x);else broken.push(x);}}
  if(!handOnly){
+  if(count&&breakContext?.g909RequireBreak){
+   const follow=s.g19Interrupt?.tasks[0];
+   if(follow?.op==='g34_AfterBreak278')follow.g909Broke=true;
+  }
   extra.six.recordBreak756(s,breakContext,count);
   extra.six.allyBreakDraw779(s,breakContext,count);
   extra.broken(s,breakContext,count);
@@ -2074,6 +2078,8 @@ function stepCore(s,action){
   // Native effects and extended tasks can each move mana before power is checked.
   manaDeparted(s,manaPrevious);manaPrevious=manaSnapshot(s);
   powerCleanup(s);if(!s.pendingEffects?.length&&!s.triggers)extra.beforeNonActive(s);extra.advance(s);
+  // An effect that broke a shield without opening a trigger window still has to finish before blocking.
+  if(s.g19Interrupt?.tasks[0]?.g909AfterBreak)resumeInterrupt(s);
   manaDeparted(s,manaPrevious);manaPrevious=manaSnapshot(s);
   refreshDynamicTypes(s);if(extra.lionelState(s)){if(s.decision)break;continue;}powerCleanup(s);advanceAttack(s);extra.advanceBreak(s);const attackEnding=s.attackLifecycle;extra.advanceAttackEnd(s);extra.advanceAfterAttack(s);if(attackEnding&&!s.attackLifecycle)powerCleanup(s);advanceEnd(s);advanceStart(s);
   manaDeparted(s,manaPrevious);manaPrevious=manaSnapshot(s);extra.six.fifteen.graveDeparted(s,gravePrevious);gravePrevious=s.players.map(p=>p.grave.map(x=>x.uid));for(const p of[s.active,1-s.active])checkSidewaysHand(s,p);if(s.lossEvent){advanceLoss(s);if(s.decision||s.winner!==null)break;continue;}
