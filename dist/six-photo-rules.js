@@ -730,8 +730,8 @@ export function createSixPhotoRules(api){
    default:return false;
   }
  }
- function force546(s,t,p,y=null){if(y?.sealed)return;const when=t.g546Force||t.when,refs=y?api.allLayers(y).map(z=>({uid:z.uid,incarnation:z.incarnation||0})):null;(s.extLimits??=[]).push({kind:'g546Force',controller:t.p,player:p,when,turn:s.turn,...(refs?{refs}:{}),expires:when==='nextOpponent'?'manual546':when==='untilOwnStart'?'start':'end',who:when==='untilOwnStart'?t.p:s.active,...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});}
- function forced546(s,p,x){if(x.sealed)return false;if(forceAttack224(s,p))return true;const refs=api.allLayers(x).map(key);if((s.extLimits||[]).some(l=>l.kind==='g546Force'&&(l.refs?l.refs.some(r=>refs.includes(key(r))):l.player===p)&&(l.when!=='nextOpponent'||s.active===1-l.controller&&s.turn>l.turn)&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}))))return true;return s.g481Attackers?.turn===s.turn&&s.players[p].battle.some(y=>y.uid!==x.uid&&!y.sealed&&card(y).g546AttackForceOthers&&!api.ignored(s,y)&&s.g481Attackers.events.some(e=>api.allLayers(y).some(z=>e.refs.includes(key(z)))));}
+ function force546(s,t,p,y=null){if(y?.sealed)return;const when=t.g546Force||t.when,refs=y?api.allLayers(y).map(z=>({uid:z.uid,incarnation:z.incarnation||0})):null;(s.extLimits??=[]).push({kind:'g546Force',controller:t.p,player:p,when,turn:s.turn,...(t.g996ForceOnce?{once:true}:{}),...(refs?{refs}:{}),expires:when==='nextOpponent'?'manual546':when==='untilOwnStart'?'start':'end',who:when==='untilOwnStart'?t.p:s.active,...(t.spell?{spellSource:t.source,spellCost:cost(faces(card(t.source)).at(-1))}:{})});}
+ function forced546(s,p,x){if(x.sealed)return false;if(forceAttack224(s,p))return true;const refs=api.allLayers(x).map(key);if((s.extLimits||[]).some(l=>l.kind==='g546Force'&&(l.refs?l.refs.some(r=>refs.includes(key(r))):l.player===p)&&(!l.once||s.g481Attackers?.turn!==s.turn||!s.g481Attackers.events.some(e=>e.refs.some(r=>refs.includes(r))))&&(l.when!=='nextOpponent'||s.active===1-l.controller&&s.turn>l.turn)&&(l.spellCost===undefined||!api.spellIgnored(s,{type:'spell',cost:l.spellCost,spellSource:l.spellSource}))))return true;return s.g481Attackers?.turn===s.turn&&s.players[p].battle.some(y=>y.uid!==x.uid&&!y.sealed&&card(y).g546AttackForceOthers&&!api.ignored(s,y)&&s.g481Attackers.events.some(e=>api.allLayers(y).some(z=>e.refs.includes(key(z)))));}
  function forceAttack224(s,p){return [0,1].some(owner=>s.players[owner].battle.some(y=>{const rule=card(y).g224ForceAttack;return rule&&!y.sealed&&api.isCreature(s,y)&&!api.ignored(s,y)&&(rule.owner==='both'||p!==owner)&&(!rule.tapped||y.tapped)&&(!rule.opponentTurn||s.active!==owner);}));}
  // All assignments are chosen before any card moves. Remove the inspected set
  // together, then publish every destination before queued zone triggers resolve.
@@ -1040,7 +1040,7 @@ export function createSixPhotoRules(api){
   if(t.g785ReturnGroup){
    const delays=s.g537Delays??=[];
    returnGroup=delays.length;
-   delays.push({p:t.p,source:t.source,when:'turnEnd',turn:s.turn,defs:[{op:'ReturnGroup785',refs:[]}]});
+   delays.push({p:t.p,source:t.source,when:'turnEnd',turn:s.turn,defs:[{op:'ReturnGroup785',refs:[],...(t.g785ReturnGroup==='grave'?{to:'grave'}:{})}]});
   }
   if(rows.length>1){s.g34DeployBatch=true;s.players[t.p].g34ManaHeld=rows.filter(r=>r.origin==='mana').map(r=>r.uid);}put(s,...rows.map(r=>({...t,...r,owner:r.p,p:t.p,op:'g34_Put',origin:r.origin,target:r.uid,...(returnGroup===undefined?{}:{g785Group:returnGroup})})),...(t.after?tasks(t.p,t.source,t.after,{uid:t.uid,incarnation:t.incarnation}):[]),task('g34_Custom',t.p,t.source,{name:'finishBatch'}));}else{if(t.g190Freeze)for(const r of rows)freeze(s,t,r.p,s.players[r.p].battle.find(x=>x.uid===r.uid));if(t.g546Force)for(const r of rows){const y=s.players[r.p].battle.find(x=>x.uid===r.uid);if(y)force546(s,t,r.p,y);}if((t.g187OwnPick&&t.tap)||t.g193Tap)for(const r of rows){const x=s.players[r.p].battle.find(x=>x.uid===r.uid);if(x){api.tap(s,r.p,x);if(t.g210TapLock||t.g743NeoLock&&sourceNeo563(s,t))startUntapLock210(t,x);}}if(t.g510Untap)for(const r of rows){const x=s.players[r.p].battle.find(x=>x.uid===r.uid);if(x?.tapped&&api.canUntap(x)){x.tapped=false;combined.untapped(s,r.p,x);}}if(t.g335Grant)for(const r of rows){const x=s.players[r.p].battle.find(x=>x.uid===r.uid);if(x)(x.g34Grants??=[]).push(timedGrant335(s,t,t.g335Grant));}if(t.g210ManaUntap){let n=0;for(const r of rows){const x=s.players[r.p].mana.find(x=>x.uid===r.uid);if(x&&api.canUntap(x)){if(x.tapped)n++;x.tapped=false;}}api.log(s,t.p,'untapMana',card(t.source).name+'：マナを'+n+'枚アンタップ',{cardId:t.source});}const b=rows.filter(r=>r.origin==='battle');for(const r of rows.filter(r=>r.origin!=='battle'))if(t.to)zoneMove(s,r.p,r.origin,r.uid,t.to,t);if(b.length&&t.to)move(s,b.map(r=>({player:r.p,uid:r.uid,to:t.to,destroy:t.to==='grave',controller:t.controller??t.p})));if(t.after)start(s,t,t.after);}}
  // A resolved group effect is a snapshot, not an aura. Match the source creature through its layers for "other".
@@ -2179,7 +2179,7 @@ export function createSixPhotoRules(api){
   const moves=new Map();
   for(const ref of t.refs){
    const host=sourceHost474(s,ref);
-   if(host&&!host.x.sealed)moves.set(host.x.uid,{player:host.p,uid:host.x.uid,to:'hand',controller:t.p});
+   if(host&&!host.x.sealed)moves.set(host.x.uid,{player:host.p,uid:host.x.uid,to:t.to||'hand',destroy:t.to==='grave',controller:t.p});
   }
   if(moves.size)move(s,[...moves.values()]);
   break;
@@ -2924,6 +2924,19 @@ export function createSixPhotoRules(api){
   break;
  }
  case'g34_RaidPick':return raid764.run(s,t);
+ case'g34_Ryuo996':{
+  const ids=look(s,t),eligible=own.deck.filter(y=>ids.includes(y.uid)&&matches(s,t.p,y,{g228Face:{type:'creature',color:'火'}}));
+  if(eligible.length)choice(s,{...t,ids},'公開する火のクリーチャーを1体選ぶ',
+   eligible.map(y=>opt(card(y).name,y.uid,10+cost(card(y)),y.cardId)));
+  else put(s,{...t,op:'g34_Order',ids,rest:'shuffle'});
+  break;
+ }
+ case'g34_RyuoFinish996':{
+  if(t.revealed&&ownCondition(s,t.p,{g267Mana:{color:'火',n:5}}))
+   zoneMove(s,t.p,'deck',t.revealed,'hand',t);
+  put(s,{...t,op:'g34_Order',rest:'shuffle'});
+  break;
+ }
  case'g34_Look':{if(t.g201Search)t={...t,n:own.deck.length};let ids;if(t.stages?.some(q=>q.g467Destinations&&!q.filter)&&api.deckLocked(s,t.p)){t={...t,g467Blind:true};const skip=reserved(own);ids=own.deck.filter(x=>!skip.has(x.uid)).slice(0,t.n).map(x=>x.uid);(own.g34Protected??=[]).push(...ids);}else ids=look(s,t);put(s,{...t,op:'g34_LookPick',ids,stage:0,chosen:[]});break;}
  case'g34_Distribute255':distribute255(s,t);break;
  case'g34_LookPick':{const xs=t.ids.map(uid=>own.deck.find(x=>x.uid===uid)).filter(Boolean),stages=t.stages||[],stage=stages[t.stage];
@@ -4016,6 +4029,18 @@ export function createSixPhotoRules(api){
  }
  case'g34_LookAll424':{const chosen=v?t.g424Ids:[];put(s,{...t,op:'g34_LookPick',chosen,stages:t.stages.map((q,i)=>i===t.stage?{...q,n:chosen.length,optional:false,g424AllOrNone:false}:q)});break;}
  case'g34_ManaDown426':{const y=v&&own.mana.find(y=>y.uid===v.uid&&!y.faceDown&&(y.zoneSerial||0)===v.serial);if(y){const name=card(y).name;y.faceDown=true;api.log(s,t.p,'manaFaceDown',card(t.source).name+'：'+name+'をマナゾーンで裏向きにした',{cardId:y.cardId});}break;}
+ case'g34_Ryuo996':{
+  const y=own.deck.find(y=>y.uid===v&&t.ids.includes(v));
+  put(s,{...t,op:'g34_RyuoFinish996',revealed:y?.uid});
+  if(y){
+   api.log(s,t.p,'reveal',card(t.source).name+'で公開：'+card(y).name,{cardId:y.cardId});
+   const power=api.revealedPower(y,s);
+   start(s,t,[{op:'Target',to:'grave',optional:true,
+    filter:power===Infinity?{creature:true}:{creature:true,maxPower:power,g199Power:true},
+    title:'公開したクリーチャーのパワー以下の相手を1体破壊する（任意）'}]);
+  }
+  break;
+ }
  case'g34_LookPick':if(v)put(s,{...t,chosen:[...(t.chosen||[]),v]});else put(s,{...t,stages:t.stages.map((q,i)=>i===t.stage?{...q,n:(t.chosen||[]).length}:q)});break;
  case'g34_GuardOrder834':
  case'g34_Order':put(s,{...t,ids:t.ids.filter(uid=>uid!==v),ordered:[...(t.ordered||[]),v]});break;
@@ -4406,7 +4431,8 @@ export function createSixPhotoRules(api){
   for(const player of [owner,p])for(const source of s.players[player].battle){
    if(!card(source).g946BlockWatch||source.sealed||!api.isCreature(s,source))continue;
    const watch=effective(source,s).g946BlockWatch;
-   if(watch)queue(s,player,source,watch);
+   if(Array.isArray(watch))queue(s,player,source,watch);
+   else if(watch&&player===p&&matches(s,p,x,watch.filter))queue(s,player,source,watch.defs);
   }
   const blocked=a&&!a.sealed&&effective(a,s).g559Blocked;
   if(blocked)queue(s,owner,a,blocked);

@@ -203292,23 +203292,155 @@
       "g995OpponentCannotLose": true,
       "supportBatch": "phase-995",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-s01",
+      "name": "蒼華の精霊龍 ラ・ローゼ・ブルエ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7500,
+      "race": "エンジェル・コマンド・ドラゴン",
+      "text": "ブロッカー ブロッカー\n自分のドラゴンが攻撃またはブロックした時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加えてもよい。\nW・ブレイカー\n光以外の呪文によって相手がバトルゾーンにあるクリーチャーを選ぶ時、このクリーチャーを選ぶことはできない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-s01",
+      "limit": 4,
+      "blocker": true,
+      "breaker": 2,
+      "g996NonLightSpellUntargetable": true,
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "race": "ドラゴン"
+        },
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "山札の上から1枚をシールドに置く？",
+            "defs": [
+              {
+                "op": "ShieldTop"
+              }
+            ]
+          }
+        ]
+      },
+      "g946BlockWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true,
+          "race": "ドラゴン"
+        },
+        "defs": [
+          {
+            "op": "Offer",
+            "title": "山札の上から1枚をシールドに置く？",
+            "defs": [
+              {
+                "op": "ShieldTop"
+              }
+            ]
+          }
+        ]
+      },
+      "supportBatch": "phase-996",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr14-003",
+      "name": "隠密の悪魔龍 フドウガマオウ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 8000,
+      "race": "デーモン・コマンド・ドラゴン/シノビ",
+      "text": "相手のターンのはじめに、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのクリーチャーはそのターン、可能であれば攻撃する。\n相手のクリーチャーが攻撃する時、それがそのターンはじめての攻撃であれば、コスト６以下の進化ではないファンキー・ナイトメアを１体、自分の手札からバトルゾーンに出してもよい。そうした場合、そのターンの終わりにそのファンキー・ナイトメアを破壊する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-003",
+      "limit": 4,
+      "breaker": 2,
+      "g179OpponentStart": [
+        {
+          "op": "Target",
+          "g546Force": "thisTurn",
+          "g996ForceOnce": true,
+          "title": "可能なら1回攻撃する相手のクリーチャーを選ぶ"
+        }
+      ],
+      "g252AttackWatch": {
+        "who": "opponent",
+        "first": true,
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "Select",
+            "origin": "hand",
+            "deploy": true,
+            "n": 1,
+            "optional": true,
+            "g785ReturnGroup": "grave",
+            "filter": {
+              "creature": true,
+              "nonEvolution": true,
+              "race": "ファンキー・ナイトメア",
+              "max": 6
+            }
+          }
+        ]
+      },
+      "supportBatch": "phase-996",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr13-034",
+      "name": "天守閣 龍王武陣",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から５枚を見る。その中から火のクリーチャーを１体、相手に見せ、そのクリーチャーのパワー以下の相手のクリーチャーを１体破壊してもよい。\nマナ武装 ５：自分のマナゾーンに火のカードが５枚以上あれば、その見せたカードを自分の手札に加える。\n自分の山札をシャッフルする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-034",
+      "limit": 4,
+      "trigger": true,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Ryuo996",
+          "n": 5
+        }
+      ],
+      "supportBatch": "phase-996",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 995,
+    "phase": 996,
     "checkedAt": "2026-11-12",
-    "baseCount": 6902,
-    "newEffectCards": 4,
+    "baseCount": 6906,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6906,
+    "totalCount": 6909,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31642/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34934/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37067/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37068/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/37138/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37139/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/37141/",
+      "https://dm.takaratomy.co.jp/rule/qa/48921/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -221256,6 +221388,26 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37019/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37063/",
           "https://dm.takaratomy.co.jp/rule/qa_old/37064/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 995,
+        "checkedAt": "2026-11-12",
+        "baseCount": 6902,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6906,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31642/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34934/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37067/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37068/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

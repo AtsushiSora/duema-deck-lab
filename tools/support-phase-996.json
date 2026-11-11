@@ -1,0 +1,312 @@
+{
+  "phase": 996,
+  "checkedAt": "2026-11-12",
+  "baseCount": 6906,
+  "description": "蒼華の精霊龍 ラ・ローゼ・ブルエ、隠密の悪魔龍 フドウガマオウ、天守閣 龍王武陣の公式能力を実装する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37138/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37139/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/37141/",
+    "https://dm.takaratomy.co.jp/rule/qa/48921/"
+  ],
+  "cards": [
+    {
+      "id": "dmr14-s01",
+      "name": "蒼華の精霊龍 ラ・ローゼ・ブルエ",
+      "faces": [
+        {
+          "name": "蒼華の精霊龍 ラ・ローゼ・ブルエ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー ブロッカー\n自分のドラゴンが攻撃またはブロックした時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加えてもよい。\nW・ブレイカー\n光以外の呪文によって相手がバトルゾーンにあるクリーチャーを選ぶ時、このクリーチャーを選ぶことはできない。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "7500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-s01",
+      "spec": {
+        "blocker": true,
+        "breaker": 2,
+        "g996NonLightSpellUntargetable": true,
+        "g252AttackWatch": {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "山札の上から1枚をシールドに置く？",
+              "defs": [
+                {
+                  "op": "ShieldTop"
+                }
+              ]
+            }
+          ]
+        },
+        "g946BlockWatch": {
+          "who": "self",
+          "filter": {
+            "creature": true,
+            "race": "ドラゴン"
+          },
+          "defs": [
+            {
+              "op": "Offer",
+              "title": "山札の上から1枚をシールドに置く？",
+              "defs": [
+                {
+                  "op": "ShieldTop"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-s01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "465f804d07a87d1eb7149320c2fdacfe914d1135bd54a7554cf18e00de72bc82",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr14-003",
+      "name": "隠密の悪魔龍 フドウガマオウ",
+      "faces": [
+        {
+          "name": "隠密の悪魔龍 フドウガマオウ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "相手のターンのはじめに、バトルゾーンにある相手のクリーチャーを１体選ぶ。そのクリーチャーはそのターン、可能であれば攻撃する。\n相手のクリーチャーが攻撃する時、それがそのターンはじめての攻撃であれば、コスト６以下の進化ではないファンキー・ナイトメアを１体、自分の手札からバトルゾーンに出してもよい。そうした場合、そのターンの終わりにそのファンキー・ナイトメアを破壊する。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "デーモン・コマンド・ドラゴン/シノビ",
+          "powerText": "8000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr14-003",
+      "spec": {
+        "breaker": 2,
+        "g179OpponentStart": [
+          {
+            "op": "Target",
+            "g546Force": "thisTurn",
+            "g996ForceOnce": true,
+            "title": "可能なら1回攻撃する相手のクリーチャーを選ぶ"
+          }
+        ],
+        "g252AttackWatch": {
+          "who": "opponent",
+          "first": true,
+          "filter": {
+            "creature": true
+          },
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "hand",
+              "deploy": true,
+              "n": 1,
+              "optional": true,
+              "g785ReturnGroup": "grave",
+              "filter": {
+                "creature": true,
+                "nonEvolution": true,
+                "race": "ファンキー・ナイトメア",
+                "max": 6
+              }
+            }
+          ]
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr14-003.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "a8076025dc042425be4640a405d5a290fbf62562f32f4193851e700b4b195e16",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr13-034",
+      "name": "天守閣 龍王武陣",
+      "faces": [
+        {
+          "name": "天守閣 龍王武陣",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から５枚を見る。その中から火のクリーチャーを１体、相手に見せ、そのクリーチャーのパワー以下の相手のクリーチャーを１体破壊してもよい。\nマナ武装 ５：自分のマナゾーンに火のカードが５枚以上あれば、その見せたカードを自分の手札に加える。\n自分の山札をシャッフルする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr13-034",
+      "spec": {
+        "trigger": true,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Ryuo996",
+            "n": 5
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr13-034.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "c49fe4319e7fb602a7b9037cbf0fe44d9af808c7f9a3310fdaff7119ab34b100",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx26-s01",
+      "canonicalId": "dmr14-s01",
+      "name": "蒼華の精霊龍 ラ・ローゼ・ブルエ",
+      "faces": [
+        {
+          "name": "蒼華の精霊龍 ラ・ローゼ・ブルエ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "ブロッカー ブロッカー\nW・ブレイカー\n自分のドラゴンが攻撃またはブロックした時、自分の山札の上から１枚目を裏向きのまま、新しいシールドとして自分のシールドゾーンに加えてもよい。\n光以外の呪文によって相手がクリーチャーを選ぶ時、このクリーチャーは選べない。",
+          "race": "エンジェル・コマンド・ドラゴン",
+          "powerText": "7500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx26-s01",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx26-s01.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "f8ff2afc9e392a4ee1ec53c43f50453587cabc8c5f3ca4d1d70d882e8ace8efc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmx20-031",
+      "canonicalId": "dmr13-034",
+      "name": "天守閣 龍王武陣",
+      "faces": [
+        {
+          "name": "天守閣 龍王武陣",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から５枚を見る。その中から火のクリーチャーを１体、相手に見せ、そのクリーチャーのパワー以下の相手のクリーチャーを１体破壊してもよい。\nマナ武装 ５：自分のマナゾーンに火のカードが５枚以上あれば、その見せたカードを自分の手札に加える。\n自分の山札をシャッフルする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx20-031",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx20-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "0b49ac82ff68a89dac69664b3dcc52e03a4c1a14740e7338d4c501c5df5c3fb1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmd18-016",
+      "canonicalId": "dmr13-034",
+      "name": "天守閣 龍王武陣",
+      "faces": [
+        {
+          "name": "天守閣 龍王武陣",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から５枚を見る。その中から火のクリーチャーを１体、相手に見せ、そのクリーチャーのパワー以下の相手のクリーチャーを１体破壊してもよい。\nマナ武装 ５：自分のマナゾーンに火のカードが５枚以上あれば、その見せたカードを自分の手札に加える。\n自分の山札をシャッフルする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmd18-016",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmd18-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "83b1ebcfb206ce9a9712b4c8db9721814a32f50c0799b1dc08b2f5b7cc892d06",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy13-036",
+      "canonicalId": "dmr13-034",
+      "name": "天守閣 龍王武陣",
+      "faces": [
+        {
+          "name": "天守閣 龍王武陣",
+          "typeText": "呪文",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・トリガー S・トリガー（この呪文をシールドゾーンから手札に加える時、コストを支払わずにすぐ唱えてもよい）\n自分の山札の上から５枚を見る。その中から火のクリーチャーを１体、相手に見せ、そのクリーチャーのパワー以下の相手のクリーチャーを１体破壊してもよい。\nマナ武装 ５：自分のマナゾーンに火のカードが５枚以上あれば、その見せたカードを自分の手札に加える。\n自分の山札をシャッフルする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy13-036",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy13-036.jpg",
+      "verification": {
+        "checkedAt": "2026-11-12",
+        "sha256": "be8f371a74ebf79a5b371917139fc96e748fa01bb05170424e4af67902f7377f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-12",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr14-s01": 4,
+      "dmr14-003": 4,
+      "dmr13-034": 4,
+      "dmx26-s01": 4,
+      "dmx20-031": 4,
+      "dmd18-016": 4,
+      "promoy13-036": 4
+    }
+  }
+}

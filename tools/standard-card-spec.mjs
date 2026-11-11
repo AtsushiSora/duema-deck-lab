@@ -3435,6 +3435,31 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=996&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText),blocker='ブロッカーブロッカー',double='W・ブレイカー';
+  const roseShield='自分のドラゴンが攻撃またはブロックした時自分の山札の上から1枚目を裏向きのまま新しいシールドとして自分のシールドゾーンに加えてもよい。';
+  if(f.typeText==='クリーチャー'&&(
+   d.id==='dmr14-s01'&&text===blocker+roseShield+double+'光以外の呪文によって相手がバトルゾーンにあるクリーチャーを選ぶ時このクリーチャーを選ぶことはできない。'||
+   d.id==='dmx26-s01'&&text===blocker+double+roseShield+'光以外の呪文によって相手がクリーチャーを選ぶ時このクリーチャーは選べない。')){
+   const watch={who:'self',filter:{creature:true,race:'ドラゴン'},defs:[{op:'Offer',title:'山札の上から1枚をシールドに置く？',defs:[{op:'ShieldTop'}]}]};
+   return {blocker:true,breaker:2,g996NonLightSpellUntargetable:true,g252AttackWatch:watch,g946BlockWatch:watch};
+  }
+  if(d.id==='dmr14-003'&&f.typeText==='クリーチャー'&&text===
+   '相手のターンのはじめにバトルゾーンにある相手のクリーチャーを1体選ぶ。そのクリーチャーはそのターン可能であれば攻撃する。'+
+   '相手のクリーチャーが攻撃する時それがそのターンはじめての攻撃であればコスト6以下の進化ではないファンキー・ナイトメアを1体自分の手札からバトルゾーンに出してもよい。'+
+   'そうした場合そのターンの終わりにそのファンキー・ナイトメアを破壊する。'+double+'(このクリーチャーはシールドを2枚ブレイクする)')
+   return {breaker:2,g179OpponentStart:[{op:'Target',g546Force:'thisTurn',g996ForceOnce:true,
+    title:'可能なら1回攻撃する相手のクリーチャーを選ぶ'}],
+    g252AttackWatch:{who:'opponent',first:true,filter:{creature:true},defs:[
+     {op:'Select',origin:'hand',deploy:true,n:1,optional:true,g785ReturnGroup:'grave',
+      filter:{creature:true,nonEvolution:true,race:'ファンキー・ナイトメア',max:6}}
+    ]}};
+  if(['dmr13-034','dmx20-031','dmd18-016','promoy13-036'].includes(d.id)&&f.typeText==='呪文'&&text===
+   'S・トリガーS・トリガー(この呪文をシールドゾーンから手札に加える時コストを支払わずにすぐ唱えてもよい)'+
+   '自分の山札の上から5枚を見る。その中から火のクリーチャーを1体相手に見せそのクリーチャーのパワー以下の相手のクリーチャーを1体破壊してもよい。'+
+   'マナ武装5:自分のマナゾーンに火のカードが5枚以上あればその見せたカードを自分の手札に加える。自分の山札をシャッフルする。')
+   return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Ryuo996',n:5}]};
+ }
  if(phase>=995&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   const attack='このクリーチャーが攻撃する時';
