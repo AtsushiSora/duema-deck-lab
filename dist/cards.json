@@ -197162,25 +197162,112 @@
       "g947DefendMana": true,
       "supportBatch": "phase-947",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm14-017",
+      "name": "アクア・オフィサー",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 2000,
+      "race": "リキッド・ピープル",
+      "text": "ターンのはじめにカードを引く時、２枚まで余分に引く。\n自分のターンの終わりに、バトルゾーンにある自分のクリーチャーを２体タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm14-017",
+      "limit": 4,
+      "g948StartDrawMax": 2,
+      "g174End": [
+        {
+          "op": "Select",
+          "owner": "self",
+          "origin": "battle",
+          "filter": {
+            "creature": true
+          },
+          "n": 2,
+          "g173Targets": true,
+          "g193Tap": true,
+          "g193Select": true,
+          "title": "タップする自分のクリーチャーを2体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-948",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm10-022",
+      "name": "邪悪の魔黒デビル・マーシャル",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 6,
+      "power": 6000,
+      "race": "ゴースト",
+      "text": "進化-自分のゴースト１体の上に置く。\nW・ブレイカー\n自分のクリーチャーが攻撃する時、相手の手札を１枚見ないで選び、捨てさせる。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-022",
+      "limit": 4,
+      "evolution": {
+        "race": "ゴースト"
+      },
+      "breaker": 2,
+      "g252AttackWatch": {
+        "who": "self",
+        "filter": {
+          "creature": true
+        },
+        "defs": [
+          {
+            "op": "BlindDiscard773"
+          }
+        ]
+      },
+      "supportBatch": "phase-948",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm30-030",
+      "name": "鬼神装甲クロウ・トドロキ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 5000,
+      "race": "ヒューマノイド/サムライ",
+      "text": "進化-自分のサムライ・クリーチャー１体の上に置く。\nこのクリーチャーがタップされている時、クロスギアをクロスしている自分のクリーチャーはすべて、シールドをさらに１枚ブレイクする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm30-030",
+      "limit": 4,
+      "evolution": {
+        "race": "サムライ"
+      },
+      "g948CrossExtraBreak": true,
+      "supportBatch": "phase-948",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 947,
+    "phase": 948,
     "checkedAt": "2026-11-11",
-    "baseCount": 6717,
-    "newEffectCards": 4,
+    "baseCount": 6721,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6721,
+    "totalCount": 6724,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35279/",
-      "https://dm.takaratomy.co.jp/rule/qa/31678/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35302/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35626/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35627/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35628/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37580/"
+      "https://dm.takaratomy.co.jp/rule/qa_old/34815/",
+      "https://dm.takaratomy.co.jp/rule/qa/33524/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35176/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35730/",
+      "https://dm.takaratomy.co.jp/rule/qa/43764/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -214136,6 +214223,28 @@
           "https://dm.takaratomy.co.jp/rule/qa/42947/",
           "https://dm.takaratomy.co.jp/rule/qa/45450/",
           "https://dm.takaratomy.co.jp/rule/qa/43368/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 947,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6717,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6721,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35279/",
+          "https://dm.takaratomy.co.jp/rule/qa/31678/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35302/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35626/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35627/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35628/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37580/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

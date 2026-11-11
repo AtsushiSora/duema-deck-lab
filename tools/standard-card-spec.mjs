@@ -3388,6 +3388,20 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=948&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(d.id==='dm14-017'&&f.typeText==='クリーチャー'&&text===
+   'ターンのはじめにカードを引く時2枚まで余分に引く。自分のターンの終わりにバトルゾーンにある自分のクリーチャーを2体タップする。')
+   return {g948StartDrawMax:2,g174End:[{op:'Select',owner:'self',origin:'battle',filter:{creature:true},
+    n:2,g173Targets:true,g193Tap:true,g193Select:true,title:'タップする自分のクリーチャーを2体選ぶ'}]};
+  if(['dm10-022','dmx10-024'].includes(d.id)&&f.typeText==='進化クリーチャー'&&text===
+   '進化-自分のゴースト1体の上に置く。W・ブレイカー自分のクリーチャーが攻撃する時相手の手札を1枚見ないで選び捨てさせる。')
+   return {evolution:{race:'ゴースト'},breaker:2,
+    g252AttackWatch:{who:'self',filter:{creature:true},defs:[{op:'BlindDiscard773'}]}};
+  if(d.id==='dm30-030'&&f.typeText==='進化クリーチャー'&&text===
+   '進化-自分のサムライ・クリーチャー1体の上に置く。このクリーチャーがタップされている時クロスギアをクロスしている自分のクリーチャーはすべてシールドをさらに1枚ブレイクする。')
+   return {evolution:{race:'サムライ'},g948CrossExtraBreak:true};
+ }
  if(phase>=947&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm11-s01'&&f.typeText==='進化クリーチャー'&&text===

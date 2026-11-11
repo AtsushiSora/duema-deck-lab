@@ -2627,7 +2627,14 @@ export function createSixPhotoRules(api){
  case'g34_DrawUpTo':if(t.n>0)choice(s,t,'あと'+t.n+'枚まで引けます。1枚引く？',[opt('1枚引く',true,t.g203Draw&&own.deck.length<=1&&creatures(s,t.p).some(y=>effective(y,s).shako)?1000:own.deck.length>1?10:-100),skip()]);break;
  case'g34_StartDraw729':{
   if(!t.sources.length){api.draw(s,t.p,t.n,{turnDraw:true});break;}
-  choice(s,t,card(t.source).name+'でターン開始のドローを1枚増やす？',[
+  const c=card(t.source);
+  if(c.g948StartDrawMax){
+   const options=Array.from({length:c.g948StartDrawMax+1},(_,n)=>
+    opt(n+'枚多く引く',n,n===0?0:own.deck.length>t.n+n?10*n:-100,c.id));
+   choice(s,t,c.name+'でターン開始のドローを何枚増やす？',options);
+   break;
+  }
+  choice(s,t,c.name+'でターン開始のドローを1枚増やす？',[
    opt('1枚多く引く',true,own.deck.length>t.n+1?10:-100,t.source),skip()
   ]);
   break;
@@ -3593,7 +3600,7 @@ export function createSixPhotoRules(api){
  }break;
  case'g34_StartDraw729':{
   const sources=t.sources.slice(1);
-  put(s,{...t,source:sources[0]||t.source,sources,n:t.n+Number(!!v)});
+  put(s,{...t,source:sources[0]||t.source,sources,n:t.n+Number(v||0)});
   break;
  }
  case'g34_Draw':
@@ -3961,6 +3968,12 @@ export function createSixPhotoRules(api){
     queue(s,owner,{uid:rule.uid,incarnation:rule.incarnation,cardId:rule.source},[{op:'Break497',n:1}]);
    }
   }
+ },
+ crossExtraBreak948(s,p,x){
+  if(x.sealed)return 0;
+  const sources=s.players[p].battle.filter(y=>card(y).g948CrossExtraBreak&&y.tapped&&
+   !api.ignored(s,y)&&api.isCreature(s,y));
+  return sources.length&&ownCondition(s,p,{g436Crossed:true},x.uid)?sources.length:0;
  },
  turnDrawn947(s,p,count){
   for(const controller of [p,1-p])for(const source of s.players[controller].battle){

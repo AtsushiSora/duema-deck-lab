@@ -128,7 +128,7 @@ function externalBlockState(s,p,x,c){
  if(!x.sealed&&c.type==='creature'&&!c.g838FreshUntapped&&x.g34Grants?.some(g=>g.g838FreshUntapped&&activeAttackGrant(s,g)))c={...c,attackUntapped:true,g838FreshUntapped:true};
  if(!x.sealed&&c.type==='creature'&&!c.attackUntapped&&x.g34Grants?.some(g=>g.g737CreatureAttackUnblockable&&activeAttackGrant(s,g)))c={...c,attackUntapped:true};
  if(!x.sealed&&isCreature(s,x)&&s.players[p].battle.some(field=>card(field).g682FieldUnblockable&&!abilitiesIgnored(s,field)))c={...c,unblockable:true};
- if(c.type==='creature'&&extra.six.playerStop567(s,p,x))c={...c,noPlayerAttack:true};if(c.type==='creature'&&extra.six.protected565(s,x))c={...c,untargetable:true,cannotBeAttacked:true};const n=c.type==='creature'?extra.six.extraBreak412(s,p,x)+extra.six.extraBreak557(s,p,x,c):0;if(n)c={...c,extraBreak:(c.extraBreak||0)+n};const stealth=c.type==='creature'&&c.g226Stealth&&s.players[1-p].mana.some(y=>manaColors(card(y),s,1-p).includes(c.g226Stealth));return stealth||c.g227EmptyShieldUnblockable&&s.players[1-p].shields.length===0||extra.samuraiUnblocked(s,p,x,c)?{...c,unblockable:true}:c;}
+ if(c.type==='creature'&&extra.six.playerStop567(s,p,x))c={...c,noPlayerAttack:true};if(c.type==='creature'&&extra.six.protected565(s,x))c={...c,untargetable:true,cannotBeAttacked:true};const n=c.type==='creature'?extra.six.extraBreak412(s,p,x)+extra.six.extraBreak557(s,p,x,c)+extra.six.crossExtraBreak948(s,p,x):0;if(n)c={...c,extraBreak:(c.extraBreak||0)+n};const stealth=c.type==='creature'&&c.g226Stealth&&s.players[1-p].mana.some(y=>manaColors(card(y),s,1-p).includes(c.g226Stealth));return stealth||c.g227EmptyShieldUnblockable&&s.players[1-p].shields.length===0||extra.samuraiUnblocked(s,p,x,c)?{...c,unblockable:true}:c;}
 // Identity and printed stats stay intact; all abilities, including granted ones, are ignored.
 // These conditional grants change power/keywords only. Suppress them while reading
 // the board's types and civilizations so continuous effects cannot recurse.
@@ -1836,7 +1836,12 @@ function advanceStart(s){if(s.lossEvent)return;if(!s.startStep||s.decision||s.ex
  const p=s.startStep.player;
  delete s.startStep;
  s.phase='charge';
- const sources=s.players[p].battle.filter(x=>card(x).g729ExtraStartDraw&&isCreature(s,x)&&effectiveCard(x,s).g729ExtraStartDraw).map(x=>x.cardId);
+ const sources=s.players[p].battle.filter(x=>{
+  const printed=card(x);
+  if(!(printed.g729ExtraStartDraw||printed.g948StartDrawMax)||!isCreature(s,x))return false;
+  const live=effectiveCard(x,s);
+  return live.g729ExtraStartDraw||live.g948StartDrawMax;
+ }).map(x=>x.cardId);
  if(sources.length)extra.put(s,extra.task('g34_StartDraw729',p,sources[0],{sources,n:1}));
  else draw(s,p,1,{turnDraw:true});
 }
