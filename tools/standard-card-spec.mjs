@@ -3435,6 +3435,22 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=964&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  if(['dmc57-007','dmx14-017','dmex15-b052'].includes(d.id)&&f.typeText==='呪文'&&[
+   'マナゾーンに置く時このカードはタップして置く。コスト7以下のゴッドを1体自分の墓地またはマナゾーンからバトルゾーンに出す。',
+   'コスト7以下のゴッドを1体自分の墓地またはマナゾーンから出す。'
+  ].includes(text))
+   return {effect:'sixPhoto',g34Tasks:[{op:'Select',zones:['grave','mana'],n:1,deploy:true,optional:false,
+    filter:{g228Face:{type:'creature',raceAll:['ゴッド'],max:7}},title:'墓地またはマナから出すコスト7以下のゴッドを1体選ぶ'}]};
+  if(d.id==='dm08-014'&&f.typeText==='呪文'&&text===
+   '相手の手札から2枚見ないで選び相手はそれを持ち主の墓地に置く。1枚しかない場合は相手はその1枚を持ち主の墓地に置く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'BlindDiscard773',n:2}]};
+  if(d.id==='dm10-018'&&f.typeText==='クリーチャー'&&text===
+   '自分の「サイレントスキル」を持つクリーチャーはタップしてバトルゾーンに置かれる。'+
+   '自分の「サイレントスキル」を持つクリーチャーが破壊される時墓地に置くかわりに自分の手札に戻す。')
+   return {g720TapEntry:{silentOwn:true},g390DestroyToHand:{filter:{creature:true,g717Silent:true}}};
+ }
  if(phase>=963&&d?.status==='complete'&&d.faces.length===1){
   const text=normalize(f.abilityText);
   if(d.id==='dm19-018'&&f.typeText==='クリーチャー'&&text===

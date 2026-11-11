@@ -199131,25 +199131,116 @@
       ],
       "supportBatch": "phase-963",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmc57-007",
+      "name": "大地と永遠の神門",
+      "civ": "闇/自然",
+      "civilizations": [
+        "闇",
+        "自然"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 6,
+      "power": 0,
+      "race": "",
+      "text": "マナゾーンに置く時、このカードはタップして置く。\nコスト７以下のゴッドを１体、自分の墓地またはマナゾーンからバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc57-007",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "zones": [
+            "grave",
+            "mana"
+          ],
+          "n": 1,
+          "deploy": true,
+          "optional": false,
+          "filter": {
+            "g228Face": {
+              "type": "creature",
+              "raceAll": [
+                "ゴッド"
+              ],
+              "max": 7
+            }
+          },
+          "title": "墓地またはマナから出すコスト7以下のゴッドを1体選ぶ"
+        }
+      ],
+      "supportBatch": "phase-964",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm08-014",
+      "name": "スケルトン・バイス",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 4,
+      "power": 0,
+      "race": "",
+      "text": "相手の手札から２枚見ないで選び、相手はそれを持ち主の墓地に置く。１枚しかない場合は、相手はその１枚を持ち主の墓地に置く。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-014",
+      "limit": 0,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "BlindDiscard773",
+          "n": 2
+        }
+      ],
+      "supportBatch": "phase-964",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm10-018",
+      "name": "サイレント・マジシャン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 5,
+      "power": 3000,
+      "race": "マーフォーク",
+      "text": "自分の「サイレントスキル」を持つクリーチャーは、タップしてバトルゾーンに置かれる。\n自分の「サイレントスキル」を持つクリーチャーが破壊される時、墓地に置くかわりに自分の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-018",
+      "limit": 4,
+      "g720TapEntry": {
+        "silentOwn": true
+      },
+      "g390DestroyToHand": {
+        "filter": {
+          "creature": true,
+          "g717Silent": true
+        }
+      },
+      "supportBatch": "phase-964",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 963,
+    "phase": 964,
     "checkedAt": "2026-11-11",
-    "baseCount": 6775,
-    "newEffectCards": 4,
+    "baseCount": 6779,
+    "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6779,
+    "totalCount": 6782,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/37609/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35163/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
-      "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-040",
-      "https://dm.takaratomy.co.jp/rule/qa_old/34846/",
-      "https://dm.takaratomy.co.jp/rule/qa/33473/",
-      "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
+      "https://dm.takaratomy.co.jp/archive/capture/volweeklydash78/",
+      "https://dm.takaratomy.co.jp/rule/qa/40122/",
+      "https://dm.takaratomy.co.jp/rule/qa/41632/",
+      "https://dm.takaratomy.co.jp/rule/qa/42930/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/34823/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -216451,6 +216542,29 @@
           "https://dm.takaratomy.co.jp/rule/qa_old/37329/",
           "https://dm.takaratomy.co.jp/rule/qa/48037/",
           "https://dm.takaratomy.co.jp/rule/qa_old/35453/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 963,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6775,
+        "newEffectCards": 4,
+        "newVanillaCards": 0,
+        "totalCount": 6779,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/37609/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35163/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
+          "https://dm.takaratomy.co.jp/card/detail/?id=dm25ex1-040",
+          "https://dm.takaratomy.co.jp/rule/qa_old/34846/",
+          "https://dm.takaratomy.co.jp/rule/qa/33473/",
+          "https://dm.takaratomy.co.jp/rule/rulechange/31624/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35412/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [

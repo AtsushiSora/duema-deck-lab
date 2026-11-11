@@ -1,0 +1,218 @@
+{
+  "phase": 964,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6779,
+  "description": "2つのゾーンからのゴッドの登場、非公開の手札2枚の同時破棄、サイレントスキルのタップインと破壊置換に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/archive/capture/volweeklydash78/",
+    "https://dm.takaratomy.co.jp/rule/qa/40122/",
+    "https://dm.takaratomy.co.jp/rule/qa/41632/",
+    "https://dm.takaratomy.co.jp/rule/qa/42930/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/34823/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmc57-007",
+      "name": "大地と永遠の神門",
+      "faces": [
+        {
+          "name": "大地と永遠の神門",
+          "typeText": "呪文",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nコスト７以下のゴッドを１体、自分の墓地またはマナゾーンからバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmc57-007",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "zones": [
+              "grave",
+              "mana"
+            ],
+            "n": 1,
+            "deploy": true,
+            "optional": false,
+            "filter": {
+              "g228Face": {
+                "type": "creature",
+                "raceAll": [
+                  "ゴッド"
+                ],
+                "max": 7
+              }
+            },
+            "title": "墓地またはマナから出すコスト7以下のゴッドを1体選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmc57-007.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "c1f9ce7446785017fed16d3f04339e4fe0bba5354550adf4699e96346047873d",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm08-014",
+      "name": "スケルトン・バイス",
+      "faces": [
+        {
+          "name": "スケルトン・バイス",
+          "typeText": "呪文",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 4,
+          "costText": "4",
+          "abilityText": "相手の手札から２枚見ないで選び、相手はそれを持ち主の墓地に置く。１枚しかない場合は、相手はその１枚を持ち主の墓地に置く。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm08-014",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "BlindDiscard773",
+            "n": 2
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm08-014.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "99b845a9d11bdcc56eda2f933d89386334b672499f0b0a2197b0723d8b29a9ee",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm10-018",
+      "name": "サイレント・マジシャン",
+      "faces": [
+        {
+          "name": "サイレント・マジシャン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "自分の「サイレントスキル」を持つクリーチャーは、タップしてバトルゾーンに置かれる。\n自分の「サイレントスキル」を持つクリーチャーが破壊される時、墓地に置くかわりに自分の手札に戻す。",
+          "race": "マーフォーク",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm10-018",
+      "spec": {
+        "g720TapEntry": {
+          "silentOwn": true
+        },
+        "g390DestroyToHand": {
+          "filter": {
+            "creature": true,
+            "g717Silent": true
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm10-018.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "cfd64416ce2e2c6e1c14b16f7e647519e99b8202d8c27e0189fc5ea798b99d4e",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "dmx14-017",
+      "canonicalId": "dmc57-007",
+      "name": "大地と永遠の神門",
+      "faces": [
+        {
+          "name": "大地と永遠の神門",
+          "typeText": "呪文",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "マナゾーンに置く時、このカードはタップして置く。\nコスト７以下のゴッドを１体、自分の墓地またはマナゾーンからバトルゾーンに出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmx14-017",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmx14-017.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "776e6a9877686f1beff1a012079fc3cbe5e3aa6b20c16bab60f945a91ee8c874",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmex15-b052",
+      "canonicalId": "dmc57-007",
+      "name": "大地と永遠の神門",
+      "faces": [
+        {
+          "name": "大地と永遠の神門",
+          "typeText": "呪文",
+          "civilizationText": "闇/自然",
+          "civilizations": [
+            "闇",
+            "自然"
+          ],
+          "cost": 6,
+          "costText": "6",
+          "abilityText": "コスト７以下のゴッドを１体、自分の墓地またはマナゾーンから出す。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmex15-b052",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmex15-b052.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "9a56987c6fe530966af5147303adb67f1d1f655bf8254ab3d4fb44d133adddd3",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmc57-007": 4,
+      "dm08-014": 0,
+      "dm10-018": 4,
+      "dmx14-017": 4,
+      "dmex15-b052": 4
+    }
+  }
+}
