@@ -3388,6 +3388,28 @@ export function standardCardSpec(d,{phase=165}={}){
    return {...creature,spellFace:{name:spell.name,type:'spell',cost:spell.cost,civ:spell.civilizationText,civilizations:spell.civilizations,race:spell.race,...body}};
   }
  }
+ if(phase>=934&&d?.status==='complete'&&d.faces.length===1){
+  const text=normalize(f.abilityText);
+  const blocker='ブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)';
+  const noPlayerAttack='このクリーチャーは相手プレイヤーを攻撃できない。';
+  if(d.id==='dm17-023'&&f.typeText==='呪文'&&text===
+   'S・バック-光(光のカードを自分のシールドゾーンから手札に加える時そのカードを捨ててもよい。そうした場合コストを支払わずにこの呪文を唱える)バトルゾーンにあるクリーチャーを2体まで選びタップする。')
+   return {strikeBack:true,strikeBackColor:'光',effect:'sixPhoto',
+    g34Tasks:[{op:'Select',origin:'battle',anyOwner:true,n:2,optional:true,filter:{creature:true},
+     g173Targets:true,g193Tap:true,g193Select:true,title:'タップするクリーチャーを2体まで選ぶ'}]};
+  if(f.typeText==='クリーチャー'){
+   if(['dm17-006','promoy4-030','promoy4-031'].includes(d.id)&&text===
+    'このクリーチャーをバトルゾーンに出した時バトルゾーンにあるクロスギアを1枚選び裏向きにして持ち主のシールドに加えてもよい。W・ブレイカー(このクリーチャーはシールドを2枚ブレイクする)')
+    return {breaker:2,effect:'sixPhoto',g34Tasks:[{op:'Target',element:true,anyOwner:true,filter:{g201Gear:true},
+     optional:true,to:'shields',title:'持ち主のシールドに加えるクロスギアを選ぶ（任意）'}]};
+   if(d.id==='dm17-039'&&text===blocker+
+    'バトルゾーンに自分の自然または水のクリーチャーが1体でもあればこのクリーチャーのパワーは+2000される。'+noPlayerAttack)
+    return {blocker:true,noPlayerAttack:true,g260Self:{filter:{creature:true,any:[{color:'自然'},{color:'水'}]},grants:{power:2000}}};
+   if(d.id==='dm16-023'&&text===blocker+noPlayerAttack+
+    '相手のターン中にこのクリーチャーが破壊された時バトルゾーンにある自分のクリーチャーをすべてアンタップする。')
+    return {blocker:true,noPlayerAttack:true,g172Death:[{op:'UntapTeam934',g934OpponentTurn:true}]};
+  }
+ }
  if(phase>=933&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dm17-021'&&text==='クロスギアをこのクリーチャーにクロスする時支払うコストは最大2少なくなる。ただしコストは1より少なくならない。')

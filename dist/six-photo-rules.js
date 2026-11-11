@@ -2846,6 +2846,9 @@ export function createSixPhotoRules(api){
   (s.extLimits??=[]).push({kind:'g741PlayerAttackResponse',who:t.p,source:t.source,defs:t.defs,expires:'start'});
   break;
  case'g34_Lock':(s.extLimits??=[]).push({...t.limit,player:t.limit.player??(t.g746Self?t.p:1-t.p),who:t.limit.who??t.p,expires:'start'});break;
+ case'g34_UntapTeam934':
+  for(const ally of creatures(s,t.p))api.untap(s,t.p,ally);
+  break;
  case'g34_Untap':{
   if(t.g904Refs){
    for(const p of [0,1]){
@@ -4338,6 +4341,7 @@ export function createSixPhotoRules(api){
    const raceMatches=(!requiredRace||victimRace.includes(requiredRace))&&(!raceAny||victimRace.split('/').some(r=>raceAny.includes(r)));
    if((!self||watcher.watch.self)&&((self&&!watcher.watch.selfFilter)||raceMatches)&&(!watcher.watch.name||String(victim.name||'').includes(watcher.watch.name))&&(!watcher.watch.colorsAny||watcher.watch.colorsAny.some(c=>(victim.colors||[]).includes(c)))&&(!watcher.watch.g860EvilSoul||victim.g860EvilSoul)&&(!watcher.watch.ownTurn||s.active===watcher.p)&&(!watcher.watch.opponentTurn||s.active!==watcher.p))queue(s,watcher.p,watcher,watcher.watch.defs);}if(prior?.g172Death){
    const defs=prior.g172Death
+    .filter(d=>!d.g934OpponentTurn||s.active!==p)
     .filter(d=>!d.g901Untapped||!(prior.g901WasTapped??x.tapped))
     .filter(d=>d.op!=='ScheduleGraveReturn644'||d.anyTurn||s.active===p)
     .flatMap(d=>{

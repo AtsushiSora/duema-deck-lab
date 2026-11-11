@@ -1,0 +1,267 @@
+{
+  "phase": 934,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6672,
+  "description": "光のS・バックと双方へのタップ、クロスギアのシールド化、自然または水の味方に応じたパワー修正、相手ターンに破壊された時の自軍アンタップに対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+    "https://dm.takaratomy.co.jp/rule/qa/40689/",
+    "https://dm.takaratomy.co.jp/rule/qa/43367/",
+    "https://dm.takaratomy.co.jp/rule/qa/38672/",
+    "https://dm.takaratomy.co.jp/rule/qa/43462/",
+    "https://dm.takaratomy.co.jp/rule/qa/42077/",
+    "https://dm.takaratomy.co.jp/rule/qa/48113/"
+  ],
+  "cards": [
+    {
+      "id": "dm17-023",
+      "name": "パニッシュ・ホールド",
+      "faces": [
+        {
+          "name": "パニッシュ・ホールド",
+          "typeText": "呪文",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 5,
+          "costText": "5",
+          "abilityText": "S・バック-光 (光のカードを自分のシールドゾーンから手札に加える時、そのカードを捨ててもよい。そうした場合、コストを支払わずにこの呪文を唱える)\nバトルゾーンにあるクリーチャーを２体まで選び、タップする。",
+          "race": "",
+          "powerText": "",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-023",
+      "spec": {
+        "strikeBack": true,
+        "strikeBackColor": "光",
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Select",
+            "origin": "battle",
+            "anyOwner": true,
+            "n": 2,
+            "optional": true,
+            "filter": {
+              "creature": true
+            },
+            "g173Targets": true,
+            "g193Tap": true,
+            "g193Select": true,
+            "title": "タップするクリーチャーを2体まで選ぶ"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm17-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "08ab5ae583985a67df580f2c995b3384bf15fa30d216780f81a47ac2c2c428bc",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm17-006",
+      "name": "聖圧の精霊プロシアウス",
+      "faces": [
+        {
+          "name": "聖圧の精霊プロシアウス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにあるクロスギアを１枚選び、裏向きにして持ち主のシールドに加えてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+          "race": "エンジェル・コマンド",
+          "powerText": "7500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-006",
+      "spec": {
+        "breaker": 2,
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Target",
+            "element": true,
+            "anyOwner": true,
+            "filter": {
+              "g201Gear": true
+            },
+            "optional": true,
+            "to": "shields",
+            "title": "持ち主のシールドに加えるクロスギアを選ぶ（任意）"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm17-006.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "faa9172527ecec731296caed1ddd741634ed934565f476104b2e513f1f006c1a",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm17-039",
+      "name": "星珠の守護者パラ・プロキオン",
+      "faces": [
+        {
+          "name": "星珠の守護者パラ・プロキオン",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nバトルゾーンに自分の自然または水のクリーチャーが１体でもあれば、このクリーチャーのパワーは+2000される。\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+          "race": "ガーディアン",
+          "powerText": "500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-039",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g260Self": {
+          "filter": {
+            "creature": true,
+            "any": [
+              {
+                "color": "自然"
+              },
+              {
+                "color": "水"
+              }
+            ]
+          },
+          "grants": {
+            "power": 2000
+          }
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm17-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "a5b0dee3d17df3fcef311b968336151eac61945c48e8ec09f186fa994eb962e1",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm16-023",
+      "name": "巡霊者ソラリオ",
+      "faces": [
+        {
+          "name": "巡霊者ソラリオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n相手のターン中にこのクリーチャーが破壊された時、バトルゾーンにある自分のクリーチャーをすべてアンタップする。",
+          "race": "コスモ・ウォーカー",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-023",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g172Death": [
+          {
+            "op": "UntapTeam934",
+            "g934OpponentTurn": true
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm16-023.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "5230cacfd8faddde334a320fc8dc14ea1cb3f285dacada72b92f78fbe8ab6b9d",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy4-030",
+      "canonicalId": "dm17-006",
+      "name": "聖圧の精霊プロシアウス",
+      "faces": [
+        {
+          "name": "聖圧の精霊プロシアウス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにあるクロスギアを１枚選び、裏向きにして持ち主のシールドに加えてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "エンジェル・コマンド",
+          "powerText": "7500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy4-030",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy4-030.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "2aa726cd70c3588027c0a412370a7cf2d548089201c9d98e9ea253fe69bc7775",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "promoy4-031",
+      "canonicalId": "dm17-006",
+      "name": "聖圧の精霊プロシアウス",
+      "faces": [
+        {
+          "name": "聖圧の精霊プロシアウス",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 7,
+          "costText": "7",
+          "abilityText": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにあるクロスギアを１枚選び、裏向きにして持ち主のシールドに加えてもよい。\nW・ブレイカー（このクリーチャーはシールドを２枚ブレイクする）",
+          "race": "エンジェル・コマンド",
+          "powerText": "7500",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy4-031",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy4-031.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "1454346270fb4b05d924208f159aab7fea8479c84cee41094c797a274d3ac11f",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dm17-023": 4,
+      "dm17-006": 4,
+      "dm17-039": 4,
+      "dm16-023": 4,
+      "promoy4-030": 4,
+      "promoy4-031": 4
+    }
+  }
+}

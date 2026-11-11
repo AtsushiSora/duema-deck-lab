@@ -195518,23 +195518,156 @@
       "g933GearGraveDraw": true,
       "supportBatch": "phase-933",
       "supportKind": "effect"
+    },
+    {
+      "id": "dm17-023",
+      "name": "パニッシュ・ホールド",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "spell",
+      "cost": 5,
+      "power": 0,
+      "race": "",
+      "text": "S・バック-光 (光のカードを自分のシールドゾーンから手札に加える時、そのカードを捨ててもよい。そうした場合、コストを支払わずにこの呪文を唱える)\nバトルゾーンにあるクリーチャーを２体まで選び、タップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-023",
+      "limit": 4,
+      "strikeBack": true,
+      "strikeBackColor": "光",
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Select",
+          "origin": "battle",
+          "anyOwner": true,
+          "n": 2,
+          "optional": true,
+          "filter": {
+            "creature": true
+          },
+          "g173Targets": true,
+          "g193Tap": true,
+          "g193Select": true,
+          "title": "タップするクリーチャーを2体まで選ぶ"
+        }
+      ],
+      "supportBatch": "phase-934",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm17-006",
+      "name": "聖圧の精霊プロシアウス",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 7,
+      "power": 7500,
+      "race": "エンジェル・コマンド",
+      "text": "このクリーチャーをバトルゾーンに出した時、バトルゾーンにあるクロスギアを１枚選び、裏向きにして持ち主のシールドに加えてもよい。\nW・ブレイカー(このクリーチャーはシールドを２枚ブレイクする)",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-006",
+      "limit": 4,
+      "breaker": 2,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Target",
+          "element": true,
+          "anyOwner": true,
+          "filter": {
+            "g201Gear": true
+          },
+          "optional": true,
+          "to": "shields",
+          "title": "持ち主のシールドに加えるクロスギアを選ぶ（任意）"
+        }
+      ],
+      "supportBatch": "phase-934",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm17-039",
+      "name": "星珠の守護者パラ・プロキオン",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 500,
+      "race": "ガーディアン",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nバトルゾーンに自分の自然または水のクリーチャーが１体でもあれば、このクリーチャーのパワーは+2000される。\nこのクリーチャーは、相手プレイヤーを攻撃できない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm17-039",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g260Self": {
+        "filter": {
+          "creature": true,
+          "any": [
+            {
+              "color": "自然"
+            },
+            {
+              "color": "水"
+            }
+          ]
+        },
+        "grants": {
+          "power": 2000
+        }
+      },
+      "supportBatch": "phase-934",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm16-023",
+      "name": "巡霊者ソラリオ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "コスモ・ウォーカー",
+      "text": "ブロッカー(相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする)\nこのクリーチャーは、相手プレイヤーを攻撃できない。\n相手のターン中にこのクリーチャーが破壊された時、バトルゾーンにある自分のクリーチャーをすべてアンタップする。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm16-023",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g172Death": [
+        {
+          "op": "UntapTeam934",
+          "g934OpponentTurn": true
+        }
+      ],
+      "supportBatch": "phase-934",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 933,
+    "phase": 934,
     "checkedAt": "2026-11-11",
-    "baseCount": 6669,
-    "newEffectCards": 3,
+    "baseCount": 6672,
+    "newEffectCards": 4,
     "newVanillaCards": 0,
-    "totalCount": 6672,
+    "totalCount": 6676,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35370/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35375/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35376/",
-      "https://dm.takaratomy.co.jp/rule/qa/42476/",
-      "https://dm.takaratomy.co.jp/rule/qa/43462/"
+      "https://dm.takaratomy.co.jp/rule/qa/40689/",
+      "https://dm.takaratomy.co.jp/rule/qa/43367/",
+      "https://dm.takaratomy.co.jp/rule/qa/38672/",
+      "https://dm.takaratomy.co.jp/rule/qa/43462/",
+      "https://dm.takaratomy.co.jp/rule/qa/42077/",
+      "https://dm.takaratomy.co.jp/rule/qa/48113/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -212208,6 +212341,26 @@
           "https://dm.takaratomy.co.jp/rule/qa/39980/",
           "https://dm.takaratomy.co.jp/rule/qa/40378/",
           "https://dm.takaratomy.co.jp/rule/qa/44188/",
+          "https://dm.takaratomy.co.jp/rule/qa/43462/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 933,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6669,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6672,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35370/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35375/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35376/",
+          "https://dm.takaratomy.co.jp/rule/qa/42476/",
           "https://dm.takaratomy.co.jp/rule/qa/43462/"
         ],
         "next": [
