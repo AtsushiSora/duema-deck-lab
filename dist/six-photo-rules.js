@@ -3454,6 +3454,7 @@ export function createSixPhotoRules(api){
    if(source.sealed)continue;
    const rule=effective(source,s).g468UseReduction;
    if(!rule||rule.min!==undefined&&printedCost<rule.min)continue;
+   if(rule.g896LaterSameKind&&!(c.type==='creature'?s.g463Summons?.[p]?.turn===s.turn&&s.g463Summons[p].n>0:c.type==='spell'&&(s.players[p].spellsThisTurn||0)>0))continue;
    if(rule.race&&!race(c,rule.race))continue;
    if(rule.colorsAny&&!rule.colorsAny.some(color=>colors(c).includes(color)))continue;
    discount+=rule.amount;

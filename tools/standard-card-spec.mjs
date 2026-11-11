@@ -3445,6 +3445,18 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=896&&creature&&d.faces.length===1){
+  if(d.id==='dmrp15-093'&&compact363===
+   '各ターン自分の2体目以降のクリーチャーの召喚コストを1少なくする。ただしコストは0以下にならない。各ターン自分の2枚目以降の呪文を唱えるコストを1少なくする。ただしコストは0以下にならない。')
+   return {g468UseReduction:{g896LaterSameKind:true,amount:1}};
+  if(d.id==='dmrp15-070'&&compact363===
+   'このクリーチャーがバトルゾーンに出た時自分の山札の上から2枚を墓地に置く。自分のターンの終わりにこのクリーチャーがバトルゾーンにあれば名前に《グルジェ・グルジェ》とあるクリーチャーをすべて自分の墓地からバトルゾーンに出す。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'Mill',n:2}],g174End:[{op:'IfSource541',defs:[
+    {op:'Select',origin:'grave',deploy:true,n:'all',filter:{creature:true,g819CreatureNameIncludes:'グルジェ・グルジェ'}}
+   ]}]};
+  if(d.id==='dmrp16-016'&&compact363==='相手のクリーチャーが攻撃する時可能なら自分を攻撃する。')
+   return {g896AttackPlayer:true};
+ }
  if(phase>=895&&creature&&d.faces.length===1){
   if(d.id==='dmrp15-054'&&compact363===
    '水または火のクリーチャーを召喚によって自分の手札からバトルゾーンに出した時自分の手札を1枚捨てその後カードを1枚引く。')

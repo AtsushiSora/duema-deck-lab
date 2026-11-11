@@ -1,0 +1,144 @@
+{
+  "phase": 896,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6553,
+  "description": "クリーチャーと呪文の各ターン2回目以降の軽減、発生源の存在を確認する終了時の同名墓地展開、攻撃する場合のプレイヤー指定に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa/34237/",
+    "https://dm.takaratomy.co.jp/rule/qa/39085/",
+    "https://dm.takaratomy.co.jp/rule/qa/39086/"
+  ],
+  "cards": [
+    {
+      "id": "dmrp15-093",
+      "name": "芸達者 ネタナラク",
+      "faces": [
+        {
+          "name": "芸達者 ネタナラク",
+          "typeText": "クリーチャー",
+          "civilizationText": "水/火",
+          "civilizations": [
+            "水",
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "各ターン、自分の２体目以降のクリーチャーの召喚コストを１少なくする。ただし、コストは０以下にならない。\n各ターン、自分の２枚目以降の呪文を唱えるコストを１少なくする。ただし、コストは０以下にならない。",
+          "race": "ムートピア/美孔麗王国",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-093",
+      "spec": {
+        "g468UseReduction": {
+          "g896LaterSameKind": true,
+          "amount": 1
+        }
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-093.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "ffdced0eb25ffb525131fca9b271ebb7a17dde0704c19ec7e6462519c85cf2b7",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp15-070",
+      "name": "グルジェ・グルジェ",
+      "faces": [
+        {
+          "name": "グルジェ・グルジェ",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から２枚を墓地に置く。\n自分のターンの終わりに、このクリーチャーがバトルゾーンにあれば、名前に《グルジェ・グルジェ》とあるクリーチャーをすべて、自分の墓地からバトルゾーンに出す。",
+          "race": "ファンキー・ナイトメア",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-070",
+      "spec": {
+        "effect": "sixPhoto",
+        "g34Tasks": [
+          {
+            "op": "Mill",
+            "n": 2
+          }
+        ],
+        "g174End": [
+          {
+            "op": "IfSource541",
+            "defs": [
+              {
+                "op": "Select",
+                "origin": "grave",
+                "deploy": true,
+                "n": "all",
+                "filter": {
+                  "creature": true,
+                  "g819CreatureNameIncludes": "グルジェ・グルジェ"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp15-070.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "169d5d6c479fbfcf09a654a37c8c38444df36553e7f71803bc7cee13ce503941",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmrp16-016",
+      "name": "指示虫アロー・ワーム",
+      "faces": [
+        {
+          "name": "指示虫アロー・ワーム",
+          "typeText": "クリーチャー",
+          "civilizationText": "闇",
+          "civilizations": [
+            "闇"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "相手のクリーチャーが攻撃する時、可能なら自分を攻撃する。",
+          "race": "パラサイトワーム",
+          "powerText": "3000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-016",
+      "spec": {
+        "g896AttackPlayer": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmrp16-016.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "dfc86da48951c4070275d2a34e98a354d291f39142797eb28e4856367cae6c21",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmrp15-093": 4,
+      "dmrp15-070": 4,
+      "dmrp16-016": 4
+    }
+  }
+}

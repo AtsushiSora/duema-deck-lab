@@ -12,9 +12,12 @@ export function forceAttackTargets(s,p,actions,api){
  const attackers=new Set(actions.filter(a=>a.kind==='attack'&&targets.has(a.target)).map(a=>a.uid));
  // A player-attack obligation applies only when that creature can legally attack the player.
  // Competing compulsory targets remain alternatives; neither grants an attack permission.
- const players=new Set(actions.filter(a=>a.kind==='attack'&&a.target==='player'&&api.effective(s.players[p].battle.find(x=>x.uid===a.uid),s).g540MustPlayer).map(a=>a.uid));
+ const requiredPlayers=new Set(actions.filter(a=>a.kind==='attack'&&a.target==='player'&&api.effective(s.players[p].battle.find(x=>x.uid===a.uid),s).g540MustPlayer).map(a=>a.uid));
+ // Defender instructions constrain a declared attack without forcing an attack this turn.
+ const defendPlayer=s.players[1-p].battle.some(x=>!x.sealed&&api.effective(x,s).g896AttackPlayer);
+ const players=new Set([...requiredPlayers,...(defendPlayer?actions.filter(a=>a.kind==='attack'&&a.target==='player').map(a=>a.uid):[])]);
  return actions.filter(a=>{
-  if(a.kind==='endTurn')return !players.size;
+  if(a.kind==='endTurn')return !requiredPlayers.size;
   if(a.kind==='tapAbility'&&a.requiresUnforcedAttack)return !attackers.has(a.uid)&&!players.has(a.uid);
   return a.kind!=='attack'||!attackers.has(a.uid)&&!players.has(a.uid)||attackers.has(a.uid)&&targets.has(a.target)||players.has(a.uid)&&a.target==='player';
  });

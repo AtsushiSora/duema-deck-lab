@@ -191995,19 +191995,104 @@
       ],
       "supportBatch": "phase-895",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-093",
+      "name": "芸達者 ネタナラク",
+      "civ": "水/火",
+      "civilizations": [
+        "水",
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 2000,
+      "race": "ムートピア/美孔麗王国",
+      "text": "各ターン、自分の２体目以降のクリーチャーの召喚コストを１少なくする。ただし、コストは０以下にならない。\n各ターン、自分の２枚目以降の呪文を唱えるコストを１少なくする。ただし、コストは０以下にならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-093",
+      "limit": 4,
+      "g468UseReduction": {
+        "g896LaterSameKind": true,
+        "amount": 1
+      },
+      "supportBatch": "phase-896",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp15-070",
+      "name": "グルジェ・グルジェ",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "ファンキー・ナイトメア",
+      "text": "このクリーチャーがバトルゾーンに出た時、自分の山札の上から２枚を墓地に置く。\n自分のターンの終わりに、このクリーチャーがバトルゾーンにあれば、名前に《グルジェ・グルジェ》とあるクリーチャーをすべて、自分の墓地からバトルゾーンに出す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp15-070",
+      "limit": 4,
+      "effect": "sixPhoto",
+      "g34Tasks": [
+        {
+          "op": "Mill",
+          "n": 2
+        }
+      ],
+      "g174End": [
+        {
+          "op": "IfSource541",
+          "defs": [
+            {
+              "op": "Select",
+              "origin": "grave",
+              "deploy": true,
+              "n": "all",
+              "filter": {
+                "creature": true,
+                "g819CreatureNameIncludes": "グルジェ・グルジェ"
+              }
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-896",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmrp16-016",
+      "name": "指示虫アロー・ワーム",
+      "civ": "闇",
+      "civilizations": [
+        "闇"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 3000,
+      "race": "パラサイトワーム",
+      "text": "相手のクリーチャーが攻撃する時、可能なら自分を攻撃する。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmrp16-016",
+      "limit": 4,
+      "g896AttackPlayer": true,
+      "supportBatch": "phase-896",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 895,
+    "phase": 896,
     "checkedAt": "2026-11-11",
-    "baseCount": 6550,
+    "baseCount": 6553,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6553,
+    "totalCount": 6556,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa/39109/",
-      "https://dm.takaratomy.co.jp/rule/qa/39103/"
+      "https://dm.takaratomy.co.jp/rule/qa/34237/",
+      "https://dm.takaratomy.co.jp/rule/qa/39085/",
+      "https://dm.takaratomy.co.jp/rule/qa/39086/"
     ],
     "next": [
       "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
@@ -207950,6 +208035,22 @@
           "https://dm.takaratomy.co.jp/rule/regulation/",
           "https://dm.takaratomy.co.jp/rule/qa/39406/",
           "https://dm.takaratomy.co.jp/rule/qa/34240/"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 895,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6550,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6553,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa/39109/",
+          "https://dm.takaratomy.co.jp/rule/qa/39103/"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
