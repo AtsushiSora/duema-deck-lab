@@ -1501,6 +1501,13 @@ function advanceBattle(s){
    }
    continue;
   }
+  if(e.g912Bounce){
+   if(host&&isCreature(s,host.unit)&&!host.unit.sealed){
+    log(s,e.controller,'afterBattle',`${card(e.source).name}のバトルの後の効果`,{cardId:e.source});
+    moveCreatures(s,[{player:host.p,uid:host.unit.uid,to:'hand',controller:e.controller}]);
+   }
+   continue;
+  }
   const target=e.selfRefs?(host&&{player:host.p,uid:host.unit.uid}):s.players[e.player].battle.some(x=>x.uid===e.uid)?{player:e.player,uid:e.uid}:null;
   if(target){
    log(s,e.controller,'afterBattle',`${card(e.source).name}のバトルの後の効果`,{cardId:e.source});
@@ -1521,6 +1528,14 @@ function resolveAttack(s,blockUid){
   const blocker=effectiveCard(b,s);
   if(blocker.g695UntapAfterBlock||blocker.g699DestroyAfterBlock){
    s.attack.g695BlockUntap={controller:other,source:b.cardId,g695Untap:!!blocker.g695UntapAfterBlock,selfRefs:layers(b).map(x=>({uid:x.uid,incarnation:x.incarnation||0}))};
+  }
+  if(blocker.g912BounceAfterBlock){
+   const prior=s.attack.g695BlockUntap;
+   s.attack.g695BlockUntap=[...(Array.isArray(prior)?prior:prior?[prior]:[]),{
+    controller:other,source:b.cardId,g912Bounce:true,
+    g715BlockerRef:{uid:b.uid,incarnation:b.incarnation||0},
+    selfRefs:layers(a).map(x=>({uid:x.uid,incarnation:x.incarnation||0}))
+   }];
   }
   tapCard(s,other,b);extra.block(s,other,b);
   log(s,other,'block',`${card(b).name}でブロック`,{cardId:b.cardId});

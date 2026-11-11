@@ -3445,6 +3445,24 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=912&&creature&&d.faces.length===1){
+  if(['dmr18-039','promoy14-033'].includes(d.id)&&[
+   '自分の進化革命軍クリーチャーの召喚コストを',
+   '自分の革命軍の進化クリーチャーの召喚コストを'
+  ].some(head=>compact363===head+
+   'バトルゾーンにある自分のファイアー・バード1体につき1少なくしてもよい。ただしコストは0以下にならない。'))
+   return {g349SummonAuras:[{filter:{evolution:true,race:'革命軍'},amount:1,g560Optional:true,g912CountRace:'ファイアー・バード'}]};
+  if(d.id==='dm27-042'&&compact363==='ブロッカーこのクリーチャーは攻撃することができない。'+
+   'このクリーチャーがブロックする時バトルの後ブロックされたクリーチャーを持ち主の手札に戻す。')
+   return {blocker:true,noAttack:true,g912BounceAfterBlock:true};
+  if(d.id==='dmr16g-033'&&compact363===
+   'ブロッカーブロッカー(相手クリーチャーが攻撃する時このクリーチャーをタップしてその攻撃を阻止してもよい。その後その相手クリーチャーとバトルする)'+
+   'このクリーチャーは相手プレイヤーを攻撃できない。'+
+   'このクリーチャーがブロックした時自分の山札の上から1枚目を墓地に置く。それがジャスティス・ウイングまたはドラゴンであればそのターンこのクリーチャーのパワーは+2000される。')
+   return {blocker:true,noPlayerAttack:true,g178Block:[{op:'MillMatch520',n:1,
+    filter:{any:[{anyFaceRace:'ジャスティス・ウイング'},{anyFaceRace:'ドラゴン'}]},
+    defs:[{op:'SelfBoost313',power:2000,g536Source:true}]}]};
+ }
  if(phase>=911&&d.faces.length===1){
   if(f.typeText==='呪文'&&d.id==='dm25-024'&&compact363===
    'カードを2枚引きそのカードを見せる。その中に1枚でも多色カードがあればさらに1枚引く。')

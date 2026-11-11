@@ -193468,20 +193468,113 @@
       },
       "supportBatch": "phase-911",
       "supportKind": "effect"
+    },
+    {
+      "id": "dmr18-039",
+      "name": "ラブ・ドラッチ",
+      "civ": "火",
+      "civilizations": [
+        "火"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 2,
+      "power": 1000,
+      "race": "ファイアー・バード炎/革命軍",
+      "text": "自分の進化革命軍クリーチャーの召喚コストを、バトルゾーンにある自分のファイアー・バード１体につき１少なくしてもよい。ただし、コストは０以下にならない。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-039",
+      "limit": 4,
+      "g349SummonAuras": [
+        {
+          "filter": {
+            "evolution": true,
+            "race": "革命軍"
+          },
+          "amount": 1,
+          "g560Optional": true,
+          "g912CountRace": "ファイアー・バード"
+        }
+      ],
+      "supportBatch": "phase-912",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dm27-042",
+      "name": "パナオン",
+      "civ": "水",
+      "civilizations": [
+        "水"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 3,
+      "power": 1000,
+      "race": "サイバーロード",
+      "text": "ブロッカー\nこのクリーチャーは攻撃することができない。\nこのクリーチャーがブロックする時、バトルの後、ブロックされたクリーチャーを持ち主の手札に戻す。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-042",
+      "limit": 4,
+      "blocker": true,
+      "noAttack": true,
+      "g912BounceAfterBlock": true,
+      "supportBatch": "phase-912",
+      "supportKind": "effect"
+    },
+    {
+      "id": "dmr16g-033",
+      "name": "冒険の翼 アドベンチュオ",
+      "civ": "光",
+      "civilizations": [
+        "光"
+      ],
+      "manaValue": 1,
+      "type": "creature",
+      "cost": 1,
+      "power": 2000,
+      "race": "ジャスティス・ウイング",
+      "text": "ブロッカー ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがブロックした時、自分の山札の上から１枚目を墓地に置く。それがジャスティス・ウイングまたはドラゴンであれば、そのターン、このクリーチャーのパワーは+2000される。",
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-033",
+      "limit": 4,
+      "blocker": true,
+      "noPlayerAttack": true,
+      "g178Block": [
+        {
+          "op": "MillMatch520",
+          "n": 1,
+          "filter": {
+            "any": [
+              {
+                "anyFaceRace": "ジャスティス・ウイング"
+              },
+              {
+                "anyFaceRace": "ドラゴン"
+              }
+            ]
+          },
+          "defs": [
+            {
+              "op": "SelfBoost313",
+              "power": 2000,
+              "g536Source": true
+            }
+          ]
+        }
+      ],
+      "supportBatch": "phase-912",
+      "supportKind": "effect"
     }
   ],
   "supportExpansion": {
-    "phase": 911,
+    "phase": 912,
     "checkedAt": "2026-11-11",
-    "baseCount": 6599,
+    "baseCount": 6602,
     "newEffectCards": 3,
     "newVanillaCards": 0,
-    "totalCount": 6602,
+    "totalCount": 6605,
     "ruleSource": [
       "https://dm.takaratomy.co.jp/rule/regulation/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35545/",
-      "https://dm.takaratomy.co.jp/rule/qa_old/35125/",
-      "https://dm.takaratomy.co.jp/rule/qa/39860/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35603/",
+      "https://dm.takaratomy.co.jp/rule/qa_old/35604/",
+      "https://dm.takaratomy.co.jp/rule/rulechange/31637/",
       "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
     ],
     "next": [
@@ -209732,6 +209825,24 @@
           "https://dm.takaratomy.co.jp/rule/qa/40422/",
           "https://dm.takaratomy.co.jp/rule/rulechange/31661/",
           "https://dm.takaratomy.co.jp/img/dm_rule_20260410_4.pdf"
+        ],
+        "next": [
+          "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"
+        ]
+      },
+      {
+        "phase": 911,
+        "checkedAt": "2026-11-11",
+        "baseCount": 6599,
+        "newEffectCards": 3,
+        "newVanillaCards": 0,
+        "totalCount": 6602,
+        "ruleSource": [
+          "https://dm.takaratomy.co.jp/rule/regulation/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35545/",
+          "https://dm.takaratomy.co.jp/rule/qa_old/35125/",
+          "https://dm.takaratomy.co.jp/rule/qa/39860/",
+          "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
         ],
         "next": [
           "未対応能力を共通化し、公式照合と効果検証を済ませたカードをまとめて追加する"

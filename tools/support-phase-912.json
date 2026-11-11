@@ -1,0 +1,184 @@
+{
+  "phase": 912,
+  "checkedAt": "2026-11-11",
+  "baseCount": 6602,
+  "description": "革命軍の進化召喚コスト軽減、ブロック後の手札戻し、ブロック時の墓地送りと種族による強化に対応する。",
+  "rules": [
+    "https://dm.takaratomy.co.jp/rule/regulation/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35603/",
+    "https://dm.takaratomy.co.jp/rule/qa_old/35604/",
+    "https://dm.takaratomy.co.jp/rule/rulechange/31637/",
+    "https://dm.takaratomy.co.jp/img/dm_rule_20261106.pdf"
+  ],
+  "cards": [
+    {
+      "id": "dmr18-039",
+      "name": "ラブ・ドラッチ",
+      "faces": [
+        {
+          "name": "ラブ・ドラッチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の進化革命軍クリーチャーの召喚コストを、バトルゾーンにある自分のファイアー・バード１体につき１少なくしてもよい。ただし、コストは０以下にならない。",
+          "race": "ファイアー・バード炎/革命軍",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr18-039",
+      "spec": {
+        "g349SummonAuras": [
+          {
+            "filter": {
+              "evolution": true,
+              "race": "革命軍"
+            },
+            "amount": 1,
+            "g560Optional": true,
+            "g912CountRace": "ファイアー・バード"
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr18-039.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "1473619b52beb672219e43c5ead52d235f96b0afbdef9eb2d7315a635a5f3853",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dm27-042",
+      "name": "パナオン",
+      "faces": [
+        {
+          "name": "パナオン",
+          "typeText": "クリーチャー",
+          "civilizationText": "水",
+          "civilizations": [
+            "水"
+          ],
+          "cost": 3,
+          "costText": "3",
+          "abilityText": "ブロッカー\nこのクリーチャーは攻撃することができない。\nこのクリーチャーがブロックする時、バトルの後、ブロックされたクリーチャーを持ち主の手札に戻す。",
+          "race": "サイバーロード",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dm27-042",
+      "spec": {
+        "blocker": true,
+        "noAttack": true,
+        "g912BounceAfterBlock": true
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dm27-042.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "9975e435b38fe1765627d279d14d684e132fd03fbe9298d74e34bb19ab717575",
+        "facesMatched": true
+      }
+    },
+    {
+      "id": "dmr16g-033",
+      "name": "冒険の翼 アドベンチュオ",
+      "faces": [
+        {
+          "name": "冒険の翼 アドベンチュオ",
+          "typeText": "クリーチャー",
+          "civilizationText": "光",
+          "civilizations": [
+            "光"
+          ],
+          "cost": 1,
+          "costText": "1",
+          "abilityText": "ブロッカー ブロッカー（相手クリーチャーが攻撃する時、このクリーチャーをタップして、その攻撃を阻止してもよい。その後、その相手クリーチャーとバトルする）\nこのクリーチャーは、相手プレイヤーを攻撃できない。\nこのクリーチャーがブロックした時、自分の山札の上から１枚目を墓地に置く。それがジャスティス・ウイングまたはドラゴンであれば、そのターン、このクリーチャーのパワーは+2000される。",
+          "race": "ジャスティス・ウイング",
+          "powerText": "2000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=dmr16g-033",
+      "spec": {
+        "blocker": true,
+        "noPlayerAttack": true,
+        "g178Block": [
+          {
+            "op": "MillMatch520",
+            "n": 1,
+            "filter": {
+              "any": [
+                {
+                  "anyFaceRace": "ジャスティス・ウイング"
+                },
+                {
+                  "anyFaceRace": "ドラゴン"
+                }
+              ]
+            },
+            "defs": [
+              {
+                "op": "SelfBoost313",
+                "power": 2000,
+                "g536Source": true
+              }
+            ]
+          }
+        ]
+      },
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/dmr16g-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "de531f084e58dd3f1777d567220e7e9599f29955ba09ac0702562f15069d7e27",
+        "facesMatched": true
+      }
+    }
+  ],
+  "printAliases": [
+    {
+      "id": "promoy14-033",
+      "canonicalId": "dmr18-039",
+      "name": "ラブ・ドラッチ",
+      "faces": [
+        {
+          "name": "ラブ・ドラッチ",
+          "typeText": "クリーチャー",
+          "civilizationText": "火",
+          "civilizations": [
+            "火"
+          ],
+          "cost": 2,
+          "costText": "2",
+          "abilityText": "自分の革命軍の進化クリーチャーの召喚コストを、バトルゾーンにある自分のファイアー・バード１体につき１少なくしてもよい。ただし、コストは０以下にならない。",
+          "race": "ファイアー・バード炎/革命軍",
+          "powerText": "1000",
+          "missingFields": []
+        }
+      ],
+      "source": "https://dm.takaratomy.co.jp/card/detail/?id=promoy14-033",
+      "image": "https://dm.takaratomy.co.jp/wp-content/card/cardimage/promoy14-033.jpg",
+      "verification": {
+        "checkedAt": "2026-11-11",
+        "sha256": "bfd0c0cff30ec3024eb0d6ba93c2e5f94c2366957a1f6cad2339e3e570f89f6a",
+        "facesMatched": true
+      }
+    }
+  ],
+  "regulationVerification": {
+    "source": "https://dm.takaratomy.co.jp/rule/regulation/",
+    "checkedAt": "2026-11-11",
+    "sha256": "5f2d9d7cc153b004d8ac74a044664efb69273489becc42ccc87e4ef37c3e3333",
+    "cardNameCount": 127,
+    "scope": "Current premium and restricted headings excluding comments",
+    "limits": {
+      "dmr18-039": 4,
+      "dm27-042": 4,
+      "dmr16g-033": 4,
+      "promoy14-033": 4
+    }
+  }
+}
