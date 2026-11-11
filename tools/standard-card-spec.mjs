@@ -3445,6 +3445,24 @@ export function standardCardSpec(d,{phase=165}={}){
  const abilityText=phase>=584?f.abilityText.replace(/(マナゾーンに置く時、このカードはタップして置く。)(?=このクリーチャーをバトルゾーンに出した時)/g,'$1\n'):f.abilityText;
  const joinedAbility=phase>=734?abilityText.replace(/(このクリーチャーの攻撃の終わりに、)[ \t]*\n(?=このクリーチャーを破壊する。)/g,'$1'):abilityText;
  const lines=whole363?[f.abilityText]:(phase>=184?(phase>=455?joinedAbility.replace(/(スペース・チャージ[^\n]+）)\s+q\s/g,'$1\nq '):joinedAbility).replace(/[▶▼→][\uFE0E\uFE0F]?|__/g,'\n▶'):f.abilityText).split('\n').filter(s=>s.trim());
+ if(phase>=920&&creature&&d.faces.length===1){
+  const colorSpec={
+   'dm24-043':['水','自然','光'],
+   'dm24-047':['光','闇','水'],
+   'dmex12-057':['光','闇','水'],
+   'dm24-050':['水','火','闇'],
+   'dm24-059':['火','光','自然']
+  }[d.id];
+  if(colorSpec){
+   const [first,second,add]=colorSpec,reprint=d.id==='dmex12-057';
+   const trigger=d.id==='dm24-047'||reprint,zone=reprint?'':'バトルゾーンにある';
+   const triggerText=trigger?(reprint?'S・トリガー':'')+
+    'S・トリガー(このクリーチャーをシールドゾーンから手札に加える時コストを支払わずにすぐ召喚してもよい)':'';
+   if(compact363===triggerText+zone+'自分の'+first+'のクリーチャーと'+second+'のクリーチャーはすべて'+add+'のクリーチャーでもある。'+
+    zone+'自分の他の'+add+'のクリーチャーすべてのパワーは+1000される。')
+    return {...(trigger?{trigger:true}:{}),g920Colors:{from:[first,second],add},g205Aura:{filter:{creature:true,color:add},other:true,power:1000}};
+  }
+ }
  if(phase>=919&&d.faces.length===1){
   if(creature&&['dmrp05-060','dmsd07-012'].includes(d.id)&&compact363===
    '自分のシールドゾーンにカードが置かれた時そのターンこのクリーチャーのパワーを+3000し「W・ブレイカー」を与える。(「W・ブレイカー」を持つクリーチャーはシールドを2つブレイクする)')

@@ -48,25 +48,70 @@ function battleCivilizations805(s,x,c=card(x)){
  const added=additions.filter(r=>refs.some(y=>y.uid===r.uid&&(y.incarnation||0)===r.incarnation)).map(r=>r.color);
  return added.length?[...new Set([...civilizations(c).filter(color=>color!=='ゼロ'),...added])]:civilizations(c);
 }
-function battleCivilizations918(s,x,c=card(x),own){
- const colors=battleCivilizations805(s,x,c);
- if(x.sealed||x.faceDown||c.type!=='creature'||colors.includes('火')||
-    !colors.some(color=>color==='闇'||color==='自然'))return colors;
- const board=(own??s.players.find(p=>p.battle.includes(x)))?.battle;
- if(!board?.some(y=>card(y).g918Kars&&!abilitiesIgnored(s,y))||!isCreature(s,x))return colors;
- return [...colors,'火'];
+const KARS_COLORS={from:['闇','自然'],add:'火'};
+const civilizationAura920=c=>c.g920Colors??(c.g918Kars?KARS_COLORS:null);
+function applyCivilizationAuras920(colors,rules){
+ let result=colors,changed;
+ // All of these effects add a civilization. Follow newly qualifying effects
+ // until no further civilization can be added, regardless of battle order.
+ do{
+  changed=false;
+  for(const {from,add} of rules)if(!result.includes(add)&&from.some(c=>result.includes(c))){
+   result=[...result.filter(c=>c!=='ゼロ'),add];changed=true;
+  }
+ }while(changed);
+ return result;
 }
-export function natureElements(s,p){return s.players[p].battle.filter(x=>['creature','seed'].includes(card(x).type)&&battleCivilizations805(s,x).includes('自然')).length;}
+function battleCivilizations920(s,x,c=card(x),own){
+ const colors=battleCivilizations805(s,x,c);
+ if(x.sealed||x.faceDown||c.type!=='creature'||!colors.length)return colors;
+ const board=(own??s.players.find(p=>p.battle.includes(x)))?.battle;
+ const sources=board?.filter(y=>!y.sealed&&!y.faceDown&&civilizationAura920(card(y)))??[];
+ if(!sources.length||c.natureAce4&&!isCreature(s,x))return colors;
+ const rules=[],pending=[],monoMasked=momoActive(s);
+ for(const y of sources){
+  if(abilitiesIgnoredBeforeCivilization920(s,y))continue;
+  const source=card(y),rule=civilizationAura920(source);
+  if(!monoMasked)rules.push(rule);
+  else pending.push({rule,colors:battleCivilizations805(s,y,source)});
+ }
+ // Under モモムゲン, only already enabled sources may make another source
+ // multicolored. Muted mono sources cannot supply each other a starting color.
+ for(let changed=true;changed;){
+  changed=false;
+  for(let i=pending.length-1;i>=0;i--){
+   const source=pending[i];
+   if(applyCivilizationAuras920(source.colors,rules).length<2)continue;
+   rules.push(source.rule);pending.splice(i,1);changed=true;
+  }
+ }
+ return applyCivilizationAuras920(colors,rules);
+}
+export function natureElements(s,p){
+ const own=s.players[p],hasNatureAura=own.battle.some(x=>card(x).g920Colors?.add==='自然');
+ return own.battle.filter(x=>{
+  const c=card(x);
+  return ['creature','seed'].includes(c.type)&&(battleCivilizations805(s,x,c).includes('自然')||
+   hasNatureAura&&c.type==='creature'&&!c.natureAce4&&battleCivilizations920(s,x,c,own).includes('自然'));
+ }).length;
+}
 export function isCreature(s,x){const c=card(x);if(c.type!=='creature')return false;if(!c.natureAce4)return true;const p=s.players.findIndex(p=>p.battle.some(y=>y.uid===x.uid));return p<0||numberIgnored(s,x)||travelIgnored(s,x)||!!x.aceIgnored||natureElements(s,p)>=4;}
 function refreshDynamicTypes(s){refreshSeals(s);const g=genmuActive(s);for(const p of[0,1])for(const x of s.players[p].battle)if(card(x).natureAce4){if(!g&&!numberIgnored(s,x)&&!travelIgnored(s,x)&&!rawSixMute(s,x)&&!rawSixNamed(s,x))delete x.aceIgnored;else if(numberIgnored(s,x)||travelIgnored(s,x)||rawSixMute(s,x)||rawSixNamed(s,x)||natureElements(s,p)>=4)x.aceIgnored=true;}extra.gearCleanup(s);for(const own of s.players)for(const x of own.battle)if(card(x).g32Complex||x.g32NoUntap)x.g32NoUntap=extra.photo.noUntap(s,x);for(const own of s.players)for(const x of own.battle)x.g34NoUntap=extra.six.noUntap(s,x);}
-export function abilitiesIgnored(s,c){return c.g35Ignored===s?.turn||!!c.sealed||rawSixMute(s,c)||rawSixNamed(s,c)||travelIgnored(s,c)||numberIgnored(s,c)||isCreature(s,c)&&(genmuActive(s)&&costValue(card(c))<=5||momoActive(s)&&battleCivilizations918(s,c).length<=1);}
+function abilitiesIgnoredBeforeCivilization920(s,c){
+ return c.g35Ignored===s?.turn||!!c.sealed||rawSixMute(s,c)||rawSixNamed(s,c)||travelIgnored(s,c)||numberIgnored(s,c)||
+  genmuActive(s)&&isCreature(s,c)&&costValue(card(c))<=5;
+}
+export function abilitiesIgnored(s,c){
+ return abilitiesIgnoredBeforeCivilization920(s,c)||
+  isCreature(s,c)&&momoActive(s)&&battleCivilizations920(s,c).length<=1;
+}
 // Continuous race changes follow the physical card's current zone, including
 // evolution sources. Definitions and hidden/face-down characteristics stay intact.
 export function zoneCard(s,p,inst,zone=null,definition=card(inst)){
  let c=definition;if(!c||!s?.players?.[p]||typeof inst==='string'||inst.faceDown||inst.sealed)return c;
  const own=s.players[p];
  if(zone==='battle'||!zone&&own.battle.includes(inst)){
-  const cs=own.battle.includes(inst)?battleCivilizations918(s,inst,c,own):battleCivilizations805(s,inst,c);
+  const cs=own.battle.includes(inst)?battleCivilizations920(s,inst,c,own):battleCivilizations805(s,inst,c);
   if(cs.join('/')!==civilizations(c).join('/'))c={...c,civilizations:cs,civ:cs.join('/')};
  }
  if(!own.battle.some(x=>!x.faceDown&&!x.sealed&&card(x).g395Rapia&&!abilitiesIgnored(s,x)))return c;
@@ -3633,6 +3678,10 @@ function powerCleanup(s){
   for(const p of[0,1])if(!s.players[p].deck.length){deckCheck(s,p);if(s.winner!==null||s.lossEvent)return;}
   const bad=[0,1].flatMap(player=>s.players[player].battle.filter(x=>isCreature(s,x)&&power(x,x.uid===s.attack?.attacker||s.attackLifecycle?.uid===x.uid&&(s.attackLifecycle.incarnation||0)===(x.incarnation||0),s)<=0&&!extra.six.zeroSafe(s,x)&&!extra.six.destroySafe409(s,x)&&extra.canLeave(s,player,x)).map(x=>({player,uid:x.uid,to:'grave',stateBased:true})));
   if(!bad.length)return;
+  // QA 36173: a continuous victory condition can be met by a creature
+  // whose power has just reached zero, before the creature is destroyed.
+  extra.elevenState(s);
+  if(s.winner!==null||s.lossEvent)return;
   // Recheck after replacements consume shields or evolution layers; do not spin on an unchanged protected unit.
   const before=JSON.stringify(s.players);moveCreatures(s,bad);if(JSON.stringify(s.players)===before)return;
  }
