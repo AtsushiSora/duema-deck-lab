@@ -3435,6 +3435,15 @@ export function standardCardSpec(d,{phase=165}={}){
    return {trigger:true,effect:'sixPhoto',g34Tasks:[{op:'Target',to:'mana',g959MoveTop:true,filter:{evolution:true},
     title:'一番上をマナに置く相手の進化クリーチャーを1体選ぶ'}]};
  }
+ if(phase>=967&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
+  const text=normalize(f.abilityText);
+  if(d.id==='dmex14-088'&&text==='このクリーチャーがアンタップする時カードを1枚引く。')
+   return {g299Untapped:[{op:'Draw',n:1}]};
+  if(d.id==='dmrp21-061'&&text==='このクリーチャーが出た時自分のクリーチャー1体またはタマシード1枚につき自分の山札の上から1枚目を墓地に置く。')
+   return {effect:'sixPhoto',g34Tasks:[{op:'CountMill967',zone:'battle',g262Elements:true,filter:{creatureOrSeed:true}}]};
+  if(d.id==='dmx17-034'&&text==='バトルゾーンにある自分の他のドラゴンはすべてタップされていないクリーチャーを攻撃できる。')
+   return {g967DragonAttackUntapped:true};
+ }
  if(phase>=966&&d?.status==='complete'&&d.faces.length===1&&f.typeText==='クリーチャー'){
   const text=normalize(f.abilityText);
   if(d.id==='dmrp08-012'&&text==='自分が呪文を唱えた時それ以下のコストを持つ光のクリーチャーを1体自分の手札からバトルゾーンに出してもよい。')
